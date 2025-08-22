@@ -279,7 +279,10 @@ const BMICalculator = () => {
                       <div className="flex gap-4 pt-6">
                         <Button
                           onClick={calculateBMI}
-                          className="flex-1 h-12 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg"
+                          className="flex-1 h-12 text-white font-medium rounded-lg"
+                          style={{ backgroundColor: '#f43f5e' }}
+                          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#e11d48'}
+                          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#f43f5e'}
                           data-testid="button-calculate"
                         >
                           <Calculator className="w-4 h-4 mr-2" />
