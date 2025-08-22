@@ -8,7 +8,7 @@ import { tools } from '@/data/tools';
 import { searchAndFilterTools } from '@/lib/search';
 
 const HealthTools = () => {
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredTools, setFilteredTools] = useState(tools.filter(tool => tool.category === 'health'));
 
@@ -109,25 +109,37 @@ const HealthTools = () => {
               <div className="mt-16 bg-white rounded-2xl shadow-lg p-8">
                 <h2 className="text-2xl font-bold text-neutral-800 mb-6 text-center">Popular Health Tools</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  <div className="text-center p-4 bg-pink-50 rounded-xl">
+                  <div 
+                    className="text-center p-4 bg-pink-50 rounded-xl cursor-pointer hover:bg-pink-100 transition-colors duration-200"
+                    onClick={() => setLocation('/tools/bmi-calculator')}
+                  >
                     <i className="fas fa-weight text-2xl text-pink-600 mb-2"></i>
                     <h3 className="font-semibold text-neutral-800">BMI Calculator</h3>
                     <p className="text-sm text-neutral-600">Calculate body mass index</p>
                   </div>
-                  <div className="text-center p-4 bg-red-50 rounded-xl">
+                  <div 
+                    className="text-center p-4 bg-red-50 rounded-xl cursor-pointer hover:bg-red-100 transition-colors duration-200"
+                    onClick={() => setLocation('/tools/calorie-calculator')}
+                  >
                     <i className="fas fa-fire text-2xl text-red-600 mb-2"></i>
                     <h3 className="font-semibold text-neutral-800">Calorie Calculator</h3>
                     <p className="text-sm text-neutral-600">Calculate daily calories</p>
                   </div>
-                  <div className="text-center p-4 bg-blue-50 rounded-xl">
+                  <div 
+                    className="text-center p-4 bg-blue-50 rounded-xl cursor-pointer hover:bg-blue-100 transition-colors duration-200"
+                    onClick={() => setLocation('/tools/pregnancy-due-date-calculator')}
+                  >
                     <i className="fas fa-baby text-2xl text-blue-600 mb-2"></i>
-                    <h3 className="font-semibold text-neutral-800">Pregnancy Calculator</h3>
-                    <p className="text-sm text-neutral-600">Track pregnancy</p>
+                    <h3 className="font-semibold text-neutral-800">Pregnancy Due Date Calculator</h3>
+                    <p className="text-sm text-neutral-600">Calculate expected delivery date and pregnancy milestones</p>
                   </div>
-                  <div className="text-center p-4 bg-green-50 rounded-xl">
-                    <i className="fas fa-heartbeat text-2xl text-green-600 mb-2"></i>
-                    <h3 className="font-semibold text-neutral-800">Heart Rate Calculator</h3>
-                    <p className="text-sm text-neutral-600">Calculate heart rate zones</p>
+                  <div 
+                    className="text-center p-4 bg-purple-50 rounded-xl cursor-pointer hover:bg-purple-100 transition-colors duration-200"
+                    onClick={() => setLocation('/tools/ideal-weight-calculator')}
+                  >
+                    <i className="fas fa-balance-scale text-2xl text-purple-600 mb-2"></i>
+                    <h3 className="font-semibold text-neutral-800">Ideal Weight Calculator</h3>
+                    <p className="text-sm text-neutral-600">Calculate ideal body weight using multiple proven formulas</p>
                   </div>
                 </div>
               </div>
