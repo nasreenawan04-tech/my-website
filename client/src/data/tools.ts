@@ -182,8 +182,8 @@ const toolsData = [
   // Health Tools (30)
   { id: 'bmi-calculator', name: 'BMI Calculator', description: 'Calculate your Body Mass Index and get health insights', category: 'health' as const, icon: 'fas fa-weight', isPopular: true, href: '/tools/bmi-calculator' },
   { id: 'bmr-calculator', name: 'BMR Calculator', description: 'Calculate Basal Metabolic Rate and daily calorie needs', category: 'health' as const, icon: 'fas fa-fire', href: '/tools/bmr-calculator' },
-  { id: 'calorie-calculator', name: 'Calorie Calculator', description: 'Calculate daily calorie requirements', category: 'health' as const, icon: 'fas fa-utensils' },
-  { id: 'body-fat-calculator', name: 'Body Fat Calculator', description: 'Calculate body fat percentage', category: 'health' as const, icon: 'fas fa-percentage' },
+  { id: 'calorie-calculator', name: 'Calorie Calculator', description: 'Calculate daily calorie needs and macronutrient breakdown', category: 'health' as const, icon: 'fas fa-utensils', href: '/tools/calorie-calculator' },
+  { id: 'body-fat-calculator', name: 'Body Fat Calculator', description: 'Calculate body fat percentage using US Navy method', category: 'health' as const, icon: 'fas fa-percentage', href: '/tools/body-fat-calculator' },
   { id: 'pregnancy-due-date', name: 'Pregnancy Due Date Calculator', description: 'Calculate expected delivery date', category: 'health' as const, icon: 'fas fa-baby' },
   { id: 'ideal-weight', name: 'Ideal Weight Calculator', description: 'Calculate your ideal body weight', category: 'health' as const, icon: 'fas fa-balance-scale' },
   { id: 'water-intake', name: 'Water Intake Calculator', description: 'Calculate daily water requirements', category: 'health' as const, icon: 'fas fa-tint' },

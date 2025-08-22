@@ -52,6 +52,8 @@ import PayPalFeeCalculator from '@/pages/paypal-fee-calculator';
 import CryptocurrencyConverter from '@/pages/cryptocurrency-converter';
 import BMICalculator from '@/pages/bmi-calculator';
 import BMRCalculator from '@/pages/bmr-calculator';
+import CalorieCalculator from '@/pages/calorie-calculator';
+import BodyFatCalculator from '@/pages/body-fat-calculator';
 
 
 function ScrollToTop() {
@@ -103,6 +105,8 @@ function Router() {
       <Route path="/tools/cryptocurrency-converter" component={CryptocurrencyConverter} />
       <Route path="/tools/bmi-calculator" component={BMICalculator} />
       <Route path="/tools/bmr-calculator" component={BMRCalculator} />
+      <Route path="/tools/calorie-calculator" component={CalorieCalculator} />
+      <Route path="/tools/body-fat-calculator" component={BodyFatCalculator} />
       <Route path="/tools/:toolId" component={ToolPage} />
       <Route path="/finance" component={FinanceTools} />
       <Route path="/pdf" component={PDFTools} />
