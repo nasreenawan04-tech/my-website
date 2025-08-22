@@ -129,7 +129,7 @@ const BMICalculator = () => {
         
         <main className="flex-1 bg-neutral-50">
           {/* Hero Section */}
-          <section className="text-white py-16" style={{ background: 'linear-gradient(135deg, #ea3e3e 0%, #c53030 100%)' }}>
+          <section className="text-white py-16" style={{ background: 'linear-gradient(135deg, #f43f5e 0%, #e11d48 100%)' }}>
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
               <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
                 <i className="fas fa-weight text-3xl"></i>
