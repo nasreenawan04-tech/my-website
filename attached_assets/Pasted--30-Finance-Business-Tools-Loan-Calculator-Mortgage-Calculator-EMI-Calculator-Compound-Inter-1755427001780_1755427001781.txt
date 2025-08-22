@@ -1,0 +1,373 @@
+🏦 30 Finance & Business Tools
+
+Loan Calculator
+
+Mortgage Calculator
+
+EMI Calculator
+
+Compound Interest Calculator
+
+Simple Interest Calculator
+
+Currency Converter
+
+ROI Calculator
+
+Tax Calculator
+
+Salary to Hourly Calculator
+
+Tip Calculator
+
+Inflation Calculator
+
+Savings Goal Calculator
+
+Debt Payoff Calculator
+
+Net Worth Calculator
+
+Stock Profit Calculator
+
+Retirement Calculator
+
+SIP Calculator (Systematic Investment Plan)
+
+Investment Return Calculator
+
+Break-Even Calculator
+
+Car Loan Calculator
+
+Home Loan Calculator
+
+Education Loan Calculator
+
+Credit Card Interest Calculator
+
+Business Loan Calculator
+
+Lease Calculator
+
+Percentage Calculator
+
+Discount Calculator
+
+VAT/GST Calculator
+
+PayPal Fee Calculator
+
+Cryptocurrency Converter
+
+📄 30 PDF & File Tools
+
+PDF to Word Converter
+
+Word to PDF Converter
+
+Excel to PDF Converter
+
+PDF to Excel Converter
+
+PowerPoint to PDF Converter
+
+PDF to PowerPoint Converter
+
+JPG to PDF Converter
+
+PNG to PDF Converter
+
+Merge PDF
+
+Split PDF
+
+Compress PDF
+
+PDF Editor
+
+Rotate PDF
+
+Unlock PDF
+
+Protect PDF with Password
+
+Add Watermark to PDF
+
+PDF to Text Converter
+
+Text to PDF Converter
+
+HTML to PDF Converter
+
+PDF to HTML Converter
+
+PDF Page Number Adder
+
+Organize PDF Pages
+
+Extract Pages from PDF
+
+Black & White PDF Converter
+
+PDF Metadata Editor
+
+Sign PDF Online
+
+PDF OCR (Image to Text)
+
+PDF to Image (JPG/PNG)
+
+PDF to EPUB Converter
+
+EPUB to PDF Converter
+
+🖼️ 30 Image Tools
+
+Remove Background
+
+Resize Image
+
+Compress Image
+
+Convert PNG to JPG
+
+Convert JPG to PNG
+
+Convert WebP to JPG
+
+Convert SVG to PNG
+
+Crop Image Online
+
+Rotate Image
+
+Flip Image (Mirror)
+
+Upscale/Enhance Image
+
+Blur Image
+
+Sharpen Image
+
+Add Watermark to Image
+
+Meme Generator
+
+Color Picker Tool
+
+Gradient Generator
+
+Image to Base64 Converter
+
+Image to PDF Converter
+
+PDF to Image Converter
+
+Collage Maker
+
+Image Filter Effects (Sepia, Grayscale, etc.)
+
+Image Compressor (Lossless/Lossy)
+
+Circle Crop Tool
+
+Image Color Inverter
+
+Transparent PNG Maker
+
+Favicon Generator
+
+Image Annotation Tool
+
+Image DPI Converter
+
+Black & White Image Converter
+
+
+📝 30 Text & Writing Tools
+
+Word Counter
+
+Character Counter
+
+Sentence Counter
+
+Paragraph Counter
+
+Case Converter (UPPER ⇄ lower)
+
+Plagiarism Checker (basic AI)
+
+Grammar Checker
+
+Spell Checker
+
+Text Summarizer
+
+Paraphrasing Tool
+
+Essay Generator (AI)
+
+Blog Title Generator
+
+Meta Description Generator
+
+Random Password Generator
+
+Random Username Generator
+
+Hashtag Generator
+
+Lorem Ipsum Generator
+
+Fake Address Generator
+
+Fake Name Generator
+
+QR Code Text Generator
+
+Binary to Text Converter
+
+Text to Binary Converter
+
+Text to Speech
+
+Speech to Text
+
+Emoji Translator
+
+ASCII Text Generator
+
+Font Style Changer
+
+Markdown to HTML Converter
+
+Reverse Text Tool
+
+Word Cloud Generator
+
+🌐 30 SEO & Web Tools
+
+Domain Age Checker
+
+Whois Lookup
+
+Backlink Checker
+
+Keyword Density Checker
+
+Meta Tag Generator
+
+Meta Tag Analyzer
+
+Robots.txt Generator
+
+Sitemap Generator
+
+Page Speed Checker
+
+Mobile Friendly Test
+
+SSL Certificate Checker
+
+Redirect Checker
+
+Broken Link Checker
+
+Google Index Checker
+
+Alexa Rank Checker
+
+DA/PA Checker (Domain Authority)
+
+IP Address Lookup
+
+Website Screenshot Tool
+
+Website Status Checker (Up/Down)
+
+Htaccess Redirect Generator
+
+Keyword Suggestion Tool
+
+CPC Keyword Finder
+
+Plagiarism Checker (for SEO)
+
+Backlink Generator
+
+URL Shortener
+
+URL Expander
+
+YouTube Tag Extractor
+
+YouTube Title Generator
+
+YouTube Thumbnail Downloader
+
+Instagram Hashtag Generator
+
+
+⚕️ 30 Health & Fitness Tools
+
+BMI Calculator
+
+BMR Calculator
+
+Calorie Calculator
+
+Body Fat Calculator
+
+Pregnancy Due Date Calculator
+
+Ideal Weight Calculator
+
+Water Intake Calculator
+
+Protein Intake Calculator
+
+Carb Calculator
+
+Keto Macro Calculator
+
+Intermittent Fasting Timer
+
+Daily Step to Calorie Converter
+
+Heart Rate Calculator
+
+Max Heart Rate Calculator
+
+Blood Pressure Tracker
+
+Sleep Calculator
+
+Ovulation Calculator
+
+Baby Growth Chart Calculator
+
+TDEE Calculator (Total Daily Energy Expenditure)
+
+Lean Body Mass Calculator
+
+Waist-to-Height Ratio Calculator
+
+WHR Calculator (Waist-Hip Ratio)
+
+Life Expectancy Calculator
+
+Cholesterol Risk Calculator
+
+Diabetes Risk Calculator
+
+Running Pace Calculator
+
+Cycling Speed Calculator
+
+Swimming Calorie Calculator
+
+Alcohol Calorie Calculator
+
+Smoking Cost Calculator
