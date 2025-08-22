@@ -429,7 +429,7 @@ const Home = () => {
                       </p>
                       <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <a 
-                          href="/all-tools" 
+                          href="/tools" 
                           className="inline-block bg-white text-blue-600 px-8 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-colors duration-200 shadow-lg"
                         >
                           Explore All 180+ Tools
