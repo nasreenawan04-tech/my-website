@@ -1,86 +1,59 @@
-# ToolsHub (DapsiWow) - Online Tools Platform
+# Overview
 
-## Overview
+DapsiWow is a comprehensive web platform offering 180+ free online tools across multiple categories including finance, PDF processing, image editing, text analysis, SEO optimization, and health calculators. The platform focuses on providing professional-grade utilities without requiring user registration, targeting both business and personal use cases. Key features include financial calculators (loan, mortgage, EMI, compound interest), currency converters, business loan calculators, and various specialized tools for different industries.
 
-DapsiWow is a comprehensive online tools platform providing 180+ free utilities across multiple categories including finance, PDF processing, image editing, text analysis, SEO optimization, and health monitoring. The platform is built as a modern React-based single-page application with a Node.js/Express backend, designed to deliver professional-grade tools without requiring user registration or payment.
-
-## User Preferences
+# User Preferences
 
 Preferred communication style: Simple, everyday language.
 
-## System Architecture
+# System Architecture
 
-### Frontend Architecture
-- **Framework**: React 18 with TypeScript for type safety and modern development
-- **Routing**: Wouter for lightweight client-side routing
-- **Styling**: Tailwind CSS with shadcn/ui component library for consistent, modern UI
-- **State Management**: TanStack React Query for server state and local React state for component state
-- **Build Tool**: Vite for fast development and optimized production builds
-- **Component Structure**: Modular architecture with reusable components (Header, Footer, ToolCard, etc.)
+## Frontend Architecture
+- **Framework**: React with TypeScript using Vite as the build tool
+- **Styling**: Tailwind CSS with shadcn/ui component library for consistent UI elements
+- **Routing**: Wouter for client-side routing, providing a lightweight alternative to React Router
+- **State Management**: React hooks for local state, TanStack Query for server state management
+- **UI Components**: Radix UI primitives with custom styling via class-variance-authority
+- **Typography**: Inter font family for modern, clean appearance
+- **Build Configuration**: Vite with React plugin, custom aliases for clean imports (@/, @shared/, @assets/)
 
-### Backend Architecture
-- **Runtime**: Node.js with Express.js framework
-- **Language**: TypeScript for both server and client code
-- **API Design**: RESTful API structure with `/api` prefix for all endpoints
-- **Storage Interface**: Abstracted storage layer with in-memory implementation (MemStorage) and interface for future database integration
-- **Development Server**: Integrated Vite development server for hot module replacement
+## Backend Architecture
+- **Runtime**: Node.js with Express.js server framework
+- **Language**: TypeScript with ES modules
+- **Development Setup**: tsx for TypeScript execution in development
+- **Build Process**: esbuild for production bundling with platform-specific optimizations
+- **Middleware**: Custom logging middleware for API request tracking
+- **Error Handling**: Centralized error handling with status code management
 
-### Database Architecture
-- **ORM**: Drizzle ORM configured for PostgreSQL
-- **Database**: PostgreSQL (via Neon serverless) with connection pooling
-- **Schema Management**: Centralized schema definitions in `/shared/schema.ts`
-- **Migrations**: Drizzle Kit for database migrations and schema changes
-- **Session Storage**: PostgreSQL-based session storage using connect-pg-simple
+## Database & ORM
+- **ORM**: Drizzle ORM with PostgreSQL dialect
+- **Database**: Configured for PostgreSQL with Neon serverless driver
+- **Schema Management**: Centralized schema definitions in shared directory
+- **Migrations**: Drizzle Kit for database migrations and schema synchronization
+- **Validation**: Zod integration with Drizzle for type-safe schema validation
 
-### Project Structure
-- **Monorepo Layout**: Single repository with separate client, server, and shared directories
-- **Client**: React application in `/client` directory with component-based architecture
-- **Server**: Express.js API server in `/server` directory
-- **Shared**: Common TypeScript types, schemas, and utilities in `/shared` directory
-- **Path Aliases**: Configured absolute imports using `@/` for client code and `@shared/` for shared utilities
+## Project Structure
+- **Monorepo Architecture**: Client, server, and shared code in separate directories
+- **Client**: React application with component-based architecture
+- **Server**: Express.js API server with route registration system
+- **Shared**: Common schemas, types, and utilities shared between client and server
+- **Storage Layer**: Abstract storage interface with in-memory implementation (designed for easy database integration)
 
-### Tool Categories and Features
-- **Finance Tools**: 30+ calculators including loan, mortgage, EMI, compound interest, currency conversion
-- **PDF Tools**: Document processing and conversion utilities
-- **Image Tools**: Photo editing, background removal, format conversion
-- **Text Tools**: Writing assistance, grammar checking, word counting
-- **SEO Tools**: Website optimization and analysis utilities
-- **Health Tools**: BMI, calorie, fitness, and medical calculators
-
-### Development Workflow
-- **Type Safety**: Full TypeScript coverage across client, server, and shared code
-- **Code Quality**: ESLint and TypeScript compiler checks
-- **Hot Reload**: Vite's fast refresh for development
-- **Build Process**: Separate client (Vite) and server (esbuild) build pipelines
-- **Environment Management**: Environment-specific configurations for development and production
+## Development & Build Pipeline
+- **Development**: Hot reload with Vite dev server and tsx for server
+- **Type Checking**: Strict TypeScript configuration across all modules
+- **CSS Processing**: PostCSS with Tailwind CSS and Autoprefixer
+- **Asset Handling**: Vite-based asset optimization and bundling
+- **Environment**: Development/production environment detection and configuration
 
 ## External Dependencies
 
-### Core Framework Dependencies
-- **React Ecosystem**: React 18, React DOM, React Helmet Async for SEO
-- **UI Components**: Radix UI primitives with shadcn/ui component library
-- **Styling**: Tailwind CSS with PostCSS and Autoprefixer
-- **Icons**: Font Awesome 6.4.0 for comprehensive icon library
-
-### Data Management
-- **Database**: Neon PostgreSQL serverless database (@neondatabase/serverless)
-- **ORM**: Drizzle ORM with Drizzle Kit for migrations
-- **Validation**: Zod for runtime type validation and schema definitions
-- **Query Management**: TanStack React Query for server state management
-
-### Developer Experience
-- **Build Tools**: Vite for frontend bundling, esbuild for backend bundling
-- **TypeScript**: Full TypeScript support with strict type checking
-- **Development**: tsx for TypeScript execution in development
-- **Utilities**: Various utility libraries (clsx, date-fns, etc.)
-
-### Specialized Libraries
-- **Search**: Fuse.js for fuzzy search functionality across tools
-- **UI Enhancements**: Embla Carousel for carousels, cmdk for command palette
-- **Form Handling**: React Hook Form with Hookform Resolvers for validation
-- **Routing**: Wouter for lightweight client-side routing
-
-### Deployment and Infrastructure
+- **UI Framework**: Radix UI for accessible component primitives
+- **Styling**: Tailwind CSS ecosystem with class utilities
+- **Database**: PostgreSQL via Neon serverless platform
+- **Search**: Fuse.js for client-side fuzzy search functionality
+- **Date Handling**: date-fns for date manipulation and formatting
+- **Development Tools**: Replit integration for cloud development environment
+- **SEO**: react-helmet-async for dynamic meta tag management
+- **Icons**: Font Awesome for comprehensive icon library
 - **Session Management**: connect-pg-simple for PostgreSQL session storage
-- **Environment**: Node.js runtime with ES modules support
-- **Replit Integration**: Custom Vite plugins for Replit development environment

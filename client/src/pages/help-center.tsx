@@ -236,7 +236,7 @@ const HelpCenter = () => {
                         <button
                           key={index}
                           onClick={() => setActiveCategory(topic.category)}
-                          className="w-full text-left p-4 bg-white rounded-xl hover:shadow-md transition-shadow duration-200"
+                          className="w-full text-left p-4 bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-200"
                           data-testid={`button-topic-${index}`}
                         >
                           <div className="flex justify-between items-center">
