@@ -180,8 +180,8 @@ const toolsData = [
   { id: 'instagram-hashtag', name: 'Instagram Hashtag Generator', description: 'Generate Instagram hashtags', category: 'seo' as const, icon: 'fab fa-instagram' },
 
   // Health Tools (30)
-  { id: 'bmi-calculator', name: 'BMI Calculator', description: 'Calculate your Body Mass Index and get health insights', category: 'health' as const, icon: 'fas fa-weight', isPopular: true },
-  { id: 'bmr-calculator', name: 'BMR Calculator', description: 'Calculate Basal Metabolic Rate', category: 'health' as const, icon: 'fas fa-fire' },
+  { id: 'bmi-calculator', name: 'BMI Calculator', description: 'Calculate your Body Mass Index and get health insights', category: 'health' as const, icon: 'fas fa-weight', isPopular: true, href: '/tools/bmi-calculator' },
+  { id: 'bmr-calculator', name: 'BMR Calculator', description: 'Calculate Basal Metabolic Rate and daily calorie needs', category: 'health' as const, icon: 'fas fa-fire', href: '/tools/bmr-calculator' },
   { id: 'calorie-calculator', name: 'Calorie Calculator', description: 'Calculate daily calorie requirements', category: 'health' as const, icon: 'fas fa-utensils' },
   { id: 'body-fat-calculator', name: 'Body Fat Calculator', description: 'Calculate body fat percentage', category: 'health' as const, icon: 'fas fa-percentage' },
   { id: 'pregnancy-due-date', name: 'Pregnancy Due Date Calculator', description: 'Calculate expected delivery date', category: 'health' as const, icon: 'fas fa-baby' },

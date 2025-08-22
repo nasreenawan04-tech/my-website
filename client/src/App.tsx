@@ -50,6 +50,8 @@ import DiscountCalculator from '@/pages/discount-calculator';
 import VATGSTCalculator from '@/pages/vat-gst-calculator';
 import PayPalFeeCalculator from '@/pages/paypal-fee-calculator';
 import CryptocurrencyConverter from '@/pages/cryptocurrency-converter';
+import BMICalculator from '@/pages/bmi-calculator';
+import BMRCalculator from '@/pages/bmr-calculator';
 
 
 function ScrollToTop() {
@@ -99,6 +101,8 @@ function Router() {
       <Route path="/tools/vat-gst-calculator" component={VATGSTCalculator} />
       <Route path="/tools/paypal-fee-calculator" component={PayPalFeeCalculator} />
       <Route path="/tools/cryptocurrency-converter" component={CryptocurrencyConverter} />
+      <Route path="/tools/bmi-calculator" component={BMICalculator} />
+      <Route path="/tools/bmr-calculator" component={BMRCalculator} />
       <Route path="/tools/:toolId" component={ToolPage} />
       <Route path="/finance" component={FinanceTools} />
       <Route path="/pdf" component={PDFTools} />
