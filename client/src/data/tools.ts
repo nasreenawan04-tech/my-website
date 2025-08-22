@@ -205,8 +205,6 @@ const toolsData = [
   { id: 'life-expectancy', name: 'Life Expectancy Calculator', description: 'Estimate life expectancy based on lifestyle', category: 'health' as const, icon: 'fas fa-hourglass' },
   { id: 'cholesterol-risk', name: 'Cholesterol Risk Calculator', description: 'Assess cholesterol-related health risks', category: 'health' as const, icon: 'fas fa-vial' },
   { id: 'diabetes-risk', name: 'Diabetes Risk Calculator', description: 'Assess risk of developing diabetes', category: 'health' as const, icon: 'fas fa-syringe' },
-  { id: 'pregnancy-due-date-calculator', name: 'Pregnancy Due Date Calculator', description: 'Calculate baby due date and pregnancy milestones', category: 'health' as const, icon: 'fas fa-baby' },
-  { id: 'ideal-weight-calculator', name: 'Ideal Weight Calculator', description: 'Calculate your ideal body weight using proven formulas', category: 'health' as const, icon: 'fas fa-balance-scale' },
   { id: 'running-pace', name: 'Running Pace Calculator', description: 'Calculate running pace and times', category: 'health' as const, icon: 'fas fa-running' },
   { id: 'cycling-speed', name: 'Cycling Speed Calculator', description: 'Calculate cycling speed and distance', category: 'health' as const, icon: 'fas fa-bicycle' },
   { id: 'swimming-calories', name: 'Swimming Calorie Calculator', description: 'Calculate calories burned while swimming', category: 'health' as const, icon: 'fas fa-swimmer' },
