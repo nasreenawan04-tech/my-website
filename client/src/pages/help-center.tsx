@@ -6,7 +6,7 @@ import Footer from '@/components/Footer';
 
 const HelpCenter = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeCategory, setActiveCategory] = useState('all');
+  const [activeCategory, setActiveCategory] = useState('');
 
   const helpCategories = [
     {
@@ -115,7 +115,7 @@ const HelpCenter = () => {
   ];
 
   const filteredFAQs = faqs.filter(faq => {
-    const matchesCategory = activeCategory === 'all' || faq.category === activeCategory;
+    const matchesCategory = activeCategory === '' || activeCategory === 'all' || faq.category === activeCategory;
     const matchesSearch = searchQuery === '' || 
       faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
       faq.answer.toLowerCase().includes(searchQuery.toLowerCase());
@@ -253,7 +253,7 @@ const HelpCenter = () => {
                 <div className="lg:col-span-2">
                   <div className="flex justify-between items-center mb-8">
                     <h3 className="text-3xl font-bold text-neutral-800">
-                      {activeCategory === 'all' ? 'All Questions' : helpCategories.find(c => c.id === activeCategory)?.name || 'Questions'}
+                      {activeCategory === '' || activeCategory === 'all' ? 'All Questions' : helpCategories.find(c => c.id === activeCategory)?.name || 'Questions'}
                     </h3>
                     <button
                       onClick={() => setActiveCategory('all')}
