@@ -1,4 +1,5 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, useLocation } from "wouter";
+import { useEffect } from "react";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -51,9 +52,21 @@ import PayPalFeeCalculator from '@/pages/paypal-fee-calculator';
 import CryptocurrencyConverter from '@/pages/cryptocurrency-converter';
 
 
+function ScrollToTop() {
+  const [location] = useLocation();
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+  
+  return null;
+}
+
 function Router() {
   return (
-    <Switch>
+    <>
+      <ScrollToTop />
+      <Switch>
       <Route path="/" component={Home} />
       <Route path="/tools" component={AllTools} />
       <Route path="/tools/loan-calculator" component={LoanCalculator} />
@@ -99,7 +112,8 @@ function Router() {
       <Route path="/help" component={HelpCenter} />
       <Route path="/about" component={AboutUs} />
       <Route component={NotFound} />
-    </Switch>
+      </Switch>
+    </>
   );
 }
 
