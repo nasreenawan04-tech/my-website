@@ -1,0 +1,136 @@
+I want you to create a modern responsive homepage for a tools website, same as the reference screenshot I provided. The site is called ToolsHub.
+
+🖥️ Tech Stack Requirements
+
+Use React + Tailwind CSS (or Next.js with Tailwind if possible).
+
+Use components for Header, Footer, Hero Section, Tool Cards, and Categories.
+
+The layout must be responsive (desktop, tablet, mobile).
+
+Add hover effects on buttons and cards.
+
+Use a clean, modern, minimal UI with soft shadows, rounded corners, and spacing.
+
+📌 Website Layout & Sections
+1. Header
+
+Left side: Logo (ToolsHub with small icon).
+
+Right side: Navigation menu → PDF Tools, Image Tools, Video Tools, AI Write, File Tools.
+
+Add search icon in the header.
+
+Sticky at top with white background and subtle shadow.
+
+2. Hero Section (Top Banner)
+
+Gradient background (blue → purple) full width.
+
+Large heading: "Free Tools to Make Everything Simple" (white text, bold).
+
+Subheading: "We offer PDF, video, image and other online tools to make your life easier. No sign-up required."
+
+Search bar in the center with input + search button.
+
+Below, add 4 stats:
+
+1M+ Active Users
+
+10M+ Files Converted
+
+200+ Online Tools
+
+500K+ PDFs Created
+
+3. Popular Tools Section
+
+Title: "Our Most Popular Tools"
+
+Subtitle: "Free tools you’d usually pay for. No limits, no sign-up required."
+
+Tab filters: All Tools | PDF Tools | Image Tools | Video Tools | AI Write
+
+Grid layout with cards (3 per row desktop, 2 per row tablet, 1 per row mobile).
+
+Example Cards:
+
+PDF Editor → "Edit PDF files online"
+
+PDF to Word → "Convert PDF to Word"
+
+Compress PDF → "Reduce PDF file size"
+
+Merge PDF → "Combine multiple PDFs"
+
+Remove Background → "Remove image background"
+
+Upscale Image → "Increase image resolution"
+
+Compress Image → "Reduce image file size"
+
+Resize Image → "Change image dimensions"
+
+Compress Video → "Reduce video file size"
+
+Trim Video → "Cut video segments"
+
+MP4 to MP3 → "Extract audio from video"
+
+Download Video → "Download online videos"
+
+Add "View All 200+ Tools" button under grid.
+
+4. Tools by Category Section
+
+Title: "Tools by Category"
+
+Subtitle: "Explore our comprehensive suite of productivity tools"
+
+Show 3 large colored cards with gradient backgrounds:
+
+45+ PDF Tools → (PDF to Word, Merge and Split, Compress PDF).
+
+30+ Image Tools → (Remove Background, Upscale Images, Format Conversion).
+
+15+ Video Tools → (Compress Videos, Trim and Edit, Format Conversion).
+
+Each card has a button like "Explore PDF Tools →"
+
+5. Footer
+
+Dark background with 3–4 columns:
+
+Logo + tagline: "Free online tools to make your life easier. No sign-up required, completely free forever."
+
+Popular Tools links: PDF to Word, Remove Background, Compress PDF.
+
+Categories links: PDF Tools, Image Tools, Video Tools.
+
+Support links: Help Center, Contact Us, Privacy Policy.
+
+Bottom text: "© 2024 ToolsHub. All rights reserved. Made with ❤️ for productivity."
+
+Show small counter: "Processing 12,847 files today".
+
+🎨 Design & Styling
+
+Use Tailwind utility classes for styling.
+
+Cards: white background, shadow-md, rounded-2xl, padding.
+
+Headings: bold, text-3xl to text-5xl.
+
+Buttons: gradient blue-purple, rounded-xl, hover with glow.
+
+Responsive spacing (p-6, m-6).
+
+⚡ Final Notes
+
+Make sure the homepage is fully functional and responsive.
+
+Code must be production-ready, clean, and component-based.
+
+Include Header.jsx, Footer.jsx, and HomePage.jsx components.
+
+Keep text placeholders exactly as described.
