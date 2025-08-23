@@ -140,7 +140,7 @@ const IdealWeightCalculator = () => {
         
         <main className="flex-1 bg-neutral-50">
           {/* Hero Section */}
-          <section className="text-white py-16" style={{ background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)' }}>
+          <section className="text-white py-16" style={{ background: 'linear-gradient(135deg, #ec4899 0%, #db2777 100%)' }}>
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
               <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
                 <i className="fas fa-balance-scale text-3xl"></i>
@@ -148,7 +148,7 @@ const IdealWeightCalculator = () => {
               <h1 className="text-4xl sm:text-5xl font-bold mb-6" data-testid="text-page-title">
                 Ideal Weight Calculator
               </h1>
-              <p className="text-xl text-green-100 max-w-2xl mx-auto">
+              <p className="text-xl text-pink-100 max-w-2xl mx-auto">
                 Calculate your ideal body weight using multiple proven medical formulas and get personalized recommendations
               </p>
             </div>
@@ -258,9 +258,9 @@ const IdealWeightCalculator = () => {
                         <Button
                           onClick={calculateIdealWeight}
                           className="flex-1 h-12 text-white font-medium rounded-lg"
-                          style={{ backgroundColor: '#22c55e' }}
-                          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#16a34a'}
-                          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#22c55e'}
+                          style={{ backgroundColor: '#ec4899' }}
+                          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#db2777'}
+                          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#ec4899'}
                           data-testid="button-calculate"
                         >
                           <Calculator className="w-4 h-4 mr-2" />
@@ -284,17 +284,17 @@ const IdealWeightCalculator = () => {
                       {result ? (
                         <div className="space-y-4" data-testid="ideal-weight-results">
                           {/* Average Ideal Weight */}
-                          <div className="bg-white rounded-lg p-4 border-l-4 border-green-500">
+                          <div className="bg-white rounded-lg p-4 border-l-4 border-pink-500">
                             <div className="flex justify-between items-center">
                               <span className="font-semibold text-gray-700">Average Ideal Weight</span>
-                              <span className="text-2xl font-bold text-green-600" data-testid="text-average-weight">
+                              <span className="text-2xl font-bold text-pink-600" data-testid="text-average-weight">
                                 {formatWeight(result.average)}
                               </span>
                             </div>
                           </div>
 
                           {/* Healthy Weight Range */}
-                          <div className="bg-green-50 rounded-lg p-4">
+                          <div className="bg-pink-50 rounded-lg p-4">
                             <h3 className="font-semibold text-gray-900 mb-2">Healthy Weight Range</h3>
                             <div className="text-sm text-gray-600">
                               <span className="font-medium" data-testid="text-weight-range">
@@ -430,7 +430,7 @@ const IdealWeightCalculator = () => {
                 </div>
 
                 {/* Limitations and Tips */}
-                <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-8">
+                <div className="bg-gradient-to-r from-pink-50 to-rose-50 rounded-2xl p-8">
                   <h2 className="text-2xl font-bold text-gray-900 mb-6">Important Considerations</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
