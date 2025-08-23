@@ -54,6 +54,7 @@ import BMICalculator from '@/pages/bmi-calculator';
 import BMRCalculator from '@/pages/bmr-calculator';
 import CalorieCalculator from '@/pages/calorie-calculator';
 import BodyFatCalculator from '@/pages/body-fat-calculator';
+import IdealWeightCalculator from '@/pages/ideal-weight-calculator';
 
 
 function ScrollToTop() {
@@ -107,6 +108,7 @@ function Router() {
       <Route path="/tools/bmr-calculator" component={BMRCalculator} />
       <Route path="/tools/calorie-calculator" component={CalorieCalculator} />
       <Route path="/tools/body-fat-calculator" component={BodyFatCalculator} />
+      <Route path="/tools/ideal-weight-calculator" component={IdealWeightCalculator} />
       <Route path="/tools/:toolId" component={ToolPage} />
       <Route path="/finance" component={FinanceTools} />
       <Route path="/pdf" component={PDFTools} />
