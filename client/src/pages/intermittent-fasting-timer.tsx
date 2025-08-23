@@ -163,20 +163,20 @@ const IntermittentFastingTimer = () => {
     setCurrentMotivation(motivationalMessages[Math.floor(Math.random() * motivationalMessages.length)]);
   }, []);
 
-  // Timer logic - FAST MODE for testing
+  // Timer logic
   useEffect(() => {
     let interval: NodeJS.Timeout;
     if (isRunning && timeRemaining > 0) {
       interval = setInterval(() => {
         setTimeRemaining(prev => {
-          if (prev <= 10) {
+          if (prev <= 1) {
             // Timer completed
             completeFastingPhase();
             return 0;
           }
-          return prev - 10; // Count down by 10 seconds every 100ms (100x faster)
+          return prev - 1;
         });
-      }, 100); // Update every 100ms instead of 1000ms
+      }, 1000);
     }
     return () => clearInterval(interval);
   }, [isRunning, timeRemaining, currentPhase, selectedSchedule]);
