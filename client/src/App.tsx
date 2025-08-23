@@ -64,6 +64,8 @@ import IntermittentFastingTimer from '@/pages/intermittent-fasting-timer';
 import DailyStepCalorieConverter from '@/pages/daily-step-calorie-converter';
 import HeartRateCalculator from '@/pages/heart-rate-calculator';
 import MaxHeartRateCalculator from '@/pages/max-heart-rate-calculator';
+import BloodPressureTracker from '@/pages/blood-pressure-tracker';
+import SleepCalculator from '@/pages/sleep-calculator';
 
 
 function ScrollToTop() {
@@ -127,6 +129,8 @@ function Router() {
       <Route path="/tools/daily-step-calorie-converter" component={DailyStepCalorieConverter} />
       <Route path="/tools/heart-rate-calculator" component={HeartRateCalculator} />
       <Route path="/tools/max-heart-rate-calculator" component={MaxHeartRateCalculator} />
+      <Route path="/tools/blood-pressure-tracker" component={BloodPressureTracker} />
+      <Route path="/tools/sleep-calculator" component={SleepCalculator} />
       <Route path="/tools/:toolId" component={ToolPage} />
       <Route path="/finance" component={FinanceTools} />
       <Route path="/pdf" component={PDFTools} />
