@@ -62,6 +62,8 @@ import CarbCalculator from '@/pages/carb-calculator';
 import KetoMacroCalculator from '@/pages/keto-macro-calculator';
 import IntermittentFastingTimer from '@/pages/intermittent-fasting-timer';
 import DailyStepCalorieConverter from '@/pages/daily-step-calorie-converter';
+import HeartRateCalculator from '@/pages/heart-rate-calculator';
+import MaxHeartRateCalculator from '@/pages/max-heart-rate-calculator';
 
 
 function ScrollToTop() {
@@ -123,6 +125,8 @@ function Router() {
       <Route path="/tools/keto-macro-calculator" component={KetoMacroCalculator} />
       <Route path="/tools/intermittent-fasting-timer" component={IntermittentFastingTimer} />
       <Route path="/tools/daily-step-calorie-converter" component={DailyStepCalorieConverter} />
+      <Route path="/tools/heart-rate-calculator" component={HeartRateCalculator} />
+      <Route path="/tools/max-heart-rate-calculator" component={MaxHeartRateCalculator} />
       <Route path="/tools/:toolId" component={ToolPage} />
       <Route path="/finance" component={FinanceTools} />
       <Route path="/pdf" component={PDFTools} />
