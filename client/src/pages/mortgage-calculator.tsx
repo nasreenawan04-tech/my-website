@@ -19,6 +19,21 @@ interface MortgageResult {
   monthlyTaxes: number;
   monthlyInsurance: number;
   monthlyPMI: number;
+  monthlyHOA: number;
+  closingCosts: number;
+  totalCashNeeded: number;
+  loanToValue: number;
+  debtToIncomeRatio?: number;
+  affordabilityAnalysis: {
+    maxAffordablePrice: number;
+    recommendedPrice: number;
+    isAffordable: boolean;
+  };
+  pmiRemovalDate?: {
+    month: number;
+    year: number;
+    balance: number;
+  };
 }
 
 const MortgageCalculator = () => {
@@ -31,6 +46,11 @@ const MortgageCalculator = () => {
   const [homeInsurance, setHomeInsurance] = useState('');
   const [pmiRate, setPmiRate] = useState('0.5');
   const [usePercentage, setUsePercentage] = useState(true);
+  const [loanType, setLoanType] = useState('conventional');
+  const [hoaFees, setHoaFees] = useState('0');
+  const [closingCostPercent, setClosingCostPercent] = useState('3');
+  const [monthlyIncome, setMonthlyIncome] = useState('');
+  const [showAffordability, setShowAffordability] = useState(false);
   const [result, setResult] = useState<MortgageResult | null>(null);
 
   const calculateMortgage = () => {
@@ -44,10 +64,22 @@ const MortgageCalculator = () => {
     const taxes = parseFloat(propertyTax) || 0;
     const insurance = parseFloat(homeInsurance) || 0;
     const pmi = parseFloat(pmiRate) || 0;
+    const hoa = parseFloat(hoaFees) || 0;
+    const income = parseFloat(monthlyIncome) || 0;
 
     if (principal && rate && term) {
+      // Adjust interest rate based on loan type
+      let adjustedRate = rate;
+      if (loanType === 'fha') {
+        // FHA loans typically have slightly higher rates but lower down payment requirements
+        adjustedRate = rate + 0.0025; // 0.25% higher
+      } else if (loanType === 'va') {
+        // VA loans typically have lower rates
+        adjustedRate = rate - 0.00125; // 0.125% lower
+      }
+
       // Monthly Principal & Interest calculation
-      const monthlyPI = (principal * rate * Math.pow(1 + rate, term)) / (Math.pow(1 + rate, term) - 1);
+      const monthlyPI = (principal * adjustedRate * Math.pow(1 + adjustedRate, term)) / (Math.pow(1 + adjustedRate, term) - 1);
       
       // Monthly property taxes
       const monthlyTaxes = taxes / 12;
@@ -55,12 +87,58 @@ const MortgageCalculator = () => {
       // Monthly insurance
       const monthlyInsurance = insurance / 12;
       
-      // Monthly PMI (if down payment is less than 20%)
+      // Monthly PMI calculation varies by loan type
       const downPaymentPercent = (down / price) * 100;
-      const monthlyPMI = downPaymentPercent < 20 ? (principal * (pmi / 100)) / 12 : 0;
+      let monthlyPMI = 0;
+      
+      if (loanType === 'conventional' && downPaymentPercent < 20) {
+        monthlyPMI = (principal * (pmi / 100)) / 12;
+      } else if (loanType === 'fha') {
+        // FHA MIP is required regardless of down payment
+        monthlyPMI = (principal * 0.0085) / 12; // 0.85% annual MIP
+      }
+      
+      // Monthly HOA fees
+      const monthlyHOA = hoa;
       
       // Total monthly payment
-      const monthlyPayment = monthlyPI + monthlyTaxes + monthlyInsurance + monthlyPMI;
+      const monthlyPayment = monthlyPI + monthlyTaxes + monthlyInsurance + monthlyPMI + monthlyHOA;
+      
+      // Closing costs calculation
+      const closingCosts = (price * parseFloat(closingCostPercent)) / 100;
+      const totalCashNeeded = down + closingCosts;
+      
+      // Loan to Value ratio
+      const loanToValue = (principal / price) * 100;
+      
+      // Debt to Income ratio
+      const debtToIncomeRatio = income > 0 ? (monthlyPayment / income) * 100 : 0;
+      
+      // Affordability analysis
+      const maxPaymentBasedOnIncome = income * 0.28; // 28% rule
+      const maxAffordablePrice = income > 0 ? (maxPaymentBasedOnIncome - monthlyTaxes - monthlyInsurance - monthlyHOA) / (adjustedRate * Math.pow(1 + adjustedRate, term) / (Math.pow(1 + adjustedRate, term) - 1)) + down : 0;
+      const recommendedPrice = maxAffordablePrice * 0.85; // More conservative recommendation
+      const isAffordable = monthlyPayment <= maxPaymentBasedOnIncome;
+      
+      // PMI removal calculation (for conventional loans)
+      let pmiRemovalDate;
+      if (loanType === 'conventional' && monthlyPMI > 0) {
+        let balance = principal;
+        let month = 0;
+        while (balance / price > 0.78 && month < term) { // PMI removed at 78% LTV
+          month++;
+          const interestPayment = balance * adjustedRate;
+          const principalPayment = monthlyPI - interestPayment;
+          balance -= principalPayment;
+        }
+        if (month < term) {
+          pmiRemovalDate = {
+            month: month % 12 || 12,
+            year: Math.floor(month / 12) + new Date().getFullYear(),
+            balance: balance
+          };
+        }
+      }
       
       const totalAmount = monthlyPI * term;
       const totalInterest = totalAmount - principal;
@@ -72,7 +150,18 @@ const MortgageCalculator = () => {
         monthlyPrincipalAndInterest: Math.round(monthlyPI * 100) / 100,
         monthlyTaxes: Math.round(monthlyTaxes * 100) / 100,
         monthlyInsurance: Math.round(monthlyInsurance * 100) / 100,
-        monthlyPMI: Math.round(monthlyPMI * 100) / 100
+        monthlyPMI: Math.round(monthlyPMI * 100) / 100,
+        monthlyHOA: Math.round(monthlyHOA * 100) / 100,
+        closingCosts: Math.round(closingCosts * 100) / 100,
+        totalCashNeeded: Math.round(totalCashNeeded * 100) / 100,
+        loanToValue: Math.round(loanToValue * 100) / 100,
+        debtToIncomeRatio: Math.round(debtToIncomeRatio * 100) / 100,
+        affordabilityAnalysis: {
+          maxAffordablePrice: Math.round(maxAffordablePrice * 100) / 100,
+          recommendedPrice: Math.round(recommendedPrice * 100) / 100,
+          isAffordable
+        },
+        pmiRemovalDate
       });
     }
   };
@@ -87,6 +176,11 @@ const MortgageCalculator = () => {
     setHomeInsurance('');
     setPmiRate('0.5');
     setUsePercentage(true);
+    setLoanType('conventional');
+    setHoaFees('0');
+    setClosingCostPercent('3');
+    setMonthlyIncome('');
+    setShowAffordability(false);
     setResult(null);
   };
 
@@ -247,6 +341,21 @@ const MortgageCalculator = () => {
                         />
                       </div>
 
+                      {/* Loan Type */}
+                      <div className="space-y-3">
+                        <Label className="text-sm font-medium text-gray-700">Loan Type</Label>
+                        <Select value={loanType} onValueChange={setLoanType}>
+                          <SelectTrigger className="h-12 border-gray-200 rounded-lg" data-testid="select-loan-type">
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="conventional">Conventional</SelectItem>
+                            <SelectItem value="fha">FHA (Federal Housing Administration)</SelectItem>
+                            <SelectItem value="va">VA (Veterans Affairs)</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
                       {/* Additional Costs */}
                       <div className="border-t pt-6 space-y-4">
                         <h3 className="text-lg font-semibold mb-4">Additional Monthly Costs</h3>
@@ -300,13 +409,96 @@ const MortgageCalculator = () => {
                               min="0"
                               max="10"
                               data-testid="input-pmi-rate"
+                              disabled={loanType !== 'conventional'}
                             />
                             <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">%</span>
                           </div>
                           <p className="text-xs text-muted-foreground">
-                            Applied if down payment is less than 20%
+                            {loanType === 'conventional' 
+                              ? 'Applied if down payment is less than 20%' 
+                              : loanType === 'fha' 
+                                ? 'FHA loans have mandatory mortgage insurance premium (MIP)' 
+                                : 'VA loans do not require PMI'}
                           </p>
                         </div>
+
+                        {/* HOA Fees */}
+                        <div className="space-y-2">
+                          <Label htmlFor="hoa-fees">Monthly HOA Fees</Label>
+                          <div className="relative">
+                            <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">$</span>
+                            <Input
+                              id="hoa-fees"
+                              type="number"
+                              value={hoaFees}
+                              onChange={(e) => setHoaFees(e.target.value)}
+                              className="pl-8"
+                              placeholder="0"
+                              data-testid="input-hoa-fees"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Closing Costs */}
+                        <div className="space-y-2">
+                          <Label htmlFor="closing-costs">Closing Costs (%)</Label>
+                          <div className="relative">
+                            <Input
+                              id="closing-costs"
+                              type="number"
+                              value={closingCostPercent}
+                              onChange={(e) => setClosingCostPercent(e.target.value)}
+                              className="pr-8"
+                              placeholder="3"
+                              step="0.1"
+                              min="0"
+                              max="10"
+                              data-testid="input-closing-costs"
+                            />
+                            <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">%</span>
+                          </div>
+                          <p className="text-xs text-muted-foreground">
+                            Typically 2-5% of home price
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Affordability Analysis */}
+                      <div className="border-t pt-6 space-y-4">
+                        <div className="flex items-center justify-between">
+                          <h3 className="text-lg font-semibold">Affordability Analysis</h3>
+                          <Button
+                            onClick={() => setShowAffordability(!showAffordability)}
+                            variant="outline"
+                            size="sm"
+                            className="text-xs"
+                          >
+                            {showAffordability ? 'Hide' : 'Show'}
+                          </Button>
+                        </div>
+                        
+                        {showAffordability && (
+                          <div className="space-y-3">
+                            <div className="space-y-2">
+                              <Label htmlFor="monthly-income">Monthly Income</Label>
+                              <div className="relative">
+                                <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">$</span>
+                                <Input
+                                  id="monthly-income"
+                                  type="number"
+                                  value={monthlyIncome}
+                                  onChange={(e) => setMonthlyIncome(e.target.value)}
+                                  className="pl-8"
+                                  placeholder="8,000"
+                                  data-testid="input-monthly-income"
+                                />
+                              </div>
+                              <p className="text-xs text-muted-foreground">
+                                Gross monthly income for affordability calculation
+                              </p>
+                            </div>
+                          </div>
+                        )}
                       </div>
 
                       {/* Action Buttons */}
@@ -375,16 +567,128 @@ const MortgageCalculator = () => {
                             
                             {result.monthlyPMI > 0 && (
                               <div className="flex justify-between">
-                                <span className="text-gray-600">PMI</span>
+                                <span className="text-gray-600">
+                                  {loanType === 'fha' ? 'MIP (Mortgage Insurance)' : 'PMI'}
+                                </span>
                                 <span className="font-semibold" data-testid="text-pmi">
                                   {formatCurrency(result.monthlyPMI)}
                                 </span>
                               </div>
                             )}
+                            
+                            {result.monthlyHOA > 0 && (
+                              <div className="flex justify-between">
+                                <span className="text-gray-600">HOA Fees</span>
+                                <span className="font-semibold" data-testid="text-hoa">
+                                  {formatCurrency(result.monthlyHOA)}
+                                </span>
+                              </div>
+                            )}
                           </div>
+
+                          {/* Cash Requirements */}
+                          <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-200 mt-4">
+                            <h3 className="font-semibold text-yellow-800 mb-3">💰 Cash Needed at Closing</h3>
+                            <div className="space-y-2 text-sm">
+                              <div className="flex justify-between">
+                                <span className="text-yellow-700">Down Payment:</span>
+                                <span className="font-semibold text-yellow-800">
+                                  {formatCurrency(parseFloat(homePrice) * parseFloat(downPaymentPercent) / 100)}
+                                </span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-yellow-700">Closing Costs:</span>
+                                <span className="font-semibold text-yellow-800">
+                                  {formatCurrency(result.closingCosts)}
+                                </span>
+                              </div>
+                              <div className="border-t border-yellow-300 pt-2 flex justify-between">
+                                <span className="text-yellow-700 font-semibold">Total Cash Needed:</span>
+                                <span className="font-bold text-yellow-800">
+                                  {formatCurrency(result.totalCashNeeded)}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Affordability Analysis */}
+                          {result.debtToIncomeRatio && result.debtToIncomeRatio > 0 && (
+                            <div className={`rounded-lg p-4 border mt-4 ${
+                              result.affordabilityAnalysis.isAffordable 
+                                ? 'bg-green-50 border-green-200' 
+                                : 'bg-red-50 border-red-200'
+                            }`}>
+                              <h3 className={`font-semibold mb-3 ${
+                                result.affordabilityAnalysis.isAffordable 
+                                  ? 'text-green-800' 
+                                  : 'text-red-800'
+                              }`}>
+                                📊 Affordability Analysis
+                              </h3>
+                              <div className="space-y-2 text-sm">
+                                <div className="flex justify-between">
+                                  <span className={result.affordabilityAnalysis.isAffordable ? 'text-green-700' : 'text-red-700'}>
+                                    Debt-to-Income Ratio:
+                                  </span>
+                                  <span className={`font-semibold ${
+                                    result.affordabilityAnalysis.isAffordable ? 'text-green-800' : 'text-red-800'
+                                  }`}>
+                                    {result.debtToIncomeRatio}%
+                                  </span>
+                                </div>
+                                <div className="flex justify-between">
+                                  <span className={result.affordabilityAnalysis.isAffordable ? 'text-green-700' : 'text-red-700'}>
+                                    Max Affordable Price:
+                                  </span>
+                                  <span className={`font-semibold ${
+                                    result.affordabilityAnalysis.isAffordable ? 'text-green-800' : 'text-red-800'
+                                  }`}>
+                                    {formatCurrency(result.affordabilityAnalysis.maxAffordablePrice)}
+                                  </span>
+                                </div>
+                                <p className={`text-xs mt-2 ${
+                                  result.affordabilityAnalysis.isAffordable ? 'text-green-600' : 'text-red-600'
+                                }`}>
+                                  {result.affordabilityAnalysis.isAffordable 
+                                    ? '✅ This home fits within recommended affordability guidelines (28% rule)'
+                                    : '⚠️ This home may stretch your budget. Consider a lower price or higher income.'}
+                                </p>
+                              </div>
+                            </div>
+                          )}
+
+                          {/* PMI Removal Information */}
+                          {result.pmiRemovalDate && (
+                            <div className="bg-blue-50 rounded-lg p-4 border border-blue-200 mt-4">
+                              <h3 className="font-semibold text-blue-800 mb-3">🏠 PMI Removal Projection</h3>
+                              <div className="space-y-2 text-sm">
+                                <div className="flex justify-between">
+                                  <span className="text-blue-700">PMI will be removed in:</span>
+                                  <span className="font-semibold text-blue-800">
+                                    {result.pmiRemovalDate.month}/{result.pmiRemovalDate.year}
+                                  </span>
+                                </div>
+                                <p className="text-xs text-blue-600 mt-2">
+                                  PMI is automatically removed when you reach 78% loan-to-value ratio
+                                </p>
+                              </div>
+                            </div>
+                          )}
 
                           {/* Loan Summary */}
                           <div className="border-t pt-4 space-y-3">
+                            <div className="flex justify-between">
+                              <span className="text-gray-600">Loan Amount</span>
+                              <span className="font-semibold" data-testid="text-loan-amount">
+                                {formatCurrency(parseFloat(homePrice) - (usePercentage ? parseFloat(homePrice) * parseFloat(downPaymentPercent) / 100 : parseFloat(downPayment)))}
+                              </span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="text-gray-600">Loan-to-Value Ratio</span>
+                              <span className="font-semibold" data-testid="text-ltv">
+                                {result.loanToValue}%
+                              </span>
+                            </div>
                             <div className="flex justify-between">
                               <span className="text-gray-600">Total Amount Paid</span>
                               <span className="font-semibold" data-testid="text-total-amount">

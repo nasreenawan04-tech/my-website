@@ -14,11 +14,27 @@ interface CompoundInterestResult {
   finalAmount: number;
   totalInterest: number;
   principalAmount: number;
+  totalContributions: number;
+  realValue: number;
+  inflationAdjustedGains: number;
+  goalAnalysis?: {
+    timeToReachGoal: number;
+    requiredMonthlyContribution: number;
+    isGoalAchievable: boolean;
+  };
+  sipAnalysis?: {
+    totalSIPContributions: number;
+    sipInterestEarned: number;
+    averageAnnualReturn: number;
+  };
   yearlyBreakdown: Array<{
     year: number;
     amount: number;
     interestEarned: number;
     totalInterest: number;
+    sipContribution: number;
+    cumulativeContributions: number;
+    realValue: number;
   }>;
 }
 
@@ -29,6 +45,14 @@ export default function CompoundInterestCalculator() {
   const [timeUnit, setTimeUnit] = useState('years');
   const [compoundFrequency, setCompoundFrequency] = useState('12');
   const [currency, setCurrency] = useState('USD');
+  const [enableSIP, setEnableSIP] = useState(false);
+  const [sipAmount, setSipAmount] = useState('1000');
+  const [sipFrequency, setSipFrequency] = useState('12'); // monthly by default
+  const [stepUpPercentage, setStepUpPercentage] = useState('0');
+  const [inflationRate, setInflationRate] = useState('3');
+  const [enableGoalPlanning, setEnableGoalPlanning] = useState(false);
+  const [goalAmount, setGoalAmount] = useState('100000');
+  const [showRealValue, setShowRealValue] = useState(false);
   const [result, setResult] = useState<CompoundInterestResult | null>(null);
 
   const calculateCompoundInterest = () => {
@@ -36,35 +60,120 @@ export default function CompoundInterestCalculator() {
     const r = parseFloat(interestRate) / 100;
     const t = timeUnit === 'years' ? parseFloat(timePeriod) : parseFloat(timePeriod) / 12;
     const n = parseFloat(compoundFrequency);
+    const sip = enableSIP ? parseFloat(sipAmount) : 0;
+    const sipFreq = parseFloat(sipFrequency);
+    const stepUp = parseFloat(stepUpPercentage) / 100;
+    const inflation = parseFloat(inflationRate) / 100;
+    const target = parseFloat(goalAmount);
 
-    if (p <= 0 || r <= 0 || t <= 0 || n <= 0) return;
+    if (p < 0 || r <= 0 || t <= 0 || n <= 0) return;
 
-    // Compound Interest Formula: A = P(1 + r/n)^(nt)
-    const finalAmount = p * Math.pow((1 + r / n), n * t);
-    const totalInterest = finalAmount - p;
-
-    // Calculate yearly breakdown
-    const yearlyBreakdown = [];
     const years = Math.ceil(t);
+    let currentAmount = p;
+    let totalContributions = p;
+    let totalSIPContributions = 0;
+    const yearlyBreakdown = [];
     
     for (let year = 1; year <= years; year++) {
-      const yearAmount = p * Math.pow((1 + r / n), n * Math.min(year, t));
-      const yearInterest = yearAmount - p;
-      const previousAmount = year === 1 ? p : p * Math.pow((1 + r / n), n * (year - 1));
-      const interestEarned = yearAmount - previousAmount;
+      const isPartialYear = year > t;
+      const yearDuration = isPartialYear ? t - (year - 1) : 1;
+      
+      // Calculate compound growth for existing amount
+      const growthFactor = Math.pow((1 + r / n), n * yearDuration);
+      currentAmount *= growthFactor;
+      
+      // Add SIP contributions throughout the year
+      if (enableSIP && sip > 0) {
+        const periodsInYear = sipFreq * yearDuration;
+        let currentSIP = sip;
+        
+        // Apply step-up to SIP amount
+        if (stepUp > 0 && year > 1) {
+          currentSIP = sip * Math.pow(1 + stepUp, year - 1);
+        }
+        
+        for (let period = 1; period <= periodsInYear; period++) {
+          const remainingTime = yearDuration - (period / sipFreq);
+          const contributionGrowth = remainingTime > 0 ? Math.pow((1 + r / n), n * remainingTime) : 1;
+          currentAmount += currentSIP * contributionGrowth;
+          totalSIPContributions += currentSIP;
+          totalContributions += currentSIP;
+        }
+      }
+      
+      const previousAmount = year === 1 ? p : yearlyBreakdown[year - 2].amount;
+      const interestEarned = currentAmount - previousAmount - (enableSIP ? totalSIPContributions - (year > 1 ? yearlyBreakdown[year - 2].cumulativeContributions - p : 0) : 0);
+      const realValue = currentAmount / Math.pow(1 + inflation, year);
       
       yearlyBreakdown.push({
         year,
-        amount: yearAmount,
-        interestEarned,
-        totalInterest: yearInterest
+        amount: currentAmount,
+        interestEarned: Math.max(0, interestEarned),
+        totalInterest: currentAmount - totalContributions,
+        sipContribution: enableSIP && sip > 0 ? (stepUp > 0 ? sip * Math.pow(1 + stepUp, year - 1) : sip) * sipFreq * yearDuration : 0,
+        cumulativeContributions: totalContributions,
+        realValue
       });
+    }
+
+    const finalAmount = currentAmount;
+    const totalInterest = finalAmount - totalContributions;
+    const realValue = finalAmount / Math.pow(1 + inflation, t);
+    const inflationAdjustedGains = realValue - totalContributions;
+
+    // Goal analysis
+    let goalAnalysis;
+    if (enableGoalPlanning && target > 0) {
+      // Calculate time to reach goal
+      let timeToGoal = 0;
+      let testAmount = p;
+      let testContributions = p;
+      
+      while (testAmount < target && timeToGoal < 50) { // Max 50 years
+        timeToGoal += 1;
+        testAmount *= Math.pow((1 + r / n), n);
+        
+        if (enableSIP && sip > 0) {
+          const yearSIP = stepUp > 0 ? sip * Math.pow(1 + stepUp, timeToGoal - 1) : sip;
+          testAmount += yearSIP * sipFreq * ((Math.pow(1 + r/n, n) - 1) / (r/n));
+          testContributions += yearSIP * sipFreq;
+        }
+      }
+      
+      // Calculate required monthly contribution to reach goal
+      const requiredTotal = target - p * Math.pow((1 + r / n), n * t);
+      const annuityFactor = ((Math.pow(1 + r/n, n * t) - 1) / (r/n));
+      const requiredMonthlyContribution = requiredTotal > 0 ? (requiredTotal / annuityFactor) / 12 : 0;
+      
+      goalAnalysis = {
+        timeToReachGoal: timeToGoal <= 50 ? timeToGoal : -1,
+        requiredMonthlyContribution: Math.max(0, requiredMonthlyContribution),
+        isGoalAchievable: timeToGoal <= 50 || requiredMonthlyContribution <= sip * 2
+      };
+    }
+
+    // SIP analysis
+    let sipAnalysis;
+    if (enableSIP && totalSIPContributions > 0) {
+      const sipInterestEarned = finalAmount - p - totalSIPContributions;
+      const averageAnnualReturn = totalSIPContributions > 0 ? ((finalAmount / totalContributions) ** (1/t) - 1) * 100 : 0;
+      
+      sipAnalysis = {
+        totalSIPContributions,
+        sipInterestEarned: Math.max(0, sipInterestEarned),
+        averageAnnualReturn
+      };
     }
 
     setResult({
       finalAmount,
       totalInterest,
       principalAmount: p,
+      totalContributions,
+      realValue,
+      inflationAdjustedGains,
+      goalAnalysis,
+      sipAnalysis,
       yearlyBreakdown
     });
   };
@@ -76,6 +185,14 @@ export default function CompoundInterestCalculator() {
     setTimeUnit('years');
     setCompoundFrequency('12');
     setCurrency('USD');
+    setEnableSIP(false);
+    setSipAmount('1000');
+    setSipFrequency('12');
+    setStepUpPercentage('0');
+    setInflationRate('3');
+    setEnableGoalPlanning(false);
+    setGoalAmount('100000');
+    setShowRealValue(false);
     setResult(null);
   };
 

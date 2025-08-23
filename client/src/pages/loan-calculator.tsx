@@ -13,6 +13,28 @@ interface LoanResult {
   monthlyPayment: number;
   totalAmount: number;
   totalInterest: number;
+  amortizationSchedule: Array<{
+    month: number;
+    payment: number;
+    principal: number;
+    interest: number;
+    balance: number;
+  }>;
+  extraPaymentSavings?: {
+    timeSaved: number;
+    interestSaved: number;
+    newTotalInterest: number;
+    newPayoffTime: number;
+  };
+}
+
+interface ComparisonLoan {
+  name: string;
+  amount: number;
+  rate: number;
+  term: number;
+  monthlyPayment: number;
+  totalInterest: number;
 }
 
 export default function LoanCalculator() {
@@ -20,23 +42,78 @@ export default function LoanCalculator() {
   const [interestRate, setInterestRate] = useState('5.50');
   const [loanTerm, setLoanTerm] = useState('30');
   const [termUnit, setTermUnit] = useState('years');
+  const [paymentFrequency, setPaymentFrequency] = useState('monthly');
+  const [extraPayment, setExtraPayment] = useState('0');
+  const [showAmortization, setShowAmortization] = useState(false);
+  const [showComparison, setShowComparison] = useState(false);
+  const [comparisonLoans, setComparisonLoans] = useState<ComparisonLoan[]>([]);
   const [result, setResult] = useState<LoanResult | null>(null);
 
   const calculateLoan = () => {
     const principal = parseFloat(loanAmount);
-    const rate = parseFloat(interestRate) / 100 / 12;
+    const annualRate = parseFloat(interestRate) / 100;
     const termMonths = termUnit === 'years' ? parseFloat(loanTerm) * 12 : parseFloat(loanTerm);
+    const extraPmt = parseFloat(extraPayment) || 0;
 
-    if (principal <= 0 || rate <= 0 || termMonths <= 0) return;
+    if (principal <= 0 || annualRate <= 0 || termMonths <= 0) return;
 
-    const monthlyPayment = (principal * rate * Math.pow(1 + rate, termMonths)) / (Math.pow(1 + rate, termMonths) - 1);
-    const totalAmount = monthlyPayment * termMonths;
-    const totalInterest = totalAmount - principal;
+    // Adjust for payment frequency
+    const paymentsPerYear = paymentFrequency === 'weekly' ? 52 : 
+                           paymentFrequency === 'biweekly' ? 26 : 12;
+    const periodicRate = annualRate / paymentsPerYear;
+    const totalPayments = termMonths * (paymentsPerYear / 12);
+
+    // Calculate regular payment
+    const regularPayment = (principal * periodicRate * Math.pow(1 + periodicRate, totalPayments)) / 
+                          (Math.pow(1 + periodicRate, totalPayments) - 1);
+    
+    // Calculate amortization schedule
+    const amortizationSchedule = [];
+    let currentBalance = principal;
+    let totalInterestPaid = 0;
+    let actualPayments = 0;
+
+    for (let payment = 1; payment <= totalPayments && currentBalance > 0.01; payment++) {
+      const interestPayment = currentBalance * periodicRate;
+      const principalPayment = Math.min(regularPayment - interestPayment + extraPmt, currentBalance);
+      currentBalance -= principalPayment;
+      totalInterestPaid += interestPayment;
+      actualPayments = payment;
+
+      if (payment <= 60) { // Show first 5 years only in UI
+        amortizationSchedule.push({
+          month: payment,
+          payment: regularPayment + (extraPmt > 0 ? extraPmt : 0),
+          principal: principalPayment,
+          interest: interestPayment,
+          balance: currentBalance
+        });
+      }
+    }
+
+    // Calculate extra payment savings if applicable
+    let extraPaymentSavings;
+    if (extraPmt > 0) {
+      // Calculate without extra payments for comparison
+      const regularTotalAmount = regularPayment * totalPayments;
+      const regularTotalInterest = regularTotalAmount - principal;
+      
+      extraPaymentSavings = {
+        timeSaved: Math.max(0, totalPayments - actualPayments),
+        interestSaved: Math.max(0, regularTotalInterest - totalInterestPaid),
+        newTotalInterest: totalInterestPaid,
+        newPayoffTime: actualPayments
+      };
+    }
+
+    const monthlyEquivalent = regularPayment * (paymentsPerYear / 12);
 
     setResult({
-      monthlyPayment,
-      totalAmount,
-      totalInterest
+      monthlyPayment: monthlyEquivalent,
+      totalAmount: (regularPayment + extraPmt) * actualPayments,
+      totalInterest: totalInterestPaid,
+      amortizationSchedule,
+      extraPaymentSavings
     });
   };
 
@@ -45,7 +122,27 @@ export default function LoanCalculator() {
     setInterestRate('5.50');
     setLoanTerm('30');
     setTermUnit('years');
+    setPaymentFrequency('monthly');
+    setExtraPayment('0');
+    setShowAmortization(false);
+    setShowComparison(false);
+    setComparisonLoans([]);
     setResult(null);
+  };
+
+  const addToComparison = () => {
+    if (result) {
+      const newLoan: ComparisonLoan = {
+        name: `Loan ${comparisonLoans.length + 1}`,
+        amount: parseFloat(loanAmount),
+        rate: parseFloat(interestRate),
+        term: parseFloat(loanTerm),
+        monthlyPayment: result.monthlyPayment,
+        totalInterest: result.totalInterest
+      };
+      setComparisonLoans([...comparisonLoans, newLoan]);
+      setShowComparison(true);
+    }
   };
 
   const formatCurrency = (amount: number) => {
@@ -148,24 +245,83 @@ export default function LoanCalculator() {
                     </div>
                   </div>
 
+                  {/* Payment Frequency */}
+                  <div className="space-y-3">
+                    <Label className="text-sm font-medium text-gray-700">Payment Frequency</Label>
+                    <Select value={paymentFrequency} onValueChange={setPaymentFrequency}>
+                      <SelectTrigger className="h-12 border-gray-200 rounded-lg" data-testid="select-payment-frequency">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="monthly">Monthly</SelectItem>
+                        <SelectItem value="biweekly">Bi-weekly</SelectItem>
+                        <SelectItem value="weekly">Weekly</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  {/* Extra Payment */}
+                  <div className="space-y-3">
+                    <Label htmlFor="extra-payment" className="text-sm font-medium text-gray-700">
+                      Extra Payment ($)
+                    </Label>
+                    <Input
+                      id="extra-payment"
+                      type="number"
+                      value={extraPayment}
+                      onChange={(e) => setExtraPayment(e.target.value)}
+                      className="h-12 text-base border-gray-200 rounded-lg"
+                      placeholder="0"
+                      min="0"
+                      data-testid="input-extra-payment"
+                    />
+                    <p className="text-xs text-gray-500">Additional amount to pay each period</p>
+                  </div>
+
                   {/* Action Buttons */}
-                  <div className="flex gap-4 pt-6">
-                    <Button
-                      onClick={calculateLoan}
-                      className="flex-1 h-12 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg"
-                      data-testid="button-calculate"
-                    >
-                      <Calculator className="w-4 h-4 mr-2" />
-                      Calculate
-                    </Button>
-                    <Button
-                      onClick={resetCalculator}
-                      variant="outline"
-                      className="h-12 px-8 border-gray-200 text-gray-600 hover:bg-gray-50 font-medium rounded-lg"
-                      data-testid="button-reset"
-                    >
-                      Reset
-                    </Button>
+                  <div className="space-y-4 pt-6">
+                    <div className="flex gap-4">
+                      <Button
+                        onClick={calculateLoan}
+                        className="flex-1 h-12 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg"
+                        data-testid="button-calculate"
+                      >
+                        <Calculator className="w-4 h-4 mr-2" />
+                        Calculate
+                      </Button>
+                      <Button
+                        onClick={resetCalculator}
+                        variant="outline"
+                        className="h-12 px-8 border-gray-200 text-gray-600 hover:bg-gray-50 font-medium rounded-lg"
+                        data-testid="button-reset"
+                      >
+                        Reset
+                      </Button>
+                    </div>
+
+                    {/* Advanced Options */}
+                    {result && (
+                      <div className="flex gap-2">
+                        <Button
+                          onClick={() => setShowAmortization(!showAmortization)}
+                          variant="outline"
+                          size="sm"
+                          className="text-xs"
+                          data-testid="button-amortization"
+                        >
+                          {showAmortization ? 'Hide' : 'Show'} Schedule
+                        </Button>
+                        <Button
+                          onClick={addToComparison}
+                          variant="outline"
+                          size="sm"
+                          className="text-xs"
+                          data-testid="button-add-comparison"
+                        >
+                          Add to Compare
+                        </Button>
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -204,6 +360,27 @@ export default function LoanCalculator() {
                           </span>
                         </div>
                       </div>
+
+                      {/* Extra Payment Savings */}
+                      {result.extraPaymentSavings && (
+                        <div className="mt-6 p-4 bg-green-50 rounded-lg border border-green-200">
+                          <h4 className="font-semibold text-green-800 mb-3">💡 Extra Payment Benefits</h4>
+                          <div className="space-y-2 text-sm">
+                            <div className="flex justify-between">
+                              <span className="text-green-700">Interest Saved:</span>
+                              <span className="font-semibold text-green-800">
+                                {formatCurrency(result.extraPaymentSavings.interestSaved)}
+                              </span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="text-green-700">Time Saved:</span>
+                              <span className="font-semibold text-green-800">
+                                {Math.round(result.extraPaymentSavings.timeSaved / (paymentFrequency === 'weekly' ? 52 : paymentFrequency === 'biweekly' ? 26 : 12))} years
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   ) : (
                     <div className="text-center py-12" data-testid="no-results">
@@ -215,6 +392,102 @@ export default function LoanCalculator() {
               </div>
             </CardContent>
           </Card>
+
+          {/* Amortization Schedule */}
+          {result && showAmortization && (
+            <Card className="mt-8 bg-white shadow-sm border-0">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-semibold text-gray-900 mb-6">Amortization Schedule (First 5 Years)</h3>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="bg-gray-50">
+                        <th className="px-4 py-3 text-left font-medium text-gray-900">Payment #</th>
+                        <th className="px-4 py-3 text-right font-medium text-gray-900">Payment</th>
+                        <th className="px-4 py-3 text-right font-medium text-gray-900">Principal</th>
+                        <th className="px-4 py-3 text-right font-medium text-gray-900">Interest</th>
+                        <th className="px-4 py-3 text-right font-medium text-gray-900">Balance</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-200">
+                      {result.amortizationSchedule.map((payment, index) => (
+                        <tr key={index} className="hover:bg-gray-50">
+                          <td className="px-4 py-3 text-gray-900">{payment.month}</td>
+                          <td className="px-4 py-3 text-right text-gray-900">
+                            {formatCurrency(payment.payment)}
+                          </td>
+                          <td className="px-4 py-3 text-right text-green-600 font-medium">
+                            {formatCurrency(payment.principal)}
+                          </td>
+                          <td className="px-4 py-3 text-right text-red-600">
+                            {formatCurrency(payment.interest)}
+                          </td>
+                          <td className="px-4 py-3 text-right text-gray-900 font-medium">
+                            {formatCurrency(payment.balance)}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Loan Comparison */}
+          {showComparison && comparisonLoans.length > 0 && (
+            <Card className="mt-8 bg-white shadow-sm border-0">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-semibold text-gray-900 mb-6">Loan Comparison</h3>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="bg-gray-50">
+                        <th className="px-4 py-3 text-left font-medium text-gray-900">Loan</th>
+                        <th className="px-4 py-3 text-right font-medium text-gray-900">Amount</th>
+                        <th className="px-4 py-3 text-right font-medium text-gray-900">Rate</th>
+                        <th className="px-4 py-3 text-right font-medium text-gray-900">Term</th>
+                        <th className="px-4 py-3 text-right font-medium text-gray-900">Monthly Payment</th>
+                        <th className="px-4 py-3 text-right font-medium text-gray-900">Total Interest</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-200">
+                      {comparisonLoans.map((loan, index) => (
+                        <tr key={index} className="hover:bg-gray-50">
+                          <td className="px-4 py-3 text-gray-900 font-medium">{loan.name}</td>
+                          <td className="px-4 py-3 text-right text-gray-900">
+                            {formatCurrency(loan.amount)}
+                          </td>
+                          <td className="px-4 py-3 text-right text-gray-900">
+                            {loan.rate}%
+                          </td>
+                          <td className="px-4 py-3 text-right text-gray-900">
+                            {loan.term} years
+                          </td>
+                          <td className="px-4 py-3 text-right text-blue-600 font-medium">
+                            {formatCurrency(loan.monthlyPayment)}
+                          </td>
+                          <td className="px-4 py-3 text-right text-red-600">
+                            {formatCurrency(loan.totalInterest)}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <div className="mt-4 flex gap-2">
+                  <Button
+                    onClick={() => setComparisonLoans([])}
+                    variant="outline"
+                    size="sm"
+                    className="text-xs"
+                  >
+                    Clear Comparison
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          )}
 
           {/* Comprehensive Educational Content */}
           <div className="mt-12 space-y-12">

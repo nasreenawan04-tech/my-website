@@ -1,88 +1,76 @@
-# CalcMate
+# Overview
 
-## Overview
+DapsiWow is a comprehensive online tools platform that provides 180+ free utilities for business and personal use. The application is built as a full-stack web application featuring finance calculators, PDF tools, image processors, text analyzers, SEO utilities, and health monitoring tools. The platform emphasizes accessibility with no registration requirements and provides a professional, responsive interface for users to perform various calculations and data processing tasks.
 
-CalcMate is a comprehensive web application that provides 180+ free online tools for business and personal use. The platform focuses on financial calculators, PDF tools, image processing, text analysis, SEO optimization, and health monitoring utilities. The application follows a modern, responsive design with a clean UI built using React and Tailwind CSS. It's designed to be a one-stop solution for various calculation and conversion needs without requiring user registration.
-
-## User Preferences
+# User Preferences
 
 Preferred communication style: Simple, everyday language.
 
-## System Architecture
+# System Architecture
 
-### Frontend Architecture
-- **Framework**: React with TypeScript using Vite as the build tool
-- **Routing**: Wouter for client-side routing with file-based route organization
-- **UI Components**: Radix UI components with shadcn/ui design system
-- **Styling**: Tailwind CSS with custom design tokens and CSS variables for theming
-- **State Management**: React hooks with TanStack Query for server state management
-- **Form Handling**: React Hook Form with Zod validation for type-safe form schemas
+## Frontend Architecture
+- **Framework**: React with TypeScript for type safety and component-based development
+- **Routing**: Wouter for lightweight client-side routing without complex dependencies
+- **Styling**: Tailwind CSS with shadcn/ui component library for consistent design system
+- **State Management**: React hooks for local state, TanStack Query for server state management
+- **Build Tool**: Vite for fast development and optimized production builds
 
-### Backend Architecture
-- **Server**: Express.js with TypeScript in ESM format
-- **API Design**: RESTful API architecture with `/api` prefix for all endpoints
-- **Middleware**: Custom logging middleware for request tracking and performance monitoring
-- **Error Handling**: Centralized error handling with proper HTTP status codes
-- **Development**: Hot module replacement via Vite integration for seamless development experience
+## Backend Architecture
+- **Runtime**: Node.js with Express.js for REST API endpoints
+- **Language**: TypeScript for type safety across the entire stack
+- **Development**: Hot module replacement and live reloading via Vite integration
+- **Storage Interface**: Abstracted storage layer with in-memory implementation for development
 
-### Data Storage Solutions
-- **Database**: PostgreSQL with Drizzle ORM for type-safe database operations
-- **Schema Management**: Drizzle Kit for migrations and schema management
-- **Connection**: Neon Database serverless PostgreSQL for production deployment
-- **Development Storage**: In-memory storage implementation for development/testing
+## Database Design
+- **ORM**: Drizzle ORM for type-safe database operations
+- **Database**: PostgreSQL (configured but not currently used extensively)
+- **Migrations**: Drizzle Kit for database schema management
+- **Schema**: User table with basic authentication fields defined in shared schema
 
-### Authentication and Authorization
-- **Session Management**: PostgreSQL-based sessions using connect-pg-simple
-- **User Schema**: Simple username/password authentication with UUID primary keys
-- **Security**: Password hashing and secure session handling
+## Component Architecture
+- **UI Components**: Radix UI primitives with custom styling via shadcn/ui
+- **Layout**: Responsive design with mobile-first approach
+- **Component Structure**: Header, Footer, Hero sections, Tool cards, and category-based organization
+- **Search**: Fuse.js integration for fuzzy search across tools and categories
 
-### File Structure and Organization
-- **Monorepo Structure**: Shared types and schemas between client and server
-- **Component Organization**: Feature-based component structure with reusable UI components
-- **Tool Implementation**: Individual calculator pages with shared calculation logic
-- **Asset Management**: Static assets and fonts served through Vite's asset pipeline
+## Data Management
+- **Tool Catalog**: Static data structure defining 180+ tools across 6 categories
+- **Categories**: Finance, PDF, Image, Text, SEO, and Health tools
+- **Search & Filter**: Client-side filtering and search functionality
+- **Routing**: Dynamic routing for individual tool pages and category pages
 
-### Search and Filtering
-- **Search Engine**: Fuse.js for fuzzy search across tool names, descriptions, and categories
-- **Category Filtering**: Client-side filtering with URL state management
-- **Tool Discovery**: Smart search suggestions and category-based browsing
+# External Dependencies
 
-### Performance Optimizations
-- **Build Process**: ESBuild for server bundling and Vite for client optimization
-- **Code Splitting**: Route-based code splitting for optimal loading performance
-- **Caching**: TanStack Query for intelligent data caching and synchronization
-- **Development**: Runtime error overlay and cartographer integration for Replit environment
-
-## External Dependencies
-
-### UI and Styling
-- **Radix UI**: Comprehensive accessible component library for dropdowns, dialogs, forms
-- **Tailwind CSS**: Utility-first CSS framework with custom configuration
+## UI and Styling
+- **Radix UI**: Comprehensive set of unstyled, accessible UI primitives
+- **Tailwind CSS**: Utility-first CSS framework for styling
+- **shadcn/ui**: Pre-built component library built on Radix UI and Tailwind
 - **Lucide React**: Icon library for consistent iconography
-- **Class Variance Authority**: Type-safe component variant management
 
-### Data and API
-- **Drizzle ORM**: Type-safe PostgreSQL ORM with automatic migrations
-- **Neon Database**: Serverless PostgreSQL hosting service
-- **TanStack Query**: Server state management and data synchronization
-- **Zod**: Schema validation for forms and API data
+## Database and ORM
+- **Neon Database**: Serverless PostgreSQL for production database hosting
+- **Drizzle ORM**: Type-safe ORM for database operations
+- **connect-pg-simple**: PostgreSQL session store for Express sessions
 
-### Development Tools
-- **TypeScript**: Full type safety across frontend and backend
-- **Vite**: Fast build tool with HMR and optimized production builds
-- **ESBuild**: High-performance bundler for server-side code
-- **React Helmet Async**: SEO management for dynamic meta tags
+## Development Tools
+- **Vite**: Build tool and development server
+- **TypeScript**: Type checking and enhanced development experience
+- **ESBuild**: Fast JavaScript bundler for production builds
+- **Replit Plugins**: Development environment integration for Replit platform
 
-### Search and Analytics
-- **Fuse.js**: Client-side fuzzy search implementation
+## Search and Utility
+- **Fuse.js**: Fuzzy search library for tool discovery
+- **TanStack Query**: Data fetching and caching for API interactions
+- **React Helmet Async**: SEO optimization and meta tag management
+- **Wouter**: Lightweight routing library for React
+
+## Form Handling
+- **React Hook Form**: Form state management and validation
+- **Hookform Resolvers**: Validation schema integration
+- **Zod**: Runtime type validation and schema definition
+
+## Production Considerations
 - **Date-fns**: Date manipulation and formatting utilities
-
-### Deployment and Hosting
-- **Replit Integration**: Custom plugins for development environment
-- **Environment Variables**: Configuration management for database connections
-- **Static Asset Serving**: Vite-based asset pipeline with CDN integration
-
-### Financial Data Sources
-- **Currency Exchange**: Integration ready for live exchange rate APIs
-- **Calculation Libraries**: Custom mathematical formulas for financial calculations
-- **Chart Data**: Prepared for integration with charting libraries for visualizations
+- **Class Variance Authority**: Dynamic class name generation
+- **clsx**: Conditional class name utility
+- **Tailwind Merge**: Intelligent Tailwind class merging

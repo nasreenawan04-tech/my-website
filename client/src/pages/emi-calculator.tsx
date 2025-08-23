@@ -18,6 +18,25 @@ interface EMIResult {
   principalAmount: number;
   interestAmount: number;
   interestPercentage: number;
+  prepaymentAnalysis?: {
+    timeReduction: number;
+    interestSaved: number;
+    newTenure: number;
+    newTotalAmount: number;
+  };
+  stepUpAnalysis?: {
+    totalInterestSaved: number;
+    averageEMI: number;
+    finalEMI: number;
+    yearlyEMISchedule: Array<{ year: number; emi: number }>;
+  };
+  amortizationSchedule: Array<{
+    month: number;
+    emi: number;
+    principal: number;
+    interest: number;
+    balance: number;
+  }>;
 }
 
 const EMICalculator = () => {
@@ -26,28 +45,125 @@ const EMICalculator = () => {
   const [loanTenure, setLoanTenure] = useState('');
   const [tenureType, setTenureType] = useState('years');
   const [currency, setCurrency] = useState('USD');
+  const [prepaymentAmount, setPrepaymentAmount] = useState('0');
+  const [prepaymentAfterMonths, setPrepaymentAfterMonths] = useState('12');
+  const [stepUpPercentage, setStepUpPercentage] = useState('5');
+  const [enableStepUp, setEnableStepUp] = useState(false);
+  const [enablePrepayment, setEnablePrepayment] = useState(false);
+  const [showSchedule, setShowSchedule] = useState(false);
   const [result, setResult] = useState<EMIResult | null>(null);
 
   const calculateEMI = () => {
     const principal = parseFloat(loanAmount);
-    const rate = parseFloat(interestRate) / 100 / 12; // Monthly interest rate
+    const annualRate = parseFloat(interestRate) / 100;
+    const rate = annualRate / 12; // Monthly interest rate
     const tenure = tenureType === 'years' ? parseFloat(loanTenure) * 12 : parseFloat(loanTenure);
+    const prepayment = parseFloat(prepaymentAmount) || 0;
+    const prepaymentAfter = parseInt(prepaymentAfterMonths) || 12;
+    const stepUpRate = parseFloat(stepUpPercentage) / 100;
 
     if (principal && rate && tenure) {
-      // EMI calculation using the standard formula
-      // EMI = [P x R x (1+R)^N] / [(1+R)^N - 1]
-      const emi = (principal * rate * Math.pow(1 + rate, tenure)) / (Math.pow(1 + rate, tenure) - 1);
-      const totalAmount = emi * tenure;
-      const totalInterest = totalAmount - principal;
-      const interestPercentage = (totalInterest / totalAmount) * 100;
+      // Standard EMI calculation
+      const baseEMI = (principal * rate * Math.pow(1 + rate, tenure)) / (Math.pow(1 + rate, tenure) - 1);
+      
+      // Generate amortization schedule
+      const amortizationSchedule = [];
+      let currentBalance = principal;
+      let totalInterestPaid = 0;
+      let currentEMI = baseEMI;
+      
+      for (let month = 1; month <= tenure && currentBalance > 1; month++) {
+        // Handle step-up EMI
+        if (enableStepUp && month > 12 && (month - 1) % 12 === 0) {
+          currentEMI = currentEMI * (1 + stepUpRate);
+        }
+        
+        const interestPayment = currentBalance * rate;
+        let principalPayment = Math.min(currentEMI - interestPayment, currentBalance);
+        
+        // Handle prepayment
+        if (enablePrepayment && month === prepaymentAfter) {
+          principalPayment += Math.min(prepayment, currentBalance - principalPayment);
+        }
+        
+        currentBalance -= principalPayment;
+        totalInterestPaid += interestPayment;
+        
+        if (month <= 60) { // Store first 5 years for display
+          amortizationSchedule.push({
+            month,
+            emi: currentEMI,
+            principal: principalPayment,
+            interest: interestPayment,
+            balance: Math.max(0, currentBalance)
+          });
+        }
+        
+        if (currentBalance <= 1) break;
+      }
+
+      // Calculate regular scenario for comparison
+      const regularTotalAmount = baseEMI * tenure;
+      const regularTotalInterest = regularTotalAmount - principal;
+      
+      // Final results
+      const finalTotalAmount = totalInterestPaid + principal;
+      const finalTotalInterest = totalInterestPaid;
+      const interestPercentage = (finalTotalInterest / finalTotalAmount) * 100;
+
+      // Prepayment analysis
+      let prepaymentAnalysis;
+      if (enablePrepayment && prepayment > 0) {
+        const interestSaved = regularTotalInterest - finalTotalInterest;
+        const timeReduction = Math.max(0, tenure - amortizationSchedule.length);
+        
+        prepaymentAnalysis = {
+          timeReduction: Math.round(timeReduction),
+          interestSaved: Math.round(interestSaved * 100) / 100,
+          newTenure: amortizationSchedule.length,
+          newTotalAmount: Math.round(finalTotalAmount * 100) / 100
+        };
+      }
+
+      // Step-up analysis
+      let stepUpAnalysis;
+      if (enableStepUp) {
+        const regularTotalInterest = (baseEMI * tenure) - principal;
+        const totalInterestSaved = Math.max(0, regularTotalInterest - finalTotalInterest);
+        const averageEMI = finalTotalAmount / (amortizationSchedule.length || tenure);
+        const finalEMI = currentEMI;
+        
+        // Create yearly EMI schedule
+        const yearlyEMISchedule = [];
+        let yearlyEMI = baseEMI;
+        for (let year = 1; year <= Math.ceil(tenure / 12); year++) {
+          yearlyEMISchedule.push({ 
+            year, 
+            emi: Math.round(yearlyEMI * 100) / 100 
+          });
+          if (year > 1) {
+            yearlyEMI = yearlyEMI * (1 + stepUpRate);
+          }
+        }
+        
+        stepUpAnalysis = {
+          totalInterestSaved: Math.round(totalInterestSaved * 100) / 100,
+          averageEMI: Math.round(averageEMI * 100) / 100,
+          finalEMI: Math.round(finalEMI * 100) / 100,
+          yearlyEMISchedule
+        };
+      }
 
       setResult({
-        emi: Math.round(emi * 100) / 100,
-        totalAmount: Math.round(totalAmount * 100) / 100,
-        totalInterest: Math.round(totalInterest * 100) / 100,
+        emi: Math.round(baseEMI * 100) / 100,
+        totalAmount: Math.round(finalTotalAmount * 100) / 100,
+        totalInterest: Math.round(finalTotalInterest * 100) / 100,
         principalAmount: principal,
-        interestAmount: Math.round(totalInterest * 100) / 100,
-        interestPercentage: Math.round(interestPercentage * 100) / 100
+        interestAmount: Math.round(finalTotalInterest * 100) / 100,
+        interestPercentage: Math.round(interestPercentage * 100) / 100,
+        prepaymentAnalysis,
+        stepUpAnalysis,
+        amortizationSchedule
       });
     }
   };
@@ -58,6 +174,12 @@ const EMICalculator = () => {
     setLoanTenure('');
     setTenureType('years');
     setCurrency('USD');
+    setPrepaymentAmount('0');
+    setPrepaymentAfterMonths('12');
+    setStepUpPercentage('5');
+    setEnableStepUp(false);
+    setEnablePrepayment(false);
+    setShowSchedule(false);
     setResult(null);
   };
 
@@ -230,24 +352,135 @@ const EMICalculator = () => {
                         </div>
                       </div>
 
+                      {/* Advanced Options */}
+                      <div className="border-t pt-6 space-y-6">
+                        <h3 className="text-lg font-semibold text-gray-900">Advanced Options</h3>
+                        
+                        {/* Prepayment Option */}
+                        <div className="space-y-4">
+                          <div className="flex items-center space-x-2">
+                            <input
+                              type="checkbox"
+                              id="enable-prepayment"
+                              checked={enablePrepayment}
+                              onChange={(e) => setEnablePrepayment(e.target.checked)}
+                              className="h-4 w-4 text-blue-600 border-gray-300 rounded"
+                            />
+                            <label htmlFor="enable-prepayment" className="text-sm font-medium text-gray-700">
+                              Enable Prepayment Analysis
+                            </label>
+                          </div>
+                          
+                          {enablePrepayment && (
+                            <div className="grid grid-cols-2 gap-3 ml-6">
+                              <div>
+                                <Label htmlFor="prepayment-amount" className="text-sm text-gray-600">
+                                  Prepayment Amount
+                                </Label>
+                                <Input
+                                  id="prepayment-amount"
+                                  type="number"
+                                  value={prepaymentAmount}
+                                  onChange={(e) => setPrepaymentAmount(e.target.value)}
+                                  className="h-10 text-sm"
+                                  placeholder="50000"
+                                  min="0"
+                                  data-testid="input-prepayment-amount"
+                                />
+                              </div>
+                              <div>
+                                <Label htmlFor="prepayment-after" className="text-sm text-gray-600">
+                                  After (Months)
+                                </Label>
+                                <Input
+                                  id="prepayment-after"
+                                  type="number"
+                                  value={prepaymentAfterMonths}
+                                  onChange={(e) => setPrepaymentAfterMonths(e.target.value)}
+                                  className="h-10 text-sm"
+                                  placeholder="12"
+                                  min="1"
+                                  data-testid="input-prepayment-after"
+                                />
+                              </div>
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Step-Up EMI Option */}
+                        <div className="space-y-4">
+                          <div className="flex items-center space-x-2">
+                            <input
+                              type="checkbox"
+                              id="enable-stepup"
+                              checked={enableStepUp}
+                              onChange={(e) => setEnableStepUp(e.target.checked)}
+                              className="h-4 w-4 text-blue-600 border-gray-300 rounded"
+                            />
+                            <label htmlFor="enable-stepup" className="text-sm font-medium text-gray-700">
+                              Enable Step-Up EMI
+                            </label>
+                          </div>
+                          
+                          {enableStepUp && (
+                            <div className="ml-6">
+                              <Label htmlFor="stepup-percentage" className="text-sm text-gray-600">
+                                Annual Increase (%)
+                              </Label>
+                              <Input
+                                id="stepup-percentage"
+                                type="number"
+                                value={stepUpPercentage}
+                                onChange={(e) => setStepUpPercentage(e.target.value)}
+                                className="h-10 text-sm w-32"
+                                placeholder="5"
+                                min="1"
+                                max="50"
+                                data-testid="input-stepup-percentage"
+                              />
+                              <p className="text-xs text-gray-500 mt-1">
+                                EMI increases each year by this percentage
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
                       {/* Action Buttons */}
-                      <div className="flex gap-4 pt-6">
-                        <Button
-                          onClick={calculateEMI}
-                          className="flex-1 h-12 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg"
-                          data-testid="button-calculate"
-                        >
-                          <Calculator className="w-4 h-4 mr-2" />
-                          Calculate
-                        </Button>
-                        <Button
-                          onClick={resetCalculator}
-                          variant="outline"
-                          className="h-12 px-8 border-gray-200 text-gray-600 hover:bg-gray-50 font-medium rounded-lg"
-                          data-testid="button-reset"
-                        >
-                          Reset
-                        </Button>
+                      <div className="space-y-4 pt-6">
+                        <div className="flex gap-4">
+                          <Button
+                            onClick={calculateEMI}
+                            className="flex-1 h-12 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg"
+                            data-testid="button-calculate"
+                          >
+                            <Calculator className="w-4 h-4 mr-2" />
+                            Calculate
+                          </Button>
+                          <Button
+                            onClick={resetCalculator}
+                            variant="outline"
+                            className="h-12 px-8 border-gray-200 text-gray-600 hover:bg-gray-50 font-medium rounded-lg"
+                            data-testid="button-reset"
+                          >
+                            Reset
+                          </Button>
+                        </div>
+                        
+                        {/* Advanced Options */}
+                        {result && (
+                          <div className="flex gap-2">
+                            <Button
+                              onClick={() => setShowSchedule(!showSchedule)}
+                              variant="outline"
+                              size="sm"
+                              className="text-xs"
+                              data-testid="button-show-schedule"
+                            >
+                              {showSchedule ? 'Hide' : 'Show'} Schedule
+                            </Button>
+                          </div>
+                        )}
                       </div>
                     </div>
 
@@ -299,6 +532,60 @@ const EMICalculator = () => {
                             </div>
                           </div>
 
+                          {/* Prepayment Benefits */}
+                          {result.prepaymentAnalysis && (
+                            <div className="bg-green-50 rounded-lg p-4 border border-green-200 mt-4">
+                              <h3 className="font-semibold text-green-800 mb-3">💰 Prepayment Benefits</h3>
+                              <div className="space-y-2 text-sm">
+                                <div className="flex justify-between">
+                                  <span className="text-green-700">Interest Saved:</span>
+                                  <span className="font-semibold text-green-800">
+                                    {formatCurrency(result.prepaymentAnalysis.interestSaved)}
+                                  </span>
+                                </div>
+                                <div className="flex justify-between">
+                                  <span className="text-green-700">Time Reduction:</span>
+                                  <span className="font-semibold text-green-800">
+                                    {result.prepaymentAnalysis.timeReduction} months
+                                  </span>
+                                </div>
+                                <div className="flex justify-between">
+                                  <span className="text-green-700">New Loan Tenure:</span>
+                                  <span className="font-semibold text-green-800">
+                                    {result.prepaymentAnalysis.newTenure} months
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Step-Up EMI Benefits */}
+                          {result.stepUpAnalysis && (
+                            <div className="bg-blue-50 rounded-lg p-4 border border-blue-200 mt-4">
+                              <h3 className="font-semibold text-blue-800 mb-3">📈 Step-Up EMI Benefits</h3>
+                              <div className="space-y-2 text-sm">
+                                <div className="flex justify-between">
+                                  <span className="text-blue-700">Total Interest Saved:</span>
+                                  <span className="font-semibold text-blue-800">
+                                    {formatCurrency(result.stepUpAnalysis.totalInterestSaved)}
+                                  </span>
+                                </div>
+                                <div className="flex justify-between">
+                                  <span className="text-blue-700">Starting EMI:</span>
+                                  <span className="font-semibold text-blue-800">
+                                    {formatCurrency(result.emi)}
+                                  </span>
+                                </div>
+                                <div className="flex justify-between">
+                                  <span className="text-blue-700">Final EMI:</span>
+                                  <span className="font-semibold text-blue-800">
+                                    {formatCurrency(result.stepUpAnalysis.finalEMI)}
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+
                           {/* Visual Breakdown */}
                           <div className="mt-6">
                             <h3 className="text-lg font-semibold text-gray-900 mb-3">Payment Breakdown</h3>
@@ -336,6 +623,66 @@ const EMICalculator = () => {
                   </div>
                 </CardContent>
               </Card>
+
+              {/* Amortization Schedule */}
+              {result && showSchedule && (
+                <Card className="mt-8 bg-white shadow-sm border-0">
+                  <CardContent className="p-8">
+                    <h3 className="text-2xl font-semibold text-gray-900 mb-6">EMI Schedule (First 5 Years)</h3>
+                    <div className="overflow-x-auto">
+                      <table className="w-full text-sm">
+                        <thead>
+                          <tr className="bg-gray-50">
+                            <th className="px-4 py-3 text-left font-medium text-gray-900">Month</th>
+                            <th className="px-4 py-3 text-right font-medium text-gray-900">EMI</th>
+                            <th className="px-4 py-3 text-right font-medium text-gray-900">Principal</th>
+                            <th className="px-4 py-3 text-right font-medium text-gray-900">Interest</th>
+                            <th className="px-4 py-3 text-right font-medium text-gray-900">Balance</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-gray-200">
+                          {result.amortizationSchedule.map((payment, index) => (
+                            <tr key={index} className="hover:bg-gray-50">
+                              <td className="px-4 py-3 text-gray-900">{payment.month}</td>
+                              <td className="px-4 py-3 text-right text-gray-900">
+                                {formatCurrency(payment.emi)}
+                              </td>
+                              <td className="px-4 py-3 text-right text-green-600 font-medium">
+                                {formatCurrency(payment.principal)}
+                              </td>
+                              <td className="px-4 py-3 text-right text-red-600">
+                                {formatCurrency(payment.interest)}
+                              </td>
+                              <td className="px-4 py-3 text-right text-gray-900 font-medium">
+                                {formatCurrency(payment.balance)}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+
+              {/* Step-Up EMI Schedule */}
+              {result?.stepUpAnalysis?.yearlyEMISchedule && (
+                <Card className="mt-8 bg-white shadow-sm border-0">
+                  <CardContent className="p-8">
+                    <h3 className="text-2xl font-semibold text-gray-900 mb-6">Step-Up EMI Schedule</h3>
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                      {result.stepUpAnalysis.yearlyEMISchedule.map((yearData, index) => (
+                        <div key={index} className="bg-blue-50 rounded-lg p-4 text-center">
+                          <div className="text-sm text-blue-600 mb-1">Year {yearData.year}</div>
+                          <div className="text-lg font-semibold text-blue-800">
+                            {formatCurrency(yearData.emi)}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
 
               {/* Educational Content */}
               <div className="mt-12 space-y-8">
