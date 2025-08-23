@@ -61,7 +61,7 @@ import ProteinIntakeCalculator from '@/pages/protein-intake-calculator';
 import CarbCalculator from '@/pages/carb-calculator';
 import KetoMacroCalculator from '@/pages/keto-macro-calculator';
 import IntermittentFastingTimer from '@/pages/intermittent-fasting-timer';
-import DailyStepCalorieConverter from '@/pages/daily-steps-calories-converter';
+import DailyStepCalorieConverter from '@/pages/daily-step-calorie-converter';
 
 
 function ScrollToTop() {
