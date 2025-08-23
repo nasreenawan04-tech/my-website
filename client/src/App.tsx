@@ -60,6 +60,8 @@ import WaterIntakeCalculator from '@/pages/water-intake-calculator';
 import ProteinIntakeCalculator from '@/pages/protein-intake-calculator';
 import CarbCalculator from '@/pages/carb-calculator';
 import KetoMacroCalculator from '@/pages/keto-macro-calculator';
+import IntermittentFastingTimer from '@/pages/intermittent-fasting-timer';
+import DailyStepCalorieConverter from '@/pages/daily-step-calorie-converter';
 
 
 function ScrollToTop() {
@@ -119,6 +121,8 @@ function Router() {
       <Route path="/tools/protein-intake-calculator" component={ProteinIntakeCalculator} />
       <Route path="/tools/carb-calculator" component={CarbCalculator} />
       <Route path="/tools/keto-macro-calculator" component={KetoMacroCalculator} />
+      <Route path="/tools/intermittent-fasting-timer" component={IntermittentFastingTimer} />
+      <Route path="/tools/daily-step-calorie-converter" component={DailyStepCalorieConverter} />
       <Route path="/tools/:toolId" component={ToolPage} />
       <Route path="/finance" component={FinanceTools} />
       <Route path="/pdf" component={PDFTools} />
