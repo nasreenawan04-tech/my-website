@@ -56,6 +56,8 @@ import CalorieCalculator from '@/pages/calorie-calculator';
 import BodyFatCalculator from '@/pages/body-fat-calculator';
 import IdealWeightCalculator from '@/pages/ideal-weight-calculator';
 import PregnancyDueDateCalculator from '@/pages/pregnancy-due-date-calculator';
+import WaterIntakeCalculator from '@/pages/water-intake-calculator';
+import ProteinIntakeCalculator from '@/pages/protein-intake-calculator';
 
 
 function ScrollToTop() {
@@ -111,6 +113,8 @@ function Router() {
       <Route path="/tools/body-fat-calculator" component={BodyFatCalculator} />
       <Route path="/tools/ideal-weight-calculator" component={IdealWeightCalculator} />
       <Route path="/tools/pregnancy-due-date-calculator" component={PregnancyDueDateCalculator} />
+      <Route path="/tools/water-intake-calculator" component={WaterIntakeCalculator} />
+      <Route path="/tools/protein-intake-calculator" component={ProteinIntakeCalculator} />
       <Route path="/tools/:toolId" component={ToolPage} />
       <Route path="/finance" component={FinanceTools} />
       <Route path="/pdf" component={PDFTools} />
