@@ -195,6 +195,8 @@ const toolsData = [
   { id: 'max-heart-rate-calculator', name: 'Max Heart Rate Calculator', description: 'Calculate maximum heart rate using multiple scientific formulas', category: 'health' as const, icon: 'fas fa-heart', href: '/tools/max-heart-rate-calculator' },
   { id: 'blood-pressure-tracker', name: 'Blood Pressure Tracker', description: 'Track and monitor blood pressure readings with instant classification', category: 'health' as const, icon: 'fas fa-stethoscope', href: '/tools/blood-pressure-tracker' },
   { id: 'sleep-calculator', name: 'Sleep Calculator', description: 'Calculate optimal sleep and wake times based on natural sleep cycles', category: 'health' as const, icon: 'fas fa-bed', href: '/tools/sleep-calculator' },
+  { id: 'ovulation-calculator', name: 'Ovulation Calculator', description: 'Track fertile days and ovulation date for conception planning', category: 'health' as const, icon: 'fas fa-calendar-alt', href: '/tools/ovulation-calculator' },
+  { id: 'baby-growth-chart', name: 'Baby Growth Chart', description: 'Track baby growth and development using WHO standards', category: 'health' as const, icon: 'fas fa-baby', href: '/tools/baby-growth-chart' },
   { id: 'ovulation-calculator', name: 'Ovulation Calculator', description: 'Calculate ovulation and fertile days', category: 'health' as const, icon: 'fas fa-female' },
   { id: 'baby-growth-chart', name: 'Baby Growth Chart Calculator', description: 'Track baby growth percentiles', category: 'health' as const, icon: 'fas fa-child' },
   { id: 'tdee-calculator', name: 'TDEE Calculator', description: 'Calculate Total Daily Energy Expenditure', category: 'health' as const, icon: 'fas fa-bolt' },

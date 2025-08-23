@@ -66,6 +66,8 @@ import HeartRateCalculator from '@/pages/heart-rate-calculator';
 import MaxHeartRateCalculator from '@/pages/max-heart-rate-calculator';
 import BloodPressureTracker from '@/pages/blood-pressure-tracker';
 import SleepCalculator from '@/pages/sleep-calculator';
+import OvulationCalculator from '@/pages/ovulation-calculator';
+import BabyGrowthChart from '@/pages/baby-growth-chart';
 
 
 function ScrollToTop() {
@@ -131,6 +133,8 @@ function Router() {
       <Route path="/tools/max-heart-rate-calculator" component={MaxHeartRateCalculator} />
       <Route path="/tools/blood-pressure-tracker" component={BloodPressureTracker} />
       <Route path="/tools/sleep-calculator" component={SleepCalculator} />
+      <Route path="/tools/ovulation-calculator" component={OvulationCalculator} />
+      <Route path="/tools/baby-growth-chart" component={BabyGrowthChart} />
       <Route path="/tools/:toolId" component={ToolPage} />
       <Route path="/finance" component={FinanceTools} />
       <Route path="/pdf" component={PDFTools} />
