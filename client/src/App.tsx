@@ -72,6 +72,8 @@ import TDEECalculator from '@/pages/tdee-calculator';
 import LeanBodyMassCalculator from '@/pages/lean-body-mass-calculator';
 import WaistToHeightRatioCalculator from '@/pages/waist-to-height-ratio-calculator';
 import WHRCalculator from '@/pages/whr-calculator';
+import LifeExpectancyCalculator from '@/pages/life-expectancy-calculator';
+import CholesterolRiskCalculator from '@/pages/cholesterol-risk-calculator';
 
 
 function ScrollToTop() {
@@ -143,6 +145,8 @@ function Router() {
       <Route path="/tools/lean-body-mass-calculator" component={LeanBodyMassCalculator} />
       <Route path="/tools/waist-to-height-ratio-calculator" component={WaistToHeightRatioCalculator} />
       <Route path="/tools/whr-calculator" component={WHRCalculator} />
+      <Route path="/tools/life-expectancy-calculator" component={LifeExpectancyCalculator} />
+      <Route path="/tools/cholesterol-risk-calculator" component={CholesterolRiskCalculator} />
       <Route path="/tools/:toolId" component={ToolPage} />
       <Route path="/finance" component={FinanceTools} />
       <Route path="/pdf" component={PDFTools} />
