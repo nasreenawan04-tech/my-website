@@ -68,6 +68,8 @@ import BloodPressureTracker from '@/pages/blood-pressure-tracker';
 import SleepCalculator from '@/pages/sleep-calculator';
 import OvulationCalculator from '@/pages/ovulation-calculator';
 import BabyGrowthChart from '@/pages/baby-growth-chart';
+import TDEECalculator from '@/pages/tdee-calculator';
+import LeanBodyMassCalculator from '@/pages/lean-body-mass-calculator';
 
 
 function ScrollToTop() {
@@ -135,6 +137,8 @@ function Router() {
       <Route path="/tools/sleep-calculator" component={SleepCalculator} />
       <Route path="/tools/ovulation-calculator" component={OvulationCalculator} />
       <Route path="/tools/baby-growth-chart" component={BabyGrowthChart} />
+      <Route path="/tools/tdee-calculator" component={TDEECalculator} />
+      <Route path="/tools/lean-body-mass-calculator" component={LeanBodyMassCalculator} />
       <Route path="/tools/:toolId" component={ToolPage} />
       <Route path="/finance" component={FinanceTools} />
       <Route path="/pdf" component={PDFTools} />
