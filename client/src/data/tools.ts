@@ -200,7 +200,7 @@ const toolsData = [
   { id: 'baby-growth-percentile', name: 'Baby Growth Chart Calculator', description: 'Track baby growth percentiles', category: 'health' as const, icon: 'fas fa-child', href: '/tools/baby-growth-percentile' },
   { id: 'tdee-calculator', name: 'TDEE Calculator', description: 'Calculate Total Daily Energy Expenditure', category: 'health' as const, icon: 'fas fa-bolt', href: '/tools/tdee-calculator' },
   { id: 'lean-body-mass-calculator', name: 'Lean Body Mass Calculator', description: 'Calculate lean body mass', category: 'health' as const, icon: 'fas fa-user-md', href: '/tools/lean-body-mass-calculator' },
-  { id: 'waist-height-ratio', name: 'Waist-to-Height Ratio Calculator', description: 'Calculate waist-to-height ratio', category: 'health' as const, icon: 'fas fa-ruler', href: '/tools/waist-to-height-ratio-calculator' },
+  { id: 'waist-height-ratio-calculator', name: 'Waist-to-Height Ratio Calculator', description: 'Calculate waist-to-height ratio', category: 'health' as const, icon: 'fas fa-ruler', href: '/tools/waist-to-height-ratio-calculator' },
   { id: 'whr-calculator', name: 'WHR Calculator (Waist-Hip Ratio)', description: 'Calculate waist-to-hip ratio', category: 'health' as const, icon: 'fas fa-tape', href: '/tools/whr-calculator' },
   { id: 'life-expectancy', name: 'Life Expectancy Calculator', description: 'Estimate life expectancy based on lifestyle', category: 'health' as const, icon: 'fas fa-hourglass' },
   { id: 'cholesterol-risk', name: 'Cholesterol Risk Calculator', description: 'Assess cholesterol-related health risks', category: 'health' as const, icon: 'fas fa-vial' },
