@@ -445,107 +445,350 @@ const PregnancyDueDateCalculator = () => {
 
               {/* Educational Content */}
               <div className="mt-12 space-y-8">
-                {/* Understanding Due Dates */}
+                {/* What is a Pregnancy Due Date Calculator */}
                 <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Understanding Pregnancy Due Dates</h2>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-8">What is a Pregnancy Due Date Calculator?</h2>
                   
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">How Due Dates are Calculated</h3>
                       <p className="text-gray-600 mb-6 leading-relaxed">
-                        Due dates are calculated based on a 40-week pregnancy from the first day of your last menstrual period (LMP). 
-                        This method, known as Naegele's Rule, adds 280 days (40 weeks) to the LMP date. 
-                        Only about 5% of babies are born exactly on their due date, with most births occurring within two weeks before or after.
+                        A pregnancy due date calculator is an essential tool that helps expectant parents estimate when their baby will be born. 
+                        This free online pregnancy calculator uses various methods to determine the estimated date of delivery (EDD) based on your 
+                        pregnancy information, including last menstrual period, conception date, or ultrasound measurements.
                       </p>
                       
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Calculation Methods</h3>
-                      <div className="space-y-3">
-                        <div className="bg-pink-50 rounded-lg p-3">
-                          <div className="font-medium">Last Menstrual Period (LMP)</div>
-                          <div className="text-sm text-gray-600">Most common method, adds 280 days to LMP</div>
-                        </div>
-                        <div className="bg-purple-50 rounded-lg p-3">
-                          <div className="font-medium">Conception Date</div>
-                          <div className="text-sm text-gray-600">Adds 266 days to known conception date</div>
-                        </div>
-                        <div className="bg-indigo-50 rounded-lg p-3">
-                          <div className="font-medium">Ultrasound Dating</div>
-                          <div className="text-sm text-gray-600">Most accurate, especially in early pregnancy</div>
-                        </div>
-                      </div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Why Use a Due Date Calculator?</h3>
+                      <ul className="text-gray-600 space-y-2 text-sm mb-6">
+                        <li>• Plan for pregnancy milestones and appointments</li>
+                        <li>• Track gestational age and fetal development</li>
+                        <li>• Prepare for maternity leave and baby preparations</li>
+                        <li>• Monitor pregnancy progress week by week</li>
+                        <li>• Schedule important prenatal tests and screenings</li>
+                        <li>• Calculate trimester transitions accurately</li>
+                      </ul>
                     </div>
                     
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Pregnancy Trimesters</h3>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Key Features</h3>
                       <div className="space-y-3">
-                        <div className="flex items-center p-3 bg-pink-50 rounded-lg">
-                          <div className="w-4 h-4 bg-pink-500 rounded-full mr-3"></div>
-                          <div>
-                            <div className="font-medium">First Trimester (Weeks 1-13)</div>
-                            <div className="text-sm text-gray-600">Major organ development, morning sickness common</div>
-                          </div>
+                        <div className="bg-pink-50 rounded-lg p-3">
+                          <div className="font-medium">Multiple Calculation Methods</div>
+                          <div className="text-sm text-gray-600">LMP, conception date, and ultrasound dating options</div>
                         </div>
-                        
-                        <div className="flex items-center p-3 bg-purple-50 rounded-lg">
-                          <div className="w-4 h-4 bg-purple-500 rounded-full mr-3"></div>
-                          <div>
-                            <div className="font-medium">Second Trimester (Weeks 14-27)</div>
-                            <div className="text-sm text-gray-600">Often called the "golden period," energy returns</div>
-                          </div>
+                        <div className="bg-purple-50 rounded-lg p-3">
+                          <div className="font-medium">Gestational Age Tracking</div>
+                          <div className="text-sm text-gray-600">Current week and day of pregnancy</div>
                         </div>
-                        
-                        <div className="flex items-center p-3 bg-indigo-50 rounded-lg">
-                          <div className="w-4 h-4 bg-indigo-500 rounded-full mr-3"></div>
-                          <div>
-                            <div className="font-medium">Third Trimester (Weeks 28-40)</div>
-                            <div className="text-sm text-gray-600">Final growth phase, preparing for birth</div>
-                          </div>
+                        <div className="bg-indigo-50 rounded-lg p-3">
+                          <div className="font-medium">Trimester Information</div>
+                          <div className="text-sm text-gray-600">Automatic trimester classification</div>
                         </div>
-                      </div>
-                      
-                      <div className="mt-6">
-                        <h3 className="text-lg font-semibold text-gray-900 mb-3">Important Milestones</h3>
-                        <ul className="text-gray-600 space-y-1 text-sm">
-                          <li>• 23 weeks: Viability (survival outside womb possible)</li>
-                          <li>• 37 weeks: Full term begins</li>
-                          <li>• 39-40 weeks: Optimal delivery time</li>
-                          <li>• 42 weeks: Post-term pregnancy</li>
-                        </ul>
+                        <div className="bg-green-50 rounded-lg p-3">
+                          <div className="font-medium">Important Milestones</div>
+                          <div className="text-sm text-gray-600">Key pregnancy dates and developments</div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Important Notes */}
+                {/* How to Use the Pregnancy Calculator */}
                 <div className="bg-gradient-to-r from-pink-50 to-purple-50 rounded-2xl p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Important Information</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-8">How to Use the Pregnancy Due Date Calculator</h2>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="bg-white rounded-lg p-6 shadow-sm">
+                      <div className="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mb-4">
+                        <span className="text-2xl font-bold text-pink-600">1</span>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Choose Calculation Method</h3>
+                      <p className="text-gray-600 text-sm">
+                        Select your preferred method: Last Menstrual Period (most common), 
+                        Conception Date (if known), or Ultrasound Dating (most accurate).
+                      </p>
+                    </div>
+                    
+                    <div className="bg-white rounded-lg p-6 shadow-sm">
+                      <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+                        <span className="text-2xl font-bold text-purple-600">2</span>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Enter Your Information</h3>
+                      <p className="text-gray-600 text-sm">
+                        Input the required dates and information based on your chosen method. 
+                        For LMP, also specify your average cycle length for better accuracy.
+                      </p>
+                    </div>
+                    
+                    <div className="bg-white rounded-lg p-6 shadow-sm">
+                      <div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
+                        <span className="text-2xl font-bold text-indigo-600">3</span>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Get Your Results</h3>
+                      <p className="text-gray-600 text-sm">
+                        View your estimated due date, current pregnancy week, trimester, 
+                        and important milestones to track your pregnancy journey.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Understanding Due Dates */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Understanding Pregnancy Due Date Calculations</h2>
+                  
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Due Date Accuracy</h3>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">How Due Dates are Calculated</h3>
+                      <p className="text-gray-600 mb-6 leading-relaxed">
+                        Pregnancy due dates are calculated based on a standard 40-week (280-day) pregnancy duration from the first day of your 
+                        last menstrual period (LMP). This method, known as Naegele's Rule, is the most widely used approach in obstetrics. 
+                        The calculation assumes a 28-day menstrual cycle with ovulation occurring on day 14.
+                      </p>
+                      
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Calculation Methods Explained</h3>
+                      <div className="space-y-3">
+                        <div className="bg-pink-50 rounded-lg p-4">
+                          <div className="font-medium mb-2">Last Menstrual Period (LMP) Method</div>
+                          <div className="text-sm text-gray-600">
+                            Adds 280 days (40 weeks) to the first day of your last period. 
+                            Most common method used by healthcare providers worldwide.
+                          </div>
+                        </div>
+                        <div className="bg-purple-50 rounded-lg p-4">
+                          <div className="font-medium mb-2">Conception Date Method</div>
+                          <div className="text-sm text-gray-600">
+                            Adds 266 days (38 weeks) to the known or estimated conception date. 
+                            More accurate if you know the exact fertilization date.
+                          </div>
+                        </div>
+                        <div className="bg-indigo-50 rounded-lg p-4">
+                          <div className="font-medium mb-2">Ultrasound Dating Method</div>
+                          <div className="text-sm text-gray-600">
+                            Uses fetal measurements from ultrasound scans. Most accurate, 
+                            especially when performed in the first trimester.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Pregnancy Trimesters Breakdown</h3>
+                      <div className="space-y-3 mb-6">
+                        <div className="flex items-center p-4 bg-pink-50 rounded-lg">
+                          <div className="w-4 h-4 bg-pink-500 rounded-full mr-3"></div>
+                          <div>
+                            <div className="font-medium">First Trimester (Weeks 1-13)</div>
+                            <div className="text-sm text-gray-600">
+                              Critical organ development, neural tube formation, morning sickness, fatigue
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-center p-4 bg-purple-50 rounded-lg">
+                          <div className="w-4 h-4 bg-purple-500 rounded-full mr-3"></div>
+                          <div>
+                            <div className="font-medium">Second Trimester (Weeks 14-27)</div>
+                            <div className="text-sm text-gray-600">
+                              "Golden period" - energy returns, baby movement felt, anatomy scan
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-center p-4 bg-indigo-50 rounded-lg">
+                          <div className="w-4 h-4 bg-indigo-500 rounded-full mr-3"></div>
+                          <div>
+                            <div className="font-medium">Third Trimester (Weeks 28-40)</div>
+                            <div className="text-sm text-gray-600">
+                              Rapid growth, lung maturation, preparing for birth, frequent monitoring
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Critical Pregnancy Milestones</h3>
                       <ul className="text-gray-600 space-y-2 text-sm">
-                        <li>• Only 5% of babies are born on their exact due date</li>
-                        <li>• Most babies are born within 2 weeks of the due date</li>
-                        <li>• First pregnancies often go beyond the due date</li>
-                        <li>• Ultrasound dating is most accurate in early pregnancy</li>
-                        <li>• Due dates are estimates, not guarantees</li>
+                        <li>• <strong>12 weeks:</strong> End of first trimester, reduced miscarriage risk</li>
+                        <li>• <strong>18-22 weeks:</strong> Anatomy scan, gender determination</li>
+                        <li>• <strong>23-24 weeks:</strong> Viability threshold (survival outside womb)</li>
+                        <li>• <strong>28 weeks:</strong> Third trimester begins, rapid brain development</li>
+                        <li>• <strong>37 weeks:</strong> Full-term pregnancy begins</li>
+                        <li>• <strong>39-40 weeks:</strong> Optimal delivery window</li>
+                        <li>• <strong>42+ weeks:</strong> Post-term pregnancy, may require induction</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Benefits and Use Cases */}
+                <div className="bg-gradient-to-r from-blue-50 to-green-50 rounded-2xl p-8">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Benefits of Using a Pregnancy Due Date Calculator</h2>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="bg-white rounded-lg p-6 shadow-sm">
+                      <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <Calendar className="w-6 h-6 text-blue-600" />
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Planning & Preparation</h3>
+                      <ul className="text-gray-600 text-sm space-y-1">
+                        <li>• Schedule prenatal appointments</li>
+                        <li>• Plan maternity leave timing</li>
+                        <li>• Organize baby shower dates</li>
+                        <li>• Prepare nursery and baby items</li>
+                      </ul>
+                    </div>
+                    
+                    <div className="bg-white rounded-lg p-6 shadow-sm">
+                      <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                        <Baby className="w-6 h-6 text-green-600" />
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Health Monitoring</h3>
+                      <ul className="text-gray-600 text-sm space-y-1">
+                        <li>• Track fetal development stages</li>
+                        <li>• Monitor pregnancy progression</li>
+                        <li>• Schedule important tests</li>
+                        <li>• Identify potential complications</li>
+                      </ul>
+                    </div>
+                    
+                    <div className="bg-white rounded-lg p-6 shadow-sm">
+                      <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+                        <Calculator className="w-6 h-6 text-purple-600" />
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Accurate Tracking</h3>
+                      <ul className="text-gray-600 text-sm space-y-1">
+                        <li>• Determine gestational age</li>
+                        <li>• Calculate trimester periods</li>
+                        <li>• Estimate conception date</li>
+                        <li>• Track pregnancy timeline</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Common Questions and Accuracy */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Due Date Accuracy and Common Questions</h2>
+                  
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">How Accurate are Due Date Calculations?</h3>
+                      <div className="space-y-4">
+                        <div className="bg-red-50 rounded-lg p-4 border-l-4 border-red-400">
+                          <h4 className="font-medium text-red-900 mb-2">Reality Check</h4>
+                          <p className="text-red-800 text-sm">
+                            Only about 5% of babies are born exactly on their due date. Most births occur within 
+                            2 weeks before or after the estimated due date.
+                          </p>
+                        </div>
+                        
+                        <div className="space-y-3">
+                          <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                            <span className="font-medium">LMP Method Accuracy</span>
+                            <span className="text-green-600 font-semibold">±1-2 weeks</span>
+                          </div>
+                          <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                            <span className="font-medium">Ultrasound Dating (6-11 weeks)</span>
+                            <span className="text-green-600 font-semibold">±3-5 days</span>
+                          </div>
+                          <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                            <span className="font-medium">Ultrasound Dating (12-22 weeks)</span>
+                            <span className="text-yellow-600 font-semibold">±1-2 weeks</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4 mt-6">Factors Affecting Due Date Accuracy</h3>
+                      <ul className="text-gray-600 space-y-2 text-sm">
+                        <li>• Irregular menstrual cycles</li>
+                        <li>• Uncertainty about last menstrual period date</li>
+                        <li>• Conception while breastfeeding</li>
+                        <li>• Polycystic ovary syndrome (PCOS)</li>
+                        <li>• Recent use of birth control pills</li>
+                        <li>• Multiple pregnancies (twins, triplets)</li>
                       </ul>
                     </div>
                     
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">When to Consult Healthcare Provider</h3>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Frequently Asked Questions</h3>
+                      <div className="space-y-4">
+                        <div className="bg-blue-50 rounded-lg p-4">
+                          <h4 className="font-medium text-blue-900 mb-2">When is the best time to calculate due date?</h4>
+                          <p className="text-blue-800 text-sm">
+                            The earlier in pregnancy, the more accurate the calculation. First-trimester ultrasounds 
+                            provide the most precise dating.
+                          </p>
+                        </div>
+                        
+                        <div className="bg-green-50 rounded-lg p-4">
+                          <h4 className="font-medium text-green-900 mb-2">Can due dates change during pregnancy?</h4>
+                          <p className="text-green-800 text-sm">
+                            Yes, due dates may be adjusted based on ultrasound measurements, especially if there's 
+                            a significant discrepancy with initial calculations.
+                          </p>
+                        </div>
+                        
+                        <div className="bg-purple-50 rounded-lg p-4">
+                          <h4 className="font-medium text-purple-900 mb-2">What if I don't remember my last period?</h4>
+                          <p className="text-purple-800 text-sm">
+                            Use the conception date method if you know when you conceived, or rely on early 
+                            ultrasound dating for the most accurate estimate.
+                          </p>
+                        </div>
+                        
+                        <div className="bg-orange-50 rounded-lg p-4">
+                          <h4 className="font-medium text-orange-900 mb-2">Are there different calculations for IVF pregnancies?</h4>
+                          <p className="text-orange-800 text-sm">
+                            IVF pregnancies use the embryo transfer date for more precise calculations, as the 
+                            conception date is exactly known.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Important Notes and Medical Disclaimer */}
+                <div className="bg-gradient-to-r from-pink-50 to-purple-50 rounded-2xl p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Important Medical Information</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">When to Consult Your Healthcare Provider</h3>
                       <ul className="text-gray-600 space-y-2 text-sm">
-                        <li>• Confirm pregnancy and due date calculation</li>
-                        <li>• Schedule regular prenatal appointments</li>
-                        <li>• Discuss any concerns about pregnancy progress</li>
-                        <li>• Plan for delivery and postpartum care</li>
-                        <li>• Address any unusual symptoms or complications</li>
+                        <li>• Confirm pregnancy and validate due date calculations</li>
+                        <li>• Schedule comprehensive prenatal care plan</li>
+                        <li>• Discuss any concerns about pregnancy progression</li>
+                        <li>• Plan delivery options and birthing preferences</li>
+                        <li>• Address complications or risk factors</li>
+                        <li>• Monitor fetal growth and development</li>
+                        <li>• Prepare for postpartum care and recovery</li>
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Signs Requiring Immediate Medical Attention</h3>
+                      <ul className="text-red-600 space-y-2 text-sm">
+                        <li>• Severe abdominal pain or cramping</li>
+                        <li>• Heavy bleeding or unusual discharge</li>
+                        <li>• Severe morning sickness preventing eating/drinking</li>
+                        <li>• High fever or persistent headaches</li>
+                        <li>• Decreased fetal movement after 28 weeks</li>
+                        <li>• Signs of preterm labor before 37 weeks</li>
+                        <li>• Sudden swelling of face, hands, or feet</li>
                       </ul>
                     </div>
                   </div>
-                  <div className="mt-6 p-4 bg-white rounded-lg border-l-4 border-pink-500">
+                  
+                  <div className="mt-8 p-6 bg-white rounded-lg border-l-4 border-pink-500">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Medical Disclaimer</h3>
+                    <p className="text-sm text-gray-600 mb-3">
+                      <strong>Important:</strong> This pregnancy due date calculator is designed for educational and informational purposes only. 
+                      The results provide estimates based on standard pregnancy calculations and should not replace professional medical advice, 
+                      diagnosis, or treatment.
+                    </p>
                     <p className="text-sm text-gray-600">
-                      <strong>Disclaimer:</strong> This calculator provides estimates for educational purposes only. 
-                      Always consult with your healthcare provider for professional medical advice and accurate due date determination.
+                      Every pregnancy is unique, and individual circumstances may affect the accuracy of these calculations. 
+                      Always consult with qualified healthcare providers for personalized medical guidance, accurate due date determination, 
+                      and comprehensive prenatal care throughout your pregnancy journey.
                     </p>
                   </div>
                 </div>
