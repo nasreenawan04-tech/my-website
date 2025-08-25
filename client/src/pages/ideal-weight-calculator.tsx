@@ -372,32 +372,33 @@ const IdealWeightCalculator = () => {
               <div className="mt-12 space-y-8">
                 {/* What is Ideal Weight */}
                 <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Understanding Ideal Weight</h2>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Understanding Ideal Weight Calculator</h2>
                   
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">What is Ideal Weight?</h3>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">What is Ideal Body Weight?</h3>
                       <p className="text-gray-600 mb-6 leading-relaxed">
-                        Ideal body weight (IBW) is a theoretical weight that is considered optimal for health and longevity. 
-                        It's calculated using mathematical formulas developed by researchers and medical professionals. 
-                        While these calculations provide guidance, individual factors like muscle mass, bone density, and body composition also matter.
+                        Ideal body weight (IBW) is a theoretical weight range that's considered optimal for health, longevity, and overall well-being. 
+                        Our ideal weight calculator uses scientifically validated formulas developed by medical researchers and healthcare professionals. 
+                        These calculations help determine target weight goals, assess health risks, and guide weight management decisions.
                       </p>
                       
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Why Multiple Formulas?</h3>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Why Use Multiple Weight Formulas?</h3>
                       <p className="text-gray-600 mb-4 leading-relaxed">
-                        Different formulas have been developed over time, each with slightly different approaches. 
-                        Using multiple formulas and averaging the results provides a more comprehensive estimate of your ideal weight range.
+                        Different ideal weight formulas have been developed over decades of medical research, each with unique approaches and applications. 
+                        Our calculator combines multiple proven methods to provide a comprehensive weight assessment that accounts for various body types and builds, 
+                        giving you a more accurate ideal weight range rather than a single number.
                       </p>
                     </div>
                     
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Popular Ideal Weight Formulas</h3>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Scientifically Proven Weight Formulas</h3>
                       <div className="space-y-3">
                         <div className="flex items-center p-3 bg-blue-50 rounded-lg">
                           <div className="w-4 h-4 bg-blue-500 rounded-full mr-3"></div>
                           <div>
                             <div className="font-medium">Devine Formula (1974)</div>
-                            <div className="text-sm text-gray-600">Most widely used in clinical practice</div>
+                            <div className="text-sm text-gray-600">Most widely used in clinical practice and drug dosing</div>
                           </div>
                         </div>
                         
@@ -405,7 +406,7 @@ const IdealWeightCalculator = () => {
                           <div className="w-4 h-4 bg-green-500 rounded-full mr-3"></div>
                           <div>
                             <div className="font-medium">Robinson Formula (1983)</div>
-                            <div className="text-sm text-gray-600">Modified version of Devine formula</div>
+                            <div className="text-sm text-gray-600">Modified Devine formula with updated coefficients</div>
                           </div>
                         </div>
                         
@@ -413,7 +414,7 @@ const IdealWeightCalculator = () => {
                           <div className="w-4 h-4 bg-purple-500 rounded-full mr-3"></div>
                           <div>
                             <div className="font-medium">Miller Formula (1983)</div>
-                            <div className="text-sm text-gray-600">Alternative approach to ideal weight</div>
+                            <div className="text-sm text-gray-600">Alternative approach for different body types</div>
                           </div>
                         </div>
                         
@@ -421,8 +422,134 @@ const IdealWeightCalculator = () => {
                           <div className="w-4 h-4 bg-orange-500 rounded-full mr-3"></div>
                           <div>
                             <div className="font-medium">Hamwi Formula (1964)</div>
-                            <div className="text-sm text-gray-600">Clinical standard for many years</div>
+                            <div className="text-sm text-gray-600">Original clinical standard still used today</div>
                           </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Use Cases and Applications */}
+                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Ideal Weight Calculator Use Cases</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Who Should Use This Calculator?</h3>
+                      <div className="space-y-3">
+                        <div className="flex items-center p-3 bg-white rounded-lg shadow-sm">
+                          <i className="fas fa-dumbbell text-blue-600 mr-3"></i>
+                          <span className="text-gray-700">Fitness enthusiasts setting weight loss or gain goals</span>
+                        </div>
+                        <div className="flex items-center p-3 bg-white rounded-lg shadow-sm">
+                          <i className="fas fa-user-md text-green-600 mr-3"></i>
+                          <span className="text-gray-700">Healthcare professionals calculating patient target weights</span>
+                        </div>
+                        <div className="flex items-center p-3 bg-white rounded-lg shadow-sm">
+                          <i className="fas fa-running text-purple-600 mr-3"></i>
+                          <span className="text-gray-700">Athletes optimizing performance and competition weight</span>
+                        </div>
+                        <div className="flex items-center p-3 bg-white rounded-lg shadow-sm">
+                          <i className="fas fa-heart text-red-600 mr-3"></i>
+                          <span className="text-gray-700">Individuals managing health conditions related to weight</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Practical Applications</h3>
+                      <div className="space-y-3">
+                        <div className="flex items-start p-3 bg-white rounded-lg shadow-sm">
+                          <i className="fas fa-target text-orange-600 mt-1 mr-3"></i>
+                          <div>
+                            <div className="font-medium">Weight Management Goals</div>
+                            <div className="text-sm text-gray-600">Set realistic targets for weight loss or weight gain programs</div>
+                          </div>
+                        </div>
+                        <div className="flex items-start p-3 bg-white rounded-lg shadow-sm">
+                          <i className="fas fa-pills text-teal-600 mt-1 mr-3"></i>
+                          <div>
+                            <div className="font-medium">Medical Dosing</div>
+                            <div className="text-sm text-gray-600">Healthcare providers use IBW for medication calculations</div>
+                          </div>
+                        </div>
+                        <div className="flex items-start p-3 bg-white rounded-lg shadow-sm">
+                          <i className="fas fa-chart-line text-indigo-600 mt-1 mr-3"></i>
+                          <div>
+                            <div className="font-medium">Health Assessment</div>
+                            <div className="text-sm text-gray-600">Evaluate current weight status and health risks</div>
+                          </div>
+                        </div>
+                        <div className="flex items-start p-3 bg-white rounded-lg shadow-sm">
+                          <i className="fas fa-utensils text-pink-600 mt-1 mr-3"></i>
+                          <div>
+                            <div className="font-medium">Nutrition Planning</div>
+                            <div className="text-sm text-gray-600">Calculate calorie needs based on ideal weight ranges</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* How to Use Guide */}
+                <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">How to Use the Ideal Weight Calculator</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Step-by-Step Guide</h3>
+                      <div className="space-y-4">
+                        <div className="flex items-start p-4 bg-white rounded-lg shadow-sm">
+                          <div className="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-1">1</div>
+                          <div>
+                            <div className="font-medium">Choose Unit System</div>
+                            <div className="text-sm text-gray-600">Select metric (kg, cm) or imperial (lbs, ft/in) measurements</div>
+                          </div>
+                        </div>
+                        <div className="flex items-start p-4 bg-white rounded-lg shadow-sm">
+                          <div className="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-1">2</div>
+                          <div>
+                            <div className="font-medium">Enter Your Height</div>
+                            <div className="text-sm text-gray-600">Input height in centimeters or feet and inches accurately</div>
+                          </div>
+                        </div>
+                        <div className="flex items-start p-4 bg-white rounded-lg shadow-sm">
+                          <div className="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-1">3</div>
+                          <div>
+                            <div className="font-medium">Select Gender</div>
+                            <div className="text-sm text-gray-600">Required as formulas differ between male and female physiology</div>
+                          </div>
+                        </div>
+                        <div className="flex items-start p-4 bg-white rounded-lg shadow-sm">
+                          <div className="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-3 mt-1">4</div>
+                          <div>
+                            <div className="font-medium">Get Results</div>
+                            <div className="text-sm text-gray-600">View your ideal weight range and individual formula results</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Understanding Your Results</h3>
+                      <div className="space-y-3">
+                        <div className="p-4 bg-white rounded-lg shadow-sm">
+                          <div className="font-medium text-gray-900 mb-2">Average Ideal Weight</div>
+                          <p className="text-sm text-gray-600">
+                            The mean of all four formulas, providing a balanced target weight that considers different methodologies.
+                          </p>
+                        </div>
+                        <div className="p-4 bg-white rounded-lg shadow-sm">
+                          <div className="font-medium text-gray-900 mb-2">Healthy Weight Range</div>
+                          <p className="text-sm text-gray-600">
+                            ±10% of average ideal weight, representing a realistic and healthy target range rather than a single number.
+                          </p>
+                        </div>
+                        <div className="p-4 bg-white rounded-lg shadow-sm">
+                          <div className="font-medium text-gray-900 mb-2">Individual Formula Results</div>
+                          <p className="text-sm text-gray-600">
+                            Compare results from each formula to understand the range of scientific approaches to ideal weight calculation.
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -431,28 +558,105 @@ const IdealWeightCalculator = () => {
 
                 {/* Limitations and Tips */}
                 <div className="bg-gradient-to-r from-pink-50 to-rose-50 rounded-2xl p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Important Considerations</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Important Considerations & Limitations</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Formula Limitations</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Calculator Limitations</h3>
                       <ul className="text-gray-600 space-y-2 text-sm">
-                        <li>• Based on average population data, not individual body composition</li>
-                        <li>• Don't account for muscle mass or bone density differences</li>
-                        <li>• May not be accurate for athletes or very muscular individuals</li>
-                        <li>• Age and ethnicity factors aren't considered in basic formulas</li>
-                        <li>• Should be used as general guidance, not absolute targets</li>
+                        <li>• Based on average population data, not individual body composition analysis</li>
+                        <li>• Doesn't account for muscle mass, bone density, or body fat percentage</li>
+                        <li>• May not be accurate for athletes, bodybuilders, or very muscular individuals</li>
+                        <li>• Age, ethnicity, and genetic factors aren't considered in basic formulas</li>
+                        <li>• Should be used as general guidance, not absolute medical targets</li>
+                        <li>• Results may vary for individuals with medical conditions affecting weight</li>
                       </ul>
                     </div>
                     
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Healthy Weight Tips</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Healthy Weight Management Tips</h3>
                       <ul className="text-gray-600 space-y-2 text-sm">
-                        <li>• Focus on overall health, not just reaching a specific number</li>
-                        <li>• Consider body composition (muscle vs. fat ratio)</li>
-                        <li>• Consult healthcare professionals for personalized advice</li>
-                        <li>• Maintain a balanced diet and regular physical activity</li>
-                        <li>• Remember that healthy weights exist within a range, not a single number</li>
+                        <li>• Focus on overall health metrics, not just reaching a specific weight number</li>
+                        <li>• Consider body composition analysis (muscle vs. fat ratio) for complete picture</li>
+                        <li>• Consult healthcare professionals for personalized weight management advice</li>
+                        <li>• Maintain balanced nutrition with adequate protein, vitamins, and minerals</li>
+                        <li>• Include regular physical activity combining cardio and strength training</li>
+                        <li>• Remember that healthy weights exist within a range, not a single target</li>
+                        <li>• Monitor other health indicators like blood pressure, cholesterol, and energy levels</li>
                       </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Related Health Calculators */}
+                <div className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-2xl p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Related Health & Weight Calculators</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <a href="/tools/bmi-calculator" className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+                      <i className="fas fa-weight text-2xl text-blue-600 mb-3"></i>
+                      <h3 className="font-semibold text-gray-900 mb-2">BMI Calculator</h3>
+                      <p className="text-gray-600 text-xs">Calculate Body Mass Index and health status categories</p>
+                    </a>
+                    
+                    <a href="/tools/body-fat-calculator" className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+                      <i className="fas fa-percentage text-2xl text-green-600 mb-3"></i>
+                      <h3 className="font-semibold text-gray-900 mb-2">Body Fat Calculator</h3>
+                      <p className="text-gray-600 text-xs">Calculate body fat percentage using Navy method</p>
+                    </a>
+                    
+                    <a href="/tools/calorie-calculator" className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+                      <i className="fas fa-utensils text-2xl text-purple-600 mb-3"></i>
+                      <h3 className="font-semibold text-gray-900 mb-2">Calorie Calculator</h3>
+                      <p className="text-gray-600 text-xs">Calculate daily calorie needs for weight goals</p>
+                    </a>
+                    
+                    <a href="/tools/lean-body-mass-calculator" className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+                      <i className="fas fa-user-md text-2xl text-orange-600 mb-3"></i>
+                      <h3 className="font-semibold text-gray-900 mb-2">Lean Body Mass</h3>
+                      <p className="text-gray-600 text-xs">Calculate muscle mass and body composition</p>
+                    </a>
+                  </div>
+                </div>
+
+                {/* SEO FAQ Section */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">How accurate is the ideal weight calculator?</h3>
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        Our ideal weight calculator uses four scientifically validated formulas (Devine, Robinson, Miller, and Hamwi) 
+                        that are widely accepted in medical practice. While these provide good estimates for most people, individual 
+                        factors like muscle mass, bone density, and body composition can affect accuracy. The calculator is most 
+                        accurate for average body types and should be used as guidance rather than absolute targets.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">What's the difference between ideal weight and healthy weight?</h3>
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        Ideal weight refers to theoretical optimal weight calculated using mathematical formulas based on height and gender. 
+                        Healthy weight is a broader concept that considers overall health status, body composition, fitness level, and 
+                        individual medical factors. Our calculator provides both an ideal weight estimate and a healthy weight range (±10%) 
+                        to account for individual variations.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Can athletes and bodybuilders use this ideal weight calculator?</h3>
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        Traditional ideal weight formulas may not be accurate for athletes and bodybuilders with above-average muscle mass. 
+                        These individuals often weigh more than the calculated ideal weight due to increased muscle density. Athletes should 
+                        focus on body composition analysis, performance metrics, and consult sports medicine professionals for personalized targets.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">How often should I check my ideal weight?</h3>
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        Since ideal weight is based on height and gender (which don't change frequently), you don't need to recalculate often. 
+                        However, you might want to reassess if you experience significant height changes, are tracking long-term weight management goals, 
+                        or want to compare with other health metrics like BMI or body fat percentage during fitness journeys.
+                      </p>
                     </div>
                   </div>
                 </div>
