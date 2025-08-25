@@ -518,24 +518,25 @@ const WaterIntakeCalculator = () => {
               <div className="mt-12 space-y-8">
                 {/* Understanding Water Intake */}
                 <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Understanding Daily Water Intake</h2>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Understanding Daily Water Intake Requirements</h2>
                   
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Why Water Intake Matters</h3>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Why Water Intake Calculation Matters</h3>
                       <p className="text-gray-600 mb-6 leading-relaxed">
                         Water is essential for virtually every bodily function, including temperature regulation, joint lubrication, 
-                        nutrient transport, and waste elimination. Proper hydration helps maintain energy levels, cognitive function, 
-                        and overall health.
+                        nutrient transport, and waste elimination. Proper hydration calculation helps maintain energy levels, cognitive function, 
+                        and overall health. Our water intake calculator provides personalized recommendations based on scientific guidelines.
                       </p>
                       
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Factors Affecting Water Needs</h3>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Key Factors Affecting Daily Water Needs</h3>
                       <ul className="text-gray-600 space-y-2 text-sm">
-                        <li>• Body weight and composition</li>
-                        <li>• Physical activity level</li>
-                        <li>• Climate and temperature</li>
-                        <li>• Overall health and medical conditions</li>
-                        <li>• Pregnancy and breastfeeding</li>
+                        <li>• <strong>Body weight and composition</strong> - Larger bodies require more water</li>
+                        <li>• <strong>Physical activity level</strong> - Exercise increases water needs</li>
+                        <li>• <strong>Climate and temperature</strong> - Hot weather requires additional hydration</li>
+                        <li>• <strong>Overall health conditions</strong> - Fever, illness affect requirements</li>
+                        <li>• <strong>Pregnancy and breastfeeding</strong> - Increased fluid needs</li>
+                        <li>• <strong>Age factors</strong> - Children and elderly have special needs</li>
                       </ul>
                     </div>
                     
@@ -546,7 +547,7 @@ const WaterIntakeCalculator = () => {
                           <div className="w-4 h-4 bg-green-500 rounded-full mr-3"></div>
                           <div>
                             <div className="font-medium">Pale Yellow Urine</div>
-                            <div className="text-sm text-gray-600">Indicates good hydration</div>
+                            <div className="text-sm text-gray-600">Best indicator of adequate hydration</div>
                           </div>
                         </div>
                         
@@ -554,7 +555,7 @@ const WaterIntakeCalculator = () => {
                           <div className="w-4 h-4 bg-blue-500 rounded-full mr-3"></div>
                           <div>
                             <div className="font-medium">Steady Energy Levels</div>
-                            <div className="text-sm text-gray-600">Proper hydration supports energy</div>
+                            <div className="text-sm text-gray-600">Proper hydration prevents fatigue</div>
                           </div>
                         </div>
                         
@@ -562,7 +563,7 @@ const WaterIntakeCalculator = () => {
                           <div className="w-4 h-4 bg-purple-500 rounded-full mr-3"></div>
                           <div>
                             <div className="font-medium">Moist Skin and Lips</div>
-                            <div className="text-sm text-gray-600">Skin elasticity is maintained</div>
+                            <div className="text-sm text-gray-600">Skin elasticity indicates hydration</div>
                           </div>
                         </div>
                       </div>
@@ -570,30 +571,203 @@ const WaterIntakeCalculator = () => {
                   </div>
                 </div>
 
-                {/* Tips and Guidelines */}
-                <div className="bg-gradient-to-r from-sky-50 to-blue-50 rounded-2xl p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Hydration Tips & Guidelines</h2>
+                {/* Water Intake Guidelines */}
+                <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Daily Water Intake Guidelines & Recommendations</h2>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div className="bg-white rounded-lg p-6 text-center">
+                      <div className="text-3xl font-bold text-blue-600 mb-2">2.7L</div>
+                      <div className="font-semibold text-gray-900">Women</div>
+                      <div className="text-sm text-gray-600">Recommended daily intake</div>
+                    </div>
+                    
+                    <div className="bg-white rounded-lg p-6 text-center">
+                      <div className="text-3xl font-bold text-blue-600 mb-2">3.7L</div>
+                      <div className="font-semibold text-gray-900">Men</div>
+                      <div className="text-sm text-gray-600">Recommended daily intake</div>
+                    </div>
+                    
+                    <div className="bg-white rounded-lg p-6 text-center">
+                      <div className="text-3xl font-bold text-blue-600 mb-2">35ml</div>
+                      <div className="font-semibold text-gray-900">Per kg</div>
+                      <div className="text-sm text-gray-600">Body weight calculation</div>
+                    </div>
+                  </div>
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-4">Daily Hydration Tips</h3>
                       <ul className="text-gray-600 space-y-2 text-sm">
-                        <li>• Start your day with a glass of water</li>
-                        <li>• Keep a water bottle with you throughout the day</li>
-                        <li>• Drink water before, during, and after exercise</li>
-                        <li>• Set reminders to drink water regularly</li>
-                        <li>• Eat water-rich foods like fruits and vegetables</li>
+                        <li>• <strong>Start early:</strong> Begin with a glass of water upon waking</li>
+                        <li>• <strong>Stay consistent:</strong> Keep a water bottle accessible throughout the day</li>
+                        <li>• <strong>Exercise hydration:</strong> Drink before, during, and after physical activity</li>
+                        <li>• <strong>Set reminders:</strong> Use apps or alarms for regular water breaks</li>
+                        <li>• <strong>Eat water-rich foods:</strong> Include fruits and vegetables in your diet</li>
+                        <li>• <strong>Monitor intake:</strong> Track your daily water consumption</li>
                       </ul>
                     </div>
                     
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">When to Increase Intake</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">When to Increase Water Intake</h3>
                       <ul className="text-gray-600 space-y-2 text-sm">
-                        <li>• Hot or humid weather conditions</li>
-                        <li>• During and after physical activity</li>
-                        <li>• When experiencing fever or illness</li>
-                        <li>• At high altitudes</li>
-                        <li>• When consuming alcohol or caffeine</li>
+                        <li>• <strong>Hot climate:</strong> Increase by 15-25% in high temperatures</li>
+                        <li>• <strong>Physical activity:</strong> Add 500-750ml per hour of exercise</li>
+                        <li>• <strong>Illness recovery:</strong> Extra fluids when experiencing fever</li>
+                        <li>• <strong>High altitude:</strong> Increase intake above 8,000 feet</li>
+                        <li>• <strong>Alcohol/caffeine:</strong> Counter dehydrating effects</li>
+                        <li>• <strong>Pregnancy/nursing:</strong> Additional 300-700ml daily</li>
                       </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Use Cases and Benefits */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Water Intake Calculator Use Cases & Health Benefits</h2>
+                  
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Who Should Use This Calculator</h3>
+                      <div className="space-y-4">
+                        <div className="border-l-4 border-blue-500 pl-4">
+                          <h4 className="font-semibold text-gray-900">Athletes & Fitness Enthusiasts</h4>
+                          <p className="text-sm text-gray-600">Calculate increased water needs for optimal performance and recovery</p>
+                        </div>
+                        
+                        <div className="border-l-4 border-green-500 pl-4">
+                          <h4 className="font-semibold text-gray-900">Weight Loss & Health Goals</h4>
+                          <p className="text-sm text-gray-600">Proper hydration supports metabolism and appetite control</p>
+                        </div>
+                        
+                        <div className="border-l-4 border-purple-500 pl-4">
+                          <h4 className="font-semibold text-gray-900">Pregnant & Nursing Women</h4>
+                          <p className="text-sm text-gray-600">Ensure adequate hydration for maternal and baby health</p>
+                        </div>
+                        
+                        <div className="border-l-4 border-orange-500 pl-4">
+                          <h4 className="font-semibold text-gray-900">Medical Conditions</h4>
+                          <p className="text-sm text-gray-600">Manage hydration with kidney stones, diabetes, or heart conditions</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Health Benefits of Proper Hydration</h3>
+                      <div className="space-y-3">
+                        <div className="bg-blue-50 rounded-lg p-4">
+                          <h4 className="font-semibold text-blue-900">Cognitive Function</h4>
+                          <p className="text-sm text-blue-700">Improves concentration, memory, and mental clarity</p>
+                        </div>
+                        
+                        <div className="bg-green-50 rounded-lg p-4">
+                          <h4 className="font-semibold text-green-900">Physical Performance</h4>
+                          <p className="text-sm text-green-700">Maintains muscle function and prevents exercise fatigue</p>
+                        </div>
+                        
+                        <div className="bg-purple-50 rounded-lg p-4">
+                          <h4 className="font-semibold text-purple-900">Skin Health</h4>
+                          <p className="text-sm text-purple-700">Maintains elasticity and prevents premature aging</p>
+                        </div>
+                        
+                        <div className="bg-orange-50 rounded-lg p-4">
+                          <h4 className="font-semibold text-orange-900">Detoxification</h4>
+                          <p className="text-sm text-orange-700">Supports kidney function and waste elimination</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Scientific Background */}
+                <div className="bg-gradient-to-r from-sky-50 to-blue-50 rounded-2xl p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Scientific Background & Calculation Methods</h2>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Calculation Methodology</h3>
+                      <div className="space-y-3 text-sm text-gray-600">
+                        <p>Our water intake calculator uses evidence-based formulas from:</p>
+                        <ul className="space-y-1 ml-4">
+                          <li>• <strong>Institute of Medicine (IOM)</strong> recommendations</li>
+                          <li>• <strong>WHO hydration guidelines</strong> for different populations</li>
+                          <li>• <strong>Body weight calculation:</strong> 35ml per kg of body weight</li>
+                          <li>• <strong>Activity adjustments</strong> based on exercise intensity</li>
+                          <li>• <strong>Environmental factors</strong> for climate conditions</li>
+                        </ul>
+                        
+                        <div className="mt-4 p-3 bg-white rounded-lg">
+                          <h4 className="font-semibold text-gray-900 mb-2">Formula Example:</h4>
+                          <code className="text-xs text-blue-600">
+                            Base Water Need + Activity Adjustment + Climate Adjustment + Health Factors
+                          </code>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Dehydration Risks & Prevention</h3>
+                      <div className="space-y-3">
+                        <div className="bg-red-50 border border-red-200 rounded-lg p-3">
+                          <h4 className="font-semibold text-red-900 mb-1">Mild Dehydration (2-3%)</h4>
+                          <p className="text-xs text-red-700">Thirst, decreased performance, fatigue</p>
+                        </div>
+                        
+                        <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
+                          <h4 className="font-semibold text-orange-900 mb-1">Moderate Dehydration (4-6%)</h4>
+                          <p className="text-xs text-orange-700">Headache, dizziness, dark urine</p>
+                        </div>
+                        
+                        <div className="bg-red-100 border border-red-300 rounded-lg p-3">
+                          <h4 className="font-semibold text-red-900 mb-1">Severe Dehydration (7%+)</h4>
+                          <p className="text-xs text-red-700">Medical emergency - seek immediate help</p>
+                        </div>
+                      </div>
+                      
+                      <div className="mt-4 text-xs text-gray-600">
+                        <p><strong>Prevention tip:</strong> Use our calculator daily to maintain optimal hydration levels and prevent dehydration-related health issues.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* FAQ Section */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-4">
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-2">How accurate is this water intake calculator?</h4>
+                        <p className="text-sm text-gray-600">Our calculator uses scientifically-backed formulas from health organizations like the Institute of Medicine, providing personalized recommendations based on your individual factors.</p>
+                      </div>
+                      
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-2">Should I drink all water or include other beverages?</h4>
+                        <p className="text-sm text-gray-600">About 20% of daily fluid intake comes from food. The calculation includes all fluids, but water is the best choice for hydration.</p>
+                      </div>
+                      
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-2">Can I drink too much water?</h4>
+                        <p className="text-sm text-gray-600">Yes, overhydration (hyponatremia) is possible but rare with normal kidney function. Stick to calculated recommendations unless advised otherwise by a healthcare provider.</p>
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-4">
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-2">How often should I recalculate my water intake?</h4>
+                        <p className="text-sm text-gray-600">Recalculate when your weight, activity level, or health conditions change significantly, or seasonally for climate adjustments.</p>
+                      </div>
+                      
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-2">Is the calculator suitable for children and elderly?</h4>
+                        <p className="text-sm text-gray-600">The calculator includes age-based adjustments, but children under 12 and adults over 65 should consult healthcare providers for specific hydration needs.</p>
+                      </div>
+                      
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-2">What if I have medical conditions affecting hydration?</h4>
+                        <p className="text-sm text-gray-600">The calculator includes common conditions, but always consult your healthcare provider for conditions like heart disease, kidney problems, or diabetes.</p>
+                      </div>
                     </div>
                   </div>
                 </div>
