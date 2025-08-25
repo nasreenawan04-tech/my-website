@@ -138,8 +138,8 @@ const BMRCalculator = () => {
     <>
       <Helmet>
         <title>BMR Calculator - Calculate Basal Metabolic Rate & Daily Calories | DapsiWow</title>
-        <meta name="description" content="Calculate your BMR (Basal Metabolic Rate) and daily calorie needs. Get personalized calorie targets for weight loss, maintenance, and muscle gain." />
-        <meta name="keywords" content="BMR calculator, basal metabolic rate calculator, daily calorie calculator, TDEE calculator, metabolism calculator, calorie needs" />
+        <meta name="description" content="Free BMR calculator to calculate your Basal Metabolic Rate and daily calorie needs. Get accurate TDEE calculations and personalized calorie targets for weight loss, muscle gain, and maintenance using the Mifflin-St Jeor equation." />
+        <meta name="keywords" content="BMR calculator, basal metabolic rate calculator, daily calorie calculator, TDEE calculator, metabolism calculator, calorie needs, Mifflin St Jeor equation, weight loss calculator, muscle gain calculator, metabolic rate, daily energy expenditure, calories burned at rest, nutrition calculator, fitness calculator" />
         <meta property="og:title" content="BMR Calculator - Calculate Basal Metabolic Rate & Daily Calories | DapsiWow" />
         <meta property="og:description" content="Calculate your BMR (Basal Metabolic Rate) and daily calorie needs. Get personalized calorie targets for weight management." />
         <meta property="og:type" content="website" />
@@ -461,6 +461,109 @@ const BMRCalculator = () => {
                 </CardContent>
               </Card>
 
+              {/* SEO Content Section */}
+              <div className="mt-12 mb-16">
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                    Free BMR Calculator - Calculate Basal Metabolic Rate & Daily Calorie Needs
+                  </h2>
+                  <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                    Calculate your BMR (Basal Metabolic Rate) and TDEE (Total Daily Energy Expenditure) with our accurate, 
+                    science-based calculator. Get personalized calorie recommendations for weight loss, muscle gain, and 
+                    maintenance. Perfect for fitness enthusiasts, dietitians, personal trainers, and anyone looking to 
+                    optimize their nutrition and achieve their health goals.
+                  </p>
+                </div>
+
+                {/* Key Benefits */}
+                <div className="bg-gradient-to-r from-rose-50 to-pink-50 rounded-2xl p-8 mb-12">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Why Use Our BMR Calculator?</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="bg-white rounded-lg p-6 shadow-sm">
+                      <i className="fas fa-calculator text-2xl text-rose-600 mb-4"></i>
+                      <h4 className="text-lg font-semibold text-gray-900 mb-3">Accurate Calculations</h4>
+                      <p className="text-gray-600 text-sm">
+                        Uses the scientifically validated Mifflin-St Jeor equation, proven to be more accurate 
+                        than older Harris-Benedict formulas.
+                      </p>
+                    </div>
+                    
+                    <div className="bg-white rounded-lg p-6 shadow-sm">
+                      <i className="fas fa-globe text-2xl text-rose-600 mb-4"></i>
+                      <h4 className="text-lg font-semibold text-gray-900 mb-3">Multiple Units</h4>
+                      <p className="text-gray-600 text-sm">
+                        Supports both metric (kg, cm) and imperial (lbs, ft/in) measurement systems 
+                        for worldwide accessibility.
+                      </p>
+                    </div>
+                    
+                    <div className="bg-white rounded-lg p-6 shadow-sm">
+                      <i className="fas fa-chart-line text-2xl text-rose-600 mb-4"></i>
+                      <h4 className="text-lg font-semibold text-gray-900 mb-3">Complete Analysis</h4>
+                      <p className="text-gray-600 text-sm">
+                        Get BMR, TDEE for all activity levels, plus specific calorie targets 
+                        for weight management goals.
+                      </p>
+                    </div>
+                    
+                    <div className="bg-white rounded-lg p-6 shadow-sm">
+                      <i className="fas fa-mobile-alt text-2xl text-rose-600 mb-4"></i>
+                      <h4 className="text-lg font-semibold text-gray-900 mb-3">Mobile Friendly</h4>
+                      <p className="text-gray-600 text-sm">
+                        Responsive design works perfectly on desktop, tablet, and mobile devices 
+                        for calculations on-the-go.
+                      </p>
+                    </div>
+                    
+                    <div className="bg-white rounded-lg p-6 shadow-sm">
+                      <i className="fas fa-user-md text-2xl text-rose-600 mb-4"></i>
+                      <h4 className="text-lg font-semibold text-gray-900 mb-3">Professional Grade</h4>
+                      <p className="text-gray-600 text-sm">
+                        Trusted by fitness professionals, nutritionists, and healthcare providers 
+                        for accurate metabolic assessments.
+                      </p>
+                    </div>
+                    
+                    <div className="bg-white rounded-lg p-6 shadow-sm">
+                      <i className="fas fa-lock text-2xl text-rose-600 mb-4"></i>
+                      <h4 className="text-lg font-semibold text-gray-900 mb-3">Privacy First</h4>
+                      <p className="text-gray-600 text-sm">
+                        All calculations are performed locally in your browser. Your personal 
+                        health data never leaves your device.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Use Cases */}
+                <div className="bg-white rounded-2xl shadow-lg p-8 mb-12">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Who Can Benefit from BMR Calculations?</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                      <h4 className="text-xl font-semibold text-gray-900 mb-4">Fitness & Weight Management</h4>
+                      <ul className="text-gray-600 space-y-2 text-sm">
+                        <li>• <strong>Weight Loss:</strong> Calculate precise calorie deficits for sustainable fat loss</li>
+                        <li>• <strong>Muscle Building:</strong> Determine calorie surplus needed for lean muscle gain</li>
+                        <li>• <strong>Body Recomposition:</strong> Balance calories for simultaneous fat loss and muscle gain</li>
+                        <li>• <strong>Athletic Performance:</strong> Optimize nutrition for training and competition</li>
+                        <li>• <strong>Metabolic Health:</strong> Monitor changes in metabolism over time</li>
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <h4 className="text-xl font-semibold text-gray-900 mb-4">Professional Applications</h4>
+                      <ul className="text-gray-600 space-y-2 text-sm">
+                        <li>• <strong>Personal Trainers:</strong> Create evidence-based nutrition plans for clients</li>
+                        <li>• <strong>Dietitians:</strong> Assess metabolic needs for meal planning</li>
+                        <li>• <strong>Healthcare Providers:</strong> Evaluate metabolic health in patients</li>
+                        <li>• <strong>Researchers:</strong> Baseline metabolic measurements for studies</li>
+                        <li>• <strong>Wellness Coaches:</strong> Holistic health assessments</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               {/* Educational Content */}
               <div className="mt-12 space-y-8">
                 {/* Understanding BMR */}
@@ -587,6 +690,118 @@ const BMRCalculator = () => {
                         add 250-500 calories for weight gain.
                       </p>
                     </div>
+                  </div>
+                </div>
+
+                {/* Frequently Asked Questions */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Frequently Asked Questions About BMR</h2>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div className="space-y-6">
+                      <div>
+                        <h3 className="text-lg font-semibold text-gray-900 mb-3">What is the difference between BMR and TDEE?</h3>
+                        <p className="text-gray-600 text-sm leading-relaxed">
+                          BMR (Basal Metabolic Rate) is the calories your body burns at complete rest for basic functions. 
+                          TDEE (Total Daily Energy Expenditure) includes BMR plus calories burned through physical activity, 
+                          exercise, and daily movement. TDEE is what you need for weight maintenance.
+                        </p>
+                      </div>
+                      
+                      <div>
+                        <h3 className="text-lg font-semibold text-gray-900 mb-3">How accurate are BMR calculators?</h3>
+                        <p className="text-gray-600 text-sm leading-relaxed">
+                          Our calculator uses the Mifflin-St Jeor equation, which is accurate within ±10% for most people. 
+                          Factors like muscle mass, body fat percentage, and metabolic health can affect individual results. 
+                          For the most precise measurement, consider indirect calorimetry testing.
+                        </p>
+                      </div>
+                      
+                      <div>
+                        <h3 className="text-lg font-semibold text-gray-900 mb-3">Should I eat below my BMR for weight loss?</h3>
+                        <p className="text-gray-600 text-sm leading-relaxed">
+                          Generally, it's not recommended to eat below your BMR long-term as this can slow metabolism 
+                          and lead to muscle loss. Instead, create a moderate deficit from your TDEE (300-500 calories) 
+                          for sustainable weight loss while preserving muscle mass.
+                        </p>
+                      </div>
+                      
+                      <div>
+                        <h3 className="text-lg font-semibold text-gray-900 mb-3">How often should I recalculate my BMR?</h3>
+                        <p className="text-gray-600 text-sm leading-relaxed">
+                          Recalculate your BMR every 10-15 pounds of weight change, or every 3-6 months. 
+                          As you lose weight or age, your BMR decreases. Regular recalculation ensures 
+                          your calorie targets remain accurate for continued progress.
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-6">
+                      <div>
+                        <h3 className="text-lg font-semibold text-gray-900 mb-3">Can medications affect my BMR?</h3>
+                        <p className="text-gray-600 text-sm leading-relaxed">
+                          Yes, certain medications can significantly impact metabolism. Thyroid medications, 
+                          antidepressants, diabetes medications, and steroids can all affect BMR. 
+                          Consult your healthcare provider about how medications might influence your metabolic rate.
+                        </p>
+                      </div>
+                      
+                      <div>
+                        <h3 className="text-lg font-semibold text-gray-900 mb-3">Why is my BMR lower than expected?</h3>
+                        <p className="text-gray-600 text-sm leading-relaxed">
+                          Several factors can lower BMR: previous extreme dieting (metabolic adaptation), 
+                          low muscle mass, thyroid issues, age, genetics, or chronic stress. 
+                          Building muscle through strength training can help increase metabolic rate.
+                        </p>
+                      </div>
+                      
+                      <div>
+                        <h3 className="text-lg font-semibold text-gray-900 mb-3">How does age affect BMR?</h3>
+                        <p className="text-gray-600 text-sm leading-relaxed">
+                          BMR typically decreases by 1-2% per decade after age 30, primarily due to muscle loss 
+                          and hormonal changes. Regular strength training, adequate protein intake, and maintaining 
+                          muscle mass can help minimize age-related metabolic decline.
+                        </p>
+                      </div>
+                      
+                      <div>
+                        <h3 className="text-lg font-semibold text-gray-900 mb-3">What's the best way to increase BMR?</h3>
+                        <p className="text-gray-600 text-sm leading-relaxed">
+                          Build lean muscle through resistance training, as muscle tissue burns more calories at rest. 
+                          Eat adequate protein, stay hydrated, get quality sleep, and consider HIIT workouts. 
+                          These strategies can boost your metabolic rate naturally and sustainably.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Related Tools */}
+                <div className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-2xl p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Related Health & Fitness Calculators</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <a href="/tools/bmi-calculator" className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+                      <i className="fas fa-weight text-2xl text-blue-600 mb-3"></i>
+                      <h3 className="font-semibold text-gray-900 mb-2">BMI Calculator</h3>
+                      <p className="text-gray-600 text-xs">Calculate Body Mass Index and health status</p>
+                    </a>
+                    
+                    <a href="/tools/tdee-calculator" className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+                      <i className="fas fa-running text-2xl text-green-600 mb-3"></i>
+                      <h3 className="font-semibold text-gray-900 mb-2">TDEE Calculator</h3>
+                      <p className="text-gray-600 text-xs">Total Daily Energy Expenditure calculator</p>
+                    </a>
+                    
+                    <a href="/tools/body-fat-calculator" className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+                      <i className="fas fa-percentage text-2xl text-orange-600 mb-3"></i>
+                      <h3 className="font-semibold text-gray-900 mb-2">Body Fat Calculator</h3>
+                      <p className="text-gray-600 text-xs">Estimate body fat percentage accurately</p>
+                    </a>
+                    
+                    <a href="/tools/calorie-calculator" className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+                      <i className="fas fa-utensils text-2xl text-purple-600 mb-3"></i>
+                      <h3 className="font-semibold text-gray-900 mb-2">Calorie Calculator</h3>
+                      <p className="text-gray-600 text-xs">Calculate daily calorie needs for goals</p>
+                    </a>
                   </div>
                 </div>
               </div>
