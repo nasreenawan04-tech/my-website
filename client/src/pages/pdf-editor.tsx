@@ -11,7 +11,7 @@ import { Progress } from '@/components/ui/progress';
 import PDFViewer from '@/components/PDFViewer';
 import { 
   Upload, FileText, Merge, Split, RotateCw, Shield, 
-  Compress, Image, Type, Eye, Download, Trash2, 
+  Archive, Image, Type, Eye, Download, Trash2, 
   Settings, Zap, Lock, Unlock 
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
@@ -517,7 +517,7 @@ export default function PDFEditor() {
                   className="w-full"
                   data-testid="button-compress-pdf"
                 >
-                  <Compress className="h-4 w-4 mr-2" />
+                  <Archive className="h-4 w-4 mr-2" />
                   Compress PDF
                 </Button>
               </CardContent>
