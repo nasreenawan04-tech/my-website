@@ -84,6 +84,7 @@ import UnlockPDFTool from '@/pages/unlock-pdf-tool';
 import AddPageNumbersTool from '@/pages/add-page-numbers-tool';
 import OrganizePDFPagesTool from '@/pages/organize-pdf-pages-tool';
 import PDFEditor from '@/pages/pdf-editor';
+import { lazy } from 'react';
 
 
 function ScrollToTop() {
@@ -157,8 +158,9 @@ function Router() {
       <Route path="/tools/whr-calculator" component={WHRCalculator} />
       <Route path="/tools/life-expectancy-calculator" component={LifeExpectancyCalculator} />
       <Route path="/tools/cholesterol-risk-calculator" component={CholesterolRiskCalculator} />
-      <Route path="/tools/merge-pdf" component={MergePDFTool} />
-      <Route path="/tools/split-pdf" component={SplitPDFTool} />
+      <Route path="/tools/compress-pdf" component={lazy(() => import('@/pages/compress-pdf-tool'))} />
+      <Route path="/tools/merge-pdf" component={lazy(() => import('@/pages/merge-pdf-tool'))} />
+        <Route path="/tools/split-pdf" component={lazy(() => import('@/pages/split-pdf-tool'))} />
       <Route path="/tools/rotate-pdf" component={RotatePDFTool} />
       <Route path="/tools/watermark-pdf" component={WatermarkPDFTool} />
       <Route path="/tools/extract-pdf-pages" component={ExtractPDFPagesTool} />

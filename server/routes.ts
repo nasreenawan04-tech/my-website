@@ -1122,6 +1122,133 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // PDF Compress endpoint using pikepdf
+  app.post('/api/compress-pdf-pikepdf', upload.single('pdf'), async (req: MulterRequest, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ error: 'No PDF file uploaded' });
+      }
+
+      // Validate file type
+      if (req.file.mimetype !== 'application/pdf') {
+        await fs.unlink(req.file.path);
+        return res.status(400).json({ error: 'Invalid file type. Please upload a PDF file.' });
+      }
+
+      const inputPath = req.file.path;
+      const outputPath = path.join(__dirname, '../compressed', `compressed-${Date.now()}-${req.file.originalname}`);
+
+      // Use pikepdf via Python subprocess for compression
+      const { spawn } = await import('child_process');
+      
+      const pythonScript = `
+import pikepdf
+import sys
+import os
+
+def compress_pdf(input_path, output_path):
+    try:
+        with pikepdf.open(input_path) as pdf:
+            # Remove unnecessary metadata
+            if '/Metadata' in pdf.Root:
+                del pdf.Root.Metadata
+            
+            # Optimize images and compress streams
+            for page in pdf.pages:
+                for image_name, image in page.images.items():
+                    try:
+                        # Get image data
+                        raw_image = image.read_raw_bytes()
+                        if len(raw_image) > 10000:  # Only compress larger images
+                            # Apply filters for compression
+                            image.Filter = pikepdf.Name.FlateDecode
+                    except:
+                        continue
+            
+            # Save with compression
+            pdf.save(output_path, 
+                    compress_streams=True,
+                    object_stream_mode=pikepdf.ObjectStreamMode.generate,
+                    normalize_content=True,
+                    deterministic_id=True)
+            
+        return True
+    except Exception as e:
+        print(f"Error: {e}", file=sys.stderr)
+        return False
+
+if __name__ == "__main__":
+    input_file = sys.argv[1]
+    output_file = sys.argv[2]
+    
+    if compress_pdf(input_file, output_file):
+        print("SUCCESS")
+    else:
+        print("FAILED")
+`;
+
+      // Write Python script to temporary file
+      const scriptPath = path.join(__dirname, '../temp', `compress_${Date.now()}.py`);
+      await fs.writeFile(scriptPath, pythonScript);
+
+      // Execute Python script
+      const python = spawn('python3', [scriptPath, inputPath, outputPath]);
+      
+      let output = '';
+      let error = '';
+
+      python.stdout.on('data', (data) => {
+        output += data.toString();
+      });
+
+      python.stderr.on('data', (data) => {
+        error += data.toString();
+      });
+
+      await new Promise((resolve, reject) => {
+        python.on('close', (code) => {
+          if (code === 0 && output.includes('SUCCESS')) {
+            resolve(code);
+          } else {
+            reject(new Error(error || 'Python script failed'));
+          }
+        });
+      });
+
+      // Check if compressed file exists and calculate compression ratio
+      const originalSize = (await fs.stat(inputPath)).size;
+      const compressedSize = (await fs.stat(outputPath)).size;
+      const compressionRatio = Math.round((1 - compressedSize / originalSize) * 100);
+
+      // Read compressed file
+      const compressedBuffer = await fs.readFile(outputPath);
+
+      // Clean up files
+      await fs.unlink(req.file.path);
+      await fs.unlink(outputPath);
+      await fs.unlink(scriptPath);
+
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `attachment; filename="compressed-${req.file.originalname}"`);
+      res.setHeader('X-Compression-Ratio', compressionRatio.toString());
+      res.send(compressedBuffer);
+
+    } catch (error) {
+      console.error('PDF compression error:', error);
+
+      if (req.file?.path) {
+        try {
+          await fs.unlink(req.file.path);
+        } catch (cleanupError) {
+          console.error('Error cleaning up file:', cleanupError);
+        }
+      }
+
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      res.status(500).json({ error: `PDF compression failed: ${errorMessage}` });
+    }
+  });
+
   // PDF Compress endpoint
   app.post('/api/compress-pdf', upload.single('pdf'), async (req: MulterRequest, res) => {
     try {
