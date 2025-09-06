@@ -139,6 +139,82 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // PDF Unlock endpoint using qpdf
+  app.post('/api/unlock-pdf', upload.single('pdf'), async (req: MulterRequest, res) => {
+    try {
+      const { password } = req.body;
+
+      if (!req.file) {
+        return res.status(400).json({ error: 'No PDF file uploaded' });
+      }
+
+      if (!password || password.trim().length === 0) {
+        return res.status(400).json({ error: 'Password is required to unlock the PDF' });
+      }
+
+      const inputPath = req.file.path;
+      const outputFileName = `unlocked-${Date.now()}-${req.file.originalname}`;
+      const outputPath = path.join(__dirname, '../encrypted', outputFileName);
+
+      // Import decrypt function from node-qpdf2
+      const { decrypt } = await import('node-qpdf2');
+
+      // Prepare qpdf decryption options
+      const decryptionOptions: any = {
+        input: inputPath,
+        output: outputPath,
+        password: password.trim()
+      };
+
+      // Decrypt the PDF using qpdf
+      await decrypt(decryptionOptions);
+
+      // Read the decrypted file and send it back
+      const decryptedBuffer = await fs.readFile(outputPath);
+
+      // Clean up input file
+      await fs.unlink(inputPath);
+
+      // Set headers for download
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `attachment; filename="unlocked-${req.file.originalname}"`);
+      res.setHeader('Content-Length', decryptedBuffer.length);
+
+      // Send the decrypted file
+      res.send(decryptedBuffer);
+
+      // Clean up output file after sending
+      setTimeout(async () => {
+        try {
+          await fs.unlink(outputPath);
+        } catch (error) {
+          console.error('Error cleaning up output file:', error);
+        }
+      }, 1000);
+
+    } catch (error) {
+      console.error('PDF decryption error:', error);
+      
+      // Clean up files on error
+      if (req.file?.path) {
+        try {
+          await fs.unlink(req.file.path);
+        } catch (cleanupError) {
+          console.error('Error cleaning up input file:', cleanupError);
+        }
+      }
+
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      
+      // Check if it's a wrong password error
+      if (errorMessage.toLowerCase().includes('password') || errorMessage.toLowerCase().includes('invalid')) {
+        res.status(400).json({ error: 'Invalid password. Please check your password and try again.' });
+      } else {
+        res.status(500).json({ error: `PDF unlock failed: ${errorMessage}` });
+      }
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;
