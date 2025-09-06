@@ -66,7 +66,7 @@ const toolsData = [
   { id: 'rotate-pdf', name: 'Rotate PDF', description: 'Rotate PDF pages to correct orientation', category: 'pdf' as const, icon: 'fas fa-undo', href: '/tools/rotate-pdf' },
   { id: 'unlock-pdf', name: 'Unlock PDF', description: 'Remove password protection from PDFs', category: 'pdf' as const, icon: 'fas fa-unlock' },
   { id: 'protect-pdf', name: 'Protect PDF with Password', description: 'Add password protection to PDF files', category: 'pdf' as const, icon: 'fas fa-lock' },
-  { id: 'watermark-pdf', name: 'Add Watermark to PDF', description: 'Add text or image watermarks to PDF', category: 'pdf' as const, icon: 'fas fa-tint' },
+  { id: 'watermark-pdf', name: 'Add Watermark to PDF', description: 'Add text or image watermarks to PDF', category: 'pdf' as const, icon: 'fas fa-tint', href: '/tools/watermark-pdf' },
   { id: 'pdf-to-text', name: 'PDF to Text Converter', description: 'Extract text content from PDF files', category: 'pdf' as const, icon: 'fas fa-file-alt' },
   { id: 'text-to-pdf', name: 'Text to PDF Converter', description: 'Convert text files to PDF format', category: 'pdf' as const, icon: 'fas fa-file-pdf' },
   { id: 'html-to-pdf', name: 'HTML to PDF Converter', description: 'Convert HTML pages to PDF format', category: 'pdf' as const, icon: 'fas fa-code' },
