@@ -10,10 +10,10 @@ const Home = () => {
     <>
       <Helmet>
         <title>DapsiWow - 180+ Free Online Tools for Business & Personal Use | No Registration Required</title>
-        <meta name="description" content="Discover 180+ powerful free online tools for finance calculations, PDF editing, image processing, text analysis, SEO optimization, and health monitoring. Professional-grade utilities with no sign-up required, working on all devices worldwide." />
-        <meta name="keywords" content="DapsiWow, dapsiwow, free online tools, PDF converter, image editor, loan calculator, mortgage calculator, business loan calculator, lease calculator, SEO tools, productivity tools, finance calculators, text tools, health calculators, online utilities, web tools, no registration tools" />
+        <meta name="description" content="Discover 150+ powerful free online tools for finance calculations, PDF editing, image processing, text analysis, and health monitoring. Professional-grade utilities with no sign-up required, working on all devices worldwide." />
+        <meta name="keywords" content="DapsiWow, dapsiwow, free online tools, PDF converter, image editor, loan calculator, mortgage calculator, business loan calculator, lease calculator, productivity tools, finance calculators, text tools, health calculators, online utilities, web tools, no registration tools" />
         <meta property="og:title" content="DapsiWow - 180+ Free Online Tools for Business & Personal Use" />
-        <meta property="og:description" content="Discover 180+ powerful free online tools for finance calculations, PDF editing, image processing, text analysis, SEO optimization, and health monitoring. Professional-grade utilities with no sign-up required." />
+        <meta property="og:description" content="Discover 150+ powerful free online tools for finance calculations, PDF editing, image processing, text analysis, and health monitoring. Professional-grade utilities with no sign-up required." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dapsiwow.com/" />
         <meta name="robots" content="index, follow" />
@@ -24,7 +24,7 @@ const Home = () => {
             "@context": "https://schema.org",
             "@type": "WebSite",
             "name": "DapsiWow",
-            "description": "Professional online tools platform offering 180+ free utilities for business and personal use",
+            "description": "Professional online tools platform offering 150+ free utilities for business and personal use",
             "url": "https://dapsiwow.com/",
             "potentialAction": {
               "@type": "SearchAction",
@@ -48,7 +48,7 @@ const Home = () => {
                   What is DapsiWow?
                 </h2>
                 <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed mb-8">
-                  DapsiWow is your ultimate online toolkit featuring 180+ professional-grade tools completely free to use. 
+                  DapsiWow is your ultimate online toolkit featuring 150+ professional-grade tools completely free to use. 
                   No registration required, no hidden fees, no software downloads - just powerful tools that work instantly 
                   in your browser across all devices.
                 </p>
@@ -85,13 +85,6 @@ const Home = () => {
                     <p className="text-neutral-600 text-sm">Word counters, case converters, grammar checkers, and content generation tools</p>
                   </div>
                   
-                  <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
-                    <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
-                      <i className="fas fa-search text-orange-600 text-xl"></i>
-                    </div>
-                    <h3 className="text-lg font-semibold text-neutral-800 mb-2">SEO Tools</h3>
-                    <p className="text-neutral-600 text-sm">Website analysis, keyword research, and optimization tools for better rankings</p>
-                  </div>
                   
                   <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
                     <div className="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
@@ -147,7 +140,7 @@ const Home = () => {
                       <div className="text-neutral-700 font-medium">Registration Required</div>
                     </div>
                     <div>
-                      <div className="text-4xl font-bold text-purple-600 mb-2">6</div>
+                      <div className="text-4xl font-bold text-purple-600 mb-2">5</div>
                       <div className="text-neutral-700 font-medium">Main Categories</div>
                     </div>
                     <div>
@@ -354,7 +347,7 @@ const Home = () => {
                   <div className="text-xs text-neutral-500 mt-1">Growing daily</div>
                 </div>
                 <div className="bg-white rounded-lg p-6 shadow-md">
-                  <div className="text-3xl lg:text-4xl font-bold text-green-600 mb-2">180+</div>
+                  <div className="text-3xl lg:text-4xl font-bold text-green-600 mb-2">150+</div>
                   <div className="text-neutral-700 font-medium">Free Tools</div>
                   <div className="text-xs text-neutral-500 mt-1">Always expanding</div>
                 </div>
