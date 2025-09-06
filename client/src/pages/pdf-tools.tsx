@@ -43,7 +43,7 @@ const PDFTools = () => {
 
       <div className="min-h-screen flex flex-col" data-testid="page-pdf-tools">
         <Header />
-        
+
         <main className="flex-1 bg-neutral-50">
           {/* Hero Section */}
           <section className="bg-gradient-to-r from-red-600 via-red-500 to-pink-700 text-white py-16">
@@ -57,7 +57,7 @@ const PDFTools = () => {
               <p className="text-xl text-red-100 mb-8 max-w-3xl mx-auto">
                 30+ free PDF tools to convert, edit, merge, split, and optimize your PDF documents
               </p>
-              
+
               {/* Search Bar */}
               <div className="max-w-2xl mx-auto">
                 <div className="relative">
@@ -124,17 +124,12 @@ const PDFTools = () => {
                     <h3 className="font-semibold text-neutral-800">Compress PDF</h3>
                     <p className="text-sm text-neutral-600">Reduce file size</p>
                   </div>
-                  <div className="text-center p-4 bg-purple-50 rounded-xl">
-                    <i className="fas fa-edit text-2xl text-purple-600 mb-2"></i>
-                    <h3 className="font-semibold text-neutral-800">PDF Editor</h3>
-                    <p className="text-sm text-neutral-600">Edit PDF files</p>
-                  </div>
                 </div>
               </div>
             </div>
           </section>
         </main>
-        
+
         <Footer />
       </div>
     </>

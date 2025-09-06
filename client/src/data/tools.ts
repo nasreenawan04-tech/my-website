@@ -50,8 +50,7 @@ const toolsData = [
   { id: 'paypal-fee-calculator', name: 'PayPal Fee Calculator', description: 'Calculate PayPal transaction fees', category: 'finance' as const, icon: 'fab fa-paypal', href: '/tools/paypal-fee-calculator' },
   { id: 'cryptocurrency-converter', name: 'Cryptocurrency Converter', description: 'Convert between Bitcoin, Ethereum and 1000+ cryptocurrencies', category: 'finance' as const, icon: 'fab fa-bitcoin', href: '/tools/cryptocurrency-converter' },
 
-  // PDF Tools (30)
-  { id: 'pdf-editor', name: 'PDF Editor', description: 'Advanced PDF editor using multiple libraries: pdf-lib for editing, node-qpdf2 for encryption, and PDFKit for complex annotations', category: 'pdf' as const, icon: 'fas fa-file-pdf', isPopular: true, href: '/tools/pdf-editor' },
+  // PDF Tools (29)
   { id: 'pdf-to-word', name: 'PDF to Word Converter', description: 'Convert PDF files to Word documents', category: 'pdf' as const, icon: 'fas fa-file-word', isPopular: true },
   { id: 'word-to-pdf', name: 'Word to PDF Converter', description: 'Convert Word documents to PDF format', category: 'pdf' as const, icon: 'fas fa-file-pdf' },
   { id: 'excel-to-pdf', name: 'Excel to PDF Converter', description: 'Convert Excel spreadsheets to PDF', category: 'pdf' as const, icon: 'fas fa-file-excel' },
