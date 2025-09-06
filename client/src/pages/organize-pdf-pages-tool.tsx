@@ -98,7 +98,14 @@ const OrganizePDFPagesTool = () => {
     } catch (error) {
       console.error('Error analyzing PDF:', error);
       const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
-      alert(`Error analyzing PDF: ${errorMessage}. Please try again with a valid PDF file.`);
+      // Better error handling with user-friendly messages
+      if (errorMessage.includes('ENOENT')) {
+        alert('Upload failed. Please try again with a valid PDF file.');
+      } else if (errorMessage.includes('Invalid PDF')) {
+        alert('The selected file appears to be corrupted or is not a valid PDF. Please try another file.');
+      } else {
+        alert(`Error analyzing PDF: ${errorMessage}. Please try again with a valid PDF file.`);
+      }
     }
 
     setIsAnalyzing(false);
@@ -190,7 +197,14 @@ const OrganizePDFPagesTool = () => {
     } catch (error) {
       console.error('Error organizing PDF:', error);
       const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
-      alert(`Error organizing PDF: ${errorMessage}. Please try again.`);
+      // Better error handling for organization failures
+      if (errorMessage.includes('timeout')) {
+        alert('The PDF is taking too long to process. Please try with a smaller file or try again later.');
+      } else if (errorMessage.includes('memory')) {
+        alert('The PDF file is too large to process. Please try with a smaller file.');
+      } else {
+        alert(`Error organizing PDF: ${errorMessage}. Please try again.`);
+      }
     }
 
     setIsProcessing(false);
