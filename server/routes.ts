@@ -257,12 +257,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       // Add page numbers
       pages.forEach((page, index) => {
-        const pageNumber = parseInt(startNumber) + index;
-        
         // Skip first page if requested
-        if (skipFirstPage && index === 0) {
+        if (skipFirstPage === 'true' && index === 0) {
           return;
         }
+        
+        // Calculate page number (adjust for skipped first page)
+        const pageNumber = skipFirstPage === 'true' 
+          ? parseInt(startNumber) + index - 1
+          : parseInt(startNumber) + index;
         
         const { width, height } = page.getSize();
         const text = pageNumber.toString();
