@@ -87,7 +87,7 @@ const SplitPDFTool = () => {
     const start = parseInt(newRangeStart);
     const end = parseInt(newRangeEnd);
     
-    if (!start || !end || start < 1 || end > totalPages || start > end) {
+    if (isNaN(start) || isNaN(end) || start < 1 || end > totalPages || start > end) {
       alert(`Please enter valid page numbers between 1 and ${totalPages}`);
       return;
     }
