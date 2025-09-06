@@ -81,6 +81,7 @@ import WatermarkPDFTool from '@/pages/watermark-pdf-tool';
 import ExtractPDFPagesTool from '@/pages/extract-pdf-pages-tool';
 import ProtectPDFTool from '@/pages/protect-pdf-tool';
 import UnlockPDFTool from '@/pages/unlock-pdf-tool';
+import AddPageNumbersTool from '@/pages/add-page-numbers-tool';
 
 
 function ScrollToTop() {
@@ -161,6 +162,7 @@ function Router() {
       <Route path="/tools/extract-pdf-pages" component={ExtractPDFPagesTool} />
       <Route path="/tools/protect-pdf" component={ProtectPDFTool} />
       <Route path="/tools/unlock-pdf" component={UnlockPDFTool} />
+      <Route path="/tools/add-page-numbers" component={AddPageNumbersTool} />
       <Route path="/tools/:toolId" component={ToolPage} />
       <Route path="/finance" component={FinanceTools} />
       <Route path="/pdf" component={PDFTools} />
