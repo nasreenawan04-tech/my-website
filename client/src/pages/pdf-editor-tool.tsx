@@ -12,7 +12,7 @@ import { Slider } from '@/components/ui/slider';
 import { 
   Upload, FileText, Download, Trash2, Edit3, Type, Image, 
   Highlighter, Square, Circle, ArrowRight, Minus, Plus,
-  RotateCcw, Save, Palette, Move, MousePointer, Hand
+  RotateCcw, Save, Palette, Move, MousePointer, Hand, X
 } from 'lucide-react';
 
 interface PDFFile {

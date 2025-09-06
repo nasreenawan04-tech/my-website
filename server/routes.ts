@@ -512,6 +512,179 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // PDF Editor endpoint using pdf-lib
+  app.post('/api/edit-pdf', upload.single('pdf'), async (req: MulterRequest, res) => {
+    try {
+      const { annotations } = req.body;
+
+      if (!req.file) {
+        return res.status(400).json({ error: 'No PDF file uploaded' });
+      }
+
+      if (!annotations) {
+        return res.status(400).json({ error: 'No annotations provided' });
+      }
+
+      // Parse annotations
+      let parsedAnnotations: any[];
+      try {
+        parsedAnnotations = JSON.parse(annotations);
+      } catch (error) {
+        return res.status(400).json({ error: 'Invalid annotations format' });
+      }
+
+      // Import PDF-lib for editing
+      const { PDFDocument, rgb, StandardFonts } = await import('pdf-lib');
+
+      // Read the uploaded PDF
+      const pdfBytes = await fs.readFile(req.file.path);
+      const pdfDoc = await PDFDocument.load(pdfBytes);
+      
+      const pages = pdfDoc.getPages();
+      const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+
+      // Apply annotations to each page
+      for (const annotation of parsedAnnotations) {
+        const page = pages[annotation.pageIndex];
+        if (!page) continue;
+
+        const { width: pageWidth, height: pageHeight } = page.getSize();
+        
+        // Convert hex color to RGB
+        const hexToRgb = (hex: string) => {
+          const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+          return result ? {
+            r: parseInt(result[1], 16) / 255,
+            g: parseInt(result[2], 16) / 255,
+            b: parseInt(result[3], 16) / 255
+          } : { r: 0, g: 0, b: 0 };
+        };
+
+        const color = hexToRgb(annotation.color);
+        const rgbColor = rgb(color.r, color.g, color.b);
+
+        // Apply different annotation types
+        switch (annotation.type) {
+          case 'text':
+            if (annotation.text) {
+              page.drawText(annotation.text, {
+                x: annotation.x,
+                y: pageHeight - annotation.y - (annotation.fontSize || 16),
+                size: annotation.fontSize || 16,
+                font,
+                color: rgbColor
+              });
+            }
+            break;
+
+          case 'highlight':
+            if (annotation.width && annotation.height) {
+              page.drawRectangle({
+                x: annotation.x,
+                y: pageHeight - annotation.y - annotation.height,
+                width: annotation.width,
+                height: annotation.height,
+                color: rgbColor,
+                opacity: 0.3
+              });
+            }
+            break;
+
+          case 'rectangle':
+            if (annotation.width && annotation.height) {
+              page.drawRectangle({
+                x: annotation.x,
+                y: pageHeight - annotation.y - annotation.height,
+                width: annotation.width,
+                height: annotation.height,
+                borderColor: rgbColor,
+                borderWidth: 2
+              });
+            }
+            break;
+
+          case 'circle':
+            if (annotation.width && annotation.height) {
+              page.drawEllipse({
+                x: annotation.x + annotation.width / 2,
+                y: pageHeight - annotation.y - annotation.height / 2,
+                xScale: annotation.width / 2,
+                yScale: annotation.height / 2,
+                borderColor: rgbColor,
+                borderWidth: 2
+              });
+            }
+            break;
+
+          case 'line':
+            page.drawLine({
+              start: { x: annotation.x, y: pageHeight - annotation.y },
+              end: { x: annotation.x + (annotation.width || 100), y: pageHeight - annotation.y },
+              thickness: 2,
+              color: rgbColor
+            });
+            break;
+
+          case 'arrow':
+            // Draw line with arrowhead
+            const endX = annotation.x + (annotation.width || 100);
+            const endY = pageHeight - annotation.y;
+            
+            page.drawLine({
+              start: { x: annotation.x, y: pageHeight - annotation.y },
+              end: { x: endX, y: endY },
+              thickness: 2,
+              color: rgbColor
+            });
+            
+            // Draw arrowhead
+            page.drawLine({
+              start: { x: endX - 10, y: endY - 5 },
+              end: { x: endX, y: endY },
+              thickness: 2,
+              color: rgbColor
+            });
+            page.drawLine({
+              start: { x: endX - 10, y: endY + 5 },
+              end: { x: endX, y: endY },
+              thickness: 2,
+              color: rgbColor
+            });
+            break;
+        }
+      }
+
+      // Save the edited PDF
+      const editedPdfBytes = await pdfDoc.save();
+      
+      // Clean up input file
+      await fs.unlink(req.file.path);
+      
+      // Set headers for download
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `attachment; filename="edited-${req.file.originalname}"`);
+      res.setHeader('Content-Length', editedPdfBytes.length);
+      
+      // Send the edited PDF
+      res.send(Buffer.from(editedPdfBytes));
+      
+    } catch (error) {
+      console.error('PDF editing error:', error);
+      
+      // Clean up files on error
+      if (req.file?.path) {
+        try {
+          await fs.unlink(req.file.path);
+        } catch (cleanupError) {
+          console.error('Error cleaning up input file:', cleanupError);
+        }
+      }
+
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      res.status(500).json({ error: `PDF editing failed: ${errorMessage}` });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;
