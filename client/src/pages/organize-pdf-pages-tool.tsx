@@ -32,6 +32,7 @@ const OrganizePDFPagesTool = () => {
   const [organizedPdfUrl, setOrganizedPdfUrl] = useState<string | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
   const [dragOver, setDragOver] = useState(false);
   const [draggedPageIndex, setDraggedPageIndex] = useState<number | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -282,7 +283,7 @@ const OrganizePDFPagesTool = () => {
                         {isAnalyzing ? (
                           <>
                             <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                            Analyzing PDF...
+                            Analyzing PDF... ({Math.round(uploadProgress)}%)
                           </>
                         ) : (
                           'Select PDF File'
@@ -426,7 +427,7 @@ const OrganizePDFPagesTool = () => {
                       {isProcessing ? (
                         <>
                           <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                          Organizing PDF...
+                          Organizing PDF... This may take a moment for large files.
                         </>
                       ) : (
                         <>

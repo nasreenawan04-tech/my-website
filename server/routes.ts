@@ -421,14 +421,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Create a new PDF document
       const newPdf = await PDFDocument.create();
 
-      // Copy pages in the specified order
+      // Copy pages in the specified order (batch copy for better performance)
+      const indicesToCopy = Array.from(new Set(parsedPageOrder));
+      const copiedPages = await newPdf.copyPages(originalPdf, indicesToCopy);
+      
+      // Add pages in the correct order
       for (const pageIndex of parsedPageOrder) {
-        const [copiedPage] = await newPdf.copyPages(originalPdf, [pageIndex]);
-        newPdf.addPage(copiedPage);
+        const mappedIndex = indicesToCopy.indexOf(pageIndex);
+        newPdf.addPage(copiedPages[mappedIndex]);
       }
 
-      // Save the reorganized PDF
-      const reorganizedPdfBytes = await newPdf.save();
+      // Save the reorganized PDF with optimization
+      const reorganizedPdfBytes = await newPdf.save({ useObjectStreams: false });
       
       // Clean up input file
       await fs.unlink(req.file.path);
