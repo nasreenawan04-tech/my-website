@@ -75,6 +75,7 @@ import WHRCalculator from '@/pages/whr-calculator';
 import LifeExpectancyCalculator from '@/pages/life-expectancy-calculator';
 import CholesterolRiskCalculator from '@/pages/cholesterol-risk-calculator';
 import MergePDFTool from '@/pages/merge-pdf-tool';
+import SplitPDFTool from '@/pages/split-pdf-tool';
 
 
 function ScrollToTop() {
@@ -149,6 +150,7 @@ function Router() {
       <Route path="/tools/life-expectancy-calculator" component={LifeExpectancyCalculator} />
       <Route path="/tools/cholesterol-risk-calculator" component={CholesterolRiskCalculator} />
       <Route path="/tools/merge-pdf" component={MergePDFTool} />
+      <Route path="/tools/split-pdf" component={SplitPDFTool} />
       <Route path="/tools/:toolId" component={ToolPage} />
       <Route path="/finance" component={FinanceTools} />
       <Route path="/pdf" component={PDFTools} />
