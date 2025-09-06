@@ -790,7 +790,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
               print: (req.body.allowPrint === 'true' ? 'full' : 'none') as 'full' | 'none',
               modify: (req.body.allowModify === 'true' ? 'all' : 'none') as 'none' | 'all',
               extract: (req.body.allowCopy === 'true' ? 'y' : 'n') as 'y' | 'n',
-              useAes: 'y'
+              useAes: 'y' as 'y' | 'n'
             }
           };
           
