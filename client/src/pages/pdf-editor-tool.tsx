@@ -12,7 +12,8 @@ import { Slider } from '@/components/ui/slider';
 import { 
   Upload, FileText, Download, Trash2, Edit3, Type, Image, 
   Highlighter, Square, Circle, ArrowRight, Minus, Plus,
-  RotateCcw, Save, Palette, Move, MousePointer, Hand, X
+  RotateCcw, Save, Palette, Move, MousePointer, Hand, X,
+  Lock, Settings, Layers, ZoomIn, ZoomOut, ChevronLeft, ChevronRight
 } from 'lucide-react';
 
 interface PDFFile {
@@ -58,6 +59,14 @@ const PDFEditorTool = () => {
   const [editedPdfUrl, setEditedPdfUrl] = useState<string | null>(null);
   const [dragOver, setDragOver] = useState(false);
   const [textInput, setTextInput] = useState('');
+  const [advancedMode, setAdvancedMode] = useState(false);
+  const [encryptionOptions, setEncryptionOptions] = useState({
+    password: '',
+    allowPrint: true,
+    allowModify: false,
+    allowCopy: true,
+    keyLength: 256
+  });
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const formatFileSize = (bytes: number): string => {
@@ -224,6 +233,46 @@ const PDFEditorTool = () => {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+  };
+
+  const processAdvancedPDF = async (operation: string) => {
+    if (!pdfFile) return;
+
+    setIsProcessing(true);
+    try {
+      const formData = new FormData();
+      formData.append('pdf', pdfFile.file);
+      formData.append('operation', operation);
+      
+      if (operation === 'create_overlay') {
+        formData.append('annotations', JSON.stringify(annotations));
+      } else if (operation === 'encrypt_with_permissions') {
+        formData.append('password', encryptionOptions.password);
+        formData.append('allowPrint', encryptionOptions.allowPrint.toString());
+        formData.append('allowModify', encryptionOptions.allowModify.toString());
+        formData.append('allowCopy', encryptionOptions.allowCopy.toString());
+        formData.append('keyLength', encryptionOptions.keyLength.toString());
+      }
+
+      const response = await fetch('/api/advanced-edit-pdf', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || `Server error: ${response.status}`);
+      }
+
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      setEditedPdfUrl(url);
+    } catch (error) {
+      console.error('Error processing advanced PDF:', error);
+      alert('Failed to process PDF with advanced features. Please try again.');
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
   const resetEditor = () => {
@@ -454,23 +503,150 @@ const PDFEditorTool = () => {
                               Next
                             </Button>
                             <div className="ml-auto flex gap-2">
-                              <Button
-                                onClick={savePDF}
-                                disabled={isProcessing || annotations.length === 0}
-                                className="bg-purple-600 hover:bg-purple-700 text-white"
-                              >
-                                {isProcessing ? (
-                                  <>
-                                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                                    Saving...
-                                  </>
-                                ) : (
-                                  <>
-                                    <Save className="w-4 h-4 mr-2" />
-                                    Save PDF
-                                  </>
-                                )}
-                              </Button>
+                              <Tabs defaultValue="basic" className="w-full">
+                                <TabsList className="grid w-full grid-cols-2">
+                                  <TabsTrigger value="basic">Basic Edit</TabsTrigger>
+                                  <TabsTrigger value="advanced">Advanced</TabsTrigger>
+                                </TabsList>
+                                
+                                <TabsContent value="basic" className="space-y-4">
+                                  <Button
+                                    onClick={savePDF}
+                                    disabled={isProcessing || annotations.length === 0}
+                                    className="bg-purple-600 hover:bg-purple-700 text-white w-full"
+                                  >
+                                    {isProcessing ? (
+                                      <>
+                                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                                        Saving...
+                                      </>
+                                    ) : (
+                                      <>
+                                        <Save className="w-4 h-4 mr-2" />
+                                        Save with pdf-lib
+                                      </>
+                                    )}
+                                  </Button>
+                                </TabsContent>
+                                
+                                <TabsContent value="advanced" className="space-y-4">
+                                  <div className="grid grid-cols-1 gap-4">
+                                    <Button
+                                      onClick={() => processAdvancedPDF('create_overlay')}
+                                      disabled={isProcessing || annotations.length === 0}
+                                      className="bg-green-600 hover:bg-green-700 text-white"
+                                    >
+                                      {isProcessing ? (
+                                        <>
+                                          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                                          Processing...
+                                        </>
+                                      ) : (
+                                        <>
+                                          <Layers className="w-4 h-4 mr-2" />
+                                          Create with PDFKit Overlay
+                                        </>
+                                      )}
+                                    </Button>
+                                    
+                                    <div className="border rounded-lg p-4 space-y-3">
+                                      <h4 className="font-medium text-gray-900 flex items-center">
+                                        <Lock className="w-4 h-4 mr-2" />
+                                        Encrypt with qpdf
+                                      </h4>
+                                      
+                                      <div className="space-y-2">
+                                        <Label htmlFor="password">Password</Label>
+                                        <Input
+                                          id="password"
+                                          type="password"
+                                          value={encryptionOptions.password}
+                                          onChange={(e) => setEncryptionOptions({
+                                            ...encryptionOptions,
+                                            password: e.target.value
+                                          })}
+                                          placeholder="Enter encryption password"
+                                        />
+                                      </div>
+                                      
+                                      <div className="grid grid-cols-2 gap-4">
+                                        <div className="flex items-center space-x-2">
+                                          <input
+                                            type="checkbox"
+                                            id="allowPrint"
+                                            checked={encryptionOptions.allowPrint}
+                                            onChange={(e) => setEncryptionOptions({
+                                              ...encryptionOptions,
+                                              allowPrint: e.target.checked
+                                            })}
+                                          />
+                                          <Label htmlFor="allowPrint">Allow Print</Label>
+                                        </div>
+                                        
+                                        <div className="flex items-center space-x-2">
+                                          <input
+                                            type="checkbox"
+                                            id="allowCopy"
+                                            checked={encryptionOptions.allowCopy}
+                                            onChange={(e) => setEncryptionOptions({
+                                              ...encryptionOptions,
+                                              allowCopy: e.target.checked
+                                            })}
+                                          />
+                                          <Label htmlFor="allowCopy">Allow Copy</Label>
+                                        </div>
+                                        
+                                        <div className="flex items-center space-x-2">
+                                          <input
+                                            type="checkbox"
+                                            id="allowModify"
+                                            checked={encryptionOptions.allowModify}
+                                            onChange={(e) => setEncryptionOptions({
+                                              ...encryptionOptions,
+                                              allowModify: e.target.checked
+                                            })}
+                                          />
+                                          <Label htmlFor="allowModify">Allow Modify</Label>
+                                        </div>
+                                        
+                                        <div className="space-y-1">
+                                          <Label htmlFor="keyLength">Key Length</Label>
+                                          <select
+                                            id="keyLength"
+                                            value={encryptionOptions.keyLength}
+                                            onChange={(e) => setEncryptionOptions({
+                                              ...encryptionOptions,
+                                              keyLength: parseInt(e.target.value)
+                                            })}
+                                            className="w-full border rounded px-2 py-1"
+                                          >
+                                            <option value="128">128-bit</option>
+                                            <option value="256">256-bit</option>
+                                          </select>
+                                        </div>
+                                      </div>
+                                      
+                                      <Button
+                                        onClick={() => processAdvancedPDF('encrypt_with_permissions')}
+                                        disabled={isProcessing || !encryptionOptions.password}
+                                        className="bg-red-600 hover:bg-red-700 text-white w-full"
+                                      >
+                                        {isProcessing ? (
+                                          <>
+                                            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                                            Encrypting...
+                                          </>
+                                        ) : (
+                                          <>
+                                            <Lock className="w-4 h-4 mr-2" />
+                                            Encrypt PDF
+                                          </>
+                                        )}
+                                      </Button>
+                                    </div>
+                                  </div>
+                                </TabsContent>
+                              </Tabs>
                               <Button
                                 onClick={resetEditor}
                                 variant="outline"
