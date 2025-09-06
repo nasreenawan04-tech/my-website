@@ -3,8 +3,11 @@ import * as pdfjsLib from 'pdfjs-dist';
 import { Button } from './ui/button';
 import { ZoomIn, ZoomOut, RotateCcw, RotateCw, ChevronLeft, ChevronRight } from 'lucide-react';
 
-// Set the worker source for PDF.js
-pdfjsLib.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.js`;
+// Configure PDF.js worker with a more compatible approach
+if (typeof window !== 'undefined') {
+  // Use a simple fallback that works in more environments
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://mozilla.github.io/pdf.js/build/pdf.worker.js';
+}
 
 interface PDFViewerProps {
   file: File | null;
@@ -49,15 +52,36 @@ export default function PDFViewer({
     setError(null);
 
     try {
+      // Validate file type first
+      if (!file.type.includes('pdf')) {
+        throw new Error('Invalid file type. Please select a PDF file.');
+      }
+
       const arrayBuffer = await file.arrayBuffer();
-      const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+      
+      // Additional validation for PDF magic number
+      const bytes = new Uint8Array(arrayBuffer.slice(0, 4));
+      const signature = Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join('');
+      if (!signature.startsWith('25504446')) { // %PDF in hex
+        throw new Error('Invalid PDF file format.');
+      }
+
+      const loadingTask = pdfjsLib.getDocument({ 
+        data: arrayBuffer,
+        // Add compatibility options
+        disableAutoFetch: true,
+        disableStream: true
+      });
+      
+      const pdf = await loadingTask.promise;
       
       setPdfDocument(pdf);
       setTotalPages(pdf.numPages);
       setCurrentPage(1);
-    } catch (err) {
+    } catch (err: any) {
       console.error('Error loading PDF:', err);
-      setError('Failed to load PDF. Please ensure the file is valid and not password protected.');
+      const errorMessage = err.message || 'Failed to load PDF. Please ensure the file is valid and not password protected.';
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
