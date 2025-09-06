@@ -164,7 +164,7 @@ function Router() {
       <Route path="/tools/protect-pdf" component={ProtectPDFTool} />
       <Route path="/tools/unlock-pdf" component={UnlockPDFTool} />
       <Route path="/tools/add-page-numbers" component={AddPageNumbersTool} />
-      <Route path="/tools/organize-pdf-pages" component={OrganizePDFPagesTool} />
+      <Route path="/tools/organize-pdf" component={OrganizePDFPagesTool} />
       <Route path="/tools/:toolId" component={ToolPage} />
       <Route path="/finance" component={FinanceTools} />
       <Route path="/pdf" component={PDFTools} />
