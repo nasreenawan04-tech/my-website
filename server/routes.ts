@@ -533,8 +533,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: 'Invalid annotations format' });
       }
 
-      // Import PDF-lib for editing
+      // Import PDF-lib for editing and PDFKit for advanced drawing
       const { PDFDocument, rgb, StandardFonts } = await import('pdf-lib');
+      const PDFDocument_kit = (await import('pdfkit')).default;
 
       // Read the uploaded PDF
       const pdfBytes = await fs.readFile(req.file.path);
@@ -542,6 +543,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       const pages = pdfDoc.getPages();
       const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+
+      // Create a temporary PDF with PDFKit for complex annotations if needed
+      const hasComplexAnnotations = parsedAnnotations.some(ann => 
+        ann.type === 'arrow' || ann.type === 'line' || (ann.type === 'text' && ann.fontSize > 24)
+      );
 
       // Apply annotations to each page
       for (const annotation of parsedAnnotations) {
@@ -682,6 +688,147 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
       res.status(500).json({ error: `PDF editing failed: ${errorMessage}` });
+    }
+  });
+
+  // Advanced PDF Editor endpoint using PDFKit for complex operations
+  app.post('/api/advanced-edit-pdf', upload.single('pdf'), async (req: MulterRequest, res) => {
+    try {
+      const { annotations, operation } = req.body;
+
+      if (!req.file) {
+        return res.status(400).json({ error: 'No PDF file uploaded' });
+      }
+
+      // Import libraries
+      const { PDFDocument } = await import('pdf-lib');
+      const PDFDocument_kit = (await import('pdfkit')).default;
+
+      const pdfBytes = await fs.readFile(req.file.path);
+      let resultPdfBytes;
+
+      switch (operation) {
+        case 'create_overlay':
+          // Use PDFKit to create overlay content
+          const overlayDoc = new PDFDocument_kit();
+          const overlayChunks: Buffer[] = [];
+          
+          overlayDoc.on('data', (chunk) => overlayChunks.push(chunk));
+          overlayDoc.on('end', () => {
+            // Process complete
+          });
+
+          // Parse annotations if provided
+          if (annotations) {
+            const parsedAnnotations = JSON.parse(annotations);
+            
+            for (const annotation of parsedAnnotations) {
+              if (annotation.type === 'text') {
+                overlayDoc
+                  .fontSize(annotation.fontSize || 16)
+                  .fillColor(annotation.color || '#000000')
+                  .text(annotation.text || '', annotation.x, annotation.y);
+              }
+              
+              if (annotation.type === 'line') {
+                overlayDoc
+                  .strokeColor(annotation.color || '#000000')
+                  .lineWidth(2)
+                  .moveTo(annotation.x, annotation.y)
+                  .lineTo(annotation.x + (annotation.width || 100), annotation.y)
+                  .stroke();
+              }
+              
+              if (annotation.type === 'rectangle') {
+                overlayDoc
+                  .strokeColor(annotation.color || '#000000')
+                  .lineWidth(2)
+                  .rect(annotation.x, annotation.y, annotation.width || 100, annotation.height || 50)
+                  .stroke();
+              }
+            }
+          }
+
+          overlayDoc.end();
+
+          // Wait for PDFKit to finish
+          await new Promise((resolve) => {
+            overlayDoc.on('end', resolve);
+          });
+
+          const overlayBuffer = Buffer.concat(overlayChunks);
+          
+          // Now use pdf-lib to merge overlay with original
+          const originalPdf = await PDFDocument.load(pdfBytes);
+          const overlayPdf = await PDFDocument.load(overlayBuffer);
+          
+          const overlayPages = await originalPdf.copyPages(overlayPdf, overlayPdf.getPageIndices());
+          
+          // Add overlay to each page
+          const pages = originalPdf.getPages();
+          overlayPages.forEach((overlayPage, index) => {
+            if (pages[index]) {
+              pages[index].drawPage(overlayPage);
+            }
+          });
+
+          resultPdfBytes = await originalPdf.save();
+          break;
+
+        case 'encrypt_with_permissions':
+          // Use qpdf for encryption with specific permissions
+          const { encrypt } = await import('node-qpdf2');
+          const tempOutputPath = path.join(__dirname, '../encrypted', `temp-${Date.now()}.pdf`);
+          
+          const encryptOptions = {
+            input: req.file.path,
+            output: tempOutputPath,
+            password: req.body.password || 'defaultpass',
+            keyLength: parseInt(req.body.keyLength) || 256,
+            restrictions: {
+              print: req.body.allowPrint === 'true' ? 'full' : 'none',
+              modify: req.body.allowModify === 'true' ? 'all' : 'none',
+              extract: req.body.allowCopy === 'true' ? 'y' : 'n',
+              useAes: 'y'
+            }
+          };
+          
+          await encrypt(encryptOptions);
+          resultPdfBytes = await fs.readFile(tempOutputPath);
+          
+          // Clean up temp file
+          await fs.unlink(tempOutputPath);
+          break;
+
+        default:
+          return res.status(400).json({ error: 'Invalid operation specified' });
+      }
+
+      // Clean up input file
+      await fs.unlink(req.file.path);
+      
+      // Set headers for download
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `attachment; filename="advanced-edited-${req.file.originalname}"`);
+      res.setHeader('Content-Length', resultPdfBytes.length);
+      
+      // Send the result PDF
+      res.send(Buffer.from(resultPdfBytes));
+      
+    } catch (error) {
+      console.error('Advanced PDF editing error:', error);
+      
+      // Clean up files on error
+      if (req.file?.path) {
+        try {
+          await fs.unlink(req.file.path);
+        } catch (cleanupError) {
+          console.error('Error cleaning up input file:', cleanupError);
+        }
+      }
+
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      res.status(500).json({ error: `Advanced PDF editing failed: ${errorMessage}` });
     }
   });
 
