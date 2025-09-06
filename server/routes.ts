@@ -787,9 +787,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
             password: req.body.password || 'defaultpass',
             keyLength: (parseInt(req.body.keyLength) || 256) as 256 | 128 | 40,
             restrictions: {
-              print: req.body.allowPrint === 'true' ? 'full' : 'none',
-              modify: req.body.allowModify === 'true' ? 'all' : 'none',
-              extract: req.body.allowCopy === 'true' ? 'y' : 'n',
+              print: (req.body.allowPrint === 'true' ? 'full' : 'none') as 'full' | 'none',
+              modify: (req.body.allowModify === 'true' ? 'all' : 'none') as 'none' | 'all',
+              extract: (req.body.allowCopy === 'true' ? 'y' : 'n') as 'y' | 'n',
               useAes: 'y'
             }
           };
@@ -1086,12 +1086,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const inputPath = req.file.path;
       const outputPath = path.join(__dirname, '../compressed', `compressed-${Date.now()}-${req.file.originalname}`);
 
-      await compressPdf.compress(inputPath, outputPath, {
-        gsModule: 'gs', // requires ghostscript
-        quality: 'screen' // screen, ebook, printer, prepress
-      });
-
-      const compressedBuffer = await fs.readFile(outputPath);
+      const compressedBuffer = await compressPdf.compress(inputPath);
       const originalSize = (await fs.stat(inputPath)).size;
       const compressedSize = compressedBuffer.length;
       const compressionRatio = Math.round((1 - compressedSize / originalSize) * 100);
