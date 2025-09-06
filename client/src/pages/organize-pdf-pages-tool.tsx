@@ -69,7 +69,7 @@ const OrganizePDFPagesTool = () => {
       // Analyze PDF pages
       await analyzePDFPages(file);
     } else {
-      alert('Please select a valid PDF file.');
+      alert('Please select a valid PDF file. Only PDF files are supported.');
     }
   };
 
