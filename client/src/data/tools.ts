@@ -2,7 +2,7 @@ export interface Tool {
   id: string;
   name: string;
   description: string;
-  category: 'finance' | 'pdf' | 'image' | 'text' | 'seo' | 'health';
+  category: 'finance' | 'pdf' | 'image' | 'text' | 'health';
   icon: string;
   isPopular?: boolean;
   href: string;
@@ -13,7 +13,6 @@ export const categories = {
   pdf: 'PDF',
   image: 'Image',
   text: 'Text',
-  seo: 'SEO',
   health: 'Health'
 };
 
@@ -145,37 +144,6 @@ const toolsData = [
   { id: 'reverse-text', name: 'Reverse Text Tool', description: 'Reverse the order of text characters', category: 'text' as const, icon: 'fas fa-backward' },
   { id: 'word-cloud', name: 'Word Cloud Generator', description: 'Create visual word clouds from text', category: 'text' as const, icon: 'fas fa-cloud' },
 
-  // SEO Tools (30)
-  { id: 'domain-age-checker', name: 'Domain Age Checker', description: 'Check how old a domain name is', category: 'seo' as const, icon: 'fas fa-calendar-alt' },
-  { id: 'whois-lookup', name: 'Whois Lookup', description: 'Get domain registration information', category: 'seo' as const, icon: 'fas fa-search' },
-  { id: 'backlink-checker', name: 'Backlink Checker', description: 'Check backlinks pointing to your website', category: 'seo' as const, icon: 'fas fa-link' },
-  { id: 'keyword-density', name: 'Keyword Density Checker', description: 'Analyze keyword density in content', category: 'seo' as const, icon: 'fas fa-percentage' },
-  { id: 'meta-tag-generator', name: 'Meta Tag Generator', description: 'Generate HTML meta tags for SEO', category: 'seo' as const, icon: 'fas fa-code' },
-  { id: 'meta-tag-analyzer', name: 'Meta Tag Analyzer', description: 'Analyze existing meta tags on pages', category: 'seo' as const, icon: 'fas fa-analytics' },
-  { id: 'robots-txt-generator', name: 'Robots.txt Generator', description: 'Generate robots.txt file for websites', category: 'seo' as const, icon: 'fas fa-robot' },
-  { id: 'sitemap-generator', name: 'Sitemap Generator', description: 'Generate XML sitemaps for websites', category: 'seo' as const, icon: 'fas fa-sitemap' },
-  { id: 'page-speed-checker', name: 'Page Speed Checker', description: 'Check website loading speed', category: 'seo' as const, icon: 'fas fa-tachometer-alt' },
-  { id: 'mobile-friendly-test', name: 'Mobile Friendly Test', description: 'Test if your website is mobile-friendly', category: 'seo' as const, icon: 'fas fa-mobile-alt' },
-  { id: 'ssl-checker', name: 'SSL Certificate Checker', description: 'Check SSL certificate status', category: 'seo' as const, icon: 'fas fa-shield-alt' },
-  { id: 'redirect-checker', name: 'Redirect Checker', description: 'Check URL redirects and chains', category: 'seo' as const, icon: 'fas fa-route' },
-  { id: 'broken-link-checker', name: 'Broken Link Checker', description: 'Find broken links on websites', category: 'seo' as const, icon: 'fas fa-unlink' },
-  { id: 'google-index-checker', name: 'Google Index Checker', description: 'Check if pages are indexed by Google', category: 'seo' as const, icon: 'fab fa-google' },
-  { id: 'alexa-rank-checker', name: 'Alexa Rank Checker', description: 'Check website Alexa ranking', category: 'seo' as const, icon: 'fas fa-chart-line' },
-  { id: 'da-pa-checker', name: 'DA/PA Checker', description: 'Check Domain Authority and Page Authority', category: 'seo' as const, icon: 'fas fa-award' },
-  { id: 'ip-lookup', name: 'IP Address Lookup', description: 'Get information about IP addresses', category: 'seo' as const, icon: 'fas fa-globe' },
-  { id: 'website-screenshot', name: 'Website Screenshot Tool', description: 'Take screenshots of websites', category: 'seo' as const, icon: 'fas fa-camera' },
-  { id: 'website-status', name: 'Website Status Checker', description: 'Check if websites are up or down', category: 'seo' as const, icon: 'fas fa-heart-pulse' },
-  { id: 'htaccess-redirect', name: 'Htaccess Redirect Generator', description: 'Generate .htaccess redirect rules', category: 'seo' as const, icon: 'fas fa-file-code' },
-  { id: 'keyword-suggestion', name: 'Keyword Suggestion Tool', description: 'Get keyword suggestions for SEO', category: 'seo' as const, icon: 'fas fa-lightbulb' },
-  { id: 'cpc-keyword-finder', name: 'CPC Keyword Finder', description: 'Find high CPC keywords for ads', category: 'seo' as const, icon: 'fas fa-dollar-sign' },
-  { id: 'seo-plagiarism-checker', name: 'Plagiarism Checker (for SEO)', description: 'Check content plagiarism for SEO', category: 'seo' as const, icon: 'fas fa-copy' },
-  { id: 'backlink-generator', name: 'Backlink Generator', description: 'Generate quality backlinks for SEO', category: 'seo' as const, icon: 'fas fa-external-link-alt' },
-  { id: 'url-shortener', name: 'URL Shortener', description: 'Create short URLs for sharing', category: 'seo' as const, icon: 'fas fa-compress-arrows-alt' },
-  { id: 'url-expander', name: 'URL Expander', description: 'Expand shortened URLs to full URLs', category: 'seo' as const, icon: 'fas fa-expand-arrows-alt' },
-  { id: 'youtube-tag-extractor', name: 'YouTube Tag Extractor', description: 'Extract tags from YouTube videos', category: 'seo' as const, icon: 'fab fa-youtube' },
-  { id: 'youtube-title-generator', name: 'YouTube Title Generator', description: 'Generate catchy YouTube titles', category: 'seo' as const, icon: 'fas fa-video' },
-  { id: 'youtube-thumbnail', name: 'YouTube Thumbnail Downloader', description: 'Download YouTube video thumbnails', category: 'seo' as const, icon: 'fas fa-download' },
-  { id: 'instagram-hashtag', name: 'Instagram Hashtag Generator', description: 'Generate Instagram hashtags', category: 'seo' as const, icon: 'fab fa-instagram' },
 
   // Health Tools (30)
   { id: 'bmi-calculator', name: 'BMI Calculator', description: 'Calculate your Body Mass Index and get health insights', category: 'health' as const, icon: 'fas fa-weight', isPopular: true, href: '/tools/bmi-calculator' },

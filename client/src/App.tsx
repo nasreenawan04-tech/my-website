@@ -14,7 +14,6 @@ import FinanceTools from "@/pages/finance-tools";
 import PDFTools from "@/pages/pdf-tools";
 import ImageTools from "@/pages/image-tools";
 import TextTools from "@/pages/text-tools";
-import SEOTools from "@/pages/seo-tools";
 import HealthTools from "@/pages/health-tools";
 import HelpCenter from '@/pages/help-center';
 import ContactUs from '@/pages/contact-us';
@@ -172,7 +171,6 @@ function Router() {
       <Route path="/pdf" component={PDFTools} />
       <Route path="/image" component={ImageTools} />
       <Route path="/text" component={TextTools} />
-      <Route path="/seo" component={SEOTools} />
       <Route path="/health" component={HealthTools} />
       <Route path="/contact" component={ContactUs} />
       <Route path="/privacy" component={PrivacyPolicy} />
