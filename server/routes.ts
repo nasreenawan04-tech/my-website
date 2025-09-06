@@ -374,6 +374,140 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // PDF Page Organizer endpoint using pdf-lib
+  app.post('/api/organize-pdf-pages', upload.single('pdf'), async (req: MulterRequest, res) => {
+    try {
+      const { pageOrder } = req.body;
+
+      if (!req.file) {
+        return res.status(400).json({ error: 'No PDF file uploaded' });
+      }
+
+      if (!pageOrder) {
+        return res.status(400).json({ error: 'Page order not specified' });
+      }
+
+      // Parse page order (should be array of page indices)
+      let parsedPageOrder: number[];
+      try {
+        parsedPageOrder = JSON.parse(pageOrder);
+      } catch (error) {
+        return res.status(400).json({ error: 'Invalid page order format' });
+      }
+
+      if (!Array.isArray(parsedPageOrder) || parsedPageOrder.length === 0) {
+        return res.status(400).json({ error: 'Page order must be a non-empty array' });
+      }
+
+      // Import PDF-lib for page organization
+      const { PDFDocument } = await import('pdf-lib');
+
+      // Read the uploaded PDF
+      const pdfBytes = await fs.readFile(req.file.path);
+      const originalPdf = await PDFDocument.load(pdfBytes);
+      
+      const originalPages = originalPdf.getPages();
+      const totalPages = originalPages.length;
+
+      // Validate page indices
+      for (const pageIndex of parsedPageOrder) {
+        if (!Number.isInteger(pageIndex) || pageIndex < 0 || pageIndex >= totalPages) {
+          return res.status(400).json({ 
+            error: `Invalid page index: ${pageIndex}. Must be between 0 and ${totalPages - 1}` 
+          });
+        }
+      }
+
+      // Create a new PDF document
+      const newPdf = await PDFDocument.create();
+
+      // Copy pages in the specified order
+      for (const pageIndex of parsedPageOrder) {
+        const [copiedPage] = await newPdf.copyPages(originalPdf, [pageIndex]);
+        newPdf.addPage(copiedPage);
+      }
+
+      // Save the reorganized PDF
+      const reorganizedPdfBytes = await newPdf.save();
+      
+      // Clean up input file
+      await fs.unlink(req.file.path);
+      
+      // Set headers for download
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `attachment; filename="organized-${req.file.originalname}"`);
+      res.setHeader('Content-Length', reorganizedPdfBytes.length);
+      
+      // Send the reorganized PDF
+      res.send(Buffer.from(reorganizedPdfBytes));
+      
+    } catch (error) {
+      console.error('PDF page organization error:', error);
+      
+      // Clean up files on error
+      if (req.file?.path) {
+        try {
+          await fs.unlink(req.file.path);
+        } catch (cleanupError) {
+          console.error('Error cleaning up input file:', cleanupError);
+        }
+      }
+
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      res.status(500).json({ error: `PDF page organization failed: ${errorMessage}` });
+    }
+  });
+
+  // Get PDF page info endpoint (for preview thumbnails)
+  app.post('/api/pdf-page-info', upload.single('pdf'), async (req: MulterRequest, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ error: 'No PDF file uploaded' });
+      }
+
+      // Import PDF-lib for page analysis
+      const { PDFDocument } = await import('pdf-lib');
+
+      // Read the uploaded PDF
+      const pdfBytes = await fs.readFile(req.file.path);
+      const pdfDoc = await PDFDocument.load(pdfBytes);
+      
+      const pages = pdfDoc.getPages();
+      const pageInfo = pages.map((page, index) => {
+        const { width, height } = page.getSize();
+        return {
+          index,
+          width: Math.round(width),
+          height: Math.round(height),
+          ratio: Math.round((width / height) * 100) / 100
+        };
+      });
+
+      // Clean up input file
+      await fs.unlink(req.file.path);
+      
+      res.json({
+        totalPages: pages.length,
+        pages: pageInfo
+      });
+      
+    } catch (error) {
+      console.error('PDF page info error:', error);
+      
+      // Clean up files on error
+      if (req.file?.path) {
+        try {
+          await fs.unlink(req.file.path);
+        } catch (cleanupError) {
+          console.error('Error cleaning up input file:', cleanupError);
+        }
+      }
+
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      res.status(500).json({ error: `PDF analysis failed: ${errorMessage}` });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;
