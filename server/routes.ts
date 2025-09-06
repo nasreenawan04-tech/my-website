@@ -232,6 +232,35 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: 'No PDF file uploaded' });
       }
 
+      // Validate input parameters
+      const validPositions = ['top-left', 'top-center', 'top-right', 'bottom-left', 'bottom-center', 'bottom-right'];
+      if (!validPositions.includes(position)) {
+        return res.status(400).json({ error: 'Invalid position specified' });
+      }
+
+      const startNum = parseInt(startNumber);
+      const fontSizeNum = parseInt(fontSize);
+      const marginXNum = parseInt(marginX);
+      const marginYNum = parseInt(marginY);
+
+      if (isNaN(startNum) || startNum < 1) {
+        return res.status(400).json({ error: 'Start number must be a positive integer' });
+      }
+      if (isNaN(fontSizeNum) || fontSizeNum < 6 || fontSizeNum > 48) {
+        return res.status(400).json({ error: 'Font size must be between 6 and 48' });
+      }
+      if (isNaN(marginXNum) || marginXNum < 0 || marginXNum > 200) {
+        return res.status(400).json({ error: 'Horizontal margin must be between 0 and 200' });
+      }
+      if (isNaN(marginYNum) || marginYNum < 0 || marginYNum > 200) {
+        return res.status(400).json({ error: 'Vertical margin must be between 0 and 200' });
+      }
+
+      // Validate color format
+      if (!/^#[0-9A-Fa-f]{6}$/.test(fontColor)) {
+        return res.status(400).json({ error: 'Invalid color format. Use hex format like #000000' });
+      }
+
       // Import PDF-lib for page numbering
       const { PDFDocument, rgb, StandardFonts } = await import('pdf-lib');
 
@@ -264,51 +293,51 @@ export async function registerRoutes(app: Express): Promise<Server> {
         
         // Calculate page number (adjust for skipped first page)
         const pageNumber = skipFirstPage === 'true' 
-          ? parseInt(startNumber) + index - 1
-          : parseInt(startNumber) + index;
+          ? startNum + index - 1
+          : startNum + index;
         
         const { width, height } = page.getSize();
         const text = pageNumber.toString();
-        const textWidth = font.widthOfTextAtSize(text, parseInt(fontSize));
+        const textWidth = font.widthOfTextAtSize(text, fontSizeNum);
         
         let x: number, y: number;
         
         // Calculate position based on selected position
         switch (position) {
           case 'top-left':
-            x = parseInt(marginX);
-            y = height - parseInt(marginY);
+            x = marginXNum;
+            y = height - marginYNum;
             break;
           case 'top-center':
             x = (width - textWidth) / 2;
-            y = height - parseInt(marginY);
+            y = height - marginYNum;
             break;
           case 'top-right':
-            x = width - textWidth - parseInt(marginX);
-            y = height - parseInt(marginY);
+            x = width - textWidth - marginXNum;
+            y = height - marginYNum;
             break;
           case 'bottom-left':
-            x = parseInt(marginX);
-            y = parseInt(marginY);
+            x = marginXNum;
+            y = marginYNum;
             break;
           case 'bottom-center':
             x = (width - textWidth) / 2;
-            y = parseInt(marginY);
+            y = marginYNum;
             break;
           case 'bottom-right':
-            x = width - textWidth - parseInt(marginX);
-            y = parseInt(marginY);
+            x = width - textWidth - marginXNum;
+            y = marginYNum;
             break;
           default:
             x = (width - textWidth) / 2;
-            y = parseInt(marginY);
+            y = marginYNum;
         }
         
         // Draw the page number
         page.drawText(text, {
           x,
           y,
-          size: parseInt(fontSize),
+          size: fontSizeNum,
           font,
           color: textColor,
         });
