@@ -83,6 +83,7 @@ import ProtectPDFTool from '@/pages/protect-pdf-tool';
 import UnlockPDFTool from '@/pages/unlock-pdf-tool';
 import AddPageNumbersTool from '@/pages/add-page-numbers-tool';
 import OrganizePDFPagesTool from '@/pages/organize-pdf-pages-tool';
+import PDFEditorTool from '@/pages/pdf-editor-tool';
 
 
 function ScrollToTop() {
@@ -165,6 +166,7 @@ function Router() {
       <Route path="/tools/unlock-pdf" component={UnlockPDFTool} />
       <Route path="/tools/add-page-numbers" component={AddPageNumbersTool} />
       <Route path="/tools/organize-pdf" component={OrganizePDFPagesTool} />
+      <Route path="/tools/pdf-editor" component={PDFEditorTool} />
       <Route path="/tools/:toolId" component={ToolPage} />
       <Route path="/finance" component={FinanceTools} />
       <Route path="/pdf" component={PDFTools} />
