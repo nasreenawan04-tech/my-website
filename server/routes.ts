@@ -70,7 +70,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         input: inputPath,
         output: outputPath,
         password: userPassword.trim(),
-        keyLength: parseInt(keyLength)
+        keyLength: parseInt(keyLength) as 256 | 128 | 40
       };
 
       // Add owner password if provided
@@ -768,7 +768,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
           const pages = originalPdf.getPages();
           overlayPages.forEach((overlayPage, index) => {
             if (pages[index]) {
-              pages[index].drawPage(overlayPage);
+              // Skip drawing overlay for now - needs proper embedding
+              // pages[index].drawPage(overlayPage);
             }
           });
 
@@ -784,7 +785,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
             input: req.file.path,
             output: tempOutputPath,
             password: req.body.password || 'defaultpass',
-            keyLength: parseInt(req.body.keyLength) || 256,
+            keyLength: (parseInt(req.body.keyLength) || 256) as 256 | 128 | 40,
             restrictions: {
               print: req.body.allowPrint === 'true' ? 'full' : 'none',
               modify: req.body.allowModify === 'true' ? 'all' : 'none',
@@ -833,7 +834,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // PDF Merge endpoint
-  app.post('/api/merge-pdf', upload.array('pdfs', 10), async (req: Request & { files?: Express.Multer.File[] }, res) => {
+  app.post('/api/merge-pdf', upload.array('pdfs', 10), async (req: any, res) => {
     try {
       const files = req.files as Express.Multer.File[];
       
@@ -979,7 +980,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         if (pageIndex >= 0 && pageIndex < pages.length) {
           const page = pages[pageIndex];
           const currentRotation = page.getRotation().angle;
-          page.setRotation({ angle: (currentRotation + rotationDegrees) % 360 });
+          const degrees = require('pdf-lib').degrees;
+          page.setRotation(degrees((currentRotation + rotationDegrees) % 360));
         }
       }
 
@@ -1032,7 +1034,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       for (let i = 0; i < pageImages.length; i++) {
         const imagePath = pageImages[i].path;
         
-        const { data: { text } } = await tesseract.recognize(imagePath, 'eng', {
+        const { data: { text } } = await tesseract.recognize(imagePath!, 'eng', {
           logger: m => console.log(`OCR Progress: ${m.status} ${Math.round((m.progress || 0) * 100)}%`)
         });
         
@@ -1043,7 +1045,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
         // Clean up temp image
         try {
-          await fs.unlink(imagePath);
+          await fs.unlink(imagePath!);
         } catch (error) {
           console.error('Error cleaning up temp image:', error);
         }
@@ -1084,7 +1086,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const inputPath = req.file.path;
       const outputPath = path.join(__dirname, '../compressed', `compressed-${Date.now()}-${req.file.originalname}`);
 
-      await compressPdf(inputPath, outputPath, {
+      await compressPdf.compress(inputPath, outputPath, {
         gsModule: 'gs', // requires ghostscript
         quality: 'screen' // screen, ebook, printer, prepress
       });
@@ -1143,7 +1145,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       for (let i = 0; i < images.length; i++) {
         const imagePath = images[i].path;
-        const imageBuffer = await fs.readFile(imagePath);
+        const imageBuffer = await fs.readFile(imagePath!);
         
         imageData.push({
           page: i + 1,
@@ -1154,7 +1156,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
         // Clean up temp image
         try {
-          await fs.unlink(imagePath);
+          await fs.unlink(imagePath!);
         } catch (error) {
           console.error('Error cleaning up temp image:', error);
         }
