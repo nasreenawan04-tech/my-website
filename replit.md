@@ -36,12 +36,11 @@ Preferred communication style: Simple, everyday language.
 - **Connection**: Neon serverless database integration
 
 ## Tool Categories
-The system organizes tools into six main categories:
+The system organizes tools into five main categories:
 - **Finance**: 30+ calculators (loan, mortgage, EMI, ROI, currency conversion)
 - **PDF**: Document processing and conversion tools
 - **Image**: Background removal, format conversion, editing
 - **Text**: Content analysis, grammar checking, AI writing
-- **SEO**: Keyword analysis, backlink checking, meta tag generation
 - **Health**: BMI, calorie, pregnancy, and fitness calculators
 
 ## Development Setup
