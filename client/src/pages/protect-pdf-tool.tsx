@@ -7,7 +7,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
-import { PDFDocument } from 'pdf-lib-with-encrypt';
+// Removed pdf-lib-with-encrypt - now using server-side qpdf encryption
 import { Upload, FileText, Download, Trash2, Lock, Shield, Eye, EyeOff } from 'lucide-react';
 
 interface PDFFile {
@@ -132,33 +132,35 @@ const ProtectPDFTool = () => {
     setIsProcessing(true);
     
     try {
-      const arrayBuffer = await pdfFile.file.arrayBuffer();
-      const pdfDoc = await PDFDocument.load(arrayBuffer);
+      // Create FormData for file upload to server
+      const formData = new FormData();
+      formData.append('pdf', pdfFile.file);
+      formData.append('userPassword', userPassword);
       
-      // Prepare encryption options
-      const encryptionOptions: any = {
-        userPassword: userPassword,
-        permissions: {
-          printing: protectionOptions.allowPrinting,
-          modifying: protectionOptions.allowModifying,
-          copying: protectionOptions.allowCopying,
-          annotating: protectionOptions.allowAnnotating,
-          fillingForms: protectionOptions.allowAnnotating,
-          contentAccessibility: true,
-          documentAssembly: protectionOptions.allowModifying
-        }
-      };
-
-      // Add owner password if provided
       if (ownerPassword) {
-        encryptionOptions.ownerPassword = ownerPassword;
+        formData.append('ownerPassword', ownerPassword);
       }
       
-      // Save PDF with encryption
-      const pdfBytes = await pdfDoc.save(encryptionOptions);
+      formData.append('allowPrinting', protectionOptions.allowPrinting.toString());
+      formData.append('allowModifying', protectionOptions.allowModifying.toString());
+      formData.append('allowCopying', protectionOptions.allowCopying.toString());
+      formData.append('allowAnnotating', protectionOptions.allowAnnotating.toString());
+      formData.append('keyLength', '256'); // Use 256-bit AES encryption
       
-      const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-      const url = URL.createObjectURL(blob);
+      // Send request to server for encryption using qpdf
+      const response = await fetch('/api/encrypt-pdf', {
+        method: 'POST',
+        body: formData
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || `Server error: ${response.status}`);
+      }
+
+      // Get the encrypted PDF as blob
+      const encryptedBlob = await response.blob();
+      const url = URL.createObjectURL(encryptedBlob);
       setProtectedPdfUrl(url);
       
     } catch (error) {

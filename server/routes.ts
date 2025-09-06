@@ -1,4 +1,4 @@
-import type { Express } from "express";
+import type { Express, Request } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import multer from 'multer';
@@ -6,6 +6,10 @@ import { encrypt } from 'node-qpdf2';
 import path from 'path';
 import fs from 'fs/promises';
 import { fileURLToPath } from 'url';
+
+interface MulterRequest extends Request {
+  file?: Express.Multer.File;
+}
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -37,7 +41,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // PDF Encryption endpoint using qpdf
-  app.post('/api/encrypt-pdf', upload.single('pdf'), async (req, res) => {
+  app.post('/api/encrypt-pdf', upload.single('pdf'), async (req: MulterRequest, res) => {
     try {
       const { 
         userPassword, 
