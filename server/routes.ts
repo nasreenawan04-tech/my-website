@@ -832,6 +832,359 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // PDF Merge endpoint
+  app.post('/api/merge-pdf', upload.array('pdfs', 10), async (req: Request & { files?: Express.Multer.File[] }, res) => {
+    try {
+      const files = req.files as Express.Multer.File[];
+      
+      if (!files || files.length < 2) {
+        return res.status(400).json({ error: 'At least 2 PDF files are required for merging' });
+      }
+
+      const { PDFDocument } = await import('pdf-lib');
+      const mergedPdf = await PDFDocument.create();
+
+      for (const file of files) {
+        const pdfBytes = await fs.readFile(file.path);
+        const pdf = await PDFDocument.load(pdfBytes);
+        const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+        copiedPages.forEach((page) => mergedPdf.addPage(page));
+      }
+
+      const mergedPdfBytes = await mergedPdf.save();
+
+      // Clean up input files
+      for (const file of files) {
+        await fs.unlink(file.path);
+      }
+
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `attachment; filename="merged-${Date.now()}.pdf"`);
+      res.send(Buffer.from(mergedPdfBytes));
+
+    } catch (error) {
+      console.error('PDF merge error:', error);
+      
+      if (req.files) {
+        for (const file of req.files as Express.Multer.File[]) {
+          try {
+            await fs.unlink(file.path);
+          } catch (cleanupError) {
+            console.error('Error cleaning up file:', cleanupError);
+          }
+        }
+      }
+
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      res.status(500).json({ error: `PDF merge failed: ${errorMessage}` });
+    }
+  });
+
+  // PDF Split endpoint
+  app.post('/api/split-pdf', upload.single('pdf'), async (req: MulterRequest, res) => {
+    try {
+      const { splitPages } = req.body;
+
+      if (!req.file) {
+        return res.status(400).json({ error: 'No PDF file uploaded' });
+      }
+
+      const { PDFDocument } = await import('pdf-lib');
+      const pdfBytes = await fs.readFile(req.file.path);
+      const originalPdf = await PDFDocument.load(pdfBytes);
+      
+      let pagesToSplit: number[];
+      try {
+        pagesToSplit = JSON.parse(splitPages || '[]');
+      } catch (error) {
+        return res.status(400).json({ error: 'Invalid split pages format' });
+      }
+
+      if (!Array.isArray(pagesToSplit) || pagesToSplit.length === 0) {
+        pagesToSplit = originalPdf.getPageIndices();
+      }
+
+      const splitPdfs = [];
+
+      for (let i = 0; i < pagesToSplit.length; i++) {
+        const pageIndex = pagesToSplit[i];
+        if (pageIndex < 0 || pageIndex >= originalPdf.getPageCount()) continue;
+
+        const newPdf = await PDFDocument.create();
+        const [copiedPage] = await newPdf.copyPages(originalPdf, [pageIndex]);
+        newPdf.addPage(copiedPage);
+        
+        const pdfBytes = await newPdf.save();
+        splitPdfs.push({
+          filename: `page-${pageIndex + 1}.pdf`,
+          data: Buffer.from(pdfBytes).toString('base64')
+        });
+      }
+
+      await fs.unlink(req.file.path);
+
+      res.json({
+        message: `PDF split into ${splitPdfs.length} files`,
+        files: splitPdfs
+      });
+
+    } catch (error) {
+      console.error('PDF split error:', error);
+      
+      if (req.file?.path) {
+        try {
+          await fs.unlink(req.file.path);
+        } catch (cleanupError) {
+          console.error('Error cleaning up file:', cleanupError);
+        }
+      }
+
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      res.status(500).json({ error: `PDF split failed: ${errorMessage}` });
+    }
+  });
+
+  // PDF Rotate endpoint
+  app.post('/api/rotate-pdf', upload.single('pdf'), async (req: MulterRequest, res) => {
+    try {
+      const { pageIndices, rotation } = req.body;
+
+      if (!req.file) {
+        return res.status(400).json({ error: 'No PDF file uploaded' });
+      }
+
+      const rotationDegrees = parseInt(rotation) || 90;
+      if (![90, 180, 270].includes(rotationDegrees)) {
+        return res.status(400).json({ error: 'Rotation must be 90, 180, or 270 degrees' });
+      }
+
+      let pagesToRotate: number[];
+      try {
+        pagesToRotate = JSON.parse(pageIndices || '[]');
+      } catch (error) {
+        return res.status(400).json({ error: 'Invalid page indices format' });
+      }
+
+      const { PDFDocument } = await import('pdf-lib');
+      const pdfBytes = await fs.readFile(req.file.path);
+      const pdfDoc = await PDFDocument.load(pdfBytes);
+      
+      const pages = pdfDoc.getPages();
+      
+      if (pagesToRotate.length === 0) {
+        pagesToRotate = pages.map((_, index) => index);
+      }
+
+      for (const pageIndex of pagesToRotate) {
+        if (pageIndex >= 0 && pageIndex < pages.length) {
+          const page = pages[pageIndex];
+          const currentRotation = page.getRotation().angle;
+          page.setRotation({ angle: (currentRotation + rotationDegrees) % 360 });
+        }
+      }
+
+      const rotatedPdfBytes = await pdfDoc.save();
+
+      await fs.unlink(req.file.path);
+
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `attachment; filename="rotated-${req.file.originalname}"`);
+      res.send(Buffer.from(rotatedPdfBytes));
+
+    } catch (error) {
+      console.error('PDF rotate error:', error);
+      
+      if (req.file?.path) {
+        try {
+          await fs.unlink(req.file.path);
+        } catch (cleanupError) {
+          console.error('Error cleaning up file:', cleanupError);
+        }
+      }
+
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      res.status(500).json({ error: `PDF rotation failed: ${errorMessage}` });
+    }
+  });
+
+  // PDF OCR endpoint
+  app.post('/api/ocr-pdf', upload.single('pdf'), async (req: MulterRequest, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ error: 'No PDF file uploaded' });
+      }
+
+      const tesseract = await import('tesseract.js');
+      const pdf2pic = await import('pdf2pic');
+      
+      const convert = pdf2pic.fromPath(req.file.path, {
+        density: 100,
+        saveFilename: "untitled",
+        savePath: path.join(__dirname, '../temp'),
+        format: "png",
+        width: 600,
+        height: 600
+      });
+
+      const pageImages = await convert.bulk(-1);
+      const extractedText = [];
+
+      for (let i = 0; i < pageImages.length; i++) {
+        const imagePath = pageImages[i].path;
+        
+        const { data: { text } } = await tesseract.recognize(imagePath, 'eng', {
+          logger: m => console.log(`OCR Progress: ${m.status} ${Math.round((m.progress || 0) * 100)}%`)
+        });
+        
+        extractedText.push({
+          page: i + 1,
+          text: text.trim()
+        });
+
+        // Clean up temp image
+        try {
+          await fs.unlink(imagePath);
+        } catch (error) {
+          console.error('Error cleaning up temp image:', error);
+        }
+      }
+
+      await fs.unlink(req.file.path);
+
+      res.json({
+        message: 'OCR extraction completed',
+        pages: extractedText,
+        totalPages: extractedText.length
+      });
+
+    } catch (error) {
+      console.error('PDF OCR error:', error);
+      
+      if (req.file?.path) {
+        try {
+          await fs.unlink(req.file.path);
+        } catch (cleanupError) {
+          console.error('Error cleaning up file:', cleanupError);
+        }
+      }
+
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      res.status(500).json({ error: `PDF OCR failed: ${errorMessage}` });
+    }
+  });
+
+  // PDF Compress endpoint
+  app.post('/api/compress-pdf', upload.single('pdf'), async (req: MulterRequest, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ error: 'No PDF file uploaded' });
+      }
+
+      const compressPdf = await import('compress-pdf');
+      const inputPath = req.file.path;
+      const outputPath = path.join(__dirname, '../compressed', `compressed-${Date.now()}-${req.file.originalname}`);
+
+      await compressPdf(inputPath, outputPath, {
+        gsModule: 'gs', // requires ghostscript
+        quality: 'screen' // screen, ebook, printer, prepress
+      });
+
+      const compressedBuffer = await fs.readFile(outputPath);
+      const originalSize = (await fs.stat(inputPath)).size;
+      const compressedSize = compressedBuffer.length;
+      const compressionRatio = Math.round((1 - compressedSize / originalSize) * 100);
+
+      await fs.unlink(req.file.path);
+      await fs.unlink(outputPath);
+
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `attachment; filename="compressed-${req.file.originalname}"`);
+      res.setHeader('X-Compression-Ratio', compressionRatio.toString());
+      res.send(compressedBuffer);
+
+    } catch (error) {
+      console.error('PDF compression error:', error);
+      
+      if (req.file?.path) {
+        try {
+          await fs.unlink(req.file.path);
+        } catch (cleanupError) {
+          console.error('Error cleaning up file:', cleanupError);
+        }
+      }
+
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      res.status(500).json({ error: `PDF compression failed: ${errorMessage}` });
+    }
+  });
+
+  // PDF to Image endpoint
+  app.post('/api/pdf-to-images', upload.single('pdf'), async (req: MulterRequest, res) => {
+    try {
+      const { format = 'png', quality = 100 } = req.body;
+
+      if (!req.file) {
+        return res.status(400).json({ error: 'No PDF file uploaded' });
+      }
+
+      const pdf2pic = await import('pdf2pic');
+      
+      const convert = pdf2pic.fromPath(req.file.path, {
+        density: parseInt(quality),
+        saveFilename: "page",
+        savePath: path.join(__dirname, '../images'),
+        format: format,
+        width: 1200,
+        height: 1600
+      });
+
+      const images = await convert.bulk(-1);
+      const imageData = [];
+
+      for (let i = 0; i < images.length; i++) {
+        const imagePath = images[i].path;
+        const imageBuffer = await fs.readFile(imagePath);
+        
+        imageData.push({
+          page: i + 1,
+          filename: `page-${i + 1}.${format}`,
+          data: imageBuffer.toString('base64'),
+          size: imageBuffer.length
+        });
+
+        // Clean up temp image
+        try {
+          await fs.unlink(imagePath);
+        } catch (error) {
+          console.error('Error cleaning up temp image:', error);
+        }
+      }
+
+      await fs.unlink(req.file.path);
+
+      res.json({
+        message: `PDF converted to ${images.length} ${format.toUpperCase()} images`,
+        format,
+        images: imageData,
+        totalPages: images.length
+      });
+
+    } catch (error) {
+      console.error('PDF to images error:', error);
+      
+      if (req.file?.path) {
+        try {
+          await fs.unlink(req.file.path);
+        } catch (cleanupError) {
+          console.error('Error cleaning up file:', cleanupError);
+        }
+      }
+
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      res.status(500).json({ error: `PDF to images conversion failed: ${errorMessage}` });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;
