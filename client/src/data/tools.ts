@@ -60,7 +60,7 @@ const toolsData = [
   { id: 'pdf-to-ppt', name: 'PDF to PowerPoint Converter', description: 'Convert PDF files to PowerPoint', category: 'pdf' as const, icon: 'fas fa-presentation' },
   { id: 'jpg-to-pdf', name: 'JPG to PDF Converter', description: 'Convert JPG images to PDF format', category: 'pdf' as const, icon: 'fas fa-image' },
   { id: 'png-to-pdf', name: 'PNG to PDF Converter', description: 'Convert PNG images to PDF format', category: 'pdf' as const, icon: 'fas fa-file-image' },
-  { id: 'merge-pdf', name: 'Merge PDF', description: 'Combine multiple PDFs into one document', category: 'pdf' as const, icon: 'fas fa-object-group', isPopular: true },
+  { id: 'merge-pdf', name: 'Merge PDF', description: 'Combine multiple PDFs into one document', category: 'pdf' as const, icon: 'fas fa-object-group', isPopular: true, href: '/tools/merge-pdf' },
   { id: 'split-pdf', name: 'Split PDF', description: 'Split PDF into multiple documents', category: 'pdf' as const, icon: 'fas fa-cut', href: '/tools/split-pdf' },
   { id: 'compress-pdf', name: 'Compress PDF', description: 'Reduce PDF file size while maintaining quality', category: 'pdf' as const, icon: 'fas fa-compress', isPopular: true },
   { id: 'rotate-pdf', name: 'Rotate PDF', description: 'Rotate PDF pages to correct orientation', category: 'pdf' as const, icon: 'fas fa-undo' },
