@@ -7,7 +7,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
-import { PDFDocument } from 'pdf-lib';
+import { PDFDocument } from 'pdf-lib-with-encrypt';
 import { Upload, FileText, Download, Trash2, Lock, Shield, Eye, EyeOff } from 'lucide-react';
 
 interface PDFFile {
@@ -88,12 +88,45 @@ const ProtectPDFTool = () => {
     setDragOver(false);
   };
 
+  const validatePassword = (password: string): { isValid: boolean; message: string } => {
+    if (password.length < 4) {
+      return { isValid: false, message: 'Password must be at least 4 characters long' };
+    }
+    if (password.length > 32) {
+      return { isValid: false, message: 'Password must be less than 32 characters long' };
+    }
+    return { isValid: true, message: '' };
+  };
+
   const protectPDF = async () => {
     if (!pdfFile) return;
 
-    if (!protectionOptions.userPassword.trim()) {
+    const userPassword = protectionOptions.userPassword.trim();
+    if (!userPassword) {
       alert('Please enter a password to protect the PDF.');
       return;
+    }
+
+    // Validate user password
+    const userPasswordValidation = validatePassword(userPassword);
+    if (!userPasswordValidation.isValid) {
+      alert(`User password error: ${userPasswordValidation.message}`);
+      return;
+    }
+
+    // Validate owner password if provided
+    const ownerPassword = protectionOptions.ownerPassword.trim();
+    if (ownerPassword) {
+      const ownerPasswordValidation = validatePassword(ownerPassword);
+      if (!ownerPasswordValidation.isValid) {
+        alert(`Owner password error: ${ownerPasswordValidation.message}`);
+        return;
+      }
+      
+      if (userPassword === ownerPassword) {
+        alert('User password and owner password should be different for better security.');
+        return;
+      }
     }
 
     setIsProcessing(true);
@@ -102,23 +135,36 @@ const ProtectPDFTool = () => {
       const arrayBuffer = await pdfFile.file.arrayBuffer();
       const pdfDoc = await PDFDocument.load(arrayBuffer);
       
-      // Note: pdf-lib has limited encryption support in the browser
-      // For full encryption capabilities, this would typically require server-side processing
-      // This is a client-side implementation with basic protection
+      // Prepare encryption options
+      const encryptionOptions: any = {
+        userPassword: userPassword,
+        permissions: {
+          printing: protectionOptions.allowPrinting,
+          modifying: protectionOptions.allowModifying,
+          copying: protectionOptions.allowCopying,
+          annotating: protectionOptions.allowAnnotating,
+          fillingForms: protectionOptions.allowAnnotating,
+          contentAccessibility: true,
+          documentAssembly: protectionOptions.allowModifying
+        }
+      };
+
+      // Add owner password if provided
+      if (ownerPassword) {
+        encryptionOptions.ownerPassword = ownerPassword;
+      }
       
-      // For now, we'll create a new PDF with basic structure
-      // In a production environment, you'd want to use a more robust encryption library
-      const pdfBytes = await pdfDoc.save();
+      // Save PDF with encryption
+      const pdfBytes = await pdfDoc.save(encryptionOptions);
       
-      // Create a simple password-protected wrapper (basic implementation)
-      // Note: This is a demonstration - real PDF encryption requires more sophisticated handling
       const blob = new Blob([pdfBytes], { type: 'application/pdf' });
       const url = URL.createObjectURL(blob);
       setProtectedPdfUrl(url);
       
     } catch (error) {
       console.error('Error protecting PDF:', error);
-      alert('Error protecting PDF. Please try again with a valid PDF file.');
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      alert(`Error protecting PDF: ${errorMessage}. Please try again with a valid PDF file.`);
     }
 
     setIsProcessing(false);
@@ -269,6 +315,8 @@ const ProtectPDFTool = () => {
                             onChange={(e) => setProtectionOptions(prev => ({ ...prev, userPassword: e.target.value }))}
                             placeholder="Enter password to open PDF"
                             className="pr-10"
+                            minLength={4}
+                            maxLength={32}
                           />
                           <Button
                             type="button"
@@ -284,6 +332,9 @@ const ProtectPDFTool = () => {
                             )}
                           </Button>
                         </div>
+                        <p className="text-xs text-gray-500 mt-1">
+                          Password must be 4-32 characters long
+                        </p>
                       </div>
 
                       {/* Owner Password */}
@@ -299,6 +350,7 @@ const ProtectPDFTool = () => {
                             onChange={(e) => setProtectionOptions(prev => ({ ...prev, ownerPassword: e.target.value }))}
                             placeholder="Enter owner password (optional)"
                             className="pr-10"
+                            maxLength={32}
                           />
                           <Button
                             type="button"
@@ -314,6 +366,9 @@ const ProtectPDFTool = () => {
                             )}
                           </Button>
                         </div>
+                        <p className="text-xs text-gray-500 mt-1">
+                          Different from user password, allows changing document permissions
+                        </p>
                       </div>
 
                       {/* Permissions */}
@@ -415,9 +470,20 @@ const ProtectPDFTool = () => {
                       <h3 className="text-xl font-semibold text-gray-900 mb-2">
                         PDF Protected Successfully!
                       </h3>
-                      <p className="text-gray-600 mb-6">
+                      <p className="text-gray-600 mb-4">
                         Your PDF has been secured with password protection and the specified permissions.
                       </p>
+                      <div className="text-sm text-gray-600 mb-6 p-3 bg-green-100 rounded-lg">
+                        <p className="font-medium mb-2">Applied Security Settings:</p>
+                        <ul className="space-y-1 text-xs">
+                          <li>✓ User password protection enabled</li>
+                          {protectionOptions.ownerPassword && <li>✓ Owner password set</li>}
+                          <li>{protectionOptions.allowPrinting ? '✓' : '✗'} Printing {protectionOptions.allowPrinting ? 'allowed' : 'restricted'}</li>
+                          <li>{protectionOptions.allowModifying ? '✓' : '✗'} Editing {protectionOptions.allowModifying ? 'allowed' : 'restricted'}</li>
+                          <li>{protectionOptions.allowCopying ? '✓' : '✗'} Copying {protectionOptions.allowCopying ? 'allowed' : 'restricted'}</li>
+                          <li>{protectionOptions.allowAnnotating ? '✓' : '✗'} Annotations {protectionOptions.allowAnnotating ? 'allowed' : 'restricted'}</li>
+                        </ul>
+                      </div>
                       <Button
                         onClick={downloadProtectedPDF}
                         className="bg-green-600 hover:bg-green-700 text-white px-6 py-3"
