@@ -35,6 +35,8 @@ export default function PDFEditor() {
   const [imageFormat, setImageFormat] = useState('png');
   const [textToAdd, setTextToAdd] = useState('');
   const [pageOrder, setPageOrder] = useState('');
+  const [dragOver, setDragOver] = useState(false);
+  const [dragOverMulti, setDragOverMulti] = useState(false);
   
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
@@ -49,6 +51,56 @@ export default function PDFEditor() {
     const files = event.target.files;
     if (files && files.length > 0) {
       setSelectedFiles(files);
+    }
+  };
+
+  const handleDrop = (e: React.DragEvent, isMultiple: boolean = false) => {
+    e.preventDefault();
+    setDragOver(false);
+    setDragOverMulti(false);
+    
+    const files = e.dataTransfer.files;
+    if (files && files.length > 0) {
+      // Filter PDF files only
+      const pdfFiles = Array.from(files).filter(file => file.type === 'application/pdf');
+      
+      if (pdfFiles.length === 0) {
+        toast({
+          title: 'Invalid File Type',
+          description: 'Please select PDF files only.',
+          variant: 'destructive',
+        });
+        return;
+      }
+      
+      if (isMultiple) {
+        // Create a FileList-like object for multiple files
+        const dt = new DataTransfer();
+        pdfFiles.forEach(file => dt.items.add(file));
+        setSelectedFiles(dt.files);
+      } else {
+        setSelectedFile(pdfFiles[0]);
+        setSelectedPages([]);
+        setActiveTab('viewer');
+      }
+    }
+  };
+
+  const handleDragOver = (e: React.DragEvent, isMultiple: boolean = false) => {
+    e.preventDefault();
+    if (isMultiple) {
+      setDragOverMulti(true);
+    } else {
+      setDragOver(true);
+    }
+  };
+
+  const handleDragLeave = (e: React.DragEvent, isMultiple: boolean = false) => {
+    e.preventDefault();
+    if (isMultiple) {
+      setDragOverMulti(false);
+    } else {
+      setDragOver(false);
     }
   };
 
@@ -335,8 +387,27 @@ export default function PDFEditor() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
+                  <div 
+                    className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors ${
+                      dragOver 
+                        ? 'border-blue-500 bg-blue-50' 
+                        : 'border-gray-300 hover:border-gray-400'
+                    }`}
+                    onClick={() => document.getElementById('single-pdf-upload')?.click()}
+                    onDrop={(e) => handleDrop(e, false)}
+                    onDragOver={(e) => handleDragOver(e, false)}
+                    onDragLeave={(e) => handleDragLeave(e, false)}
+                  >
                     <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                    <h3 className="text-lg font-medium text-gray-900 mb-2">
+                      Drag and drop PDF file here
+                    </h3>
+                    <p className="text-gray-600 mb-4">
+                      or click to select a file from your computer
+                    </p>
+                    <Button variant="outline" className="mb-2" data-testid="button-choose-file">
+                      Choose PDF File
+                    </Button>
                     <Input
                       type="file"
                       accept=".pdf,application/pdf"
@@ -345,11 +416,6 @@ export default function PDFEditor() {
                       id="single-pdf-upload"
                       data-testid="input-single-pdf"
                     />
-                    <Label htmlFor="single-pdf-upload" className="cursor-pointer">
-                      <Button variant="outline" className="mb-2" data-testid="button-choose-file">
-                        Choose PDF File
-                      </Button>
-                    </Label>
                     {selectedFile && (
                       <p className="text-sm text-gray-600 mt-2" data-testid="text-selected-file">
                         Selected: {selectedFile.name}
@@ -372,8 +438,27 @@ export default function PDFEditor() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
+                  <div 
+                    className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors ${
+                      dragOverMulti 
+                        ? 'border-green-500 bg-green-50' 
+                        : 'border-gray-300 hover:border-gray-400'
+                    }`}
+                    onClick={() => document.getElementById('multi-pdf-upload')?.click()}
+                    onDrop={(e) => handleDrop(e, true)}
+                    onDragOver={(e) => handleDragOver(e, true)}
+                    onDragLeave={(e) => handleDragLeave(e, true)}
+                  >
                     <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                    <h3 className="text-lg font-medium text-gray-900 mb-2">
+                      Drag and drop PDF files here
+                    </h3>
+                    <p className="text-gray-600 mb-4">
+                      or click to select multiple files from your computer
+                    </p>
+                    <Button variant="outline" className="mb-2" data-testid="button-choose-files">
+                      Choose Multiple PDFs
+                    </Button>
                     <Input
                       type="file"
                       accept=".pdf,application/pdf"
@@ -383,11 +468,6 @@ export default function PDFEditor() {
                       id="multi-pdf-upload"
                       data-testid="input-multi-pdf"
                     />
-                    <Label htmlFor="multi-pdf-upload" className="cursor-pointer">
-                      <Button variant="outline" className="mb-2" data-testid="button-choose-files">
-                        Choose Multiple PDFs
-                      </Button>
-                    </Label>
                     {selectedFiles && (
                       <div className="mt-2 text-sm text-gray-600" data-testid="text-selected-files">
                         <p>{selectedFiles.length} files selected:</p>
