@@ -80,6 +80,7 @@ import RotatePDFTool from '@/pages/rotate-pdf-tool';
 import WatermarkPDFTool from '@/pages/watermark-pdf-tool';
 import ExtractPDFPagesTool from '@/pages/extract-pdf-pages-tool';
 import ProtectPDFTool from '@/pages/protect-pdf-tool';
+import UnlockPDFTool from '@/pages/unlock-pdf-tool';
 
 
 function ScrollToTop() {
@@ -159,6 +160,7 @@ function Router() {
       <Route path="/tools/watermark-pdf" component={WatermarkPDFTool} />
       <Route path="/tools/extract-pdf-pages" component={ExtractPDFPagesTool} />
       <Route path="/tools/protect-pdf" component={ProtectPDFTool} />
+      <Route path="/tools/unlock-pdf" component={UnlockPDFTool} />
       <Route path="/tools/:toolId" component={ToolPage} />
       <Route path="/finance" component={FinanceTools} />
       <Route path="/pdf" component={PDFTools} />
