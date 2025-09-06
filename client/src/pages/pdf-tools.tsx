@@ -124,11 +124,6 @@ const PDFTools = () => {
                     <h3 className="font-semibold text-neutral-800">Compress PDF</h3>
                     <p className="text-sm text-neutral-600">Reduce file size</p>
                   </div>
-                  <div className="text-center p-4 bg-purple-50 rounded-xl">
-                    <i className="fas fa-cut text-2xl text-purple-600 mb-2"></i>
-                    <h3 className="font-semibold text-neutral-800">Split PDF</h3>
-                    <p className="text-sm text-neutral-600">Extract pages</p>
-                  </div>
                 </div>
               </div>
             </div>
