@@ -980,7 +980,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         if (pageIndex >= 0 && pageIndex < pages.length) {
           const page = pages[pageIndex];
           const currentRotation = page.getRotation().angle;
-          const degrees = require('pdf-lib').degrees;
+          const { degrees } = await import('pdf-lib');
           page.setRotation(degrees((currentRotation + rotationDegrees) % 360));
         }
       }
