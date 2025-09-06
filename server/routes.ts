@@ -26,7 +26,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  const upload = multer({ 
+  const upload = multer({
     storage: storage_config,
     fileFilter: (req, file, cb) => {
       if (file.mimetype === 'application/pdf') {
@@ -43,8 +43,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // PDF Encryption endpoint using qpdf
   app.post('/api/encrypt-pdf', upload.single('pdf'), async (req: MulterRequest, res) => {
     try {
-      const { 
-        userPassword, 
+      const {
+        userPassword,
         ownerPassword,
         allowPrinting = false,
         allowModifying = false,
@@ -80,7 +80,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Configure restrictions based on permissions
       const restrictions: any = {};
-      
+
       if (keyLength === 256) {
         restrictions.print = allowPrinting ? 'full' : 'none';
         restrictions.modify = allowModifying ? 'all' : 'none';
@@ -124,7 +124,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
     } catch (error) {
       console.error('PDF encryption error:', error);
-      
+
       // Clean up files on error
       if (req.file?.path) {
         try {
@@ -194,7 +194,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
     } catch (error) {
       console.error('PDF decryption error:', error);
-      
+
       // Clean up files on error
       if (req.file?.path) {
         try {
@@ -205,7 +205,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
-      
+
       // Check if it's a wrong password error
       if (errorMessage.toLowerCase().includes('password') || errorMessage.toLowerCase().includes('invalid')) {
         res.status(400).json({ error: 'Invalid password. Please check your password and try again.' });
@@ -218,7 +218,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // PDF Page Number Adder endpoint using pdf-lib
   app.post('/api/add-page-numbers', upload.single('pdf'), async (req: MulterRequest, res) => {
     try {
-      const { 
+      const {
         position = 'bottom-center',
         startNumber = 1,
         fontSize = 12,
@@ -267,10 +267,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Read the uploaded PDF
       const pdfBytes = await fs.readFile(req.file.path);
       const pdfDoc = await PDFDocument.load(pdfBytes);
-      
+
       const pages = pdfDoc.getPages();
       const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
-      
+
       // Parse color from hex
       const hexToRgb = (hex: string) => {
         const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -280,28 +280,28 @@ export async function registerRoutes(app: Express): Promise<Server> {
           b: parseInt(result[3], 16) / 255
         } : { r: 0, g: 0, b: 0 };
       };
-      
+
       const color = hexToRgb(fontColor);
       const textColor = rgb(color.r, color.g, color.b);
-      
+
       // Add page numbers
       pages.forEach((page, index) => {
         // Skip first page if requested
         if (skipFirstPage === 'true' && index === 0) {
           return;
         }
-        
+
         // Calculate page number (adjust for skipped first page)
-        const pageNumber = skipFirstPage === 'true' 
+        const pageNumber = skipFirstPage === 'true'
           ? startNum + index - 1
           : startNum + index;
-        
+
         const { width, height } = page.getSize();
         const text = pageNumber.toString();
         const textWidth = font.widthOfTextAtSize(text, fontSizeNum);
-        
+
         let x: number, y: number;
-        
+
         // Calculate position based on selected position
         switch (position) {
           case 'top-left':
@@ -332,7 +332,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
             x = (width - textWidth) / 2;
             y = marginYNum;
         }
-        
+
         // Draw the page number
         page.drawText(text, {
           x,
@@ -342,24 +342,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
           color: textColor,
         });
       });
-      
+
       // Save the PDF with page numbers
       const modifiedPdfBytes = await pdfDoc.save();
-      
+
       // Clean up input file
       await fs.unlink(req.file.path);
-      
+
       // Set headers for download
       res.setHeader('Content-Type', 'application/pdf');
       res.setHeader('Content-Disposition', `attachment; filename="numbered-${req.file.originalname}"`);
       res.setHeader('Content-Length', modifiedPdfBytes.length);
-      
+
       // Send the modified PDF
       res.send(Buffer.from(modifiedPdfBytes));
-      
+
     } catch (error) {
       console.error('PDF page numbering error:', error);
-      
+
       // Clean up files on error
       if (req.file?.path) {
         try {
@@ -405,15 +405,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Read the uploaded PDF
       const pdfBytes = await fs.readFile(req.file.path);
       const originalPdf = await PDFDocument.load(pdfBytes);
-      
+
       const originalPages = originalPdf.getPages();
       const totalPages = originalPages.length;
 
       // Validate page indices
       for (const pageIndex of parsedPageOrder) {
         if (!Number.isInteger(pageIndex) || pageIndex < 0 || pageIndex >= totalPages) {
-          return res.status(400).json({ 
-            error: `Invalid page index: ${pageIndex}. Must be between 0 and ${totalPages - 1}` 
+          return res.status(400).json({
+            error: `Invalid page index: ${pageIndex}. Must be between 0 and ${totalPages - 1}`
           });
         }
       }
@@ -424,7 +424,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Copy pages in the specified order (batch copy for better performance)
       const indicesToCopy = Array.from(new Set(parsedPageOrder));
       const copiedPages = await newPdf.copyPages(originalPdf, indicesToCopy);
-      
+
       // Add pages in the correct order
       for (const pageIndex of parsedPageOrder) {
         const mappedIndex = indicesToCopy.indexOf(pageIndex);
@@ -433,21 +433,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Save the reorganized PDF with optimization
       const reorganizedPdfBytes = await newPdf.save({ useObjectStreams: false });
-      
+
       // Clean up input file
       await fs.unlink(req.file.path);
-      
+
       // Set headers for download
       res.setHeader('Content-Type', 'application/pdf');
       res.setHeader('Content-Disposition', `attachment; filename="organized-${req.file.originalname}"`);
       res.setHeader('Content-Length', reorganizedPdfBytes.length);
-      
+
       // Send the reorganized PDF
       res.send(Buffer.from(reorganizedPdfBytes));
-      
+
     } catch (error) {
       console.error('PDF page organization error:', error);
-      
+
       // Clean up files on error
       if (req.file?.path) {
         try {
@@ -469,13 +469,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: 'No PDF file uploaded' });
       }
 
+      // Validate file type
+      if (req.file.mimetype !== 'application/pdf') {
+        await fs.unlink(req.file.path);
+        return res.status(400).json({ error: 'Invalid file type. Please upload a PDF file.' });
+      }
+
       // Import PDF-lib for page analysis
       const { PDFDocument } = await import('pdf-lib');
 
       // Read the uploaded PDF
       const pdfBytes = await fs.readFile(req.file.path);
       const pdfDoc = await PDFDocument.load(pdfBytes);
-      
+
       const pages = pdfDoc.getPages();
       const pageInfo = pages.map((page, index) => {
         const { width, height } = page.getSize();
@@ -489,15 +495,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Clean up input file
       await fs.unlink(req.file.path);
-      
+
       res.json({
         totalPages: pages.length,
         pages: pageInfo
       });
-      
+
     } catch (error) {
       console.error('PDF page info error:', error);
-      
+
       // Clean up files on error
       if (req.file?.path) {
         try {
@@ -521,6 +527,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: 'No PDF file uploaded' });
       }
 
+      // Validate file type
+      if (req.file.mimetype !== 'application/pdf') {
+        await fs.unlink(req.file.path);
+        return res.status(400).json({ error: 'Invalid file type. Please upload a PDF file.' });
+      }
+
       if (!annotations) {
         return res.status(400).json({ error: 'No annotations provided' });
       }
@@ -540,12 +552,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Read the uploaded PDF
       const pdfBytes = await fs.readFile(req.file.path);
       const pdfDoc = await PDFDocument.load(pdfBytes);
-      
+
       const pages = pdfDoc.getPages();
       const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
 
       // Create a temporary PDF with PDFKit for complex annotations if needed
-      const hasComplexAnnotations = parsedAnnotations.some(ann => 
+      const hasComplexAnnotations = parsedAnnotations.some(ann =>
         ann.type === 'arrow' || ann.type === 'line' || (ann.type === 'text' && ann.fontSize > 24)
       );
 
@@ -555,7 +567,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         if (!page) continue;
 
         const { width: pageWidth, height: pageHeight } = page.getSize();
-        
+
         // Convert hex color to RGB
         const hexToRgb = (hex: string) => {
           const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -635,14 +647,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
             // Draw line with arrowhead
             const endX = annotation.x + (annotation.width || 100);
             const endY = pageHeight - annotation.y;
-            
+
             page.drawLine({
               start: { x: annotation.x, y: pageHeight - annotation.y },
               end: { x: endX, y: endY },
               thickness: 2,
               color: rgbColor
             });
-            
+
             // Draw arrowhead
             page.drawLine({
               start: { x: endX - 10, y: endY - 5 },
@@ -662,21 +674,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Save the edited PDF
       const editedPdfBytes = await pdfDoc.save();
-      
+
       // Clean up input file
       await fs.unlink(req.file.path);
-      
+
       // Set headers for download
       res.setHeader('Content-Type', 'application/pdf');
       res.setHeader('Content-Disposition', `attachment; filename="edited-${req.file.originalname}"`);
       res.setHeader('Content-Length', editedPdfBytes.length);
-      
+
       // Send the edited PDF
       res.send(Buffer.from(editedPdfBytes));
-      
+
     } catch (error) {
       console.error('PDF editing error:', error);
-      
+
       // Clean up files on error
       if (req.file?.path) {
         try {
@@ -700,6 +712,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: 'No PDF file uploaded' });
       }
 
+      // Validate file type
+      if (req.file.mimetype !== 'application/pdf') {
+        await fs.unlink(req.file.path);
+        return res.status(400).json({ error: 'Invalid file type. Please upload a PDF file.' });
+      }
+
       // Import libraries
       const { PDFDocument } = await import('pdf-lib');
       const PDFDocument_kit = (await import('pdfkit')).default;
@@ -712,7 +730,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           // Use PDFKit to create overlay content
           const overlayDoc = new PDFDocument_kit();
           const overlayChunks: Buffer[] = [];
-          
+
           overlayDoc.on('data', (chunk) => overlayChunks.push(chunk));
           overlayDoc.on('end', () => {
             // Process complete
@@ -721,7 +739,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           // Parse annotations if provided
           if (annotations) {
             const parsedAnnotations = JSON.parse(annotations);
-            
+
             for (const annotation of parsedAnnotations) {
               if (annotation.type === 'text') {
                 overlayDoc
@@ -729,7 +747,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
                   .fillColor(annotation.color || '#000000')
                   .text(annotation.text || '', annotation.x, annotation.y);
               }
-              
+
               if (annotation.type === 'line') {
                 overlayDoc
                   .strokeColor(annotation.color || '#000000')
@@ -738,7 +756,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
                   .lineTo(annotation.x + (annotation.width || 100), annotation.y)
                   .stroke();
               }
-              
+
               if (annotation.type === 'rectangle') {
                 overlayDoc
                   .strokeColor(annotation.color || '#000000')
@@ -757,13 +775,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
           });
 
           const overlayBuffer = Buffer.concat(overlayChunks);
-          
+
           // Now use pdf-lib to merge overlay with original
           const originalPdf = await PDFDocument.load(pdfBytes);
           const overlayPdf = await PDFDocument.load(overlayBuffer);
-          
+
           const overlayPages = await originalPdf.copyPages(overlayPdf, overlayPdf.getPageIndices());
-          
+
           // Add overlay to each page
           const pages = originalPdf.getPages();
           overlayPages.forEach((overlayPage, index) => {
@@ -780,7 +798,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           // Use qpdf for encryption with specific permissions
           const { encrypt } = await import('node-qpdf2');
           const tempOutputPath = path.join(__dirname, '../encrypted', `temp-${Date.now()}.pdf`);
-          
+
           const encryptOptions = {
             input: req.file.path,
             output: tempOutputPath,
@@ -793,10 +811,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
               useAes: 'y' as 'y' | 'n'
             }
           };
-          
+
           await encrypt(encryptOptions);
           resultPdfBytes = await fs.readFile(tempOutputPath);
-          
+
           // Clean up temp file
           await fs.unlink(tempOutputPath);
           break;
@@ -807,18 +825,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Clean up input file
       await fs.unlink(req.file.path);
-      
+
       // Set headers for download
       res.setHeader('Content-Type', 'application/pdf');
       res.setHeader('Content-Disposition', `attachment; filename="advanced-edited-${req.file.originalname}"`);
       res.setHeader('Content-Length', resultPdfBytes.length);
-      
+
       // Send the result PDF
       res.send(Buffer.from(resultPdfBytes));
-      
+
     } catch (error) {
       console.error('Advanced PDF editing error:', error);
-      
+
       // Clean up files on error
       if (req.file?.path) {
         try {
@@ -837,9 +855,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post('/api/merge-pdf', upload.array('pdfs', 10), async (req: any, res) => {
     try {
       const files = req.files as Express.Multer.File[];
-      
+
       if (!files || files.length < 2) {
         return res.status(400).json({ error: 'At least 2 PDF files are required for merging' });
+      }
+
+      // Validate file types
+      for (const file of files) {
+        if (file.mimetype !== 'application/pdf') {
+          // Clean up already uploaded files
+          for (const f of files) {
+            if (f.path) await fs.unlink(f.path);
+          }
+          return res.status(400).json({ error: `Invalid file type for ${file.originalname}. Please upload only PDF files.` });
+        }
       }
 
       const { PDFDocument } = await import('pdf-lib');
@@ -865,7 +894,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
     } catch (error) {
       console.error('PDF merge error:', error);
-      
+
       if (req.files) {
         for (const file of req.files as Express.Multer.File[]) {
           try {
@@ -890,10 +919,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: 'No PDF file uploaded' });
       }
 
+      // Validate file type
+      if (req.file.mimetype !== 'application/pdf') {
+        await fs.unlink(req.file.path);
+        return res.status(400).json({ error: 'Invalid file type. Please upload a PDF file.' });
+      }
+
       const { PDFDocument } = await import('pdf-lib');
       const pdfBytes = await fs.readFile(req.file.path);
       const originalPdf = await PDFDocument.load(pdfBytes);
-      
+
       let pagesToSplit: number[];
       try {
         pagesToSplit = JSON.parse(splitPages || '[]');
@@ -914,7 +949,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         const newPdf = await PDFDocument.create();
         const [copiedPage] = await newPdf.copyPages(originalPdf, [pageIndex]);
         newPdf.addPage(copiedPage);
-        
+
         const pdfBytes = await newPdf.save();
         splitPdfs.push({
           filename: `page-${pageIndex + 1}.pdf`,
@@ -931,7 +966,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
     } catch (error) {
       console.error('PDF split error:', error);
-      
+
       if (req.file?.path) {
         try {
           await fs.unlink(req.file.path);
@@ -954,6 +989,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: 'No PDF file uploaded' });
       }
 
+      // Validate file type
+      if (req.file.mimetype !== 'application/pdf') {
+        await fs.unlink(req.file.path);
+        return res.status(400).json({ error: 'Invalid file type. Please upload a PDF file.' });
+      }
+
       const rotationDegrees = parseInt(rotation) || 90;
       if (![90, 180, 270].includes(rotationDegrees)) {
         return res.status(400).json({ error: 'Rotation must be 90, 180, or 270 degrees' });
@@ -969,9 +1010,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { PDFDocument } = await import('pdf-lib');
       const pdfBytes = await fs.readFile(req.file.path);
       const pdfDoc = await PDFDocument.load(pdfBytes);
-      
+
       const pages = pdfDoc.getPages();
-      
+
       if (pagesToRotate.length === 0) {
         pagesToRotate = pages.map((_, index) => index);
       }
@@ -995,7 +1036,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
     } catch (error) {
       console.error('PDF rotate error:', error);
-      
+
       if (req.file?.path) {
         try {
           await fs.unlink(req.file.path);
@@ -1016,9 +1057,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: 'No PDF file uploaded' });
       }
 
+      // Validate file type
+      if (req.file.mimetype !== 'application/pdf') {
+        await fs.unlink(req.file.path);
+        return res.status(400).json({ error: 'Invalid file type. Please upload a PDF file.' });
+      }
+
       const tesseract = await import('tesseract.js');
       const pdf2pic = await import('pdf2pic');
-      
+
       const convert = pdf2pic.fromPath(req.file.path, {
         density: 100,
         saveFilename: "untitled",
@@ -1033,11 +1080,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       for (let i = 0; i < pageImages.length; i++) {
         const imagePath = pageImages[i].path;
-        
+
         const { data: { text } } = await tesseract.recognize(imagePath!, 'eng', {
           logger: m => console.log(`OCR Progress: ${m.status} ${Math.round((m.progress || 0) * 100)}%`)
         });
-        
+
         extractedText.push({
           page: i + 1,
           text: text.trim()
@@ -1061,7 +1108,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
     } catch (error) {
       console.error('PDF OCR error:', error);
-      
+
       if (req.file?.path) {
         try {
           await fs.unlink(req.file.path);
@@ -1080,6 +1127,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       if (!req.file) {
         return res.status(400).json({ error: 'No PDF file uploaded' });
+      }
+
+      // Validate file type
+      if (req.file.mimetype !== 'application/pdf') {
+        await fs.unlink(req.file.path);
+        return res.status(400).json({ error: 'Invalid file type. Please upload a PDF file.' });
       }
 
       const compressPdf = await import('compress-pdf');
@@ -1101,7 +1154,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
     } catch (error) {
       console.error('PDF compression error:', error);
-      
+
       if (req.file?.path) {
         try {
           await fs.unlink(req.file.path);
@@ -1124,8 +1177,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: 'No PDF file uploaded' });
       }
 
+      // Validate file type
+      if (req.file.mimetype !== 'application/pdf') {
+        await fs.unlink(req.file.path);
+        return res.status(400).json({ error: 'Invalid file type. Please upload a PDF file.' });
+      }
+
       const pdf2pic = await import('pdf2pic');
-      
+
       const convert = pdf2pic.fromPath(req.file.path, {
         density: parseInt(quality),
         saveFilename: "page",
@@ -1141,7 +1200,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       for (let i = 0; i < images.length; i++) {
         const imagePath = images[i].path;
         const imageBuffer = await fs.readFile(imagePath!);
-        
+
         imageData.push({
           page: i + 1,
           filename: `page-${i + 1}.${format}`,
@@ -1168,7 +1227,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
     } catch (error) {
       console.error('PDF to images error:', error);
-      
+
       if (req.file?.path) {
         try {
           await fs.unlink(req.file.path);

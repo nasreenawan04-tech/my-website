@@ -13,7 +13,8 @@ import {
   Upload, FileText, Download, Trash2, Edit3, Type, Image, 
   Highlighter, Square, Circle, ArrowRight, Minus, Plus,
   RotateCcw, Save, Palette, Move, MousePointer, Hand, X,
-  Lock, Settings, Layers, ZoomIn, ZoomOut, ChevronLeft, ChevronRight
+  Lock, Settings, Layers, ZoomIn, ZoomOut, ChevronLeft, ChevronRight,
+  Archive
 } from 'lucide-react';
 
 interface PDFFile {
@@ -368,6 +369,7 @@ const PDFEditorTool = () => {
                         onChange={(e) => handleFileSelect(e.target.files)}
                         className="hidden"
                         data-testid="input-file"
+                        key={Date.now()}
                       />
                     </div>
 
