@@ -28,7 +28,6 @@ const Footer = () => {
               <li><Link href="/pdf" className="hover:text-white transition-colors" data-testid="link-pdf-to-word">PDF to Word</Link></li>
               <li><Link href="/image" className="hover:text-white transition-colors" data-testid="link-remove-background">Remove Background</Link></li>
               <li><Link href="/text" className="hover:text-white transition-colors" data-testid="link-grammar-checker">Grammar Checker</Link></li>
-              <li><Link href="/seo" className="hover:text-white transition-colors" data-testid="link-seo-analyzer">SEO Analyzer</Link></li>
               <li><Link href="/health" className="hover:text-white transition-colors" data-testid="link-bmi-calculator">BMI Calculator</Link></li>
             </ul>
           </div>
@@ -41,7 +40,6 @@ const Footer = () => {
               <li><Link href="/pdf" className="hover:text-white transition-colors" data-testid="link-pdf-tools">PDF Tools</Link></li>
               <li><Link href="/image" className="hover:text-white transition-colors" data-testid="link-image-tools">Image Tools</Link></li>
               <li><Link href="/text" className="hover:text-white transition-colors" data-testid="link-text-tools">Text Tools</Link></li>
-              <li><Link href="/seo" className="hover:text-white transition-colors" data-testid="link-seo-tools">SEO Tools</Link></li>
               <li><Link href="/health" className="hover:text-white transition-colors" data-testid="link-health-tools">Health Tools</Link></li>
             </ul>
           </div>

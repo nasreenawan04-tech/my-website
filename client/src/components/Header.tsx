@@ -29,7 +29,6 @@ const Header = () => {
     { href: '/pdf', label: 'PDF Tools' },
     { href: '/image', label: 'Image Tools' },
     { href: '/text', label: 'Text Tools' },
-    { href: '/seo', label: 'SEO Tools' },
     { href: '/health', label: 'Health Tools' }
   ];
 
