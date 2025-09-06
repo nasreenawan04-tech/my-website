@@ -43,15 +43,6 @@ const CategorySection = () => {
       href: '/text'
     },
     {
-      key: 'seo',
-      title: '30+ SEO Tools',
-      description: 'Backlink Checker, Meta Tag Generator, Keyword Density, Site Analysis',
-      gradient: 'from-purple-500 via-purple-600 to-indigo-700',
-      icon: 'fas fa-chart-line',
-      buttonColor: 'text-purple-600 hover:bg-purple-50',
-      href: '/seo'
-    },
-    {
       key: 'health',
       title: '30+ Health Tools',
       description: 'BMI Calculator, Calorie Counter, Pregnancy Calculator, Fitness Tracker',

@@ -43,16 +43,15 @@ const AllTools = () => {
     { key: 'pdf', label: 'PDF', count: tools.filter(t => t.category === 'pdf').length },
     { key: 'image', label: 'Image', count: tools.filter(t => t.category === 'image').length },
     { key: 'text', label: 'Text', count: tools.filter(t => t.category === 'text').length },
-    { key: 'seo', label: 'SEO', count: tools.filter(t => t.category === 'seo').length },
     { key: 'health', label: 'Health', count: tools.filter(t => t.category === 'health').length }
   ];
 
   return (
     <>
       <Helmet>
-        <title>All Tools - 180+ Free Online Tools | ToolsHub</title>
-        <meta name="description" content="Browse all 180+ free online tools including Finance Calculators, PDF Tools, Image Editors, Text Tools, SEO Analyzers, and Health Calculators." />
-        <meta name="keywords" content="online tools directory, free tools, PDF converter, image editor, calculator tools, SEO tools" />
+        <title>All Tools - 150+ Free Online Tools | ToolsHub</title>
+        <meta name="description" content="Browse all 150+ free online tools including Finance Calculators, PDF Tools, Image Editors, Text Tools, and Health Calculators." />
+        <meta name="keywords" content="online tools directory, free tools, PDF converter, image editor, calculator tools" />
         <link rel="canonical" href="/tools" />
       </Helmet>
 
@@ -67,7 +66,7 @@ const AllTools = () => {
                 All Tools Directory
               </h1>
               <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-                Discover all 180+ free online tools to boost your productivity
+                Discover all 150+ free online tools to boost your productivity
               </p>
               
               {/* Search Bar */}
