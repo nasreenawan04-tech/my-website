@@ -239,7 +239,7 @@ const PasswordGenerator = () => {
                           <Input
                             value={password}
                             readOnly
-                            className="text-lg font-mono pr-12 h-14"
+                            className="text-lg font-mono font-bold pr-12 h-14"
                             data-testid="generated-password"
                           />
                           <Button
