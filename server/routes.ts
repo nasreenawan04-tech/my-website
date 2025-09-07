@@ -15,10 +15,31 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Ensure required directories exist
+  const ensureDirectories = async () => {
+    const dirs = ['uploads', 'encrypted', 'compressed', 'images', 'temp'];
+    for (const dir of dirs) {
+      const dirPath = path.join(__dirname, '..', dir);
+      try {
+        await fs.access(dirPath);
+      } catch {
+        await fs.mkdir(dirPath, { recursive: true });
+      }
+    }
+  };
+  
+  await ensureDirectories();
+
   // Configure multer for file uploads
   const storage_config = multer.diskStorage({
-    destination: (req, file, cb) => {
-      cb(null, path.join(__dirname, '../uploads/'));
+    destination: async (req, file, cb) => {
+      const uploadDir = path.join(__dirname, '../uploads/');
+      try {
+        await fs.access(uploadDir);
+      } catch {
+        await fs.mkdir(uploadDir, { recursive: true });
+      }
+      cb(null, uploadDir);
     },
     filename: (req, file, cb) => {
       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
