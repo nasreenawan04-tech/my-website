@@ -41,7 +41,6 @@ const AllTools = () => {
     { key: 'all', label: 'All Tools', count: tools.length },
     { key: 'finance', label: 'Finance', count: tools.filter(t => t.category === 'finance').length },
     { key: 'pdf', label: 'PDF', count: tools.filter(t => t.category === 'pdf').length },
-    { key: 'image', label: 'Image', count: tools.filter(t => t.category === 'image').length },
     { key: 'text', label: 'Text', count: tools.filter(t => t.category === 'text').length },
     { key: 'health', label: 'Health', count: tools.filter(t => t.category === 'health').length }
   ];
