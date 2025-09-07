@@ -3,6 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import multer from 'multer';
 import { encrypt } from 'node-qpdf2';
+import { PDFDocument, rgb } from 'pdf-lib';
 import path from 'path';
 import fs from 'fs/promises';
 import { fileURLToPath } from 'url';
@@ -1406,6 +1407,186 @@ export async function registerRoutes(app: Express): Promise<Server> {
         res.status(400).json({ error: 'Invalid or corrupted PDF file. Please try with a different PDF.' });
       } else {
         res.status(500).json({ error: `PDF metadata reading failed: ${errorMessage}` });
+      }
+    }
+  });
+
+  // PDF Signing endpoint
+  app.post('/api/sign-pdf', upload.single('pdf'), async (req: MulterRequest, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ error: 'No PDF file provided' });
+      }
+
+      const {
+        name,
+        title = '',
+        company = '',
+        email,
+        phone = '',
+        address = '',
+        reason = 'Document approval and authorization',
+        location = ''
+      } = req.body;
+
+      if (!name || !email) {
+        return res.status(400).json({ error: 'Name and email are required for signing' });
+      }
+
+      // Read the uploaded PDF
+      const pdfBytes = await fs.readFile(req.file.path);
+      const pdfDoc = await PDFDocument.load(pdfBytes);
+
+      // Get current date and time
+      const signDate = new Date();
+      const formattedDate = signDate.toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+      });
+      const formattedTime = signDate.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        timeZoneName: 'short'
+      });
+
+      // Create signature information
+      const signatureInfo = {
+        Name: name,
+        Date: `${formattedDate} at ${formattedTime}`,
+        Reason: reason,
+        Location: location || 'Digital signature',
+        ContactInfo: email,
+        ...(title && { Title: title }),
+        ...(company && { Company: company }),
+        ...(phone && { Phone: phone }),
+        ...(address && { Address: address })
+      };
+
+      // Add signature to PDF metadata
+      pdfDoc.setTitle(pdfDoc.getTitle() || 'Signed Document');
+      pdfDoc.setSubject(`Digitally signed by ${name}`);
+      const existingKeywords = pdfDoc.getKeywords() || [];
+      const newKeywords = ['Digitally Signed', 'Electronic Signature'];
+      const allKeywords = Array.isArray(existingKeywords) 
+        ? [...existingKeywords, ...newKeywords]
+        : [...newKeywords];
+      const uniqueKeywords = Array.from(new Set(allKeywords));
+      pdfDoc.setKeywords(uniqueKeywords);
+      pdfDoc.setProducer('CalcEasy PDF Signer');
+      pdfDoc.setCreator(`${name}${company ? ` (${company})` : ''}`);
+      pdfDoc.setModificationDate(signDate);
+
+      // Get the first page to add signature info
+      const firstPage = pdfDoc.getPage(0);
+      const { width, height } = firstPage.getSize();
+
+      // Add signature box in the bottom right corner
+      const signatureBoxWidth = 200;
+      const signatureBoxHeight = 80;
+      const margin = 20;
+      const boxX = width - signatureBoxWidth - margin;
+      const boxY = margin;
+
+      // Draw signature box background
+      firstPage.drawRectangle({
+        x: boxX,
+        y: boxY,
+        width: signatureBoxWidth,
+        height: signatureBoxHeight,
+        borderColor: rgb(0.8, 0.8, 0.8),
+        borderWidth: 1,
+        color: rgb(0.98, 0.98, 0.98)
+      });
+
+      // Add signature text
+      const fontSize = 8;
+      const lineHeight = 10;
+      let currentY = boxY + signatureBoxHeight - 15;
+
+      // Main signature line
+      firstPage.drawText(`Digitally signed by: ${name}`, {
+        x: boxX + 5,
+        y: currentY,
+        size: fontSize + 1,
+        color: rgb(0, 0, 0)
+      });
+      currentY -= lineHeight + 2;
+
+      if (title || company) {
+        const titleCompany = [title, company].filter(Boolean).join(', ');
+        firstPage.drawText(titleCompany, {
+          x: boxX + 5,
+          y: currentY,
+          size: fontSize - 1,
+          color: rgb(0.3, 0.3, 0.3)
+        });
+        currentY -= lineHeight;
+      }
+
+      // Date
+      firstPage.drawText(`Date: ${formattedDate}`, {
+        x: boxX + 5,
+        y: currentY,
+        size: fontSize - 1,
+        color: rgb(0.3, 0.3, 0.3)
+      });
+      currentY -= lineHeight;
+
+      // Email
+      firstPage.drawText(`Email: ${email}`, {
+        x: boxX + 5,
+        y: currentY,
+        size: fontSize - 1,
+        color: rgb(0.3, 0.3, 0.3)
+      });
+
+      // If location is provided, add it
+      if (location) {
+        currentY -= lineHeight;
+        firstPage.drawText(`Location: ${location}`, {
+          x: boxX + 5,
+          y: currentY,
+          size: fontSize - 1,
+          color: rgb(0.3, 0.3, 0.3)
+        });
+      }
+
+      // Save the signed PDF
+      const signedPdfBytes = await pdfDoc.save();
+
+      // Clean up input file
+      await fs.unlink(req.file.path);
+
+      // Set response headers for PDF download
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Length', signedPdfBytes.length.toString());
+      res.setHeader('Content-Disposition', `attachment; filename="signed-${req.file.originalname}"`);
+
+      res.send(Buffer.from(signedPdfBytes));
+
+    } catch (error) {
+      console.error('PDF signing error:', error);
+
+      // Clean up files on error
+      if (req.file?.path) {
+        try {
+          await fs.unlink(req.file.path);
+        } catch (cleanupError) {
+          console.error('Error cleaning up input file:', cleanupError);
+        }
+      }
+
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      
+      // Provide more specific error messages
+      if (errorMessage.toLowerCase().includes('encrypt')) {
+        res.status(400).json({ error: 'PDF is encrypted or password-protected. Please unlock the PDF first before signing.' });
+      } else if (errorMessage.toLowerCase().includes('invalid') || errorMessage.toLowerCase().includes('corrupt')) {
+        res.status(400).json({ error: 'Invalid or corrupted PDF file. Please try with a different PDF.' });
+      } else {
+        res.status(500).json({ error: `PDF signing failed: ${errorMessage}` });
       }
     }
   });
