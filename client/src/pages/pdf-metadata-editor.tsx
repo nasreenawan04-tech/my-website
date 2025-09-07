@@ -212,88 +212,91 @@ const PDFMetadataEditor = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <>
       <Helmet>
         <title>PDF Metadata Editor - Edit PDF Document Properties | CalcEasy</title>
         <meta name="description" content="Edit PDF metadata including title, author, subject, keywords, and other document properties. Free online PDF metadata editor tool." />
         <meta name="keywords" content="PDF metadata editor, edit PDF properties, PDF document information, PDF title author" />
+        <meta property="og:title" content="PDF Metadata Editor - Edit PDF Document Properties | CalcEasy" />
+        <meta property="og:description" content="Edit PDF metadata including title, author, subject, keywords, and other document properties. Free online PDF metadata editor tool." />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="/pdf-metadata-editor" />
       </Helmet>
-      
-      <Header />
-      
-      <main className="pt-16">
-        {/* Hero Section */}
-        <section className="relative py-20 px-4 text-center overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10" />
-          <div className="relative max-w-4xl mx-auto">
-            <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
-              <Info className="h-4 w-4" />
-              PDF Document Properties
+
+      <div className="min-h-screen flex flex-col" data-testid="page-pdf-metadata-editor">
+        <Header />
+        
+        <main className="flex-1 bg-neutral-50">
+          {/* Hero Section */}
+          <section className="bg-gradient-to-r from-indigo-600 via-purple-500 to-blue-700 text-white py-16">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <Edit3 className="h-10 w-10" />
+              </div>
+              <h1 className="text-4xl sm:text-5xl font-bold mb-6" data-testid="text-page-title">
+                PDF Metadata Editor
+              </h1>
+              <p className="text-xl text-blue-100 max-w-2xl mx-auto">
+                Edit and update PDF document properties including title, author, subject, keywords, and other metadata information.
+              </p>
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              PDF Metadata <span className="text-blue-600">Editor</span>
-            </h1>
-            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Edit and update PDF document properties including title, author, subject, keywords, and other metadata information.
-            </p>
-          </div>
-        </section>
+          </section>
 
-        {/* Tool Section */}
-        <section className="py-16 px-4">
-          <div className="max-w-6xl mx-auto">
+          {/* Tool Section */}
+          <section className="py-16">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             
-            {/* Upload Area */}
-            <Card className="mb-8">
-              <CardContent className="p-8">
-                <div className="text-center">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-4">Upload PDF Document</h2>
-                  <p className="text-gray-600 mb-6">Select a PDF file to view and edit its metadata properties</p>
-                  
-                  <div
-                    className={`border-2 border-dashed rounded-xl p-8 transition-all duration-200 ${
-                      dragOver 
-                        ? 'border-blue-500 bg-blue-50' 
-                        : 'border-gray-300 hover:border-blue-400 hover:bg-gray-50'
-                    }`}
-                    onDrop={handleDrop}
-                    onDragOver={handleDragOver}
-                    onDragLeave={handleDragLeave}
-                    data-testid="drag-drop-upload-area"
-                  >
-                    <Upload className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                    <p className="text-lg font-medium text-gray-700 mb-2">
-                      Drop your PDF file here, or click to browse
-                    </p>
-                    <p className="text-sm text-gray-500 mb-4">
-                      Supports PDF files up to 50MB
-                    </p>
-                    <Button 
-                      onClick={() => fileInputRef.current?.click()}
-                      variant="outline"
-                      className="bg-white hover:bg-gray-50"
-                      data-testid="button-select-file"
-                    >
-                      <FileText className="h-4 w-4 mr-2" />
-                      Select PDF File
-                    </Button>
-                    <input
-                      ref={fileInputRef}
-                      type="file"
-                      accept=".pdf"
-                      onChange={(e) => handleFileSelect(e.target.files)}
-                      className="hidden"
-                      data-testid="input-file-upload"
-                    />
+              <Card className="bg-white shadow-sm border-0 mb-8">
+                <CardContent className="p-8">
+                  <div className="space-y-8">
+                    {/* File Upload Section */}
+                    <div>
+                      <h2 className="text-2xl font-semibold text-gray-900 mb-6">Upload PDF Document</h2>
+                      
+                      <div
+                        className={`border-2 border-dashed rounded-xl p-12 text-center transition-colors ${
+                          dragOver 
+                            ? 'border-blue-500 bg-blue-50' 
+                            : 'border-gray-300 hover:border-gray-400'
+                        }`}
+                        onDrop={handleDrop}
+                        onDragOver={handleDragOver}
+                        onDragLeave={handleDragLeave}
+                        onClick={() => fileInputRef.current?.click()}
+                        data-testid="drag-drop-upload-area"
+                      >
+                        <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                        <h3 className="text-lg font-medium text-gray-900 mb-2">
+                          Drag and drop your PDF file here
+                        </h3>
+                        <p className="text-gray-600 mb-4">
+                          or click to select a file from your computer (up to 50MB)
+                        </p>
+                        <Button
+                          className="bg-blue-600 hover:bg-blue-700 text-white"
+                          data-testid="button-select-file"
+                        >
+                          Select PDF File
+                        </Button>
+                        
+                        <input
+                          ref={fileInputRef}
+                          type="file"
+                          accept=".pdf"
+                          onChange={(e) => handleFileSelect(e.target.files)}
+                          className="hidden"
+                          data-testid="input-file-upload"
+                        />
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
 
-            {/* File Info */}
-            {pdfFile && (
-              <Card className="mb-8">
-                <CardContent className="p-6">
+              {/* File Info */}
+              {pdfFile && (
+                <Card className="bg-white shadow-sm border-0 mb-8">
+                  <CardContent className="p-6">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <FileText className="h-10 w-10 text-red-500" />
@@ -325,12 +328,12 @@ const PDFMetadataEditor = () => {
               </Card>
             )}
 
-            {/* Metadata Display and Edit */}
-            {metadata && (
-              <div className="grid md:grid-cols-2 gap-8 mb-8">
-                {/* Current Metadata */}
-                <Card>
-                  <CardContent className="p-6">
+              {/* Metadata Display and Edit */}
+              {metadata && (
+                <div className="grid md:grid-cols-2 gap-8 mb-8">
+                  {/* Current Metadata */}
+                  <Card className="bg-white shadow-sm border-0">
+                    <CardContent className="p-6">
                     <div className="flex items-center gap-2 mb-4">
                       <Info className="h-5 w-5 text-blue-600" />
                       <h3 className="text-lg font-semibold text-gray-900">Current Metadata</h3>
@@ -412,9 +415,9 @@ const PDFMetadataEditor = () => {
                   </CardContent>
                 </Card>
 
-                {/* Edit Metadata */}
-                <Card>
-                  <CardContent className="p-6">
+                  {/* Edit Metadata */}
+                  <Card className="bg-white shadow-sm border-0">
+                    <CardContent className="p-6">
                     <div className="flex items-center gap-2 mb-4">
                       <Edit3 className="h-5 w-5 text-green-600" />
                       <h3 className="text-lg font-semibold text-gray-900">Edit Metadata</h3>
@@ -543,10 +546,10 @@ const PDFMetadataEditor = () => {
               </div>
             )}
 
-            {/* Download Section */}
-            {editedPdfUrl && (
-              <Card className="mb-8">
-                <CardContent className="p-6">
+              {/* Download Section */}
+              {editedPdfUrl && (
+                <Card className="bg-white shadow-sm border-0 mb-8">
+                  <CardContent className="p-6">
                   <div className="text-center">
                     <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Download className="h-8 w-8 text-green-600" />
@@ -566,9 +569,9 @@ const PDFMetadataEditor = () => {
               </Card>
             )}
 
-            {/* Info Section */}
-            <Card>
-              <CardContent className="p-6">
+              {/* Info Section */}
+              <Card className="bg-white shadow-sm border-0">
+                <CardContent className="p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">About PDF Metadata Editor</h3>
                 <div className="prose prose-sm text-gray-600 max-w-none">
                   <p className="mb-4">
@@ -596,14 +599,15 @@ const PDFMetadataEditor = () => {
                     <li>Secure processing - files are not stored on our servers</li>
                   </ul>
                 </div>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-      </main>
-      
-      <Footer />
-    </div>
+                </CardContent>
+              </Card>
+            </div>
+          </section>
+        </main>
+        
+        <Footer />
+      </div>
+    </>
   );
 };
 
