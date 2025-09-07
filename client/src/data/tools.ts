@@ -69,7 +69,7 @@ const toolsData = [
   { id: 'case-converter', name: 'Case Converter (UPPER ⇄ lower)', description: 'Convert text between different cases', category: 'text' as const, icon: 'fas fa-text-height', href: '/tools/case-converter' },
   { id: 'password-generator', name: 'Random Password Generator', description: 'Generate secure random passwords', category: 'text' as const, icon: 'fas fa-key', href: '/tools/password-generator' },
   { id: 'username-generator', name: 'Random Username Generator', description: 'Generate unique usernames', category: 'text' as const, icon: 'fas fa-user', href: '/tools/username-generator' },
-  { id: 'lorem-ipsum', name: 'Lorem Ipsum Generator', description: 'Generate placeholder text for designs', category: 'text' as const, icon: 'fas fa-paragraph' },
+  { id: 'lorem-ipsum-generator', name: 'Lorem Ipsum Generator', description: 'Generate placeholder text for designs', category: 'text' as const, icon: 'fas fa-paragraph', href: '/tools/lorem-ipsum-generator' },
   { id: 'fake-address-generator', name: 'Fake Address Generator', description: 'Generate fake addresses for testing', category: 'text' as const, icon: 'fas fa-map-marker-alt', href: '/tools/fake-address-generator' },
   { id: 'fake-name-generator', name: 'Fake Name Generator', description: 'Generate fake names for testing', category: 'text' as const, icon: 'fas fa-id-card', href: '/tools/fake-name-generator' },
   { id: 'binary-to-text-converter', name: 'Binary to Text Converter', description: 'Convert binary code to readable text', category: 'text' as const, icon: 'fas fa-exchange-alt', href: '/tools/binary-to-text-converter' },
