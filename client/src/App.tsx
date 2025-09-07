@@ -103,6 +103,7 @@ import TextToBinaryConverter from '@/pages/text-to-binary-converter';
 import BinaryToTextConverter from '@/pages/binary-to-text-converter';
 import QRCodeScanner from './pages/qr-code-scanner';
 import MarkdownToHTMLConverter from '@/pages/markdown-to-html';
+import LoremIpsumGenerator from '@/pages/lorem-ipsum-generator';
 
 
 function ScrollToTop() {
@@ -206,6 +207,7 @@ function Router() {
         <Route path="/tools/binary-to-text-converter" component={BinaryToTextConverter} />
         <Route path="/tools/qr-code-scanner" component={QRCodeScanner} />
         <Route path="/tools/markdown-to-html" component={MarkdownToHTMLConverter} />
+        <Route path="/tools/lorem-ipsum-generator" component={LoremIpsumGenerator} />
       <Route path="/tools/:toolId" component={ToolPage} />
       <Route path="/finance" component={FinanceTools} />
       <Route path="/pdf" component={PDFTools} />
