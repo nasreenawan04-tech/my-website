@@ -106,7 +106,6 @@ const toolsData = [
   { id: 'speech-to-text', name: 'Speech to Text', description: 'Convert audio speech to text', category: 'text' as const, icon: 'fas fa-microphone' },
   { id: 'emoji-translator', name: 'Emoji Translator', description: 'Convert text to emojis and vice versa', category: 'text' as const, icon: 'fas fa-smile' },
   { id: 'ascii-generator', name: 'ASCII Text Generator', description: 'Create ASCII art from text', category: 'text' as const, icon: 'fas fa-font' },
-  { id: 'font-style-changer', name: 'Font Style Changer', description: 'Change text to different font styles', category: 'text' as const, icon: 'fas fa-italic' },
   { id: 'markdown-to-html', name: 'Markdown to HTML Converter', description: 'Convert Markdown to HTML format', category: 'text' as const, icon: 'fab fa-markdown' },
   { id: 'reverse-text-tool', name: 'Reverse Text Tool', description: 'Reverse the order of text characters, words, or lines', category: 'text' as const, icon: 'fas fa-backward', href: '/tools/reverse-text-tool' },
   { id: 'word-cloud', name: 'Word Cloud Generator', description: 'Create visual word clouds from text', category: 'text' as const, icon: 'fas fa-cloud' },
