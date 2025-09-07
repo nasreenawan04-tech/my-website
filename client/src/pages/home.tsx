@@ -9,11 +9,11 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>DapsiWow - 180+ Free Online Tools for Business & Personal Use | No Registration Required</title>
-        <meta name="description" content="Discover 150+ powerful free online tools for finance calculations, PDF editing, image processing, text analysis, and health monitoring. Professional-grade utilities with no sign-up required, working on all devices worldwide." />
-        <meta name="keywords" content="DapsiWow, dapsiwow, free online tools, PDF converter, image editor, loan calculator, mortgage calculator, business loan calculator, lease calculator, productivity tools, finance calculators, text tools, health calculators, online utilities, web tools, no registration tools" />
-        <meta property="og:title" content="DapsiWow - 180+ Free Online Tools for Business & Personal Use" />
-        <meta property="og:description" content="Discover 150+ powerful free online tools for finance calculations, PDF editing, image processing, text analysis, and health monitoring. Professional-grade utilities with no sign-up required." />
+        <title>DapsiWow - 150+ Free Online Tools for Business & Personal Use | No Registration Required</title>
+        <meta name="description" content="Discover 150+ powerful free online tools for finance calculations, PDF editing, text analysis, and health monitoring. Professional-grade utilities with no sign-up required, working on all devices worldwide." />
+        <meta name="keywords" content="DapsiWow, dapsiwow, free online tools, PDF converter, loan calculator, mortgage calculator, business loan calculator, lease calculator, productivity tools, finance calculators, text tools, health calculators, online utilities, web tools, no registration tools" />
+        <meta property="og:title" content="DapsiWow - 150+ Free Online Tools for Business & Personal Use" />
+        <meta property="og:description" content="Discover 150+ powerful free online tools for finance calculations, PDF editing, text analysis, and health monitoring. Professional-grade utilities with no sign-up required." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dapsiwow.com/" />
         <meta name="robots" content="index, follow" />
@@ -103,7 +103,7 @@ const Home = () => {
                 </h2>
                 <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed">
                   We've built the most comprehensive collection of online tools to help you work smarter, not harder. 
-                  From complex financial calculations to simple everyday tasks, we've got you covered with professional-grade 
+                  From complex financial calculations to document processing and health monitoring, we've got you covered with professional-grade 
                   tools that rival expensive software suites.
                 </p>
               </div>
@@ -118,14 +118,14 @@ const Home = () => {
                     you'd expect from premium applications, but completely free and accessible through your web browser.
                   </p>
                   <p className="text-lg text-neutral-600 leading-relaxed">
-                    Whether you're a business owner calculating loan payments, a student working with PDFs, or someone who needs quick 
-                    image editing - our tools deliver professional results without the professional price tag.
+                    Whether you're a business owner calculating loan payments, a student working with PDFs, or someone monitoring their health - 
+                    our tools deliver professional results without the professional price tag.
                   </p>
                 </div>
                 <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 shadow-inner">
                   <div className="grid grid-cols-2 gap-6 text-center">
                     <div>
-                      <div className="text-4xl font-bold text-blue-600 mb-2">180+</div>
+                      <div className="text-4xl font-bold text-blue-600 mb-2">150+</div>
                       <div className="text-neutral-700 font-medium">Free Tools</div>
                     </div>
                     <div>
@@ -133,7 +133,7 @@ const Home = () => {
                       <div className="text-neutral-700 font-medium">Registration Required</div>
                     </div>
                     <div>
-                      <div className="text-4xl font-bold text-purple-600 mb-2">5</div>
+                      <div className="text-4xl font-bold text-purple-600 mb-2">4</div>
                       <div className="text-neutral-700 font-medium">Main Categories</div>
                     </div>
                     <div>
@@ -290,7 +290,7 @@ const Home = () => {
                   <h3 className="text-2xl font-bold text-neutral-800 mb-4">Choose Your Tool</h3>
                   <p className="text-neutral-600 leading-relaxed">
                     Browse our categories or use the search bar to find exactly what you need. 
-                    From financial calculators to image editors, we have tools for every task.
+                    From financial calculators to text analyzers, we have tools for every task.
                   </p>
                 </div>
                 
