@@ -46,15 +46,7 @@ const toolsData = [
   { id: 'vat-gst-calculator', name: 'VAT/GST Calculator', description: 'Calculate VAT and GST on products', category: 'finance' as const, icon: 'fas fa-file-invoice', href: '/tools/vat-gst-calculator' },
   { id: 'paypal-fee-calculator', name: 'PayPal Fee Calculator', description: 'Calculate PayPal transaction fees', category: 'finance' as const, icon: 'fab fa-paypal', href: '/tools/paypal-fee-calculator' },
 
-  // PDF Tools (29)
-  { id: 'pdf-to-word', name: 'PDF to Word Converter', description: 'Convert PDF files to Word documents', category: 'pdf' as const, icon: 'fas fa-file-word', isPopular: true },
-  { id: 'word-to-pdf', name: 'Word to PDF Converter', description: 'Convert Word documents to PDF format', category: 'pdf' as const, icon: 'fas fa-file-pdf' },
-  { id: 'excel-to-pdf', name: 'Excel to PDF Converter', description: 'Convert Excel spreadsheets to PDF', category: 'pdf' as const, icon: 'fas fa-file-excel' },
-  { id: 'pdf-to-excel', name: 'PDF to Excel Converter', description: 'Convert PDF files to Excel format', category: 'pdf' as const, icon: 'fas fa-table' },
-  { id: 'ppt-to-pdf', name: 'PowerPoint to PDF Converter', description: 'Convert PowerPoint presentations to PDF', category: 'pdf' as const, icon: 'fas fa-file-powerpoint' },
-  { id: 'pdf-to-ppt', name: 'PDF to PowerPoint Converter', description: 'Convert PDF files to PowerPoint', category: 'pdf' as const, icon: 'fas fa-presentation' },
-  { id: 'jpg-to-pdf', name: 'JPG to PDF Converter', description: 'Convert JPG images to PDF format', category: 'pdf' as const, icon: 'fas fa-image' },
-  { id: 'png-to-pdf', name: 'PNG to PDF Converter', description: 'Convert PNG images to PDF format', category: 'pdf' as const, icon: 'fas fa-file-image' },
+  // PDF Tools (10)
   { id: 'merge-pdf', name: 'Merge PDF', description: 'Combine multiple PDFs into one document', category: 'pdf' as const, icon: 'fas fa-object-group', isPopular: true, href: '/tools/merge-pdf' },
   { id: 'split-pdf', name: 'Split PDF', description: 'Split PDF into multiple documents', category: 'pdf' as const, icon: 'fas fa-cut', href: '/tools/split-pdf' },
   { id: 'compress-pdf', name: 'Compress PDF', description: 'Reduce PDF file size while maintaining quality', category: 'pdf' as const, icon: 'fas fa-compress', isPopular: true },
@@ -62,19 +54,11 @@ const toolsData = [
   { id: 'unlock-pdf', name: 'Unlock PDF', description: 'Remove password protection from PDFs', category: 'pdf' as const, icon: 'fas fa-unlock', href: '/tools/unlock-pdf' },
   { id: 'protect-pdf', name: 'Protect PDF with Password', description: 'Add password protection to PDF files', category: 'pdf' as const, icon: 'fas fa-lock', href: '/tools/protect-pdf' },
   { id: 'watermark-pdf', name: 'Add Watermark to PDF', description: 'Add text or image watermarks to PDF', category: 'pdf' as const, icon: 'fas fa-tint', href: '/tools/watermark-pdf' },
-  { id: 'pdf-to-text', name: 'PDF to Text Converter', description: 'Extract text content from PDF files', category: 'pdf' as const, icon: 'fas fa-file-alt' },
-  { id: 'text-to-pdf', name: 'Text to PDF Converter', description: 'Convert text files to PDF format', category: 'pdf' as const, icon: 'fas fa-file-pdf' },
-  { id: 'html-to-pdf', name: 'HTML to PDF Converter', description: 'Convert HTML pages to PDF format', category: 'pdf' as const, icon: 'fas fa-code' },
-  { id: 'pdf-to-html', name: 'PDF to HTML Converter', description: 'Convert PDF files to HTML format', category: 'pdf' as const, icon: 'fab fa-html5' },
   { id: 'add-page-numbers', name: 'PDF Page Number Adder', description: 'Add page numbers to PDF documents', category: 'pdf' as const, icon: 'fas fa-list-ol', href: '/tools/add-page-numbers' },
   { id: 'organize-pdf', name: 'Organize PDF Pages', description: 'Reorder and organize PDF pages', category: 'pdf' as const, icon: 'fas fa-sort', href: '/tools/organize-pdf' },
   { id: 'extract-pdf-pages', name: 'Extract Pages from PDF', description: 'Extract specific pages from PDF', category: 'pdf' as const, icon: 'fas fa-file-export', href: '/tools/extract-pdf-pages' },
-  { id: 'bw-pdf', name: 'Black & White PDF Converter', description: 'Convert PDF to black and white', category: 'pdf' as const, icon: 'fas fa-adjust' },
   { id: 'pdf-metadata', name: 'PDF Metadata Editor', description: 'Edit PDF metadata and properties', category: 'pdf' as const, icon: 'fas fa-info-circle' },
   { id: 'sign-pdf', name: 'Sign PDF Online', description: 'Add digital signatures to PDF documents', category: 'pdf' as const, icon: 'fas fa-signature' },
-  { id: 'pdf-to-image', name: 'PDF to Image (JPG/PNG)', description: 'Convert PDF pages to image format', category: 'pdf' as const, icon: 'fas fa-images' },
-  { id: 'pdf-to-epub', name: 'PDF to EPUB Converter', description: 'Convert PDF files to EPUB format', category: 'pdf' as const, icon: 'fas fa-book' },
-  { id: 'epub-to-pdf', name: 'EPUB to PDF Converter', description: 'Convert EPUB books to PDF format', category: 'pdf' as const, icon: 'fas fa-book-open' },
 
 
   // Text Tools (30)
@@ -92,7 +76,6 @@ const toolsData = [
   { id: 'binary-to-text-converter', name: 'Binary to Text Converter', description: 'Convert binary code to readable text', category: 'text' as const, icon: 'fas fa-exchange-alt', href: '/tools/binary-to-text-converter' },
   { id: 'text-to-binary-converter', name: 'Text to Binary Converter', description: 'Convert text to binary code', category: 'text' as const, icon: 'fas fa-binary', href: '/tools/text-to-binary-converter' },
   { id: 'font-style-changer', name: 'Font Style Changer', description: 'Transform text with stylish fonts', category: 'text' as const, icon: 'fas fa-font', href: '/tools/font-style-changer' },
-  { id: 'ascii-generator', name: 'ASCII Text Generator', description: 'Create ASCII art from text', category: 'text' as const, icon: 'fas fa-font' },
   { id: 'markdown-to-html', name: 'Markdown to HTML Converter', description: 'Convert Markdown to HTML format', category: 'text' as const, icon: 'fab fa-markdown' },
   { id: 'reverse-text-tool', name: 'Reverse Text Tool', description: 'Reverse the order of text characters, words, or lines', category: 'text' as const, icon: 'fas fa-backward', href: '/tools/reverse-text-tool' },
   { id: 'text-to-qr-code', name: 'Text to QR Code', description: 'Extract URLs, emails, and text content and convert to QR codes', category: 'text' as const, icon: 'fas fa-arrow-right', href: '/tools/text-to-qr-code' },
@@ -125,7 +108,6 @@ const toolsData = [
   { id: 'whr-calculator', name: 'WHR Calculator (Waist-Hip Ratio)', description: 'Calculate waist-to-hip ratio', category: 'health' as const, icon: 'fas fa-tape', href: '/tools/whr-calculator' },
   { id: 'life-expectancy-calculator', name: 'Life Expectancy Calculator', description: 'Estimate life expectancy based on lifestyle', category: 'health' as const, icon: 'fas fa-hourglass', href: '/tools/life-expectancy-calculator' },
   { id: 'cholesterol-risk-calculator', name: 'Cholesterol Risk Calculator', description: 'Assess cholesterol-related health risks', category: 'health' as const, icon: 'fas fa-vial', href: '/tools/cholesterol-risk-calculator' },
-  { id: 'diabetes-risk', name: 'Diabetes Risk Calculator', description: 'Assess risk of developing diabetes', category: 'health' as const, icon: 'fas fa-syringe' },
   { id: 'running-pace', name: 'Running Pace Calculator', description: 'Calculate running pace and times', category: 'health' as const, icon: 'fas fa-running' },
   { id: 'cycling-speed', name: 'Cycling Speed Calculator', description: 'Calculate cycling speed and distance', category: 'health' as const, icon: 'fas fa-bicycle' },
   { id: 'swimming-calories', name: 'Swimming Calorie Calculator', description: 'Calculate calories burned while swimming', category: 'health' as const, icon: 'fas fa-swimmer' },
