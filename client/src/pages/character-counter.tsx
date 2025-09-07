@@ -9,7 +9,6 @@ import { Checkbox } from '@/components/ui/checkbox';
 
 interface CharacterCountResult {
   totalCharacters: number;
-  charactersWithSpaces: number;
   charactersWithoutSpaces: number;
   alphabeticCharacters: number;
   numericCharacters: number;
@@ -33,8 +32,7 @@ const CharacterCounter = () => {
     // Total characters
     const totalCharacters = inputText.length;
     
-    // Characters with and without spaces
-    const charactersWithSpaces = inputText.length;
+    // Characters without spaces
     const charactersWithoutSpaces = inputText.replace(/\s/g, '').length;
     
     // Alphabetic characters (letters only)
@@ -70,7 +68,6 @@ const CharacterCounter = () => {
 
     return {
       totalCharacters,
-      charactersWithSpaces,
       charactersWithoutSpaces,
       alphabeticCharacters,
       numericCharacters,
@@ -100,7 +97,6 @@ const CharacterCounter = () => {
     if (result) {
       const stats = `Character Count Statistics:
 Total Characters: ${result.totalCharacters}
-Characters (with spaces): ${result.charactersWithSpaces}
 Characters (without spaces): ${result.charactersWithoutSpaces}
 Alphabetic Characters: ${result.alphabeticCharacters}
 Numeric Characters: ${result.numericCharacters}
@@ -245,19 +241,11 @@ This tool provides detailed analysis of your text content.`;
                             <div className="text-sm text-gray-600">Total Characters</div>
                           </div>
                           
-                          <div className="grid grid-cols-2 gap-4">
-                            <div className="bg-green-50 rounded-lg p-4 text-center">
-                              <div className="text-2xl font-bold text-green-600" data-testid="stat-characters-with-spaces">
-                                {result.charactersWithSpaces.toLocaleString()}
-                              </div>
-                              <div className="text-sm text-gray-600">With Spaces</div>
+                          <div className="bg-purple-50 rounded-lg p-4 text-center">
+                            <div className="text-2xl font-bold text-purple-600" data-testid="stat-characters-without-spaces">
+                              {result.charactersWithoutSpaces.toLocaleString()}
                             </div>
-                            <div className="bg-purple-50 rounded-lg p-4 text-center">
-                              <div className="text-2xl font-bold text-purple-600" data-testid="stat-characters-without-spaces">
-                                {result.charactersWithoutSpaces.toLocaleString()}
-                              </div>
-                              <div className="text-sm text-gray-600">Without Spaces</div>
-                            </div>
+                            <div className="text-sm text-gray-600">Characters (no spaces)</div>
                           </div>
                         </div>
 

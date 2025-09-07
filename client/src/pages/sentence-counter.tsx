@@ -46,10 +46,34 @@ const SentenceCounter = () => {
     const sentences = inputText.split(/[.!?]+/).filter(sentence => sentence.trim().length > 0);
     const totalSentences = sentences.length;
 
-    // Count different types of sentences
-    const declarativeSentences = inputText.split(/[.]/).filter(s => s.trim().length > 0).length;
-    const interrogativeSentences = inputText.split(/[?]/).filter(s => s.trim().length > 0).length;
-    const exclamatorySentences = inputText.split(/[!]/).filter(s => s.trim().length > 0).length;
+    // Count different types of sentences by analyzing each actual sentence
+    let declarativeSentences = 0;
+    let interrogativeSentences = 0;
+    let exclamatorySentences = 0;
+
+    sentences.forEach(sentence => {
+      const trimmed = sentence.trim();
+      if (trimmed.length > 0) {
+        // Check the last character to determine sentence type
+        const lastChar = trimmed[trimmed.length - 1];
+        if (lastChar === '.') {
+          declarativeSentences++;
+        } else if (lastChar === '?') {
+          interrogativeSentences++;
+        } else if (lastChar === '!') {
+          exclamatorySentences++;
+        }
+      }
+    });
+
+    // Re-analyze the original text to count sentences by ending punctuation
+    const declarativeMatches = inputText.match(/[^.!?]*\./g) || [];
+    const interrogativeMatches = inputText.match(/[^.!?]*\?/g) || [];
+    const exclamatoryMatches = inputText.match(/[^.!?]*!/g) || [];
+    
+    declarativeSentences = declarativeMatches.filter(s => s.trim().length > 1).length;
+    interrogativeSentences = interrogativeMatches.filter(s => s.trim().length > 1).length;
+    exclamatorySentences = exclamatoryMatches.filter(s => s.trim().length > 1).length;
 
     // Calculate word and character counts
     const words = inputText.trim().split(/\s+/).filter(word => word.length > 0).length;
