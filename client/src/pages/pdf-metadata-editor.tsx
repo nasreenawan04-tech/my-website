@@ -266,7 +266,7 @@ const PDFMetadataEditor = () => {
                       Drop your PDF file here, or click to browse
                     </p>
                     <p className="text-sm text-gray-500 mb-4">
-                      Supports PDF files up to 100MB
+                      Supports PDF files up to 50MB
                     </p>
                     <Button 
                       onClick={() => fileInputRef.current?.click()}
