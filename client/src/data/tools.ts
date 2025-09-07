@@ -58,7 +58,7 @@ const toolsData = [
   { id: 'organize-pdf', name: 'Organize PDF Pages', description: 'Reorder and organize PDF pages', category: 'pdf' as const, icon: 'fas fa-sort', href: '/tools/organize-pdf' },
   { id: 'extract-pdf-pages', name: 'Extract Pages from PDF', description: 'Extract specific pages from PDF', category: 'pdf' as const, icon: 'fas fa-file-export', href: '/tools/extract-pdf-pages' },
   { id: 'pdf-metadata', name: 'PDF Metadata Editor', description: 'Edit PDF metadata and properties', category: 'pdf' as const, icon: 'fas fa-info-circle', href: '/tools/pdf-metadata' },
-  { id: 'sign-pdf', name: 'Sign PDF Online', description: 'Add digital signatures to PDF documents', category: 'pdf' as const, icon: 'fas fa-signature' },
+  { id: 'sign-pdf', name: 'Sign PDF Online', description: 'Add digital signatures to PDF documents', category: 'pdf' as const, icon: 'fas fa-signature', href: '/tools/sign-pdf' },
 
 
   // Text Tools (30)
