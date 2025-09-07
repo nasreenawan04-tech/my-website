@@ -76,7 +76,7 @@ const toolsData = [
   { id: 'binary-to-text-converter', name: 'Binary to Text Converter', description: 'Convert binary code to readable text', category: 'text' as const, icon: 'fas fa-exchange-alt', href: '/tools/binary-to-text-converter' },
   { id: 'text-to-binary-converter', name: 'Text to Binary Converter', description: 'Convert text to binary code', category: 'text' as const, icon: 'fas fa-binary', href: '/tools/text-to-binary-converter' },
   { id: 'font-style-changer', name: 'Font Style Changer', description: 'Transform text with stylish fonts', category: 'text' as const, icon: 'fas fa-font', href: '/tools/font-style-changer' },
-  { id: 'markdown-to-html', name: 'Markdown to HTML Converter', description: 'Convert Markdown to HTML format', category: 'text' as const, icon: 'fab fa-markdown' },
+  { id: 'markdown-to-html', name: 'Markdown to HTML Converter', description: 'Convert Markdown to HTML format', category: 'text' as const, icon: 'fab fa-markdown', href: '/tools/markdown-to-html' },
   { id: 'reverse-text-tool', name: 'Reverse Text Tool', description: 'Reverse the order of text characters, words, or lines', category: 'text' as const, icon: 'fas fa-backward', href: '/tools/reverse-text-tool' },
   { id: 'text-to-qr-code', name: 'Text to QR Code', description: 'Extract URLs, emails, and text content and convert to QR codes', category: 'text' as const, icon: 'fas fa-arrow-right', href: '/tools/text-to-qr-code' },
   { id: 'qr-code-scanner', name: 'QR Code Scanner', description: 'Scan QR codes from images to extract text content', category: 'text' as const, icon: 'fas fa-camera', href: '/tools/qr-code-scanner' },
