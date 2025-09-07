@@ -87,6 +87,7 @@ import WordCounter from '@/pages/word-counter';
 import CharacterCounter from '@/pages/character-counter';
 import SentenceCounter from '@/pages/sentence-counter';
 import ParagraphCounter from '@/pages/paragraph-counter';
+import CaseConverter from '@/pages/case-converter';
 
 
 function ScrollToTop() {
@@ -174,6 +175,7 @@ function Router() {
       <Route path="/tools/character-counter" component={CharacterCounter} />
         <Route path="/tools/sentence-counter" component={SentenceCounter} />
         <Route path="/tools/paragraph-counter" component={ParagraphCounter} />
+        <Route path="/tools/case-converter" component={CaseConverter} />
       <Route path="/tools/:toolId" component={ToolPage} />
       <Route path="/finance" component={FinanceTools} />
       <Route path="/pdf" component={PDFTools} />
