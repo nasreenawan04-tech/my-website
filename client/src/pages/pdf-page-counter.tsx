@@ -1,11 +1,12 @@
+
 import { useState, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { PDFDocument } from 'pdf-lib';
-import { Upload, FileText, Info, Clock, HardDrive, Calendar, FileIcon, Eye } from 'lucide-react';
+import { Upload, FileText, Info, Clock, HardDrive, Calendar, FileIcon, Eye, RotateCcw } from 'lucide-react';
 
 interface PDFInfo {
   name: string;
@@ -59,7 +60,6 @@ const PDFPageCounter = () => {
   };
 
   const calculateReadingTime = (pages: number): string => {
-    // Average reading speed: 2-3 minutes per page for technical documents
     const minutesPerPage = 2.5;
     const totalMinutes = Math.round(pages * minutesPerPage);
     
@@ -79,11 +79,9 @@ const PDFPageCounter = () => {
   };
 
   const formatDimensions = (width: number, height: number): string => {
-    // Convert points to common paper sizes or display in points
     const widthMm = Math.round(width * 0.352778);
     const heightMm = Math.round(height * 0.352778);
     
-    // Check for common paper sizes (with tolerance)
     if (Math.abs(widthMm - 210) < 5 && Math.abs(heightMm - 297) < 5) return 'A4 (210×297mm)';
     if (Math.abs(widthMm - 216) < 5 && Math.abs(heightMm - 279) < 5) return 'Letter (8.5×11in)';
     if (Math.abs(widthMm - 216) < 5 && Math.abs(heightMm - 356) < 5) return 'Legal (8.5×14in)';
@@ -112,7 +110,6 @@ const PDFPageCounter = () => {
       const pageCount = pdf.getPageCount();
       const pageDetails: PageInfo[] = [];
       
-      // Get page details
       for (let i = 0; i < pageCount; i++) {
         const page = pdf.getPage(i);
         const { width, height } = page.getSize();
@@ -179,7 +176,7 @@ const PDFPageCounter = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+    <div className="min-h-screen flex flex-col">
       <Helmet>
         <title>PDF Page Counter & Info - Count Pages and Get PDF Information | CalcEasy</title>
         <meta 
@@ -191,257 +188,279 @@ const PDFPageCounter = () => {
 
       <Header />
 
-      <main className="max-w-4xl mx-auto px-4 py-8">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            PDF Page Counter & Info
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Upload a PDF to get detailed information including page count, file size, creation date, page dimensions, and estimated reading time
-          </p>
-        </div>
+      <main className="flex-1 bg-neutral-50">
+        {/* Hero Section */}
+        <section className="bg-gradient-to-r from-red-600 via-red-500 to-pink-600 text-white py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="w-16 h-16 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+              <Info className="w-8 h-8" />
+            </div>
+            <h1 className="text-4xl sm:text-5xl font-bold mb-4">
+              PDF Page Counter & Info
+            </h1>
+            <p className="text-xl text-red-100 mb-8 max-w-3xl mx-auto">
+              Upload a PDF to get detailed information including page count, file size, creation date, page dimensions, and estimated reading time
+            </p>
+          </div>
+        </section>
 
-        {!pdfFile ? (
-          <Card className="mb-8" data-testid="card-upload">
-            <CardContent className="p-8">
-              <div
-                className={`border-2 border-dashed rounded-xl p-12 text-center transition-all duration-200 cursor-pointer ${
-                  dragOver 
-                    ? 'border-blue-500 bg-blue-50' 
-                    : 'border-gray-300 hover:border-gray-400'
-                }`}
-                onDrop={handleDrop}
-                onDragOver={handleDragOver}
-                onDragLeave={handleDragLeave}
-                onClick={() => fileInputRef.current?.click()}
-                data-testid="drag-drop-upload-area"
-              >
-                <Upload className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                <h3 className="text-xl font-medium text-gray-900 mb-2">
-                  Drag and drop your PDF file here
-                </h3>
-                <p className="text-gray-600 mb-4">
-                  or click to select a file from your computer
+        {/* Tool Content */}
+        <section className="py-16">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Card className="shadow-xl">
+              <CardHeader className="text-center pb-2">
+                <CardTitle className="text-2xl font-bold text-neutral-800">
+                  Analyze Your PDF
+                </CardTitle>
+                <p className="text-neutral-600 mt-2">
+                  Upload a PDF file to get comprehensive information and statistics
                 </p>
-                <Button
-                  className="bg-blue-600 hover:bg-blue-700 text-white"
-                  data-testid="button-select-file"
-                >
-                  Select PDF File
-                </Button>
-                
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept=".pdf"
-                  onChange={(e) => handleFileSelect(e.target.files)}
-                  className="hidden"
-                  data-testid="input-file-upload"
-                />
-              </div>
-            </CardContent>
-          </Card>
-        ) : (
-          <div className="space-y-6">
-            {/* File Info */}
-            <Card data-testid="card-file-info">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center space-x-3">
-                    <FileText className="w-8 h-8 text-red-500" />
-                    <div>
-                      <h3 className="font-medium text-gray-900">{pdfFile.name}</h3>
-                      <p className="text-sm text-gray-500">PDF Document</p>
-                    </div>
-                  </div>
-                  <Button
-                    onClick={resetTool}
-                    variant="outline"
-                    size="sm"
-                    data-testid="button-upload-new"
+              </CardHeader>
+              <CardContent className="space-y-6">
+                {!pdfFile ? (
+                  <div
+                    className={`border-2 border-dashed rounded-xl p-12 text-center transition-all duration-200 cursor-pointer ${
+                      dragOver 
+                        ? 'border-red-500 bg-red-50' 
+                        : 'border-neutral-300 hover:border-neutral-400 hover:bg-neutral-50'
+                    }`}
+                    onDrop={handleDrop}
+                    onDragOver={handleDragOver}
+                    onDragLeave={handleDragLeave}
+                    onClick={() => fileInputRef.current?.click()}
+                    data-testid="drag-drop-upload-area"
                   >
-                    Upload New File
-                  </Button>
-                </div>
-                
-                {isProcessing ? (
-                  <div className="text-center py-8" data-testid="processing-indicator">
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
-                    <p className="text-gray-600">Analyzing PDF...</p>
+                    <Upload className="w-16 h-16 text-neutral-400 mx-auto mb-4" />
+                    <h3 className="text-xl font-medium text-neutral-900 mb-2">
+                      Drop your PDF file here
+                    </h3>
+                    <p className="text-neutral-600 mb-4">
+                      or click to browse and select a file
+                    </p>
+                    <Button className="bg-red-600 hover:bg-red-700 text-white">
+                      Select PDF File
+                    </Button>
+                    
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept=".pdf"
+                      onChange={(e) => handleFileSelect(e.target.files)}
+                      className="hidden"
+                      data-testid="input-file-upload"
+                    />
                   </div>
-                ) : pdfInfo && (
+                ) : (
                   <div className="space-y-6">
-                    {/* Basic Information */}
-                    <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                        <Info className="w-5 h-5 mr-2 text-blue-500" />
-                        Basic Information
-                      </h4>
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <div className="bg-gray-50 rounded-lg p-4" data-testid="info-pages">
-                          <div className="flex items-center mb-2">
-                            <FileIcon className="w-5 h-5 text-blue-500 mr-2" />
-                            <span className="font-medium text-gray-700">Total Pages</span>
-                          </div>
-                          <p className="text-2xl font-bold text-gray-900">{pdfInfo.pages}</p>
-                        </div>
-                        
-                        <div className="bg-gray-50 rounded-lg p-4" data-testid="info-size">
-                          <div className="flex items-center mb-2">
-                            <HardDrive className="w-5 h-5 text-green-500 mr-2" />
-                            <span className="font-medium text-gray-700">File Size</span>
-                          </div>
-                          <p className="text-2xl font-bold text-gray-900">{pdfInfo.size}</p>
-                        </div>
-                        
-                        <div className="bg-gray-50 rounded-lg p-4" data-testid="info-reading-time">
-                          <div className="flex items-center mb-2">
-                            <Clock className="w-5 h-5 text-purple-500 mr-2" />
-                            <span className="font-medium text-gray-700">Estimated Reading Time</span>
-                          </div>
-                          <p className="text-2xl font-bold text-gray-900">{pdfInfo.estimatedReadingTime}</p>
+                    {/* File Header */}
+                    <div className="flex items-center justify-between p-4 bg-neutral-50 rounded-lg">
+                      <div className="flex items-center space-x-3">
+                        <FileText className="w-8 h-8 text-red-500" />
+                        <div>
+                          <h3 className="font-medium text-neutral-900">{pdfFile.name}</h3>
+                          <p className="text-sm text-neutral-500">PDF Document</p>
                         </div>
                       </div>
+                      <Button
+                        onClick={resetTool}
+                        variant="outline"
+                        size="sm"
+                        className="flex items-center space-x-2"
+                      >
+                        <RotateCcw className="w-4 h-4" />
+                        <span>New File</span>
+                      </Button>
                     </div>
-
-                    {/* Document Metadata */}
-                    {(pdfInfo.title || pdfInfo.author || pdfInfo.subject || pdfInfo.creator || pdfInfo.producer || pdfInfo.keywords) && (
-                      <div>
-                        <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                          <FileText className="w-5 h-5 mr-2 text-green-500" />
-                          Document Metadata
-                        </h4>
-                        <div className="bg-gray-50 rounded-lg p-4">
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                            {pdfInfo.title && (
-                              <div data-testid="metadata-title">
-                                <span className="font-medium text-gray-700">Title:</span>
-                                <p className="text-gray-900 mt-1">{pdfInfo.title}</p>
-                              </div>
-                            )}
-                            {pdfInfo.author && (
-                              <div data-testid="metadata-author">
-                                <span className="font-medium text-gray-700">Author:</span>
-                                <p className="text-gray-900 mt-1">{pdfInfo.author}</p>
-                              </div>
-                            )}
-                            {pdfInfo.subject && (
-                              <div data-testid="metadata-subject">
-                                <span className="font-medium text-gray-700">Subject:</span>
-                                <p className="text-gray-900 mt-1">{pdfInfo.subject}</p>
-                              </div>
-                            )}
-                            {pdfInfo.creator && (
-                              <div data-testid="metadata-creator">
-                                <span className="font-medium text-gray-700">Creator:</span>
-                                <p className="text-gray-900 mt-1">{pdfInfo.creator}</p>
-                              </div>
-                            )}
-                            {pdfInfo.producer && (
-                              <div data-testid="metadata-producer">
-                                <span className="font-medium text-gray-700">Producer:</span>
-                                <p className="text-gray-900 mt-1">{pdfInfo.producer}</p>
-                              </div>
-                            )}
-                            {pdfInfo.keywords && (
-                              <div data-testid="metadata-keywords" className="md:col-span-2">
-                                <span className="font-medium text-gray-700">Keywords:</span>
-                                <p className="text-gray-900 mt-1">{pdfInfo.keywords}</p>
-                              </div>
-                            )}
+                    
+                    {isProcessing ? (
+                      <div className="text-center py-12">
+                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto mb-4"></div>
+                        <p className="text-neutral-600 text-lg">Analyzing PDF...</p>
+                      </div>
+                    ) : pdfInfo && (
+                      <div className="space-y-8">
+                        {/* Basic Information Cards */}
+                        <div>
+                          <h4 className="text-lg font-semibold text-neutral-900 mb-4 flex items-center">
+                            <Info className="w-5 h-5 mr-2 text-red-500" />
+                            Basic Information
+                          </h4>
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <Card>
+                              <CardContent className="p-4 text-center">
+                                <FileIcon className="w-8 h-8 text-red-500 mx-auto mb-2" />
+                                <div className="text-2xl font-bold text-neutral-900">{pdfInfo.pages}</div>
+                                <div className="text-sm text-neutral-600">Total Pages</div>
+                              </CardContent>
+                            </Card>
+                            
+                            <Card>
+                              <CardContent className="p-4 text-center">
+                                <HardDrive className="w-8 h-8 text-green-500 mx-auto mb-2" />
+                                <div className="text-2xl font-bold text-neutral-900">{pdfInfo.size}</div>
+                                <div className="text-sm text-neutral-600">File Size</div>
+                              </CardContent>
+                            </Card>
+                            
+                            <Card>
+                              <CardContent className="p-4 text-center">
+                                <Clock className="w-8 h-8 text-purple-500 mx-auto mb-2" />
+                                <div className="text-2xl font-bold text-neutral-900">{pdfInfo.estimatedReadingTime}</div>
+                                <div className="text-sm text-neutral-600">Reading Time</div>
+                              </CardContent>
+                            </Card>
                           </div>
                         </div>
-                      </div>
-                    )}
 
-                    {/* Date Information */}
-                    <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                        <Calendar className="w-5 h-5 mr-2 text-orange-500" />
-                        Date Information
-                      </h4>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="bg-gray-50 rounded-lg p-4" data-testid="date-created">
-                          <span className="font-medium text-gray-700">Created:</span>
-                          <p className="text-gray-900 mt-1">{pdfInfo.creationDate}</p>
-                        </div>
-                        <div className="bg-gray-50 rounded-lg p-4" data-testid="date-modified">
-                          <span className="font-medium text-gray-700">Last Modified:</span>
-                          <p className="text-gray-900 mt-1">{pdfInfo.modificationDate}</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Page Details */}
-                    <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                        <Eye className="w-5 h-5 mr-2 text-indigo-500" />
-                        Page Details
-                      </h4>
-                      <div className="bg-gray-50 rounded-lg p-4 max-h-64 overflow-y-auto" data-testid="page-details">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                          {pdfInfo.pageDetails.map((page) => (
-                            <div 
-                              key={page.pageNumber} 
-                              className="bg-white rounded p-3 text-sm"
-                              data-testid={`page-detail-${page.pageNumber}`}
-                            >
-                              <div className="font-medium text-gray-900 mb-1">
-                                Page {page.pageNumber}
+                        {/* Document Metadata */}
+                        {(pdfInfo.title || pdfInfo.author || pdfInfo.subject || pdfInfo.creator || pdfInfo.producer || pdfInfo.keywords) && (
+                          <Card>
+                            <CardHeader>
+                              <CardTitle className="flex items-center">
+                                <FileText className="w-5 h-5 mr-2 text-green-500" />
+                                Document Metadata
+                              </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                {pdfInfo.title && (
+                                  <div>
+                                    <span className="font-medium text-neutral-700">Title:</span>
+                                    <p className="text-neutral-900 mt-1">{pdfInfo.title}</p>
+                                  </div>
+                                )}
+                                {pdfInfo.author && (
+                                  <div>
+                                    <span className="font-medium text-neutral-700">Author:</span>
+                                    <p className="text-neutral-900 mt-1">{pdfInfo.author}</p>
+                                  </div>
+                                )}
+                                {pdfInfo.subject && (
+                                  <div>
+                                    <span className="font-medium text-neutral-700">Subject:</span>
+                                    <p className="text-neutral-900 mt-1">{pdfInfo.subject}</p>
+                                  </div>
+                                )}
+                                {pdfInfo.creator && (
+                                  <div>
+                                    <span className="font-medium text-neutral-700">Creator:</span>
+                                    <p className="text-neutral-900 mt-1">{pdfInfo.creator}</p>
+                                  </div>
+                                )}
+                                {pdfInfo.producer && (
+                                  <div>
+                                    <span className="font-medium text-neutral-700">Producer:</span>
+                                    <p className="text-neutral-900 mt-1">{pdfInfo.producer}</p>
+                                  </div>
+                                )}
+                                {pdfInfo.keywords && (
+                                  <div className="md:col-span-2">
+                                    <span className="font-medium text-neutral-700">Keywords:</span>
+                                    <p className="text-neutral-900 mt-1">{pdfInfo.keywords}</p>
+                                  </div>
+                                )}
                               </div>
-                              <div className="text-gray-600 space-y-1">
-                                <div>{page.dimensions}</div>
-                                <div className="text-xs text-gray-500">{page.orientation}</div>
+                            </CardContent>
+                          </Card>
+                        )}
+
+                        {/* Date Information */}
+                        <Card>
+                          <CardHeader>
+                            <CardTitle className="flex items-center">
+                              <Calendar className="w-5 h-5 mr-2 text-orange-500" />
+                              Date Information
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div>
+                                <span className="font-medium text-neutral-700">Created:</span>
+                                <p className="text-neutral-900 mt-1">{pdfInfo.creationDate}</p>
+                              </div>
+                              <div>
+                                <span className="font-medium text-neutral-700">Last Modified:</span>
+                                <p className="text-neutral-900 mt-1">{pdfInfo.modificationDate}</p>
                               </div>
                             </div>
-                          ))}
-                        </div>
+                          </CardContent>
+                        </Card>
+
+                        {/* Page Details */}
+                        <Card>
+                          <CardHeader>
+                            <CardTitle className="flex items-center">
+                              <Eye className="w-5 h-5 mr-2 text-indigo-500" />
+                              Page Details
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent>
+                            <div className="max-h-64 overflow-y-auto">
+                              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                                {pdfInfo.pageDetails.map((page) => (
+                                  <div 
+                                    key={page.pageNumber} 
+                                    className="bg-neutral-50 rounded-lg p-3 text-sm"
+                                  >
+                                    <div className="font-medium text-neutral-900 mb-1">
+                                      Page {page.pageNumber}
+                                    </div>
+                                    <div className="text-neutral-600 space-y-1">
+                                      <div>{page.dimensions}</div>
+                                      <div className="text-xs text-neutral-500">{page.orientation}</div>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
                       </div>
-                    </div>
+                    )}
                   </div>
                 )}
               </CardContent>
             </Card>
-          </div>
-        )}
 
-        {/* Features Section */}
-        <div className="mt-12 text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8">What You Get</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="text-center">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-                <FileIcon className="w-6 h-6 text-blue-600" />
+            {/* Features Section */}
+            <div className="mt-12 text-center">
+              <h2 className="text-2xl font-bold text-neutral-900 mb-8">What You Get</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <FileIcon className="w-6 h-6 text-red-600" />
+                  </div>
+                  <h3 className="font-semibold text-neutral-900 mb-2">Page Count</h3>
+                  <p className="text-sm text-neutral-600">Accurate count of total pages in your PDF document</p>
+                </div>
+                
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <Info className="w-6 h-6 text-green-600" />
+                  </div>
+                  <h3 className="font-semibold text-neutral-900 mb-2">File Information</h3>
+                  <p className="text-sm text-neutral-600">File size, creation date, and modification details</p>
+                </div>
+                
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <Clock className="w-6 h-6 text-purple-600" />
+                  </div>
+                  <h3 className="font-semibold text-neutral-900 mb-2">Reading Time</h3>
+                  <p className="text-sm text-neutral-600">Estimated reading time based on document length</p>
+                </div>
+                
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <Eye className="w-6 h-6 text-orange-600" />
+                  </div>
+                  <h3 className="font-semibold text-neutral-900 mb-2">Page Details</h3>
+                  <p className="text-sm text-neutral-600">Dimensions and orientation for each page</p>
+                </div>
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Page Count</h3>
-              <p className="text-sm text-gray-600">Accurate count of total pages in your PDF document</p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-                <Info className="w-6 h-6 text-green-600" />
-              </div>
-              <h3 className="font-semibold text-gray-900 mb-2">File Information</h3>
-              <p className="text-sm text-gray-600">File size, creation date, and modification details</p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-                <Clock className="w-6 h-6 text-purple-600" />
-              </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Reading Time</h3>
-              <p className="text-sm text-gray-600">Estimated reading time based on document length</p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-                <Eye className="w-6 h-6 text-orange-600" />
-              </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Page Details</h3>
-              <p className="text-sm text-gray-600">Dimensions and orientation for each page</p>
             </div>
           </div>
-        </div>
+        </section>
       </main>
 
       <Footer />
