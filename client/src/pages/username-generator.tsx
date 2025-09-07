@@ -176,7 +176,15 @@ const UsernameGenerator = () => {
     // Generate variations
     const variations: string[] = [];
     for (let i = 0; i < 5; i++) {
-      let variation = generateUsername(opts).username;
+      // Generate variation by slightly modifying the final username
+      let variation = finalUsername;
+      if (opts.includeNumbers) {
+        const randomNum = getRandomNumber(10, 999);
+        variation = variation.replace(/\d+/g, randomNum.toString());
+      } else {
+        variation = variation + getRandomNumber(1, 99);
+      }
+      
       if (variation !== finalUsername && !variations.includes(variation)) {
         variations.push(variation);
       }
