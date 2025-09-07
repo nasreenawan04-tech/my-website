@@ -425,7 +425,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Read the uploaded PDF
       const pdfBytes = await fs.readFile(req.file.path);
-      const originalPdf = await PDFDocument.load(pdfBytes);
+      const originalPdf = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
 
       const originalPages = originalPdf.getPages();
       const totalPages = originalPages.length;
@@ -501,7 +501,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Read the uploaded PDF
       const pdfBytes = await fs.readFile(req.file.path);
-      const pdfDoc = await PDFDocument.load(pdfBytes);
+      const pdfDoc = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
 
       const pages = pdfDoc.getPages();
       const pageInfo = pages.map((page, index) => {
@@ -572,7 +572,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Read the uploaded PDF
       const pdfBytes = await fs.readFile(req.file.path);
-      const pdfDoc = await PDFDocument.load(pdfBytes);
+      const pdfDoc = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
 
       const pages = pdfDoc.getPages();
       const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
@@ -798,8 +798,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
           const overlayBuffer = Buffer.concat(overlayChunks);
 
           // Now use pdf-lib to merge overlay with original
-          const originalPdf = await PDFDocument.load(pdfBytes);
-          const overlayPdf = await PDFDocument.load(overlayBuffer);
+          const originalPdf = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
+          const overlayPdf = await PDFDocument.load(overlayBuffer, { ignoreEncryption: true });
 
           const overlayPages = await originalPdf.copyPages(overlayPdf, overlayPdf.getPageIndices());
 
@@ -897,7 +897,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       for (const file of files) {
         const pdfBytes = await fs.readFile(file.path);
-        const pdf = await PDFDocument.load(pdfBytes);
+        const pdf = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
         const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
         copiedPages.forEach((page) => mergedPdf.addPage(page));
       }
@@ -948,7 +948,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const { PDFDocument } = await import('pdf-lib');
       const pdfBytes = await fs.readFile(req.file.path);
-      const originalPdf = await PDFDocument.load(pdfBytes);
+      const originalPdf = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
 
       let pagesToSplit: number[];
       try {
@@ -1030,7 +1030,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const { PDFDocument } = await import('pdf-lib');
       const pdfBytes = await fs.readFile(req.file.path);
-      const pdfDoc = await PDFDocument.load(pdfBytes);
+      const pdfDoc = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
 
       const pages = pdfDoc.getPages();
 
