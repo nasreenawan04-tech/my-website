@@ -1,5 +1,5 @@
 import { Switch, Route, useLocation } from "wouter";
-import { useEffect } from "react";
+import { useEffect, lazy } from "react";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -85,6 +85,7 @@ import OrganizePDFPagesTool from '@/pages/organize-pdf-pages-tool';
 import PDFEditor from '@/pages/pdf-editor';
 import WordCounter from '@/pages/word-counter';
 import CharacterCounter from '@/pages/character-counter';
+import SentenceCounter from '@/pages/sentence-counter';
 
 
 function ScrollToTop() {
@@ -170,7 +171,7 @@ function Router() {
       <Route path="/tools/pdf-editor" component={PDFEditor} />
       <Route path="/tools/word-counter" component={WordCounter} />
       <Route path="/tools/character-counter" component={CharacterCounter} />
-        <Route path="/tools/sentence-counter" component={lazy(() => import('./pages/sentence-counter'))} />
+        <Route path="/tools/sentence-counter" component={SentenceCounter} />
       <Route path="/tools/:toolId" component={ToolPage} />
       <Route path="/finance" component={FinanceTools} />
       <Route path="/pdf" component={PDFTools} />
