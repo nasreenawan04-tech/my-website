@@ -93,7 +93,7 @@ const toolsData = [
   { id: 'paraphrasing-tool', name: 'Paraphrasing Tool', description: 'Rewrite text with different words', category: 'text' as const, icon: 'fas fa-sync-alt' },
   { id: 'essay-generator', name: 'Essay Generator (AI)', description: 'Generate essays on any topic using AI', category: 'text' as const, icon: 'fas fa-robot' },
   { id: 'password-generator', name: 'Random Password Generator', description: 'Generate secure random passwords', category: 'text' as const, icon: 'fas fa-key', href: '/tools/password-generator' },
-  { id: 'username-generator', name: 'Random Username Generator', description: 'Generate unique usernames', category: 'text' as const, icon: 'fas fa-user' },
+  { id: 'username-generator', name: 'Random Username Generator', description: 'Generate unique usernames', category: 'text' as const, icon: 'fas fa-user', href: '/tools/username-generator' },
   { id: 'hashtag-generator', name: 'Hashtag Generator', description: 'Generate relevant hashtags for posts', category: 'text' as const, icon: 'fas fa-hashtag' },
   { id: 'lorem-ipsum', name: 'Lorem Ipsum Generator', description: 'Generate placeholder text for designs', category: 'text' as const, icon: 'fas fa-paragraph' },
   { id: 'fake-address', name: 'Fake Address Generator', description: 'Generate fake addresses for testing', category: 'text' as const, icon: 'fas fa-map-marker-alt' },

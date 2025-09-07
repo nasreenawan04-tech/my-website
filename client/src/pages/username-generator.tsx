@@ -174,7 +174,7 @@ const UsernameGenerator = () => {
     const finalUsername = truncateToLength(baseUsername, opts.length);
 
     // Generate variations
-    const variations = [];
+    const variations: string[] = [];
     for (let i = 0; i < 5; i++) {
       let variation = generateUsername(opts).username;
       if (variation !== finalUsername && !variations.includes(variation)) {

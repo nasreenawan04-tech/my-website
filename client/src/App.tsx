@@ -90,6 +90,7 @@ import ParagraphCounter from '@/pages/paragraph-counter';
 import CaseConverter from '@/pages/case-converter';
 import PasswordGenerator from '@/pages/password-generator';
 import FakeNameGenerator from '@/pages/fake-name-generator';
+import UsernameGenerator from '@/pages/username-generator';
 
 
 function ScrollToTop() {
@@ -180,6 +181,7 @@ function Router() {
         <Route path="/tools/case-converter" component={CaseConverter} />
         <Route path="/tools/password-generator" component={PasswordGenerator} />
         <Route path="/tools/fake-name-generator" component={FakeNameGenerator} />
+        <Route path="/tools/username-generator" component={UsernameGenerator} />
       <Route path="/tools/:toolId" component={ToolPage} />
       <Route path="/finance" component={FinanceTools} />
       <Route path="/pdf" component={PDFTools} />
