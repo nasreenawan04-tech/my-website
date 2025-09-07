@@ -176,7 +176,7 @@ Finally, this last paragraph completes our sample text, giving you four distinct
       <main>
         {/* Hero Section */}
         <section className="gradient-hero text-white py-16 pt-24">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
               <i className="fas fa-paragraph text-3xl"></i>
             </div>
@@ -191,7 +191,7 @@ Finally, this last paragraph completes our sample text, giving you four distinct
 
         {/* Calculator Section */}
         <section className="py-16">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <Card className="bg-white shadow-sm border-0">
               <CardContent className="p-8">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -400,7 +400,7 @@ Finally, this last paragraph completes our sample text, giving you four distinct
         </section>
 
         {/* Information Sections */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
           {/* What is a Paragraph Counter */}
           <div className="mt-12 bg-white rounded-2xl shadow-lg p-8">
             <h2 className="text-3xl font-bold text-gray-900 mb-6">What is a Paragraph Counter?</h2>
