@@ -10,7 +10,7 @@ import { Switch } from '@/components/ui/switch';
 import { Separator } from '@/components/ui/separator';
 
 interface AddressOptions {
-  country: 'US' | 'UK' | 'Canada' | 'Australia' | 'Germany' | 'France';
+  country: 'US' | 'UK' | 'Canada';
   includeApartment: boolean;
   includeSecondaryAddress: boolean;
   includeZipExtension: boolean;
@@ -174,11 +174,11 @@ const FakeAddressGenerator = () => {
     let state = '';
     
     if ('states' in countryData) {
-      state = getRandomItem(countryData.states);
+      state = getRandomItem(countryData.states as string[]);
     } else if ('provinces' in countryData) {
-      state = getRandomItem(countryData.provinces);
+      state = getRandomItem(countryData.provinces as string[]);
     } else if ('counties' in countryData) {
-      state = getRandomItem(countryData.counties);
+      state = getRandomItem(countryData.counties as string[]);
     }
     
     // Generate ZIP/postal code

@@ -96,7 +96,7 @@ const toolsData = [
   { id: 'username-generator', name: 'Random Username Generator', description: 'Generate unique usernames', category: 'text' as const, icon: 'fas fa-user', href: '/tools/username-generator' },
   { id: 'hashtag-generator', name: 'Hashtag Generator', description: 'Generate relevant hashtags for posts', category: 'text' as const, icon: 'fas fa-hashtag' },
   { id: 'lorem-ipsum', name: 'Lorem Ipsum Generator', description: 'Generate placeholder text for designs', category: 'text' as const, icon: 'fas fa-paragraph' },
-  { id: 'fake-address', name: 'Fake Address Generator', description: 'Generate fake addresses for testing', category: 'text' as const, icon: 'fas fa-map-marker-alt' },
+  { id: 'fake-address', name: 'Fake Address Generator', description: 'Generate fake addresses for testing', category: 'text' as const, icon: 'fas fa-map-marker-alt', href: '/tools/fake-address-generator' },
   { id: 'fake-name-generator', name: 'Fake Name Generator', description: 'Generate fake names for testing', category: 'text' as const, icon: 'fas fa-id-card', href: '/tools/fake-name-generator' },
   { id: 'qr-text', name: 'QR Code Text Generator', description: 'Generate QR codes from text', category: 'text' as const, icon: 'fas fa-qrcode' },
   { id: 'binary-to-text', name: 'Binary to Text Converter', description: 'Convert binary code to readable text', category: 'text' as const, icon: 'fas fa-exchange-alt' },
