@@ -5,6 +5,10 @@ import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
+import { Switch } from '@/components/ui/switch';
+import { Input } from '@/components/ui/input';
+import { Separator } from '@/components/ui/separator';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 
 interface CaseConversionResult {
   original: string;
@@ -16,15 +20,37 @@ interface CaseConversionResult {
   pascalCase: string;
   snakeCase: string;
   kebabCase: string;
+  constantCase: string;
   alternatingCase: string;
   inverseCase: string;
+  randomCase: string;
+}
+
+interface AdvancedOptions {
+  preserveNumbers: boolean;
+  ignorePunctuation: boolean;
+  customSeparator: string;
+  prefix: string;
+  suffix: string;
+  removeExtraSpaces: boolean;
+  preserveLineBreaks: boolean;
 }
 
 const CaseConverter = () => {
   const [text, setText] = useState('');
   const [result, setResult] = useState<CaseConversionResult | null>(null);
+  const [showAdvanced, setShowAdvanced] = useState(false);
+  const [advancedOptions, setAdvancedOptions] = useState<AdvancedOptions>({
+    preserveNumbers: true,
+    ignorePunctuation: false,
+    customSeparator: '',
+    prefix: '',
+    suffix: '',
+    removeExtraSpaces: true,
+    preserveLineBreaks: false
+  });
 
-  const convertCases = (inputText: string): CaseConversionResult => {
+  const convertCases = (inputText: string, options: AdvancedOptions): CaseConversionResult => {
     if (inputText.trim() === '') {
       return {
         original: '',
@@ -36,56 +62,102 @@ const CaseConverter = () => {
         pascalCase: '',
         snakeCase: '',
         kebabCase: '',
+        constantCase: '',
         alternatingCase: '',
-        inverseCase: ''
+        inverseCase: '',
+        randomCase: ''
       };
     }
 
-    const original = inputText;
-    const uppercase = inputText.toUpperCase();
-    const lowercase = inputText.toLowerCase();
+    let processedText = inputText;
+    
+    // Apply preprocessing based on advanced options
+    if (options.removeExtraSpaces) {
+      processedText = processedText.replace(/\s+/g, ' ').trim();
+    }
+    
+    if (!options.preserveLineBreaks) {
+      processedText = processedText.replace(/\n/g, ' ');
+    }
+
+    const original = processedText;
+    const uppercase = processedText.toUpperCase();
+    const lowercase = processedText.toLowerCase();
 
     // Title Case - capitalize first letter of each word
-    const titleCase = inputText.replace(/\w\S*/g, (txt) => {
+    const titleCase = processedText.replace(/\w\S*/g, (txt) => {
       return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     });
 
     // Sentence Case - capitalize first letter of each sentence
-    const sentenceCase = inputText.toLowerCase().replace(/(^\w|\.\s+\w)/g, (match) => {
+    const sentenceCase = processedText.toLowerCase().replace(/(^\w|\.\s+\w)/g, (match) => {
       return match.toUpperCase();
     });
 
-    // Remove special characters and spaces for programming cases
-    const cleanText = inputText.replace(/[^\w\s]/g, '').replace(/\s+/g, ' ').trim();
+    // Clean text for programming cases based on options
+    let cleanText = processedText;
+    if (!options.ignorePunctuation) {
+      cleanText = processedText.replace(/[^\w\s]/g, '');
+    }
+    if (!options.preserveNumbers) {
+      cleanText = cleanText.replace(/\d/g, '');
+    }
+    cleanText = cleanText.replace(/\s+/g, ' ').trim();
     const words = cleanText.split(' ').filter(word => word.length > 0);
 
+    // Use custom separator if provided
+    const separator = options.customSeparator || '_';
+    const kebabSeparator = options.customSeparator || '-';
+
     // camelCase - first word lowercase, subsequent words capitalized
-    const camelCase = words.length > 0 
+    let camelCase = words.length > 0 
       ? words[0].toLowerCase() + words.slice(1).map(word => 
           word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
         ).join('')
       : '';
 
     // PascalCase - all words capitalized
-    const pascalCase = words.map(word => 
+    let pascalCase = words.map(word => 
       word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
     ).join('');
 
     // snake_case - words separated by underscores, all lowercase
-    const snakeCase = words.map(word => word.toLowerCase()).join('_');
+    let snakeCase = words.map(word => word.toLowerCase()).join(separator === '_' ? '_' : separator);
 
     // kebab-case - words separated by hyphens, all lowercase
-    const kebabCase = words.map(word => word.toLowerCase()).join('-');
+    let kebabCase = words.map(word => word.toLowerCase()).join(kebabSeparator === '-' ? '-' : kebabSeparator);
+    
+    // CONSTANT_CASE - all uppercase with underscores
+    let constantCase = words.map(word => word.toUpperCase()).join('_');
 
     // aLtErNaTiNg CaSe - alternating upper and lower case
-    const alternatingCase = inputText.split('').map((char, index) => {
+    let alternatingCase = processedText.split('').map((char, index) => {
       return index % 2 === 0 ? char.toLowerCase() : char.toUpperCase();
     }).join('');
 
     // iNVERSE cASE - switch case of each character
-    const inverseCase = inputText.split('').map(char => {
+    let inverseCase = processedText.split('').map(char => {
       return char === char.toUpperCase() ? char.toLowerCase() : char.toUpperCase();
     }).join('');
+    
+    // rAnDoM cAsE - randomly uppercase or lowercase each character
+    let randomCase = processedText.split('').map(char => {
+      return Math.random() > 0.5 ? char.toUpperCase() : char.toLowerCase();
+    }).join('');
+    
+    // Apply prefix and suffix if provided
+    if (options.prefix || options.suffix) {
+      const applyPrefixSuffix = (str: string) => `${options.prefix}${str}${options.suffix}`;
+      
+      if (camelCase) camelCase = applyPrefixSuffix(camelCase);
+      if (pascalCase) pascalCase = applyPrefixSuffix(pascalCase);
+      if (snakeCase) snakeCase = applyPrefixSuffix(snakeCase);
+      if (kebabCase) kebabCase = applyPrefixSuffix(kebabCase);
+      if (constantCase) constantCase = applyPrefixSuffix(constantCase);
+      alternatingCase = applyPrefixSuffix(alternatingCase);
+      inverseCase = applyPrefixSuffix(inverseCase);
+      randomCase = applyPrefixSuffix(randomCase);
+    }
 
     return {
       original,
@@ -97,16 +169,18 @@ const CaseConverter = () => {
       pascalCase,
       snakeCase,
       kebabCase,
+      constantCase,
       alternatingCase,
-      inverseCase
+      inverseCase,
+      randomCase
     };
   };
 
   // Real-time conversion as user types
   useEffect(() => {
-    const result = convertCases(text);
+    const result = convertCases(text, advancedOptions);
     setResult(result);
-  }, [text]);
+  }, [text, advancedOptions]);
 
   const handleClear = () => {
     setText('');
@@ -122,6 +196,10 @@ const CaseConverter = () => {
     setText(sample);
   };
 
+  const updateAdvancedOption = (key: keyof AdvancedOptions, value: boolean | string) => {
+    setAdvancedOptions(prev => ({ ...prev, [key]: value }));
+  };
+
   const conversionTypes = [
     { key: 'uppercase', label: 'UPPERCASE', description: 'ALL LETTERS CAPITALIZED' },
     { key: 'lowercase', label: 'lowercase', description: 'all letters in small case' },
@@ -131,8 +209,10 @@ const CaseConverter = () => {
     { key: 'pascalCase', label: 'PascalCase', description: 'AllWordsCapitalizedNoSpaces' },
     { key: 'snakeCase', label: 'snake_case', description: 'words_separated_by_underscores' },
     { key: 'kebabCase', label: 'kebab-case', description: 'words-separated-by-hyphens' },
+    { key: 'constantCase', label: 'CONSTANT_CASE', description: 'ALL_WORDS_UPPERCASE_WITH_UNDERSCORES' },
     { key: 'alternatingCase', label: 'aLtErNaTiNg CaSe', description: 'alternating upper and lower case' },
-    { key: 'inverseCase', label: 'iNVERSE cASE', description: 'opposite case of original' }
+    { key: 'inverseCase', label: 'iNVERSE cASE', description: 'opposite case of original' },
+    { key: 'randomCase', label: 'rAnDoM cAsE', description: 'randomly mixed upper and lower case' }
   ];
 
   return (
@@ -211,6 +291,124 @@ const CaseConverter = () => {
                         Sample Text
                       </Button>
                     </div>
+
+                    {/* Advanced Options */}
+                    <Collapsible open={showAdvanced} onOpenChange={setShowAdvanced}>
+                      <CollapsibleTrigger asChild>
+                        <Button 
+                          variant="ghost" 
+                          className="w-full mt-4 justify-between"
+                          data-testid="button-toggle-advanced"
+                        >
+                          <span className="flex items-center">
+                            <i className="fas fa-cog mr-2"></i>
+                            Advanced Options
+                          </span>
+                          <i className={`fas ${showAdvanced ? 'fa-chevron-up' : 'fa-chevron-down'}`}></i>
+                        </Button>
+                      </CollapsibleTrigger>
+                      <CollapsibleContent className="space-y-6 mt-4">
+                        <Separator />
+                        
+                        {/* Text Processing Options */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <div className="space-y-4">
+                            <h3 className="font-semibold text-gray-900">Text Processing</h3>
+                            
+                            <div className="flex items-center justify-between">
+                              <div className="space-y-1">
+                                <Label className="text-sm font-medium">Preserve Numbers</Label>
+                                <p className="text-xs text-gray-500">Keep digits in programming cases</p>
+                              </div>
+                              <Switch
+                                checked={advancedOptions.preserveNumbers}
+                                onCheckedChange={(value) => updateAdvancedOption('preserveNumbers', value)}
+                                data-testid="switch-preserve-numbers"
+                              />
+                            </div>
+
+                            <div className="flex items-center justify-between">
+                              <div className="space-y-1">
+                                <Label className="text-sm font-medium">Remove Extra Spaces</Label>
+                                <p className="text-xs text-gray-500">Clean up multiple consecutive spaces</p>
+                              </div>
+                              <Switch
+                                checked={advancedOptions.removeExtraSpaces}
+                                onCheckedChange={(value) => updateAdvancedOption('removeExtraSpaces', value)}
+                                data-testid="switch-remove-extra-spaces"
+                              />
+                            </div>
+
+                            <div className="flex items-center justify-between">
+                              <div className="space-y-1">
+                                <Label className="text-sm font-medium">Preserve Line Breaks</Label>
+                                <p className="text-xs text-gray-500">Keep original line breaks in text</p>
+                              </div>
+                              <Switch
+                                checked={advancedOptions.preserveLineBreaks}
+                                onCheckedChange={(value) => updateAdvancedOption('preserveLineBreaks', value)}
+                                data-testid="switch-preserve-line-breaks"
+                              />
+                            </div>
+
+                            <div className="flex items-center justify-between">
+                              <div className="space-y-1">
+                                <Label className="text-sm font-medium">Ignore Punctuation</Label>
+                                <p className="text-xs text-gray-500">Keep punctuation in programming cases</p>
+                              </div>
+                              <Switch
+                                checked={advancedOptions.ignorePunctuation}
+                                onCheckedChange={(value) => updateAdvancedOption('ignorePunctuation', value)}
+                                data-testid="switch-ignore-punctuation"
+                              />
+                            </div>
+                          </div>
+
+                          {/* Customization Options */}
+                          <div className="space-y-4">
+                            <h3 className="font-semibold text-gray-900">Customization</h3>
+                            
+                            <div className="space-y-2">
+                              <Label className="text-sm font-medium">Custom Separator</Label>
+                              <Input
+                                value={advancedOptions.customSeparator}
+                                onChange={(e) => updateAdvancedOption('customSeparator', e.target.value)}
+                                placeholder="e.g., _, -, |, ."
+                                className="text-sm"
+                                data-testid="input-custom-separator"
+                              />
+                              <p className="text-xs text-gray-500">Override default separators for snake_case and kebab-case</p>
+                            </div>
+
+                            <div className="space-y-2">
+                              <Label className="text-sm font-medium">Prefix</Label>
+                              <Input
+                                value={advancedOptions.prefix}
+                                onChange={(e) => updateAdvancedOption('prefix', e.target.value)}
+                                placeholder="e.g., get_, set_, is_"
+                                className="text-sm"
+                                data-testid="input-prefix"
+                              />
+                              <p className="text-xs text-gray-500">Add prefix to programming case formats</p>
+                            </div>
+
+                            <div className="space-y-2">
+                              <Label className="text-sm font-medium">Suffix</Label>
+                              <Input
+                                value={advancedOptions.suffix}
+                                onChange={(e) => updateAdvancedOption('suffix', e.target.value)}
+                                placeholder="e.g., _value, _count, _id"
+                                className="text-sm"
+                                data-testid="input-suffix"
+                              />
+                              <p className="text-xs text-gray-500">Add suffix to programming case formats</p>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <Separator />
+                      </CollapsibleContent>
+                    </Collapsible>
                   </div>
 
                   {/* Results Section */}
@@ -231,7 +429,9 @@ const CaseConverter = () => {
                             'bg-teal-50 border-teal-200',
                             'bg-red-50 border-red-200',
                             'bg-yellow-50 border-yellow-200',
-                            'bg-gray-50 border-gray-200'
+                            'bg-cyan-50 border-cyan-200',
+                            'bg-emerald-50 border-emerald-200',
+                            'bg-rose-50 border-rose-200'
                           ];
                           
                           return (
