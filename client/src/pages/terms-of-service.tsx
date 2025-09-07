@@ -7,7 +7,7 @@ export default function TermsOfService() {
     <>
       <Helmet>
         <title>Terms of Service - DapsiWow Online Tools | User Agreement & Guidelines</title>
-        <meta name="description" content="Comprehensive Terms of Service for DapsiWow's 180+ free online tools. Understand usage rights, responsibilities, and legal guidelines for safe, responsible tool usage." />
+        <meta name="description" content="Comprehensive Terms of Service for DapsiWow's 150+ free online tools. Understand usage rights, responsibilities, and legal guidelines for safe, responsible tool usage." />
         <meta name="keywords" content="terms of service, user agreement, terms and conditions, usage guidelines, legal terms, online tools terms, free tools agreement, user responsibilities, service rules, acceptable use policy" />
         <meta property="og:title" content="Terms of Service - DapsiWow Online Tools | User Agreement & Guidelines" />
         <meta property="og:description" content="Complete terms and conditions for using DapsiWow's free online tools safely and responsibly." />
@@ -28,7 +28,7 @@ export default function TermsOfService() {
                 Terms of <span className="text-blue-600">Service</span>
               </h1>
               <p className="text-xl lg:text-2xl text-neutral-600 max-w-4xl mx-auto leading-relaxed">
-                Simple, fair guidelines for using DapsiWow's 180+ free online tools. 
+                Simple, fair guidelines for using DapsiWow's 150+ free online tools. 
                 We believe in transparency and straightforward terms.
               </p>
               <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto">
@@ -178,7 +178,7 @@ export default function TermsOfService() {
                 <ul className="space-y-4">
                   <li className="flex items-start space-x-3">
                     <i className="fas fa-check text-green-600 mt-1"></i>
-                    <span className="text-neutral-600">Free access to all 180+ tools without restrictions</span>
+                    <span className="text-neutral-600">Free access to all 150+ tools without restrictions</span>
                   </li>
                   <li className="flex items-start space-x-3">
                     <i className="fas fa-check text-green-600 mt-1"></i>
@@ -231,7 +231,7 @@ export default function TermsOfService() {
                 What DapsiWow Provides
               </h2>
               <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
-                Understanding our service helps you make the most of our 180+ free online tools.
+                Understanding our service helps you make the most of our 150+ free online tools.
               </p>
             </div>
 
@@ -240,14 +240,13 @@ export default function TermsOfService() {
                 <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6">
                   <i className="fas fa-tools text-white text-xl"></i>
                 </div>
-                <h3 className="text-xl font-bold text-neutral-800 mb-4">180+ Free Tools</h3>
+                <h3 className="text-xl font-bold text-neutral-800 mb-4">150+ Free Tools</h3>
                 <p className="text-neutral-600 mb-4">
-                  Access to a comprehensive collection of online utilities including finance calculators, PDF processors, image editors, and more.
+                  Access to a comprehensive collection of online utilities including finance calculators, PDF processors, text tools, and health calculators.
                 </p>
                 <ul className="text-sm text-neutral-500 space-y-1">
                   <li>• Financial calculators and converters</li>
                   <li>• PDF processing and conversion</li>
-                  <li>• Image editing and optimization</li>
                   <li>• Text analysis and formatting</li>
                 </ul>
               </div>

@@ -36,7 +36,7 @@ const AboutUs = () => {
                   <div className="text-neutral-600 font-medium">Happy Users</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl lg:text-4xl font-bold text-green-600 mb-2">180+</div>
+                  <div className="text-3xl lg:text-4xl font-bold text-green-600 mb-2">150+</div>
                   <div className="text-neutral-600 font-medium">Free Tools</div>
                 </div>
                 <div className="text-center">
@@ -114,7 +114,7 @@ const AboutUs = () => {
                 What We Offer
               </h2>
               <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
-                A comprehensive collection of 180+ free online tools across 6 main categories, 
+                A comprehensive collection of 150+ free online tools across 4 main categories, 
                 designed to meet all your digital needs.
               </p>
             </div>
@@ -152,21 +152,6 @@ const AboutUs = () => {
                 </ul>
               </div>
 
-              <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center mb-6">
-                  <i className="fas fa-image text-white text-xl"></i>
-                </div>
-                <h3 className="text-xl font-bold text-neutral-800 mb-4">Image Tools</h3>
-                <p className="text-neutral-600 mb-4">
-                  Professional image editing and optimization tools for photos, graphics, and artwork.
-                </p>
-                <ul className="text-sm text-neutral-500 space-y-1">
-                  <li>• Resize & Crop Images</li>
-                  <li>• Format Conversion</li>
-                  <li>• Compression & Optimization</li>
-                  <li>• Filters & Effects</li>
-                </ul>
-              </div>
 
               <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6">
@@ -184,21 +169,6 @@ const AboutUs = () => {
                 </ul>
               </div>
 
-              <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center mb-6">
-                  <i className="fas fa-search text-white text-xl"></i>
-                </div>
-                <h3 className="text-xl font-bold text-neutral-800 mb-4">SEO Tools</h3>
-                <p className="text-neutral-600 mb-4">
-                  Essential SEO analysis and optimization tools for websites and digital marketing.
-                </p>
-                <ul className="text-sm text-neutral-500 space-y-1">
-                  <li>• Website Analysis</li>
-                  <li>• Keyword Research</li>
-                  <li>• Backlink Checkers</li>
-                  <li>• Meta Tag Generators</li>
-                </ul>
-              </div>
 
               <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <div className="w-16 h-16 bg-gradient-to-r from-pink-500 to-pink-600 rounded-2xl flex items-center justify-center mb-6">

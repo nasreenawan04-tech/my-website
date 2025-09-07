@@ -7,7 +7,7 @@ export default function PrivacyPolicy() {
     <>
       <Helmet>
         <title>Privacy Policy - DapsiWow Online Tools | Data Protection & Security</title>
-        <meta name="description" content="Comprehensive privacy policy for DapsiWow's 180+ free online tools. Learn how we protect your data, ensure privacy, and maintain GDPR compliance with transparent practices." />
+        <meta name="description" content="Comprehensive privacy policy for DapsiWow's 150+ free online tools. Learn how we protect your data, ensure privacy, and maintain GDPR compliance with transparent practices." />
         <meta name="keywords" content="privacy policy, data protection, GDPR compliance, online tools privacy, secure file processing, no data collection, local processing, user privacy rights, data security, transparent privacy practices" />
         <meta property="og:title" content="Privacy Policy - DapsiWow Online Tools | Data Protection & Security" />
         <meta property="og:description" content="Comprehensive privacy policy covering data protection, user rights, and security measures for DapsiWow's free online tools." />
