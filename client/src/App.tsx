@@ -88,6 +88,7 @@ import CharacterCounter from '@/pages/character-counter';
 import SentenceCounter from '@/pages/sentence-counter';
 import ParagraphCounter from '@/pages/paragraph-counter';
 import CaseConverter from '@/pages/case-converter';
+import PasswordGenerator from '@/pages/password-generator';
 
 
 function ScrollToTop() {
@@ -176,6 +177,7 @@ function Router() {
         <Route path="/tools/sentence-counter" component={SentenceCounter} />
         <Route path="/tools/paragraph-counter" component={ParagraphCounter} />
         <Route path="/tools/case-converter" component={CaseConverter} />
+        <Route path="/tools/password-generator" component={PasswordGenerator} />
       <Route path="/tools/:toolId" component={ToolPage} />
       <Route path="/finance" component={FinanceTools} />
       <Route path="/pdf" component={PDFTools} />
