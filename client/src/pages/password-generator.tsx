@@ -210,7 +210,7 @@ const PasswordGenerator = () => {
       <main>
         {/* Hero Section */}
         <section className="gradient-hero text-white py-16 pt-24">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
               <i className="fas fa-key text-3xl"></i>
             </div>
@@ -225,7 +225,7 @@ const PasswordGenerator = () => {
 
         {/* Generator Section */}
         <section className="py-16">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <Card className="bg-white shadow-sm border-0">
               <CardContent className="p-8">
                 <div className="space-y-8">
