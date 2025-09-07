@@ -241,7 +241,7 @@ const PDFMetadataEditor = () => {
 
         {/* Tool Section */}
         <section className="py-16 px-4">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             
             {/* Upload Area */}
             <Card className="mb-8">
