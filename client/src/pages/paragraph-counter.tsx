@@ -288,7 +288,7 @@ Finally, this last paragraph completes our sample text, giving you four distinct
                             <div className="text-2xl font-bold text-red-600" data-testid="stat-long-paragraphs">
                               {result.longParagraphs.toLocaleString()}
                             </div>
-                            <div className="text-sm text-gray-600">Long (>150 words)</div>
+                            <div className="text-sm text-gray-600">Long (&gt;150 words)</div>
                           </div>
                         </div>
 
