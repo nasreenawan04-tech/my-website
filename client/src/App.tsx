@@ -86,6 +86,7 @@ import UnlockPDFTool from '@/pages/unlock-pdf-tool';
 import AddPageNumbersTool from '@/pages/add-page-numbers-tool';
 import OrganizePDFPagesTool from '@/pages/organize-pdf-pages-tool';
 import PDFPageCounter from '@/pages/pdf-page-counter';
+import PDFTextExtractor from '@/pages/pdf-text-extractor';
 import PDFEditor from '@/pages/pdf-editor';
 import WordCounter from '@/pages/word-counter';
 import CharacterCounter from '@/pages/character-counter';
@@ -191,6 +192,7 @@ function Router() {
       <Route path="/tools/add-page-numbers" component={AddPageNumbersTool} />
       <Route path="/tools/organize-pdf" component={OrganizePDFPagesTool} />
       <Route path="/tools/pdf-page-counter" component={PDFPageCounter} />
+      <Route path="/tools/pdf-text-extractor" component={PDFTextExtractor} />
       <Route path="/tools/pdf-editor" component={PDFEditor} />
       <Route path="/tools/word-counter" component={WordCounter} />
       <Route path="/tools/character-counter" component={CharacterCounter} />
