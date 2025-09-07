@@ -23,7 +23,6 @@ import ToolPage from '@/pages/tool-page';
 import AboutUs from '@/pages/about-us';
 import CompoundInterestCalculator from '@/pages/compound-interest-calculator';
 import SimpleInterestCalculator from '@/pages/simple-interest-calculator';
-import CurrencyConverter from '@/pages/currency-converter';
 import ROICalculator from '@/pages/roi-calculator';
 import TaxCalculator from '@/pages/tax-calculator';
 import SalaryToHourlyCalculator from '@/pages/salary-to-hourly-calculator';
@@ -48,7 +47,6 @@ import PercentageCalculator from '@/pages/percentage-calculator';
 import DiscountCalculator from '@/pages/discount-calculator';
 import VATGSTCalculator from '@/pages/vat-gst-calculator';
 import PayPalFeeCalculator from '@/pages/paypal-fee-calculator';
-import CryptocurrencyConverter from '@/pages/cryptocurrency-converter';
 import BMICalculator from '@/pages/bmi-calculator';
 import BMRCalculator from '@/pages/bmr-calculator';
 import CalorieCalculator from '@/pages/calorie-calculator';
@@ -123,7 +121,6 @@ function Router() {
       <Route path="/tools/emi-calculator" component={EMICalculator} />
       <Route path="/tools/compound-interest" component={CompoundInterestCalculator} />
       <Route path="/tools/simple-interest" component={SimpleInterestCalculator} />
-      <Route path="/tools/currency-converter" component={CurrencyConverter} />
       <Route path="/tools/roi-calculator" component={ROICalculator} />
       <Route path="/tools/tax-calculator" component={TaxCalculator} />
       <Route path="/tools/salary-to-hourly" component={SalaryToHourlyCalculator} />
@@ -147,7 +144,6 @@ function Router() {
       <Route path="/tools/discount-calculator" component={DiscountCalculator} />
       <Route path="/tools/vat-gst-calculator" component={VATGSTCalculator} />
       <Route path="/tools/paypal-fee-calculator" component={PayPalFeeCalculator} />
-      <Route path="/tools/cryptocurrency-converter" component={CryptocurrencyConverter} />
       <Route path="/tools/bmi-calculator" component={BMICalculator} />
       <Route path="/tools/bmr-calculator" component={BMRCalculator} />
       <Route path="/tools/calorie-calculator" component={CalorieCalculator} />
