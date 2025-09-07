@@ -2,7 +2,7 @@ export interface Tool {
   id: string;
   name: string;
   description: string;
-  category: 'finance' | 'pdf' | 'image' | 'text' | 'health';
+  category: 'finance' | 'pdf' | 'text' | 'health';
   icon: string;
   isPopular?: boolean;
   href: string;
@@ -11,7 +11,6 @@ export interface Tool {
 export const categories = {
   finance: 'Finance',
   pdf: 'PDF',
-  image: 'Image',
   text: 'Text',
   health: 'Health'
 };
@@ -80,37 +79,6 @@ const toolsData = [
   { id: 'pdf-to-epub', name: 'PDF to EPUB Converter', description: 'Convert PDF files to EPUB format', category: 'pdf' as const, icon: 'fas fa-book' },
   { id: 'epub-to-pdf', name: 'EPUB to PDF Converter', description: 'Convert EPUB books to PDF format', category: 'pdf' as const, icon: 'fas fa-book-open' },
 
-  // Image Tools (30)
-  { id: 'remove-background', name: 'Remove Background', description: 'Remove image background automatically using AI', category: 'image' as const, icon: 'fas fa-image', isPopular: true },
-  { id: 'resize-image', name: 'Resize Image', description: 'Change image dimensions while preserving quality', category: 'image' as const, icon: 'fas fa-expand-arrows-alt', isPopular: true },
-  { id: 'compress-image', name: 'Compress Image', description: 'Reduce image file size while maintaining quality', category: 'image' as const, icon: 'fas fa-compress', isPopular: true },
-  { id: 'png-to-jpg', name: 'Convert PNG to JPG', description: 'Convert PNG images to JPG format', category: 'image' as const, icon: 'fas fa-exchange-alt' },
-  { id: 'jpg-to-png', name: 'Convert JPG to PNG', description: 'Convert JPG images to PNG format', category: 'image' as const, icon: 'fas fa-exchange-alt' },
-  { id: 'webp-to-jpg', name: 'Convert WebP to JPG', description: 'Convert WebP images to JPG format', category: 'image' as const, icon: 'fas fa-file-image' },
-  { id: 'svg-to-png', name: 'Convert SVG to PNG', description: 'Convert SVG vector graphics to PNG', category: 'image' as const, icon: 'fas fa-vector-square' },
-  { id: 'crop-image', name: 'Crop Image Online', description: 'Crop images to desired dimensions', category: 'image' as const, icon: 'fas fa-crop' },
-  { id: 'rotate-image', name: 'Rotate Image', description: 'Rotate images to correct orientation', category: 'image' as const, icon: 'fas fa-redo' },
-  { id: 'flip-image', name: 'Flip Image (Mirror)', description: 'Flip images horizontally or vertically', category: 'image' as const, icon: 'fas fa-arrows-alt-h' },
-  { id: 'upscale-image', name: 'Upscale/Enhance Image', description: 'Increase image resolution using AI', category: 'image' as const, icon: 'fas fa-search-plus' },
-  { id: 'blur-image', name: 'Blur Image', description: 'Add blur effect to images', category: 'image' as const, icon: 'fas fa-eye-slash' },
-  { id: 'sharpen-image', name: 'Sharpen Image', description: 'Enhance image sharpness and clarity', category: 'image' as const, icon: 'fas fa-eye' },
-  { id: 'watermark-image', name: 'Add Watermark to Image', description: 'Add text or logo watermarks to images', category: 'image' as const, icon: 'fas fa-copyright' },
-  { id: 'meme-generator', name: 'Meme Generator', description: 'Create memes with text on images', category: 'image' as const, icon: 'fas fa-laugh' },
-  { id: 'color-picker', name: 'Color Picker Tool', description: 'Pick colors from images or color wheel', category: 'image' as const, icon: 'fas fa-palette' },
-  { id: 'gradient-generator', name: 'Gradient Generator', description: 'Create CSS gradients visually', category: 'image' as const, icon: 'fas fa-fill-drip' },
-  { id: 'image-to-base64', name: 'Image to Base64 Converter', description: 'Convert images to Base64 encoding', category: 'image' as const, icon: 'fas fa-code' },
-  { id: 'collage-maker', name: 'Collage Maker', description: 'Create photo collages from multiple images', category: 'image' as const, icon: 'fas fa-th' },
-  { id: 'image-filters', name: 'Image Filter Effects', description: 'Apply sepia, grayscale and other filters', category: 'image' as const, icon: 'fas fa-magic' },
-  { id: 'lossless-compress', name: 'Image Compressor (Lossless/Lossy)', description: 'Choose between lossless and lossy compression', category: 'image' as const, icon: 'fas fa-file-archive' },
-  { id: 'circle-crop', name: 'Circle Crop Tool', description: 'Crop images into perfect circles', category: 'image' as const, icon: 'fas fa-circle' },
-  { id: 'invert-colors', name: 'Image Color Inverter', description: 'Invert colors in images for effects', category: 'image' as const, icon: 'fas fa-adjust' },
-  { id: 'transparent-png', name: 'Transparent PNG Maker', description: 'Make PNG backgrounds transparent', category: 'image' as const, icon: 'fas fa-square' },
-  { id: 'favicon-generator', name: 'Favicon Generator', description: 'Create favicons for websites', category: 'image' as const, icon: 'fas fa-star' },
-  { id: 'image-annotation', name: 'Image Annotation Tool', description: 'Add annotations and markup to images', category: 'image' as const, icon: 'fas fa-pen' },
-  { id: 'image-dpi', name: 'Image DPI Converter', description: 'Change image DPI for printing', category: 'image' as const, icon: 'fas fa-print' },
-  { id: 'bw-image', name: 'Black & White Image Converter', description: 'Convert images to black and white', category: 'image' as const, icon: 'fas fa-circle-half-stroke' },
-  { id: 'photo-editor', name: 'Online Photo Editor', description: 'Edit photos with advanced tools', category: 'image' as const, icon: 'fas fa-edit' },
-  { id: 'image-splitter', name: 'Image Splitter', description: 'Split large images into smaller pieces', category: 'image' as const, icon: 'fas fa-th-large' },
 
   // Text Tools (30)
   { id: 'word-counter', name: 'Word Counter', description: 'Count words, characters, and paragraphs', category: 'text' as const, icon: 'fas fa-calculator' },
