@@ -27,7 +27,6 @@ const Header = () => {
   const navLinks = [
     { href: '/finance', label: 'Finance Tools' },
     { href: '/pdf', label: 'PDF Tools' },
-    { href: '/image', label: 'Image Tools' },
     { href: '/text', label: 'Text Tools' },
     { href: '/health', label: 'Health Tools' }
   ];
