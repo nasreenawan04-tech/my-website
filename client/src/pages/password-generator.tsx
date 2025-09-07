@@ -239,7 +239,7 @@ const PasswordGenerator = () => {
                           <Input
                             value={password}
                             readOnly
-                            className="text-lg font-bold pr-12 h-14"
+                            className="text-2xl font-bold pr-12 h-14"
                             style={{ fontFamily: 'Monaco, Consolas, "Lucida Console", monospace' }}
                             data-testid="generated-password"
                           />
