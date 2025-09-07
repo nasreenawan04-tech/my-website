@@ -287,7 +287,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Read the uploaded PDF
       const pdfBytes = await fs.readFile(req.file.path);
-      const pdfDoc = await PDFDocument.load(pdfBytes);
+      const pdfDoc = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
 
       const pages = pdfDoc.getPages();
       const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
