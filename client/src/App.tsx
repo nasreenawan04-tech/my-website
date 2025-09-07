@@ -97,6 +97,7 @@ import FontStyleChanger from '@/pages/font-style-changer';
 import ReverseTextTool from '@/pages/reverse-text-tool';
 import TextToQRCode from '@/pages/text-to-qr-code';
 import TextToBinaryConverter from '@/pages/text-to-binary-converter';
+import BinaryToTextConverter from '@/pages/binary-to-text-converter';
 import QRCodeScanner from './pages/qr-code-scanner';
 
 
@@ -195,6 +196,7 @@ function Router() {
         <Route path="/tools/reverse-text-tool" component={ReverseTextTool} />
         <Route path="/tools/text-to-qr-code" component={TextToQRCode} />
         <Route path="/tools/text-to-binary-converter" component={TextToBinaryConverter} />
+        <Route path="/tools/binary-to-text-converter" component={BinaryToTextConverter} />
         <Route path="/tools/qr-code-scanner" component={QRCodeScanner} />
       <Route path="/tools/:toolId" component={ToolPage} />
       <Route path="/finance" component={FinanceTools} />
