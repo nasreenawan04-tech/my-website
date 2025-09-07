@@ -9,7 +9,9 @@ import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
 import { Slider } from '@/components/ui/slider';
 import { Input } from '@/components/ui/input';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import QRCode from 'qrcode';
+import QrScanner from 'qr-scanner';
 
 interface QROptions {
   size: number;
@@ -29,13 +31,25 @@ interface ExtractedQR {
   timestamp: Date;
 }
 
+interface ScannedQR {
+  scannedText: string;
+  extractedContent: string[];
+  originalImageUrl: string;
+  timestamp: Date;
+}
+
 const TextToQRCode = () => {
   const [inputText, setInputText] = useState('');
   const [extractedText, setExtractedText] = useState('');
   const [generatedQRs, setGeneratedQRs] = useState<ExtractedQR[]>([]);
+  const [scannedQRs, setScannedQRs] = useState<ScannedQR[]>([]);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [isScanning, setIsScanning] = useState(false);
   const [selectedQR, setSelectedQR] = useState<ExtractedQR | null>(null);
+  const [uploadedImage, setUploadedImage] = useState<File | null>(null);
+  const [scannedText, setScannedText] = useState('');
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [options, setOptions] = useState<QROptions>({
     size: 300,
     margin: 4,
@@ -167,6 +181,67 @@ const TextToQRCode = () => {
     }
   };
 
+  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    setUploadedImage(file);
+    setIsScanning(true);
+    setScannedText('');
+
+    try {
+      // Scan QR code from uploaded image
+      const result = await QrScanner.scanImage(file);
+      
+      if (result) {
+        setScannedText(result);
+        
+        // Extract content from scanned text
+        const extractedContent = extractTextContent(result);
+        
+        const scannedQR: ScannedQR = {
+          scannedText: result,
+          extractedContent: extractedContent.length > 0 ? extractedContent : [result],
+          originalImageUrl: URL.createObjectURL(file),
+          timestamp: new Date()
+        };
+
+        setScannedQRs(prev => {
+          const updated = [scannedQR, ...prev.filter(qr => qr.scannedText !== result)];
+          return updated.slice(0, 10);
+        });
+      }
+    } catch (error) {
+      console.error('Error scanning QR code:', error);
+      setScannedText('Could not scan QR code. Please make sure the image contains a valid QR code.');
+    } finally {
+      setIsScanning(false);
+    }
+  };
+
+  const handleDragOver = (event: React.DragEvent) => {
+    event.preventDefault();
+  };
+
+  const handleDrop = async (event: React.DragEvent) => {
+    event.preventDefault();
+    const file = event.dataTransfer.files[0];
+    if (file && file.type.startsWith('image/')) {
+      const fakeEvent = {
+        target: { files: [file] }
+      } as React.ChangeEvent<HTMLInputElement>;
+      await handleFileUpload(fakeEvent);
+    }
+  };
+
+  const clearScannedData = () => {
+    setUploadedImage(null);
+    setScannedText('');
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
+
   const handleSampleText = () => {
     const sample = `Visit our website at https://example.com for more information.
     
@@ -224,20 +299,32 @@ Additional text content that will be converted to QR code format.`;
               <i className="fas fa-search text-3xl"></i>
             </div>
             <h1 className="text-4xl sm:text-5xl font-bold mb-6" data-testid="text-page-title">
-              Extract Text to QR Code
+              Extract Text ⇄ QR Code
             </h1>
             <p className="text-xl text-blue-100 max-w-2xl mx-auto">
-              Extract URLs, emails, and text content from any text and convert them to scannable QR codes
+              Convert text to QR codes or scan QR codes to extract text content
             </p>
           </div>
         </section>
 
-        {/* Generator Section */}
+        {/* Main Tool Section */}
         <section className="py-16">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <Card className="bg-white shadow-sm border-0">
               <CardContent className="p-8">
-                <div className="space-y-8">
+                <Tabs defaultValue="text-to-qr" className="w-full">
+                  <TabsList className="grid w-full grid-cols-2 mb-8">
+                    <TabsTrigger value="text-to-qr" className="flex items-center gap-2">
+                      <i className="fas fa-arrow-right text-sm"></i>
+                      Text to QR Code
+                    </TabsTrigger>
+                    <TabsTrigger value="qr-to-text" className="flex items-center gap-2">
+                      <i className="fas fa-arrow-left text-sm"></i>
+                      QR Code to Text
+                    </TabsTrigger>
+                  </TabsList>
+                  
+                  <TabsContent value="text-to-qr" className="space-y-8">
                   {/* Input Section */}
                   <div>
                     <h2 className="text-2xl font-semibold text-gray-900 mb-6">Input Text for Extraction</h2>
@@ -516,7 +603,211 @@ Additional text content that will be converted to QR code format.`;
                       <p className="text-lg">Enter text above to extract content and generate QR codes</p>
                     </div>
                   )}
-                </div>
+                  </TabsContent>
+
+                  {/* QR Code Scanning Tab */}
+                  <TabsContent value="qr-to-text" className="space-y-8">
+                    <div>
+                      <h2 className="text-2xl font-semibold text-gray-900 mb-6">Upload QR Code Image</h2>
+                      
+                      {/* File Upload Area */}
+                      <div className="space-y-4">
+                        <Label className="text-sm font-medium text-gray-700">
+                          QR Code Image
+                        </Label>
+                        <div
+                          className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-blue-400 transition-colors"
+                          onDragOver={handleDragOver}
+                          onDrop={handleDrop}
+                          data-testid="qr-upload-area"
+                        >
+                          {uploadedImage ? (
+                            <div className="space-y-4">
+                              <img
+                                src={URL.createObjectURL(uploadedImage)}
+                                alt="Uploaded QR Code"
+                                className="max-w-xs max-h-64 mx-auto rounded-lg border border-gray-200"
+                                data-testid="uploaded-qr-image"
+                              />
+                              <div className="text-sm text-gray-600">
+                                {uploadedImage.name}
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="space-y-4">
+                              <i className="fas fa-cloud-upload-alt text-4xl text-gray-400"></i>
+                              <div>
+                                <p className="text-lg text-gray-600 mb-2">
+                                  Drop your QR code image here or click to browse
+                                </p>
+                                <p className="text-sm text-gray-500">
+                                  Supports JPG, PNG, GIF, WebP formats
+                                </p>
+                              </div>
+                            </div>
+                          )}
+                          
+                          <input
+                            ref={fileInputRef}
+                            type="file"
+                            accept="image/*"
+                            onChange={handleFileUpload}
+                            className="hidden"
+                            data-testid="file-input"
+                          />
+                          
+                          <Button
+                            onClick={() => fileInputRef.current?.click()}
+                            variant="outline"
+                            className="mt-4"
+                            disabled={isScanning}
+                            data-testid="button-browse-files"
+                          >
+                            {isScanning ? (
+                              <>
+                                <i className="fas fa-spinner fa-spin mr-2"></i>
+                                Scanning...
+                              </>
+                            ) : (
+                              <>
+                                <i className="fas fa-folder-open mr-2"></i>
+                                Browse Files
+                              </>
+                            )}
+                          </Button>
+                        </div>
+
+                        {uploadedImage && (
+                          <div className="flex gap-4">
+                            <Button
+                              onClick={clearScannedData}
+                              variant="outline"
+                              className="flex-1"
+                              data-testid="button-clear-upload"
+                            >
+                              <i className="fas fa-trash mr-2"></i>
+                              Clear
+                            </Button>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Scanned Results */}
+                      {scannedText && (
+                        <div className="space-y-6" data-testid="scanned-results">
+                          <h3 className="text-xl font-semibold text-gray-900">Scanned QR Code Content</h3>
+                          
+                          <div className="bg-gray-50 rounded-lg p-4">
+                            <div className="space-y-3">
+                              <div className="flex items-center justify-between">
+                                <Label className="text-sm font-medium text-gray-700">Extracted Text</Label>
+                                <Button
+                                  onClick={() => handleCopyToClipboard(scannedText)}
+                                  variant="ghost"
+                                  size="sm"
+                                  data-testid="button-copy-scanned-text"
+                                >
+                                  <i className="fas fa-copy mr-1"></i>
+                                  Copy
+                                </Button>
+                              </div>
+                              <div className="bg-white p-3 rounded border border-gray-200 text-sm break-words max-h-48 overflow-y-auto" data-testid="scanned-text-content">
+                                {scannedText}
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Show extracted components if any */}
+                          {scannedQRs.length > 0 && scannedQRs[0].extractedContent.length > 1 && (
+                            <div>
+                              <h4 className="font-semibold text-gray-900 mb-3">Extracted Components</h4>
+                              <div className="space-y-2">
+                                {scannedQRs[0].extractedContent.map((content, index) => (
+                                  <div key={index} className="flex items-center justify-between bg-white p-3 rounded border border-gray-200">
+                                    <span className="text-sm text-gray-700 break-words flex-1" data-testid={`extracted-component-${index}`}>
+                                      {content}
+                                    </span>
+                                    <Button
+                                      onClick={() => handleCopyToClipboard(content)}
+                                      variant="ghost"
+                                      size="sm"
+                                      data-testid={`button-copy-component-${index}`}
+                                    >
+                                      <i className="fas fa-copy"></i>
+                                    </Button>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Option to use scanned text for QR generation */}
+                          <div className="bg-blue-50 rounded-lg p-4">
+                            <h4 className="font-semibold text-blue-900 mb-2">
+                              <i className="fas fa-lightbulb mr-2"></i>
+                              Want to create QR codes from this text?
+                            </h4>
+                            <p className="text-blue-800 text-sm mb-3">
+                              Switch to the "Text to QR Code" tab and use this extracted text to generate new QR codes.
+                            </p>
+                            <Button
+                              onClick={() => {
+                                setInputText(scannedText);
+                                // Switch to text-to-qr tab - you'd need to implement tab switching
+                              }}
+                              variant="outline"
+                              size="sm"
+                              data-testid="button-use-for-generation"
+                            >
+                              <i className="fas fa-arrow-right mr-2"></i>
+                              Use for QR Generation
+                            </Button>
+                          </div>
+                        </div>
+                      )}
+
+                      {!scannedText && !uploadedImage && !isScanning && (
+                        <div className="text-center py-12 text-gray-500">
+                          <i className="fas fa-qrcode text-4xl mb-4"></i>
+                          <p className="text-lg">Upload a QR code image to extract its text content</p>
+                        </div>
+                      )}
+
+                      {/* Scanning History */}
+                      {scannedQRs.length > 0 && (
+                        <div>
+                          <h3 className="text-xl font-semibold text-gray-900 mb-4">Recently Scanned QR Codes</h3>
+                          <div className="space-y-3">
+                            {scannedQRs.slice(0, 5).map((item, index) => (
+                              <div key={index} className="bg-gray-50 rounded-lg p-4">
+                                <div className="flex items-start justify-between">
+                                  <div className="flex-1">
+                                    <div className="text-sm text-gray-600 break-words mb-2" data-testid={`history-scanned-text-${index}`}>
+                                      <strong>Scanned:</strong> "{item.scannedText.length > 100 ? item.scannedText.substring(0, 100) + '...' : item.scannedText}"
+                                    </div>
+                                    <div className="text-xs text-gray-500">
+                                      {item.timestamp.toLocaleString()}
+                                    </div>
+                                  </div>
+                                  <div className="ml-4 flex gap-2">
+                                    <Button
+                                      onClick={() => handleCopyToClipboard(item.scannedText)}
+                                      variant="ghost"
+                                      size="sm"
+                                      data-testid={`button-copy-history-scanned-${index}`}
+                                    >
+                                      <i className="fas fa-copy"></i>
+                                    </Button>
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </TabsContent>
+                </Tabs>
               </CardContent>
             </Card>
           </div>
