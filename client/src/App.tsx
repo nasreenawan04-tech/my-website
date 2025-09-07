@@ -74,6 +74,7 @@ import CholesterolRiskCalculator from '@/pages/cholesterol-risk-calculator';
 import RunningPaceCalculator from '@/pages/running-pace-calculator';
 import CyclingSpeedCalculator from '@/pages/cycling-speed-calculator';
 import SwimmingCalorieCalculator from '@/pages/swimming-calorie-calculator';
+import AlcoholCalorieCalculator from '@/pages/alcohol-calorie-calculator';
 import MergePDFTool from '@/pages/merge-pdf-tool';
 import SplitPDFTool from '@/pages/split-pdf-tool';
 import RotatePDFTool from '@/pages/rotate-pdf-tool';
@@ -175,6 +176,7 @@ function Router() {
       <Route path="/tools/running-pace-calculator" component={RunningPaceCalculator} />
       <Route path="/tools/cycling-speed-calculator" component={CyclingSpeedCalculator} />
       <Route path="/tools/swimming-calorie-calculator" component={SwimmingCalorieCalculator} />
+      <Route path="/tools/alcohol-calorie-calculator" component={AlcoholCalorieCalculator} />
       <Route path="/tools/merge-pdf" component={MergePDFTool} />
       <Route path="/tools/split-pdf" component={SplitPDFTool} />
       <Route path="/tools/rotate-pdf" component={RotatePDFTool} />
