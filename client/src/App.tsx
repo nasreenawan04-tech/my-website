@@ -93,6 +93,7 @@ import FakeNameGenerator from '@/pages/fake-name-generator';
 import UsernameGenerator from '@/pages/username-generator';
 import FakeAddressGenerator from '@/pages/fake-address-generator';
 import QRTextGenerator from '@/pages/qr-text-generator';
+import FontStyleChanger from '@/pages/font-style-changer';
 
 
 function ScrollToTop() {
@@ -186,6 +187,7 @@ function Router() {
         <Route path="/tools/username-generator" component={UsernameGenerator} />
         <Route path="/tools/fake-address-generator" component={FakeAddressGenerator} />
         <Route path="/tools/qr-text-generator" component={QRTextGenerator} />
+        <Route path="/tools/font-style-changer" component={FontStyleChanger} />
       <Route path="/tools/:toolId" component={ToolPage} />
       <Route path="/finance" component={FinanceTools} />
       <Route path="/pdf" component={PDFTools} />
