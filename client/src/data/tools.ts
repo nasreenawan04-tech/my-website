@@ -57,6 +57,40 @@ const toolsData = [
   { id: 'add-page-numbers', name: 'PDF Page Number Adder', description: 'Add page numbers to PDF documents', category: 'pdf' as const, icon: 'fas fa-list-ol', href: '/tools/add-page-numbers' },
   { id: 'organize-pdf', name: 'Organize PDF Pages', description: 'Reorder and organize PDF pages', category: 'pdf' as const, icon: 'fas fa-sort', href: '/tools/organize-pdf' },
   { id: 'extract-pdf-pages', name: 'Extract Pages from PDF', description: 'Extract specific pages from PDF', category: 'pdf' as const, icon: 'fas fa-file-export', href: '/tools/extract-pdf-pages' },
+  
+  // Document Analysis & Information Tools
+  { id: 'pdf-page-counter', name: 'PDF Page Counter & Info', description: 'Display PDF information: page count, file size, creation date', category: 'pdf' as const, icon: 'fas fa-info', href: '/tools/pdf-page-counter' },
+  { id: 'pdf-text-extractor', name: 'PDF Text Extractor', description: 'Extract all text content from PDFs and export as text file', category: 'pdf' as const, icon: 'fas fa-file-text', href: '/tools/pdf-text-extractor' },
+  { id: 'pdf-bookmark-extractor', name: 'PDF Bookmark Extractor', description: 'Extract and display PDF bookmarks/table of contents', category: 'pdf' as const, icon: 'fas fa-bookmark', href: '/tools/pdf-bookmark-extractor' },
+  
+  // Page Manipulation Tools
+  { id: 'pdf-page-resizer', name: 'PDF Page Resizer', description: 'Resize PDF pages to standard formats (A4, Letter, Legal)', category: 'pdf' as const, icon: 'fas fa-expand-arrows-alt', href: '/tools/pdf-page-resizer' },
+  { id: 'pdf-margin-adjuster', name: 'PDF Margin Adjuster', description: 'Add or remove margins from PDF pages and crop borders', category: 'pdf' as const, icon: 'fas fa-crop', href: '/tools/pdf-margin-adjuster' },
+  { id: 'pdf-page-duplicator', name: 'PDF Page Duplicator', description: 'Duplicate specific pages within a PDF document', category: 'pdf' as const, icon: 'fas fa-copy', href: '/tools/pdf-page-duplicator' },
+  
+  // Content Enhancement Tools
+  { id: 'pdf-background-changer', name: 'PDF Background Color Changer', description: 'Change background color of PDF pages or remove backgrounds', category: 'pdf' as const, icon: 'fas fa-palette', href: '/tools/pdf-background-changer' },
+  { id: 'pdf-header-footer', name: 'PDF Header/Footer Generator', description: 'Add custom headers and footers with page numbers and dates', category: 'pdf' as const, icon: 'fas fa-heading', href: '/tools/pdf-header-footer' },
+  { id: 'pdf-blank-page-remover', name: 'PDF Blank Page Remover', description: 'Automatically detect and remove blank pages from PDFs', category: 'pdf' as const, icon: 'fas fa-eraser', href: '/tools/pdf-blank-page-remover' },
+  
+  // Conversion & Format Tools
+  { id: 'pdf-to-images-enhanced', name: 'PDF to Images (Enhanced)', description: 'Convert PDF pages to PNG/JPEG with quality and resolution options', category: 'pdf' as const, icon: 'fas fa-images', href: '/tools/pdf-to-images-enhanced' },
+  { id: 'images-to-pdf', name: 'Images to PDF Merger', description: 'Combine multiple images into a single PDF document', category: 'pdf' as const, icon: 'fas fa-photo-video', href: '/tools/images-to-pdf' },
+  { id: 'pdf-version-converter', name: 'PDF Version Converter', description: 'Convert between different PDF versions for compatibility', category: 'pdf' as const, icon: 'fas fa-exchange-alt', href: '/tools/pdf-version-converter' },
+  
+  // Quality & Optimization Tools
+  { id: 'pdf-compressor-advanced', name: 'PDF Compressor (Advanced)', description: 'Reduce file size with multiple compression levels and optimization', category: 'pdf' as const, icon: 'fas fa-compress-alt', href: '/tools/pdf-compressor-advanced' },
+  { id: 'pdf-repair-tool', name: 'PDF Repair Tool', description: 'Attempt to fix corrupted PDFs and recover readable content', category: 'pdf' as const, icon: 'fas fa-tools', href: '/tools/pdf-repair-tool' },
+  { id: 'pdf-compliance-checker', name: 'PDF Compliance Checker', description: 'Check PDF compliance with standards (PDF/A, PDF/X)', category: 'pdf' as const, icon: 'fas fa-check-circle', href: '/tools/pdf-compliance-checker' },
+  
+  // Security & Access Tools
+  { id: 'pdf-permission-manager', name: 'PDF Permission Manager', description: 'View and modify PDF permissions and restrictions', category: 'pdf' as const, icon: 'fas fa-user-shield', href: '/tools/pdf-permission-manager' },
+  { id: 'pdf-redaction-tool', name: 'PDF Redaction Tool', description: 'Black out sensitive information permanently from PDFs', category: 'pdf' as const, icon: 'fas fa-user-secret', href: '/tools/pdf-redaction-tool' },
+  
+  // Utility Tools
+  { id: 'pdf-comparison-tool', name: 'PDF Comparison Tool', description: 'Compare two PDFs page by page and highlight differences', category: 'pdf' as const, icon: 'fas fa-not-equal', href: '/tools/pdf-comparison-tool' },
+  { id: 'pdf-form-extractor', name: 'PDF Form Field Extractor', description: 'List all form fields and export form structure', category: 'pdf' as const, icon: 'fas fa-wpforms', href: '/tools/pdf-form-extractor' },
+  { id: 'pdf-link-extractor', name: 'PDF Link Extractor', description: 'Extract all URLs and internal links from PDF documents', category: 'pdf' as const, icon: 'fas fa-link', href: '/tools/pdf-link-extractor' },
 
 
   // Text Tools (30)
