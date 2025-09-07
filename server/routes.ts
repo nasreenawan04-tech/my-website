@@ -391,7 +391,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
-      res.status(500).json({ error: `PDF page numbering failed: ${errorMessage}` });
+      
+      // Provide more specific error messages
+      if (errorMessage.toLowerCase().includes('encrypt')) {
+        res.status(400).json({ error: 'PDF is encrypted or password-protected. Please unlock the PDF first before adding page numbers.' });
+      } else if (errorMessage.toLowerCase().includes('invalid') || errorMessage.toLowerCase().includes('corrupt')) {
+        res.status(400).json({ error: 'Invalid or corrupted PDF file. Please try with a different PDF.' });
+      } else {
+        res.status(500).json({ error: `PDF page numbering failed: ${errorMessage}` });
+      }
     }
   });
 

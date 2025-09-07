@@ -121,7 +121,15 @@ const AddPageNumbersTool = () => {
     } catch (error) {
       console.error('Error adding page numbers:', error);
       const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
-      alert(`Error adding page numbers: ${errorMessage}. Please try again with a valid PDF file.`);
+      
+      // Provide specific guidance for encryption errors
+      if (errorMessage.toLowerCase().includes('encrypt') || errorMessage.toLowerCase().includes('password')) {
+        alert(`The PDF is password-protected or encrypted. Please use the "Unlock PDF" tool first to remove the password protection, then try adding page numbers again.`);
+      } else if (errorMessage.toLowerCase().includes('invalid') || errorMessage.toLowerCase().includes('corrupt')) {
+        alert(`The PDF file appears to be invalid or corrupted. Please try with a different PDF file.`);
+      } else {
+        alert(`Error adding page numbers: ${errorMessage}. Please try again with a valid PDF file.`);
+      }
     }
 
     setIsProcessing(false);
