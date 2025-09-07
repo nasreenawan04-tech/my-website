@@ -170,6 +170,7 @@ function Router() {
       <Route path="/tools/pdf-editor" component={PDFEditor} />
       <Route path="/tools/word-counter" component={WordCounter} />
       <Route path="/tools/character-counter" component={CharacterCounter} />
+        <Route path="/tools/sentence-counter" component={lazy(() => import('./pages/sentence-counter'))} />
       <Route path="/tools/:toolId" component={ToolPage} />
       <Route path="/finance" component={FinanceTools} />
       <Route path="/pdf" component={PDFTools} />
