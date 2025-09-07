@@ -124,8 +124,6 @@ const toolsData = [
   { id: 'text-summarizer', name: 'Text Summarizer', description: 'Create summaries of long text content', category: 'text' as const, icon: 'fas fa-compress-alt' },
   { id: 'paraphrasing-tool', name: 'Paraphrasing Tool', description: 'Rewrite text with different words', category: 'text' as const, icon: 'fas fa-sync-alt' },
   { id: 'essay-generator', name: 'Essay Generator (AI)', description: 'Generate essays on any topic using AI', category: 'text' as const, icon: 'fas fa-robot' },
-  { id: 'blog-title-generator', name: 'Blog Title Generator', description: 'Generate catchy blog titles', category: 'text' as const, icon: 'fas fa-heading' },
-  { id: 'meta-description-generator', name: 'Meta Description Generator', description: 'Create SEO meta descriptions', category: 'text' as const, icon: 'fas fa-tags' },
   { id: 'password-generator', name: 'Random Password Generator', description: 'Generate secure random passwords', category: 'text' as const, icon: 'fas fa-key' },
   { id: 'username-generator', name: 'Random Username Generator', description: 'Generate unique usernames', category: 'text' as const, icon: 'fas fa-user' },
   { id: 'hashtag-generator', name: 'Hashtag Generator', description: 'Generate relevant hashtags for posts', category: 'text' as const, icon: 'fas fa-hashtag' },
