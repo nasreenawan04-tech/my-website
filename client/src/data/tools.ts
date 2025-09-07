@@ -145,9 +145,6 @@ const generateHref = (tool: Omit<Tool, 'href'>): string => {
   if (tool.id === 'simple-interest') {
     return '/tools/simple-interest';
   }
-  if (tool.id === 'currency-converter') {
-    return '/tools/currency-converter';
-  }
   if (tool.id === 'roi-calculator') {
     return '/tools/roi-calculator';
   }
