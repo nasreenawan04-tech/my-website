@@ -155,7 +155,7 @@ const PDFMetadataEditor = () => {
       
       // Only append non-empty metadata fields
       Object.entries(editedMetadata).forEach(([key, value]) => {
-        if (value && value.trim()) {
+        if (value && typeof value === 'string' && value.trim()) {
           formData.append(key, value.trim());
         }
       });
