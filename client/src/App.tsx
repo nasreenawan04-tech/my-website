@@ -95,6 +95,7 @@ import FakeAddressGenerator from '@/pages/fake-address-generator';
 import QRTextGenerator from '@/pages/qr-text-generator';
 import FontStyleChanger from '@/pages/font-style-changer';
 import ReverseTextTool from '@/pages/reverse-text-tool';
+import TextToQRCode from '@/pages/text-to-qr-code';
 
 
 function ScrollToTop() {
@@ -190,6 +191,7 @@ function Router() {
         <Route path="/tools/qr-text-generator" component={QRTextGenerator} />
         <Route path="/tools/font-style-changer" component={FontStyleChanger} />
         <Route path="/tools/reverse-text-tool" component={ReverseTextTool} />
+        <Route path="/tools/text-to-qr-code" component={TextToQRCode} />
       <Route path="/tools/:toolId" component={ToolPage} />
       <Route path="/finance" component={FinanceTools} />
       <Route path="/pdf" component={PDFTools} />
