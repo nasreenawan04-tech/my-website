@@ -50,8 +50,14 @@ const ParagraphCounter = () => {
       };
     }
 
-    // Split text into paragraphs
-    const paragraphs = inputText.split(/\n\s*\n/).filter(paragraph => paragraph.trim().length > 0);
+    // Split text into paragraphs - handle both double line breaks and single line text
+    let paragraphs = inputText.split(/\n\s*\n/).filter(paragraph => paragraph.trim().length > 0);
+    
+    // If no double line breaks found, treat single line text as one paragraph
+    if (paragraphs.length === 0 && inputText.trim().length > 0) {
+      paragraphs = [inputText.trim()];
+    }
+    
     const totalParagraphs = paragraphs.length;
 
     // Calculate word counts for each paragraph
