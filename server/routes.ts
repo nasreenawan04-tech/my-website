@@ -1296,7 +1296,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (title) pdfDoc.setTitle(title);
       if (author) pdfDoc.setAuthor(author);
       if (subject) pdfDoc.setSubject(subject);
-      if (keywords) pdfDoc.setKeywords(keywords);
+      if (keywords) {
+        // Convert keywords string to array (split by comma and trim)
+        const keywordsArray = keywords.split(',').map((k: string) => k.trim()).filter((k: string) => k);
+        pdfDoc.setKeywords(keywordsArray);
+      }
       if (creator) pdfDoc.setCreator(creator);
       if (producer) pdfDoc.setProducer(producer);
 
@@ -1363,11 +1367,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const pdfDoc = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
 
       // Get metadata
+      const rawKeywords = pdfDoc.getKeywords();
       const metadata = {
         title: pdfDoc.getTitle() || '',
         author: pdfDoc.getAuthor() || '',
         subject: pdfDoc.getSubject() || '',
-        keywords: pdfDoc.getKeywords() || '',
+        keywords: Array.isArray(rawKeywords) ? rawKeywords.join(', ') : (rawKeywords || ''),
         creator: pdfDoc.getCreator() || '',
         producer: pdfDoc.getProducer() || '',
         creationDate: pdfDoc.getCreationDate()?.toISOString() || null,
