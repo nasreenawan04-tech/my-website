@@ -72,6 +72,7 @@ import WHRCalculator from '@/pages/whr-calculator';
 import LifeExpectancyCalculator from '@/pages/life-expectancy-calculator';
 import CholesterolRiskCalculator from '@/pages/cholesterol-risk-calculator';
 import RunningPaceCalculator from '@/pages/running-pace-calculator';
+import CyclingSpeedCalculator from '@/pages/cycling-speed-calculator';
 import MergePDFTool from '@/pages/merge-pdf-tool';
 import SplitPDFTool from '@/pages/split-pdf-tool';
 import RotatePDFTool from '@/pages/rotate-pdf-tool';
@@ -171,6 +172,7 @@ function Router() {
       <Route path="/tools/life-expectancy-calculator" component={LifeExpectancyCalculator} />
       <Route path="/tools/cholesterol-risk-calculator" component={CholesterolRiskCalculator} />
       <Route path="/tools/running-pace-calculator" component={RunningPaceCalculator} />
+      <Route path="/tools/cycling-speed-calculator" component={CyclingSpeedCalculator} />
       <Route path="/tools/merge-pdf" component={MergePDFTool} />
       <Route path="/tools/split-pdf" component={SplitPDFTool} />
       <Route path="/tools/rotate-pdf" component={RotatePDFTool} />
