@@ -84,7 +84,7 @@ const toolsData = [
   { id: 'word-counter', name: 'Word Counter', description: 'Count words, characters, and paragraphs', category: 'text' as const, icon: 'fas fa-calculator', href: '/tools/word-counter' },
   { id: 'character-counter', name: 'Character Counter', description: 'Count characters in text with/without spaces', category: 'text' as const, icon: 'fas fa-font', href: '/tools/character-counter' },
   { id: 'sentence-counter', name: 'Sentence Counter', description: 'Count sentences in your text', category: 'text' as const, icon: 'fas fa-list', href: '/tools/sentence-counter' },
-  { id: 'paragraph-counter', name: 'Paragraph Counter', description: 'Count paragraphs in documents', category: 'text' as const, icon: 'fas fa-paragraph' },
+  { id: 'paragraph-counter', name: 'Paragraph Counter', description: 'Count paragraphs in documents', category: 'text' as const, icon: 'fas fa-paragraph', href: '/tools/paragraph-counter' },
   { id: 'case-converter', name: 'Case Converter (UPPER ⇄ lower)', description: 'Convert text between different cases', category: 'text' as const, icon: 'fas fa-text-height' },
   { id: 'plagiarism-checker', name: 'Plagiarism Checker (basic AI)', description: 'Check text for potential plagiarism', category: 'text' as const, icon: 'fas fa-shield-alt' },
   { id: 'grammar-checker', name: 'Grammar Checker', description: 'Check and fix grammar errors in your text instantly', category: 'text' as const, icon: 'fas fa-spell-check', isPopular: true },
