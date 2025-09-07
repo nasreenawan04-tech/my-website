@@ -81,7 +81,6 @@ import SplitPDFTool from '@/pages/split-pdf-tool';
 import RotatePDFTool from '@/pages/rotate-pdf-tool';
 import WatermarkPDFTool from '@/pages/watermark-pdf-tool';
 import ExtractPDFPagesTool from '@/pages/extract-pdf-pages-tool';
-import PDFMetadataEditor from '@/pages/pdf-metadata-editor';
 import ProtectPDFTool from '@/pages/protect-pdf-tool';
 import UnlockPDFTool from '@/pages/unlock-pdf-tool';
 import AddPageNumbersTool from '@/pages/add-page-numbers-tool';
@@ -186,7 +185,6 @@ function Router() {
       <Route path="/tools/rotate-pdf" component={RotatePDFTool} />
       <Route path="/tools/watermark-pdf" component={WatermarkPDFTool} />
       <Route path="/tools/extract-pdf-pages" component={ExtractPDFPagesTool} />
-      <Route path="/tools/pdf-metadata" component={PDFMetadataEditor} />
       <Route path="/tools/protect-pdf" component={ProtectPDFTool} />
       <Route path="/tools/unlock-pdf" component={UnlockPDFTool} />
       <Route path="/tools/add-page-numbers" component={AddPageNumbersTool} />

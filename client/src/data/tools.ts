@@ -57,7 +57,6 @@ const toolsData = [
   { id: 'add-page-numbers', name: 'PDF Page Number Adder', description: 'Add page numbers to PDF documents', category: 'pdf' as const, icon: 'fas fa-list-ol', href: '/tools/add-page-numbers' },
   { id: 'organize-pdf', name: 'Organize PDF Pages', description: 'Reorder and organize PDF pages', category: 'pdf' as const, icon: 'fas fa-sort', href: '/tools/organize-pdf' },
   { id: 'extract-pdf-pages', name: 'Extract Pages from PDF', description: 'Extract specific pages from PDF', category: 'pdf' as const, icon: 'fas fa-file-export', href: '/tools/extract-pdf-pages' },
-  { id: 'pdf-metadata', name: 'PDF Metadata Editor', description: 'Edit PDF metadata and properties', category: 'pdf' as const, icon: 'fas fa-info-circle', href: '/tools/pdf-metadata' },
 
 
   // Text Tools (30)
