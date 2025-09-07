@@ -97,6 +97,7 @@ import TextToQRCode from '@/pages/text-to-qr-code';
 import TextToBinaryConverter from '@/pages/text-to-binary-converter';
 import BinaryToTextConverter from '@/pages/binary-to-text-converter';
 import QRCodeScanner from './pages/qr-code-scanner';
+import MarkdownToHTMLConverter from '@/pages/markdown-to-html';
 
 
 function ScrollToTop() {
@@ -194,6 +195,7 @@ function Router() {
         <Route path="/tools/text-to-binary-converter" component={TextToBinaryConverter} />
         <Route path="/tools/binary-to-text-converter" component={BinaryToTextConverter} />
         <Route path="/tools/qr-code-scanner" component={QRCodeScanner} />
+        <Route path="/tools/markdown-to-html" component={MarkdownToHTMLConverter} />
       <Route path="/tools/:toolId" component={ToolPage} />
       <Route path="/finance" component={FinanceTools} />
       <Route path="/pdf" component={PDFTools} />
