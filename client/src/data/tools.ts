@@ -109,7 +109,7 @@ const toolsData = [
   { id: 'life-expectancy-calculator', name: 'Life Expectancy Calculator', description: 'Estimate life expectancy based on lifestyle', category: 'health' as const, icon: 'fas fa-hourglass', href: '/tools/life-expectancy-calculator' },
   { id: 'cholesterol-risk-calculator', name: 'Cholesterol Risk Calculator', description: 'Assess cholesterol-related health risks', category: 'health' as const, icon: 'fas fa-vial', href: '/tools/cholesterol-risk-calculator' },
   { id: 'running-pace-calculator', name: 'Running Pace Calculator', description: 'Calculate running pace and times', category: 'health' as const, icon: 'fas fa-running', href: '/tools/running-pace-calculator' },
-  { id: 'cycling-speed-', name: 'Cycling Speed Calculator', description: 'Calculate cycling speed and distance', category: 'health' as const, icon: 'fas fa-bicycle', href: '/tools/running-pace-calculator' },
+  { id: 'cycling-speed-calculator', name: 'Cycling Speed Calculator', description: 'Calculate cycling speed and distance', category: 'health' as const, icon: 'fas fa-bicycle', href: '/tools/cycling-speed-calculator' },
   { id: 'swimming-calories', name: 'Swimming Calorie Calculator', description: 'Calculate calories burned while swimming', category: 'health' as const, icon: 'fas fa-swimmer' },
   { id: 'alcohol-calories', name: 'Alcohol Calorie Calculator', description: 'Calculate calories in alcoholic drinks', category: 'health' as const, icon: 'fas fa-wine-glass' },
   { id: 'smoking-cost', name: 'Smoking Cost Calculator', description: 'Calculate the cost of smoking habits', category: 'health' as const, icon: 'fas fa-smoking-ban' }
