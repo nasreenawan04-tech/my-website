@@ -11,7 +11,6 @@ const PopularToolsSection = () => {
     { key: 'all', label: 'All Tools' },
     { key: 'finance', label: 'Finance' },
     { key: 'pdf', label: 'PDF' },
-    { key: 'image', label: 'Image' },
     { key: 'text', label: 'Text' },
     { key: 'health', label: 'Health' }
   ];

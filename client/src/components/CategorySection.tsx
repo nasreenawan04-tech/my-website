@@ -25,15 +25,6 @@ const CategorySection = () => {
       href: '/pdf'
     },
     {
-      key: 'image',
-      title: '30+ Image Tools',
-      description: 'Remove Background, Upscale Images, Format Conversion, Image Editor',
-      gradient: 'from-green-500 via-green-600 to-emerald-700',
-      icon: 'fas fa-image',
-      buttonColor: 'text-green-600 hover:bg-green-50',
-      href: '/image'
-    },
-    {
       key: 'text',
       title: '30+ Text Tools',
       description: 'Word Counter, Grammar Checker, AI Writer, Plagiarism Checker',

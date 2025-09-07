@@ -69,13 +69,6 @@ const Home = () => {
                     <p className="text-neutral-600 text-sm">Convert, merge, split, compress, and edit PDF files with professional results</p>
                   </div>
                   
-                  <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
-                    <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
-                      <i className="fas fa-image text-green-600 text-xl"></i>
-                    </div>
-                    <h3 className="text-lg font-semibold text-neutral-800 mb-2">Image Tools</h3>
-                    <p className="text-neutral-600 text-sm">Resize, compress, convert, and edit images with AI-powered background removal</p>
-                  </div>
                   
                   <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
                     <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
