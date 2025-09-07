@@ -206,7 +206,7 @@ const PDFPageCounter = () => {
 
         {/* Tool Content */}
         <section className="py-16">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <Card className="shadow-xl">
               <CardHeader className="text-center pb-2">
                 <CardTitle className="text-2xl font-bold text-neutral-800">
