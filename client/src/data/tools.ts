@@ -112,7 +112,7 @@ const toolsData = [
   { id: 'cycling-speed-calculator', name: 'Cycling Speed Calculator', description: 'Calculate cycling speed and distance', category: 'health' as const, icon: 'fas fa-bicycle', href: '/tools/cycling-speed-calculator' },
   { id: 'swimming-calorie-calculator', name: 'Swimming Calorie Calculator', description: 'Calculate calories burned while swimming', category: 'health' as const, icon: 'fas fa-swimmer', href: '/tools/swimming-calorie-calculator' },
   { id: 'alcohol-calorie-calculator', name: 'Alcohol Calorie Calculator', description: 'Calculate calories in alcoholic drinks', category: 'health' as const, icon: 'fas fa-wine-glass', href: '/tools/alcohol-calorie-calculator' },
-  { id: 'smoking-cost', name: 'Smoking Cost Calculator', description: 'Calculate the cost of smoking habits', category: 'health' as const, icon: 'fas fa-smoking-ban', href: '/tools/smoking-cost-calculator' }
+  { id: 'smoking-cost-calculator', name: 'Smoking Cost Calculator', description: 'Calculate the cost of smoking habits', category: 'health' as const, icon: 'fas fa-smoking-ban', href: '/tools/smoking-cost-calculator' }
 ];
 
 // Generate href for each tool
