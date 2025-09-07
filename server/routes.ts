@@ -1270,6 +1270,141 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // PDF Metadata Editor endpoint
+  app.post('/api/edit-pdf-metadata', upload.single('pdf'), async (req: MulterRequest, res) => {
+    try {
+      const { title, author, subject, keywords, creator, producer } = req.body;
+
+      if (!req.file) {
+        return res.status(400).json({ error: 'No PDF file uploaded' });
+      }
+
+      // Validate file type
+      if (req.file.mimetype !== 'application/pdf') {
+        await fs.unlink(req.file.path);
+        return res.status(400).json({ error: 'Invalid file type. Please upload a PDF file.' });
+      }
+
+      // Import PDF-lib for metadata editing
+      const { PDFDocument } = await import('pdf-lib');
+
+      // Read the PDF file
+      const pdfBytes = await fs.readFile(req.file.path);
+      const pdfDoc = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
+
+      // Update metadata
+      if (title) pdfDoc.setTitle(title);
+      if (author) pdfDoc.setAuthor(author);
+      if (subject) pdfDoc.setSubject(subject);
+      if (keywords) pdfDoc.setKeywords(keywords);
+      if (creator) pdfDoc.setCreator(creator);
+      if (producer) pdfDoc.setProducer(producer);
+
+      // Set modification date to current time
+      pdfDoc.setModificationDate(new Date());
+
+      // Save the PDF with updated metadata
+      const modifiedPdfBytes = await pdfDoc.save();
+
+      // Clean up input file
+      await fs.unlink(req.file.path);
+
+      // Set headers for download
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `attachment; filename="metadata-edited-${req.file.originalname}"`);
+      res.setHeader('Content-Length', modifiedPdfBytes.length);
+
+      // Send the modified PDF
+      res.send(Buffer.from(modifiedPdfBytes));
+
+    } catch (error) {
+      console.error('PDF metadata editing error:', error);
+
+      // Clean up files on error
+      if (req.file?.path) {
+        try {
+          await fs.unlink(req.file.path);
+        } catch (cleanupError) {
+          console.error('Error cleaning up input file:', cleanupError);
+        }
+      }
+
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      
+      // Provide more specific error messages
+      if (errorMessage.toLowerCase().includes('encrypt')) {
+        res.status(400).json({ error: 'PDF is encrypted or password-protected. Please unlock the PDF first before editing metadata.' });
+      } else if (errorMessage.toLowerCase().includes('invalid') || errorMessage.toLowerCase().includes('corrupt')) {
+        res.status(400).json({ error: 'Invalid or corrupted PDF file. Please try with a different PDF.' });
+      } else {
+        res.status(500).json({ error: `PDF metadata editing failed: ${errorMessage}` });
+      }
+    }
+  });
+
+  // Get PDF metadata endpoint
+  app.post('/api/get-pdf-metadata', upload.single('pdf'), async (req: MulterRequest, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ error: 'No PDF file uploaded' });
+      }
+
+      // Validate file type
+      if (req.file.mimetype !== 'application/pdf') {
+        await fs.unlink(req.file.path);
+        return res.status(400).json({ error: 'Invalid file type. Please upload a PDF file.' });
+      }
+
+      // Import PDF-lib for metadata reading
+      const { PDFDocument } = await import('pdf-lib');
+
+      // Read the PDF file
+      const pdfBytes = await fs.readFile(req.file.path);
+      const pdfDoc = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
+
+      // Get metadata
+      const metadata = {
+        title: pdfDoc.getTitle() || '',
+        author: pdfDoc.getAuthor() || '',
+        subject: pdfDoc.getSubject() || '',
+        keywords: pdfDoc.getKeywords() || '',
+        creator: pdfDoc.getCreator() || '',
+        producer: pdfDoc.getProducer() || '',
+        creationDate: pdfDoc.getCreationDate()?.toISOString() || null,
+        modificationDate: pdfDoc.getModificationDate()?.toISOString() || null,
+        pageCount: pdfDoc.getPageCount(),
+      };
+
+      // Clean up input file
+      await fs.unlink(req.file.path);
+
+      res.json({ metadata });
+
+    } catch (error) {
+      console.error('PDF metadata reading error:', error);
+
+      // Clean up files on error
+      if (req.file?.path) {
+        try {
+          await fs.unlink(req.file.path);
+        } catch (cleanupError) {
+          console.error('Error cleaning up input file:', cleanupError);
+        }
+      }
+
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      
+      // Provide more specific error messages
+      if (errorMessage.toLowerCase().includes('encrypt')) {
+        res.status(400).json({ error: 'PDF is encrypted or password-protected. Please unlock the PDF first before reading metadata.' });
+      } else if (errorMessage.toLowerCase().includes('invalid') || errorMessage.toLowerCase().includes('corrupt')) {
+        res.status(400).json({ error: 'Invalid or corrupted PDF file. Please try with a different PDF.' });
+      } else {
+        res.status(500).json({ error: `PDF metadata reading failed: ${errorMessage}` });
+      }
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;
