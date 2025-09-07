@@ -98,7 +98,7 @@ const toolsData = [
   { id: 'lorem-ipsum', name: 'Lorem Ipsum Generator', description: 'Generate placeholder text for designs', category: 'text' as const, icon: 'fas fa-paragraph' },
   { id: 'fake-address-generator', name: 'Fake Address Generator', description: 'Generate fake addresses for testing', category: 'text' as const, icon: 'fas fa-map-marker-alt', href: '/tools/fake-address-generator' },
   { id: 'fake-name-generator', name: 'Fake Name Generator', description: 'Generate fake names for testing', category: 'text' as const, icon: 'fas fa-id-card', href: '/tools/fake-name-generator' },
-  { id: 'qr-text', name: 'QR Code Text Generator', description: 'Generate QR codes from text', category: 'text' as const, icon: 'fas fa-qrcode', href: '/tools/qr-text-generator' },
+  { id: 'qr-text-generator', name: 'QR Code Text Generator', description: 'Generate QR codes from text', category: 'text' as const, icon: 'fas fa-qrcode', href: '/tools/qr-text-generator' },
   { id: 'binary-to-text', name: 'Binary to Text Converter', description: 'Convert binary code to readable text', category: 'text' as const, icon: 'fas fa-exchange-alt' },
   { id: 'text-to-binary', name: 'Text to Binary Converter', description: 'Convert text to binary code', category: 'text' as const, icon: 'fas fa-binary' },
   { id: 'text-to-speech', name: 'Text to Speech', description: 'Convert text to audio speech', category: 'text' as const, icon: 'fas fa-volume-up' },
