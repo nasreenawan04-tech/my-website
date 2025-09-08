@@ -60,7 +60,6 @@ const toolsData = [
   
   // Document Analysis & Information Tools
   { id: 'pdf-page-counter', name: 'PDF Page Counter & Info', description: 'Display PDF information: page count, file size, creation date', category: 'pdf' as const, icon: 'fas fa-info', href: '/tools/pdf-page-counter' },
-  { id: 'pdf-text-extractor', name: 'PDF Text Extractor', description: 'Extract all text content from PDFs and export as text file', category: 'pdf' as const, icon: 'fas fa-file-text', href: '/tools/pdf-text-extractor' },
   { id: 'pdf-bookmark-extractor', name: 'PDF Bookmark Extractor', description: 'Extract and display PDF bookmarks/table of contents', category: 'pdf' as const, icon: 'fas fa-bookmark', href: '/tools/pdf-bookmark-extractor' },
   
   // Page Manipulation Tools
