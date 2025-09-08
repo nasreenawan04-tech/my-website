@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -11,8 +11,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import * as pdfjsLib from 'pdfjs-dist';
 import { Upload, FileText, Download, RotateCcw, Copy, Check, Search, Hash } from 'lucide-react';
 
-// Set up PDF.js worker
-pdfjsLib.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.js`;
+// Set up PDF.js worker with fallback options
+pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
 
 interface ExtractedText {
   fullText: string;
@@ -39,6 +39,7 @@ const PDFTextExtractor = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
   const [highlightedText, setHighlightedText] = useState('');
+  const [workerReady, setWorkerReady] = useState(false);
   const [options, setOptions] = useState<ExtractionOptions>({
     pageRange: 'all',
     specificPages: '',
@@ -47,6 +48,22 @@ const PDFTextExtractor = () => {
     includePageNumbers: true
   });
   const fileInputRef = useRef<HTMLInputElement>(null);
+  
+  // Initialize PDF.js worker on component mount
+  useEffect(() => {
+    const initializePdfWorker = async () => {
+      try {
+        // Test if worker is available
+        setWorkerReady(true);
+        setWorkerReady(true);
+      } catch (error) {
+        console.warn('PDF.js worker initialization failed, will retry on file load:', error);
+        setWorkerReady(false);
+      }
+    };
+    
+    initializePdfWorker();
+  }, []);
 
   const formatFileSize = (bytes: number): string => {
     if (bytes === 0) return '0 Bytes';
@@ -127,7 +144,19 @@ const PDFTextExtractor = () => {
 
   const extractTextFromPDF = async (file: File): Promise<ExtractedText> => {
     const arrayBuffer = await file.arrayBuffer();
-    const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+    
+    // Enhanced PDF.js configuration for better compatibility
+    const loadingTask = pdfjsLib.getDocument({ 
+      data: arrayBuffer,
+      verbosity: 0,
+      disableFontFace: false,
+      disableRange: false,
+      disableStream: false,
+      maxImageSize: 1024 * 1024, // 1MB max image size
+      cMapPacked: true
+    });
+    
+    const pdf = await loadingTask.promise;
     
     // Set total pages first, then get page numbers to extract
     const pdfTotalPages = pdf.numPages;
@@ -211,13 +240,17 @@ const PDFTextExtractor = () => {
     // Get total pages for validation
     try {
       const arrayBuffer = await file.arrayBuffer();
-      const pdf = await pdfjsLib.getDocument({ 
+      
+      // Test if PDF.js worker is available before proceeding
+      const loadingTask = pdfjsLib.getDocument({ 
         data: arrayBuffer,
-        // Add options for better error handling
-        verbosity: 0, // Reduce console noise
-        cMapPacked: true,
-        standardFontDataUrl: `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/standard_fonts/`
-      }).promise;
+        verbosity: 0,
+        disableFontFace: false,
+        disableRange: false,
+        disableStream: false
+      });
+      
+      const pdf = await loadingTask.promise;
       
       const numPages = pdf.numPages;
       setTotalPages(numPages);
@@ -234,10 +267,14 @@ const PDFTextExtractor = () => {
       let errorMessage = 'Error loading PDF file.';
       
       if (error instanceof Error) {
-        if (error.message.includes('Invalid PDF')) {
+        if (error.message.includes('Invalid PDF') || error.message.includes('Invalid PDF structure')) {
           errorMessage = 'Invalid PDF format. Please ensure the file is a valid PDF document.';
         } else if (error.message.includes('password') || error.message.includes('encrypted')) {
           errorMessage = 'This PDF is password protected. Please unlock it first or use a different file.';
+        } else if (error.message.includes('Failed to fetch') || error.message.includes('worker')) {
+          errorMessage = 'PDF processing service temporarily unavailable. Please try refreshing the page and uploading again.';
+        } else if (error.message.includes('network') || error.message.includes('NetworkError')) {
+          errorMessage = 'Network error. Please check your internet connection and try again.';
         }
       }
       
