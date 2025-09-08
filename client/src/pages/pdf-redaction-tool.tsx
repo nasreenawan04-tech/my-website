@@ -268,7 +268,7 @@ const PDFRedactionTool = () => {
 
           {/* Tool Section */}
           <section className="py-16">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
               <Card className="bg-white shadow-sm border-0">
                 <CardContent className="p-8">
                   <div className="space-y-8">
