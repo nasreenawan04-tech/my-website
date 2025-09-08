@@ -180,11 +180,24 @@ const PDFRedactionTool = () => {
       const redactionsApplied = parseInt(response.headers.get('X-Redactions-Applied') || '0');
       const processingTime = parseInt(response.headers.get('X-Processing-Time') || '0');
 
+      // Extract additional metadata from headers
+      const totalPages = parseInt(response.headers.get('X-Total-Pages') || '1');
+      const redactionDetails = response.headers.get('X-Redaction-Details');
+      
+      let redactionsByPage: Array<{ page: number; count: number; terms: string[] }> = [];
+      if (redactionDetails) {
+        try {
+          redactionsByPage = JSON.parse(redactionDetails);
+        } catch (parseError) {
+          console.warn('Failed to parse redaction details:', parseError);
+        }
+      }
+
       setResult({
         filename: selectedFile.name,
-        totalPages: 1, // Would be extracted from actual PDF analysis
+        totalPages,
         redactionsApplied,
-        redactionsByPage: [], // Would be populated by backend
+        redactionsByPage,
         downloadUrl,
         modifiedFilename: `redacted-${selectedFile.name}`,
         metadata: {
