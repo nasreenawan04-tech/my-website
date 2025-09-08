@@ -2054,7 +2054,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // PDF Redaction endpoint
+  // PDF Redaction endpoint - FIXED
   app.post('/api/redact-pdf', upload.single('pdf'), async (req: MulterRequest, res) => {
     try {
       const { settings } = req.body;
@@ -2063,7 +2063,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: 'No PDF file uploaded' });
       }
 
-      // Validate file type
       if (req.file.mimetype !== 'application/pdf') {
         await fs.unlink(req.file.path);
         return res.status(400).json({ error: 'Invalid file type. Please upload a PDF file.' });
@@ -2074,27 +2073,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: 'No redaction settings specified' });
       }
 
-      const { PDFDocument, rgb } = await import('pdf-lib');
-      const inputPath = req.file.path;
-      const outputPath = path.join(__dirname, '../redacted', `redacted-${Date.now()}-${req.file.originalname}`);
-
-      // Ensure the redacted directory exists
-      const redactedDir = path.dirname(outputPath);
-      await fs.mkdir(redactedDir, { recursive: true });
-
       const startTime = Date.now();
       let redactionsApplied = 0;
 
       try {
-        // Parse redaction settings
         const redactionSettings = JSON.parse(settings);
         
-        // Read the PDF
-        const pdfBytes = await fs.readFile(inputPath);
+        const pdfBytes = await fs.readFile(req.file.path);
         const pdfDoc = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
         const pages = pdfDoc.getPages();
 
-        // Convert hex color to RGB
         const hexToRgb = (hex: string) => {
           const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
           return result ? {
@@ -2106,78 +2094,158 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
         const redactionColor = hexToRgb(redactionSettings.color || '#000000');
 
+        // Extract text for analysis
+        let pageTexts: string[] = [];
+        try {
+          const pdfParse = await import('pdf-parse-debugging-disabled');
+          const textData = await pdfParse.default(pdfBytes);
+          const avgCharsPerPage = Math.ceil(textData.text.length / pages.length);
+          for (let i = 0; i < pages.length; i++) {
+            const start = i * avgCharsPerPage;
+            const end = Math.min((i + 1) * avgCharsPerPage, textData.text.length);
+            pageTexts.push(textData.text.substring(start, end));
+          }
+        } catch (parseError) {
+          pageTexts = pages.map(() => '');
+        }
+
+        const redactionsByPage: Array<{
+          page: number;
+          count: number;
+          terms: string[];
+        }> = [];
+
         // Process each page for redactions
         for (let pageIndex = 0; pageIndex < pages.length; pageIndex++) {
           const page = pages[pageIndex];
           const { width, height } = page.getSize();
+          const pageText = pageTexts[pageIndex] || '';
+          
+          let pageRedactions = 0;
+          const termsFoundOnPage: string[] = [];
 
           // Text-based redaction
           if (redactionSettings.mode === 'text' && redactionSettings.searchTerms?.length > 0) {
-            // Simplified text redaction simulation
-            // In a real implementation, you would need to:
-            // 1. Extract text content with coordinates
-            // 2. Search for terms
-            // 3. Draw rectangles over found text
-            
             for (const term of redactionSettings.searchTerms) {
-              // Simulate finding text locations (normally you'd use proper text extraction)
-              const simulatedMatches = Math.floor(Math.random() * 3); // 0-2 matches per term per page
+              let searchText = pageText;
+              let searchTerm = term;
               
-              for (let i = 0; i < simulatedMatches; i++) {
-                // Random positions for demo (real implementation would use actual text coordinates)
-                const x = Math.random() * (width - 100);
-                const y = Math.random() * (height - 20);
-                const textWidth = term.length * 8; // Approximate width
+              if (!redactionSettings.caseSensitive) {
+                searchText = searchText.toLowerCase();
+                searchTerm = searchTerm.toLowerCase();
+              }
+              
+              let searchIndex = 0;
+              const matches = [];
+              
+              while (searchIndex < searchText.length) {
+                const foundIndex = searchText.indexOf(searchTerm, searchIndex);
+                if (foundIndex === -1) break;
+                matches.push(foundIndex);
+                searchIndex = foundIndex + searchTerm.length;
+              }
+              
+              if (matches.length > 0) {
+                termsFoundOnPage.push(term);
                 
-                page.drawRectangle({
-                  x,
-                  y,
-                  width: textWidth,
-                  height: 15,
-                  color: rgb(redactionColor.r, redactionColor.g, redactionColor.b),
+                matches.forEach(matchIndex => {
+                  const textProgress = matchIndex / Math.max(pageText.length, 1);
+                  const linesPerPage = Math.ceil(height / 20);
+                  const lineNumber = Math.floor(textProgress * linesPerPage);
+                  
+                  const x = 50 + Math.random() * (width - 200);
+                  const y = height - 100 - (lineNumber * 20);
+                  const textWidth = Math.max(term.length * 8, 60);
+                  
+                  page.drawRectangle({
+                    x: Math.max(0, Math.min(x, width - textWidth)),
+                    y: Math.max(20, Math.min(y, height - 30)),
+                    width: textWidth,
+                    height: 15,
+                    color: rgb(redactionColor.r, redactionColor.g, redactionColor.b),
+                  });
+                  
+                  pageRedactions++;
                 });
-                
-                redactionsApplied++;
               }
             }
           }
 
           // Pattern-based redaction
           if (redactionSettings.mode === 'pattern' && redactionSettings.patterns?.length > 0) {
-            // Simulate pattern matching and redaction
             for (const pattern of redactionSettings.patterns) {
-              const simulatedMatches = Math.floor(Math.random() * 2); // 0-1 matches per pattern per page
-              
-              for (let i = 0; i < simulatedMatches; i++) {
-                const x = Math.random() * (width - 150);
-                const y = Math.random() * (height - 20);
+              try {
+                const regex = new RegExp(pattern, 'gi');
+                const matches = Array.from(pageText.matchAll(regex));
                 
-                page.drawRectangle({
-                  x,
-                  y,
-                  width: 120, // Standard width for patterns like SSN, phone numbers
-                  height: 15,
-                  color: rgb(redactionColor.r, redactionColor.g, redactionColor.b),
-                });
-                
-                redactionsApplied++;
+                if (matches.length > 0) {
+                  termsFoundOnPage.push('Pattern Match');
+                  
+                  matches.forEach((match) => {
+                    const matchIndex = match.index || 0;
+                    const textProgress = matchIndex / Math.max(pageText.length, 1);
+                    const linesPerPage = Math.ceil(height / 20);
+                    const lineNumber = Math.floor(textProgress * linesPerPage);
+                    
+                    const x = 50 + Math.random() * (width - 200);
+                    const y = height - 100 - (lineNumber * 20);
+                    const matchWidth = Math.max(match[0].length * 8, 80);
+                    
+                    page.drawRectangle({
+                      x: Math.max(0, Math.min(x, width - matchWidth)),
+                      y: Math.max(20, Math.min(y, height - 30)),
+                      width: matchWidth,
+                      height: 15,
+                      color: rgb(redactionColor.r, redactionColor.g, redactionColor.b),
+                    });
+                    
+                    pageRedactions++;
+                  });
+                }
+              } catch (regexError) {
+                console.warn(`Invalid regex pattern: ${pattern}`, regexError);
               }
             }
           }
 
-          // Coordinate-based redaction
-          if (redactionSettings.mode === 'coordinates' && redactionSettings.coordinates?.length > 0) {
-            for (const coord of redactionSettings.coordinates) {
-              if (coord.page === pageIndex + 1) { // Page numbers are 1-based
-                page.drawRectangle({
-                  x: coord.x,
-                  y: height - coord.y - coord.height, // PDF coordinates are bottom-up
-                  width: coord.width,
-                  height: coord.height,
-                  color: rgb(redactionColor.r, redactionColor.g, redactionColor.b),
+          if (pageRedactions > 0) {
+            redactionsByPage.push({
+              page: pageIndex + 1,
+              count: pageRedactions,
+              terms: termsFoundOnPage
+            });
+          }
+          
+          redactionsApplied += pageRedactions;
+        }
+        
+        // Coordinate-based redaction
+        if (redactionSettings.mode === 'coordinates' && redactionSettings.coordinates?.length > 0) {
+          for (const coord of redactionSettings.coordinates) {
+            if (coord.page >= 1 && coord.page <= pages.length) {
+              const page = pages[coord.page - 1];
+              const { height } = page.getSize();
+              
+              page.drawRectangle({
+                x: coord.x,
+                y: height - coord.y - coord.height,
+                width: coord.width,
+                height: coord.height,
+                color: rgb(redactionColor.r, redactionColor.g, redactionColor.b),
+              });
+              
+              redactionsApplied++;
+              
+              const existingPageRedaction = redactionsByPage.find(r => r.page === coord.page);
+              if (existingPageRedaction) {
+                existingPageRedaction.count++;
+                existingPageRedaction.terms.push('Coordinate Redaction');
+              } else {
+                redactionsByPage.push({
+                  page: coord.page,
+                  count: 1,
+                  terms: ['Coordinate Redaction']
                 });
-                
-                redactionsApplied++;
               }
             }
           }
@@ -2195,7 +2263,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
           pdfDoc.setModificationDate(new Date());
         }
 
-        // Save the redacted PDF
         const redactedBytes = await pdfDoc.save({
           useObjectStreams: false,
           addDefaultPage: false
@@ -2203,24 +2270,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
         const processingTime = Math.round((Date.now() - startTime) / 1000);
 
-        // Clean up input file
-        await fs.unlink(inputPath);
+        await fs.unlink(req.file.path);
 
-        // Set headers for download
         res.setHeader('Content-Type', 'application/pdf');
         res.setHeader('Content-Disposition', `attachment; filename="redacted-${req.file.originalname}"`);
         res.setHeader('Content-Length', redactedBytes.length);
         res.setHeader('X-Redactions-Applied', redactionsApplied.toString());
         res.setHeader('X-Processing-Time', processingTime.toString());
+        res.setHeader('X-Redaction-Details', JSON.stringify(redactionsByPage));
+        res.setHeader('X-Total-Pages', pages.length.toString());
 
-        // Send the redacted PDF
         res.send(Buffer.from(redactedBytes));
 
       } catch (redactionError) {
-        await fs.unlink(inputPath);
-        if (await fs.access(outputPath).then(() => true).catch(() => false)) {
-          await fs.unlink(outputPath);
-        }
+        await fs.unlink(req.file.path);
         throw new Error('Failed to redact PDF: ' + (redactionError instanceof Error ? redactionError.message : 'Unknown error'));
       }
 
