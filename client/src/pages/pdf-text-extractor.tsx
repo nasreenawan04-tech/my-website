@@ -11,8 +11,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import * as pdfjsLib from 'pdfjs-dist';
 import { Upload, FileText, Download, RotateCcw, Copy, Check, Search, Hash } from 'lucide-react';
 
-// Disable PDF.js worker for better compatibility in Replit environment
-// This will use synchronous processing which is more reliable
+// Minimal PDF.js configuration for Replit environment
+// Use empty string to disable worker completely
 pdfjsLib.GlobalWorkerOptions.workerSrc = '';
 pdfjsLib.GlobalWorkerOptions.workerPort = null;
 
@@ -139,19 +139,16 @@ const PDFTextExtractor = () => {
   const extractTextFromPDF = async (file: File): Promise<ExtractedText> => {
     const arrayBuffer = await file.arrayBuffer();
     
-    // Enhanced PDF.js configuration for synchronous processing
+    // Minimal PDF.js configuration for text extraction
+    console.log('Extracting text from PDF:', file.name, 'Size:', arrayBuffer.byteLength, 'bytes');
+    
     const loadingTask = pdfjsLib.getDocument({ 
       data: arrayBuffer,
+      // Minimal safe configuration
       verbosity: 0,
-      // Disable features that might require external resources
-      useSystemFonts: true,
-
-
-      cMapPacked: false,
-      disableFontFace: true,
-      disableRange: false,
-      disableStream: false,
-      maxImageSize: 1024 * 1024 // 1MB max image size
+      disableAutoFetch: true,
+      disableStream: true,
+      disableRange: true
     });
     
     const pdf = await loadingTask.promise;
@@ -239,18 +236,16 @@ const PDFTextExtractor = () => {
     try {
       const arrayBuffer = await file.arrayBuffer();
       
-      // Enhanced PDF loading with synchronous processing
+      // Minimal PDF loading configuration
+      console.log('Loading PDF file:', file.name, 'Size:', arrayBuffer.byteLength, 'bytes');
+      
       const loadingTask = pdfjsLib.getDocument({ 
         data: arrayBuffer,
+        // Minimal safe configuration
         verbosity: 0,
-        // Disable worker-based processing for better compatibility
-        useSystemFonts: true,
-  
-  
-        cMapPacked: false,
-        disableFontFace: true,
-        disableRange: false,
-        disableStream: false
+        disableAutoFetch: true,
+        disableStream: true,
+        disableRange: true
       });
       
       // Add timeout for PDF loading
@@ -272,19 +267,30 @@ const PDFTextExtractor = () => {
       
     } catch (error) {
       console.error('Error loading PDF:', error);
-      let errorMessage = 'Error loading PDF file.';
+      console.error('Error type:', typeof error);
+      console.error('Error details:', {
+        message: error instanceof Error ? error.message : String(error),
+        stack: error instanceof Error ? error.stack : 'No stack',
+        name: error instanceof Error ? error.name : 'Unknown',
+        constructor: error?.constructor?.name
+      });
+      
+      let errorMessage = 'Unable to process this PDF file.';
       
       if (error instanceof Error) {
-        if (error.message.includes('Invalid PDF') || error.message.includes('Invalid PDF structure')) {
-          errorMessage = 'Invalid PDF format. Please ensure the file is a valid PDF document.';
-        } else if (error.message.includes('password') || error.message.includes('encrypted')) {
+        const msg = error.message.toLowerCase();
+        console.log('Processing error message:', msg);
+        
+        if (msg.includes('invalid') || msg.includes('format') || msg.includes('corrupted')) {
+          errorMessage = 'This PDF file appears to be corrupted or in an unsupported format. Please try a different PDF file.';
+        } else if (msg.includes('password') || msg.includes('encrypted')) {
           errorMessage = 'This PDF is password protected. Please unlock it first or use a different file.';
-        } else if (error.message.includes('timeout')) {
-          errorMessage = 'PDF processing timed out. The file might be too large or complex. Try a smaller file.';
-        } else if (error.message.includes('Failed to fetch') || error.message.includes('worker') || error.message.includes('Loading task destroyed')) {
-          errorMessage = 'PDF processing service temporarily unavailable. Please refresh the page and try again.';
-        } else if (error.message.includes('network') || error.message.includes('NetworkError')) {
-          errorMessage = 'Network error. Please check your internet connection and try again.';
+        } else if (msg.includes('timeout')) {
+          errorMessage = 'PDF processing timed out. The file might be too large. Try a smaller PDF file.';
+        } else if (msg.includes('worker') || msg.includes('loading') || msg.includes('task')) {
+          errorMessage = 'PDF processing failed. This might be a complex PDF. Please try a simpler PDF file.';
+        } else {
+          errorMessage = `Cannot process this PDF: ${error.message}. Please try a different PDF file.`;
         }
       }
       
