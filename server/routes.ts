@@ -1271,6 +1271,51 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Get PDF page count endpoint
+  app.post('/api/pdf-page-count', upload.single('pdf'), async (req: MulterRequest, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ error: 'No PDF file uploaded' });
+      }
+
+      // Validate file type
+      if (req.file.mimetype !== 'application/pdf') {
+        await fs.unlink(req.file.path);
+        return res.status(400).json({ error: 'Invalid file type. Please upload a PDF file.' });
+      }
+
+      const { PDFDocument } = await import('pdf-lib');
+
+      // Read the uploaded PDF
+      const pdfBytes = await fs.readFile(req.file.path);
+      const pdfDoc = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
+      const totalPages = pdfDoc.getPageCount();
+
+      // Clean up input file
+      await fs.unlink(req.file.path);
+
+      res.json({
+        success: true,
+        totalPages: totalPages
+      });
+
+    } catch (error) {
+      console.error('PDF page count error:', error);
+
+      // Clean up files on error
+      if (req.file?.path) {
+        try {
+          await fs.unlink(req.file.path);
+        } catch (cleanupError) {
+          console.error('Error cleaning up input file:', cleanupError);
+        }
+      }
+
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      res.status(500).json({ error: `PDF page count failed: ${errorMessage}` });
+    }
+  });
+
   // PDF Text Extraction endpoint using pdf-lib (server-side)
   app.post('/api/extract-pdf-text', upload.single('pdf'), async (req: MulterRequest, res) => {
     try {

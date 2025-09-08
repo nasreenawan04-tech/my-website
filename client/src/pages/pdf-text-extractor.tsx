@@ -195,21 +195,64 @@ const PDFTextExtractor = () => {
     setSearchTerm('');
     setHighlightedText('');
 
-    // For now, we'll just set the file and let the extraction process handle page counting
-    // This avoids the PDF.js worker issues during file selection
+    // Get page count using backend API
     console.log('Loading PDF file:', file.name, 'Size:', file.size, 'bytes');
     
-    // Simple validation - we'll get the actual page count during extraction
-    setTotalPages(0); // Will be updated when processing
+    try {
+      const formData = new FormData();
+      formData.append('pdf', file);
+      
+      const response = await fetch('/api/pdf-page-count', {
+        method: 'POST',
+        body: formData
+      });
+      
+      if (response.ok) {
+        const result = await response.json();
+        setTotalPages(result.totalPages);
+        console.log('PDF loaded successfully:', result.totalPages, 'pages');
+        
+        if (result.totalPages === 0) {
+          alert('This PDF appears to have no pages. Please select a valid PDF file.');
+          setPdfFile(null);
+          setTotalPages(0);
+          return;
+        }
+      } else {
+        const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
+        throw new Error(errorData.error || 'Failed to get page count');
+      }
+    } catch (error) {
+      console.error('Error getting PDF page count:', error);
+      let errorMessage = 'Unable to process this PDF file.';
+      
+      if (error instanceof Error) {
+        const msg = error.message.toLowerCase();
+        if (msg.includes('password') || msg.includes('encrypted')) {
+          errorMessage = 'This PDF is password protected. Please unlock it first or use a different file.';
+        } else if (msg.includes('invalid') || msg.includes('format') || msg.includes('corrupted')) {
+          errorMessage = 'This PDF file appears to be corrupted or in an unsupported format. Please try a different PDF file.';
+        } else {
+          errorMessage = `Cannot process this PDF: ${error.message}. Please try a different PDF file.`;
+        }
+      }
+      
+      alert(errorMessage);
+      setPdfFile(null);
+      setTotalPages(0);
+    }
   };
 
   const handleExtractText = async () => {
     if (!pdfFile) return;
 
-    const pagesToExtract = getPageNumbers();
-    if (pagesToExtract.length === 0) {
-      alert('Please specify valid page numbers to extract.');
-      return;
+    // If totalPages is still 0, try to extract anyway and let the backend handle it
+    if (totalPages > 0) {
+      const pagesToExtract = getPageNumbers();
+      if (pagesToExtract.length === 0) {
+        alert('Please specify valid page numbers to extract.');
+        return;
+      }
     }
 
     setIsProcessing(true);
