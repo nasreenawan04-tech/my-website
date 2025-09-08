@@ -1,6 +1,0 @@
-ID,Name,Type,Page,Value,Required
-"field_1","first_name","text",1,"John",true
-"field_2","last_name","text",1,"Doe",true
-"field_3","email","text",1,"john.doe@example.com",true
-"field_4","newsletter","checkbox",1,"true",false
-"field_5","country","dropdown",2,"US",false
