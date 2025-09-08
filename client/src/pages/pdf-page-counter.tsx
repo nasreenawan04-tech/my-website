@@ -1,4 +1,3 @@
-
 import { useState, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -62,7 +61,7 @@ const PDFPageCounter = () => {
   const calculateReadingTime = (pages: number): string => {
     const minutesPerPage = 2.5;
     const totalMinutes = Math.round(pages * minutesPerPage);
-    
+
     if (totalMinutes < 60) {
       return `${totalMinutes} minutes`;
     } else {
@@ -81,13 +80,13 @@ const PDFPageCounter = () => {
   const formatDimensions = (width: number, height: number): string => {
     const widthMm = Math.round(width * 0.352778);
     const heightMm = Math.round(height * 0.352778);
-    
+
     if (Math.abs(widthMm - 210) < 5 && Math.abs(heightMm - 297) < 5) return 'A4 (210×297mm)';
     if (Math.abs(widthMm - 216) < 5 && Math.abs(heightMm - 279) < 5) return 'Letter (8.5×11in)';
     if (Math.abs(widthMm - 216) < 5 && Math.abs(heightMm - 356) < 5) return 'Legal (8.5×14in)';
     if (Math.abs(widthMm - 148) < 5 && Math.abs(heightMm - 210) < 5) return 'A5 (148×210mm)';
     if (Math.abs(widthMm - 297) < 5 && Math.abs(heightMm - 420) < 5) return 'A3 (297×420mm)';
-    
+
     return `${widthMm}×${heightMm}mm`;
   };
 
@@ -102,14 +101,14 @@ const PDFPageCounter = () => {
 
     setPdfFile(file);
     setIsProcessing(true);
-    
+
     try {
       const arrayBuffer = await file.arrayBuffer();
       const pdf = await PDFDocument.load(arrayBuffer);
-      
+
       const pageCount = pdf.getPageCount();
       const pageDetails: PageInfo[] = [];
-      
+
       for (let i = 0; i < pageCount; i++) {
         const page = pdf.getPage(i);
         const { width, height } = page.getSize();
@@ -150,7 +149,7 @@ const PDFPageCounter = () => {
       console.error('Error analyzing PDF:', error);
       alert('Error analyzing PDF file. Please try again with a valid PDF.');
     }
-    
+
     setIsProcessing(false);
   };
 
@@ -204,6 +203,70 @@ const PDFPageCounter = () => {
           </div>
         </section>
 
+        {/* SEO Content Section */}
+        <section className="py-12 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-center text-neutral-900 mb-6">
+              Unlock the Details of Your PDF Documents
+            </h2>
+            <p className="text-lg text-neutral-700 text-center max-w-4xl mx-auto mb-8">
+              Our PDF Page Counter & Info tool is designed to provide you with a comprehensive understanding of your PDF files. Whether you need to quickly find the total number of pages, check the file size, or extract metadata like creation dates and authors, this tool offers a seamless experience. It's perfect for students, researchers, professionals, and anyone who frequently works with PDF documents.
+            </p>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              <div>
+                <h3 className="text-xl font-semibold text-neutral-800 mb-3">Accurate Page Counting</h3>
+                <p className="text-neutral-600">
+                  Instantly determine the exact number of pages in any PDF. Simply upload your document, and our tool will display the total page count. This is invaluable for document management, printing, and academic submissions.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-neutral-800 mb-3">Detailed File Information</h3>
+                <p className="text-neutral-600">
+                  Go beyond the page count. Access crucial file details such as the file size, making it easy to manage storage, and check the creation and modification dates to track document history.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-neutral-800 mb-3">Metadata Extraction</h3>
+                <p className="text-neutral-600">
+                  Our tool also extracts rich metadata embedded within your PDF. Discover the document's title, author, subject, keywords, and creator, providing a deeper context for your files.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-12">
+              <h3 className="text-2xl font-bold text-neutral-900 text-center mb-6">Why Use Our PDF Tool?</h3>
+              <p className="text-neutral-700 text-center max-w-3xl mx-auto mb-8">
+                We understand the importance of efficiency and accuracy when working with PDFs. Our online tool is built with user-friendliness and speed in mind, ensuring you get the information you need without any hassle. It's a reliable solution for anyone looking to analyze PDF properties quickly and effectively.
+              </p>
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h4 className="text-lg font-semibold text-neutral-800 mb-3">Ease of Use</h4>
+                  <p className="text-neutral-600">
+                    An intuitive interface allows you to upload and analyze your PDFs in just a few clicks. No complex software installation or steep learning curve.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="text-lg font-semibold text-neutral-800 mb-3">Free and Accessible</h4>
+                  <p className="text-neutral-600">
+                    Access all features completely free of charge. Our tool is available online, anytime, anywhere, with no hidden costs or registration requirements.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-12 text-center">
+              <h3 className="text-2xl font-bold text-neutral-900 mb-6">Get Started Today</h3>
+              <p className="text-neutral-700 max-w-3xl mx-auto mb-8">
+                Ready to discover more about your PDF files? Upload your document now and let our tool reveal its hidden details. It's the quickest way to count pages and gather essential PDF information.
+              </p>
+              <Button className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 text-lg">
+                Upload Your PDF Now
+              </Button>
+            </div>
+          </div>
+        </section>
+
         {/* Tool Content */}
         <section className="py-16">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -240,7 +303,7 @@ const PDFPageCounter = () => {
                     <Button className="bg-red-600 hover:bg-red-700 text-white">
                       Select PDF File
                     </Button>
-                    
+
                     <input
                       ref={fileInputRef}
                       type="file"
@@ -271,7 +334,7 @@ const PDFPageCounter = () => {
                         <span>New File</span>
                       </Button>
                     </div>
-                    
+
                     {isProcessing ? (
                       <div className="text-center py-12">
                         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto mb-4"></div>
@@ -293,7 +356,7 @@ const PDFPageCounter = () => {
                                 <div className="text-sm text-neutral-600">Total Pages</div>
                               </CardContent>
                             </Card>
-                            
+
                             <Card>
                               <CardContent className="p-4 text-center">
                                 <HardDrive className="w-8 h-8 text-green-500 mx-auto mb-2" />
@@ -301,7 +364,7 @@ const PDFPageCounter = () => {
                                 <div className="text-sm text-neutral-600">File Size</div>
                               </CardContent>
                             </Card>
-                            
+
                             <Card>
                               <CardContent className="p-4 text-center">
                                 <Clock className="w-8 h-8 text-purple-500 mx-auto mb-2" />
@@ -433,7 +496,7 @@ const PDFPageCounter = () => {
                   <h3 className="font-semibold text-neutral-900 mb-2">Page Count</h3>
                   <p className="text-sm text-neutral-600">Accurate count of total pages in your PDF document</p>
                 </div>
-                
+
                 <div className="text-center">
                   <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-3">
                     <Info className="w-6 h-6 text-green-600" />
@@ -441,7 +504,7 @@ const PDFPageCounter = () => {
                   <h3 className="font-semibold text-neutral-900 mb-2">File Information</h3>
                   <p className="text-sm text-neutral-600">File size, creation date, and modification details</p>
                 </div>
-                
+
                 <div className="text-center">
                   <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-3">
                     <Clock className="w-6 h-6 text-purple-600" />
@@ -449,7 +512,7 @@ const PDFPageCounter = () => {
                   <h3 className="font-semibold text-neutral-900 mb-2">Reading Time</h3>
                   <p className="text-sm text-neutral-600">Estimated reading time based on document length</p>
                 </div>
-                
+
                 <div className="text-center">
                   <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-3">
                     <Eye className="w-6 h-6 text-orange-600" />
