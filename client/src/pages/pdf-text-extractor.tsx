@@ -184,8 +184,22 @@ const PDFTextExtractor = () => {
     if (!files || files.length === 0) return;
 
     const file = files[0];
-    if (file.type !== 'application/pdf') {
+    
+    // Enhanced file validation
+    if (file.type !== 'application/pdf' && !file.name.toLowerCase().endsWith('.pdf')) {
       alert('Please select a valid PDF file.');
+      return;
+    }
+    
+    // Check file size (limit to 100MB)
+    const maxSize = 100 * 1024 * 1024; // 100MB
+    if (file.size > maxSize) {
+      alert('File size too large. Please select a PDF file smaller than 100MB.');
+      return;
+    }
+    
+    if (file.size === 0) {
+      alert('The selected file appears to be empty. Please choose a valid PDF file.');
       return;
     }
 
@@ -197,11 +211,39 @@ const PDFTextExtractor = () => {
     // Get total pages for validation
     try {
       const arrayBuffer = await file.arrayBuffer();
-      const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
-      setTotalPages(pdf.numPages);
+      const pdf = await pdfjsLib.getDocument({ 
+        data: arrayBuffer,
+        // Add options for better error handling
+        verbosity: 0, // Reduce console noise
+        cMapPacked: true,
+        standardFontDataUrl: `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/standard_fonts/`
+      }).promise;
+      
+      const numPages = pdf.numPages;
+      setTotalPages(numPages);
+      
+      if (numPages === 0) {
+        alert('This PDF appears to have no pages. Please select a valid PDF file.');
+        setPdfFile(null);
+        setTotalPages(0);
+        return;
+      }
+      
     } catch (error) {
       console.error('Error loading PDF:', error);
-      alert('Error loading PDF file. Please try again with a valid PDF.');
+      let errorMessage = 'Error loading PDF file.';
+      
+      if (error instanceof Error) {
+        if (error.message.includes('Invalid PDF')) {
+          errorMessage = 'Invalid PDF format. Please ensure the file is a valid PDF document.';
+        } else if (error.message.includes('password') || error.message.includes('encrypted')) {
+          errorMessage = 'This PDF is password protected. Please unlock it first or use a different file.';
+        }
+      }
+      
+      alert(errorMessage);
+      setPdfFile(null);
+      setTotalPages(0);
     }
   };
 
@@ -459,6 +501,7 @@ const PDFTextExtractor = () => {
                                 placeholder="1,3,5-7,10"
                                 value={options.specificPages}
                                 onChange={(e) => setOptions({...options, specificPages: e.target.value})}
+                                data-testid="input-specific-pages"
                               />
                             </div>
                           )}
@@ -508,6 +551,7 @@ const PDFTextExtractor = () => {
                           onClick={handleExtractText}
                           disabled={isProcessing}
                           className="bg-red-600 hover:bg-red-700 text-white w-full md:w-auto"
+                          data-testid="button-extract-text"
                         >
                           {isProcessing ? (
                             <>
@@ -573,20 +617,34 @@ const PDFTextExtractor = () => {
                                   onChange={(e) => setSearchTerm(e.target.value)}
                                   className="pl-10"
                                   onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+                                  data-testid="input-search-text"
                                 />
                               </div>
-                              <Button onClick={handleSearch} variant="outline">
+                              <Button 
+                                onClick={handleSearch} 
+                                variant="outline"
+                                data-testid="button-search-text"
+                              >
                                 Search
                               </Button>
                             </div>
 
                             {/* Action Buttons */}
                             <div className="flex flex-wrap gap-2">
-                              <Button onClick={handleCopy} variant="outline" className="flex items-center space-x-2">
+                              <Button 
+                                onClick={handleCopy} 
+                                variant="outline" 
+                                className="flex items-center space-x-2"
+                                data-testid="button-copy-text"
+                              >
                                 {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                                 <span>{copied ? 'Copied!' : 'Copy Text'}</span>
                               </Button>
-                              <Button onClick={handleDownload} className="bg-green-600 hover:bg-green-700 text-white flex items-center space-x-2">
+                              <Button 
+                                onClick={handleDownload} 
+                                className="bg-green-600 hover:bg-green-700 text-white flex items-center space-x-2"
+                                data-testid="button-download-text"
+                              >
                                 <Download className="w-4 h-4" />
                                 <span>Download as TXT</span>
                               </Button>
