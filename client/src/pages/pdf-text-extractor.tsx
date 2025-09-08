@@ -11,8 +11,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import * as pdfjsLib from 'pdfjs-dist';
 import { Upload, FileText, Download, RotateCcw, Copy, Check, Search, Hash } from 'lucide-react';
 
-// Set up PDF.js worker with fallback options
-pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
+// Set up PDF.js worker with multiple fallback options
+// Try jsDelivr CDN for better reliability in Replit environment
+pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.js`;
 
 interface ExtractedText {
   fullText: string;
@@ -40,6 +41,7 @@ const PDFTextExtractor = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [highlightedText, setHighlightedText] = useState('');
   const [workerReady, setWorkerReady] = useState(false);
+  const [workerAttempts, setWorkerAttempts] = useState(0);
   const [options, setOptions] = useState<ExtractionOptions>({
     pageRange: 'all',
     specificPages: '',
@@ -49,20 +51,36 @@ const PDFTextExtractor = () => {
   });
   const fileInputRef = useRef<HTMLInputElement>(null);
   
-  // Initialize PDF.js worker on component mount
+  // Initialize PDF.js worker on component mount with fallbacks
   useEffect(() => {
-    const initializePdfWorker = async () => {
-      try {
-        // Test if worker is available
-        setWorkerReady(true);
-        setWorkerReady(true);
-      } catch (error) {
-        console.warn('PDF.js worker initialization failed, will retry on file load:', error);
+    const workerUrls = [
+      `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.js`,
+      `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`,
+      `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.js`,
+      `//mozilla.github.io/pdf.js/build/pdf.worker.js`
+    ];
+    
+    const tryWorkerUrl = async (index: number): Promise<void> => {
+      if (index >= workerUrls.length) {
+        console.error('All PDF.js worker URLs failed');
         setWorkerReady(false);
+        return;
+      }
+      
+      try {
+        pdfjsLib.GlobalWorkerOptions.workerSrc = workerUrls[index];
+        // Give the worker source time to load
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setWorkerReady(true);
+        setWorkerAttempts(index + 1);
+        console.log(`PDF.js worker loaded successfully using URL ${index + 1}`);
+      } catch (error) {
+        console.warn(`PDF.js worker URL ${index + 1} failed:`, error);
+        await tryWorkerUrl(index + 1);
       }
     };
     
-    initializePdfWorker();
+    tryWorkerUrl(0);
   }, []);
 
   const formatFileSize = (bytes: number): string => {
@@ -152,6 +170,8 @@ const PDFTextExtractor = () => {
       disableFontFace: false,
       disableRange: false,
       disableStream: false,
+      useWorkerFetch: false,
+      isEvalSupported: false,
       maxImageSize: 1024 * 1024, // 1MB max image size
       cMapPacked: true
     });
@@ -241,16 +261,23 @@ const PDFTextExtractor = () => {
     try {
       const arrayBuffer = await file.arrayBuffer();
       
-      // Test if PDF.js worker is available before proceeding
+      // Enhanced PDF loading with timeout and better error handling
       const loadingTask = pdfjsLib.getDocument({ 
         data: arrayBuffer,
         verbosity: 0,
         disableFontFace: false,
         disableRange: false,
-        disableStream: false
+        disableStream: false,
+        useWorkerFetch: false,
+        isEvalSupported: false
       });
       
-      const pdf = await loadingTask.promise;
+      // Add timeout for PDF loading
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('PDF loading timeout after 15 seconds')), 15000);
+      });
+      
+      const pdf = await Promise.race([loadingTask.promise, timeoutPromise]) as any;
       
       const numPages = pdf.numPages;
       setTotalPages(numPages);
@@ -271,8 +298,10 @@ const PDFTextExtractor = () => {
           errorMessage = 'Invalid PDF format. Please ensure the file is a valid PDF document.';
         } else if (error.message.includes('password') || error.message.includes('encrypted')) {
           errorMessage = 'This PDF is password protected. Please unlock it first or use a different file.';
-        } else if (error.message.includes('Failed to fetch') || error.message.includes('worker')) {
-          errorMessage = 'PDF processing service temporarily unavailable. Please try refreshing the page and uploading again.';
+        } else if (error.message.includes('timeout')) {
+          errorMessage = 'PDF processing timed out. The file might be too large or complex. Try a smaller file.';
+        } else if (error.message.includes('Failed to fetch') || error.message.includes('worker') || error.message.includes('Loading task destroyed')) {
+          errorMessage = 'PDF processing service temporarily unavailable. Please refresh the page and try again.';
         } else if (error.message.includes('network') || error.message.includes('NetworkError')) {
           errorMessage = 'Network error. Please check your internet connection and try again.';
         }
