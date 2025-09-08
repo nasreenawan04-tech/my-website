@@ -36,8 +36,22 @@ const PDFPageDuplicator = () => {
     if (!files || files.length === 0) return;
     
     const file = files[0];
-    if (file.type !== 'application/pdf') {
-      setError('Please select a PDF file.');
+    
+    // Enhanced file validation
+    if (file.type !== 'application/pdf' && !file.name.toLowerCase().endsWith('.pdf')) {
+      setError('Please select a valid PDF file.');
+      return;
+    }
+
+    // File size validation (50MB limit)
+    const maxFileSize = 50 * 1024 * 1024; // 50MB
+    if (file.size > maxFileSize) {
+      setError('File size is too large. Please select a PDF file smaller than 50MB.');
+      return;
+    }
+
+    if (file.size === 0) {
+      setError('The selected file appears to be empty. Please select a valid PDF file.');
       return;
     }
 
@@ -50,8 +64,21 @@ const PDFPageDuplicator = () => {
     try {
       const { PDFDocument } = await import('pdf-lib');
       const arrayBuffer = await file.arrayBuffer();
-      const pdfDoc = await PDFDocument.load(arrayBuffer);
+      const pdfDoc = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
       const pages = pdfDoc.getPages();
+      
+      if (pages.length === 0) {
+        setError('This PDF file contains no pages.');
+        setSelectedFile(null);
+        return;
+      }
+
+      if (pages.length > 1000) {
+        setError('This PDF has too many pages. Please select a PDF with fewer than 1000 pages.');
+        setSelectedFile(null);
+        return;
+      }
+      
       const firstPage = pages[0];
       const { width, height } = firstPage.getSize();
       
@@ -59,9 +86,25 @@ const PDFPageDuplicator = () => {
         pageCount: pages.length,
         size: `${Math.round(width)} × ${Math.round(height)} pt`
       });
+
+      // Show helpful message for single-page PDFs
+      if (pages.length === 1) {
+        setError('This PDF only has 1 page. You can still duplicate it, but consider if this is what you intended.');
+      }
     } catch (error) {
       console.error('Error reading PDF info:', error);
-      setOriginalInfo({ pageCount: 0, size: 'Unknown' });
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      
+      if (errorMessage.toLowerCase().includes('password') || errorMessage.toLowerCase().includes('encrypt')) {
+        setError('This PDF is password-protected. Please unlock it first using our PDF Unlock tool, then try again.');
+      } else if (errorMessage.toLowerCase().includes('invalid') || errorMessage.toLowerCase().includes('corrupt')) {
+        setError('This PDF file appears to be invalid or corrupted. Please try with a different PDF file.');
+      } else {
+        setError('Unable to read PDF file. Please ensure it is a valid PDF document.');
+      }
+      
+      setSelectedFile(null);
+      setOriginalInfo(null);
     }
   };
 
@@ -96,9 +139,31 @@ const PDFPageDuplicator = () => {
   };
 
   const updateDuplication = (index: number, field: keyof PageDuplication, value: any) => {
-    setDuplications(prev => prev.map((dup, i) => 
-      i === index ? { ...dup, [field]: value } : dup
-    ));
+    setDuplications(prev => prev.map((dup, i) => {
+      if (i !== index) return dup;
+      
+      const updated = { ...dup, [field]: value };
+      
+      // Validation for page number
+      if (field === 'pageNumber') {
+        const pageNum = parseInt(value);
+        if (isNaN(pageNum) || pageNum < 1 || pageNum > (originalInfo?.pageCount || 0)) {
+          return dup; // Don't update if invalid
+        }
+        updated.pageNumber = pageNum;
+      }
+      
+      // Validation for duplicate count
+      if (field === 'duplicateCount') {
+        const count = parseInt(value);
+        if (isNaN(count) || count < 1 || count > 10) {
+          return dup; // Don't update if invalid
+        }
+        updated.duplicateCount = count;
+      }
+      
+      return updated;
+    }));
   };
 
   const duplicatePages = async () => {
@@ -459,6 +524,22 @@ const PDFPageDuplicator = () => {
                               <div>Original pages: {originalInfo.pageCount}</div>
                               <div>Duplicates to add: {getTotalNewPages()}</div>
                               <div className="font-medium">Final page count: {getFinalPageCount()}</div>
+                              {duplications.some(d => d.duplicateCount > 5) && (
+                                <div className="text-orange-600 font-medium">⚠️ High duplicate count detected</div>
+                              )}
+                            </div>
+                            
+                            {/* Show duplication rules summary */}
+                            <div className="mt-3 pt-3 border-t border-blue-200">
+                              <div className="text-xs text-blue-700">
+                                <strong>Rules:</strong> {duplications.map((dup, index) => (
+                                  <span key={index}>
+                                    Page {dup.pageNumber} → {dup.duplicateCount} {dup.duplicateCount === 1 ? 'copy' : 'copies'} 
+                                    ({dup.insertAfter ? 'after' : 'before'})
+                                    {index < duplications.length - 1 ? ', ' : ''}
+                                  </span>
+                                ))}
+                              </div>
                             </div>
                           </div>
                         )}
@@ -483,6 +564,30 @@ const PDFPageDuplicator = () => {
                       </div>
                     )}
 
+                    {/* Processing Info */}
+                    {selectedFile && duplications.length > 0 && (
+                      <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                        <div className="flex items-start gap-3">
+                          <i className="fas fa-info-circle text-blue-600 mt-0.5"></i>
+                          <div className="text-sm text-blue-800">
+                            <p className="font-medium mb-1">Processing Information:</p>
+                            <ul className="space-y-1">
+                              <li>• File size: {formatFileSize(selectedFile.size)} 
+                                {selectedFile.size > 10 * 1024 * 1024 && (
+                                  <span className="text-blue-600 font-medium"> (will use server processing)</span>
+                                )}
+                              </li>
+                              <li>• {getTotalNewPages()} pages will be duplicated</li>
+                              <li>• Final PDF will have {getFinalPageCount()} pages</li>
+                              {getFinalPageCount() > 500 && (
+                                <li className="text-orange-600 font-medium">• ⚠️ Large output file - may take longer to process</li>
+                              )}
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
                     {/* Duplicate Button */}
                     {selectedFile && duplications.length > 0 && !error && (
                       <div className="text-center">
@@ -495,7 +600,7 @@ const PDFPageDuplicator = () => {
                           {isProcessing ? (
                             <>
                               <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                              Duplicating Pages...
+                              {selectedFile.size > 10 * 1024 * 1024 ? 'Processing on server...' : 'Duplicating Pages...'}
                             </>
                           ) : (
                             <>
@@ -504,6 +609,12 @@ const PDFPageDuplicator = () => {
                             </>
                           )}
                         </Button>
+                        
+                        {getFinalPageCount() > 200 && (
+                          <p className="text-sm text-gray-600 mt-2">
+                            ⏱️ Large files may take 30-60 seconds to process
+                          </p>
+                        )}
                       </div>
                     )}
 
