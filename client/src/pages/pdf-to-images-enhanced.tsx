@@ -163,76 +163,44 @@ const PDFToImagesEnhanced = () => {
     setConvertedImages([]);
 
     try {
-      const { PDFDocument } = await import('pdf-lib');
-      
-      const arrayBuffer = await selectedFile.arrayBuffer();
-      const pdfDoc = await PDFDocument.load(arrayBuffer);
-      const pages = pdfDoc.getPages();
-      const pagesToConvert = getPagesToConvert();
+      const formData = new FormData();
+      formData.append('pdf', selectedFile);
+      formData.append('format', settings.format);
+      formData.append('quality', settings.quality.toString());
+      formData.append('dpi', settings.dpi.toString());
+      formData.append('scale', settings.scale.toString());
+      formData.append('pageRange', settings.pageRange);
+      formData.append('startPage', settings.startPage.toString());
+      formData.append('endPage', settings.endPage.toString());
+      formData.append('selectedPages', JSON.stringify(settings.selectedPages));
+      formData.append('transparentBackground', settings.transparentBackground.toString());
 
-      const images: ConvertedImage[] = [];
+      const response = await fetch('/api/pdf-to-images', {
+        method: 'POST',
+        body: formData,
+      });
 
-      for (const pageNumber of pagesToConvert) {
-        const pageIndex = pageNumber - 1;
-        if (pageIndex >= 0 && pageIndex < pages.length) {
-          const page = pages[pageIndex];
-          
-          // Create a new PDF with just this page for conversion
-          const singlePagePdf = await PDFDocument.create();
-          const [copiedPage] = await singlePagePdf.embedPages([page]);
-          const { width, height } = page.getSize();
-          const newPage = singlePagePdf.addPage([width, height]);
-          newPage.drawPage(copiedPage, { x: 0, y: 0, width, height });
-          
-          // For demo purposes, we'll create a placeholder image
-          // In a real implementation, you would use pdf2pic or similar library
-          const canvas = document.createElement('canvas');
-          const ctx = canvas.getContext('2d');
-          
-          const scaledWidth = Math.round(width * settings.scale * (settings.dpi / 72));
-          const scaledHeight = Math.round(height * settings.scale * (settings.dpi / 72));
-          
-          canvas.width = scaledWidth;
-          canvas.height = scaledHeight;
-          
-          if (ctx) {
-            // Set background
-            if (!settings.transparentBackground || settings.format !== 'png') {
-              ctx.fillStyle = '#ffffff';
-              ctx.fillRect(0, 0, scaledWidth, scaledHeight);
-            }
-            
-            // Create placeholder content for demo
-            ctx.fillStyle = '#333333';
-            ctx.font = `${Math.max(12, scaledHeight / 30)}px Arial`;
-            ctx.textAlign = 'center';
-            ctx.fillText(`PDF Page ${pageNumber}`, scaledWidth / 2, scaledHeight / 2 - 20);
-            ctx.fillText(`${scaledWidth} × ${scaledHeight}`, scaledWidth / 2, scaledHeight / 2 + 20);
-            ctx.fillText(`${settings.dpi} DPI • ${settings.format.toUpperCase()}`, scaledWidth / 2, scaledHeight / 2 + 50);
-          }
-          
-          // Convert to desired format
-          const mimeType = settings.format === 'jpg' ? 'image/jpeg' : `image/${settings.format}`;
-          const quality = settings.format === 'jpg' ? settings.quality / 100 : undefined;
-          const dataUrl = canvas.toDataURL(mimeType, quality);
-          
-          // Estimate file size
-          const base64Length = dataUrl.split(',')[1].length;
-          const sizeInBytes = (base64Length * 3) / 4;
-          
-          images.push({
-            pageNumber,
-            dataUrl,
-            filename: `page-${pageNumber.toString().padStart(3, '0')}.${settings.format}`,
-            size: formatFileSize(sizeInBytes)
-          });
-        }
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to convert PDF to images');
       }
 
-      setConvertedImages(images);
+      if (result.success && result.images) {
+        const images: ConvertedImage[] = result.images.map((img: any) => ({
+          pageNumber: img.pageNumber,
+          dataUrl: `data:${img.mimeType};base64,${img.data}`,
+          filename: img.filename,
+          size: formatFileSize(img.size)
+        }));
+
+        setConvertedImages(images);
+      } else {
+        throw new Error('No images returned from conversion');
+      }
     } catch (error) {
       console.error('Error converting PDF to images:', error);
-      setError('Error converting PDF to images. Please try again with a valid PDF file.');
+      setError(error instanceof Error ? error.message : 'Error converting PDF to images. Please try again with a valid PDF file.');
     }
 
     setIsProcessing(false);

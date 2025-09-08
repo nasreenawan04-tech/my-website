@@ -1259,8 +1259,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           savePath: path.join(__dirname, '../images'),
           format: format === 'jpg' ? 'jpeg' : format,
           width: undefined, // Let pdf2pic determine from PDF
-          height: undefined,
-          page: pageNum // Convert specific page
+          height: undefined
         });
 
         try {
