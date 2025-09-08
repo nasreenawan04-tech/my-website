@@ -2378,8 +2378,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
         res.json(result);
 
       } catch (comparisonError) {
-        await fs.unlink(originalFile.path);
-        await fs.unlink(modifiedFile.path);
+        try {
+          await fs.access(originalFile.path);
+          await fs.unlink(originalFile.path);
+        } catch (cleanupError) {
+          // File may have already been deleted or doesn't exist
+        }
+        try {
+          await fs.access(modifiedFile.path);
+          await fs.unlink(modifiedFile.path);
+        } catch (cleanupError) {
+          // File may have already been deleted or doesn't exist
+        }
         throw new Error('Failed to compare PDFs: ' + (comparisonError instanceof Error ? comparisonError.message : 'Unknown error'));
       }
 
@@ -2391,16 +2401,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
         const files = req.files as { [fieldname: string]: Express.Multer.File[] };
         if (files.original?.[0]?.path) {
           try {
+            await fs.access(files.original[0].path);
             await fs.unlink(files.original[0].path);
           } catch (cleanupError) {
-            console.error('Error cleaning up original file:', cleanupError);
+            // File may have already been deleted or doesn't exist
           }
         }
         if (files.modified?.[0]?.path) {
           try {
+            await fs.access(files.modified[0].path);
             await fs.unlink(files.modified[0].path);
           } catch (cleanupError) {
-            console.error('Error cleaning up modified file:', cleanupError);
+            // File may have already been deleted or doesn't exist
           }
         }
       }
@@ -2542,8 +2554,18 @@ For production use, this would include actual PDF content analysis, visual highl
         }
 
       } catch (reportError) {
-        await fs.unlink(originalFile.path);
-        await fs.unlink(modifiedFile.path);
+        try {
+          await fs.access(originalFile.path);
+          await fs.unlink(originalFile.path);
+        } catch (cleanupError) {
+          // File may have already been deleted or doesn't exist
+        }
+        try {
+          await fs.access(modifiedFile.path);
+          await fs.unlink(modifiedFile.path);
+        } catch (cleanupError) {
+          // File may have already been deleted or doesn't exist
+        }
         throw new Error('Failed to generate comparison report: ' + (reportError instanceof Error ? reportError.message : 'Unknown error'));
       }
 
@@ -2555,16 +2577,18 @@ For production use, this would include actual PDF content analysis, visual highl
         const files = req.files as { [fieldname: string]: Express.Multer.File[] };
         if (files.original?.[0]?.path) {
           try {
+            await fs.access(files.original[0].path);
             await fs.unlink(files.original[0].path);
           } catch (cleanupError) {
-            console.error('Error cleaning up original file:', cleanupError);
+            // File may have already been deleted or doesn't exist
           }
         }
         if (files.modified?.[0]?.path) {
           try {
+            await fs.access(files.modified[0].path);
             await fs.unlink(files.modified[0].path);
           } catch (cleanupError) {
-            console.error('Error cleaning up modified file:', cleanupError);
+            // File may have already been deleted or doesn't exist
           }
         }
       }
