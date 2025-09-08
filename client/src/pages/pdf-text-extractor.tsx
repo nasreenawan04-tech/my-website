@@ -11,8 +11,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import * as pdfjsLib from 'pdfjs-dist';
 import { Upload, FileText, Download, RotateCcw, Copy, Check, Search, Hash } from 'lucide-react';
 
-// Configure PDF.js for better compatibility in Replit environment
-pdfjsLib.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.js`;
+// Disable PDF.js worker to run in main thread for Replit compatibility
+pdfjsLib.GlobalWorkerOptions.workerSrc = "";
 
 interface ExtractedText {
   fullText: string;
@@ -143,12 +143,10 @@ const PDFTextExtractor = () => {
     const loadingTask = pdfjsLib.getDocument({ 
       data: arrayBuffer,
       verbosity: 0,
-      disableAutoFetch: false,
-      disableStream: false,
-      disableRange: false,
-      cMapUrl: `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/cmaps/`,
-      cMapPacked: true,
-      standardFontDataUrl: `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/standard_fonts/`
+      disableAutoFetch: true,
+      disableStream: true,
+      disableRange: true,
+      useSystemFonts: true
     });
     
     const pdf = await loadingTask.promise;
@@ -242,12 +240,10 @@ const PDFTextExtractor = () => {
       const loadingTask = pdfjsLib.getDocument({ 
         data: arrayBuffer,
         verbosity: 0,
-        disableAutoFetch: false,
-        disableStream: false,
-        disableRange: false,
-        cMapUrl: `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/cmaps/`,
-        cMapPacked: true,
-        standardFontDataUrl: `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/standard_fonts/`
+        disableAutoFetch: true,
+        disableStream: true,
+        disableRange: true,
+        useSystemFonts: true
       });
       
       // Add timeout for PDF loading with more generous time for larger files
