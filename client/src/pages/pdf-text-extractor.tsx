@@ -12,8 +12,8 @@ import * as pdfjsLib from 'pdfjs-dist';
 import { Upload, FileText, Download, RotateCcw, Copy, Check, Search, Hash } from 'lucide-react';
 
 // Minimal PDF.js configuration for Replit environment
-// Use empty string to disable worker completely
-pdfjsLib.GlobalWorkerOptions.workerSrc = '';
+// Use a data URL to bypass worker issues completely
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'data:application/javascript,';
 pdfjsLib.GlobalWorkerOptions.workerPort = null;
 
 interface ExtractedText {
