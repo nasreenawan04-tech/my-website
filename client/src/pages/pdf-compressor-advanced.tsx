@@ -640,7 +640,7 @@ const PDFCompressorAdvanced = () => {
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-gray-600">Processing Speed:</span>
-                    <span className="text-2xl font-bold text-green-600">< 30 sec</span>
+                    <span className="text-2xl font-bold text-green-600">&lt; 30 sec</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-gray-600">Files Compressed:</span>
