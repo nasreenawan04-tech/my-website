@@ -708,6 +708,324 @@ const ImagesToPDFMerger = () => {
               </Card>
             </div>
           </section>
+
+          {/* SEO Content Sections */}
+          <section className="py-16 bg-white">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="space-y-16">
+                {/* What is Images to PDF Merger */}
+                <div>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">What is an Images to PDF Merger?</h2>
+                  <div className="prose prose-lg max-w-4xl mx-auto text-gray-700">
+                    <p className="text-lg leading-relaxed mb-6">
+                      An <strong>Images to PDF Merger</strong> is a powerful digital tool designed to combine multiple image files into a single, professionally formatted PDF document. This versatile converter supports various image formats including JPG, PNG, GIF, and WebP, allowing users to create cohesive PDF documents from collections of photos, scanned documents, charts, diagrams, or any visual content stored as separate image files.
+                    </p>
+                    <p className="text-lg leading-relaxed mb-6">
+                      Our advanced Images to PDF Merger goes beyond simple image compilation by offering comprehensive customization options including page sizing, orientation control, image positioning, quality optimization, and professional formatting features. Whether you're creating digital portfolios, consolidating research materials, preparing presentations, or archiving important documents, this tool streamlines the process of converting multiple images into a single, shareable PDF format.
+                    </p>
+                    <p className="text-lg leading-relaxed">
+                      The tool provides enterprise-level functionality with user-friendly operation, making it ideal for business professionals, students, researchers, photographers, and anyone who needs to convert image collections into professional PDF documents while maintaining complete control over layout, quality, and formatting parameters.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Key Features */}
+                <div>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Key Features of Our Images to PDF Merger</h2>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="bg-blue-50 rounded-xl p-6 border border-blue-100">
+                      <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-images text-white text-xl"></i>
+                      </div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-3">Multiple Format Support</h3>
+                      <p className="text-gray-700 leading-relaxed">
+                        Convert JPG, PNG, GIF, and WebP images with automatic format detection and optimized processing for each image type.
+                      </p>
+                    </div>
+
+                    <div className="bg-green-50 rounded-xl p-6 border border-green-100">
+                      <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-cog text-white text-xl"></i>
+                      </div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-3">Custom Page Settings</h3>
+                      <p className="text-gray-700 leading-relaxed">
+                        Choose from standard sizes (A4, Letter, Legal) or create custom dimensions with portrait/landscape orientation options.
+                      </p>
+                    </div>
+
+                    <div className="bg-purple-50 rounded-xl p-6 border border-purple-100">
+                      <div className="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-compress text-white text-xl"></i>
+                      </div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-3">Quality Control</h3>
+                      <p className="text-gray-700 leading-relaxed">
+                        Adjust image quality and compression levels to balance file size with visual clarity for optimal results.
+                      </p>
+                    </div>
+
+                    <div className="bg-orange-50 rounded-xl p-6 border border-orange-100">
+                      <div className="w-12 h-12 bg-orange-600 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-sync text-white text-xl"></i>
+                      </div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-3">Image Rotation</h3>
+                      <p className="text-gray-700 leading-relaxed">
+                        Rotate images in 90-degree increments to ensure proper orientation before merging into PDF format.
+                      </p>
+                    </div>
+
+                    <div className="bg-teal-50 rounded-xl p-6 border border-teal-100">
+                      <div className="w-12 h-12 bg-teal-600 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-arrows-alt text-white text-xl"></i>
+                      </div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-3">Flexible Positioning</h3>
+                      <p className="text-gray-700 leading-relaxed">
+                        Center images automatically, maintain aspect ratios, and control margins for professional document layout.
+                      </p>
+                    </div>
+
+                    <div className="bg-red-50 rounded-xl p-6 border border-red-100">
+                      <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-list text-white text-xl"></i>
+                      </div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-3">Order Management</h3>
+                      <p className="text-gray-700 leading-relaxed">
+                        Reorder images with drag-and-drop functionality or move buttons to create the perfect document sequence.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* How It Works */}
+                <div>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">How to Convert Images to PDF</h2>
+                  <div className="grid md:grid-cols-4 gap-8">
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span className="text-white text-xl font-bold">1</span>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Upload Images</h3>
+                      <p className="text-gray-600 text-sm">
+                        Select multiple images using drag-and-drop or file browser. Supports JPG, PNG, GIF, WebP formats.
+                      </p>
+                    </div>
+
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span className="text-white text-xl font-bold">2</span>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Organize & Edit</h3>
+                      <p className="text-gray-600 text-sm">
+                        Reorder images, rotate as needed, and remove unwanted files to prepare your document sequence.
+                      </p>
+                    </div>
+
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span className="text-white text-xl font-bold">3</span>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Configure Settings</h3>
+                      <p className="text-gray-600 text-sm">
+                        Choose page size, orientation, margins, image positioning, and quality settings for optimal results.
+                      </p>
+                    </div>
+
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span className="text-white text-xl font-bold">4</span>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Download PDF</h3>
+                      <p className="text-gray-600 text-sm">
+                        Click create PDF to merge images and download your professionally formatted document.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Use Cases */}
+                <div>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Common Use Cases for Image to PDF Conversion</h2>
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Business & Professional</h3>
+                      <ul className="space-y-3 text-gray-700">
+                        <li className="flex items-start">
+                          <i className="fas fa-check-circle text-green-500 mr-3 mt-1"></i>
+                          <span>Creating digital portfolios and presentations</span>
+                        </li>
+                        <li className="flex items-start">
+                          <i className="fas fa-check-circle text-green-500 mr-3 mt-1"></i>
+                          <span>Consolidating product catalogs and brochures</span>
+                        </li>
+                        <li className="flex items-start">
+                          <i className="fas fa-check-circle text-green-500 mr-3 mt-1"></i>
+                          <span>Archiving important business documents</span>
+                        </li>
+                        <li className="flex items-start">
+                          <i className="fas fa-check-circle text-green-500 mr-3 mt-1"></i>
+                          <span>Converting visual reports and analytics</span>
+                        </li>
+                        <li className="flex items-start">
+                          <i className="fas fa-check-circle text-green-500 mr-3 mt-1"></i>
+                          <span>Preparing training materials and manuals</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Personal & Educational</h3>
+                      <ul className="space-y-3 text-gray-700">
+                        <li className="flex items-start">
+                          <i className="fas fa-check-circle text-blue-500 mr-3 mt-1"></i>
+                          <span>Converting scanned documents and receipts</span>
+                        </li>
+                        <li className="flex items-start">
+                          <i className="fas fa-check-circle text-blue-500 mr-3 mt-1"></i>
+                          <span>Creating photo albums and memory books</span>
+                        </li>
+                        <li className="flex items-start">
+                          <i className="fas fa-check-circle text-blue-500 mr-3 mt-1"></i>
+                          <span>Compiling research materials and references</span>
+                        </li>
+                        <li className="flex items-start">
+                          <i className="fas fa-check-circle text-blue-500 mr-3 mt-1"></i>
+                          <span>Submitting academic assignments with images</span>
+                        </li>
+                        <li className="flex items-start">
+                          <i className="fas fa-check-circle text-blue-500 mr-3 mt-1"></i>
+                          <span>Organizing digital artwork and sketches</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Technical Specifications */}
+                <div>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Technical Specifications & Capabilities</h2>
+                  <div className="grid md:grid-cols-3 gap-8">
+                    <div className="bg-gray-50 rounded-xl p-6">
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Supported Formats</h3>
+                      <div className="space-y-2 text-gray-700">
+                        <div className="flex justify-between">
+                          <span>JPEG/JPG</span>
+                          <i className="fas fa-check text-green-500"></i>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>PNG</span>
+                          <i className="fas fa-check text-green-500"></i>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>GIF</span>
+                          <i className="fas fa-check text-green-500"></i>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>WebP</span>
+                          <i className="fas fa-check text-green-500"></i>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-gray-50 rounded-xl p-6">
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Page Sizes</h3>
+                      <div className="space-y-2 text-gray-700">
+                        <div>• A4 (210 × 297 mm)</div>
+                        <div>• Letter (8.5 × 11 in)</div>
+                        <div>• Legal (8.5 × 14 in)</div>
+                        <div>• Custom dimensions</div>
+                        <div>• Auto-fit to images</div>
+                      </div>
+                    </div>
+
+                    <div className="bg-gray-50 rounded-xl p-6">
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Processing Limits</h3>
+                      <div className="space-y-2 text-gray-700">
+                        <div>• Up to 20 images per batch</div>
+                        <div>• Maximum 50MB per image</div>
+                        <div>• Resolution up to 8K</div>
+                        <div>• Batch processing support</div>
+                        <div>• Real-time preview</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Tips and Best Practices */}
+                <div>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Tips for Best Results</h2>
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div className="bg-blue-50 rounded-xl p-6 border border-blue-200">
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                        <i className="fas fa-lightbulb text-blue-600 mr-3"></i>
+                        Optimization Tips
+                      </h3>
+                      <ul className="space-y-2 text-gray-700">
+                        <li>• Use consistent image orientations when possible</li>
+                        <li>• Choose appropriate quality settings for intended use</li>
+                        <li>• Consider file size requirements for sharing</li>
+                        <li>• Use standard page sizes for professional documents</li>
+                        <li>• Preview images before final conversion</li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-green-50 rounded-xl p-6 border border-green-200">
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                        <i className="fas fa-shield-alt text-green-600 mr-3"></i>
+                        Security & Privacy
+                      </h3>
+                      <ul className="space-y-2 text-gray-700">
+                        <li>• All processing happens in your browser</li>
+                        <li>• Images are not uploaded to servers</li>
+                        <li>• Complete privacy and data protection</li>
+                        <li>• No registration or account required</li>
+                        <li>• Files are automatically cleaned after use</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* FAQ */}
+                <div>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Frequently Asked Questions</h2>
+                  <div className="space-y-6 max-w-4xl mx-auto">
+                    <div className="bg-white border border-gray-200 rounded-lg p-6">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">What image formats can I convert to PDF?</h3>
+                      <p className="text-gray-700">
+                        Our tool supports the most common image formats including JPEG/JPG, PNG, GIF, and WebP. These formats cover virtually all image types you might need to convert to PDF.
+                      </p>
+                    </div>
+
+                    <div className="bg-white border border-gray-200 rounded-lg p-6">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Is there a limit to how many images I can merge?</h3>
+                      <p className="text-gray-700">
+                        You can merge up to 20 images in a single batch. Each image can be up to 50MB in size, and the tool supports high-resolution images up to 8K quality.
+                      </p>
+                    </div>
+
+                    <div className="bg-white border border-gray-200 rounded-lg p-6">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I control the order of images in the PDF?</h3>
+                      <p className="text-gray-700">
+                        Yes! You can easily reorder images using drag-and-drop functionality or the move up/down buttons. The order you see in the preview is exactly how they'll appear in the final PDF.
+                      </p>
+                    </div>
+
+                    <div className="bg-white border border-gray-200 rounded-lg p-6">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Are my images secure during processing?</h3>
+                      <p className="text-gray-700">
+                        Absolutely! All image processing happens directly in your browser using client-side JavaScript. Your images are never uploaded to any server, ensuring complete privacy and security.
+                      </p>
+                    </div>
+
+                    <div className="bg-white border border-gray-200 rounded-lg p-6">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I adjust the quality and file size of the output PDF?</h3>
+                      <p className="text-gray-700">
+                        Yes, you can control the image quality with our compression slider (50-100%). Higher quality settings produce larger files, while lower settings reduce file size with some quality trade-off.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
         </main>
         
         <Footer />

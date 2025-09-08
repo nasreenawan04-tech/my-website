@@ -112,7 +112,7 @@ const PDFLinkExtractor = () => {
 
   const handleFileSelect = (files: FileList | null) => {
     if (!files || files.length === 0) return;
-    
+
     const file = files[0];
     if (file.type !== 'application/pdf') {
       setError('Please select a PDF file.');
@@ -206,7 +206,7 @@ const PDFLinkExtractor = () => {
 
       const blob = await response.blob();
       const downloadUrl = URL.createObjectURL(blob);
-      
+
       const link = document.createElement('a');
       link.href = downloadUrl;
       link.download = `extracted-links-${Date.now()}.${settings.outputFormat}`;
@@ -261,7 +261,7 @@ const PDFLinkExtractor = () => {
 
       <div className="min-h-screen flex flex-col" data-testid="page-pdf-link-extractor">
         <Header />
-        
+
         <main className="flex-1 bg-neutral-50">
           {/* Hero Section */}
           <section className="bg-gradient-to-r from-emerald-600 via-teal-500 to-cyan-600 text-white py-16">
@@ -287,11 +287,11 @@ const PDFLinkExtractor = () => {
                     {/* File Upload Section */}
                     <div>
                       <h2 className="text-2xl font-semibold text-gray-900 mb-6">Select PDF with Links</h2>
-                      
+
                       <div
                         className={`border-2 border-dashed rounded-xl p-12 text-center transition-colors ${
-                          dragOver 
-                            ? 'border-emerald-500 bg-emerald-50' 
+                          dragOver
+                            ? 'border-emerald-500 bg-emerald-50'
                             : 'border-gray-300 hover:border-gray-400'
                         }`}
                         onDrop={handleDrop}
@@ -312,7 +312,7 @@ const PDFLinkExtractor = () => {
                         >
                           Select PDF File
                         </Button>
-                        
+
                         <input
                           ref={fileInputRef}
                           type="file"
@@ -353,7 +353,7 @@ const PDFLinkExtractor = () => {
                           <Link2 className="w-5 h-5 mr-2" />
                           Link Extraction Settings
                         </h3>
-                        
+
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                           {/* Output Format */}
                           <div>
@@ -490,7 +490,7 @@ const PDFLinkExtractor = () => {
                               {result.extractionTime}s extraction
                             </Badge>
                           </div>
-                          
+
                           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                             <div className="text-center">
                               <div className="text-3xl font-bold text-emerald-900">
@@ -537,7 +537,7 @@ const PDFLinkExtractor = () => {
                           <TabsContent value="overview" className="space-y-4">
                             <div className="bg-white border rounded-lg p-6">
                               <h4 className="text-lg font-semibold text-gray-900 mb-4">Link Types Distribution</h4>
-                              
+
                               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                                 {Object.entries(result.linksByType).map(([type, count]) => (
                                   count > 0 && (
@@ -559,7 +559,7 @@ const PDFLinkExtractor = () => {
                           <TabsContent value="links" className="space-y-4">
                             <div className="bg-white border rounded-lg p-6">
                               <h4 className="text-lg font-semibold text-gray-900 mb-4">All Extracted Links</h4>
-                              
+
                               {result.links.length > 0 ? (
                                 <div className="space-y-3 max-h-96 overflow-y-auto">
                                   {result.links.map((link, index) => (
@@ -603,7 +603,7 @@ const PDFLinkExtractor = () => {
                           <TabsContent value="domains" className="space-y-4">
                             <div className="bg-white border rounded-lg p-6">
                               <h4 className="text-lg font-semibold text-gray-900 mb-4">Domains Found</h4>
-                              
+
                               {result.domains.length > 0 ? (
                                 <div className="space-y-3">
                                   {result.domains.map((domainInfo, index) => (
@@ -637,7 +637,7 @@ const PDFLinkExtractor = () => {
                           <TabsContent value="pages" className="space-y-4">
                             <div className="bg-white border rounded-lg p-6">
                               <h4 className="text-lg font-semibold text-gray-900 mb-4">Links by Page</h4>
-                              
+
                               {result.linksByPage.length > 0 ? (
                                 <div className="space-y-3">
                                   {result.linksByPage.map((pageInfo, index) => (
@@ -694,9 +694,8 @@ const PDFLinkExtractor = () => {
               </Card>
             </div>
           </section>
-        </main>
 
-        {/* SEO Content Sections */}
+          {/* SEO Content Sections */}
           <section className="py-16 bg-white">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="space-y-12">
