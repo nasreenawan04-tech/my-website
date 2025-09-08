@@ -128,10 +128,10 @@ const PDFRedactionTool = () => {
     }
   };
 
-  const removeSearchTerm = (term: string) => {
+  const removeSearchTerm = (index: number) => {
     setSettings(prev => ({
       ...prev,
-      searchTerms: prev.searchTerms.filter(t => t !== term)
+      searchTerms: prev.searchTerms.filter((_, i) => i !== index)
     }));
   };
 
@@ -151,7 +151,7 @@ const PDFRedactionTool = () => {
     setSettings(prev => ({ ...prev, [key]: value }));
   };
 
-  const performRedaction = async () => {
+  const handleRedact = async () => {
     if (!selectedFile) return;
 
     setIsProcessing(true);
@@ -277,6 +277,7 @@ const PDFRedactionTool = () => {
               </p>
             </div>
           </section>
+
 
           {/* Features Section */}
           <section className="py-16 bg-white">
@@ -738,7 +739,7 @@ const PDFRedactionTool = () => {
                                     <Badge
                                       key={index}
                                       className="bg-blue-100 text-blue-800 cursor-pointer hover:bg-blue-200"
-                                      onClick={() => removeSearchTerm(term)}
+                                      onClick={() => removeSearchTerm(index)}
                                       data-testid={`badge-term-${index}`}
                                     >
                                       {term} ×
@@ -841,7 +842,7 @@ const PDFRedactionTool = () => {
 
                         {/* Redact Button */}
                         <Button
-                          onClick={performRedaction}
+                          onClick={handleRedact}
                           disabled={isProcessing || (settings.mode === 'text' && settings.searchTerms.length === 0) || (settings.mode === 'pattern' && settings.patterns.length === 0)}
                           className="w-full bg-gray-800 hover:bg-gray-900 text-white py-3"
                           data-testid="button-redact"
