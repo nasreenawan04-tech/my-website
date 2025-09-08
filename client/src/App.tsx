@@ -124,14 +124,6 @@ import PDFRedactionTool from '@/pages/pdf-redaction-tool';
 import PDFComparisonTool from '@/pages/pdf-comparison-tool';
 import PDFFormFieldExtractor from '@/pages/pdf-form-field-extractor';
 import PDFLinkExtractor from '@/pages/pdf-link-extractor';
-import PDFCompressorAdvanced from '@/pages/pdf-compressor-advanced';
-import PDFRepairTool from '@/pages/pdf-repair-tool';
-import PDFComplianceChecker from '@/pages/pdf-compliance-checker';
-import PDFPermissionManager from '@/pages/pdf-permission-manager';
-import PDFRedactionTool from '@/pages/pdf-redaction-tool';
-import PDFComparisonTool from '@/pages/pdf-comparison-tool';
-import PDFFormFieldExtractor from '@/pages/pdf-form-field-extractor';
-import PDFLinkExtractor from '@/pages/pdf-link-extractor';
 
 
 function ScrollToTop() {
