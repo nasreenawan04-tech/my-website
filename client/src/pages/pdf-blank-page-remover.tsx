@@ -618,3 +618,254 @@ const PDFBlankPageRemover = () => {
 };
 
 export default PDFBlankPageRemover;
+import { useState, useRef } from 'react';
+import { Helmet } from 'react-helmet-async';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+
+const PDFBlankPageRemover = () => {
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [sensitivity, setSensitivity] = useState<number>(95);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [previewMode, setPreviewMode] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file && file.type === 'application/pdf') {
+      setSelectedFile(file);
+    } else {
+      alert('Please select a valid PDF file.');
+    }
+  };
+
+  const handleRemoveBlankPages = async () => {
+    if (!selectedFile) {
+      alert('Please select a PDF file first.');
+      return;
+    }
+
+    setIsProcessing(true);
+    
+    try {
+      const formData = new FormData();
+      formData.append('pdf', selectedFile);
+      formData.append('sensitivity', sensitivity.toString());
+      formData.append('previewMode', previewMode.toString());
+
+      const response = await fetch('/api/pdf/remove-blank-pages', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = `${selectedFile.name.replace('.pdf', '')}_blank_pages_removed.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+      } else {
+        throw new Error('Failed to remove blank pages from PDF');
+      }
+    } catch (error) {
+      console.error('Error removing blank pages from PDF:', error);
+      alert('An error occurred while removing blank pages from the PDF. Please try again.');
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
+  const handlePreview = async () => {
+    if (!selectedFile) {
+      alert('Please select a PDF file first.');
+      return;
+    }
+
+    setIsProcessing(true);
+    
+    try {
+      const formData = new FormData();
+      formData.append('pdf', selectedFile);
+      formData.append('sensitivity', sensitivity.toString());
+      formData.append('previewOnly', 'true');
+
+      const response = await fetch('/api/pdf/detect-blank-pages', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        const blankPages = result.blankPages || [];
+        if (blankPages.length > 0) {
+          alert(`Found ${blankPages.length} blank page(s): ${blankPages.join(', ')}`);
+        } else {
+          alert('No blank pages detected in this PDF.');
+        }
+      } else {
+        throw new Error('Failed to preview blank pages');
+      }
+    } catch (error) {
+      console.error('Error previewing blank pages:', error);
+      alert('An error occurred while previewing blank pages. Please try again.');
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
+  const resetForm = () => {
+    setSelectedFile(null);
+    setSensitivity(95);
+    setPreviewMode(false);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
+
+  return (
+    <>
+      <Helmet>
+        <title>PDF Blank Page Remover - Automatically Remove Empty Pages | ToolsHub</title>
+        <meta name="description" content="Automatically detect and remove blank pages from PDF documents. Free online PDF blank page removal tool." />
+        <meta name="keywords" content="PDF blank page remover, remove empty PDF pages, PDF optimization, clean PDF" />
+      </Helmet>
+
+      <div className="min-h-screen flex flex-col">
+        <Header />
+
+        <main className="flex-1 bg-neutral-50">
+          <section className="bg-gradient-to-r from-orange-600 via-orange-500 to-amber-700 text-white py-16">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <i className="fas fa-eraser text-3xl"></i>
+              </div>
+              <h1 className="text-4xl sm:text-5xl font-bold mb-4">
+                PDF Blank Page Remover
+              </h1>
+              <p className="text-xl text-orange-100 mb-8 max-w-2xl mx-auto">
+                Automatically detect and remove blank pages from PDF documents to reduce file size
+              </p>
+            </div>
+          </section>
+
+          <section className="py-16">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="bg-white rounded-2xl shadow-lg p-8">
+                <div className="space-y-6">
+                  <div>
+                    <label className="block text-sm font-medium text-neutral-700 mb-2">
+                      Select PDF File
+                    </label>
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept=".pdf"
+                      onChange={handleFileSelect}
+                      className="w-full p-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                    />
+                  </div>
+
+                  {selectedFile && (
+                    <div className="p-4 bg-orange-50 border border-orange-200 rounded-lg">
+                      <p className="text-orange-800">
+                        <i className="fas fa-file-pdf mr-2"></i>
+                        Selected: {selectedFile.name}
+                      </p>
+                    </div>
+                  )}
+
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium text-neutral-700 mb-2">
+                        Detection Sensitivity: {sensitivity}%
+                      </label>
+                      <input
+                        type="range"
+                        min="80"
+                        max="99"
+                        value={sensitivity}
+                        onChange={(e) => setSensitivity(Number(e.target.value))}
+                        className="w-full h-2 bg-neutral-200 rounded-lg appearance-none cursor-pointer slider"
+                      />
+                      <div className="flex justify-between text-xs text-neutral-500 mt-1">
+                        <span>Less sensitive (80%)</span>
+                        <span>More sensitive (99%)</span>
+                      </div>
+                      <p className="text-sm text-neutral-600 mt-2">
+                        Higher sensitivity may detect pages with minimal content as blank.
+                        Lower sensitivity may miss some blank pages.
+                      </p>
+                    </div>
+
+                    <div className="bg-neutral-50 p-4 rounded-lg">
+                      <h3 className="font-semibold text-neutral-800 mb-2">How it works:</h3>
+                      <ul className="text-sm text-neutral-600 space-y-1">
+                        <li>• Analyzes each page for content density</li>
+                        <li>• Detects pages that are completely blank or nearly empty</li>
+                        <li>• Removes identified blank pages while preserving page order</li>
+                        <li>• Maintains all formatting and content of non-blank pages</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                    <button
+                      onClick={handlePreview}
+                      disabled={!selectedFile || isProcessing}
+                      className="flex-1 bg-gradient-to-r from-neutral-600 to-neutral-700 text-white px-6 py-3 rounded-lg font-semibold hover:from-neutral-700 hover:to-neutral-800 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isProcessing ? (
+                        <>
+                          <i className="fas fa-spinner fa-spin mr-2"></i>
+                          Analyzing...
+                        </>
+                      ) : (
+                        <>
+                          <i className="fas fa-search mr-2"></i>
+                          Preview Blank Pages
+                        </>
+                      )}
+                    </button>
+                    <button
+                      onClick={handleRemoveBlankPages}
+                      disabled={!selectedFile || isProcessing}
+                      className="flex-1 bg-gradient-to-r from-orange-600 to-amber-700 text-white px-6 py-3 rounded-lg font-semibold hover:from-orange-700 hover:to-amber-800 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isProcessing ? (
+                        <>
+                          <i className="fas fa-spinner fa-spin mr-2"></i>
+                          Removing Blank Pages...
+                        </>
+                      ) : (
+                        <>
+                          <i className="fas fa-eraser mr-2"></i>
+                          Remove Blank Pages
+                        </>
+                      )}
+                    </button>
+                    <button
+                      onClick={resetForm}
+                      className="flex-1 bg-neutral-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-neutral-600 transition-all duration-200"
+                    >
+                      <i className="fas fa-redo mr-2"></i>
+                      Reset
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <Footer />
+      </div>
+    </>
+  );
+};
+
+export default PDFBlankPageRemover;

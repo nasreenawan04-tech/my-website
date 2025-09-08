@@ -686,3 +686,232 @@ const PDFVersionConverter = () => {
 };
 
 export default PDFVersionConverter;
+import { useState, useRef } from 'react';
+import { Helmet } from 'react-helmet-async';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+
+const PDFVersionConverter = () => {
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [targetVersion, setTargetVersion] = useState<string>('1.7');
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [currentVersion, setCurrentVersion] = useState<string>('');
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const pdfVersions = [
+    { value: '1.3', label: 'PDF 1.3 (Acrobat 4)', description: 'Maximum compatibility' },
+    { value: '1.4', label: 'PDF 1.4 (Acrobat 5)', description: 'Basic features' },
+    { value: '1.5', label: 'PDF 1.5 (Acrobat 6)', description: 'Compression improvements' },
+    { value: '1.6', label: 'PDF 1.6 (Acrobat 7)', description: 'Enhanced security' },
+    { value: '1.7', label: 'PDF 1.7 (Acrobat 8)', description: 'Most compatible modern version' },
+    { value: '2.0', label: 'PDF 2.0 (ISO 32000-2)', description: 'Latest standard' },
+  ];
+
+  const handleFileSelect = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file && file.type === 'application/pdf') {
+      setSelectedFile(file);
+      // Try to detect current PDF version
+      try {
+        const formData = new FormData();
+        formData.append('pdf', file);
+        const response = await fetch('/api/pdf/get-version', {
+          method: 'POST',
+          body: formData,
+        });
+        if (response.ok) {
+          const result = await response.json();
+          setCurrentVersion(result.version || 'Unknown');
+        }
+      } catch (error) {
+        console.error('Error detecting PDF version:', error);
+        setCurrentVersion('Unknown');
+      }
+    } else {
+      alert('Please select a valid PDF file.');
+    }
+  };
+
+  const handleConvertVersion = async () => {
+    if (!selectedFile) {
+      alert('Please select a PDF file first.');
+      return;
+    }
+
+    setIsProcessing(true);
+    
+    try {
+      const formData = new FormData();
+      formData.append('pdf', selectedFile);
+      formData.append('targetVersion', targetVersion);
+
+      const response = await fetch('/api/pdf/convert-version', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = `${selectedFile.name.replace('.pdf', '')}_v${targetVersion}.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+      } else {
+        throw new Error('Failed to convert PDF version');
+      }
+    } catch (error) {
+      console.error('Error converting PDF version:', error);
+      alert('An error occurred while converting the PDF version. Please try again.');
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
+  const resetForm = () => {
+    setSelectedFile(null);
+    setTargetVersion('1.7');
+    setCurrentVersion('');
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
+
+  return (
+    <>
+      <Helmet>
+        <title>PDF Version Converter - Convert Between PDF Versions | ToolsHub</title>
+        <meta name="description" content="Convert between different PDF versions for compatibility. Support for PDF 1.3 to PDF 2.0." />
+        <meta name="keywords" content="PDF version converter, PDF compatibility, convert PDF version, PDF standards" />
+      </Helmet>
+
+      <div className="min-h-screen flex flex-col">
+        <Header />
+
+        <main className="flex-1 bg-neutral-50">
+          <section className="bg-gradient-to-r from-violet-600 via-violet-500 to-purple-700 text-white py-16">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <i className="fas fa-exchange-alt text-3xl"></i>
+              </div>
+              <h1 className="text-4xl sm:text-5xl font-bold mb-4">
+                PDF Version Converter
+              </h1>
+              <p className="text-xl text-violet-100 mb-8 max-w-2xl mx-auto">
+                Convert between different PDF versions for compatibility with various applications
+              </p>
+            </div>
+          </section>
+
+          <section className="py-16">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="bg-white rounded-2xl shadow-lg p-8">
+                <div className="space-y-6">
+                  <div>
+                    <label className="block text-sm font-medium text-neutral-700 mb-2">
+                      Select PDF File
+                    </label>
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept=".pdf"
+                      onChange={handleFileSelect}
+                      className="w-full p-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-violet-500 focus:border-transparent"
+                    />
+                  </div>
+
+                  {selectedFile && (
+                    <div className="p-4 bg-violet-50 border border-violet-200 rounded-lg">
+                      <p className="text-violet-800">
+                        <i className="fas fa-file-pdf mr-2"></i>
+                        Selected: {selectedFile.name}
+                      </p>
+                      {currentVersion && (
+                        <p className="text-violet-700 text-sm mt-1">
+                          Current version: PDF {currentVersion}
+                        </p>
+                      )}
+                    </div>
+                  )}
+
+                  <div>
+                    <label className="block text-sm font-medium text-neutral-700 mb-2">
+                      Target PDF Version
+                    </label>
+                    <div className="space-y-2">
+                      {pdfVersions.map((version) => (
+                        <label key={version.value} className="flex items-start">
+                          <input
+                            type="radio"
+                            value={version.value}
+                            checked={targetVersion === version.value}
+                            onChange={(e) => setTargetVersion(e.target.value)}
+                            className="w-4 h-4 text-violet-600 bg-neutral-100 border-neutral-300 focus:ring-violet-500 mt-1"
+                          />
+                          <div className="ml-3">
+                            <span className="font-medium text-neutral-800">{version.label}</span>
+                            <p className="text-sm text-neutral-600">{version.description}</p>
+                          </div>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="bg-neutral-50 p-4 rounded-lg">
+                    <h3 className="font-semibold text-neutral-800 mb-2">Version Selection Guide:</h3>
+                    <ul className="text-sm text-neutral-600 space-y-1">
+                      <li>• <strong>PDF 1.3-1.4:</strong> For maximum compatibility with older software</li>
+                      <li>• <strong>PDF 1.5-1.6:</strong> For better compression and security features</li>
+                      <li>• <strong>PDF 1.7:</strong> Most widely supported modern version (recommended)</li>
+                      <li>• <strong>PDF 2.0:</strong> Latest standard with advanced features</li>
+                    </ul>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                    <button
+                      onClick={handleConvertVersion}
+                      disabled={!selectedFile || isProcessing || currentVersion === targetVersion}
+                      className="flex-1 bg-gradient-to-r from-violet-600 to-purple-700 text-white px-6 py-3 rounded-lg font-semibold hover:from-violet-700 hover:to-purple-800 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isProcessing ? (
+                        <>
+                          <i className="fas fa-spinner fa-spin mr-2"></i>
+                          Converting...
+                        </>
+                      ) : currentVersion === targetVersion ? (
+                        <>
+                          <i className="fas fa-check mr-2"></i>
+                          Already PDF {targetVersion}
+                        </>
+                      ) : (
+                        <>
+                          <i className="fas fa-exchange-alt mr-2"></i>
+                          Convert to PDF {targetVersion}
+                        </>
+                      )}
+                    </button>
+                    <button
+                      onClick={resetForm}
+                      className="flex-1 bg-neutral-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-neutral-600 transition-all duration-200"
+                    >
+                      <i className="fas fa-redo mr-2"></i>
+                      Reset
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <Footer />
+      </div>
+    </>
+  );
+};
+
+export default PDFVersionConverter;

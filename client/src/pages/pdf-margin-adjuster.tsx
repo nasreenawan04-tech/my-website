@@ -569,3 +569,226 @@ const PDFMarginAdjuster = () => {
 };
 
 export default PDFMarginAdjuster;
+import { useState, useRef } from 'react';
+import { Helmet } from 'react-helmet-async';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+
+const PDFMarginAdjuster = () => {
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [marginTop, setMarginTop] = useState<number>(20);
+  const [marginBottom, setMarginBottom] = useState<number>(20);
+  const [marginLeft, setMarginLeft] = useState<number>(20);
+  const [marginRight, setMarginRight] = useState<number>(20);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file && file.type === 'application/pdf') {
+      setSelectedFile(file);
+    } else {
+      alert('Please select a valid PDF file.');
+    }
+  };
+
+  const handleAdjustMargins = async () => {
+    if (!selectedFile) {
+      alert('Please select a PDF file first.');
+      return;
+    }
+
+    setIsProcessing(true);
+    
+    try {
+      const formData = new FormData();
+      formData.append('pdf', selectedFile);
+      formData.append('marginTop', marginTop.toString());
+      formData.append('marginBottom', marginBottom.toString());
+      formData.append('marginLeft', marginLeft.toString());
+      formData.append('marginRight', marginRight.toString());
+
+      const response = await fetch('/api/pdf/adjust-margins', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = `${selectedFile.name.replace('.pdf', '')}_margins_adjusted.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+      } else {
+        throw new Error('Failed to adjust PDF margins');
+      }
+    } catch (error) {
+      console.error('Error adjusting PDF margins:', error);
+      alert('An error occurred while adjusting the PDF margins. Please try again.');
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
+  const resetForm = () => {
+    setSelectedFile(null);
+    setMarginTop(20);
+    setMarginBottom(20);
+    setMarginLeft(20);
+    setMarginRight(20);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
+
+  return (
+    <>
+      <Helmet>
+        <title>PDF Margin Adjuster - Add or Remove Margins | ToolsHub</title>
+        <meta name="description" content="Adjust PDF margins by adding or removing borders and crop pages. Free online PDF margin adjustment tool." />
+        <meta name="keywords" content="PDF margin adjuster, PDF crop, PDF borders, adjust PDF margins, crop PDF pages" />
+      </Helmet>
+
+      <div className="min-h-screen flex flex-col">
+        <Header />
+
+        <main className="flex-1 bg-neutral-50">
+          <section className="bg-gradient-to-r from-green-600 via-green-500 to-emerald-700 text-white py-16">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <i className="fas fa-crop text-3xl"></i>
+              </div>
+              <h1 className="text-4xl sm:text-5xl font-bold mb-4">
+                PDF Margin Adjuster
+              </h1>
+              <p className="text-xl text-green-100 mb-8 max-w-2xl mx-auto">
+                Add or remove margins from PDF pages and crop borders to customize page layout
+              </p>
+            </div>
+          </section>
+
+          <section className="py-16">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="bg-white rounded-2xl shadow-lg p-8">
+                <div className="space-y-6">
+                  <div>
+                    <label className="block text-sm font-medium text-neutral-700 mb-2">
+                      Select PDF File
+                    </label>
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept=".pdf"
+                      onChange={handleFileSelect}
+                      className="w-full p-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                    />
+                  </div>
+
+                  {selectedFile && (
+                    <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
+                      <p className="text-green-800">
+                        <i className="fas fa-file-pdf mr-2"></i>
+                        Selected: {selectedFile.name}
+                      </p>
+                    </div>
+                  )}
+
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-neutral-700 mb-2">
+                        Top Margin (mm)
+                      </label>
+                      <input
+                        type="number"
+                        value={marginTop}
+                        onChange={(e) => setMarginTop(Number(e.target.value))}
+                        className="w-full p-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-green-500"
+                        min="0"
+                        max="100"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-neutral-700 mb-2">
+                        Bottom Margin (mm)
+                      </label>
+                      <input
+                        type="number"
+                        value={marginBottom}
+                        onChange={(e) => setMarginBottom(Number(e.target.value))}
+                        className="w-full p-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-green-500"
+                        min="0"
+                        max="100"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-neutral-700 mb-2">
+                        Left Margin (mm)
+                      </label>
+                      <input
+                        type="number"
+                        value={marginLeft}
+                        onChange={(e) => setMarginLeft(Number(e.target.value))}
+                        className="w-full p-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-green-500"
+                        min="0"
+                        max="100"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-neutral-700 mb-2">
+                        Right Margin (mm)
+                      </label>
+                      <input
+                        type="number"
+                        value={marginRight}
+                        onChange={(e) => setMarginRight(Number(e.target.value))}
+                        className="w-full p-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-green-500"
+                        min="0"
+                        max="100"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                    <button
+                      onClick={handleAdjustMargins}
+                      disabled={!selectedFile || isProcessing}
+                      className="flex-1 bg-gradient-to-r from-green-600 to-emerald-700 text-white px-6 py-3 rounded-lg font-semibold hover:from-green-700 hover:to-emerald-800 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isProcessing ? (
+                        <>
+                          <i className="fas fa-spinner fa-spin mr-2"></i>
+                          Adjusting Margins...
+                        </>
+                      ) : (
+                        <>
+                          <i className="fas fa-crop mr-2"></i>
+                          Adjust Margins
+                        </>
+                      )}
+                    </button>
+                    <button
+                      onClick={resetForm}
+                      className="flex-1 bg-neutral-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-neutral-600 transition-all duration-200"
+                    >
+                      <i className="fas fa-redo mr-2"></i>
+                      Reset
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <Footer />
+      </div>
+    </>
+  );
+};
+
+export default PDFMarginAdjuster;

@@ -116,6 +116,14 @@ import PDFBlankPageRemover from '@/pages/pdf-blank-page-remover';
 import PDFToImagesEnhanced from '@/pages/pdf-to-images-enhanced';
 import ImagesToPDFMerger from '@/pages/images-to-pdf-merger';
 import PDFVersionConverter from '@/pages/pdf-version-converter';
+import PDFMarginAdjuster from '@/pages/pdf-margin-adjuster';
+import PDFPageDuplicator from '@/pages/pdf-page-duplicator';
+import PDFBackgroundChanger from '@/pages/pdf-background-changer';
+import PDFHeaderFooterGenerator from '@/pages/pdf-header-footer-generator';
+import PDFBlankPageRemover from '@/pages/pdf-blank-page-remover';
+import PDFToImagesEnhanced from '@/pages/pdf-to-images-enhanced';
+import ImagesToPDFMerger from '@/pages/images-to-pdf-merger';
+import PDFVersionConverter from '@/pages/pdf-version-converter';
 
 
 function ScrollToTop() {
@@ -206,6 +214,14 @@ function Router() {
       {/* New PDF Tools */}
       <Route path="/tools/pdf-bookmark-extractor" component={PDFBookmarkExtractor} />
       <Route path="/tools/pdf-page-resizer" component={PDFPageResizer} />
+      <Route path="/tools/pdf-margin-adjuster" component={PDFMarginAdjuster} />
+      <Route path="/tools/pdf-page-duplicator" component={PDFPageDuplicator} />
+      <Route path="/tools/pdf-background-changer" component={PDFBackgroundChanger} />
+      <Route path="/tools/pdf-header-footer" component={PDFHeaderFooterGenerator} />
+      <Route path="/tools/pdf-blank-page-remover" component={PDFBlankPageRemover} />
+      <Route path="/tools/pdf-to-images-enhanced" component={PDFToImagesEnhanced} />
+      <Route path="/tools/images-to-pdf" component={ImagesToPDFMerger} />
+      <Route path="/tools/pdf-version-converter" component={PDFVersionConverter} />
       <Route path="/tools/pdf-margin-adjuster" component={PDFMarginAdjuster} />
       <Route path="/tools/pdf-page-duplicator" component={PDFPageDuplicator} />
       <Route path="/tools/pdf-background-changer" component={PDFBackgroundChanger} />

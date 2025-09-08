@@ -717,3 +717,325 @@ const ImagesToPDFMerger = () => {
 };
 
 export default ImagesToPDFMerger;
+import { useState, useRef, useCallback } from 'react';
+import { Helmet } from 'react-helmet-async';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+
+interface ImageFile {
+  file: File;
+  id: string;
+  preview: string;
+}
+
+const ImagesToPDFMerger = () => {
+  const [selectedImages, setSelectedImages] = useState<ImageFile[]>([]);
+  const [pageSize, setPageSize] = useState<'A4' | 'Letter' | 'Legal'>('A4');
+  const [orientation, setOrientation] = useState<'portrait' | 'landscape'>('portrait');
+  const [margin, setMargin] = useState<number>(20);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleFileSelect = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(event.target.files || []);
+    const validImages = files.filter(file => file.type.startsWith('image/'));
+
+    if (validImages.length !== files.length) {
+      alert('Some files were skipped. Please select only image files (PNG, JPEG, GIF, etc.).');
+    }
+
+    const newImages: ImageFile[] = validImages.map(file => ({
+      file,
+      id: Math.random().toString(36).substr(2, 9),
+      preview: URL.createObjectURL(file)
+    }));
+
+    setSelectedImages(prev => [...prev, ...newImages]);
+  }, []);
+
+  const removeImage = useCallback((id: string) => {
+    setSelectedImages(prev => {
+      const image = prev.find(img => img.id === id);
+      if (image) {
+        URL.revokeObjectURL(image.preview);
+      }
+      return prev.filter(img => img.id !== id);
+    });
+  }, []);
+
+  const moveImage = useCallback((fromIndex: number, toIndex: number) => {
+    setSelectedImages(prev => {
+      const newImages = [...prev];
+      const [removed] = newImages.splice(fromIndex, 1);
+      newImages.splice(toIndex, 0, removed);
+      return newImages;
+    });
+  }, []);
+
+  const handleCreatePDF = async () => {
+    if (selectedImages.length === 0) {
+      alert('Please select at least one image.');
+      return;
+    }
+
+    setIsProcessing(true);
+    
+    try {
+      const formData = new FormData();
+      selectedImages.forEach((image, index) => {
+        formData.append(`image_${index}`, image.file);
+      });
+      formData.append('pageSize', pageSize);
+      formData.append('orientation', orientation);
+      formData.append('margin', margin.toString());
+      formData.append('imageCount', selectedImages.length.toString());
+
+      const response = await fetch('/api/pdf/images-to-pdf', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = 'merged_images.pdf';
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+      } else {
+        throw new Error('Failed to create PDF from images');
+      }
+    } catch (error) {
+      console.error('Error creating PDF from images:', error);
+      alert('An error occurred while creating the PDF. Please try again.');
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
+  const resetForm = () => {
+    selectedImages.forEach(image => URL.revokeObjectURL(image.preview));
+    setSelectedImages([]);
+    setPageSize('A4');
+    setOrientation('portrait');
+    setMargin(20);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
+
+  return (
+    <>
+      <Helmet>
+        <title>Images to PDF Merger - Combine Multiple Images | ToolsHub</title>
+        <meta name="description" content="Combine multiple images into a single PDF document. Support for PNG, JPEG, GIF and other image formats." />
+        <meta name="keywords" content="images to PDF, combine images, merge images to PDF, create PDF from images" />
+      </Helmet>
+
+      <div className="min-h-screen flex flex-col">
+        <Header />
+
+        <main className="flex-1 bg-neutral-50">
+          <section className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-green-700 text-white py-16">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <i className="fas fa-photo-video text-3xl"></i>
+              </div>
+              <h1 className="text-4xl sm:text-5xl font-bold mb-4">
+                Images to PDF Merger
+              </h1>
+              <p className="text-xl text-emerald-100 mb-8 max-w-2xl mx-auto">
+                Combine multiple images into a single PDF document with customizable layout
+              </p>
+            </div>
+          </section>
+
+          <section className="py-16">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {/* Settings Panel */}
+                <div className="lg:col-span-1">
+                  <div className="bg-white rounded-2xl shadow-lg p-6 sticky top-6">
+                    <h3 className="text-lg font-semibold text-neutral-800 mb-4">PDF Settings</h3>
+                    
+                    <div className="space-y-4">
+                      <div>
+                        <label className="block text-sm font-medium text-neutral-700 mb-2">
+                          Select Images
+                        </label>
+                        <input
+                          ref={fileInputRef}
+                          type="file"
+                          accept="image/*"
+                          multiple
+                          onChange={handleFileSelect}
+                          className="w-full p-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                        />
+                        <p className="text-xs text-neutral-500 mt-1">
+                          Select multiple images (PNG, JPEG, GIF, etc.)
+                        </p>
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium text-neutral-700 mb-2">
+                          Page Size
+                        </label>
+                        <select
+                          value={pageSize}
+                          onChange={(e) => setPageSize(e.target.value as 'A4' | 'Letter' | 'Legal')}
+                          className="w-full p-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-emerald-500"
+                        >
+                          <option value="A4">A4 (210 × 297 mm)</option>
+                          <option value="Letter">Letter (8.5 × 11 in)</option>
+                          <option value="Legal">Legal (8.5 × 14 in)</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium text-neutral-700 mb-2">
+                          Orientation
+                        </label>
+                        <div className="space-y-2">
+                          <label className="flex items-center">
+                            <input
+                              type="radio"
+                              value="portrait"
+                              checked={orientation === 'portrait'}
+                              onChange={(e) => setOrientation(e.target.value as 'portrait' | 'landscape')}
+                              className="w-4 h-4 text-emerald-600 bg-neutral-100 border-neutral-300 focus:ring-emerald-500"
+                            />
+                            <span className="ml-2">Portrait</span>
+                          </label>
+                          <label className="flex items-center">
+                            <input
+                              type="radio"
+                              value="landscape"
+                              checked={orientation === 'landscape'}
+                              onChange={(e) => setOrientation(e.target.value as 'portrait' | 'landscape')}
+                              className="w-4 h-4 text-emerald-600 bg-neutral-100 border-neutral-300 focus:ring-emerald-500"
+                            />
+                            <span className="ml-2">Landscape</span>
+                          </label>
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium text-neutral-700 mb-2">
+                          Margin: {margin}mm
+                        </label>
+                        <input
+                          type="range"
+                          min="0"
+                          max="50"
+                          value={margin}
+                          onChange={(e) => setMargin(Number(e.target.value))}
+                          className="w-full h-2 bg-neutral-200 rounded-lg appearance-none cursor-pointer"
+                        />
+                      </div>
+
+                      <div className="pt-4 space-y-3">
+                        <button
+                          onClick={handleCreatePDF}
+                          disabled={selectedImages.length === 0 || isProcessing}
+                          className="w-full bg-gradient-to-r from-emerald-600 to-green-700 text-white px-6 py-3 rounded-lg font-semibold hover:from-emerald-700 hover:to-green-800 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                          {isProcessing ? (
+                            <>
+                              <i className="fas fa-spinner fa-spin mr-2"></i>
+                              Creating PDF...
+                            </>
+                          ) : (
+                            <>
+                              <i className="fas fa-file-pdf mr-2"></i>
+                              Create PDF ({selectedImages.length} images)
+                            </>
+                          )}
+                        </button>
+                        <button
+                          onClick={resetForm}
+                          className="w-full bg-neutral-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-neutral-600 transition-all duration-200"
+                        >
+                          <i className="fas fa-redo mr-2"></i>
+                          Reset
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Images Preview */}
+                <div className="lg:col-span-2">
+                  <div className="bg-white rounded-2xl shadow-lg p-6">
+                    <h3 className="text-lg font-semibold text-neutral-800 mb-4">
+                      Selected Images ({selectedImages.length})
+                    </h3>
+                    
+                    {selectedImages.length === 0 ? (
+                      <div className="text-center py-12">
+                        <i className="fas fa-images text-4xl text-neutral-300 mb-4"></i>
+                        <p className="text-neutral-500">No images selected</p>
+                        <p className="text-sm text-neutral-400">Click "Select Images" to add images</p>
+                      </div>
+                    ) : (
+                      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        {selectedImages.map((image, index) => (
+                          <div key={image.id} className="relative group">
+                            <div className="aspect-square bg-neutral-100 rounded-lg overflow-hidden">
+                              <img
+                                src={image.preview}
+                                alt={`Preview ${index + 1}`}
+                                className="w-full h-full object-cover"
+                              />
+                            </div>
+                            <div className="absolute top-2 left-2 bg-emerald-600 text-white text-xs px-2 py-1 rounded">
+                              {index + 1}
+                            </div>
+                            <button
+                              onClick={() => removeImage(image.id)}
+                              className="absolute top-2 right-2 bg-red-600 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                            >
+                              <i className="fas fa-times text-xs"></i>
+                            </button>
+                            <div className="absolute bottom-2 right-2 flex space-x-1">
+                              {index > 0 && (
+                                <button
+                                  onClick={() => moveImage(index, index - 1)}
+                                  className="bg-neutral-800 bg-opacity-75 text-white p-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                                >
+                                  <i className="fas fa-arrow-left text-xs"></i>
+                                </button>
+                              )}
+                              {index < selectedImages.length - 1 && (
+                                <button
+                                  onClick={() => moveImage(index, index + 1)}
+                                  className="bg-neutral-800 bg-opacity-75 text-white p-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                                >
+                                  <i className="fas fa-arrow-right text-xs"></i>
+                                </button>
+                              )}
+                            </div>
+                            <p className="text-xs text-neutral-600 mt-1 truncate">
+                              {image.file.name}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <Footer />
+      </div>
+    </>
+  );
+};
+
+export default ImagesToPDFMerger;

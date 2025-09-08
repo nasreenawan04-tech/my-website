@@ -715,3 +715,283 @@ const PDFToImagesEnhanced = () => {
 };
 
 export default PDFToImagesEnhanced;
+import { useState, useRef } from 'react';
+import { Helmet } from 'react-helmet-async';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+
+const PDFToImagesEnhanced = () => {
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [format, setFormat] = useState<'png' | 'jpeg'>('png');
+  const [quality, setQuality] = useState<number>(100);
+  const [resolution, setResolution] = useState<number>(300);
+  const [pageRange, setPageRange] = useState<string>('all');
+  const [customRange, setCustomRange] = useState<string>('');
+  const [isProcessing, setIsProcessing] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file && file.type === 'application/pdf') {
+      setSelectedFile(file);
+    } else {
+      alert('Please select a valid PDF file.');
+    }
+  };
+
+  const handleConvert = async () => {
+    if (!selectedFile) {
+      alert('Please select a PDF file first.');
+      return;
+    }
+
+    if (pageRange === 'custom' && !customRange.trim()) {
+      alert('Please specify the page range (e.g., 1-5, 2,4,6).');
+      return;
+    }
+
+    setIsProcessing(true);
+    
+    try {
+      const formData = new FormData();
+      formData.append('pdf', selectedFile);
+      formData.append('format', format);
+      formData.append('quality', quality.toString());
+      formData.append('resolution', resolution.toString());
+      formData.append('pageRange', pageRange === 'custom' ? customRange : pageRange);
+
+      const response = await fetch('/api/pdf/to-images-enhanced', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = `${selectedFile.name.replace('.pdf', '')}_images.zip`;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+      } else {
+        throw new Error('Failed to convert PDF to images');
+      }
+    } catch (error) {
+      console.error('Error converting PDF to images:', error);
+      alert('An error occurred while converting the PDF to images. Please try again.');
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
+  const resetForm = () => {
+    setSelectedFile(null);
+    setFormat('png');
+    setQuality(100);
+    setResolution(300);
+    setPageRange('all');
+    setCustomRange('');
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
+
+  return (
+    <>
+      <Helmet>
+        <title>PDF to Images (Enhanced) - Convert with Quality Control | ToolsHub</title>
+        <meta name="description" content="Convert PDF pages to PNG/JPEG images with quality and resolution options. Enhanced PDF to image converter." />
+        <meta name="keywords" content="PDF to images, PDF to PNG, PDF to JPEG, convert PDF pages, PDF image converter" />
+      </Helmet>
+
+      <div className="min-h-screen flex flex-col">
+        <Header />
+
+        <main className="flex-1 bg-neutral-50">
+          <section className="bg-gradient-to-r from-cyan-600 via-cyan-500 to-teal-700 text-white py-16">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <i className="fas fa-images text-3xl"></i>
+              </div>
+              <h1 className="text-4xl sm:text-5xl font-bold mb-4">
+                PDF to Images (Enhanced)
+              </h1>
+              <p className="text-xl text-cyan-100 mb-8 max-w-2xl mx-auto">
+                Convert PDF pages to PNG/JPEG with quality and resolution options
+              </p>
+            </div>
+          </section>
+
+          <section className="py-16">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="bg-white rounded-2xl shadow-lg p-8">
+                <div className="space-y-6">
+                  <div>
+                    <label className="block text-sm font-medium text-neutral-700 mb-2">
+                      Select PDF File
+                    </label>
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept=".pdf"
+                      onChange={handleFileSelect}
+                      className="w-full p-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+                    />
+                  </div>
+
+                  {selectedFile && (
+                    <div className="p-4 bg-cyan-50 border border-cyan-200 rounded-lg">
+                      <p className="text-cyan-800">
+                        <i className="fas fa-file-pdf mr-2"></i>
+                        Selected: {selectedFile.name}
+                      </p>
+                    </div>
+                  )}
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-medium text-neutral-700 mb-2">
+                        Output Format
+                      </label>
+                      <div className="space-y-2">
+                        <label className="flex items-center">
+                          <input
+                            type="radio"
+                            value="png"
+                            checked={format === 'png'}
+                            onChange={(e) => setFormat(e.target.value as 'png' | 'jpeg')}
+                            className="w-4 h-4 text-cyan-600 bg-neutral-100 border-neutral-300 focus:ring-cyan-500"
+                          />
+                          <span className="ml-2">PNG (Lossless, larger file size)</span>
+                        </label>
+                        <label className="flex items-center">
+                          <input
+                            type="radio"
+                            value="jpeg"
+                            checked={format === 'jpeg'}
+                            onChange={(e) => setFormat(e.target.value as 'png' | 'jpeg')}
+                            className="w-4 h-4 text-cyan-600 bg-neutral-100 border-neutral-300 focus:ring-cyan-500"
+                          />
+                          <span className="ml-2">JPEG (Compressed, smaller file size)</span>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-neutral-700 mb-2">
+                        Resolution (DPI)
+                      </label>
+                      <select
+                        value={resolution}
+                        onChange={(e) => setResolution(Number(e.target.value))}
+                        className="w-full p-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-cyan-500"
+                      >
+                        <option value={72}>72 DPI (Web quality)</option>
+                        <option value={150}>150 DPI (Good quality)</option>
+                        <option value={300}>300 DPI (High quality)</option>
+                        <option value={600}>600 DPI (Print quality)</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  {format === 'jpeg' && (
+                    <div>
+                      <label className="block text-sm font-medium text-neutral-700 mb-2">
+                        JPEG Quality: {quality}%
+                      </label>
+                      <input
+                        type="range"
+                        min="50"
+                        max="100"
+                        value={quality}
+                        onChange={(e) => setQuality(Number(e.target.value))}
+                        className="w-full h-2 bg-neutral-200 rounded-lg appearance-none cursor-pointer"
+                      />
+                      <div className="flex justify-between text-xs text-neutral-500 mt-1">
+                        <span>Lower quality (50%)</span>
+                        <span>Highest quality (100%)</span>
+                      </div>
+                    </div>
+                  )}
+
+                  <div>
+                    <label className="block text-sm font-medium text-neutral-700 mb-2">
+                      Page Range
+                    </label>
+                    <div className="space-y-3">
+                      <div className="space-y-2">
+                        <label className="flex items-center">
+                          <input
+                            type="radio"
+                            value="all"
+                            checked={pageRange === 'all'}
+                            onChange={(e) => setPageRange(e.target.value)}
+                            className="w-4 h-4 text-cyan-600 bg-neutral-100 border-neutral-300 focus:ring-cyan-500"
+                          />
+                          <span className="ml-2">All pages</span>
+                        </label>
+                        <label className="flex items-center">
+                          <input
+                            type="radio"
+                            value="custom"
+                            checked={pageRange === 'custom'}
+                            onChange={(e) => setPageRange(e.target.value)}
+                            className="w-4 h-4 text-cyan-600 bg-neutral-100 border-neutral-300 focus:ring-cyan-500"
+                          />
+                          <span className="ml-2">Custom range</span>
+                        </label>
+                      </div>
+                      {pageRange === 'custom' && (
+                        <input
+                          type="text"
+                          value={customRange}
+                          onChange={(e) => setCustomRange(e.target.value)}
+                          placeholder="e.g., 1-5, 2,4,6, or 1,3-7,10"
+                          className="w-full p-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-cyan-500"
+                        />
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                    <button
+                      onClick={handleConvert}
+                      disabled={!selectedFile || isProcessing}
+                      className="flex-1 bg-gradient-to-r from-cyan-600 to-teal-700 text-white px-6 py-3 rounded-lg font-semibold hover:from-cyan-700 hover:to-teal-800 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isProcessing ? (
+                        <>
+                          <i className="fas fa-spinner fa-spin mr-2"></i>
+                          Converting...
+                        </>
+                      ) : (
+                        <>
+                          <i className="fas fa-images mr-2"></i>
+                          Convert to Images
+                        </>
+                      )}
+                    </button>
+                    <button
+                      onClick={resetForm}
+                      className="flex-1 bg-neutral-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-neutral-600 transition-all duration-200"
+                    >
+                      <i className="fas fa-redo mr-2"></i>
+                      Reset
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <Footer />
+      </div>
+    </>
+  );
+};
+
+export default PDFToImagesEnhanced;

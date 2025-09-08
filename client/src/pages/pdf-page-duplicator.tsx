@@ -591,3 +591,209 @@ const PDFPageDuplicator = () => {
 };
 
 export default PDFPageDuplicator;
+import { useState, useRef } from 'react';
+import { Helmet } from 'react-helmet-async';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+
+const PDFPageDuplicator = () => {
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [pageNumber, setPageNumber] = useState<number>(1);
+  const [duplicateCount, setDuplicateCount] = useState<number>(1);
+  const [insertAfter, setInsertAfter] = useState<boolean>(true);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file && file.type === 'application/pdf') {
+      setSelectedFile(file);
+    } else {
+      alert('Please select a valid PDF file.');
+    }
+  };
+
+  const handleDuplicatePage = async () => {
+    if (!selectedFile) {
+      alert('Please select a PDF file first.');
+      return;
+    }
+
+    setIsProcessing(true);
+    
+    try {
+      const formData = new FormData();
+      formData.append('pdf', selectedFile);
+      formData.append('pageNumber', pageNumber.toString());
+      formData.append('duplicateCount', duplicateCount.toString());
+      formData.append('insertAfter', insertAfter.toString());
+
+      const response = await fetch('/api/pdf/duplicate-page', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = `${selectedFile.name.replace('.pdf', '')}_page_duplicated.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+      } else {
+        throw new Error('Failed to duplicate PDF page');
+      }
+    } catch (error) {
+      console.error('Error duplicating PDF page:', error);
+      alert('An error occurred while duplicating the PDF page. Please try again.');
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
+  const resetForm = () => {
+    setSelectedFile(null);
+    setPageNumber(1);
+    setDuplicateCount(1);
+    setInsertAfter(true);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
+
+  return (
+    <>
+      <Helmet>
+        <title>PDF Page Duplicator - Duplicate Specific Pages | ToolsHub</title>
+        <meta name="description" content="Duplicate specific pages within a PDF document. Free online PDF page duplication tool." />
+        <meta name="keywords" content="PDF page duplicator, duplicate PDF pages, copy PDF pages, PDF page manipulation" />
+      </Helmet>
+
+      <div className="min-h-screen flex flex-col">
+        <Header />
+
+        <main className="flex-1 bg-neutral-50">
+          <section className="bg-gradient-to-r from-purple-600 via-purple-500 to-indigo-700 text-white py-16">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <i className="fas fa-copy text-3xl"></i>
+              </div>
+              <h1 className="text-4xl sm:text-5xl font-bold mb-4">
+                PDF Page Duplicator
+              </h1>
+              <p className="text-xl text-purple-100 mb-8 max-w-2xl mx-auto">
+                Duplicate specific pages within a PDF document to create multiple copies
+              </p>
+            </div>
+          </section>
+
+          <section className="py-16">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="bg-white rounded-2xl shadow-lg p-8">
+                <div className="space-y-6">
+                  <div>
+                    <label className="block text-sm font-medium text-neutral-700 mb-2">
+                      Select PDF File
+                    </label>
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept=".pdf"
+                      onChange={handleFileSelect}
+                      className="w-full p-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    />
+                  </div>
+
+                  {selectedFile && (
+                    <div className="p-4 bg-purple-50 border border-purple-200 rounded-lg">
+                      <p className="text-purple-800">
+                        <i className="fas fa-file-pdf mr-2"></i>
+                        Selected: {selectedFile.name}
+                      </p>
+                    </div>
+                  )}
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-neutral-700 mb-2">
+                        Page Number to Duplicate
+                      </label>
+                      <input
+                        type="number"
+                        value={pageNumber}
+                        onChange={(e) => setPageNumber(Number(e.target.value))}
+                        className="w-full p-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-purple-500"
+                        min="1"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-neutral-700 mb-2">
+                        Number of Duplicates
+                      </label>
+                      <input
+                        type="number"
+                        value={duplicateCount}
+                        onChange={(e) => setDuplicateCount(Number(e.target.value))}
+                        className="w-full p-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-purple-500"
+                        min="1"
+                        max="10"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-neutral-700 mb-2">
+                        Insert Position
+                      </label>
+                      <select
+                        value={insertAfter ? 'after' : 'before'}
+                        onChange={(e) => setInsertAfter(e.target.value === 'after')}
+                        className="w-full p-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-purple-500"
+                      >
+                        <option value="after">After original page</option>
+                        <option value="before">Before original page</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                    <button
+                      onClick={handleDuplicatePage}
+                      disabled={!selectedFile || isProcessing}
+                      className="flex-1 bg-gradient-to-r from-purple-600 to-indigo-700 text-white px-6 py-3 rounded-lg font-semibold hover:from-purple-700 hover:to-indigo-800 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isProcessing ? (
+                        <>
+                          <i className="fas fa-spinner fa-spin mr-2"></i>
+                          Duplicating Page...
+                        </>
+                      ) : (
+                        <>
+                          <i className="fas fa-copy mr-2"></i>
+                          Duplicate Page
+                        </>
+                      )}
+                    </button>
+                    <button
+                      onClick={resetForm}
+                      className="flex-1 bg-neutral-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-neutral-600 transition-all duration-200"
+                    >
+                      <i className="fas fa-redo mr-2"></i>
+                      Reset
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <Footer />
+      </div>
+    </>
+  );
+};
+
+export default PDFPageDuplicator;
