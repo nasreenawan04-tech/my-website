@@ -8,12 +8,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import * as pdfjsLib from 'pdfjs-dist';
 import { Upload, FileText, Download, RotateCcw, Copy, Check, Search, Hash } from 'lucide-react';
-
-// Disable PDF.js worker by using an empty data URL
-pdfjsLib.GlobalWorkerOptions.workerSrc = 'data:application/javascript;base64,';
-(pdfjsLib as any).disableWorker = true;
 
 interface ExtractedText {
   fullText: string;
@@ -136,81 +131,39 @@ const PDFTextExtractor = () => {
   };
 
   const extractTextFromPDF = async (file: File): Promise<ExtractedText> => {
-    const arrayBuffer = await file.arrayBuffer();
+    console.log('Extracting text from PDF using backend API:', file.name, 'Size:', file.size, 'bytes');
     
-    // Minimal PDF.js configuration for text extraction
-    console.log('Extracting text from PDF:', file.name, 'Size:', arrayBuffer.byteLength, 'bytes');
-    
-    // Try to load the PDF with multiple fallback configurations
-    let pdf;
-    try {
-      const loadingTask = pdfjsLib.getDocument({ 
-        data: arrayBuffer,
-        verbosity: 0,
-        disableAutoFetch: true,
-        disableStream: true,
-        disableRange: true,
-        useSystemFonts: true,
-        useWorkerFetch: false,
-        isEvalSupported: false,
-        maxImageSize: -1
-      });
-      pdf = await loadingTask.promise;
-    } catch (workerError) {
-      console.log('Fallback: trying with basic configuration');
-      // Fallback to the most basic configuration
-      const basicLoadingTask = pdfjsLib.getDocument(arrayBuffer);
-      pdf = await basicLoadingTask.promise;
-    }
-    
-    // Set total pages first, then get page numbers to extract
-    const pdfTotalPages = pdf.numPages;
-    setTotalPages(pdfTotalPages);
-    
-    // Get pages to extract based on current options and actual PDF page count
-    const pagesToExtract = getPageNumbersForExtraction(pdfTotalPages);
-    
-    const pageTexts: { pageNumber: number; text: string; wordCount: number }[] = [];
-    let fullText = '';
+    // Create FormData to send the PDF and options to the backend
+    const formData = new FormData();
+    formData.append('pdf', file);
+    formData.append('pageRange', options.pageRange);
+    formData.append('specificPages', options.specificPages);
+    formData.append('startPage', options.startPage);
+    formData.append('endPage', options.endPage);
+    formData.append('includePageNumbers', options.includePageNumbers.toString());
 
-    for (const pageNum of pagesToExtract) {
-      if (pageNum <= pdf.numPages) {
-        const page = await pdf.getPage(pageNum);
-        const textContent = await page.getTextContent();
-        
-        let pageText = textContent.items
-          .map((item: any) => {
-            if (typeof item.str === 'string') {
-              return item.str;
-            }
-            return '';
-          })
-          .join(' ')
-          .replace(/\s+/g, ' ')
-          .trim();
+    // Call the backend API
+    const response = await fetch('/api/extract-pdf-text', {
+      method: 'POST',
+      body: formData
+    });
 
-        if (options.includePageNumbers && pageTexts.length > 0) {
-          pageText = `\n\n--- Page ${pageNum} ---\n\n${pageText}`;
-        } else if (options.includePageNumbers) {
-          pageText = `--- Page ${pageNum} ---\n\n${pageText}`;
-        }
-
-        const wordCount = countWords(pageText);
-        pageTexts.push({ pageNumber: pageNum, text: pageText, wordCount });
-        fullText += pageText;
-      }
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
+      throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
     }
 
-    const totalWords = countWords(fullText);
-    const totalCharacters = fullText.length;
-    const totalCharactersNoSpaces = fullText.replace(/\s/g, '').length;
+    const result = await response.json();
+    
+    // Update total pages from the backend response
+    setTotalPages(result.totalPages);
 
     return {
-      fullText,
-      pageTexts,
-      totalWords,
-      totalCharacters,
-      totalCharactersNoSpaces
+      fullText: result.fullText,
+      pageTexts: result.pageTexts,
+      totalWords: result.totalWords,
+      totalCharacters: result.totalCharacters,
+      totalCharactersNoSpaces: result.totalCharactersNoSpaces
     };
   };
 
@@ -242,83 +195,12 @@ const PDFTextExtractor = () => {
     setSearchTerm('');
     setHighlightedText('');
 
-    // Get total pages for validation
-    try {
-      const arrayBuffer = await file.arrayBuffer();
-      
-      // Minimal PDF loading configuration
-      console.log('Loading PDF file:', file.name, 'Size:', arrayBuffer.byteLength, 'bytes');
-      
-      // Add timeout for PDF loading with more generous time for larger files
-      const timeoutDuration = Math.max(30000, file.size / 1000); // At least 30s, or 1s per KB
-      const timeoutPromise = new Promise((_, reject) => {
-        setTimeout(() => reject(new Error(`PDF loading timeout after ${Math.round(timeoutDuration/1000)} seconds`)), timeoutDuration);
-      });
-      
-      let pdf;
-      try {
-        const loadingTask = pdfjsLib.getDocument({ 
-          data: arrayBuffer,
-          verbosity: 0,
-          disableAutoFetch: true,
-          disableStream: true,
-          disableRange: true,
-          useSystemFonts: true,
-          useWorkerFetch: false,
-          isEvalSupported: false,
-          maxImageSize: -1
-        });
-        pdf = await Promise.race([loadingTask.promise, timeoutPromise]) as any;
-      } catch (workerError) {
-        console.log('Fallback: trying with basic configuration');
-        // Fallback to the most basic configuration
-        const basicLoadingTask = pdfjsLib.getDocument(arrayBuffer);
-        pdf = await Promise.race([basicLoadingTask.promise, timeoutPromise]) as any;
-      }
-      
-      const numPages = pdf.numPages;
-      setTotalPages(numPages);
-      
-      if (numPages === 0) {
-        alert('This PDF appears to have no pages. Please select a valid PDF file.');
-        setPdfFile(null);
-        setTotalPages(0);
-        return;
-      }
-      
-    } catch (error) {
-      console.error('Error loading PDF:', error);
-      console.error('Error type:', typeof error);
-      console.error('Error details:', {
-        message: error instanceof Error ? error.message : String(error),
-        stack: error instanceof Error ? error.stack : 'No stack',
-        name: error instanceof Error ? error.name : 'Unknown',
-        constructor: error?.constructor?.name
-      });
-      
-      let errorMessage = 'Unable to process this PDF file.';
-      
-      if (error instanceof Error) {
-        const msg = error.message.toLowerCase();
-        console.log('Processing error message:', msg);
-        
-        if (msg.includes('invalid') || msg.includes('format') || msg.includes('corrupted')) {
-          errorMessage = 'This PDF file appears to be corrupted or in an unsupported format. Please try a different PDF file.';
-        } else if (msg.includes('password') || msg.includes('encrypted')) {
-          errorMessage = 'This PDF is password protected. Please unlock it first or use a different file.';
-        } else if (msg.includes('timeout')) {
-          errorMessage = 'PDF processing timed out. The file might be too large. Try a smaller PDF file.';
-        } else if (msg.includes('worker') || msg.includes('loading') || msg.includes('task')) {
-          errorMessage = 'PDF processing failed. This might be a complex PDF. Please try a simpler PDF file.';
-        } else {
-          errorMessage = `Cannot process this PDF: ${error.message}. Please try a different PDF file.`;
-        }
-      }
-      
-      alert(errorMessage);
-      setPdfFile(null);
-      setTotalPages(0);
-    }
+    // For now, we'll just set the file and let the extraction process handle page counting
+    // This avoids the PDF.js worker issues during file selection
+    console.log('Loading PDF file:', file.name, 'Size:', file.size, 'bytes');
+    
+    // Simple validation - we'll get the actual page count during extraction
+    setTotalPages(0); // Will be updated when processing
   };
 
   const handleExtractText = async () => {
