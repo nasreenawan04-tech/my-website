@@ -220,77 +220,6 @@ const PDFRepairTool = () => {
             </div>
           </section>
 
-          {/* SEO Content Section */}
-          <section className="py-16 bg-white">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="prose prose-lg max-w-none">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8">Professional PDF Repair Tool - Fix Corrupted Documents Online</h2>
-                
-                <div className="grid md:grid-cols-2 gap-8 mb-12">
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Why Choose Our PDF Repair Tool?</h3>
-                    <p className="text-gray-700 mb-4">
-                      When PDF files become corrupted or damaged, accessing important documents can become impossible. 
-                      Our advanced PDF repair tool uses sophisticated algorithms to analyze and fix various types of 
-                      PDF corruption, helping you recover valuable content from damaged files.
-                    </p>
-                    <p className="text-gray-700">
-                      Whether your PDF was corrupted during transfer, storage issues, or software crashes, our tool 
-                      can identify and repair structural problems, recover readable text, and restore images where possible.
-                    </p>
-                  </div>
-                  
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Advanced Repair Features</h3>
-                    <ul className="space-y-2 text-gray-700">
-                      <li className="flex items-start">
-                        <span className="text-orange-600 mr-2">✓</span>
-                        Structure repair and cross-reference rebuilding
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-orange-600 mr-2">✓</span>
-                        Text content recovery from damaged pages
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-orange-600 mr-2">✓</span>
-                        Image and graphics restoration
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-orange-600 mr-2">✓</span>
-                        Metadata cleanup and encoding fixes
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-orange-600 mr-2">✓</span>
-                        Corrupted object removal and repair
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="bg-blue-50 rounded-lg p-6 mb-12">
-                  <h3 className="text-xl font-semibold text-blue-900 mb-4">How PDF Repair Technology Works</h3>
-                  <div className="grid md:grid-cols-3 gap-6">
-                    <div className="text-center">
-                      <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-3">1</div>
-                      <h4 className="font-medium text-blue-900 mb-2">Analysis</h4>
-                      <p className="text-blue-700 text-sm">Deep scan of PDF structure to identify corruption patterns and damage extent</p>
-                    </div>
-                    <div className="text-center">
-                      <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-3">2</div>
-                      <h4 className="font-medium text-blue-900 mb-2">Recovery</h4>
-                      <p className="text-blue-700 text-sm">Advanced algorithms reconstruct document structure and recover readable content</p>
-                    </div>
-                    <div className="text-center">
-                      <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-3">3</div>
-                      <h4 className="font-medium text-blue-900 mb-2">Rebuild</h4>
-                      <p className="text-blue-700 text-sm">Generate clean, functional PDF with maximum content preservation</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
           {/* Tool Section */}
           <section className="py-16">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -579,6 +508,77 @@ const PDFRepairTool = () => {
                   </div>
                 </CardContent>
               </Card>
+            </div>
+          </section>
+
+          {/* SEO Content Section */}
+          <section className="py-16 bg-white">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="prose prose-lg max-w-none">
+                <h2 className="text-3xl font-bold text-gray-900 mb-8">Professional PDF Repair Tool - Fix Corrupted Documents Online</h2>
+                
+                <div className="grid md:grid-cols-2 gap-8 mb-12">
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Why Choose Our PDF Repair Tool?</h3>
+                    <p className="text-gray-700 mb-4">
+                      When PDF files become corrupted or damaged, accessing important documents can become impossible. 
+                      Our advanced PDF repair tool uses sophisticated algorithms to analyze and fix various types of 
+                      PDF corruption, helping you recover valuable content from damaged files.
+                    </p>
+                    <p className="text-gray-700">
+                      Whether your PDF was corrupted during transfer, storage issues, or software crashes, our tool 
+                      can identify and repair structural problems, recover readable text, and restore images where possible.
+                    </p>
+                  </div>
+                  
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Advanced Repair Features</h3>
+                    <ul className="space-y-2 text-gray-700">
+                      <li className="flex items-start">
+                        <span className="text-orange-600 mr-2">✓</span>
+                        Structure repair and cross-reference rebuilding
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-orange-600 mr-2">✓</span>
+                        Text content recovery from damaged pages
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-orange-600 mr-2">✓</span>
+                        Image and graphics restoration
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-orange-600 mr-2">✓</span>
+                        Metadata cleanup and encoding fixes
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-orange-600 mr-2">✓</span>
+                        Corrupted object removal and repair
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="bg-blue-50 rounded-lg p-6 mb-12">
+                  <h3 className="text-xl font-semibold text-blue-900 mb-4">How PDF Repair Technology Works</h3>
+                  <div className="grid md:grid-cols-3 gap-6">
+                    <div className="text-center">
+                      <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-3">1</div>
+                      <h4 className="font-medium text-blue-900 mb-2">Analysis</h4>
+                      <p className="text-blue-700 text-sm">Deep scan of PDF structure to identify corruption patterns and damage extent</p>
+                    </div>
+                    <div className="text-center">
+                      <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-3">2</div>
+                      <h4 className="font-medium text-blue-900 mb-2">Recovery</h4>
+                      <p className="text-blue-700 text-sm">Advanced algorithms reconstruct document structure and recover readable content</p>
+                    </div>
+                    <div className="text-center">
+                      <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-3">3</div>
+                      <h4 className="font-medium text-blue-900 mb-2">Rebuild</h4>
+                      <p className="text-blue-700 text-sm">Generate clean, functional PDF with maximum content preservation</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
 
