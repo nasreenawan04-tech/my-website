@@ -3000,7 +3000,17 @@ For production use, this would include actual PDF content analysis, visual highl
         // Read and parse PDF text content
         const pdfParse = (await import('pdf-parse')).default;
         const pdfBuffer = await fs.readFile(inputPath);
-        const pdfData = await pdfParse(pdfBuffer);
+        
+        // Ensure buffer is valid before parsing
+        if (!pdfBuffer || pdfBuffer.length === 0) {
+          throw new Error('PDF file is empty or corrupted');
+        }
+        
+        const pdfData = await pdfParse(pdfBuffer, {
+          // Force pdf-parse to use our buffer, not its default test file
+          normalizeWhitespace: false,
+          disableCombineTextItems: false
+        });
         
         const totalPages = pdfData.numpages;
         const fullText = pdfData.text;
@@ -3276,7 +3286,17 @@ For production use, this would include actual PDF content analysis, visual highl
         // Extract links using the same logic as the main extraction endpoint
         const pdfParse = (await import('pdf-parse')).default;
         const pdfBuffer = await fs.readFile(inputPath);
-        const pdfData = await pdfParse(pdfBuffer);
+        
+        // Ensure buffer is valid before parsing
+        if (!pdfBuffer || pdfBuffer.length === 0) {
+          throw new Error('PDF file is empty or corrupted');
+        }
+        
+        const pdfData = await pdfParse(pdfBuffer, {
+          // Force pdf-parse to use our buffer, not its default test file
+          normalizeWhitespace: false,
+          disableCombineTextItems: false
+        });
         
         const totalPages = pdfData.numpages;
         const fullText = pdfData.text;
