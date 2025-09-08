@@ -645,6 +645,310 @@ const PDFHeaderFooterGenerator = () => {
               </Card>
             </div>
           </section>
+
+          {/* SEO Content Sections */}
+          <section className="py-16 bg-white">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="space-y-12">
+                {/* What is PDF Header/Footer Generator */}
+                <div>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-6">What is a PDF Header/Footer Generator?</h2>
+                  <div className="prose prose-lg max-w-none text-gray-700">
+                    <p>
+                      A <strong>PDF Header/Footer Generator</strong> is a specialized digital tool designed to add professional headers, footers, and page numbering to PDF documents with complete customization control. This powerful utility enables users to enhance their PDF documents by inserting consistent branding elements, document information, navigation aids, and page references that maintain visual continuity across all pages.
+                    </p>
+                    <p>
+                      Our advanced PDF header and footer tool provides comprehensive formatting options including custom text insertion, flexible alignment controls, font customization, color selection, margin adjustments, and automated page numbering systems. Whether you're preparing business reports, academic papers, legal documents, or marketing materials, this tool ensures your PDFs maintain professional presentation standards with consistent header and footer elements.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Features and Benefits */}
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <h3 className="text-2xl font-semibold text-gray-900 mb-4">Advanced Header/Footer Features</h3>
+                    <ul className="space-y-3 text-gray-700">
+                      <li className="flex items-start">
+                        <span className="w-2 h-2 bg-teal-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        <span><strong>Custom Text Headers:</strong> Add company names, document titles, author information, or any custom text to document headers</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="w-2 h-2 bg-teal-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        <span><strong>Flexible Footer Content:</strong> Insert copyright notices, confidentiality statements, contact information, or legal disclaimers</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="w-2 h-2 bg-teal-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        <span><strong>Automatic Page Numbering:</strong> Generate sequential page numbers with customizable formats and positioning options</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="w-2 h-2 bg-teal-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        <span><strong>Alignment Control:</strong> Position text elements left, center, or right within headers and footers</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="w-2 h-2 bg-teal-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        <span><strong>Font Customization:</strong> Adjust font sizes from 6pt to 24pt and choose custom colors for optimal readability</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="w-2 h-2 bg-teal-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        <span><strong>Margin Adjustments:</strong> Fine-tune top and bottom margins to ensure proper spacing and document layout</span>
+                      </li>
+                    </ul>
+                  </div>
+                  
+                  <div>
+                    <h3 className="text-2xl font-semibold text-gray-900 mb-4">Professional Benefits</h3>
+                    <ul className="space-y-3 text-gray-700">
+                      <li className="flex items-start">
+                        <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        <span><strong>Brand Consistency:</strong> Maintain uniform branding across all document pages with consistent header and footer elements</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        <span><strong>Document Navigation:</strong> Improve reader experience with clear page numbering and document structure indicators</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        <span><strong>Professional Presentation:</strong> Enhance document credibility with properly formatted headers and footers</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        <span><strong>Legal Compliance:</strong> Add required disclaimers, copyright notices, and confidentiality statements</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        <span><strong>Batch Processing:</strong> Apply consistent formatting to multiple documents efficiently</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        <span><strong>Version Control:</strong> Include document versions, dates, and revision information in headers or footers</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Use Cases */}
+                <div>
+                  <h3 className="text-2xl font-semibold text-gray-900 mb-6">Common Use Cases for PDF Headers and Footers</h3>
+                  <div className="grid md:grid-cols-3 gap-6">
+                    <div className="bg-gray-50 rounded-lg p-6">
+                      <h4 className="text-lg font-semibold text-gray-900 mb-3">Business Documents</h4>
+                      <ul className="space-y-2 text-gray-700 text-sm">
+                        <li>• Company annual reports</li>
+                        <li>• Financial statements</li>
+                        <li>• Business proposals</li>
+                        <li>• Marketing materials</li>
+                        <li>• Corporate presentations</li>
+                        <li>• Meeting minutes</li>
+                      </ul>
+                    </div>
+                    
+                    <div className="bg-gray-50 rounded-lg p-6">
+                      <h4 className="text-lg font-semibold text-gray-900 mb-3">Academic Papers</h4>
+                      <ul className="space-y-2 text-gray-700 text-sm">
+                        <li>• Research publications</li>
+                        <li>• Thesis documents</li>
+                        <li>• Study guides</li>
+                        <li>• Course materials</li>
+                        <li>• Academic journals</li>
+                        <li>• Conference papers</li>
+                      </ul>
+                    </div>
+                    
+                    <div className="bg-gray-50 rounded-lg p-6">
+                      <h4 className="text-lg font-semibold text-gray-900 mb-3">Legal Documents</h4>
+                      <ul className="space-y-2 text-gray-700 text-sm">
+                        <li>• Contracts and agreements</li>
+                        <li>• Legal briefs</li>
+                        <li>• Court filings</li>
+                        <li>• Policy documents</li>
+                        <li>• Compliance reports</li>
+                        <li>• Legal correspondence</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Page Number Formats */}
+                <div>
+                  <h3 className="text-2xl font-semibold text-gray-900 mb-6">Page Numbering Options and Formats</h3>
+                  <div className="bg-blue-50 rounded-lg p-6">
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <h4 className="text-lg font-semibold text-gray-900 mb-4">Standard Number Formats</h4>
+                        <div className="space-y-3">
+                          <div className="flex justify-between items-center bg-white rounded p-3">
+                            <span className="text-gray-700">Simple numbering</span>
+                            <code className="bg-gray-100 px-2 py-1 rounded text-sm">1</code>
+                          </div>
+                          <div className="flex justify-between items-center bg-white rounded p-3">
+                            <span className="text-gray-700">Page of total</span>
+                            <code className="bg-gray-100 px-2 py-1 rounded text-sm">Page 1 of 5</code>
+                          </div>
+                          <div className="flex justify-between items-center bg-white rounded p-3">
+                            <span className="text-gray-700">Fraction format</span>
+                            <code className="bg-gray-100 px-2 py-1 rounded text-sm">1 / 5</code>
+                          </div>
+                          <div className="flex justify-between items-center bg-white rounded p-3">
+                            <span className="text-gray-700">Decorated format</span>
+                            <code className="bg-gray-100 px-2 py-1 rounded text-sm">- 1 -</code>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div>
+                        <h4 className="text-lg font-semibold text-gray-900 mb-4">Positioning Options</h4>
+                        <div className="space-y-3">
+                          <div className="flex items-center justify-between bg-white rounded p-3">
+                            <span className="text-gray-700">Header position</span>
+                            <span className="text-sm text-gray-500">Top of page</span>
+                          </div>
+                          <div className="flex items-center justify-between bg-white rounded p-3">
+                            <span className="text-gray-700">Footer position</span>
+                            <span className="text-sm text-gray-500">Bottom of page</span>
+                          </div>
+                          <div className="flex items-center justify-between bg-white rounded p-3">
+                            <span className="text-gray-700">Left alignment</span>
+                            <span className="text-sm text-gray-500">Left margin</span>
+                          </div>
+                          <div className="flex items-center justify-between bg-white rounded p-3">
+                            <span className="text-gray-700">Center alignment</span>
+                            <span className="text-sm text-gray-500">Page center</span>
+                          </div>
+                          <div className="flex items-center justify-between bg-white rounded p-3">
+                            <span className="text-gray-700">Right alignment</span>
+                            <span className="text-sm text-gray-500">Right margin</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Advanced Customization */}
+                <div>
+                  <h3 className="text-2xl font-semibold text-gray-900 mb-6">Advanced Customization Features</h3>
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div>
+                      <h4 className="text-xl font-semibold text-gray-900 mb-4">Design Customization</h4>
+                      <div className="space-y-4">
+                        <div className="border-l-4 border-teal-500 pl-4">
+                          <h5 className="font-semibold text-gray-900">Font Styling</h5>
+                          <p className="text-gray-700 text-sm">Adjust font sizes from 6pt to 24pt for optimal readability and visual hierarchy</p>
+                        </div>
+                        <div className="border-l-4 border-teal-500 pl-4">
+                          <h5 className="font-semibold text-gray-900">Color Selection</h5>
+                          <p className="text-gray-700 text-sm">Choose from any color using hex codes or color picker for brand consistency</p>
+                        </div>
+                        <div className="border-l-4 border-teal-500 pl-4">
+                          <h5 className="font-semibold text-gray-900">Margin Control</h5>
+                          <p className="text-gray-700 text-sm">Fine-tune top and bottom margins from 10pt to 100pt for perfect spacing</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <h4 className="text-xl font-semibold text-gray-900 mb-4">Content Options</h4>
+                      <div className="space-y-4">
+                        <div className="border-l-4 border-blue-500 pl-4">
+                          <h5 className="font-semibold text-gray-900">Multi-line Text</h5>
+                          <p className="text-gray-700 text-sm">Support for multi-line headers and footers with automatic text wrapping</p>
+                        </div>
+                        <div className="border-l-4 border-blue-500 pl-4">
+                          <h5 className="font-semibold text-gray-900">First Page Exclusion</h5>
+                          <p className="text-gray-700 text-sm">Option to exclude headers and footers from title pages or cover pages</p>
+                        </div>
+                        <div className="border-l-4 border-blue-500 pl-4">
+                          <h5 className="font-semibold text-gray-900">Live Preview</h5>
+                          <p className="text-gray-700 text-sm">Real-time preview showing exactly how your headers and footers will appear</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Best Practices */}
+                <div className="bg-gradient-to-r from-teal-50 to-blue-50 rounded-xl p-8">
+                  <h3 className="text-2xl font-semibold text-gray-900 mb-6">Best Practices for PDF Headers and Footers</h3>
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div>
+                      <h4 className="text-lg font-semibold text-gray-900 mb-4">Content Guidelines</h4>
+                      <ul className="space-y-3 text-gray-700">
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Keep header and footer text concise and relevant to document content</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Use consistent formatting across all pages for professional appearance</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Include essential information like document title, author, or page numbers</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Consider excluding headers/footers from title pages or cover sheets</span>
+                        </li>
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <h4 className="text-lg font-semibold text-gray-900 mb-4">Design Recommendations</h4>
+                      <ul className="space-y-3 text-gray-700">
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Use readable font sizes (10-12pt) for optimal visibility</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Choose colors that contrast well with the document background</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Maintain adequate margins to prevent text from being cut off when printed</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Test different alignment options to find the best visual balance</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* FAQ Section */}
+                <div>
+                  <h3 className="text-2xl font-semibold text-gray-900 mb-6">Frequently Asked Questions</h3>
+                  <div className="space-y-6">
+                    <div className="bg-white rounded-lg border border-gray-200 p-6">
+                      <h4 className="text-lg font-semibold text-gray-900 mb-2">Can I add different headers and footers to different pages?</h4>
+                      <p className="text-gray-700">Currently, our tool applies the same header and footer design to all pages (except the first page if excluded). For more complex layouts with different headers per section, you may need specialized PDF editing software.</p>
+                    </div>
+                    
+                    <div className="bg-white rounded-lg border border-gray-200 p-6">
+                      <h4 className="text-lg font-semibold text-gray-900 mb-2">What file size limits apply to PDF header/footer generation?</h4>
+                      <p className="text-gray-700">Our tool can handle PDF files up to 50MB in size. For larger files, consider compressing your PDF first or splitting it into smaller sections for processing.</p>
+                    </div>
+                    
+                    <div className="bg-white rounded-lg border border-gray-200 p-6">
+                      <h4 className="text-lg font-semibold text-gray-900 mb-2">Will adding headers and footers affect the original document quality?</h4>
+                      <p className="text-gray-700">No, our tool preserves the original document quality while adding headers and footers. The process maintains the PDF's resolution, fonts, and formatting without compression or quality loss.</p>
+                    </div>
+                    
+                    <div className="bg-white rounded-lg border border-gray-200 p-6">
+                      <h4 className="text-lg font-semibold text-gray-900 mb-2">Can I preview how the headers and footers will look before processing?</h4>
+                      <p className="text-gray-700">Yes, our tool includes a real-time preview feature that shows exactly how your headers, footers, and page numbers will appear on your document pages.</p>
+                    </div>
+                    
+                    <div className="bg-white rounded-lg border border-gray-200 p-6">
+                      <h4 className="text-lg font-semibold text-gray-900 mb-2">Is it possible to add images or logos to headers and footers?</h4>
+                      <p className="text-gray-700">Currently, our tool supports text-based headers and footers with customizable fonts, colors, and alignment. Image insertion in headers and footers is planned for future updates.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
         </main>
         
         <Footer />
