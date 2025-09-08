@@ -278,285 +278,6 @@ const PDFRedactionTool = () => {
             </div>
           </section>
 
-
-          {/* Features Section */}
-          <section className="py-16 bg-white">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                  Professional PDF Redaction Features
-                </h2>
-                <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                  Advanced redaction capabilities to permanently remove sensitive information from your PDF documents with military-grade security.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-                <div className="text-center p-6">
-                  <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <EyeOff className="w-8 h-8 text-gray-600" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3">Permanent Redaction</h3>
-                  <p className="text-gray-600">
-                    Completely remove sensitive information with black-out redaction that cannot be reversed or recovered by any means.
-                  </p>
-                </div>
-
-                <div className="text-center p-6">
-                  <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Target className="w-8 h-8 text-gray-600" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3">Pattern Recognition</h3>
-                  <p className="text-gray-600">
-                    Automatically detect and redact common sensitive data patterns like SSN, phone numbers, email addresses, and credit card numbers.
-                  </p>
-                </div>
-
-                <div className="text-center p-6">
-                  <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Shield className="w-8 h-8 text-gray-600" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3">Metadata Removal</h3>
-                  <p className="text-gray-600">
-                    Strip document metadata including author information, creation dates, and other hidden data that might contain sensitive details.
-                  </p>
-                </div>
-
-                <div className="text-center p-6">
-                  <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Settings className="w-8 h-8 text-gray-600" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3">Custom Redaction Colors</h3>
-                  <p className="text-gray-600">
-                    Choose from multiple redaction colors including standard black, white for forms, red for high visibility, and professional blue marking.
-                  </p>
-                </div>
-
-                <div className="text-center p-6">
-                  <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Zap className="w-8 h-8 text-gray-600" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3">Fast Processing</h3>
-                  <p className="text-gray-600">
-                    Lightning-fast PDF redaction processing that handles large documents efficiently while maintaining document quality and structure.
-                  </p>
-                </div>
-
-                <div className="text-center p-6">
-                  <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <FileText className="w-8 h-8 text-gray-600" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3">Multiple Redaction Methods</h3>
-                  <p className="text-gray-600">
-                    Text search, pattern-based detection, and coordinate-based redaction methods for precise control over what gets redacted.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* How It Works Section */}
-          <section className="py-16 bg-gray-50">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                  How PDF Redaction Works
-                </h2>
-                <p className="text-xl text-gray-600">
-                  Our advanced PDF redaction process ensures complete removal of sensitive information in just a few simple steps.
-                </p>
-              </div>
-
-              <div className="space-y-8">
-                <div className="flex items-start gap-6">
-                  <div className="w-12 h-12 bg-gray-800 text-white rounded-full flex items-center justify-center font-bold text-lg">
-                    1
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-semibold mb-2">Upload Your PDF Document</h3>
-                    <p className="text-gray-600">
-                      Select the PDF file containing sensitive information that needs to be redacted. Our tool supports all standard PDF formats and handles large files efficiently.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-6">
-                  <div className="w-12 h-12 bg-gray-800 text-white rounded-full flex items-center justify-center font-bold text-lg">
-                    2
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-semibold mb-2">Configure Redaction Settings</h3>
-                    <p className="text-gray-600">
-                      Choose your redaction method: search for specific text, use pattern recognition for common sensitive data types, or specify exact coordinates for precise redaction areas.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-6">
-                  <div className="w-12 h-12 bg-gray-800 text-white rounded-full flex items-center justify-center font-bold text-lg">
-                    3
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-semibold mb-2">Apply Permanent Redaction</h3>
-                    <p className="text-gray-600">
-                      Our advanced algorithm permanently removes the specified information, replacing it with solid colored blocks. The original content is completely destroyed and cannot be recovered.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-6">
-                  <div className="w-12 h-12 bg-gray-800 text-white rounded-full flex items-center justify-center font-bold text-lg">
-                    4
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-semibold mb-2">Download Secure PDF</h3>
-                    <p className="text-gray-600">
-                      Download your fully redacted PDF with all sensitive information permanently removed and metadata stripped for complete privacy protection.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Use Cases Section */}
-          <section className="py-16 bg-white">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                  Common PDF Redaction Use Cases
-                </h2>
-                <p className="text-xl text-gray-600">
-                  Professional-grade PDF redaction for various industries and document types requiring sensitive information protection.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="bg-blue-50 rounded-lg p-6">
-                  <h3 className="text-xl font-semibold text-blue-900 mb-3">Legal Documents</h3>
-                  <p className="text-blue-800 mb-4">
-                    Redact client names, case numbers, personal identifiers, and confidential information from legal briefs, court documents, and contracts.
-                  </p>
-                  <ul className="text-blue-700 text-sm space-y-1">
-                    <li>• Attorney-client privileged information</li>
-                    <li>• Personal identifying information (PII)</li>
-                    <li>• Confidential business details</li>
-                    <li>• Financial information</li>
-                  </ul>
-                </div>
-
-                <div className="bg-green-50 rounded-lg p-6">
-                  <h3 className="text-xl font-semibold text-green-900 mb-3">Healthcare Records</h3>
-                  <p className="text-green-800 mb-4">
-                    HIPAA-compliant redaction of patient information, medical records, insurance details, and other protected health information.
-                  </p>
-                  <ul className="text-green-700 text-sm space-y-1">
-                    <li>• Patient names and dates of birth</li>
-                    <li>• Social Security Numbers</li>
-                    <li>• Insurance policy numbers</li>
-                    <li>• Medical record numbers</li>
-                  </ul>
-                </div>
-
-                <div className="bg-purple-50 rounded-lg p-6">
-                  <h3 className="text-xl font-semibold text-purple-900 mb-3">Financial Documents</h3>
-                  <p className="text-purple-800 mb-4">
-                    Secure redaction of account numbers, transaction details, personal financial information, and sensitive banking data.
-                  </p>
-                  <ul className="text-purple-700 text-sm space-y-1">
-                    <li>• Bank account numbers</li>
-                    <li>• Credit card information</li>
-                    <li>• Tax identification numbers</li>
-                    <li>• Investment account details</li>
-                  </ul>
-                </div>
-
-                <div className="bg-orange-50 rounded-lg p-6">
-                  <h3 className="text-xl font-semibold text-orange-900 mb-3">Government & Military</h3>
-                  <p className="text-orange-800 mb-4">
-                    Classification-level redaction for government documents, military reports, and classified information requiring security clearance.
-                  </p>
-                  <ul className="text-orange-700 text-sm space-y-1">
-                    <li>• Classified operational details</li>
-                    <li>• Personnel information</li>
-                    <li>• Location coordinates</li>
-                    <li>• Security protocols</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* FAQ Section */}
-          <section className="py-16 bg-gray-50">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                  Frequently Asked Questions
-                </h2>
-                <p className="text-xl text-gray-600">
-                  Everything you need to know about PDF redaction and document security.
-                </p>
-              </div>
-
-              <div className="space-y-6">
-                <div className="bg-white rounded-lg p-6 shadow-sm">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                    What is PDF redaction and why is it important?
-                  </h3>
-                  <p className="text-gray-600">
-                    PDF redaction is the process of permanently removing sensitive information from PDF documents by replacing it with colored blocks. Unlike simply highlighting or covering text, redaction completely destroys the original content, making it impossible to recover. This is crucial for legal compliance, privacy protection, and maintaining confidentiality when sharing documents.
-                  </p>
-                </div>
-
-                <div className="bg-white rounded-lg p-6 shadow-sm">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                    Is redacted information truly permanent and unrecoverable?
-                  </h3>
-                  <p className="text-gray-600">
-                    Yes, our PDF redaction tool permanently removes the specified information from the document structure. The original text, images, or data is completely destroyed and replaced with solid colored shapes. This process cannot be undone, and the information cannot be recovered using any software or technique.
-                  </p>
-                </div>
-
-                <div className="bg-white rounded-lg p-6 shadow-sm">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                    What types of sensitive information can be automatically detected?
-                  </h3>
-                  <p className="text-gray-600">
-                    Our pattern recognition feature can automatically detect and redact common sensitive data types including Social Security Numbers (SSN), phone numbers, email addresses, credit card numbers, dates, and ZIP codes. You can also add custom search terms for organization-specific sensitive information.
-                  </p>
-                </div>
-
-                <div className="bg-white rounded-lg p-6 shadow-sm">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                    Does the tool remove metadata from PDF documents?
-                  </h3>
-                  <p className="text-gray-600">
-                    Yes, our redaction tool includes an option to remove document metadata such as author information, creation dates, modification history, and other hidden data that might contain sensitive information. This ensures complete privacy protection beyond just the visible content.
-                  </p>
-                </div>
-
-                <div className="bg-white rounded-lg p-6 shadow-sm">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                    Is this tool suitable for legal and compliance requirements?
-                  </h3>
-                  <p className="text-gray-600">
-                    Our PDF redaction tool is designed to meet professional standards for document privacy and can help with compliance requirements such as HIPAA, FERPA, and legal discovery processes. However, we recommend consulting with your legal or compliance team to ensure the tool meets your specific regulatory requirements.
-                  </p>
-                </div>
-
-                <div className="bg-white rounded-lg p-6 shadow-sm">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                    What file size limitations exist for PDF redaction?
-                  </h3>
-                  <p className="text-gray-600">
-                    Our tool can handle most standard PDF files efficiently. Very large files may take longer to process, but the redaction quality remains consistent. For optimal performance, we recommend files under 100MB, though larger files can still be processed successfully.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
           {/* Tool Section */}
           <section className="py-16 bg-white">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -930,6 +651,284 @@ const PDFRedactionTool = () => {
                   </div>
                 </CardContent>
               </Card>
+            </div>
+          </section>
+
+          {/* Features Section */}
+          <section className="py-16 bg-white">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                  Professional PDF Redaction Features
+                </h2>
+                <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                  Advanced redaction capabilities to permanently remove sensitive information from your PDF documents with military-grade security.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                <div className="text-center p-6">
+                  <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <EyeOff className="w-8 h-8 text-gray-600" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3">Permanent Redaction</h3>
+                  <p className="text-gray-600">
+                    Completely remove sensitive information with black-out redaction that cannot be reversed or recovered by any means.
+                  </p>
+                </div>
+
+                <div className="text-center p-6">
+                  <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Target className="w-8 h-8 text-gray-600" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3">Pattern Recognition</h3>
+                  <p className="text-gray-600">
+                    Automatically detect and redact common sensitive data patterns like SSN, phone numbers, email addresses, and credit card numbers.
+                  </p>
+                </div>
+
+                <div className="text-center p-6">
+                  <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Shield className="w-8 h-8 text-gray-600" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3">Metadata Removal</h3>
+                  <p className="text-gray-600">
+                    Strip document metadata including author information, creation dates, and other hidden data that might contain sensitive details.
+                  </p>
+                </div>
+
+                <div className="text-center p-6">
+                  <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Settings className="w-8 h-8 text-gray-600" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3">Custom Redaction Colors</h3>
+                  <p className="text-gray-600">
+                    Choose from multiple redaction colors including standard black, white for forms, red for high visibility, and professional blue marking.
+                  </p>
+                </div>
+
+                <div className="text-center p-6">
+                  <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Zap className="w-8 h-8 text-gray-600" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3">Fast Processing</h3>
+                  <p className="text-gray-600">
+                    Lightning-fast PDF redaction processing that handles large documents efficiently while maintaining document quality and structure.
+                  </p>
+                </div>
+
+                <div className="text-center p-6">
+                  <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <FileText className="w-8 h-8 text-gray-600" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3">Multiple Redaction Methods</h3>
+                  <p className="text-gray-600">
+                    Text search, pattern-based detection, and coordinate-based redaction methods for precise control over what gets redacted.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* How It Works Section */}
+          <section className="py-16 bg-gray-50">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                  How PDF Redaction Works
+                </h2>
+                <p className="text-xl text-gray-600">
+                  Our advanced PDF redaction process ensures complete removal of sensitive information in just a few simple steps.
+                </p>
+              </div>
+
+              <div className="space-y-8">
+                <div className="flex items-start gap-6">
+                  <div className="w-12 h-12 bg-gray-800 text-white rounded-full flex items-center justify-center font-bold text-lg">
+                    1
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-semibold mb-2">Upload Your PDF Document</h3>
+                    <p className="text-gray-600">
+                      Select the PDF file containing sensitive information that needs to be redacted. Our tool supports all standard PDF formats and handles large files efficiently.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-6">
+                  <div className="w-12 h-12 bg-gray-800 text-white rounded-full flex items-center justify-center font-bold text-lg">
+                    2
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-semibold mb-2">Configure Redaction Settings</h3>
+                    <p className="text-gray-600">
+                      Choose your redaction method: search for specific text, use pattern recognition for common sensitive data types, or specify exact coordinates for precise redaction areas.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-6">
+                  <div className="w-12 h-12 bg-gray-800 text-white rounded-full flex items-center justify-center font-bold text-lg">
+                    3
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-semibold mb-2">Apply Permanent Redaction</h3>
+                    <p className="text-gray-600">
+                      Our advanced algorithm permanently removes the specified information, replacing it with solid colored blocks. The original content is completely destroyed and cannot be recovered.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-6">
+                  <div className="w-12 h-12 bg-gray-800 text-white rounded-full flex items-center justify-center font-bold text-lg">
+                    4
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-semibold mb-2">Download Secure PDF</h3>
+                    <p className="text-gray-600">
+                      Download your fully redacted PDF with all sensitive information permanently removed and metadata stripped for complete privacy protection.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Use Cases Section */}
+          <section className="py-16 bg-white">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                  Common PDF Redaction Use Cases
+                </h2>
+                <p className="text-xl text-gray-600">
+                  Professional-grade PDF redaction for various industries and document types requiring sensitive information protection.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="bg-blue-50 rounded-lg p-6">
+                  <h3 className="text-xl font-semibold text-blue-900 mb-3">Legal Documents</h3>
+                  <p className="text-blue-800 mb-4">
+                    Redact client names, case numbers, personal identifiers, and confidential information from legal briefs, court documents, and contracts.
+                  </p>
+                  <ul className="text-blue-700 text-sm space-y-1">
+                    <li>• Attorney-client privileged information</li>
+                    <li>• Personal identifying information (PII)</li>
+                    <li>• Confidential business details</li>
+                    <li>• Financial information</li>
+                  </ul>
+                </div>
+
+                <div className="bg-green-50 rounded-lg p-6">
+                  <h3 className="text-xl font-semibold text-green-900 mb-3">Healthcare Records</h3>
+                  <p className="text-green-800 mb-4">
+                    HIPAA-compliant redaction of patient information, medical records, insurance details, and other protected health information.
+                  </p>
+                  <ul className="text-green-700 text-sm space-y-1">
+                    <li>• Patient names and dates of birth</li>
+                    <li>• Social Security Numbers</li>
+                    <li>• Insurance policy numbers</li>
+                    <li>• Medical record numbers</li>
+                  </ul>
+                </div>
+
+                <div className="bg-purple-50 rounded-lg p-6">
+                  <h3 className="text-xl font-semibold text-purple-900 mb-3">Financial Documents</h3>
+                  <p className="text-purple-800 mb-4">
+                    Secure redaction of account numbers, transaction details, personal financial information, and sensitive banking data.
+                  </p>
+                  <ul className="text-purple-700 text-sm space-y-1">
+                    <li>• Bank account numbers</li>
+                    <li>• Credit card information</li>
+                    <li>• Tax identification numbers</li>
+                    <li>• Investment account details</li>
+                  </ul>
+                </div>
+
+                <div className="bg-orange-50 rounded-lg p-6">
+                  <h3 className="text-xl font-semibold text-orange-900 mb-3">Government & Military</h3>
+                  <p className="text-orange-800 mb-4">
+                    Classification-level redaction for government documents, military reports, and classified information requiring security clearance.
+                  </p>
+                  <ul className="text-orange-700 text-sm space-y-1">
+                    <li>• Classified operational details</li>
+                    <li>• Personnel information</li>
+                    <li>• Location coordinates</li>
+                    <li>• Security protocols</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* FAQ Section */}
+          <section className="py-16 bg-gray-50">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                  Frequently Asked Questions
+                </h2>
+                <p className="text-xl text-gray-600">
+                  Everything you need to know about PDF redaction and document security.
+                </p>
+              </div>
+
+              <div className="space-y-6">
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                    What is PDF redaction and why is it important?
+                  </h3>
+                  <p className="text-gray-600">
+                    PDF redaction is the process of permanently removing sensitive information from PDF documents by replacing it with colored blocks. Unlike simply highlighting or covering text, redaction completely destroys the original content, making it impossible to recover. This is crucial for legal compliance, privacy protection, and maintaining confidentiality when sharing documents.
+                  </p>
+                </div>
+
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                    Is redacted information truly permanent and unrecoverable?
+                  </h3>
+                  <p className="text-gray-600">
+                    Yes, our PDF redaction tool permanently removes the specified information from the document structure. The original text, images, or data is completely destroyed and replaced with solid colored shapes. This process cannot be undone, and the information cannot be recovered using any software or technique.
+                  </p>
+                </div>
+
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                    What types of sensitive information can be automatically detected?
+                  </h3>
+                  <p className="text-gray-600">
+                    Our pattern recognition feature can automatically detect and redact common sensitive data types including Social Security Numbers (SSN), phone numbers, email addresses, credit card numbers, dates, and ZIP codes. You can also add custom search terms for organization-specific sensitive information.
+                  </p>
+                </div>
+
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                    Does the tool remove metadata from PDF documents?
+                  </h3>
+                  <p className="text-gray-600">
+                    Yes, our redaction tool includes an option to remove document metadata such as author information, creation dates, modification history, and other hidden data that might contain sensitive information. This ensures complete privacy protection beyond just the visible content.
+                  </p>
+                </div>
+
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                    Is this tool suitable for legal and compliance requirements?
+                  </h3>
+                  <p className="text-gray-600">
+                    Our PDF redaction tool is designed to meet professional standards for document privacy and can help with compliance requirements such as HIPAA, FERPA, and legal discovery processes. However, we recommend consulting with your legal or compliance team to ensure the tool meets your specific regulatory requirements.
+                  </p>
+                </div>
+
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                    What file size limitations exist for PDF redaction?
+                  </h3>
+                  <p className="text-gray-600">
+                    Our tool can handle most standard PDF files efficiently. Very large files may take longer to process, but the redaction quality remains consistent. For optimal performance, we recommend files under 100MB, though larger files can still be processed successfully.
+                  </p>
+                </div>
+              </div>
             </div>
           </section>
 
