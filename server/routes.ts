@@ -3427,8 +3427,8 @@ For production use, this would include actual PDF content analysis, visual highl
 
         } else if (exportSettings.outputFormat === 'csv') {
           let csvContent = 'ID,Type,Text,URL,Page,Domain\n';
-          sampleLinks.forEach(link => {
-            csvContent += `"${link.id}","${link.type}","${exportSettings.extractText ? link.text : ''}","${link.url}",${link.page},"${link.domain || ''}"\n`;
+          links.forEach(link => {
+            csvContent += `"${link.id}","${link.type}","${link.text || ''}","${link.url}",${link.page},"${link.domain || ''}"\n`;
           });
 
           res.setHeader('Content-Type', 'text/csv');
@@ -3454,15 +3454,15 @@ For production use, this would include actual PDF content analysis, visual highl
         <h1>Extracted Links Report</h1>
         <p><strong>Document:</strong> ${req.file.originalname}</p>
         <p><strong>Generated:</strong> ${new Date().toLocaleString()}</p>
-        <p><strong>Total Links:</strong> ${sampleLinks.length}</p>
+        <p><strong>Total Links:</strong> ${links.length}</p>
     </div>
     <div class="links">`;
 
-          sampleLinks.forEach(link => {
+          links.forEach(link => {
             htmlContent += `
         <div class="link-item">
             <span class="link-type">${link.type.toUpperCase()}</span>
-            <strong>${exportSettings.extractText ? link.text : 'Link'}</strong><br>
+            <strong>${link.text || 'Link'}</strong><br>
             <a href="${link.url}" class="link-url" target="_blank">${link.url}</a><br>
             <small>Page ${link.page}${link.domain ? ` • Domain: ${link.domain}` : ''}</small>
         </div>`;
@@ -3482,12 +3482,12 @@ For production use, this would include actual PDF content analysis, visual highl
           let textContent = `Extracted Links Report\n`;
           textContent += `Document: ${req.file.originalname}\n`;
           textContent += `Generated: ${new Date().toLocaleString()}\n`;
-          textContent += `Total Links: ${sampleLinks.length}\n\n`;
+          textContent += `Total Links: ${links.length}\n\n`;
           textContent += `Links:\n`;
           textContent += `${'='.repeat(50)}\n\n`;
 
-          sampleLinks.forEach((link, index) => {
-            textContent += `${index + 1}. [${link.type.toUpperCase()}] ${exportSettings.extractText ? link.text : 'Link'}\n`;
+          links.forEach((link, index) => {
+            textContent += `${index + 1}. [${link.type.toUpperCase()}] ${link.text || 'Link'}\n`;
             textContent += `   URL: ${link.url}\n`;
             textContent += `   Page: ${link.page}`;
             if (link.domain) textContent += ` | Domain: ${link.domain}`;
