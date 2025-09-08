@@ -12,7 +12,7 @@ import * as pdfjsLib from 'pdfjs-dist';
 import { Upload, FileText, Download, RotateCcw, Copy, Check, Search, Hash } from 'lucide-react';
 
 // Set up PDF.js worker
-pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
+pdfjsLib.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.js`;
 
 interface ExtractedText {
   fullText: string;
@@ -107,12 +107,34 @@ const PDFTextExtractor = () => {
     }
   };
 
+  const getPageNumbersForExtraction = (pdfTotalPages: number): number[] => {
+    switch (options.pageRange) {
+      case 'all':
+        return Array.from({ length: pdfTotalPages }, (_, i) => i + 1);
+      case 'specific':
+        return parsePageNumbers(options.specificPages, pdfTotalPages);
+      case 'range':
+        const start = parseInt(options.startPage) || 1;
+        const end = parseInt(options.endPage) || pdfTotalPages;
+        if (start >= 1 && end <= pdfTotalPages && start <= end) {
+          return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+        }
+        return [];
+      default:
+        return [];
+    }
+  };
+
   const extractTextFromPDF = async (file: File): Promise<ExtractedText> => {
     const arrayBuffer = await file.arrayBuffer();
     const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
     
-    setTotalPages(pdf.numPages);
-    const pagesToExtract = getPageNumbers();
+    // Set total pages first, then get page numbers to extract
+    const pdfTotalPages = pdf.numPages;
+    setTotalPages(pdfTotalPages);
+    
+    // Get pages to extract based on current options and actual PDF page count
+    const pagesToExtract = getPageNumbersForExtraction(pdfTotalPages);
     
     const pageTexts: { pageNumber: number; text: string; wordCount: number }[] = [];
     let fullText = '';
@@ -123,7 +145,12 @@ const PDFTextExtractor = () => {
         const textContent = await page.getTextContent();
         
         let pageText = textContent.items
-          .map((item: any) => item.str)
+          .map((item: any) => {
+            if (typeof item.str === 'string') {
+              return item.str;
+            }
+            return '';
+          })
           .join(' ')
           .replace(/\s+/g, ' ')
           .trim();
@@ -193,9 +220,25 @@ const PDFTextExtractor = () => {
       const result = await extractTextFromPDF(pdfFile);
       setExtractedText(result);
       setHighlightedText(result.fullText);
+      
+      if (result.totalWords === 0) {
+        alert('No text found in the PDF. This might be a scanned document or image-based PDF. Try using an OCR tool instead.');
+      }
     } catch (error) {
       console.error('Error extracting text:', error);
-      alert('Error extracting text from PDF. The file might be scanned or corrupted.');
+      let errorMessage = 'Error extracting text from PDF.';
+      
+      if (error instanceof Error) {
+        if (error.message.includes('Invalid PDF')) {
+          errorMessage = 'Invalid PDF file. Please ensure the file is not corrupted.';
+        } else if (error.message.includes('encrypted') || error.message.includes('password')) {
+          errorMessage = 'This PDF is password protected. Please unlock it first.';
+        } else if (error.message.includes('network') || error.message.includes('fetch')) {
+          errorMessage = 'Network error loading PDF.js. Please check your internet connection.';
+        }
+      }
+      
+      alert(errorMessage);
     }
     
     setIsProcessing(false);
@@ -234,6 +277,21 @@ const PDFTextExtractor = () => {
       setTimeout(() => setCopied(false), 2000);
     } catch (error) {
       console.error('Failed to copy text:', error);
+      // Fallback for older browsers or when clipboard API fails
+      const textArea = document.createElement('textarea');
+      textArea.value = extractedText.fullText;
+      textArea.style.position = 'fixed';
+      textArea.style.opacity = '0';
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      } catch (fallbackError) {
+        alert('Failed to copy text. Please manually select and copy the text.');
+      }
+      document.body.removeChild(textArea);
     }
   };
 
