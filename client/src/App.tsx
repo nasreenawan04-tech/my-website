@@ -116,6 +116,7 @@ import PDFBlankPageRemover from '@/pages/pdf-blank-page-remover';
 import PDFToImagesEnhanced from '@/pages/pdf-to-images-enhanced';
 import ImagesToPDFMerger from '@/pages/images-to-pdf-merger';
 import PDFVersionConverter from '@/pages/pdf-version-converter';
+import PDFCompressorAdvanced from '@/pages/pdf-compressor-advanced';
 
 
 function ScrollToTop() {
@@ -214,6 +215,7 @@ function Router() {
       <Route path="/tools/pdf-to-images-enhanced" component={PDFToImagesEnhanced} />
       <Route path="/tools/images-to-pdf" component={ImagesToPDFMerger} />
       <Route path="/tools/pdf-version-converter" component={PDFVersionConverter} />
+      <Route path="/tools/pdf-compressor-advanced" component={PDFCompressorAdvanced} />
       <Route path="/tools/word-counter" component={WordCounter} />
       <Route path="/tools/character-counter" component={CharacterCounter} />
         <Route path="/tools/sentence-counter" component={SentenceCounter} />

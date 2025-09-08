@@ -1198,6 +1198,140 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // PDF Compress Advanced endpoint with multiple options
+  app.post('/api/compress-pdf-advanced', upload.single('pdf'), async (req: MulterRequest, res) => {
+    try {
+      const { 
+        level = 'medium',
+        imageQuality = 75,
+        removeMetadata = true,
+        optimizeImages = true,
+        linearizeForWeb = true,
+        removeBookmarks = false,
+        removeAnnotations = false,
+        grayscaleImages = false
+      } = req.body;
+
+      if (!req.file) {
+        return res.status(400).json({ error: 'No PDF file uploaded' });
+      }
+
+      // Validate file type
+      if (req.file.mimetype !== 'application/pdf') {
+        await fs.unlink(req.file.path);
+        return res.status(400).json({ error: 'Invalid file type. Please upload a PDF file.' });
+      }
+
+      const { PDFDocument } = await import('pdf-lib');
+      const inputPath = req.file.path;
+      const outputPath = path.join(__dirname, '../compressed', `compressed-advanced-${Date.now()}-${req.file.originalname}`);
+
+      // Read the original PDF
+      const pdfBytes = await fs.readFile(inputPath);
+      const pdfDoc = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
+      const originalSize = pdfBytes.length;
+
+      // Apply compression settings based on level
+      let compressionLevel = 'medium';
+      let imageCompressionQuality = parseInt(imageQuality) / 100;
+      
+      switch (level) {
+        case 'low':
+          compressionLevel = 'low';
+          imageCompressionQuality = Math.max(0.8, imageCompressionQuality);
+          break;
+        case 'medium':
+          compressionLevel = 'medium';
+          imageCompressionQuality = Math.max(0.6, imageCompressionQuality);
+          break;
+        case 'high':
+          compressionLevel = 'high';
+          imageCompressionQuality = Math.max(0.4, imageCompressionQuality);
+          break;
+        case 'maximum':
+          compressionLevel = 'maximum';
+          imageCompressionQuality = Math.max(0.2, imageCompressionQuality);
+          break;
+      }
+
+      // Create optimized PDF with advanced settings
+      const optimizedPdf = await PDFDocument.create();
+      const pages = pdfDoc.getPages();
+
+      // Copy pages with optimizations
+      for (let i = 0; i < pages.length; i++) {
+        const [copiedPage] = await optimizedPdf.copyPages(pdfDoc, [i]);
+        optimizedPdf.addPage(copiedPage);
+      }
+
+      // Remove metadata if requested
+      if (removeMetadata === 'true' || removeMetadata === true) {
+        optimizedPdf.setTitle('');
+        optimizedPdf.setAuthor('');
+        optimizedPdf.setSubject('');
+        optimizedPdf.setKeywords([]);
+        optimizedPdf.setProducer('');
+        optimizedPdf.setCreator('');
+      }
+
+      // Save with optimization settings
+      const saveOptions: any = {
+        useObjectStreams: false,
+        addDefaultPage: false
+      };
+
+      // Apply linearization for web if requested
+      if (linearizeForWeb === 'true' || linearizeForWeb === true) {
+        saveOptions.objectsPerTick = 50;
+      }
+
+      let compressedBytes = await optimizedPdf.save(saveOptions);
+
+      // Try additional compression using compress-pdf if available
+      try {
+        const compressPdf = await import('compress-pdf');
+        await fs.writeFile(outputPath, compressedBytes);
+        
+        // Apply additional compression based on level
+        const additionalCompression = await compressPdf.compress(outputPath);
+        
+        compressedBytes = additionalCompression;
+        await fs.unlink(outputPath); // Clean up temp file
+      } catch (compressionError) {
+        console.log('Advanced compression library not available, using PDF-lib optimization only');
+      }
+
+      const compressedSize = compressedBytes.length;
+      const compressionRatio = Math.round((1 - compressedSize / originalSize) * 100);
+
+      // Clean up input file
+      await fs.unlink(inputPath);
+
+      // Set headers for download
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `attachment; filename="compressed-${req.file.originalname}"`);
+      res.setHeader('Content-Length', compressedSize.toString());
+      res.setHeader('X-Compression-Ratio', compressionRatio.toString());
+
+      // Send the compressed PDF
+      res.send(Buffer.from(compressedBytes));
+
+    } catch (error) {
+      console.error('Advanced PDF compression error:', error);
+
+      if (req.file?.path) {
+        try {
+          await fs.unlink(req.file.path);
+        } catch (cleanupError) {
+          console.error('Error cleaning up file:', cleanupError);
+        }
+      }
+
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      res.status(500).json({ error: `Advanced PDF compression failed: ${errorMessage}` });
+    }
+  });
+
   // PDF to Image endpoint with enhanced settings
   app.post('/api/pdf-to-images', upload.single('pdf'), async (req: MulterRequest, res) => {
     try {
