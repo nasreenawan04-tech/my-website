@@ -90,7 +90,7 @@ const PDFRedactionTool = () => {
 
   const handleFileSelect = (files: FileList | null) => {
     if (!files || files.length === 0) return;
-    
+
     const file = files[0];
     if (file.type !== 'application/pdf') {
       setError('Please select a PDF file.');
@@ -175,7 +175,7 @@ const PDFRedactionTool = () => {
 
       const blob = await response.blob();
       const downloadUrl = URL.createObjectURL(blob);
-      
+
       // Get redaction metadata from headers
       const redactionsApplied = parseInt(response.headers.get('X-Redactions-Applied') || '0');
       const processingTime = parseInt(response.headers.get('X-Processing-Time') || '0');
@@ -183,7 +183,7 @@ const PDFRedactionTool = () => {
       // Extract additional metadata from headers
       const totalPages = parseInt(response.headers.get('X-Total-Pages') || '1');
       const redactionDetails = response.headers.get('X-Redaction-Details');
-      
+
       let redactionsByPage: Array<{ page: number; count: number; terms: string[] }> = [];
       if (redactionDetails) {
         try {
@@ -235,6 +235,18 @@ const PDFRedactionTool = () => {
     return redactionColors.find(c => c.value === colorValue) || redactionColors[0];
   };
 
+  const handleDownload = () => {
+    if (!result || !result.downloadUrl || !selectedFile) return;
+
+    const link = document.createElement('a');
+    link.href = result.downloadUrl;
+    link.download = result.modifiedFilename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+
   return (
     <>
       <Helmet>
@@ -249,7 +261,7 @@ const PDFRedactionTool = () => {
 
       <div className="min-h-screen flex flex-col" data-testid="page-pdf-redaction-tool">
         <Header />
-        
+
         <main className="flex-1 bg-neutral-50">
           {/* Hero Section */}
           <section className="bg-gradient-to-r from-gray-800 via-gray-700 to-black text-white py-16">
@@ -275,11 +287,11 @@ const PDFRedactionTool = () => {
                     {/* File Upload Section */}
                     <div>
                       <h2 className="text-2xl font-semibold text-gray-900 mb-6">Select PDF File for Redaction</h2>
-                      
+
                       <div
                         className={`border-2 border-dashed rounded-xl p-12 text-center transition-colors ${
-                          dragOver 
-                            ? 'border-gray-600 bg-gray-100' 
+                          dragOver
+                            ? 'border-gray-600 bg-gray-100'
                             : 'border-gray-300 hover:border-gray-400'
                         }`}
                         onDrop={handleDrop}
@@ -300,7 +312,7 @@ const PDFRedactionTool = () => {
                         >
                           Select PDF File
                         </Button>
-                        
+
                         <input
                           ref={fileInputRef}
                           type="file"
@@ -319,8 +331,8 @@ const PDFRedactionTool = () => {
                         <div>
                           <h4 className="font-medium text-red-800 mb-1">Security Notice</h4>
                           <p className="text-sm text-red-700">
-                            Redaction permanently removes information from your PDF. This process cannot be undone. 
-                            Ensure you have a backup of the original document before proceeding. The redacted areas 
+                            Redaction permanently removes information from your PDF. This process cannot be undone.
+                            Ensure you have a backup of the original document before proceeding. The redacted areas
                             will be completely blacked out and unrecoverable.
                           </p>
                         </div>
@@ -356,7 +368,7 @@ const PDFRedactionTool = () => {
                           <Settings className="w-5 h-5 mr-2" />
                           Redaction Settings
                         </h3>
-                        
+
                         {/* Redaction Mode */}
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -392,7 +404,7 @@ const PDFRedactionTool = () => {
                               {redactionColors.map((color) => (
                                 <SelectItem key={color.id} value={color.value}>
                                   <div className="flex items-center gap-2">
-                                    <div 
+                                    <div
                                       className="w-4 h-4 rounded border border-gray-300"
                                       style={{ backgroundColor: color.value }}
                                     ></div>
@@ -411,7 +423,7 @@ const PDFRedactionTool = () => {
                         {settings.mode === 'text' && (
                           <div className="bg-blue-50 rounded-lg p-4">
                             <h4 className="font-medium text-gray-900 mb-3">Search Terms</h4>
-                            
+
                             <div className="space-y-4">
                               <div className="flex gap-2">
                                 <input
@@ -476,7 +488,7 @@ const PDFRedactionTool = () => {
                         {settings.mode === 'pattern' && (
                           <div className="bg-green-50 rounded-lg p-4">
                             <h4 className="font-medium text-gray-900 mb-3">Common Sensitive Data Patterns</h4>
-                            
+
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                               {commonPatterns.map((pattern) => (
                                 <div
@@ -504,11 +516,11 @@ const PDFRedactionTool = () => {
                           <div className="bg-yellow-50 rounded-lg p-4">
                             <h4 className="font-medium text-gray-900 mb-3">Coordinate-Based Redaction</h4>
                             <p className="text-sm text-gray-700 mb-3">
-                              This mode allows you to specify exact locations to redact by coordinates. 
+                              This mode allows you to specify exact locations to redact by coordinates.
                               You would typically use a PDF viewer to identify the coordinates of sensitive areas.
                             </p>
                             <Textarea
-                              placeholder="Enter coordinates in format: page,x,y,width,height (one per line)&#10;Example:&#10;1,100,200,150,20&#10;2,50,300,200,15"
+                              placeholder="Enter coordinates in format: page,x,y,width,height&#10;Example:&#10;1,100,200,150,20&#10;2,50,300,200,15"
                               className="w-full h-24 text-sm"
                               onChange={(e) => {
                                 // Parse coordinate input - simplified for demo
@@ -579,7 +591,7 @@ const PDFRedactionTool = () => {
                           <EyeOff className="w-5 h-5 mr-2" />
                           Redaction Complete
                         </h3>
-                        
+
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                           <div className="text-center">
                             <div className="text-2xl font-bold text-white">
@@ -613,18 +625,16 @@ const PDFRedactionTool = () => {
                         </div>
 
                         <Button
-                          asChild
-                          className="w-full bg-white hover:bg-gray-100 text-gray-900"
-                          data-testid="button-download"
+                          onClick={handleDownload}
+                          className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
+                          disabled={!result.downloadUrl}
                         >
-                          <a href={result.downloadUrl} download={result.modifiedFilename}>
-                            <Download className="w-4 h-4 mr-2" />
-                            Download Redacted PDF
-                          </a>
+                          <Download className="h-4 w-4 mr-2" />
+                          Download Redacted PDF
                         </Button>
 
                         <div className="mt-4 p-3 bg-gray-800 rounded text-xs text-gray-400">
-                          ⚠️ The redacted information has been permanently removed and cannot be recovered. 
+                          ⚠️ The redacted information has been permanently removed and cannot be recovered.
                           Store this file securely and verify all sensitive data has been properly redacted.
                         </div>
                       </div>
