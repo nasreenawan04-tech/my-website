@@ -11,8 +11,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import * as pdfjsLib from 'pdfjs-dist';
 import { Upload, FileText, Download, RotateCcw, Copy, Check, Search, Hash } from 'lucide-react';
 
-// Disable PDF.js worker to run in main thread for Replit compatibility
-pdfjsLib.GlobalWorkerOptions.workerSrc = "";
+// Disable PDF.js worker by using an empty data URL
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'data:application/javascript;base64,';
+(pdfjsLib as any).disableWorker = true;
 
 interface ExtractedText {
   fullText: string;
@@ -140,16 +141,27 @@ const PDFTextExtractor = () => {
     // Minimal PDF.js configuration for text extraction
     console.log('Extracting text from PDF:', file.name, 'Size:', arrayBuffer.byteLength, 'bytes');
     
-    const loadingTask = pdfjsLib.getDocument({ 
-      data: arrayBuffer,
-      verbosity: 0,
-      disableAutoFetch: true,
-      disableStream: true,
-      disableRange: true,
-      useSystemFonts: true
-    });
-    
-    const pdf = await loadingTask.promise;
+    // Try to load the PDF with multiple fallback configurations
+    let pdf;
+    try {
+      const loadingTask = pdfjsLib.getDocument({ 
+        data: arrayBuffer,
+        verbosity: 0,
+        disableAutoFetch: true,
+        disableStream: true,
+        disableRange: true,
+        useSystemFonts: true,
+        useWorkerFetch: false,
+        isEvalSupported: false,
+        maxImageSize: -1
+      });
+      pdf = await loadingTask.promise;
+    } catch (workerError) {
+      console.log('Fallback: trying with basic configuration');
+      // Fallback to the most basic configuration
+      const basicLoadingTask = pdfjsLib.getDocument(arrayBuffer);
+      pdf = await basicLoadingTask.promise;
+    }
     
     // Set total pages first, then get page numbers to extract
     const pdfTotalPages = pdf.numPages;
@@ -237,22 +249,32 @@ const PDFTextExtractor = () => {
       // Minimal PDF loading configuration
       console.log('Loading PDF file:', file.name, 'Size:', arrayBuffer.byteLength, 'bytes');
       
-      const loadingTask = pdfjsLib.getDocument({ 
-        data: arrayBuffer,
-        verbosity: 0,
-        disableAutoFetch: true,
-        disableStream: true,
-        disableRange: true,
-        useSystemFonts: true
-      });
-      
       // Add timeout for PDF loading with more generous time for larger files
       const timeoutDuration = Math.max(30000, file.size / 1000); // At least 30s, or 1s per KB
       const timeoutPromise = new Promise((_, reject) => {
         setTimeout(() => reject(new Error(`PDF loading timeout after ${Math.round(timeoutDuration/1000)} seconds`)), timeoutDuration);
       });
       
-      const pdf = await Promise.race([loadingTask.promise, timeoutPromise]) as any;
+      let pdf;
+      try {
+        const loadingTask = pdfjsLib.getDocument({ 
+          data: arrayBuffer,
+          verbosity: 0,
+          disableAutoFetch: true,
+          disableStream: true,
+          disableRange: true,
+          useSystemFonts: true,
+          useWorkerFetch: false,
+          isEvalSupported: false,
+          maxImageSize: -1
+        });
+        pdf = await Promise.race([loadingTask.promise, timeoutPromise]) as any;
+      } catch (workerError) {
+        console.log('Fallback: trying with basic configuration');
+        // Fallback to the most basic configuration
+        const basicLoadingTask = pdfjsLib.getDocument(arrayBuffer);
+        pdf = await Promise.race([basicLoadingTask.promise, timeoutPromise]) as any;
+      }
       
       const numPages = pdf.numPages;
       setTotalPages(numPages);
