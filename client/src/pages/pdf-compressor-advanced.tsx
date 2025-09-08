@@ -193,116 +193,6 @@ const PDFCompressorAdvanced = () => {
             </div>
           </section>
 
-          {/* SEO Content - How It Works */}
-          <section className="py-16 bg-white">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">How Our Advanced PDF Compressor Works</h2>
-                <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                  Our advanced PDF compression technology uses sophisticated algorithms to significantly reduce file sizes while maintaining document quality and integrity.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Upload className="w-8 h-8 text-blue-600" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">1. Upload Your PDF</h3>
-                  <p className="text-gray-600">
-                    Simply drag and drop your PDF file or click to select it from your computer. Our tool supports PDFs of all sizes and complexities.
-                  </p>
-                </div>
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Settings className="w-8 h-8 text-blue-600" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">2. Configure Settings</h3>
-                  <p className="text-gray-600">
-                    Choose from multiple compression levels and optimization options to achieve the perfect balance between file size and quality.
-                  </p>
-                </div>
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Download className="w-8 h-8 text-blue-600" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">3. Download Result</h3>
-                  <p className="text-gray-600">
-                    Get your optimized PDF with detailed compression statistics showing exactly how much space you've saved.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Key Features */}
-          <section className="py-16 bg-gray-50">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Advanced PDF Compression Features</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-                  <div className="w-12 h-12 bg-emerald-600 rounded-lg flex items-center justify-center mb-4">
-                    <i className="fas fa-layer-group text-white text-xl"></i>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Multi-Level Compression</h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    Choose from four compression levels: Low (10-30% reduction), Medium (30-50%), High (50-70%), and Maximum (70-90%) to match your specific needs.
-                  </p>
-                </div>
-
-                <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-                  <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4">
-                    <i className="fas fa-image text-white text-xl"></i>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Image Optimization</h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    Advanced image compression with adjustable quality settings from 10% to 100%, plus options for grayscale conversion and smart optimization.
-                  </p>
-                </div>
-
-                <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-                  <div className="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center mb-4">
-                    <i className="fas fa-database text-white text-xl"></i>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Metadata Removal</h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    Remove document metadata, properties, and hidden information to reduce file size and protect privacy while maintaining document integrity.
-                  </p>
-                </div>
-
-                <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-                  <div className="w-12 h-12 bg-orange-600 rounded-lg flex items-center justify-center mb-4">
-                    <i className="fas fa-globe text-white text-xl"></i>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Web Optimization</h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    Linearize PDFs for fast web viewing, enabling progressive loading and improved user experience on websites and web applications.
-                  </p>
-                </div>
-
-                <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-                  <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mb-4">
-                    <i className="fas fa-shield-alt text-white text-xl"></i>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Content Cleanup</h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    Advanced options to remove bookmarks, annotations, and comments while preserving essential document structure and readability.
-                  </p>
-                </div>
-
-                <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-                  <div className="w-12 h-12 bg-indigo-600 rounded-lg flex items-center justify-center mb-4">
-                    <i className="fas fa-chart-line text-white text-xl"></i>
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Compression Analytics</h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    Detailed compression statistics showing original size, compressed size, and percentage reduction to track optimization results.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
           {/* Tool Section */}
           <section className="py-16">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -569,6 +459,116 @@ const PDFCompressorAdvanced = () => {
             </div>
           </section>
         </main>
+
+        {/* SEO Content - How It Works */}
+        <section className="py-16 bg-white">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">How Our Advanced PDF Compressor Works</h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Our advanced PDF compression technology uses sophisticated algorithms to significantly reduce file sizes while maintaining document quality and integrity.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Upload className="w-8 h-8 text-blue-600" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">1. Upload Your PDF</h3>
+                <p className="text-gray-600">
+                  Simply drag and drop your PDF file or click to select it from your computer. Our tool supports PDFs of all sizes and complexities.
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Settings className="w-8 h-8 text-blue-600" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">2. Configure Settings</h3>
+                <p className="text-gray-600">
+                  Choose from multiple compression levels and optimization options to achieve the perfect balance between file size and quality.
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Download className="w-8 h-8 text-blue-600" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">3. Download Result</h3>
+                <p className="text-gray-600">
+                  Get your optimized PDF with detailed compression statistics showing exactly how much space you've saved.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Key Features */}
+        <section className="py-16 bg-gray-50">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Advanced PDF Compression Features</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                <div className="w-12 h-12 bg-emerald-600 rounded-lg flex items-center justify-center mb-4">
+                  <i className="fas fa-layer-group text-white text-xl"></i>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Multi-Level Compression</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Choose from four compression levels: Low (10-30% reduction), Medium (30-50%), High (50-70%), and Maximum (70-90%) to match your specific needs.
+                </p>
+              </div>
+
+              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4">
+                  <i className="fas fa-image text-white text-xl"></i>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Image Optimization</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Advanced image compression with adjustable quality settings from 10% to 100%, plus options for grayscale conversion and smart optimization.
+                </p>
+              </div>
+
+              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                <div className="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center mb-4">
+                  <i className="fas fa-database text-white text-xl"></i>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Metadata Removal</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Remove document metadata, properties, and hidden information to reduce file size and protect privacy while maintaining document integrity.
+                </p>
+              </div>
+
+              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                <div className="w-12 h-12 bg-orange-600 rounded-lg flex items-center justify-center mb-4">
+                  <i className="fas fa-globe text-white text-xl"></i>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Web Optimization</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Linearize PDFs for fast web viewing, enabling progressive loading and improved user experience on websites and web applications.
+                </p>
+              </div>
+
+              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mb-4">
+                  <i className="fas fa-shield-alt text-white text-xl"></i>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Content Cleanup</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Advanced options to remove bookmarks, annotations, and comments while preserving essential document structure and readability.
+                </p>
+              </div>
+
+              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                <div className="w-12 h-12 bg-indigo-600 rounded-lg flex items-center justify-center mb-4">
+                  <i className="fas fa-chart-line text-white text-xl"></i>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Compression Analytics</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Detailed compression statistics showing original size, compressed size, and percentage reduction to track optimization results.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* Benefits Section */}
         <section className="py-16 bg-gradient-to-r from-blue-50 to-indigo-50">
