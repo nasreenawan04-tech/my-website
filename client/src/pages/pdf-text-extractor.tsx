@@ -11,10 +11,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import * as pdfjsLib from 'pdfjs-dist';
 import { Upload, FileText, Download, RotateCcw, Copy, Check, Search, Hash } from 'lucide-react';
 
-// Minimal PDF.js configuration for Replit environment
-// Use a data URL to bypass worker issues completely
-pdfjsLib.GlobalWorkerOptions.workerSrc = 'data:application/javascript,';
-pdfjsLib.GlobalWorkerOptions.workerPort = null;
+// Configure PDF.js for better compatibility in Replit environment
+pdfjsLib.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.js`;
 
 interface ExtractedText {
   fullText: string;
@@ -144,11 +142,13 @@ const PDFTextExtractor = () => {
     
     const loadingTask = pdfjsLib.getDocument({ 
       data: arrayBuffer,
-      // Minimal safe configuration
       verbosity: 0,
-      disableAutoFetch: true,
-      disableStream: true,
-      disableRange: true
+      disableAutoFetch: false,
+      disableStream: false,
+      disableRange: false,
+      cMapUrl: `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/cmaps/`,
+      cMapPacked: true,
+      standardFontDataUrl: `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/standard_fonts/`
     });
     
     const pdf = await loadingTask.promise;
@@ -241,16 +241,19 @@ const PDFTextExtractor = () => {
       
       const loadingTask = pdfjsLib.getDocument({ 
         data: arrayBuffer,
-        // Minimal safe configuration
         verbosity: 0,
-        disableAutoFetch: true,
-        disableStream: true,
-        disableRange: true
+        disableAutoFetch: false,
+        disableStream: false,
+        disableRange: false,
+        cMapUrl: `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/cmaps/`,
+        cMapPacked: true,
+        standardFontDataUrl: `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/standard_fonts/`
       });
       
-      // Add timeout for PDF loading
+      // Add timeout for PDF loading with more generous time for larger files
+      const timeoutDuration = Math.max(30000, file.size / 1000); // At least 30s, or 1s per KB
       const timeoutPromise = new Promise((_, reject) => {
-        setTimeout(() => reject(new Error('PDF loading timeout after 20 seconds')), 20000);
+        setTimeout(() => reject(new Error(`PDF loading timeout after ${Math.round(timeoutDuration/1000)} seconds`)), timeoutDuration);
       });
       
       const pdf = await Promise.race([loadingTask.promise, timeoutPromise]) as any;
