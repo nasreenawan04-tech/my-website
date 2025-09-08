@@ -557,6 +557,381 @@ const PDFRedactionTool = () => {
             </div>
           </section>
 
+          {/* Tool Section */}
+          <section className="py-16 bg-white">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                  Start Redacting Your PDF Documents
+                </h2>
+                <p className="text-xl text-gray-600">
+                  Upload your PDF file and begin the secure redaction process to permanently remove sensitive information.
+                </p>
+              </div>
+
+              <Card className="bg-white shadow-sm border-0">
+                <CardContent className="p-8">
+                  <div className="space-y-8">
+                    {/* File Upload Section */}
+                    <div>
+                      <h2 className="text-2xl font-semibold text-gray-900 mb-6">Select PDF File for Redaction</h2>
+
+                      <div
+                        className={`border-2 border-dashed rounded-xl p-12 text-center transition-colors ${
+                          dragOver
+                            ? 'border-gray-600 bg-gray-100'
+                            : 'border-gray-300 hover:border-gray-400'
+                        }`}
+                        onDrop={handleDrop}
+                        onDragOver={handleDragOver}
+                        onDragLeave={handleDragLeave}
+                        onClick={() => fileInputRef.current?.click()}
+                      >
+                        <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                        <h3 className="text-lg font-medium text-gray-900 mb-2">
+                          Drag and drop PDF file here
+                        </h3>
+                        <p className="text-gray-600 mb-4">
+                          or click to select a PDF containing sensitive information
+                        </p>
+                        <Button
+                          className="bg-gray-800 hover:bg-gray-900 text-white"
+                          data-testid="button-select-file"
+                        >
+                          Select PDF File
+                        </Button>
+
+                        <input
+                          ref={fileInputRef}
+                          type="file"
+                          accept=".pdf,application/pdf"
+                          onChange={(e) => handleFileSelect(e.target.files)}
+                          className="hidden"
+                          data-testid="input-file"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Security Warning */}
+                    <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                      <div className="flex items-start">
+                        <Shield className="w-5 h-5 text-red-600 mt-0.5 mr-3 flex-shrink-0" />
+                        <div>
+                          <h4 className="font-medium text-red-800 mb-1">Security Notice</h4>
+                          <p className="text-sm text-red-700">
+                            Redaction permanently removes information from your PDF. This process cannot be undone.
+                            Ensure you have a backup of the original document before proceeding. The redacted areas
+                            will be completely blacked out and unrecoverable.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* File Info */}
+                    {selectedFile && (
+                      <div className="bg-gray-50 rounded-lg p-4" data-testid="file-info">
+                        <div className="flex items-center gap-4">
+                          <FileText className="w-8 h-8 text-red-600" />
+                          <div className="flex-1">
+                            <div className="font-medium text-gray-900">{selectedFile.name}</div>
+                            <div className="text-sm text-gray-600">
+                              {formatFileSize(selectedFile.size)}
+                            </div>
+                          </div>
+                          <Button
+                            onClick={resetTool}
+                            variant="outline"
+                            className="text-red-600 border-red-200 hover:bg-red-50"
+                          >
+                            Remove
+                          </Button>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Redaction Settings */}
+                    {selectedFile && (
+                      <div className="space-y-6" data-testid="redaction-settings">
+                        <h3 className="text-xl font-semibold text-gray-900 flex items-center">
+                          <Settings className="w-5 h-5 mr-2" />
+                          Redaction Settings
+                        </h3>
+
+                        {/* Redaction Mode */}
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Redaction Method
+                          </label>
+                          <Select value={settings.mode} onValueChange={(value: 'text' | 'coordinates' | 'pattern') => updateSetting('mode', value)}>
+                            <SelectTrigger>
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="text">Search & Redact Text</SelectItem>
+                              <SelectItem value="pattern">Pattern-Based Redaction</SelectItem>
+                              <SelectItem value="coordinates">Coordinate-Based Redaction</SelectItem>
+                            </SelectContent>
+                          </Select>
+                          <p className="text-xs text-gray-500 mt-1">
+                            {settings.mode === 'text' && 'Search for specific words or phrases to redact'}
+                            {settings.mode === 'pattern' && 'Use predefined patterns to find sensitive data'}
+                            {settings.mode === 'coordinates' && 'Specify exact locations to redact'}
+                          </p>
+                        </div>
+
+                        {/* Redaction Color */}
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Redaction Color
+                          </label>
+                          <Select value={settings.color} onValueChange={(value: string) => updateSetting('color', value)}>
+                            <SelectTrigger>
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {redactionColors.map((color) => (
+                                <SelectItem key={color.id} value={color.value}>
+                                  <div className="flex items-center gap-2">
+                                    <div
+                                      className="w-4 h-4 rounded border border-gray-300"
+                                      style={{ backgroundColor: color.value }}
+                                    ></div>
+                                    <span>{color.name}</span>
+                                  </div>
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                          <p className="text-xs text-gray-500 mt-1">
+                            {getColorInfo(settings.color)?.description}
+                          </p>
+                        </div>
+
+                        {/* Text Search Mode */}
+                        {settings.mode === 'text' && (
+                          <div className="bg-blue-50 rounded-lg p-4">
+                            <h4 className="font-medium text-gray-900 mb-3">Search Terms</h4>
+
+                            <div className="space-y-4">
+                              <div className="flex gap-2">
+                                <input
+                                  type="text"
+                                  value={searchInput}
+                                  onChange={(e) => setSearchInput(e.target.value)}
+                                  onKeyPress={(e) => e.key === 'Enter' && addSearchTerm()}
+                                  placeholder="Enter text to redact (e.g., 'John Doe', 'Confidential')"
+                                  className="flex-1 px-3 py-2 border border-gray-300 rounded-md text-sm"
+                                  data-testid="input-search-term"
+                                />
+                                <Button
+                                  onClick={addSearchTerm}
+                                  disabled={!searchInput.trim()}
+                                  className="bg-blue-600 hover:bg-blue-700 text-white"
+                                  data-testid="button-add-term"
+                                >
+                                  Add Term
+                                </Button>
+                              </div>
+
+                              {settings.searchTerms.length > 0 && (
+                                <div className="flex flex-wrap gap-2">
+                                  {settings.searchTerms.map((term, index) => (
+                                    <Badge
+                                      key={index}
+                                      className="bg-blue-100 text-blue-800 cursor-pointer hover:bg-blue-200"
+                                      onClick={() => removeSearchTerm(index)}
+                                      data-testid={`badge-term-${index}`}
+                                    >
+                                      {term} ×
+                                    </Badge>
+                                  ))}
+                                </div>
+                              )}
+
+                              <div className="flex items-center gap-4 text-sm">
+                                <label className="flex items-center gap-2">
+                                  <input
+                                    type="checkbox"
+                                    checked={settings.caseSensitive}
+                                    onChange={(e) => updateSetting('caseSensitive', e.target.checked)}
+                                    className="rounded"
+                                  />
+                                  Case sensitive
+                                </label>
+                                <label className="flex items-center gap-2">
+                                  <input
+                                    type="checkbox"
+                                    checked={settings.wholeWords}
+                                    onChange={(e) => updateSetting('wholeWords', e.target.checked)}
+                                    className="rounded"
+                                  />
+                                  Whole words only
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Pattern Mode */}
+                        {settings.mode === 'pattern' && (
+                          <div className="bg-green-50 rounded-lg p-4">
+                            <h4 className="font-medium text-gray-900 mb-3">Common Sensitive Data Patterns</h4>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                              {commonPatterns.map((pattern) => (
+                                <div
+                                  key={pattern.id}
+                                  className={`p-3 rounded-lg border cursor-pointer transition-colors ${
+                                    settings.patterns.includes(pattern.pattern)
+                                      ? 'border-green-300 bg-green-100'
+                                      : 'border-gray-200 bg-white hover:border-green-200'
+                                  }`}
+                                  onClick={() => togglePattern(pattern.id)}
+                                >
+                                  <div className="flex items-center gap-2 mb-1">
+                                    <Target className="w-4 h-4 text-green-600" />
+                                    <span className="font-medium text-gray-900">{pattern.name}</span>
+                                  </div>
+                                  <p className="text-xs text-gray-600">{pattern.description}</p>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Coordinates Mode */}
+                        {settings.mode === 'coordinates' && (
+                          <div className="bg-yellow-50 rounded-lg p-4">
+                            <h4 className="font-medium text-gray-900 mb-3">Coordinate-Based Redaction</h4>
+                            <p className="text-sm text-gray-700 mb-3">
+                              This mode allows you to specify exact locations to redact by coordinates.
+                              You would typically use a PDF viewer to identify the coordinates of sensitive areas.
+                            </p>
+                            <Textarea
+                              placeholder="Enter coordinates in format: page,x,y,width,height&#10;Example:&#10;1,100,200,150,20&#10;2,50,300,200,15"
+                              className="w-full h-24 text-sm"
+                              onChange={(e) => {
+                                // Parse coordinate input - simplified for demo
+                                const lines = e.target.value.split('\n').filter(line => line.trim());
+                                const coords = lines.map(line => {
+                                  const [page, x, y, width, height] = line.split(',').map(n => parseInt(n.trim()));
+                                  return { page: page || 1, x: x || 0, y: y || 0, width: width || 0, height: height || 0 };
+                                });
+                                updateSetting('coordinates', coords);
+                              }}
+                            />
+                          </div>
+                        )}
+
+                        {/* Additional Options */}
+                        <div className="bg-gray-50 rounded-lg p-4">
+                          <h4 className="font-medium text-gray-900 mb-3">Additional Options</h4>
+                          <label className="flex items-center gap-2">
+                            <input
+                              type="checkbox"
+                              checked={settings.removeMetadata}
+                              onChange={(e) => updateSetting('removeMetadata', e.target.checked)}
+                              className="rounded"
+                            />
+                            <span className="text-sm">Remove document metadata</span>
+                          </label>
+                          <p className="text-xs text-gray-500 mt-1">
+                            Removes author, creation date, and other metadata that might contain sensitive information
+                          </p>
+                        </div>
+
+                        {/* Redact Button */}
+                        <Button
+                          onClick={handleRedact}
+                          disabled={isProcessing || (settings.mode === 'text' && settings.searchTerms.length === 0) || (settings.mode === 'pattern' && settings.patterns.length === 0)}
+                          className="w-full bg-gray-800 hover:bg-gray-900 text-white py-3"
+                          data-testid="button-redact"
+                        >
+                          {isProcessing ? (
+                            <>
+                              <Zap className="w-4 h-4 mr-2 animate-spin" />
+                              Redacting PDF...
+                            </>
+                          ) : (
+                            <>
+                              <EyeOff className="w-4 h-4 mr-2" />
+                              Redact PDF
+                            </>
+                          )}
+                        </Button>
+                      </div>
+                    )}
+
+                    {/* Error Display */}
+                    {error && (
+                      <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                        <div className="flex items-center">
+                          <AlertTriangle className="w-5 h-5 text-red-600 mr-2" />
+                          <div className="text-red-800 text-sm">{error}</div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Results */}
+                    {result && (
+                      <div className="bg-gray-900 text-white rounded-lg p-6" data-testid="redaction-results">
+                        <h3 className="text-xl font-semibold mb-4 flex items-center">
+                          <EyeOff className="w-5 h-5 mr-2" />
+                          Redaction Complete
+                        </h3>
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                          <div className="text-center">
+                            <div className="text-2xl font-bold text-white">
+                              {result.redactionsApplied}
+                            </div>
+                            <div className="text-sm text-gray-300">Items Redacted</div>
+                          </div>
+                          <div className="text-center">
+                            <div className="text-2xl font-bold text-white">
+                              {result.totalPages}
+                            </div>
+                            <div className="text-sm text-gray-300">Pages Processed</div>
+                          </div>
+                          <div className="text-center">
+                            <div className="text-2xl font-bold text-white">
+                              {result.metadata.processingTime}s
+                            </div>
+                            <div className="text-sm text-gray-300">Processing Time</div>
+                          </div>
+                        </div>
+
+                        <Separator className="my-4 bg-gray-700" />
+
+                        <div className="mb-6">
+                          <h4 className="font-medium mb-2">File Information</h4>
+                          <div className="text-sm text-gray-300 space-y-1">
+                            <div>Original: {formatFileSize(result.metadata.originalSize)}</div>
+                            <div>Redacted: {formatFileSize(result.metadata.redactedSize)}</div>
+                            <div>Filename: {result.modifiedFilename}</div>
+                          </div>
+                        </div>
+
+                        <Button
+                          onClick={handleDownload}
+                          className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
+                          disabled={!result.downloadUrl}
+                        >
+                          <Download className="h-4 w-4 mr-2" />
+                          Download Redacted PDF
+                        </Button>
+
+                        <div className="mt-4 p-3 bg-gray-800 rounded text-xs text-gray-400">
+                          ⚠️ The redacted information has been permanently removed and cannot be recovered.
+                          Store this file securely and verify all sensitive data has been properly redacted.
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </section>
 
           {/* Security & Privacy Section */}
           <section className="py-16 bg-gray-800 text-white">
