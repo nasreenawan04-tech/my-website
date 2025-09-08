@@ -1198,10 +1198,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // PDF to Image endpoint
+  // PDF to Image endpoint with enhanced settings
   app.post('/api/pdf-to-images', upload.single('pdf'), async (req: MulterRequest, res) => {
     try {
-      const { format = 'png', quality = 100 } = req.body;
+      const { 
+        format = 'png', 
+        quality = 90,
+        dpi = 150,
+        scale = 1,
+        pageRange = 'all',
+        startPage = 1,
+        endPage = -1,
+        selectedPages = [],
+        transparentBackground = false
+      } = req.body;
 
       if (!req.file) {
         return res.status(400).json({ error: 'No PDF file uploaded' });
@@ -1213,46 +1223,95 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: 'Invalid file type. Please upload a PDF file.' });
       }
 
+      // First get total page count
+      const { PDFDocument } = await import('pdf-lib');
+      const pdfBytes = await fs.readFile(req.file.path);
+      const pdfDoc = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
+      const totalPages = pdfDoc.getPageCount();
+
+      // Determine which pages to convert
+      let pagesToConvert: number[] = [];
+      
+      if (pageRange === 'all') {
+        pagesToConvert = Array.from({ length: totalPages }, (_, i) => i + 1);
+      } else if (pageRange === 'range') {
+        const start = Math.max(1, Math.min(parseInt(startPage) || 1, totalPages));
+        const end = Math.max(start, Math.min(parseInt(endPage) || totalPages, totalPages));
+        pagesToConvert = Array.from({ length: end - start + 1 }, (_, i) => start + i);
+      } else if (pageRange === 'selection') {
+        const pages = Array.isArray(selectedPages) ? selectedPages : JSON.parse(selectedPages || '[]');
+        pagesToConvert = pages.filter((p: number) => p >= 1 && p <= totalPages);
+      }
+
+      if (pagesToConvert.length === 0) {
+        await fs.unlink(req.file.path);
+        return res.status(400).json({ error: 'No valid pages selected for conversion' });
+      }
+
       const pdf2pic = await import('pdf2pic');
-
-      const convert = pdf2pic.fromPath(req.file.path, {
-        density: parseInt(quality),
-        saveFilename: "page",
-        savePath: path.join(__dirname, '../images'),
-        format: format,
-        width: 1200,
-        height: 1600
-      });
-
-      const images = await convert.bulk(-1);
       const imageData = [];
 
-      for (let i = 0; i < images.length; i++) {
-        const imagePath = images[i].path;
-        const imageBuffer = await fs.readFile(imagePath!);
-
-        imageData.push({
-          page: i + 1,
-          filename: `page-${i + 1}.${format}`,
-          data: imageBuffer.toString('base64'),
-          size: imageBuffer.length
+      // Convert each page individually for better control
+      for (const pageNum of pagesToConvert) {
+        const convert = pdf2pic.fromPath(req.file.path, {
+          density: parseInt(dpi) || 150,
+          saveFilename: `page-${pageNum}`,
+          savePath: path.join(__dirname, '../images'),
+          format: format === 'jpg' ? 'jpeg' : format,
+          width: undefined, // Let pdf2pic determine from PDF
+          height: undefined,
+          page: pageNum // Convert specific page
         });
 
-        // Clean up temp image
         try {
-          await fs.unlink(imagePath!);
-        } catch (error) {
-          console.error('Error cleaning up temp image:', error);
+          const result = await convert(pageNum, { responseType: 'image' });
+          const imagePath = result.path;
+          
+          if (imagePath) {
+            const imageBuffer = await fs.readFile(imagePath);
+            
+            imageData.push({
+              pageNumber: pageNum,
+              filename: `page-${pageNum.toString().padStart(3, '0')}.${format}`,
+              data: imageBuffer.toString('base64'),
+              size: imageBuffer.length,
+              mimeType: `image/${format === 'jpg' ? 'jpeg' : format}`
+            });
+
+            // Clean up temp image
+            try {
+              await fs.unlink(imagePath);
+            } catch (error) {
+              console.error('Error cleaning up temp image:', error);
+            }
+          }
+        } catch (pageError) {
+          console.error(`Error converting page ${pageNum}:`, pageError);
+          // Continue with other pages
         }
       }
 
       await fs.unlink(req.file.path);
 
+      if (imageData.length === 0) {
+        return res.status(500).json({ error: 'Failed to convert any pages to images' });
+      }
+
       res.json({
-        message: `PDF converted to ${images.length} ${format.toUpperCase()} images`,
+        success: true,
+        message: `PDF converted to ${imageData.length} ${format.toUpperCase()} images`,
         format,
+        totalPagesRequested: pagesToConvert.length,
+        totalPagesConverted: imageData.length,
         images: imageData,
-        totalPages: images.length
+        settings: {
+          format,
+          quality,
+          dpi,
+          scale,
+          pageRange,
+          transparentBackground
+        }
       });
 
     } catch (error) {
