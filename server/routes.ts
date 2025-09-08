@@ -1439,6 +1439,406 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Images to PDF Merger endpoint
+  app.post('/api/images-to-pdf', upload.array('images', 20), async (req: any, res) => {
+    try {
+      const files = req.files as Express.Multer.File[];
+
+      if (!files || files.length === 0) {
+        return res.status(400).json({ error: 'No images uploaded' });
+      }
+
+      // Validate file types
+      const validImageTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp', 'image/webp'];
+      for (const file of files) {
+        if (!validImageTypes.includes(file.mimetype)) {
+          // Clean up already uploaded files
+          for (const f of files) {
+            if (f.path) await fs.unlink(f.path);
+          }
+          return res.status(400).json({ error: `Invalid file type for ${file.originalname}. Please upload only image files.` });
+        }
+      }
+
+      const { PDFDocument } = await import('pdf-lib');
+      const pdfDoc = await PDFDocument.create();
+
+      for (const file of files) {
+        const imageBytes = await fs.readFile(file.path);
+        let image;
+
+        if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/jpg') {
+          image = await pdfDoc.embedJpg(imageBytes);
+        } else if (file.mimetype === 'image/png') {
+          image = await pdfDoc.embedPng(imageBytes);
+        } else {
+          // Convert other formats to PNG first
+          const sharp = await import('sharp');
+          const pngBytes = await sharp.default(imageBytes).png().toBuffer();
+          image = await pdfDoc.embedPng(pngBytes);
+        }
+
+        const page = pdfDoc.addPage();
+        const { width, height } = image.scale(1);
+        
+        // Scale image to fit page while maintaining aspect ratio
+        const pageWidth = 595; // A4 width in points
+        const pageHeight = 842; // A4 height in points
+        
+        let imgWidth = width;
+        let imgHeight = height;
+        
+        if (width > pageWidth || height > pageHeight) {
+          const widthRatio = pageWidth / width;
+          const heightRatio = pageHeight / height;
+          const scale = Math.min(widthRatio, heightRatio);
+          
+          imgWidth = width * scale;
+          imgHeight = height * scale;
+        }
+
+        page.setSize(pageWidth, pageHeight);
+        page.drawImage(image, {
+          x: (pageWidth - imgWidth) / 2,
+          y: (pageHeight - imgHeight) / 2,
+          width: imgWidth,
+          height: imgHeight,
+        });
+      }
+
+      const pdfBytes = await pdfDoc.save();
+
+      // Clean up input files
+      for (const file of files) {
+        await fs.unlink(file.path);
+      }
+
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `attachment; filename="images-to-pdf-${Date.now()}.pdf"`);
+      res.send(Buffer.from(pdfBytes));
+
+    } catch (error) {
+      console.error('Images to PDF error:', error);
+
+      if (req.files) {
+        for (const file of req.files as Express.Multer.File[]) {
+          try {
+            await fs.unlink(file.path);
+          } catch (cleanupError) {
+            console.error('Error cleaning up file:', cleanupError);
+          }
+        }
+      }
+
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      res.status(500).json({ error: `Images to PDF conversion failed: ${errorMessage}` });
+    }
+  });
+
+  // PDF Background Changer endpoint
+  app.post('/api/pdf-background-changer', upload.single('pdf'), async (req: MulterRequest, res) => {
+    try {
+      const { backgroundColor = '#FFFFFF', removeBackground = false } = req.body;
+
+      if (!req.file) {
+        return res.status(400).json({ error: 'No PDF file uploaded' });
+      }
+
+      if (req.file.mimetype !== 'application/pdf') {
+        await fs.unlink(req.file.path);
+        return res.status(400).json({ error: 'Invalid file type. Please upload a PDF file.' });
+      }
+
+      const { PDFDocument, rgb } = await import('pdf-lib');
+      const pdfBytes = await fs.readFile(req.file.path);
+      const pdfDoc = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
+
+      const pages = pdfDoc.getPages();
+
+      // Parse hex color
+      const hexToRgb = (hex: string) => {
+        const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        return result ? {
+          r: parseInt(result[1], 16) / 255,
+          g: parseInt(result[2], 16) / 255,
+          b: parseInt(result[3], 16) / 255
+        } : { r: 1, g: 1, b: 1 };
+      };
+
+      const color = hexToRgb(backgroundColor);
+
+      // Modify each page directly
+      pages.forEach((page) => {
+        const { width, height } = page.getSize();
+        
+        // Add background color behind existing content (unless removing background)
+        if (!removeBackground && backgroundColor !== 'transparent') {
+          page.drawRectangle({
+            x: 0,
+            y: 0,
+            width,
+            height,
+            color: rgb(color.r, color.g, color.b),
+          });
+        }
+      });
+
+      const modifiedPdfBytes = await pdfDoc.save();
+
+      await fs.unlink(req.file.path);
+
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `attachment; filename="background-changed-${req.file.originalname}"`);
+      res.send(Buffer.from(modifiedPdfBytes));
+
+    } catch (error) {
+      console.error('PDF background change error:', error);
+
+      if (req.file?.path) {
+        try {
+          await fs.unlink(req.file.path);
+        } catch (cleanupError) {
+          console.error('Error cleaning up input file:', cleanupError);
+        }
+      }
+
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      res.status(500).json({ error: `PDF background change failed: ${errorMessage}` });
+    }
+  });
+
+  // PDF Page Duplicator endpoint
+  app.post('/api/pdf-page-duplicator', upload.single('pdf'), async (req: MulterRequest, res) => {
+    try {
+      const { pageSelections } = req.body;
+
+      if (!req.file) {
+        return res.status(400).json({ error: 'No PDF file uploaded' });
+      }
+
+      if (req.file.mimetype !== 'application/pdf') {
+        await fs.unlink(req.file.path);
+        return res.status(400).json({ error: 'Invalid file type. Please upload a PDF file.' });
+      }
+
+      if (!pageSelections) {
+        return res.status(400).json({ error: 'Page selections not provided' });
+      }
+
+      // Parse page selections
+      let parsedSelections: { [key: number]: number };
+      try {
+        parsedSelections = JSON.parse(pageSelections);
+      } catch (error) {
+        return res.status(400).json({ error: 'Invalid page selections format' });
+      }
+
+      const { PDFDocument } = await import('pdf-lib');
+      const pdfBytes = await fs.readFile(req.file.path);
+      const originalPdf = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
+      const newPdf = await PDFDocument.create();
+
+      const originalPages = originalPdf.getPages();
+
+      // Create pages based on duplication settings
+      for (let i = 0; i < originalPages.length; i++) {
+        const copies = parsedSelections[i] || 1;
+        
+        for (let copy = 0; copy < copies; copy++) {
+          const [copiedPage] = await newPdf.copyPages(originalPdf, [i]);
+          newPdf.addPage(copiedPage);
+        }
+      }
+
+      const duplicatedPdfBytes = await newPdf.save();
+
+      await fs.unlink(req.file.path);
+
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `attachment; filename="duplicated-${req.file.originalname}"`);
+      res.send(Buffer.from(duplicatedPdfBytes));
+
+    } catch (error) {
+      console.error('PDF page duplication error:', error);
+
+      if (req.file?.path) {
+        try {
+          await fs.unlink(req.file.path);
+        } catch (cleanupError) {
+          console.error('Error cleaning up input file:', cleanupError);
+        }
+      }
+
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      res.status(500).json({ error: `PDF page duplication failed: ${errorMessage}` });
+    }
+  });
+
+  // PDF Margin Adjuster endpoint
+  app.post('/api/pdf-margin-adjuster', upload.single('pdf'), async (req: MulterRequest, res) => {
+    try {
+      const {
+        marginTop = 0,
+        marginBottom = 0,
+        marginLeft = 0,
+        marginRight = 0,
+        operation = 'add'
+      } = req.body;
+
+      if (!req.file) {
+        return res.status(400).json({ error: 'No PDF file uploaded' });
+      }
+
+      if (req.file.mimetype !== 'application/pdf') {
+        await fs.unlink(req.file.path);
+        return res.status(400).json({ error: 'Invalid file type. Please upload a PDF file.' });
+      }
+
+      const marginTopNum = parseFloat(marginTop);
+      const marginBottomNum = parseFloat(marginBottom);
+      const marginLeftNum = parseFloat(marginLeft);
+      const marginRightNum = parseFloat(marginRight);
+
+      const { PDFDocument } = await import('pdf-lib');
+      const pdfBytes = await fs.readFile(req.file.path);
+      const originalPdf = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
+      const newPdf = await PDFDocument.create();
+
+      const pages = originalPdf.getPages();
+
+      for (let i = 0; i < pages.length; i++) {
+        const originalPage = pages[i];
+        const { width, height } = originalPage.getSize();
+        
+        let newWidth = width;
+        let newHeight = height;
+        let xOffset = 0;
+        let yOffset = 0;
+
+        if (operation === 'add') {
+          // Add margins
+          newWidth = width + marginLeftNum + marginRightNum;
+          newHeight = height + marginTopNum + marginBottomNum;
+          xOffset = marginLeftNum;
+          yOffset = marginBottomNum;
+        } else {
+          // Remove margins (crop)
+          newWidth = Math.max(50, width - marginLeftNum - marginRightNum);
+          newHeight = Math.max(50, height - marginTopNum - marginBottomNum);
+          xOffset = -marginLeftNum;
+          yOffset = -marginBottomNum;
+        }
+
+        const [copiedPage] = await newPdf.copyPages(originalPdf, [i]);
+        
+        // Create new page with adjusted dimensions
+        const newPage = newPdf.addPage([newWidth, newHeight]);
+        
+        // For margin adjustment, we need to recreate the page content properly
+        if (operation === 'add') {
+          // Add the original page with offset
+          const { width: origWidth, height: origHeight } = originalPage.getSize();
+          newPage.drawRectangle({
+            x: xOffset,
+            y: yOffset,
+            width: origWidth,
+            height: origHeight,
+            color: rgb(1, 1, 1), // White background
+          });
+        }
+      }
+
+      const adjustedPdfBytes = await newPdf.save();
+
+      await fs.unlink(req.file.path);
+
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `attachment; filename="margin-adjusted-${req.file.originalname}"`);
+      res.send(Buffer.from(adjustedPdfBytes));
+
+    } catch (error) {
+      console.error('PDF margin adjustment error:', error);
+
+      if (req.file?.path) {
+        try {
+          await fs.unlink(req.file.path);
+        } catch (cleanupError) {
+          console.error('Error cleaning up input file:', cleanupError);
+        }
+      }
+
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      res.status(500).json({ error: `PDF margin adjustment failed: ${errorMessage}` });
+    }
+  });
+
+  // Extract PDF Pages endpoint
+  app.post('/api/extract-pdf-pages', upload.single('pdf'), async (req: MulterRequest, res) => {
+    try {
+      const { pageIndices } = req.body;
+
+      if (!req.file) {
+        return res.status(400).json({ error: 'No PDF file uploaded' });
+      }
+
+      if (req.file.mimetype !== 'application/pdf') {
+        await fs.unlink(req.file.path);
+        return res.status(400).json({ error: 'Invalid file type. Please upload a PDF file.' });
+      }
+
+      if (!pageIndices) {
+        return res.status(400).json({ error: 'Page indices not specified' });
+      }
+
+      let parsedIndices: number[];
+      try {
+        parsedIndices = JSON.parse(pageIndices);
+      } catch (error) {
+        return res.status(400).json({ error: 'Invalid page indices format' });
+      }
+
+      const { PDFDocument } = await import('pdf-lib');
+      const pdfBytes = await fs.readFile(req.file.path);
+      const originalPdf = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
+      const totalPages = originalPdf.getPageCount();
+
+      // Validate page indices
+      for (const pageIndex of parsedIndices) {
+        if (!Number.isInteger(pageIndex) || pageIndex < 0 || pageIndex >= totalPages) {
+          return res.status(400).json({
+            error: `Invalid page index: ${pageIndex}. Must be between 0 and ${totalPages - 1}`
+          });
+        }
+      }
+
+      const newPdf = await PDFDocument.create();
+      const copiedPages = await newPdf.copyPages(originalPdf, parsedIndices);
+      copiedPages.forEach((page) => newPdf.addPage(page));
+
+      const extractedPdfBytes = await newPdf.save();
+
+      await fs.unlink(req.file.path);
+
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `attachment; filename="extracted-pages-${req.file.originalname}"`);
+      res.send(Buffer.from(extractedPdfBytes));
+
+    } catch (error) {
+      console.error('PDF page extraction error:', error);
+
+      if (req.file?.path) {
+        try {
+          await fs.unlink(req.file.path);
+        } catch (cleanupError) {
+          console.error('Error cleaning up input file:', cleanupError);
+        }
+      }
+
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      res.status(500).json({ error: `PDF page extraction failed: ${errorMessage}` });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;
