@@ -105,6 +105,17 @@ import BinaryToTextConverter from '@/pages/binary-to-text-converter';
 import QRCodeScanner from './pages/qr-code-scanner';
 import MarkdownToHTMLConverter from '@/pages/markdown-to-html';
 import LoremIpsumGenerator from '@/pages/lorem-ipsum-generator';
+// New PDF Tools
+import PDFBookmarkExtractor from '@/pages/pdf-bookmark-extractor';
+import PDFPageResizer from '@/pages/pdf-page-resizer';
+import PDFMarginAdjuster from '@/pages/pdf-margin-adjuster';
+import PDFPageDuplicator from '@/pages/pdf-page-duplicator';
+import PDFBackgroundChanger from '@/pages/pdf-background-changer';
+import PDFHeaderFooterGenerator from '@/pages/pdf-header-footer-generator';
+import PDFBlankPageRemover from '@/pages/pdf-blank-page-remover';
+import PDFToImagesEnhanced from '@/pages/pdf-to-images-enhanced';
+import ImagesToPDFMerger from '@/pages/images-to-pdf-merger';
+import PDFVersionConverter from '@/pages/pdf-version-converter';
 
 
 function ScrollToTop() {
@@ -192,6 +203,17 @@ function Router() {
       <Route path="/tools/organize-pdf" component={OrganizePDFPagesTool} />
       <Route path="/tools/pdf-page-counter" component={PDFPageCounter} />
       <Route path="/tools/pdf-editor" component={PDFEditor} />
+      {/* New PDF Tools */}
+      <Route path="/tools/pdf-bookmark-extractor" component={PDFBookmarkExtractor} />
+      <Route path="/tools/pdf-page-resizer" component={PDFPageResizer} />
+      <Route path="/tools/pdf-margin-adjuster" component={PDFMarginAdjuster} />
+      <Route path="/tools/pdf-page-duplicator" component={PDFPageDuplicator} />
+      <Route path="/tools/pdf-background-changer" component={PDFBackgroundChanger} />
+      <Route path="/tools/pdf-header-footer-generator" component={PDFHeaderFooterGenerator} />
+      <Route path="/tools/pdf-blank-page-remover" component={PDFBlankPageRemover} />
+      <Route path="/tools/pdf-to-images-enhanced" component={PDFToImagesEnhanced} />
+      <Route path="/tools/images-to-pdf-merger" component={ImagesToPDFMerger} />
+      <Route path="/tools/pdf-version-converter" component={PDFVersionConverter} />
       <Route path="/tools/word-counter" component={WordCounter} />
       <Route path="/tools/character-counter" component={CharacterCounter} />
         <Route path="/tools/sentence-counter" component={SentenceCounter} />
