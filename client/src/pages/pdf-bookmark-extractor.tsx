@@ -392,17 +392,177 @@ const PDFBookmarkExtractor = () => {
                   </div>
                 </div>
 
+                {/* What is PDF Bookmark Extraction */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">What is PDF Bookmark Extraction?</h2>
+                  <div className="prose prose-gray max-w-none">
+                    <p className="text-lg text-gray-700 mb-4">
+                      PDF bookmark extraction is the process of retrieving the navigation structure, table of contents, and outline information embedded within PDF documents. These bookmarks serve as clickable navigation aids that allow users to quickly jump to specific sections, chapters, or pages within a document.
+                    </p>
+                    <p className="text-gray-600 mb-4">
+                      When you extract PDF bookmarks, you're essentially accessing the document's organizational metadata that authors and publishers use to make their content more navigable. This information includes bookmark titles, hierarchical levels, destination pages, and the structural relationships between different sections.
+                    </p>
+                    <p className="text-gray-600">
+                      Our PDF bookmark extractor reads this embedded navigation data and presents it in a user-friendly format, allowing you to view the complete document structure at a glance and export it for documentation, analysis, or reference purposes.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Benefits */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Benefits of PDF Bookmark Extraction</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Document Analysis</h3>
+                      <ul className="space-y-2 text-gray-600">
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          Understand document structure and organization
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          Identify key sections and content hierarchy
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          Extract chapter and section information
+                        </li>
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Content Management</h3>
+                      <ul className="space-y-2 text-gray-600">
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          Create detailed table of contents
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          Generate document summaries and outlines
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          Export navigation data for external use
+                        </li>
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Research & Academia</h3>
+                      <ul className="space-y-2 text-gray-600">
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          Analyze academic papers and reports structure
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          Extract citation and reference information
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          Create research documentation
+                        </li>
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Accessibility</h3>
+                      <ul className="space-y-2 text-gray-600">
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-orange-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          Improve document navigation for screen readers
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-orange-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          Create alternative navigation formats
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-orange-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          Generate text-based content outlines
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Use Cases */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Common Use Cases</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="bg-gradient-to-br from-purple-50 to-indigo-50 p-6 rounded-xl">
+                      <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-book text-purple-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Academic Research</h3>
+                      <p className="text-gray-600 text-sm">
+                        Extract chapter structures from research papers, theses, and academic publications for citation and reference purposes.
+                      </p>
+                    </div>
+                    
+                    <div className="bg-gradient-to-br from-blue-50 to-cyan-50 p-6 rounded-xl">
+                      <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-briefcase text-blue-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Business Documentation</h3>
+                      <p className="text-gray-600 text-sm">
+                        Analyze corporate reports, manuals, and policy documents to understand their organizational structure and key sections.
+                      </p>
+                    </div>
+                    
+                    <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-xl">
+                      <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-gavel text-green-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Legal Documents</h3>
+                      <p className="text-gray-600 text-sm">
+                        Extract table of contents from legal contracts, court documents, and regulatory filings for quick reference and analysis.
+                      </p>
+                    </div>
+                    
+                    <div className="bg-gradient-to-br from-orange-50 to-red-50 p-6 rounded-xl">
+                      <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-graduation-cap text-orange-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Educational Materials</h3>
+                      <p className="text-gray-600 text-sm">
+                        Generate study guides and content outlines from textbooks, course materials, and educational resources.
+                      </p>
+                    </div>
+                    
+                    <div className="bg-gradient-to-br from-pink-50 to-rose-50 p-6 rounded-xl">
+                      <div className="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-cogs text-pink-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Technical Manuals</h3>
+                      <p className="text-gray-600 text-sm">
+                        Extract navigation structures from technical documentation, user manuals, and specification documents.
+                      </p>
+                    </div>
+                    
+                    <div className="bg-gradient-to-br from-indigo-50 to-purple-50 p-6 rounded-xl">
+                      <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-chart-line text-indigo-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Content Analysis</h3>
+                      <p className="text-gray-600 text-sm">
+                        Analyze document structures for content management systems, digital libraries, and information architecture projects.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
                 {/* Features */}
                 <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Features</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Powerful Features</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="flex items-start">
                       <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-1">
                         <i className="fas fa-check text-xs text-green-600"></i>
                       </div>
                       <div>
-                        <h3 className="font-semibold text-gray-900">Hierarchical Structure</h3>
-                        <p className="text-gray-600 text-sm">Display bookmarks with proper indentation and nesting.</p>
+                        <h3 className="font-semibold text-gray-900">Hierarchical Structure Display</h3>
+                        <p className="text-gray-600 text-sm">Display bookmarks with proper indentation and nesting to show document hierarchy clearly.</p>
                       </div>
                     </div>
                     
@@ -411,8 +571,8 @@ const PDFBookmarkExtractor = () => {
                         <i className="fas fa-check text-xs text-green-600"></i>
                       </div>
                       <div>
-                        <h3 className="font-semibold text-gray-900">Page Numbers</h3>
-                        <p className="text-gray-600 text-sm">Show the page number associated with each bookmark.</p>
+                        <h3 className="font-semibold text-gray-900">Page Number Mapping</h3>
+                        <p className="text-gray-600 text-sm">Show the exact page number associated with each bookmark for precise navigation.</p>
                       </div>
                     </div>
                     
@@ -422,7 +582,7 @@ const PDFBookmarkExtractor = () => {
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900">Multiple Export Formats</h3>
-                        <p className="text-gray-600 text-sm">Export bookmarks as plain text or structured JSON.</p>
+                        <p className="text-gray-600 text-sm">Export bookmarks as plain text files or structured JSON data for various applications.</p>
                       </div>
                     </div>
                     
@@ -432,8 +592,161 @@ const PDFBookmarkExtractor = () => {
                       </div>
                       <div>
                         <h3 className="font-semibold text-gray-900">Client-Side Processing</h3>
-                        <p className="text-gray-600 text-sm">All processing happens in your browser for privacy.</p>
+                        <p className="text-gray-600 text-sm">All processing happens locally in your browser for maximum privacy and security.</p>
                       </div>
+                    </div>
+                    
+                    <div className="flex items-start">
+                      <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                        <i className="fas fa-check text-xs text-green-600"></i>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900">Instant Preview</h3>
+                        <p className="text-gray-600 text-sm">View extracted bookmarks immediately with visual hierarchy and organization.</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start">
+                      <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                        <i className="fas fa-check text-xs text-green-600"></i>
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900">No Registration Required</h3>
+                        <p className="text-gray-600 text-sm">Use the tool immediately without creating accounts or providing personal information.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Technical Information */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Technical Information</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Supported PDF Features</h3>
+                      <ul className="space-y-2 text-gray-600">
+                        <li className="flex items-center">
+                          <i className="fas fa-check text-green-600 mr-3"></i>
+                          Standard PDF bookmarks and outlines
+                        </li>
+                        <li className="flex items-center">
+                          <i className="fas fa-check text-green-600 mr-3"></i>
+                          Nested bookmark hierarchies
+                        </li>
+                        <li className="flex items-center">
+                          <i className="fas fa-check text-green-600 mr-3"></i>
+                          Page destination links
+                        </li>
+                        <li className="flex items-center">
+                          <i className="fas fa-check text-green-600 mr-3"></i>
+                          Multi-level table of contents
+                        </li>
+                        <li className="flex items-center">
+                          <i className="fas fa-check text-green-600 mr-3"></i>
+                          Unicode bookmark titles
+                        </li>
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Output Formats</h3>
+                      <div className="space-y-4">
+                        <div className="bg-gray-50 p-4 rounded-lg">
+                          <h4 className="font-semibold text-gray-900 mb-2">Text Format (.txt)</h4>
+                          <p className="text-gray-600 text-sm">
+                            Human-readable format with proper indentation showing the bookmark hierarchy and page numbers.
+                          </p>
+                        </div>
+                        <div className="bg-gray-50 p-4 rounded-lg">
+                          <h4 className="font-semibold text-gray-900 mb-2">JSON Format (.json)</h4>
+                          <p className="text-gray-600 text-sm">
+                            Structured data format perfect for programmatic use, data analysis, and integration with other tools.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* FAQ */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">What types of PDFs contain bookmarks?</h3>
+                      <p className="text-gray-600">
+                        Most professionally created PDFs include bookmarks, especially documents like academic papers, books, manuals, reports, and official documents. Bookmarks are typically added during the PDF creation process from software like Microsoft Word, Adobe Acrobat, or LaTeX.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I extract bookmarks from password-protected PDFs?</h3>
+                      <p className="text-gray-600">
+                        Password-protected PDFs cannot be processed without the password. If you have the password, you'll need to remove the protection first using a PDF password removal tool before extracting bookmarks.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">What happens if my PDF doesn't have bookmarks?</h3>
+                      <p className="text-gray-600">
+                        If a PDF doesn't contain embedded bookmarks, the tool will display a message indicating that no bookmarks were found. This is common with scanned documents or PDFs created without navigation structure.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Is my PDF data secure when using this tool?</h3>
+                      <p className="text-gray-600">
+                        Yes, all processing happens entirely in your web browser. Your PDF files are not uploaded to any server, ensuring complete privacy and security of your documents.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I use the extracted bookmarks in other applications?</h3>
+                      <p className="text-gray-600">
+                        Absolutely! The JSON export format is perfect for importing into other applications, databases, or content management systems. The text format is ideal for documentation and human reading.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Best Practices */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Best Practices for PDF Bookmark Extraction</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Before Extraction</h3>
+                      <ul className="space-y-3 text-gray-600">
+                        <li className="flex items-start">
+                          <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                          <span>Ensure the PDF contains embedded bookmarks by checking the navigation panel in your PDF viewer</span>
+                        </li>
+                        <li className="flex items-start">
+                          <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                          <span>Remove password protection if the PDF is secured</span>
+                        </li>
+                        <li className="flex items-start">
+                          <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                          <span>Verify the file is not corrupted by opening it in a PDF viewer first</span>
+                        </li>
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">After Extraction</h3>
+                      <ul className="space-y-3 text-gray-600">
+                        <li className="flex items-start">
+                          <div className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                          <span>Review the extracted structure to ensure completeness and accuracy</span>
+                        </li>
+                        <li className="flex items-start">
+                          <div className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                          <span>Choose the appropriate export format based on your intended use</span>
+                        </li>
+                        <li className="flex items-start">
+                          <div className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span>Save the exported data with descriptive filenames for easy identification</span>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
