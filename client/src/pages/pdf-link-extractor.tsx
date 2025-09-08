@@ -1001,7 +1001,7 @@ const PDFLinkExtractor = () => {
         </main>
 
         <Footer />
-      </div>
+      </div>div>
     </>
   );
 };
