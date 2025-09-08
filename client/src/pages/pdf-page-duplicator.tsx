@@ -108,79 +108,116 @@ const PDFPageDuplicator = () => {
     setError(null);
 
     try {
-      const { PDFDocument } = await import('pdf-lib');
+      // For files larger than 10MB, use server-side processing for better performance
+      const useServerProcessing = selectedFile.size > 10 * 1024 * 1024;
       
-      const arrayBuffer = await selectedFile.arrayBuffer();
-      const pdfDoc = await PDFDocument.load(arrayBuffer);
-      const newPdfDoc = await PDFDocument.create();
-      
-      const originalPages = pdfDoc.getPages();
-      const pagesToAdd: any[] = [];
-
-      // First, copy all original pages
-      for (let i = 0; i < originalPages.length; i++) {
-        const [embeddedPage] = await newPdfDoc.embedPages([originalPages[i]]);
-        const { width, height } = originalPages[i].getSize();
-        const newPage = newPdfDoc.addPage([width, height]);
-        newPage.drawPage(embeddedPage, { x: 0, y: 0, width, height });
-        pagesToAdd.push({ type: 'original', pageIndex: i, page: newPage });
+      if (useServerProcessing) {
+        await duplicatePagesServer();
+      } else {
+        await duplicatePagesClient();
       }
-
-      // Sort duplications by page number in reverse order to maintain correct insertion positions
-      const sortedDuplications = [...duplications].sort((a, b) => b.pageNumber - a.pageNumber);
-
-      // Add duplications
-      for (const duplication of sortedDuplications) {
-        const { pageNumber, duplicateCount, insertAfter } = duplication;
-        const sourcePageIndex = pageNumber - 1; // Convert to 0-based index
-        
-        if (sourcePageIndex < 0 || sourcePageIndex >= originalPages.length) {
-          continue; // Skip invalid page numbers
-        }
-
-        const sourcePage = originalPages[sourcePageIndex];
-        const { width, height } = sourcePage.getSize();
-        
-        // Create duplicates
-        const newDuplicates = [];
-        for (let i = 0; i < duplicateCount; i++) {
-          const [embeddedPage] = await newPdfDoc.embedPages([sourcePage]);
-          const duplicatePage = newPdfDoc.addPage([width, height]);
-          duplicatePage.drawPage(embeddedPage, { x: 0, y: 0, width, height });
-          newDuplicates.push({
-            type: 'duplicate',
-            sourcePageIndex,
-            page: duplicatePage
-          });
-        }
-
-        // Insert duplicates at the correct position
-        const insertPosition = insertAfter ? sourcePageIndex + 1 : sourcePageIndex;
-        pagesToAdd.splice(insertPosition, 0, ...newDuplicates);
-      }
-
-      // Create final PDF with all pages in correct order
-      const finalPdfDoc = await PDFDocument.create();
-      
-      for (const pageInfo of pagesToAdd) {
-        const { width, height } = pageInfo.page.getSize();
-        const finalPage = finalPdfDoc.addPage([width, height]);
-        
-        // Get the page content (this is simplified - in practice, you'd need to copy all content)
-        const [embeddedPage] = await finalPdfDoc.embedPages([pageInfo.page]);
-        finalPage.drawPage(embeddedPage, { x: 0, y: 0, width, height });
-      }
-
-      const pdfBytes = await finalPdfDoc.save();
-      const blob = new Blob([pdfBytes], { type: 'application/pdf' });
-      const url = URL.createObjectURL(blob);
-      setDuplicatedPdfUrl(url);
     } catch (error) {
       console.error('Error duplicating PDF pages:', error);
-      setError('Error duplicating PDF pages. Please check your page numbers and try again.');
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      setError(`Error duplicating PDF pages: ${errorMessage}. Please check your settings and try again.`);
     }
 
     setIsProcessing(false);
+  };
+
+  const duplicatePagesServer = async () => {
+    if (!selectedFile || duplications.length === 0) return;
+
+    // Prepare page selections for server
+    const pageSelections: { [key: number]: number } = {};
+    
+    // Start with all original pages (1 copy each)
+    for (let i = 0; i < (originalInfo?.pageCount || 0); i++) {
+      pageSelections[i] = 1;
+    }
+    
+    // Add duplications
+    duplications.forEach(duplication => {
+      const pageIndex = duplication.pageNumber - 1; // Convert to 0-based
+      if (pageIndex >= 0 && pageIndex < (originalInfo?.pageCount || 0)) {
+        pageSelections[pageIndex] = (pageSelections[pageIndex] || 1) + duplication.duplicateCount;
+      }
+    });
+
+    const formData = new FormData();
+    formData.append('pdf', selectedFile);
+    formData.append('pageSelections', JSON.stringify(pageSelections));
+
+    const response = await fetch('/api/pdf-page-duplicator', {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.error || `Server error: ${response.status}`);
+    }
+
+    const blob = await response.blob();
+    const url = URL.createObjectURL(blob);
+    setDuplicatedPdfUrl(url);
+  };
+
+  const duplicatePagesClient = async () => {
+    if (!selectedFile || duplications.length === 0) return;
+
+    const { PDFDocument } = await import('pdf-lib');
+    
+    const arrayBuffer = await selectedFile.arrayBuffer();
+    const originalPdf = await PDFDocument.load(arrayBuffer);
+    const newPdf = await PDFDocument.create();
+    
+    const originalPages = originalPdf.getPages();
+    
+    // Validate all page numbers first
+    for (const duplication of duplications) {
+      const pageIndex = duplication.pageNumber - 1;
+      if (pageIndex < 0 || pageIndex >= originalPages.length) {
+        throw new Error(`Invalid page number: ${duplication.pageNumber}. PDF only has ${originalPages.length} pages.`);
+      }
+      if (duplication.duplicateCount < 1 || duplication.duplicateCount > 10) {
+        throw new Error(`Invalid duplicate count: ${duplication.duplicateCount}. Must be between 1 and 10.`);
+      }
+    }
+
+    // Create a plan for the final document structure
+    const finalStructure: { sourcePageIndex: number; isOriginal: boolean }[] = [];
+    
+    // Add original pages and duplicates in order
+    for (let i = 0; i < originalPages.length; i++) {
+      // Add the original page
+      finalStructure.push({ sourcePageIndex: i, isOriginal: true });
+      
+      // Check if this page needs duplicates
+      const duplication = duplications.find(dup => dup.pageNumber - 1 === i);
+      if (duplication) {
+        // Add duplicates
+        for (let j = 0; j < duplication.duplicateCount; j++) {
+          if (duplication.insertAfter) {
+            finalStructure.push({ sourcePageIndex: i, isOriginal: false });
+          } else {
+            // Insert before - add at current position, then original page will be after
+            finalStructure.splice(-1, 0, { sourcePageIndex: i, isOriginal: false });
+          }
+        }
+      }
+    }
+
+    // Copy pages according to the final structure
+    for (const item of finalStructure) {
+      const [copiedPage] = await newPdf.copyPages(originalPdf, [item.sourcePageIndex]);
+      newPdf.addPage(copiedPage);
+    }
+
+    const pdfBytes = await newPdf.save();
+    const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+    const url = URL.createObjectURL(blob);
+    setDuplicatedPdfUrl(url);
   };
 
   const downloadDuplicatedPDF = () => {
