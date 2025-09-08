@@ -117,6 +117,7 @@ import PDFToImagesEnhanced from '@/pages/pdf-to-images-enhanced';
 import ImagesToPDFMerger from '@/pages/images-to-pdf-merger';
 import PDFVersionConverter from '@/pages/pdf-version-converter';
 import PDFCompressorAdvanced from '@/pages/pdf-compressor-advanced';
+import PDFRepairTool from '@/pages/pdf-repair-tool';
 
 
 function ScrollToTop() {
@@ -216,6 +217,7 @@ function Router() {
       <Route path="/tools/images-to-pdf" component={ImagesToPDFMerger} />
       <Route path="/tools/pdf-version-converter" component={PDFVersionConverter} />
       <Route path="/tools/pdf-compressor-advanced" component={PDFCompressorAdvanced} />
+      <Route path="/tools/pdf-repair-tool" component={PDFRepairTool} />
       <Route path="/tools/word-counter" component={WordCounter} />
       <Route path="/tools/character-counter" component={CharacterCounter} />
         <Route path="/tools/sentence-counter" component={SentenceCounter} />

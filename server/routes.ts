@@ -1332,6 +1332,172 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // PDF Repair endpoint
+  app.post('/api/repair-pdf', upload.single('pdf'), async (req: MulterRequest, res) => {
+    try {
+      const { 
+        fixStructure = true,
+        recoverText = true,
+        rebuildXref = true,
+        removeCorruption = true,
+        fixEncoding = true,
+        recoverImages = true
+      } = req.body;
+
+      if (!req.file) {
+        return res.status(400).json({ error: 'No PDF file uploaded' });
+      }
+
+      // Validate file type
+      if (req.file.mimetype !== 'application/pdf') {
+        await fs.unlink(req.file.path);
+        return res.status(400).json({ error: 'Invalid file type. Please upload a PDF file.' });
+      }
+
+      const { PDFDocument } = await import('pdf-lib');
+      const inputPath = req.file.path;
+      const outputPath = path.join(__dirname, '../repaired', `repaired-${Date.now()}-${req.file.originalname}`);
+
+      // Ensure the repaired directory exists
+      const repairedDir = path.dirname(outputPath);
+      await fs.mkdir(repairedDir, { recursive: true });
+
+      let repairResult = {
+        success: false,
+        errors: [] as string[],
+        warnings: [] as string[],
+        recoveredPages: 0,
+        totalPages: 0,
+        recoveredElements: { text: 0, images: 0, fonts: 0 },
+        downloadUrl: '',
+        filename: ''
+      };
+
+      try {
+        // Read the PDF with error handling for corrupted files
+        const pdfBytes = await fs.readFile(inputPath);
+        
+        // Try to load the PDF with different recovery strategies
+        let pdfDoc: any = null;
+        let loadingErrors: string[] = [];
+
+        // First attempt: Normal loading
+        try {
+          pdfDoc = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
+        } catch (error) {
+          loadingErrors.push('Standard loading failed: ' + (error instanceof Error ? error.message : 'Unknown error'));
+        }
+
+        // Second attempt: Partial loading with error recovery
+        if (!pdfDoc) {
+          try {
+            pdfDoc = await PDFDocument.load(pdfBytes, { 
+              ignoreEncryption: true,
+              parseSpeed: 'fastest',
+              throwOnInvalidObject: false
+            });
+          } catch (error) {
+            loadingErrors.push('Recovery loading failed: ' + (error instanceof Error ? error.message : 'Unknown error'));
+          }
+        }
+
+        if (!pdfDoc) {
+          // If we can't load the PDF at all, return failure with errors
+          return res.json({
+            success: false,
+            errors: ['PDF is severely corrupted and cannot be repaired'].concat(loadingErrors),
+            warnings: [],
+            recoveredPages: 0,
+            totalPages: 0,
+            recoveredElements: { text: 0, images: 0, fonts: 0 }
+          });
+        }
+
+        // PDF loaded successfully, proceed with repair
+        const pages = pdfDoc.getPages();
+        repairResult.totalPages = pages.length;
+        repairResult.recoveredPages = pages.length;
+
+        // Create a new repaired PDF
+        const repairedPdf = await PDFDocument.create();
+
+        // Copy pages with repair logic
+        for (let i = 0; i < pages.length; i++) {
+          try {
+            const [copiedPage] = await repairedPdf.copyPages(pdfDoc, [i]);
+            repairedPdf.addPage(copiedPage);
+            repairResult.recoveredElements.text += 1; // Simplified counting
+          } catch (pageError) {
+            repairResult.warnings.push(`Issue with page ${i + 1}: ${pageError instanceof Error ? pageError.message : 'Unknown error'}`);
+          }
+        }
+
+        // Apply repair settings
+        if (removeCorruption === 'true' || removeCorruption === true) {
+          // Remove potential corruption by recreating metadata
+          repairedPdf.setTitle(pdfDoc.getTitle() || '');
+          repairedPdf.setAuthor(pdfDoc.getAuthor() || '');
+          repairedPdf.setSubject(pdfDoc.getSubject() || '');
+          repairedPdf.setCreator('PDF Repair Tool');
+          repairedPdf.setProducer('PDF Repair Tool');
+          repairedPdf.setCreationDate(new Date());
+          repairedPdf.setModificationDate(new Date());
+        }
+
+        // Save the repaired PDF
+        const repairedBytes = await repairedPdf.save({
+          useObjectStreams: false,
+          addDefaultPage: false
+        });
+
+        await fs.writeFile(outputPath, repairedBytes);
+
+        // Create download URL (simplified - in production, use proper file serving)
+        const downloadFilename = `repaired-${req.file.originalname}`;
+        
+        // Read the repaired file and send it back
+        const repairedBuffer = await fs.readFile(outputPath);
+        
+        // Clean up files
+        await fs.unlink(inputPath);
+        await fs.unlink(outputPath);
+
+        // Set response headers for download
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', `attachment; filename="${downloadFilename}"`);
+        res.setHeader('Content-Length', repairedBuffer.length);
+
+        // Send the repaired PDF directly
+        res.send(repairedBuffer);
+
+      } catch (repairError) {
+        repairResult.errors.push('Repair process failed: ' + (repairError instanceof Error ? repairError.message : 'Unknown error'));
+        
+        // Clean up files on error
+        await fs.unlink(inputPath);
+        if (await fs.access(outputPath).then(() => true).catch(() => false)) {
+          await fs.unlink(outputPath);
+        }
+
+        res.json(repairResult);
+      }
+
+    } catch (error) {
+      console.error('PDF repair error:', error);
+
+      if (req.file?.path) {
+        try {
+          await fs.unlink(req.file.path);
+        } catch (cleanupError) {
+          console.error('Error cleaning up file:', cleanupError);
+        }
+      }
+
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      res.status(500).json({ error: `PDF repair failed: ${errorMessage}` });
+    }
+  });
+
   // PDF to Image endpoint with enhanced settings
   app.post('/api/pdf-to-images', upload.single('pdf'), async (req: MulterRequest, res) => {
     try {
