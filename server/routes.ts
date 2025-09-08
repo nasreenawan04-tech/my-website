@@ -2621,7 +2621,11 @@ For production use, this would include actual PDF content analysis, visual highl
           signature: 0,
           multiline: 0
         };
-        const fieldsByPage = [];
+        const fieldsByPage: Array<{
+          page: number;
+          fieldCount: number;
+          fieldTypes: string[];
+        }> = [];
 
         try {
           // Get the form from the PDF
@@ -2638,36 +2642,49 @@ For production use, this would include actual PDF content analysis, visual highl
             let fieldValue: string | boolean | string[] = '';
             let options: string[] | undefined;
             
-            // Try to determine the field type and extract value
+            // Try to determine the field type and extract value using proper type checking
             try {
-              if (field.constructor.name.includes('TextField') || field.constructor.name.includes('Text')) {
-                fieldType = 'text';
-                fieldValue = field.getText ? field.getText() : '';
-              } else if (field.constructor.name.includes('CheckBox')) {
+              // Import specific field types for proper type checking
+              const { 
+                PDFTextField, 
+                PDFCheckBox, 
+                PDFRadioGroup, 
+                PDFDropdown, 
+                PDFOptionList,
+                PDFButton,
+                PDFSignature 
+              } = await import('pdf-lib');
+
+              if (field instanceof PDFTextField) {
+                fieldType = field.isMultiline() ? 'multiline' : 'text';
+                fieldValue = field.getText() || '';
+              } else if (field instanceof PDFCheckBox) {
                 fieldType = 'checkbox';
-                fieldValue = field.isChecked ? field.isChecked() : false;
-              } else if (field.constructor.name.includes('RadioGroup')) {
+                fieldValue = field.isChecked();
+              } else if (field instanceof PDFRadioGroup) {
                 fieldType = 'radio';
-                fieldValue = field.getSelected ? field.getSelected() : '';
-                options = field.getOptions ? field.getOptions() : [];
-              } else if (field.constructor.name.includes('DropdownField') || field.constructor.name.includes('Dropdown')) {
+                fieldValue = field.getSelected() || '';
+                options = field.getOptions();
+              } else if (field instanceof PDFDropdown) {
                 fieldType = 'dropdown';
-                fieldValue = field.getSelected ? field.getSelected() : '';
-                options = field.getOptions ? field.getOptions() : [];
-              } else if (field.constructor.name.includes('ListBox')) {
+                fieldValue = field.getSelected() || '';
+                options = field.getOptions();
+              } else if (field instanceof PDFOptionList) {
                 fieldType = 'listbox';
-                fieldValue = field.getSelected ? field.getSelected() : [];
-                options = field.getOptions ? field.getOptions() : [];
-              } else if (field.constructor.name.includes('Button')) {
+                const selected = field.getSelected();
+                fieldValue = Array.isArray(selected) ? selected : [selected].filter(Boolean);
+                options = field.getOptions();
+              } else if (field instanceof PDFButton) {
                 fieldType = 'button';
                 fieldValue = '';
-              } else if (field.constructor.name.includes('Signature')) {
+              } else if (field instanceof PDFSignature) {
                 fieldType = 'signature';
                 fieldValue = '';
               }
             } catch (fieldError) {
               // If we can't determine the type, default to text
               fieldType = 'text';
+              console.warn(`Could not determine field type for ${fieldName}:`, fieldError);
             }
 
             // Apply field type filter if specified
