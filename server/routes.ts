@@ -2998,7 +2998,7 @@ For production use, this would include actual PDF content analysis, visual highl
         const extractionSettings = JSON.parse(settings);
         
         // Read and parse PDF text content
-        const pdfParse = (await import('pdf-parse')).default;
+        const pdfParse = (await import('pdf-parse-debugging-disabled')).default;
         const pdfBuffer = await fs.readFile(inputPath);
         
         // Ensure buffer is valid before parsing
@@ -3284,7 +3284,7 @@ For production use, this would include actual PDF content analysis, visual highl
         const exportSettings = JSON.parse(settings);
         
         // Extract links using the same logic as the main extraction endpoint
-        const pdfParse = (await import('pdf-parse')).default;
+        const pdfParse = (await import('pdf-parse-debugging-disabled')).default;
         const pdfBuffer = await fs.readFile(inputPath);
         
         // Ensure buffer is valid before parsing
