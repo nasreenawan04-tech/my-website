@@ -11,9 +11,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import * as pdfjsLib from 'pdfjs-dist';
 import { Upload, FileText, Download, RotateCcw, Copy, Check, Search, Hash } from 'lucide-react';
 
-// Set up PDF.js worker with multiple fallback options
-// Try jsDelivr CDN for better reliability in Replit environment
-pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.js`;
+// Disable PDF.js worker for better compatibility in Replit environment
+// This will use synchronous processing which is more reliable
+pdfjsLib.GlobalWorkerOptions.workerSrc = '';
+pdfjsLib.GlobalWorkerOptions.workerPort = null;
 
 interface ExtractedText {
   fullText: string;
@@ -51,36 +52,11 @@ const PDFTextExtractor = () => {
   });
   const fileInputRef = useRef<HTMLInputElement>(null);
   
-  // Initialize PDF.js worker on component mount with fallbacks
+  // Initialize PDF.js for synchronous processing
   useEffect(() => {
-    const workerUrls = [
-      `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.js`,
-      `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`,
-      `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.js`,
-      `//mozilla.github.io/pdf.js/build/pdf.worker.js`
-    ];
-    
-    const tryWorkerUrl = async (index: number): Promise<void> => {
-      if (index >= workerUrls.length) {
-        console.error('All PDF.js worker URLs failed');
-        setWorkerReady(false);
-        return;
-      }
-      
-      try {
-        pdfjsLib.GlobalWorkerOptions.workerSrc = workerUrls[index];
-        // Give the worker source time to load
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        setWorkerReady(true);
-        setWorkerAttempts(index + 1);
-        console.log(`PDF.js worker loaded successfully using URL ${index + 1}`);
-      } catch (error) {
-        console.warn(`PDF.js worker URL ${index + 1} failed:`, error);
-        await tryWorkerUrl(index + 1);
-      }
-    };
-    
-    tryWorkerUrl(0);
+    // Set up PDF.js for main thread processing (no worker)
+    setWorkerReady(true);
+    console.log('PDF.js initialized for synchronous processing');
   }, []);
 
   const formatFileSize = (bytes: number): string => {
@@ -163,17 +139,19 @@ const PDFTextExtractor = () => {
   const extractTextFromPDF = async (file: File): Promise<ExtractedText> => {
     const arrayBuffer = await file.arrayBuffer();
     
-    // Enhanced PDF.js configuration for better compatibility
+    // Enhanced PDF.js configuration for synchronous processing
     const loadingTask = pdfjsLib.getDocument({ 
       data: arrayBuffer,
       verbosity: 0,
-      disableFontFace: false,
+      // Disable features that might require external resources
+      useSystemFonts: true,
+
+
+      cMapPacked: false,
+      disableFontFace: true,
       disableRange: false,
       disableStream: false,
-      useWorkerFetch: false,
-      isEvalSupported: false,
-      maxImageSize: 1024 * 1024, // 1MB max image size
-      cMapPacked: true
+      maxImageSize: 1024 * 1024 // 1MB max image size
     });
     
     const pdf = await loadingTask.promise;
@@ -261,20 +239,23 @@ const PDFTextExtractor = () => {
     try {
       const arrayBuffer = await file.arrayBuffer();
       
-      // Enhanced PDF loading with timeout and better error handling
+      // Enhanced PDF loading with synchronous processing
       const loadingTask = pdfjsLib.getDocument({ 
         data: arrayBuffer,
         verbosity: 0,
-        disableFontFace: false,
+        // Disable worker-based processing for better compatibility
+        useSystemFonts: true,
+  
+  
+        cMapPacked: false,
+        disableFontFace: true,
         disableRange: false,
-        disableStream: false,
-        useWorkerFetch: false,
-        isEvalSupported: false
+        disableStream: false
       });
       
       // Add timeout for PDF loading
       const timeoutPromise = new Promise((_, reject) => {
-        setTimeout(() => reject(new Error('PDF loading timeout after 15 seconds')), 15000);
+        setTimeout(() => reject(new Error('PDF loading timeout after 20 seconds')), 20000);
       });
       
       const pdf = await Promise.race([loadingTask.promise, timeoutPromise]) as any;
