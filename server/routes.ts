@@ -1393,7 +1393,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
           try {
             pdfDoc = await PDFDocument.load(pdfBytes, { 
               ignoreEncryption: true,
-              parseSpeed: 'fastest',
               throwOnInvalidObject: false
             });
           } catch (error) {
