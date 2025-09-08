@@ -122,6 +122,7 @@ import PDFComplianceChecker from '@/pages/pdf-compliance-checker';
 import PDFPermissionManager from '@/pages/pdf-permission-manager';
 import PDFRedactionTool from '@/pages/pdf-redaction-tool';
 import PDFComparisonTool from '@/pages/pdf-comparison-tool';
+import PDFFormFieldExtractor from '@/pages/pdf-form-field-extractor';
 
 
 function ScrollToTop() {
@@ -226,6 +227,7 @@ function Router() {
       <Route path="/tools/pdf-permission-manager" component={PDFPermissionManager} />
       <Route path="/tools/pdf-redaction-tool" component={PDFRedactionTool} />
       <Route path="/tools/pdf-comparison-tool" component={PDFComparisonTool} />
+      <Route path="/tools/pdf-form-field-extractor" component={PDFFormFieldExtractor} />
       <Route path="/tools/word-counter" component={WordCounter} />
       <Route path="/tools/character-counter" component={CharacterCounter} />
         <Route path="/tools/sentence-counter" component={SentenceCounter} />
