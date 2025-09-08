@@ -119,6 +119,7 @@ import PDFVersionConverter from '@/pages/pdf-version-converter';
 import PDFCompressorAdvanced from '@/pages/pdf-compressor-advanced';
 import PDFRepairTool from '@/pages/pdf-repair-tool';
 import PDFComplianceChecker from '@/pages/pdf-compliance-checker';
+import PDFPermissionManager from '@/pages/pdf-permission-manager';
 
 
 function ScrollToTop() {
@@ -220,6 +221,7 @@ function Router() {
       <Route path="/tools/pdf-compressor-advanced" component={PDFCompressorAdvanced} />
       <Route path="/tools/pdf-repair-tool" component={PDFRepairTool} />
       <Route path="/tools/pdf-compliance-checker" component={PDFComplianceChecker} />
+      <Route path="/tools/pdf-permission-manager" component={PDFPermissionManager} />
       <Route path="/tools/word-counter" component={WordCounter} />
       <Route path="/tools/character-counter" component={CharacterCounter} />
         <Route path="/tools/sentence-counter" component={SentenceCounter} />
