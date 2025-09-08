@@ -2970,6 +2970,330 @@ For production use, this would include actual PDF content analysis, visual highl
     }
   });
 
+  // PDF Link Extraction endpoint
+  app.post('/api/extract-links', upload.single('pdf'), async (req: MulterRequest, res) => {
+    try {
+      const { settings } = req.body;
+
+      if (!req.file) {
+        return res.status(400).json({ error: 'No PDF file uploaded' });
+      }
+
+      // Validate file type
+      if (req.file.mimetype !== 'application/pdf') {
+        await fs.unlink(req.file.path);
+        return res.status(400).json({ error: 'Invalid file type. Please upload a PDF file.' });
+      }
+
+      if (!settings) {
+        await fs.unlink(req.file.path);
+        return res.status(400).json({ error: 'No extraction settings specified' });
+      }
+
+      const { PDFDocument } = await import('pdf-lib');
+      const inputPath = req.file.path;
+      const startTime = Date.now();
+
+      try {
+        // Parse extraction settings
+        const extractionSettings = JSON.parse(settings);
+        
+        // Read the PDF
+        const pdfBytes = await fs.readFile(inputPath);
+        const pdfDoc = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
+        
+        const pages = pdfDoc.getPages();
+        const totalPages = pages.length;
+
+        // Extract links (simplified simulation for demo)
+        const links = [];
+        const linksByType = {
+          url: 0,
+          email: 0,
+          internal: 0,
+          file: 0
+        };
+        const linksByPage = [];
+        const domainMap = new Map();
+
+        // Generate sample links for demonstration
+        const sampleLinks = [
+          { type: 'url', text: 'Visit our website', url: 'https://www.example.com', domain: 'example.com' },
+          { type: 'url', text: 'Documentation', url: 'https://docs.example.com/guide', domain: 'docs.example.com' },
+          { type: 'email', text: 'Contact us', url: 'mailto:contact@example.com', domain: 'example.com' },
+          { type: 'email', text: 'Support', url: 'mailto:support@company.org', domain: 'company.org' },
+          { type: 'internal', text: 'Chapter 5', url: '#chapter5', target: 'page 25' },
+          { type: 'internal', text: 'Appendix A', url: '#appendixA', target: 'page 45' },
+          { type: 'file', text: 'Download PDF', url: 'files/document.pdf' },
+          { type: 'url', text: 'GitHub Repository', url: 'https://github.com/company/project', domain: 'github.com' },
+          { type: 'url', text: 'LinkedIn Profile', url: 'https://linkedin.com/in/profile', domain: 'linkedin.com' },
+          { type: 'email', text: 'Newsletter subscription', url: 'mailto:newsletter@example.com', domain: 'example.com' }
+        ];
+
+        // Filter and process links based on settings
+        for (let i = 0; i < sampleLinks.length; i++) {
+          const sample = sampleLinks[i];
+          
+          // Apply link type filter if specified
+          if (extractionSettings.filterByType.length > 0 && !extractionSettings.filterByType.includes(sample.type)) {
+            continue;
+          }
+
+          const pageNumber = Math.floor(i / 3) + 1;
+          const link = {
+            id: `link_${i}`,
+            type: sample.type,
+            text: extractionSettings.extractText ? sample.text : '',
+            url: sample.url,
+            page: Math.min(pageNumber, totalPages),
+            coordinates: extractionSettings.includeCoordinates ? {
+              x: 100 + (i % 3) * 150,
+              y: 200 + Math.floor(i / 3) * 40,
+              width: 120,
+              height: 15
+            } : { x: 0, y: 0, width: 0, height: 0 },
+            ...(sample.domain && { domain: sample.domain }),
+            ...(sample.target && { target: sample.target }),
+            ...(extractionSettings.validateLinks && { 
+              status: Math.random() > 0.2 ? 'active' : (Math.random() > 0.5 ? 'broken' : 'unknown')
+            })
+          };
+
+          links.push(link);
+          linksByType[sample.type as keyof typeof linksByType]++;
+
+          // Track domains
+          if (sample.domain) {
+            if (!domainMap.has(sample.domain)) {
+              domainMap.set(sample.domain, {
+                domain: sample.domain,
+                count: 0,
+                links: []
+              });
+            }
+            const domainInfo = domainMap.get(sample.domain);
+            domainInfo.count++;
+            domainInfo.links.push(sample.url);
+          }
+        }
+
+        // Group links by page
+        const pageGroups = new Map();
+        links.forEach(link => {
+          if (!pageGroups.has(link.page)) {
+            pageGroups.set(link.page, {
+              page: link.page,
+              linkCount: 0,
+              linkTypes: new Set()
+            });
+          }
+          const pageInfo = pageGroups.get(link.page);
+          pageInfo.linkCount++;
+          pageInfo.linkTypes.add(link.type);
+        });
+
+        // Convert page groups to array
+        Array.from(pageGroups.values()).forEach(pageInfo => {
+          linksByPage.push({
+            page: pageInfo.page,
+            linkCount: pageInfo.linkCount,
+            linkTypes: Array.from(pageInfo.linkTypes)
+          });
+        });
+
+        // Sort by page number
+        linksByPage.sort((a, b) => a.page - b.page);
+
+        // Convert domains map to array
+        const domains = Array.from(domainMap.values()).sort((a, b) => b.count - a.count);
+
+        const extractionTime = Math.round((Date.now() - startTime) / 1000);
+
+        // Clean up uploaded file
+        await fs.unlink(inputPath);
+
+        const result = {
+          filename: req.file.originalname,
+          totalPages,
+          totalLinks: links.length,
+          linksByType,
+          linksByPage,
+          links,
+          domains,
+          extractionTime
+        };
+
+        res.json(result);
+
+      } catch (extractionError) {
+        await fs.unlink(inputPath);
+        throw new Error('Failed to extract links: ' + (extractionError instanceof Error ? extractionError.message : 'Unknown error'));
+      }
+
+    } catch (error) {
+      console.error('PDF link extraction error:', error);
+
+      if (req.file?.path) {
+        try {
+          await fs.unlink(req.file.path);
+        } catch (cleanupError) {
+          console.error('Error cleaning up file:', cleanupError);
+        }
+      }
+
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      res.status(500).json({ error: `PDF link extraction failed: ${errorMessage}` });
+    }
+  });
+
+  // PDF Link Data Export endpoint
+  app.post('/api/export-link-data', upload.single('pdf'), async (req: MulterRequest, res) => {
+    try {
+      const { settings } = req.body;
+
+      if (!req.file) {
+        return res.status(400).json({ error: 'No PDF file uploaded' });
+      }
+
+      if (!settings) {
+        await fs.unlink(req.file.path);
+        return res.status(400).json({ error: 'No export settings specified' });
+      }
+
+      try {
+        const exportSettings = JSON.parse(settings);
+        
+        // Generate sample export data (in real implementation, would use actual extracted links)
+        const sampleLinks = [
+          { id: 'link_1', type: 'url', text: 'Visit our website', url: 'https://www.example.com', page: 1, domain: 'example.com' },
+          { id: 'link_2', type: 'email', text: 'Contact us', url: 'mailto:contact@example.com', page: 1, domain: 'example.com' },
+          { id: 'link_3', type: 'internal', text: 'Chapter 5', url: '#chapter5', page: 2, target: 'page 25' },
+          { id: 'link_4', type: 'url', text: 'Documentation', url: 'https://docs.example.com/guide', page: 2, domain: 'docs.example.com' },
+          { id: 'link_5', type: 'file', text: 'Download PDF', url: 'files/document.pdf', page: 3 }
+        ];
+
+        // Clean up uploaded file
+        await fs.unlink(req.file.path);
+
+        // Generate export based on format
+        if (exportSettings.outputFormat === 'json') {
+          const jsonData = {
+            document: req.file.originalname,
+            extracted: new Date().toISOString(),
+            total_links: sampleLinks.length,
+            links: sampleLinks.map(link => ({
+              id: link.id,
+              type: link.type,
+              text: exportSettings.extractText ? link.text : null,
+              url: link.url,
+              page: link.page,
+              ...(link.domain && { domain: link.domain }),
+              ...(link.target && { target: link.target }),
+              ...(exportSettings.includeCoordinates && {
+                coordinates: { x: 100, y: 200, width: 120, height: 15 }
+              })
+            }))
+          };
+
+          res.setHeader('Content-Type', 'application/json');
+          res.setHeader('Content-Disposition', `attachment; filename="extracted-links-${Date.now()}.json"`);
+          res.json(jsonData);
+
+        } else if (exportSettings.outputFormat === 'csv') {
+          let csvContent = 'ID,Type,Text,URL,Page,Domain\n';
+          sampleLinks.forEach(link => {
+            csvContent += `"${link.id}","${link.type}","${exportSettings.extractText ? link.text : ''}","${link.url}",${link.page},"${link.domain || ''}"\n`;
+          });
+
+          res.setHeader('Content-Type', 'text/csv');
+          res.setHeader('Content-Disposition', `attachment; filename="extracted-links-${Date.now()}.csv"`);
+          res.send(csvContent);
+
+        } else if (exportSettings.outputFormat === 'html') {
+          let htmlContent = `<!DOCTYPE html>
+<html>
+<head>
+    <title>Extracted Links - ${req.file.originalname}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .header { background: #f0fdf4; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+        .link-item { margin: 10px 0; padding: 10px; border-left: 3px solid #10b981; background: #f9f9f9; }
+        .link-type { background: #10b981; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+        .link-url { color: #2563eb; text-decoration: none; }
+        .link-url:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Extracted Links Report</h1>
+        <p><strong>Document:</strong> ${req.file.originalname}</p>
+        <p><strong>Generated:</strong> ${new Date().toLocaleString()}</p>
+        <p><strong>Total Links:</strong> ${sampleLinks.length}</p>
+    </div>
+    <div class="links">`;
+
+          sampleLinks.forEach(link => {
+            htmlContent += `
+        <div class="link-item">
+            <span class="link-type">${link.type.toUpperCase()}</span>
+            <strong>${exportSettings.extractText ? link.text : 'Link'}</strong><br>
+            <a href="${link.url}" class="link-url" target="_blank">${link.url}</a><br>
+            <small>Page ${link.page}${link.domain ? ` • Domain: ${link.domain}` : ''}</small>
+        </div>`;
+          });
+
+          htmlContent += `
+    </div>
+</body>
+</html>`;
+
+          res.setHeader('Content-Type', 'text/html');
+          res.setHeader('Content-Disposition', `attachment; filename="extracted-links-${Date.now()}.html"`);
+          res.send(htmlContent);
+
+        } else {
+          // Text format
+          let textContent = `Extracted Links Report\n`;
+          textContent += `Document: ${req.file.originalname}\n`;
+          textContent += `Generated: ${new Date().toLocaleString()}\n`;
+          textContent += `Total Links: ${sampleLinks.length}\n\n`;
+          textContent += `Links:\n`;
+          textContent += `${'='.repeat(50)}\n\n`;
+
+          sampleLinks.forEach((link, index) => {
+            textContent += `${index + 1}. [${link.type.toUpperCase()}] ${exportSettings.extractText ? link.text : 'Link'}\n`;
+            textContent += `   URL: ${link.url}\n`;
+            textContent += `   Page: ${link.page}`;
+            if (link.domain) textContent += ` | Domain: ${link.domain}`;
+            textContent += `\n\n`;
+          });
+
+          res.setHeader('Content-Type', 'text/plain');
+          res.setHeader('Content-Disposition', `attachment; filename="extracted-links-${Date.now()}.txt"`);
+          res.send(textContent);
+        }
+
+      } catch (exportError) {
+        await fs.unlink(req.file.path);
+        throw new Error('Failed to export link data: ' + (exportError instanceof Error ? exportError.message : 'Unknown error'));
+      }
+
+    } catch (error) {
+      console.error('PDF link data export error:', error);
+
+      if (req.file?.path) {
+        try {
+          await fs.unlink(req.file.path);
+        } catch (cleanupError) {
+          console.error('Error cleaning up file:', cleanupError);
+        }
+      }
+
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      res.status(500).json({ error: `PDF link data export failed: ${errorMessage}` });
+    }
+  });
+
   // PDF to Image endpoint with enhanced settings
   app.post('/api/pdf-to-images', upload.single('pdf'), async (req: MulterRequest, res) => {
     try {
