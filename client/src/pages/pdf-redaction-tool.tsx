@@ -569,7 +569,7 @@ const PDFRedactionTool = () => {
               </div>
 
               <Card className="bg-white shadow-sm border-0">
-                <CardContent className="p-8"></CardContent>
+                <CardContent className="p-8">
                   <div className="space-y-8">
                     {/* File Upload Section */}
                     <div>
