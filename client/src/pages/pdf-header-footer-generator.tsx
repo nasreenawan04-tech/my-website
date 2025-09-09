@@ -65,6 +65,12 @@ const PDFHeaderFooterGenerator = () => {
       return;
     }
 
+    // Validate file size (50MB limit)
+    if (file.size > 50 * 1024 * 1024) {
+      setError('File size too large. Please select a PDF file smaller than 50MB.');
+      return;
+    }
+
     setSelectedFile(file);
     setError(null);
     setProcessedPdfUrl(null);
@@ -73,7 +79,7 @@ const PDFHeaderFooterGenerator = () => {
     try {
       const { PDFDocument } = await import('pdf-lib');
       const arrayBuffer = await file.arrayBuffer();
-      const pdfDoc = await PDFDocument.load(arrayBuffer);
+      const pdfDoc = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
       const pages = pdfDoc.getPages();
       const firstPage = pages[0];
       const { width, height } = firstPage.getSize();
@@ -84,7 +90,8 @@ const PDFHeaderFooterGenerator = () => {
       });
     } catch (error) {
       console.error('Error reading PDF info:', error);
-      setOriginalInfo({ pageCount: 0, size: 'Unknown' });
+      setError('Unable to read PDF file. Please ensure it is a valid PDF document.');
+      setSelectedFile(null);
     }
   };
 
@@ -108,29 +115,6 @@ const PDFHeaderFooterGenerator = () => {
     setSettings(prev => ({ ...prev, [key]: value }));
   };
 
-  const hexToRgb = (hex: string) => {
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? {
-      r: parseInt(result[1], 16) / 255,
-      g: parseInt(result[2], 16) / 255,
-      b: parseInt(result[3], 16) / 255,
-    } : { r: 0, g: 0, b: 0 };
-  };
-
-  const getAlignment = (alignment: 'left' | 'center' | 'right', pageWidth: number) => {
-    switch (alignment) {
-      case 'left': return 50;
-      case 'right': return pageWidth - 50;
-      case 'center': 
-      default: return pageWidth / 2;
-    }
-  };
-
-  const formatPageNumber = (current: number, total: number, format: string) => {
-    return format
-      .replace('{current}', current.toString())
-      .replace('{total}', total.toString());
-  };
 
   const addHeaderFooter = async () => {
     if (!selectedFile) return;
@@ -139,81 +123,50 @@ const PDFHeaderFooterGenerator = () => {
     setError(null);
 
     try {
-      const { PDFDocument, rgb } = await import('pdf-lib');
-      
-      const arrayBuffer = await selectedFile.arrayBuffer();
-      const pdfDoc = await PDFDocument.load(arrayBuffer);
-      const pages = pdfDoc.getPages();
-      const totalPages = pages.length;
-      const colorValues = hexToRgb(settings.fontColor);
+      const formData = new FormData();
+      formData.append('pdf', selectedFile);
+      formData.append('headerText', settings.headerText);
+      formData.append('footerText', settings.footerText);
+      formData.append('headerAlignment', settings.headerAlignment);
+      formData.append('footerAlignment', settings.footerAlignment);
+      formData.append('fontSize', settings.fontSize.toString());
+      formData.append('fontColor', settings.fontColor);
+      formData.append('includePageNumbers', settings.includePageNumbers.toString());
+      formData.append('pageNumberPosition', settings.pageNumberPosition);
+      formData.append('pageNumberFormat', settings.pageNumberFormat);
+      formData.append('marginTop', settings.marginTop.toString());
+      formData.append('marginBottom', settings.marginBottom.toString());
+      formData.append('excludeFirstPage', settings.excludeFirstPage.toString());
 
-      pages.forEach((page, index) => {
-        const pageNumber = index + 1;
-        const { width, height } = page.getSize();
-        
-        // Skip first page if excluded
-        if (settings.excludeFirstPage && pageNumber === 1) return;
-
-        // Add Header
-        if (settings.headerText.trim()) {
-          const headerX = getAlignment(settings.headerAlignment, width);
-          const headerY = height - settings.marginTop;
-          
-          page.drawText(settings.headerText, {
-            x: headerX,
-            y: headerY,
-            size: settings.fontSize,
-            color: rgb(colorValues.r, colorValues.g, colorValues.b),
-          });
-        }
-
-        // Add Footer
-        if (settings.footerText.trim()) {
-          const footerX = getAlignment(settings.footerAlignment, width);
-          const footerY = settings.marginBottom;
-          
-          page.drawText(settings.footerText, {
-            x: footerX,
-            y: footerY,
-            size: settings.fontSize,
-            color: rgb(colorValues.r, colorValues.g, colorValues.b),
-          });
-        }
-
-        // Add Page Numbers
-        if (settings.includePageNumbers) {
-          const pageNumberText = formatPageNumber(pageNumber, totalPages, settings.pageNumberFormat);
-          const isHeader = settings.pageNumberPosition === 'header';
-          const y = isHeader ? height - settings.marginTop - (settings.headerText ? 15 : 0) : settings.marginBottom - (settings.footerText ? 15 : 0);
-          const x = width / 2; // Always center page numbers
-          
-          page.drawText(pageNumberText, {
-            x: x,
-            y: y,
-            size: settings.fontSize,
-            color: rgb(colorValues.r, colorValues.g, colorValues.b),
-          });
-        }
+      const response = await fetch('/api/pdf-header-footer', {
+        method: 'POST',
+        body: formData,
       });
 
-      const pdfBytes = await pdfDoc.save();
-      const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+      }
+
+      const blob = await response.blob();
       const url = URL.createObjectURL(blob);
       setProcessedPdfUrl(url);
     } catch (error) {
       console.error('Error adding header/footer to PDF:', error);
-      setError('Error adding header/footer to PDF. Please try again with a valid PDF file.');
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      setError(`Error adding header/footer to PDF: ${errorMessage}. Please try again with a valid PDF file.`);
     }
 
     setIsProcessing(false);
   };
 
   const downloadProcessedPDF = () => {
-    if (!processedPdfUrl) return;
+    if (!processedPdfUrl || !selectedFile) return;
 
     const link = document.createElement('a');
     link.href = processedPdfUrl;
-    link.download = 'header-footer-document.pdf';
+    const baseName = selectedFile.name.replace('.pdf', '');
+    link.download = `header-footer-${baseName}.pdf`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
