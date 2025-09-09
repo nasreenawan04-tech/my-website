@@ -301,7 +301,7 @@ export default function StockProfitCalculator() {
     <div className="min-h-screen bg-gray-50">
       <Helmet>
         <title>Stock Profit Calculator - Calculate Stock Investment Returns | ToolsHub</title>
-        <meta name="description" content="Calculate stock profits, losses, and returns with our free stock calculator. Include taxes, fees, and worldwide currencies for accurate results." />
+        <meta name="description" content="Free stock profit calculator with tax optimization, fee analysis, and multi-currency support. Calculate investment returns, set target prices, and analyze portfolio performance for stocks worldwide." />
       </Helmet>
       
       <Header />
@@ -799,6 +799,9 @@ export default function StockProfitCalculator() {
                 <p className="mb-4">
                   Whether you're a beginner investor planning your first stock purchase or an experienced trader analyzing portfolio performance, our stock profit calculator provides three powerful calculation modes: profit/loss analysis, target price determination, and complete portfolio valuation with dividend tracking.
                 </p>
+                <p className="mb-4">
+                  This advanced stock calculator integrates seamlessly with other financial planning tools. Use it alongside our <a href="/tools/investment-return-calculator" className="text-blue-600 hover:text-blue-700 underline">Investment Return Calculator</a> to analyze different investment scenarios, or combine it with our <a href="/tools/roi-calculator" className="text-blue-600 hover:text-blue-700 underline">ROI Calculator</a> to evaluate overall portfolio performance and make informed investment decisions.
+                </p>
               </div>
             </section>
 
@@ -899,6 +902,99 @@ export default function StockProfitCalculator() {
                       </div>
                     </div>
                   </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Benefits for Different Audiences */}
+            <section className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8">
+              <h2 className="text-3xl font-bold text-gray-900 mb-8">Who Benefits from Our Stock Profit Calculator?</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                    <span className="text-2xl">🎓</span>
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Students & New Investors</h3>
+                  <p className="text-gray-600 mb-4">Perfect for learning investment fundamentals and understanding how fees, taxes, and holding periods affect returns.</p>
+                  <ul className="text-sm text-gray-600 space-y-1">
+                    <li>• Learn investment basics with real calculations</li>
+                    <li>• Understand the impact of fees and taxes</li>
+                    <li>• Practice with different scenarios risk-free</li>
+                    <li>• Build confidence before real trading</li>
+                  </ul>
+                </div>
+                
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                    <span className="text-2xl">💼</span>
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Working Professionals</h3>
+                  <p className="text-gray-600 mb-4">Optimize your investment strategy while managing busy schedules and maximizing after-tax returns.</p>
+                  <ul className="text-sm text-gray-600 space-y-1">
+                    <li>• Quick profit/loss analysis for busy schedules</li>
+                    <li>• Tax optimization for higher income brackets</li>
+                    <li>• Portfolio performance tracking</li>
+                    <li>• Long-term wealth building strategies</li>
+                  </ul>
+                </div>
+                
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                    <span className="text-2xl">🏢</span>
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Business Owners & Entrepreneurs</h3>
+                  <p className="text-gray-600 mb-4">Manage business investments and personal portfolios with comprehensive financial analysis tools.</p>
+                  <ul className="text-sm text-gray-600 space-y-1">
+                    <li>• Corporate investment analysis</li>
+                    <li>• Business cash flow optimization</li>
+                    <li>• Tax-efficient investment strategies</li>
+                    <li>• Multi-currency investment tracking</li>
+                  </ul>
+                </div>
+                
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
+                    <span className="text-2xl">🏖️</span>
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Retirement Planners</h3>
+                  <p className="text-gray-600 mb-4">Plan for retirement by analyzing long-term investment returns and dividend income strategies.</p>
+                  <ul className="text-sm text-gray-600 space-y-1">
+                    <li>• Long-term investment projections</li>
+                    <li>• Dividend income analysis</li>
+                    <li>• Retirement portfolio optimization</li>
+                    <li>• Social Security planning integration</li>
+                  </ul>
+                  <p className="text-sm text-blue-600 mt-3">
+                    <a href="/tools/retirement-calculator" className="hover:text-blue-700 underline">Use our Retirement Calculator →</a>
+                  </p>
+                </div>
+                
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                    <span className="text-2xl">📊</span>
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Day Traders & Active Investors</h3>
+                  <p className="text-gray-600 mb-4">Analyze short-term trading opportunities and manage multiple positions with precise calculations.</p>
+                  <ul className="text-sm text-gray-600 space-y-1">
+                    <li>• Real-time profit/loss calculations</li>
+                    <li>• Commission and fee optimization</li>
+                    <li>• Risk-reward ratio analysis</li>
+                    <li>• Multiple position tracking</li>
+                  </ul>
+                </div>
+                
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                    <span className="text-2xl">💰</span>
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Financial Advisors</h3>
+                  <p className="text-gray-600 mb-4">Provide clients with detailed investment analysis and demonstrate the impact of different strategies.</p>
+                  <ul className="text-sm text-gray-600 space-y-1">
+                    <li>• Client education and demonstrations</li>
+                    <li>• Scenario planning and analysis</li>
+                    <li>• Fee structure comparisons</li>
+                    <li>• Professional presentation tools</li>
+                  </ul>
                 </div>
               </div>
             </section>
@@ -1074,6 +1170,135 @@ export default function StockProfitCalculator() {
               </Card>
             </div>
 
+            {/* Related Financial Tools */}
+            <section className="bg-white rounded-2xl shadow-lg p-8">
+              <h2 className="text-3xl font-bold text-gray-900 mb-8">Complete Your Financial Analysis with Related Tools</h2>
+              <p className="text-gray-600 mb-8 text-lg">Maximize your investment strategy with our comprehensive suite of financial calculators designed to work together for complete portfolio management.</p>
+              
+              {/* Investment & Trading Tools */}
+              <div className="mb-10">
+                <h3 className="text-xl font-semibold text-gray-900 mb-6">📈 Investment & Trading Calculators</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <a href="/tools/investment-return-calculator" className="block p-6 bg-blue-50 rounded-lg border border-blue-100 hover:border-blue-200 transition-all hover:shadow-md">
+                    <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center mb-3">
+                      <span className="text-white text-sm font-bold">📊</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Investment Return Calculator</h4>
+                    <p className="text-gray-600 text-sm mb-3">Calculate comprehensive investment returns including compound growth and multiple contribution scenarios.</p>
+                    <span className="text-blue-600 text-sm font-medium">Calculate Returns →</span>
+                  </a>
+                  
+                  <a href="/tools/roi-calculator" className="block p-6 bg-green-50 rounded-lg border border-green-100 hover:border-green-200 transition-all hover:shadow-md">
+                    <div className="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center mb-3">
+                      <span className="text-white text-sm font-bold">%</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">ROI Calculator</h4>
+                    <p className="text-gray-600 text-sm mb-3">Measure return on investment for any asset or business investment to compare profitability.</p>
+                    <span className="text-green-600 text-sm font-medium">Calculate ROI →</span>
+                  </a>
+                  
+                  <a href="/tools/compound-interest-calculator" className="block p-6 bg-purple-50 rounded-lg border border-purple-100 hover:border-purple-200 transition-all hover:shadow-md">
+                    <div className="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center mb-3">
+                      <span className="text-white text-sm font-bold">⚡</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Compound Interest Calculator</h4>
+                    <p className="text-gray-600 text-sm mb-3">Harness the power of compound growth for long-term investment planning and wealth building.</p>
+                    <span className="text-purple-600 text-sm font-medium">Calculate Compound Growth →</span>
+                  </a>
+                </div>
+              </div>
+
+              {/* Financial Planning Tools */}
+              <div className="mb-10">
+                <h3 className="text-xl font-semibold text-gray-900 mb-6">💰 Financial Planning & Analysis</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <a href="/tools/retirement-calculator" className="block p-6 bg-orange-50 rounded-lg border border-orange-100 hover:border-orange-200 transition-all hover:shadow-md">
+                    <div className="w-8 h-8 bg-orange-600 rounded-lg flex items-center justify-center mb-3">
+                      <span className="text-white text-sm font-bold">🏖️</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Retirement Calculator</h4>
+                    <p className="text-gray-600 text-sm mb-3">Plan your retirement savings and calculate how much you need to maintain your lifestyle.</p>
+                    <span className="text-orange-600 text-sm font-medium">Plan Retirement →</span>
+                  </a>
+                  
+                  <a href="/tools/savings-goal-calculator" className="block p-6 bg-teal-50 rounded-lg border border-teal-100 hover:border-teal-200 transition-all hover:shadow-md">
+                    <div className="w-8 h-8 bg-teal-600 rounded-lg flex items-center justify-center mb-3">
+                      <span className="text-white text-sm font-bold">🎯</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Savings Goal Calculator</h4>
+                    <p className="text-gray-600 text-sm mb-3">Set and track savings goals for major purchases, emergencies, or investment funds.</p>
+                    <span className="text-teal-600 text-sm font-medium">Set Goals →</span>
+                  </a>
+                  
+                  <a href="/tools/net-worth-calculator" className="block p-6 bg-indigo-50 rounded-lg border border-indigo-100 hover:border-indigo-200 transition-all hover:shadow-md">
+                    <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center mb-3">
+                      <span className="text-white text-sm font-bold">📋</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Net Worth Calculator</h4>
+                    <p className="text-gray-600 text-sm mb-3">Calculate your total net worth by tracking all assets and liabilities in one place.</p>
+                    <span className="text-indigo-600 text-sm font-medium">Calculate Net Worth →</span>
+                  </a>
+                </div>
+              </div>
+
+              {/* Debt & Loan Management */}
+              <div className="mb-10">
+                <h3 className="text-xl font-semibold text-gray-900 mb-6">🏦 Debt & Loan Management</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <a href="/tools/debt-payoff-calculator" className="block p-6 bg-red-50 rounded-lg border border-red-100 hover:border-red-200 transition-all hover:shadow-md">
+                    <div className="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center mb-3">
+                      <span className="text-white text-sm font-bold">💳</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Debt Payoff Calculator</h4>
+                    <p className="text-gray-600 text-sm mb-3">Compare investment returns vs. debt payoff strategies to optimize your financial decisions.</p>
+                    <span className="text-red-600 text-sm font-medium">Plan Debt Payoff →</span>
+                  </a>
+                  
+                  <a href="/tools/loan-calculator" className="block p-6 bg-gray-50 rounded-lg border border-gray-200 hover:border-gray-300 transition-all hover:shadow-md">
+                    <div className="w-8 h-8 bg-gray-600 rounded-lg flex items-center justify-center mb-3">
+                      <span className="text-white text-sm font-bold">🏠</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Loan Calculator</h4>
+                    <p className="text-gray-600 text-sm mb-3">Calculate loan payments and compare borrowing costs with investment opportunities.</p>
+                    <span className="text-gray-600 text-sm font-medium">Calculate Loans →</span>
+                  </a>
+                  
+                  <a href="/tools/credit-card-interest-calculator" className="block p-6 bg-yellow-50 rounded-lg border border-yellow-100 hover:border-yellow-200 transition-all hover:shadow-md">
+                    <div className="w-8 h-8 bg-yellow-600 rounded-lg flex items-center justify-center mb-3">
+                      <span className="text-white text-sm font-bold">💳</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Credit Card Interest Calculator</h4>
+                    <p className="text-gray-600 text-sm mb-3">Calculate credit card interest and compare with potential investment returns.</p>
+                    <span className="text-yellow-600 text-sm font-medium">Calculate Interest →</span>
+                  </a>
+                </div>
+              </div>
+
+              {/* Currency & International Tools */}
+              <div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-6">🌍 Currency & International Finance</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <a href="/tools/currency-converter" className="block p-6 bg-blue-50 rounded-lg border border-blue-100 hover:border-blue-200 transition-all hover:shadow-md">
+                    <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center mb-3">
+                      <span className="text-white text-sm font-bold">💱</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Currency Converter</h4>
+                    <p className="text-gray-600 text-sm mb-3">Convert between currencies for international stock investments and global portfolio management.</p>
+                    <span className="text-blue-600 text-sm font-medium">Convert Currency →</span>
+                  </a>
+                  
+                  <a href="/tools/inflation-calculator" className="block p-6 bg-emerald-50 rounded-lg border border-emerald-100 hover:border-emerald-200 transition-all hover:shadow-md">
+                    <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center mb-3">
+                      <span className="text-white text-sm font-bold">📈</span>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Inflation Calculator</h4>
+                    <p className="text-gray-600 text-sm mb-3">Understand how inflation affects your investment returns and purchasing power over time.</p>
+                    <span className="text-emerald-600 text-sm font-medium">Calculate Inflation Impact →</span>
+                  </a>
+                </div>
+              </div>
+            </section>
+
             {/* FAQ Section */}
             <section className="bg-gray-50 rounded-2xl p-8">
               <h2 className="text-3xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h2>
@@ -1091,6 +1316,10 @@ export default function StockProfitCalculator() {
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">What fees should I include in my calculations?</h3>
                     <p className="text-gray-600">Include brokerage commissions for both buying and selling, SEC fees, exchange fees, and any other transaction costs charged by your broker.</p>
                   </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">How do I optimize my investment taxes?</h3>
+                    <p className="text-gray-600">Consider holding stocks for over a year to qualify for long-term capital gains rates, and use our calculator to compare different tax scenarios. For comprehensive debt vs. investment analysis, try our <a href="/tools/debt-payoff-calculator" className="text-blue-600 hover:text-blue-700 underline">Debt Payoff Calculator</a>.</p>
+                  </div>
                 </div>
                 <div className="space-y-6">
                   <div>
@@ -1104,6 +1333,10 @@ export default function StockProfitCalculator() {
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I use this for day trading calculations?</h3>
                     <p className="text-gray-600">Absolutely! The calculator works for any holding period, from day trading to long-term investing, and adjusts tax calculations accordingly.</p>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">How can I build a complete investment strategy?</h3>
+                    <p className="text-gray-600">Start with our stock calculator, then use our <a href="/tools/investment-return-calculator" className="text-blue-600 hover:text-blue-700 underline">Investment Return Calculator</a> for long-term planning and <a href="/tools/net-worth-calculator" className="text-blue-600 hover:text-blue-700 underline">Net Worth Calculator</a> to track overall financial health.</p>
                   </div>
                 </div>
               </div>
