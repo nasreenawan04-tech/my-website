@@ -4574,12 +4574,14 @@ For production use, this would include actual PDF content analysis, visual highl
         return res.status(400).json({ error: 'Invalid file type. Please upload a PDF file.' });
       }
 
-      const marginTopNum = parseFloat(marginTop);
-      const marginBottomNum = parseFloat(marginBottom);
-      const marginLeftNum = parseFloat(marginLeft);
-      const marginRightNum = parseFloat(marginRight);
+      // Convert mm to PDF points (1 mm = 2.834645669 points)
+      const mmToPoints = 2.834645669;
+      const marginTopPoints = parseFloat(marginTop) * mmToPoints;
+      const marginBottomPoints = parseFloat(marginBottom) * mmToPoints;
+      const marginLeftPoints = parseFloat(marginLeft) * mmToPoints;
+      const marginRightPoints = parseFloat(marginRight) * mmToPoints;
 
-      const { PDFDocument } = await import('pdf-lib');
+      const { PDFDocument, rgb } = await import('pdf-lib');
       const pdfBytes = await fs.readFile(req.file.path);
       const originalPdf = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
       const newPdf = await PDFDocument.create();
@@ -4590,40 +4592,48 @@ For production use, this would include actual PDF content analysis, visual highl
         const originalPage = pages[i];
         const { width, height } = originalPage.getSize();
         
-        let newWidth = width;
-        let newHeight = height;
-        let xOffset = 0;
-        let yOffset = 0;
+        let newWidth, newHeight;
 
         if (operation === 'add') {
-          // Add margins
-          newWidth = width + marginLeftNum + marginRightNum;
-          newHeight = height + marginTopNum + marginBottomNum;
-          xOffset = marginLeftNum;
-          yOffset = marginBottomNum;
-        } else {
-          // Remove margins (crop)
-          newWidth = Math.max(50, width - marginLeftNum - marginRightNum);
-          newHeight = Math.max(50, height - marginTopNum - marginBottomNum);
-          xOffset = -marginLeftNum;
-          yOffset = -marginBottomNum;
-        }
-
-        const [copiedPage] = await newPdf.copyPages(originalPdf, [i]);
-        
-        // Create new page with adjusted dimensions
-        const newPage = newPdf.addPage([newWidth, newHeight]);
-        
-        // For margin adjustment, we need to recreate the page content properly
-        if (operation === 'add') {
-          // Add the original page with offset
-          const { width: origWidth, height: origHeight } = originalPage.getSize();
+          // Add margins - increase page size
+          newWidth = width + marginLeftPoints + marginRightPoints;
+          newHeight = height + marginTopPoints + marginBottomPoints;
+          
+          // Create new page with increased dimensions
+          const newPage = newPdf.addPage([newWidth, newHeight]);
+          
+          // Add white background
           newPage.drawRectangle({
-            x: xOffset,
-            y: yOffset,
-            width: origWidth,
-            height: origHeight,
+            x: 0,
+            y: 0,
+            width: newWidth,
+            height: newHeight,
             color: rgb(1, 1, 1), // White background
+          });
+          
+          // Embed and draw the original page with margin offsets
+          const [embeddedPage] = await newPdf.embedPages([originalPage]);
+          newPage.drawPage(embeddedPage, {
+            x: marginLeftPoints,
+            y: marginBottomPoints,
+            width: width,
+            height: height,
+          });
+        } else {
+          // Remove margins - crop the page
+          newWidth = Math.max(50, width - marginLeftPoints - marginRightPoints);
+          newHeight = Math.max(50, height - marginTopPoints - marginBottomPoints);
+          
+          // Create new page with reduced dimensions
+          const newPage = newPdf.addPage([newWidth, newHeight]);
+          
+          // Embed and draw the cropped portion of the original page
+          const [embeddedPage] = await newPdf.embedPages([originalPage]);
+          newPage.drawPage(embeddedPage, {
+            x: -marginLeftPoints, // Negative offset to crop from left
+            y: -marginBottomPoints, // Negative offset to crop from bottom
+            width: width,
+            height: height,
           });
         }
       }
