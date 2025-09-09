@@ -3,7 +3,6 @@ import { Link, useLocation } from 'wouter';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { searchTools } from '@/lib/search';
 import { tools } from '@/data/tools';
-import { ThemeToggle } from '@/components/ui/theme-toggle';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -60,18 +59,17 @@ const Header = () => {
             ))}
           </nav>
           
-          {/* Search, Theme Toggle and Mobile Menu */}
-          <div className="flex items-center space-x-2">
+          {/* Search and Mobile Menu */}
+          <div className="flex items-center space-x-4">
             <button 
-              className="p-2 text-neutral-600 dark:text-neutral-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
+              className="p-2 text-neutral-600 hover:text-blue-500 transition-colors"
               onClick={() => setIsSearchOpen(true)}
               data-testid="button-search"
             >
               <i className="fas fa-search text-lg"></i>
             </button>
-            <ThemeToggle />
             <button
-              className="lg:hidden p-2 text-neutral-600 dark:text-neutral-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
+              className="lg:hidden p-2 text-neutral-600 hover:text-blue-500 transition-colors"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               data-testid="button-mobile-menu"
             >
