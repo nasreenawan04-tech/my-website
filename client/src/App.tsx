@@ -102,17 +102,11 @@ const PDFEditor = lazy(() => import("@/pages/pdf-editor"));
 const PDFBookmarkExtractor = lazy(() => import("@/pages/pdf-bookmark-extractor"));
 const PDFPageResizer = lazy(() => import("@/pages/pdf-page-resizer"));
 const PDFMarginAdjuster = lazy(() => import("@/pages/pdf-margin-adjuster"));
-const PDFPageDuplicator = lazy(() => import("@/pages/pdf-page-duplicator"));
-const PDFBackgroundChanger = lazy(() => import("@/pages/pdf-background-changer"));
 const PDFHeaderFooterGenerator = lazy(() => import("@/pages/pdf-header-footer-generator"));
 const PDFBlankPageRemover = lazy(() => import("@/pages/pdf-blank-page-remover"));
 const PDFToImagesEnhanced = lazy(() => import("@/pages/pdf-to-images-enhanced"));
 const ImagesToPDFMerger = lazy(() => import("@/pages/images-to-pdf-merger"));
-const PDFVersionConverter = lazy(() => import("@/pages/pdf-version-converter"));
 const PDFCompressorAdvanced = lazy(() => import("@/pages/pdf-compressor-advanced"));
-const PDFRepairTool = lazy(() => import("@/pages/pdf-repair-tool"));
-const PDFComplianceChecker = lazy(() => import("@/pages/pdf-compliance-checker"));
-const PDFPermissionManager = lazy(() => import("@/pages/pdf-permission-manager"));
 const PDFRedactionTool = lazy(() => import("@/pages/pdf-redaction-tool"));
 const PDFComparisonTool = lazy(() => import("@/pages/pdf-comparison-tool"));
 const PDFFormFieldExtractor = lazy(() => import("@/pages/pdf-form-field-extractor"));
@@ -229,17 +223,11 @@ function Router() {
       <Route path="/tools/pdf-bookmark-extractor" component={PDFBookmarkExtractor} />
       <Route path="/tools/pdf-page-resizer" component={PDFPageResizer} />
       <Route path="/tools/pdf-margin-adjuster" component={PDFMarginAdjuster} />
-      <Route path="/tools/pdf-page-duplicator" component={PDFPageDuplicator} />
-      <Route path="/tools/pdf-background-changer" component={PDFBackgroundChanger} />
       <Route path="/tools/pdf-header-footer" component={PDFHeaderFooterGenerator} />
       <Route path="/tools/pdf-blank-page-remover" component={PDFBlankPageRemover} />
       <Route path="/tools/pdf-to-images-enhanced" component={PDFToImagesEnhanced} />
       <Route path="/tools/images-to-pdf" component={ImagesToPDFMerger} />
-      <Route path="/tools/pdf-version-converter" component={PDFVersionConverter} />
       <Route path="/tools/pdf-compressor-advanced" component={PDFCompressorAdvanced} />
-      <Route path="/tools/pdf-repair-tool" component={PDFRepairTool} />
-      <Route path="/tools/pdf-compliance-checker" component={PDFComplianceChecker} />
-      <Route path="/tools/pdf-permission-manager" component={PDFPermissionManager} />
       <Route path="/tools/pdf-redaction-tool" component={PDFRedactionTool} />
       <Route path="/tools/pdf-comparison-tool" component={PDFComparisonTool} />
       <Route path="/tools/pdf-form-extractor" component={PDFFormFieldExtractor} />
