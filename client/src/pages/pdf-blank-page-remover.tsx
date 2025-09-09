@@ -45,6 +45,12 @@ const PDFBlankPageRemover = () => {
       return;
     }
 
+    // Validate file size (50MB limit)
+    if (file.size > 50 * 1024 * 1024) {
+      setError('File size too large. Please select a PDF file smaller than 50MB.');
+      return;
+    }
+
     setSelectedFile(file);
     setError(null);
     setProcessedPdfUrl(null);
@@ -55,7 +61,7 @@ const PDFBlankPageRemover = () => {
     try {
       const { PDFDocument } = await import('pdf-lib');
       const arrayBuffer = await file.arrayBuffer();
-      const pdfDoc = await PDFDocument.load(arrayBuffer);
+      const pdfDoc = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
       const pages = pdfDoc.getPages();
       const firstPage = pages[0];
       const { width, height } = firstPage.getSize();
@@ -66,7 +72,8 @@ const PDFBlankPageRemover = () => {
       });
     } catch (error) {
       console.error('Error reading PDF info:', error);
-      setOriginalInfo({ pageCount: 0, size: 'Unknown' });
+      setError('Unable to read PDF file. Please ensure it is a valid PDF document.');
+      setSelectedFile(null);
     }
   };
 
@@ -93,63 +100,39 @@ const PDFBlankPageRemover = () => {
     setError(null);
 
     try {
-      const { PDFDocument } = await import('pdf-lib');
-      
-      const arrayBuffer = await selectedFile.arrayBuffer();
-      const pdfDoc = await PDFDocument.load(arrayBuffer);
-      const pages = pdfDoc.getPages();
-      
-      const analysis: PageAnalysis[] = [];
-      const potentialBlankPages: number[] = [];
+      const formData = new FormData();
+      formData.append('pdf', selectedFile);
+      formData.append('threshold', '0.95'); // 95% confidence threshold for blank pages
 
-      // Simple heuristic-based blank page detection
-      // In a more sophisticated implementation, you would analyze page content more thoroughly
-      for (let i = 0; i < pages.length; i++) {
-        const page = pages[i];
-        const { width, height } = page.getSize();
-        
-        // This is a simplified analysis - real implementation would need to:
-        // 1. Extract and analyze text content
-        // 2. Detect images and graphics
-        // 3. Check for vector graphics and annotations
-        // 4. Analyze whitespace vs content ratio
-        
-        // For demo purposes, we'll simulate blank page detection
-        const simulatedAnalysis = simulatePageAnalysis(i, pages.length);
-        analysis.push(simulatedAnalysis);
-        
-        if (simulatedAnalysis.isEmpty && autoDetectBlankPages) {
-          potentialBlankPages.push(i + 1); // Convert to 1-based page numbers
-        }
+      const response = await fetch('/api/analyze-blank-pages', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
       }
 
-      setAnalyzedPages(analysis);
-      setSelectedPagesToRemove(potentialBlankPages);
+      const data = await response.json();
+      
+      setAnalyzedPages(data.analysis);
+      
+      if (autoDetectBlankPages) {
+        setSelectedPagesToRemove(data.blankPages);
+      } else {
+        setSelectedPagesToRemove([]);
+      }
+
     } catch (error) {
       console.error('Error analyzing PDF pages:', error);
-      setError('Error analyzing PDF pages. Please try again with a valid PDF file.');
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      setError(`Error analyzing PDF pages: ${errorMessage}. Please try again with a valid PDF file.`);
     }
 
     setIsAnalyzing(false);
   };
 
-  const simulatePageAnalysis = (pageIndex: number, totalPages: number): PageAnalysis => {
-    // Simulate some blank pages for demonstration
-    // In real implementation, this would involve actual content analysis
-    const isLikelyBlank = (
-      pageIndex === 1 || // Often page 2 is blank in documents
-      pageIndex === totalPages - 1 || // Last page might be blank
-      (pageIndex > 10 && pageIndex % 7 === 0) // Random pattern for demo
-    ) && Math.random() > 0.7; // Add randomness
-
-    return {
-      pageNumber: pageIndex + 1,
-      isEmpty: isLikelyBlank,
-      hasText: !isLikelyBlank && Math.random() > 0.2,
-      hasImages: !isLikelyBlank && Math.random() > 0.8,
-      confidence: isLikelyBlank ? Math.random() * 0.4 + 0.6 : Math.random() * 0.3 + 0.1
-    };
-  };
 
   const togglePageSelection = (pageNumber: number) => {
     setSelectedPagesToRemove(prev => 
@@ -177,43 +160,42 @@ const PDFBlankPageRemover = () => {
     setError(null);
 
     try {
-      const { PDFDocument } = await import('pdf-lib');
-      
-      const arrayBuffer = await selectedFile.arrayBuffer();
-      const sourcePdf = await PDFDocument.load(arrayBuffer);
-      const targetPdf = await PDFDocument.create();
-      
-      const totalPages = sourcePdf.getPageCount();
-      const pagesToKeep = Array.from({ length: totalPages }, (_, i) => i + 1)
-        .filter(pageNum => !selectedPagesToRemove.includes(pageNum));
+      const formData = new FormData();
+      formData.append('pdf', selectedFile);
+      formData.append('pagesToRemove', JSON.stringify(selectedPagesToRemove));
+      formData.append('autoDetect', 'false'); // Using manually selected pages
+      formData.append('threshold', '0.95');
 
-      // Copy pages that are not selected for removal
-      for (const pageNum of pagesToKeep) {
-        const pageIndex = pageNum - 1; // Convert to 0-based index
-        const [sourcePage] = await targetPdf.embedPages([sourcePdf.getPages()[pageIndex]]);
-        const { width, height } = sourcePdf.getPages()[pageIndex].getSize();
-        const targetPage = targetPdf.addPage([width, height]);
-        targetPage.drawPage(sourcePage, { x: 0, y: 0, width, height });
+      const response = await fetch('/api/remove-blank-pages', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
       }
 
-      const pdfBytes = await targetPdf.save();
-      const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+      const blob = await response.blob();
       const url = URL.createObjectURL(blob);
       setProcessedPdfUrl(url);
+
     } catch (error) {
       console.error('Error removing blank pages:', error);
-      setError('Error removing blank pages. Please try again with a valid PDF file.');
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      setError(`Error removing blank pages: ${errorMessage}. Please try again with a valid PDF file.`);
     }
 
     setIsProcessing(false);
   };
 
   const downloadProcessedPDF = () => {
-    if (!processedPdfUrl) return;
+    if (!processedPdfUrl || !selectedFile) return;
 
     const link = document.createElement('a');
     link.href = processedPdfUrl;
-    link.download = 'blank-pages-removed-document.pdf';
+    const baseName = selectedFile.name.replace('.pdf', '');
+    link.download = `blank-pages-removed-${baseName}.pdf`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -327,32 +309,44 @@ const PDFBlankPageRemover = () => {
                               {formatFileSize(selectedFile.size)} • {originalInfo.pageCount} pages • {originalInfo.size}
                             </div>
                           </div>
-                          <div className="space-x-2">
-                            <Button
-                              onClick={analyzePages}
-                              disabled={isAnalyzing}
-                              className="bg-blue-600 hover:bg-blue-700 text-white"
-                              data-testid="button-analyze"
-                            >
-                              {isAnalyzing ? (
-                                <>
-                                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                                  Analyzing...
-                                </>
-                              ) : (
-                                <>
-                                  <Eye className="w-4 h-4 mr-2" />
-                                  Analyze Pages
-                                </>
-                              )}
-                            </Button>
-                            <Button
-                              onClick={resetTool}
-                              variant="outline"
-                              className="text-red-600 border-red-200 hover:bg-red-50"
-                            >
-                              Remove
-                            </Button>
+                          <div className="flex flex-col md:flex-row gap-2">
+                            <div className="flex items-center space-x-2 mb-2 md:mb-0">
+                              <Checkbox
+                                id="auto-detect"
+                                checked={autoDetectBlankPages}
+                                onCheckedChange={(checked) => setAutoDetectBlankPages(Boolean(checked))}
+                              />
+                              <label htmlFor="auto-detect" className="text-sm text-gray-700">
+                                Auto-select detected blank pages
+                              </label>
+                            </div>
+                            <div className="space-x-2">
+                              <Button
+                                onClick={analyzePages}
+                                disabled={isAnalyzing}
+                                className="bg-blue-600 hover:bg-blue-700 text-white"
+                                data-testid="button-analyze"
+                              >
+                                {isAnalyzing ? (
+                                  <>
+                                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                                    Analyzing...
+                                  </>
+                                ) : (
+                                  <>
+                                    <Eye className="w-4 h-4 mr-2" />
+                                    Analyze Pages
+                                  </>
+                                )}
+                              </Button>
+                              <Button
+                                onClick={resetTool}
+                                variant="outline"
+                                className="text-red-600 border-red-200 hover:bg-red-50"
+                              >
+                                Remove
+                              </Button>
+                            </div>
                           </div>
                         </div>
                       </div>
