@@ -1165,7 +1165,7 @@ const InvestmentReturnCalculator = () => {
 
                     <div>
                       <h4 className="text-lg font-semibold text-gray-900 mb-2">Should I invest or pay off debt first?</h4>
-                      <p className="text-gray-600">This depends on interest rates and your risk tolerance. Generally, pay off high-interest debt (>8-10%) before investing, as guaranteed savings often outweigh potential investment gains. For lower interest debt, investing might be better. Use our <a href="/tools/debt-payoff-calculator" className="text-blue-600 hover:text-blue-700 underline">Debt Payoff Calculator</a> to compare scenarios and make informed decisions.</p>
+                      <p className="text-gray-600">This depends on interest rates and your risk tolerance. Generally, pay off high-interest debt (&gt;8-10%) before investing, as guaranteed savings often outweigh potential investment gains. For lower interest debt, investing might be better. Use our <a href="/tools/debt-payoff-calculator" className="text-blue-600 hover:text-blue-700 underline">Debt Payoff Calculator</a> to compare scenarios and make informed decisions.</p>
                     </div>
 
                     <div>
