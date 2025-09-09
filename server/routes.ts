@@ -4662,6 +4662,176 @@ For production use, this would include actual PDF content analysis, visual highl
     }
   });
 
+  // PDF Header/Footer Generator endpoint
+  app.post('/api/pdf-header-footer', upload.single('pdf'), async (req: MulterRequest, res) => {
+    try {
+      const {
+        headerText = '',
+        footerText = '',
+        headerAlignment = 'center',
+        footerAlignment = 'center',
+        fontSize = 10,
+        fontColor = '#000000',
+        includePageNumbers = false,
+        pageNumberPosition = 'footer',
+        pageNumberFormat = 'Page {current} of {total}',
+        marginTop = 20,
+        marginBottom = 20,
+        excludeFirstPage = false
+      } = req.body;
+
+      if (!req.file) {
+        return res.status(400).json({ error: 'No PDF file uploaded' });
+      }
+
+      if (req.file.mimetype !== 'application/pdf') {
+        await fs.unlink(req.file.path);
+        return res.status(400).json({ error: 'Invalid file type. Please upload a PDF file.' });
+      }
+
+      // Validate parameters
+      const validAlignments = ['left', 'center', 'right'];
+      if (!validAlignments.includes(headerAlignment) || !validAlignments.includes(footerAlignment)) {
+        return res.status(400).json({ error: 'Invalid alignment specified' });
+      }
+
+      const fontSizeNum = parseInt(fontSize);
+      const marginTopNum = parseInt(marginTop);
+      const marginBottomNum = parseInt(marginBottom);
+
+      if (isNaN(fontSizeNum) || fontSizeNum < 6 || fontSizeNum > 48) {
+        return res.status(400).json({ error: 'Font size must be between 6 and 48' });
+      }
+
+      // Validate color format
+      if (!/^#[0-9A-Fa-f]{6}$/.test(fontColor)) {
+        return res.status(400).json({ error: 'Invalid color format. Use hex format like #000000' });
+      }
+
+      const { PDFDocument, rgb, StandardFonts } = await import('pdf-lib');
+      const pdfBytes = await fs.readFile(req.file.path);
+      const pdfDoc = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
+      const pages = pdfDoc.getPages();
+      const totalPages = pages.length;
+      const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+
+      // Parse color from hex
+      const hexToRgb = (hex: string) => {
+        const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        return result ? {
+          r: parseInt(result[1], 16) / 255,
+          g: parseInt(result[2], 16) / 255,
+          b: parseInt(result[3], 16) / 255
+        } : { r: 0, g: 0, b: 0 };
+      };
+
+      const colorValues = hexToRgb(fontColor);
+      const textColor = rgb(colorValues.r, colorValues.g, colorValues.b);
+
+      // Helper function to get text alignment position
+      const getTextAlignment = (alignment: string, pageWidth: number, textWidth: number) => {
+        switch (alignment) {
+          case 'left': return 50;
+          case 'right': return pageWidth - textWidth - 50;
+          case 'center': 
+          default: return (pageWidth - textWidth) / 2;
+        }
+      };
+
+      // Helper function to format page numbers
+      const formatPageNumber = (current: number, total: number, format: string) => {
+        return format
+          .replace('{current}', current.toString())
+          .replace('{total}', total.toString());
+      };
+
+      pages.forEach((page, index) => {
+        const pageNumber = index + 1;
+        const { width, height } = page.getSize();
+        
+        // Skip first page if excluded
+        if (excludeFirstPage === 'true' && pageNumber === 1) return;
+
+        // Add Header
+        if (headerText.trim()) {
+          const textWidth = font.widthOfTextAtSize(headerText, fontSizeNum);
+          const headerX = getTextAlignment(headerAlignment, width, textWidth);
+          const headerY = height - marginTopNum;
+          
+          page.drawText(headerText, {
+            x: headerX,
+            y: headerY,
+            size: fontSizeNum,
+            font: font,
+            color: textColor,
+          });
+        }
+
+        // Add Footer
+        if (footerText.trim()) {
+          const textWidth = font.widthOfTextAtSize(footerText, fontSizeNum);
+          const footerX = getTextAlignment(footerAlignment, width, textWidth);
+          const footerY = marginBottomNum;
+          
+          page.drawText(footerText, {
+            x: footerX,
+            y: footerY,
+            size: fontSizeNum,
+            font: font,
+            color: textColor,
+          });
+        }
+
+        // Add Page Numbers
+        if (includePageNumbers === 'true') {
+          const pageNumberText = formatPageNumber(pageNumber, totalPages, pageNumberFormat);
+          const textWidth = font.widthOfTextAtSize(pageNumberText, fontSizeNum);
+          const isHeader = pageNumberPosition === 'header';
+          
+          // Position page numbers with proper spacing from header/footer text
+          let y: number;
+          if (isHeader) {
+            y = height - marginTopNum - (headerText.trim() ? fontSizeNum + 5 : 0);
+          } else {
+            y = marginBottomNum - (footerText.trim() ? fontSizeNum + 5 : 0);
+          }
+          
+          const x = (width - textWidth) / 2; // Always center page numbers
+          
+          page.drawText(pageNumberText, {
+            x: x,
+            y: y,
+            size: fontSizeNum,
+            font: font,
+            color: textColor,
+          });
+        }
+      });
+
+      const modifiedPdfBytes = await pdfDoc.save();
+
+      await fs.unlink(req.file.path);
+
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `attachment; filename="header-footer-${req.file.originalname}"`);
+      res.send(Buffer.from(modifiedPdfBytes));
+
+    } catch (error) {
+      console.error('PDF header/footer generation error:', error);
+
+      if (req.file?.path) {
+        try {
+          await fs.unlink(req.file.path);
+        } catch (cleanupError) {
+          console.error('Error cleaning up input file:', cleanupError);
+        }
+      }
+
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      res.status(500).json({ error: `PDF header/footer generation failed: ${errorMessage}` });
+    }
+  });
+
   // Extract PDF Pages endpoint
   app.post('/api/extract-pdf-pages', upload.single('pdf'), async (req: MulterRequest, res) => {
     try {
