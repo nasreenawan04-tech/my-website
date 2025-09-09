@@ -17,13 +17,13 @@ export const categories = {
 
 const toolsData = [
   // Finance Tools (30)
-  { id: 'loan-calculator', name: 'Loan Calculator', description: 'Calculate monthly payments and total interest for any loan', category: 'finance' as const, icon: 'fas fa-calculator', href: '/tools/loan-calculator' },
+  { id: 'loan-calculator', name: 'Loan Calculator', description: 'Calculate monthly payments and total interest for any loan', category: 'finance' as const, icon: 'fas fa-calculator', isPopular: true, href: '/tools/loan-calculator' },
   { id: 'mortgage-calculator', name: 'Mortgage Calculator', description: 'Calculate mortgage payments and compare rates', category: 'finance' as const, icon: 'fas fa-home', href: '/tools/mortgage-calculator' },
   { id: 'emi-calculator', name: 'EMI Calculator', description: 'Calculate Equated Monthly Installments for loans', category: 'finance' as const, icon: 'fas fa-chart-line', href: '/tools/emi-calculator' },
   { id: 'business-loan-calculator', name: 'Business Loan Calculator', description: 'Calculate business loan payments and metrics', category: 'finance' as const, icon: 'fas fa-building', href: '/tools/business-loan-calculator' },
   { id: 'compound-interest', name: 'Compound Interest Calculator', description: 'Calculate compound interest on investments', category: 'finance' as const, icon: 'fas fa-chart-area', href: '/tools/compound-interest' },
   { id: 'simple-interest', name: 'Simple Interest Calculator', description: 'Calculate simple interest on principal amount', category: 'finance' as const, icon: 'fas fa-percent', href: '/tools/simple-interest' },
-  { id: 'roi-calculator', name: 'ROI Calculator', description: 'Calculate return on investment percentage', category: 'finance' as const, icon: 'fas fa-trending-up', href: '/tools/roi-calculator' },
+  { id: 'roi-calculator', name: 'ROI Calculator', description: 'Calculate return on investment percentage', category: 'finance' as const, icon: 'fas fa-trending-up', isPopular: true, href: '/tools/roi-calculator' },
   { id: 'tax-calculator', name: 'Tax Calculator', description: 'Calculate income tax based on your salary', category: 'finance' as const, icon: 'fas fa-receipt', href: '/tools/tax-calculator' },
   { id: 'salary-hourly', name: 'Salary to Hourly Calculator', description: 'Convert annual salary to hourly wage', category: 'finance' as const, icon: 'fas fa-clock', href: '/tools/salary-to-hourly' },
   { id: 'tip-calculator', name: 'Tip Calculator', description: 'Calculate tip amount and split bills', category: 'finance' as const, icon: 'fas fa-hand-holding-usd', href: '/tools/tip-calculator' },
@@ -49,7 +49,7 @@ const toolsData = [
   // PDF Tools (10)
   { id: 'merge-pdf', name: 'Merge PDF', description: 'Combine multiple PDFs into one document', category: 'pdf' as const, icon: 'fas fa-object-group', isPopular: true, href: '/tools/merge-pdf' },
   { id: 'split-pdf', name: 'Split PDF', description: 'Split PDF into multiple documents', category: 'pdf' as const, icon: 'fas fa-cut', href: '/tools/split-pdf' },
-  { id: 'rotate-pdf', name: 'Rotate PDF', description: 'Rotate PDF pages to correct orientation', category: 'pdf' as const, icon: 'fas fa-undo', href: '/tools/rotate-pdf' },
+  { id: 'rotate-pdf', name: 'Rotate PDF', description: 'Rotate PDF pages to correct orientation', category: 'pdf' as const, icon: 'fas fa-undo', isPopular: true, href: '/tools/rotate-pdf' },
   { id: 'unlock-pdf', name: 'Unlock PDF', description: 'Remove password protection from PDFs', category: 'pdf' as const, icon: 'fas fa-unlock', href: '/tools/unlock-pdf' },
   { id: 'protect-pdf', name: 'Protect PDF with Password', description: 'Add password protection to PDF files', category: 'pdf' as const, icon: 'fas fa-lock', href: '/tools/protect-pdf' },
   { id: 'watermark-pdf', name: 'Add Watermark to PDF', description: 'Add text or image watermarks to PDF', category: 'pdf' as const, icon: 'fas fa-tint', href: '/tools/watermark-pdf' },
@@ -92,7 +92,7 @@ const toolsData = [
   { id: 'paragraph-counter', name: 'Paragraph Counter', description: 'Count paragraphs in documents', category: 'text' as const, icon: 'fas fa-paragraph', href: '/tools/paragraph-counter' },
   { id: 'case-converter', name: 'Case Converter (UPPER ⇄ lower)', description: 'Convert text between different cases', category: 'text' as const, icon: 'fas fa-text-height', href: '/tools/case-converter' },
   { id: 'password-generator', name: 'Random Password Generator', description: 'Generate secure random passwords', category: 'text' as const, icon: 'fas fa-key', href: '/tools/password-generator' },
-  { id: 'username-generator', name: 'Random Username Generator', description: 'Generate unique usernames', category: 'text' as const, icon: 'fas fa-user', href: '/tools/username-generator' },
+  { id: 'username-generator', name: 'Random Username Generator', description: 'Generate unique usernames', category: 'text' as const, icon: 'fas fa-user', isPopular: true, href: '/tools/username-generator' },
   { id: 'lorem-ipsum-generator', name: 'Lorem Ipsum Generator', description: 'Generate placeholder text for designs', category: 'text' as const, icon: 'fas fa-paragraph', href: '/tools/lorem-ipsum-generator' },
   { id: 'fake-address-generator', name: 'Fake Address Generator', description: 'Generate fake addresses for testing', category: 'text' as const, icon: 'fas fa-map-marker-alt', href: '/tools/fake-address-generator' },
   { id: 'fake-name-generator', name: 'Fake Name Generator', description: 'Generate fake names for testing', category: 'text' as const, icon: 'fas fa-id-card', href: '/tools/fake-name-generator' },
@@ -130,7 +130,7 @@ const toolsData = [
   { id: 'waist-height-ratio-calculator', name: 'Waist-to-Height Ratio Calculator', description: 'Calculate waist-to-height ratio', category: 'health' as const, icon: 'fas fa-ruler', href: '/tools/waist-to-height-ratio-calculator' },
   { id: 'whr-calculator', name: 'WHR Calculator (Waist-Hip Ratio)', description: 'Calculate waist-to-hip ratio', category: 'health' as const, icon: 'fas fa-tape', href: '/tools/whr-calculator' },
   { id: 'life-expectancy-calculator', name: 'Life Expectancy Calculator', description: 'Estimate life expectancy based on lifestyle', category: 'health' as const, icon: 'fas fa-hourglass', href: '/tools/life-expectancy-calculator' },
-  { id: 'cholesterol-risk-calculator', name: 'Cholesterol Risk Calculator', description: 'Assess cholesterol-related health risks', category: 'health' as const, icon: 'fas fa-vial', href: '/tools/cholesterol-risk-calculator' },
+  { id: 'cholesterol-risk-calculator', name: 'Cholesterol Risk Calculator', description: 'Assess cholesterol-related health risks', category: 'health' as const, icon: 'fas fa-vial', isPopular: true, href: '/tools/cholesterol-risk-calculator' },
   { id: 'running-pace-calculator', name: 'Running Pace Calculator', description: 'Calculate running pace and times', category: 'health' as const, icon: 'fas fa-running', href: '/tools/running-pace-calculator' },
   { id: 'cycling-speed-calculator', name: 'Cycling Speed Calculator', description: 'Calculate cycling speed and distance', category: 'health' as const, icon: 'fas fa-bicycle', href: '/tools/cycling-speed-calculator' },
   { id: 'swimming-calorie-calculator', name: 'Swimming Calorie Calculator', description: 'Calculate calories burned while swimming', category: 'health' as const, icon: 'fas fa-swimmer', href: '/tools/swimming-calorie-calculator' },
