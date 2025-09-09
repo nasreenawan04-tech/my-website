@@ -847,6 +847,430 @@ export default function LoanCalculator() {
                       early repayment.
                     </p>
                   </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">What credit score do I need for a good loan rate?</h3>
+                    <p className="text-gray-600">
+                      Generally, credit scores above 700 qualify for the best loan rates. Scores between 650-699 get fair rates, 
+                      while scores below 650 may face higher interest rates or require secured loans. Check your credit score 
+                      before applying to understand what rates you might qualify for.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">How do I calculate loan payments manually?</h3>
+                    <p className="text-gray-600">
+                      The loan payment formula is: M = P × [r(1+r)^n] / [(1+r)^n - 1], where M is monthly payment, 
+                      P is principal, r is monthly interest rate (annual rate ÷ 12), and n is number of payments. 
+                      Our calculator does this complex math instantly for accurate results.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">What's included in my total loan cost?</h3>
+                    <p className="text-gray-600">
+                      Total loan cost includes principal, interest, and any fees like origination fees, processing fees, 
+                      insurance premiums, and closing costs. Our calculator focuses on principal and interest, but always 
+                      ask lenders for a complete breakdown of all costs before signing.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">How often should I shop for loan rates?</h3>
+                    <p className="text-gray-600">
+                      Shop around every 2-3 years or when interest rates drop significantly. For new loans, compare at least 
+                      3-5 lenders within a 14-45 day window to minimize credit score impact. Use our calculator to compare 
+                      different offers and find the best deal.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Advanced Loan Strategies */}
+            <Card className="bg-white border-0 shadow-sm">
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Advanced Loan Strategies & Tips</h2>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Refinancing Strategies</h3>
+                    <div className="space-y-4">
+                      <div className="bg-blue-50 p-4 rounded-lg">
+                        <h4 className="font-semibold text-blue-900 mb-2">When to Refinance</h4>
+                        <ul className="text-blue-700 text-sm space-y-1">
+                          <li>• Interest rates drop by 0.5% or more</li>
+                          <li>• Your credit score improves significantly</li>
+                          <li>• You want to change loan terms</li>
+                          <li>• Switch from variable to fixed rate</li>
+                        </ul>
+                      </div>
+                      
+                      <div className="bg-green-50 p-4 rounded-lg">
+                        <h4 className="font-semibold text-green-900 mb-2">Cash-Out Refinancing</h4>
+                        <p className="text-green-700 text-sm">
+                          Borrow more than you owe and receive cash difference. Useful for home improvements, 
+                          debt consolidation, or major expenses. Calculate carefully as it increases total debt.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Payment Optimization</h3>
+                    <div className="space-y-4">
+                      <div className="bg-purple-50 p-4 rounded-lg">
+                        <h4 className="font-semibold text-purple-900 mb-2">Bi-weekly Payments</h4>
+                        <p className="text-purple-700 text-sm mb-2">
+                          Make 26 bi-weekly payments instead of 12 monthly payments yearly.
+                        </p>
+                        <ul className="text-purple-700 text-sm space-y-1">
+                          <li>• Reduces loan term by 4-6 years</li>
+                          <li>• Saves thousands in interest</li>
+                          <li>• Equivalent to 13 monthly payments per year</li>
+                        </ul>
+                      </div>
+                      
+                      <div className="bg-orange-50 p-4 rounded-lg">
+                        <h4 className="font-semibold text-orange-900 mb-2">Principal-Only Payments</h4>
+                        <p className="text-orange-700 text-sm">
+                          Extra payments applied directly to principal reduce interest charges and loan term. 
+                          Even $50-100 extra monthly can save thousands over loan lifetime.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Loan Shopping Guide */}
+            <Card className="bg-gradient-to-r from-indigo-50 to-blue-50 border-0 shadow-sm">
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Complete Loan Shopping Guide</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Step 1: Preparation</h3>
+                    <div className="space-y-3">
+                      <div className="flex items-start space-x-2">
+                        <div className="w-2 h-2 bg-indigo-500 rounded-full mt-2"></div>
+                        <div>
+                          <h4 className="font-medium text-gray-900">Check Credit Score</h4>
+                          <p className="text-sm text-gray-600">Get free annual credit reports from all three bureaus</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start space-x-2">
+                        <div className="w-2 h-2 bg-indigo-500 rounded-full mt-2"></div>
+                        <div>
+                          <h4 className="font-medium text-gray-900">Calculate DTI Ratio</h4>
+                          <p className="text-sm text-gray-600">Debt-to-income should be below 36% for best rates</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start space-x-2">
+                        <div className="w-2 h-2 bg-indigo-500 rounded-full mt-2"></div>
+                        <div>
+                          <h4 className="font-medium text-gray-900">Gather Documents</h4>
+                          <p className="text-sm text-gray-600">Income statements, tax returns, bank statements</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Step 2: Shop & Compare</h3>
+                    <div className="space-y-3">
+                      <div className="flex items-start space-x-2">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                        <div>
+                          <h4 className="font-medium text-gray-900">Get Multiple Quotes</h4>
+                          <p className="text-sm text-gray-600">Compare at least 3-5 lenders within 45 days</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start space-x-2">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                        <div>
+                          <h4 className="font-medium text-gray-900">Compare APR, Not Just Rate</h4>
+                          <p className="text-sm text-gray-600">APR includes all fees for true cost comparison</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start space-x-2">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                        <div>
+                          <h4 className="font-medium text-gray-900">Use Our Calculator</h4>
+                          <p className="text-sm text-gray-600">Model different scenarios and payment options</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Step 3: Final Decision</h3>
+                    <div className="space-y-3">
+                      <div className="flex items-start space-x-2">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                        <div>
+                          <h4 className="font-medium text-gray-900">Read All Terms</h4>
+                          <p className="text-sm text-gray-600">Check for prepayment penalties and hidden fees</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start space-x-2">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                        <div>
+                          <h4 className="font-medium text-gray-900">Negotiate Terms</h4>
+                          <p className="text-sm text-gray-600">Use competing offers to negotiate better rates</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start space-x-2">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                        <div>
+                          <h4 className="font-medium text-gray-900">Lock Your Rate</h4>
+                          <p className="text-sm text-gray-600">Secure rate before it changes during processing</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Loan Terminology Guide */}
+            <Card className="bg-white border-0 shadow-sm">
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Essential Loan Terminology</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-semibold text-gray-900 border-b border-gray-200 pb-2">Basic Terms</h3>
+                    <div className="space-y-3">
+                      <div>
+                        <h4 className="font-medium text-gray-900">Principal</h4>
+                        <p className="text-sm text-gray-600">The original loan amount borrowed</p>
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-gray-900">Interest Rate</h4>
+                        <p className="text-sm text-gray-600">Annual cost of borrowing as a percentage</p>
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-gray-900">Term</h4>
+                        <p className="text-sm text-gray-600">Length of time to repay the loan</p>
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-gray-900">Amortization</h4>
+                        <p className="text-sm text-gray-600">Gradual loan repayment through scheduled payments</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-semibold text-gray-900 border-b border-gray-200 pb-2">Rate Types</h3>
+                    <div className="space-y-3">
+                      <div>
+                        <h4 className="font-medium text-gray-900">Fixed Rate</h4>
+                        <p className="text-sm text-gray-600">Interest rate remains constant throughout loan term</p>
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-gray-900">Variable Rate</h4>
+                        <p className="text-sm text-gray-600">Interest rate can change based on market conditions</p>
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-gray-900">APR</h4>
+                        <p className="text-sm text-gray-600">Annual percentage rate including all fees and costs</p>
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-gray-900">Prime Rate</h4>
+                        <p className="text-sm text-gray-600">Base rate banks charge their best customers</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-semibold text-gray-900 border-b border-gray-200 pb-2">Fees & Costs</h3>
+                    <div className="space-y-3">
+                      <div>
+                        <h4 className="font-medium text-gray-900">Origination Fee</h4>
+                        <p className="text-sm text-gray-600">Upfront fee for processing the loan application</p>
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-gray-900">Prepayment Penalty</h4>
+                        <p className="text-sm text-gray-600">Fee for paying off loan early</p>
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-gray-900">Late Fee</h4>
+                        <p className="text-sm text-gray-600">Charge for missing payment deadlines</p>
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-gray-900">Closing Costs</h4>
+                        <p className="text-sm text-gray-600">Final fees to complete loan process</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Loan Alternatives */}
+            <Card className="bg-white border-0 shadow-sm">
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Alternatives to Traditional Loans</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Credit Alternatives</h3>
+                    <div className="space-y-4">
+                      <div className="border border-gray-200 rounded-lg p-4">
+                        <h4 className="font-semibold text-gray-900 mb-2">Credit Cards</h4>
+                        <p className="text-gray-600 text-sm mb-2">
+                          Revolving credit for smaller purchases and short-term needs.
+                        </p>
+                        <div className="text-xs text-gray-500">
+                          <div>• Higher interest rates (15-25% APR)</div>
+                          <div>• Flexible repayment</div>
+                          <div>• Good for building credit</div>
+                        </div>
+                      </div>
+
+                      <div className="border border-gray-200 rounded-lg p-4">
+                        <h4 className="font-semibold text-gray-900 mb-2">Home Equity Line of Credit (HELOC)</h4>
+                        <p className="text-gray-600 text-sm mb-2">
+                          Secured line of credit using home equity as collateral.
+                        </p>
+                        <div className="text-xs text-gray-500">
+                          <div>• Lower interest rates (4-8% APR)</div>
+                          <div>• Tax-deductible interest (in some cases)</div>
+                          <div>• Variable rate risk</div>
+                        </div>
+                      </div>
+
+                      <div className="border border-gray-200 rounded-lg p-4">
+                        <h4 className="font-semibold text-gray-900 mb-2">Personal Line of Credit</h4>
+                        <p className="text-gray-600 text-sm mb-2">
+                          Unsecured revolving credit for ongoing expenses.
+                        </p>
+                        <div className="text-xs text-gray-500">
+                          <div>• Only pay interest on amount used</div>
+                          <div>• Flexible access to funds</div>
+                          <div>• Higher rates than secured loans</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Modern Financing Options</h3>
+                    <div className="space-y-4">
+                      <div className="border border-gray-200 rounded-lg p-4">
+                        <h4 className="font-semibold text-gray-900 mb-2">Peer-to-Peer (P2P) Lending</h4>
+                        <p className="text-gray-600 text-sm mb-2">
+                          Borrow directly from individual investors through online platforms.
+                        </p>
+                        <div className="text-xs text-gray-500">
+                          <div>• Competitive rates for good credit</div>
+                          <div>• Faster approval process</div>
+                          <div>• May have origination fees</div>
+                        </div>
+                      </div>
+
+                      <div className="border border-gray-200 rounded-lg p-4">
+                        <h4 className="font-semibold text-gray-900 mb-2">Buy Now, Pay Later (BNPL)</h4>
+                        <p className="text-gray-600 text-sm mb-2">
+                          Split purchases into interest-free installments over weeks or months.
+                        </p>
+                        <div className="text-xs text-gray-500">
+                          <div>• No interest if paid on time</div>
+                          <div>• Good for small purchases</div>
+                          <div>• Can impact credit if missed</div>
+                        </div>
+                      </div>
+
+                      <div className="border border-gray-200 rounded-lg p-4">
+                        <h4 className="font-semibold text-gray-900 mb-2">401(k) Loans</h4>
+                        <p className="text-gray-600 text-sm mb-2">
+                          Borrow against your retirement savings with specific repayment terms.
+                        </p>
+                        <div className="text-xs text-gray-500">
+                          <div>• Low interest rates</div>
+                          <div>• No credit check required</div>
+                          <div>• Risk to retirement savings</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Economic Impact Section */}
+            <Card className="bg-gradient-to-r from-gray-50 to-blue-50 border-0 shadow-sm">
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Understanding Economic Factors</h2>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Interest Rate Environment</h3>
+                    <div className="bg-white p-6 rounded-lg shadow-sm">
+                      <div className="space-y-4">
+                        <div>
+                          <h4 className="font-semibold text-gray-900 mb-2">Federal Reserve Impact</h4>
+                          <p className="text-gray-600 text-sm">
+                            The Federal Reserve's federal funds rate directly influences loan interest rates. 
+                            When the Fed raises rates, loan rates typically increase, and vice versa.
+                          </p>
+                        </div>
+                        
+                        <div>
+                          <h4 className="font-semibold text-gray-900 mb-2">Economic Indicators</h4>
+                          <ul className="text-gray-600 text-sm space-y-1">
+                            <li>• Inflation rates affect long-term loan pricing</li>
+                            <li>• Unemployment levels influence lending standards</li>
+                            <li>• GDP growth impacts overall credit availability</li>
+                            <li>• Bond yields serve as benchmarks for loan rates</li>
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h4 className="font-semibold text-gray-900 mb-2">Market Conditions</h4>
+                          <p className="text-gray-600 text-sm">
+                            Economic uncertainty can lead to tighter lending standards and higher rates, 
+                            while stable economic growth typically results in more competitive loan terms.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Timing Your Loan Application</h3>
+                    <div className="bg-white p-6 rounded-lg shadow-sm">
+                      <div className="space-y-4">
+                        <div>
+                          <h4 className="font-semibold text-gray-900 mb-2">Best Times to Apply</h4>
+                          <ul className="text-gray-600 text-sm space-y-1">
+                            <li>• When interest rates are trending downward</li>
+                            <li>• After improving your credit score</li>
+                            <li>• During promotional periods from lenders</li>
+                            <li>• When you have stable employment</li>
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h4 className="font-semibold text-gray-900 mb-2">Rate Lock Strategies</h4>
+                          <p className="text-gray-600 text-sm mb-2">
+                            Secure favorable rates when found, especially if rates are rising:
+                          </p>
+                          <ul className="text-gray-600 text-sm space-y-1">
+                            <li>• Lock rates for 30-60 days during processing</li>
+                            <li>• Some lenders offer rate lock extensions</li>
+                            <li>• Consider float-down options if available</li>
+                          </ul>
+                        </div>
+
+                        <div>
+                          <h4 className="font-semibold text-gray-900 mb-2">Seasonal Trends</h4>
+                          <p className="text-gray-600 text-sm">
+                            Certain loan types may have seasonal patterns. Auto loans often have promotions 
+                            at model year-end, while personal loans may have competitive rates during 
+                            new year financial planning periods.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </CardContent>
             </Card>
