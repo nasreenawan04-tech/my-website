@@ -935,41 +935,524 @@ const AddPageNumbersTool = () => {
                   </div>
                 </div>
 
+                {/* Industry Use Cases */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Professional Industries Using PDF Page Numbers</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div>
+                      <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-4">
+                        <i className="fas fa-graduation-cap text-blue-600 text-2xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Education & Academia</h3>
+                      <ul className="text-gray-600 text-sm space-y-2">
+                        <li>• Research papers and dissertations</li>
+                        <li>• Course syllabi and reading materials</li>
+                        <li>• Student handbooks and guides</li>
+                        <li>• Academic presentation materials</li>
+                        <li>• Grading rubrics and assessment forms</li>
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-4">
+                        <i className="fas fa-briefcase text-green-600 text-2xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Business & Corporate</h3>
+                      <ul className="text-gray-600 text-sm space-y-2">
+                        <li>• Annual reports and financial statements</li>
+                        <li>• Employee handbooks and policies</li>
+                        <li>• Project proposals and contracts</li>
+                        <li>• Training manuals and procedures</li>
+                        <li>• Board meeting minutes and agendas</li>
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mb-4">
+                        <i className="fas fa-balance-scale text-purple-600 text-2xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Legal & Healthcare</h3>
+                      <ul className="text-gray-600 text-sm space-y-2">
+                        <li>• Legal briefs and court documents</li>
+                        <li>• Medical records and patient files</li>
+                        <li>• Compliance documentation</li>
+                        <li>• Insurance claim forms</li>
+                        <li>• Regulatory submission documents</li>
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <div className="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center mb-4">
+                        <i className="fas fa-chart-line text-orange-600 text-2xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Marketing & Publishing</h3>
+                      <ul className="text-gray-600 text-sm space-y-2">
+                        <li>• Product catalogs and brochures</li>
+                        <li>• Marketing campaign reports</li>
+                        <li>• Brand guidelines and style guides</li>
+                        <li>• Press kits and media materials</li>
+                        <li>• Event programs and schedules</li>
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <div className="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mb-4">
+                        <i className="fas fa-cogs text-red-600 text-2xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Engineering & Technical</h3>
+                      <ul className="text-gray-600 text-sm space-y-2">
+                        <li>• Technical specifications</li>
+                        <li>• User manuals and documentation</li>
+                        <li>• Quality assurance reports</li>
+                        <li>• Engineering drawings and blueprints</li>
+                        <li>• Safety protocols and procedures</li>
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <div className="w-16 h-16 bg-indigo-100 rounded-2xl flex items-center justify-center mb-4">
+                        <i className="fas fa-users text-indigo-600 text-2xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Non-Profit & Government</h3>
+                      <ul className="text-gray-600 text-sm space-y-2">
+                        <li>• Grant applications and reports</li>
+                        <li>• Policy documents and white papers</li>
+                        <li>• Community outreach materials</li>
+                        <li>• Budget proposals and financial plans</li>
+                        <li>• Public information documents</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* SEO Benefits Section */}
+                <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Why Properly Numbered PDFs Improve Your Professional Image</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Document Credibility Benefits</h3>
+                      <div className="space-y-4">
+                        <div className="flex items-start gap-3">
+                          <div className="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i className="fas fa-check text-emerald-600"></i>
+                          </div>
+                          <div>
+                            <h4 className="font-medium text-gray-900">Enhanced Professional Appearance</h4>
+                            <p className="text-gray-600 text-sm">Page numbers signal attention to detail and professional document preparation standards.</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-3">
+                          <div className="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i className="fas fa-search text-emerald-600"></i>
+                          </div>
+                          <div>
+                            <h4 className="font-medium text-gray-900">Improved Document Navigation</h4>
+                            <p className="text-gray-600 text-sm">Readers can quickly reference specific sections and maintain their place in lengthy documents.</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-3">
+                          <div className="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i className="fas fa-comments text-emerald-600"></i>
+                          </div>
+                          <div>
+                            <h4 className="font-medium text-gray-900">Better Collaboration</h4>
+                            <p className="text-gray-600 text-sm">Team members can easily reference specific pages during discussions and reviews.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Compliance & Standards</h3>
+                      <div className="space-y-4">
+                        <div className="flex items-start gap-3">
+                          <div className="w-8 h-8 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i className="fas fa-clipboard-check text-teal-600"></i>
+                          </div>
+                          <div>
+                            <h4 className="font-medium text-gray-900">Academic Requirements</h4>
+                            <p className="text-gray-600 text-sm">Meet university and journal formatting standards for academic submissions and publications.</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-3">
+                          <div className="w-8 h-8 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i className="fas fa-gavel text-teal-600"></i>
+                          </div>
+                          <div>
+                            <h4 className="font-medium text-gray-900">Legal Documentation</h4>
+                            <p className="text-gray-600 text-sm">Ensure compliance with legal document formatting requirements and court submission standards.</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-3">
+                          <div className="w-8 h-8 bg-teal-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i className="fas fa-building text-teal-600"></i>
+                          </div>
+                          <div>
+                            <h4 className="font-medium text-gray-900">Corporate Standards</h4>
+                            <p className="text-gray-600 text-sm">Maintain consistency with company document formatting guidelines and brand standards.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Advanced Customization Guide */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Advanced Page Numbering Techniques</h2>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Position Strategy Guide</h3>
+                      <div className="space-y-4">
+                        <div className="border border-gray-200 rounded-lg p-4">
+                          <h4 className="font-medium text-gray-900 mb-2">Bottom Center (Recommended)</h4>
+                          <p className="text-gray-600 text-sm mb-2">Most traditional and professional choice for academic papers, reports, and formal documents.</p>
+                          <div className="text-xs text-gray-500">
+                            <strong>Best for:</strong> Academic papers, business reports, legal documents
+                          </div>
+                        </div>
+                        
+                        <div className="border border-gray-200 rounded-lg p-4">
+                          <h4 className="font-medium text-gray-900 mb-2">Top Right</h4>
+                          <p className="text-gray-600 text-sm mb-2">Modern choice for technical documentation and user manuals where headers are prominent.</p>
+                          <div className="text-xs text-gray-500">
+                            <strong>Best for:</strong> Technical manuals, guides, instruction booklets
+                          </div>
+                        </div>
+                        
+                        <div className="border border-gray-200 rounded-lg p-4">
+                          <h4 className="font-medium text-gray-900 mb-2">Bottom Right</h4>
+                          <p className="text-gray-600 text-sm mb-2">Clean option for documents with left-side binding or when avoiding footer content.</p>
+                          <div className="text-xs text-gray-500">
+                            <strong>Best for:</strong> Bound documents, presentations, portfolios
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Styling Best Practices</h3>
+                      <div className="space-y-4">
+                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                          <h4 className="font-medium text-blue-900 mb-2">Font Size Guidelines</h4>
+                          <ul className="text-blue-800 text-sm space-y-1">
+                            <li>• <strong>Academic papers:</strong> 10-11pt for subtlety</li>
+                            <li>• <strong>Business documents:</strong> 11-12pt for readability</li>
+                            <li>• <strong>Presentations:</strong> 12-14pt for visibility</li>
+                            <li>• <strong>Large format:</strong> 14-16pt for clarity</li>
+                          </ul>
+                        </div>
+                        
+                        <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                          <h4 className="font-medium text-green-900 mb-2">Color Selection Tips</h4>
+                          <ul className="text-green-800 text-sm space-y-1">
+                            <li>• <strong>Black (#000000):</strong> Classic, professional, always readable</li>
+                            <li>• <strong>Dark Gray (#333333):</strong> Softer alternative to black</li>
+                            <li>• <strong>Brand Colors:</strong> Match company branding when appropriate</li>
+                            <li>• <strong>Avoid:</strong> Light colors, neon, or low contrast combinations</li>
+                          </ul>
+                        </div>
+                        
+                        <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                          <h4 className="font-medium text-purple-900 mb-2">Margin Optimization</h4>
+                          <ul className="text-purple-800 text-sm space-y-1">
+                            <li>• <strong>Standard:</strong> 50px horizontal, 30px vertical</li>
+                            <li>• <strong>Tight layout:</strong> 30px horizontal, 20px vertical</li>
+                            <li>• <strong>Spacious:</strong> 70px horizontal, 50px vertical</li>
+                            <li>• <strong>Test:</strong> Preview to ensure no content overlap</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Troubleshooting Guide */}
+                <div className="bg-yellow-50 rounded-2xl p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Common Issues & Solutions</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Problem: Numbers Overlap Content</h3>
+                      <div className="space-y-3">
+                        <div className="flex items-start gap-3">
+                          <div className="w-6 h-6 bg-yellow-200 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span className="text-yellow-700 text-xs">1</span>
+                          </div>
+                          <p className="text-gray-700 text-sm">Increase margin values to push numbers away from content</p>
+                        </div>
+                        <div className="flex items-start gap-3">
+                          <div className="w-6 h-6 bg-yellow-200 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span className="text-yellow-700 text-xs">2</span>
+                          </div>
+                          <p className="text-gray-700 text-sm">Try different position (e.g., switch from bottom-left to top-right)</p>
+                        </div>
+                        <div className="flex items-start gap-3">
+                          <div className="w-6 h-6 bg-yellow-200 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span className="text-yellow-700 text-xs">3</span>
+                          </div>
+                          <p className="text-gray-700 text-sm">Use <a href="/tools/pdf-margin-adjuster" className="text-yellow-700 underline">PDF Margin Adjuster</a> to create more space first</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Problem: Numbers Too Small/Large</h3>
+                      <div className="space-y-3">
+                        <div className="flex items-start gap-3">
+                          <div className="w-6 h-6 bg-yellow-200 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span className="text-yellow-700 text-xs">1</span>
+                          </div>
+                          <p className="text-gray-700 text-sm">Adjust font size: 10-12pt for most documents</p>
+                        </div>
+                        <div className="flex items-start gap-3">
+                          <div className="w-6 h-6 bg-yellow-200 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span className="text-yellow-700 text-xs">2</span>
+                          </div>
+                          <p className="text-gray-700 text-sm">Consider viewing distance: larger for presentations, smaller for print</p>
+                        </div>
+                        <div className="flex items-start gap-3">
+                          <div className="w-6 h-6 bg-yellow-200 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span className="text-yellow-700 text-xs">3</span>
+                          </div>
+                          <p className="text-gray-700 text-sm">Test with different devices to ensure readability</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Problem: Encrypted PDF Error</h3>
+                      <div className="space-y-3">
+                        <div className="flex items-start gap-3">
+                          <div className="w-6 h-6 bg-yellow-200 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span className="text-yellow-700 text-xs">1</span>
+                          </div>
+                          <p className="text-gray-700 text-sm">Use <a href="/tools/unlock-pdf-tool" className="text-yellow-700 underline">Unlock PDF tool</a> to remove password protection first</p>
+                        </div>
+                        <div className="flex items-start gap-3">
+                          <div className="w-6 h-6 bg-yellow-200 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span className="text-yellow-700 text-xs">2</span>
+                          </div>
+                          <p className="text-gray-700 text-sm">Contact document owner for unprotected version</p>
+                        </div>
+                        <div className="flex items-start gap-3">
+                          <div className="w-6 h-6 bg-yellow-200 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span className="text-yellow-700 text-xs">3</span>
+                          </div>
+                          <p className="text-gray-700 text-sm">After adding numbers, re-protect with <a href="/tools/protect-pdf-tool" className="text-yellow-700 underline">Protect PDF tool</a></p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Problem: Inconsistent Numbering</h3>
+                      <div className="space-y-3">
+                        <div className="flex items-start gap-3">
+                          <div className="w-6 h-6 bg-yellow-200 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span className="text-yellow-700 text-xs">1</span>
+                          </div>
+                          <p className="text-gray-700 text-sm">Use <a href="/tools/organize-pdf-pages-tool" className="text-yellow-700 underline">Organize PDF Pages</a> to arrange pages first</p>
+                        </div>
+                        <div className="flex items-start gap-3">
+                          <div className="w-6 h-6 bg-yellow-200 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span className="text-yellow-700 text-xs">2</span>
+                          </div>
+                          <p className="text-gray-700 text-sm">Set appropriate starting number for document sections</p>
+                        </div>
+                        <div className="flex items-start gap-3">
+                          <div className="w-6 h-6 bg-yellow-200 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span className="text-yellow-700 text-xs">3</span>
+                          </div>
+                          <p className="text-gray-700 text-sm">Consider skipping cover pages and table of contents</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                 {/* SEO Content - Related Tools */}
                 <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Related PDF Tools</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Complete PDF Editing Workflow</h2>
                   <p className="text-gray-600 mb-6">
-                    Enhance your PDF workflow with our comprehensive suite of PDF editing and manipulation tools.
+                    Streamline your PDF document preparation with our comprehensive suite of professional PDF tools. Create, edit, and optimize your documents with ease.
                   </p>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="bg-white rounded-lg p-4 shadow-sm">
-                      <h3 className="font-semibold text-gray-900 mb-2">PDF Header & Footer Generator</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                      <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-object-group text-purple-600 text-xl"></i>
+                      </div>
+                      <h3 className="font-semibold text-gray-900 mb-2">Merge PDF Documents</h3>
                       <p className="text-gray-600 text-sm mb-3">
-                        Add professional headers and footers with custom text, dates, and page numbers.
+                        Combine multiple PDF files into one document before adding consistent page numbering throughout.
                       </p>
-                      <a href="/tools/pdf-header-footer-generator" className="text-purple-600 hover:text-purple-700 text-sm font-medium">
-                        Try Header & Footer Tool →
+                      <a href="/tools/merge-pdf-tool" className="text-purple-600 hover:text-purple-700 text-sm font-medium">
+                        Try PDF Merger →
                       </a>
                     </div>
                     
-                    <div className="bg-white rounded-lg p-4 shadow-sm">
-                      <h3 className="font-semibold text-gray-900 mb-2">PDF Margin Adjuster</h3>
+                    <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                      <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-cut text-blue-600 text-xl"></i>
+                      </div>
+                      <h3 className="font-semibold text-gray-900 mb-2">Split PDF Pages</h3>
                       <p className="text-gray-600 text-sm mb-3">
-                        Adjust margins and spacing to create room for page numbers and improve layout.
+                        Separate large documents into sections, then add appropriate page numbers to each section.
                       </p>
-                      <a href="/tools/pdf-margin-adjuster" className="text-purple-600 hover:text-purple-700 text-sm font-medium">
+                      <a href="/tools/split-pdf-tool" className="text-blue-600 hover:text-blue-700 text-sm font-medium">
+                        Try PDF Splitter →
+                      </a>
+                    </div>
+                    
+                    <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                      <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-undo text-green-600 text-xl"></i>
+                      </div>
+                      <h3 className="font-semibold text-gray-900 mb-2">Rotate PDF Pages</h3>
+                      <p className="text-gray-600 text-sm mb-3">
+                        Correct page orientation before adding numbers to ensure proper positioning and readability.
+                      </p>
+                      <a href="/tools/rotate-pdf-tool" className="text-green-600 hover:text-green-700 text-sm font-medium">
+                        Try PDF Rotator →
+                      </a>
+                    </div>
+                    
+                    <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                      <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-sort text-indigo-600 text-xl"></i>
+                      </div>
+                      <h3 className="font-semibold text-gray-900 mb-2">Organize PDF Pages</h3>
+                      <p className="text-gray-600 text-sm mb-3">
+                        Reorder, remove, or duplicate pages to create the perfect document structure before numbering.
+                      </p>
+                      <a href="/tools/organize-pdf-pages-tool" className="text-indigo-600 hover:text-indigo-700 text-sm font-medium">
+                        Try Page Organizer →
+                      </a>
+                    </div>
+                    
+                    <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                      <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-unlock text-orange-600 text-xl"></i>
+                      </div>
+                      <h3 className="font-semibold text-gray-900 mb-2">Unlock Protected PDFs</h3>
+                      <p className="text-gray-600 text-sm mb-3">
+                        Remove password protection from encrypted PDFs to enable page numbering and other modifications.
+                      </p>
+                      <a href="/tools/unlock-pdf-tool" className="text-orange-600 hover:text-orange-700 text-sm font-medium">
+                        Try PDF Unlocker →
+                      </a>
+                    </div>
+                    
+                    <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                      <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-lock text-red-600 text-xl"></i>
+                      </div>
+                      <h3 className="font-semibold text-gray-900 mb-2">Protect With Password</h3>
+                      <p className="text-gray-600 text-sm mb-3">
+                        Secure your numbered documents with password protection to prevent unauthorized access or editing.
+                      </p>
+                      <a href="/tools/protect-pdf-tool" className="text-red-600 hover:text-red-700 text-sm font-medium">
+                        Try PDF Protector →
+                      </a>
+                    </div>
+                    
+                    <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                      <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-tint text-teal-600 text-xl"></i>
+                      </div>
+                      <h3 className="font-semibold text-gray-900 mb-2">Add Watermarks</h3>
+                      <p className="text-gray-600 text-sm mb-3">
+                        Brand your numbered documents with custom watermarks for additional professional appearance.
+                      </p>
+                      <a href="/tools/watermark-pdf-tool" className="text-teal-600 hover:text-teal-700 text-sm font-medium">
+                        Try PDF Watermarker →
+                      </a>
+                    </div>
+                    
+                    <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                      <div className="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-crop text-pink-600 text-xl"></i>
+                      </div>
+                      <h3 className="font-semibold text-gray-900 mb-2">Adjust PDF Margins</h3>
+                      <p className="text-gray-600 text-sm mb-3">
+                        Create optimal spacing around your content to ensure page numbers fit perfectly without overlap.
+                      </p>
+                      <a href="/tools/pdf-margin-adjuster" className="text-pink-600 hover:text-pink-700 text-sm font-medium">
                         Try Margin Adjuster →
                       </a>
                     </div>
                     
-                    <div className="bg-white rounded-lg p-4 shadow-sm">
-                      <h3 className="font-semibold text-gray-900 mb-2">Organize PDF Pages</h3>
+                    <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                      <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-heading text-yellow-600 text-xl"></i>
+                      </div>
+                      <h3 className="font-semibold text-gray-900 mb-2">Add Headers & Footers</h3>
                       <p className="text-gray-600 text-sm mb-3">
-                        Reorder, remove, or duplicate pages before adding numbers for perfect organization.
+                        Enhance numbered documents with professional headers and footers containing titles, dates, and more.
                       </p>
-                      <a href="/tools/organize-pdf-pages" className="text-purple-600 hover:text-purple-700 text-sm font-medium">
-                        Try Page Organizer →
+                      <a href="/tools/pdf-header-footer-generator" className="text-yellow-600 hover:text-yellow-700 text-sm font-medium">
+                        Try Header/Footer Tool →
                       </a>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Workflow Integration Guide */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Professional PDF Workflow Integration</h2>
+                  <p className="text-gray-600 mb-8">
+                    Follow these step-by-step workflows to create perfectly formatted, professional PDF documents for any industry or use case.
+                  </p>
+                  
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div className="border border-gray-200 rounded-xl p-6">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">📚 Academic Document Workflow</h3>
+                      <div className="space-y-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-semibold text-sm">1</div>
+                          <span className="text-gray-700">Collect and <a href="/tools/merge-pdf-tool" className="text-blue-600 underline">merge all document sections</a></span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-semibold text-sm">2</div>
+                          <span className="text-gray-700"><a href="/tools/organize-pdf-pages-tool" className="text-blue-600 underline">Organize pages</a> in proper order</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-semibold text-sm">3</div>
+                          <span className="text-gray-700">Add page numbers (skip cover page)</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-semibold text-sm">4</div>
+                          <span className="text-gray-700"><a href="/tools/pdf-header-footer-generator" className="text-blue-600 underline">Add headers/footers</a> with title and date</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-semibold text-sm">5</div>
+                          <span className="text-gray-700">Final review and submission</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="border border-gray-200 rounded-xl p-6">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">💼 Business Report Workflow</h3>
+                      <div className="space-y-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-semibold text-sm">1</div>
+                          <span className="text-gray-700">Prepare content sections and <a href="/tools/merge-pdf-tool" className="text-green-600 underline">merge into one PDF</a></span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-semibold text-sm">2</div>
+                          <span className="text-gray-700">Add professional page numbering</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-semibold text-sm">3</div>
+                          <span className="text-gray-700"><a href="/tools/watermark-pdf-tool" className="text-green-600 underline">Apply company watermark</a> for branding</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-semibold text-sm">4</div>
+                          <span className="text-gray-700"><a href="/tools/protect-pdf-tool" className="text-green-600 underline">Protect with password</a> if confidential</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-semibold text-sm">5</div>
+                          <span className="text-gray-700">Distribute to stakeholders</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
