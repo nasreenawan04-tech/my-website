@@ -608,6 +608,413 @@ const OrganizePDFPagesTool = () => {
                         a new PDF to start fresh at any time.
                       </p>
                     </div>
+                    
+                    <div>
+                      <h3 className="font-semibold text-gray-900 mb-2">Is the PDF page organizer tool free to use?</h3>
+                      <p className="text-gray-600 text-sm">
+                        Yes, our PDF page organizer is completely free to use with no registration required. You can 
+                        organize unlimited PDFs without any restrictions or watermarks.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="font-semibold text-gray-900 mb-2">Does the tool work with password-protected PDFs?</h3>
+                      <p className="text-gray-600 text-sm">
+                        Currently, the tool works best with unprotected PDFs. If your PDF is password-protected, 
+                        please remove the password protection first using our PDF unlock tool.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="font-semibold text-gray-900 mb-2">Can I reorganize PDFs on mobile devices?</h3>
+                      <p className="text-gray-600 text-sm">
+                        Yes! Our PDF page organizer is fully responsive and works on all devices including smartphones 
+                        and tablets. The drag-and-drop functionality adapts to touch interfaces.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Benefits and Use Cases */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Benefits of Using a PDF Page Organizer</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Professional Document Management</h3>
+                      <ul className="space-y-2 text-gray-600 text-sm">
+                        <li className="flex items-start gap-2">
+                          <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></span>
+                          Create presentation-ready documents with perfect page order
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></span>
+                          Remove unwanted pages to streamline content
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></span>
+                          Maintain document quality and formatting integrity
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></span>
+                          Save time on manual document editing
+                        </li>
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Versatile Applications</h3>
+                      <ul className="space-y-2 text-gray-600 text-sm">
+                        <li className="flex items-start gap-2">
+                          <span className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></span>
+                          Academic research and thesis organization
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></span>
+                          Business report restructuring and compilation
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></span>
+                          Legal document preparation and organization
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></span>
+                          Educational material curation and arrangement
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Common Use Cases */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Common PDF Page Organization Scenarios</h2>
+                  <div className="space-y-6">
+                    <div className="border-l-4 border-blue-500 pl-6">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Research Paper Compilation</h3>
+                      <p className="text-gray-600 text-sm mb-2">
+                        Researchers often need to reorganize sections of their papers, move appendices, or reorder chapters 
+                        for different submission requirements.
+                      </p>
+                      <p className="text-blue-600 text-sm font-medium">
+                        Solution: Use our drag-and-drop interface to easily reposition sections and create submission-ready documents.
+                      </p>
+                    </div>
+                    
+                    <div className="border-l-4 border-green-500 pl-6">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Business Proposal Organization</h3>
+                      <p className="text-gray-600 text-sm mb-2">
+                        Business professionals need to customize proposals by reordering sections based on client preferences 
+                        or removing irrelevant pages.
+                      </p>
+                      <p className="text-green-600 text-sm font-medium">
+                        Solution: Quickly reorganize proposal sections and remove unnecessary content to create targeted documents.
+                      </p>
+                    </div>
+                    
+                    <div className="border-l-4 border-purple-500 pl-6">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Legal Document Preparation</h3>
+                      <p className="text-gray-600 text-sm mb-2">
+                        Legal professionals must organize case documents, exhibits, and supporting materials in specific orders 
+                        required by courts or clients.
+                      </p>
+                      <p className="text-purple-600 text-sm font-medium">
+                        Solution: Precisely arrange legal documents with our intuitive page organization system.
+                      </p>
+                    </div>
+                    
+                    <div className="border-l-4 border-orange-500 pl-6">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Educational Material Curation</h3>
+                      <p className="text-gray-600 text-sm mb-2">
+                        Educators need to create custom study materials by selecting and organizing specific pages from 
+                        multiple sources or textbooks.
+                      </p>
+                      <p className="text-orange-600 text-sm font-medium">
+                        Solution: Curate the perfect study guide by selecting and organizing relevant pages in the ideal sequence.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Advanced Tips */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Pro Tips for Effective PDF Page Organization</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Organization Strategies</h3>
+                      <div className="space-y-4">
+                        <div className="bg-blue-50 p-4 rounded-lg">
+                          <h4 className="font-medium text-gray-900 mb-2">📋 Plan Before You Start</h4>
+                          <p className="text-gray-700 text-sm">
+                            Before uploading, have a clear idea of your desired page order. This makes the reorganization 
+                            process faster and more efficient.
+                          </p>
+                        </div>
+                        
+                        <div className="bg-green-50 p-4 rounded-lg">
+                          <h4 className="font-medium text-gray-900 mb-2">🔍 Use Page Previews</h4>
+                          <p className="text-gray-700 text-sm">
+                            Take advantage of the page dimension information to identify similar content types and 
+                            group them together effectively.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Workflow Optimization</h3>
+                      <div className="space-y-4">
+                        <div className="bg-purple-50 p-4 rounded-lg">
+                          <h4 className="font-medium text-gray-900 mb-2">⚡ Batch Processing</h4>
+                          <p className="text-gray-700 text-sm">
+                            For multiple similar documents, establish a standard organization pattern and apply it 
+                            consistently across all files.
+                          </p>
+                        </div>
+                        
+                        <div className="bg-orange-50 p-4 rounded-lg">
+                          <h4 className="font-medium text-gray-900 mb-2">💾 Save Originals</h4>
+                          <p className="text-gray-700 text-sm">
+                            Always keep copies of your original PDFs before reorganizing, especially for important 
+                            documents or when making significant changes.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* SEO Content - What is PDF Page Organization */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">What is PDF Page Organization and Why It Matters</h2>
+                  <div className="prose prose-lg max-w-none text-gray-700">
+                    <p>
+                      PDF page organization is a crucial document management process that involves reordering, selecting, 
+                      and arranging pages within PDF documents to create more effective, readable, and purposeful files. 
+                      This process goes beyond simple page manipulation—it's about creating documents that serve specific 
+                      purposes and meet particular requirements.
+                    </p>
+                    <p>
+                      In today's digital workplace, professionals across industries regularly encounter situations where 
+                      PDF documents need restructuring. Whether you're preparing academic papers, business proposals, 
+                      legal briefs, or educational materials, the ability to organize PDF pages efficiently can 
+                      significantly impact your productivity and document effectiveness.
+                    </p>
+                    <p>
+                      Our advanced PDF page organizer eliminates the complexity traditionally associated with PDF 
+                      manipulation. Instead of requiring expensive software or technical expertise, users can achieve 
+                      professional results through an intuitive, browser-based interface that works on any device.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Technical Advantages */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Technical Advantages of Our PDF Organizer</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="text-center p-6 bg-gray-50 rounded-xl">
+                      <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Lightning Fast Processing</h3>
+                      <p className="text-gray-600 text-sm">
+                        Advanced algorithms ensure rapid page analysis and organization, even for large documents 
+                        with hundreds of pages.
+                      </p>
+                    </div>
+                    
+                    <div className="text-center p-6 bg-gray-50 rounded-xl">
+                      <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Quality Preservation</h3>
+                      <p className="text-gray-600 text-sm">
+                        Maintains original document quality, fonts, images, and formatting while reorganizing pages 
+                        without compression or degradation.
+                      </p>
+                    </div>
+                    
+                    <div className="text-center p-6 bg-gray-50 rounded-xl">
+                      <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Secure Processing</h3>
+                      <p className="text-gray-600 text-sm">
+                        All document processing happens securely with automatic file deletion after processing, 
+                        ensuring your sensitive documents remain private.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Industry Applications */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Industry-Specific Applications</h2>
+                  <div className="space-y-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-900 mb-4">🏢 Business & Corporate</h3>
+                        <ul className="space-y-2 text-gray-600">
+                          <li>• Annual report reorganization and customization</li>
+                          <li>• Proposal tailoring for specific client needs</li>
+                          <li>• Training manual updates and restructuring</li>
+                          <li>• Contract compilation and organization</li>
+                          <li>• Marketing collateral page arrangement</li>
+                        </ul>
+                      </div>
+                      
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-900 mb-4">🎓 Education & Academia</h3>
+                        <ul className="space-y-2 text-gray-600">
+                          <li>• Research paper section reordering</li>
+                          <li>• Dissertation chapter organization</li>
+                          <li>• Course material compilation</li>
+                          <li>• Student portfolio arrangement</li>
+                          <li>• Academic publication preparation</li>
+                        </ul>
+                      </div>
+                      
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-900 mb-4">⚖️ Legal & Compliance</h3>
+                        <ul className="space-y-2 text-gray-600">
+                          <li>• Case file organization and exhibit arrangement</li>
+                          <li>• Legal brief compilation and structuring</li>
+                          <li>• Contract addendum organization</li>
+                          <li>• Compliance document preparation</li>
+                          <li>• Court filing document arrangement</li>
+                        </ul>
+                      </div>
+                      
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-900 mb-4">🏥 Healthcare & Medical</h3>
+                        <ul className="space-y-2 text-gray-600">
+                          <li>• Medical record organization for patient files</li>
+                          <li>• Research publication preparation</li>
+                          <li>• Clinical study document arrangement</li>
+                          <li>• Treatment protocol organization</li>
+                          <li>• Medical report compilation</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Comparison with Alternatives */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Why Choose Our PDF Page Organizer Over Alternatives</h2>
+                  <div className="overflow-x-auto">
+                    <table className="w-full border-collapse">
+                      <thead>
+                        <tr className="border-b-2 border-gray-200">
+                          <th className="text-left py-4 px-4 font-semibold text-gray-900">Feature</th>
+                          <th className="text-center py-4 px-4 font-semibold text-green-600">Our Tool</th>
+                          <th className="text-center py-4 px-4 font-semibold text-gray-600">Adobe Acrobat</th>
+                          <th className="text-center py-4 px-4 font-semibold text-gray-600">Other Online Tools</th>
+                        </tr>
+                      </thead>
+                      <tbody className="text-sm">
+                        <tr className="border-b border-gray-100">
+                          <td className="py-3 px-4 font-medium">Cost</td>
+                          <td className="py-3 px-4 text-center text-green-600">✓ Free</td>
+                          <td className="py-3 px-4 text-center text-red-600">✗ $240/year</td>
+                          <td className="py-3 px-4 text-center text-orange-600">~ Limited Free</td>
+                        </tr>
+                        <tr className="border-b border-gray-100">
+                          <td className="py-3 px-4 font-medium">No Installation Required</td>
+                          <td className="py-3 px-4 text-center text-green-600">✓ Browser-based</td>
+                          <td className="py-3 px-4 text-center text-red-600">✗ Desktop software</td>
+                          <td className="py-3 px-4 text-center text-green-600">✓ Usually</td>
+                        </tr>
+                        <tr className="border-b border-gray-100">
+                          <td className="py-3 px-4 font-medium">Drag & Drop Interface</td>
+                          <td className="py-3 px-4 text-center text-green-600">✓ Intuitive</td>
+                          <td className="py-3 px-4 text-center text-green-600">✓ Available</td>
+                          <td className="py-3 px-4 text-center text-orange-600">~ Basic</td>
+                        </tr>
+                        <tr className="border-b border-gray-100">
+                          <td className="py-3 px-4 font-medium">File Size Limits</td>
+                          <td className="py-3 px-4 text-center text-green-600">✓ Generous</td>
+                          <td className="py-3 px-4 text-center text-green-600">✓ No limits</td>
+                          <td className="py-3 px-4 text-center text-red-600">✗ Restrictive</td>
+                        </tr>
+                        <tr className="border-b border-gray-100">
+                          <td className="py-3 px-4 font-medium">Privacy & Security</td>
+                          <td className="py-3 px-4 text-center text-green-600">✓ Auto-delete</td>
+                          <td className="py-3 px-4 text-center text-green-600">✓ Local processing</td>
+                          <td className="py-3 px-4 text-center text-orange-600">~ Varies</td>
+                        </tr>
+                        <tr className="border-b border-gray-100">
+                          <td className="py-3 px-4 font-medium">Mobile Compatibility</td>
+                          <td className="py-3 px-4 text-center text-green-600">✓ Fully responsive</td>
+                          <td className="py-3 px-4 text-center text-orange-600">~ Limited mobile</td>
+                          <td className="py-3 px-4 text-center text-orange-600">~ Basic mobile</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                {/* Extended FAQ */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Advanced PDF Organization Questions</h2>
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="font-semibold text-gray-900 mb-2">How does PDF page organization affect file size?</h3>
+                      <p className="text-gray-600 text-sm">
+                        When you remove pages from a PDF, the resulting file will be smaller since it contains fewer pages. 
+                        However, simply reordering pages doesn't significantly change the file size. Our tool maintains 
+                        the original quality and compression of your PDF content.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="font-semibold text-gray-900 mb-2">Can I organize PDFs with different page orientations?</h3>
+                      <p className="text-gray-600 text-sm">
+                        Yes! Our tool handles PDFs with mixed page orientations (portrait and landscape) seamlessly. 
+                        Each page maintains its original orientation and formatting during the reorganization process.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="font-semibold text-gray-900 mb-2">What happens to bookmarks and table of contents after reorganization?</h3>
+                      <p className="text-gray-600 text-sm">
+                        Bookmarks and navigation elements are preserved where possible, but their page references may 
+                        need updating if pages are significantly reordered. For documents with complex navigation 
+                        structures, consider using our bookmark extraction tool first.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="font-semibold text-gray-900 mb-2">Is there a way to preview the organized PDF before downloading?</h3>
+                      <p className="text-gray-600 text-sm">
+                        The page grid shows you the exact order of your organized document. Each page preview includes 
+                        the original page number and dimensions, giving you a clear view of your document structure 
+                        before generating the final PDF.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="font-semibold text-gray-900 mb-2">Can I organize multiple PDFs simultaneously?</h3>
+                      <p className="text-gray-600 text-sm">
+                        Currently, our tool processes one PDF at a time to ensure optimal performance and quality. 
+                        For multiple document organization, process each PDF individually. This approach also allows 
+                        for more precise control over each document's structure.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="font-semibold text-gray-900 mb-2">Does the tool support PDFs with forms and interactive elements?</h3>
+                      <p className="text-gray-600 text-sm">
+                        Yes, PDFs containing forms, buttons, and interactive elements can be organized. However, 
+                        form functionality may be affected if form pages are significantly reordered. Test the 
+                        organized document to ensure form elements work as expected.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
