@@ -1,129 +1,140 @@
 import { Switch, Route, useLocation } from "wouter";
-import { useEffect, lazy } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import NotFound from "@/pages/not-found";
+import { PageLoadingSpinner } from "@/components/ui/loading-spinner";
+
+// Core pages (loaded immediately for performance)
 import Home from "@/pages/home";
-import AllTools from "@/pages/all-tools";
-import LoanCalculator from "@/pages/loan-calculator";
-import MortgageCalculator from "@/pages/mortgage-calculator";
-import EMICalculator from "@/pages/emi-calculator";
-import FinanceTools from "@/pages/finance-tools";
-import PDFTools from "@/pages/pdf-tools";
-import ImageTools from "@/pages/image-tools";
-import TextTools from "@/pages/text-tools";
-import HealthTools from "@/pages/health-tools";
-import HelpCenter from '@/pages/help-center';
-import ContactUs from '@/pages/contact-us';
-import PrivacyPolicy from '@/pages/privacy-policy';
-import TermsOfService from '@/pages/terms-of-service';
-import ToolPage from '@/pages/tool-page';
-import AboutUs from '@/pages/about-us';
-import CompoundInterestCalculator from '@/pages/compound-interest-calculator';
-import SimpleInterestCalculator from '@/pages/simple-interest-calculator';
-import ROICalculator from '@/pages/roi-calculator';
-import TaxCalculator from '@/pages/tax-calculator';
-import SalaryToHourlyCalculator from '@/pages/salary-to-hourly-calculator';
-import TipCalculator from '@/pages/tip-calculator';
-import InflationCalculator from '@/pages/inflation-calculator';
-import SavingsGoalCalculator from '@/pages/savings-goal-calculator';
-import DebtPayoffCalculator from '@/pages/debt-payoff-calculator';
-import NetWorthCalculator from '@/pages/net-worth-calculator';
-import StockProfitCalculator from '@/pages/stock-profit-calculator';
-import RetirementCalculator from '@/pages/retirement-calculator';
-import SIPCalculator from '@/pages/sip-calculator';
-import InvestmentReturnCalculator from '@/pages/investment-return-calculator';
-import BreakEvenCalculator from '@/pages/break-even-calculator';
-// Import the calculator components
-import BusinessLoanCalculator from '@/pages/business-loan-calculator';
-import LeaseCalculator from '@/pages/lease-calculator';
-import CarLoanCalculator from '@/pages/car-loan-calculator';
-import HomeLoanCalculator from '@/pages/home-loan-calculator';
-import EducationLoanCalculator from '@/pages/education-loan-calculator';
-import CreditCardInterestCalculator from '@/pages/credit-card-interest-calculator';
-import PercentageCalculator from '@/pages/percentage-calculator';
-import DiscountCalculator from '@/pages/discount-calculator';
-import VATGSTCalculator from '@/pages/vat-gst-calculator';
-import PayPalFeeCalculator from '@/pages/paypal-fee-calculator';
-import BMICalculator from '@/pages/bmi-calculator';
-import BMRCalculator from '@/pages/bmr-calculator';
-import CalorieCalculator from '@/pages/calorie-calculator';
-import BodyFatCalculator from '@/pages/body-fat-calculator';
-import IdealWeightCalculator from '@/pages/ideal-weight-calculator';
-import PregnancyDueDateCalculator from '@/pages/pregnancy-due-date-calculator';
-import WaterIntakeCalculator from '@/pages/water-intake-calculator';
-import ProteinIntakeCalculator from '@/pages/protein-intake-calculator';
-import CarbCalculator from '@/pages/carb-calculator';
-import KetoMacroCalculator from '@/pages/keto-macro-calculator';
-import IntermittentFastingTimer from '@/pages/intermittent-fasting-timer';
-import DailyStepCalorieConverter from '@/pages/daily-step-calorie-converter';
-import HeartRateCalculator from '@/pages/heart-rate-calculator';
-import MaxHeartRateCalculator from '@/pages/max-heart-rate-calculator';
-import BloodPressureTracker from '@/pages/blood-pressure-tracker';
-import SleepCalculator from '@/pages/sleep-calculator';
-import OvulationCalculator from '@/pages/ovulation-calculator';
-import BabyGrowthChart from '@/pages/baby-growth-chart';
-import TDEECalculator from '@/pages/tdee-calculator';
-import LeanBodyMassCalculator from '@/pages/lean-body-mass-calculator';
-import WaistToHeightRatioCalculator from '@/pages/waist-to-height-ratio-calculator';
-import WHRCalculator from '@/pages/whr-calculator';
-import LifeExpectancyCalculator from '@/pages/life-expectancy-calculator';
-import CholesterolRiskCalculator from '@/pages/cholesterol-risk-calculator';
-import RunningPaceCalculator from '@/pages/running-pace-calculator';
-import CyclingSpeedCalculator from '@/pages/cycling-speed-calculator';
-import SwimmingCalorieCalculator from '@/pages/swimming-calorie-calculator';
-import AlcoholCalorieCalculator from '@/pages/alcohol-calorie-calculator';
-import SmokingCostCalculator from '@/pages/smoking-cost-calculator';
-import MergePDFTool from '@/pages/merge-pdf-tool';
-import SplitPDFTool from '@/pages/split-pdf-tool';
-import RotatePDFTool from '@/pages/rotate-pdf-tool';
-import WatermarkPDFTool from '@/pages/watermark-pdf-tool';
-import ExtractPDFPagesTool from '@/pages/extract-pdf-pages-tool';
-import ProtectPDFTool from '@/pages/protect-pdf-tool';
-import UnlockPDFTool from '@/pages/unlock-pdf-tool';
-import AddPageNumbersTool from '@/pages/add-page-numbers-tool';
-import OrganizePDFPagesTool from '@/pages/organize-pdf-pages-tool';
-import PDFPageCounter from '@/pages/pdf-page-counter';
-import PDFEditor from '@/pages/pdf-editor';
-import WordCounter from '@/pages/word-counter';
-import CharacterCounter from '@/pages/character-counter';
-import SentenceCounter from '@/pages/sentence-counter';
-import ParagraphCounter from '@/pages/paragraph-counter';
-import CaseConverter from '@/pages/case-converter';
-import PasswordGenerator from '@/pages/password-generator';
-import FakeNameGenerator from '@/pages/fake-name-generator';
-import UsernameGenerator from '@/pages/username-generator';
-import FakeAddressGenerator from '@/pages/fake-address-generator';
-import QRTextGenerator from '@/pages/qr-text-generator';
-import FontStyleChanger from '@/pages/font-style-changer';
-import ReverseTextTool from '@/pages/reverse-text-tool';
-import TextToQRCode from '@/pages/text-to-qr-code';
-import TextToBinaryConverter from '@/pages/text-to-binary-converter';
-import BinaryToTextConverter from '@/pages/binary-to-text-converter';
-import QRCodeScanner from './pages/qr-code-scanner';
-import MarkdownToHTMLConverter from '@/pages/markdown-to-html';
-import LoremIpsumGenerator from '@/pages/lorem-ipsum-generator';
-// New PDF Tools
-import PDFBookmarkExtractor from '@/pages/pdf-bookmark-extractor';
-import PDFPageResizer from '@/pages/pdf-page-resizer';
-import PDFMarginAdjuster from '@/pages/pdf-margin-adjuster';
-import PDFPageDuplicator from '@/pages/pdf-page-duplicator';
-import PDFBackgroundChanger from '@/pages/pdf-background-changer';
-import PDFHeaderFooterGenerator from '@/pages/pdf-header-footer-generator';
-import PDFBlankPageRemover from '@/pages/pdf-blank-page-remover';
-import PDFToImagesEnhanced from '@/pages/pdf-to-images-enhanced';
-import ImagesToPDFMerger from '@/pages/images-to-pdf-merger';
-import PDFVersionConverter from '@/pages/pdf-version-converter';
-import PDFCompressorAdvanced from '@/pages/pdf-compressor-advanced';
-import PDFRepairTool from '@/pages/pdf-repair-tool';
-import PDFComplianceChecker from '@/pages/pdf-compliance-checker';
-import PDFPermissionManager from '@/pages/pdf-permission-manager';
-import PDFRedactionTool from '@/pages/pdf-redaction-tool';
-import PDFComparisonTool from '@/pages/pdf-comparison-tool';
-import PDFFormFieldExtractor from '@/pages/pdf-form-field-extractor';
-import PDFLinkExtractor from '@/pages/pdf-link-extractor';
+import NotFound from "@/pages/not-found";
+
+// Lazy load all other pages for better performance
+const AllTools = lazy(() => import("@/pages/all-tools"));
+const LoanCalculator = lazy(() => import("@/pages/loan-calculator"));
+const MortgageCalculator = lazy(() => import("@/pages/mortgage-calculator"));
+const EMICalculator = lazy(() => import("@/pages/emi-calculator"));
+const FinanceTools = lazy(() => import("@/pages/finance-tools"));
+const PDFTools = lazy(() => import("@/pages/pdf-tools"));
+const ImageTools = lazy(() => import("@/pages/image-tools"));
+const TextTools = lazy(() => import("@/pages/text-tools"));
+const HealthTools = lazy(() => import("@/pages/health-tools"));
+const HelpCenter = lazy(() => import("@/pages/help-center"));
+const ContactUs = lazy(() => import("@/pages/contact-us"));
+const PrivacyPolicy = lazy(() => import("@/pages/privacy-policy"));
+const TermsOfService = lazy(() => import("@/pages/terms-of-service"));
+const ToolPage = lazy(() => import("@/pages/tool-page"));
+const AboutUs = lazy(() => import("@/pages/about-us"));
+
+// Lazy load finance calculators
+const CompoundInterestCalculator = lazy(() => import("@/pages/compound-interest-calculator"));
+const SimpleInterestCalculator = lazy(() => import("@/pages/simple-interest-calculator"));
+const ROICalculator = lazy(() => import("@/pages/roi-calculator"));
+const TaxCalculator = lazy(() => import("@/pages/tax-calculator"));
+const SalaryToHourlyCalculator = lazy(() => import("@/pages/salary-to-hourly-calculator"));
+const TipCalculator = lazy(() => import("@/pages/tip-calculator"));
+const InflationCalculator = lazy(() => import("@/pages/inflation-calculator"));
+const SavingsGoalCalculator = lazy(() => import("@/pages/savings-goal-calculator"));
+const DebtPayoffCalculator = lazy(() => import("@/pages/debt-payoff-calculator"));
+const NetWorthCalculator = lazy(() => import("@/pages/net-worth-calculator"));
+const StockProfitCalculator = lazy(() => import("@/pages/stock-profit-calculator"));
+const RetirementCalculator = lazy(() => import("@/pages/retirement-calculator"));
+const SIPCalculator = lazy(() => import("@/pages/sip-calculator"));
+const InvestmentReturnCalculator = lazy(() => import("@/pages/investment-return-calculator"));
+const BreakEvenCalculator = lazy(() => import("@/pages/break-even-calculator"));
+const BusinessLoanCalculator = lazy(() => import("@/pages/business-loan-calculator"));
+const LeaseCalculator = lazy(() => import("@/pages/lease-calculator"));
+const CarLoanCalculator = lazy(() => import("@/pages/car-loan-calculator"));
+const HomeLoanCalculator = lazy(() => import("@/pages/home-loan-calculator"));
+const EducationLoanCalculator = lazy(() => import("@/pages/education-loan-calculator"));
+const CreditCardInterestCalculator = lazy(() => import("@/pages/credit-card-interest-calculator"));
+const PercentageCalculator = lazy(() => import("@/pages/percentage-calculator"));
+const DiscountCalculator = lazy(() => import("@/pages/discount-calculator"));
+const VATGSTCalculator = lazy(() => import("@/pages/vat-gst-calculator"));
+const PayPalFeeCalculator = lazy(() => import("@/pages/paypal-fee-calculator"));
+
+// Lazy load health calculators
+const BMICalculator = lazy(() => import("@/pages/bmi-calculator"));
+const BMRCalculator = lazy(() => import("@/pages/bmr-calculator"));
+const CalorieCalculator = lazy(() => import("@/pages/calorie-calculator"));
+const BodyFatCalculator = lazy(() => import("@/pages/body-fat-calculator"));
+const IdealWeightCalculator = lazy(() => import("@/pages/ideal-weight-calculator"));
+const PregnancyDueDateCalculator = lazy(() => import("@/pages/pregnancy-due-date-calculator"));
+const WaterIntakeCalculator = lazy(() => import("@/pages/water-intake-calculator"));
+const ProteinIntakeCalculator = lazy(() => import("@/pages/protein-intake-calculator"));
+const CarbCalculator = lazy(() => import("@/pages/carb-calculator"));
+const KetoMacroCalculator = lazy(() => import("@/pages/keto-macro-calculator"));
+const IntermittentFastingTimer = lazy(() => import("@/pages/intermittent-fasting-timer"));
+const DailyStepCalorieConverter = lazy(() => import("@/pages/daily-step-calorie-converter"));
+const HeartRateCalculator = lazy(() => import("@/pages/heart-rate-calculator"));
+const MaxHeartRateCalculator = lazy(() => import("@/pages/max-heart-rate-calculator"));
+const BloodPressureTracker = lazy(() => import("@/pages/blood-pressure-tracker"));
+const SleepCalculator = lazy(() => import("@/pages/sleep-calculator"));
+const OvulationCalculator = lazy(() => import("@/pages/ovulation-calculator"));
+const BabyGrowthChart = lazy(() => import("@/pages/baby-growth-chart"));
+const TDEECalculator = lazy(() => import("@/pages/tdee-calculator"));
+const LeanBodyMassCalculator = lazy(() => import("@/pages/lean-body-mass-calculator"));
+const WaistToHeightRatioCalculator = lazy(() => import("@/pages/waist-to-height-ratio-calculator"));
+const WHRCalculator = lazy(() => import("@/pages/whr-calculator"));
+const LifeExpectancyCalculator = lazy(() => import("@/pages/life-expectancy-calculator"));
+const CholesterolRiskCalculator = lazy(() => import("@/pages/cholesterol-risk-calculator"));
+const RunningPaceCalculator = lazy(() => import("@/pages/running-pace-calculator"));
+const CyclingSpeedCalculator = lazy(() => import("@/pages/cycling-speed-calculator"));
+const SwimmingCalorieCalculator = lazy(() => import("@/pages/swimming-calorie-calculator"));
+const AlcoholCalorieCalculator = lazy(() => import("@/pages/alcohol-calorie-calculator"));
+const SmokingCostCalculator = lazy(() => import("@/pages/smoking-cost-calculator"));
+
+// Lazy load PDF tools
+const MergePDFTool = lazy(() => import("@/pages/merge-pdf-tool"));
+const SplitPDFTool = lazy(() => import("@/pages/split-pdf-tool"));
+const RotatePDFTool = lazy(() => import("@/pages/rotate-pdf-tool"));
+const WatermarkPDFTool = lazy(() => import("@/pages/watermark-pdf-tool"));
+const ExtractPDFPagesTool = lazy(() => import("@/pages/extract-pdf-pages-tool"));
+const ProtectPDFTool = lazy(() => import("@/pages/protect-pdf-tool"));
+const UnlockPDFTool = lazy(() => import("@/pages/unlock-pdf-tool"));
+const AddPageNumbersTool = lazy(() => import("@/pages/add-page-numbers-tool"));
+const OrganizePDFPagesTool = lazy(() => import("@/pages/organize-pdf-pages-tool"));
+const PDFPageCounter = lazy(() => import("@/pages/pdf-page-counter"));
+const PDFEditor = lazy(() => import("@/pages/pdf-editor"));
+const PDFBookmarkExtractor = lazy(() => import("@/pages/pdf-bookmark-extractor"));
+const PDFPageResizer = lazy(() => import("@/pages/pdf-page-resizer"));
+const PDFMarginAdjuster = lazy(() => import("@/pages/pdf-margin-adjuster"));
+const PDFPageDuplicator = lazy(() => import("@/pages/pdf-page-duplicator"));
+const PDFBackgroundChanger = lazy(() => import("@/pages/pdf-background-changer"));
+const PDFHeaderFooterGenerator = lazy(() => import("@/pages/pdf-header-footer-generator"));
+const PDFBlankPageRemover = lazy(() => import("@/pages/pdf-blank-page-remover"));
+const PDFToImagesEnhanced = lazy(() => import("@/pages/pdf-to-images-enhanced"));
+const ImagesToPDFMerger = lazy(() => import("@/pages/images-to-pdf-merger"));
+const PDFVersionConverter = lazy(() => import("@/pages/pdf-version-converter"));
+const PDFCompressorAdvanced = lazy(() => import("@/pages/pdf-compressor-advanced"));
+const PDFRepairTool = lazy(() => import("@/pages/pdf-repair-tool"));
+const PDFComplianceChecker = lazy(() => import("@/pages/pdf-compliance-checker"));
+const PDFPermissionManager = lazy(() => import("@/pages/pdf-permission-manager"));
+const PDFRedactionTool = lazy(() => import("@/pages/pdf-redaction-tool"));
+const PDFComparisonTool = lazy(() => import("@/pages/pdf-comparison-tool"));
+const PDFFormFieldExtractor = lazy(() => import("@/pages/pdf-form-field-extractor"));
+const PDFLinkExtractor = lazy(() => import("@/pages/pdf-link-extractor"));
+
+// Lazy load text tools
+const WordCounter = lazy(() => import("@/pages/word-counter"));
+const CharacterCounter = lazy(() => import("@/pages/character-counter"));
+const SentenceCounter = lazy(() => import("@/pages/sentence-counter"));
+const ParagraphCounter = lazy(() => import("@/pages/paragraph-counter"));
+const CaseConverter = lazy(() => import("@/pages/case-converter"));
+const PasswordGenerator = lazy(() => import("@/pages/password-generator"));
+const FakeNameGenerator = lazy(() => import("@/pages/fake-name-generator"));
+const UsernameGenerator = lazy(() => import("@/pages/username-generator"));
+const FakeAddressGenerator = lazy(() => import("@/pages/fake-address-generator"));
+const QRTextGenerator = lazy(() => import("@/pages/qr-text-generator"));
+const FontStyleChanger = lazy(() => import("@/pages/font-style-changer"));
+const ReverseTextTool = lazy(() => import("@/pages/reverse-text-tool"));
+const TextToQRCode = lazy(() => import("@/pages/text-to-qr-code"));
+const TextToBinaryConverter = lazy(() => import("@/pages/text-to-binary-converter"));
+const BinaryToTextConverter = lazy(() => import("@/pages/binary-to-text-converter"));
+const QRCodeScanner = lazy(() => import("@/pages/qr-code-scanner"));
+const MarkdownToHTMLConverter = lazy(() => import("@/pages/markdown-to-html"));
+const LoremIpsumGenerator = lazy(() => import("@/pages/lorem-ipsum-generator"));
 
 
 function ScrollToTop() {
@@ -140,7 +151,8 @@ function Router() {
   return (
     <>
       <ScrollToTop />
-      <Switch>
+      <Suspense fallback={<PageLoadingSpinner />}>
+        <Switch>
       <Route path="/" component={Home} />
       <Route path="/tools" component={AllTools} />
       <Route path="/tools/loan-calculator" component={LoanCalculator} />
@@ -260,7 +272,8 @@ function Router() {
       <Route path="/help" component={HelpCenter} />
       <Route path="/about" component={AboutUs} />
       <Route component={NotFound} />
-      </Switch>
+        </Switch>
+      </Suspense>
     </>
   );
 }
