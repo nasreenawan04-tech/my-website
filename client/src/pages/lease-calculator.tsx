@@ -484,153 +484,384 @@ const LeaseCalculator = () => {
 
               {/* Educational Content */}
               <div className="mt-12 space-y-8">
-                {/* Understanding Lease Calculator */}
+                {/* What is a Lease Calculator Section */}
                 <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Complete Guide to Lease Calculator</h2>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-8">What is a Lease Calculator and How Does It Work?</h2>
                   
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">What is a Lease?</h3>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Understanding Vehicle Lease Calculations</h3>
                       <p className="text-gray-600 mb-6 leading-relaxed">
-                        A lease is a financing option that allows you to use a vehicle for a specific period while making monthly payments. 
-                        Unlike buying, you don't own the vehicle but rather pay for its depreciation during the lease term. At the end of 
-                        the lease, you can return the vehicle, purchase it for its residual value, or lease a new vehicle.
+                        A lease calculator is a powerful financial tool that helps you determine the monthly payment for leasing a vehicle, 
+                        equipment, or property. Our advanced lease payment calculator takes into account all the essential factors including 
+                        vehicle price, down payment, lease term, interest rate (money factor), residual value, and additional fees to provide 
+                        accurate monthly payment estimates.
                       </p>
                       
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">How Lease Payments Work</h3>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">How Our Lease Calculator Works</h3>
                       <p className="text-gray-600 mb-4">
-                        Lease payments are calculated based on several factors:
+                        The lease payment calculation involves several key components that work together:
                       </p>
                       <ul className="text-gray-600 space-y-2">
-                        <li><strong>Depreciation:</strong> The difference between vehicle price and residual value</li>
-                        <li><strong>Interest (Money Factor):</strong> The financing cost, similar to loan interest</li>
-                        <li><strong>Fees:</strong> Acquisition fees, disposition fees, and other charges</li>
-                        <li><strong>Down Payment:</strong> Upfront payment that reduces monthly payments</li>
+                        <li><strong>Capitalized Cost:</strong> The agreed-upon value of the vehicle (similar to purchase price)</li>
+                        <li><strong>Residual Value:</strong> The vehicle's estimated value at lease end (typically 50-70% of MSRP)</li>
+                        <li><strong>Money Factor:</strong> The interest rate expressed as a decimal (multiply by 2400 for APR)</li>
+                        <li><strong>Depreciation Cost:</strong> The difference between capitalized cost and residual value</li>
+                        <li><strong>Finance Charge:</strong> Interest calculated on both the depreciation and residual value</li>
+                        <li><strong>Additional Fees:</strong> Acquisition fees, disposition fees, and other charges</li>
                       </ul>
                     </div>
                     
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Benefits of Leasing</h3>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Benefits of Using a Lease Calculator</h3>
                       <ul className="text-gray-600 space-y-3">
                         <li className="flex items-start">
-                          <i className="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                          <span><strong>Lower Monthly Payments:</strong> Typically 20-40% lower than loan payments</span>
+                          <i className="fas fa-calculator text-blue-500 mt-1 mr-3"></i>
+                          <span><strong>Accurate Payment Estimates:</strong> Get precise monthly payment calculations before visiting dealerships</span>
                         </li>
                         <li className="flex items-start">
-                          <i className="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                          <span><strong>Latest Technology:</strong> Drive newer vehicles with latest features</span>
+                          <i className="fas fa-chart-line text-green-500 mt-1 mr-3"></i>
+                          <span><strong>Compare Different Scenarios:</strong> Test various down payments, terms, and interest rates</span>
                         </li>
                         <li className="flex items-start">
-                          <i className="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                          <span><strong>Warranty Coverage:</strong> Most repairs covered under manufacturer warranty</span>
+                          <i className="fas fa-money-bill-wave text-purple-500 mt-1 mr-3"></i>
+                          <span><strong>Budget Planning:</strong> Plan your monthly budget with confidence knowing exact costs</span>
                         </li>
                         <li className="flex items-start">
-                          <i className="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                          <span><strong>No Resale Hassle:</strong> Simply return the vehicle at lease end</span>
+                          <i className="fas fa-handshake text-orange-500 mt-1 mr-3"></i>
+                          <span><strong>Negotiation Power:</strong> Understand lease terms better to negotiate effectively</span>
                         </li>
                         <li className="flex items-start">
-                          <i className="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                          <span><strong>Tax Benefits:</strong> Potential business tax deductions for commercial use</span>
+                          <i className="fas fa-globe text-teal-500 mt-1 mr-3"></i>
+                          <span><strong>Multi-Currency Support:</strong> Calculate payments in your local currency (USD, EUR, GBP, and more)</span>
                         </li>
                       </ul>
 
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4 mt-6">Lease vs Buy Considerations</h3>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4 mt-6">Lease vs Purchase Analysis</h3>
+                      <p className="text-gray-600 mb-4">
+                        Use our lease calculator alongside our <a href="/tools/car-loan-calculator" className="text-blue-600 hover:text-blue-800 hover:underline font-semibold">Car Loan Calculator</a> 
+                        to compare leasing versus buying options. Consider factors like:
+                      </p>
                       <ul className="text-gray-600 space-y-2">
-                        <li>• Mileage restrictions typically apply (10,000-15,000 miles/year)</li>
-                        <li>• Wear and tear charges for excessive damage</li>
-                        <li>• No equity building compared to purchasing</li>
-                        <li>• Early termination fees can be substantial</li>
-                        <li>• Gap insurance recommended for protection</li>
+                        <li>• Monthly payment differences (lease typically 20-40% lower)</li>
+                        <li>• Total cost of ownership over time</li>
+                        <li>• Mileage restrictions and wear-and-tear considerations</li>
+                        <li>• Equity building vs. continuous payments</li>
+                        <li>• Tax implications for personal and business use</li>
                       </ul>
                     </div>
                   </div>
                 </div>
 
-                {/* Lease Terms Explained */}
+                {/* Audience-Specific Benefits Section */}
                 <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Key Lease Terms Explained</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Who Benefits from Using Our Lease Calculator?</h2>
+                  
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div className="bg-white rounded-lg p-6 shadow-sm">
+                    {/* Students */}
+                    <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                      <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-graduation-cap text-blue-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Students & Recent Graduates</h3>
+                      <ul className="text-gray-600 space-y-2 text-sm">
+                        <li>• Access reliable transportation with lower monthly payments</li>
+                        <li>• Build credit history with manageable payments</li>
+                        <li>• No long-term commitment perfect for transitional life phases</li>
+                        <li>• Latest safety features and technology</li>
+                        <li>• Plan alongside <a href="/tools/education-loan-calculator" className="text-blue-600 hover:text-blue-700 underline">education loan payments</a></li>
+                      </ul>
+                      <div className="mt-4 p-3 bg-blue-50 rounded-lg">
+                        <p className="text-xs text-blue-700">
+                          <strong>Tip:</strong> Use our <a href="/tools/budget-calculator" className="underline">Budget Calculator</a> to ensure lease payments fit your student budget.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Young Professionals */}
+                    <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                      <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-briefcase text-green-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Young Professionals</h3>
+                      <ul className="text-gray-600 space-y-2 text-sm">
+                        <li>• Drive impressive vehicles for client meetings</li>
+                        <li>• Lower monthly payments preserve cash flow</li>
+                        <li>• Always under warranty - minimal repair costs</li>
+                        <li>• Option to upgrade every 2-4 years</li>
+                        <li>• Coordinate with <a href="/tools/salary-to-hourly-calculator" className="text-green-600 hover:text-green-700 underline">salary planning tools</a></li>
+                      </ul>
+                      <div className="mt-4 p-3 bg-green-50 rounded-lg">
+                        <p className="text-xs text-green-700">
+                          <strong>Career Growth:</strong> Plan lease payments as you advance professionally with our <a href="/tools/compound-interest-calculator" className="underline">savings calculators</a>.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Families */}
+                    <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                      <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-home text-purple-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Growing Families</h3>
+                      <ul className="text-gray-600 space-y-2 text-sm">
+                        <li>• Access larger vehicles (SUVs, minivans) affordably</li>
+                        <li>• Latest safety technology for family protection</li>
+                        <li>• Predictable monthly expenses for family budgeting</li>
+                        <li>• No depreciation worries when needs change</li>
+                        <li>• Balance with <a href="/tools/mortgage-calculator" className="text-purple-600 hover:text-purple-700 underline">home mortgage payments</a></li>
+                      </ul>
+                      <div className="mt-4 p-3 bg-purple-50 rounded-lg">
+                        <p className="text-xs text-purple-700">
+                          <strong>Family Planning:</strong> Use our <a href="/tools/savings-goal-calculator" className="underline">savings goal tools</a> to plan for education and family expenses.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Business Owners */}
+                    <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                      <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-building text-orange-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Business Owners & Entrepreneurs</h3>
+                      <ul className="text-gray-600 space-y-2 text-sm">
+                        <li>• Significant tax advantages and deductions</li>
+                        <li>• Preserve capital for business investments</li>
+                        <li>• Fleet management with predictable costs</li>
+                        <li>• Professional image with latest models</li>
+                        <li>• Coordinate with <a href="/tools/business-loan-calculator" className="text-orange-600 hover:text-orange-700 underline">business loan planning</a></li>
+                      </ul>
+                      <div className="mt-4 p-3 bg-orange-50 rounded-lg">
+                        <p className="text-xs text-orange-700">
+                          <strong>Business Growth:</strong> Plan vehicle expenses alongside <a href="/tools/roi-calculator" className="underline">ROI calculations</a> and <a href="/tools/break-even-calculator" className="underline">break-even analysis</a>.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Retirees */}
+                    <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                      <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-umbrella-beach text-teal-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Retirees & Seniors</h3>
+                      <ul className="text-gray-600 space-y-2 text-sm">
+                        <li>• Lower monthly payments preserve retirement savings</li>
+                        <li>• Access to latest safety and accessibility features</li>
+                        <li>• No long-term vehicle ownership responsibilities</li>
+                        <li>• Warranty coverage reduces unexpected expenses</li>
+                        <li>• Plan with <a href="/tools/retirement-calculator" className="text-teal-600 hover:text-teal-700 underline">retirement planning tools</a></li>
+                      </ul>
+                      <div className="mt-4 p-3 bg-teal-50 rounded-lg">
+                        <p className="text-xs text-teal-700">
+                          <strong>Fixed Income:</strong> Coordinate lease payments with <a href="/tools/compound-interest-calculator" className="underline">retirement savings</a> and <a href="/tools/investment-return-calculator" className="underline">investment income</a>.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* High-Income Professionals */}
+                    <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                      <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-user-tie text-red-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">High-Income Professionals</h3>
+                      <ul className="text-gray-600 space-y-2 text-sm">
+                        <li>• Drive luxury vehicles without large capital outlay</li>
+                        <li>• Tax advantages for business use vehicles</li>
+                        <li>• Always drive latest models with cutting-edge tech</li>
+                        <li>• Flexibility to change vehicles as needs evolve</li>
+                        <li>• Integrate with <a href="/tools/investment-return-calculator" className="text-red-600 hover:text-red-700 underline">investment strategies</a></li>
+                      </ul>
+                      <div className="mt-4 p-3 bg-red-50 rounded-lg">
+                        <p className="text-xs text-red-700">
+                          <strong>Wealth Building:</strong> Optimize lease payments alongside <a href="/tools/net-worth-calculator" className="underline">net worth tracking</a> and <a href="/tools/stock-profit-calculator" className="underline">investment planning</a>.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Complete Guide to Lease Calculator */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+
+                {/* Comprehensive Lease Terms Dictionary */}
+                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Essential Lease Terms Every Car Shopper Should Know</h2>
+                  <p className="text-gray-600 mb-8">Master these key lease terminology to make informed decisions and negotiate better deals:</p>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                       <i className="fas fa-dollar-sign text-2xl text-blue-600 mb-4"></i>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Capitalized Cost</h3>
-                      <p className="text-gray-600 text-sm">
-                        The agreed-upon value of the vehicle, similar to the purchase price. This includes the 
-                        vehicle price plus any additional items like extended warranties.
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Capitalized Cost (Cap Cost)</h3>
+                      <p className="text-gray-600 text-sm mb-3">
+                        The negotiated selling price of the vehicle including any additional options, warranties, or services. 
+                        This is equivalent to the purchase price when buying.
                       </p>
+                      <div className="text-xs text-blue-600 bg-blue-50 p-2 rounded">
+                        <strong>Negotiation Tip:</strong> Always negotiate the cap cost, not just monthly payments
+                      </div>
                     </div>
                     
-                    <div className="bg-white rounded-lg p-6 shadow-sm">
+                    <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                       <i className="fas fa-chart-line text-2xl text-green-600 mb-4"></i>
                       <h3 className="text-lg font-semibold text-gray-900 mb-3">Residual Value</h3>
-                      <p className="text-gray-600 text-sm">
-                        The vehicle's estimated value at the end of the lease term. Higher residual 
-                        values result in lower monthly payments.
+                      <p className="text-gray-600 text-sm mb-3">
+                        The vehicle's predicted worth at lease end, typically 45-65% of MSRP. Higher residual values 
+                        mean lower monthly payments and better lease deals.
                       </p>
+                      <div className="text-xs text-green-600 bg-green-50 p-2 rounded">
+                        <strong>Smart Shopping:</strong> Compare residual values across similar vehicles
+                      </div>
                     </div>
                     
-                    <div className="bg-white rounded-lg p-6 shadow-sm">
+                    <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                       <i className="fas fa-percentage text-2xl text-purple-600 mb-4"></i>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Money Factor</h3>
-                      <p className="text-gray-600 text-sm">
-                        The interest rate for your lease, expressed as a decimal. Multiply by 2400 
-                        to convert to an annual percentage rate (APR).
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Money Factor (MF)</h3>
+                      <p className="text-gray-600 text-sm mb-3">
+                        The lease interest rate expressed as a decimal (usually 0.001-0.005). Multiply by 2,400 
+                        to get the equivalent APR for comparison with loan rates.
                       </p>
+                      <div className="text-xs text-purple-600 bg-purple-50 p-2 rounded">
+                        <strong>Rate Check:</strong> Compare with current <a href="/tools/car-loan-calculator" className="underline">auto loan rates</a>
+                      </div>
                     </div>
                     
-                    <div className="bg-white rounded-lg p-6 shadow-sm">
+                    <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                       <i className="fas fa-road text-2xl text-orange-600 mb-4"></i>
                       <h3 className="text-lg font-semibold text-gray-900 mb-3">Mileage Allowance</h3>
-                      <p className="text-gray-600 text-sm">
-                        The maximum number of miles you can drive per year without penalty. 
-                        Exceeding this results in excess mileage charges.
+                      <p className="text-gray-600 text-sm mb-3">
+                        Annual mileage limit (typically 10,000-15,000 miles). Excess miles cost $0.15-$0.30 per mile. 
+                        Choose allowance based on your actual driving patterns.
                       </p>
+                      <div className="text-xs text-orange-600 bg-orange-50 p-2 rounded">
+                        <strong>Calculate:</strong> Track current mileage for 3-6 months to estimate needs
+                      </div>
                     </div>
                     
-                    <div className="bg-white rounded-lg p-6 shadow-sm">
+                    <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                       <i className="fas fa-file-invoice text-2xl text-teal-600 mb-4"></i>
                       <h3 className="text-lg font-semibold text-gray-900 mb-3">Acquisition Fee</h3>
-                      <p className="text-gray-600 text-sm">
-                        An upfront fee charged by the leasing company to process the lease. 
-                        This is usually paid at lease signing.
+                      <p className="text-gray-600 text-sm mb-3">
+                        Upfront administrative fee ($300-$1,000) for processing the lease. Some dealers may 
+                        waive or reduce this fee as part of negotiations.
                       </p>
+                      <div className="text-xs text-teal-600 bg-teal-50 p-2 rounded">
+                        <strong>Budget Tip:</strong> Factor into your <a href="/tools/loan-calculator" className="underline">total financing costs</a>
+                      </div>
                     </div>
                     
-                    <div className="bg-white rounded-lg p-6 shadow-sm">
+                    <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                       <i className="fas fa-handshake text-2xl text-red-600 mb-4"></i>
                       <h3 className="text-lg font-semibold text-gray-900 mb-3">Disposition Fee</h3>
-                      <p className="text-gray-600 text-sm">
-                        A fee charged at the end of the lease to cover the cost of preparing 
-                        the vehicle for resale (if you don't purchase it).
+                      <p className="text-gray-600 text-sm mb-3">
+                        End-of-lease fee ($300-$500) for vehicle inspection and prep for resale. Waived if you 
+                        purchase the vehicle or lease another from the same brand.
                       </p>
+                      <div className="text-xs text-red-600 bg-red-50 p-2 rounded">
+                        <strong>Plan Ahead:</strong> Consider end-of-lease options early in the term
+                      </div>
+                    </div>
+
+                    <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                      <i className="fas fa-shield-alt text-2xl text-indigo-600 mb-4"></i>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Gap Insurance</h3>
+                      <p className="text-gray-600 text-sm mb-3">
+                        Coverage for the difference between vehicle value and lease balance if totaled. Often 
+                        included in leases but verify coverage before signing.
+                      </p>
+                      <div className="text-xs text-indigo-600 bg-indigo-50 p-2 rounded">
+                        <strong>Protection:</strong> Essential coverage for peace of mind
+                      </div>
+                    </div>
+
+                    <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                      <i className="fas fa-tools text-2xl text-yellow-600 mb-4"></i>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Wear and Tear</h3>
+                      <p className="text-gray-600 text-sm mb-3">
+                        Normal usage is expected, but excessive damage incurs charges. Review lease wear-and-tear 
+                        guidelines before signing and at lease return.
+                      </p>
+                      <div className="text-xs text-yellow-600 bg-yellow-50 p-2 rounded">
+                        <strong>Maintenance:</strong> Keep detailed maintenance records
+                      </div>
+                    </div>
+
+                    <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                      <i className="fas fa-calculator text-2xl text-pink-600 mb-4"></i>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Lease Factor</h3>
+                      <p className="text-gray-600 text-sm mb-3">
+                        Alternative term for money factor. Some dealers quote this instead of APR to make 
+                        interest rates less obvious for comparison shopping.
+                      </p>
+                      <div className="text-xs text-pink-600 bg-pink-50 p-2 rounded">
+                        <strong>Compare:</strong> Always convert to APR using our calculator
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Tips for Smart Leasing */}
+                {/* Expert Smart Leasing Tips */}
                 <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Smart Leasing Tips & Best Practices</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Expert Smart Leasing Tips & Best Practices</h2>
+                  <p className="text-gray-600 mb-8">
+                    Master these proven strategies used by automotive experts and financial advisors to get the best lease deals 
+                    and avoid common pitfalls that cost thousands of dollars.
+                  </p>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div>
                       <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
                         <i className="fas fa-lightbulb text-yellow-500 mr-2"></i>
-                        Money-Saving Tips
+                        Money-Saving Strategies
                       </h3>
                       <ul className="space-y-3">
                         <li className="flex items-start space-x-2">
                           <i className="fas fa-arrow-right text-blue-600 mt-1 text-sm"></i>
-                          <span className="text-gray-700">Negotiate the capitalized cost, not just the monthly payment</span>
+                          <span className="text-gray-700"><strong>Negotiate Total Price First:</strong> Focus on the capitalized cost, not monthly payment. Use our calculator to verify dealer math.</span>
                         </li>
                         <li className="flex items-start space-x-2">
                           <i className="fas fa-arrow-right text-blue-600 mt-1 text-sm"></i>
-                          <span className="text-gray-700">Consider multiple down payment scenarios to optimize cash flow</span>
+                          <span className="text-gray-700"><strong>Optimize Down Payment:</strong> Test different scenarios with our <a href="/tools/compound-interest-calculator" className="text-blue-600 hover:text-blue-700 underline">compound interest calculator</a> to see if investing the cash yields better returns.</span>
                         </li>
                         <li className="flex items-start space-x-2">
                           <i className="fas fa-arrow-right text-blue-600 mt-1 text-sm"></i>
-                          <span className="text-gray-700">Look for manufacturer lease specials and incentives</span>
+                          <span className="text-gray-700"><strong>Time Your Lease:</strong> Best deals often appear at model year-end (September-November) and month-end when dealers meet quotas.</span>
                         </li>
                         <li className="flex items-start space-x-2">
                           <i className="fas fa-arrow-right text-blue-600 mt-1 text-sm"></i>
-                          <span className="text-gray-700">Choose appropriate mileage allowance to avoid overage fees</span>
+                          <span className="text-gray-700"><strong>Shop Manufacturer Incentives:</strong> Look for lease cash, loyalty programs, and conquest incentives that can reduce your cap cost.</span>
+                        </li>
+                        <li className="flex items-start space-x-2">
+                          <i className="fas fa-arrow-right text-blue-600 mt-1 text-sm"></i>
+                          <span className="text-gray-700"><strong>Consider Multiple Deal Structures:</strong> Compare single-pay leases, traditional leases, and purchase options using our <a href="/tools/loan-calculator" className="text-blue-600 hover:text-blue-700 underline">loan calculator</a>.</span>
+                        </li>
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                        <i className="fas fa-shield-alt text-green-500 mr-2"></i>
+                        Risk Management
+                      </h3>
+                      <ul className="space-y-3">
+                        <li className="flex items-start space-x-2">
+                          <i className="fas fa-arrow-right text-green-600 mt-1 text-sm"></i>
+                          <span className="text-gray-700"><strong>Gap Insurance is Essential:</strong> Protects against total loss scenarios where insurance payout is less than lease balance.</span>
+                        </li>
+                        <li className="flex items-start space-x-2">
+                          <i className="fas fa-arrow-right text-green-600 mt-1 text-sm"></i>
+                          <span className="text-gray-700"><strong>Accurate Mileage Estimation:</strong> Track your driving for 2-3 months. Excess mileage fees ($0.15-$0.30/mile) add up quickly.</span>
+                        </li>
+                        <li className="flex items-start space-x-2">
+                          <i className="fas fa-arrow-right text-green-600 mt-1 text-sm"></i>
+                          <span className="text-gray-700"><strong>Understand Wear Guidelines:</strong> Review manufacturer wear-and-tear standards. Small dings and minor scratches are typically acceptable.</span>
+                        </li>
+                        <li className="flex items-start space-x-2">
+                          <i className="fas fa-arrow-right text-green-600 mt-1 text-sm"></i>
+                          <span className="text-gray-700"><strong>Document Vehicle Condition:</strong> Take photos at lease signing and periodically throughout the term for protection.</span>
+                        </li>
+                        <li className="flex items-start space-x-2">
+                          <i className="fas fa-arrow-right text-green-600 mt-1 text-sm"></i>
+                          <span className="text-gray-700"><strong>Plan Exit Strategy Early:</strong> Know your options 6 months before lease end: return, purchase, or extend.</span>
                         </li>
                       </ul>
                     </div>
@@ -638,26 +869,174 @@ const LeaseCalculator = () => {
                     <div>
                       <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
                         <i className="fas fa-exclamation-triangle text-orange-500 mr-2"></i>
-                        Important Considerations
+                        Common Pitfalls to Avoid
                       </h3>
                       <ul className="space-y-3">
                         <li className="flex items-start space-x-2">
                           <i className="fas fa-arrow-right text-orange-600 mt-1 text-sm"></i>
-                          <span className="text-gray-700">Get gap insurance to cover the difference between loan and vehicle value</span>
+                          <span className="text-gray-700"><strong>Avoid "Payment Packing":</strong> Dealers may inflate payments with unnecessary add-ons. Verify each line item in your lease agreement.</span>
                         </li>
                         <li className="flex items-start space-x-2">
                           <i className="fas fa-arrow-right text-orange-600 mt-1 text-sm"></i>
-                          <span className="text-gray-700">Understand wear and tear guidelines to avoid end-of-lease charges</span>
+                          <span className="text-gray-700"><strong>Don't Ignore Total Cost:</strong> Consider the full financial picture using our <a href="/tools/net-worth-calculator" className="text-orange-600 hover:text-orange-700 underline">net worth calculator</a> to understand impact.</span>
                         </li>
                         <li className="flex items-start space-x-2">
                           <i className="fas fa-arrow-right text-orange-600 mt-1 text-sm"></i>
-                          <span className="text-gray-700">Consider the total cost over time if you always lease</span>
+                          <span className="text-gray-700"><strong>Early Termination is Expensive:</strong> Can cost thousands in fees and remaining payments. Avoid if possible.</span>
                         </li>
                         <li className="flex items-start space-x-2">
                           <i className="fas fa-arrow-right text-orange-600 mt-1 text-sm"></i>
-                          <span className="text-gray-700">Plan for end-of-lease options: return, purchase, or extend</span>
+                          <span className="text-gray-700"><strong>Beware of Lease Transfer Risks:</strong> Assuming someone else's lease can hide problems. Inspect thoroughly and understand all terms.</span>
+                        </li>
+                        <li className="flex items-start space-x-2">
+                          <i className="fas fa-arrow-right text-orange-600 mt-1 text-sm"></i>
+                          <span className="text-gray-700"><strong>Multiple Security Deposits:</strong> May lower money factor but ties up cash. Calculate opportunity cost with our investment tools.</span>
                         </li>
                       </ul>
+                    </div>
+                  </div>
+
+                  {/* Advanced Leasing Strategies */}
+                  <div className="mt-8 border-t pt-8">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-6">Advanced Leasing Strategies for Maximum Value</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="bg-blue-50 p-6 rounded-lg">
+                        <h4 className="font-semibold text-gray-900 mb-3">Business Leasing Advantages</h4>
+                        <ul className="text-gray-600 space-y-2 text-sm">
+                          <li>• Tax deductions for business use (Section 179)</li>
+                          <li>• Potential 100% deduction for vehicles over 6,000 lbs GVWR</li>
+                          <li>• Fleet management with predictable costs</li>
+                          <li>• Professional image enhancement</li>
+                          <li>• Use our <a href="/tools/business-loan-calculator" className="text-blue-600 hover:text-blue-700 underline">business loan calculator</a> to compare financing options</li>
+                        </ul>
+                      </div>
+                      
+                      <div className="bg-green-50 p-6 rounded-lg">
+                        <h4 className="font-semibold text-gray-900 mb-3">Lease-End Options Strategy</h4>
+                        <ul className="text-gray-600 space-y-2 text-sm">
+                          <li>• Purchase if market value exceeds residual value</li>
+                          <li>• Return if depreciation exceeded expectations</li>
+                          <li>• Extend month-to-month for flexibility</li>
+                          <li>• Trade for immediate lease of new vehicle</li>
+                          <li>• Calculate decisions with our <a href="/tools/investment-return-calculator" className="text-green-600 hover:text-green-700 underline">return calculator</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Related Financial Planning Tools */}
+                <div className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-2xl p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Complete Your Financial Planning with Related Tools</h2>
+                  <p className="text-gray-600 mb-8">
+                    Make informed leasing decisions by combining our lease calculator with these powerful financial planning tools 
+                    for comprehensive analysis of your automotive financing options.
+                  </p>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {/* Financing Comparison Tools */}
+                    <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                      <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-car text-blue-600 text-xl"></i>
+                      </div>
+                      <h3 className="font-semibold text-gray-900 mb-3">Car Loan Calculator</h3>
+                      <p className="text-gray-600 text-sm mb-4">
+                        Compare lease payments with auto loan payments to determine the most cost-effective financing option.
+                      </p>
+                      <a href="/tools/car-loan-calculator" className="text-blue-600 hover:text-blue-700 font-medium text-sm">
+                        Calculate Auto Loans →
+                      </a>
+                    </div>
+
+                    <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                      <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-calculator text-green-600 text-xl"></i>
+                      </div>
+                      <h3 className="font-semibold text-gray-900 mb-3">Loan Calculator</h3>
+                      <p className="text-gray-600 text-sm mb-4">
+                        Calculate various loan types to understand your overall debt obligations and payment capacity.
+                      </p>
+                      <a href="/tools/loan-calculator" className="text-green-600 hover:text-green-700 font-medium text-sm">
+                        Calculate Loans →
+                      </a>
+                    </div>
+
+                    <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                      <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-chart-line text-purple-600 text-xl"></i>
+                      </div>
+                      <h3 className="font-semibold text-gray-900 mb-3">Investment Return Calculator</h3>
+                      <p className="text-gray-600 text-sm mb-4">
+                        Calculate potential returns on investing your down payment instead of using it for a lease.
+                      </p>
+                      <a href="/tools/investment-return-calculator" className="text-purple-600 hover:text-purple-700 font-medium text-sm">
+                        Calculate Returns →
+                      </a>
+                    </div>
+
+                    <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                      <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-building text-orange-600 text-xl"></i>
+                      </div>
+                      <h3 className="font-semibold text-gray-900 mb-3">Business Loan Calculator</h3>
+                      <p className="text-gray-600 text-sm mb-4">
+                        Compare business vehicle leasing with business loans for company cars and fleet vehicles.
+                      </p>
+                      <a href="/tools/business-loan-calculator" className="text-orange-600 hover:text-orange-700 font-medium text-sm">
+                        Calculate Business Loans →
+                      </a>
+                    </div>
+
+                    <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                      <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-piggy-bank text-teal-600 text-xl"></i>
+                      </div>
+                      <h3 className="font-semibold text-gray-900 mb-3">Compound Interest Calculator</h3>
+                      <p className="text-gray-600 text-sm mb-4">
+                        Calculate the growth potential of investing your down payment versus using it for leasing.
+                      </p>
+                      <a href="/tools/compound-interest-calculator" className="text-teal-600 hover:text-teal-700 font-medium text-sm">
+                        Calculate Growth →
+                      </a>
+                    </div>
+
+                    <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                      <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-balance-scale text-red-600 text-xl"></i>
+                      </div>
+                      <h3 className="font-semibold text-gray-900 mb-3">Net Worth Calculator</h3>
+                      <p className="text-gray-600 text-sm mb-4">
+                        Track how leasing vs. buying affects your overall net worth and financial health.
+                      </p>
+                      <a href="/tools/net-worth-calculator" className="text-red-600 hover:text-red-700 font-medium text-sm">
+                        Calculate Net Worth →
+                      </a>
+                    </div>
+
+                    <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                      <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-percentage text-indigo-600 text-xl"></i>
+                      </div>
+                      <h3 className="font-semibold text-gray-900 mb-3">Simple Interest Calculator</h3>
+                      <p className="text-gray-600 text-sm mb-4">
+                        Calculate simple interest for basic financing options and compare with lease money factors.
+                      </p>
+                      <a href="/tools/simple-interest-calculator" className="text-indigo-600 hover:text-indigo-700 font-medium text-sm">
+                        Calculate Interest →
+                      </a>
+                    </div>
+
+                    <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                      <div className="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-chart-pie text-pink-600 text-xl"></i>
+                      </div>
+                      <h3 className="font-semibold text-gray-900 mb-3">Budget Calculator</h3>
+                      <p className="text-gray-600 text-sm mb-4">
+                        Ensure your lease payment fits comfortably within your monthly budget and financial goals.
+                      </p>
+                      <a href="/tools/budget-calculator" className="text-pink-600 hover:text-pink-700 font-medium text-sm">
+                        Plan Budget →
+                      </a>
                     </div>
                   </div>
                 </div>
