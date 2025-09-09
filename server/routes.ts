@@ -4832,6 +4832,255 @@ For production use, this would include actual PDF content analysis, visual highl
     }
   });
 
+  // PDF Blank Page Remover endpoint
+  app.post('/api/remove-blank-pages', upload.single('pdf'), async (req: MulterRequest, res) => {
+    try {
+      const { 
+        pagesToRemove = '[]',
+        autoDetect = 'false',
+        threshold = '0.95' 
+      } = req.body;
+
+      if (!req.file) {
+        return res.status(400).json({ error: 'No PDF file uploaded' });
+      }
+
+      if (req.file.mimetype !== 'application/pdf') {
+        await fs.unlink(req.file.path);
+        return res.status(400).json({ error: 'Invalid file type. Please upload a PDF file.' });
+      }
+
+      const { PDFDocument } = await import('pdf-lib');
+      const pdfBytes = await fs.readFile(req.file.path);
+      const pdfDoc = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
+      
+      let pagesToRemoveArray: number[] = [];
+
+      if (autoDetect === 'true') {
+        // Auto-detect blank pages
+        pagesToRemoveArray = await detectBlankPages(pdfDoc, parseFloat(threshold));
+      } else {
+        // Use manually selected pages
+        try {
+          pagesToRemoveArray = JSON.parse(pagesToRemove);
+        } catch (error) {
+          return res.status(400).json({ error: 'Invalid pages to remove format' });
+        }
+      }
+
+      // Validate page numbers
+      const totalPages = pdfDoc.getPageCount();
+      const validPages = pagesToRemoveArray.filter(pageNum => 
+        pageNum >= 1 && pageNum <= totalPages
+      );
+
+      if (validPages.length === 0) {
+        return res.status(400).json({ error: 'No valid pages selected for removal' });
+      }
+
+      if (validPages.length === totalPages) {
+        return res.status(400).json({ error: 'Cannot remove all pages from PDF' });
+      }
+
+      // Create new PDF with pages removed
+      const newPdfDoc = await PDFDocument.create();
+      const pages = pdfDoc.getPages();
+
+      for (let i = 0; i < pages.length; i++) {
+        const pageNum = i + 1;
+        if (!validPages.includes(pageNum)) {
+          // Keep this page
+          const [copiedPage] = await newPdfDoc.copyPages(pdfDoc, [i]);
+          newPdfDoc.addPage(copiedPage);
+        }
+      }
+
+      const modifiedPdfBytes = await newPdfDoc.save();
+
+      await fs.unlink(req.file.path);
+
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `attachment; filename="blank-pages-removed-${req.file.originalname}"`);
+      res.send(Buffer.from(modifiedPdfBytes));
+
+    } catch (error) {
+      console.error('PDF blank page removal error:', error);
+
+      if (req.file?.path) {
+        try {
+          await fs.unlink(req.file.path);
+        } catch (cleanupError) {
+          console.error('Error cleaning up input file:', cleanupError);
+        }
+      }
+
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      res.status(500).json({ error: `PDF blank page removal failed: ${errorMessage}` });
+    }
+  });
+
+  // PDF Blank Page Analysis endpoint
+  app.post('/api/analyze-blank-pages', upload.single('pdf'), async (req: MulterRequest, res) => {
+    try {
+      const { threshold = '0.95' } = req.body;
+
+      if (!req.file) {
+        return res.status(400).json({ error: 'No PDF file uploaded' });
+      }
+
+      if (req.file.mimetype !== 'application/pdf') {
+        await fs.unlink(req.file.path);
+        return res.status(400).json({ error: 'Invalid file type. Please upload a PDF file.' });
+      }
+
+      const { PDFDocument } = await import('pdf-lib');
+      const pdfBytes = await fs.readFile(req.file.path);
+      const pdfDoc = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
+      
+      const analysisResults = await analyzePages(pdfDoc, parseFloat(threshold));
+
+      await fs.unlink(req.file.path);
+
+      res.json({
+        totalPages: pdfDoc.getPageCount(),
+        analysis: analysisResults,
+        blankPages: analysisResults.filter(page => page.isEmpty).map(page => page.pageNumber)
+      });
+
+    } catch (error) {
+      console.error('PDF analysis error:', error);
+
+      if (req.file?.path) {
+        try {
+          await fs.unlink(req.file.path);
+        } catch (cleanupError) {
+          console.error('Error cleaning up input file:', cleanupError);
+        }
+      }
+
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      res.status(500).json({ error: `PDF analysis failed: ${errorMessage}` });
+    }
+  });
+
+  // Helper function to detect blank pages
+  async function detectBlankPages(pdfDoc: any, threshold: number = 0.95): Promise<number[]> {
+    const blankPages: number[] = [];
+    const pages = pdfDoc.getPages();
+
+    for (let i = 0; i < pages.length; i++) {
+      const page = pages[i];
+      const isBlank = await isPageBlank(page, threshold);
+      if (isBlank) {
+        blankPages.push(i + 1); // Convert to 1-based page numbers
+      }
+    }
+
+    return blankPages;
+  }
+
+  // Helper function to analyze all pages
+  async function analyzePages(pdfDoc: any, threshold: number = 0.95): Promise<any[]> {
+    const analysis: any[] = [];
+    const pages = pdfDoc.getPages();
+
+    for (let i = 0; i < pages.length; i++) {
+      const page = pages[i];
+      const pageAnalysis = await analyzePage(page, i + 1, threshold);
+      analysis.push(pageAnalysis);
+    }
+
+    return analysis;
+  }
+
+  // Helper function to analyze a single page
+  async function analyzePage(page: any, pageNumber: number, threshold: number): Promise<any> {
+    try {
+      // Get page content and dimensions
+      const { width, height } = page.getSize();
+      const pageArea = width * height;
+
+      // Extract text content
+      let textContent = '';
+      try {
+        // Note: pdf-lib doesn't have built-in text extraction
+        // This is a simplified approach - in a real implementation you'd use pdf-parse or similar
+        const contentStream = page.getContentStream();
+        if (contentStream) {
+          // This is a very basic approach - real text extraction is more complex
+          textContent = contentStream.toString();
+        }
+      } catch (error) {
+        // Text extraction failed, continue with other analysis
+      }
+
+      // Check for text content
+      const hasText = textContent.length > 50; // Minimum text threshold
+      const textDensity = textContent.length / pageArea;
+
+      // Check for drawings/paths (basic approach)
+      let hasGraphics = false;
+      try {
+        const contentStream = page.getContentStream();
+        if (contentStream) {
+          const content = contentStream.toString();
+          // Look for drawing operations
+          hasGraphics = /[mM]\s+[\d\.\s]+|[lL]\s+[\d\.\s]+|[cC]\s+[\d\.\s]+/.test(content);
+        }
+      } catch (error) {
+        // Graphics detection failed
+      }
+
+      // Check for images (basic approach)
+      let hasImages = false;
+      try {
+        const resources = page.getResources();
+        if (resources && resources.XObject) {
+          hasImages = Object.keys(resources.XObject).length > 0;
+        }
+      } catch (error) {
+        // Image detection failed
+      }
+
+      // Determine if page is blank based on content analysis
+      const contentScore = (hasText ? 0.6 : 0) + (hasGraphics ? 0.3 : 0) + (hasImages ? 0.1 : 0);
+      const isEmpty = contentScore < (1 - threshold);
+
+      return {
+        pageNumber,
+        isEmpty,
+        hasText,
+        hasImages,
+        hasGraphics,
+        textDensity,
+        confidence: isEmpty ? Math.max(0.6, 1 - contentScore) : Math.min(0.4, contentScore),
+        width,
+        height
+      };
+
+    } catch (error) {
+      console.error(`Error analyzing page ${pageNumber}:`, error);
+      // Return safe default
+      return {
+        pageNumber,
+        isEmpty: false,
+        hasText: true,
+        hasImages: false,
+        hasGraphics: false,
+        textDensity: 0,
+        confidence: 0.1,
+        width: 612,
+        height: 792
+      };
+    }
+  }
+
+  // Helper function to check if a page is blank
+  async function isPageBlank(page: any, threshold: number = 0.95): Promise<boolean> {
+    const analysis = await analyzePage(page, 1, threshold);
+    return analysis.isEmpty;
+  }
+
   // Extract PDF Pages endpoint
   app.post('/api/extract-pdf-pages', upload.single('pdf'), async (req: MulterRequest, res) => {
     try {
