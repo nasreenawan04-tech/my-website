@@ -530,6 +530,237 @@ const RotatePDFTool = () => {
                     </div>
                   </div>
                 </div>
+
+                {/* Why Choose Our PDF Rotator */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Why Choose Our PDF Rotation Tool?</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Free & No Registration</h3>
+                      <p className="text-gray-600 mb-4">
+                        Rotate PDF pages completely free without creating an account. No hidden fees, no subscription required. 
+                        Simply upload your PDF and start rotating pages instantly.
+                      </p>
+                      
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Browser-Based Security</h3>
+                      <p className="text-gray-600 mb-4">
+                        All PDF rotation happens directly in your browser. Your files never leave your device, ensuring complete 
+                        privacy and security. No server uploads means your sensitive documents stay private.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Professional Results</h3>
+                      <p className="text-gray-600 mb-4">
+                        Maintain original PDF quality while rotating pages. Our tool preserves text searchability, hyperlinks, 
+                        and formatting, ensuring your rotated PDF looks exactly as intended.
+                      </p>
+                      
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Flexible Page Selection</h3>
+                      <p className="text-gray-600">
+                        Rotate individual pages, page ranges, or entire documents. Choose specific pages that need rotation 
+                        while keeping others in their original orientation for maximum control.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Technical Specifications */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Technical Specifications</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="bg-blue-50 rounded-lg p-6">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Supported Formats</h3>
+                      <ul className="space-y-2 text-sm text-gray-600">
+                        <li>• PDF 1.3 and higher</li>
+                        <li>• Password-protected PDFs</li>
+                        <li>• Multi-page documents</li>
+                        <li>• Scanned PDF documents</li>
+                        <li>• Form-fillable PDFs</li>
+                      </ul>
+                    </div>
+                    
+                    <div className="bg-green-50 rounded-lg p-6">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Rotation Options</h3>
+                      <ul className="space-y-2 text-sm text-gray-600">
+                        <li>• 90° clockwise rotation</li>
+                        <li>• 180° flip (upside down)</li>
+                        <li>• 270° counter-clockwise</li>
+                        <li>• Selective page rotation</li>
+                        <li>• Batch processing</li>
+                      </ul>
+                    </div>
+                    
+                    <div className="bg-purple-50 rounded-lg p-6">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">File Limits</h3>
+                      <ul className="space-y-2 text-sm text-gray-600">
+                        <li>• Maximum size: 100MB</li>
+                        <li>• Up to 1000 pages</li>
+                        <li>• Any page dimensions</li>
+                        <li>• Multiple rotations</li>
+                        <li>• Instant processing</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Frequently Asked Questions */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
+                  <div className="space-y-6">
+                    <div className="border-b border-gray-200 pb-4">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">How do I rotate specific pages in a PDF?</h3>
+                      <p className="text-gray-600">
+                        Upload your PDF, select the rotation angle (90°, 180°, or 270°), then choose which pages to rotate by clicking on the page numbers. 
+                        You can select individual pages or use "Select All" for the entire document.
+                      </p>
+                    </div>
+                    
+                    <div className="border-b border-gray-200 pb-4">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Does rotating PDF pages affect quality?</h3>
+                      <p className="text-gray-600">
+                        No, our PDF rotation tool maintains the original quality of your document. Text remains searchable, images stay sharp, 
+                        and all formatting is preserved during the rotation process.
+                      </p>
+                    </div>
+                    
+                    <div className="border-b border-gray-200 pb-4">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I rotate password-protected PDFs?</h3>
+                      <p className="text-gray-600">
+                        Yes, but you'll need to unlock the PDF first using our PDF unlock tool. Once unlocked, you can rotate pages normally 
+                        and then re-protect the document if needed.
+                      </p>
+                    </div>
+                    
+                    <div className="border-b border-gray-200 pb-4">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">What's the difference between 90° and 270° rotation?</h3>
+                      <p className="text-gray-600">
+                        90° rotates pages clockwise (right), while 270° rotates counter-clockwise (left). If a page is sideways with text 
+                        reading from bottom to top, use 90° to fix it. If text reads from top to bottom, use 270°.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">How large can my PDF be for rotation?</h3>
+                      <p className="text-gray-600">
+                        Our tool supports PDFs up to 100MB in size with up to 1000 pages. Most documents will be processed instantly, 
+                        while very large files may take a few seconds to complete the rotation.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Tips for Best Results */}
+                <div className="bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Tips for Best PDF Rotation Results</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Before Rotating</h3>
+                      <ul className="space-y-2 text-gray-600">
+                        <li>• Preview your PDF to identify problem pages</li>
+                        <li>• Note which pages need rotation</li>
+                        <li>• Check if the PDF is password-protected</li>
+                        <li>• Ensure file size is under 100MB</li>
+                        <li>• Have a backup of your original file</li>
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Rotation Best Practices</h3>
+                      <ul className="space-y-2 text-gray-600">
+                        <li>• Test with a single page first</li>
+                        <li>• Use 90° for most orientation fixes</li>
+                        <li>• Select pages carefully to avoid over-rotation</li>
+                        <li>• Download and verify results before sharing</li>
+                        <li>• Keep original files until satisfied with results</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Related Tools */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Related PDF Tools</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow">
+                      <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
+                        <i className="fas fa-object-group text-blue-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Merge PDF</h3>
+                      <p className="text-gray-600 text-sm mb-4">
+                        Combine multiple PDF files into one document after fixing page orientations.
+                      </p>
+                      <a href="/tools/merge-pdf" className="text-blue-600 hover:text-blue-700 font-medium text-sm">
+                        Try PDF Merger →
+                      </a>
+                    </div>
+                    
+                    <div className="border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow">
+                      <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4">
+                        <i className="fas fa-cut text-green-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Split PDF</h3>
+                      <p className="text-gray-600 text-sm mb-4">
+                        Extract specific pages from your PDF after rotating them to correct orientation.
+                      </p>
+                      <a href="/tools/split-pdf" className="text-green-600 hover:text-green-700 font-medium text-sm">
+                        Try PDF Splitter →
+                      </a>
+                    </div>
+                    
+                    <div className="border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow">
+                      <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
+                        <i className="fas fa-list-ol text-purple-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Add Page Numbers</h3>
+                      <p className="text-gray-600 text-sm mb-4">
+                        Add page numbers to your PDF after ensuring all pages have the correct orientation.
+                      </p>
+                      <a href="/tools/add-page-numbers" className="text-purple-600 hover:text-purple-700 font-medium text-sm">
+                        Try Page Numbering →
+                      </a>
+                    </div>
+                    
+                    <div className="border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow">
+                      <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4">
+                        <i className="fas fa-tint text-red-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Add Watermark</h3>
+                      <p className="text-gray-600 text-sm mb-4">
+                        Apply watermarks to your PDF after fixing page orientations for proper placement.
+                      </p>
+                      <a href="/tools/watermark-pdf" className="text-red-600 hover:text-red-700 font-medium text-sm">
+                        Try PDF Watermark →
+                      </a>
+                    </div>
+                    
+                    <div className="border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow">
+                      <div className="w-12 h-12 bg-yellow-100 rounded-xl flex items-center justify-center mb-4">
+                        <i className="fas fa-lock text-yellow-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Protect PDF</h3>
+                      <p className="text-gray-600 text-sm mb-4">
+                        Add password protection to your PDF after completing all page rotations.
+                      </p>
+                      <a href="/tools/protect-pdf" className="text-yellow-600 hover:text-yellow-700 font-medium text-sm">
+                        Try PDF Protection →
+                      </a>
+                    </div>
+                    
+                    <div className="border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow">
+                      <div className="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center mb-4">
+                        <i className="fas fa-arrows-alt text-indigo-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Organize Pages</h3>
+                      <p className="text-gray-600 text-sm mb-4">
+                        Reorder and organize PDF pages after ensuring correct orientation.
+                      </p>
+                      <a href="/tools/organize-pdf-pages" className="text-indigo-600 hover:text-indigo-700 font-medium text-sm">
+                        Try Page Organizer →
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
