@@ -1167,7 +1167,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const compressPdf = await import('compress-pdf');
       const inputPath = req.file.path;
-      const outputPath = path.join(__dirname, '../compressed', `compressed-${Date.now()}-${req.file.originalname}`);
 
       const compressedBuffer = await compressPdf.compress(inputPath);
       const originalSize = (await fs.stat(inputPath)).size;
@@ -1175,7 +1174,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const compressionRatio = Math.round((1 - compressedSize / originalSize) * 100);
 
       await fs.unlink(req.file.path);
-      await fs.unlink(outputPath);
 
       res.setHeader('Content-Type', 'application/pdf');
       res.setHeader('Content-Disposition', `attachment; filename="compressed-${req.file.originalname}"`);

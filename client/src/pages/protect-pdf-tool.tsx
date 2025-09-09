@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 // Removed pdf-lib-with-encrypt - now using server-side qpdf encryption
-import { Upload, FileText, Download, Trash2, Lock, Shield, Eye, EyeOff } from 'lucide-react';
+import { Upload, FileText, Download, Trash2, Lock, Shield, Eye, EyeOff, Unlock } from 'lucide-react';
 
 interface PDFFile {
   id: string;
