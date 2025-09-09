@@ -489,8 +489,237 @@ export default function LoanCalculator() {
             </Card>
           )}
 
-          {/* Comprehensive Educational Content */}
+          {/* SEO-Optimized Educational Content */}
           <div className="mt-12 space-y-12">
+            {/* What is a Loan Calculator - Main SEO Section */}
+            <Card className="bg-white border-0 shadow-sm">
+              <CardContent className="p-8">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">What is a Loan Calculator?</h2>
+                <div className="prose max-w-none text-gray-700 space-y-4">
+                  <p className="text-lg leading-relaxed">
+                    A loan calculator is an essential financial tool that helps borrowers estimate their monthly loan payments, 
+                    total interest costs, and overall loan expenses before applying for financing. Our free online loan calculator 
+                    uses sophisticated algorithms to provide accurate calculations for personal loans, auto loans, home loans, 
+                    and business financing options.
+                  </p>
+                  <p>
+                    Whether you're planning to finance a new car, consolidate debt, fund home improvements, or start a business, 
+                    our loan payment calculator gives you the insights needed to make informed financial decisions. The calculator 
+                    instantly computes your monthly payment amount, total interest over the loan term, and provides a detailed 
+                    amortization schedule showing how your payments are allocated between principal and interest.
+                  </p>
+                  <p>
+                    Understanding loan calculations is crucial for financial planning. Our tool helps you compare different loan 
+                    scenarios, evaluate affordability, and budget effectively. By adjusting loan amount, interest rate, and term 
+                    length, you can find the optimal financing solution that fits your budget and financial goals.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Benefits for Different Audiences */}
+            <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 border-0 shadow-sm">
+              <CardContent className="p-8">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">Who Benefits from Our Loan Calculator?</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div className="bg-white p-6 rounded-xl shadow-sm">
+                    <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center mb-4">
+                      <i className="fas fa-graduation-cap text-white text-xl"></i>
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">Students & Graduates</h3>
+                    <p className="text-gray-600 mb-4">
+                      Plan student loan repayments, calculate education financing costs, and budget for post-graduation expenses.
+                    </p>
+                    <div className="space-y-2">
+                      <div className="flex items-center text-sm text-gray-600">
+                        <i className="fas fa-check text-green-500 mr-2"></i>
+                        <span>Education loan planning</span>
+                      </div>
+                      <div className="flex items-center text-sm text-gray-600">
+                        <i className="fas fa-check text-green-500 mr-2"></i>
+                        <span>Graduate school financing</span>
+                      </div>
+                      <div className="flex items-center text-sm text-gray-600">
+                        <i className="fas fa-check text-green-500 mr-2"></i>
+                        <span>Career transition budgeting</span>
+                      </div>
+                    </div>
+                    <div className="mt-4">
+                      <a href="/tools/education-loan-calculator" className="text-blue-600 hover:text-blue-700 font-medium text-sm">
+                        Try Education Loan Calculator →
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="bg-white p-6 rounded-xl shadow-sm">
+                    <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mb-4">
+                      <i className="fas fa-briefcase text-white text-xl"></i>
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">Working Professionals</h3>
+                    <p className="text-gray-600 mb-4">
+                      Calculate car loans, personal loans for major purchases, debt consolidation, and home improvement financing.
+                    </p>
+                    <div className="space-y-2">
+                      <div className="flex items-center text-sm text-gray-600">
+                        <i className="fas fa-check text-green-500 mr-2"></i>
+                        <span>Auto loan calculations</span>
+                      </div>
+                      <div className="flex items-center text-sm text-gray-600">
+                        <i className="fas fa-check text-green-500 mr-2"></i>
+                        <span>Debt consolidation planning</span>
+                      </div>
+                      <div className="flex items-center text-sm text-gray-600">
+                        <i className="fas fa-check text-green-500 mr-2"></i>
+                        <span>Major purchase financing</span>
+                      </div>
+                    </div>
+                    <div className="mt-4 space-y-1">
+                      <div>
+                        <a href="/tools/car-loan-calculator" className="text-green-600 hover:text-green-700 font-medium text-sm">
+                          Car Loan Calculator →
+                        </a>
+                      </div>
+                      <div>
+                        <a href="/tools/debt-payoff-calculator" className="text-green-600 hover:text-green-700 font-medium text-sm">
+                          Debt Payoff Calculator →
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-white p-6 rounded-xl shadow-sm">
+                    <div className="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center mb-4">
+                      <i className="fas fa-building text-white text-xl"></i>
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">Business Owners</h3>
+                    <p className="text-gray-600 mb-4">
+                      Evaluate business loans, equipment financing, working capital needs, and expansion funding options.
+                    </p>
+                    <div className="space-y-2">
+                      <div className="flex items-center text-sm text-gray-600">
+                        <i className="fas fa-check text-green-500 mr-2"></i>
+                        <span>Business loan planning</span>
+                      </div>
+                      <div className="flex items-center text-sm text-gray-600">
+                        <i className="fas fa-check text-green-500 mr-2"></i>
+                        <span>Equipment financing</span>
+                      </div>
+                      <div className="flex items-center text-sm text-gray-600">
+                        <i className="fas fa-check text-green-500 mr-2"></i>
+                        <span>Cash flow analysis</span>
+                      </div>
+                    </div>
+                    <div className="mt-4">
+                      <a href="/tools/business-loan-calculator" className="text-purple-600 hover:text-purple-700 font-medium text-sm">
+                        Business Loan Calculator →
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="bg-white p-6 rounded-xl shadow-sm">
+                    <div className="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center mb-4">
+                      <i className="fas fa-home text-white text-xl"></i>
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">Homeowners & Buyers</h3>
+                    <p className="text-gray-600 mb-4">
+                      Calculate mortgage payments, home equity loans, refinancing options, and home improvement financing.
+                    </p>
+                    <div className="space-y-2">
+                      <div className="flex items-center text-sm text-gray-600">
+                        <i className="fas fa-check text-green-500 mr-2"></i>
+                        <span>Mortgage calculations</span>
+                      </div>
+                      <div className="flex items-center text-sm text-gray-600">
+                        <i className="fas fa-check text-green-500 mr-2"></i>
+                        <span>Home equity planning</span>
+                      </div>
+                      <div className="flex items-center text-sm text-gray-600">
+                        <i className="fas fa-check text-green-500 mr-2"></i>
+                        <span>Refinancing analysis</span>
+                      </div>
+                    </div>
+                    <div className="mt-4 space-y-1">
+                      <div>
+                        <a href="/tools/mortgage-calculator" className="text-orange-600 hover:text-orange-700 font-medium text-sm">
+                          Mortgage Calculator →
+                        </a>
+                      </div>
+                      <div>
+                        <a href="/tools/home-loan-calculator" className="text-orange-600 hover:text-orange-700 font-medium text-sm">
+                          Home Loan Calculator →
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-white p-6 rounded-xl shadow-sm">
+                    <div className="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center mb-4">
+                      <i className="fas fa-chart-line text-white text-xl"></i>
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">Investors & Planners</h3>
+                    <p className="text-gray-600 mb-4">
+                      Analyze investment property financing, portfolio leverage, and compare loan options for optimal returns.
+                    </p>
+                    <div className="space-y-2">
+                      <div className="flex items-center text-sm text-gray-600">
+                        <i className="fas fa-check text-green-500 mr-2"></i>
+                        <span>Investment property loans</span>
+                      </div>
+                      <div className="flex items-center text-sm text-gray-600">
+                        <i className="fas fa-check text-green-500 mr-2"></i>
+                        <span>ROI calculations</span>
+                      </div>
+                      <div className="flex items-center text-sm text-gray-600">
+                        <i className="fas fa-check text-green-500 mr-2"></i>
+                        <span>Portfolio optimization</span>
+                      </div>
+                    </div>
+                    <div className="mt-4 space-y-1">
+                      <div>
+                        <a href="/tools/roi-calculator" className="text-red-600 hover:text-red-700 font-medium text-sm">
+                          ROI Calculator →
+                        </a>
+                      </div>
+                      <div>
+                        <a href="/tools/investment-return-calculator" className="text-red-600 hover:text-red-700 font-medium text-sm">
+                          Investment Calculator →
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-white p-6 rounded-xl shadow-sm">
+                    <div className="w-12 h-12 bg-teal-500 rounded-lg flex items-center justify-center mb-4">
+                      <i className="fas fa-users text-white text-xl"></i>
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">Families & Couples</h3>
+                    <p className="text-gray-600 mb-4">
+                      Plan family financial goals, calculate joint loans, and budget for major life events and purchases.
+                    </p>
+                    <div className="space-y-2">
+                      <div className="flex items-center text-sm text-gray-600">
+                        <i className="fas fa-check text-green-500 mr-2"></i>
+                        <span>Family budget planning</span>
+                      </div>
+                      <div className="flex items-center text-sm text-gray-600">
+                        <i className="fas fa-check text-green-500 mr-2"></i>
+                        <span>Joint loan calculations</span>
+                      </div>
+                      <div className="flex items-center text-sm text-gray-600">
+                        <i className="fas fa-check text-green-500 mr-2"></i>
+                        <span>Life event financing</span>
+                      </div>
+                    </div>
+                    <div className="mt-4">
+                      <a href="/tools/savings-goal-calculator" className="text-teal-600 hover:text-teal-700 font-medium text-sm">
+                        Savings Goal Calculator →
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
             {/* How to Use Section */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <Card className="bg-white border-0 shadow-sm">
@@ -611,77 +840,223 @@ export default function LoanCalculator() {
             <Card className="bg-white border-0 shadow-sm">
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Types of Loans You Can Calculate</h2>
+                <p className="text-gray-600 mb-8">
+                  Our comprehensive loan calculator supports all major loan types. Calculate payments for any financing 
+                  need and compare options to find the best rates and terms for your situation.
+                </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  <div className="bg-blue-50 p-6 rounded-lg">
+                  <div className="bg-blue-50 p-6 rounded-lg border border-blue-100 hover:border-blue-200 transition-colors">
                     <h3 className="text-lg font-semibold text-blue-900 mb-3">Personal Loans</h3>
                     <p className="text-blue-700 text-sm mb-3">
-                      Unsecured loans for personal expenses, debt consolidation, or emergencies.
+                      Unsecured loans for personal expenses, debt consolidation, medical bills, or emergencies.
                     </p>
-                    <div className="text-xs text-blue-600">
+                    <div className="text-xs text-blue-600 mb-4">
                       <div>• Typical range: $1,000 - $100,000</div>
                       <div>• Terms: 2-7 years</div>
                       <div>• APR: 6-36%</div>
+                      <div>• No collateral required</div>
+                    </div>
+                    <div className="space-y-1">
+                      <div className="text-xs">
+                        <span className="text-blue-800 font-medium">Popular uses:</span>
+                        <span className="text-blue-600"> Debt consolidation, home improvements, weddings</span>
+                      </div>
                     </div>
                   </div>
                   
-                  <div className="bg-green-50 p-6 rounded-lg">
+                  <div className="bg-green-50 p-6 rounded-lg border border-green-100 hover:border-green-200 transition-colors">
                     <h3 className="text-lg font-semibold text-green-900 mb-3">Auto Loans</h3>
                     <p className="text-green-700 text-sm mb-3">
-                      Secured loans for purchasing new or used vehicles.
+                      Secured loans for purchasing new or used vehicles, motorcycles, or recreational vehicles.
                     </p>
-                    <div className="text-xs text-green-600">
+                    <div className="text-xs text-green-600 mb-4">
                       <div>• Typical range: $5,000 - $100,000</div>
                       <div>• Terms: 3-8 years</div>
                       <div>• APR: 3-15%</div>
+                      <div>• Vehicle serves as collateral</div>
+                    </div>
+                    <div className="space-y-1">
+                      <div className="text-xs">
+                        <span className="text-green-800 font-medium">Also calculate:</span>
+                        <span className="text-green-600"> Motorcycle, RV, boat loans</span>
+                      </div>
+                      <a href="/tools/car-loan-calculator" className="text-green-700 hover:text-green-800 font-medium text-xs block">
+                        Use Car Loan Calculator →
+                      </a>
                     </div>
                   </div>
                   
-                  <div className="bg-purple-50 p-6 rounded-lg">
+                  <div className="bg-purple-50 p-6 rounded-lg border border-purple-100 hover:border-purple-200 transition-colors">
                     <h3 className="text-lg font-semibold text-purple-900 mb-3">Home Equity Loans</h3>
                     <p className="text-purple-700 text-sm mb-3">
-                      Secured loans using your home's equity as collateral.
+                      Secured loans using your home's equity as collateral for major expenses or investments.
                     </p>
-                    <div className="text-xs text-purple-600">
+                    <div className="text-xs text-purple-600 mb-4">
                       <div>• Typical range: $10,000 - $500,000</div>
                       <div>• Terms: 5-30 years</div>
                       <div>• APR: 4-12%</div>
+                      <div>• Tax-deductible interest (some cases)</div>
+                    </div>
+                    <div className="space-y-1">
+                      <div className="text-xs">
+                        <span className="text-purple-800 font-medium">Best for:</span>
+                        <span className="text-purple-600"> Home improvements, education costs</span>
+                      </div>
+                      <a href="/tools/home-loan-calculator" className="text-purple-700 hover:text-purple-800 font-medium text-xs block">
+                        Use Home Loan Calculator →
+                      </a>
                     </div>
                   </div>
                   
-                  <div className="bg-orange-50 p-6 rounded-lg">
+                  <div className="bg-orange-50 p-6 rounded-lg border border-orange-100 hover:border-orange-200 transition-colors">
                     <h3 className="text-lg font-semibold text-orange-900 mb-3">Business Loans</h3>
                     <p className="text-orange-700 text-sm mb-3">
-                      Financing for business operations, equipment, or expansion.
+                      Commercial financing for business operations, equipment purchases, or expansion projects.
                     </p>
-                    <div className="text-xs text-orange-600">
+                    <div className="text-xs text-orange-600 mb-4">
                       <div>• Typical range: $5,000 - $5,000,000</div>
                       <div>• Terms: 1-25 years</div>
                       <div>• APR: 4-30%</div>
+                      <div>• SBA loans available</div>
+                    </div>
+                    <div className="space-y-1">
+                      <div className="text-xs">
+                        <span className="text-orange-800 font-medium">Includes:</span>
+                        <span className="text-orange-600"> Equipment, working capital, real estate</span>
+                      </div>
+                      <a href="/tools/business-loan-calculator" className="text-orange-700 hover:text-orange-800 font-medium text-xs block">
+                        Use Business Loan Calculator →
+                      </a>
                     </div>
                   </div>
                   
-                  <div className="bg-red-50 p-6 rounded-lg">
+                  <div className="bg-red-50 p-6 rounded-lg border border-red-100 hover:border-red-200 transition-colors">
                     <h3 className="text-lg font-semibold text-red-900 mb-3">Student Loans</h3>
                     <p className="text-red-700 text-sm mb-3">
-                      Education financing for tuition, books, and living expenses.
+                      Education financing for tuition, books, living expenses, and graduate school costs.
                     </p>
-                    <div className="text-xs text-red-600">
+                    <div className="text-xs text-red-600 mb-4">
                       <div>• Typical range: $1,000 - $100,000+</div>
                       <div>• Terms: 10-30 years</div>
                       <div>• APR: 3-12%</div>
+                      <div>• Deferment options available</div>
+                    </div>
+                    <div className="space-y-1">
+                      <div className="text-xs">
+                        <span className="text-red-800 font-medium">Options:</span>
+                        <span className="text-red-600"> Federal, private, parent PLUS loans</span>
+                      </div>
+                      <a href="/tools/education-loan-calculator" className="text-red-700 hover:text-red-800 font-medium text-xs block">
+                        Use Education Loan Calculator →
+                      </a>
                     </div>
                   </div>
                   
-                  <div className="bg-teal-50 p-6 rounded-lg">
+                  <div className="bg-teal-50 p-6 rounded-lg border border-teal-100 hover:border-teal-200 transition-colors">
                     <h3 className="text-lg font-semibold text-teal-900 mb-3">Debt Consolidation</h3>
                     <p className="text-teal-700 text-sm mb-3">
-                      Combine multiple debts into a single loan payment.
+                      Combine multiple high-interest debts into a single, lower-rate loan payment.
                     </p>
-                    <div className="text-xs text-teal-600">
+                    <div className="text-xs text-teal-600 mb-4">
                       <div>• Typical range: $5,000 - $100,000</div>
                       <div>• Terms: 2-7 years</div>
                       <div>• APR: 6-25%</div>
+                      <div>• Simplifies debt management</div>
                     </div>
+                    <div className="space-y-1">
+                      <div className="text-xs">
+                        <span className="text-teal-800 font-medium">Consolidate:</span>
+                        <span className="text-teal-600"> Credit cards, medical bills, other loans</span>
+                      </div>
+                      <a href="/tools/debt-payoff-calculator" className="text-teal-700 hover:text-teal-800 font-medium text-xs block">
+                        Use Debt Payoff Calculator →
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="bg-indigo-50 p-6 rounded-lg border border-indigo-100 hover:border-indigo-200 transition-colors">
+                    <h3 className="text-lg font-semibold text-indigo-900 mb-3">Mortgage Loans</h3>
+                    <p className="text-indigo-700 text-sm mb-3">
+                      Home purchase financing with fixed or adjustable rates for primary or investment properties.
+                    </p>
+                    <div className="text-xs text-indigo-600 mb-4">
+                      <div>• Typical range: $50,000 - $2,000,000+</div>
+                      <div>• Terms: 15-30 years</div>
+                      <div>• APR: 3-8%</div>
+                      <div>• PMI may be required</div>
+                    </div>
+                    <div className="space-y-1">
+                      <div className="text-xs">
+                        <span className="text-indigo-800 font-medium">Types:</span>
+                        <span className="text-indigo-600"> Conventional, FHA, VA, USDA loans</span>
+                      </div>
+                      <a href="/tools/mortgage-calculator" className="text-indigo-700 hover:text-indigo-800 font-medium text-xs block">
+                        Use Mortgage Calculator →
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="bg-yellow-50 p-6 rounded-lg border border-yellow-100 hover:border-yellow-200 transition-colors">
+                    <h3 className="text-lg font-semibold text-yellow-900 mb-3">Credit Card Loans</h3>
+                    <p className="text-yellow-700 text-sm mb-3">
+                      Calculate payoff time and interest costs for existing credit card debt and balances.
+                    </p>
+                    <div className="text-xs text-yellow-600 mb-4">
+                      <div>• Typical range: $500 - $50,000</div>
+                      <div>• Terms: Variable (revolving credit)</div>
+                      <div>• APR: 15-29%</div>
+                      <div>• Minimum payment calculations</div>
+                    </div>
+                    <div className="space-y-1">
+                      <div className="text-xs">
+                        <span className="text-yellow-800 font-medium">Calculate:</span>
+                        <span className="text-yellow-600"> Payoff time, interest savings</span>
+                      </div>
+                      <a href="/tools/credit-card-interest-calculator" className="text-yellow-700 hover:text-yellow-800 font-medium text-xs block">
+                        Use Credit Card Calculator →
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="bg-pink-50 p-6 rounded-lg border border-pink-100 hover:border-pink-200 transition-colors">
+                    <h3 className="text-lg font-semibold text-pink-900 mb-3">Equipment Leasing</h3>
+                    <p className="text-pink-700 text-sm mb-3">
+                      Calculate lease payments for vehicles, business equipment, and technology with buyout options.
+                    </p>
+                    <div className="text-xs text-pink-600 mb-4">
+                      <div>• Typical range: $1,000 - $1,000,000</div>
+                      <div>• Terms: 1-7 years</div>
+                      <div>• Money factor: 0.001-0.01</div>
+                      <div>• Lower monthly payments</div>
+                    </div>
+                    <div className="space-y-1">
+                      <div className="text-xs">
+                        <span className="text-pink-800 font-medium">Best for:</span>
+                        <span className="text-pink-600"> Cars, computers, machinery</span>
+                      </div>
+                      <a href="/tools/lease-calculator" className="text-pink-700 hover:text-pink-800 font-medium text-xs block">
+                        Use Lease Calculator →
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Additional Related Calculators */}
+                <div className="mt-8 p-6 bg-gray-50 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Related Financial Calculators</h3>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <a href="/tools/compound-interest" className="text-blue-600 hover:text-blue-700 text-sm font-medium">
+                      Compound Interest Calculator
+                    </a>
+                    <a href="/tools/simple-interest" className="text-blue-600 hover:text-blue-700 text-sm font-medium">
+                      Simple Interest Calculator
+                    </a>
+                    <a href="/tools/emi-calculator" className="text-blue-600 hover:text-blue-700 text-sm font-medium">
+                      EMI Calculator
+                    </a>
+                    <a href="/tools/break-even-calculator" className="text-blue-600 hover:text-blue-700 text-sm font-medium">
+                      Break Even Calculator
+                    </a>
                   </div>
                 </div>
               </CardContent>
@@ -807,80 +1182,186 @@ export default function LoanCalculator() {
               </CardContent>
             </Card>
 
-            {/* FAQ Section */}
+            {/* Comprehensive FAQ Section */}
             <Card className="bg-white border-0 shadow-sm">
               <CardContent className="p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
-                <div className="space-y-6">
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">How accurate is this loan calculator?</h3>
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions About Loan Calculators</h2>
+                <div className="space-y-8">
+                  <div className="border-b border-gray-200 pb-6">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">How accurate is this loan calculator?</h3>
+                    <p className="text-gray-600 mb-2">
+                      Our loan calculator provides highly accurate estimates based on the information you provide, using 
+                      industry-standard amortization formulas. The calculations are precise for the principal, interest, 
+                      and payment schedules.
+                    </p>
                     <p className="text-gray-600">
-                      Our calculator provides highly accurate estimates based on the information you provide. However, 
-                      actual loan terms may vary based on your creditworthiness, lender policies, and additional fees 
-                      not included in the basic calculation.
+                      However, actual loan terms may vary based on your creditworthiness, lender policies, origination fees, 
+                      insurance requirements, and other costs not included in the basic calculation. Always request a 
+                      detailed loan estimate from your lender for final terms.
                     </p>
                   </div>
                   
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">What's the difference between APR and interest rate?</h3>
+                  <div className="border-b border-gray-200 pb-6">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">What's the difference between APR and interest rate?</h3>
+                    <p className="text-gray-600 mb-2">
+                      The interest rate is the annual cost of borrowing the principal amount, expressed as a percentage. 
+                      This is what's used to calculate your monthly payment amount.
+                    </p>
                     <p className="text-gray-600">
-                      The interest rate is the cost of borrowing the principal amount. APR (Annual Percentage Rate) 
-                      includes the interest rate plus additional fees and costs, giving you a more complete picture 
-                      of the loan's total cost.
+                      APR (Annual Percentage Rate) includes the interest rate plus additional fees and costs such as 
+                      origination fees, closing costs, and mortgage insurance. APR gives you a more complete picture 
+                      of the loan's total annual cost and is better for comparing offers from different lenders.
                     </p>
                   </div>
                   
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Should I choose a shorter or longer loan term?</h3>
+                  <div className="border-b border-gray-200 pb-6">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Should I choose a shorter or longer loan term?</h3>
+                    <p className="text-gray-600 mb-2">
+                      <strong>Shorter terms (2-5 years):</strong> Higher monthly payments but significantly less total interest paid. 
+                      You'll build equity faster and pay off debt quicker.
+                    </p>
+                    <p className="text-gray-600 mb-2">
+                      <strong>Longer terms (6-8 years):</strong> Lower monthly payments but more total interest over the loan's lifetime. 
+                      Better for managing monthly cash flow.
+                    </p>
                     <p className="text-gray-600">
-                      Shorter terms typically mean higher monthly payments but less total interest paid. Longer terms 
-                      reduce monthly payments but increase the total cost over time. Choose based on your budget and 
-                      financial goals.
+                      Choose based on your budget, financial goals, and whether you prioritize lower monthly payments or 
+                      minimizing total cost. Use our calculator to compare different term lengths for your situation.
                     </p>
                   </div>
                   
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I pay off my loan early?</h3>
+                  <div className="border-b border-gray-200 pb-6">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Can I pay off my loan early without penalties?</h3>
+                    <p className="text-gray-600 mb-2">
+                      Most personal loans, auto loans, and student loans allow early payoff without penalties. This can 
+                      save you thousands in interest charges over the loan term.
+                    </p>
                     <p className="text-gray-600">
-                      Many loans allow early payoff, which can save you money on interest. However, some lenders charge 
-                      prepayment penalties. Check your loan terms and use our calculator to see potential savings from 
-                      early repayment.
+                      However, some lenders charge prepayment penalties (typically 1-3% of the remaining balance). 
+                      Always check your loan agreement before signing. Our calculator's extra payment feature shows 
+                      potential savings from early repayment strategies.
                     </p>
                   </div>
 
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">What credit score do I need for a good loan rate?</h3>
-                    <p className="text-gray-600">
-                      Generally, credit scores above 700 qualify for the best loan rates. Scores between 650-699 get fair rates, 
-                      while scores below 650 may face higher interest rates or require secured loans. Check your credit score 
-                      before applying to understand what rates you might qualify for.
+                  <div className="border-b border-gray-200 pb-6">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">What credit score do I need for the best loan rates?</h3>
+                    <div className="space-y-2 text-gray-600">
+                      <div><strong>Excellent (750+):</strong> Qualify for the lowest rates and best terms</div>
+                      <div><strong>Good (700-749):</strong> Good rates with most lenders</div>
+                      <div><strong>Fair (650-699):</strong> Higher rates but still qualify with many lenders</div>
+                      <div><strong>Poor (600-649):</strong> Limited options, higher rates, may need secured loans</div>
+                      <div><strong>Bad (Below 600):</strong> Very limited options, highest rates, may need cosigner</div>
+                    </div>
+                    <p className="text-gray-600 mt-2">
+                      Check your credit score before applying to understand what rates you might qualify for and 
+                      shop around to find the best deal for your credit profile.
                     </p>
                   </div>
 
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">How do I calculate loan payments manually?</h3>
-                    <p className="text-gray-600">
-                      The loan payment formula is: M = P × [r(1+r)^n] / [(1+r)^n - 1], where M is monthly payment, 
-                      P is principal, r is monthly interest rate (annual rate ÷ 12), and n is number of payments. 
-                      Our calculator does this complex math instantly for accurate results.
+                  <div className="border-b border-gray-200 pb-6">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">How do loan payment calculations work?</h3>
+                    <p className="text-gray-600 mb-2">
+                      Loan payments are calculated using the standard amortization formula: 
+                      <strong> M = P × [r(1+r)^n] / [(1+r)^n - 1]</strong>
+                    </p>
+                    <div className="bg-gray-50 p-4 rounded-lg space-y-1 text-sm text-gray-600">
+                      <div><strong>M</strong> = Monthly Payment</div>
+                      <div><strong>P</strong> = Principal (loan amount)</div>
+                      <div><strong>r</strong> = Monthly interest rate (annual rate ÷ 12)</div>
+                      <div><strong>n</strong> = Total number of payments (years × 12)</div>
+                    </div>
+                    <p className="text-gray-600 mt-2">
+                      Our calculator performs this complex math instantly and provides detailed breakdowns of principal 
+                      vs. interest for each payment in the amortization schedule.
                     </p>
                   </div>
 
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">What's included in my total loan cost?</h3>
-                    <p className="text-gray-600">
-                      Total loan cost includes principal, interest, and any fees like origination fees, processing fees, 
-                      insurance premiums, and closing costs. Our calculator focuses on principal and interest, but always 
-                      ask lenders for a complete breakdown of all costs before signing.
+                  <div className="border-b border-gray-200 pb-6">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">What's included in my total loan cost?</h3>
+                    <p className="text-gray-600 mb-2">
+                      <strong>Basic loan cost:</strong> Principal + Interest (what our calculator shows)
+                    </p>
+                    <p className="text-gray-600 mb-2">
+                      <strong>Additional costs may include:</strong>
+                    </p>
+                    <ul className="list-disc list-inside text-gray-600 space-y-1 ml-4">
+                      <li>Origination fees (1-8% of loan amount)</li>
+                      <li>Processing or application fees ($25-$500)</li>
+                      <li>Credit check fees ($10-$50)</li>
+                      <li>Late payment fees</li>
+                      <li>Insurance premiums (for auto/home loans)</li>
+                      <li>Closing costs (for mortgages)</li>
+                    </ul>
+                    <p className="text-gray-600 mt-2">
+                      Always request a detailed loan estimate showing all costs before signing any loan agreement.
                     </p>
                   </div>
 
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">How often should I shop for loan rates?</h3>
+                  <div className="border-b border-gray-200 pb-6">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">How often should I shop around for loan rates?</h3>
+                    <p className="text-gray-600 mb-2">
+                      <strong>For new loans:</strong> Always compare at least 3-5 lenders. Submit applications within a 
+                      14-45 day window to minimize credit score impact from multiple inquiries.
+                    </p>
+                    <p className="text-gray-600 mb-2">
+                      <strong>For existing loans:</strong> Review refinancing options every 2-3 years or when:
+                    </p>
+                    <ul className="list-disc list-inside text-gray-600 space-y-1 ml-4">
+                      <li>Interest rates drop by 0.5% or more</li>
+                      <li>Your credit score improves significantly</li>
+                      <li>You want to change loan terms</li>
+                      <li>You need to access equity (home loans)</li>
+                    </ul>
+                    <p className="text-gray-600 mt-2">
+                      Use our calculator to compare different offers and determine potential savings from refinancing.
+                    </p>
+                  </div>
+
+                  <div className="border-b border-gray-200 pb-6">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">What's the difference between secured and unsecured loans?</h3>
+                    <p className="text-gray-600 mb-2">
+                      <strong>Secured loans:</strong> Backed by collateral (car, home, savings account). Lower risk for 
+                      lenders means lower interest rates and higher loan amounts. Examples: auto loans, mortgages, home equity loans.
+                    </p>
                     <p className="text-gray-600">
-                      Shop around every 2-3 years or when interest rates drop significantly. For new loans, compare at least 
-                      3-5 lenders within a 14-45 day window to minimize credit score impact. Use our calculator to compare 
-                      different offers and find the best deal.
+                      <strong>Unsecured loans:</strong> No collateral required. Higher risk for lenders means higher interest 
+                      rates and stricter qualification requirements. Examples: personal loans, credit cards, student loans.
+                    </p>
+                  </div>
+
+                  <div className="border-b border-gray-200 pb-6">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">How do extra payments affect my loan?</h3>
+                    <p className="text-gray-600 mb-2">
+                      Making extra payments toward your loan principal can dramatically reduce both the total interest 
+                      paid and the loan term. Our calculator shows these benefits in the "Extra Payment Benefits" section.
+                    </p>
+                    <div className="bg-green-50 p-4 rounded-lg">
+                      <h4 className="font-semibold text-green-800 mb-2">Example Benefits:</h4>
+                      <ul className="text-green-700 text-sm space-y-1">
+                        <li>• Extra $100/month on a $20,000 loan can save $2,000+ in interest</li>
+                        <li>• Can reduce loan term by 2-4 years</li>
+                        <li>• Builds equity faster (secured loans)</li>
+                        <li>• Improves debt-to-income ratio sooner</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Should I use a loan calculator before applying?</h3>
+                    <p className="text-gray-600 mb-2">
+                      Absolutely! Using a loan calculator before applying helps you:
+                    </p>
+                    <ul className="list-disc list-inside text-gray-600 space-y-1 ml-4">
+                      <li>Determine if monthly payments fit your budget</li>
+                      <li>Compare loan options and terms</li>
+                      <li>Understand total cost of borrowing</li>
+                      <li>Plan for different scenarios (rate changes, extra payments)</li>
+                      <li>Negotiate better terms with lenders</li>
+                      <li>Avoid taking on more debt than you can handle</li>
+                    </ul>
+                    <p className="text-gray-600 mt-2">
+                      Our calculator is completely free and requires no personal information, making it safe to explore 
+                      different financing options before committing to any lender.
                     </p>
                   </div>
                 </div>
