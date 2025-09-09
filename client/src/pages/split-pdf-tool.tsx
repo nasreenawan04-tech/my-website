@@ -495,6 +495,86 @@ const SplitPDFTool = () => {
 
               {/* Educational Content */}
               <div className="mt-12 space-y-8">
+                {/* What is PDF Splitting - Enhanced */}
+                <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl shadow-lg p-8">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-6">What is PDF Splitting and How Does It Work?</h2>
+                  <div className="prose prose-lg text-gray-700 max-w-none">
+                    <p className="mb-6 text-lg">
+                      <strong>PDF splitting</strong> is a powerful document management technique that allows you to divide a single PDF file into multiple separate documents. Our advanced PDF splitter tool processes your documents entirely in your browser, ensuring complete privacy and security while delivering professional results.
+                    </p>
+                    
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                      <div className="bg-white rounded-xl p-6 shadow-sm">
+                        <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                          <i className="fas fa-cogs text-blue-600 mr-3"></i>
+                          How Our PDF Splitter Works
+                        </h3>
+                        <ul className="space-y-3 text-gray-700">
+                          <li className="flex items-start">
+                            <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            <span><strong>Client-side Processing:</strong> All splitting happens locally in your browser using advanced PDF-lib technology</span>
+                          </li>
+                          <li className="flex items-start">
+                            <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            <span><strong>Page Analysis:</strong> Automatically detects and counts pages for accurate splitting</span>
+                          </li>
+                          <li className="flex items-start">
+                            <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            <span><strong>Quality Preservation:</strong> Maintains original formatting, images, and text quality</span>
+                          </li>
+                          <li className="flex items-start">
+                            <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            <span><strong>Instant Download:</strong> Generate multiple files ready for immediate download</span>
+                          </li>
+                        </ul>
+                      </div>
+                      
+                      <div className="bg-white rounded-xl p-6 shadow-sm">
+                        <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                          <i className="fas fa-shield-alt text-green-600 mr-3"></i>
+                          Privacy & Security Features
+                        </h3>
+                        <ul className="space-y-3 text-gray-700">
+                          <li className="flex items-start">
+                            <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            <span><strong>No File Upload:</strong> Documents never leave your device</span>
+                          </li>
+                          <li className="flex items-start">
+                            <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            <span><strong>Zero Data Storage:</strong> No files stored on our servers</span>
+                          </li>
+                          <li className="flex items-start">
+                            <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            <span><strong>GDPR Compliant:</strong> Complete privacy protection</span>
+                          </li>
+                          <li className="flex items-start">
+                            <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            <span><strong>Instant Processing:</strong> No waiting, no queues</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div className="bg-gradient-to-r from-purple-100 to-blue-100 rounded-lg p-6">
+                      <h3 className="text-xl font-semibold text-gray-900 mb-3">Two Powerful Splitting Methods</h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                          <h4 className="font-medium text-gray-900 mb-2">📄 Individual Page Extraction</h4>
+                          <p className="text-gray-700 text-sm">
+                            Extract each page as a separate PDF file. Perfect for creating individual documents, study materials, or sharing specific pages.
+                          </p>
+                        </div>
+                        <div>
+                          <h4 className="font-medium text-gray-900 mb-2">📚 Custom Range Splitting</h4>
+                          <p className="text-gray-700 text-sm">
+                            Define specific page ranges with custom names. Ideal for extracting chapters, sections, or creating focused document collections.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                 {/* How it Works */}
                 <div className="bg-white rounded-2xl shadow-lg p-8">
                   <h2 className="text-2xl font-bold text-gray-900 mb-6">How to Split PDF Files</h2>
@@ -531,58 +611,218 @@ const SplitPDFTool = () => {
                   </div>
                 </div>
 
-                {/* What is PDF Splitting */}
-                <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl shadow-lg p-8">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-6">What is PDF Splitting?</h2>
+                {/* Why Split PDFs - Enhanced Benefits */}
+                <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl shadow-lg p-8">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-6">Why Split PDF Files? Key Benefits Explained</h2>
                   <div className="prose prose-lg text-gray-700 max-w-none">
-                    <p className="mb-4">
-                      PDF splitting is the process of dividing a single PDF document into multiple separate PDF files. This powerful feature allows you to extract specific pages, chapters, or sections from larger documents, making it easier to organize, share, and manage your content.
+                    <p className="mb-6 text-lg">
+                      Discover how PDF splitting transforms your document workflow. From improved organization to enhanced security, splitting PDFs offers numerous advantages for individuals and businesses alike.
                     </p>
-                    <p className="mb-4">
-                      Our online PDF splitter tool provides two main splitting methods: <strong>individual page extraction</strong> where each page becomes a separate PDF file, and <strong>custom range splitting</strong> where you can define specific page ranges to create targeted document sections.
-                    </p>
-                    <p>
-                      Whether you're working with academic papers, business reports, legal documents, or personal files, PDF splitting helps you create more focused and manageable documents while maintaining the original formatting and quality.
-                    </p>
+                    
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                      <div className="bg-white rounded-xl p-6 shadow-sm border border-emerald-200">
+                        <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center mb-4">
+                          <i className="fas fa-rocket text-emerald-600 text-xl"></i>
+                        </div>
+                        <h3 className="text-lg font-semibold text-gray-900 mb-3">Improved Productivity</h3>
+                        <ul className="text-sm text-gray-700 space-y-2">
+                          <li>• Faster access to specific content</li>
+                          <li>• Reduced file loading times</li>
+                          <li>• Better mobile device performance</li>
+                          <li>• Streamlined workflow processes</li>
+                        </ul>
+                      </div>
+                      
+                      <div className="bg-white rounded-xl p-6 shadow-sm border border-blue-200">
+                        <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
+                          <i className="fas fa-share-alt text-blue-600 text-xl"></i>
+                        </div>
+                        <h3 className="text-lg font-semibold text-gray-900 mb-3">Enhanced Sharing</h3>
+                        <ul className="text-sm text-gray-700 space-y-2">
+                          <li>• Share only relevant pages</li>
+                          <li>• Reduce email attachment sizes</li>
+                          <li>• Faster upload/download speeds</li>
+                          <li>• Better collaboration efficiency</li>
+                        </ul>
+                      </div>
+                      
+                      <div className="bg-white rounded-xl p-6 shadow-sm border border-purple-200">
+                        <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
+                          <i className="fas fa-lock text-purple-600 text-xl"></i>
+                        </div>
+                        <h3 className="text-lg font-semibold text-gray-900 mb-3">Better Security</h3>
+                        <ul className="text-sm text-gray-700 space-y-2">
+                          <li>• Control information exposure</li>
+                          <li>• Separate sensitive content</li>
+                          <li>• Granular access control</li>
+                          <li>• Privacy protection</li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div className="bg-gradient-to-r from-emerald-100 to-teal-100 rounded-lg p-6">
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">💡 Pro Tip for Maximum Efficiency</h3>
+                      <p className="text-gray-700">
+                        Combine PDF splitting with our other tools for a complete document management solution. After splitting, use our <a href="/tools/merge-pdf" className="text-emerald-600 hover:text-emerald-700 font-medium">PDF merger</a> to recombine specific sections, or apply <a href="/tools/watermark-pdf" className="text-emerald-600 hover:text-emerald-700 font-medium">watermarks</a> to protect your split documents.
+                      </p>
+                    </div>
                   </div>
                 </div>
 
-                {/* Benefits of Splitting PDFs */}
+                {/* Audience-Specific Use Cases */}
                 <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-6">Benefits of Splitting PDF Files</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">📈 Improved Organization</h3>
-                      <p className="text-gray-600 mb-4">
-                        Split large documents into logical sections for better file management. Organize academic papers by chapters, business reports by departments, or manuals by topics.
-                      </p>
-                      
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">🚀 Faster Sharing</h3>
-                      <p className="text-gray-600 mb-4">
-                        Share only relevant pages instead of entire documents. Reduce email attachment sizes and improve download speeds for recipients.
-                      </p>
-                      
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">🔒 Enhanced Security</h3>
-                      <p className="text-gray-600">
-                        Separate sensitive information by extracting only non-confidential pages. Maintain privacy by sharing specific sections without exposing the entire document.
-                      </p>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-6">PDF Splitting for Every Professional Need</h2>
+                  <p className="text-gray-600 mb-8 text-lg">
+                    Discover how different professionals leverage PDF splitting to streamline their workflows and boost productivity.
+                  </p>
+                  
+                  <div className="space-y-8">
+                    {/* Students & Educators */}
+                    <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6">
+                      <div className="flex items-center mb-4">
+                        <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mr-4">
+                          <i className="fas fa-graduation-cap text-blue-600 text-xl"></i>
+                        </div>
+                        <h3 className="text-2xl font-semibold text-gray-900">Students & Educators</h3>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                          <h4 className="font-medium text-gray-900 mb-3">Academic Applications:</h4>
+                          <ul className="space-y-2 text-gray-700 text-sm">
+                            <li>• Extract specific chapters from textbooks for focused study sessions</li>
+                            <li>• Separate research paper sections for peer review and collaboration</li>
+                            <li>• Create individual handouts from comprehensive course materials</li>
+                            <li>• Split thesis documents into chapters for easier review and editing</li>
+                            <li>• Extract practice problems from solution manuals</li>
+                          </ul>
+                        </div>
+                        <div>
+                          <h4 className="font-medium text-gray-900 mb-3">Study Optimization:</h4>
+                          <ul className="space-y-2 text-gray-700 text-sm">
+                            <li>• Create portable study materials for mobile learning</li>
+                            <li>• Organize exam preparation materials by subject</li>
+                            <li>• Share relevant readings without entire textbooks</li>
+                            <li>• Extract reference sections for citation purposes</li>
+                            <li>• Create smaller files for better device performance</li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div className="mt-4 p-3 bg-blue-100 rounded-lg">
+                        <p className="text-sm text-blue-800">
+                          <strong>Pro Tip:</strong> Combine with our <a href="/tools/add-page-numbers" className="text-blue-600 hover:text-blue-700 underline">page numbering tool</a> to maintain organization across split academic documents.
+                        </p>
+                      </div>
                     </div>
-                    
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">💾 Storage Optimization</h3>
-                      <p className="text-gray-600 mb-4">
-                        Reduce storage requirements by keeping only necessary pages. Archive important sections separately while discarding outdated or irrelevant content.
-                      </p>
-                      
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">📱 Mobile-Friendly</h3>
-                      <p className="text-gray-600 mb-4">
-                        Create smaller files that load faster on mobile devices. Improve accessibility for users with limited bandwidth or storage space.
-                      </p>
-                      
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">⚡ Processing Efficiency</h3>
-                      <p className="text-gray-600">
-                        Work with smaller, focused documents for faster editing, printing, and processing. Reduce application loading times and improve overall productivity.
-                      </p>
+
+                    {/* Business Professionals */}
+                    <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-6">
+                      <div className="flex items-center mb-4">
+                        <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mr-4">
+                          <i className="fas fa-briefcase text-green-600 text-xl"></i>
+                        </div>
+                        <h3 className="text-2xl font-semibold text-gray-900">Business Professionals</h3>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                          <h4 className="font-medium text-gray-900 mb-3">Document Management:</h4>
+                          <ul className="space-y-2 text-gray-700 text-sm">
+                            <li>• Extract executive summaries from comprehensive reports</li>
+                            <li>• Separate financial statements by quarter or department</li>
+                            <li>• Split proposals to share relevant sections with stakeholders</li>
+                            <li>• Extract individual contracts from bundled agreements</li>
+                            <li>• Create department-specific documentation from company manuals</li>
+                          </ul>
+                        </div>
+                        <div>
+                          <h4 className="font-medium text-gray-900 mb-3">Client Communication:</h4>
+                          <ul className="space-y-2 text-gray-700 text-sm">
+                            <li>• Share only relevant proposal sections with clients</li>
+                            <li>• Extract case studies for marketing presentations</li>
+                            <li>• Create client-specific reports from master documents</li>
+                            <li>• Separate invoices from batch billing statements</li>
+                            <li>• Extract product catalogs from comprehensive brochures</li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div className="mt-4 p-3 bg-green-100 rounded-lg">
+                        <p className="text-sm text-green-800">
+                          <strong>Business Integration:</strong> Use with our <a href="/tools/watermark-pdf" className="text-green-600 hover:text-green-700 underline">watermarking tool</a> to brand split documents and <a href="/tools/protect-pdf" className="text-green-600 hover:text-green-700 underline">password protection</a> for sensitive business information.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Legal & Healthcare */}
+                    <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6">
+                      <div className="flex items-center mb-4">
+                        <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mr-4">
+                          <i className="fas fa-balance-scale text-purple-600 text-xl"></i>
+                        </div>
+                        <h3 className="text-2xl font-semibold text-gray-900">Legal & Healthcare Professionals</h3>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                          <h4 className="font-medium text-gray-900 mb-3">Legal Applications:</h4>
+                          <ul className="space-y-2 text-gray-700 text-sm">
+                            <li>• Extract evidence pages for case preparation</li>
+                            <li>• Separate contracts from bundled legal documents</li>
+                            <li>• Create exhibit documents from comprehensive case files</li>
+                            <li>• Split discovery materials by relevance and privilege</li>
+                            <li>• Extract witness statements from full depositions</li>
+                          </ul>
+                        </div>
+                        <div>
+                          <h4 className="font-medium text-gray-900 mb-3">Healthcare Documentation:</h4>
+                          <ul className="space-y-2 text-gray-700 text-sm">
+                            <li>• Extract specific test results from patient files</li>
+                            <li>• Separate insurance claims documentation</li>
+                            <li>• Create specialized reports from comprehensive medical records</li>
+                            <li>• Split research data for statistical analysis</li>
+                            <li>• Extract consent forms from patient documentation</li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div className="mt-4 p-3 bg-purple-100 rounded-lg">
+                        <p className="text-sm text-purple-800">
+                          <strong>Compliance Note:</strong> Ensure HIPAA and confidentiality compliance when splitting sensitive documents. Our client-side processing ensures data never leaves your device.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Researchers & Analysts */}
+                    <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl p-6">
+                      <div className="flex items-center mb-4">
+                        <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mr-4">
+                          <i className="fas fa-microscope text-orange-600 text-xl"></i>
+                        </div>
+                        <h3 className="text-2xl font-semibold text-gray-900">Researchers & Data Analysts</h3>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                          <h4 className="font-medium text-gray-900 mb-3">Research Applications:</h4>
+                          <ul className="space-y-2 text-gray-700 text-sm">
+                            <li>• Extract methodology sections for literature reviews</li>
+                            <li>• Separate data tables from comprehensive research reports</li>
+                            <li>• Create focused abstracts from full research papers</li>
+                            <li>• Split survey results by demographic or time period</li>
+                            <li>• Extract citations and references for bibliography creation</li>
+                          </ul>
+                        </div>
+                        <div>
+                          <h4 className="font-medium text-gray-900 mb-3">Data Analysis:</h4>
+                          <ul className="space-y-2 text-gray-700 text-sm">
+                            <li>• Separate statistical outputs by analysis type</li>
+                            <li>• Extract charts and graphs for presentation purposes</li>
+                            <li>• Create dataset-specific documentation</li>
+                            <li>• Split longitudinal studies by time periods</li>
+                            <li>• Extract appendices for detailed data review</li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div className="mt-4 p-3 bg-orange-100 rounded-lg">
+                        <p className="text-sm text-orange-800">
+                          <strong>Research Workflow:</strong> Enhance your research process by combining split documents with our <a href="/tools/merge-pdf" className="text-orange-600 hover:text-orange-700 underline">merge tool</a> to create comprehensive literature compilations.
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -891,91 +1131,144 @@ const SplitPDFTool = () => {
                   </div>
                 </div>
 
-                {/* Related Tools */}
+                {/* Complete PDF Workflow */}
                 <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl shadow-lg p-8">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-6">Related PDF Tools</h2>
-                  <p className="text-gray-600 mb-8">
-                    Enhance your PDF workflow with these complementary tools. Create a complete document management solution by combining multiple PDF utilities.
+                  <h2 className="text-3xl font-bold text-gray-900 mb-6">Complete PDF Management Workflow</h2>
+                  <p className="text-gray-600 mb-8 text-lg">
+                    Transform your document management with our comprehensive PDF toolkit. Combine splitting with other powerful tools for professional-grade document processing.
                   </p>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div className="bg-white rounded-xl p-6 hover:shadow-md transition-shadow border border-gray-200">
-                      <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
-                        <i className="fas fa-object-group text-blue-600 text-xl"></i>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                    {/* Before Splitting */}
+                    <div className="bg-white rounded-xl p-6 shadow-sm border border-blue-200">
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                        <i className="fas fa-arrow-right text-blue-600 mr-3"></i>
+                        Prepare Before Splitting
+                      </h3>
+                      <div className="space-y-4">
+                        <div className="flex items-start">
+                          <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mr-3 mt-1">
+                            <i className="fas fa-sort text-purple-600 text-sm"></i>
+                          </div>
+                          <div>
+                            <h4 className="font-medium text-gray-900">Organize Pages</h4>
+                            <p className="text-sm text-gray-600">Reorder pages before splitting with our <a href="/tools/organize-pdf" className="text-purple-600 hover:text-purple-700 font-medium">page organizer</a></p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-start">
+                          <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center mr-3 mt-1">
+                            <i className="fas fa-undo text-orange-600 text-sm"></i>
+                          </div>
+                          <div>
+                            <h4 className="font-medium text-gray-900">Correct Orientation</h4>
+                            <p className="text-sm text-gray-600">Fix page rotation with our <a href="/tools/rotate-pdf" className="text-orange-600 hover:text-orange-700 font-medium">PDF rotator</a></p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-start">
+                          <div className="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center mr-3 mt-1">
+                            <i className="fas fa-unlock text-red-600 text-sm"></i>
+                          </div>
+                          <div>
+                            <h4 className="font-medium text-gray-900">Remove Protection</h4>
+                            <p className="text-sm text-gray-600">Unlock password-protected files with our <a href="/tools/unlock-pdf" className="text-red-600 hover:text-red-700 font-medium">PDF unlocker</a></p>
+                          </div>
+                        </div>
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Merge PDF Files</h3>
-                      <p className="text-gray-600 text-sm mb-4">
-                        Combine multiple PDF files into a single document. Perfect for creating comprehensive reports from split sections.
-                      </p>
-                      <a href="/tools/merge-pdf" className="text-blue-600 hover:text-blue-700 font-medium text-sm">
-                        Try PDF Merger →
+                    </div>
+                    
+                    {/* After Splitting */}
+                    <div className="bg-white rounded-xl p-6 shadow-sm border border-green-200">
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                        <i className="fas fa-arrow-left text-green-600 mr-3"></i>
+                        Enhance After Splitting
+                      </h3>
+                      <div className="space-y-4">
+                        <div className="flex items-start">
+                          <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3 mt-1">
+                            <i className="fas fa-object-group text-blue-600 text-sm"></i>
+                          </div>
+                          <div>
+                            <h4 className="font-medium text-gray-900">Merge Selected Files</h4>
+                            <p className="text-sm text-gray-600">Recombine specific splits with our <a href="/tools/merge-pdf" className="text-blue-600 hover:text-blue-700 font-medium">PDF merger</a></p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-start">
+                          <div className="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center mr-3 mt-1">
+                            <i className="fas fa-tint text-indigo-600 text-sm"></i>
+                          </div>
+                          <div>
+                            <h4 className="font-medium text-gray-900">Add Watermarks</h4>
+                            <p className="text-sm text-gray-600">Brand your split documents with our <a href="/tools/watermark-pdf" className="text-indigo-600 hover:text-indigo-700 font-medium">watermarking tool</a></p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-start">
+                          <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3 mt-1">
+                            <i className="fas fa-lock text-green-600 text-sm"></i>
+                          </div>
+                          <div>
+                            <h4 className="font-medium text-gray-900">Protect Documents</h4>
+                            <p className="text-sm text-gray-600">Secure split files with our <a href="/tools/protect-pdf" className="text-green-600 hover:text-green-700 font-medium">password protector</a></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Additional Tools Grid */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div className="bg-white rounded-lg p-4 hover:shadow-md transition-shadow border border-gray-200">
+                      <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mb-3">
+                        <i className="fas fa-list-ol text-purple-600"></i>
+                      </div>
+                      <h4 className="font-medium text-gray-900 mb-1">Page Numbers</h4>
+                      <p className="text-xs text-gray-600 mb-2">Add numbering to split files</p>
+                      <a href="/tools/add-page-numbers" className="text-purple-600 hover:text-purple-700 text-xs font-medium">
+                        Try Tool →
                       </a>
                     </div>
                     
-                    <div className="bg-white rounded-xl p-6 hover:shadow-md transition-shadow border border-gray-200">
-                      <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4">
-                        <i className="fas fa-compress text-green-600 text-xl"></i>
+                    <div className="bg-white rounded-lg p-4 hover:shadow-md transition-shadow border border-gray-200">
+                      <div className="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center mb-3">
+                        <i className="fas fa-compress-alt text-emerald-600"></i>
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Compress PDF</h3>
-                      <p className="text-gray-600 text-sm mb-4">
-                        Reduce file sizes of your split PDFs for easier sharing and storage while maintaining quality.
-                      </p>
-                      <a href="/tools/compress-pdf" className="text-green-600 hover:text-green-700 font-medium text-sm">
-                        Try PDF Compressor →
+                      <h4 className="font-medium text-gray-900 mb-1">Compress PDF</h4>
+                      <p className="text-xs text-gray-600 mb-2">Reduce file sizes efficiently</p>
+                      <a href="/tools/pdf-compressor-advanced" className="text-emerald-600 hover:text-emerald-700 text-xs font-medium">
+                        Try Tool →
                       </a>
                     </div>
                     
-                    <div className="bg-white rounded-xl p-6 hover:shadow-md transition-shadow border border-gray-200">
-                      <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
-                        <i className="fas fa-sort text-purple-600 text-xl"></i>
+                    <div className="bg-white rounded-lg p-4 hover:shadow-md transition-shadow border border-gray-200">
+                      <div className="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center mb-3">
+                        <i className="fas fa-file-export text-yellow-600"></i>
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Organize PDF Pages</h3>
-                      <p className="text-gray-600 text-sm mb-4">
-                        Reorder and organize PDF pages before splitting to ensure optimal document structure.
-                      </p>
-                      <a href="/tools/organize-pdf" className="text-purple-600 hover:text-purple-700 font-medium text-sm">
-                        Try Page Organizer →
+                      <h4 className="font-medium text-gray-900 mb-1">Extract Pages</h4>
+                      <p className="text-xs text-gray-600 mb-2">Advanced page extraction</p>
+                      <a href="/tools/extract-pdf-pages" className="text-yellow-600 hover:text-yellow-700 text-xs font-medium">
+                        Try Tool →
                       </a>
                     </div>
                     
-                    <div className="bg-white rounded-xl p-6 hover:shadow-md transition-shadow border border-gray-200">
-                      <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mb-4">
-                        <i className="fas fa-undo text-orange-600 text-xl"></i>
+                    <div className="bg-white rounded-lg p-4 hover:shadow-md transition-shadow border border-gray-200">
+                      <div className="w-10 h-10 bg-rose-100 rounded-lg flex items-center justify-center mb-3">
+                        <i className="fas fa-images text-rose-600"></i>
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Rotate PDF Pages</h3>
-                      <p className="text-gray-600 text-sm mb-4">
-                        Correct page orientation before splitting to ensure all extracted pages have proper rotation.
-                      </p>
-                      <a href="/tools/rotate-pdf" className="text-orange-600 hover:text-orange-700 font-medium text-sm">
-                        Try PDF Rotator →
+                      <h4 className="font-medium text-gray-900 mb-1">PDF to Images</h4>
+                      <p className="text-xs text-gray-600 mb-2">Convert pages to images</p>
+                      <a href="/tools/pdf-to-images-enhanced" className="text-rose-600 hover:text-rose-700 text-xs font-medium">
+                        Try Tool →
                       </a>
                     </div>
-                    
-                    <div className="bg-white rounded-xl p-6 hover:shadow-md transition-shadow border border-gray-200">
-                      <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4">
-                        <i className="fas fa-list-ol text-red-600 text-xl"></i>
-                      </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Add Page Numbers</h3>
-                      <p className="text-gray-600 text-sm mb-4">
-                        Add page numbers to your split PDF files for better organization and professional presentation.
-                      </p>
-                      <a href="/tools/add-page-numbers" className="text-red-600 hover:text-red-700 font-medium text-sm">
-                        Try Page Numbering →
-                      </a>
-                    </div>
-                    
-                    <div className="bg-white rounded-xl p-6 hover:shadow-md transition-shadow border border-gray-200">
-                      <div className="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center mb-4">
-                        <i className="fas fa-lock text-indigo-600 text-xl"></i>
-                      </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Protect PDF</h3>
-                      <p className="text-gray-600 text-sm mb-4">
-                        Add password protection to your split PDF files to secure sensitive extracted content.
-                      </p>
-                      <a href="/tools/protect-pdf" className="text-indigo-600 hover:text-indigo-700 font-medium text-sm">
-                        Try PDF Protection →
-                      </a>
-                    </div>
+                  </div>
+                  
+                  <div className="mt-6 bg-gradient-to-r from-blue-100 to-purple-100 rounded-lg p-4">
+                    <p className="text-center text-gray-700">
+                      <strong>Explore All PDF Tools:</strong> Visit our complete <a href="/tools/pdf-tools" className="text-blue-600 hover:text-blue-700 font-medium">PDF tools collection</a> for advanced document management capabilities.
+                    </p>
                   </div>
                 </div>
               </div>
