@@ -207,6 +207,264 @@ const PDFPageCounter = () => {
           </div>
         </section>
 
+        {/* Tool Content */}
+        <section className="py-16">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Card className="shadow-xl">
+              <CardHeader className="text-center pb-2">
+                <CardTitle className="text-2xl font-bold text-neutral-800">
+                  Analyze Your PDF
+                </CardTitle>
+                <p className="text-neutral-600 mt-2">
+                  Upload a PDF file to get comprehensive information and statistics
+                </p>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                {!pdfFile ? (
+                  <div
+                    className={`border-2 border-dashed rounded-xl p-12 text-center transition-all duration-200 cursor-pointer ${
+                      dragOver 
+                        ? 'border-red-500 bg-red-50' 
+                        : 'border-neutral-300 hover:border-neutral-400 hover:bg-neutral-50'
+                    }`}
+                    onDrop={handleDrop}
+                    onDragOver={handleDragOver}
+                    onDragLeave={handleDragLeave}
+                    onClick={() => fileInputRef.current?.click()}
+                    data-testid="drag-drop-upload-area"
+                  >
+                    <Upload className="w-16 h-16 text-neutral-400 mx-auto mb-4" />
+                    <h3 className="text-xl font-medium text-neutral-900 mb-2">
+                      Drop your PDF file here
+                    </h3>
+                    <p className="text-neutral-600 mb-4">
+                      or click to browse and select a file
+                    </p>
+                    <Button className="bg-red-600 hover:bg-red-700 text-white">
+                      Select PDF File
+                    </Button>
+
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept=".pdf"
+                      onChange={(e) => handleFileSelect(e.target.files)}
+                      className="hidden"
+                      data-testid="input-file-upload"
+                    />
+                  </div>
+                ) : (
+                  <div className="space-y-6">
+                    {/* File Header */}
+                    <div className="flex items-center justify-between p-4 bg-neutral-50 rounded-lg">
+                      <div className="flex items-center space-x-3">
+                        <FileText className="w-8 h-8 text-red-500" />
+                        <div>
+                          <h3 className="font-medium text-neutral-900">{pdfFile.name}</h3>
+                          <p className="text-sm text-neutral-500">PDF Document</p>
+                        </div>
+                      </div>
+                      <Button
+                        onClick={resetTool}
+                        variant="outline"
+                        size="sm"
+                        className="flex items-center space-x-2"
+                      >
+                        <RotateCcw className="w-4 h-4" />
+                        <span>New File</span>
+                      </Button>
+                    </div>
+
+                    {isProcessing ? (
+                      <div className="text-center py-12">
+                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto mb-4"></div>
+                        <p className="text-neutral-600 text-lg">Analyzing PDF...</p>
+                      </div>
+                    ) : pdfInfo && (
+                      <div className="space-y-8">
+                        {/* Basic Information Cards */}
+                        <div>
+                          <h4 className="text-lg font-semibold text-neutral-900 mb-4 flex items-center">
+                            <Info className="w-5 h-5 mr-2 text-red-500" />
+                            Basic Information
+                          </h4>
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <Card>
+                              <CardContent className="p-4 text-center">
+                                <FileIcon className="w-8 h-8 text-red-500 mx-auto mb-2" />
+                                <div className="text-2xl font-bold text-neutral-900">{pdfInfo.pages}</div>
+                                <div className="text-sm text-neutral-600">Total Pages</div>
+                              </CardContent>
+                            </Card>
+
+                            <Card>
+                              <CardContent className="p-4 text-center">
+                                <HardDrive className="w-8 h-8 text-green-500 mx-auto mb-2" />
+                                <div className="text-2xl font-bold text-neutral-900">{pdfInfo.size}</div>
+                                <div className="text-sm text-neutral-600">File Size</div>
+                              </CardContent>
+                            </Card>
+
+                            <Card>
+                              <CardContent className="p-4 text-center">
+                                <Clock className="w-8 h-8 text-purple-500 mx-auto mb-2" />
+                                <div className="text-2xl font-bold text-neutral-900">{pdfInfo.estimatedReadingTime}</div>
+                                <div className="text-sm text-neutral-600">Reading Time</div>
+                              </CardContent>
+                            </Card>
+                          </div>
+                        </div>
+
+                        {/* Document Metadata */}
+                        {(pdfInfo.title || pdfInfo.author || pdfInfo.subject || pdfInfo.creator || pdfInfo.producer || pdfInfo.keywords) && (
+                          <Card>
+                            <CardHeader>
+                              <CardTitle className="flex items-center">
+                                <FileText className="w-5 h-5 mr-2 text-green-500" />
+                                Document Metadata
+                              </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                {pdfInfo.title && (
+                                  <div>
+                                    <span className="font-medium text-neutral-700">Title:</span>
+                                    <p className="text-neutral-900 mt-1">{pdfInfo.title}</p>
+                                  </div>
+                                )}
+                                {pdfInfo.author && (
+                                  <div>
+                                    <span className="font-medium text-neutral-700">Author:</span>
+                                    <p className="text-neutral-900 mt-1">{pdfInfo.author}</p>
+                                  </div>
+                                )}
+                                {pdfInfo.subject && (
+                                  <div>
+                                    <span className="font-medium text-neutral-700">Subject:</span>
+                                    <p className="text-neutral-900 mt-1">{pdfInfo.subject}</p>
+                                  </div>
+                                )}
+                                {pdfInfo.creator && (
+                                  <div>
+                                    <span className="font-medium text-neutral-700">Creator:</span>
+                                    <p className="text-neutral-900 mt-1">{pdfInfo.creator}</p>
+                                  </div>
+                                )}
+                                {pdfInfo.producer && (
+                                  <div>
+                                    <span className="font-medium text-neutral-700">Producer:</span>
+                                    <p className="text-neutral-900 mt-1">{pdfInfo.producer}</p>
+                                  </div>
+                                )}
+                                {pdfInfo.keywords && (
+                                  <div className="md:col-span-2">
+                                    <span className="font-medium text-neutral-700">Keywords:</span>
+                                    <p className="text-neutral-900 mt-1">{pdfInfo.keywords}</p>
+                                  </div>
+                                )}
+                              </div>
+                            </CardContent>
+                          </Card>
+                        )}
+
+                        {/* Date Information */}
+                        <Card>
+                          <CardHeader>
+                            <CardTitle className="flex items-center">
+                              <Calendar className="w-5 h-5 mr-2 text-orange-500" />
+                              Date Information
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div>
+                                <span className="font-medium text-neutral-700">Created:</span>
+                                <p className="text-neutral-900 mt-1">{pdfInfo.creationDate}</p>
+                              </div>
+                              <div>
+                                <span className="font-medium text-neutral-700">Last Modified:</span>
+                                <p className="text-neutral-900 mt-1">{pdfInfo.modificationDate}</p>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+
+                        {/* Page Details */}
+                        <Card>
+                          <CardHeader>
+                            <CardTitle className="flex items-center">
+                              <Eye className="w-5 h-5 mr-2 text-indigo-500" />
+                              Page Details
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent>
+                            <div className="max-h-64 overflow-y-auto">
+                              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                                {pdfInfo.pageDetails.map((page) => (
+                                  <div 
+                                    key={page.pageNumber} 
+                                    className="bg-neutral-50 rounded-lg p-3 text-sm"
+                                  >
+                                    <div className="font-medium text-neutral-900 mb-1">
+                                      Page {page.pageNumber}
+                                    </div>
+                                    <div className="text-neutral-600 space-y-1">
+                                      <div>{page.dimensions}</div>
+                                      <div className="text-xs text-neutral-500">{page.orientation}</div>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+
+            {/* Features Section */}
+            <div className="mt-12 text-center">
+              <h2 className="text-2xl font-bold text-neutral-900 mb-8">What You Get</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <FileIcon className="w-6 h-6 text-red-600" />
+                  </div>
+                  <h3 className="font-semibold text-neutral-900 mb-2">Page Count</h3>
+                  <p className="text-sm text-neutral-600">Accurate count of total pages in your PDF document</p>
+                </div>
+
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <Info className="w-6 h-6 text-green-600" />
+                  </div>
+                  <h3 className="font-semibold text-neutral-900 mb-2">File Information</h3>
+                  <p className="text-sm text-neutral-600">File size, creation date, and modification details</p>
+                </div>
+
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <Clock className="w-6 h-6 text-purple-600" />
+                  </div>
+                  <h3 className="font-semibold text-neutral-900 mb-2">Reading Time</h3>
+                  <p className="text-sm text-neutral-600">Estimated reading time based on document length</p>
+                </div>
+
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <Eye className="w-6 h-6 text-orange-600" />
+                  </div>
+                  <h3 className="font-semibold text-neutral-900 mb-2">Page Details</h3>
+                  <p className="text-sm text-neutral-600">Dimensions and orientation for each page</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Comprehensive SEO Content Section */}
         <section className="py-16 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -561,264 +819,6 @@ const PDFPageCounter = () => {
                   View All PDF Tools
                   <span className="ml-2">→</span>
                 </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Tool Content */}
-        <section className="py-16">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <Card className="shadow-xl">
-              <CardHeader className="text-center pb-2">
-                <CardTitle className="text-2xl font-bold text-neutral-800">
-                  Analyze Your PDF
-                </CardTitle>
-                <p className="text-neutral-600 mt-2">
-                  Upload a PDF file to get comprehensive information and statistics
-                </p>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                {!pdfFile ? (
-                  <div
-                    className={`border-2 border-dashed rounded-xl p-12 text-center transition-all duration-200 cursor-pointer ${
-                      dragOver 
-                        ? 'border-red-500 bg-red-50' 
-                        : 'border-neutral-300 hover:border-neutral-400 hover:bg-neutral-50'
-                    }`}
-                    onDrop={handleDrop}
-                    onDragOver={handleDragOver}
-                    onDragLeave={handleDragLeave}
-                    onClick={() => fileInputRef.current?.click()}
-                    data-testid="drag-drop-upload-area"
-                  >
-                    <Upload className="w-16 h-16 text-neutral-400 mx-auto mb-4" />
-                    <h3 className="text-xl font-medium text-neutral-900 mb-2">
-                      Drop your PDF file here
-                    </h3>
-                    <p className="text-neutral-600 mb-4">
-                      or click to browse and select a file
-                    </p>
-                    <Button className="bg-red-600 hover:bg-red-700 text-white">
-                      Select PDF File
-                    </Button>
-
-                    <input
-                      ref={fileInputRef}
-                      type="file"
-                      accept=".pdf"
-                      onChange={(e) => handleFileSelect(e.target.files)}
-                      className="hidden"
-                      data-testid="input-file-upload"
-                    />
-                  </div>
-                ) : (
-                  <div className="space-y-6">
-                    {/* File Header */}
-                    <div className="flex items-center justify-between p-4 bg-neutral-50 rounded-lg">
-                      <div className="flex items-center space-x-3">
-                        <FileText className="w-8 h-8 text-red-500" />
-                        <div>
-                          <h3 className="font-medium text-neutral-900">{pdfFile.name}</h3>
-                          <p className="text-sm text-neutral-500">PDF Document</p>
-                        </div>
-                      </div>
-                      <Button
-                        onClick={resetTool}
-                        variant="outline"
-                        size="sm"
-                        className="flex items-center space-x-2"
-                      >
-                        <RotateCcw className="w-4 h-4" />
-                        <span>New File</span>
-                      </Button>
-                    </div>
-
-                    {isProcessing ? (
-                      <div className="text-center py-12">
-                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto mb-4"></div>
-                        <p className="text-neutral-600 text-lg">Analyzing PDF...</p>
-                      </div>
-                    ) : pdfInfo && (
-                      <div className="space-y-8">
-                        {/* Basic Information Cards */}
-                        <div>
-                          <h4 className="text-lg font-semibold text-neutral-900 mb-4 flex items-center">
-                            <Info className="w-5 h-5 mr-2 text-red-500" />
-                            Basic Information
-                          </h4>
-                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <Card>
-                              <CardContent className="p-4 text-center">
-                                <FileIcon className="w-8 h-8 text-red-500 mx-auto mb-2" />
-                                <div className="text-2xl font-bold text-neutral-900">{pdfInfo.pages}</div>
-                                <div className="text-sm text-neutral-600">Total Pages</div>
-                              </CardContent>
-                            </Card>
-
-                            <Card>
-                              <CardContent className="p-4 text-center">
-                                <HardDrive className="w-8 h-8 text-green-500 mx-auto mb-2" />
-                                <div className="text-2xl font-bold text-neutral-900">{pdfInfo.size}</div>
-                                <div className="text-sm text-neutral-600">File Size</div>
-                              </CardContent>
-                            </Card>
-
-                            <Card>
-                              <CardContent className="p-4 text-center">
-                                <Clock className="w-8 h-8 text-purple-500 mx-auto mb-2" />
-                                <div className="text-2xl font-bold text-neutral-900">{pdfInfo.estimatedReadingTime}</div>
-                                <div className="text-sm text-neutral-600">Reading Time</div>
-                              </CardContent>
-                            </Card>
-                          </div>
-                        </div>
-
-                        {/* Document Metadata */}
-                        {(pdfInfo.title || pdfInfo.author || pdfInfo.subject || pdfInfo.creator || pdfInfo.producer || pdfInfo.keywords) && (
-                          <Card>
-                            <CardHeader>
-                              <CardTitle className="flex items-center">
-                                <FileText className="w-5 h-5 mr-2 text-green-500" />
-                                Document Metadata
-                              </CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                {pdfInfo.title && (
-                                  <div>
-                                    <span className="font-medium text-neutral-700">Title:</span>
-                                    <p className="text-neutral-900 mt-1">{pdfInfo.title}</p>
-                                  </div>
-                                )}
-                                {pdfInfo.author && (
-                                  <div>
-                                    <span className="font-medium text-neutral-700">Author:</span>
-                                    <p className="text-neutral-900 mt-1">{pdfInfo.author}</p>
-                                  </div>
-                                )}
-                                {pdfInfo.subject && (
-                                  <div>
-                                    <span className="font-medium text-neutral-700">Subject:</span>
-                                    <p className="text-neutral-900 mt-1">{pdfInfo.subject}</p>
-                                  </div>
-                                )}
-                                {pdfInfo.creator && (
-                                  <div>
-                                    <span className="font-medium text-neutral-700">Creator:</span>
-                                    <p className="text-neutral-900 mt-1">{pdfInfo.creator}</p>
-                                  </div>
-                                )}
-                                {pdfInfo.producer && (
-                                  <div>
-                                    <span className="font-medium text-neutral-700">Producer:</span>
-                                    <p className="text-neutral-900 mt-1">{pdfInfo.producer}</p>
-                                  </div>
-                                )}
-                                {pdfInfo.keywords && (
-                                  <div className="md:col-span-2">
-                                    <span className="font-medium text-neutral-700">Keywords:</span>
-                                    <p className="text-neutral-900 mt-1">{pdfInfo.keywords}</p>
-                                  </div>
-                                )}
-                              </div>
-                            </CardContent>
-                          </Card>
-                        )}
-
-                        {/* Date Information */}
-                        <Card>
-                          <CardHeader>
-                            <CardTitle className="flex items-center">
-                              <Calendar className="w-5 h-5 mr-2 text-orange-500" />
-                              Date Information
-                            </CardTitle>
-                          </CardHeader>
-                          <CardContent>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                              <div>
-                                <span className="font-medium text-neutral-700">Created:</span>
-                                <p className="text-neutral-900 mt-1">{pdfInfo.creationDate}</p>
-                              </div>
-                              <div>
-                                <span className="font-medium text-neutral-700">Last Modified:</span>
-                                <p className="text-neutral-900 mt-1">{pdfInfo.modificationDate}</p>
-                              </div>
-                            </div>
-                          </CardContent>
-                        </Card>
-
-                        {/* Page Details */}
-                        <Card>
-                          <CardHeader>
-                            <CardTitle className="flex items-center">
-                              <Eye className="w-5 h-5 mr-2 text-indigo-500" />
-                              Page Details
-                            </CardTitle>
-                          </CardHeader>
-                          <CardContent>
-                            <div className="max-h-64 overflow-y-auto">
-                              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                                {pdfInfo.pageDetails.map((page) => (
-                                  <div 
-                                    key={page.pageNumber} 
-                                    className="bg-neutral-50 rounded-lg p-3 text-sm"
-                                  >
-                                    <div className="font-medium text-neutral-900 mb-1">
-                                      Page {page.pageNumber}
-                                    </div>
-                                    <div className="text-neutral-600 space-y-1">
-                                      <div>{page.dimensions}</div>
-                                      <div className="text-xs text-neutral-500">{page.orientation}</div>
-                                    </div>
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      </div>
-                    )}
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-
-            {/* Features Section */}
-            <div className="mt-12 text-center">
-              <h2 className="text-2xl font-bold text-neutral-900 mb-8">What You Get</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div className="text-center">
-                  <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-                    <FileIcon className="w-6 h-6 text-red-600" />
-                  </div>
-                  <h3 className="font-semibold text-neutral-900 mb-2">Page Count</h3>
-                  <p className="text-sm text-neutral-600">Accurate count of total pages in your PDF document</p>
-                </div>
-
-                <div className="text-center">
-                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-                    <Info className="w-6 h-6 text-green-600" />
-                  </div>
-                  <h3 className="font-semibold text-neutral-900 mb-2">File Information</h3>
-                  <p className="text-sm text-neutral-600">File size, creation date, and modification details</p>
-                </div>
-
-                <div className="text-center">
-                  <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-                    <Clock className="w-6 h-6 text-purple-600" />
-                  </div>
-                  <h3 className="font-semibold text-neutral-900 mb-2">Reading Time</h3>
-                  <p className="text-sm text-neutral-600">Estimated reading time based on document length</p>
-                </div>
-
-                <div className="text-center">
-                  <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-3">
-                    <Eye className="w-6 h-6 text-orange-600" />
-                  </div>
-                  <h3 className="font-semibold text-neutral-900 mb-2">Page Details</h3>
-                  <p className="text-sm text-neutral-600">Dimensions and orientation for each page</p>
-                </div>
               </div>
             </div>
           </div>
