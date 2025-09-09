@@ -725,6 +725,91 @@ const MortgageCalculator = () => {
                   <p className="text-gray-700 mb-6">
                     Whether you're a first-time homebuyer or looking to refinance your existing mortgage, our mortgage payment calculator helps you make informed decisions about home affordability, loan terms, and down payment amounts. Understanding these calculations is crucial for proper financial planning and ensuring you choose a mortgage that fits comfortably within your budget.
                   </p>
+
+                  <p className="text-gray-700 mb-6">
+                    Our advanced mortgage calculator goes beyond basic calculations to include comprehensive affordability analysis, PMI removal projections, and detailed payment breakdowns. You can also explore related financial tools like our <a href="/tools/loan-calculator" className="text-blue-600 hover:text-blue-700 font-medium">general loan calculator</a> for other types of financing needs, or our <a href="/tools/home-loan-calculator" className="text-blue-600 hover:text-blue-700 font-medium">home loan calculator</a> for specialized home financing scenarios.
+                  </p>
+
+                  <div className="bg-blue-50 p-6 rounded-lg mt-6">
+                    <h3 className="text-lg font-semibold text-blue-900 mb-3">🏠 Why Use Our Mortgage Calculator?</h3>
+                    <ul className="text-blue-800 space-y-2">
+                      <li>• <strong>Comprehensive Analysis:</strong> Includes taxes, insurance, and PMI for complete cost assessment</li>
+                      <li>• <strong>Multiple Loan Types:</strong> Supports Conventional, FHA, and VA loans with specific calculations</li>
+                      <li>• <strong>Affordability Insights:</strong> Debt-to-income analysis and affordability recommendations</li>
+                      <li>• <strong>PMI Projections:</strong> Estimates when PMI can be removed based on equity buildup</li>
+                      <li>• <strong>Cash Requirements:</strong> Calculates total cash needed at closing including down payment and closing costs</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Who Should Use This Calculator */}
+              <div className="mt-8 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-8">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">Who Should Use This Mortgage Calculator?</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  <div className="bg-white rounded-lg p-6 shadow-sm">
+                    <div className="w-12 h-12 bg-emerald-600 text-white rounded-lg flex items-center justify-center mb-4">
+                      <i className="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Recent Graduates & Young Professionals</h3>
+                    <p className="text-gray-600 mb-4">
+                      Starting your career and considering homeownership? Our mortgage calculator helps you understand what you can afford on your current salary and plan for future home purchases.
+                    </p>
+                    <div className="text-sm text-emerald-700 bg-emerald-50 p-3 rounded">
+                      <strong>Perfect for:</strong> First-time buyers, student loan debt considerations, entry-level salary planning
+                    </div>
+                  </div>
+                  
+                  <div className="bg-white rounded-lg p-6 shadow-sm">
+                    <div className="w-12 h-12 bg-emerald-600 text-white rounded-lg flex items-center justify-center mb-4">
+                      <i className="fas fa-briefcase"></i>
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Working Professionals & Families</h3>
+                    <p className="text-gray-600 mb-4">
+                      Established in your career and ready to upgrade or buy your first family home? Calculate payments for various price ranges and loan terms to find your ideal match.
+                    </p>
+                    <div className="text-sm text-emerald-700 bg-emerald-50 p-3 rounded">
+                      <strong>Perfect for:</strong> Home upgrades, family planning, refinancing existing mortgages
+                    </div>
+                  </div>
+                  
+                  <div className="bg-white rounded-lg p-6 shadow-sm">
+                    <div className="w-12 h-12 bg-emerald-600 text-white rounded-lg flex items-center justify-center mb-4">
+                      <i className="fas fa-building"></i>
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Business Owners & Investors</h3>
+                    <p className="text-gray-600 mb-4">
+                      Evaluating investment properties or need financing for business real estate? Our calculator handles complex scenarios including rental income analysis and investment property calculations.
+                    </p>
+                    <div className="text-sm text-emerald-700 bg-emerald-50 p-3 rounded">
+                      <strong>Perfect for:</strong> Investment properties, commercial real estate, cash flow analysis
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-8 bg-white rounded-lg p-6">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Related Financial Planning Tools</h3>
+                  <p className="text-gray-600 mb-4">
+                    Maximize your financial planning with our comprehensive suite of calculators designed to work together:
+                  </p>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <a href="/tools/loan-calculator" className="text-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                      <i className="fas fa-calculator text-blue-600 text-xl mb-2"></i>
+                      <div className="text-sm font-medium text-gray-900">Loan Calculator</div>
+                    </a>
+                    <a href="/tools/compound-interest-calculator" className="text-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                      <i className="fas fa-chart-line text-green-600 text-xl mb-2"></i>
+                      <div className="text-sm font-medium text-gray-900">Compound Interest</div>
+                    </a>
+                    <a href="/tools/debt-payoff-calculator" className="text-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                      <i className="fas fa-credit-card text-red-600 text-xl mb-2"></i>
+                      <div className="text-sm font-medium text-gray-900">Debt Payoff</div>
+                    </a>
+                    <a href="/tools/savings-goal-calculator" className="text-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                      <i className="fas fa-piggy-bank text-purple-600 text-xl mb-2"></i>
+                      <div className="text-sm font-medium text-gray-900">Savings Goals</div>
+                    </a>
+                  </div>
                 </div>
               </div>
 
@@ -865,8 +950,8 @@ const MortgageCalculator = () => {
                     <div className="flex items-start space-x-3">
                       <i className="fas fa-check-circle text-green-600 mt-1"></i>
                       <div>
-                        <h3 className="font-semibold text-gray-900 mb-1">Budget Planning</h3>
-                        <p className="text-gray-600">Determine how much house you can afford before you start shopping.</p>
+                        <h3 className="font-semibold text-gray-900 mb-1">Smart Budget Planning</h3>
+                        <p className="text-gray-600">Determine how much house you can afford before you start shopping. Use alongside our <a href="/tools/savings-goal-calculator" className="text-green-600 hover:text-green-700 font-medium">savings goal calculator</a> to plan your down payment strategy.</p>
                       </div>
                     </div>
                     
@@ -874,7 +959,7 @@ const MortgageCalculator = () => {
                       <i className="fas fa-check-circle text-green-600 mt-1"></i>
                       <div>
                         <h3 className="font-semibold text-gray-900 mb-1">Compare Loan Options</h3>
-                        <p className="text-gray-600">Evaluate different loan terms, interest rates, and down payment scenarios.</p>
+                        <p className="text-gray-600">Evaluate different loan terms, interest rates, and down payment scenarios. Compare with our <a href="/tools/loan-calculator" className="text-green-600 hover:text-green-700 font-medium">general loan calculator</a> for other financing needs.</p>
                       </div>
                     </div>
                     
@@ -882,7 +967,15 @@ const MortgageCalculator = () => {
                       <i className="fas fa-check-circle text-green-600 mt-1"></i>
                       <div>
                         <h3 className="font-semibold text-gray-900 mb-1">Pre-approval Preparation</h3>
-                        <p className="text-gray-600">Get realistic payment estimates before meeting with lenders.</p>
+                        <p className="text-gray-600">Get realistic payment estimates before meeting with lenders. Strengthen your financial position with our <a href="/tools/debt-payoff-calculator" className="text-green-600 hover:text-green-700 font-medium">debt payoff calculator</a>.</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start space-x-3">
+                      <i className="fas fa-check-circle text-green-600 mt-1"></i>
+                      <div>
+                        <h3 className="font-semibold text-gray-900 mb-1">Investment Analysis</h3>
+                        <p className="text-gray-600">Evaluate rental property investments and calculate potential returns. Complement with our <a href="/tools/roi-calculator" className="text-green-600 hover:text-green-700 font-medium">ROI calculator</a> for comprehensive investment planning.</p>
                       </div>
                     </div>
                   </div>
@@ -892,7 +985,7 @@ const MortgageCalculator = () => {
                       <i className="fas fa-check-circle text-green-600 mt-1"></i>
                       <div>
                         <h3 className="font-semibold text-gray-900 mb-1">Avoid Overextending</h3>
-                        <p className="text-gray-600">Ensure monthly payments fit comfortably within your budget.</p>
+                        <p className="text-gray-600">Ensure monthly payments fit comfortably within your budget using the 28% rule and debt-to-income analysis built into our calculator.</p>
                       </div>
                     </div>
                     
@@ -900,16 +993,42 @@ const MortgageCalculator = () => {
                       <i className="fas fa-check-circle text-green-600 mt-1"></i>
                       <div>
                         <h3 className="font-semibold text-gray-900 mb-1">Refinancing Analysis</h3>
-                        <p className="text-gray-600">Compare your current mortgage with potential refinancing options.</p>
+                        <p className="text-gray-600">Compare your current mortgage with potential refinancing options to save thousands in interest payments over the loan term.</p>
                       </div>
                     </div>
                     
                     <div className="flex items-start space-x-3">
                       <i className="fas fa-check-circle text-green-600 mt-1"></i>
                       <div>
-                        <h3 className="font-semibold text-gray-900 mb-1">Financial Planning</h3>
-                        <p className="text-gray-600">Make informed decisions about your largest financial investment.</p>
+                        <h3 className="font-semibold text-gray-900 mb-1">Long-term Financial Planning</h3>
+                        <p className="text-gray-600">Make informed decisions about your largest financial investment. Plan for retirement with our <a href="/tools/retirement-calculator" className="text-green-600 hover:text-green-700 font-medium">retirement calculator</a> while managing mortgage payments.</p>
                       </div>
+                    </div>
+
+                    <div className="flex items-start space-x-3">
+                      <i className="fas fa-check-circle text-green-600 mt-1"></i>
+                      <div>
+                        <h3 className="font-semibold text-gray-900 mb-1">Tax Planning Benefits</h3>
+                        <p className="text-gray-600">Understand the tax implications of mortgage interest deductions and property tax benefits in your financial planning strategy.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-8 bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-lg">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">💡 Pro Tip: Complete Financial Picture</h3>
+                  <p className="text-gray-700 mb-4">
+                    For a comprehensive financial analysis, use our mortgage calculator alongside these related tools:
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                    <div className="bg-white p-4 rounded-lg">
+                      <strong className="text-gray-900">Monthly Budget:</strong> Factor mortgage payments into your overall budget using our <a href="/tools/percentage-calculator" className="text-green-600 hover:text-green-700">percentage calculator</a> to ensure the 28% housing rule.
+                    </div>
+                    <div className="bg-white p-4 rounded-lg">
+                      <strong className="text-gray-900">Down Payment Savings:</strong> Calculate how long it will take to save for your down payment with our <a href="/tools/compound-interest-calculator" className="text-green-600 hover:text-green-700">compound interest calculator</a>.
+                    </div>
+                    <div className="bg-white p-4 rounded-lg">
+                      <strong className="text-gray-900">Total Cost Analysis:</strong> Consider all homeownership costs including maintenance, utilities, and unexpected expenses for complete budgeting.
                     </div>
                   </div>
                 </div>
@@ -1025,6 +1144,81 @@ const MortgageCalculator = () => {
                 </div>
               </div>
 
+              {/* Mortgage Education Center */}
+              <div className="mt-8 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-8">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">Mortgage Education Center</h2>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                  <div className="bg-white rounded-lg p-6 shadow-sm">
+                    <h3 className="text-xl font-semibold text-indigo-900 mb-4">📚 Essential Mortgage Knowledge</h3>
+                    <div className="space-y-4">
+                      <div className="border-l-4 border-indigo-500 pl-4">
+                        <h4 className="font-semibold text-gray-900 mb-1">Loan-to-Value Ratio (LTV)</h4>
+                        <p className="text-gray-600 text-sm">Understanding LTV helps you determine PMI requirements and loan approval odds. Lower LTV typically means better rates.</p>
+                      </div>
+                      <div className="border-l-4 border-indigo-500 pl-4">
+                        <h4 className="font-semibold text-gray-900 mb-1">Debt-to-Income Ratio (DTI)</h4>
+                        <p className="text-gray-600 text-sm">Lenders use DTI to assess your ability to repay. Use our <a href="/tools/debt-payoff-calculator" className="text-indigo-600 hover:text-indigo-700 font-medium">debt payoff calculator</a> to improve your DTI.</p>
+                      </div>
+                      <div className="border-l-4 border-indigo-500 pl-4">
+                        <h4 className="font-semibold text-gray-900 mb-1">Amortization Schedule</h4>
+                        <p className="text-gray-600 text-sm">Early payments go mostly to interest, later payments to principal. Extra payments can significantly reduce total interest paid.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-white rounded-lg p-6 shadow-sm">
+                    <h3 className="text-xl font-semibold text-purple-900 mb-4">🏦 Loan Type Comparison</h3>
+                    <div className="space-y-4">
+                      <div className="bg-purple-50 p-4 rounded-lg">
+                        <h4 className="font-semibold text-purple-900 mb-2">Conventional Loans</h4>
+                        <p className="text-purple-800 text-sm">Best for borrowers with good credit (620+) and ability to put down 5-20%. No upfront mortgage insurance premium.</p>
+                      </div>
+                      <div className="bg-purple-50 p-4 rounded-lg">
+                        <h4 className="font-semibold text-purple-900 mb-2">FHA Loans</h4>
+                        <p className="text-purple-800 text-sm">Great for first-time buyers with lower credit scores (580+). Only 3.5% down required, but includes mortgage insurance.</p>
+                      </div>
+                      <div className="bg-purple-50 p-4 rounded-lg">
+                        <h4 className="font-semibold text-purple-900 mb-2">VA Loans</h4>
+                        <p className="text-purple-800 text-sm">Exclusive to veterans and service members. No down payment or PMI required, competitive interest rates.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-lg p-6">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">🔗 Complete Your Financial Planning</h3>
+                  <p className="text-gray-600 mb-6">
+                    Mortgage planning is just one part of your financial journey. Explore these related calculators to build a comprehensive financial strategy:
+                  </p>
+                  <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                    <a href="/tools/home-loan-calculator" className="text-center p-3 bg-indigo-50 rounded-lg hover:bg-indigo-100 transition-colors">
+                      <i className="fas fa-home text-indigo-600 text-lg mb-2"></i>
+                      <div className="text-xs font-medium text-gray-900">Home Loans</div>
+                    </a>
+                    <a href="/tools/car-loan-calculator" className="text-center p-3 bg-indigo-50 rounded-lg hover:bg-indigo-100 transition-colors">
+                      <i className="fas fa-car text-indigo-600 text-lg mb-2"></i>
+                      <div className="text-xs font-medium text-gray-900">Auto Loans</div>
+                    </a>
+                    <a href="/tools/business-loan-calculator" className="text-center p-3 bg-indigo-50 rounded-lg hover:bg-indigo-100 transition-colors">
+                      <i className="fas fa-briefcase text-indigo-600 text-lg mb-2"></i>
+                      <div className="text-xs font-medium text-gray-900">Business</div>
+                    </a>
+                    <a href="/tools/investment-return-calculator" className="text-center p-3 bg-indigo-50 rounded-lg hover:bg-indigo-100 transition-colors">
+                      <i className="fas fa-chart-line text-indigo-600 text-lg mb-2"></i>
+                      <div className="text-xs font-medium text-gray-900">Investments</div>
+                    </a>
+                    <a href="/tools/retirement-calculator" className="text-center p-3 bg-indigo-50 rounded-lg hover:bg-indigo-100 transition-colors">
+                      <i className="fas fa-umbrella-beach text-indigo-600 text-lg mb-2"></i>
+                      <div className="text-xs font-medium text-gray-900">Retirement</div>
+                    </a>
+                    <a href="/tools/net-worth-calculator" className="text-center p-3 bg-indigo-50 rounded-lg hover:bg-indigo-100 transition-colors">
+                      <i className="fas fa-coins text-indigo-600 text-lg mb-2"></i>
+                      <div className="text-xs font-medium text-gray-900">Net Worth</div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
               {/* FAQ */}
               <div className="mt-8 bg-gradient-to-r from-gray-50 to-blue-50 rounded-2xl p-8">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
@@ -1032,34 +1226,44 @@ const MortgageCalculator = () => {
                   <div className="space-y-6">
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">How accurate are mortgage calculator results?</h3>
-                      <p className="text-gray-600">Mortgage calculators provide very accurate estimates when you input correct information. However, actual rates and terms may vary based on your credit score, debt-to-income ratio, and lender requirements.</p>
+                      <p className="text-gray-600">Mortgage calculators provide very accurate estimates when you input correct information. However, actual rates and terms may vary based on your credit score, debt-to-income ratio, and lender requirements. Use our <a href="/tools/credit-card-interest-calculator" className="text-blue-600 hover:text-blue-700 font-medium">credit card interest calculator</a> to optimize your credit utilization before applying.</p>
                     </div>
                     
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">What's the difference between principal and interest?</h3>
-                      <p className="text-gray-600">Principal is the amount you borrowed that goes toward paying down your loan balance. Interest is the cost of borrowing money, charged by the lender as a percentage of the outstanding principal.</p>
+                      <p className="text-gray-600">Principal is the amount you borrowed that goes toward paying down your loan balance. Interest is the cost of borrowing money, charged by the lender as a percentage of the outstanding principal. Understanding this helps you see how extra payments can save thousands in interest.</p>
                     </div>
                     
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">Should I put 20% down to avoid PMI?</h3>
-                      <p className="text-gray-600">While 20% down eliminates PMI, it's not always the best choice. Consider your cash flow, emergency fund, and investment opportunities when deciding on down payment amount.</p>
+                      <p className="text-gray-600">While 20% down eliminates PMI, it's not always the best choice. Consider your cash flow, emergency fund, and investment opportunities. Use our <a href="/tools/compound-interest-calculator" className="text-blue-600 hover:text-blue-700 font-medium">compound interest calculator</a> to see if investing the extra money might yield better returns.</p>
+                    </div>
+
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">How do I calculate total homeownership costs?</h3>
+                      <p className="text-gray-600">Beyond mortgage payments, factor in maintenance (1-3% of home value annually), utilities, HOA fees, and potential repairs. Our mortgage calculator includes taxes and insurance, but budget additional funds for complete cost coverage.</p>
                     </div>
                   </div>
                   
                   <div className="space-y-6">
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">How do property taxes affect my payment?</h3>
-                      <p className="text-gray-600">Property taxes are typically collected monthly by your lender and held in escrow until the annual tax bill is due. Higher property tax rates increase your total monthly payment.</p>
+                      <p className="text-gray-600">Property taxes are typically collected monthly by your lender and held in escrow until the annual tax bill is due. Higher property tax rates increase your total monthly payment. Research local tax rates as they vary significantly by location.</p>
                     </div>
                     
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I remove PMI later?</h3>
-                      <p className="text-gray-600">Yes, PMI can typically be removed once you reach 20% equity in your home through payments or appreciation. Some loans automatically cancel PMI at 22% equity.</p>
+                      <p className="text-gray-600">Yes, PMI can typically be removed once you reach 20% equity in your home through payments or appreciation. Some loans automatically cancel PMI at 22% equity. Our calculator shows projected PMI removal dates for planning purposes.</p>
                     </div>
                     
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">What's better: 15-year or 30-year mortgage?</h3>
-                      <p className="text-gray-600">15-year mortgages have higher monthly payments but lower total interest costs. 30-year mortgages offer lower monthly payments but cost more over the life of the loan. Choose based on your budget and financial goals.</p>
+                      <p className="text-gray-600">15-year mortgages have higher monthly payments but lower total interest costs and faster equity building. 30-year mortgages offer lower monthly payments but cost more over time. Choose based on your budget and long-term financial goals.</p>
+                    </div>
+
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">When should I consider refinancing?</h3>
+                      <p className="text-gray-600">Consider refinancing when rates drop 0.5-0.75% below your current rate, your credit has improved significantly, or you want to change loan terms. Calculate potential savings including closing costs to determine if refinancing makes sense.</p>
                     </div>
                   </div>
                 </div>
