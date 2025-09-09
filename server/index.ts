@@ -1,8 +1,56 @@
 import express, { type Request, Response, NextFunction } from "express";
+import compression from "compression";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 
 const app = express();
+
+// Enable compression for better performance
+app.use(compression({
+  level: 6,
+  threshold: 1024, // Only compress files larger than 1KB
+  filter: (req, res) => {
+    if (req.headers['x-no-compression']) return false;
+    return compression.filter(req, res);
+  }
+}));
+
+// Security headers
+app.use((req: Request, res: Response, next: NextFunction) => {
+  // Prevent XSS attacks
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+  
+  // HSTS for HTTPS
+  if (req.secure || req.headers['x-forwarded-proto'] === 'https') {
+    res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
+  }
+  
+  // Content Security Policy
+  res.setHeader('Content-Security-Policy', 
+    "default-src 'self'; " +
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://replit.com https://cdnjs.cloudflare.com; " +
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; " +
+    "font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; " +
+    "img-src 'self' data: blob: https:; " +
+    "connect-src 'self' ws: wss: https:; " +
+    "frame-src 'self';"
+  );
+  
+  // Referrer Policy
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  
+  // Cache control for static assets
+  if (req.url.match(/\.(js|css|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/)) {
+    res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+  } else if (req.url.match(/\.(html|htm)$/)) {
+    res.setHeader('Cache-Control', 'public, max-age=3600, must-revalidate');
+  }
+  
+  next();
+});
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 

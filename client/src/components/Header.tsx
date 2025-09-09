@@ -3,6 +3,7 @@ import { Link, useLocation } from 'wouter';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { searchTools } from '@/lib/search';
 import { tools } from '@/data/tools';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -32,7 +33,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-200" data-testid="header-main">
+    <header className="sticky top-0 z-50 bg-white dark:bg-neutral-900 shadow-sm border-b border-gray-200 dark:border-neutral-700 transition-colors duration-200" data-testid="header-main">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo Section */}
@@ -40,7 +41,7 @@ const Header = () => {
             <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
               <i className="fas fa-tools text-white text-sm"></i>
             </div>
-            <span className="text-xl font-bold text-neutral-800">DapsiWow</span>
+            <span className="text-xl font-bold text-neutral-800 dark:text-neutral-100">DapsiWow</span>
           </Link>
           
           {/* Desktop Navigation */}
@@ -49,8 +50,8 @@ const Header = () => {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-neutral-600 hover:text-blue-500 transition-colors duration-200 font-medium ${
-                  location === link.href ? 'text-blue-500' : ''
+                className={`text-neutral-600 dark:text-neutral-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-200 font-medium ${
+                  location === link.href ? 'text-blue-500 dark:text-blue-400' : ''
                 }`}
                 data-testid={`link-${link.label.toLowerCase().replace(' ', '-')}`}
               >
@@ -59,17 +60,18 @@ const Header = () => {
             ))}
           </nav>
           
-          {/* Search and Mobile Menu */}
-          <div className="flex items-center space-x-4">
+          {/* Search, Theme Toggle and Mobile Menu */}
+          <div className="flex items-center space-x-2">
             <button 
-              className="p-2 text-neutral-600 hover:text-blue-500 transition-colors"
+              className="p-2 text-neutral-600 dark:text-neutral-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
               onClick={() => setIsSearchOpen(true)}
               data-testid="button-search"
             >
               <i className="fas fa-search text-lg"></i>
             </button>
+            <ThemeToggle />
             <button
-              className="lg:hidden p-2 text-neutral-600 hover:text-blue-500 transition-colors"
+              className="lg:hidden p-2 text-neutral-600 dark:text-neutral-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               data-testid="button-mobile-menu"
             >
@@ -81,13 +83,13 @@ const Header = () => {
       
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-white border-t border-gray-200" data-testid="mobile-menu">
+        <div className="lg:hidden bg-white dark:bg-neutral-900 border-t border-gray-200 dark:border-neutral-700" data-testid="mobile-menu">
           <div className="px-4 py-3 space-y-3">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="block text-neutral-600 hover:text-blue-500 font-medium"
+                className="block text-neutral-600 dark:text-neutral-300 hover:text-blue-500 dark:hover:text-blue-400 font-medium"
                 onClick={() => setIsMobileMenuOpen(false)}
                 data-testid={`mobile-link-${link.label.toLowerCase().replace(' ', '-')}`}
               >
@@ -101,21 +103,21 @@ const Header = () => {
       {/* Search Modal */}
       {isSearchOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-start justify-center pt-20">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl mx-4 max-h-96 overflow-hidden">
-            <div className="p-4 border-b border-gray-200">
+          <div className="bg-white dark:bg-neutral-900 rounded-lg shadow-xl w-full max-w-2xl mx-4 max-h-96 overflow-hidden">
+            <div className="p-4 border-b border-gray-200 dark:border-neutral-700">
               <div className="relative">
                 <input
                   type="text"
                   placeholder="Search for tools..."
                   value={searchQuery}
                   onChange={(e) => handleSearch(e.target.value)}
-                  className="w-full py-3 px-4 pr-12 text-lg border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full py-3 px-4 pr-12 text-lg border border-gray-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
                   autoFocus
                   data-testid="search-modal-input"
                 />
                 <button
                   onClick={() => setIsSearchOpen(false)}
-                  className="absolute right-3 top-3 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3 top-3 text-gray-400 dark:text-neutral-500 hover:text-gray-600 dark:hover:text-neutral-300"
                   data-testid="search-modal-close"
                 >
                   <i className="fas fa-times text-lg"></i>

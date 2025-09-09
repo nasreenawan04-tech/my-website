@@ -1,0 +1,23 @@
+{
+  "name": "DapsiWow - Free Online Tools",
+  "short_name": "DapsiWow",
+  "description": "180+ free online tools for business and personal use",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait-primary",
+  "categories": ["productivity", "business", "utilities"]
+}
