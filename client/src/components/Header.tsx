@@ -3,6 +3,8 @@ import { Link, useLocation } from 'wouter';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { searchTools } from '@/lib/search';
 import { tools } from '@/data/tools';
+import FavoritesDropdown from '@/components/FavoritesDropdown';
+import RecentToolsDropdown from '@/components/RecentToolsDropdown';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -59,17 +61,31 @@ const Header = () => {
             ))}
           </nav>
           
-          {/* Search and Mobile Menu */}
-          <div className="flex items-center space-x-4">
+          {/* Search, Favorites, Recent, and Mobile Menu */}
+          <div className="flex items-center space-x-2">
+            {/* Recent Tools - Hidden on mobile */}
+            <div className="hidden sm:block">
+              <RecentToolsDropdown />
+            </div>
+            
+            {/* Favorites - Hidden on mobile */}
+            <div className="hidden sm:block">
+              <FavoritesDropdown />
+            </div>
+            
+            {/* Search */}
             <button 
-              className="p-2 text-neutral-600 hover:text-blue-500 transition-colors"
+              className="p-2 text-neutral-600 dark:text-neutral-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
               onClick={() => setIsSearchOpen(true)}
               data-testid="button-search"
+              title="Search tools"
             >
               <i className="fas fa-search text-lg"></i>
             </button>
+            
+            {/* Mobile Menu */}
             <button
-              className="lg:hidden p-2 text-neutral-600 hover:text-blue-500 transition-colors"
+              className="lg:hidden p-2 text-neutral-600 dark:text-neutral-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               data-testid="button-mobile-menu"
             >
@@ -83,6 +99,18 @@ const Header = () => {
       {isMobileMenuOpen && (
         <div className="lg:hidden bg-white dark:bg-neutral-900 border-t border-gray-200 dark:border-neutral-700" data-testid="mobile-menu">
           <div className="px-4 py-3 space-y-3">
+            {/* Quick access section for mobile */}
+            <div className="pb-3 border-b border-gray-200 dark:border-neutral-700">
+              <div className="flex items-center space-x-4">
+                <div className="flex-1">
+                  <RecentToolsDropdown />
+                </div>
+                <div className="flex-1">
+                  <FavoritesDropdown />
+                </div>
+              </div>
+            </div>
+            
             {navLinks.map((link) => (
               <Link
                 key={link.href}
