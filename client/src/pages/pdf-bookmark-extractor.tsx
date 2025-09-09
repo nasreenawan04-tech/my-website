@@ -743,7 +743,7 @@ const PDFBookmarkExtractor = () => {
                           <span>Choose the appropriate export format based on your intended use</span>
                         </li>
                         <li className="flex items-start">
-                          <div className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <div className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
                           <span>Save the exported data with descriptive filenames for easy identification</span>
                         </li>
                       </ul>
