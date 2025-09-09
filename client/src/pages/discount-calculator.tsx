@@ -28,11 +28,11 @@ const DiscountCalculator = () => {
 
   const calculateDiscount = () => {
     const price = parseFloat(originalPrice);
-    
+
     if (isNaN(price) || price <= 0) return;
 
     let discount = 0;
-    
+
     if (calculationType === 'percentage') {
       const percent = parseFloat(discountPercent);
       if (isNaN(percent) || percent < 0 || percent > 100) return;
@@ -83,7 +83,7 @@ const DiscountCalculator = () => {
     };
 
     const config = currencyMap[currency] || currencyMap.USD;
-    
+
     return new Intl.NumberFormat(config.locale, {
       style: 'currency',
       currency: config.currency,
@@ -110,7 +110,7 @@ const DiscountCalculator = () => {
       <Helmet>
         <title>Discount Calculator - Calculate Sale Prices & Savings | ToolsHub</title>
         <meta name="description" content="Free discount calculator to calculate sale prices, discount amounts, and savings. Support for multiple currencies worldwide. Perfect for shopping, sales, and business pricing." />
-        <meta name="keywords" content="discount calculator, sale price calculator, percentage discount, savings calculator, price reduction calculator" />
+        <meta name="keywords" content="discount calculator, sale price calculator, percentage discount, savings calculator, price reduction calculator, best deals, shopping discounts" />
         <meta property="og:title" content="Discount Calculator - Calculate Sale Prices & Savings | ToolsHub" />
         <meta property="og:description" content="Free discount calculator to calculate sale prices, discount amounts, and savings. Support for multiple currencies worldwide." />
         <meta property="og:type" content="website" />
@@ -119,7 +119,7 @@ const DiscountCalculator = () => {
 
       <div className="min-h-screen flex flex-col" data-testid="page-discount-calculator">
         <Header />
-        
+
         <main className="flex-1 bg-neutral-50">
           {/* Hero Section */}
           <section className="gradient-hero text-white py-16">
@@ -145,7 +145,7 @@ const DiscountCalculator = () => {
                     {/* Input Section */}
                     <div className="space-y-6">
                       <h2 className="text-2xl font-semibold text-gray-900 mb-8">Discount Details</h2>
-                      
+
                       {/* Currency Selection */}
                       <div className="space-y-3">
                         <Label htmlFor="currency" className="text-sm font-medium text-gray-700">
@@ -271,7 +271,7 @@ const DiscountCalculator = () => {
                     {/* Results Section */}
                     <div className="space-y-6">
                       <h2 className="text-2xl font-semibold text-gray-900 mb-8">Results</h2>
-                      
+
                       {result ? (
                         <div className="space-y-6" data-testid="results">
                           {/* Final Price */}
@@ -388,6 +388,49 @@ const DiscountCalculator = () => {
                     <h4 className="font-semibold text-green-900 mb-3">For Businesses</h4>
                     <p className="text-green-800 text-sm">
                       Set competitive discount rates, calculate profit margins, and plan promotional pricing strategies.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Audience-Specific Benefits */}
+              <div className="bg-white rounded-2xl p-8 shadow-sm border">
+                <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Who Benefits from Our Discount Calculator?</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <i className="fas fa-graduation-cap text-blue-600 text-xl"></i>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-3">Students</h4>
+                    <p className="text-gray-600 text-sm">
+                      Calculate textbook discounts, student deals, and budget-friendly purchases. Perfect for managing limited budgets and finding the best educational deals.
+                    </p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <i className="fas fa-briefcase text-green-600 text-xl"></i>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-3">Professionals</h4>
+                    <p className="text-gray-600 text-sm">
+                      Evaluate corporate discounts, business purchases, and professional tool deals. Essential for expense reporting and budget management.
+                    </p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <i className="fas fa-store text-purple-600 text-xl"></i>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-3">Business Owners</h4>
+                    <p className="text-gray-600 text-sm">
+                      Set competitive pricing, calculate wholesale discounts, and manage inventory clearance sales. Optimize profit margins and pricing strategies.
+                    </p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <i className="fas fa-home text-orange-600 text-xl"></i>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-3">Families</h4>
+                    <p className="text-gray-600 text-sm">
+                      Plan household purchases, calculate seasonal sales savings, and compare deals across stores. Maximize family budget efficiency.
                     </p>
                   </div>
                 </div>
@@ -511,6 +554,155 @@ const DiscountCalculator = () => {
                 </div>
               </div>
 
+              {/* Integration with Financial Planning */}
+              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Complete Your Financial Planning Toolkit</h3>
+                <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                  The discount calculator works seamlessly with our other financial tools to provide comprehensive money management solutions. 
+                  Whether you're planning purchases, managing budgets, or analyzing investments, our integrated calculator suite helps you 
+                  make informed financial decisions across all areas of your financial life.
+                </p>
+
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div>
+                    <h4 className="text-xl font-semibold text-gray-900 mb-4">Budget and Savings Tools</h4>
+                    <ul className="space-y-3">
+                      <li>
+                        <a href="/tools/percentage-calculator" className="text-blue-600 hover:text-blue-700 font-medium">Percentage Calculator</a>
+                        <span className="text-gray-600"> - Calculate percentage savings and budget allocations</span>
+                      </li>
+                      <li>
+                        <a href="/tools/savings-goal-calculator" className="text-blue-600 hover:text-blue-700 font-medium">Savings Goal Calculator</a>
+                        <span className="text-gray-600"> - Plan for major purchases with discount considerations</span>
+                      </li>
+                      <li>
+                        <a href="/tools/compound-interest-calculator" className="text-blue-600 hover:text-blue-700 font-medium">Compound Interest Calculator</a>
+                        <span className="text-gray-600"> - Grow savings from money saved through discounts</span>
+                      </li>
+                      <li>
+                        <a href="/tools/currency-converter" className="text-blue-600 hover:text-blue-700 font-medium">Currency Converter</a>
+                        <span className="text-gray-600"> - Compare international deals and discounts</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-semibold text-gray-900 mb-4">Business and Investment Tools</h4>
+                    <ul className="space-y-3">
+                      <li>
+                        <a href="/tools/roi-calculator" className="text-blue-600 hover:text-blue-700 font-medium">ROI Calculator</a>
+                        <span className="text-gray-600"> - Analyze discount strategies and profit margins</span>
+                      </li>
+                      <li>
+                        <a href="/tools/break-even-calculator" className="text-blue-600 hover:text-blue-700 font-medium">Break-Even Calculator</a>
+                        <span className="text-gray-600"> - Determine optimal discount rates for business</span>
+                      </li>
+                      <li>
+                        <a href="/tools/loan-calculator" className="text-blue-600 hover:text-blue-700 font-medium">Loan Calculator</a>
+                        <span className="text-gray-600"> - Finance purchases after applying discounts</span>
+                      </li>
+                      <li>
+                        <a href="/tools/tip-calculator" className="text-blue-600 hover:text-blue-700 font-medium">Tip Calculator</a>
+                        <span className="text-gray-600"> - Calculate service charges on discounted bills</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Advanced Discount Strategies */}
+              <div className="bg-white rounded-2xl p-8 shadow-sm border">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Advanced Discount Calculation Strategies</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div>
+                    <h4 className="text-xl font-semibold text-gray-900 mb-4">Multiple Discount Scenarios</h4>
+                    <div className="space-y-4">
+                      <div className="border-l-4 border-blue-500 pl-4">
+                        <h5 className="font-semibold text-gray-800">Sequential Discounts</h5>
+                        <p className="text-gray-600 text-sm mb-2">
+                          When dealing with multiple discounts (like store discount + coupon), apply them sequentially rather than adding percentages.
+                        </p>
+                        <div className="bg-gray-50 p-3 rounded text-sm font-mono">
+                          Example: 20% store discount + 10% coupon<br/>
+                          $100 → $80 (20% off) → $72 (10% off $80) = 28% total savings
+                        </div>
+                      </div>
+                      <div className="border-l-4 border-green-500 pl-4">
+                        <h5 className="font-semibold text-gray-800">Cashback Combinations</h5>
+                        <p className="text-gray-600 text-sm mb-2">
+                          Factor in credit card cashback or loyalty points when calculating true discount value.
+                        </p>
+                        <div className="bg-gray-50 p-3 rounded text-sm">
+                          Use our <a href="/tools/percentage-calculator" className="text-blue-600 hover:underline">Percentage Calculator</a> to compute total savings including cashback rewards.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-semibold text-gray-900 mb-4">Business Pricing Strategies</h4>
+                    <div className="space-y-4">
+                      <div className="border-l-4 border-purple-500 pl-4">
+                        <h5 className="font-semibold text-gray-800">Psychological Pricing</h5>
+                        <p className="text-gray-600 text-sm mb-2">
+                          Calculate discount amounts that result in psychologically appealing prices (ending in 9, 99, etc.).
+                        </p>
+                      </div>
+                      <div className="border-l-4 border-orange-500 pl-4">
+                        <h5 className="font-semibold text-gray-800">Volume Discount Tiers</h5>
+                        <p className="text-gray-600 text-sm mb-2">
+                          Structure bulk purchase discounts to maximize revenue while incentivizing larger orders.
+                        </p>
+                        <div className="bg-gray-50 p-3 rounded text-sm">
+                          Combine with our <a href="/tools/break-even-calculator" className="text-blue-600 hover:underline">Break-Even Calculator</a> to ensure profitability.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Industry-Specific Applications */}
+              <div className="bg-gray-50 rounded-2xl p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Industry-Specific Discount Applications</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="bg-white p-6 rounded-lg">
+                    <div className="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center mb-4">
+                      <i className="fas fa-tshirt text-pink-600"></i>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-3">Retail & Fashion</h4>
+                    <ul className="text-sm text-gray-600 space-y-1">
+                      <li>• Seasonal clearance pricing</li>
+                      <li>• Flash sale calculations</li>
+                      <li>• Customer loyalty discounts</li>
+                      <li>• Inventory turnover optimization</li>
+                    </ul>
+                  </div>
+                  <div className="bg-white p-6 rounded-lg">
+                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                      <i className="fas fa-laptop text-blue-600"></i>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-3">Technology & Software</h4>
+                    <ul className="text-sm text-gray-600 space-y-1">
+                      <li>• Enterprise license discounts</li>
+                      <li>• Educational pricing tiers</li>
+                      <li>• Subscription upgrade incentives</li>
+                      <li>• Volume licensing calculations</li>
+                    </ul>
+                  </div>
+                  <div className="bg-white p-6 rounded-lg">
+                    <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                      <i className="fas fa-utensils text-green-600"></i>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-3">Food & Hospitality</h4>
+                    <ul className="text-sm text-gray-600 space-y-1">
+                      <li>• Happy hour pricing</li>
+                      <li>• Group booking discounts</li>
+                      <li>• Loyalty program benefits</li>
+                      <li>• Catering package deals</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
               {/* FAQ Section */}
               <div className="bg-white rounded-2xl p-8 shadow-sm border">
                 <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Frequently Asked Questions</h3>
@@ -545,6 +737,64 @@ const DiscountCalculator = () => {
                   </div>
                 </div>
               </div>
+
+              {/* Related Tools Section */}
+              <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Complete Financial Calculator Suite</h3>
+                <p className="text-center text-gray-600 mb-8">
+                  Enhance your financial planning with our comprehensive suite of calculator tools designed for personal and business use.
+                </p>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <a href="/tools/percentage-calculator" className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100 hover:border-blue-200 group">
+                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-200 transition-colors">
+                      <Calculator className="w-6 h-6 text-blue-600" />
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Percentage Calculator</h4>
+                    <p className="text-gray-600 text-sm">Calculate percentages, increases, decreases, and percentage relationships for any scenario.</p>
+                  </a>
+
+                  <a href="/tools/tip-calculator" className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100 hover:border-green-200 group">
+                    <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-green-200 transition-colors">
+                      <DollarSign className="w-6 h-6 text-green-600" />
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Tip Calculator</h4>
+                    <p className="text-gray-600 text-sm">Calculate tip amounts and split bills with support for multiple currencies and group dining.</p>
+                  </a>
+
+                  <a href="/tools/currency-converter" className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100 hover:border-purple-200 group">
+                    <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-purple-200 transition-colors">
+                      <i className="fas fa-exchange-alt text-purple-600"></i>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Currency Converter</h4>
+                    <p className="text-gray-600 text-sm">Convert between global currencies with real-time rates for international shopping and business.</p>
+                  </a>
+
+                  <a href="/tools/loan-calculator" className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100 hover:border-orange-200 group">
+                    <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-orange-200 transition-colors">
+                      <Calculator className="w-6 h-6 text-orange-600" />
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Loan Calculator</h4>
+                    <p className="text-gray-600 text-sm">Calculate loan payments, interest costs, and amortization schedules for any financing needs.</p>
+                  </a>
+
+                  <a href="/tools/compound-interest-calculator" className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100 hover:border-red-200 group">
+                    <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-red-200 transition-colors">
+                      <i className="fas fa-chart-line text-red-600"></i>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Compound Interest Calculator</h4>
+                    <p className="text-gray-600 text-sm">Calculate investment growth with compound interest for long-term financial planning.</p>
+                  </a>
+
+                  <a href="/tools/roi-calculator" className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100 hover:border-indigo-200 group">
+                    <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-indigo-200 transition-colors">
+                      <i className="fas fa-chart-pie text-indigo-600"></i>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">ROI Calculator</h4>
+                    <p className="text-gray-600 text-sm">Evaluate return on investment for business decisions and investment opportunities.</p>
+                  </a>
+                </div>
+              </div>
             </div>
           </section>
 
@@ -577,7 +827,7 @@ const DiscountCalculator = () => {
             </div>
           </section>
         </main>
-        
+
         <Footer />
       </div>
     </>
