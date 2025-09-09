@@ -686,68 +686,283 @@ const EMICalculator = () => {
 
               {/* Educational Content */}
               <div className="mt-12 space-y-8">
-                {/* Understanding EMI */}
+                {/* What is EMI Calculator */}
                 <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Complete Guide to EMI Calculator</h2>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-8">What is an EMI Calculator?</h2>
+                  <div className="prose max-w-none text-gray-600">
+                    <p className="text-lg mb-6 leading-relaxed">
+                      An EMI Calculator is a powerful financial tool that helps you calculate your Equated Monthly Installment (EMI) for any type of loan instantly. 
+                      Whether you're planning to take a <a href="/tools/home-loan-calculator" className="text-blue-600 hover:text-blue-800 font-medium">home loan</a>, 
+                      <a href="/tools/car-loan-calculator" className="text-blue-600 hover:text-blue-800 font-medium"> car loan</a>, 
+                      <a href="/tools/education-loan-calculator" className="text-blue-600 hover:text-blue-800 font-medium"> education loan</a>, or 
+                      <a href="/tools/business-loan-calculator" className="text-blue-600 hover:text-blue-800 font-medium"> business loan</a>, 
+                      our EMI calculator provides accurate monthly payment estimates to help you make informed financial decisions.
+                    </p>
+                    <p className="mb-6">
+                      The EMI calculator uses the mathematical formula to determine your monthly payment amount based on three key factors: 
+                      the principal loan amount, annual interest rate, and loan tenure. This online tool eliminates the need for complex manual calculations 
+                      and provides instant results with detailed payment breakdowns, helping you understand exactly how much you'll pay each month 
+                      and over the entire loan duration.
+                    </p>
+                  </div>
+                </div>
+
+                {/* How EMI Calculator Works */}
+                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-8">How Does Our EMI Calculator Work?</h2>
                   
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">What is EMI?</h3>
-                      <p className="text-gray-600 mb-6 leading-relaxed">
-                        EMI (Equated Monthly Installment) is a fixed payment amount made by a borrower to a lender at a specified date each month. 
-                        It comprises both principal and interest components, making it easier for borrowers to plan their monthly finances. 
-                        EMIs are commonly used for home loans, car loans, personal loans, and other types of financing.
-                      </p>
-                      
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">How EMI Calculation Works</h3>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">The EMI Formula Explained</h3>
                       <p className="text-gray-600 mb-4">
-                        The EMI calculation uses a mathematical formula that considers three key factors:
+                        Our EMI calculator uses the standard mathematical formula recognized by financial institutions worldwide:
                       </p>
-                      <div className="bg-blue-50 rounded-lg p-4 mb-4">
-                        <p className="font-mono text-center text-lg text-blue-800 font-semibold">
+                      <div className="bg-white rounded-lg p-6 mb-6 border border-blue-200">
+                        <p className="font-mono text-center text-xl text-blue-800 font-bold mb-2">
                           EMI = [P × R × (1+R)^N] / [(1+R)^N - 1]
                         </p>
+                        <div className="text-sm text-gray-600 space-y-1">
+                          <p><strong>P</strong> = Principal loan amount (total amount borrowed)</p>
+                          <p><strong>R</strong> = Monthly interest rate (annual rate ÷ 12 ÷ 100)</p>
+                          <p><strong>N</strong> = Total number of monthly installments (loan tenure in months)</p>
+                        </div>
                       </div>
-                      <ul className="text-gray-600 space-y-2">
-                        <li><strong>P</strong> = Principal loan amount (the total borrowed amount)</li>
-                        <li><strong>R</strong> = Monthly interest rate (annual rate ÷ 12)</li>
-                        <li><strong>N</strong> = Number of monthly installments (loan tenure in months)</li>
+                      
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Step-by-Step Calculation Process</h3>
+                      <ol className="text-gray-600 space-y-2 list-decimal list-inside">
+                        <li>Enter your desired loan amount (principal)</li>
+                        <li>Input the annual interest rate offered by your lender</li>
+                        <li>Select your preferred loan tenure (in years or months)</li>
+                        <li>Click calculate to get instant EMI results</li>
+                        <li>Review the detailed breakdown of principal vs interest</li>
+                        <li>Analyze the total amount payable over the loan duration</li>
+                      </ol>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Advanced Features</h3>
+                      <div className="space-y-4">
+                        <div className="bg-white rounded-lg p-4 border border-blue-200">
+                          <h4 className="font-semibold text-gray-900 mb-2">
+                            <i className="fas fa-chart-line text-blue-600 mr-2"></i>
+                            Prepayment Analysis
+                          </h4>
+                          <p className="text-gray-600 text-sm">
+                            Calculate how prepayments can reduce your interest burden and loan tenure. 
+                            See exactly how much you can save by making additional payments.
+                          </p>
+                        </div>
+                        <div className="bg-white rounded-lg p-4 border border-blue-200">
+                          <h4 className="font-semibold text-gray-900 mb-2">
+                            <i className="fas fa-arrow-up text-green-600 mr-2"></i>
+                            Step-Up EMI Option
+                          </h4>
+                          <p className="text-gray-600 text-sm">
+                            Perfect for professionals expecting salary increments. Start with lower EMIs 
+                            and gradually increase payments to save on total interest.
+                          </p>
+                        </div>
+                        <div className="bg-white rounded-lg p-4 border border-blue-200">
+                          <h4 className="font-semibold text-gray-900 mb-2">
+                            <i className="fas fa-table text-purple-600 mr-2"></i>
+                            Amortization Schedule
+                          </h4>
+                          <p className="text-gray-600 text-sm">
+                            View detailed month-by-month payment breakdown showing how much goes 
+                            toward principal and interest for each payment.
+                          </p>
+                        </div>
+                        <div className="bg-white rounded-lg p-4 border border-blue-200">
+                          <h4 className="font-semibold text-gray-900 mb-2">
+                            <i className="fas fa-globe text-orange-600 mr-2"></i>
+                            Multi-Currency Support
+                          </h4>
+                          <p className="text-gray-600 text-sm">
+                            Calculate EMIs in 10+ global currencies including USD, EUR, GBP, INR, 
+                            JPY, and more for international loan planning.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Benefits for Different Users */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Benefits for Different User Groups</h2>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="bg-blue-50 rounded-xl p-6 border border-blue-200">
+                      <div className="flex items-center mb-4">
+                        <i className="fas fa-graduation-cap text-2xl text-blue-600 mr-3"></i>
+                        <h3 className="text-lg font-semibold text-gray-900">Students & Young Professionals</h3>
+                      </div>
+                      <ul className="text-gray-600 space-y-2 text-sm">
+                        <li>• Plan <a href="/tools/education-loan-calculator" className="text-blue-600 hover:underline">education loan EMIs</a> for college expenses</li>
+                        <li>• Calculate first <a href="/tools/car-loan-calculator" className="text-blue-600 hover:underline">car loan payments</a> within budget</li>
+                        <li>• Use step-up EMI for growing income expectations</li>
+                        <li>• Compare loan offers from different banks</li>
+                        <li>• Plan monthly budget with fixed EMI amounts</li>
+                        <li>• Understand long-term financial commitments</li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-green-50 rounded-xl p-6 border border-green-200">
+                      <div className="flex items-center mb-4">
+                        <i className="fas fa-briefcase text-2xl text-green-600 mr-3"></i>
+                        <h3 className="text-lg font-semibold text-gray-900">Working Professionals</h3>
+                      </div>
+                      <ul className="text-gray-600 space-y-2 text-sm">
+                        <li>• Calculate <a href="/tools/home-loan-calculator" className="text-blue-600 hover:underline">home loan EMIs</a> for property purchase</li>
+                        <li>• Plan personal loan EMIs for major expenses</li>
+                        <li>• Analyze prepayment benefits for existing loans</li>
+                        <li>• Compare fixed vs floating rate options</li>
+                        <li>• Optimize loan tenure based on income</li>
+                        <li>• Plan multiple loan EMIs simultaneously</li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-purple-50 rounded-xl p-6 border border-purple-200">
+                      <div className="flex items-center mb-4">
+                        <i className="fas fa-building text-2xl text-purple-600 mr-3"></i>
+                        <h3 className="text-lg font-semibold text-gray-900">Business Owners</h3>
+                      </div>
+                      <ul className="text-gray-600 space-y-2 text-sm">
+                        <li>• Calculate <a href="/tools/business-loan-calculator" className="text-blue-600 hover:underline">business loan EMIs</a> for expansion</li>
+                        <li>• Plan equipment financing with EMI schedules</li>
+                        <li>• Compare working capital loan options</li>
+                        <li>• Use <a href="/tools/roi-calculator" className="text-blue-600 hover:underline">ROI calculator</a> alongside EMI planning</li>
+                        <li>• Analyze cash flow impact of loan EMIs</li>
+                        <li>• Plan multiple business financing options</li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-orange-50 rounded-xl p-6 border border-orange-200">
+                      <div className="flex items-center mb-4">
+                        <i className="fas fa-heart text-2xl text-orange-600 mr-3"></i>
+                        <h3 className="text-lg font-semibold text-gray-900">Families & Homemakers</h3>
+                      </div>
+                      <ul className="text-gray-600 space-y-2 text-sm">
+                        <li>• Plan family financial goals with EMI budgeting</li>
+                        <li>• Calculate joint loan EMIs for home purchase</li>
+                        <li>• Compare different loan tenures for affordability</li>
+                        <li>• Use <a href="/tools/savings-goal-calculator" className="text-blue-600 hover:underline">savings calculator</a> for down payments</li>
+                        <li>• Plan children's education loan requirements</li>
+                        <li>• Analyze household budget impact of EMIs</li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-teal-50 rounded-xl p-6 border border-teal-200">
+                      <div className="flex items-center mb-4">
+                        <i className="fas fa-chart-pie text-2xl text-teal-600 mr-3"></i>
+                        <h3 className="text-lg font-semibold text-gray-900">Investors & Traders</h3>
+                      </div>
+                      <ul className="text-gray-600 space-y-2 text-sm">
+                        <li>• Calculate leverage loan EMIs for investments</li>
+                        <li>• Plan real estate investment financing</li>
+                        <li>• Compare loan costs vs investment returns</li>
+                        <li>• Use <a href="/tools/compound-interest-calculator" className="text-blue-600 hover:underline">compound interest calculator</a> for comparisons</li>
+                        <li>• Analyze portfolio leverage strategies</li>
+                        <li>• Plan multiple property financing</li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-red-50 rounded-xl p-6 border border-red-200">
+                      <div className="flex items-center mb-4">
+                        <i className="fas fa-user-clock text-2xl text-red-600 mr-3"></i>
+                        <h3 className="text-lg font-semibold text-gray-900">Senior Citizens</h3>
+                      </div>
+                      <ul className="text-gray-600 space-y-2 text-sm">
+                        <li>• Plan reverse mortgage calculations</li>
+                        <li>• Calculate loan against property EMIs</li>
+                        <li>• Compare shorter tenure loans for quick payoff</li>
+                        <li>• Use <a href="/tools/retirement-calculator" className="text-blue-600 hover:underline">retirement calculator</a> for planning</li>
+                        <li>• Analyze pension vs EMI obligations</li>
+                        <li>• Plan medical emergency loan EMIs</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Complete Guide to EMI Calculator */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Complete Guide to EMI Calculator Benefits</h2>
+                  
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Why Use an EMI Calculator?</h3>
+                      <p className="text-gray-600 mb-6 leading-relaxed">
+                        EMI (Equated Monthly Installment) calculation is crucial for financial planning as it determines your monthly loan obligation. 
+                        Our advanced EMI calculator helps you understand the exact amount you'll pay each month, making it easier to budget 
+                        and compare different loan options from various lenders. This tool is essential for anyone considering any form of financing.
+                      </p>
+                      
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Key Benefits of EMI Planning</h3>
+                      <ul className="text-gray-600 space-y-3">
+                        <li className="flex items-start">
+                          <i className="fas fa-check-circle text-green-500 mt-1 mr-3 flex-shrink-0"></i>
+                          <span><strong>Accurate Budget Planning:</strong> Know exact monthly payment obligations before taking any loan</span>
+                        </li>
+                        <li className="flex items-start">
+                          <i className="fas fa-check-circle text-green-500 mt-1 mr-3 flex-shrink-0"></i>
+                          <span><strong>Loan Comparison:</strong> Compare different loan offers, tenures, and interest rates easily</span>
+                        </li>
+                        <li className="flex items-start">
+                          <i className="fas fa-check-circle text-green-500 mt-1 mr-3 flex-shrink-0"></i>
+                          <span><strong>Interest Optimization:</strong> Understand total interest payable and find ways to minimize it</span>
+                        </li>
+                        <li className="flex items-start">
+                          <i className="fas fa-check-circle text-green-500 mt-1 mr-3 flex-shrink-0"></i>
+                          <span><strong>Tenure Planning:</strong> Find the optimal balance between EMI amount and loan duration</span>
+                        </li>
+                        <li className="flex items-start">
+                          <i className="fas fa-check-circle text-green-500 mt-1 mr-3 flex-shrink-0"></i>
+                          <span><strong>Financial Discipline:</strong> Make informed decisions about loan affordability and repayment capacity</span>
+                        </li>
                       </ul>
                     </div>
                     
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Benefits of Using EMI Calculator</h3>
-                      <ul className="text-gray-600 space-y-3">
-                        <li className="flex items-start">
-                          <i className="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                          <span><strong>Budget Planning:</strong> Know exact monthly payment obligations in advance</span>
-                        </li>
-                        <li className="flex items-start">
-                          <i className="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                          <span><strong>Loan Comparison:</strong> Compare different loan offers and terms easily</span>
-                        </li>
-                        <li className="flex items-start">
-                          <i className="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                          <span><strong>Interest Savings:</strong> Understand total interest payable over loan tenure</span>
-                        </li>
-                        <li className="flex items-start">
-                          <i className="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                          <span><strong>Tenure Optimization:</strong> Find the right balance between EMI amount and loan duration</span>
-                        </li>
-                        <li className="flex items-start">
-                          <i className="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                          <span><strong>Financial Planning:</strong> Make informed decisions about loan affordability</span>
-                        </li>
-                      </ul>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Smart EMI Management Strategies</h3>
+                      <div className="space-y-4">
+                        <div className="bg-blue-50 rounded-lg p-4">
+                          <h4 className="font-semibold text-blue-900 mb-2">Optimize Loan Tenure</h4>
+                          <p className="text-blue-800 text-sm">
+                            Shorter tenure means higher EMI but significantly lower total interest. Use our calculator to find the 
+                            sweet spot between affordable monthly payments and total cost minimization.
+                          </p>
+                        </div>
+                        <div className="bg-green-50 rounded-lg p-4">
+                          <h4 className="font-semibold text-green-900 mb-2">Prepayment Strategy</h4>
+                          <p className="text-green-800 text-sm">
+                            Make prepayments when possible to reduce principal and interest burden. Our prepayment analysis 
+                            shows exactly how much you can save and how much time you can reduce from your loan tenure.
+                          </p>
+                        </div>
+                        <div className="bg-purple-50 rounded-lg p-4">
+                          <h4 className="font-semibold text-purple-900 mb-2">Rate Comparison</h4>
+                          <p className="text-purple-800 text-sm">
+                            Even a 0.5% difference in interest rate can save thousands over the loan tenure. Use our calculator 
+                            to compare offers from multiple lenders and negotiate better rates.
+                          </p>
+                        </div>
+                        <div className="bg-orange-50 rounded-lg p-4">
+                          <h4 className="font-semibold text-orange-900 mb-2">Income Ratio Planning</h4>
+                          <p className="text-orange-800 text-sm">
+                            Financial experts recommend keeping total EMIs below 40-50% of monthly income. This ensures you 
+                            have enough funds for other expenses and emergencies.
+                          </p>
+                        </div>
+                      </div>
 
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4 mt-6">Smart EMI Management Tips</h3>
-                      <ul className="text-gray-600 space-y-2">
-                        <li>• Choose optimal loan tenure - shorter tenure = higher EMI but lower total interest</li>
-                        <li>• Make prepayments when possible to reduce principal and interest burden</li>
-                        <li>• Compare interest rates from multiple lenders before deciding</li>
-                        <li>• Ensure your EMI doesn't exceed 40-50% of your monthly income</li>
-                        <li>• Consider fixed vs. floating interest rates based on market conditions</li>
-                        <li>• Review and negotiate interest rates periodically</li>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4 mt-6">Pro Tips for EMI Optimization</h3>
+                      <ul className="text-gray-600 space-y-2 text-sm">
+                        <li>• Increase EMI by 5-10% annually to reduce tenure significantly</li>
+                        <li>• Choose floating rates during high-rate periods if rates are expected to fall</li>
+                        <li>• Make prepayments early in the loan tenure for maximum benefit</li>
+                        <li>• Consider step-up EMI if you're expecting regular salary increments</li>
+                        <li>• Review and negotiate interest rates annually with your lender</li>
+                        <li>• Use tax benefits effectively to reduce your overall loan cost</li>
                       </ul>
                     </div>
                   </div>
@@ -755,61 +970,203 @@ const EMICalculator = () => {
 
                 {/* Use Cases and Applications */}
                 <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">EMI Calculator Use Cases</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">EMI Calculator Use Cases & Applications</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div className="bg-white rounded-lg p-6 shadow-sm">
+                    <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                       <i className="fas fa-home text-2xl text-blue-600 mb-4"></i>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Home Loans</h3>
-                      <p className="text-gray-600 text-sm">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                        <a href="/tools/home-loan-calculator" className="hover:text-blue-600 transition-colors">Home Loans & Mortgages</a>
+                      </h3>
+                      <p className="text-gray-600 text-sm mb-3">
                         Calculate monthly payments for housing loans, mortgages, and home equity lines of credit. 
-                        Plan your home purchase budget effectively.
+                        Plan your home purchase budget effectively with our specialized <a href="/tools/mortgage-calculator" className="text-blue-600 hover:underline">mortgage calculator</a>.
                       </p>
+                      <ul className="text-xs text-gray-500 space-y-1">
+                        <li>• Primary residence financing</li>
+                        <li>• Investment property loans</li>
+                        <li>• Home equity lines of credit</li>
+                        <li>• Refinancing calculations</li>
+                      </ul>
                     </div>
                     
-                    <div className="bg-white rounded-lg p-6 shadow-sm">
+                    <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                       <i className="fas fa-car text-2xl text-green-600 mb-4"></i>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Auto Loans</h3>
-                      <p className="text-gray-600 text-sm">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                        <a href="/tools/car-loan-calculator" className="hover:text-green-600 transition-colors">Auto & Vehicle Loans</a>
+                      </h3>
+                      <p className="text-gray-600 text-sm mb-3">
                         Determine car loan EMIs for new or used vehicles. Compare different loan terms 
-                        and down payment scenarios to find the best deal.
+                        and down payment scenarios to find the best deal for your vehicle financing needs.
                       </p>
+                      <ul className="text-xs text-gray-500 space-y-1">
+                        <li>• New car financing</li>
+                        <li>• Used vehicle loans</li>
+                        <li>• Two-wheeler financing</li>
+                        <li>• Commercial vehicle loans</li>
+                      </ul>
                     </div>
                     
-                    <div className="bg-white rounded-lg p-6 shadow-sm">
+                    <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                       <i className="fas fa-graduation-cap text-2xl text-purple-600 mb-4"></i>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Education Loans</h3>
-                      <p className="text-gray-600 text-sm">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                        <a href="/tools/education-loan-calculator" className="hover:text-purple-600 transition-colors">Education & Student Loans</a>
+                      </h3>
+                      <p className="text-gray-600 text-sm mb-3">
                         Plan education financing for college, university, or professional courses. 
-                        Calculate repayment schedules for student loans.
+                        Calculate repayment schedules for student loans with moratorium periods.
                       </p>
+                      <ul className="text-xs text-gray-500 space-y-1">
+                        <li>• Undergraduate programs</li>
+                        <li>• Postgraduate studies</li>
+                        <li>• Professional courses</li>
+                        <li>• Study abroad financing</li>
+                      </ul>
                     </div>
                     
-                    <div className="bg-white rounded-lg p-6 shadow-sm">
+                    <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                       <i className="fas fa-user text-2xl text-orange-600 mb-4"></i>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Personal Loans</h3>
-                      <p className="text-gray-600 text-sm">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Personal & Lifestyle Loans</h3>
+                      <p className="text-gray-600 text-sm mb-3">
                         Calculate EMIs for personal loans used for weddings, medical expenses, 
-                        travel, or debt consolidation purposes.
+                        travel, or debt consolidation purposes. Use our <a href="/tools/debt-payoff-calculator" className="text-blue-600 hover:underline">debt payoff calculator</a> for strategic planning.
                       </p>
+                      <ul className="text-xs text-gray-500 space-y-1">
+                        <li>• Wedding financing</li>
+                        <li>• Medical emergencies</li>
+                        <li>• Travel & vacation loans</li>
+                        <li>• Debt consolidation</li>
+                      </ul>
                     </div>
                     
-                    <div className="bg-white rounded-lg p-6 shadow-sm">
+                    <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                       <i className="fas fa-building text-2xl text-teal-600 mb-4"></i>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Business Loans</h3>
-                      <p className="text-gray-600 text-sm">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                        <a href="/tools/business-loan-calculator" className="hover:text-teal-600 transition-colors">Business & Commercial Loans</a>
+                      </h3>
+                      <p className="text-gray-600 text-sm mb-3">
                         Plan business financing for equipment purchase, working capital, 
-                        or business expansion projects.
+                        or business expansion projects. Combine with our <a href="/tools/roi-calculator" className="text-blue-600 hover:underline">ROI calculator</a> for investment analysis.
                       </p>
+                      <ul className="text-xs text-gray-500 space-y-1">
+                        <li>• Equipment financing</li>
+                        <li>• Working capital loans</li>
+                        <li>• Business expansion</li>
+                        <li>• MSME loans</li>
+                      </ul>
                     </div>
                     
-                    <div className="bg-white rounded-lg p-6 shadow-sm">
+                    <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                       <i className="fas fa-credit-card text-2xl text-red-600 mb-4"></i>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Credit Card Loans</h3>
-                      <p className="text-gray-600 text-sm">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                        <a href="/tools/credit-card-interest-calculator" className="hover:text-red-600 transition-colors">Credit Card & Consumer Loans</a>
+                      </h3>
+                      <p className="text-gray-600 text-sm mb-3">
                         Convert credit card outstanding amounts into EMIs. Compare different 
-                        conversion options offered by banks.
+                        conversion options offered by banks and financial institutions.
                       </p>
+                      <ul className="text-xs text-gray-500 space-y-1">
+                        <li>• Credit card EMI conversion</li>
+                        <li>• Consumer durable loans</li>
+                        <li>• Electronics financing</li>
+                        <li>• Appliance loans</li>
+                      </ul>
                     </div>
+                  </div>
+                </div>
+
+                {/* Related Financial Tools */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                    <i className="fas fa-tools text-blue-600 mr-3"></i>
+                    Related Financial Planning Tools
+                  </h2>
+                  <p className="text-gray-600 mb-6">
+                    Maximize your financial planning with our comprehensive suite of calculators designed to work together. 
+                    Use these tools alongside the EMI calculator for complete financial analysis and planning.
+                  </p>
+                  
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <a href="/tools/loan-calculator" className="group text-center p-4 bg-gray-50 rounded-lg hover:bg-blue-50 transition-colors border border-gray-200 hover:border-blue-300">
+                      <i className="fas fa-calculator text-blue-600 text-xl mb-2 group-hover:scale-110 transition-transform"></i>
+                      <div className="text-sm font-medium text-gray-900 group-hover:text-blue-800">Loan Calculator</div>
+                      <div className="text-xs text-gray-500 mt-1">Basic loan calculations</div>
+                    </a>
+                    
+                    <a href="/tools/home-loan-calculator" className="group text-center p-4 bg-gray-50 rounded-lg hover:bg-blue-50 transition-colors border border-gray-200 hover:border-blue-300">
+                      <i className="fas fa-home text-green-600 text-xl mb-2 group-hover:scale-110 transition-transform"></i>
+                      <div className="text-sm font-medium text-gray-900 group-hover:text-blue-800">Home Loan</div>
+                      <div className="text-xs text-gray-500 mt-1">Specialized home loans</div>
+                    </a>
+                    
+                    <a href="/tools/mortgage-calculator" className="group text-center p-4 bg-gray-50 rounded-lg hover:bg-blue-50 transition-colors border border-gray-200 hover:border-blue-300">
+                      <i className="fas fa-house-user text-purple-600 text-xl mb-2 group-hover:scale-110 transition-transform"></i>
+                      <div className="text-sm font-medium text-gray-900 group-hover:text-blue-800">Mortgage Calculator</div>
+                      <div className="text-xs text-gray-500 mt-1">Mortgage planning</div>
+                    </a>
+                    
+                    <a href="/tools/car-loan-calculator" className="group text-center p-4 bg-gray-50 rounded-lg hover:bg-blue-50 transition-colors border border-gray-200 hover:border-blue-300">
+                      <i className="fas fa-car text-red-600 text-xl mb-2 group-hover:scale-110 transition-transform"></i>
+                      <div className="text-sm font-medium text-gray-900 group-hover:text-blue-800">Car Loan</div>
+                      <div className="text-xs text-gray-500 mt-1">Vehicle financing</div>
+                    </a>
+                    
+                    <a href="/tools/compound-interest-calculator" className="group text-center p-4 bg-gray-50 rounded-lg hover:bg-blue-50 transition-colors border border-gray-200 hover:border-blue-300">
+                      <i className="fas fa-chart-line text-green-600 text-xl mb-2 group-hover:scale-110 transition-transform"></i>
+                      <div className="text-sm font-medium text-gray-900 group-hover:text-blue-800">Compound Interest</div>
+                      <div className="text-xs text-gray-500 mt-1">Investment growth</div>
+                    </a>
+                    
+                    <a href="/tools/simple-interest-calculator" className="group text-center p-4 bg-gray-50 rounded-lg hover:bg-blue-50 transition-colors border border-gray-200 hover:border-blue-300">
+                      <i className="fas fa-percentage text-orange-600 text-xl mb-2 group-hover:scale-110 transition-transform"></i>
+                      <div className="text-sm font-medium text-gray-900 group-hover:text-blue-800">Simple Interest</div>
+                      <div className="text-xs text-gray-500 mt-1">Basic interest calculation</div>
+                    </a>
+                    
+                    <a href="/tools/debt-payoff-calculator" className="group text-center p-4 bg-gray-50 rounded-lg hover:bg-blue-50 transition-colors border border-gray-200 hover:border-blue-300">
+                      <i className="fas fa-credit-card text-red-600 text-xl mb-2 group-hover:scale-110 transition-transform"></i>
+                      <div className="text-sm font-medium text-gray-900 group-hover:text-blue-800">Debt Payoff</div>
+                      <div className="text-xs text-gray-500 mt-1">Debt elimination</div>
+                    </a>
+                    
+                    <a href="/tools/savings-goal-calculator" className="group text-center p-4 bg-gray-50 rounded-lg hover:bg-blue-50 transition-colors border border-gray-200 hover:border-blue-300">
+                      <i className="fas fa-piggy-bank text-pink-600 text-xl mb-2 group-hover:scale-110 transition-transform"></i>
+                      <div className="text-sm font-medium text-gray-900 group-hover:text-blue-800">Savings Goal</div>
+                      <div className="text-xs text-gray-500 mt-1">Goal planning</div>
+                    </a>
+                    
+                    <a href="/tools/roi-calculator" className="group text-center p-4 bg-gray-50 rounded-lg hover:bg-blue-50 transition-colors border border-gray-200 hover:border-blue-300">
+                      <i className="fas fa-trending-up text-blue-600 text-xl mb-2 group-hover:scale-110 transition-transform"></i>
+                      <div className="text-sm font-medium text-gray-900 group-hover:text-blue-800">ROI Calculator</div>
+                      <div className="text-xs text-gray-500 mt-1">Return analysis</div>
+                    </a>
+                    
+                    <a href="/tools/retirement-calculator" className="group text-center p-4 bg-gray-50 rounded-lg hover:bg-blue-50 transition-colors border border-gray-200 hover:border-blue-300">
+                      <i className="fas fa-user-clock text-purple-600 text-xl mb-2 group-hover:scale-110 transition-transform"></i>
+                      <div className="text-sm font-medium text-gray-900 group-hover:text-blue-800">Retirement</div>
+                      <div className="text-xs text-gray-500 mt-1">Retirement planning</div>
+                    </a>
+                    
+                    <a href="/tools/sip-calculator" className="group text-center p-4 bg-gray-50 rounded-lg hover:bg-blue-50 transition-colors border border-gray-200 hover:border-blue-300">
+                      <i className="fas fa-coins text-yellow-600 text-xl mb-2 group-hover:scale-110 transition-transform"></i>
+                      <div className="text-sm font-medium text-gray-900 group-hover:text-blue-800">SIP Calculator</div>
+                      <div className="text-xs text-gray-500 mt-1">Investment planning</div>
+                    </a>
+                    
+                    <a href="/tools/tax-calculator" className="group text-center p-4 bg-gray-50 rounded-lg hover:bg-blue-50 transition-colors border border-gray-200 hover:border-blue-300">
+                      <i className="fas fa-receipt text-green-600 text-xl mb-2 group-hover:scale-110 transition-transform"></i>
+                      <div className="text-sm font-medium text-gray-900 group-hover:text-blue-800">Tax Calculator</div>
+                      <div className="text-xs text-gray-500 mt-1">Tax planning</div>
+                    </a>
+                  </div>
+                  
+                  <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <h3 className="font-semibold text-blue-900 mb-2">💡 Pro Tip: Comprehensive Financial Planning</h3>
+                    <p className="text-blue-800 text-sm">
+                      Use the EMI calculator alongside our <a href="/tools/compound-interest-calculator" className="underline">compound interest calculator</a> 
+                      to compare loan costs against investment returns. Combine with the <a href="/tools/savings-goal-calculator" className="underline">savings goal calculator</a> 
+                      to plan your down payment, and use the <a href="/tools/debt-payoff-calculator" className="underline">debt payoff calculator</a> 
+                      to strategize multiple loan repayments effectively.
+                    </p>
                   </div>
                 </div>
 
