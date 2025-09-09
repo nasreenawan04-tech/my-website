@@ -65,25 +65,19 @@ const toolsData = [
   // Page Manipulation Tools
   { id: 'pdf-page-resizer', name: 'PDF Page Resizer', description: 'Resize PDF pages to standard formats (A4, Letter, Legal)', category: 'pdf' as const, icon: 'fas fa-expand-arrows-alt', href: '/tools/pdf-page-resizer' },
   { id: 'pdf-margin-adjuster', name: 'PDF Margin Adjuster', description: 'Add or remove margins from PDF pages and crop borders', category: 'pdf' as const, icon: 'fas fa-crop', href: '/tools/pdf-margin-adjuster' },
-  { id: 'pdf-page-duplicator', name: 'PDF Page Duplicator', description: 'Duplicate specific pages within a PDF document', category: 'pdf' as const, icon: 'fas fa-copy', href: '/tools/pdf-page-duplicator' },
   
   // Content Enhancement Tools
-  { id: 'pdf-background-changer', name: 'PDF Background Color Changer', description: 'Change background color of PDF pages or remove backgrounds', category: 'pdf' as const, icon: 'fas fa-palette', href: '/tools/pdf-background-changer' },
   { id: 'pdf-header-footer', name: 'PDF Header/Footer Generator', description: 'Add custom headers and footers with page numbers and dates', category: 'pdf' as const, icon: 'fas fa-heading', href: '/tools/pdf-header-footer' },
   { id: 'pdf-blank-page-remover', name: 'PDF Blank Page Remover', description: 'Automatically detect and remove blank pages from PDFs', category: 'pdf' as const, icon: 'fas fa-eraser', href: '/tools/pdf-blank-page-remover' },
   
   // Conversion & Format Tools
   { id: 'pdf-to-images-enhanced', name: 'PDF to Images (Enhanced)', description: 'Convert PDF pages to PNG/JPEG with quality and resolution options', category: 'pdf' as const, icon: 'fas fa-images', href: '/tools/pdf-to-images-enhanced' },
   { id: 'images-to-pdf', name: 'Images to PDF Merger', description: 'Combine multiple images into a single PDF document', category: 'pdf' as const, icon: 'fas fa-photo-video', href: '/tools/images-to-pdf' },
-  { id: 'pdf-version-converter', name: 'PDF Version Converter', description: 'Convert between different PDF versions for compatibility', category: 'pdf' as const, icon: 'fas fa-exchange-alt', href: '/tools/pdf-version-converter' },
   
   // Quality & Optimization Tools
   { id: 'pdf-compressor-advanced', name: 'PDF Compressor (Advanced)', description: 'Reduce file size with multiple compression levels and optimization', category: 'pdf' as const, icon: 'fas fa-compress-alt', href: '/tools/pdf-compressor-advanced' },
-  { id: 'pdf-repair-tool', name: 'PDF Repair Tool', description: 'Attempt to fix corrupted PDFs and recover readable content', category: 'pdf' as const, icon: 'fas fa-tools', href: '/tools/pdf-repair-tool' },
-  { id: 'pdf-compliance-checker', name: 'PDF Compliance Checker', description: 'Check PDF compliance with standards (PDF/A, PDF/X)', category: 'pdf' as const, icon: 'fas fa-check-circle', href: '/tools/pdf-compliance-checker' },
   
   // Security & Access Tools
-  { id: 'pdf-permission-manager', name: 'PDF Permission Manager', description: 'View and modify PDF permissions and restrictions', category: 'pdf' as const, icon: 'fas fa-user-shield', href: '/tools/pdf-permission-manager' },
   { id: 'pdf-redaction-tool', name: 'PDF Redaction Tool', description: 'Black out sensitive information permanently from PDFs', category: 'pdf' as const, icon: 'fas fa-user-secret', href: '/tools/pdf-redaction-tool' },
   
   // Utility Tools
