@@ -9,7 +9,7 @@ packages = ["qpdf", "imagemagick", "graphicsmagick"]
 [deployment]
 deploymentTarget = "autoscale"
 build = ["npm", "run", "build"]
-run = ["npm"]
+run = ["npm", "run", "start"]
 
 [[ports]]
 localPort = 5000
