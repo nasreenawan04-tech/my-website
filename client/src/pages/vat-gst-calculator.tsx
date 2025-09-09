@@ -45,7 +45,7 @@ const VATGSTCalculator = () => {
   const calculateVAT = () => {
     const inputAmount = parseFloat(amount);
     const rate = parseFloat(vatRate);
-    
+
     if (isNaN(inputAmount) || inputAmount <= 0 || isNaN(rate) || rate < 0) return;
 
     let baseAmount: number, vatAmount: number, totalAmount: number;
@@ -101,7 +101,7 @@ const VATGSTCalculator = () => {
     };
 
     const config = currencyMap[currency] || currencyMap.USD;
-    
+
     return new Intl.NumberFormat(config.locale, {
       style: 'currency',
       currency: config.currency,
@@ -122,17 +122,17 @@ const VATGSTCalculator = () => {
     <>
       <Helmet>
         <title>VAT/GST Calculator - Calculate Value Added Tax & GST Worldwide | ToolsHub</title>
-        <meta name="description" content="Free VAT/GST calculator for calculating value added tax and goods & services tax. Support for multiple countries, currencies, and tax rates worldwide." />
-        <meta name="keywords" content="VAT calculator, GST calculator, value added tax, goods services tax, tax calculator" />
+        <meta name="description" content="Free VAT/GST calculator for calculating value added tax and goods & services tax. Supports 15+ countries, 16+ currencies. Perfect for businesses, accountants, students. Get instant accurate tax calculations." />
+        <meta name="keywords" content="VAT calculator, GST calculator, value added tax calculator, goods services tax calculator, tax calculator, business tax calculator, VAT calculation, GST calculation, tax rate calculator, EU VAT calculator, UK VAT calculator, Australia GST calculator, India GST calculator, international tax calculator" />
         <meta property="og:title" content="VAT/GST Calculator - Calculate Value Added Tax & GST Worldwide | ToolsHub" />
-        <meta property="og:description" content="Free VAT/GST calculator for calculating value added tax and goods & services tax. Support for multiple countries, currencies, and tax rates worldwide." />
+        <meta property="og:description" content="Free VAT/GST calculator for calculating value added tax and goods & services tax. Supports 15+ countries, 16+ currencies. Perfect for businesses, accountants, students. Get instant accurate tax calculations." />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="/tools/vat-gst-calculator" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col" data-testid="page-vat-gst-calculator">
         <Header />
-        
+
         <main className="flex-1 bg-neutral-50">
           {/* Hero Section */}
           <section className="gradient-hero text-white py-16">
@@ -158,7 +158,7 @@ const VATGSTCalculator = () => {
                     {/* Input Section */}
                     <div className="space-y-6">
                       <h2 className="text-2xl font-semibold text-gray-900 mb-8">Tax Calculation Details</h2>
-                      
+
                       {/* Currency Selection */}
                       <div className="space-y-3">
                         <Label htmlFor="currency" className="text-sm font-medium text-gray-700">
@@ -287,7 +287,7 @@ const VATGSTCalculator = () => {
                     {/* Results Section */}
                     <div className="space-y-6">
                       <h2 className="text-2xl font-semibold text-gray-900 mb-8">Tax Calculation Results</h2>
-                      
+
                       {result ? (
                         <div className="space-y-6" data-testid="results">
                           {/* Total Amount */}
@@ -734,7 +734,7 @@ const VATGSTCalculator = () => {
             </div>
           </section>
         </main>
-        
+
         <Footer />
       </div>
     </>
