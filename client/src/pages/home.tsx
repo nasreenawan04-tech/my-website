@@ -4,6 +4,8 @@ import HeroSection from '@/components/HeroSection';
 import PopularToolsSection from '@/components/PopularToolsSection';
 import CategorySection from '@/components/CategorySection';
 import Footer from '@/components/Footer';
+import RecentlyUsedSection from '@/components/RecentlyUsedSection';
+import FavoritesSection from '@/components/FavoritesSection';
 
 const Home = () => {
   return (
@@ -39,6 +41,10 @@ const Home = () => {
         <Header />
         <main className="flex-1">
           <HeroSection />
+          
+          {/* User-specific sections - shown if user has favorites/recent tools */}
+          <FavoritesSection />
+          <RecentlyUsedSection />
           
           {/* What is DapsiWow Section */}
           <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
