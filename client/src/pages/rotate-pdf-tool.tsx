@@ -403,9 +403,38 @@ const RotatePDFTool = () => {
 
               {/* Educational Content */}
               <div className="mt-12 space-y-8">
+                {/* What is PDF Rotation Tool */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">What is the PDF Rotation Tool?</h2>
+                  <div className="prose max-w-none text-gray-600">
+                    <p className="text-lg mb-4">
+                      Our <strong>PDF Rotation Tool</strong> is a powerful, browser-based solution that allows you to 
+                      <strong> rotate PDF pages online</strong> without downloading any software. Whether you need to 
+                      fix upside-down scanned documents, correct sideways pages, or adjust page orientation for better 
+                      viewing, our tool handles it all with precision and ease.
+                    </p>
+                    <p className="mb-4">
+                      The tool supports <strong>selective page rotation</strong>, meaning you can choose specific pages 
+                      to rotate while leaving others untouched. This flexibility makes it perfect for documents with 
+                      mixed orientations, such as reports containing both portrait text pages and landscape charts or diagrams.
+                    </p>
+                    <div className="bg-blue-50 rounded-lg p-6 mt-6">
+                      <h3 className="text-lg font-semibold text-blue-900 mb-3">Key Features of Our PDF Rotator:</h3>
+                      <ul className="space-y-2 text-blue-800">
+                        <li>• <strong>90°, 180°, and 270° rotation options</strong> for any orientation need</li>
+                        <li>• <strong>Individual page selection</strong> or bulk rotation for entire documents</li>
+                        <li>• <strong>Instant preview</strong> and processing with no waiting time</li>
+                        <li>• <strong>Quality preservation</strong> - maintains original PDF resolution and formatting</li>
+                        <li>• <strong>Security-focused</strong> - all processing happens locally in your browser</li>
+                        <li>• <strong>No file size limits</strong> - works with documents up to 100MB</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
                 {/* How it Works */}
                 <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">How to Rotate PDF Pages</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">How to Rotate PDF Pages Online</h2>
                   <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                     <div className="text-center">
                       <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -495,38 +524,128 @@ const RotatePDFTool = () => {
                   </div>
                 </div>
 
+                {/* Benefits for Different Audiences */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Benefits of PDF Page Rotation for Every User</h2>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">📚 For Students & Educators</h3>
+                      <ul className="space-y-3 text-gray-600 mb-6">
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span><strong>Fix scanned textbook pages</strong> that were scanned upside down or sideways</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span><strong>Correct assignment submissions</strong> before submitting to online platforms</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span><strong>Prepare research papers</strong> with mixed portrait and landscape pages</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span><strong>Standardize study materials</strong> for consistent reading experience</span>
+                        </li>
+                      </ul>
+
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">💼 For Business Professionals</h3>
+                      <ul className="space-y-3 text-gray-600">
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span><strong>Fix presentation slides</strong> that appear sideways in PDF exports</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span><strong>Correct invoice orientations</strong> for professional document management</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span><strong>Prepare contract documents</strong> with proper page alignment</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span><strong>Optimize reports for mobile viewing</strong> by adjusting page orientation</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">🏢 For Business Owners</h3>
+                      <ul className="space-y-3 text-gray-600 mb-6">
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span><strong>Standardize company documents</strong> for consistent branding and presentation</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span><strong>Fix scanned forms and applications</strong> for digital processing systems</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span><strong>Prepare marketing materials</strong> with mixed content orientations</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span><strong>Ensure compliance documents</strong> are properly oriented for submission</span>
+                        </li>
+                      </ul>
+
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">🔬 For Researchers & Academics</h3>
+                      <ul className="space-y-3 text-gray-600">
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-red-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span><strong>Fix journal article PDFs</strong> with incorrectly oriented figures and tables</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-red-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span><strong>Prepare thesis documents</strong> with landscape charts and portrait text</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-red-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span><strong>Standardize research papers</strong> for publication submission</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-red-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span><strong>Archive scanned documents</strong> with consistent orientation</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
                 {/* Use Cases */}
                 <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Common Use Cases</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Common PDF Rotation Scenarios</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     <div className="bg-orange-50 rounded-lg p-4">
                       <h3 className="font-semibold text-gray-900 mb-2">🔄 Fix Scanned Documents</h3>
-                      <p className="text-sm text-gray-600">Correct orientation of scanned pages that are upside down.</p>
+                      <p className="text-sm text-gray-600">Correct orientation of scanned pages that are upside down or sideways due to improper scanning.</p>
                     </div>
                     
                     <div className="bg-blue-50 rounded-lg p-4">
-                      <h3 className="font-semibold text-gray-900 mb-2">📱 Mobile Documents</h3>
-                      <p className="text-sm text-gray-600">Rotate pages for better mobile viewing experience.</p>
+                      <h3 className="font-semibold text-gray-900 mb-2">📱 Mobile-Optimized Documents</h3>
+                      <p className="text-sm text-gray-600">Rotate pages for better mobile and tablet viewing experience, especially for landscape content.</p>
                     </div>
                     
                     <div className="bg-green-50 rounded-lg p-4">
-                      <h3 className="font-semibold text-gray-900 mb-2">📊 Presentation Pages</h3>
-                      <p className="text-sm text-gray-600">Fix landscape slides in portrait documents.</p>
+                      <h3 className="font-semibold text-gray-900 mb-2">📊 Mixed Content Orientation</h3>
+                      <p className="text-sm text-gray-600">Handle documents with both portrait text and landscape charts, tables, or diagrams.</p>
                     </div>
                     
                     <div className="bg-purple-50 rounded-lg p-4">
-                      <h3 className="font-semibold text-gray-900 mb-2">📄 Mixed Orientations</h3>
-                      <p className="text-sm text-gray-600">Standardize page orientation in mixed documents.</p>
+                      <h3 className="font-semibold text-gray-900 mb-2">📄 Document Standardization</h3>
+                      <p className="text-sm text-gray-600">Ensure consistent page orientation across merged documents from different sources.</p>
                     </div>
                     
                     <div className="bg-red-50 rounded-lg p-4">
-                      <h3 className="font-semibold text-gray-900 mb-2">📋 Forms & Contracts</h3>
-                      <p className="text-sm text-gray-600">Ensure all form pages have correct orientation.</p>
+                      <h3 className="font-semibold text-gray-900 mb-2">📋 Form Processing</h3>
+                      <p className="text-sm text-gray-600">Correct orientation of filled forms before digital processing or automated data extraction.</p>
                     </div>
                     
                     <div className="bg-gray-50 rounded-lg p-4">
                       <h3 className="font-semibold text-gray-900 mb-2">🖨️ Print Preparation</h3>
-                      <p className="text-sm text-gray-600">Prepare documents for proper printing alignment.</p>
+                      <p className="text-sm text-gray-600">Prepare documents for proper printing alignment and paper orientation.</p>
                     </div>
                   </div>
                 </div>
@@ -650,6 +769,249 @@ const RotatePDFTool = () => {
                   </div>
                 </div>
 
+                {/* PDF Rotation vs Other Solutions */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Why Online PDF Rotation is Better Than Desktop Software</h2>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">🌐 Online PDF Rotation Advantages</h3>
+                      <div className="space-y-4">
+                        <div className="flex items-start">
+                          <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                            <i className="fas fa-check text-green-600 text-sm"></i>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900">No Software Installation</h4>
+                            <p className="text-gray-600 text-sm">Access powerful PDF rotation features instantly through your web browser without downloading or installing heavy desktop applications.</p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-start">
+                          <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                            <i className="fas fa-check text-green-600 text-sm"></i>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900">Cross-Platform Compatibility</h4>
+                            <p className="text-gray-600 text-sm">Works seamlessly on Windows, Mac, Linux, tablets, and smartphones - any device with a modern web browser.</p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-start">
+                          <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                            <i className="fas fa-check text-green-600 text-sm"></i>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900">Always Up-to-Date</h4>
+                            <p className="text-gray-600 text-sm">Automatically get the latest features and security updates without manual software updates or version management.</p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-start">
+                          <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                            <i className="fas fa-check text-green-600 text-sm"></i>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900">Zero Storage Requirements</h4>
+                            <p className="text-gray-600 text-sm">No disk space consumption on your device - all processing happens in the browser with temporary file handling.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">🔒 Security & Privacy Benefits</h3>
+                      <div className="space-y-4">
+                        <div className="flex items-start">
+                          <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                            <i className="fas fa-shield-alt text-blue-600 text-sm"></i>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900">Client-Side Processing</h4>
+                            <p className="text-gray-600 text-sm">Your PDF files never leave your device - all rotation processing happens locally in your browser for maximum privacy.</p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-start">
+                          <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                            <i className="fas fa-shield-alt text-blue-600 text-sm"></i>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900">No File Upload Required</h4>
+                            <p className="text-gray-600 text-sm">Unlike many online services, our tool processes files entirely in your browser without uploading sensitive documents to external servers.</p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-start">
+                          <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                            <i className="fas fa-shield-alt text-blue-600 text-sm"></i>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900">GDPR Compliant</h4>
+                            <p className="text-gray-600 text-sm">Complete compliance with data protection regulations since no personal data or files are transmitted or stored.</p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-start">
+                          <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                            <i className="fas fa-shield-alt text-blue-600 text-sm"></i>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900">Instant File Cleanup</h4>
+                            <p className="text-gray-600 text-sm">All temporary files are automatically cleared when you close the browser tab, leaving no trace on your system.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Industry-Specific Use Cases */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Industry-Specific PDF Rotation Applications</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">🏥 Healthcare & Medical</h3>
+                      <ul className="space-y-3 text-gray-600 mb-6">
+                        <li>• <strong>Medical records scanning:</strong> Fix upside-down patient charts and lab results</li>
+                        <li>• <strong>Imaging reports:</strong> Correct orientation of radiology reports and scans</li>
+                        <li>• <strong>Insurance forms:</strong> Standardize claim documents for processing</li>
+                        <li>• <strong>Research papers:</strong> Prepare medical studies with mixed content orientations</li>
+                      </ul>
+
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">⚖️ Legal & Law Firms</h3>
+                      <ul className="space-y-3 text-gray-600 mb-6">
+                        <li>• <strong>Court documents:</strong> Ensure proper orientation for legal filing systems</li>
+                        <li>• <strong>Contract preparation:</strong> Fix scanned agreements and amendments</li>
+                        <li>• <strong>Evidence documentation:</strong> Standardize exhibits and supporting materials</li>
+                        <li>• <strong>Case file organization:</strong> Maintain consistent document presentation</li>
+                      </ul>
+
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">🏗️ Architecture & Engineering</h3>
+                      <ul className="space-y-3 text-gray-600">
+                        <li>• <strong>Blueprint scanning:</strong> Correct large-format drawing orientations</li>
+                        <li>• <strong>Technical specifications:</strong> Fix mixed portrait/landscape documents</li>
+                        <li>• <strong>Project documentation:</strong> Standardize client presentation materials</li>
+                        <li>• <strong>Compliance reports:</strong> Prepare properly oriented regulatory submissions</li>
+                      </ul>
+                    </div>
+
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">📊 Finance & Accounting</h3>
+                      <ul className="space-y-3 text-gray-600 mb-6">
+                        <li>• <strong>Financial statements:</strong> Fix scanned spreadsheets and reports</li>
+                        <li>• <strong>Tax documentation:</strong> Prepare properly oriented forms for submission</li>
+                        <li>• <strong>Audit materials:</strong> Standardize supporting documentation</li>
+                        <li>• <strong>Client reports:</strong> Ensure professional presentation quality</li>
+                      </ul>
+
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">🎓 Education & Training</h3>
+                      <ul className="space-y-3 text-gray-600 mb-6">
+                        <li>• <strong>Course materials:</strong> Fix scanned textbooks and handouts</li>
+                        <li>• <strong>Student submissions:</strong> Correct assignment orientations before grading</li>
+                        <li>• <strong>Administrative forms:</strong> Standardize enrollment and application documents</li>
+                        <li>• <strong>Research archives:</strong> Organize historical documents and papers</li>
+                      </ul>
+
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">🏭 Manufacturing & Quality Control</h3>
+                      <ul className="space-y-3 text-gray-600">
+                        <li>• <strong>Technical manuals:</strong> Fix equipment documentation and procedures</li>
+                        <li>• <strong>Quality reports:</strong> Standardize inspection and testing documents</li>
+                        <li>• <strong>Safety documentation:</strong> Ensure proper orientation for compliance</li>
+                        <li>• <strong>Training materials:</strong> Prepare employee handbooks and procedures</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Advanced Features */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Advanced PDF Rotation Features</h2>
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6">
+                      <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center mb-4">
+                        <i className="fas fa-cogs text-white text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Batch Processing</h3>
+                      <p className="text-gray-600 text-sm">
+                        Rotate multiple pages simultaneously with different angles. Apply 90° rotation to pages 1-5, 
+                        180° to pages 6-10, all in a single operation.
+                      </p>
+                    </div>
+                    
+                    <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6">
+                      <div className="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center mb-4">
+                        <i className="fas fa-eye text-white text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Visual Page Preview</h3>
+                      <p className="text-gray-600 text-sm">
+                        See exactly which pages need rotation with our intuitive page selector. 
+                        Click individual page numbers to toggle selection easily.
+                      </p>
+                    </div>
+                    
+                    <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6">
+                      <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center mb-4">
+                        <i className="fas fa-undo text-white text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Smart Rotation Detection</h3>
+                      <p className="text-gray-600 text-sm">
+                        Our tool maintains the aspect ratio and formatting of your PDF pages, 
+                        ensuring text remains readable after rotation.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* SEO-focused Keywords Section */}
+                <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Complete PDF Rotation Solution</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">🔧 What Our PDF Rotator Can Do</h3>
+                      <div className="grid grid-cols-2 gap-3 text-sm">
+                        <div className="bg-white rounded-lg p-3">
+                          <strong>Rotate PDF online</strong>
+                        </div>
+                        <div className="bg-white rounded-lg p-3">
+                          <strong>Fix upside down PDF</strong>
+                        </div>
+                        <div className="bg-white rounded-lg p-3">
+                          <strong>PDF page orientation</strong>
+                        </div>
+                        <div className="bg-white rounded-lg p-3">
+                          <strong>Rotate specific pages</strong>
+                        </div>
+                        <div className="bg-white rounded-lg p-3">
+                          <strong>90 degree rotation</strong>
+                        </div>
+                        <div className="bg-white rounded-lg p-3">
+                          <strong>180 degree flip</strong>
+                        </div>
+                        <div className="bg-white rounded-lg p-3">
+                          <strong>270 degree rotation</strong>
+                        </div>
+                        <div className="bg-white rounded-lg p-3">
+                          <strong>Batch page rotation</strong>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">📈 Perfect For These Tasks</h3>
+                      <ul className="space-y-2 text-gray-600">
+                        <li>• <strong>Document standardization</strong> for professional presentation</li>
+                        <li>• <strong>Scanned document correction</strong> for digital archives</li>
+                        <li>• <strong>Mobile optimization</strong> for better tablet/phone viewing</li>
+                        <li>• <strong>Print preparation</strong> with correct page alignment</li>
+                        <li>• <strong>Form processing</strong> for automated data extraction</li>
+                        <li>• <strong>Presentation formatting</strong> for mixed content types</li>
+                        <li>• <strong>Quality control</strong> before document sharing</li>
+                        <li>• <strong>Archive organization</strong> with consistent orientation</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
                 {/* Tips for Best Results */}
                 <div className="bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl p-8">
                   <h2 className="text-2xl font-bold text-gray-900 mb-6">Tips for Best PDF Rotation Results</h2>
@@ -680,18 +1042,21 @@ const RotatePDFTool = () => {
 
                 {/* Related Tools */}
                 <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Related PDF Tools</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Complete Your PDF Workflow with Related Tools</h2>
+                  <p className="text-gray-600 mb-6">
+                    After rotating your PDF pages, you might need these complementary tools to complete your document processing workflow:
+                  </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow">
                       <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
                         <i className="fas fa-object-group text-blue-600 text-xl"></i>
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Merge PDF</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Merge PDF Files</h3>
                       <p className="text-gray-600 text-sm mb-4">
-                        Combine multiple PDF files into one document after fixing page orientations.
+                        <strong>Combine multiple PDF documents</strong> into one file after fixing individual page orientations. Perfect for creating comprehensive reports or merging scanned documents.
                       </p>
                       <a href="/tools/merge-pdf" className="text-blue-600 hover:text-blue-700 font-medium text-sm">
-                        Try PDF Merger →
+                        Try PDF Merger Tool →
                       </a>
                     </div>
                     
@@ -699,12 +1064,12 @@ const RotatePDFTool = () => {
                       <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mb-4">
                         <i className="fas fa-cut text-green-600 text-xl"></i>
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Split PDF</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Split PDF Pages</h3>
                       <p className="text-gray-600 text-sm mb-4">
-                        Extract specific pages from your PDF after rotating them to correct orientation.
+                        <strong>Extract specific pages or sections</strong> from your rotated PDF. Ideal for separating correctly oriented pages from mixed documents.
                       </p>
                       <a href="/tools/split-pdf" className="text-green-600 hover:text-green-700 font-medium text-sm">
-                        Try PDF Splitter →
+                        Try PDF Splitter Tool →
                       </a>
                     </div>
                     
@@ -714,10 +1079,10 @@ const RotatePDFTool = () => {
                       </div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">Add Page Numbers</h3>
                       <p className="text-gray-600 text-sm mb-4">
-                        Add page numbers to your PDF after ensuring all pages have the correct orientation.
+                        <strong>Add professional page numbering</strong> to your properly oriented PDF. Essential after rotating pages to maintain correct sequence.
                       </p>
                       <a href="/tools/add-page-numbers" className="text-purple-600 hover:text-purple-700 font-medium text-sm">
-                        Try Page Numbering →
+                        Try Page Numbering Tool →
                       </a>
                     </div>
                     
@@ -725,12 +1090,12 @@ const RotatePDFTool = () => {
                       <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center mb-4">
                         <i className="fas fa-tint text-red-600 text-xl"></i>
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Add Watermark</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">PDF Watermark Tool</h3>
                       <p className="text-gray-600 text-sm mb-4">
-                        Apply watermarks to your PDF after fixing page orientations for proper placement.
+                        <strong>Add text or image watermarks</strong> to your rotated PDF. Ensure watermarks appear correctly oriented on all pages.
                       </p>
                       <a href="/tools/watermark-pdf" className="text-red-600 hover:text-red-700 font-medium text-sm">
-                        Try PDF Watermark →
+                        Try PDF Watermark Tool →
                       </a>
                     </div>
                     
@@ -738,12 +1103,12 @@ const RotatePDFTool = () => {
                       <div className="w-12 h-12 bg-yellow-100 rounded-xl flex items-center justify-center mb-4">
                         <i className="fas fa-lock text-yellow-600 text-xl"></i>
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Protect PDF</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Protect PDF Files</h3>
                       <p className="text-gray-600 text-sm mb-4">
-                        Add password protection to your PDF after completing all page rotations.
+                        <strong>Add password protection</strong> to your finalized, correctly oriented PDF documents for enhanced security.
                       </p>
                       <a href="/tools/protect-pdf" className="text-yellow-600 hover:text-yellow-700 font-medium text-sm">
-                        Try PDF Protection →
+                        Try PDF Protection Tool →
                       </a>
                     </div>
                     
@@ -751,14 +1116,26 @@ const RotatePDFTool = () => {
                       <div className="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center mb-4">
                         <i className="fas fa-arrows-alt text-indigo-600 text-xl"></i>
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Organize Pages</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Organize PDF Pages</h3>
                       <p className="text-gray-600 text-sm mb-4">
-                        Reorder and organize PDF pages after ensuring correct orientation.
+                        <strong>Reorder and reorganize pages</strong> after rotation to create the perfect document structure and flow.
                       </p>
                       <a href="/tools/organize-pdf-pages" className="text-indigo-600 hover:text-indigo-700 font-medium text-sm">
-                        Try Page Organizer →
+                        Try Page Organization Tool →
                       </a>
                     </div>
+                  </div>
+                  
+                  <div className="mt-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">📚 Explore All PDF Tools</h3>
+                    <p className="text-gray-600 mb-4">
+                      Discover our complete suite of <strong>PDF manipulation tools</strong> designed to handle every aspect of document processing, 
+                      from basic rotation to advanced editing features.
+                    </p>
+                    <a href="/tools/pdf-tools" className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                      View All PDF Tools
+                      <i className="fas fa-arrow-right ml-2"></i>
+                    </a>
                   </div>
                 </div>
               </div>
