@@ -687,6 +687,369 @@ export default function NetWorthCalculator() {
               our calculator provides accurate calculations with proper currency formatting for worldwide users.
             </p>
           </div>
+
+          {/* Net Worth Calculator for Different Audiences */}
+          <div className="mt-12 bg-white rounded-2xl shadow-lg p-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Net Worth Calculator for Every Stage of Life</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border-0">
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-semibold text-blue-900 mb-4">👩‍🎓 Students & Young Adults</h3>
+                  <div className="space-y-3 text-blue-800">
+                    <p className="font-medium">Starting Your Financial Journey</p>
+                    <ul className="text-sm space-y-2">
+                      <li>• Track student loan debt and educational expenses</li>
+                      <li>• Monitor savings account growth and emergency funds</li>
+                      <li>• Calculate the impact of part-time income on wealth</li>
+                      <li>• Plan for post-graduation financial goals</li>
+                      <li>• Understand the relationship between assets and liabilities</li>
+                    </ul>
+                    <div className="mt-4 p-3 bg-white rounded-lg">
+                      <p className="text-xs text-blue-700">
+                        <strong>Pro Tip:</strong> Even a small positive net worth in your 20s can compound significantly over time. 
+                        Use our <a href="/compound-interest-calculator" className="text-blue-600 hover:text-blue-800 underline">Compound Interest Calculator</a> to see your wealth potential.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gradient-to-br from-green-50 to-green-100 border-0">
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-semibold text-green-900 mb-4">💼 Working Professionals</h3>
+                  <div className="space-y-3 text-green-800">
+                    <p className="font-medium">Building Wealth & Career Growth</p>
+                    <ul className="text-sm space-y-2">
+                      <li>• Calculate mortgage equity and home appreciation</li>
+                      <li>• Track 401(k), IRA, and investment portfolio growth</li>
+                      <li>• Monitor credit card debt and loan payoff progress</li>
+                      <li>• Assess readiness for major purchases or investments</li>
+                      <li>• Plan for career transitions and salary negotiations</li>
+                    </ul>
+                    <div className="mt-4 p-3 bg-white rounded-lg">
+                      <p className="text-xs text-green-700">
+                        <strong>Career Insight:</strong> Track how salary increases affect your net worth with our 
+                        <a href="/salary-to-hourly-calculator" className="text-green-600 hover:text-green-800 underline"> Salary Calculator</a> and 
+                        <a href="/retirement-calculator" className="text-green-600 hover:text-green-800 underline"> Retirement Planning Tool</a>.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gradient-to-br from-purple-50 to-purple-100 border-0">
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-semibold text-purple-900 mb-4">🏢 Business Owners</h3>
+                  <div className="space-y-3 text-purple-800">
+                    <p className="font-medium">Entrepreneurial Wealth Management</p>
+                    <ul className="text-sm space-y-2">
+                      <li>• Value business equity and intellectual property</li>
+                      <li>• Separate personal and business assets effectively</li>
+                      <li>• Track multiple income streams and investments</li>
+                      <li>• Plan for business expansion or exit strategies</li>
+                      <li>• Assess personal guarantees on business loans</li>
+                    </ul>
+                    <div className="mt-4 p-3 bg-white rounded-lg">
+                      <p className="text-xs text-purple-700">
+                        <strong>Business Tip:</strong> Use our <a href="/business-loan-calculator" className="text-purple-600 hover:text-purple-800 underline">Business Loan Calculator</a> and 
+                        <a href="/roi-calculator" className="text-purple-600 hover:text-purple-800 underline"> ROI Calculator</a> to evaluate business investments.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          {/* Advanced Net Worth Strategies */}
+          <div className="mt-12 bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl p-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Advanced Net Worth Optimization Strategies</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div className="space-y-6">
+                <Card className="bg-white border-0 shadow-sm">
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">📈 Asset Optimization Techniques</h3>
+                    <div className="space-y-3 text-gray-700">
+                      <div className="bg-green-50 p-3 rounded-lg">
+                        <h4 className="font-semibold text-green-800 mb-2">Diversification Strategy</h4>
+                        <p className="text-sm">Spread assets across multiple categories: real estate (25-30%), stocks/bonds (40-50%), cash reserves (10-15%), and alternative investments (5-10%).</p>
+                      </div>
+                      <div className="bg-blue-50 p-3 rounded-lg">
+                        <h4 className="font-semibold text-blue-800 mb-2">Tax-Advantaged Accounts</h4>
+                        <p className="text-sm">Maximize contributions to 401(k), IRA, HSA, and 529 plans to reduce taxable income while building wealth.</p>
+                      </div>
+                      <div className="bg-purple-50 p-3 rounded-lg">
+                        <h4 className="font-semibold text-purple-800 mb-2">Real Estate Investment</h4>
+                        <p className="text-sm">Consider primary residence, rental properties, and REITs for inflation protection and passive income generation.</p>
+                      </div>
+                    </div>
+                    <div className="mt-4 text-center">
+                      <p className="text-sm text-gray-600">
+                        Calculate potential returns with our <a href="/investment-return-calculator" className="text-blue-600 hover:text-blue-800 underline">Investment Return Calculator</a>
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-white border-0 shadow-sm">
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">📊 Net Worth Tracking Best Practices</h3>
+                    <div className="space-y-3 text-gray-700">
+                      <div className="flex items-start space-x-3">
+                        <div className="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs font-bold">1</div>
+                        <div>
+                          <p className="font-medium">Monthly Reviews</p>
+                          <p className="text-sm text-gray-600">Track net worth monthly to identify trends and make timely adjustments to your financial strategy.</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start space-x-3">
+                        <div className="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs font-bold">2</div>
+                        <div>
+                          <p className="font-medium">Accurate Valuations</p>
+                          <p className="text-sm text-gray-600">Use recent market values for real estate and investments, not purchase prices or outdated appraisals.</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start space-x-3">
+                        <div className="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs font-bold">3</div>
+                        <div>
+                          <p className="font-medium">Include All Assets</p>
+                          <p className="text-sm text-gray-600">Don't forget smaller assets like household items, jewelry, collectibles, and business interests.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              <div className="space-y-6">
+                <Card className="bg-white border-0 shadow-sm">
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">💳 Strategic Debt Management</h3>
+                    <div className="space-y-3 text-gray-700">
+                      <div className="bg-red-50 p-3 rounded-lg">
+                        <h4 className="font-semibold text-red-800 mb-2">High-Interest Debt Priority</h4>
+                        <p className="text-sm">Target credit cards (15-25% APR) and personal loans before low-interest mortgages (3-6% APR) for maximum net worth impact.</p>
+                      </div>
+                      <div className="bg-orange-50 p-3 rounded-lg">
+                        <h4 className="font-semibold text-orange-800 mb-2">Debt Consolidation Benefits</h4>
+                        <p className="text-sm">Consider consolidating multiple high-interest debts into a single lower-rate loan to reduce total interest payments.</p>
+                      </div>
+                      <div className="bg-yellow-50 p-3 rounded-lg">
+                        <h4 className="font-semibold text-yellow-800 mb-2">Good Debt vs Bad Debt</h4>
+                        <p className="text-sm">Mortgages and business loans can build wealth, while credit card debt erodes net worth through high interest rates.</p>
+                      </div>
+                    </div>
+                    <div className="mt-4 text-center">
+                      <p className="text-sm text-gray-600">
+                        Plan your debt payoff with our <a href="/debt-payoff-calculator" className="text-blue-600 hover:text-blue-800 underline">Debt Payoff Calculator</a>
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-white border-0 shadow-sm">
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">🎯 Net Worth Milestones by Age</h3>
+                    <div className="space-y-3 text-gray-700">
+                      <div className="grid grid-cols-2 gap-3 text-sm">
+                        <div className="bg-blue-50 p-2 rounded text-center">
+                          <div className="font-semibold text-blue-800">Age 30</div>
+                          <div className="text-blue-700">1x Annual Salary</div>
+                        </div>
+                        <div className="bg-green-50 p-2 rounded text-center">
+                          <div className="font-semibold text-green-800">Age 40</div>
+                          <div className="text-green-700">3x Annual Salary</div>
+                        </div>
+                        <div className="bg-purple-50 p-2 rounded text-center">
+                          <div className="font-semibold text-purple-800">Age 50</div>
+                          <div className="text-purple-700">6x Annual Salary</div>
+                        </div>
+                        <div className="bg-orange-50 p-2 rounded text-center">
+                          <div className="font-semibold text-orange-800">Age 60</div>
+                          <div className="text-orange-700">10x Annual Salary</div>
+                        </div>
+                      </div>
+                      <p className="text-xs text-gray-600 mt-3">
+                        These are general guidelines. Your target may vary based on lifestyle, goals, and retirement plans.
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Financial Tools */}
+          <div className="mt-12 bg-white rounded-2xl shadow-lg p-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Complete Your Financial Picture</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <Card className="bg-gray-50 border-0 hover:shadow-md transition-shadow">
+                <CardContent className="p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                    💰 <a href="/debt-payoff-calculator" className="text-blue-600 hover:text-blue-800">Debt Payoff Calculator</a>
+                  </h3>
+                  <p className="text-sm text-gray-600 mb-3">
+                    Create a strategic debt elimination plan to improve your net worth faster. Compare snowball vs avalanche methods.
+                  </p>
+                  <div className="text-xs text-blue-600">
+                    Optimize debt reduction → Increase net worth
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gray-50 border-0 hover:shadow-md transition-shadow">
+                <CardContent className="p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                    🏠 <a href="/mortgage-calculator" className="text-blue-600 hover:text-blue-800">Mortgage Calculator</a>
+                  </h3>
+                  <p className="text-sm text-gray-600 mb-3">
+                    Calculate monthly payments and total interest for home loans. Understand how homeownership affects your assets.
+                  </p>
+                  <div className="text-xs text-blue-600">
+                    Home equity = Major asset growth
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gray-50 border-0 hover:shadow-md transition-shadow">
+                <CardContent className="p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                    📈 <a href="/investment-return-calculator" className="text-blue-600 hover:text-blue-800">Investment Return Calculator</a>
+                  </h3>
+                  <p className="text-sm text-gray-600 mb-3">
+                    Project investment growth over time with compound interest. Plan asset allocation for optimal returns.
+                  </p>
+                  <div className="text-xs text-blue-600">
+                    Smart investing = Wealth multiplication
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gray-50 border-0 hover:shadow-md transition-shadow">
+                <CardContent className="p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                    🎯 <a href="/retirement-calculator" className="text-blue-600 hover:text-blue-800">Retirement Calculator</a>
+                  </h3>
+                  <p className="text-sm text-gray-600 mb-3">
+                    Determine if your net worth will support your retirement lifestyle. Plan for financial independence.
+                  </p>
+                  <div className="text-xs text-blue-600">
+                    Retirement readiness assessment
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gray-50 border-0 hover:shadow-md transition-shadow">
+                <CardContent className="p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                    💵 <a href="/compound-interest-calculator" className="text-blue-600 hover:text-blue-800">Compound Interest Calculator</a>
+                  </h3>
+                  <p className="text-sm text-gray-600 mb-3">
+                    See how your assets can grow exponentially over time. Understand the power of compound returns.
+                  </p>
+                  <div className="text-xs text-blue-600">
+                    Time + Compounding = Wealth
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-gray-50 border-0 hover:shadow-md transition-shadow">
+                <CardContent className="p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                    🎖️ <a href="/savings-goal-calculator" className="text-blue-600 hover:text-blue-800">Savings Goal Calculator</a>
+                  </h3>
+                  <p className="text-sm text-gray-600 mb-3">
+                    Plan systematic savings to reach net worth targets. Set and achieve specific financial milestones.
+                  </p>
+                  <div className="text-xs text-blue-600">
+                    Goal-based wealth building
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          {/* FAQ Section */}
+          <div className="mt-12 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Frequently Asked Questions</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div className="space-y-6">
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">What is considered a good net worth?</h3>
+                  <p className="text-gray-700 text-sm">
+                    A good net worth varies by age and income. Generally, aim for 1x your annual salary by age 30, 3x by 40, 6x by 50, and 10x by 60. 
+                    The median net worth in the US is around $121,000, but focus on your personal financial goals rather than comparisons.
+                  </p>
+                </div>
+                
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">How often should I calculate my net worth?</h3>
+                  <p className="text-gray-700 text-sm">
+                    Calculate your net worth monthly or quarterly to track progress effectively. Monthly tracking helps identify trends quickly, 
+                    while quarterly reviews provide a broader perspective on your financial trajectory without daily market fluctuations.
+                  </p>
+                </div>
+
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Should I include my primary residence?</h3>
+                  <p className="text-gray-700 text-sm">
+                    Yes, include your primary residence at current market value as an asset, and the remaining mortgage balance as a liability. 
+                    Your home equity (market value minus mortgage debt) contributes significantly to most people's net worth.
+                  </p>
+                </div>
+              </div>
+
+              <div className="space-y-6">
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">What if my net worth is negative?</h3>
+                  <p className="text-gray-700 text-sm">
+                    Negative net worth is common for young adults and students due to education loans. Focus on paying off high-interest debt first, 
+                    building emergency savings, and investing in appreciating assets. Many people start with negative net worth and build wealth over time.
+                  </p>
+                </div>
+
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">How do I value non-liquid assets?</h3>
+                  <p className="text-gray-700 text-sm">
+                    Use current market values for real estate (recent comparable sales), vehicles (KBB or Edmunds), and investments (current market price). 
+                    For collectibles and personal property, use conservative estimates of what you could realistically sell them for today.
+                  </p>
+                </div>
+
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Does net worth include retirement accounts?</h3>
+                  <p className="text-gray-700 text-sm">
+                    Yes, include 401(k), IRA, and other retirement accounts at their current balance. While these funds have withdrawal restrictions, 
+                    they represent real wealth that contributes to your financial security and should be counted in your total net worth calculation.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Call to Action */}
+          <div className="mt-12 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-8 text-center text-white">
+            <h2 className="text-3xl font-bold mb-4">Start Building Wealth Today</h2>
+            <p className="text-xl text-blue-100 mb-6 max-w-2xl mx-auto">
+              Knowledge is power, but action builds wealth. Use our free net worth calculator to establish your baseline, 
+              then explore our comprehensive financial tools to create your personalized wealth-building strategy.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                className="bg-white text-blue-600 hover:bg-blue-50 font-semibold px-8 py-3 rounded-lg"
+              >
+                Calculate Your Net Worth Now
+              </Button>
+              <Button 
+                onClick={() => window.location.href = '/finance-tools'}
+                variant="outline"
+                className="border-white text-white hover:bg-white hover:text-blue-600 font-semibold px-8 py-3 rounded-lg"
+              >
+                Explore All Financial Tools
+              </Button>
+            </div>
+          </div>
         </div>
       </main>
       
