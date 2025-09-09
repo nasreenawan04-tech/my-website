@@ -38,6 +38,12 @@ const PDFMarginAdjuster = () => {
       return;
     }
 
+    // Validate file size (50MB limit)
+    if (file.size > 50 * 1024 * 1024) {
+      setError('File size too large. Please select a PDF file smaller than 50MB.');
+      return;
+    }
+
     setSelectedFile(file);
     setError(null);
     setAdjustedPdfUrl(null);
@@ -46,7 +52,7 @@ const PDFMarginAdjuster = () => {
     try {
       const { PDFDocument } = await import('pdf-lib');
       const arrayBuffer = await file.arrayBuffer();
-      const pdfDoc = await PDFDocument.load(arrayBuffer);
+      const pdfDoc = await PDFDocument.load(arrayBuffer, { ignoreEncryption: true });
       const pages = pdfDoc.getPages();
       const firstPage = pages[0];
       const { width, height } = firstPage.getSize();
@@ -57,7 +63,8 @@ const PDFMarginAdjuster = () => {
       });
     } catch (error) {
       console.error('Error reading PDF info:', error);
-      setOriginalInfo({ pageCount: 0, size: 'Unknown' });
+      setError('Unable to read PDF file. Please ensure it is a valid PDF document.');
+      setSelectedFile(null);
     }
   };
 
@@ -91,89 +98,43 @@ const PDFMarginAdjuster = () => {
     setError(null);
 
     try {
-      const { PDFDocument, rgb } = await import('pdf-lib');
-      
-      const arrayBuffer = await selectedFile.arrayBuffer();
-      const pdfDoc = await PDFDocument.load(arrayBuffer);
-      const newPdfDoc = await PDFDocument.create();
-      
-      const pages = pdfDoc.getPages();
-      const margins = {
-        top: marginTop[0],
-        bottom: marginBottom[0],
-        left: marginLeft[0],
-        right: marginRight[0]
-      };
+      const formData = new FormData();
+      formData.append('pdf', selectedFile);
+      formData.append('marginTop', marginTop[0].toString());
+      formData.append('marginBottom', marginBottom[0].toString());
+      formData.append('marginLeft', marginLeft[0].toString());
+      formData.append('marginRight', marginRight[0].toString());
+      formData.append('operation', operation);
 
-      for (const page of pages) {
-        const { width: originalWidth, height: originalHeight } = page.getSize();
-        
-        let newWidth, newHeight, sourceBox;
-        
-        if (operation === 'add') {
-          // Add margins - increase page size
-          newWidth = originalWidth + margins.left + margins.right;
-          newHeight = originalHeight + margins.top + margins.bottom;
-          
-          const newPage = newPdfDoc.addPage([newWidth, newHeight]);
-          
-          // Add background color (optional)
-          newPage.drawRectangle({
-            x: 0,
-            y: 0,
-            width: newWidth,
-            height: newHeight,
-            color: rgb(1, 1, 1), // White background
-          });
-          
-          // Embed the original page
-          const [embeddedPage] = await newPdfDoc.embedPages([page]);
-          
-          // Draw the embedded page with margins
-          newPage.drawPage(embeddedPage, {
-            x: margins.left,
-            y: margins.bottom,
-            width: originalWidth,
-            height: originalHeight,
-          });
-        } else {
-          // Remove margins - crop the page
-          newWidth = Math.max(50, originalWidth - margins.left - margins.right);
-          newHeight = Math.max(50, originalHeight - margins.top - margins.bottom);
-          
-          const newPage = newPdfDoc.addPage([newWidth, newHeight]);
-          
-          // Embed the original page
-          const [embeddedPage] = await newPdfDoc.embedPages([page]);
-          
-          // Draw the cropped portion
-          newPage.drawPage(embeddedPage, {
-            x: -margins.left, // Negative offset to crop from left
-            y: -margins.bottom, // Negative offset to crop from bottom
-            width: originalWidth,
-            height: originalHeight,
-          });
-        }
+      const response = await fetch('/api/pdf-margin-adjuster', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
       }
 
-      const pdfBytes = await newPdfDoc.save();
-      const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+      const blob = await response.blob();
       const url = URL.createObjectURL(blob);
       setAdjustedPdfUrl(url);
     } catch (error) {
       console.error('Error adjusting PDF margins:', error);
-      setError('Error adjusting PDF margins. Please try again with a valid PDF file.');
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      setError(`Error adjusting PDF margins: ${errorMessage}. Please try again with a valid PDF file.`);
     }
 
     setIsProcessing(false);
   };
 
   const downloadAdjustedPDF = () => {
-    if (!adjustedPdfUrl) return;
+    if (!adjustedPdfUrl || !selectedFile) return;
 
     const link = document.createElement('a');
     link.href = adjustedPdfUrl;
-    link.download = `${operation}-margins-document.pdf`;
+    const baseName = selectedFile.name.replace('.pdf', '');
+    link.download = `${operation === 'add' ? 'margins-added' : 'margins-removed'}-${baseName}.pdf`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
