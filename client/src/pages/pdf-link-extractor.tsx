@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Upload, FileText, Download, Link2, Zap, AlertTriangle, Mail, Globe, BookOpen, ExternalLink } from 'lucide-react';
+import { Link } from 'wouter';
 
 interface ExtractedLink {
   id: string;
