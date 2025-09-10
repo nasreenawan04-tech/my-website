@@ -118,9 +118,11 @@ const PDFCompressorAdvanced = () => {
         throw new Error(errorData.error || 'Compression failed');
       }
 
-      const compressionRatio = parseInt(response.headers.get('X-Compression-Ratio') || '0');
       const blob = await response.blob();
       const downloadUrl = URL.createObjectURL(blob);
+
+      // Calculate compression ratio correctly on the frontend
+      const compressionRatio = Math.round(((selectedFile.size - blob.size) / selectedFile.size) * 100);
 
       setResult({
         originalSize: selectedFile.size,
