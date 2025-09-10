@@ -631,6 +631,288 @@ const PDFHeaderFooterGenerator = () => {
                     <p>
                       Our advanced PDF header and footer tool provides comprehensive formatting options including custom text insertion, flexible alignment controls, font customization, color selection, margin adjustments, and automated page numbering systems. Whether you're preparing business reports, academic papers, legal documents, or marketing materials, this tool ensures your PDFs maintain professional presentation standards with consistent header and footer elements.
                     </p>
+                    <p>
+                      Unlike basic PDF editors that require complex software installations, our online PDF header footer generator works directly in your browser, providing instant results without compromising document quality. The tool seamlessly integrates with our other <a href="/tools/pdf-tools" className="text-teal-600 hover:text-teal-700 underline">PDF manipulation tools</a>, allowing you to create comprehensive document workflows from <a href="/tools/merge-pdf-tool" className="text-teal-600 hover:text-teal-700 underline">merging PDFs</a> to <a href="/tools/add-page-numbers-tool" className="text-teal-600 hover:text-teal-700 underline">adding page numbers</a> and applying professional formatting.
+                    </p>
+                  </div>
+                </div>
+
+                {/* How It Works */}
+                <div>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-6">How Does the PDF Header/Footer Generator Work?</h2>
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Simple Process, Professional Results</h3>
+                      <div className="space-y-4">
+                        <div className="flex items-start space-x-3">
+                          <div className="w-8 h-8 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                            <span className="text-teal-600 font-bold text-sm">1</span>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900">Upload Your PDF</h4>
+                            <p className="text-gray-600 text-sm">Drag and drop your PDF file or click to browse. Our tool supports files up to 50MB and maintains original quality throughout the process.</p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-start space-x-3">
+                          <div className="w-8 h-8 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                            <span className="text-teal-600 font-bold text-sm">2</span>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900">Customize Content</h4>
+                            <p className="text-gray-600 text-sm">Add your custom header and footer text, choose alignment options, and configure page numbering formats to match your document style.</p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-start space-x-3">
+                          <div className="w-8 h-8 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                            <span className="text-teal-600 font-bold text-sm">3</span>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900">Style and Format</h4>
+                            <p className="text-gray-600 text-sm">Adjust font sizes, colors, margins, and positioning. Use our live preview to see exactly how your headers and footers will appear.</p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-start space-x-3">
+                          <div className="w-8 h-8 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                            <span className="text-teal-600 font-bold text-sm">4</span>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900">Generate & Download</h4>
+                            <p className="text-gray-600 text-sm">Click generate to process your PDF with the new headers and footers, then download your professionally formatted document.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="bg-gradient-to-br from-teal-50 to-blue-50 rounded-xl p-6">
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Key Technical Features</h3>
+                      <ul className="space-y-3 text-gray-700">
+                        <li className="flex items-center">
+                          <i className="fas fa-check-circle text-teal-500 mr-3"></i>
+                          <span>Browser-based processing with no software installation required</span>
+                        </li>
+                        <li className="flex items-center">
+                          <i className="fas fa-check-circle text-teal-500 mr-3"></i>
+                          <span>Preserves original PDF quality and formatting</span>
+                        </li>
+                        <li className="flex items-center">
+                          <i className="fas fa-check-circle text-teal-500 mr-3"></i>
+                          <span>Real-time preview before applying changes</span>
+                        </li>
+                        <li className="flex items-center">
+                          <i className="fas fa-check-circle text-teal-500 mr-3"></i>
+                          <span>Support for multi-line text in headers and footers</span>
+                        </li>
+                        <li className="flex items-center">
+                          <i className="fas fa-check-circle text-teal-500 mr-3"></i>
+                          <span>Automatic page counting and numbering</span>
+                        </li>
+                        <li className="flex items-center">
+                          <i className="fas fa-check-circle text-teal-500 mr-3"></i>
+                          <span>Option to exclude title pages from headers/footers</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Benefits for Different Audiences */}
+                <div>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-6">Benefits for Every Professional Need</h2>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {/* Students */}
+                    <div className="bg-blue-50 rounded-xl p-6">
+                      <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-graduation-cap text-blue-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">For Students & Academics</h3>
+                      <ul className="space-y-2 text-gray-700 text-sm">
+                        <li>• Add proper citations and author information to research papers</li>
+                        <li>• Include thesis titles and chapter numbers in headers</li>
+                        <li>• Format academic papers according to APA, MLA, or Chicago style</li>
+                        <li>• Add page numbers required for academic submissions</li>
+                        <li>• Include course information and assignment details</li>
+                        <li>• Create professional-looking term papers and dissertations</li>
+                      </ul>
+                      <div className="mt-4 pt-4 border-t border-blue-200">
+                        <p className="text-xs text-blue-600">
+                          <strong>Pro Tip:</strong> Combine with our <a href="/tools/merge-pdf-tool" className="hover:underline">PDF merger</a> to create complete academic portfolios.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Business Professionals */}
+                    <div className="bg-green-50 rounded-xl p-6">
+                      <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-briefcase text-green-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">For Business Professionals</h3>
+                      <ul className="space-y-2 text-gray-700 text-sm">
+                        <li>• Brand reports with company logos and contact information</li>
+                        <li>• Add confidentiality notices to sensitive documents</li>
+                        <li>• Include document versions and revision dates</li>
+                        <li>• Create consistent formatting across team presentations</li>
+                        <li>• Add client information to customized proposals</li>
+                        <li>• Include meeting dates and project references</li>
+                      </ul>
+                      <div className="mt-4 pt-4 border-t border-green-200">
+                        <p className="text-xs text-green-600">
+                          <strong>Pro Tip:</strong> Use with our <a href="/tools/protect-pdf-tool" className="hover:underline">PDF protection tool</a> to secure business documents.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Legal Professionals */}
+                    <div className="bg-purple-50 rounded-xl p-6">
+                      <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-gavel text-purple-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">For Legal Professionals</h3>
+                      <ul className="space-y-2 text-gray-700 text-sm">
+                        <li>• Add case numbers and court information to legal briefs</li>
+                        <li>• Include attorney contact details in headers</li>
+                        <li>• Add "CONFIDENTIAL" or "PRIVILEGED" footers</li>
+                        <li>• Number pages for court filing requirements</li>
+                        <li>• Include document dates and revision tracking</li>
+                        <li>• Add firm branding to client communications</li>
+                      </ul>
+                      <div className="mt-4 pt-4 border-t border-purple-200">
+                        <p className="text-xs text-purple-600">
+                          <strong>Pro Tip:</strong> Combine with our <a href="/tools/pdf-redaction-tool" className="hover:underline">PDF redaction tool</a> for document privacy.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Healthcare Professionals */}
+                    <div className="bg-red-50 rounded-xl p-6">
+                      <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-user-md text-red-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">For Healthcare Professionals</h3>
+                      <ul className="space-y-2 text-gray-700 text-sm">
+                        <li>• Add HIPAA compliance notices to patient documents</li>
+                        <li>• Include practice information in medical reports</li>
+                        <li>• Add "CONFIDENTIAL MEDICAL RECORD" footers</li>
+                        <li>• Number pages for medical chart organization</li>
+                        <li>• Include patient identifiers in headers (when appropriate)</li>
+                        <li>• Add regulatory compliance statements</li>
+                      </ul>
+                      <div className="mt-4 pt-4 border-t border-red-200">
+                        <p className="text-xs text-red-600">
+                          <strong>Pro Tip:</strong> Ensure HIPAA compliance with our <a href="/tools/watermark-pdf-tool" className="hover:underline">PDF watermarking tool</a>.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Researchers */}
+                    <div className="bg-yellow-50 rounded-xl p-6">
+                      <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-flask text-yellow-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">For Researchers</h3>
+                      <ul className="space-y-2 text-gray-700 text-sm">
+                        <li>• Add study identifiers and protocol numbers</li>
+                        <li>• Include institutional affiliations in headers</li>
+                        <li>• Add "DRAFT" or "FINAL" status indicators</li>
+                        <li>• Number pages for research documentation</li>
+                        <li>• Include funding acknowledgments</li>
+                        <li>• Add version control for collaborative research</li>
+                      </ul>
+                      <div className="mt-4 pt-4 border-t border-yellow-200">
+                        <p className="text-xs text-yellow-600">
+                          <strong>Pro Tip:</strong> Organize research documents with our <a href="/tools/organize-pdf-pages-tool" className="hover:underline">PDF page organizer</a>.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Content Creators */}
+                    <div className="bg-indigo-50 rounded-xl p-6">
+                      <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-pencil-alt text-indigo-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">For Content Creators</h3>
+                      <ul className="space-y-2 text-gray-700 text-sm">
+                        <li>• Brand ebooks with author information and website</li>
+                        <li>• Add copyright notices to digital publications</li>
+                        <li>• Include social media handles and contact info</li>
+                        <li>• Number pages for professional presentation</li>
+                        <li>• Add publication dates and version numbers</li>
+                        <li>• Include QR codes or website links in footers</li>
+                      </ul>
+                      <div className="mt-4 pt-4 border-t border-indigo-200">
+                        <p className="text-xs text-indigo-600">
+                          <strong>Pro Tip:</strong> Create professional ebooks using our <a href="/tools/images-to-pdf-merger" className="hover:underline">images to PDF tool</a>.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Practical Use Cases */}
+                <div>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-6">Real-World Applications and Use Cases</h2>
+                  <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-8">
+                    <div className="grid md:grid-cols-2 gap-8">
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-900 mb-6">Professional Documentation</h3>
+                        <div className="space-y-4">
+                          <div className="bg-white rounded-lg p-4 shadow-sm">
+                            <h4 className="font-semibold text-gray-900 mb-2">Annual Reports & Financial Documents</h4>
+                            <p className="text-gray-600 text-sm mb-2">Add company branding, report periods, and page numbering to create professional annual reports.</p>
+                            <div className="text-xs text-blue-600">
+                              Related: <a href="/tools/pdf-page-counter" className="hover:underline">PDF Page Counter</a> | <a href="/tools/compress-pdf-tool" className="hover:underline">PDF Compressor</a>
+                            </div>
+                          </div>
+                          
+                          <div className="bg-white rounded-lg p-4 shadow-sm">
+                            <h4 className="font-semibold text-gray-900 mb-2">Contract Management</h4>
+                            <p className="text-gray-600 text-sm mb-2">Include contract numbers, effective dates, and confidentiality notices in legal agreements.</p>
+                            <div className="text-xs text-blue-600">
+                              Related: <a href="/tools/pdf-redaction-tool" className="hover:underline">PDF Redaction</a> | <a href="/tools/unlock-pdf-tool" className="hover:underline">Unlock PDF</a>
+                            </div>
+                          </div>
+                          
+                          <div className="bg-white rounded-lg p-4 shadow-sm">
+                            <h4 className="font-semibold text-gray-900 mb-2">Marketing Materials</h4>
+                            <p className="text-gray-600 text-sm mb-2">Brand brochures, whitepapers, and case studies with consistent company information.</p>
+                            <div className="text-xs text-blue-600">
+                              Related: <a href="/tools/watermark-pdf-tool" className="hover:underline">PDF Watermark</a> | <a href="/tools/pdf-background-changer" className="hover:underline">Background Changer</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-900 mb-6">Academic & Educational</h3>
+                        <div className="space-y-4">
+                          <div className="bg-white rounded-lg p-4 shadow-sm">
+                            <h4 className="font-semibold text-gray-900 mb-2">Thesis & Dissertation Formatting</h4>
+                            <p className="text-gray-600 text-sm mb-2">Add chapter titles, author names, and page numbers according to academic style guides.</p>
+                            <div className="text-xs text-blue-600">
+                              Related: <a href="/tools/extract-pdf-pages-tool" className="hover:underline">Extract Pages</a> | <a href="/tools/pdf-margin-adjuster" className="hover:underline">Margin Adjuster</a>
+                            </div>
+                          </div>
+                          
+                          <div className="bg-white rounded-lg p-4 shadow-sm">
+                            <h4 className="font-semibold text-gray-900 mb-2">Research Publications</h4>
+                            <p className="text-gray-600 text-sm mb-2">Include journal information, DOI numbers, and institutional affiliations.</p>
+                            <div className="text-xs text-blue-600">
+                              Related: <a href="/tools/pdf-bookmark-extractor" className="hover:underline">Bookmark Extractor</a> | <a href="/tools/split-pdf-tool" className="hover:underline">Split PDF</a>
+                            </div>
+                          </div>
+                          
+                          <div className="bg-white rounded-lg p-4 shadow-sm">
+                            <h4 className="font-semibold text-gray-900 mb-2">Course Materials & Handouts</h4>
+                            <p className="text-gray-600 text-sm mb-2">Brand educational materials with course information, semester details, and instructor contact.</p>
+                            <div className="text-xs text-blue-600">
+                              Related: <a href="/tools/rotate-pdf-tool" className="hover:underline">Rotate PDF</a> | <a href="/tools/pdf-page-resizer" className="hover:underline">Page Resizer</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -887,33 +1169,127 @@ const PDFHeaderFooterGenerator = () => {
                   </div>
                 </div>
 
+                {/* SEO Integration Section */}
+                <div className="bg-gradient-to-r from-teal-50 to-blue-50 rounded-xl p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Complete PDF Workflow Solutions</h2>
+                  <p className="text-lg text-gray-700 mb-6">
+                    Maximize your document productivity by combining our PDF Header/Footer Generator with other powerful PDF tools for comprehensive document management.
+                  </p>
+                  
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+                      <h3 className="font-semibold text-gray-900 mb-2">Document Preparation Workflow</h3>
+                      <div className="space-y-2 text-sm">
+                        <div className="flex items-center text-gray-600">
+                          <span className="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center text-xs font-bold text-blue-600 mr-2">1</span>
+                          <a href="/tools/merge-pdf-tool" className="hover:text-blue-600 hover:underline">Merge multiple PDFs</a>
+                        </div>
+                        <div className="flex items-center text-gray-600">
+                          <span className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center text-xs font-bold text-green-600 mr-2">2</span>
+                          <span>Add headers/footers (current tool)</span>
+                        </div>
+                        <div className="flex items-center text-gray-600">
+                          <span className="w-5 h-5 bg-purple-100 rounded-full flex items-center justify-center text-xs font-bold text-purple-600 mr-2">3</span>
+                          <a href="/tools/add-page-numbers-tool" className="hover:text-purple-600 hover:underline">Enhance with page numbers</a>
+                        </div>
+                        <div className="flex items-center text-gray-600">
+                          <span className="w-5 h-5 bg-orange-100 rounded-full flex items-center justify-center text-xs font-bold text-orange-600 mr-2">4</span>
+                          <a href="/tools/protect-pdf-tool" className="hover:text-orange-600 hover:underline">Secure final document</a>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+                      <h3 className="font-semibold text-gray-900 mb-2">Professional Enhancement</h3>
+                      <div className="space-y-2 text-sm">
+                        <a href="/tools/watermark-pdf-tool" className="block text-blue-600 hover:text-blue-700 hover:underline">
+                          <i className="fas fa-stamp w-4 mr-2"></i>Add PDF Watermarks
+                        </a>
+                        <a href="/tools/pdf-background-changer" className="block text-green-600 hover:text-green-700 hover:underline">
+                          <i className="fas fa-palette w-4 mr-2"></i>Change Background Colors
+                        </a>
+                        <a href="/tools/pdf-margin-adjuster" className="block text-purple-600 hover:text-purple-700 hover:underline">
+                          <i className="fas fa-crop w-4 mr-2"></i>Adjust Document Margins
+                        </a>
+                        <a href="/tools/compress-pdf-tool" className="block text-orange-600 hover:text-orange-700 hover:underline">
+                          <i className="fas fa-compress w-4 mr-2"></i>Compress File Size
+                        </a>
+                      </div>
+                    </div>
+                    
+                    <div className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+                      <h3 className="font-semibold text-gray-900 mb-2">Document Organization</h3>
+                      <div className="space-y-2 text-sm">
+                        <a href="/tools/organize-pdf-pages-tool" className="block text-blue-600 hover:text-blue-700 hover:underline">
+                          <i className="fas fa-sort w-4 mr-2"></i>Organize PDF Pages
+                        </a>
+                        <a href="/tools/extract-pdf-pages-tool" className="block text-green-600 hover:text-green-700 hover:underline">
+                          <i className="fas fa-file-export w-4 mr-2"></i>Extract Specific Pages
+                        </a>
+                        <a href="/tools/split-pdf-tool" className="block text-purple-600 hover:text-purple-700 hover:underline">
+                          <i className="fas fa-cut w-4 mr-2"></i>Split Large Documents
+                        </a>
+                        <a href="/tools/pdf-page-counter" className="block text-orange-600 hover:text-orange-700 hover:underline">
+                          <i className="fas fa-info w-4 mr-2"></i>Get Document Info
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-8 text-center">
+                    <a href="/tools/pdf-tools" className="inline-flex items-center px-6 py-3 bg-teal-600 hover:bg-teal-700 text-white font-medium rounded-lg transition-colors">
+                      <i className="fas fa-tools mr-2"></i>
+                      Explore All PDF Tools
+                    </a>
+                  </div>
+                </div>
+
                 {/* FAQ Section */}
                 <div>
-                  <h3 className="text-2xl font-semibold text-gray-900 mb-6">Frequently Asked Questions</h3>
-                  <div className="space-y-6">
-                    <div className="bg-white rounded-lg border border-gray-200 p-6">
-                      <h4 className="text-lg font-semibold text-gray-900 mb-2">Can I add different headers and footers to different pages?</h4>
-                      <p className="text-gray-700">Currently, our tool applies the same header and footer design to all pages (except the first page if excluded). For more complex layouts with different headers per section, you may need specialized PDF editing software.</p>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="space-y-6">
+                      <div className="bg-white rounded-lg border border-gray-200 p-6">
+                        <h4 className="text-lg font-semibold text-gray-900 mb-2">Can I add different headers and footers to different pages?</h4>
+                        <p className="text-gray-700">Currently, our tool applies the same header and footer design to all pages (except the first page if excluded). For more complex layouts with different headers per section, you may need specialized PDF editing software.</p>
+                      </div>
+                      
+                      <div className="bg-white rounded-lg border border-gray-200 p-6">
+                        <h4 className="text-lg font-semibold text-gray-900 mb-2">What file size limits apply to PDF header/footer generation?</h4>
+                        <p className="text-gray-700">Our tool can handle PDF files up to 50MB in size. For larger files, consider using our <a href="/tools/compress-pdf-tool" className="text-teal-600 hover:text-teal-700 underline">PDF compressor</a> first or <a href="/tools/split-pdf-tool" className="text-teal-600 hover:text-teal-700 underline">splitting into smaller sections</a> for processing.</p>
+                      </div>
+                      
+                      <div className="bg-white rounded-lg border border-gray-200 p-6">
+                        <h4 className="text-lg font-semibold text-gray-900 mb-2">Will adding headers and footers affect the original document quality?</h4>
+                        <p className="text-gray-700">No, our tool preserves the original document quality while adding headers and footers. The process maintains the PDF's resolution, fonts, and formatting without compression or quality loss.</p>
+                      </div>
+                      
+                      <div className="bg-white rounded-lg border border-gray-200 p-6">
+                        <h4 className="text-lg font-semibold text-gray-900 mb-2">How do I remove headers and footers after adding them?</h4>
+                        <p className="text-gray-700">Once headers and footers are added, they become part of the PDF content. We recommend keeping a backup of your original file. You can use our <a href="/tools/pdf-editor" className="text-teal-600 hover:text-teal-700 underline">PDF editor</a> for more advanced modifications.</p>
+                      </div>
                     </div>
                     
-                    <div className="bg-white rounded-lg border border-gray-200 p-6">
-                      <h4 className="text-lg font-semibold text-gray-900 mb-2">What file size limits apply to PDF header/footer generation?</h4>
-                      <p className="text-gray-700">Our tool can handle PDF files up to 50MB in size. For larger files, consider compressing your PDF first or splitting it into smaller sections for processing.</p>
-                    </div>
-                    
-                    <div className="bg-white rounded-lg border border-gray-200 p-6">
-                      <h4 className="text-lg font-semibold text-gray-900 mb-2">Will adding headers and footers affect the original document quality?</h4>
-                      <p className="text-gray-700">No, our tool preserves the original document quality while adding headers and footers. The process maintains the PDF's resolution, fonts, and formatting without compression or quality loss.</p>
-                    </div>
-                    
-                    <div className="bg-white rounded-lg border border-gray-200 p-6">
-                      <h4 className="text-lg font-semibold text-gray-900 mb-2">Can I preview how the headers and footers will look before processing?</h4>
-                      <p className="text-gray-700">Yes, our tool includes a real-time preview feature that shows exactly how your headers, footers, and page numbers will appear on your document pages.</p>
-                    </div>
-                    
-                    <div className="bg-white rounded-lg border border-gray-200 p-6">
-                      <h4 className="text-lg font-semibold text-gray-900 mb-2">Is it possible to add images or logos to headers and footers?</h4>
-                      <p className="text-gray-700">Currently, our tool supports text-based headers and footers with customizable fonts, colors, and alignment. Image insertion in headers and footers is planned for future updates.</p>
+                    <div className="space-y-6">
+                      <div className="bg-white rounded-lg border border-gray-200 p-6">
+                        <h4 className="text-lg font-semibold text-gray-900 mb-2">Can I preview how the headers and footers will look before processing?</h4>
+                        <p className="text-gray-700">Yes, our tool includes a real-time preview feature that shows exactly how your headers, footers, and page numbers will appear on your document pages.</p>
+                      </div>
+                      
+                      <div className="bg-white rounded-lg border border-gray-200 p-6">
+                        <h4 className="text-lg font-semibold text-gray-900 mb-2">Is it possible to add images or logos to headers and footers?</h4>
+                        <p className="text-gray-700">Currently, our tool supports text-based headers and footers with customizable fonts, colors, and alignment. For image insertion, try our <a href="/tools/watermark-pdf-tool" className="text-teal-600 hover:text-teal-700 underline">PDF watermarking tool</a> which supports both text and image overlays.</p>
+                      </div>
+                      
+                      <div className="bg-white rounded-lg border border-gray-200 p-6">
+                        <h4 className="text-lg font-semibold text-gray-900 mb-2">Can I use this tool for batch processing multiple PDFs?</h4>
+                        <p className="text-gray-700">Currently, the tool processes one PDF at a time. For multiple documents, you can save your settings and quickly apply them to each file. Consider using our <a href="/tools/merge-pdf-tool" className="text-teal-600 hover:text-teal-700 underline">PDF merger</a> to combine documents first if appropriate.</p>
+                      </div>
+                      
+                      <div className="bg-white rounded-lg border border-gray-200 p-6">
+                        <h4 className="text-lg font-semibold text-gray-900 mb-2">Are there any security or privacy concerns with uploading my PDFs?</h4>
+                        <p className="text-gray-700">We prioritize your privacy and security. Uploaded files are processed securely and automatically deleted after processing. For sensitive documents, consider using our <a href="/tools/protect-pdf-tool" className="text-teal-600 hover:text-teal-700 underline">PDF password protection tool</a> before and after processing.</p>
+                      </div>
                     </div>
                   </div>
                 </div>
