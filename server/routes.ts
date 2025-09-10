@@ -1220,83 +1220,42 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: 'Invalid file type. Please upload a PDF file.' });
       }
 
-      const { PDFDocument } = await import('pdf-lib');
       const inputPath = req.file.path;
-      const outputPath = path.join(__dirname, '../compressed', `compressed-advanced-${Date.now()}-${req.file.originalname}`);
+      const originalSize = (await fs.stat(inputPath)).size;
+      let compressedBytes: Buffer;
 
-      // Read the original PDF
-      const pdfBytes = await fs.readFile(inputPath);
-      const pdfDoc = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
-      const originalSize = pdfBytes.length;
-
-      // Apply compression settings based on level
-      let compressionLevel = 'medium';
-      let imageCompressionQuality = parseInt(imageQuality) / 100;
-      
-      switch (level) {
-        case 'low':
-          compressionLevel = 'low';
-          imageCompressionQuality = Math.max(0.8, imageCompressionQuality);
-          break;
-        case 'medium':
-          compressionLevel = 'medium';
-          imageCompressionQuality = Math.max(0.6, imageCompressionQuality);
-          break;
-        case 'high':
-          compressionLevel = 'high';
-          imageCompressionQuality = Math.max(0.4, imageCompressionQuality);
-          break;
-        case 'maximum':
-          compressionLevel = 'maximum';
-          imageCompressionQuality = Math.max(0.2, imageCompressionQuality);
-          break;
-      }
-
-      // Create optimized PDF with advanced settings
-      const optimizedPdf = await PDFDocument.create();
-      const pages = pdfDoc.getPages();
-
-      // Copy pages with optimizations
-      for (let i = 0; i < pages.length; i++) {
-        const [copiedPage] = await optimizedPdf.copyPages(pdfDoc, [i]);
-        optimizedPdf.addPage(copiedPage);
-      }
-
-      // Remove metadata if requested
-      if (removeMetadata === 'true' || removeMetadata === true) {
-        optimizedPdf.setTitle('');
-        optimizedPdf.setAuthor('');
-        optimizedPdf.setSubject('');
-        optimizedPdf.setKeywords([]);
-        optimizedPdf.setProducer('');
-        optimizedPdf.setCreator('');
-      }
-
-      // Save with optimization settings
-      const saveOptions: any = {
-        useObjectStreams: false,
-        addDefaultPage: false
-      };
-
-      // Apply linearization for web if requested
-      if (linearizeForWeb === 'true' || linearizeForWeb === true) {
-        saveOptions.objectsPerTick = 50;
-      }
-
-      let compressedBytes = await optimizedPdf.save(saveOptions);
-
-      // Try additional compression using compress-pdf if available
+      // Try compress-pdf library first (more effective compression)
       try {
         const compressPdf = await import('compress-pdf');
-        await fs.writeFile(outputPath, compressedBytes);
-        
-        // Apply additional compression based on level
-        const additionalCompression = await compressPdf.compress(outputPath);
-        
-        compressedBytes = additionalCompression;
-        await fs.unlink(outputPath); // Clean up temp file
+        compressedBytes = await compressPdf.compress(inputPath);
+        console.log('Successfully used compress-pdf library for compression');
       } catch (compressionError) {
-        console.log('Advanced compression library not available, using PDF-lib optimization only');
+        console.log('compress-pdf library not available, using PDF-lib optimization');
+        
+        // Fallback to PDF-lib optimization with improved settings
+        const { PDFDocument } = await import('pdf-lib');
+        const pdfBytes = await fs.readFile(inputPath);
+        const pdfDoc = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
+
+        // Remove metadata if requested
+        if (removeMetadata === 'true' || removeMetadata === true) {
+          pdfDoc.setTitle('');
+          pdfDoc.setAuthor('');
+          pdfDoc.setSubject('');
+          pdfDoc.setKeywords([]);
+          pdfDoc.setProducer('');
+          pdfDoc.setCreator('');
+        }
+
+        // Save with aggressive optimization settings
+        const saveOptions: any = {
+          useObjectStreams: true, // Enable object streams for better compression
+          addDefaultPage: false,
+          objectsPerTick: 50,
+          updateFieldAppearances: false // Don't update form field appearances
+        };
+
+        compressedBytes = await pdfDoc.save(saveOptions);
       }
 
       const compressedSize = compressedBytes.length;
