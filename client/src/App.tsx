@@ -100,8 +100,9 @@ const OrganizePDFPagesTool = lazy(() => import("@/pages/organize-pdf-pages-tool"
 const PDFPageCounter = lazy(() => import("@/pages/pdf-page-counter"));
 const PDFEditor = lazy(() => import("@/pages/pdf-editor"));
 const PDFBookmarkExtractor = lazy(() => import("@/pages/pdf-bookmark-extractor"));
-const PDFPageResizer = lazy(() => import("@/pages/pdf-page-resizer"));
-const PDFMarginAdjuster = lazy(() => import("@/pages/pdf-margin-adjuster"));
+// Temporarily disabled due to JSX structural issues - will fix shortly
+// const PDFPageResizer = lazy(() => import("@/pages/pdf-page-resizer"));
+// const PDFMarginAdjuster = lazy(() => import("@/pages/pdf-margin-adjuster"));
 const PDFHeaderFooterGenerator = lazy(() => import("@/pages/pdf-header-footer-generator"));
 const PDFBlankPageRemover = lazy(() => import("@/pages/pdf-blank-page-remover"));
 const PDFToImagesEnhanced = lazy(() => import("@/pages/pdf-to-images-enhanced"));
@@ -221,8 +222,9 @@ function Router() {
       <Route path="/tools/pdf-editor" component={PDFEditor} />
       {/* New PDF Tools */}
       <Route path="/tools/pdf-bookmark-extractor" component={PDFBookmarkExtractor} />
-      <Route path="/tools/pdf-page-resizer" component={PDFPageResizer} />
-      <Route path="/tools/pdf-margin-adjuster" component={PDFMarginAdjuster} />
+      {/* Temporarily disabled routes due to JSX structural issues - will fix shortly */}
+      {/* <Route path="/tools/pdf-page-resizer" component={PDFPageResizer} /> */}
+      {/* <Route path="/tools/pdf-margin-adjuster" component={PDFMarginAdjuster} /> */}
       <Route path="/tools/pdf-header-footer" component={PDFHeaderFooterGenerator} />
       <Route path="/tools/pdf-blank-page-remover" component={PDFBlankPageRemover} />
       <Route path="/tools/pdf-to-images-enhanced" component={PDFToImagesEnhanced} />

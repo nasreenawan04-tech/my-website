@@ -990,11 +990,6 @@ const PDFMarginAdjuster = () => {
                     </p>
                   </div>
                 </div>
-                      <li><strong>Process:</strong> Click the adjust button to apply margin changes to all pages</li>
-                      <li><strong>Download:</strong> Get your modified PDF with perfectly adjusted margins</li>
-                    </ul>
-                  </div>
-                </div>
 
                 {/* Features and Benefits */}
                 <div className="bg-white rounded-2xl shadow-lg p-8">

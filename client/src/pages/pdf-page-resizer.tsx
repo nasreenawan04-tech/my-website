@@ -939,9 +939,6 @@ const PDFPageResizer = () => {
                     </p>
                   </div>
                 </div>
-                        Resize research papers, theses, and academic submissions to meet university or journal requirements for specific page dimensions and formatting standards.
-                      </p>
-                    </div>
 
                     <div className="bg-purple-50 rounded-lg p-6">
                       <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
