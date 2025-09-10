@@ -1165,11 +1165,31 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ error: 'Invalid file type. Please upload a PDF file.' });
       }
 
-      const compressPdf = await import('compress-pdf');
       const inputPath = req.file.path;
-
-      const compressedBuffer = await compressPdf.compress(inputPath);
       const originalSize = (await fs.stat(inputPath)).size;
+      let compressedBuffer: Buffer;
+
+      // Try compress-pdf library first
+      try {
+        const compressPdf = await import('compress-pdf');
+        compressedBuffer = await compressPdf.compress(inputPath);
+        console.log('Basic compression successful with compress-pdf library');
+      } catch (compressionError) {
+        console.log('compress-pdf failed for basic compression, using PDF-lib fallback');
+        
+        // Fallback to PDF-lib with optimization
+        const { PDFDocument } = await import('pdf-lib');
+        const pdfBytes = await fs.readFile(inputPath);
+        const pdfDoc = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
+        
+        // Apply basic optimization
+        compressedBuffer = await pdfDoc.save({
+          useObjectStreams: true,
+          addDefaultPage: false,
+          updateFieldAppearances: false
+        });
+      }
+
       const compressedSize = compressedBuffer.length;
       const compressionRatio = Math.round((1 - compressedSize / originalSize) * 100);
 
