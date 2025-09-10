@@ -414,70 +414,531 @@ const PDFPageResizer = () => {
                 </CardContent>
               </Card>
 
-              {/* SEO Content Sections */}
+              {/* Enhanced SEO Content Sections */}
               <div className="mt-12 space-y-12">
                 {/* What is PDF Page Resizer */}
                 <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-6">What is a PDF Page Resizer?</h2>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-6">What is a PDF Page Resizer Tool?</h2>
                   <div className="prose max-w-none text-gray-700 leading-relaxed">
                     <p className="text-lg mb-6">
-                      A <strong>PDF Page Resizer</strong> is a powerful digital tool designed to modify the dimensions and format of PDF document pages while maintaining content quality and proper scaling. This specialized utility allows users to convert PDF pages from one size format to another, such as transforming Letter-sized documents to A4, resizing Legal documents to standard formats, or creating custom page dimensions to meet specific requirements.
+                      A <strong>PDF Page Resizer</strong> is a sophisticated document processing tool that intelligently modifies PDF page dimensions and formats while preserving content quality, readability, and professional appearance. This essential utility converts PDF documents between different page size standards such as A4, Letter, Legal, Tabloid, and custom dimensions, ensuring perfect compatibility across international document requirements and printing specifications.
                     </p>
                     <p className="text-lg mb-6">
-                      Our advanced PDF Page Resizer employs intelligent scaling algorithms that preserve aspect ratios, ensure content readability, and automatically center content within new page boundaries. The tool supports all standard international page formats including ISO A-series (A4, A3, A5), North American sizes (Letter, Legal, Tabloid), and custom dimensions specified in millimeters or inches, making it perfect for document standardization, printing preparation, and format compliance requirements.
+                      Our advanced PDF page resizing technology employs smart scaling algorithms that maintain aspect ratios, prevent content distortion, and automatically center content within new page boundaries. The tool supports all major international page formats including ISO A-series (A4, A3, A5), North American standards (Letter, Legal, Executive), and custom millimeter or inch-based dimensions, making it the perfect solution for document standardization, print optimization, and format compliance across global business operations.
+                    </p>
+                    <p className="text-lg mb-6">
+                      Unlike simple image resizing tools, our PDF Page Resizer understands document structure, preserves text quality, maintains vector graphics sharpness, and ensures proper scaling of embedded images, charts, and diagrams. The tool processes documents entirely in your browser for maximum security and privacy, supporting both single-page and multi-page PDF resizing with consistent results across all pages.
                     </p>
                     <p className="text-lg">
-                      Whether you're standardizing document collections, preparing files for specific printer requirements, or converting between regional page format standards, this tool ensures professional results with pixel-perfect precision and maintains document integrity throughout the resizing process.
+                      Whether you're standardizing document collections for corporate compliance, preparing academic papers for international submission, optimizing files for specific printer requirements, or converting between regional page format standards, this professional-grade tool delivers pixel-perfect results while maintaining document integrity throughout the entire resizing process.
                     </p>
                   </div>
                 </div>
 
-                {/* Why Use PDF Page Resizer */}
+                {/* Benefits for Different Audiences */}
                 <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Why Use a PDF Page Resizer Tool?</h2>
-                  <div className="grid md:grid-cols-2 gap-8">
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Professional Document Standards</h3>
-                      <p className="text-gray-700 mb-4">
-                        Different industries and regions use various page size standards. Our PDF Page Resizer helps you convert documents to meet specific requirements, whether you need A4 for European standards, Letter for North American business, or custom sizes for specialized printing needs.
-                      </p>
-                      <p className="text-gray-700 mb-4">
-                        The tool ensures your documents maintain professional appearance while conforming to required specifications, making it essential for international business, academic submissions, and compliance documentation.
+                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Benefits for Different Audiences</h2>
+                  
+                  {/* Students & Researchers */}
+                  <div className="mb-10">
+                    <div className="flex items-center mb-6">
+                      <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                        <i className="fas fa-graduation-cap text-blue-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-2xl font-semibold text-gray-900">Students & Academic Researchers</h3>
+                    </div>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <h4 className="text-lg font-semibold text-gray-900 mb-3">Academic Submission Requirements</h4>
+                        <p className="text-gray-700 mb-4">
+                          Convert thesis documents, research papers, and dissertations to meet specific university or journal requirements. Many international publications require A4 format while North American institutions prefer Letter size formatting.
+                        </p>
+                        <ul className="text-gray-600 space-y-2">
+                          <li className="flex items-start">
+                            <span className="text-green-600 mr-2">✓</span>
+                            <span>Meet journal submission guidelines instantly</span>
+                          </li>
+                          <li className="flex items-start">
+                            <span className="text-green-600 mr-2">✓</span>
+                            <span>Standardize citation and reference formats</span>
+                          </li>
+                          <li className="flex items-start">
+                            <span className="text-green-600 mr-2">✓</span>
+                            <span>Ensure proper margin compliance for binding</span>
+                          </li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-semibold text-gray-900 mb-3">Research Collaboration</h4>
+                        <p className="text-gray-700 mb-4">
+                          Standardize document formats when collaborating with international research teams, ensuring all team members can print, annotate, and review documents consistently regardless of their geographic location.
+                        </p>
+                        <p className="text-gray-600">
+                          Perfect for preparing conference presentations, poster sessions, and collaborative research publications where format consistency is crucial for professional presentation.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Business Professionals */}
+                  <div className="mb-10">
+                    <div className="flex items-center mb-6">
+                      <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                        <i className="fas fa-briefcase text-green-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-2xl font-semibold text-gray-900">Business Professionals & Corporations</h3>
+                    </div>
+                    <div className="grid md:grid-cols-3 gap-6">
+                      <div className="bg-gray-50 p-6 rounded-lg">
+                        <h4 className="text-lg font-semibold text-gray-900 mb-3">Contract Management</h4>
+                        <p className="text-gray-700 text-sm mb-3">
+                          Standardize legal documents, contracts, and agreements to meet international business requirements and ensure consistent formatting across global operations.
+                        </p>
+                        <p className="text-gray-600 text-sm">
+                          Essential for multinational corporations managing contracts across different regions with varying document standards.
+                        </p>
+                      </div>
+                      <div className="bg-gray-50 p-6 rounded-lg">
+                        <h4 className="text-lg font-semibold text-gray-900 mb-3">Marketing Materials</h4>
+                        <p className="text-gray-700 text-sm mb-3">
+                          Resize brochures, flyers, and promotional documents to match local printing standards and paper sizes for cost-effective regional marketing campaigns.
+                        </p>
+                        <p className="text-gray-600 text-sm">
+                          Optimize print costs while maintaining brand consistency across different markets and printing facilities.
+                        </p>
+                      </div>
+                      <div className="bg-gray-50 p-6 rounded-lg">
+                        <h4 className="text-lg font-semibold text-gray-900 mb-3">Compliance Documentation</h4>
+                        <p className="text-gray-700 text-sm mb-3">
+                          Ensure regulatory documents, audit reports, and compliance manuals meet specific format requirements for different jurisdictions and regulatory bodies.
+                        </p>
+                        <p className="text-gray-600 text-sm">
+                          Critical for businesses operating in multiple countries with different documentation standards.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Content Creators */}
+                  <div className="mb-10">
+                    <div className="flex items-center mb-6">
+                      <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                        <i className="fas fa-palette text-purple-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-2xl font-semibold text-gray-900">Content Creators & Publishers</h3>
+                    </div>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <h4 className="text-lg font-semibold text-gray-900 mb-3">Publishing & Print Design</h4>
+                        <p className="text-gray-700 mb-4">
+                          Prepare manuscripts, magazines, and publication layouts for different print formats and international distribution. Convert between US Letter and international A4 standards for global publishing requirements.
+                        </p>
+                        <div className="bg-blue-50 p-4 rounded-lg">
+                          <p className="text-blue-800 text-sm font-medium">Pro Tip:</p>
+                          <p className="text-blue-700 text-sm">Use our <a href="/tools/add-page-numbers" className="text-blue-600 hover:text-blue-800 underline">PDF page numbering tool</a> after resizing to ensure proper pagination formatting.</p>
+                        </div>
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-semibold text-gray-900 mb-3">Educational Content</h4>
+                        <p className="text-gray-700 mb-4">
+                          Create standardized educational materials, workbooks, and course handouts that display consistently across different educational institutions and printing systems worldwide.
+                        </p>
+                        <p className="text-gray-600">
+                          Essential for online educators, training companies, and educational publishers distributing content internationally.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* How It Works */}
+                <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl shadow-lg p-8">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-8">How Our PDF Page Resizer Works</h2>
+                  <div className="grid md:grid-cols-4 gap-6">
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span className="text-2xl font-bold text-blue-600">1</span>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Upload & Analysis</h3>
+                      <p className="text-gray-600 text-sm">
+                        Upload your PDF file and our tool automatically analyzes page dimensions, content layout, and document structure for optimal resizing strategies.
                       </p>
                     </div>
-                    
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Print Optimization & Cost Efficiency</h3>
-                      <p className="text-gray-700 mb-4">
-                        Resizing PDF pages to match your printer's optimal paper size reduces waste, prevents content cutoff, and ensures proper margins. This is particularly important for bulk printing, professional presentations, and document archival where consistent formatting is crucial.
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span className="text-2xl font-bold text-green-600">2</span>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Format Selection</h3>
+                      <p className="text-gray-600 text-sm">
+                        Choose from standard formats (A4, Letter, Legal) or specify custom dimensions. The tool displays a preview of the target size for confirmation.
                       </p>
-                      <p className="text-gray-700">
-                        By optimizing page sizes before printing, you can significantly reduce paper costs, improve print quality, and ensure documents display correctly across different devices and printing systems.
+                    </div>
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span className="text-2xl font-bold text-purple-600">3</span>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Smart Resizing</h3>
+                      <p className="text-gray-600 text-sm">
+                        Advanced algorithms maintain aspect ratios, preserve text quality, and intelligently scale content to fit the new page dimensions perfectly.
+                      </p>
+                    </div>
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span className="text-2xl font-bold text-orange-600">4</span>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Download Result</h3>
+                      <p className="text-gray-600 text-sm">
+                        Download your professionally resized PDF with perfect formatting, maintained quality, and optimized layout for your target page size.
                       </p>
                     </div>
                   </div>
                 </div>
 
-                {/* Common Use Cases */}
+                {/* Use Cases by Industry */}
                 <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Common Use Cases for PDF Page Resizing</h2>
-                  <div className="grid md:grid-cols-3 gap-6">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Industry-Specific Use Cases</h2>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-blue-50 rounded-lg p-6">
                       <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                        <i className="fas fa-building text-blue-600 text-xl"></i>
+                        <i className="fas fa-gavel text-blue-600 text-xl"></i>
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Business Documents</h3>
-                      <p className="text-gray-700 text-sm">
-                        Convert contracts, proposals, and reports between Letter and A4 formats for international business compatibility and professional presentation standards.
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Legal Services</h3>
+                      <p className="text-gray-700 text-sm mb-3">
+                        Convert legal briefs, court documents, and contracts between Letter and A4 formats for international legal proceedings and cross-border transactions.
+                      </p>
+                      <p className="text-gray-600 text-xs">
+                        Essential for law firms handling international cases or working with foreign jurisdictions that require specific document formatting standards.
                       </p>
                     </div>
 
                     <div className="bg-green-50 rounded-lg p-6">
                       <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                        <i className="fas fa-graduation-cap text-green-600 text-xl"></i>
+                        <i className="fas fa-heartbeat text-green-600 text-xl"></i>
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Academic Papers</h3>
-                      <p className="text-gray-700 text-sm">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Healthcare</h3>
+                      <p className="text-gray-700 text-sm mb-3">
+                        Standardize medical records, research papers, and patient documentation to meet healthcare system requirements across different countries and institutions.
+                      </p>
+                      <p className="text-gray-600 text-xs">
+                        Critical for medical research collaboration and patient record transfers between international healthcare providers.
+                      </p>
+                    </div>
+
+                    <div className="bg-purple-50 rounded-lg p-6">
+                      <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-building text-purple-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Architecture & Engineering</h3>
+                      <p className="text-gray-700 text-sm mb-3">
+                        Resize technical drawings, blueprints, and engineering specifications to match international standards and printing requirements for construction projects.
+                      </p>
+                      <p className="text-gray-600 text-xs">
+                        Ensures accurate scaling and proper dimensions when sharing technical documents with international project teams.
+                      </p>
+                    </div>
+
+                    <div className="bg-orange-50 rounded-lg p-6">
+                      <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-graduation-cap text-orange-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Education</h3>
+                      <p className="text-gray-700 text-sm mb-3">
+                        Standardize academic papers, thesis documents, and educational materials for submission to international journals and universities with specific formatting requirements.
+                      </p>
+                      <p className="text-gray-600 text-xs">
+                        Perfect for students and educators working across different educational systems with varying document standards.
+                      </p>
+                    </div>
+
+                    <div className="bg-red-50 rounded-lg p-6">
+                      <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-chart-line text-red-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Finance & Banking</h3>
+                      <p className="text-gray-700 text-sm mb-3">
+                        Convert financial reports, audit documents, and regulatory filings to meet international banking standards and compliance requirements.
+                      </p>
+                      <p className="text-gray-600 text-xs">
+                        Essential for multinational financial institutions managing documents across different regulatory environments.
+                      </p>
+                    </div>
+
+                    <div className="bg-teal-50 rounded-lg p-6">
+                      <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-cogs text-teal-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Manufacturing</h3>
+                      <p className="text-gray-700 text-sm mb-3">
+                        Resize technical manuals, safety documentation, and quality assurance reports to match international manufacturing standards and worker training requirements.
+                      </p>
+                      <p className="text-gray-600 text-xs">
+                        Critical for global manufacturing operations requiring consistent documentation across multiple facilities and countries.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Related Tools */}
+                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl shadow-lg p-8">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-6">Complete Your PDF Workflow</h2>
+                  <p className="text-lg text-gray-700 mb-8">
+                    Enhance your document processing workflow with our comprehensive suite of PDF tools designed to work perfectly together:
+                  </p>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="bg-white p-6 rounded-xl shadow-sm">
+                      <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-compress-alt text-blue-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Optimize File Size</h3>
+                      <p className="text-gray-600 text-sm mb-3">
+                        After resizing, reduce file size with our <a href="/tools/compress-pdf" className="text-blue-600 hover:text-blue-800 underline font-medium">PDF compressor</a> to optimize for email sharing and web distribution.
+                      </p>
+                    </div>
+                    
+                    <div className="bg-white p-6 rounded-xl shadow-sm">
+                      <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-file-text text-green-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Add Page Numbers</h3>
+                      <p className="text-gray-600 text-sm mb-3">
+                        Complete your formatting with our <a href="/tools/add-page-numbers" className="text-green-600 hover:text-green-800 underline font-medium">page numbering tool</a> to ensure proper pagination after resizing.
+                      </p>
+                    </div>
+                    
+                    <div className="bg-white p-6 rounded-xl shadow-sm">
+                      <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-object-group text-purple-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Merge Documents</h3>
+                      <p className="text-gray-600 text-sm mb-3">
+                        Combine multiple resized PDFs using our <a href="/tools/merge-pdf" className="text-purple-600 hover:text-purple-800 underline font-medium">PDF merger</a> for unified document collections.
+                      </p>
+                    </div>
+                    
+                    <div className="bg-white p-6 rounded-xl shadow-sm">
+                      <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-cut text-orange-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Split Large Files</h3>
+                      <p className="text-gray-600 text-sm mb-3">
+                        Divide oversized documents with our <a href="/tools/split-pdf" className="text-orange-600 hover:text-orange-800 underline font-medium">PDF splitter</a> before resizing for better processing performance.
+                      </p>
+                    </div>
+                    
+                    <div className="bg-white p-6 rounded-xl shadow-sm">
+                      <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-list-ol text-teal-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Organize Pages</h3>
+                      <p className="text-gray-600 text-sm mb-3">
+                        Rearrange page order with our <a href="/tools/organize-pdf-pages" className="text-teal-600 hover:text-teal-800 underline font-medium">page organizer</a> to match your resized document structure.
+                      </p>
+                    </div>
+                    
+                    <div className="bg-white p-6 rounded-xl shadow-sm">
+                      <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-edit text-red-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Edit Content</h3>
+                      <p className="text-gray-600 text-sm mb-3">
+                        Make content adjustments with our <a href="/tools/pdf-editor" className="text-red-600 hover:text-red-800 underline font-medium">PDF editor</a> to perfect your resized documents.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Technical Features */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Advanced Technical Features</h2>
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Intelligent Scaling Technology</h3>
+                      <div className="space-y-4">
+                        <div className="flex items-start">
+                          <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                            <i className="fas fa-check text-xs text-green-600"></i>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900">Aspect Ratio Preservation</h4>
+                            <p className="text-gray-600 text-sm">Maintains original proportions to prevent content distortion while optimizing for new page dimensions.</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start">
+                          <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                            <i className="fas fa-check text-xs text-green-600"></i>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900">Vector Graphics Support</h4>
+                            <p className="text-gray-600 text-sm">Preserves crisp lines and shapes in charts, diagrams, and illustrations during resizing.</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start">
+                          <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                            <i className="fas fa-check text-xs text-green-600"></i>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900">Text Quality Optimization</h4>
+                            <p className="text-gray-600 text-sm">Ensures readable fonts and proper text rendering across all page size conversions.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Supported Page Formats</h3>
+                      <div className="space-y-3">
+                        <div className="bg-gray-50 p-3 rounded-lg">
+                          <h4 className="font-semibold text-gray-900 text-sm mb-1">ISO A Series</h4>
+                          <p className="text-gray-600 text-xs">A4 (210×297mm), A3 (297×420mm), A5 (148×210mm)</p>
+                        </div>
+                        <div className="bg-gray-50 p-3 rounded-lg">
+                          <h4 className="font-semibold text-gray-900 text-sm mb-1">North American</h4>
+                          <p className="text-gray-600 text-xs">Letter (8.5×11"), Legal (8.5×14"), Tabloid (11×17")</p>
+                        </div>
+                        <div className="bg-gray-50 p-3 rounded-lg">
+                          <h4 className="font-semibold text-gray-900 text-sm mb-1">Business Formats</h4>
+                          <p className="text-gray-600 text-xs">Executive (7.25×10.5"), Custom dimensions (mm/inches)</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* FAQ Section */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h2>
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Will resizing affect the quality of my PDF content?</h3>
+                      <p className="text-gray-700">
+                        No, our PDF Page Resizer uses advanced scaling algorithms that preserve content quality, maintain text sharpness, and keep vector graphics crisp. The tool intelligently handles different content types including text, images, charts, and diagrams to ensure professional results at any target page size.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I resize multi-page PDF documents?</h3>
+                      <p className="text-gray-700">
+                        Yes, our tool processes all pages in your PDF document simultaneously, applying consistent resizing to maintain uniform formatting throughout the entire document. Each page is individually processed to ensure optimal scaling and content positioning.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">What's the difference between resizing and scaling?</h3>
+                      <p className="text-gray-700">
+                        Resizing changes the actual page dimensions while maintaining content proportions and readability. Our tool doesn't simply scale content larger or smaller, but intelligently fits content within new page boundaries while preserving professional appearance and ensuring proper margins.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Is my PDF data secure during the resizing process?</h3>
+                      <p className="text-gray-700">
+                        Absolutely. All PDF processing happens entirely in your web browser using client-side technology. Your documents are never uploaded to our servers, ensuring complete privacy and security of your sensitive information.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I specify custom page dimensions?</h3>
+                      <p className="text-gray-700">
+                        Yes, in addition to standard formats like A4, Letter, and Legal, you can specify custom dimensions in millimeters. This is perfect for specialized printing requirements, custom marketing materials, or unique document specifications.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">What happens if my content doesn't fit the new page size?</h3>
+                      <p className="text-gray-700">
+                        Our intelligent scaling system automatically calculates the optimal scale to fit all content within the new page dimensions while maintaining readability. Content is centered and proportionally scaled to ensure nothing is cut off or distorted.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Best Practices */}
+                <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl shadow-lg p-8">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Best Practices for PDF Page Resizing</h2>
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-6">Before Resizing</h3>
+                      <div className="space-y-4">
+                        <div className="flex items-start">
+                          <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                            <span className="text-xs font-bold text-blue-600">1</span>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900">Check Original Dimensions</h4>
+                            <p className="text-gray-600 text-sm">Review your current page size to choose the most appropriate target format and understand the scaling requirements.</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start">
+                          <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                            <span className="text-xs font-bold text-blue-600">2</span>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900">Consider Content Layout</h4>
+                            <p className="text-gray-600 text-sm">Assess whether your content will benefit from the new dimensions, especially for documents with complex layouts or multiple columns.</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start">
+                          <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                            <span className="text-xs font-bold text-blue-600">3</span>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900">Backup Original Files</h4>
+                            <p className="text-gray-600 text-sm">Always keep a copy of your original document before processing, especially for important or irreplaceable documents.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-6">After Resizing</h3>
+                      <div className="space-y-4">
+                        <div className="flex items-start">
+                          <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                            <span className="text-xs font-bold text-green-600">1</span>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900">Verify Content Integrity</h4>
+                            <p className="text-gray-600 text-sm">Review the resized document to ensure all content is properly positioned and readable at the new page size.</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start">
+                          <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                            <span className="text-xs font-bold text-green-600">2</span>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900">Test Print Compatibility</h4>
+                            <p className="text-gray-600 text-sm">If printing is your goal, test print a sample page to verify margins, scaling, and overall appearance meet your requirements.</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start">
+                          <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                            <span className="text-xs font-bold text-green-600">3</span>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900">Optimize File Size</h4>
+                            <p className="text-gray-600 text-sm">Consider using our <a href="/tools/compress-pdf" className="text-blue-600 hover:text-blue-800 underline">PDF compression tool</a> to optimize file size after resizing for faster sharing and storage.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* SEO Keywords Integration */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-6">Professional PDF Page Resizing Solutions</h2>
+                  <div className="prose prose-gray max-w-none text-gray-700">
+                    <p className="text-lg mb-4">
+                      Our comprehensive PDF page resizer tool provides professional-grade document formatting solutions for businesses, educational institutions, and content creators worldwide. Whether you need to convert documents between A4 and Letter formats, resize pages for specific printing requirements, or standardize document collections for international distribution, our advanced resizing technology delivers consistent, high-quality results.
+                    </p>
+                    <p className="text-gray-600 mb-4">
+                      Key capabilities include multi-page PDF resizing, custom dimension support, aspect ratio preservation, vector graphics optimization, and intelligent content scaling. Perfect for academic paper formatting, business document standardization, legal document compliance, marketing material optimization, and technical documentation preparation across global markets and printing systems.
+                    </p>
+                    <p className="text-gray-600">
+                      Streamline your document workflow with our integrated PDF processing suite: <a href="/tools/compress-pdf" className="text-blue-600 hover:text-blue-800 underline">compress large files</a>, <a href="/tools/merge-pdf" className="text-blue-600 hover:text-blue-800 underline">combine multiple documents</a>, <a href="/tools/split-pdf" className="text-blue-600 hover:text-blue-800 underline">divide oversized files</a>, <a href="/tools/add-page-numbers" className="text-blue-600 hover:text-blue-800 underline">add professional pagination</a>, and <a href="/tools/organize-pdf-pages" className="text-blue-600 hover:text-blue-800 underline">rearrange page sequences</a> for complete document management control.
+                    </p>
+                  </div>
+                </div>
                         Resize research papers, theses, and academic submissions to meet university or journal requirements for specific page dimensions and formatting standards.
                       </p>
                     </div>
