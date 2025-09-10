@@ -509,40 +509,52 @@ const PDFCompressorAdvanced = () => {
 
                     {/* Results */}
                     {result && (
-                      <div className="bg-green-50 rounded-lg p-6" data-testid="compression-results">
-                        <h3 className="text-xl font-semibold text-green-900 mb-4">
-                          Compression Complete!
+                      <div className={`rounded-lg p-6 ${result.compressionRatio >= 0 ? 'bg-green-50' : 'bg-orange-50'}`} data-testid="compression-results">
+                        <h3 className={`text-xl font-semibold mb-4 ${result.compressionRatio >= 0 ? 'text-green-900' : 'text-orange-900'}`}>
+                          {result.compressionRatio >= 0 ? 'Compression Complete!' : 'Processing Complete!'}
                         </h3>
+                        
+                        {result.compressionRatio < 0 && (
+                          <div className="bg-orange-100 border border-orange-200 rounded-lg p-4 mb-4">
+                            <p className="text-orange-800 text-sm">
+                              <strong>Note:</strong> The processed file is larger than the original. This can happen with already optimized PDFs or files with lots of compressed images.
+                            </p>
+                          </div>
+                        )}
                         
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                           <div className="text-center">
-                            <div className="text-2xl font-bold text-green-700">
+                            <div className={`text-2xl font-bold ${result.compressionRatio >= 0 ? 'text-green-700' : 'text-orange-700'}`}>
                               {formatFileSize(result.originalSize)}
                             </div>
-                            <div className="text-sm text-green-600">Original Size</div>
+                            <div className={`text-sm ${result.compressionRatio >= 0 ? 'text-green-600' : 'text-orange-600'}`}>Original Size</div>
                           </div>
                           <div className="text-center">
-                            <div className="text-2xl font-bold text-green-700">
+                            <div className={`text-2xl font-bold ${result.compressionRatio >= 0 ? 'text-green-700' : 'text-orange-700'}`}>
                               {formatFileSize(result.compressedSize)}
                             </div>
-                            <div className="text-sm text-green-600">Compressed Size</div>
+                            <div className={`text-sm ${result.compressionRatio >= 0 ? 'text-green-600' : 'text-orange-600'}`}>
+                              {result.compressionRatio >= 0 ? 'Compressed Size' : 'Processed Size'}
+                            </div>
                           </div>
                           <div className="text-center">
-                            <div className="text-2xl font-bold text-green-700">
-                              {result.compressionRatio}%
+                            <div className={`text-2xl font-bold ${result.compressionRatio >= 0 ? 'text-green-700' : 'text-orange-700'}`}>
+                              {result.compressionRatio >= 0 ? `${result.compressionRatio}%` : `+${Math.abs(result.compressionRatio)}%`}
                             </div>
-                            <div className="text-sm text-green-600">Size Reduction</div>
+                            <div className={`text-sm ${result.compressionRatio >= 0 ? 'text-green-600' : 'text-orange-600'}`}>
+                              {result.compressionRatio >= 0 ? 'Size Reduction' : 'Size Increase'}
+                            </div>
                           </div>
                         </div>
 
                         <Button
                           asChild
-                          className="w-full bg-green-600 hover:bg-green-700 text-white"
+                          className={`w-full text-white ${result.compressionRatio >= 0 ? 'bg-green-600 hover:bg-green-700' : 'bg-orange-600 hover:bg-orange-700'}`}
                           data-testid="button-download"
                         >
                           <a href={result.downloadUrl} download={result.filename}>
                             <Download className="w-4 h-4 mr-2" />
-                            Download Compressed PDF
+                            {result.compressionRatio >= 0 ? 'Download Compressed PDF' : 'Download Processed PDF'}
                           </a>
                         </Button>
                       </div>
