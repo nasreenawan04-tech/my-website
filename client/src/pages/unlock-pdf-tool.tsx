@@ -1026,7 +1026,7 @@ const UnlockPDFTool = () => {
                         <div className="bg-white rounded-lg p-4 shadow-sm">
                           <h4 className="font-semibold text-blue-700 mb-2">Issue: Large File Processing</h4>
                           <p className="text-gray-700 text-sm mb-2">
-                            Very large PDF files (>25MB) may take longer to process or occasionally timeout.
+                            Very large PDF files (&gt;25MB) may take longer to process or occasionally timeout.
                           </p>
                           <div className="text-gray-600 text-xs space-y-1">
                             <p>• Try <a href="/tools/pdf-compressor-advanced" className="text-blue-600 hover:underline">compressing the PDF</a> first</p>
