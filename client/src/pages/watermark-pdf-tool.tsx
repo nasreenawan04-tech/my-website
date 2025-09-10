@@ -631,7 +631,7 @@ const WatermarkPDFTool = () => {
                       <p className="text-gray-600 mb-4">
                         Compress your watermarked PDF to reduce file size while maintaining quality and watermark visibility.
                       </p>
-                      <a href="/tools/pdf-compressor-advanced" className="text-green-600 hover:text-green-700 font-medium text-sm">
+                      <a href="/tools/compress-pdf-tool" className="text-green-600 hover:text-green-700 font-medium text-sm">
                         Compress PDF →
                       </a>
                     </div>
@@ -740,7 +740,7 @@ const WatermarkPDFTool = () => {
                     <div className="border-b border-gray-200 pb-6">
                       <h3 className="text-xl font-semibold text-gray-900 mb-3">Will watermarking reduce my PDF file quality?</h3>
                       <p className="text-gray-600">
-                        No, our watermarking process maintains the original PDF quality while adding the watermark as an overlay. The file size may increase slightly due to the additional content. If you need to reduce file size afterward, use our <a href="/tools/pdf-compressor-advanced" className="text-green-600 hover:text-green-700">PDF compressor tool</a>.
+                        No, our watermarking process maintains the original PDF quality while adding the watermark as an overlay. The file size may increase slightly due to the additional content. If you need to reduce file size afterward, use our <a href="/tools/compress-pdf-tool" className="text-green-600 hover:text-green-700">PDF compressor tool</a>.
                       </p>
                     </div>
 

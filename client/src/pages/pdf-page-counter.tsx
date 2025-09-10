@@ -615,7 +615,7 @@ const PDFPageCounter = () => {
                   </ul>
                   <div className="mt-6 pt-6 border-t border-purple-200">
                     <p className="text-sm text-gray-600">
-                      <strong>Pro Tip:</strong> Use our <a href="/tools/pdf-compressor-advanced" className="text-purple-600 hover:text-purple-700 underline">PDF compressor</a> to reduce file sizes for online distribution.
+                      <strong>Pro Tip:</strong> Use our <a href="/tools/compress-pdf-tool" className="text-purple-600 hover:text-purple-700 underline">PDF compressor</a> to reduce file sizes for online distribution.
                     </p>
                   </div>
                 </div>
@@ -794,7 +794,7 @@ const PDFPageCounter = () => {
                   <p className="text-sm text-gray-600">Separate PDF pages into individual files</p>
                 </a>
                 
-                <a href="/tools/pdf-compressor-advanced" className="block p-6 bg-purple-50 rounded-xl hover:bg-purple-100 transition-colors">
+                <a href="/tools/compress-pdf-tool" className="block p-6 bg-purple-50 rounded-xl hover:bg-purple-100 transition-colors">
                   <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mb-3">
                     <HardDrive className="w-5 h-5 text-purple-600" />
                   </div>

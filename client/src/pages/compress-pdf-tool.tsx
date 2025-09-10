@@ -635,7 +635,7 @@ const CompressPDFTool = () => {
                   <p className="text-gray-600 mb-4">
                     Full control over compression settings with image quality adjustment and optimization options.
                   </p>
-                  <a href="/tools/pdf-compressor-advanced" className="text-purple-600 hover:text-purple-700 font-medium">
+                  <a href="/tools/compress-pdf-tool" className="text-purple-600 hover:text-purple-700 font-medium">
                     Try Advanced Compressor →
                   </a>
                 </div>

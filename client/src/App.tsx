@@ -106,7 +106,6 @@ const PDFHeaderFooterGenerator = lazy(() => import("@/pages/pdf-header-footer-ge
 const PDFBlankPageRemover = lazy(() => import("@/pages/pdf-blank-page-remover"));
 const PDFToImagesEnhanced = lazy(() => import("@/pages/pdf-to-images-enhanced"));
 const ImagesToPDFMerger = lazy(() => import("@/pages/images-to-pdf-merger"));
-const PDFCompressorAdvanced = lazy(() => import("@/pages/pdf-compressor-advanced"));
 const PDFRedactionTool = lazy(() => import("@/pages/pdf-redaction-tool"));
 const PDFComparisonTool = lazy(() => import("@/pages/pdf-comparison-tool"));
 const PDFFormFieldExtractor = lazy(() => import("@/pages/pdf-form-field-extractor"));
@@ -227,7 +226,6 @@ function Router() {
       <Route path="/tools/pdf-blank-page-remover" component={PDFBlankPageRemover} />
       <Route path="/tools/pdf-to-images-enhanced" component={PDFToImagesEnhanced} />
       <Route path="/tools/images-to-pdf" component={ImagesToPDFMerger} />
-      <Route path="/tools/pdf-compressor-advanced" component={PDFCompressorAdvanced} />
       <Route path="/tools/pdf-redaction-tool" component={PDFRedactionTool} />
       <Route path="/tools/pdf-comparison-tool" component={PDFComparisonTool} />
       <Route path="/tools/pdf-form-extractor" component={PDFFormFieldExtractor} />

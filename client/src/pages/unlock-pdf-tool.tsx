@@ -718,7 +718,7 @@ const UnlockPDFTool = () => {
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div className="text-center">
-                        <a href="/tools/pdf-compressor-advanced" className="text-blue-600 hover:text-blue-700 font-medium text-sm">
+                        <a href="/tools/compress-pdf-tool" className="text-blue-600 hover:text-blue-700 font-medium text-sm">
                           Compress for sharing →
                         </a>
                       </div>
@@ -833,7 +833,7 @@ const UnlockPDFTool = () => {
                           <div className="flex-1">
                             <h4 className="font-medium text-gray-900">Optimize & Organize</h4>
                             <p className="text-gray-600 text-sm">
-                              <a href="/tools/pdf-compressor-advanced" className="text-blue-600 hover:underline">Compress</a>, 
+                              <a href="/tools/compress-pdf-tool" className="text-blue-600 hover:underline">Compress</a>, 
                               <a href="/tools/rotate-pdf-tool" className="text-blue-600 hover:underline ml-1">rotate</a>, or 
                               <a href="/tools/organize-pdf-pages-tool" className="text-blue-600 hover:underline ml-1">reorganize pages</a>
                             </p>
@@ -1029,7 +1029,7 @@ const UnlockPDFTool = () => {
                             Very large PDF files (&gt;25MB) may take longer to process or occasionally timeout.
                           </p>
                           <div className="text-gray-600 text-xs space-y-1">
-                            <p>• Try <a href="/tools/pdf-compressor-advanced" className="text-blue-600 hover:underline">compressing the PDF</a> first</p>
+                            <p>• Try <a href="/tools/compress-pdf-tool" className="text-blue-600 hover:underline">compressing the PDF</a> first</p>
                             <p>• <a href="/tools/split-pdf-tool" className="text-green-600 hover:underline">Split large documents</a> into smaller sections</p>
                             <p>• Process during off-peak hours for better performance</p>
                           </div>
@@ -1224,7 +1224,7 @@ const UnlockPDFTool = () => {
                       <p className="text-gray-600 text-sm mb-3">
                         Reduce PDF file size while maintaining quality. Optimize your unlocked PDFs for easier sharing and storage.
                       </p>
-                      <a href="/tools/pdf-compressor-advanced" className="text-blue-600 hover:text-blue-700 text-sm font-medium">
+                      <a href="/tools/compress-pdf-tool" className="text-blue-600 hover:text-blue-700 text-sm font-medium">
                         Compress PDFs →
                       </a>
                     </div>

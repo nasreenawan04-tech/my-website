@@ -1151,7 +1151,7 @@ const PDFComparisonTool = () => {
                         <span className="w-1 h-1 bg-red-500 rounded-full mr-3"></span>
                         Remove Blank Pages
                       </a>
-                      <a href="/tools/pdf-compressor-advanced" className="flex items-center text-red-600 hover:text-red-700 transition-colors">
+                      <a href="/tools/compress-pdf-tool" className="flex items-center text-red-600 hover:text-red-700 transition-colors">
                         <span className="w-1 h-1 bg-red-500 rounded-full mr-3"></span>
                         Advanced PDF Compression
                       </a>

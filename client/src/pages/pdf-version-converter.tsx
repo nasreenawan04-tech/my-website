@@ -859,7 +859,7 @@ const PDFVersionConverter = () => {
                       </div>
                       <h3 className="text-lg font-semibold mb-2">PDF Compressor</h3>
                       <p className="text-purple-100 text-sm mb-4">Reduce PDF file size while maintaining quality</p>
-                      <a href="/tools/pdf-compressor-advanced" className="text-white hover:text-purple-200 font-medium text-sm">
+                      <a href="/tools/compress-pdf-tool" className="text-white hover:text-purple-200 font-medium text-sm">
                         Compress PDFs →
                       </a>
                     </div>

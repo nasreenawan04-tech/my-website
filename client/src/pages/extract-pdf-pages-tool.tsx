@@ -670,7 +670,7 @@ const ExtractPDFPagesTool = () => {
                         </div>
                         <p className="text-sm text-gray-600">Fix page orientation by rotating extracted or existing PDF pages.</p>
                       </a>
-                      <a href="/tools/pdf-compressor-advanced" className="bg-white rounded-lg p-4 hover:shadow-md transition-shadow border border-gray-200">
+                      <a href="/tools/compress-pdf-tool" className="bg-white rounded-lg p-4 hover:shadow-md transition-shadow border border-gray-200">
                         <div className="flex items-center mb-2">
                           <i className="fas fa-compress text-red-600 mr-3"></i>
                           <h3 className="font-semibold text-gray-900">Compress PDF</h3>

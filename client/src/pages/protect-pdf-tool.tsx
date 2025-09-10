@@ -1059,7 +1059,7 @@ const ProtectPDFTool = () => {
                     <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6">
                       <h3 className="font-semibold text-gray-900 mb-4">⚡ Optimization & Analysis</h3>
                       <div className="space-y-3">
-                        <a href="/tools/pdf-compressor-advanced" className="flex items-center text-purple-600 hover:text-purple-700 text-sm">
+                        <a href="/tools/compress-pdf-tool" className="flex items-center text-purple-600 hover:text-purple-700 text-sm">
                           <i className="fas fa-compress-alt w-4 mr-2"></i>
                           Compress PDF Files
                         </a>
@@ -1101,7 +1101,7 @@ const ProtectPDFTool = () => {
                       </div>
                       <h3 className="font-semibold text-gray-900 mb-2">Advanced PDF Compressor</h3>
                       <p className="text-sm text-gray-600 mb-4">Reduce PDF file size while maintaining security features. Perfect for sharing protected documents efficiently.</p>
-                      <a href="/tools/pdf-compressor-advanced" className="text-blue-600 hover:text-blue-700 font-medium text-sm">
+                      <a href="/tools/compress-pdf-tool" className="text-blue-600 hover:text-blue-700 font-medium text-sm">
                         Compress PDFs →
                       </a>
                     </div>

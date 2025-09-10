@@ -1237,7 +1237,7 @@ const SplitPDFTool = () => {
                       </div>
                       <h4 className="font-medium text-gray-900 mb-1">Compress PDF</h4>
                       <p className="text-xs text-gray-600 mb-2">Reduce file sizes efficiently</p>
-                      <a href="/tools/pdf-compressor-advanced" className="text-emerald-600 hover:text-emerald-700 text-xs font-medium">
+                      <a href="/tools/compress-pdf-tool" className="text-emerald-600 hover:text-emerald-700 text-xs font-medium">
                         Try Tool →
                       </a>
                     </div>

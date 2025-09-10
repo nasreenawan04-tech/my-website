@@ -74,7 +74,6 @@ const toolsData = [
   { id: 'images-to-pdf', name: 'Images to PDF Merger', description: 'Combine multiple images into a single PDF document', category: 'pdf' as const, icon: 'fas fa-photo-video', href: '/tools/images-to-pdf' },
   
   // Quality & Optimization Tools
-  { id: 'pdf-compressor-advanced', name: 'PDF Compressor (Advanced)', description: 'Reduce file size with multiple compression levels and optimization', category: 'pdf' as const, icon: 'fas fa-compress-alt', isPopular: true, href: '/tools/pdf-compressor-advanced' },
   
   // Security & Access Tools
   { id: 'pdf-redaction-tool', name: 'PDF Redaction Tool', description: 'Black out sensitive information permanently from PDFs', category: 'pdf' as const, icon: 'fas fa-user-secret', href: '/tools/pdf-redaction-tool' },

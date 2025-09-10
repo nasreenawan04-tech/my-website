@@ -807,7 +807,7 @@ const PDFLinkExtractor = () => {
                         </ul>
                         <div className="bg-white rounded-lg p-4 mt-4">
                           <p className="text-sm text-purple-800">
-                            <strong>Related Tools:</strong> Enhance your PDF workflow with our <Link to="/tools/pdf-compressor-advanced" className="text-purple-600 hover:underline">PDF Compressor</Link> and <Link to="/tools/pdf-header-footer-generator" className="text-purple-600 hover:underline">Header/Footer Generator</Link>.
+                            <strong>Related Tools:</strong> Enhance your PDF workflow with our <Link to="/tools/compress-pdf-tool" className="text-purple-600 hover:underline">PDF Compressor</Link> and <Link to="/tools/pdf-header-footer-generator" className="text-purple-600 hover:underline">Header/Footer Generator</Link>.
                           </p>
                         </div>
                       </div>
@@ -1361,7 +1361,7 @@ const PDFLinkExtractor = () => {
                     <div>
                       <h3 className="text-xl font-semibold text-gray-900 mb-4">PDF Enhancement & Optimization</h3>
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <a href="/tools/pdf-compressor-advanced" className="bg-white border rounded-lg p-4 hover:bg-gray-50 transition-colors">
+                        <a href="/tools/compress-pdf-tool" className="bg-white border rounded-lg p-4 hover:bg-gray-50 transition-colors">
                           <h4 className="font-medium text-gray-900 mb-1">PDF Compressor</h4>
                           <p className="text-xs text-gray-600">Reduce file size while maintaining quality</p>
                         </a>

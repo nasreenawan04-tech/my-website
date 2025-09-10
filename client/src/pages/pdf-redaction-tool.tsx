@@ -1115,7 +1115,7 @@ const PDFRedactionTool = () => {
                   <p className="text-gray-600 text-sm">Apply watermarks to redacted documents to indicate confidentiality levels or ownership information.</p>
                 </a>
 
-                <a href="/tools/pdf-compressor-advanced" className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow group">
+                <a href="/tools/compress-pdf-tool" className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow group">
                   <div className="flex items-center mb-3">
                     <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
                       <i className="fas fa-compress-alt text-purple-600"></i>

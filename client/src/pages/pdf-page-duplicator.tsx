@@ -1230,7 +1230,7 @@ const PDFPageDuplicator = () => {
                       <p className="text-gray-600 text-sm mb-4">
                         Reduce file size of PDFs with duplicated pages while maintaining quality for easier sharing and storage.
                       </p>
-                      <a href="/tools/pdf-compressor-advanced" className="text-purple-600 hover:text-purple-700 font-medium text-sm">
+                      <a href="/tools/compress-pdf-tool" className="text-purple-600 hover:text-purple-700 font-medium text-sm">
                         Try PDF Compressor →
                       </a>
                     </div>

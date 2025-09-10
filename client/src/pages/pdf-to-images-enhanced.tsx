@@ -1194,7 +1194,7 @@ const PDFToImagesEnhanced = () => {
                   </div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-3">Advanced PDF Compressor</h3>
                   <p className="text-gray-700 text-sm mb-4">Reduce PDF file size before conversion to optimize processing speed and storage. Maintain quality while significantly reducing file size.</p>
-                  <a href="/tools/pdf-compressor-advanced" className="text-green-600 hover:text-green-700 font-medium text-sm flex items-center">
+                  <a href="/tools/compress-pdf-tool" className="text-green-600 hover:text-green-700 font-medium text-sm flex items-center">
                     Compress PDFs <i className="fas fa-arrow-right ml-2"></i>
                   </a>
                 </div>
@@ -1255,7 +1255,7 @@ const PDFToImagesEnhanced = () => {
                       Web Publishing Workflow
                     </h4>
                     <ol className="space-y-2 text-gray-600 text-sm">
-                      <li>1. <a href="/tools/pdf-compressor-advanced" className="text-blue-600 hover:underline">Compress PDF</a> for faster processing</li>
+                      <li>1. <a href="/tools/compress-pdf-tool" className="text-blue-600 hover:underline">Compress PDF</a> for faster processing</li>
                       <li>2. <a href="/tools/split-pdf-tool" className="text-blue-600 hover:underline">Split PDF</a> to extract specific sections</li>
                       <li>3. Use PDF to Images Enhanced for web-ready images</li>
                       <li>4. Optimize images for your website or blog</li>
