@@ -430,78 +430,149 @@ const PDFBookmarkExtractor = () => {
                   </div>
                 </div>
 
-                {/* Benefits */}
+                {/* Benefits for Different Audiences */}
                 <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Benefits of PDF Bookmark Extraction</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Document Analysis</h3>
-                      <ul className="space-y-2 text-gray-600">
-                        <li className="flex items-start">
-                          <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                          Understand document structure and organization
-                        </li>
-                        <li className="flex items-start">
-                          <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                          Identify key sections and content hierarchy
-                        </li>
-                        <li className="flex items-start">
-                          <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                          Extract chapter and section information
-                        </li>
-                      </ul>
-                    </div>
-                    
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Content Management</h3>
-                      <ul className="space-y-2 text-gray-600">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Benefits of PDF Bookmark Extraction for Every User</h2>
+                  
+                  {/* Students Section */}
+                  <div className="mb-8">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                      <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                        <i className="fas fa-graduation-cap text-blue-600"></i>
+                      </div>
+                      For Students & Researchers
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <ul className="space-y-3 text-gray-600">
                         <li className="flex items-start">
                           <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                          Create detailed table of contents
+                          <span><strong>Academic Paper Analysis:</strong> Extract chapter structures from research papers, dissertations, and academic publications for better understanding and citation purposes</span>
                         </li>
                         <li className="flex items-start">
                           <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                          Generate document summaries and outlines
+                          <span><strong>Study Material Organization:</strong> Create study guides and outlines from textbooks and course materials</span>
                         </li>
                         <li className="flex items-start">
                           <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                          Export navigation data for external use
+                          <span><strong>Literature Review Preparation:</strong> Quickly identify relevant sections in academic papers and research documents</span>
+                        </li>
+                      </ul>
+                      <ul className="space-y-3 text-gray-600">
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span><strong>Research Documentation:</strong> Export bookmark structures to create detailed bibliographies and reference lists</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span><strong>Thesis Writing:</strong> Analyze the structure of successful theses and dissertations in your field</span>
                         </li>
                       </ul>
                     </div>
-                    
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Research & Academia</h3>
-                      <ul className="space-y-2 text-gray-600">
+                  </div>
+
+                  {/* Professionals Section */}
+                  <div className="mb-8">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                      <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                        <i className="fas fa-briefcase text-green-600"></i>
+                      </div>
+                      For Business Professionals
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <ul className="space-y-3 text-gray-600">
                         <li className="flex items-start">
                           <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                          Analyze academic papers and reports structure
+                          <span><strong>Report Analysis:</strong> Extract key sections from business reports, whitepapers, and industry analyses for executive summaries</span>
                         </li>
                         <li className="flex items-start">
                           <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                          Extract citation and reference information
+                          <span><strong>Training Material Management:</strong> Organize corporate training documents and policy manuals</span>
                         </li>
                         <li className="flex items-start">
                           <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                          Create research documentation
+                          <span><strong>Competitive Intelligence:</strong> Analyze competitor documents and industry reports for strategic insights</span>
+                        </li>
+                      </ul>
+                      <ul className="space-y-3 text-gray-600">
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span><strong>Document Digitization:</strong> Convert physical document structures to digital navigation systems</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span><strong>Compliance Documentation:</strong> Extract regulation and policy structures for compliance mapping</span>
                         </li>
                       </ul>
                     </div>
-                    
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Accessibility</h3>
-                      <ul className="space-y-2 text-gray-600">
+                  </div>
+
+                  {/* Content Creators Section */}
+                  <div className="mb-8">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                      <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
+                        <i className="fas fa-edit text-purple-600"></i>
+                      </div>
+                      For Content Creators & Publishers
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <ul className="space-y-3 text-gray-600">
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span><strong>eBook Publishing:</strong> Analyze successful eBook structures to improve your own publications</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span><strong>Content Planning:</strong> Extract chapter outlines from similar publications for inspiration</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span><strong>Technical Documentation:</strong> Create user manuals and guides with proper navigation structures</span>
+                        </li>
+                      </ul>
+                      <ul className="space-y-3 text-gray-600">
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span><strong>SEO Content Structure:</strong> Optimize content hierarchy for better search engine visibility</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span><strong>Digital Marketing:</strong> Extract content outlines from competitor materials for market research</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Legal & Compliance Section */}
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                      <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center mr-3">
+                        <i className="fas fa-balance-scale text-orange-600"></i>
+                      </div>
+                      For Legal & Compliance Teams
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <ul className="space-y-3 text-gray-600">
                         <li className="flex items-start">
                           <span className="w-2 h-2 bg-orange-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                          Improve document navigation for screen readers
+                          <span><strong>Legal Document Analysis:</strong> Extract section structures from contracts, regulations, and legal briefs</span>
                         </li>
                         <li className="flex items-start">
                           <span className="w-2 h-2 bg-orange-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                          Create alternative navigation formats
+                          <span><strong>Compliance Mapping:</strong> Create navigation aids for regulatory documents and policy manuals</span>
                         </li>
                         <li className="flex items-start">
                           <span className="w-2 h-2 bg-orange-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                          Generate text-based content outlines
+                          <span><strong>Case Study Organization:</strong> Structure legal precedents and case law for easier reference</span>
+                        </li>
+                      </ul>
+                      <ul className="space-y-3 text-gray-600">
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-orange-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span><strong>Accessibility Compliance:</strong> Ensure document structures meet accessibility standards</span>
+                        </li>
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-orange-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          <span><strong>Document Discovery:</strong> Quickly locate relevant sections in large legal document sets</span>
                         </li>
                       </ul>
                     </div>
