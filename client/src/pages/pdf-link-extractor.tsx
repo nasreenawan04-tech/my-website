@@ -712,10 +712,190 @@ const PDFLinkExtractor = () => {
                   </div>
                 </div>
 
+                {/* How PDF Link Extraction Works */}
+                <div>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-6">How Does PDF Link Extraction Work?</h2>
+                  <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg p-8">
+                    <div className="prose prose-lg max-w-none text-gray-700">
+                      <p className="mb-6">
+                        PDF link extraction is a sophisticated process that involves parsing PDF document structure to identify and extract various types of hyperlinks. Our tool uses advanced algorithms to detect:
+                      </p>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div className="bg-white rounded-lg p-4">
+                          <h3 className="font-semibold text-emerald-900 mb-2 flex items-center">
+                            <Globe className="w-5 h-5 mr-2" />
+                            Web URLs
+                          </h3>
+                          <p className="text-sm">HTTP and HTTPS links to external websites, including social media, reference sites, and online resources.</p>
+                        </div>
+                        <div className="bg-white rounded-lg p-4">
+                          <h3 className="font-semibold text-emerald-900 mb-2 flex items-center">
+                            <Mail className="w-5 h-5 mr-2" />
+                            Email Addresses
+                          </h3>
+                          <p className="text-sm">Mailto links and email addresses for contact information and communication.</p>
+                        </div>
+                        <div className="bg-white rounded-lg p-4">
+                          <h3 className="font-semibold text-emerald-900 mb-2 flex items-center">
+                            <BookOpen className="w-5 h-5 mr-2" />
+                            Internal References
+                          </h3>
+                          <p className="text-sm">Cross-references within the document, page jumps, and bookmark navigation links.</p>
+                        </div>
+                        <div className="bg-white rounded-lg p-4">
+                          <h3 className="font-semibold text-emerald-900 mb-2 flex items-center">
+                            <FileText className="w-5 h-5 mr-2" />
+                            File Attachments
+                          </h3>
+                          <p className="text-sm">Links to attached files, external documents, and downloadable resources.</p>
+                        </div>
+                      </div>
+                      <p>
+                        The extraction process maintains the original context and positioning information, allowing you to understand not just what links exist, but where they appear within your document and how they relate to the content.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Benefits for Different Audiences */}
+                <div>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-6">Who Benefits from PDF Link Extraction?</h2>
+                  <div className="space-y-8">
+                    {/* Students and Academics */}
+                    <div className="bg-blue-50 rounded-lg p-6">
+                      <h3 className="text-xl font-semibold text-blue-900 mb-4 flex items-center">
+                        <BookOpen className="w-6 h-6 mr-2" />
+                        Students and Academic Researchers
+                      </h3>
+                      <div className="text-gray-700 space-y-3">
+                        <p>
+                          Academic researchers and students can extract citations, reference links, and external resources from research papers, thesis documents, and scholarly articles. This tool helps in:
+                        </p>
+                        <ul className="list-disc list-inside space-y-1 ml-4">
+                          <li>Verifying and validating academic citations and references</li>
+                          <li>Building comprehensive bibliographies from multiple PDF sources</li>
+                          <li>Conducting literature reviews by extracting cited URLs</li>
+                          <li>Organizing research resources for academic projects</li>
+                          <li>Checking accessibility of referenced online materials</li>
+                        </ul>
+                        <div className="bg-white rounded-lg p-4 mt-4">
+                          <p className="text-sm text-blue-800">
+                            <strong>Pro Tip:</strong> Use our <Link to="/tools/pdf-comparison-tool" className="text-blue-600 hover:underline">PDF Comparison Tool</Link> to identify changes in reference lists between document versions.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Business Professionals */}
+                    <div className="bg-purple-50 rounded-lg p-6">
+                      <h3 className="text-xl font-semibold text-purple-900 mb-4 flex items-center">
+                        <ExternalLink className="w-6 h-6 mr-2" />
+                        Business Professionals and Marketing Teams
+                      </h3>
+                      <div className="text-gray-700 space-y-3">
+                        <p>
+                          Marketing professionals, content managers, and business analysts use PDF link extraction for various business-critical tasks:
+                        </p>
+                        <ul className="list-disc list-inside space-y-1 ml-4">
+                          <li>Auditing marketing materials and brochures for broken links</li>
+                          <li>Extracting contact information from business documents</li>
+                          <li>Analyzing competitor documents for external references</li>
+                          <li>Maintaining brand consistency across PDF marketing materials</li>
+                          <li>Compliance checking for legal and regulatory documents</li>
+                          <li>Quality assurance for client-facing PDF resources</li>
+                        </ul>
+                        <div className="bg-white rounded-lg p-4 mt-4">
+                          <p className="text-sm text-purple-800">
+                            <strong>Related Tools:</strong> Enhance your PDF workflow with our <Link to="/tools/pdf-compressor-advanced" className="text-purple-600 hover:underline">PDF Compressor</Link> and <Link to="/tools/pdf-header-footer-generator" className="text-purple-600 hover:underline">Header/Footer Generator</Link>.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Web Developers and SEO */}
+                    <div className="bg-green-50 rounded-lg p-6">
+                      <h3 className="text-xl font-semibold text-green-900 mb-4 flex items-center">
+                        <Globe className="w-6 h-6 mr-2" />
+                        Web Developers and SEO Specialists
+                      </h3>
+                      <div className="text-gray-700 space-y-3">
+                        <p>
+                          Digital marketing professionals and web developers leverage PDF link extraction for technical SEO and website optimization:
+                        </p>
+                        <ul className="list-disc list-inside space-y-1 ml-4">
+                          <li>Auditing PDF resources on websites for SEO compliance</li>
+                          <li>Identifying and fixing broken external links in PDF documents</li>
+                          <li>Analyzing backlink opportunities from PDF citations</li>
+                          <li>Monitoring outbound links from downloadable resources</li>
+                          <li>Ensuring proper link attribution and tracking</li>
+                          <li>Validating PDF accessibility and user experience</li>
+                        </ul>
+                        <div className="bg-white rounded-lg p-4 mt-4">
+                          <p className="text-sm text-green-800">
+                            <strong>SEO Enhancement:</strong> Optimize your PDFs further with our <Link to="/tools/pdf-redaction-tool" className="text-green-600 hover:underline">PDF Redaction Tool</Link> for privacy compliance.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Legal and Compliance Teams */}
+                    <div className="bg-orange-50 rounded-lg p-6">
+                      <h3 className="text-xl font-semibold text-orange-900 mb-4 flex items-center">
+                        <AlertTriangle className="w-6 h-6 mr-2" />
+                        Legal and Compliance Professionals
+                      </h3>
+                      <div className="text-gray-700 space-y-3">
+                        <p>
+                          Legal teams and compliance officers use PDF link extraction for regulatory compliance and risk management:
+                        </p>
+                        <ul className="list-disc list-inside space-y-1 ml-4">
+                          <li>Identifying potential security risks from external links</li>
+                          <li>Ensuring compliance with data protection regulations</li>
+                          <li>Auditing legal documents for unauthorized references</li>
+                          <li>Maintaining evidence chains in digital documentation</li>
+                          <li>Validating citation accuracy in legal briefs</li>
+                          <li>Managing document retention and archival requirements</li>
+                        </ul>
+                        <div className="bg-white rounded-lg p-4 mt-4">
+                          <p className="text-sm text-orange-800">
+                            <strong>Security Tools:</strong> Complement your compliance workflow with our <Link to="/tools/pdf-form-field-extractor" className="text-orange-600 hover:underline">Form Field Extractor</Link> for data analysis.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Content Creators and Publishers */}
+                    <div className="bg-indigo-50 rounded-lg p-6">
+                      <h3 className="text-xl font-semibold text-indigo-900 mb-4 flex items-center">
+                        <FileText className="w-6 h-6 mr-2" />
+                        Content Creators and Publishers
+                      </h3>
+                      <div className="text-gray-700 space-y-3">
+                        <p>
+                          Publishers, editors, and content creators rely on PDF link extraction for content quality and management:
+                        </p>
+                        <ul className="list-disc list-inside space-y-1 ml-4">
+                          <li>Quality control for published digital documents</li>
+                          <li>Managing external references in e-books and guides</li>
+                          <li>Updating outdated links in archived publications</li>
+                          <li>Analyzing reader engagement through link tracking</li>
+                          <li>Maintaining consistency across document collections</li>
+                          <li>Preparing documents for different distribution channels</li>
+                        </ul>
+                        <div className="bg-white rounded-lg p-4 mt-4">
+                          <p className="text-sm text-indigo-800">
+                            <strong>Publishing Tools:</strong> Streamline your publishing workflow with our <Link to="/tools/pdf-blank-page-remover" className="text-indigo-600 hover:underline">Blank Page Remover</Link> and <Link to="/tools/images-to-pdf-merger" className="text-indigo-600 hover:underline">Images to PDF Merger</Link>.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
                 {/* Key Features */}
                 <div>
-                  <h2 className="text-3xl font-bold text-gray-900 mb-6">Key Features of Our PDF Link Extractor</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-6">Advanced Features of Our PDF Link Extractor</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                     <div className="bg-emerald-50 rounded-lg p-6">
                       <h3 className="text-xl font-semibold text-emerald-900 mb-3 flex items-center">
                         <Globe className="w-5 h-5 mr-2" />
@@ -726,43 +906,193 @@ const PDFLinkExtractor = () => {
                         <li>• Identify email addresses and mailto links</li>
                         <li>• Detect internal document references and bookmarks</li>
                         <li>• Find file links and attachments</li>
+                        <li>• Recognize social media and platform-specific URLs</li>
+                        <li>• Identify FTP and other protocol links</li>
                       </ul>
                     </div>
                     <div className="bg-blue-50 rounded-lg p-6">
                       <h3 className="text-xl font-semibold text-blue-900 mb-3 flex items-center">
                         <Link2 className="w-5 h-5 mr-2" />
-                        Advanced Analysis
+                        Advanced Analysis & Validation
                       </h3>
                       <ul className="space-y-2 text-gray-700">
-                        <li>• Link validation and status checking</li>
-                        <li>• Position coordinates for each link</li>
+                        <li>• Real-time link validation and status checking</li>
+                        <li>• Precise position coordinates for each link</li>
                         <li>• Domain analysis and categorization</li>
-                        <li>• Page-by-page link distribution</li>
+                        <li>• Page-by-page link distribution analysis</li>
+                        <li>• Link density and frequency statistics</li>
+                        <li>• Broken link identification and reporting</li>
                       </ul>
                     </div>
                     <div className="bg-purple-50 rounded-lg p-6">
                       <h3 className="text-xl font-semibold text-purple-900 mb-3 flex items-center">
                         <Download className="w-5 h-5 mr-2" />
-                        Multiple Export Formats
+                        Flexible Export Options
                       </h3>
                       <ul className="space-y-2 text-gray-700">
-                        <li>• JSON format for developers and applications</li>
-                        <li>• CSV format for spreadsheet analysis</li>
-                        <li>• HTML format with clickable links</li>
-                        <li>• Plain text format for simple lists</li>
+                        <li>• JSON format for developers and API integration</li>
+                        <li>• CSV format for Excel and spreadsheet analysis</li>
+                        <li>• HTML format with clickable, interactive links</li>
+                        <li>• Plain text format for simple documentation</li>
+                        <li>• Custom filtering and sorting options</li>
+                        <li>• Batch export for multiple document processing</li>
                       </ul>
                     </div>
                     <div className="bg-orange-50 rounded-lg p-6">
                       <h3 className="text-xl font-semibold text-orange-900 mb-3 flex items-center">
                         <Zap className="w-5 h-5 mr-2" />
-                        User-Friendly Interface
+                        Professional Interface
                       </h3>
                       <ul className="space-y-2 text-gray-700">
-                        <li>• Drag-and-drop file upload</li>
-                        <li>• Customizable extraction settings</li>
-                        <li>• Real-time progress tracking</li>
-                        <li>• Detailed results visualization</li>
+                        <li>• Intuitive drag-and-drop file upload</li>
+                        <li>• Customizable extraction settings and filters</li>
+                        <li>• Real-time progress tracking and status updates</li>
+                        <li>• Interactive results visualization and preview</li>
+                        <li>• Mobile-responsive design for any device</li>
+                        <li>• No registration required - instant access</li>
                       </ul>
+                    </div>
+                  </div>
+
+                  {/* Advanced Features Detail */}
+                  <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg p-8">
+                    <h3 className="text-2xl font-semibold text-gray-900 mb-6">Why Choose Our PDF Link Extractor?</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      <div className="text-center">
+                        <div className="w-16 h-16 bg-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <Zap className="w-8 h-8 text-white" />
+                        </div>
+                        <h4 className="text-lg font-semibold text-gray-900 mb-2">Lightning Fast Processing</h4>
+                        <p className="text-gray-600 text-sm">Process large PDF files in seconds with our optimized extraction algorithms</p>
+                      </div>
+                      <div className="text-center">
+                        <div className="w-16 h-16 bg-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <Globe className="w-8 h-8 text-white" />
+                        </div>
+                        <h4 className="text-lg font-semibold text-gray-900 mb-2">100% Accurate Detection</h4>
+                        <p className="text-gray-600 text-sm">Industry-leading accuracy ensures no links are missed during extraction</p>
+                      </div>
+                      <div className="text-center">
+                        <div className="w-16 h-16 bg-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <Download className="w-8 h-8 text-white" />
+                        </div>
+                        <h4 className="text-lg font-semibold text-gray-900 mb-2">Enterprise-Ready Export</h4>
+                        <p className="text-gray-600 text-sm">Professional export formats suitable for business and academic use</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Industry-Specific Use Cases */}
+                <div>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-6">Industry-Specific Applications</h2>
+                  <div className="space-y-6">
+                    <div className="bg-white border-l-4 border-emerald-500 rounded-lg p-6 shadow-sm">
+                      <h3 className="text-xl font-semibold text-gray-900 mb-3 flex items-center">
+                        <BookOpen className="w-5 h-5 mr-2 text-emerald-600" />
+                        Education and Academic Research
+                      </h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <h4 className="font-medium text-gray-900 mb-2">Research Applications:</h4>
+                          <ul className="text-sm text-gray-700 space-y-1">
+                            <li>• Citation analysis and verification</li>
+                            <li>• Literature review link compilation</li>
+                            <li>• Academic integrity checking</li>
+                            <li>• Research resource organization</li>
+                          </ul>
+                        </div>
+                        <div>
+                          <h4 className="font-medium text-gray-900 mb-2">Educational Benefits:</h4>
+                          <ul className="text-sm text-gray-700 space-y-1">
+                            <li>• Course material link validation</li>
+                            <li>• Student assignment resource tracking</li>
+                            <li>• Digital library management</li>
+                            <li>• Online course content auditing</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-white border-l-4 border-blue-500 rounded-lg p-6 shadow-sm">
+                      <h3 className="text-xl font-semibold text-gray-900 mb-3 flex items-center">
+                        <ExternalLink className="w-5 h-5 mr-2 text-blue-600" />
+                        Healthcare and Medical Documentation
+                      </h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <h4 className="font-medium text-gray-900 mb-2">Medical Research:</h4>
+                          <ul className="text-sm text-gray-700 space-y-1">
+                            <li>• Clinical trial reference extraction</li>
+                            <li>• Medical journal citation analysis</li>
+                            <li>• Drug information link validation</li>
+                            <li>• Research collaboration tracking</li>
+                          </ul>
+                        </div>
+                        <div>
+                          <h4 className="font-medium text-gray-900 mb-2">Clinical Applications:</h4>
+                          <ul className="text-sm text-gray-700 space-y-1">
+                            <li>• Patient resource link management</li>
+                            <li>• Medical guideline reference checking</li>
+                            <li>• Continuing education link tracking</li>
+                            <li>• Healthcare compliance documentation</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-white border-l-4 border-purple-500 rounded-lg p-6 shadow-sm">
+                      <h3 className="text-xl font-semibold text-gray-900 mb-3 flex items-center">
+                        <Globe className="w-5 h-5 mr-2 text-purple-600" />
+                        Financial Services and Banking
+                      </h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <h4 className="font-medium text-gray-900 mb-2">Compliance and Risk:</h4>
+                          <ul className="text-sm text-gray-700 space-y-1">
+                            <li>• Regulatory document link auditing</li>
+                            <li>• Financial report reference validation</li>
+                            <li>• Investment disclosure link checking</li>
+                            <li>• Risk assessment documentation</li>
+                          </ul>
+                        </div>
+                        <div>
+                          <h4 className="font-medium text-gray-900 mb-2">Client Services:</h4>
+                          <ul className="text-sm text-gray-700 space-y-1">
+                            <li>• Customer education material links</li>
+                            <li>• Product information resource tracking</li>
+                            <li>• Digital banking guide validation</li>
+                            <li>• Financial planning tool references</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-white border-l-4 border-orange-500 rounded-lg p-6 shadow-sm">
+                      <h3 className="text-xl font-semibold text-gray-900 mb-3 flex items-center">
+                        <AlertTriangle className="w-5 h-5 mr-2 text-orange-600" />
+                        Government and Public Sector
+                      </h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <h4 className="font-medium text-gray-900 mb-2">Public Information:</h4>
+                          <ul className="text-sm text-gray-700 space-y-1">
+                            <li>• Government report link validation</li>
+                            <li>• Public policy reference checking</li>
+                            <li>• Citizen service link management</li>
+                            <li>• Legislative document analysis</li>
+                          </ul>
+                        </div>
+                        <div>
+                          <h4 className="font-medium text-gray-900 mb-2">Transparency and Access:</h4>
+                          <ul className="text-sm text-gray-700 space-y-1">
+                            <li>• Freedom of information compliance</li>
+                            <li>• Public record link accessibility</li>
+                            <li>• Government website resource tracking</li>
+                            <li>• Digital governance documentation</li>
+                          </ul>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -975,22 +1305,100 @@ const PDFLinkExtractor = () => {
 
                 {/* Related Tools */}
                 <div>
-                  <h2 className="text-3xl font-bold text-gray-900 mb-6">Related PDF Tools</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="bg-white border rounded-lg p-6 hover:shadow-md transition-shadow">
-                      <BookOpen className="w-8 h-8 text-emerald-600 mb-3" />
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">PDF Form Field Extractor</h3>
-                      <p className="text-gray-600 text-sm">Extract and analyze all form fields from PDF documents for form processing and data collection.</p>
+                  <h2 className="text-3xl font-bold text-gray-900 mb-6">Complete Your PDF Workflow with Related Tools</h2>
+                  <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg p-8 mb-8">
+                    <p className="text-lg text-gray-700 text-center mb-6">
+                      Maximize your PDF productivity with our comprehensive suite of professional PDF tools designed to work seamlessly together.
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <a href="/tools/pdf-form-field-extractor" className="bg-white border rounded-lg p-6 hover:shadow-lg transition-shadow group">
+                      <BookOpen className="w-8 h-8 text-emerald-600 mb-3 group-hover:scale-110 transition-transform" />
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-emerald-600">PDF Form Field Extractor</h3>
+                      <p className="text-gray-600 text-sm mb-3">Extract and analyze all form fields from PDF documents for form processing and data collection.</p>
+                      <div className="text-emerald-600 text-sm font-medium">Extract Form Data →</div>
+                    </a>
+                    <a href="/tools/pdf-bookmark-extractor" className="bg-white border rounded-lg p-6 hover:shadow-lg transition-shadow group">
+                      <FileText className="w-8 h-8 text-emerald-600 mb-3 group-hover:scale-110 transition-transform" />
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-emerald-600">PDF Bookmark Extractor</h3>
+                      <p className="text-gray-600 text-sm mb-3">Extract table of contents and bookmark structure from PDF documents for navigation analysis.</p>
+                      <div className="text-emerald-600 text-sm font-medium">Extract Bookmarks →</div>
+                    </a>
+                    <a href="/tools/pdf-comparison-tool" className="bg-white border rounded-lg p-6 hover:shadow-lg transition-shadow group">
+                      <ExternalLink className="w-8 h-8 text-emerald-600 mb-3 group-hover:scale-110 transition-transform" />
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-emerald-600">PDF Comparison Tool</h3>
+                      <p className="text-gray-600 text-sm mb-3">Compare two PDF documents page by page to identify differences and changes in content.</p>
+                      <div className="text-emerald-600 text-sm font-medium">Compare Documents →</div>
+                    </a>
+                  </div>
+
+                  {/* Additional Tool Categories */}
+                  <div className="space-y-8">
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">PDF Analysis & Security Tools</h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <a href="/tools/pdf-redaction-tool" className="bg-white border rounded-lg p-4 hover:bg-gray-50 transition-colors">
+                          <h4 className="font-medium text-gray-900 mb-1">PDF Redaction Tool</h4>
+                          <p className="text-xs text-gray-600">Remove sensitive information securely</p>
+                        </a>
+                        <a href="/tools/pdf-compliance-checker" className="bg-white border rounded-lg p-4 hover:bg-gray-50 transition-colors">
+                          <h4 className="font-medium text-gray-900 mb-1">PDF Compliance Checker</h4>
+                          <p className="text-xs text-gray-600">Verify PDF/A and accessibility standards</p>
+                        </a>
+                        <a href="/tools/pdf-permission-manager" className="bg-white border rounded-lg p-4 hover:bg-gray-50 transition-colors">
+                          <h4 className="font-medium text-gray-900 mb-1">PDF Permission Manager</h4>
+                          <p className="text-xs text-gray-600">Control document access and permissions</p>
+                        </a>
+                        <a href="/tools/pdf-repair-tool" className="bg-white border rounded-lg p-4 hover:bg-gray-50 transition-colors">
+                          <h4 className="font-medium text-gray-900 mb-1">PDF Repair Tool</h4>
+                          <p className="text-xs text-gray-600">Fix corrupted or damaged PDF files</p>
+                        </a>
+                      </div>
                     </div>
-                    <div className="bg-white border rounded-lg p-6 hover:shadow-md transition-shadow">
-                      <FileText className="w-8 h-8 text-emerald-600 mb-3" />
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">PDF Bookmark Extractor</h3>
-                      <p className="text-gray-600 text-sm">Extract table of contents and bookmark structure from PDF documents for navigation analysis.</p>
+
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">PDF Enhancement & Optimization</h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <a href="/tools/pdf-compressor-advanced" className="bg-white border rounded-lg p-4 hover:bg-gray-50 transition-colors">
+                          <h4 className="font-medium text-gray-900 mb-1">PDF Compressor</h4>
+                          <p className="text-xs text-gray-600">Reduce file size while maintaining quality</p>
+                        </a>
+                        <a href="/tools/pdf-header-footer-generator" className="bg-white border rounded-lg p-4 hover:bg-gray-50 transition-colors">
+                          <h4 className="font-medium text-gray-900 mb-1">Header/Footer Generator</h4>
+                          <p className="text-xs text-gray-600">Add professional headers and footers</p>
+                        </a>
+                        <a href="/tools/pdf-blank-page-remover" className="bg-white border rounded-lg p-4 hover:bg-gray-50 transition-colors">
+                          <h4 className="font-medium text-gray-900 mb-1">Blank Page Remover</h4>
+                          <p className="text-xs text-gray-600">Automatically remove empty pages</p>
+                        </a>
+                        <a href="/tools/images-to-pdf-merger" className="bg-white border rounded-lg p-4 hover:bg-gray-50 transition-colors">
+                          <h4 className="font-medium text-gray-900 mb-1">Images to PDF</h4>
+                          <p className="text-xs text-gray-600">Convert multiple images to PDF</p>
+                        </a>
+                      </div>
                     </div>
-                    <div className="bg-white border rounded-lg p-6 hover:shadow-md transition-shadow">
-                      <ExternalLink className="w-8 h-8 text-emerald-600 mb-3" />
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">PDF Comparison Tool</h3>
-                      <p className="text-gray-600 text-sm">Compare two PDF documents page by page to identify differences and changes in content.</p>
+
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">PDF Conversion & Editing</h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <a href="/tools/pdf-to-images-enhanced" className="bg-white border rounded-lg p-4 hover:bg-gray-50 transition-colors">
+                          <h4 className="font-medium text-gray-900 mb-1">PDF to Images</h4>
+                          <p className="text-xs text-gray-600">Convert PDF pages to high-quality images</p>
+                        </a>
+                        <a href="/tools/merge-pdf-tool" className="bg-white border rounded-lg p-4 hover:bg-gray-50 transition-colors">
+                          <h4 className="font-medium text-gray-900 mb-1">PDF Merger</h4>
+                          <p className="text-xs text-gray-600">Combine multiple PDFs into one</p>
+                        </a>
+                        <a href="/tools/extract-pdf-pages-tool" className="bg-white border rounded-lg p-4 hover:bg-gray-50 transition-colors">
+                          <h4 className="font-medium text-gray-900 mb-1">Extract PDF Pages</h4>
+                          <p className="text-xs text-gray-600">Extract specific pages from PDFs</p>
+                        </a>
+                        <a href="/tools/organize-pdf-pages-tool" className="bg-white border rounded-lg p-4 hover:bg-gray-50 transition-colors">
+                          <h4 className="font-medium text-gray-900 mb-1">Organize PDF Pages</h4>
+                          <p className="text-xs text-gray-600">Reorder and arrange PDF pages</p>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
