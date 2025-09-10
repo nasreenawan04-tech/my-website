@@ -435,66 +435,561 @@ const PDFMarginAdjuster = () => {
                 </CardContent>
               </Card>
 
-              {/* Comprehensive SEO Content */}
-              <div className="mt-12 space-y-8">
-                {/* About PDF Margin Adjustment */}
+              {/* Enhanced SEO Content Sections */}
+              <div className="mt-12 space-y-12">
+                {/* What is PDF Margin Adjuster */}
                 <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">About PDF Margin Adjustment</h2>
-                  <div className="prose max-w-none text-gray-600">
-                    <p className="mb-4">
-                      PDF Margin Adjuster is a powerful online tool that allows you to add margins to PDF pages or crop borders by removing unwanted margins. Whether you need to create white space around your content for better presentation or remove excessive borders to maximize page usage, our tool provides precise control over all four margins of your PDF documents.
+                  <h2 className="text-3xl font-bold text-gray-900 mb-6">What is a PDF Margin Adjuster Tool?</h2>
+                  <div className="prose max-w-none text-gray-700 leading-relaxed">
+                    <p className="text-lg mb-6">
+                      A <strong>PDF Margin Adjuster</strong> is a specialized document processing tool designed to modify the whitespace and borders around PDF content with precision control. This essential utility allows users to either add margins (creating additional whitespace for binding, annotations, or improved readability) or remove margins (cropping excessive borders to maximize content space and optimize page usage), ensuring documents meet specific formatting requirements for printing, binding, or digital presentation.
                     </p>
-                    <p className="mb-4">
-                      This free PDF margin tool supports both adding margins (increasing page size with white borders) and removing margins (cropping content to reduce page size). Perfect for academic papers, business documents, presentations, and any PDF that needs margin adjustments for printing, binding, or digital display purposes.
+                    <p className="text-lg mb-6">
+                      Our advanced PDF margin adjustment technology operates on a millimeter-precise level, offering individual control over top, bottom, left, and right margins for each page in your document. Unlike simple PDF cropping tools, our margin adjuster intelligently handles document structure, maintains content quality, preserves text formatting, and ensures consistent results across multi-page documents while providing real-time preview capabilities for optimal user control.
                     </p>
-                    <p>
-                      Our margin adjuster maintains the original quality of your PDF content while providing millimeter-precise control over top, bottom, left, and right margins. The tool works entirely in your browser, ensuring your documents remain private and secure.
+                    <p className="text-lg mb-6">
+                      The tool supports two primary operations: <strong>Add Margins</strong> (expanding page dimensions with configurable whitespace) and <strong>Remove Margins</strong> (intelligent cropping that eliminates unwanted borders while preserving essential content). This dual functionality makes it perfect for academic paper formatting, business document standardization, print preparation, binding optimization, and digital presentation enhancement.
+                    </p>
+                    <p className="text-lg">
+                      Whether you're preparing academic submissions with specific margin requirements, optimizing business documents for professional presentation, preparing files for binding with proper spacing, or cropping scanned documents to remove scanner borders, our PDF Margin Adjuster delivers professional-grade results with browser-based security and privacy protection.
                     </p>
                   </div>
                 </div>
 
-                {/* How it Works */}
+                {/* Benefits for Different Audiences */}
                 <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">How PDF Margin Adjustment Works</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Benefits for Different Audiences</h2>
+                  
+                  {/* Students & Academic Researchers */}
+                  <div className="mb-10">
+                    <div className="flex items-center mb-6">
+                      <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                        <i className="fas fa-graduation-cap text-blue-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-2xl font-semibold text-gray-900">Students & Academic Researchers</h3>
+                    </div>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <h4 className="text-lg font-semibold text-gray-900 mb-3">Academic Formatting Requirements</h4>
+                        <p className="text-gray-700 mb-4">
+                          Meet strict university and journal submission guidelines that require specific margin dimensions (typically 1-1.5 inches for academic papers). Our tool ensures your thesis, dissertations, and research papers comply with institutional formatting standards, preventing submission delays due to incorrect margins.
+                        </p>
+                        <ul className="text-gray-600 space-y-2">
+                          <li className="flex items-start">
+                            <span className="text-green-600 mr-2">✓</span>
+                            <span>Comply with MLA, APA, and Chicago style margin requirements</span>
+                          </li>
+                          <li className="flex items-start">
+                            <span className="text-green-600 mr-2">✓</span>
+                            <span>Prepare documents for binding with proper gutter margins</span>
+                          </li>
+                          <li className="flex items-start">
+                            <span className="text-green-600 mr-2">✓</span>
+                            <span>Add space for professor comments and annotations</span>
+                          </li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-semibold text-gray-900 mb-3">Research Document Optimization</h4>
+                        <p className="text-gray-700 mb-4">
+                          Optimize scanned research papers, historical documents, and academic resources by removing scanner borders and excessive whitespace. Perfect for creating clean digital archives and improving readability of research materials.
+                        </p>
+                        <div className="bg-blue-50 p-4 rounded-lg">
+                          <p className="text-blue-800 text-sm font-medium">Study Tip:</p>
+                          <p className="text-blue-700 text-sm">Use our <a href="/tools/pdf-bookmark-extractor" className="text-blue-600 hover:text-blue-800 underline">bookmark extractor</a> to create navigation aids for your formatted research documents.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Business Professionals */}
+                  <div className="mb-10">
+                    <div className="flex items-center mb-6">
+                      <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                        <i className="fas fa-briefcase text-green-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-2xl font-semibold text-gray-900">Business Professionals & Corporate Teams</h3>
+                    </div>
+                    <div className="grid md:grid-cols-3 gap-6">
+                      <div className="bg-gray-50 p-6 rounded-lg">
+                        <h4 className="text-lg font-semibold text-gray-900 mb-3">Professional Presentations</h4>
+                        <p className="text-gray-700 text-sm mb-3">
+                          Create polished business documents with consistent margins for client presentations, proposals, and reports. Add professional whitespace for binding or remove excessive borders from scanned contracts and agreements.
+                        </p>
+                        <p className="text-gray-600 text-sm">
+                          Essential for maintaining brand consistency and professional appearance across all business communications.
+                        </p>
+                      </div>
+                      <div className="bg-gray-50 p-6 rounded-lg">
+                        <h4 className="text-lg font-semibold text-gray-900 mb-3">Document Standardization</h4>
+                        <p className="text-gray-700 text-sm mb-3">
+                          Standardize margin formatting across corporate document collections, ensuring consistent appearance for training materials, policy documents, and operational procedures across different departments and locations.
+                        </p>
+                        <p className="text-gray-600 text-sm">
+                          Streamline document management and improve visual consistency for corporate documentation systems.
+                        </p>
+                      </div>
+                      <div className="bg-gray-50 p-6 rounded-lg">
+                        <h4 className="text-lg font-semibold text-gray-900 mb-3">Print Optimization</h4>
+                        <p className="text-gray-700 text-sm mb-3">
+                          Optimize documents for cost-effective printing by removing unnecessary whitespace or adding margins for binding requirements. Perfect for bulk printing of manuals, reports, and training materials.
+                        </p>
+                        <p className="text-gray-600 text-sm">
+                          Reduce printing costs while ensuring professional presentation for bound documents and presentations.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Content Creators & Publishers */}
+                  <div className="mb-10">
+                    <div className="flex items-center mb-6">
+                      <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                        <i className="fas fa-palette text-purple-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-2xl font-semibold text-gray-900">Content Creators & Publishers</h3>
+                    </div>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <h4 className="text-lg font-semibold text-gray-900 mb-3">Publishing & Print Layout</h4>
+                        <p className="text-gray-700 mb-4">
+                          Prepare manuscripts, eBooks, and publication layouts with precise margin control for different print formats. Add bleed margins for professional printing or remove scanner artifacts from digitized content for clean digital publishing.
+                        </p>
+                        <p className="text-gray-600 mb-4">
+                          Essential for self-publishers, content creators, and small publishing houses requiring professional document formatting without expensive design software.
+                        </p>
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-semibold text-gray-900 mb-3">Digital Content Optimization</h4>
+                        <p className="text-gray-700 mb-4">
+                          Optimize PDF content for digital distribution by removing excessive whitespace, creating better screen readability, and maximizing content density for mobile and tablet viewing experiences.
+                        </p>
+                        <div className="bg-purple-50 p-4 rounded-lg">
+                          <p className="text-purple-800 text-sm font-medium">Creator Tip:</p>
+                          <p className="text-purple-700 text-sm">Combine with our <a href="/tools/compress-pdf" className="text-purple-600 hover:text-purple-800 underline">PDF compressor</a> to optimize both margins and file size for web distribution.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* How It Works - Enhanced */}
+                <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl shadow-lg p-8">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-8">How Our PDF Margin Adjuster Works</h2>
+                  <div className="grid md:grid-cols-4 gap-6 mb-8">
                     <div className="text-center">
                       <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <Upload className="w-8 h-8 text-green-600" />
+                        <span className="text-2xl font-bold text-green-600">1</span>
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">1. Upload PDF</h3>
-                      <p className="text-gray-600">
-                        Select a PDF file that needs margin adjustment or border cropping.
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Upload & Analysis</h3>
+                      <p className="text-gray-600 text-sm">
+                        Upload your PDF file and our tool automatically analyzes current page dimensions, content positioning, and optimal margin adjustment strategies.
                       </p>
                     </div>
-                    
                     <div className="text-center">
                       <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <Crop className="w-8 h-8 text-teal-600" />
+                        <span className="text-2xl font-bold text-teal-600">2</span>
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">2. Adjust Margins</h3>
-                      <p className="text-gray-600">
-                        Choose to add or remove margins and set precise values for each side.
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Operation Selection</h3>
+                      <p className="text-gray-600 text-sm">
+                        Choose between adding margins (expanding page size) or removing margins (cropping borders), then set precise measurements for each side.
                       </p>
                     </div>
-                    
                     <div className="text-center">
                       <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <Download className="w-8 h-8 text-blue-600" />
+                        <span className="text-2xl font-bold text-blue-600">3</span>
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">3. Download</h3>
-                      <p className="text-gray-600">
-                        Get your PDF with perfectly adjusted margins for better presentation.
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Precision Adjustment</h3>
+                      <p className="text-gray-600 text-sm">
+                        Use intuitive sliders to set exact margin dimensions (0-50mm) with real-time preview showing the effect on your document layout.
+                      </p>
+                    </div>
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span className="text-2xl font-bold text-orange-600">4</span>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Download Result</h3>
+                      <p className="text-gray-600 text-sm">
+                        Download your professionally adjusted PDF with perfect margins, maintained content quality, and consistent formatting across all pages.
                       </p>
                     </div>
                   </div>
                   
-                  <div className="prose max-w-none text-gray-600">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Detailed Process:</h3>
-                    <ul className="space-y-2 text-sm">
-                      <li><strong>Upload:</strong> Drag and drop your PDF file or click to select from your computer</li>
-                      <li><strong>Choose Operation:</strong> Select "Add Margins" to increase page size or "Remove Margins" to crop borders</li>
-                      <li><strong>Set Margins:</strong> Use the intuitive sliders to adjust top, bottom, left, and right margins (0-50mm)</li>
-                      <li><strong>Preview:</strong> See the margin preview before processing to ensure desired results</li>
+                  <div className="bg-white rounded-lg p-6">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Advanced Processing Features</h3>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <h4 className="text-lg font-semibold text-gray-900 mb-3">Intelligent Content Preservation</h4>
+                        <ul className="space-y-2 text-gray-600 text-sm">
+                          <li className="flex items-start">
+                            <span className="text-green-600 mr-2">•</span>
+                            <span>Maintains text quality and vector graphics sharpness during margin adjustments</span>
+                          </li>
+                          <li className="flex items-start">
+                            <span className="text-green-600 mr-2">•</span>
+                            <span>Preserves embedded images, charts, and diagrams at original resolution</span>
+                          </li>
+                          <li className="flex items-start">
+                            <span className="text-green-600 mr-2">•</span>
+                            <span>Maintains document metadata and bookmarks throughout the process</span>
+                          </li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-semibold text-gray-900 mb-3">Precision Control System</h4>
+                        <ul className="space-y-2 text-gray-600 text-sm">
+                          <li className="flex items-start">
+                            <span className="text-green-600 mr-2">•</span>
+                            <span>Millimeter-precise margin adjustments for professional accuracy</span>
+                          </li>
+                          <li className="flex items-start">
+                            <span className="text-green-600 mr-2">•</span>
+                            <span>Independent control over top, bottom, left, and right margins</span>
+                          </li>
+                          <li className="flex items-start">
+                            <span className="text-green-600 mr-2">•</span>
+                            <span>Real-time preview with exact measurement display</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Use Cases by Industry */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Industry-Specific Applications</h2>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="bg-blue-50 rounded-lg p-6">
+                      <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-gavel text-blue-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Legal & Compliance</h3>
+                      <p className="text-gray-700 text-sm mb-3">
+                        Prepare legal documents, contracts, and court filings with precise margin requirements. Add margins for binding legal briefs or remove scanner borders from digitized case documents.
+                      </p>
+                      <p className="text-gray-600 text-xs">
+                        Essential for law firms ensuring documents meet court formatting requirements and professional presentation standards.
+                      </p>
+                    </div>
+
+                    <div className="bg-green-50 rounded-lg p-6">
+                      <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-heartbeat text-green-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Healthcare & Medical</h3>
+                      <p className="text-gray-700 text-sm mb-3">
+                        Format medical records, research papers, and patient documentation with consistent margins. Remove borders from scanned medical documents for cleaner digital archiving.
+                      </p>
+                      <p className="text-gray-600 text-xs">
+                        Critical for medical practices digitizing patient records and researchers preparing publication-ready medical studies.
+                      </p>
+                    </div>
+
+                    <div className="bg-purple-50 rounded-lg p-6">
+                      <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-chalkboard-teacher text-purple-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Education & Training</h3>
+                      <p className="text-gray-700 text-sm mb-3">
+                        Create standardized educational materials, course handouts, and training manuals with consistent margin formatting for professional presentation and binding.
+                      </p>
+                      <p className="text-gray-600 text-xs">
+                        Perfect for educators, corporate trainers, and online course creators requiring consistent document formatting.
+                      </p>
+                    </div>
+
+                    <div className="bg-orange-50 rounded-lg p-6">
+                      <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-industry text-orange-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Manufacturing & Engineering</h3>
+                      <p className="text-gray-700 text-sm mb-3">
+                        Prepare technical documentation, safety manuals, and engineering specifications with precise margin control for professional binding and distribution.
+                      </p>
+                      <p className="text-gray-600 text-xs">
+                        Essential for technical documentation teams ensuring consistent formatting across complex industrial manuals.
+                      </p>
+                    </div>
+
+                    <div className="bg-teal-50 rounded-lg p-6">
+                      <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-chart-line text-teal-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Finance & Banking</h3>
+                      <p className="text-gray-700 text-sm mb-3">
+                        Format financial reports, audit documents, and regulatory submissions with proper margins for binding and professional presentation to stakeholders and regulators.
+                      </p>
+                      <p className="text-gray-600 text-xs">
+                        Critical for financial institutions preparing documents for regulatory review and stakeholder distribution.
+                      </p>
+                    </div>
+
+                    <div className="bg-red-50 rounded-lg p-6">
+                      <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-newspaper text-red-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Publishing & Media</h3>
+                      <p className="text-gray-700 text-sm mb-3">
+                        Prepare articles, magazines, and publication layouts with proper margins for print distribution or remove borders from scanned content for digital publishing.
+                      </p>
+                      <p className="text-gray-600 text-xs">
+                        Perfect for publishers, content creators, and media companies requiring professional document formatting standards.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Related Tools Integration */}
+                <div className="bg-gradient-to-br from-green-50 to-teal-50 rounded-2xl shadow-lg p-8">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-6">Complete Your PDF Workflow</h2>
+                  <p className="text-lg text-gray-700 mb-8">
+                    Enhance your document processing workflow with our integrated PDF tools that work seamlessly with margin adjustments:
+                  </p>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="bg-white p-6 rounded-xl shadow-sm">
+                      <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-expand-arrows-alt text-blue-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Resize Pages</h3>
+                      <p className="text-gray-600 text-sm mb-3">
+                        After adjusting margins, use our <a href="/tools/pdf-page-resizer" className="text-blue-600 hover:text-blue-800 underline font-medium">page resizer</a> to convert between A4, Letter, and custom formats for complete document standardization.
+                      </p>
+                    </div>
+                    
+                    <div className="bg-white p-6 rounded-xl shadow-sm">
+                      <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-compress-alt text-green-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Optimize File Size</h3>
+                      <p className="text-gray-600 text-sm mb-3">
+                        Reduce file size after margin adjustments with our <a href="/tools/compress-pdf" className="text-green-600 hover:text-green-800 underline font-medium">PDF compressor</a> for faster sharing and storage optimization.
+                      </p>
+                    </div>
+                    
+                    <div className="bg-white p-6 rounded-xl shadow-sm">
+                      <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-file-text text-purple-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Add Page Numbers</h3>
+                      <p className="text-gray-600 text-sm mb-3">
+                        Complete your formatting with our <a href="/tools/add-page-numbers" className="text-purple-600 hover:text-purple-800 underline font-medium">page numbering tool</a> to add professional pagination within your adjusted margins.
+                      </p>
+                    </div>
+                    
+                    <div className="bg-white p-6 rounded-xl shadow-sm">
+                      <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-object-group text-orange-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Merge Documents</h3>
+                      <p className="text-gray-600 text-sm mb-3">
+                        Combine multiple margin-adjusted PDFs using our <a href="/tools/merge-pdf" className="text-orange-600 hover:text-orange-800 underline font-medium">PDF merger</a> for unified document collections with consistent formatting.
+                      </p>
+                    </div>
+                    
+                    <div className="bg-white p-6 rounded-xl shadow-sm">
+                      <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-list-ol text-teal-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Organize Pages</h3>
+                      <p className="text-gray-600 text-sm mb-3">
+                        Rearrange page order with our <a href="/tools/organize-pdf-pages" className="text-teal-600 hover:text-teal-800 underline font-medium">page organizer</a> before or after margin adjustments for optimal document flow.
+                      </p>
+                    </div>
+                    
+                    <div className="bg-white p-6 rounded-xl shadow-sm">
+                      <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-cut text-red-600 text-xl"></i>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Split Documents</h3>
+                      <p className="text-gray-600 text-sm mb-3">
+                        Divide large documents with our <a href="/tools/split-pdf" className="text-red-600 hover:text-red-800 underline font-medium">PDF splitter</a> before applying specific margin adjustments to individual sections.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Technical Features & FAQ */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Technical Features & Capabilities</h2>
+                  <div className="grid md:grid-cols-2 gap-8 mb-8">
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Advanced Processing Features</h3>
+                      <div className="space-y-4">
+                        <div className="flex items-start">
+                          <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                            <i className="fas fa-check text-xs text-green-600"></i>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900">Precision Measurement Control</h4>
+                            <p className="text-gray-600 text-sm">Millimeter-accurate margin adjustments with 0-50mm range for professional document formatting.</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start">
+                          <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                            <i className="fas fa-check text-xs text-green-600"></i>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900">Multi-Page Processing</h4>
+                            <p className="text-gray-600 text-sm">Consistent margin adjustments across all pages in multi-page documents.</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start">
+                          <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                            <i className="fas fa-check text-xs text-green-600"></i>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900">Content Quality Preservation</h4>
+                            <p className="text-gray-600 text-sm">Maintains original text quality, vector graphics sharpness, and image resolution.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Supported Operations</h3>
+                      <div className="space-y-3">
+                        <div className="bg-gray-50 p-3 rounded-lg">
+                          <h4 className="font-semibold text-gray-900 text-sm mb-1">Add Margins</h4>
+                          <p className="text-gray-600 text-xs">Expand page dimensions with configurable whitespace for binding, annotations, or improved readability.</p>
+                        </div>
+                        <div className="bg-gray-50 p-3 rounded-lg">
+                          <h4 className="font-semibold text-gray-900 text-sm mb-1">Remove Margins (Crop)</h4>
+                          <p className="text-gray-600 text-xs">Intelligent border removal to eliminate scanner artifacts and maximize content space.</p>
+                        </div>
+                        <div className="bg-gray-50 p-3 rounded-lg">
+                          <h4 className="font-semibold text-gray-900 text-sm mb-1">Independent Side Control</h4>
+                          <p className="text-gray-600 text-xs">Separate adjustment controls for top, bottom, left, and right margins with real-time preview.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="border-t border-gray-200 pt-8">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-6">Frequently Asked Questions</h3>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="space-y-4">
+                        <div>
+                          <h4 className="text-lg font-semibold text-gray-900 mb-2">What's the difference between adding and removing margins?</h4>
+                          <p className="text-gray-700 text-sm">
+                            Adding margins expands the page size by creating additional whitespace around existing content, perfect for binding or annotation space. Removing margins crops the document borders, reducing page size while preserving content, ideal for eliminating scanner borders or unnecessary whitespace.
+                          </p>
+                        </div>
+                        
+                        <div>
+                          <h4 className="text-lg font-semibold text-gray-900 mb-2">Can I set different margins for each side?</h4>
+                          <p className="text-gray-700 text-sm">
+                            Yes, our tool provides independent control over top, bottom, left, and right margins. This allows for asymmetric margin adjustments, such as adding extra left margin for binding while maintaining standard margins on other sides.
+                          </p>
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-4">
+                        <div>
+                          <h4 className="text-lg font-semibold text-gray-900 mb-2">Will margin adjustments affect content quality?</h4>
+                          <p className="text-gray-700 text-sm">
+                            No, our margin adjuster preserves original content quality. When adding margins, content remains unchanged and is simply repositioned within expanded page boundaries. When removing margins, content is preserved while only border areas are cropped.
+                          </p>
+                        </div>
+                        
+                        <div>
+                          <h4 className="text-lg font-semibold text-gray-900 mb-2">Is my PDF data secure during processing?</h4>
+                          <p className="text-gray-700 text-sm">
+                            Yes, while margin adjustments require server processing for precision, your documents are processed securely and are not stored on our servers. Files are automatically deleted after processing to ensure your privacy and security.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Best Practices & Tips */}
+                <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl shadow-lg p-8">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Best Practices for PDF Margin Adjustment</h2>
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-6">Before Adjusting Margins</h3>
+                      <div className="space-y-4">
+                        <div className="flex items-start">
+                          <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                            <span className="text-xs font-bold text-blue-600">1</span>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900">Assess Current Layout</h4>
+                            <p className="text-gray-600 text-sm">Review your document's current margins and content positioning to determine the optimal adjustment strategy for your specific needs.</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start">
+                          <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                            <span className="text-xs font-bold text-blue-600">2</span>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900">Check Requirements</h4>
+                            <p className="text-gray-600 text-sm">Verify any specific margin requirements for your intended use (academic submission, printing, binding) before making adjustments.</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start">
+                          <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                            <span className="text-xs font-bold text-blue-600">3</span>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900">Consider Content Impact</h4>
+                            <p className="text-gray-600 text-sm">Evaluate how margin changes will affect content readability, especially for documents with tables, images, or complex layouts.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-6">After Margin Adjustment</h3>
+                      <div className="space-y-4">
+                        <div className="flex items-start">
+                          <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                            <span className="text-xs font-bold text-green-600">1</span>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900">Review Results</h4>
+                            <p className="text-gray-600 text-sm">Carefully examine the adjusted document to ensure margins meet your requirements and content remains properly positioned.</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start">
+                          <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                            <span className="text-xs font-bold text-green-600">2</span>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900">Test Print Preview</h4>
+                            <p className="text-gray-600 text-sm">If printing is your goal, use print preview to verify the adjusted margins display correctly on your target paper size.</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start">
+                          <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mr-3 mt-1">
+                            <span className="text-xs font-bold text-green-600">3</span>
+                          </div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900">Apply Additional Tools</h4>
+                            <p className="text-gray-600 text-sm">Consider using our <a href="/tools/compress-pdf" className="text-blue-600 hover:text-blue-800 underline">compression tool</a> to optimize file size or <a href="/tools/add-page-numbers" className="text-blue-600 hover:text-blue-800 underline">page numbering</a> for final formatting.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* SEO Keywords Section */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-6">Professional PDF Margin Adjustment Solutions</h2>
+                  <div className="prose prose-gray max-w-none text-gray-700">
+                    <p className="text-lg mb-4">
+                      Our comprehensive PDF margin adjuster provides professional document formatting solutions for businesses, educational institutions, legal firms, and content creators worldwide. Whether you need to add margins for binding requirements, remove scanner borders from digitized documents, or standardize margin formatting across document collections, our advanced tool delivers precision results with millimeter accuracy.
+                    </p>
+                    <p className="text-gray-600 mb-4">
+                      Key capabilities include add margin functionality for binding preparation, remove margin cropping for border elimination, independent side control for asymmetric adjustments, multi-page processing for document consistency, and content quality preservation throughout the adjustment process. Perfect for academic paper formatting, legal document preparation, business presentation optimization, technical manual standardization, and digital publishing workflows.
+                    </p>
+                    <p className="text-gray-600">
+                      Integrate with our complete PDF processing toolkit: <a href="/tools/pdf-page-resizer" className="text-blue-600 hover:text-blue-800 underline">resize page dimensions</a>, <a href="/tools/compress-pdf" className="text-blue-600 hover:text-blue-800 underline">optimize file sizes</a>, <a href="/tools/merge-pdf" className="text-blue-600 hover:text-blue-800 underline">combine documents</a>, <a href="/tools/split-pdf" className="text-blue-600 hover:text-blue-800 underline">divide large files</a>, <a href="/tools/add-page-numbers" className="text-blue-600 hover:text-blue-800 underline">add pagination</a>, and <a href="/tools/organize-pdf-pages" className="text-blue-600 hover:text-blue-800 underline">rearrange page order</a> for comprehensive document management solutions.
+                    </p>
+                  </div>
+                </div>
                       <li><strong>Process:</strong> Click the adjust button to apply margin changes to all pages</li>
                       <li><strong>Download:</strong> Get your modified PDF with perfectly adjusted margins</li>
                     </ul>
