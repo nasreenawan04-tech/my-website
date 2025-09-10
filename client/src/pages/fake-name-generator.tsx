@@ -430,105 +430,359 @@ Nationality: ${generatedName.nationality}`;
             <h2 className="text-3xl font-bold text-gray-900 mb-6">What is a Fake Name Generator?</h2>
             <div className="prose max-w-none">
               <p className="text-lg text-gray-700 mb-6">
-                A <strong>fake name generator</strong> is a tool that creates realistic but fictional names for various purposes including software testing, privacy protection, creative writing, and educational activities. Our generator uses authentic name databases from different cultures and nationalities to produce believable names.
+                A <strong>fake name generator</strong> is a sophisticated tool that creates realistic but completely fictional names for various legitimate purposes including software testing, privacy protection, creative writing, game development, and educational activities. Our advanced <strong>random name generator</strong> uses authentic name databases from different cultures and nationalities to produce believable, culturally appropriate names that maintain statistical accuracy without representing real individuals.
               </p>
               
               <p className="text-gray-700 mb-6">
-                These generated names are completely fictional and are not associated with any real individuals. They're perfect for developers who need test data, writers creating characters, or anyone who needs placeholder names for projects while maintaining privacy and authenticity.
+                This powerful <strong>name generator tool</strong> is essential for developers, writers, researchers, and professionals who need authentic-looking placeholder names for their projects. Whether you're building applications, creating fictional characters, conducting academic research, or protecting your privacy online, our generator provides instant access to realistic names from American, British, and international databases.
+              </p>
+              
+              <p className="text-gray-700 mb-6">
+                Unlike simple random generators, our tool intelligently combines first names, middle names, and surnames based on actual naming patterns and cultural conventions. This ensures that generated names sound natural and appropriate for their selected nationality while maintaining complete fictional status for safe, ethical use in any project.
               </p>
             </div>
           </div>
 
-          {/* Common Use Cases */}
-          <div className="mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Common Use Cases</h2>
+          {/* How It Works */}
+          <div className="mt-8 bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">How Our Fake Name Generator Works</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="text-center">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-code text-blue-600 text-xl"></i>
+                <div className="w-16 h-16 bg-purple-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl font-bold">1</span>
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Software Testing</h3>
-                <p className="text-gray-600 text-sm">Generate test data for applications and databases.</p>
+                <h3 className="font-semibold text-gray-900 mb-2">Select Options</h3>
+                <p className="text-gray-600 text-sm">Choose gender, nationality, and additional preferences like titles and middle names.</p>
               </div>
               
               <div className="text-center">
-                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-pen text-purple-600 text-xl"></i>
+                <div className="w-16 h-16 bg-purple-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl font-bold">2</span>
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Creative Writing</h3>
-                <p className="text-gray-600 text-sm">Create realistic character names for stories and novels.</p>
+                <h3 className="font-semibold text-gray-900 mb-2">Algorithm Processing</h3>
+                <p className="text-gray-600 text-sm">Our system intelligently combines names from authentic cultural databases.</p>
               </div>
               
               <div className="text-center">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-shield-alt text-green-600 text-xl"></i>
+                <div className="w-16 h-16 bg-purple-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl font-bold">3</span>
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Privacy Protection</h3>
-                <p className="text-gray-600 text-sm">Use fake names when privacy is required online.</p>
+                <h3 className="font-semibold text-gray-900 mb-2">Generate Names</h3>
+                <p className="text-gray-600 text-sm">Receive realistic, culturally appropriate names with all components.</p>
               </div>
               
               <div className="text-center">
-                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-graduation-cap text-orange-600 text-xl"></i>
+                <div className="w-16 h-16 bg-purple-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl font-bold">4</span>
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Educational Projects</h3>
-                <p className="text-gray-600 text-sm">Generate sample data for academic assignments.</p>
+                <h3 className="font-semibold text-gray-900 mb-2">Copy & Use</h3>
+                <p className="text-gray-600 text-sm">Easily copy individual components or complete names for your projects.</p>
               </div>
             </div>
           </div>
 
-          {/* Key Features */}
+          {/* Benefits for Different Audiences */}
+          <div className="mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">Benefits for Different Professionals</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="bg-white rounded-lg p-6 shadow-sm">
+                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                  <i className="fas fa-code text-blue-600 text-xl"></i>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Software Developers</h3>
+                <ul className="text-gray-600 space-y-2 text-sm">
+                  <li>• Generate test data for user registration systems</li>
+                  <li>• Create realistic database entries for development</li>
+                  <li>• Test form validation and user interfaces</li>
+                  <li>• Populate demo applications with sample users</li>
+                  <li>• Quality assurance and automated testing</li>
+                </ul>
+              </div>
+              
+              <div className="bg-white rounded-lg p-6 shadow-sm">
+                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                  <i className="fas fa-pen text-purple-600 text-xl"></i>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Writers & Authors</h3>
+                <ul className="text-gray-600 space-y-2 text-sm">
+                  <li>• Create believable character names for novels</li>
+                  <li>• Develop diverse casts with cultural authenticity</li>
+                  <li>• Generate names for short stories and scripts</li>
+                  <li>• Overcome writer's block with instant inspiration</li>
+                  <li>• Maintain consistency in fictional worlds</li>
+                </ul>
+              </div>
+              
+              <div className="bg-white rounded-lg p-6 shadow-sm">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                  <i className="fas fa-graduation-cap text-green-600 text-xl"></i>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Students & Researchers</h3>
+                <ul className="text-gray-600 space-y-2 text-sm">
+                  <li>• Create anonymous survey participants</li>
+                  <li>• Generate sample data for academic projects</li>
+                  <li>• Protect privacy in research studies</li>
+                  <li>• Develop case studies with fictional subjects</li>
+                  <li>• Practice data analysis techniques</li>
+                </ul>
+              </div>
+              
+              <div className="bg-white rounded-lg p-6 shadow-sm">
+                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
+                  <i className="fas fa-briefcase text-orange-600 text-xl"></i>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Business Professionals</h3>
+                <ul className="text-gray-600 space-y-2 text-sm">
+                  <li>• Create customer personas for marketing</li>
+                  <li>• Develop training scenarios and examples</li>
+                  <li>• Generate sample client lists for presentations</li>
+                  <li>• Test CRM systems with dummy contacts</li>
+                  <li>• Create realistic business case studies</li>
+                </ul>
+              </div>
+              
+              <div className="bg-white rounded-lg p-6 shadow-sm">
+                <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                  <i className="fas fa-gamepad text-red-600 text-xl"></i>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Game Developers</h3>
+                <ul className="text-gray-600 space-y-2 text-sm">
+                  <li>• Generate NPC names for video games</li>
+                  <li>• Create diverse character rosters</li>
+                  <li>• Populate virtual worlds with realistic inhabitants</li>
+                  <li>• Develop culturally appropriate character names</li>
+                  <li>• Generate random encounter characters</li>
+                </ul>
+              </div>
+              
+              <div className="bg-white rounded-lg p-6 shadow-sm">
+                <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
+                  <i className="fas fa-shield-alt text-teal-600 text-xl"></i>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Privacy-Conscious Users</h3>
+                <ul className="text-gray-600 space-y-2 text-sm">
+                  <li>• Protect identity during online registrations</li>
+                  <li>• Use aliases for social media accounts</li>
+                  <li>• Create pen names for creative work</li>
+                  <li>• Generate names for testing services</li>
+                  <li>• Maintain anonymity in forums and communities</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Advanced Features */}
           <div className="mt-8 bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Key Features</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-globe-americas text-2xl"></i>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Multiple Nationalities</h3>
-                <p className="text-gray-600">Choose from American, British, and international name databases.</p>
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">Advanced Generator Features</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">Customization Options</h3>
+                <ul className="space-y-3 text-gray-700">
+                  <li className="flex items-start">
+                    <i className="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
+                    <span><strong>Gender Selection:</strong> Choose male, female, or random gender assignment</span>
+                  </li>
+                  <li className="flex items-start">
+                    <i className="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
+                    <span><strong>Cultural Authenticity:</strong> American, British, and international name databases</span>
+                  </li>
+                  <li className="flex items-start">
+                    <i className="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
+                    <span><strong>Name Components:</strong> Optional middle names and professional titles</span>
+                  </li>
+                  <li className="flex items-start">
+                    <i className="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
+                    <span><strong>Format Options:</strong> Full names or individual components</span>
+                  </li>
+                </ul>
               </div>
               
-              <div className="text-center">
-                <div className="w-16 h-16 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-sliders-h text-2xl"></i>
+              <div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">User-Friendly Features</h3>
+                <ul className="space-y-3 text-gray-700">
+                  <li className="flex items-start">
+                    <i className="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
+                    <span><strong>One-Click Copying:</strong> Instantly copy names to clipboard</span>
+                  </li>
+                  <li className="flex items-start">
+                    <i className="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
+                    <span><strong>Generation History:</strong> Track recently generated names</span>
+                  </li>
+                  <li className="flex items-start">
+                    <i className="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
+                    <span><strong>Bulk Generation:</strong> Generate multiple names at once</span>
+                  </li>
+                  <li className="flex items-start">
+                    <i className="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
+                    <span><strong>Mobile Optimized:</strong> Works perfectly on all devices</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Related Tools */}
+          <div className="mt-8 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">Related Generator Tools</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <a href="/tools/fake-address-generator" className="group bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                  <i className="fas fa-map-marker-alt text-blue-600 text-xl"></i>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Customizable Options</h3>
-                <p className="text-gray-600">Control gender, middle names, titles, and nationality preferences.</p>
+                <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-blue-600">Fake Address Generator</h3>
+                <p className="text-gray-600 text-sm">Generate realistic addresses for testing and development purposes.</p>
+              </a>
+              
+              <a href="/tools/random-password-generator" className="group bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                  <i className="fas fa-lock text-green-600 text-xl"></i>
+                </div>
+                <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-blue-600">Password Generator</h3>
+                <p className="text-gray-600 text-sm">Create secure, random passwords with customizable options.</p>
+              </a>
+              
+              <a href="/tools/random-username-generator" className="group bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                  <i className="fas fa-user text-purple-600 text-xl"></i>
+                </div>
+                <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-blue-600">Username Generator</h3>
+                <p className="text-gray-600 text-sm">Generate unique usernames for accounts and online profiles.</p>
+              </a>
+              
+              <a href="/tools/lorem-ipsum-generator" className="group bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                  <i className="fas fa-paragraph text-red-600 text-xl"></i>
+                </div>
+                <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-blue-600">Lorem Ipsum Generator</h3>
+                <p className="text-gray-600 text-sm">Generate placeholder text for design and development projects.</p>
+              </a>
+            </div>
+          </div>
+
+          {/* Use Cases & Examples */}
+          <div className="mt-8 bg-white rounded-2xl shadow-lg p-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">Real-World Applications & Examples</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">Software Development Scenarios</h3>
+                <div className="space-y-4">
+                  <div className="border-l-4 border-blue-500 pl-4">
+                    <h4 className="font-semibold text-gray-900">User Registration Testing</h4>
+                    <p className="text-gray-600 text-sm">Generate hundreds of realistic names to test user registration forms, database constraints, and user interface validation. Essential for quality assurance and load testing.</p>
+                  </div>
+                  <div className="border-l-4 border-green-500 pl-4">
+                    <h4 className="font-semibold text-gray-900">Demo Data Population</h4>
+                    <p className="text-gray-600 text-sm">Create convincing demo environments with realistic user profiles for client presentations, stakeholder reviews, and product demonstrations.</p>
+                  </div>
+                  <div className="border-l-4 border-purple-500 pl-4">
+                    <h4 className="font-semibold text-gray-900">API Testing</h4>
+                    <p className="text-gray-600 text-sm">Generate consistent test data for API endpoints, ensuring robust testing of user management systems and data processing workflows.</p>
+                  </div>
+                </div>
               </div>
               
-              <div className="text-center">
-                <div className="w-16 h-16 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-random text-2xl"></i>
+              <div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">Creative & Educational Uses</h3>
+                <div className="space-y-4">
+                  <div className="border-l-4 border-orange-500 pl-4">
+                    <h4 className="font-semibold text-gray-900">Character Development</h4>
+                    <p className="text-gray-600 text-sm">Authors and screenwriters use our generator to create diverse, culturally authentic character names that enhance story believability and reader engagement.</p>
+                  </div>
+                  <div className="border-l-4 border-red-500 pl-4">
+                    <h4 className="font-semibold text-gray-900">Academic Research</h4>
+                    <p className="text-gray-600 text-sm">Researchers create anonymous participant profiles for studies, ensuring privacy compliance while maintaining realistic data for statistical analysis.</p>
+                  </div>
+                  <div className="border-l-4 border-teal-500 pl-4">
+                    <h4 className="font-semibold text-gray-900">Educational Projects</h4>
+                    <p className="text-gray-600 text-sm">Students generate sample datasets for database design courses, statistics projects, and computer science assignments requiring realistic personal data.</p>
+                  </div>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Realistic Results</h3>
-                <p className="text-gray-600">Uses authentic name databases for believable, realistic names.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* SEO Content - Best Practices */}
+          <div className="mt-8 bg-gradient-to-r from-indigo-50 to-blue-50 rounded-2xl p-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">Best Practices for Using Fake Names</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">Ethical Guidelines</h3>
+                <ul className="space-y-3 text-gray-700">
+                  <li className="flex items-start">
+                    <i className="fas fa-check text-green-600 mt-1 mr-3"></i>
+                    <span>Always use generated names for legitimate purposes only</span>
+                  </li>
+                  <li className="flex items-start">
+                    <i className="fas fa-check text-green-600 mt-1 mr-3"></i>
+                    <span>Ensure compliance with privacy laws and regulations</span>
+                  </li>
+                  <li className="flex items-start">
+                    <i className="fas fa-check text-green-600 mt-1 mr-3"></i>
+                    <span>Never use fake names for fraudulent activities</span>
+                  </li>
+                  <li className="flex items-start">
+                    <i className="fas fa-check text-green-600 mt-1 mr-3"></i>
+                    <span>Respect cultural sensitivity when using international names</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">Technical Recommendations</h3>
+                <ul className="space-y-3 text-gray-700">
+                  <li className="flex items-start">
+                    <i className="fas fa-lightbulb text-yellow-600 mt-1 mr-3"></i>
+                    <span>Generate sufficient variety for comprehensive testing</span>
+                  </li>
+                  <li className="flex items-start">
+                    <i className="fas fa-lightbulb text-yellow-600 mt-1 mr-3"></i>
+                    <span>Consider cultural context for international applications</span>
+                  </li>
+                  <li className="flex items-start">
+                    <i className="fas fa-lightbulb text-yellow-600 mt-1 mr-3"></i>
+                    <span>Test edge cases with various name lengths and formats</span>
+                  </li>
+                  <li className="flex items-start">
+                    <i className="fas fa-lightbulb text-yellow-600 mt-1 mr-3"></i>
+                    <span>Document test data sources for development teams</span>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
 
           {/* FAQ */}
-          <div className="mt-8 bg-gradient-to-r from-gray-50 to-blue-50 rounded-2xl p-8">
+          <div className="mt-8 bg-gradient-to-r from-gray-50 to-slate-50 rounded-2xl p-8">
             <h2 className="text-3xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
             <div className="space-y-6">
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Are these names of real people?</h3>
-                <p className="text-gray-600">No, all generated names are completely fictional. While they're based on real naming patterns and databases, they don't represent actual individuals.</p>
+              <div className="border-b border-gray-200 pb-4">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Are the generated names based on real people?</h3>
+                <p className="text-gray-600">No, all generated names are completely fictional. While our tool uses authentic naming patterns and statistical distributions from various cultures, the combinations are entirely random and don't represent actual individuals. This ensures complete safety for testing and development purposes.</p>
+              </div>
+              
+              <div className="border-b border-gray-200 pb-4">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I use these names for commercial projects?</h3>
+                <p className="text-gray-600">Yes, absolutely. Since all generated names are fictional and created through random combinations, you can use them freely for any legitimate purpose including commercial applications, creative works, testing environments, and business projects without any legal concerns.</p>
+              </div>
+              
+              <div className="border-b border-gray-200 pb-4">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">How culturally accurate are the international names?</h3>
+                <p className="text-gray-600">Our international database includes authentic naming patterns from various cultures and regions. We maintain separate databases for different nationalities to ensure cultural appropriateness and linguistic accuracy, though all combinations remain fictional.</p>
+              </div>
+              
+              <div className="border-b border-gray-200 pb-4">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">What's the difference between the nationality options?</h3>
+                <p className="text-gray-600">American names focus on common US naming patterns, British names use traditional UK conventions, and International includes diverse global names from various cultures. Each database maintains authentic linguistic and cultural characteristics for maximum realism.</p>
+              </div>
+              
+              <div className="border-b border-gray-200 pb-4">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Is there a limit to how many names I can generate?</h3>
+                <p className="text-gray-600">No, you can generate unlimited names using our tool. Whether you need a few names for a small project or hundreds for extensive testing, our generator can handle any volume of requests without restrictions.</p>
               </div>
               
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I use these names commercially?</h3>
-                <p className="text-gray-600">Yes, you can use the generated names for any purpose including commercial projects, as they are fictional and not protected by any rights.</p>
-              </div>
-              
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">How authentic are the names?</h3>
-                <p className="text-gray-600">Our names are based on popular naming patterns and databases from different cultures, making them statistically realistic and culturally appropriate.</p>
-              </div>
-              
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">What's the difference between nationalities?</h3>
-                <p className="text-gray-600">Each nationality uses different name databases: American focuses on common US names, British uses UK naming patterns, and International includes diverse global names.</p>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Do you store or track the generated names?</h3>
+                <p className="text-gray-600">No, we don't store any generated names on our servers. All name generation happens in your browser, and the recent history feature only maintains names locally in your current session for your convenience.</p>
               </div>
             </div>
           </div>
