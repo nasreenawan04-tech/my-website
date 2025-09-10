@@ -356,17 +356,39 @@ const PDFBookmarkExtractor = () => {
 
               {/* Educational Content */}
               <div className="mt-12 space-y-8">
+                {/* What is PDF Bookmark Extraction - Main Explanation */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-6">What is a PDF Bookmark Extractor Tool?</h2>
+                  <div className="prose prose-lg max-w-none">
+                    <p className="text-xl text-gray-700 mb-6 leading-relaxed">
+                      A PDF bookmark extractor is a specialized tool that reads and extracts the navigation structure, table of contents, and outline information embedded within PDF documents. These bookmarks, also known as PDF outlines or navigation panels, serve as clickable navigation aids that allow users to quickly jump to specific sections, chapters, or pages within a document.
+                    </p>
+                    <p className="text-gray-600 mb-6 leading-relaxed">
+                      When you extract PDF bookmarks, you're accessing the document's organizational metadata that authors and publishers embed to make their content more navigable. This includes bookmark titles, hierarchical levels (main chapters, subsections, sub-subsections), destination page numbers, and the structural relationships between different document sections.
+                    </p>
+                    <p className="text-gray-600 mb-6 leading-relaxed">
+                      Our PDF bookmark extractor tool reads this embedded navigation data directly from the PDF file structure and presents it in a user-friendly, hierarchical format. You can view the complete document structure at a glance and export it as plain text or structured JSON format for documentation, analysis, content management, or reference purposes.
+                    </p>
+                    <div className="bg-blue-50 border-l-4 border-blue-500 p-6 my-6">
+                      <h3 className="text-lg font-semibold text-blue-900 mb-2">How PDF Bookmarks Work</h3>
+                      <p className="text-blue-800">
+                        PDF bookmarks are interactive elements that appear in most PDF viewers' navigation panel. They contain destination links to specific pages or sections within the document, making it easy to navigate large files like research papers, technical manuals, eBooks, and business reports without scrolling through hundreds of pages.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
                 {/* How it Works */}
                 <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">How to Extract PDF Bookmarks</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">How to Extract PDF Bookmarks - Step by Step</h2>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div className="text-center">
                       <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
                         <Upload className="w-8 h-8 text-purple-600" />
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">1. Upload PDF</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">1. Upload PDF File</h3>
                       <p className="text-gray-600">
-                        Select a PDF file that contains bookmarks or a table of contents.
+                        Select a PDF file that contains bookmarks or a table of contents. Our tool supports files up to 50MB and works with most PDF formats.
                       </p>
                     </div>
                     
@@ -376,7 +398,7 @@ const PDFBookmarkExtractor = () => {
                       </div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">2. Extract Bookmarks</h3>
                       <p className="text-gray-600">
-                        Click extract to read the PDF's navigation structure and bookmarks.
+                        Click extract to automatically read the PDF's navigation structure, bookmarks, and table of contents hierarchy.
                       </p>
                     </div>
                     
@@ -384,9 +406,9 @@ const PDFBookmarkExtractor = () => {
                       <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                         <Download className="w-8 h-8 text-green-600" />
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">3. Export Results</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">3. View & Export Results</h3>
                       <p className="text-gray-600">
-                        View the hierarchical structure and export as text or JSON format.
+                        View the hierarchical bookmark structure with page numbers and export as text or JSON format for further use.
                       </p>
                     </div>
                   </div>
