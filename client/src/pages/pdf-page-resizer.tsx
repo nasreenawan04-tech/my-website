@@ -940,6 +940,10 @@ const PDFPageResizer = () => {
                   </div>
                 </div>
 
+                {/* Use Cases Section */}
+                <div className="bg-white rounded-2xl shadow-lg p-8">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Common Use Cases</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-purple-50 rounded-lg p-6">
                       <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
                         <i className="fas fa-print text-purple-600 text-xl"></i>
