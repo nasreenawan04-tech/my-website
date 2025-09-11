@@ -57,7 +57,7 @@ const HeroSection = () => {
           Free Tools to Make Everything Simple
         </h1>
         <p className="text-xl lg:text-2xl text-blue-100 mb-12 max-w-4xl mx-auto leading-relaxed" data-testid="text-hero-subtitle">
-          We offer PDF, finance, text, and health online tools to make your life easier. No sign-up required.
+          We offer finance, text, and health online tools to make your life easier. No sign-up required.
         </p>
         
         {/* Search Bar */}
@@ -153,9 +153,9 @@ const HeroSection = () => {
             <div className="text-3xl lg:text-4xl font-bold mb-2">150+</div>
             <div className="text-blue-100 text-sm lg:text-base">Online Tools</div>
           </div>
-          <div className="text-center" data-testid="stat-pdfs-created">
+          <div className="text-center" data-testid="stat-calculations-done">
             <div className="text-3xl lg:text-4xl font-bold mb-2">500K+</div>
-            <div className="text-blue-100 text-sm lg:text-base">PDFs Created</div>
+            <div className="text-blue-100 text-sm lg:text-base">Calculations Done</div>
           </div>
         </div>
       </div>

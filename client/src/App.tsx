@@ -18,7 +18,6 @@ const LoanCalculator = lazy(() => import("@/pages/loan-calculator"));
 const MortgageCalculator = lazy(() => import("@/pages/mortgage-calculator"));
 const EMICalculator = lazy(() => import("@/pages/emi-calculator"));
 const FinanceTools = lazy(() => import("@/pages/finance-tools"));
-const PDFTools = lazy(() => import("@/pages/pdf-tools"));
 const ImageTools = lazy(() => import("@/pages/image-tools"));
 const TextTools = lazy(() => import("@/pages/text-tools"));
 const HealthTools = lazy(() => import("@/pages/health-tools"));
@@ -87,29 +86,6 @@ const SwimmingCalorieCalculator = lazy(() => import("@/pages/swimming-calorie-ca
 const AlcoholCalorieCalculator = lazy(() => import("@/pages/alcohol-calorie-calculator"));
 const SmokingCostCalculator = lazy(() => import("@/pages/smoking-cost-calculator"));
 
-// Lazy load PDF tools
-const MergePDFTool = lazy(() => import("@/pages/merge-pdf-tool"));
-const SplitPDFTool = lazy(() => import("@/pages/split-pdf-tool"));
-const RotatePDFTool = lazy(() => import("@/pages/rotate-pdf-tool"));
-const WatermarkPDFTool = lazy(() => import("@/pages/watermark-pdf-tool"));
-const ExtractPDFPagesTool = lazy(() => import("@/pages/extract-pdf-pages-tool"));
-const ProtectPDFTool = lazy(() => import("@/pages/protect-pdf-tool"));
-const UnlockPDFTool = lazy(() => import("@/pages/unlock-pdf-tool"));
-const AddPageNumbersTool = lazy(() => import("@/pages/add-page-numbers-tool"));
-const OrganizePDFPagesTool = lazy(() => import("@/pages/organize-pdf-pages-tool"));
-const PDFPageCounter = lazy(() => import("@/pages/pdf-page-counter"));
-const PDFEditor = lazy(() => import("@/pages/pdf-editor"));
-const PDFBookmarkExtractor = lazy(() => import("@/pages/pdf-bookmark-extractor"));
-const PDFPageResizer = lazy(() => import("@/pages/pdf-page-resizer"));
-const PDFMarginAdjuster = lazy(() => import("@/pages/pdf-margin-adjuster"));
-const PDFHeaderFooterGenerator = lazy(() => import("@/pages/pdf-header-footer-generator"));
-const PDFBlankPageRemover = lazy(() => import("@/pages/pdf-blank-page-remover"));
-const PDFToImagesEnhanced = lazy(() => import("@/pages/pdf-to-images-enhanced"));
-const ImagesToPDFMerger = lazy(() => import("@/pages/images-to-pdf-merger"));
-const PDFRedactionTool = lazy(() => import("@/pages/pdf-redaction-tool"));
-const PDFComparisonTool = lazy(() => import("@/pages/pdf-comparison-tool"));
-const PDFFormFieldExtractor = lazy(() => import("@/pages/pdf-form-field-extractor"));
-const PDFLinkExtractor = lazy(() => import("@/pages/pdf-link-extractor"));
 
 // Lazy load text tools
 const WordCounter = lazy(() => import("@/pages/word-counter"));
@@ -207,29 +183,6 @@ function Router() {
       <Route path="/tools/swimming-calorie-calculator" component={SwimmingCalorieCalculator} />
       <Route path="/tools/alcohol-calorie-calculator" component={AlcoholCalorieCalculator} />
       <Route path="/tools/smoking-cost-calculator" component={SmokingCostCalculator} />
-      <Route path="/tools/merge-pdf" component={MergePDFTool} />
-      <Route path="/tools/split-pdf" component={SplitPDFTool} />
-      <Route path="/tools/rotate-pdf" component={RotatePDFTool} />
-      <Route path="/tools/watermark-pdf" component={WatermarkPDFTool} />
-      <Route path="/tools/extract-pdf-pages" component={ExtractPDFPagesTool} />
-      <Route path="/tools/protect-pdf" component={ProtectPDFTool} />
-      <Route path="/tools/unlock-pdf" component={UnlockPDFTool} />
-      <Route path="/tools/add-page-numbers" component={AddPageNumbersTool} />
-      <Route path="/tools/organize-pdf" component={OrganizePDFPagesTool} />
-      <Route path="/tools/pdf-page-counter" component={PDFPageCounter} />
-      <Route path="/tools/pdf-editor" component={PDFEditor} />
-      {/* New PDF Tools */}
-      <Route path="/tools/pdf-bookmark-extractor" component={PDFBookmarkExtractor} />
-      <Route path="/tools/pdf-page-resizer" component={PDFPageResizer} />
-      <Route path="/tools/pdf-margin-adjuster" component={PDFMarginAdjuster} />
-      <Route path="/tools/pdf-header-footer" component={PDFHeaderFooterGenerator} />
-      <Route path="/tools/pdf-blank-page-remover" component={PDFBlankPageRemover} />
-      <Route path="/tools/pdf-to-images-enhanced" component={PDFToImagesEnhanced} />
-      <Route path="/tools/images-to-pdf" component={ImagesToPDFMerger} />
-      <Route path="/tools/pdf-redaction-tool" component={PDFRedactionTool} />
-      <Route path="/tools/pdf-comparison-tool" component={PDFComparisonTool} />
-      <Route path="/tools/pdf-form-extractor" component={PDFFormFieldExtractor} />
-      <Route path="/tools/pdf-link-extractor" component={PDFLinkExtractor} />
       <Route path="/tools/word-counter" component={WordCounter} />
       <Route path="/tools/character-counter" component={CharacterCounter} />
         <Route path="/tools/sentence-counter" component={SentenceCounter} />
@@ -250,7 +203,6 @@ function Router() {
         <Route path="/tools/lorem-ipsum-generator" component={LoremIpsumGenerator} />
       <Route path="/tools/:toolId" component={ToolPage} />
       <Route path="/finance" component={FinanceTools} />
-      <Route path="/pdf" component={PDFTools} />
       <Route path="/image" component={ImageTools} />
       <Route path="/text" component={TextTools} />
       <Route path="/health" component={HealthTools} />

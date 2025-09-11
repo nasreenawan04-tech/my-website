@@ -11,10 +11,10 @@ const Home = () => {
     <>
       <Helmet>
         <title>DapsiWow - 150+ Free Online Tools for Business & Personal Use | No Registration Required</title>
-        <meta name="description" content="Discover 150+ powerful free online tools for finance calculations, PDF editing, text analysis, and health monitoring. Professional-grade utilities with no sign-up required, working on all devices worldwide." />
-        <meta name="keywords" content="DapsiWow, dapsiwow, free online tools, PDF converter, loan calculator, mortgage calculator, business loan calculator, lease calculator, productivity tools, finance calculators, text tools, health calculators, online utilities, web tools, no registration tools" />
+        <meta name="description" content="Discover 150+ powerful free online tools for finance calculations, text analysis, and health monitoring. Professional-grade utilities with no sign-up required, working on all devices worldwide." />
+        <meta name="keywords" content="DapsiWow, dapsiwow, free online tools, loan calculator, mortgage calculator, business loan calculator, lease calculator, productivity tools, finance calculators, text tools, health calculators, online utilities, web tools, no registration tools" />
         <meta property="og:title" content="DapsiWow - 150+ Free Online Tools for Business & Personal Use" />
-        <meta property="og:description" content="Discover 150+ powerful free online tools for finance calculations, PDF editing, text analysis, and health monitoring. Professional-grade utilities with no sign-up required." />
+        <meta property="og:description" content="Discover 150+ powerful free online tools for finance calculations, text analysis, and health monitoring. Professional-grade utilities with no sign-up required." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dapsiwow.com/" />
         <meta name="robots" content="index, follow" />
@@ -64,16 +64,7 @@ const Home = () => {
                     <h3 className="text-lg font-semibold text-neutral-800 mb-2">Finance Tools</h3>
                     <p className="text-neutral-600 text-sm">Calculators for loans, mortgages, investments, taxes, and more financial planning needs</p>
                   </div>
-                  
-                  <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
-                    <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
-                      <i className="fas fa-file-pdf text-red-600 text-xl"></i>
-                    </div>
-                    <h3 className="text-lg font-semibold text-neutral-800 mb-2">PDF Tools</h3>
-                    <p className="text-neutral-600 text-sm">Convert, merge, split, compress, and edit PDF files with professional results</p>
-                  </div>
-                  
-                  
+
                   <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
                     <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
                       <i className="fas fa-font text-purple-600 text-xl"></i>
@@ -81,8 +72,7 @@ const Home = () => {
                     <h3 className="text-lg font-semibold text-neutral-800 mb-2">Text Tools</h3>
                     <p className="text-neutral-600 text-sm">Word counters, case converters, grammar checkers, and content generation tools</p>
                   </div>
-                  
-                  
+
                   <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
                     <div className="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
                       <i className="fas fa-heartbeat text-pink-600 text-xl"></i>
@@ -122,7 +112,7 @@ const Home = () => {
                     you'd expect from premium applications, but completely free and accessible through your web browser.
                   </p>
                   <p className="text-lg text-neutral-600 leading-relaxed">
-                    Whether you're a business owner calculating loan payments, a student working with PDFs, or someone monitoring their health - 
+                    Whether you're a business owner calculating loan payments, a student analyzing data, or someone monitoring their health - 
                     our tools deliver professional results without the professional price tag.
                   </p>
                 </div>

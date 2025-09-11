@@ -10,7 +10,6 @@ const PopularToolsSection = () => {
   const tabs = [
     { key: 'all', label: 'All Tools' },
     { key: 'finance', label: 'Finance' },
-    { key: 'pdf', label: 'PDF' },
     { key: 'text', label: 'Text' },
     { key: 'health', label: 'Health' }
   ];

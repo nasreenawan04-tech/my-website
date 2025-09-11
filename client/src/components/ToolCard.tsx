@@ -10,7 +10,6 @@ interface ToolCardProps {
 
 const categoryColors = {
   finance: 'bg-blue-100 text-blue-600',
-  pdf: 'bg-red-100 text-red-600',
   image: 'bg-green-100 text-green-600',
   text: 'bg-yellow-100 text-yellow-600',
   seo: 'bg-purple-100 text-purple-600',
@@ -19,7 +18,6 @@ const categoryColors = {
 
 const iconColors = {
   finance: 'from-blue-500 to-purple-600',
-  pdf: 'from-red-500 to-pink-600',
   image: 'from-green-500 to-teal-600',
   text: 'from-yellow-500 to-orange-600',
   seo: 'from-purple-500 to-indigo-600',

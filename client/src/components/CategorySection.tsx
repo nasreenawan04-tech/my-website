@@ -16,15 +16,6 @@ const CategorySection = () => {
       href: '/finance'
     },
     {
-      key: 'pdf',
-      title: '30+ PDF Tools',
-      description: 'PDF to Word, Merge and Split, Compress PDF, PDF Editor',
-      gradient: 'from-red-500 via-red-600 to-pink-700',
-      icon: 'fas fa-file-pdf',
-      buttonColor: 'text-red-600 hover:bg-red-50',
-      href: '/pdf'
-    },
-    {
       key: 'text',
       title: '30+ Text Tools',
       description: 'Word Counter, Grammar Checker, AI Writer, Plagiarism Checker',

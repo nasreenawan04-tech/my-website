@@ -2,7 +2,7 @@ export interface Tool {
   id: string;
   name: string;
   description: string;
-  category: 'finance' | 'pdf' | 'text' | 'health';
+  category: 'finance' | 'text' | 'health';
   icon: string;
   isPopular?: boolean;
   href: string;
@@ -10,7 +10,6 @@ export interface Tool {
 
 export const categories = {
   finance: 'Finance',
-  pdf: 'PDF',
   text: 'Text',
   health: 'Health'
 };
@@ -46,45 +45,7 @@ const toolsData = [
   { id: 'vat-gst-calculator', name: 'VAT/GST Calculator', description: 'Calculate VAT and GST on products', category: 'finance' as const, icon: 'fas fa-file-invoice', href: '/tools/vat-gst-calculator' },
   { id: 'paypal-fee-calculator', name: 'PayPal Fee Calculator', description: 'Calculate PayPal transaction fees', category: 'finance' as const, icon: 'fab fa-paypal', href: '/tools/paypal-fee-calculator' },
 
-  // PDF Tools (10)
-  { id: 'merge-pdf', name: 'Merge PDF', description: 'Combine multiple PDFs into one document', category: 'pdf' as const, icon: 'fas fa-object-group', isPopular: true, href: '/tools/merge-pdf' },
-  { id: 'split-pdf', name: 'Split PDF', description: 'Split PDF into multiple documents', category: 'pdf' as const, icon: 'fas fa-cut', href: '/tools/split-pdf' },
-  { id: 'rotate-pdf', name: 'Rotate PDF', description: 'Rotate PDF pages to correct orientation', category: 'pdf' as const, icon: 'fas fa-undo', isPopular: true, href: '/tools/rotate-pdf' },
-  { id: 'unlock-pdf', name: 'Unlock PDF', description: 'Remove password protection from PDFs', category: 'pdf' as const, icon: 'fas fa-unlock', href: '/tools/unlock-pdf' },
-  { id: 'protect-pdf', name: 'Protect PDF with Password', description: 'Add password protection to PDF files', category: 'pdf' as const, icon: 'fas fa-lock', href: '/tools/protect-pdf' },
-  { id: 'watermark-pdf', name: 'Add Watermark to PDF', description: 'Add text or image watermarks to PDF', category: 'pdf' as const, icon: 'fas fa-tint', href: '/tools/watermark-pdf' },
-  { id: 'add-page-numbers', name: 'PDF Page Number Adder', description: 'Add page numbers to PDF documents', category: 'pdf' as const, icon: 'fas fa-list-ol', href: '/tools/add-page-numbers' },
-  { id: 'organize-pdf', name: 'Organize PDF Pages', description: 'Reorder and organize PDF pages', category: 'pdf' as const, icon: 'fas fa-sort', href: '/tools/organize-pdf' },
-  { id: 'extract-pdf-pages', name: 'Extract Pages from PDF', description: 'Extract specific pages from PDF', category: 'pdf' as const, icon: 'fas fa-file-export', href: '/tools/extract-pdf-pages' },
-  
-  // Document Analysis & Information Tools
-  { id: 'pdf-page-counter', name: 'PDF Page Counter & Info', description: 'Display PDF information: page count, file size, creation date', category: 'pdf' as const, icon: 'fas fa-info', href: '/tools/pdf-page-counter' },
-  { id: 'pdf-bookmark-extractor', name: 'PDF Bookmark Extractor', description: 'Extract and display PDF bookmarks/table of contents', category: 'pdf' as const, icon: 'fas fa-bookmark', href: '/tools/pdf-bookmark-extractor' },
-  
-  // Page Manipulation Tools
-  { id: 'pdf-page-resizer', name: 'PDF Page Resizer', description: 'Resize PDF pages to standard formats (A4, Letter, Legal)', category: 'pdf' as const, icon: 'fas fa-expand-arrows-alt', href: '/tools/pdf-page-resizer' },
-  { id: 'pdf-margin-adjuster', name: 'PDF Margin Adjuster', description: 'Add or remove margins from PDF pages and crop borders', category: 'pdf' as const, icon: 'fas fa-crop', href: '/tools/pdf-margin-adjuster' },
-  
-  // Content Enhancement Tools
-  { id: 'pdf-header-footer', name: 'PDF Header/Footer Generator', description: 'Add custom headers and footers with page numbers and dates', category: 'pdf' as const, icon: 'fas fa-heading', href: '/tools/pdf-header-footer' },
-  { id: 'pdf-blank-page-remover', name: 'PDF Blank Page Remover', description: 'Automatically detect and remove blank pages from PDFs', category: 'pdf' as const, icon: 'fas fa-eraser', href: '/tools/pdf-blank-page-remover' },
-  
-  // Conversion & Format Tools
-  { id: 'pdf-to-images-enhanced', name: 'PDF to Images (Enhanced)', description: 'Convert PDF pages to PNG/JPEG with quality and resolution options', category: 'pdf' as const, icon: 'fas fa-images', href: '/tools/pdf-to-images-enhanced' },
-  { id: 'images-to-pdf', name: 'Images to PDF Merger', description: 'Combine multiple images into a single PDF document', category: 'pdf' as const, icon: 'fas fa-photo-video', href: '/tools/images-to-pdf' },
-  
-  // Quality & Optimization Tools
-  
-  // Security & Access Tools
-  { id: 'pdf-redaction-tool', name: 'PDF Redaction Tool', description: 'Black out sensitive information permanently from PDFs', category: 'pdf' as const, icon: 'fas fa-user-secret', href: '/tools/pdf-redaction-tool' },
-  
-  // Utility Tools
-  { id: 'pdf-comparison-tool', name: 'PDF Comparison Tool', description: 'Compare two PDFs page by page and highlight differences', category: 'pdf' as const, icon: 'fas fa-not-equal', href: '/tools/pdf-comparison-tool' },
-  { id: 'pdf-form-extractor', name: 'PDF Form Field Extractor', description: 'List all form fields and export form structure', category: 'pdf' as const, icon: 'fas fa-wpforms', href: '/tools/pdf-form-extractor' },
-  { id: 'pdf-link-extractor', name: 'PDF Link Extractor', description: 'Extract all URLs and internal links from PDF documents', category: 'pdf' as const, icon: 'fas fa-link', href: '/tools/pdf-link-extractor' },
-
-
-  // Text Tools (30)
+  // Text Tools (17)
   { id: 'word-counter', name: 'Word Counter', description: 'Count words, characters, and paragraphs', category: 'text' as const, icon: 'fas fa-calculator', href: '/tools/word-counter' },
   { id: 'character-counter', name: 'Character Counter', description: 'Count characters in text with/without spaces', category: 'text' as const, icon: 'fas fa-font', href: '/tools/character-counter' },
   { id: 'sentence-counter', name: 'Sentence Counter', description: 'Count sentences in your text', category: 'text' as const, icon: 'fas fa-list', href: '/tools/sentence-counter' },

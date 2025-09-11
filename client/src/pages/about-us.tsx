@@ -136,21 +136,6 @@ const AboutUs = () => {
                 </ul>
               </div>
 
-              <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-red-600 rounded-2xl flex items-center justify-center mb-6">
-                  <i className="fas fa-file-pdf text-white text-xl"></i>
-                </div>
-                <h3 className="text-xl font-bold text-neutral-800 mb-4">PDF Tools</h3>
-                <p className="text-neutral-600 mb-4">
-                  Complete PDF management suite for converting, merging, splitting, and editing documents.
-                </p>
-                <ul className="text-sm text-neutral-500 space-y-1">
-                  <li>• Convert to/from PDF</li>
-                  <li>• Merge & Split PDFs</li>
-                  <li>• Compress & Optimize</li>
-                  <li>• Password Protection</li>
-                </ul>
-              </div>
 
 
               <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
