@@ -23,7 +23,7 @@ const toolsData = [
   { id: 'business-loan-calculator', name: 'Business Loan Calculator', description: 'Calculate business loan payments and metrics', category: 'finance' as const, icon: 'fas fa-building', href: '/tools/business-loan-calculator' },
   { id: 'compound-interest', name: 'Compound Interest Calculator', description: 'Calculate compound interest on investments', category: 'finance' as const, icon: 'fas fa-chart-area', href: '/tools/compound-interest' },
   { id: 'simple-interest', name: 'Simple Interest Calculator', description: 'Calculate simple interest on principal amount', category: 'finance' as const, icon: 'fas fa-percent', href: '/tools/simple-interest' },
-  { id: 'roi-calculator', name: 'ROI Calculator', description: 'Calculate return on investment percentage', category: 'finance' as const, icon: 'fas fa-trending-up', isPopular: true, href: '/tools/roi-calculator' },
+  { id: 'roi-calculator', name: 'ROI Calculator', description: 'Calculate return on investment percentage', category: 'finance' as const, icon: 'fas fa-trending-up', href: '/tools/roi-calculator' },
   { id: 'tax-calculator', name: 'Tax Calculator', description: 'Calculate income tax based on your salary', category: 'finance' as const, icon: 'fas fa-receipt', href: '/tools/tax-calculator' },
   { id: 'salary-hourly', name: 'Salary to Hourly Calculator', description: 'Convert annual salary to hourly wage', category: 'finance' as const, icon: 'fas fa-clock', href: '/tools/salary-to-hourly' },
   { id: 'tip-calculator', name: 'Tip Calculator', description: 'Calculate tip amount and split bills', category: 'finance' as const, icon: 'fas fa-hand-holding-usd', href: '/tools/tip-calculator' },
