@@ -410,7 +410,7 @@ Finally, this last paragraph completes our sample text, giving you four distinct
               </p>
               
               <p className="text-gray-700 mb-6">
-                This advanced tool goes beyond basic counting by categorizing paragraphs into short (≤50 words), medium (51-150 words), and long (>150 words) segments. It calculates essential metrics like average words per paragraph, sentence distribution, and reading time estimates. The tool also works seamlessly with our <a href="/tools/sentence-counter" className="text-blue-600 hover:text-blue-800 transition-colors">sentence counter</a> to provide comprehensive text analysis.
+                This advanced tool goes beyond basic counting by categorizing paragraphs into short (≤50 words), medium (51-150 words), and long ({'>'}150 words) segments. It calculates essential metrics like average words per paragraph, sentence distribution, and reading time estimates. The tool also works seamlessly with our <a href="/tools/sentence-counter" className="text-blue-600 hover:text-blue-800 transition-colors">sentence counter</a> to provide comprehensive text analysis.
               </p>
               
               <p className="text-gray-700 mb-6">
@@ -633,7 +633,7 @@ Finally, this last paragraph completes our sample text, giving you four distinct
                 <ul className="text-sm text-gray-500 space-y-1">
                   <li>• Short: ≤50 words</li>
                   <li>• Medium: 51-150 words</li>
-                  <li>• Long: >150 words</li>
+                  <li>• Long: {'>'}150 words</li>
                 </ul>
               </div>
               
