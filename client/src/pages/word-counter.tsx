@@ -285,8 +285,8 @@ Speaking time: ${result.speakingTime} minute(s)`;
                 </div>
 
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">SEO Content Optimization</h3>
-                  <p className="text-gray-700">Optimize your content for search engines by monitoring word count for blog posts, meta descriptions, and web content to meet SEO best practices and improve rankings.</p>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Content Optimization</h3>
+                  <p className="text-gray-700">Optimize your content by monitoring word count for blog posts, meta descriptions, and web content to meet best practices and improve readability.</p>
                 </div>
               </div>
 
@@ -341,7 +341,7 @@ Speaking time: ${result.speakingTime} minute(s)`;
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <h4 className="font-semibold text-gray-800 mb-2">Blog Writing</h4>
-                    <p className="text-gray-700 mb-4">Optimize blog post length for SEO and reader engagement. Most successful blog posts range from 1,500-2,500 words for better search engine rankings.</p>
+                    <p className="text-gray-700 mb-4">Optimize blog post length for reader engagement. Most successful blog posts range from 1,500-2,500 words for better reader retention and comprehensive coverage.</p>
                     
                     <h4 className="font-semibold text-gray-800 mb-2">Social Media Content</h4>
                     <p className="text-gray-700">Stay within character limits for Twitter (280 characters), Facebook posts, LinkedIn articles, and Instagram captions to maximize engagement and avoid truncation.</p>
@@ -369,7 +369,7 @@ Speaking time: ${result.speakingTime} minute(s)`;
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-800 mb-2">Website Content</h4>
-                    <p className="text-gray-700 mb-4">Optimize web page content for SEO while ensuring readability. Product descriptions, landing pages, and service pages benefit from optimal word counts.</p>
+                    <p className="text-gray-700 mb-4">Optimize web page content while ensuring readability. Product descriptions, landing pages, and service pages benefit from optimal word counts.</p>
                     
                     <h4 className="font-semibold text-gray-800 mb-2">Proposals & Contracts</h4>
                     <p className="text-gray-700">Maintain professional standards in business documents while meeting client specifications for length and detail.</p>
@@ -482,9 +482,9 @@ Speaking time: ${result.speakingTime} minute(s)`;
             </div>
           </div>
 
-          {/* SEO Tips Section */}
+          {/* Content Guidelines Section */}
           <div className="mt-8 bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Word Count Guidelines for SEO and Content Marketing</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-6">Word Count Guidelines for Content Marketing</h2>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               <div className="space-y-6">
@@ -788,15 +788,15 @@ Speaking time: ${result.speakingTime} minute(s)`;
 
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">📊 SEO Optimization</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">📊 Content Optimization</h3>
                   <ul className="space-y-3 text-gray-700">
                     <li className="flex items-start">
                       <span className="font-medium text-emerald-600 mr-2">•</span>
-                      <span>Target optimal word counts for different types of search intent</span>
+                      <span>Target optimal word counts for different content types and audiences</span>
                     </li>
                     <li className="flex items-start">
                       <span className="font-medium text-emerald-600 mr-2">•</span>
-                      <span>Create comprehensive content that outperforms shorter competitor pieces</span>
+                      <span>Create comprehensive content that provides thorough coverage</span>
                     </li>
                     <li className="flex items-start">
                       <span className="font-medium text-emerald-600 mr-2">•</span>
@@ -804,7 +804,7 @@ Speaking time: ${result.speakingTime} minute(s)`;
                     </li>
                     <li className="flex items-start">
                       <span className="font-medium text-emerald-600 mr-2">•</span>
-                      <span>Balance keyword density with natural, readable content flow</span>
+                      <span>Balance content depth with natural, readable flow</span>
                     </li>
                   </ul>
                 </div>
