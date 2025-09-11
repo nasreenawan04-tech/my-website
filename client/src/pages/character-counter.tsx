@@ -768,7 +768,6 @@ This tool provides detailed analysis of your text content.`;
                 </div>
                 <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-teal-600">Font Style Changer</h3>
                 <p className="text-gray-600 text-sm">Apply different font styles and formatting</p>
-              </p>
               </a>
 
               <a href="/tools/markdown-to-html" className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow group">
@@ -843,7 +842,7 @@ This tool provides detailed analysis of your text content.`;
                 
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">What counts as a special character?</h3>
-                  <p className="text-gray-600">Special characters include symbols, punctuation marks, and any character that isn't a letter, number, or space. Examples include: @, #, $, %, &, *, (, ), [, ], &#123;, &#125;, +, =, ?, !, <, >, and many more symbols used in text.</p>
+                  <p className="text-gray-600">Special characters include symbols, punctuation marks, and any character that isn't a letter, number, or space. Examples include: @, #, $, %, &, *, (, ), [, ], {'{}'}, {'{}'}, +, =, ?, !, {'<'}, {'>'}, and many more symbols used in text.</p>
                 </div>
                 
                 <div>
