@@ -127,15 +127,15 @@ This tool provides detailed analysis of your text content.`;
     <div className="min-h-screen bg-gray-50">
       <Helmet>
         <title>Free Character Counter Tool - Count Characters, Letters & Text Analysis | DapsiWow</title>
-        <meta name="description" content="Free online character counter with real-time analysis. Count characters with/without spaces, letters, numbers, punctuation for Twitter, Instagram, SEO optimization. Instant results!" />
-        <meta name="keywords" content="character counter, letter counter, text character count, character count tool, text analysis, character statistics, text length calculator, social media character limit, SEO meta description counter, Twitter character counter, Instagram character limit, word counter, sentence counter" />
+        <meta name="description" content="Free online character counter with real-time analysis. Count characters with/without spaces, letters, numbers, punctuation for Twitter, Instagram, and social media. Instant results!" />
+        <meta name="keywords" content="character counter, letter counter, text character count, character count tool, text analysis, character statistics, text length calculator, social media character limit, Twitter character counter, Instagram character limit, word counter, sentence counter" />
         <meta property="og:title" content="Free Character Counter Tool - Instant Text Analysis & Character Counting" />
-        <meta property="og:description" content="Professional character counter tool with detailed text analysis. Perfect for social media optimization, SEO content, and meeting platform character limits." />
+        <meta property="og:description" content="Professional character counter tool with detailed text analysis. Perfect for social media optimization and meeting platform character limits." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dapsiwow.com/tools/character-counter" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Free Character Counter - Real-time Text Analysis Tool" />
-        <meta name="twitter:description" content="Count characters instantly with our free tool. Perfect for Twitter, Instagram, SEO content optimization and more." />
+        <meta name="twitter:description" content="Count characters instantly with our free tool. Perfect for Twitter, Instagram, social media and more." />
         <link rel="canonical" href="/tools/character-counter" />
         <script type="application/ld+json">
           {`
@@ -156,7 +156,6 @@ This tool provides detailed analysis of your text content.`;
                 "Real-time character counting",
                 "Character type analysis",
                 "Social media optimization",
-                "SEO content optimization",
                 "Detailed text statistics"
               ]
             }
@@ -407,7 +406,7 @@ This tool provides detailed analysis of your text content.`;
               </p>
               
               <p className="text-gray-700 mb-6">
-                Our free online character counter tool is designed for content creators, social media managers, writers, students, and professionals who need precise character counting for various platforms and requirements. Whether you're optimizing content for Twitter's 280-character limit, crafting SEO meta descriptions, or analyzing text patterns for academic purposes, this character counting tool provides accurate, instant results.
+                Our free online character counter tool is designed for content creators, social media managers, writers, students, and professionals who need precise character counting for various platforms and requirements. Whether you're optimizing content for Twitter's 280-character limit, crafting social media descriptions, or analyzing text patterns for academic purposes, this character counting tool provides accurate, instant results.
               </p>
 
               <p className="text-gray-700 mb-6">
@@ -478,7 +477,7 @@ This tool provides detailed analysis of your text content.`;
                 <ul className="space-y-2 text-gray-700">
                   <li className="flex items-start">
                     <span className="font-medium text-purple-600 mr-2">•</span>
-                    <span>Optimize meta descriptions for SEO (150-160 characters)</span>
+                    <span>Optimize meta descriptions for web content (150-160 characters)</span>
                   </li>
                   <li className="flex items-start">
                     <span className="font-medium text-purple-600 mr-2">•</span>
@@ -693,7 +692,7 @@ This tool provides detailed analysis of your text content.`;
                   <h3 className="font-semibold text-gray-900">Meta Description</h3>
                 </div>
                 <p className="text-gray-700"><strong>150-160 characters</strong> optimal</p>
-                <p className="text-gray-600 text-sm">Critical for SEO optimization</p>
+                <p className="text-gray-600 text-sm">Critical for web content optimization</p>
               </div>
 
               <div className="bg-gradient-to-r from-orange-50 to-yellow-100 rounded-lg p-4">
@@ -780,55 +779,6 @@ This tool provides detailed analysis of your text content.`;
             </div>
           </div>
 
-          {/* SEO Benefits */}
-          <div className="mt-8 bg-gradient-to-r from-emerald-50 to-green-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">SEO and Content Optimization Benefits</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">🔍 Search Engine Optimization</h3>
-                <ul className="space-y-3 text-gray-700">
-                  <li className="flex items-start">
-                    <span className="font-medium text-emerald-600 mr-2">•</span>
-                    <span><strong>Meta Description Optimization:</strong> Keep within 150-160 characters for better SERP display</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="font-medium text-emerald-600 mr-2">•</span>
-                    <span><strong>Title Tag Optimization:</strong> Ensure titles stay under 60 characters for full visibility</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="font-medium text-emerald-600 mr-2">•</span>
-                    <span><strong>Content Length Analysis:</strong> Monitor character density for keyword optimization</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="font-medium text-emerald-600 mr-2">•</span>
-                    <span><strong>Snippet Optimization:</strong> Craft perfect Google search result snippets</span>
-                  </li>
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">📈 Content Performance</h3>
-                <ul className="space-y-3 text-gray-700">
-                  <li className="flex items-start">
-                    <span className="font-medium text-emerald-600 mr-2">•</span>
-                    <span><strong>Social Media Engagement:</strong> Optimize post length for maximum engagement rates</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="font-medium text-emerald-600 mr-2">•</span>
-                    <span><strong>Email Marketing:</strong> Perfect subject lines and preview text character counts</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="font-medium text-emerald-600 mr-2">•</span>
-                    <span><strong>Ad Copy Optimization:</strong> Meet platform requirements for PPC campaigns</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="font-medium text-emerald-600 mr-2">•</span>
-                    <span><strong>Readability Analysis:</strong> Balance character count with content quality</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
 
           {/* FAQ */}
           <div className="mt-8 bg-gradient-to-r from-gray-50 to-blue-50 rounded-2xl p-8">
@@ -869,7 +819,7 @@ This tool provides detailed analysis of your text content.`;
 
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">How do I optimize meta descriptions with this tool?</h3>
-                  <p className="text-gray-600">For SEO meta descriptions, aim for 150-160 characters including spaces. Our tool helps you craft compelling descriptions that display fully in search results without being truncated, improving click-through rates.</p>
+                  <p className="text-gray-600">For web meta descriptions, aim for 150-160 characters including spaces. Our tool helps you craft compelling descriptions that display fully in search results without being truncated, improving click-through rates.</p>
                 </div>
 
                 <div>
