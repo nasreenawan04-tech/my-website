@@ -712,9 +712,9 @@ const FontStyleChanger = () => {
               </div>
               
               <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">Will these fonts affect SEO or website performance?</h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Will these fonts affect website performance?</h3>
                 <p className="text-gray-700">
-                  Unicode characters are treated as regular text by search engines and don't negatively impact SEO. 
+                  Unicode characters are treated as regular text by browsers and don't negatively impact website performance. 
                   However, use styled fonts strategically for headings and emphasis rather than entire paragraphs. 
                   The characters load instantly since they're part of Unicode, so there's no performance impact.
                 </p>
@@ -723,7 +723,7 @@ const FontStyleChanger = () => {
           </div>
         </section>
 
-        {/* SEO Content Section */}
+        {/* Content Section */}
         <section className="py-16 bg-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="prose prose-lg max-w-none">

@@ -770,7 +770,7 @@ const CaseConverter = () => {
             </div>
           </div>
 
-          {/* SEO Benefits */}
+          {/* Web Development Benefits */}
           <div className="mt-8 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-8">
             <h2 className="text-3xl font-bold text-gray-900 mb-6">Why Choose Our Case Converter?</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -929,7 +929,7 @@ const CaseConverter = () => {
               
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">When should I use snake_case vs kebab-case?</h3>
-                <p className="text-gray-600">Snake_case is commonly used in Python, databases, and file names. Kebab-case is preferred for URLs, CSS classes, and HTML attributes because hyphens are web-friendly and SEO-optimized.</p>
+                <p className="text-gray-600">Snake_case is commonly used in Python, databases, and file names. Kebab-case is preferred for URLs, CSS classes, and HTML attributes because hyphens are web-friendly and optimized for readability.</p>
               </div>
               
               <div>

@@ -393,7 +393,7 @@ const Home = () => {
                         </div>
                         <div>
                           <h4 className="font-semibold text-neutral-800 mb-1">Developers & Designers</h4>
-                          <p className="text-neutral-600 text-sm">Image optimization, text processing, and SEO analysis utilities</p>
+                          <p className="text-neutral-600 text-sm">Image optimization, text processing, and content analysis utilities</p>
                         </div>
                       </div>
                     </div>
@@ -489,7 +489,7 @@ const Home = () => {
                     <p className="text-neutral-600 leading-relaxed">
                       We offer 180+ tools across 6 main categories: Finance (loan calculators, currency converters), 
                       PDF (merge, split, convert), Image (resize, compress, edit), Text (word counters, generators), 
-                      SEO (analysis, optimization), and Health (BMI, calorie calculators). New tools are added regularly.
+                      content analysis and optimization, and Health (BMI, calorie calculators). New tools are added regularly.
                     </p>
                   </div>
                   

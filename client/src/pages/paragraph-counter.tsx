@@ -471,7 +471,7 @@ Finally, this last paragraph completes our sample text, giving you four distinct
                     <i className="fas fa-search text-lg"></i>
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">SEO Optimization</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Content Optimization</h3>
                     <p className="text-gray-600">Optimize content structure for better search engine rankings and user experience.</p>
                   </div>
                 </div>
@@ -567,7 +567,7 @@ Finally, this last paragraph completes our sample text, giving you four distinct
                 <ul className="space-y-3 text-gray-700">
                   <li className="flex items-start space-x-2">
                     <i className="fas fa-check text-purple-600 mt-1"></i>
-                    <span>Optimize blog posts for better SEO performance</span>
+                    <span>Optimize blog posts for better readability and structure</span>
                   </li>
                   <li className="flex items-start space-x-2">
                     <i className="fas fa-check text-purple-600 mt-1"></i>
