@@ -12,7 +12,6 @@ const categoryColors = {
   finance: 'bg-blue-100 text-blue-600',
   image: 'bg-green-100 text-green-600',
   text: 'bg-yellow-100 text-yellow-600',
-  seo: 'bg-purple-100 text-purple-600',
   health: 'bg-pink-100 text-pink-600'
 };
 
@@ -20,7 +19,6 @@ const iconColors = {
   finance: 'from-blue-500 to-purple-600',
   image: 'from-green-500 to-teal-600',
   text: 'from-yellow-500 to-orange-600',
-  seo: 'from-purple-500 to-indigo-600',
   health: 'from-pink-500 to-rose-600'
 };
 

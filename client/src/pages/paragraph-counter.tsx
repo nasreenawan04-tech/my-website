@@ -472,7 +472,7 @@ Finally, this last paragraph completes our sample text, giving you four distinct
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">Content Optimization</h3>
-                    <p className="text-gray-600">Optimize content structure for better search engine rankings and user experience.</p>
+                    <p className="text-gray-600">Optimize content structure for better readability and user experience.</p>
                   </div>
                 </div>
                 
