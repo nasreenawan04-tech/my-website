@@ -227,19 +227,19 @@ const PasswordGenerator = () => {
         <section className="py-16">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <Card className="bg-white shadow-sm border-0">
-              <CardContent className="p-4 sm:p-6 lg:p-8">
-                <div className="space-y-6 lg:space-y-8">
+              <CardContent className="p-8">
+                <div className="space-y-8">
                   {/* Generated Password Display */}
                   <div>
-                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6">Generated Password</h2>
+                    <h2 className="text-2xl font-semibold text-gray-900 mb-6">Generated Password</h2>
                     
                     <div className="space-y-4">
-                      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                      <div className="flex gap-4">
                         <div className="flex-1 relative">
                           <Input
                             value={password}
                             readOnly
-                            className="text-sm sm:text-lg lg:text-2xl font-bold pr-12 h-12 sm:h-14"
+                            className="text-2xl font-bold pr-12 h-14"
                             style={{ fontFamily: 'Monaco, Consolas, "Lucida Console", monospace' }}
                             data-testid="generated-password"
                           />
@@ -255,12 +255,11 @@ const PasswordGenerator = () => {
                         </div>
                         <Button 
                           onClick={handleGeneratePassword}
-                          className="h-12 sm:h-14 px-4 sm:px-6 whitespace-nowrap"
+                          className="h-14 px-6"
                           data-testid="button-generate-password"
                         >
-                          <i className="fas fa-refresh mr-1 sm:mr-2"></i>
-                          <span className="hidden sm:inline">Generate</span>
-                          <span className="sm:hidden">New</span>
+                          <i className="fas fa-refresh mr-2"></i>
+                          Generate
                         </Button>
                       </div>
 
@@ -298,14 +297,14 @@ const PasswordGenerator = () => {
                           <Label className="text-base font-medium">Password Length</Label>
                           <span className="text-lg font-bold text-blue-600">{options.length}</span>
                         </div>
-                        <div className="px-2 py-2">
+                        <div className="px-2">
                           <Slider
                             value={[options.length]}
                             onValueChange={(value) => updateOption('length', value[0])}
                             max={128}
                             min={4}
                             step={1}
-                            className="w-full h-11 [&_[role=slider]]:h-6 [&_[role=slider]]:w-6"
+                            className="w-full"
                             data-testid="slider-password-length"
                           />
                           <div className="flex justify-between text-sm text-gray-500 mt-1">
@@ -320,52 +319,48 @@ const PasswordGenerator = () => {
                         <h4 className="font-medium text-gray-900">Character Types</h4>
                         
                         <div className="space-y-3">
-                          <div className="flex items-center justify-between min-h-11 py-2">
+                          <div className="flex items-center justify-between">
                             <div>
-                              <Label htmlFor="switch-uppercase" className="text-sm font-medium cursor-pointer">Uppercase Letters (A-Z)</Label>
+                              <Label className="text-sm font-medium">Uppercase Letters (A-Z)</Label>
                               <p className="text-xs text-gray-500">Include capital letters</p>
                             </div>
                             <Switch
-                              id="switch-uppercase"
                               checked={options.includeUppercase}
                               onCheckedChange={(value) => updateOption('includeUppercase', value)}
                               data-testid="switch-uppercase"
                             />
                           </div>
 
-                          <div className="flex items-center justify-between min-h-11 py-2">
+                          <div className="flex items-center justify-between">
                             <div>
-                              <Label htmlFor="switch-lowercase" className="text-sm font-medium cursor-pointer">Lowercase Letters (a-z)</Label>
+                              <Label className="text-sm font-medium">Lowercase Letters (a-z)</Label>
                               <p className="text-xs text-gray-500">Include small letters</p>
                             </div>
                             <Switch
-                              id="switch-lowercase"
                               checked={options.includeLowercase}
                               onCheckedChange={(value) => updateOption('includeLowercase', value)}
                               data-testid="switch-lowercase"
                             />
                           </div>
 
-                          <div className="flex items-center justify-between min-h-11 py-2">
+                          <div className="flex items-center justify-between">
                             <div>
-                              <Label htmlFor="switch-numbers" className="text-sm font-medium cursor-pointer">Numbers (0-9)</Label>
+                              <Label className="text-sm font-medium">Numbers (0-9)</Label>
                               <p className="text-xs text-gray-500">Include digits</p>
                             </div>
                             <Switch
-                              id="switch-numbers"
                               checked={options.includeNumbers}
                               onCheckedChange={(value) => updateOption('includeNumbers', value)}
                               data-testid="switch-numbers"
                             />
                           </div>
 
-                          <div className="flex items-center justify-between min-h-11 py-2">
+                          <div className="flex items-center justify-between">
                             <div>
-                              <Label htmlFor="switch-symbols" className="text-sm font-medium cursor-pointer">Symbols (!@#$%^&*)</Label>
+                              <Label className="text-sm font-medium">Symbols (!@#$%^&*)</Label>
                               <p className="text-xs text-gray-500">Include special characters</p>
                             </div>
                             <Switch
-                              id="switch-symbols"
                               checked={options.includeSymbols}
                               onCheckedChange={(value) => updateOption('includeSymbols', value)}
                               data-testid="switch-symbols"
@@ -379,26 +374,24 @@ const PasswordGenerator = () => {
                         <h4 className="font-medium text-gray-900">Advanced Options</h4>
                         
                         <div className="space-y-3">
-                          <div className="flex items-center justify-between min-h-11 py-2">
+                          <div className="flex items-center justify-between">
                             <div>
-                              <Label htmlFor="switch-exclude-similar" className="text-sm font-medium cursor-pointer">Exclude Similar Characters</Label>
+                              <Label className="text-sm font-medium">Exclude Similar Characters</Label>
                               <p className="text-xs text-gray-500">Avoid 0, O, 1, l, I</p>
                             </div>
                             <Switch
-                              id="switch-exclude-similar"
                               checked={options.excludeSimilar}
                               onCheckedChange={(value) => updateOption('excludeSimilar', value)}
                               data-testid="switch-exclude-similar"
                             />
                           </div>
 
-                          <div className="flex items-center justify-between min-h-11 py-2">
+                          <div className="flex items-center justify-between">
                             <div>
-                              <Label htmlFor="switch-exclude-ambiguous" className="text-sm font-medium cursor-pointer">Exclude Ambiguous Characters</Label>
+                              <Label className="text-sm font-medium">Exclude Ambiguous Characters</Label>
                               <p className="text-xs text-gray-500">Avoid {}[]()/'"`~,;.&lt;&gt;</p>
                             </div>
                             <Switch
-                              id="switch-exclude-ambiguous"
                               checked={options.excludeAmbiguous}
                               onCheckedChange={(value) => updateOption('excludeAmbiguous', value)}
                               data-testid="switch-exclude-ambiguous"
@@ -411,7 +404,7 @@ const PasswordGenerator = () => {
                               value={options.customCharacters}
                               onChange={(e) => updateOption('customCharacters', e.target.value)}
                               placeholder="Add your own characters"
-                              className="text-sm min-h-11"
+                              className="text-sm"
                               data-testid="input-custom-characters"
                             />
                             <p className="text-xs text-gray-500">Additional characters to include</p>

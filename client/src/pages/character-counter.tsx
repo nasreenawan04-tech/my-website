@@ -185,11 +185,11 @@ This tool provides detailed analysis of your text content.`;
         <section className="py-16">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <Card className="bg-white shadow-sm border-0">
-              <CardContent className="p-4 sm:p-6 lg:p-8">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12">
+              <CardContent className="p-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                   {/* Input Section */}
                   <div className="space-y-6">
-                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-8">Enter Your Text</h2>
+                    <h2 className="text-2xl font-semibold text-gray-900 mb-8">Enter Your Text</h2>
                     
                     {/* Text Area */}
                     <div className="space-y-3">
@@ -200,7 +200,7 @@ This tool provides detailed analysis of your text content.`;
                         id="text-input"
                         value={text}
                         onChange={(e) => setText(e.target.value)}
-                        className="w-full h-48 sm:h-64 lg:h-80 p-3 sm:p-4 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                        className="w-full h-80 p-4 text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
                         placeholder="Type or paste your text here to get instant character count and detailed text analysis..."
                         data-testid="textarea-text-input"
                       />
@@ -208,7 +208,7 @@ This tool provides detailed analysis of your text content.`;
 
                     {/* Options */}
                     <div className="space-y-3">
-                      <div className="flex items-center space-x-2 min-h-11 py-2">
+                      <div className="flex items-center space-x-2">
                         <Checkbox
                           id="show-details"
                           checked={showDetails}
@@ -222,44 +222,41 @@ This tool provides detailed analysis of your text content.`;
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-2">
+                    <div className="flex gap-4">
                       <Button
                         onClick={handleClear}
                         variant="outline"
-                        className="flex-1 min-h-11 text-xs sm:text-sm"
+                        className="flex-1"
                         data-testid="button-clear-text"
                       >
-                        <i className="fas fa-trash mr-1 sm:mr-2"></i>
-                        <span className="hidden sm:inline">Clear Text</span>
-                        <span className="sm:hidden">Clear</span>
+                        <i className="fas fa-trash mr-2"></i>
+                        Clear Text
                       </Button>
                       <Button
                         onClick={handleSampleText}
                         variant="outline"
-                        className="flex-1 min-h-11 text-xs sm:text-sm"
+                        className="flex-1"
                         data-testid="button-sample-text"
                       >
-                        <i className="fas fa-file-text mr-1 sm:mr-2"></i>
-                        <span className="hidden sm:inline">Sample Text</span>
-                        <span className="sm:hidden">Sample</span>
+                        <i className="fas fa-file-text mr-2"></i>
+                        Sample Text
                       </Button>
                       <Button
                         onClick={handleCopy}
                         variant="outline"
-                        className="flex-1 min-h-11 text-xs sm:text-sm"
+                        className="flex-1"
                         disabled={!result || result.totalCharacters === 0}
                         data-testid="button-copy-stats"
                       >
-                        <i className="fas fa-copy mr-1 sm:mr-2"></i>
-                        <span className="hidden sm:inline">Copy Stats</span>
-                        <span className="sm:hidden">Copy</span>
+                        <i className="fas fa-copy mr-2"></i>
+                        Copy Stats
                       </Button>
                     </div>
                   </div>
 
                   {/* Results Section */}
                   <div className="space-y-6">
-                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-8">Character Statistics</h2>
+                    <h2 className="text-2xl font-semibold text-gray-900 mb-8">Character Statistics</h2>
                     
                     {result && (
                       <div className="space-y-4" data-testid="character-statistics">
@@ -281,7 +278,7 @@ This tool provides detailed analysis of your text content.`;
                         </div>
 
                         {/* Quick Stats */}
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+                        <div className="grid grid-cols-3 gap-4">
                           <div className="bg-gray-50 rounded-lg p-3 text-center">
                             <div className="text-lg font-bold text-gray-600" data-testid="stat-words">
                               {result.words.toLocaleString()}

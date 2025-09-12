@@ -1,7 +1,6 @@
 
 import { Helmet } from 'react-helmet-async';
 import { useState } from 'react';
-import emailjs from '@emailjs/browser';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
@@ -12,8 +11,6 @@ const ContactUs = () => {
     subject: '',
     message: ''
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'fallback'>('idle');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -22,63 +19,12 @@ const ContactUs = () => {
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
-
-    try {
-      // EmailJS configuration - these would be set in environment variables
-      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
-      if (serviceId && templateId && publicKey) {
-        // Send email via EmailJS
-        await emailjs.send(
-          serviceId,
-          templateId,
-          {
-            from_name: formData.name,
-            from_email: formData.email,
-            subject: formData.subject,
-            message: formData.message,
-            to_email: 'saifkhan09@dapsiwow.com'
-          },
-          publicKey
-        );
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '', subject: '', message: '' });
-      } else {
-        // Fallback: Open default email client with pre-filled information
-        const emailSubject = encodeURIComponent(`[DapsiWow Contact] ${formData.subject}`);
-        const emailBody = encodeURIComponent(
-          `Name: ${formData.name}\n` +
-          `Email: ${formData.email}\n` +
-          `Subject: ${formData.subject}\n\n` +
-          `Message:\n${formData.message}`
-        );
-        const mailtoLink = `mailto:saifkhan09@dapsiwow.com?subject=${emailSubject}&body=${emailBody}`;
-        window.open(mailtoLink, '_blank');
-        setSubmitStatus('fallback');
-        setFormData({ name: '', email: '', subject: '', message: '' });
-      }
-    } catch (error) {
-      console.error('Error sending email:', error);
-      setSubmitStatus('fallback');
-      // Fallback: Try mailto link
-      const emailSubject = encodeURIComponent(`[DapsiWow Contact] ${formData.subject}`);
-      const emailBody = encodeURIComponent(
-        `Name: ${formData.name}\n` +
-        `Email: ${formData.email}\n` +
-        `Subject: ${formData.subject}\n\n` +
-        `Message:\n${formData.message}`
-      );
-      const mailtoLink = `mailto:saifkhan09@dapsiwow.com?subject=${emailSubject}&body=${emailBody}`;
-      window.open(mailtoLink, '_blank');
-    } finally {
-      setIsSubmitting(false);
-    }
+    // Handle form submission here
+    console.log('Form submitted:', formData);
+    alert('Thank you for your message! We\'ll get back to you soon.');
+    setFormData({ name: '', email: '', subject: '', message: '' });
   };
 
   return (
@@ -117,7 +63,7 @@ const ContactUs = () => {
                 {/* Contact Form */}
                 <div className="bg-white rounded-2xl shadow-lg p-8">
                   <h2 className="text-2xl font-bold text-neutral-800 mb-6">Send us a message</h2>
-                  <form onSubmit={handleSubmit} className="space-y-6" data-testid="form-contact">
+                  <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-neutral-700 mb-2">
                         Name *
@@ -129,10 +75,8 @@ const ContactUs = () => {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        disabled={isSubmitting}
-                        className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent disabled:bg-gray-50 disabled:cursor-not-allowed"
+                        className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
                         placeholder="Your full name"
-                        data-testid="input-name"
                       />
                     </div>
 
@@ -147,10 +91,8 @@ const ContactUs = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        disabled={isSubmitting}
-                        className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent disabled:bg-gray-50 disabled:cursor-not-allowed"
+                        className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
                         placeholder="your.email@example.com"
-                        data-testid="input-email"
                       />
                     </div>
 
@@ -164,9 +106,7 @@ const ContactUs = () => {
                         value={formData.subject}
                         onChange={handleChange}
                         required
-                        disabled={isSubmitting}
-                        className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent disabled:bg-gray-50 disabled:cursor-not-allowed"
-                        data-testid="select-subject"
+                        className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
                       >
                         <option value="">Select a subject</option>
                         <option value="general">General Inquiry</option>
@@ -188,62 +128,18 @@ const ContactUs = () => {
                         value={formData.message}
                         onChange={handleChange}
                         required
-                        disabled={isSubmitting}
                         rows={6}
-                        className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent resize-vertical disabled:bg-gray-50 disabled:cursor-not-allowed"
+                        className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent resize-vertical"
                         placeholder="Tell us how we can help you..."
-                        data-testid="textarea-message"
                       ></textarea>
                     </div>
 
-                    {submitStatus === 'success' && (
-                      <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6" data-testid="alert-success">
-                        <div className="flex items-center">
-                          <i className="fas fa-check-circle text-green-500 mr-3"></i>
-                          <div>
-                            <h4 className="font-medium text-green-800">Message sent successfully!</h4>
-                            <p className="text-green-600 text-sm">Thank you for your message. We'll get back to you soon at saifkhan09@dapsiwow.com</p>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
-                    {submitStatus === 'fallback' && (
-                      <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6" data-testid="alert-fallback">
-                        <div className="flex items-center">
-                          <i className="fas fa-envelope text-yellow-500 mr-3"></i>
-                          <div>
-                            <h4 className="font-medium text-yellow-800">Email client opened</h4>
-                            <p className="text-yellow-600 text-sm">We've opened your default email client. Please send the message to saifkhan09@dapsiwow.com</p>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
                     <button
                       type="submit"
-                      disabled={isSubmitting}
-                      className={`w-full font-medium py-3 px-6 rounded-lg transition-colors flex items-center justify-center ${
-                        isSubmitting 
-                          ? 'bg-green-400 text-white cursor-not-allowed' 
-                          : 'bg-green-600 text-white hover:bg-green-700'
-                      }`}
-                      data-testid="button-submit"
+                      className="w-full bg-green-600 text-white font-medium py-3 px-6 rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center"
                     >
-                      {isSubmitting ? (
-                        <>
-                          <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                            <path className="opacity-75" fill="currentColor" d="m12 2v4a8 8 0 008 8h4A12 12 0 0012 2z"></path>
-                          </svg>
-                          Sending Message...
-                        </>
-                      ) : (
-                        <>
-                          <i className="fas fa-paper-plane mr-2"></i>
-                          Send Message
-                        </>
-                      )}
+                      <i className="fas fa-paper-plane mr-2"></i>
+                      Send Message
                     </button>
                   </form>
                 </div>
@@ -259,7 +155,7 @@ const ContactUs = () => {
                         </div>
                         <div>
                           <h3 className="font-semibold text-neutral-800">Email</h3>
-                          <p className="text-neutral-600">saifkhan09@dapsiwow.com</p>
+                          <p className="text-neutral-600">support@dapsiwow.com</p>
                         </div>
                       </div>
 

@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'wouter';
 import Header from '@/components/Header';
@@ -6,17 +6,11 @@ import Footer from '@/components/Footer';
 import ToolCard from '@/components/ToolCard';
 import { tools } from '@/data/tools';
 import { searchAndFilterTools } from '@/lib/search';
-import { useDebounce } from '@/hooks/use-debounce';
 
 const HealthTools = () => {
   const [location, setLocation] = useLocation();
   const [searchQuery, setSearchQuery] = useState('');
-  
-  // Debounce search query to avoid excessive filtering
-  const debouncedSearchQuery = useDebounce(searchQuery, 300);
-  
-  // Derive loading state from debounce without causing re-renders
-  const isLoading = searchQuery !== debouncedSearchQuery;
+  const [filteredTools, setFilteredTools] = useState(tools.filter(tool => tool.category === 'health'));
 
   // Parse URL parameters
   useEffect(() => {
@@ -25,21 +19,15 @@ const HealthTools = () => {
     setSearchQuery(searchParam);
   }, [location]);
 
-  // Memoize filtered tools for better performance
-  const filteredTools = useMemo(() => {
-    return searchAndFilterTools(debouncedSearchQuery, 'health');
-  }, [debouncedSearchQuery]);
+  // Filter tools based on search
+  useEffect(() => {
+    const filtered = searchAndFilterTools(searchQuery, 'health');
+    setFilteredTools(filtered);
+  }, [searchQuery]);
 
-  // Memoize popular health tools from actual data
-  const popularHealthTools = useMemo(() => {
-    return tools
-      .filter(tool => tool.category === 'health' && tool.isPopular)
-      .slice(0, 4);
-  }, []);
-
-  const handleSearchChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
-  }, []);
+  };
 
   return (
     <>
@@ -100,21 +88,14 @@ const HealthTools = () => {
                 </p>
               </div>
 
-              {/* Loading State */}
-              {isLoading && (
-                <div className="flex justify-center py-8" data-testid="loading-state">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-pink-600"></div>
-                </div>
-              )}
-
               {/* Tools Grid */}
-              {!isLoading && filteredTools.length > 0 ? (
+              {filteredTools.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-testid="grid-health-tools">
                   {filteredTools.map((tool) => (
                     <ToolCard key={tool.id} tool={tool} />
                   ))}
                 </div>
-              ) : !isLoading ? (
+              ) : (
                 <div className="text-center py-16" data-testid="empty-state-no-tools">
                   <i className="fas fa-search text-6xl text-neutral-300 mb-4"></i>
                   <h3 className="text-2xl font-bold text-neutral-600 mb-2">No health tools found</h3>
@@ -122,28 +103,46 @@ const HealthTools = () => {
                     Try adjusting your search query.
                   </p>
                 </div>
-              ) : null}
+              )}
 
-              {/* Popular Tools Section - Dynamic from actual data */}
-              {popularHealthTools.length > 0 && (
-                <div className="mt-16 bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-2xl font-bold text-neutral-800 mb-6 text-center">Popular Health Tools</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {popularHealthTools.map((tool) => (
-                      <div 
-                        key={tool.id}
-                        className="text-center p-4 bg-gradient-to-br from-pink-50 to-rose-50 rounded-xl hover:shadow-md transition-shadow cursor-pointer"
-                        onClick={() => setLocation(tool.href)}
-                        data-testid={`popular-tool-${tool.id}`}
-                      >
-                        <i className={`${tool.icon} text-2xl text-pink-600 mb-2`}></i>
-                        <h3 className="font-semibold text-neutral-800 mb-1">{tool.name}</h3>
-                        <p className="text-sm text-neutral-600 line-clamp-2">{tool.description}</p>
-                      </div>
-                    ))}
+              {/* Popular Tools Section */}
+              <div className="mt-16 bg-white rounded-2xl shadow-lg p-8">
+                <h2 className="text-2xl font-bold text-neutral-800 mb-6 text-center">Popular Health Tools</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  <div 
+                    className="text-center p-4 bg-pink-50 rounded-xl cursor-pointer hover:bg-pink-100 transition-colors duration-200"
+                    onClick={() => setLocation('/tools/bmi-calculator')}
+                  >
+                    <i className="fas fa-weight text-2xl text-pink-600 mb-2"></i>
+                    <h3 className="font-semibold text-neutral-800">BMI Calculator</h3>
+                    <p className="text-sm text-neutral-600">Calculate body mass index</p>
+                  </div>
+                  <div 
+                    className="text-center p-4 bg-red-50 rounded-xl cursor-pointer hover:bg-red-100 transition-colors duration-200"
+                    onClick={() => setLocation('/tools/calorie-calculator')}
+                  >
+                    <i className="fas fa-fire text-2xl text-red-600 mb-2"></i>
+                    <h3 className="font-semibold text-neutral-800">Calorie Calculator</h3>
+                    <p className="text-sm text-neutral-600">Calculate daily calories</p>
+                  </div>
+                  <div 
+                    className="text-center p-4 bg-blue-50 rounded-xl cursor-pointer hover:bg-blue-100 transition-colors duration-200"
+                    onClick={() => setLocation('/tools/pregnancy-due-date-calculator')}
+                  >
+                    <i className="fas fa-baby text-2xl text-blue-600 mb-2"></i>
+                    <h3 className="font-semibold text-neutral-800">Pregnancy Due Date Calculator</h3>
+                    <p className="text-sm text-neutral-600">Calculate expected delivery date and pregnancy milestones</p>
+                  </div>
+                  <div 
+                    className="text-center p-4 bg-purple-50 rounded-xl cursor-pointer hover:bg-purple-100 transition-colors duration-200"
+                    onClick={() => setLocation('/tools/ideal-weight-calculator')}
+                  >
+                    <i className="fas fa-balance-scale text-2xl text-purple-600 mb-2"></i>
+                    <h3 className="font-semibold text-neutral-800">Ideal Weight Calculator</h3>
+                    <p className="text-sm text-neutral-600">Calculate ideal body weight using multiple proven formulas</p>
                   </div>
                 </div>
-              )}
+              </div>
             </div>
           </section>
         </main>

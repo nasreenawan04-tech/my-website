@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'wouter';
 import Header from '@/components/Header';
@@ -6,17 +6,11 @@ import Footer from '@/components/Footer';
 import ToolCard from '@/components/ToolCard';
 import { tools } from '@/data/tools';
 import { searchAndFilterTools } from '@/lib/search';
-import { useDebounce } from '@/hooks/use-debounce';
 
 const TextTools = () => {
-  const [location, setLocation] = useLocation();
+  const [location] = useLocation();
   const [searchQuery, setSearchQuery] = useState('');
-  
-  // Debounce search query to avoid excessive filtering
-  const debouncedSearchQuery = useDebounce(searchQuery, 300);
-  
-  // Derive loading state from debounce without causing re-renders
-  const isLoading = searchQuery !== debouncedSearchQuery;
+  const [filteredTools, setFilteredTools] = useState(tools.filter(tool => tool.category === 'text'));
 
   // Parse URL parameters
   useEffect(() => {
@@ -25,21 +19,15 @@ const TextTools = () => {
     setSearchQuery(searchParam);
   }, [location]);
 
-  // Memoize filtered tools for better performance
-  const filteredTools = useMemo(() => {
-    return searchAndFilterTools(debouncedSearchQuery, 'text');
-  }, [debouncedSearchQuery]);
+  // Filter tools based on search
+  useEffect(() => {
+    const filtered = searchAndFilterTools(searchQuery, 'text');
+    setFilteredTools(filtered);
+  }, [searchQuery]);
 
-  // Memoize popular text tools from actual data
-  const popularTextTools = useMemo(() => {
-    return tools
-      .filter(tool => tool.category === 'text' && tool.isPopular)
-      .slice(0, 4);
-  }, []);
-
-  const handleSearchChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
-  }, []);
+  };
 
   return (
     <>
@@ -100,21 +88,14 @@ const TextTools = () => {
                 </p>
               </div>
 
-              {/* Loading State */}
-              {isLoading && (
-                <div className="flex justify-center py-8" data-testid="loading-state">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-yellow-600"></div>
-                </div>
-              )}
-
               {/* Tools Grid */}
-              {!isLoading && filteredTools.length > 0 ? (
+              {filteredTools.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-testid="grid-text-tools">
                   {filteredTools.map((tool) => (
                     <ToolCard key={tool.id} tool={tool} />
                   ))}
                 </div>
-              ) : !isLoading ? (
+              ) : (
                 <div className="text-center py-16" data-testid="empty-state-no-tools">
                   <i className="fas fa-search text-6xl text-neutral-300 mb-4"></i>
                   <h3 className="text-2xl font-bold text-neutral-600 mb-2">No text tools found</h3>
@@ -122,28 +103,34 @@ const TextTools = () => {
                     Try adjusting your search query.
                   </p>
                 </div>
-              ) : null}
+              )}
 
-              {/* Popular Tools Section - Dynamic from actual data */}
-              {popularTextTools.length > 0 && (
-                <div className="mt-16 bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-2xl font-bold text-neutral-800 mb-6 text-center">Popular Text Tools</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {popularTextTools.map((tool) => (
-                      <div 
-                        key={tool.id}
-                        className="text-center p-4 bg-gradient-to-br from-yellow-50 to-orange-50 rounded-xl hover:shadow-md transition-shadow cursor-pointer"
-                        onClick={() => setLocation(tool.href)}
-                        data-testid={`popular-tool-${tool.id}`}
-                      >
-                        <i className={`${tool.icon} text-2xl text-yellow-600 mb-2`}></i>
-                        <h3 className="font-semibold text-neutral-800 mb-1">{tool.name}</h3>
-                        <p className="text-sm text-neutral-600 line-clamp-2">{tool.description}</p>
-                      </div>
-                    ))}
+              {/* Popular Tools Section */}
+              <div className="mt-16 bg-white rounded-2xl shadow-lg p-8">
+                <h2 className="text-2xl font-bold text-neutral-800 mb-6 text-center">Popular Text Tools</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  <div className="text-center p-4 bg-yellow-50 rounded-xl">
+                    <i className="fas fa-calculator text-2xl text-yellow-600 mb-2"></i>
+                    <h3 className="font-semibold text-neutral-800">Word Counter</h3>
+                    <p className="text-sm text-neutral-600">Count words & characters</p>
+                  </div>
+                  <div className="text-center p-4 bg-green-50 rounded-xl">
+                    <i className="fas fa-spell-check text-2xl text-green-600 mb-2"></i>
+                    <h3 className="font-semibold text-neutral-800">Grammar Checker</h3>
+                    <p className="text-sm text-neutral-600">Fix grammar errors</p>
+                  </div>
+                  <div className="text-center p-4 bg-blue-50 rounded-xl">
+                    <i className="fas fa-shield-alt text-2xl text-blue-600 mb-2"></i>
+                    <h3 className="font-semibold text-neutral-800">Plagiarism Checker</h3>
+                    <p className="text-sm text-neutral-600">Check for plagiarism</p>
+                  </div>
+                  <div className="text-center p-4 bg-purple-50 rounded-xl">
+                    <i className="fas fa-compress-alt text-2xl text-purple-600 mb-2"></i>
+                    <h3 className="font-semibold text-neutral-800">Text Summarizer</h3>
+                    <p className="text-sm text-neutral-600">Summarize content</p>
                   </div>
                 </div>
-              )}
+              </div>
             </div>
           </section>
         </main>

@@ -118,11 +118,11 @@ Speaking time: ${result.speakingTime} minute(s)`;
         <section className="py-16">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <Card className="bg-white shadow-sm border-0">
-              <CardContent className="p-4 sm:p-6 lg:p-8">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12">
+              <CardContent className="p-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                   {/* Input Section */}
                   <div className="space-y-6">
-                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-8">Enter Your Text</h2>
+                    <h2 className="text-2xl font-semibold text-gray-900 mb-8">Enter Your Text</h2>
                     
                     {/* Text Area */}
                     <div className="space-y-3">
@@ -133,66 +133,64 @@ Speaking time: ${result.speakingTime} minute(s)`;
                         id="text-input"
                         value={text}
                         onChange={(e) => setText(e.target.value)}
-                        className="w-full h-48 sm:h-64 lg:h-80 p-3 sm:p-4 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                        className="w-full h-80 p-4 text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
                         placeholder="Type or paste your text here to get instant word count and text statistics..."
                         data-testid="textarea-text-input"
                       />
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                    <div className="flex gap-4">
                       <Button
                         onClick={handleClear}
                         variant="outline"
-                        className="flex-1 min-h-11"
+                        className="flex-1"
                         data-testid="button-clear-text"
                       >
                         <i className="fas fa-trash mr-2"></i>
-                        <span className="hidden sm:inline">Clear Text</span>
-                        <span className="sm:hidden">Clear</span>
+                        Clear Text
                       </Button>
                       <Button
                         onClick={handleCopy}
                         variant="outline"
-                        className="flex-1 min-h-11"
+                        className="flex-1"
                         disabled={!result || result.words === 0}
                         data-testid="button-copy-stats"
                       >
                         <i className="fas fa-copy mr-2"></i>
-                        <span className="hidden sm:inline">Copy Stats</span>
-                        <span className="sm:hidden">Copy</span>
+                        Copy Stats
                       </Button>
                     </div>
                   </div>
 
                   {/* Results Section */}
                   <div className="space-y-6">
-                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-8">Text Statistics</h2>
+                    <h2 className="text-2xl font-semibold text-gray-900 mb-8">Text Statistics</h2>
                     
                     {result && (
                       <div className="space-y-4" data-testid="text-statistics">
                         {/* Main Counts */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                          <div className="bg-blue-50 rounded-lg p-3 sm:p-4 text-center">
-                            <div className="text-xl sm:text-2xl font-bold text-blue-600" data-testid="stat-words">
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="bg-blue-50 rounded-lg p-4 text-center">
+                            <div className="text-2xl font-bold text-blue-600" data-testid="stat-words">
                               {result.words.toLocaleString()}
                             </div>
                             <div className="text-sm text-gray-600">Words</div>
                           </div>
-                          <div className="bg-green-50 rounded-lg p-3 sm:p-4 text-center">
-                            <div className="text-xl sm:text-2xl font-bold text-green-600" data-testid="stat-characters">
+                          <div className="bg-green-50 rounded-lg p-4 text-center">
+                            <div className="text-2xl font-bold text-green-600" data-testid="stat-characters">
                               {result.characters.toLocaleString()}
                             </div>
                             <div className="text-sm text-gray-600">Characters</div>
                           </div>
-                          <div className="bg-purple-50 rounded-lg p-3 sm:p-4 text-center">
-                            <div className="text-xl sm:text-2xl font-bold text-purple-600" data-testid="stat-characters-no-spaces">
+                          <div className="bg-purple-50 rounded-lg p-4 text-center">
+                            <div className="text-2xl font-bold text-purple-600" data-testid="stat-characters-no-spaces">
                               {result.charactersNoSpaces.toLocaleString()}
                             </div>
-                            <div className="text-xs sm:text-sm text-gray-600">Characters (no spaces)</div>
+                            <div className="text-sm text-gray-600">Characters (no spaces)</div>
                           </div>
-                          <div className="bg-orange-50 rounded-lg p-3 sm:p-4 text-center">
-                            <div className="text-xl sm:text-2xl font-bold text-orange-600" data-testid="stat-sentences">
+                          <div className="bg-orange-50 rounded-lg p-4 text-center">
+                            <div className="text-2xl font-bold text-orange-600" data-testid="stat-sentences">
                               {result.sentences.toLocaleString()}
                             </div>
                             <div className="text-sm text-gray-600">Sentences</div>
@@ -200,37 +198,37 @@ Speaking time: ${result.speakingTime} minute(s)`;
                         </div>
 
                         {/* Additional Counts */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                          <div className="bg-gray-50 rounded-lg p-3 sm:p-4 text-center">
-                            <div className="text-lg sm:text-xl font-bold text-gray-600" data-testid="stat-paragraphs">
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="bg-gray-50 rounded-lg p-4 text-center">
+                            <div className="text-xl font-bold text-gray-600" data-testid="stat-paragraphs">
                               {result.paragraphs.toLocaleString()}
                             </div>
-                            <div className="text-xs sm:text-sm text-gray-600">Paragraphs</div>
+                            <div className="text-sm text-gray-600">Paragraphs</div>
                           </div>
-                          <div className="bg-gray-50 rounded-lg p-3 sm:p-4 text-center">
-                            <div className="text-lg sm:text-xl font-bold text-gray-600" data-testid="stat-lines">
+                          <div className="bg-gray-50 rounded-lg p-4 text-center">
+                            <div className="text-xl font-bold text-gray-600" data-testid="stat-lines">
                               {result.lines.toLocaleString()}
                             </div>
-                            <div className="text-xs sm:text-sm text-gray-600">Lines</div>
+                            <div className="text-sm text-gray-600">Lines</div>
                           </div>
                         </div>
 
                         {/* Reading Time */}
-                        <div className="bg-indigo-50 rounded-lg p-3 sm:p-4">
-                          <h3 className="font-semibold text-indigo-900 mb-2 text-sm sm:text-base">Reading & Speaking Time</h3>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                        <div className="bg-indigo-50 rounded-lg p-4">
+                          <h3 className="font-semibold text-indigo-900 mb-2">Reading & Speaking Time</h3>
+                          <div className="grid grid-cols-2 gap-4">
                             <div className="text-center">
                               <div className="text-lg font-bold text-indigo-600" data-testid="stat-reading-time">
                                 {result.readingTime} min
                               </div>
-                              <div className="text-xs sm:text-sm text-gray-600">Reading time</div>
+                              <div className="text-sm text-gray-600">Reading time</div>
                               <div className="text-xs text-gray-500">(200 wpm)</div>
                             </div>
                             <div className="text-center">
                               <div className="text-lg font-bold text-indigo-600" data-testid="stat-speaking-time">
                                 {result.speakingTime} min
                               </div>
-                              <div className="text-xs sm:text-sm text-gray-600">Speaking time</div>
+                              <div className="text-sm text-gray-600">Speaking time</div>
                               <div className="text-xs text-gray-500">(130 wpm)</div>
                             </div>
                           </div>

@@ -1,4 +1,3 @@
-import { memo, useCallback } from 'react';
 import { useLocation } from 'wouter';
 import { type Tool, categories } from '@/data/tools';
 import FavoriteButton from '@/components/FavoriteButton';
@@ -23,16 +22,16 @@ const iconColors = {
   health: 'from-pink-500 to-rose-600'
 };
 
-const ToolCard = memo(({ tool, onClick }: ToolCardProps) => {
+const ToolCard = ({ tool, onClick }: ToolCardProps) => {
   const [, setLocation] = useLocation();
   const { addRecent } = useRecentTools();
 
-  const handleClick = useCallback(() => {
+  const handleClick = () => {
     const targetPath = tool.href || `/tools/${tool.id}`;
     addRecent(tool); // Track tool usage
     setLocation(targetPath);
     onClick?.();
-  }, [tool.href, tool.id, tool, addRecent, setLocation, onClick]);
+  };
 
   return (
     <div 
@@ -74,8 +73,6 @@ const ToolCard = memo(({ tool, onClick }: ToolCardProps) => {
       </div>
     </div>
   );
-});
-
-ToolCard.displayName = 'ToolCard';
+};
 
 export default ToolCard;
