@@ -25,12 +25,14 @@ const useDebounce = (value: string, delay: number) => {
 };
 
 const FinanceTools = () => {
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
   const [searchQuery, setSearchQuery] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
   
   // Debounce search query to avoid excessive filtering
   const debouncedSearchQuery = useDebounce(searchQuery, 300);
+  
+  // Derive loading state from debounce without causing re-renders
+  const isLoading = searchQuery !== debouncedSearchQuery;
 
   // Parse URL parameters
   useEffect(() => {
@@ -41,10 +43,7 @@ const FinanceTools = () => {
 
   // Memoize filtered tools for better performance
   const filteredTools = useMemo(() => {
-    setIsLoading(true);
-    const filtered = searchAndFilterTools(debouncedSearchQuery, 'finance');
-    setIsLoading(false);
-    return filtered;
+    return searchAndFilterTools(debouncedSearchQuery, 'finance');
   }, [debouncedSearchQuery]);
 
   // Memoize popular finance tools from actual data
@@ -150,7 +149,7 @@ const FinanceTools = () => {
                       <div 
                         key={tool.id}
                         className="text-center p-4 bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl hover:shadow-md transition-shadow cursor-pointer"
-                        onClick={() => window.location.href = tool.href}
+                        onClick={() => setLocation(tool.href)}
                         data-testid={`popular-tool-${tool.id}`}
                       >
                         <i className={`${tool.icon} text-2xl text-blue-600 mb-2`}></i>
