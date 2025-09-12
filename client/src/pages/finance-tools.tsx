@@ -6,23 +6,7 @@ import Footer from '@/components/Footer';
 import ToolCard from '@/components/ToolCard';
 import { tools } from '@/data/tools';
 import { searchAndFilterTools } from '@/lib/search';
-
-// Custom hook for debounced value
-const useDebounce = (value: string, delay: number) => {
-  const [debouncedValue, setDebouncedValue] = useState(value);
-
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedValue(value);
-    }, delay);
-
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [value, delay]);
-
-  return debouncedValue;
-};
+import { useDebounce } from '@/hooks/use-debounce';
 
 const FinanceTools = () => {
   const [location, setLocation] = useLocation();
