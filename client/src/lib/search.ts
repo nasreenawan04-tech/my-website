@@ -25,12 +25,23 @@ export const filterToolsByCategory = (category: string): Tool[] => {
   return tools.filter(tool => tool.category === category);
 };
 
+// Create category-specific fuse instances for better performance
+const categoryFuseInstances = new Map<string, Fuse<Tool>>();
+
+const getCategoryFuse = (category: string): Fuse<Tool> => {
+  if (!categoryFuseInstances.has(category)) {
+    const filteredTools = filterToolsByCategory(category);
+    categoryFuseInstances.set(category, new Fuse(filteredTools, fuseOptions));
+  }
+  return categoryFuseInstances.get(category)!;
+};
+
 export const searchAndFilterTools = (query: string, category: string): Tool[] => {
   let filteredTools = filterToolsByCategory(category);
   
   if (!query.trim()) return filteredTools;
   
-  const searchFuse = new Fuse(filteredTools, fuseOptions);
+  const searchFuse = getCategoryFuse(category);
   const results = searchFuse.search(query);
   return results.map(result => result.item);
 };
