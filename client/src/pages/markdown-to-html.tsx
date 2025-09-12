@@ -204,7 +204,7 @@ const MarkdownToHTMLConverter = () => {
   return (
     <>
       <Helmet>
-        <title>Markdown to HTML Converter - Free Online Tool | CalcEasy</title>
+        <title>Markdown to HTML Converter - Free Online Tool | DapsiWow</title>
         <meta name="description" content="Convert Markdown text to HTML format instantly. Free online tool with support for headers, lists, links, code blocks, tables, and more. No signup required." />
         <meta name="keywords" content="markdown to html, markdown converter, md to html, markdown parser, text converter" />
         <meta property="og:title" content="Markdown to HTML Converter - Free Online Tool" />

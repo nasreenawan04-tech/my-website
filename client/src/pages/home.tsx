@@ -10,11 +10,11 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>DapsiWow - 150+ Free Online Tools for Business & Personal Use | No Registration Required</title>
-        <meta name="description" content="Discover 150+ powerful free online tools for finance calculations, text analysis, and health monitoring. Professional-grade utilities with no sign-up required, working on all devices worldwide." />
+        <title>DapsiWow - 180+ Free Online Tools for Business & Personal Use | No Registration Required</title>
+        <meta name="description" content="Discover 180+ powerful free online tools for finance calculations, text analysis, and health monitoring. Professional-grade utilities with no sign-up required, working on all devices worldwide." />
         <meta name="keywords" content="DapsiWow, dapsiwow, free online tools, loan calculator, mortgage calculator, business loan calculator, lease calculator, productivity tools, finance calculators, text tools, health calculators, online utilities, web tools, no registration tools" />
-        <meta property="og:title" content="DapsiWow - 150+ Free Online Tools for Business & Personal Use" />
-        <meta property="og:description" content="Discover 150+ powerful free online tools for finance calculations, text analysis, and health monitoring. Professional-grade utilities with no sign-up required." />
+        <meta property="og:title" content="DapsiWow - 180+ Free Online Tools for Business & Personal Use" />
+        <meta property="og:description" content="Discover 180+ powerful free online tools for finance calculations, text analysis, and health monitoring. Professional-grade utilities with no sign-up required." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dapsiwow.com/" />
         <meta name="robots" content="index, follow" />
@@ -25,7 +25,7 @@ const Home = () => {
             "@context": "https://schema.org",
             "@type": "WebSite",
             "name": "DapsiWow",
-            "description": "Professional online tools platform offering 150+ free utilities for business and personal use",
+            "description": "Professional online tools platform offering 180+ free utilities for business and personal use",
             "url": "https://dapsiwow.com/",
             "potentialAction": {
               "@type": "SearchAction",

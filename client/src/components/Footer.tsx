@@ -1,4 +1,5 @@
 import { Link } from 'wouter';
+import logoImage from '@assets/logo.png';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -10,9 +11,11 @@ const Footer = () => {
           {/* Logo and Tagline */}
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-2 mb-6">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                <i className="fas fa-tools text-white text-sm"></i>
-              </div>
+              <img 
+                src={logoImage}
+                alt="DapsiWow Logo"
+                className="w-8 h-8 object-contain filter drop-shadow-sm"
+              />
               <span className="text-xl font-bold">DapsiWow</span>
             </div>
             <p className="text-neutral-300 leading-relaxed">
@@ -57,7 +60,7 @@ const Footer = () => {
         <div className="border-t border-neutral-700 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-neutral-400 text-center md:text-left mb-4 md:mb-0">
-              <p>© {currentYear} dapsiwow.com. All rights reserved. Made with ❤️ for productivity.</p>
+              <p>© {currentYear} DapsiWow.com. All rights reserved. Made with ❤️ for productivity.</p>
             </div>
             <div className="text-neutral-400 text-center md:text-right">
               <p className="flex items-center justify-center md:justify-end">
