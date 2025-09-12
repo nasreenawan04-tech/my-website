@@ -249,11 +249,11 @@ const CaseConverter = () => {
         <section className="py-16">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <Card className="bg-white shadow-sm border-0">
-              <CardContent className="p-8">
-                <div className="space-y-8">
+              <CardContent className="p-4 sm:p-6 lg:p-8">
+                <div className="space-y-6 lg:space-y-8">
                   {/* Input Section */}
                   <div>
-                    <h2 className="text-2xl font-semibold text-gray-900 mb-6">Enter Your Text</h2>
+                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6">Enter Your Text</h2>
                     
                     {/* Text Area */}
                     <div className="space-y-4">
@@ -264,31 +264,33 @@ const CaseConverter = () => {
                         id="text-input"
                         value={text}
                         onChange={(e) => setText(e.target.value)}
-                        className="w-full h-32 p-4 text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                        className="w-full h-32 sm:h-40 lg:h-48 p-3 sm:p-4 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
                         placeholder="Type or paste your text here to convert between different case formats..."
                         data-testid="textarea-text-input"
                       />
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex gap-4 mt-4">
+                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-4">
                       <Button
                         onClick={handleClear}
                         variant="outline"
-                        className="flex-1"
+                        className="flex-1 min-h-11"
                         data-testid="button-clear-text"
                       >
-                        <i className="fas fa-trash mr-2"></i>
-                        Clear Text
+                        <i className="fas fa-trash mr-1 sm:mr-2"></i>
+                        <span className="hidden sm:inline">Clear Text</span>
+                        <span className="sm:hidden">Clear</span>
                       </Button>
                       <Button
                         onClick={handleSampleText}
                         variant="outline"
-                        className="flex-1"
+                        className="flex-1 min-h-11"
                         data-testid="button-sample-text"
                       >
-                        <i className="fas fa-file-text mr-2"></i>
-                        Sample Text
+                        <i className="fas fa-file-text mr-1 sm:mr-2"></i>
+                        <span className="hidden sm:inline">Sample Text</span>
+                        <span className="sm:hidden">Sample</span>
                       </Button>
                     </div>
 
@@ -311,52 +313,56 @@ const CaseConverter = () => {
                         <Separator />
                         
                         {/* Text Processing Options */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                           <div className="space-y-4">
                             <h3 className="font-semibold text-gray-900">Text Processing</h3>
                             
-                            <div className="flex items-center justify-between">
+                            <div className="flex items-center justify-between min-h-11 py-2">
                               <div className="space-y-1">
-                                <Label className="text-sm font-medium">Preserve Numbers</Label>
+                                <Label htmlFor="switch-preserve-numbers" className="text-sm font-medium cursor-pointer">Preserve Numbers</Label>
                                 <p className="text-xs text-gray-500">Keep digits in programming cases</p>
                               </div>
                               <Switch
+                                id="switch-preserve-numbers"
                                 checked={advancedOptions.preserveNumbers}
                                 onCheckedChange={(value) => updateAdvancedOption('preserveNumbers', value)}
                                 data-testid="switch-preserve-numbers"
                               />
                             </div>
 
-                            <div className="flex items-center justify-between">
+                            <div className="flex items-center justify-between min-h-11 py-2">
                               <div className="space-y-1">
-                                <Label className="text-sm font-medium">Remove Extra Spaces</Label>
+                                <Label htmlFor="switch-remove-extra-spaces" className="text-sm font-medium cursor-pointer">Remove Extra Spaces</Label>
                                 <p className="text-xs text-gray-500">Clean up multiple consecutive spaces</p>
                               </div>
                               <Switch
+                                id="switch-remove-extra-spaces"
                                 checked={advancedOptions.removeExtraSpaces}
                                 onCheckedChange={(value) => updateAdvancedOption('removeExtraSpaces', value)}
                                 data-testid="switch-remove-extra-spaces"
                               />
                             </div>
 
-                            <div className="flex items-center justify-between">
+                            <div className="flex items-center justify-between min-h-11 py-2">
                               <div className="space-y-1">
-                                <Label className="text-sm font-medium">Preserve Line Breaks</Label>
+                                <Label htmlFor="switch-preserve-line-breaks" className="text-sm font-medium cursor-pointer">Preserve Line Breaks</Label>
                                 <p className="text-xs text-gray-500">Keep original line breaks in text</p>
                               </div>
                               <Switch
+                                id="switch-preserve-line-breaks"
                                 checked={advancedOptions.preserveLineBreaks}
                                 onCheckedChange={(value) => updateAdvancedOption('preserveLineBreaks', value)}
                                 data-testid="switch-preserve-line-breaks"
                               />
                             </div>
 
-                            <div className="flex items-center justify-between">
+                            <div className="flex items-center justify-between min-h-11 py-2">
                               <div className="space-y-1">
-                                <Label className="text-sm font-medium">Ignore Punctuation</Label>
+                                <Label htmlFor="switch-ignore-punctuation" className="text-sm font-medium cursor-pointer">Ignore Punctuation</Label>
                                 <p className="text-xs text-gray-500">Keep punctuation in programming cases</p>
                               </div>
                               <Switch
+                                id="switch-ignore-punctuation"
                                 checked={advancedOptions.ignorePunctuation}
                                 onCheckedChange={(value) => updateAdvancedOption('ignorePunctuation', value)}
                                 data-testid="switch-ignore-punctuation"
@@ -374,7 +380,7 @@ const CaseConverter = () => {
                                 value={advancedOptions.customSeparator}
                                 onChange={(e) => updateAdvancedOption('customSeparator', e.target.value)}
                                 placeholder="e.g., _, -, |, ."
-                                className="text-sm"
+                                className="text-sm min-h-11"
                                 data-testid="input-custom-separator"
                               />
                               <p className="text-xs text-gray-500">Override default separators for snake_case and kebab-case</p>
@@ -386,7 +392,7 @@ const CaseConverter = () => {
                                 value={advancedOptions.prefix}
                                 onChange={(e) => updateAdvancedOption('prefix', e.target.value)}
                                 placeholder="e.g., get_, set_, is_"
-                                className="text-sm"
+                                className="text-sm min-h-11"
                                 data-testid="input-prefix"
                               />
                               <p className="text-xs text-gray-500">Add prefix to programming case formats</p>
@@ -398,7 +404,7 @@ const CaseConverter = () => {
                                 value={advancedOptions.suffix}
                                 onChange={(e) => updateAdvancedOption('suffix', e.target.value)}
                                 placeholder="e.g., _value, _count, _id"
-                                className="text-sm"
+                                className="text-sm min-h-11"
                                 data-testid="input-suffix"
                               />
                               <p className="text-xs text-gray-500">Add suffix to programming case formats</p>

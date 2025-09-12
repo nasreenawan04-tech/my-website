@@ -255,11 +255,11 @@ const UsernameGenerator = () => {
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <Card className="bg-white shadow-sm border-0">
-              <CardContent className="p-8">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <CardContent className="p-4 sm:p-6 lg:p-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12">
                   {/* Generator Options */}
-                  <div className="space-y-8">
-                    <h2 className="text-2xl font-semibold text-gray-900 mb-6">Generator Options</h2>
+                  <div className="space-y-6 lg:space-y-8">
+                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6">Generator Options</h2>
                     
                     <div className="space-y-6">
                       {/* Style Selection */}
@@ -269,7 +269,7 @@ const UsernameGenerator = () => {
                           value={options.style} 
                           onValueChange={(value: typeof options.style) => updateOption('style', value)}
                         >
-                          <SelectTrigger data-testid="select-style">
+                          <SelectTrigger className="min-h-11" data-testid="select-style">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -295,7 +295,7 @@ const UsernameGenerator = () => {
                             max={30}
                             min={6}
                             step={1}
-                            className="w-full"
+                            className="w-full h-11 [&_[role=slider]]:h-6 [&_[role=slider]]:w-6"
                             data-testid="slider-length"
                           />
                           <div className="flex justify-between text-sm text-gray-500 mt-1">
@@ -312,7 +312,7 @@ const UsernameGenerator = () => {
                           value={options.separator} 
                           onValueChange={(value: typeof options.separator) => updateOption('separator', value)}
                         >
-                          <SelectTrigger data-testid="select-separator">
+                          <SelectTrigger className="min-h-11" data-testid="select-separator">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -329,36 +329,39 @@ const UsernameGenerator = () => {
                         <h3 className="font-medium text-gray-900">Additional Options</h3>
                         
                         <div className="space-y-3">
-                          <div className="flex items-center justify-between">
+                          <div className="flex items-center justify-between min-h-11 py-2">
                             <div>
-                              <Label className="text-sm font-medium">Include Numbers</Label>
+                              <Label htmlFor="switch-include-numbers" className="text-sm font-medium cursor-pointer">Include Numbers</Label>
                               <p className="text-xs text-gray-500">Add random numbers to username</p>
                             </div>
                             <Switch
+                              id="switch-include-numbers"
                               checked={options.includeNumbers}
                               onCheckedChange={(value) => updateOption('includeNumbers', value)}
                               data-testid="switch-numbers"
                             />
                           </div>
 
-                          <div className="flex items-center justify-between">
+                          <div className="flex items-center justify-between min-h-11 py-2">
                             <div>
-                              <Label className="text-sm font-medium">Include Symbols</Label>
+                              <Label htmlFor="switch-include-symbols" className="text-sm font-medium cursor-pointer">Include Symbols</Label>
                               <p className="text-xs text-gray-500">Add symbols like _, -, .</p>
                             </div>
                             <Switch
+                              id="switch-include-symbols"
                               checked={options.includeSymbols}
                               onCheckedChange={(value) => updateOption('includeSymbols', value)}
                               data-testid="switch-symbols"
                             />
                           </div>
 
-                          <div className="flex items-center justify-between">
+                          <div className="flex items-center justify-between min-h-11 py-2">
                             <div>
-                              <Label className="text-sm font-medium">Capitalize Words</Label>
+                              <Label htmlFor="switch-capitalize-words" className="text-sm font-medium cursor-pointer">Capitalize Words</Label>
                               <p className="text-xs text-gray-500">Start each word with capital letter</p>
                             </div>
                             <Switch
+                              id="switch-capitalize-words"
                               checked={options.capitalizeWords}
                               onCheckedChange={(value) => updateOption('capitalizeWords', value)}
                               data-testid="switch-capitalize"
@@ -370,7 +373,7 @@ const UsernameGenerator = () => {
                       {/* Generate Button */}
                       <Button 
                         onClick={handleGenerateUsername}
-                        className="w-full h-12 text-base"
+                        className="w-full min-h-11 text-base"
                         data-testid="button-generate-username"
                       >
                         <i className="fas fa-refresh mr-2"></i>
@@ -381,7 +384,7 @@ const UsernameGenerator = () => {
 
                   {/* Generated Username Display */}
                   <div className="space-y-6">
-                    <h2 className="text-2xl font-semibold text-gray-900 mb-6">Generated Username</h2>
+                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6">Generated Username</h2>
                     
                     {generatedUsername && (
                       <div className="space-y-6" data-testid="generated-username-display">

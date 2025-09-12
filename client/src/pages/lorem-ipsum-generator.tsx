@@ -161,11 +161,11 @@ const LoremIpsumGenerator = () => {
         <section className="py-16">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <Card className="bg-white shadow-sm border-0">
-              <CardContent className="px-16 py-8">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <CardContent className="p-4 sm:p-6 lg:p-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12">
                   {/* Settings Section */}
                   <div className="space-y-6">
-                    <h2 className="text-2xl font-semibold text-gray-900 mb-8">Generation Settings</h2>
+                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-8">Generation Settings</h2>
                     
                     {/* Type Selection */}
                     <div className="space-y-3">
@@ -178,7 +178,7 @@ const LoremIpsumGenerator = () => {
                           setOptions(prev => ({ ...prev, type: value }))
                         }
                       >
-                        <SelectTrigger className="w-full" data-testid="select-type">
+                        <SelectTrigger className="w-full min-h-11" data-testid="select-type">
                           <SelectValue placeholder="Select type" />
                         </SelectTrigger>
                         <SelectContent>
@@ -201,19 +201,19 @@ const LoremIpsumGenerator = () => {
                         max="50"
                         value={options.count}
                         onChange={(e) => setOptions(prev => ({ ...prev, count: parseInt(e.target.value) || 1 }))}
-                        className="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full min-h-11 p-3 sm:p-4 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
                         data-testid="input-count"
                       />
                     </div>
 
                     {/* Start with Lorem Option */}
-                    <div className="flex items-center space-x-3">
+                    <div className="flex items-center space-x-3 min-h-11 py-2">
                       <input
                         id="start-lorem"
                         type="checkbox"
                         checked={options.startWithLorem}
                         onChange={(e) => setOptions(prev => ({ ...prev, startWithLorem: e.target.checked }))}
-                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+                        className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
                         data-testid="checkbox-start-lorem"
                       />
                       <Label htmlFor="start-lorem" className="text-sm font-medium text-gray-700">
@@ -224,7 +224,7 @@ const LoremIpsumGenerator = () => {
                     {/* Generate Button */}
                     <Button
                       onClick={generateLorem}
-                      className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                      className="w-full min-h-11 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
                       data-testid="button-generate"
                     >
                       <i className="fas fa-magic mr-2"></i>
@@ -234,7 +234,7 @@ const LoremIpsumGenerator = () => {
 
                   {/* Output Section */}
                   <div className="space-y-6">
-                    <h2 className="text-2xl font-semibold text-gray-900 mb-8">Generated Text</h2>
+                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-8">Generated Text</h2>
                     
                     {/* Generated Text Area */}
                     <div className="space-y-3">
@@ -245,33 +245,35 @@ const LoremIpsumGenerator = () => {
                         id="generated-text"
                         value={generatedText}
                         readOnly
-                        className="w-full h-80 p-4 text-base border border-gray-200 rounded-lg bg-gray-50 resize-none"
+                        className="w-full h-48 sm:h-64 lg:h-80 p-3 sm:p-4 text-sm sm:text-base border border-gray-200 rounded-lg bg-gray-50 resize-none"
                         placeholder="Click 'Generate Lorem Ipsum' to create placeholder text..."
                         data-testid="textarea-generated-text"
                       />
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex gap-4">
+                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                       <Button
                         onClick={handleCopy}
                         variant="outline"
-                        className="flex-1"
+                        className="flex-1 min-h-11"
                         disabled={!generatedText}
                         data-testid="button-copy-text"
                       >
-                        <i className="fas fa-copy mr-2"></i>
-                        Copy Text
+                        <i className="fas fa-copy mr-1 sm:mr-2"></i>
+                        <span className="hidden sm:inline">Copy Text</span>
+                        <span className="sm:hidden">Copy</span>
                       </Button>
                       <Button
                         onClick={handleClear}
                         variant="outline"
-                        className="flex-1"
+                        className="flex-1 min-h-11"
                         disabled={!generatedText}
                         data-testid="button-clear-text"
                       >
-                        <i className="fas fa-trash mr-2"></i>
-                        Clear
+                        <i className="fas fa-trash mr-1 sm:mr-2"></i>
+                        <span className="hidden sm:inline">Clear</span>
+                        <span className="sm:hidden">Clear</span>
                       </Button>
                     </div>
 
@@ -279,7 +281,7 @@ const LoremIpsumGenerator = () => {
                     {generatedText && (
                       <div className="bg-blue-50 rounded-lg p-4" data-testid="text-statistics">
                         <h3 className="font-semibold text-blue-900 mb-2">Text Statistics</h3>
-                        <div className="grid grid-cols-2 gap-4 text-sm">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-sm">
                           <div>
                             <span className="text-blue-600 font-medium">Characters: </span>
                             <span className="text-gray-700">{generatedText.length.toLocaleString()}</span>
