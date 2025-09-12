@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Calculator, Home } from 'lucide-react';
+import { Calculator } from 'lucide-react';
 
 interface HomeLoanResult {
   emi: number;
@@ -121,7 +121,7 @@ const HomeLoanCalculator = () => {
           <section className="gradient-hero text-white py-16">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
               <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <Home className="w-12 h-12" />
+                <i className="fas fa-house-user text-3xl"></i>
               </div>
               <h1 className="text-4xl sm:text-5xl font-bold mb-6" data-testid="text-page-title">
                 Home Loan Calculator
@@ -366,7 +366,7 @@ const HomeLoanCalculator = () => {
                         </div>
                       ) : (
                         <div className="text-center py-8" data-testid="no-results">
-                          <Home className="w-16 h-16 text-gray-400 mb-4" />
+                          <i className="fas fa-house-user text-4xl text-gray-400 mb-4"></i>
                           <p className="text-gray-500">Enter home loan details to calculate EMI</p>
                         </div>
                       )}

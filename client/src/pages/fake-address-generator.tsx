@@ -8,7 +8,6 @@ import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
 import { Separator } from '@/components/ui/separator';
-import { MapPin, RefreshCw, Copy } from 'lucide-react';
 
 interface AddressOptions {
   country: 'US' | 'UK' | 'Canada';
@@ -270,7 +269,7 @@ const FakeAddressGenerator = () => {
         <section className="gradient-hero text-white py-16 pt-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-              <MapPin className="w-12 h-12" />
+              <i className="fas fa-map-marker-alt text-3xl"></i>
             </div>
             <h1 className="text-4xl sm:text-5xl font-bold mb-6" data-testid="text-page-title">
               Fake Address Generator
@@ -294,12 +293,12 @@ const FakeAddressGenerator = () => {
                     <div className="space-y-6">
                       {/* Country Selection */}
                       <div className="space-y-3">
-                        <Label htmlFor="country-select" className="text-base font-medium">Country</Label>
+                        <Label className="text-base font-medium">Country</Label>
                         <Select 
                           value={options.country} 
                           onValueChange={(value: typeof options.country) => updateOption('country', value)}
                         >
-                          <SelectTrigger id="country-select" data-testid="select-country" aria-label="Select country for address generation">
+                          <SelectTrigger data-testid="select-country">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -312,12 +311,12 @@ const FakeAddressGenerator = () => {
 
                       {/* Address Format */}
                       <div className="space-y-3">
-                        <Label htmlFor="format-select" className="text-base font-medium">Address Format</Label>
+                        <Label className="text-base font-medium">Address Format</Label>
                         <Select 
                           value={options.format} 
                           onValueChange={(value: typeof options.format) => updateOption('format', value)}
                         >
-                          <SelectTrigger id="format-select" data-testid="select-format" aria-label="Select address format type">
+                          <SelectTrigger data-testid="select-format">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -342,7 +341,6 @@ const FakeAddressGenerator = () => {
                               checked={options.includeApartment}
                               onCheckedChange={(value) => updateOption('includeApartment', value)}
                               data-testid="switch-apartment"
-                              aria-label="Include apartment or unit number in generated address"
                             />
                           </div>
 
@@ -355,7 +353,6 @@ const FakeAddressGenerator = () => {
                               checked={options.includeSecondaryAddress}
                               onCheckedChange={(value) => updateOption('includeSecondaryAddress', value)}
                               data-testid="switch-secondary"
-                              aria-label="Include secondary address in generated address"
                             />
                           </div>
 
@@ -369,7 +366,6 @@ const FakeAddressGenerator = () => {
                                 checked={options.includeZipExtension}
                                 onCheckedChange={(value) => updateOption('includeZipExtension', value)}
                                 data-testid="switch-zip-extension"
-                                aria-label="Include ZIP+4 extension in generated address"
                               />
                             </div>
                           )}
@@ -382,7 +378,7 @@ const FakeAddressGenerator = () => {
                         className="w-full h-12 text-base"
                         data-testid="button-generate-address"
                       >
-                        <RefreshCw className="w-4 h-4 mr-2" />
+                        <i className="fas fa-refresh mr-2"></i>
                         Generate New Address
                       </Button>
                     </div>
@@ -414,9 +410,8 @@ const FakeAddressGenerator = () => {
                                 variant="ghost"
                                 size="sm"
                                 data-testid="button-copy-street-number"
-                                aria-label="Copy street number to clipboard"
                               >
-                                <Copy className="w-4 h-4" />
+                                <i className="fas fa-copy"></i>
                               </Button>
                             </div>
 
@@ -430,9 +425,8 @@ const FakeAddressGenerator = () => {
                                 variant="ghost"
                                 size="sm"
                                 data-testid="button-copy-street-name"
-                                aria-label="Copy street name to clipboard"
                               >
-                                <Copy className="w-4 h-4" />
+                                <i className="fas fa-copy"></i>
                               </Button>
                             </div>
 
@@ -446,9 +440,8 @@ const FakeAddressGenerator = () => {
                                 variant="ghost"
                                 size="sm"
                                 data-testid="button-copy-city"
-                                aria-label="Copy city to clipboard"
                               >
-                                <Copy className="w-4 h-4" />
+                                <i className="fas fa-copy"></i>
                               </Button>
                             </div>
 
@@ -462,9 +455,8 @@ const FakeAddressGenerator = () => {
                                 variant="ghost"
                                 size="sm"
                                 data-testid="button-copy-state"
-                                aria-label="Copy state to clipboard"
                               >
-                                <Copy className="w-4 h-4" />
+                                <i className="fas fa-copy"></i>
                               </Button>
                             </div>
 
@@ -478,9 +470,8 @@ const FakeAddressGenerator = () => {
                                 variant="ghost"
                                 size="sm"
                                 data-testid="button-copy-zip"
-                                aria-label="Copy ZIP code to clipboard"
                               >
-                                <Copy className="w-4 h-4" />
+                                <i className="fas fa-copy"></i>
                               </Button>
                             </div>
 
@@ -494,9 +485,8 @@ const FakeAddressGenerator = () => {
                                 variant="ghost"
                                 size="sm"
                                 data-testid="button-copy-country"
-                                aria-label="Copy country to clipboard"
                               >
-                                <Copy className="w-4 h-4" />
+                                <i className="fas fa-copy"></i>
                               </Button>
                             </div>
                           </div>
@@ -514,9 +504,8 @@ const FakeAddressGenerator = () => {
                                     variant="ghost"
                                     size="sm"
                                     data-testid="button-copy-apartment"
-                                    aria-label="Copy apartment number to clipboard"
                                   >
-                                    <Copy className="w-4 h-4" />
+                                    <i className="fas fa-copy"></i>
                                   </Button>
                                 </div>
                               )}
@@ -532,9 +521,8 @@ const FakeAddressGenerator = () => {
                                     variant="ghost"
                                     size="sm"
                                     data-testid="button-copy-secondary"
-                                    aria-label="Copy secondary address to clipboard"
                                   >
-                                    <Copy className="w-4 h-4" />
+                                    <i className="fas fa-copy"></i>
                                   </Button>
                                 </div>
                               )}
@@ -582,9 +570,8 @@ const FakeAddressGenerator = () => {
                                 variant="ghost"
                                 size="sm"
                                 data-testid={`button-copy-history-${index}`}
-                                aria-label="Copy address from history to clipboard"
                               >
-                                <Copy className="w-4 h-4" />
+                                <i className="fas fa-copy"></i>
                               </Button>
                             </div>
                           </div>
