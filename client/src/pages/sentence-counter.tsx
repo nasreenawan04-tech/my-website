@@ -160,32 +160,32 @@ What makes a good sentence? Is it the length, the structure, or the meaning it c
       
       <main>
         {/* Hero Section */}
-        <section className="gradient-hero text-white py-16 pt-24">
+        <section className="gradient-hero text-white py-12 sm:py-16 pt-20 sm:pt-24">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-              <i className="fas fa-list text-3xl"></i>
+            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6">
+              <i className="fas fa-list text-2xl sm:text-3xl"></i>
             </div>
-            <h1 className="text-4xl sm:text-5xl font-bold mb-6" data-testid="text-page-title">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6" data-testid="text-page-title">
               Sentence Counter
             </h1>
-            <p className="text-xl text-blue-100 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-blue-100 max-w-2xl mx-auto px-2">
               Count sentences, analyze sentence types, and get detailed text structure statistics for better writing
             </p>
           </div>
         </section>
 
         {/* Calculator Section */}
-        <section className="py-16">
+        <section className="py-8 sm:py-12 lg:py-16">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <Card className="bg-white shadow-sm border-0">
-              <CardContent className="p-8">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <CardContent className="p-4 sm:p-6 lg:p-8">
+                <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
                   {/* Input Section */}
-                  <div className="space-y-6">
-                    <h2 className="text-2xl font-semibold text-gray-900 mb-8">Enter Your Text</h2>
+                  <div className="space-y-4 sm:space-y-6">
+                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-8">Enter Your Text</h2>
                     
                     {/* Text Area */}
-                    <div className="space-y-3">
+                    <div className="space-y-2 sm:space-y-3">
                       <Label htmlFor="text-input" className="text-sm font-medium text-gray-700">
                         Text to Analyze
                       </Label>
@@ -193,132 +193,135 @@ What makes a good sentence? Is it the length, the structure, or the meaning it c
                         id="text-input"
                         value={text}
                         onChange={(e) => setText(e.target.value)}
-                        className="w-full h-80 p-4 text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                        className="w-full h-60 sm:h-72 lg:h-80 p-3 sm:p-4 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
                         placeholder="Type or paste your text here to get instant sentence count and analysis..."
                         data-testid="textarea-text-input"
                       />
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 lg:gap-4">
                       <Button
                         onClick={handleClear}
                         variant="outline"
-                        className="flex-1"
+                        className="py-2.5 sm:py-2 text-xs sm:text-sm"
                         data-testid="button-clear-text"
                       >
-                        <i className="fas fa-trash mr-2"></i>
-                        Clear Text
+                        <i className="fas fa-trash mr-1 sm:mr-2"></i>
+                        <span className="hidden sm:inline">Clear Text</span>
+                        <span className="sm:hidden">Clear</span>
                       </Button>
                       <Button
                         onClick={handleSampleText}
                         variant="outline"
-                        className="flex-1"
+                        className="py-2.5 sm:py-2 text-xs sm:text-sm"
                         data-testid="button-sample-text"
                       >
-                        <i className="fas fa-file-text mr-2"></i>
-                        Sample Text
+                        <i className="fas fa-file-text mr-1 sm:mr-2"></i>
+                        <span className="hidden sm:inline">Sample Text</span>
+                        <span className="sm:hidden">Sample</span>
                       </Button>
                       <Button
                         onClick={handleCopy}
                         variant="outline"
-                        className="flex-1"
+                        className="py-2.5 sm:py-2 text-xs sm:text-sm"
                         disabled={!result || result.totalSentences === 0}
                         data-testid="button-copy-stats"
                       >
-                        <i className="fas fa-copy mr-2"></i>
-                        Copy Stats
+                        <i className="fas fa-copy mr-1 sm:mr-2"></i>
+                        <span className="hidden sm:inline">Copy Stats</span>
+                        <span className="sm:hidden">Copy</span>
                       </Button>
                     </div>
                   </div>
 
                   {/* Results Section */}
-                  <div className="space-y-6">
-                    <h2 className="text-2xl font-semibold text-gray-900 mb-8">Sentence Analysis</h2>
+                  <div className="space-y-4 sm:space-y-6">
+                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-8">Sentence Analysis</h2>
                     
                     {result && result.totalSentences > 0 ? (
-                      <div className="space-y-4" data-testid="sentence-statistics">
+                      <div className="space-y-3 sm:space-y-4" data-testid="sentence-statistics">
                         {/* Total Sentences */}
-                        <div className="bg-blue-50 rounded-lg p-6 text-center">
-                          <div className="text-3xl font-bold text-blue-600" data-testid="stat-total-sentences">
+                        <div className="bg-blue-50 rounded-lg p-4 sm:p-6 text-center">
+                          <div className="text-2xl sm:text-3xl font-bold text-blue-600" data-testid="stat-total-sentences">
                             {result.totalSentences.toLocaleString()}
                           </div>
-                          <div className="text-sm text-gray-600">Total Sentences</div>
+                          <div className="text-xs sm:text-sm text-gray-600">Total Sentences</div>
                         </div>
 
                         {/* Sentence Types */}
-                        <div className="grid grid-cols-3 gap-4">
-                          <div className="bg-green-50 rounded-lg p-4 text-center">
-                            <div className="text-xl font-bold text-green-600" data-testid="stat-declarative">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 lg:gap-4">
+                          <div className="bg-green-50 rounded-lg p-3 sm:p-4 text-center">
+                            <div className="text-lg sm:text-xl font-bold text-green-600" data-testid="stat-declarative">
                               {result.declarativeSentences}
                             </div>
-                            <div className="text-xs text-gray-600">Declarative (.)</div>
+                            <div className="text-xs sm:text-sm text-gray-600">Declarative (.)</div>
                           </div>
-                          <div className="bg-purple-50 rounded-lg p-4 text-center">
-                            <div className="text-xl font-bold text-purple-600" data-testid="stat-interrogative">
+                          <div className="bg-purple-50 rounded-lg p-3 sm:p-4 text-center">
+                            <div className="text-lg sm:text-xl font-bold text-purple-600" data-testid="stat-interrogative">
                               {result.interrogativeSentences}
                             </div>
-                            <div className="text-xs text-gray-600">Questions (?)</div>
+                            <div className="text-xs sm:text-sm text-gray-600">Questions (?)</div>
                           </div>
-                          <div className="bg-orange-50 rounded-lg p-4 text-center">
-                            <div className="text-xl font-bold text-orange-600" data-testid="stat-exclamatory">
+                          <div className="bg-orange-50 rounded-lg p-3 sm:p-4 text-center">
+                            <div className="text-lg sm:text-xl font-bold text-orange-600" data-testid="stat-exclamatory">
                               {result.exclamatorySentences}
                             </div>
-                            <div className="text-xs text-gray-600">Exclamatory (!)</div>
+                            <div className="text-xs sm:text-sm text-gray-600">Exclamatory (!)</div>
                           </div>
                         </div>
 
                         {/* Sentence Statistics */}
-                        <div className="bg-gray-50 rounded-lg p-6">
-                          <h3 className="font-semibold text-gray-900 mb-4">Sentence Statistics</h3>
-                          <div className="grid grid-cols-2 gap-4">
+                        <div className="bg-gray-50 rounded-lg p-4 sm:p-6">
+                          <h3 className="text-sm sm:text-base font-semibold text-gray-900 mb-3 sm:mb-4">Sentence Statistics</h3>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                             <div className="text-center">
-                              <div className="text-lg font-bold text-gray-600" data-testid="stat-avg-words">
+                              <div className="text-base sm:text-lg font-bold text-gray-600" data-testid="stat-avg-words">
                                 {result.averageWordsPerSentence}
                               </div>
-                              <div className="text-sm text-gray-600">Avg Words/Sentence</div>
+                              <div className="text-xs sm:text-sm text-gray-600">Avg Words/Sentence</div>
                             </div>
                             <div className="text-center">
-                              <div className="text-lg font-bold text-gray-600" data-testid="stat-avg-chars">
+                              <div className="text-base sm:text-lg font-bold text-gray-600" data-testid="stat-avg-chars">
                                 {result.averageCharactersPerSentence}
                               </div>
-                              <div className="text-sm text-gray-600">Avg Chars/Sentence</div>
+                              <div className="text-xs sm:text-sm text-gray-600">Avg Chars/Sentence</div>
                             </div>
                             <div className="text-center">
-                              <div className="text-lg font-bold text-gray-600" data-testid="stat-longest">
+                              <div className="text-base sm:text-lg font-bold text-gray-600" data-testid="stat-longest">
                                 {result.longestSentence}
                               </div>
-                              <div className="text-sm text-gray-600">Longest Sentence</div>
+                              <div className="text-xs sm:text-sm text-gray-600">Longest Sentence</div>
                             </div>
                             <div className="text-center">
-                              <div className="text-lg font-bold text-gray-600" data-testid="stat-shortest">
+                              <div className="text-base sm:text-lg font-bold text-gray-600" data-testid="stat-shortest">
                                 {result.shortestSentence}
                               </div>
-                              <div className="text-sm text-gray-600">Shortest Sentence</div>
+                              <div className="text-xs sm:text-sm text-gray-600">Shortest Sentence</div>
                             </div>
                           </div>
                         </div>
 
                         {/* Additional Stats */}
-                        <div className="grid grid-cols-2 gap-4">
-                          <div className="bg-indigo-50 rounded-lg p-4 text-center">
-                            <div className="text-xl font-bold text-indigo-600" data-testid="stat-words">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                          <div className="bg-indigo-50 rounded-lg p-3 sm:p-4 text-center">
+                            <div className="text-lg sm:text-xl font-bold text-indigo-600" data-testid="stat-words">
                               {result.words.toLocaleString()}
                             </div>
-                            <div className="text-sm text-gray-600">Total Words</div>
+                            <div className="text-xs sm:text-sm text-gray-600">Total Words</div>
                           </div>
-                          <div className="bg-pink-50 rounded-lg p-4 text-center">
-                            <div className="text-xl font-bold text-pink-600" data-testid="stat-reading-time">
+                          <div className="bg-pink-50 rounded-lg p-3 sm:p-4 text-center">
+                            <div className="text-lg sm:text-xl font-bold text-pink-600" data-testid="stat-reading-time">
                               {result.readingTime} min
                             </div>
-                            <div className="text-sm text-gray-600">Reading Time</div>
+                            <div className="text-xs sm:text-sm text-gray-600">Reading Time</div>
                           </div>
                         </div>
                       </div>
                     ) : (
-                      <div className="text-center py-12 text-gray-500">
-                        <i className="fas fa-list text-4xl mb-4"></i>
-                        <p className="text-lg">Start typing to see your sentence analysis</p>
+                      <div className="text-center py-8 sm:py-12 text-gray-500">
+                        <i className="fas fa-list text-3xl sm:text-4xl mb-3 sm:mb-4"></i>
+                        <p className="text-base sm:text-lg">Start typing to see your sentence analysis</p>
                       </div>
                     )}
                   </div>
@@ -329,10 +332,10 @@ What makes a good sentence? Is it the length, the structure, or the meaning it c
         </section>
 
         {/* Information Sections */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 sm:pb-12 lg:pb-16">
           {/* What is a Sentence Counter */}
-          <div className="mt-12 bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">What is a Sentence Counter Tool?</h2>
+          <div className="mt-8 sm:mt-12 bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">What is a Sentence Counter Tool?</h2>
             <div className="prose max-w-none">
               <p className="text-lg text-gray-700 mb-6">
                 A <strong>sentence counter</strong> is an advanced text analysis tool designed to count, categorize, and analyze sentences in any written content. Unlike basic text counters, our sentence analyzer provides comprehensive insights into sentence structure, types, length distribution, and readability metrics that are essential for effective writing.
@@ -349,15 +352,15 @@ What makes a good sentence? Is it the length, the structure, or the meaning it c
           </div>
 
           {/* How It Works */}
-          <div className="mt-8 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">How Our Sentence Counter Works</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="mt-6 sm:mt-8 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl p-4 sm:p-6 lg:p-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">How Our Sentence Counter Works</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               <div className="text-center">
-                <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-paste text-2xl"></i>
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                  <i className="fas fa-paste text-lg sm:text-2xl"></i>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">1. Input Text</h3>
-                <p className="text-gray-600 text-sm">Paste or type your content into the text analyzer for instant sentence counting and analysis.</p>
+                <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">1. Input Text</h3>
+                <p className="text-gray-600 text-xs sm:text-sm">Paste or type your content into the text analyzer for instant sentence counting and analysis.</p>
               </div>
               
               <div className="text-center">
@@ -387,15 +390,15 @@ What makes a good sentence? Is it the length, the structure, or the meaning it c
           </div>
 
           {/* Sentence Types */}
-          <div className="mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Understanding Sentence Types</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                  <span className="text-green-600 font-bold text-xl">.</span>
+          <div className="mt-6 sm:mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-4 sm:p-6 lg:p-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Understanding Sentence Types</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              <div className="bg-white rounded-lg p-4 sm:p-6 shadow-sm">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-lg flex items-center justify-center mb-3 sm:mb-4">
+                  <span className="text-green-600 font-bold text-lg sm:text-xl">.</span>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Declarative</h3>
-                <p className="text-gray-600 text-sm">Statements that provide information or express facts. They end with periods and make up most written content.</p>
+                <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">Declarative</h3>
+                <p className="text-gray-600 text-xs sm:text-sm">Statements that provide information or express facts. They end with periods and make up most written content.</p>
               </div>
               
               <div className="bg-white rounded-lg p-6 shadow-sm">
@@ -417,15 +420,15 @@ What makes a good sentence? Is it the length, the structure, or the meaning it c
           </div>
 
           {/* Key Features */}
-          <div className="mt-8 bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Key Features of Our Sentence Counter</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="mt-6 sm:mt-8 bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-4 sm:p-6 lg:p-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Key Features of Our Sentence Counter</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               <div className="text-center">
-                <div className="w-16 h-16 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-chart-line text-2xl"></i>
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                  <i className="fas fa-chart-line text-lg sm:text-2xl"></i>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Detailed Analysis</h3>
-                <p className="text-gray-600">Get comprehensive statistics about sentence structure and composition.</p>
+                <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">Detailed Analysis</h3>
+                <p className="text-gray-600 text-sm">Get comprehensive statistics about sentence structure and composition.</p>
               </div>
               
               <div className="text-center">
@@ -447,11 +450,11 @@ What makes a good sentence? Is it the length, the structure, or the meaning it c
           </div>
 
           {/* Benefits and Use Cases */}
-          <div className="mt-8 bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Benefits of Using a Sentence Counter</h2>
+          <div className="mt-6 sm:mt-8 bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Benefits of Using a Sentence Counter</h2>
             
-            <div className="mb-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <div className="mb-6 sm:mb-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
                 <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6">
                   <div className="w-12 h-12 bg-blue-600 text-white rounded-lg flex items-center justify-center mb-4">
                     <i className="fas fa-chart-line text-xl"></i>

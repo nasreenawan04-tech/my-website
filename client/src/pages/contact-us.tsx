@@ -19,12 +19,31 @@ const ContactUs = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-    alert('Thank you for your message! We\'ll get back to you soon.');
-    setFormData({ name: '', email: '', subject: '', message: '' });
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          to: 'saifkhan09@dapsiwow.com'
+        }),
+      });
+
+      if (response.ok) {
+        alert('Thank you for your message! We\'ll get back to you soon.');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      alert('Sorry, there was an error sending your message. Please try again or contact us directly at saifkhan09@dapsiwow.com');
+    }
   };
 
   return (
@@ -155,7 +174,7 @@ const ContactUs = () => {
                         </div>
                         <div>
                           <h3 className="font-semibold text-neutral-800">Email</h3>
-                          <p className="text-neutral-600">support@dapsiwow.com</p>
+                          <p className="text-neutral-600" data-testid="text-contact-email">saifkhan09@dapsiwow.com</p>
                         </div>
                       </div>
 

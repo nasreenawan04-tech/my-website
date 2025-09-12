@@ -175,32 +175,32 @@ Finally, this last paragraph completes our sample text, giving you four distinct
       
       <main>
         {/* Hero Section */}
-        <section className="gradient-hero text-white py-16 pt-24">
+        <section className="gradient-hero text-white py-12 sm:py-16 pt-20 sm:pt-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-              <i className="fas fa-paragraph text-3xl"></i>
+            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6">
+              <i className="fas fa-paragraph text-2xl sm:text-3xl"></i>
             </div>
-            <h1 className="text-4xl sm:text-5xl font-bold mb-6" data-testid="text-page-title">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6" data-testid="text-page-title">
               Paragraph Counter
             </h1>
-            <p className="text-xl text-blue-100 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-blue-100 max-w-2xl mx-auto px-2">
               Count paragraphs, analyze text structure, and get detailed paragraph composition statistics
             </p>
           </div>
         </section>
 
         {/* Calculator Section */}
-        <section className="py-16">
+        <section className="py-8 sm:py-12 lg:py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <Card className="bg-white shadow-sm border-0">
-              <CardContent className="p-8">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <CardContent className="p-4 sm:p-6 lg:p-8">
+                <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
                   {/* Input Section */}
-                  <div className="space-y-6">
-                    <h2 className="text-2xl font-semibold text-gray-900 mb-8">Enter Your Text</h2>
+                  <div className="space-y-4 sm:space-y-6">
+                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-8">Enter Your Text</h2>
                     
                     {/* Text Area */}
-                    <div className="space-y-3">
+                    <div className="space-y-2 sm:space-y-3">
                       <Label htmlFor="text-input" className="text-sm font-medium text-gray-700">
                         Text to Analyze
                       </Label>
@@ -208,14 +208,14 @@ Finally, this last paragraph completes our sample text, giving you four distinct
                         id="text-input"
                         value={text}
                         onChange={(e) => setText(e.target.value)}
-                        className="w-full h-80 p-4 text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                        className="w-full h-60 sm:h-72 lg:h-80 p-3 sm:p-4 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
                         placeholder="Type or paste your text here to get instant paragraph count and detailed text structure analysis..."
                         data-testid="textarea-text-input"
                       />
                     </div>
 
                     {/* Options */}
-                    <div className="space-y-3">
+                    <div className="space-y-2 sm:space-y-3">
                       <div className="flex items-center space-x-2">
                         <Checkbox
                           id="show-details"
@@ -223,161 +223,164 @@ Finally, this last paragraph completes our sample text, giving you four distinct
                           onCheckedChange={(checked) => setShowDetails(checked === true)}
                           data-testid="checkbox-show-details"
                         />
-                        <Label htmlFor="show-details" className="text-sm text-gray-700">
+                        <Label htmlFor="show-details" className="text-xs sm:text-sm text-gray-700">
                           Show detailed paragraph breakdown
                         </Label>
                       </div>
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 lg:gap-4">
                       <Button
                         onClick={handleClear}
                         variant="outline"
-                        className="flex-1"
+                        className="py-2.5 sm:py-2 text-xs sm:text-sm"
                         data-testid="button-clear-text"
                       >
-                        <i className="fas fa-trash mr-2"></i>
-                        Clear Text
+                        <i className="fas fa-trash mr-1 sm:mr-2"></i>
+                        <span className="hidden sm:inline">Clear Text</span>
+                        <span className="sm:hidden">Clear</span>
                       </Button>
                       <Button
                         onClick={handleSampleText}
                         variant="outline"
-                        className="flex-1"
+                        className="py-2.5 sm:py-2 text-xs sm:text-sm"
                         data-testid="button-sample-text"
                       >
-                        <i className="fas fa-file-text mr-2"></i>
-                        Sample Text
+                        <i className="fas fa-file-text mr-1 sm:mr-2"></i>
+                        <span className="hidden sm:inline">Sample Text</span>
+                        <span className="sm:hidden">Sample</span>
                       </Button>
                       <Button
                         onClick={handleCopy}
                         variant="outline"
-                        className="flex-1"
+                        className="py-2.5 sm:py-2 text-xs sm:text-sm"
                         disabled={!result || result.totalParagraphs === 0}
                         data-testid="button-copy-stats"
                       >
-                        <i className="fas fa-copy mr-2"></i>
-                        Copy Stats
+                        <i className="fas fa-copy mr-1 sm:mr-2"></i>
+                        <span className="hidden sm:inline">Copy Stats</span>
+                        <span className="sm:hidden">Copy</span>
                       </Button>
                     </div>
                   </div>
 
                   {/* Results Section */}
-                  <div className="space-y-6">
-                    <h2 className="text-2xl font-semibold text-gray-900 mb-8">Paragraph Statistics</h2>
+                  <div className="space-y-4 sm:space-y-6">
+                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-8">Paragraph Statistics</h2>
                     
                     {result && (
-                      <div className="space-y-4" data-testid="paragraph-statistics">
+                      <div className="space-y-3 sm:space-y-4" data-testid="paragraph-statistics">
                         {/* Main Paragraph Count */}
-                        <div className="bg-blue-50 rounded-lg p-4 text-center">
-                          <div className="text-3xl font-bold text-blue-600" data-testid="stat-total-paragraphs">
+                        <div className="bg-blue-50 rounded-lg p-4 sm:p-6 text-center">
+                          <div className="text-2xl sm:text-3xl font-bold text-blue-600" data-testid="stat-total-paragraphs">
                             {result.totalParagraphs.toLocaleString()}
                           </div>
-                          <div className="text-sm text-gray-600">Total Paragraphs</div>
+                          <div className="text-xs sm:text-sm text-gray-600">Total Paragraphs</div>
                         </div>
 
                         {/* Paragraph Categories */}
-                        <div className="grid grid-cols-3 gap-4">
-                          <div className="bg-green-50 rounded-lg p-4 text-center">
-                            <div className="text-2xl font-bold text-green-600" data-testid="stat-short-paragraphs">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 lg:gap-4">
+                          <div className="bg-green-50 rounded-lg p-3 sm:p-4 text-center">
+                            <div className="text-lg sm:text-2xl font-bold text-green-600" data-testid="stat-short-paragraphs">
                               {result.shortParagraphs.toLocaleString()}
                             </div>
-                            <div className="text-sm text-gray-600">Short (≤50 words)</div>
+                            <div className="text-xs sm:text-sm text-gray-600">Short (≤50 words)</div>
                           </div>
-                          <div className="bg-yellow-50 rounded-lg p-4 text-center">
-                            <div className="text-2xl font-bold text-yellow-600" data-testid="stat-medium-paragraphs">
+                          <div className="bg-yellow-50 rounded-lg p-3 sm:p-4 text-center">
+                            <div className="text-lg sm:text-2xl font-bold text-yellow-600" data-testid="stat-medium-paragraphs">
                               {result.mediumParagraphs.toLocaleString()}
                             </div>
-                            <div className="text-sm text-gray-600">Medium (51-150)</div>
+                            <div className="text-xs sm:text-sm text-gray-600">Medium (51-150)</div>
                           </div>
-                          <div className="bg-red-50 rounded-lg p-4 text-center">
-                            <div className="text-2xl font-bold text-red-600" data-testid="stat-long-paragraphs">
+                          <div className="bg-red-50 rounded-lg p-3 sm:p-4 text-center">
+                            <div className="text-lg sm:text-2xl font-bold text-red-600" data-testid="stat-long-paragraphs">
                               {result.longParagraphs.toLocaleString()}
                             </div>
-                            <div className="text-sm text-gray-600">Long (&gt;150 words)</div>
+                            <div className="text-xs sm:text-sm text-gray-600">Long (&gt;150 words)</div>
                           </div>
                         </div>
 
                         {/* Quick Stats */}
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 lg:gap-4">
                           <div className="bg-gray-50 rounded-lg p-3 text-center">
-                            <div className="text-lg font-bold text-gray-600" data-testid="stat-words">
+                            <div className="text-base sm:text-lg font-bold text-gray-600" data-testid="stat-words">
                               {result.words.toLocaleString()}
                             </div>
-                            <div className="text-xs text-gray-600">Total Words</div>
+                            <div className="text-xs sm:text-sm text-gray-600">Total Words</div>
                           </div>
                           <div className="bg-gray-50 rounded-lg p-3 text-center">
-                            <div className="text-lg font-bold text-gray-600" data-testid="stat-sentences">
+                            <div className="text-base sm:text-lg font-bold text-gray-600" data-testid="stat-sentences">
                               {result.sentences.toLocaleString()}
                             </div>
-                            <div className="text-xs text-gray-600">Total Sentences</div>
+                            <div className="text-xs sm:text-sm text-gray-600">Total Sentences</div>
                           </div>
                         </div>
 
                         {/* Detailed Breakdown */}
                         {showDetails && (
-                          <div className="space-y-4">
-                            <h3 className="text-lg font-semibold text-gray-900 border-t pt-4">Detailed Paragraph Analysis</h3>
+                          <div className="space-y-3 sm:space-y-4">
+                            <h3 className="text-base sm:text-lg font-semibold text-gray-900 border-t pt-3 sm:pt-4">Detailed Paragraph Analysis</h3>
                             
                             {/* Averages */}
-                            <div className="bg-indigo-50 rounded-lg p-4">
-                              <h4 className="font-semibold text-indigo-900 mb-3">Average Statistics</h4>
-                              <div className="grid grid-cols-3 gap-4">
+                            <div className="bg-indigo-50 rounded-lg p-3 sm:p-4">
+                              <h4 className="text-sm sm:text-base font-semibold text-indigo-900 mb-2 sm:mb-3">Average Statistics</h4>
+                              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
                                 <div className="text-center">
-                                  <div className="text-lg font-bold text-indigo-600" data-testid="stat-avg-words">
+                                  <div className="text-base sm:text-lg font-bold text-indigo-600" data-testid="stat-avg-words">
                                     {result.averageWordsPerParagraph.toLocaleString()}
                                   </div>
-                                  <div className="text-sm text-gray-600">Words/Paragraph</div>
+                                  <div className="text-xs sm:text-sm text-gray-600">Words/Paragraph</div>
                                 </div>
                                 <div className="text-center">
-                                  <div className="text-lg font-bold text-indigo-600" data-testid="stat-avg-sentences">
+                                  <div className="text-base sm:text-lg font-bold text-indigo-600" data-testid="stat-avg-sentences">
                                     {result.averageSentencesPerParagraph}
                                   </div>
-                                  <div className="text-sm text-gray-600">Sentences/Paragraph</div>
+                                  <div className="text-xs sm:text-sm text-gray-600">Sentences/Paragraph</div>
                                 </div>
                                 <div className="text-center">
-                                  <div className="text-lg font-bold text-indigo-600" data-testid="stat-avg-characters">
+                                  <div className="text-base sm:text-lg font-bold text-indigo-600" data-testid="stat-avg-characters">
                                     {result.averageCharactersPerParagraph.toLocaleString()}
                                   </div>
-                                  <div className="text-sm text-gray-600">Characters/Paragraph</div>
+                                  <div className="text-xs sm:text-sm text-gray-600">Characters/Paragraph</div>
                                 </div>
                               </div>
                             </div>
 
                             {/* Length Range */}
-                            <div className="bg-orange-50 rounded-lg p-4">
-                              <h4 className="font-semibold text-orange-900 mb-3">Paragraph Length Range</h4>
-                              <div className="grid grid-cols-2 gap-4">
+                            <div className="bg-orange-50 rounded-lg p-3 sm:p-4">
+                              <h4 className="text-sm sm:text-base font-semibold text-orange-900 mb-2 sm:mb-3">Paragraph Length Range</h4>
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                                 <div className="text-center">
-                                  <div className="text-lg font-bold text-orange-600" data-testid="stat-longest">
+                                  <div className="text-base sm:text-lg font-bold text-orange-600" data-testid="stat-longest">
                                     {result.longestParagraph.toLocaleString()}
                                   </div>
-                                  <div className="text-sm text-gray-600">Longest (words)</div>
+                                  <div className="text-xs sm:text-sm text-gray-600">Longest (words)</div>
                                 </div>
                                 <div className="text-center">
-                                  <div className="text-lg font-bold text-orange-600" data-testid="stat-shortest">
+                                  <div className="text-base sm:text-lg font-bold text-orange-600" data-testid="stat-shortest">
                                     {result.shortestParagraph.toLocaleString()}
                                   </div>
-                                  <div className="text-sm text-gray-600">Shortest (words)</div>
+                                  <div className="text-xs sm:text-sm text-gray-600">Shortest (words)</div>
                                 </div>
                               </div>
                             </div>
 
                             {/* Additional Stats */}
-                            <div className="bg-teal-50 rounded-lg p-4">
-                              <h4 className="font-semibold text-teal-900 mb-3">Additional Information</h4>
-                              <div className="grid grid-cols-2 gap-4">
+                            <div className="bg-teal-50 rounded-lg p-3 sm:p-4">
+                              <h4 className="text-sm sm:text-base font-semibold text-teal-900 mb-2 sm:mb-3">Additional Information</h4>
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                                 <div className="text-center">
-                                  <div className="text-lg font-bold text-teal-600" data-testid="stat-lines">
+                                  <div className="text-base sm:text-lg font-bold text-teal-600" data-testid="stat-lines">
                                     {result.lines.toLocaleString()}
                                   </div>
-                                  <div className="text-sm text-gray-600">Total Lines</div>
+                                  <div className="text-xs sm:text-sm text-gray-600">Total Lines</div>
                                 </div>
                                 <div className="text-center">
-                                  <div className="text-lg font-bold text-teal-600" data-testid="stat-reading-time">
+                                  <div className="text-base sm:text-lg font-bold text-teal-600" data-testid="stat-reading-time">
                                     {result.readingTime} min
                                   </div>
-                                  <div className="text-sm text-gray-600">Reading Time</div>
+                                  <div className="text-xs sm:text-sm text-gray-600">Reading Time</div>
                                 </div>
                               </div>
                             </div>
@@ -387,9 +390,9 @@ Finally, this last paragraph completes our sample text, giving you four distinct
                     )}
 
                     {!result || result.totalParagraphs === 0 ? (
-                      <div className="text-center py-12 text-gray-500">
-                        <i className="fas fa-paragraph text-4xl mb-4"></i>
-                        <p className="text-lg">Start typing to see your paragraph statistics</p>
+                      <div className="text-center py-8 sm:py-12 text-gray-500">
+                        <i className="fas fa-paragraph text-3xl sm:text-4xl mb-3 sm:mb-4"></i>
+                        <p className="text-base sm:text-lg">Start typing to see your paragraph statistics</p>
                       </div>
                     ) : null}
                   </div>
@@ -400,10 +403,10 @@ Finally, this last paragraph completes our sample text, giving you four distinct
         </section>
 
         {/* Information Sections */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 sm:pb-12 lg:pb-16">
           {/* What is a Paragraph Counter */}
-          <div className="mt-12 bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">What is a Paragraph Counter?</h2>
+          <div className="mt-8 sm:mt-12 bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">What is a Paragraph Counter?</h2>
             <div className="prose max-w-none">
               <p className="text-lg text-gray-700 mb-6">
                 A <strong>paragraph counter</strong> is a specialized text analysis tool that counts and analyzes the paragraph structure of your content. Unlike simple <a href="/tools/word-counter" className="text-blue-600 hover:text-blue-800 transition-colors">word counters</a> or <a href="/tools/character-counter" className="text-blue-600 hover:text-blue-800 transition-colors">character counters</a>, our paragraph counter provides detailed insights into text organization, paragraph length distribution, and overall document structure.
@@ -420,17 +423,17 @@ Finally, this last paragraph completes our sample text, giving you four distinct
           </div>
 
           {/* Benefits and Use Cases */}
-          <div className="mt-8 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Benefits of Using a Paragraph Counter</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-10 h-10 bg-indigo-600 text-white rounded-full flex items-center justify-center">
-                    <i className="fas fa-chart-line text-lg"></i>
+          <div className="mt-6 sm:mt-8 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-4 sm:p-6 lg:p-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Benefits of Using a Paragraph Counter</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+              <div className="space-y-4 sm:space-y-6">
+                <div className="flex items-start space-x-3 sm:space-x-4">
+                  <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 bg-indigo-600 text-white rounded-full flex items-center justify-center">
+                    <i className="fas fa-chart-line text-sm sm:text-lg"></i>
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Improve Text Structure</h3>
-                    <p className="text-gray-600">Analyze paragraph distribution to ensure balanced content flow and better readability for your audience.</p>
+                    <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-1 sm:mb-2">Improve Text Structure</h3>
+                    <p className="text-sm sm:text-base text-gray-600">Analyze paragraph distribution to ensure balanced content flow and better readability for your audience.</p>
                   </div>
                 </div>
                 

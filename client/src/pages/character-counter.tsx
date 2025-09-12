@@ -167,32 +167,32 @@ This tool provides detailed analysis of your text content.`;
       
       <main>
         {/* Hero Section */}
-        <section className="gradient-hero text-white py-16 pt-24">
+        <section className="gradient-hero text-white py-12 sm:py-16 pt-20 sm:pt-24">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-              <i className="fas fa-font text-3xl"></i>
+            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6">
+              <i className="fas fa-font text-2xl sm:text-3xl"></i>
             </div>
-            <h1 className="text-4xl sm:text-5xl font-bold mb-6" data-testid="text-page-title">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6" data-testid="text-page-title">
               Character Counter
             </h1>
-            <p className="text-xl text-blue-100 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-blue-100 max-w-2xl mx-auto px-2">
               Count characters with and without spaces, analyze text composition, and get detailed character statistics
             </p>
           </div>
         </section>
 
         {/* Calculator Section */}
-        <section className="py-16">
+        <section className="py-8 sm:py-12 lg:py-16">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <Card className="bg-white shadow-sm border-0">
-              <CardContent className="p-8">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <CardContent className="p-4 sm:p-6 lg:p-8">
+                <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
                   {/* Input Section */}
-                  <div className="space-y-6">
-                    <h2 className="text-2xl font-semibold text-gray-900 mb-8">Enter Your Text</h2>
+                  <div className="space-y-4 sm:space-y-6">
+                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-8">Enter Your Text</h2>
                     
                     {/* Text Area */}
-                    <div className="space-y-3">
+                    <div className="space-y-2 sm:space-y-3">
                       <Label htmlFor="text-input" className="text-sm font-medium text-gray-700">
                         Text to Analyze
                       </Label>
@@ -200,14 +200,14 @@ This tool provides detailed analysis of your text content.`;
                         id="text-input"
                         value={text}
                         onChange={(e) => setText(e.target.value)}
-                        className="w-full h-80 p-4 text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                        className="w-full h-60 sm:h-72 lg:h-80 p-3 sm:p-4 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
                         placeholder="Type or paste your text here to get instant character count and detailed text analysis..."
                         data-testid="textarea-text-input"
                       />
                     </div>
 
                     {/* Options */}
-                    <div className="space-y-3">
+                    <div className="space-y-2 sm:space-y-3">
                       <div className="flex items-center space-x-2">
                         <Checkbox
                           id="show-details"
@@ -215,84 +215,87 @@ This tool provides detailed analysis of your text content.`;
                           onCheckedChange={(checked) => setShowDetails(checked === true)}
                           data-testid="checkbox-show-details"
                         />
-                        <Label htmlFor="show-details" className="text-sm text-gray-700">
+                        <Label htmlFor="show-details" className="text-xs sm:text-sm text-gray-700">
                           Show detailed character breakdown
                         </Label>
                       </div>
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 lg:gap-4">
                       <Button
                         onClick={handleClear}
                         variant="outline"
-                        className="flex-1"
+                        className="py-2.5 sm:py-2 text-xs sm:text-sm"
                         data-testid="button-clear-text"
                       >
-                        <i className="fas fa-trash mr-2"></i>
-                        Clear Text
+                        <i className="fas fa-trash mr-1 sm:mr-2"></i>
+                        <span className="hidden sm:inline">Clear Text</span>
+                        <span className="sm:hidden">Clear</span>
                       </Button>
                       <Button
                         onClick={handleSampleText}
                         variant="outline"
-                        className="flex-1"
+                        className="py-2.5 sm:py-2 text-xs sm:text-sm"
                         data-testid="button-sample-text"
                       >
-                        <i className="fas fa-file-text mr-2"></i>
-                        Sample Text
+                        <i className="fas fa-file-text mr-1 sm:mr-2"></i>
+                        <span className="hidden sm:inline">Sample Text</span>
+                        <span className="sm:hidden">Sample</span>
                       </Button>
                       <Button
                         onClick={handleCopy}
                         variant="outline"
-                        className="flex-1"
+                        className="py-2.5 sm:py-2 text-xs sm:text-sm"
                         disabled={!result || result.totalCharacters === 0}
                         data-testid="button-copy-stats"
                       >
-                        <i className="fas fa-copy mr-2"></i>
-                        Copy Stats
+                        <i className="fas fa-copy mr-1 sm:mr-2"></i>
+                        <span className="hidden sm:inline">Copy Stats</span>
+                        <span className="sm:hidden">Copy</span>
                       </Button>
                     </div>
                   </div>
 
                   {/* Results Section */}
-                  <div className="space-y-6">
-                    <h2 className="text-2xl font-semibold text-gray-900 mb-8">Character Statistics</h2>
+                  <div className="space-y-4 sm:space-y-6">
+                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-8">Character Statistics</h2>
                     
                     {result && (
-                      <div className="space-y-4" data-testid="character-statistics">
+                      <div className="space-y-3 sm:space-y-4" data-testid="character-statistics">
                         {/* Main Character Counts */}
-                        <div className="grid grid-cols-1 gap-4">
-                          <div className="bg-blue-50 rounded-lg p-4 text-center">
-                            <div className="text-3xl font-bold text-blue-600" data-testid="stat-total-characters">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                          <div className="bg-blue-50 rounded-lg p-3 sm:p-4 text-center">
+                            <div className="text-2xl sm:text-3xl font-bold text-blue-600" data-testid="stat-total-characters">
                               {result.totalCharacters.toLocaleString()}
                             </div>
-                            <div className="text-sm text-gray-600">Total Characters</div>
+                            <div className="text-xs sm:text-sm text-gray-600">Total Characters</div>
                           </div>
                           
-                          <div className="bg-purple-50 rounded-lg p-4 text-center">
-                            <div className="text-2xl font-bold text-purple-600" data-testid="stat-characters-without-spaces">
+                          <div className="bg-purple-50 rounded-lg p-3 sm:p-4 text-center">
+                            <div className="text-xl sm:text-2xl font-bold text-purple-600" data-testid="stat-characters-without-spaces">
                               {result.charactersWithoutSpaces.toLocaleString()}
                             </div>
-                            <div className="text-sm text-gray-600">Characters (no spaces)</div>
+                            <div className="text-xs sm:text-sm text-gray-600">Characters (no spaces)</div>
                           </div>
                         </div>
 
                         {/* Quick Stats */}
-                        <div className="grid grid-cols-3 gap-4">
-                          <div className="bg-gray-50 rounded-lg p-3 text-center">
-                            <div className="text-lg font-bold text-gray-600" data-testid="stat-words">
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 lg:gap-4">
+                          <div className="bg-gray-50 rounded-lg p-2 sm:p-3 text-center">
+                            <div className="text-base sm:text-lg font-bold text-gray-600" data-testid="stat-words">
                               {result.words.toLocaleString()}
                             </div>
                             <div className="text-xs text-gray-600">Words</div>
                           </div>
-                          <div className="bg-gray-50 rounded-lg p-3 text-center">
-                            <div className="text-lg font-bold text-gray-600" data-testid="stat-sentences">
+                          <div className="bg-gray-50 rounded-lg p-2 sm:p-3 text-center">
+                            <div className="text-base sm:text-lg font-bold text-gray-600" data-testid="stat-sentences">
                               {result.sentences.toLocaleString()}
                             </div>
                             <div className="text-xs text-gray-600">Sentences</div>
                           </div>
-                          <div className="bg-gray-50 rounded-lg p-3 text-center">
-                            <div className="text-lg font-bold text-gray-600" data-testid="stat-paragraphs">
+                          <div className="bg-gray-50 rounded-lg p-2 sm:p-3 text-center col-span-2 sm:col-span-1">
+                            <div className="text-base sm:text-lg font-bold text-gray-600" data-testid="stat-paragraphs">
                               {result.paragraphs.toLocaleString()}
                             </div>
                             <div className="text-xs text-gray-600">Paragraphs</div>
@@ -301,80 +304,80 @@ This tool provides detailed analysis of your text content.`;
 
                         {/* Detailed Breakdown */}
                         {showDetails && (
-                          <div className="space-y-4">
-                            <h3 className="text-lg font-semibold text-gray-900 border-t pt-4">Detailed Character Breakdown</h3>
+                          <div className="space-y-3 sm:space-y-4">
+                            <h3 className="text-base sm:text-lg font-semibold text-gray-900 border-t pt-3 sm:pt-4">Detailed Character Breakdown</h3>
                             
                             {/* Letters */}
-                            <div className="bg-indigo-50 rounded-lg p-4">
-                              <h4 className="font-semibold text-indigo-900 mb-3">Letters & Numbers</h4>
-                              <div className="grid grid-cols-2 gap-4">
+                            <div className="bg-indigo-50 rounded-lg p-3 sm:p-4">
+                              <h4 className="text-sm sm:text-base font-semibold text-indigo-900 mb-2 sm:mb-3">Letters & Numbers</h4>
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                                 <div className="text-center">
-                                  <div className="text-lg font-bold text-indigo-600" data-testid="stat-alphabetic">
+                                  <div className="text-base sm:text-lg font-bold text-indigo-600" data-testid="stat-alphabetic">
                                     {result.alphabeticCharacters.toLocaleString()}
                                   </div>
-                                  <div className="text-sm text-gray-600">Alphabetic</div>
+                                  <div className="text-xs sm:text-sm text-gray-600">Alphabetic</div>
                                 </div>
                                 <div className="text-center">
-                                  <div className="text-lg font-bold text-indigo-600" data-testid="stat-numeric">
+                                  <div className="text-base sm:text-lg font-bold text-indigo-600" data-testid="stat-numeric">
                                     {result.numericCharacters.toLocaleString()}
                                   </div>
-                                  <div className="text-sm text-gray-600">Numeric</div>
+                                  <div className="text-xs sm:text-sm text-gray-600">Numeric</div>
                                 </div>
                               </div>
                             </div>
 
                             {/* Case Analysis */}
-                            <div className="bg-orange-50 rounded-lg p-4">
-                              <h4 className="font-semibold text-orange-900 mb-3">Case Analysis</h4>
-                              <div className="grid grid-cols-2 gap-4">
+                            <div className="bg-orange-50 rounded-lg p-3 sm:p-4">
+                              <h4 className="text-sm sm:text-base font-semibold text-orange-900 mb-2 sm:mb-3">Case Analysis</h4>
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                                 <div className="text-center">
-                                  <div className="text-lg font-bold text-orange-600" data-testid="stat-uppercase">
+                                  <div className="text-base sm:text-lg font-bold text-orange-600" data-testid="stat-uppercase">
                                     {result.upperCaseLetters.toLocaleString()}
                                   </div>
-                                  <div className="text-sm text-gray-600">Uppercase</div>
+                                  <div className="text-xs sm:text-sm text-gray-600">Uppercase</div>
                                 </div>
                                 <div className="text-center">
-                                  <div className="text-lg font-bold text-orange-600" data-testid="stat-lowercase">
+                                  <div className="text-base sm:text-lg font-bold text-orange-600" data-testid="stat-lowercase">
                                     {result.lowerCaseLetters.toLocaleString()}
                                   </div>
-                                  <div className="text-sm text-gray-600">Lowercase</div>
+                                  <div className="text-xs sm:text-sm text-gray-600">Lowercase</div>
                                 </div>
                               </div>
                             </div>
 
                             {/* Special Characters */}
-                            <div className="bg-red-50 rounded-lg p-4">
-                              <h4 className="font-semibold text-red-900 mb-3">Special Characters</h4>
-                              <div className="grid grid-cols-3 gap-4">
+                            <div className="bg-red-50 rounded-lg p-3 sm:p-4">
+                              <h4 className="text-sm sm:text-base font-semibold text-red-900 mb-2 sm:mb-3">Special Characters</h4>
+                              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 lg:gap-4">
                                 <div className="text-center">
-                                  <div className="text-lg font-bold text-red-600" data-testid="stat-special">
+                                  <div className="text-sm sm:text-base lg:text-lg font-bold text-red-600" data-testid="stat-special">
                                     {result.specialCharacters.toLocaleString()}
                                   </div>
-                                  <div className="text-sm text-gray-600">Special</div>
+                                  <div className="text-xs sm:text-sm text-gray-600">Special</div>
                                 </div>
                                 <div className="text-center">
-                                  <div className="text-lg font-bold text-red-600" data-testid="stat-spaces">
+                                  <div className="text-sm sm:text-base lg:text-lg font-bold text-red-600" data-testid="stat-spaces">
                                     {result.spaces.toLocaleString()}
                                   </div>
-                                  <div className="text-sm text-gray-600">Spaces</div>
+                                  <div className="text-xs sm:text-sm text-gray-600">Spaces</div>
                                 </div>
-                                <div className="text-center">
-                                  <div className="text-lg font-bold text-red-600" data-testid="stat-punctuation">
+                                <div className="text-center col-span-2 sm:col-span-1">
+                                  <div className="text-sm sm:text-base lg:text-lg font-bold text-red-600" data-testid="stat-punctuation">
                                     {result.punctuation.toLocaleString()}
                                   </div>
-                                  <div className="text-sm text-gray-600">Punctuation</div>
+                                  <div className="text-xs sm:text-sm text-gray-600">Punctuation</div>
                                 </div>
                               </div>
                             </div>
 
                             {/* Lines */}
-                            <div className="bg-teal-50 rounded-lg p-4">
-                              <h4 className="font-semibold text-teal-900 mb-3">Structure</h4>
+                            <div className="bg-teal-50 rounded-lg p-3 sm:p-4">
+                              <h4 className="text-sm sm:text-base font-semibold text-teal-900 mb-2 sm:mb-3">Structure</h4>
                               <div className="text-center">
-                                <div className="text-lg font-bold text-teal-600" data-testid="stat-lines">
+                                <div className="text-base sm:text-lg font-bold text-teal-600" data-testid="stat-lines">
                                   {result.lines.toLocaleString()}
                                 </div>
-                                <div className="text-sm text-gray-600">Lines</div>
+                                <div className="text-xs sm:text-sm text-gray-600">Lines</div>
                               </div>
                             </div>
                           </div>
@@ -383,9 +386,9 @@ This tool provides detailed analysis of your text content.`;
                     )}
 
                     {!result || result.totalCharacters === 0 ? (
-                      <div className="text-center py-12 text-gray-500">
-                        <i className="fas fa-font text-4xl mb-4"></i>
-                        <p className="text-lg">Start typing to see your character statistics</p>
+                      <div className="text-center py-8 sm:py-12 text-gray-500">
+                        <i className="fas fa-font text-3xl sm:text-4xl mb-3 sm:mb-4"></i>
+                        <p className="text-base sm:text-lg">Start typing to see your character statistics</p>
                       </div>
                     ) : null}
                   </div>
@@ -396,10 +399,10 @@ This tool provides detailed analysis of your text content.`;
         </section>
 
         {/* Information Sections */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 sm:pb-12 lg:pb-16">
           {/* What is a Character Counter */}
-          <div className="mt-12 bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">What is a Character Counter Tool?</h2>
+          <div className="mt-8 sm:mt-12 bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">What is a Character Counter Tool?</h2>
             <div className="prose max-w-none">
               <p className="text-lg text-gray-700 mb-6">
                 A <strong>character counter</strong> is an essential text analysis tool that accurately counts individual characters in your content, providing detailed insights into text composition and structure. Unlike basic <a href="/tools/word-counter" className="text-blue-600 hover:text-blue-800 underline">word counters</a>, our advanced character counter distinguishes between characters with and without spaces, analyzes different character types, and delivers comprehensive text statistics in real-time.
@@ -416,14 +419,14 @@ This tool provides detailed analysis of your text content.`;
           </div>
 
           {/* Benefits for Different Audiences */}
-          <div className="mt-8 bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Who Benefits from Character Counting?</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="bg-white rounded-xl p-6 shadow-sm">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                  <i className="fas fa-graduation-cap text-blue-600 text-xl"></i>
+          <div className="mt-6 sm:mt-8 bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-4 sm:p-6 lg:p-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Who Benefits from Character Counting?</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+              <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-3 sm:mb-4">
+                  <i className="fas fa-graduation-cap text-blue-600 text-lg sm:text-xl"></i>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">📚 Students & Academics</h3>
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2 sm:mb-3">📚 Students & Academics</h3>
                 <ul className="space-y-2 text-gray-700">
                   <li className="flex items-start">
                     <span className="font-medium text-purple-600 mr-2">•</span>
@@ -444,11 +447,11 @@ This tool provides detailed analysis of your text content.`;
                 </ul>
               </div>
 
-              <div className="bg-white rounded-xl p-6 shadow-sm">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                  <i className="fas fa-pen text-green-600 text-xl"></i>
+              <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-lg flex items-center justify-center mb-3 sm:mb-4">
+                  <i className="fas fa-pen text-green-600 text-lg sm:text-xl"></i>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">✍️ Writers & Authors</h3>
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2 sm:mb-3">✍️ Writers & Authors</h3>
                 <ul className="space-y-2 text-gray-700">
                   <li className="flex items-start">
                     <span className="font-medium text-purple-600 mr-2">•</span>

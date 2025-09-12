@@ -209,37 +209,37 @@ const PasswordGenerator = () => {
       
       <main>
         {/* Hero Section */}
-        <section className="gradient-hero text-white py-16 pt-24">
+        <section className="gradient-hero text-white py-12 sm:py-16 pt-20 sm:pt-24">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-              <i className="fas fa-key text-3xl"></i>
+            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6">
+              <i className="fas fa-key text-2xl sm:text-3xl"></i>
             </div>
-            <h1 className="text-4xl sm:text-5xl font-bold mb-6" data-testid="text-page-title">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6" data-testid="text-page-title">
               Random Password Generator
             </h1>
-            <p className="text-xl text-blue-100 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-blue-100 max-w-2xl mx-auto px-2">
               Create strong, secure passwords with customizable options to protect your accounts and data
             </p>
           </div>
         </section>
 
         {/* Generator Section */}
-        <section className="py-16">
+        <section className="py-8 sm:py-12 lg:py-16">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <Card className="bg-white shadow-sm border-0">
-              <CardContent className="p-8">
-                <div className="space-y-8">
+              <CardContent className="p-4 sm:p-6 lg:p-8">
+                <div className="space-y-6 sm:space-y-8">
                   {/* Generated Password Display */}
                   <div>
-                    <h2 className="text-2xl font-semibold text-gray-900 mb-6">Generated Password</h2>
+                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6">Generated Password</h2>
                     
-                    <div className="space-y-4">
-                      <div className="flex gap-4">
+                    <div className="space-y-3 sm:space-y-4">
+                      <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
                         <div className="flex-1 relative">
                           <Input
                             value={password}
                             readOnly
-                            className="text-2xl font-bold pr-12 h-14"
+                            className="text-lg sm:text-xl lg:text-2xl font-bold pr-12 h-12 sm:h-14 text-center sm:text-left"
                             style={{ fontFamily: 'Monaco, Consolas, "Lucida Console", monospace' }}
                             data-testid="generated-password"
                           />
@@ -247,7 +247,7 @@ const PasswordGenerator = () => {
                             onClick={() => handleCopyToClipboard(password)}
                             variant="ghost"
                             size="sm"
-                            className="absolute right-2 top-1/2 transform -translate-y-1/2"
+                            className="absolute right-2 top-1/2 transform -translate-y-1/2 text-xs sm:text-sm"
                             data-testid="button-copy-password"
                           >
                             <i className="fas fa-copy"></i>
@@ -255,20 +255,21 @@ const PasswordGenerator = () => {
                         </div>
                         <Button 
                           onClick={handleGeneratePassword}
-                          className="h-14 px-6"
+                          className="h-12 sm:h-14 px-4 sm:px-6 text-sm sm:text-base"
                           data-testid="button-generate-password"
                         >
-                          <i className="fas fa-refresh mr-2"></i>
-                          Generate
+                          <i className="fas fa-refresh mr-1 sm:mr-2"></i>
+                          <span className="hidden sm:inline">Generate</span>
+                          <span className="sm:hidden">Generate</span>
                         </Button>
                       </div>
 
                       {/* Password Strength Indicator */}
                       {passwordStrength && (
-                        <div className="bg-gray-50 rounded-lg p-4">
+                        <div className="bg-gray-50 rounded-lg p-3 sm:p-4">
                           <div className="flex items-center justify-between mb-2">
-                            <span className="text-sm font-medium text-gray-700">Password Strength</span>
-                            <span className={`text-sm font-bold text-white px-3 py-1 rounded-full ${passwordStrength.color}`}>
+                            <span className="text-xs sm:text-sm font-medium text-gray-700">Password Strength</span>
+                            <span className={`text-xs sm:text-sm font-bold text-white px-2 sm:px-3 py-1 rounded-full ${passwordStrength.color}`}>
                               {passwordStrength.label}
                             </span>
                           </div>
@@ -278,7 +279,7 @@ const PasswordGenerator = () => {
                               style={{ width: `${(passwordStrength.score / 8) * 100}%` }}
                             ></div>
                           </div>
-                          <p className="text-sm text-gray-600">{passwordStrength.description}</p>
+                          <p className="text-xs sm:text-sm text-gray-600">{passwordStrength.description}</p>
                         </div>
                       )}
                     </div>
@@ -288,16 +289,16 @@ const PasswordGenerator = () => {
 
                   {/* Password Options */}
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-6">Password Options</h3>
+                    <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-4 sm:mb-6">Password Options</h3>
                     
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
                       {/* Length Setting */}
-                      <div className="md:col-span-2 space-y-4">
+                      <div className="lg:col-span-2 space-y-3 sm:space-y-4">
                         <div className="flex items-center justify-between">
-                          <Label className="text-base font-medium">Password Length</Label>
-                          <span className="text-lg font-bold text-blue-600">{options.length}</span>
+                          <Label className="text-sm sm:text-base font-medium">Password Length</Label>
+                          <span className="text-base sm:text-lg font-bold text-blue-600">{options.length}</span>
                         </div>
-                        <div className="px-2">
+                        <div className="px-1 sm:px-2">
                           <Slider
                             value={[options.length]}
                             onValueChange={(value) => updateOption('length', value[0])}
@@ -307,7 +308,7 @@ const PasswordGenerator = () => {
                             className="w-full"
                             data-testid="slider-password-length"
                           />
-                          <div className="flex justify-between text-sm text-gray-500 mt-1">
+                          <div className="flex justify-between text-xs sm:text-sm text-gray-500 mt-1">
                             <span>4</span>
                             <span>128</span>
                           </div>
@@ -315,13 +316,13 @@ const PasswordGenerator = () => {
                       </div>
 
                       {/* Character Type Options */}
-                      <div className="space-y-4">
-                        <h4 className="font-medium text-gray-900">Character Types</h4>
+                      <div className="space-y-3 sm:space-y-4">
+                        <h4 className="text-sm sm:text-base font-medium text-gray-900">Character Types</h4>
                         
                         <div className="space-y-3">
                           <div className="flex items-center justify-between">
-                            <div>
-                              <Label className="text-sm font-medium">Uppercase Letters (A-Z)</Label>
+                            <div className="flex-1 pr-2">
+                              <Label className="text-xs sm:text-sm font-medium">Uppercase Letters (A-Z)</Label>
                               <p className="text-xs text-gray-500">Include capital letters</p>
                             </div>
                             <Switch
@@ -370,13 +371,13 @@ const PasswordGenerator = () => {
                       </div>
 
                       {/* Advanced Options */}
-                      <div className="space-y-4">
-                        <h4 className="font-medium text-gray-900">Advanced Options</h4>
+                      <div className="space-y-3 sm:space-y-4">
+                        <h4 className="text-sm sm:text-base font-medium text-gray-900">Advanced Options</h4>
                         
                         <div className="space-y-3">
                           <div className="flex items-center justify-between">
-                            <div>
-                              <Label className="text-sm font-medium">Exclude Similar Characters</Label>
+                            <div className="flex-1 pr-2">
+                              <Label className="text-xs sm:text-sm font-medium">Exclude Similar Characters</Label>
                               <p className="text-xs text-gray-500">Avoid 0, O, 1, l, I</p>
                             </div>
                             <Switch
@@ -399,12 +400,12 @@ const PasswordGenerator = () => {
                           </div>
 
                           <div className="space-y-2">
-                            <Label className="text-sm font-medium">Custom Characters</Label>
+                            <Label className="text-xs sm:text-sm font-medium">Custom Characters</Label>
                             <Input
                               value={options.customCharacters}
                               onChange={(e) => updateOption('customCharacters', e.target.value)}
                               placeholder="Add your own characters"
-                              className="text-sm"
+                              className="text-xs sm:text-sm h-8 sm:h-10"
                               data-testid="input-custom-characters"
                             />
                             <p className="text-xs text-gray-500">Additional characters to include</p>
@@ -419,17 +420,18 @@ const PasswordGenerator = () => {
                     <>
                       <Separator />
                       <div>
-                        <h3 className="text-xl font-semibold text-gray-900 mb-4">Recently Generated</h3>
+                        <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Recently Generated</h3>
                         <div className="space-y-2">
                           {passwordHistory.slice(0, 5).map((historyPassword, index) => (
-                            <div key={index} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                              <div className="flex-1 font-mono text-sm text-gray-700 break-all">
+                            <div key={index} className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 bg-gray-50 rounded-lg">
+                              <div className="flex-1 font-mono text-xs sm:text-sm text-gray-700 break-all min-w-0">
                                 {historyPassword}
                               </div>
                               <Button
                                 onClick={() => handleCopyToClipboard(historyPassword)}
                                 variant="ghost"
                                 size="sm"
+                                className="text-xs px-2 py-1 flex-shrink-0"
                                 data-testid={`button-copy-history-${index}`}
                               >
                                 <i className="fas fa-copy"></i>
@@ -447,10 +449,10 @@ const PasswordGenerator = () => {
         </section>
 
         {/* Information Sections */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 sm:pb-12 lg:pb-16">
           {/* What is a Password Generator */}
-          <div className="mt-12 bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">What is a Password Generator?</h2>
+          <div className="mt-8 sm:mt-12 bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">What is a Password Generator?</h2>
             <div className="prose max-w-none">
               <p className="text-lg text-gray-700 mb-6">
                 A <strong>password generator</strong> is a security tool that creates random, complex passwords to protect your digital accounts. Our advanced password generator uses cryptographically secure random number generation to ensure maximum security and unpredictability.
@@ -467,9 +469,9 @@ const PasswordGenerator = () => {
           </div>
 
           {/* Use Cases for Different Audiences */}
-          <div className="mt-8 bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Who Benefits from Strong Password Generation?</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="mt-6 sm:mt-8 bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-4 sm:p-6 lg:p-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Who Benefits from Strong Password Generation?</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               <div className="bg-white rounded-xl p-6 shadow-sm">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                   <i className="fas fa-graduation-cap text-blue-600 text-xl"></i>

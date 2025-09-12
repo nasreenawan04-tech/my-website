@@ -5,6 +5,7 @@ import { searchTools } from '@/lib/search';
 import { tools } from '@/data/tools';
 import FavoritesDropdown from '@/components/FavoritesDropdown';
 import RecentToolsDropdown from '@/components/RecentToolsDropdown';
+import Logo from '@/components/Logo';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -37,12 +38,7 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo Section */}
-          <Link href="/" className="flex items-center space-x-2" data-testid="link-home">
-            <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-              <i className="fas fa-tools text-white text-sm"></i>
-            </div>
-            <span className="text-xl font-bold text-neutral-800 dark:text-neutral-100">DapsiWow</span>
-          </Link>
+          <Logo />
           
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
@@ -155,7 +151,7 @@ const Header = () => {
                   <button
                     key={tool.id}
                     onClick={() => handleToolClick(tool.href)}
-                    className="w-full p-4 text-left hover:bg-gray-50 border-b border-gray-100 transition-colors"
+                    className="w-full p-4 text-left hover:bg-gray-50 dark:hover:bg-neutral-800 border-b border-gray-100 dark:border-neutral-700 transition-colors"
                     data-testid={`search-result-${tool.id}`}
                   >
                     <div className="flex items-center space-x-3">
@@ -163,8 +159,8 @@ const Header = () => {
                         <i className={`${tool.icon} text-white text-sm`}></i>
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="font-medium text-gray-900 truncate">{tool.name}</div>
-                        <div className="text-sm text-gray-500 truncate">{tool.description}</div>
+                        <div className="font-medium text-gray-900 dark:text-neutral-100 truncate">{tool.name}</div>
+                        <div className="text-sm text-gray-500 dark:text-neutral-400 truncate">{tool.description}</div>
                       </div>
                       {tool.isPopular && (
                         <div className="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full flex-shrink-0">
@@ -175,7 +171,7 @@ const Header = () => {
                   </button>
                 ))
               ) : (
-                <div className="p-8 text-center text-gray-500">
+                <div className="p-8 text-center text-gray-500 dark:text-neutral-400">
                   <i className="fas fa-search text-3xl mb-4"></i>
                   <p>No tools found matching "{searchQuery}"</p>
                 </div>
