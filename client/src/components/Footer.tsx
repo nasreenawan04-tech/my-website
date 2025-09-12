@@ -1,5 +1,6 @@
 import { Link } from 'wouter';
 import logoImage from '@assets/logo.png';
+import LazyImage from '@/components/LazyImage';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -11,7 +12,7 @@ const Footer = () => {
           {/* Logo and Tagline */}
           <div className="lg:col-span-1">
             <div className="flex items-center space-x-2 mb-6">
-              <img 
+              <LazyImage 
                 src={logoImage}
                 alt="DapsiWow Logo"
                 className="w-8 h-8 object-contain filter drop-shadow-sm"

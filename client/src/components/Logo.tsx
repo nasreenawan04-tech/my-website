@@ -26,6 +26,8 @@ const Logo = ({ className = '', size = 'md', showText = true, onClick }: LogoPro
       src={logoImage}
       alt="DapsiWow Logo"
       className={`${sizeClasses[size]} object-contain filter drop-shadow-sm transition-transform hover:scale-105`}
+      loading="eager"
+      decoding="async"
     />
   );
 

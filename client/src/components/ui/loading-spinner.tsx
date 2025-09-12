@@ -14,14 +14,17 @@ export function LoadingSpinner({ size = "md", className }: LoadingSpinnerProps) 
     <div className="flex items-center justify-center p-8" data-testid="loading-spinner">
       <div
         className={`animate-spin rounded-full border-2 border-gray-300 border-t-blue-600 ${sizeClasses[size]} ${className || ''}`}
-      />
+        role="status"
+      >
+        <span className="sr-only">Loading...</span>
+      </div>
     </div>
   );
 }
 
 export function PageLoadingSpinner() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50" data-testid="page-loading">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50" data-testid="page-loading" aria-busy="true">
       <div className="text-center">
         <LoadingSpinner size="lg" />
         <p className="mt-4 text-gray-600">Loading...</p>

@@ -1,49 +1,68 @@
-
 import { Helmet } from 'react-helmet-async';
-import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { z } from 'zod';
+import { Mail, Clock, HelpCircle, Send, CheckCircle, Loader2 } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useToast } from '@/hooks/use-toast';
+import { apiRequest } from '@/lib/queryClient';
+import { insertContactSubmissionSchema } from '@shared/schema';
+
+const contactFormSchema = insertContactSubmissionSchema.extend({
+  email: z.string().email('Please enter a valid email address'),
+  name: z.string().min(2, 'Name must be at least 2 characters'),
+  subject: z.string().min(1, 'Please select a subject'),
+  message: z.string().min(10, 'Message must be at least 10 characters')
+});
+
+type ContactFormData = z.infer<typeof contactFormSchema>;
 
 const ContactUs = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+  const { toast } = useToast();
+  const queryClient = useQueryClient();
+  
+  const form = useForm<ContactFormData>({
+    resolver: zodResolver(contactFormSchema),
+    defaultValues: {
+      name: '',
+      email: '',
+      subject: '',
+      message: ''
+    }
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...formData,
-          to: 'saifkhan09@dapsiwow.com'
-        }),
+  const contactMutation = useMutation({
+    mutationFn: async (data: ContactFormData) => {
+      const response = await apiRequest('POST', '/api/contact', data);
+      return response.json();
+    },
+    onSuccess: (data) => {
+      toast({
+        title: 'Message sent successfully!',
+        description: 'Thank you for your message. We\'ll get back to you soon.',
       });
-
-      if (response.ok) {
-        alert('Thank you for your message! We\'ll get back to you soon.');
-        setFormData({ name: '', email: '', subject: '', message: '' });
-      } else {
-        throw new Error('Failed to send message');
-      }
-    } catch (error) {
+      form.reset();
+    },
+    onError: (error: Error) => {
       console.error('Error sending message:', error);
-      alert('Sorry, there was an error sending your message. Please try again or contact us directly at saifkhan09@dapsiwow.com');
+      toast({
+        title: 'Failed to send message',
+        description: 'Sorry, there was an error sending your message. Please try again or contact us directly.',
+        variant: 'destructive',
+      });
     }
+  });
+
+  const onSubmit = (data: ContactFormData) => {
+    contactMutation.mutate(data);
   };
 
   return (
@@ -80,97 +99,129 @@ const ContactUs = () => {
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 {/* Contact Form */}
-                <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-2xl font-bold text-neutral-800 mb-6">Send us a message</h2>
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-neutral-700 mb-2">
-                        Name *
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Send us a message</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                  <Form {...form}>
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6" data-testid="form-contact">
+                      <FormField
+                        control={form.control}
                         name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                        placeholder="Your full name"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Name *</FormLabel>
+                            <FormControl>
+                              <Input
+                                placeholder="Your full name"
+                                data-testid="input-name"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
                       />
-                    </div>
 
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-neutral-700 mb-2">
-                        Email *
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
+                      <FormField
+                        control={form.control}
                         name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                        placeholder="your.email@example.com"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Email *</FormLabel>
+                            <FormControl>
+                              <Input
+                                type="email"
+                                placeholder="your.email@example.com"
+                                data-testid="input-email"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
                       />
-                    </div>
 
-                    <div>
-                      <label htmlFor="subject" className="block text-sm font-medium text-neutral-700 mb-2">
-                        Subject *
-                      </label>
-                      <select
-                        id="subject"
+                      <FormField
+                        control={form.control}
                         name="subject"
-                        value={formData.subject}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
-                      >
-                        <option value="">Select a subject</option>
-                        <option value="general">General Inquiry</option>
-                        <option value="support">Technical Support</option>
-                        <option value="feature">Feature Request</option>
-                        <option value="bug">Bug Report</option>
-                        <option value="partnership">Partnership</option>
-                        <option value="other">Other</option>
-                      </select>
-                    </div>
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Subject *</FormLabel>
+                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                              <FormControl>
+                                <SelectTrigger data-testid="select-subject">
+                                  <SelectValue placeholder="Select a subject" />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent>
+                                <SelectItem value="general">General Inquiry</SelectItem>
+                                <SelectItem value="support">Technical Support</SelectItem>
+                                <SelectItem value="feature">Feature Request</SelectItem>
+                                <SelectItem value="bug">Bug Report</SelectItem>
+                                <SelectItem value="partnership">Partnership</SelectItem>
+                                <SelectItem value="other">Other</SelectItem>
+                              </SelectContent>
+                            </Select>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
 
-                    <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-neutral-700 mb-2">
-                        Message *
-                      </label>
-                      <textarea
-                        id="message"
+                      <FormField
+                        control={form.control}
                         name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        required
-                        rows={6}
-                        className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent resize-vertical"
-                        placeholder="Tell us how we can help you..."
-                      ></textarea>
-                    </div>
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Message *</FormLabel>
+                            <FormControl>
+                              <Textarea
+                                placeholder="Tell us how we can help you..."
+                                className="resize-vertical"
+                                rows={6}
+                                data-testid="textarea-message"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
 
-                    <button
-                      type="submit"
-                      className="w-full bg-green-600 text-white font-medium py-3 px-6 rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center"
-                    >
-                      <i className="fas fa-paper-plane mr-2"></i>
-                      Send Message
-                    </button>
-                  </form>
-                </div>
+                      <Button
+                        type="submit"
+                        className="w-full"
+                        disabled={contactMutation.isPending}
+                        data-testid="button-submit"
+                      >
+                        {contactMutation.isPending ? (
+                          <>
+                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            Sending...
+                          </>
+                        ) : (
+                          <>
+                            <Send className="mr-2 h-4 w-4" />
+                            Send Message
+                          </>
+                        )}
+                      </Button>
+                    </form>
+                  </Form>
+                  </CardContent>
+                </Card>
 
                 {/* Contact Information */}
                 <div className="space-y-8">
-                  <div className="bg-white rounded-2xl shadow-lg p-8">
-                    <h2 className="text-2xl font-bold text-neutral-800 mb-6">Get in touch</h2>
-                    <div className="space-y-6">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Get in touch</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-6">
                       <div className="flex items-start">
                         <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
-                          <i className="fas fa-envelope text-green-600"></i>
+                          <Mail className="h-5 w-5 text-green-600" />
                         </div>
                         <div>
                           <h3 className="font-semibold text-neutral-800">Email</h3>
@@ -180,7 +231,7 @@ const ContactUs = () => {
 
                       <div className="flex items-start">
                         <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
-                          <i className="fas fa-clock text-blue-600"></i>
+                          <Clock className="h-5 w-5 text-blue-600" />
                         </div>
                         <div>
                           <h3 className="font-semibold text-neutral-800">Response Time</h3>
@@ -190,41 +241,43 @@ const ContactUs = () => {
 
                       <div className="flex items-start">
                         <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
-                          <i className="fas fa-question-circle text-purple-600"></i>
+                          <HelpCircle className="h-5 w-5 text-purple-600" />
                         </div>
                         <div>
                           <h3 className="font-semibold text-neutral-800">Quick Help</h3>
                           <p className="text-neutral-600">
-                            <a href="/help" className="text-purple-600 hover:underline">
+                            <a href="/help" className="text-purple-600 hover:underline" data-testid="link-help">
                               Check our Help Center
                             </a>
                           </p>
                         </div>
                       </div>
-                    </div>
-                  </div>
+                    </CardContent>
+                  </Card>
 
-                  <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-8">
-                    <h3 className="text-xl font-bold text-neutral-800 mb-4">We're here to help!</h3>
-                    <p className="text-neutral-600 mb-4">
-                      Whether you have a question, need technical support, or want to suggest a new tool, 
-                      we're always happy to hear from you.
-                    </p>
-                    <ul className="text-sm text-neutral-600 space-y-2">
-                      <li className="flex items-center">
-                        <i className="fas fa-check text-green-500 mr-2"></i>
-                        24-hour response time
-                      </li>
-                      <li className="flex items-center">
-                        <i className="fas fa-check text-green-500 mr-2"></i>
-                        Friendly support team
-                      </li>
-                      <li className="flex items-center">
-                        <i className="fas fa-check text-green-500 mr-2"></i>
-                        We value your feedback
-                      </li>
-                    </ul>
-                  </div>
+                  <Card className="bg-gradient-to-r from-green-50 to-blue-50">
+                    <CardContent className="p-8">
+                      <h3 className="text-xl font-bold text-neutral-800 mb-4">We're here to help!</h3>
+                      <p className="text-neutral-600 mb-4">
+                        Whether you have a question, need technical support, or want to suggest a new tool, 
+                        we're always happy to hear from you.
+                      </p>
+                      <ul className="text-sm text-neutral-600 space-y-2">
+                        <li className="flex items-center">
+                          <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                          24-hour response time
+                        </li>
+                        <li className="flex items-center">
+                          <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                          Friendly support team
+                        </li>
+                        <li className="flex items-center">
+                          <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                          We value your feedback
+                        </li>
+                      </ul>
+                    </CardContent>
+                  </Card>
                 </div>
               </div>
             </div>

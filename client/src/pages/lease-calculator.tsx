@@ -10,7 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Separator } from '@/components/ui/separator';
-import { Calculator } from 'lucide-react';
+import { Calculator, Car } from 'lucide-react';
 
 interface LeaseResult {
   monthlyPayment: number;
@@ -146,7 +146,7 @@ const LeaseCalculator = () => {
           <section className="gradient-hero text-white py-16">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
               <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <i className="fas fa-car text-3xl"></i>
+                <Car className="w-12 h-12" />
               </div>
               <h1 className="text-4xl sm:text-5xl font-bold mb-6" data-testid="text-page-title">
                 Lease Calculator

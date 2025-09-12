@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'wouter';
+import { Search, Menu, X } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { searchTools } from '@/lib/search';
 import { tools } from '@/data/tools';
-import FavoritesDropdown from '@/components/FavoritesDropdown';
-import RecentToolsDropdown from '@/components/RecentToolsDropdown';
 import Logo from '@/components/Logo';
 
 const Header = () => {
@@ -56,18 +55,8 @@ const Header = () => {
             ))}
           </nav>
           
-          {/* Search, Favorites, Recent, and Mobile Menu */}
+          {/* Search and Mobile Menu */}
           <div className="flex items-center space-x-2">
-            {/* Recent Tools - Hidden on mobile */}
-            <div className="hidden sm:block">
-              <RecentToolsDropdown />
-            </div>
-            
-            {/* Favorites - Hidden on mobile */}
-            <div className="hidden sm:block">
-              <FavoritesDropdown />
-            </div>
-            
             {/* Search */}
             <button 
               className="p-2 text-neutral-600 dark:text-neutral-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
@@ -75,7 +64,7 @@ const Header = () => {
               data-testid="button-search"
               title="Search tools"
             >
-              <i className="fas fa-search text-lg"></i>
+              <Search className="w-5 h-5" />
             </button>
             
             {/* Mobile Menu */}
@@ -84,7 +73,7 @@ const Header = () => {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               data-testid="button-mobile-menu"
             >
-              <i className="fas fa-bars text-lg"></i>
+              <Menu className="w-5 h-5" />
             </button>
           </div>
         </div>
@@ -94,18 +83,6 @@ const Header = () => {
       {isMobileMenuOpen && (
         <div className="lg:hidden bg-white dark:bg-neutral-900 border-t border-gray-200 dark:border-neutral-700" data-testid="mobile-menu">
           <div className="px-4 py-3 space-y-3">
-            {/* Quick access section for mobile */}
-            <div className="pb-3 border-b border-gray-200 dark:border-neutral-700">
-              <div className="flex items-center space-x-4">
-                <div className="flex-1">
-                  <RecentToolsDropdown />
-                </div>
-                <div className="flex-1">
-                  <FavoritesDropdown />
-                </div>
-              </div>
-            </div>
-            
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -141,7 +118,7 @@ const Header = () => {
                   className="absolute right-3 top-3 text-gray-400 dark:text-neutral-500 hover:text-gray-600 dark:hover:text-neutral-300"
                   data-testid="search-modal-close"
                 >
-                  <i className="fas fa-times text-lg"></i>
+                  <X className="w-5 h-5" />
                 </button>
               </div>
             </div>
@@ -156,7 +133,7 @@ const Header = () => {
                   >
                     <div className="flex items-center space-x-3">
                       <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <i className={`${tool.icon} text-white text-sm`}></i>
+                        <Search className="w-4 h-4 text-white" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="font-medium text-gray-900 dark:text-neutral-100 truncate">{tool.name}</div>
@@ -172,7 +149,7 @@ const Header = () => {
                 ))
               ) : (
                 <div className="p-8 text-center text-gray-500 dark:text-neutral-400">
-                  <i className="fas fa-search text-3xl mb-4"></i>
+                  <Search className="w-12 h-12 mb-4 text-gray-400" />
                   <p>No tools found matching "{searchQuery}"</p>
                 </div>
               )}

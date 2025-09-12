@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useLocation } from 'wouter';
+import { Search } from 'lucide-react';
 import { searchTools } from '@/lib/search';
 import { tools } from '@/data/tools';
 
@@ -78,7 +79,7 @@ const HeroSection = () => {
               className="absolute right-2 top-2 bottom-2 px-6 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all duration-200 shadow-md hover:shadow-lg"
               data-testid="button-search-tools"
             >
-              <i className="fas fa-search"></i>
+              <Search className="w-5 h-5" />
             </button>
           </form>
 
