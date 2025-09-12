@@ -155,7 +155,7 @@ const ContactUs = () => {
                         </div>
                         <div>
                           <h3 className="font-semibold text-neutral-800">Email</h3>
-                          <p className="text-neutral-600">support@dapsiwow.com</p>
+                          <p className="text-neutral-600">saifkhan09@dapsiwow.com</p>
                         </div>
                       </div>
 
