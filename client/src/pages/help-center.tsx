@@ -302,8 +302,8 @@ const HelpCenter = () => {
                   Can't find what you're looking for? Our dedicated support team is here to help you succeed with DapsiWow.
                 </p>
                 
-                <div className="grid md:grid-cols-2 gap-8 mb-12">
-                  <div className="bg-white bg-opacity-80 backdrop-blur-sm rounded-2xl p-8 shadow-md">
+                <div className="flex justify-center mb-12">
+                  <div className="bg-white bg-opacity-80 backdrop-blur-sm rounded-2xl p-8 shadow-md max-w-md">
                     <i className="fas fa-envelope text-4xl text-blue-600 mb-4"></i>
                     <h3 className="text-xl font-bold mb-3 text-gray-800">Email Support</h3>
                     <p className="text-gray-600 mb-6">Get detailed help via email within 24 hours</p>
@@ -315,19 +315,6 @@ const HelpCenter = () => {
                       <i className="fas fa-envelope mr-2"></i>
                       Send Message
                     </a>
-                  </div>
-                  
-                  <div className="bg-white bg-opacity-80 backdrop-blur-sm rounded-2xl p-8 shadow-md">
-                    <i className="fas fa-comments text-4xl text-blue-600 mb-4"></i>
-                    <h3 className="text-xl font-bold mb-3 text-gray-800">Live Chat</h3>
-                    <p className="text-gray-600 mb-6">Chat with our team for instant assistance</p>
-                    <button 
-                      className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors"
-                      data-testid="button-live-chat"
-                    >
-                      <i className="fas fa-comments mr-2"></i>
-                      Start Chat
-                    </button>
                   </div>
                 </div>
 
