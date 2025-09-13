@@ -1,9 +1,9 @@
 import { Tool } from '@/data/tools';
 
 // Local storage keys
-const FAVORITES_KEY = 'calceasy-favorites';
-const RECENT_TOOLS_KEY = 'calceasy-recent';
-const USER_PREFERENCES_KEY = 'calceasy-preferences';
+const FAVORITES_KEY = 'dapsiwow-favorites';
+const RECENT_TOOLS_KEY = 'dapsiwow-recent';
+const USER_PREFERENCES_KEY = 'dapsiwow-preferences';
 
 export interface RecentTool {
   tool: Tool;

@@ -196,13 +196,13 @@ const MortgageCalculator = () => {
   return (
     <>
       <Helmet>
-        <title>Mortgage Calculator - Calculate Monthly Mortgage Payments | ToolsHub</title>
+        <title>Mortgage Calculator - Calculate Monthly Mortgage Payments | DapsiWow</title>
         <meta name="description" content="Free mortgage calculator to calculate monthly payments, total interest, and loan costs. Include taxes, insurance, and PMI for accurate estimates." />
         <meta name="keywords" content="mortgage calculator, home loan calculator, monthly payment calculator, mortgage interest calculator" />
-        <meta property="og:title" content="Mortgage Calculator - Calculate Monthly Mortgage Payments | ToolsHub" />
+        <meta property="og:title" content="Mortgage Calculator - Calculate Monthly Mortgage Payments | DapsiWow" />
         <meta property="og:description" content="Free mortgage calculator to calculate monthly payments, total interest, and loan costs. Include taxes, insurance, and PMI for accurate estimates." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="/tools/mortgage-calculator" />
+        <link rel="canonical" href="https://dapsiwow.com/mortgage-calculator" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col" data-testid="page-mortgage-calculator">

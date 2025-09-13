@@ -157,8 +157,13 @@ export default function LoanCalculator() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Helmet>
-        <title>Loan Calculator - Calculate Monthly Payments | ToolsHub</title>
+        <title>Loan Calculator - Calculate Monthly Payments | DapsiWow</title>
         <meta name="description" content="Free loan calculator to calculate monthly payments, total interest, and amortization schedules. Compare personal loans, auto loans, mortgages, and business loans. Get instant results with our easy-to-use loan payment calculator." />
+        <meta name="keywords" content="loan calculator, monthly payment calculator, loan payment, personal loan calculator, auto loan calculator, mortgage calculator" />
+        <meta property="og:title" content="Loan Calculator - Calculate Monthly Payments | DapsiWow" />
+        <meta property="og:description" content="Free loan calculator to calculate monthly payments, total interest, and amortization schedules for personal loans, auto loans, and mortgages." />
+        <meta property="og:type" content="website" />
+        <link rel="canonical" href="https://dapsiwow.com/loan-calculator" />
       </Helmet>
       
       <Header />

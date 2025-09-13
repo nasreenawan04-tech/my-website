@@ -1,8 +1,10 @@
 
 import { Helmet } from 'react-helmet-async';
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { useToast } from '@/hooks/use-toast';
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +13,8 @@ const ContactUs = () => {
     subject: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -21,28 +25,53 @@ const ContactUs = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
     
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...formData,
-          to: 'saifkhan09@dapsiwow.com'
-        }),
-      });
-
-      if (response.ok) {
-        alert('Thank you for your message! We\'ll get back to you soon.');
-        setFormData({ name: '', email: '', subject: '', message: '' });
-      } else {
-        throw new Error('Failed to send message');
+      // EmailJS configuration - get from environment variables
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+      
+      // Check if EmailJS is properly configured
+      if (!serviceId || !templateId || !publicKey) {
+        toast({
+          title: "Configuration Error",
+          description: "Email service is not properly configured. Please contact us directly at saifkhan09@dapsiwow.com",
+          variant: "destructive"
+        });
+        return;
       }
+      
+      // Template parameters for EmailJS
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        reply_to: formData.email
+      };
+
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      
+      toast({
+        title: "Message Sent Successfully!",
+        description: "Thank you for your message! We'll get back to you within 24 hours.",
+        variant: "default"
+      });
+      
+      // Reset form
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      
     } catch (error) {
       console.error('Error sending message:', error);
-      alert('Sorry, there was an error sending your message. Please try again or contact us directly at saifkhan09@dapsiwow.com');
+      toast({
+        title: "Failed to Send Message",
+        description: "Sorry, there was an error sending your message. Please try again or contact us directly at saifkhan09@dapsiwow.com",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -155,10 +184,21 @@ const ContactUs = () => {
 
                     <button
                       type="submit"
-                      className="w-full bg-green-600 text-white font-medium py-3 px-6 rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center"
+                      disabled={isSubmitting}
+                      className="w-full bg-green-600 text-white font-medium py-3 px-6 rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center"
+                      data-testid="button-submit-contact"
                     >
-                      <i className="fas fa-paper-plane mr-2"></i>
-                      Send Message
+                      {isSubmitting ? (
+                        <>
+                          <i className="fas fa-spinner fa-spin mr-2"></i>
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <i className="fas fa-paper-plane mr-2"></i>
+                          Send Message
+                        </>
+                      )}
                     </button>
                   </form>
                 </div>
