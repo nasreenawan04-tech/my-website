@@ -199,10 +199,10 @@ const CryptocurrencyConverter = () => {
   return (
     <>
       <Helmet>
-        <title>Cryptocurrency Converter - Convert Bitcoin, Ethereum & 1000+ Cryptos | ToolsHub</title>
+        <title>Cryptocurrency Converter - Convert Bitcoin, Ethereum & 1000+ Cryptos | DapsiWow</title>
         <meta name="description" content="Free cryptocurrency converter supporting Bitcoin, Ethereum, and 1000+ cryptocurrencies. Real-time rates for crypto-to-crypto and crypto-to-fiat conversions worldwide." />
         <meta name="keywords" content="cryptocurrency converter, bitcoin converter, ethereum converter, crypto to fiat, crypto calculator" />
-        <meta property="og:title" content="Cryptocurrency Converter - Convert Bitcoin, Ethereum & 1000+ Cryptos | ToolsHub" />
+        <meta property="og:title" content="Cryptocurrency Converter - Convert Bitcoin, Ethereum & 1000+ Cryptos | DapsiWow" />
         <meta property="og:description" content="Free cryptocurrency converter supporting Bitcoin, Ethereum, and 1000+ cryptocurrencies with real-time rates." />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="/tools/cryptocurrency-converter" />

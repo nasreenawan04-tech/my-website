@@ -241,20 +241,20 @@ export default function InflationCalculator() {
         <meta property="og:title" content="Free Inflation Calculator - Calculate Money Value Impact Over Time" />
         <meta property="og:description" content="Calculate inflation impact on your money with country-specific data. Analyze purchasing power loss, future values, and plan for economic changes effectively." />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="ToolsHub" />
+        <meta property="og:site_name" content="DapsiWow" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Inflation Calculator - Financial Planning & Economic Analysis Tool" />
         <meta name="twitter:description" content="Calculate inflation impact with global data. Essential tool for investors, retirees, and financial planners to understand money value changes." />
         <meta name="robots" content="index, follow" />
-        <meta name="author" content="ToolsHub" />
-        <link rel="canonical" href="https://toolshub.com/tools/inflation-calculator" />
+        <meta name="author" content="DapsiWow" />
+        <link rel="canonical" href="https://dapsiwow.com/tools/inflation-calculator" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebApplication",
             "name": "Inflation Calculator",
             "description": "Calculate the impact of inflation on money value over time with country-specific historical data and projections for financial planning.",
-            "url": "https://toolshub.com/tools/inflation-calculator",
+            "url": "https://dapsiwow.com/tools/inflation-calculator",
             "applicationCategory": "FinanceApplication",
             "operatingSystem": "Web Browser",
             "offers": {

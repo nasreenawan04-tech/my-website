@@ -148,10 +148,10 @@ export default function CurrencyConverter() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Helmet>
-        <title>Free Currency Converter - Real-Time Exchange Rates for 30+ Currencies | ToolsHub</title>
+        <title>Free Currency Converter - Real-Time Exchange Rates for 30+ Currencies | DapsiWow</title>
         <meta name="description" content="Free online currency converter with real-time exchange rates for 30+ global currencies. Convert USD to EUR, GBP to USD, JPY to CNY and more. Perfect for travel, business, forex trading, and international shopping." />
         <meta name="keywords" content="currency converter, exchange rates, currency exchange, money converter, forex calculator, USD EUR converter, travel money calculator, international currency rates, foreign exchange converter, currency calculator" />
-        <meta property="og:title" content="Free Currency Converter - Real-Time Exchange Rates | ToolsHub" />
+        <meta property="og:title" content="Free Currency Converter - Real-Time Exchange Rates | DapsiWow" />
         <meta property="og:description" content="Convert between 30+ global currencies with accurate exchange rates. Essential tool for travelers, businesses, and forex traders." />
         <link rel="canonical" href="/tools/currency-converter" />
       </Helmet>
