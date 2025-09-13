@@ -13,16 +13,16 @@ Disallow: /uploads/
 Disallow: /encrypted/
 
 # Allow all tools and categories
-Allow: /tools/
-Allow: /finance/
-Allow: /pdf/
-Allow: /text/
-Allow: /health/
-Allow: /about/
-Allow: /contact/
-Allow: /privacy/
-Allow: /terms/
-Allow: /help/
+Allow: /finance
+Allow: /health
+Allow: /text
+Allow: /image
+Allow: /all-tools
+Allow: /about
+Allow: /contact
+Allow: /privacy
+Allow: /terms
+Allow: /help
 
 # Google specific
 User-agent: Googlebot

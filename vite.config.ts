@@ -34,13 +34,20 @@ export default defineConfig({
     minify: "esbuild",
     cssMinify: true,
     sourcemap: false,
+    cssCodeSplit: true,
+    assetsInlineLimit: 4096,
     rollupOptions: {
       output: {
         manualChunks: {
           vendor: ["react", "react-dom"],
-          ui: ["@radix-ui/react-dialog", "@radix-ui/react-dropdown-menu", "@radix-ui/react-tabs"],
+          router: ["wouter"],
+          query: ["@tanstack/react-query"],
+          ui: ["@radix-ui/react-dialog", "@radix-ui/react-dropdown-menu", "@radix-ui/react-tabs", "@radix-ui/react-select", "@radix-ui/react-slider"],
+          form: ["react-hook-form", "@hookform/resolvers", "zod"],
           charts: ["recharts"],
-          utils: ["clsx", "tailwind-merge", "framer-motion"]
+          icons: ["lucide-react"],
+          utils: ["clsx", "tailwind-merge", "framer-motion", "date-fns"],
+          helmet: ["react-helmet-async"]
         },
         chunkFileNames: "assets/[name]-[hash].js",
         entryFileNames: "assets/[name]-[hash].js",
@@ -63,7 +70,16 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    include: ["react", "react-dom", "wouter", "@tanstack/react-query"],
+    include: [
+      "react", 
+      "react-dom", 
+      "wouter", 
+      "@tanstack/react-query",
+      "lucide-react",
+      "react-helmet-async",
+      "clsx",
+      "tailwind-merge"
+    ],
     exclude: ["@vite/client", "@vite/env"]
   },
   esbuild: {
