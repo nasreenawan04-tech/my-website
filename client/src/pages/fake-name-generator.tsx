@@ -174,39 +174,39 @@ Nationality: ${generatedName.nationality}`;
       
       <main>
         {/* Hero Section */}
-        <section className="gradient-hero text-white py-16 pt-24">
+        <section className="gradient-hero text-white py-12 sm:py-16 pt-20 sm:pt-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-              <i className="fas fa-id-card text-3xl"></i>
+            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6">
+              <i className="fas fa-id-card text-2xl sm:text-3xl"></i>
             </div>
-            <h1 className="text-4xl sm:text-5xl font-bold mb-6" data-testid="text-page-title">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6" data-testid="text-page-title">
               Fake Name Generator
             </h1>
-            <p className="text-xl text-blue-100 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-blue-100 max-w-2xl mx-auto px-4">
               Generate realistic fake names for testing, development, and privacy protection
             </p>
           </div>
         </section>
 
         {/* Generator Section */}
-        <section className="py-16">
+        <section className="py-8 sm:py-12 lg:py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <Card className="bg-white shadow-sm border-0">
-              <CardContent className="p-8">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <CardContent className="p-4 sm:p-6 lg:p-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-12">
                   {/* Generator Options */}
-                  <div className="space-y-8">
-                    <h2 className="text-2xl font-semibold text-gray-900 mb-6">Generate Options</h2>
+                  <div className="space-y-6 sm:space-y-8">
+                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6">Generate Options</h2>
                     
-                    <div className="space-y-6">
+                    <div className="space-y-4 sm:space-y-6">
                       {/* Gender Selection */}
-                      <div className="space-y-3">
-                        <Label className="text-base font-medium">Gender</Label>
+                      <div className="space-y-2 sm:space-y-3">
+                        <Label className="text-sm sm:text-base font-medium">Gender</Label>
                         <Select 
                           value={options.gender} 
                           onValueChange={(value: 'male' | 'female' | 'both') => updateOption('gender', value)}
                         >
-                          <SelectTrigger data-testid="select-gender">
+                          <SelectTrigger className="h-10 sm:h-12 text-sm sm:text-base" data-testid="select-gender">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -218,13 +218,13 @@ Nationality: ${generatedName.nationality}`;
                       </div>
 
                       {/* Nationality Selection */}
-                      <div className="space-y-3">
-                        <Label className="text-base font-medium">Nationality</Label>
+                      <div className="space-y-2 sm:space-y-3">
+                        <Label className="text-sm sm:text-base font-medium">Nationality</Label>
                         <Select 
                           value={options.nationality} 
                           onValueChange={(value: 'american' | 'british' | 'international') => updateOption('nationality', value)}
                         >
-                          <SelectTrigger data-testid="select-nationality">
+                          <SelectTrigger className="h-10 sm:h-12 text-sm sm:text-base" data-testid="select-nationality">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -236,30 +236,32 @@ Nationality: ${generatedName.nationality}`;
                       </div>
 
                       {/* Options */}
-                      <div className="space-y-4">
-                        <h3 className="font-medium text-gray-900">Additional Options</h3>
+                      <div className="space-y-3 sm:space-y-4">
+                        <h3 className="text-sm sm:text-base font-medium text-gray-900">Additional Options</h3>
                         
-                        <div className="space-y-3">
-                          <div className="flex items-center justify-between">
-                            <div>
+                        <div className="space-y-3 sm:space-y-4">
+                          <div className="flex items-center justify-between p-2 sm:p-0">
+                            <div className="flex-1 min-w-0 pr-4">
                               <Label className="text-sm font-medium">Include Middle Name</Label>
-                              <p className="text-xs text-gray-500">Add a middle name to the generated name</p>
+                              <p className="text-xs text-gray-500 mt-1">Add a middle name to the generated name</p>
                             </div>
                             <Switch
                               checked={options.includeMiddleName}
                               onCheckedChange={(value) => updateOption('includeMiddleName', value)}
+                              className="flex-shrink-0"
                               data-testid="switch-middle-name"
                             />
                           </div>
 
-                          <div className="flex items-center justify-between">
-                            <div>
+                          <div className="flex items-center justify-between p-2 sm:p-0">
+                            <div className="flex-1 min-w-0 pr-4">
                               <Label className="text-sm font-medium">Include Title</Label>
-                              <p className="text-xs text-gray-500">Add title like Mr., Mrs., Dr., Prof.</p>
+                              <p className="text-xs text-gray-500 mt-1">Add title like Mr., Mrs., Dr., Prof.</p>
                             </div>
                             <Switch
                               checked={options.includeTitle}
                               onCheckedChange={(value) => updateOption('includeTitle', value)}
+                              className="flex-shrink-0"
                               data-testid="switch-title"
                             />
                           </div>
@@ -269,117 +271,124 @@ Nationality: ${generatedName.nationality}`;
                       {/* Generate Button */}
                       <Button 
                         onClick={handleGenerateName}
-                        className="w-full h-12 text-base"
+                        className="w-full h-12 sm:h-14 text-sm sm:text-base font-semibold"
                         data-testid="button-generate-name"
                       >
-                        <i className="fas fa-refresh mr-2"></i>
-                        Generate New Name
+                        <i className="fas fa-refresh mr-2 text-sm sm:text-base"></i>
+                        <span className="hidden sm:inline">Generate New Name</span>
+                        <span className="sm:hidden">Generate Name</span>
                       </Button>
                     </div>
                   </div>
 
                   {/* Generated Name Display */}
-                  <div className="space-y-6">
-                    <h2 className="text-2xl font-semibold text-gray-900 mb-6">Generated Name</h2>
+                  <div className="space-y-4 sm:space-y-6">
+                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6">Generated Name</h2>
                     
                     {generatedName && (
-                      <div className="space-y-6" data-testid="generated-name-display">
+                      <div className="space-y-4 sm:space-y-6" data-testid="generated-name-display">
                         {/* Full Name Display */}
-                        <div className="bg-blue-50 rounded-lg p-6 text-center">
-                          <div className="text-3xl font-bold text-blue-600 mb-2" data-testid="full-name">
+                        <div className="bg-blue-50 rounded-lg p-4 sm:p-6 text-center">
+                          <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-blue-600 mb-2 break-words" data-testid="full-name">
                             {generatedName.fullName}
                           </div>
-                          <div className="text-sm text-gray-600 capitalize">
+                          <div className="text-xs sm:text-sm text-gray-600 capitalize">
                             {generatedName.gender} • {generatedName.nationality}
                           </div>
                         </div>
 
                         {/* Name Components */}
-                        <div className="space-y-4">
+                        <div className="space-y-2 sm:space-y-3">
                           {generatedName.title && (
-                            <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                              <div>
-                                <div className="font-medium text-gray-900">Title</div>
-                                <div className="text-gray-600" data-testid="name-title">{generatedName.title}</div>
+                            <div className="flex items-center justify-between p-2 sm:p-3 bg-yellow-50 rounded-lg border border-yellow-200">
+                              <div className="flex-1 min-w-0">
+                                <div className="text-xs sm:text-sm font-medium text-gray-900">Title</div>
+                                <div className="text-sm sm:text-base text-gray-600 truncate" data-testid="name-title">{generatedName.title}</div>
                               </div>
                               <Button
                                 onClick={() => handleCopyToClipboard(generatedName.title!)}
                                 variant="ghost"
                                 size="sm"
+                                className="ml-2 flex-shrink-0"
                                 data-testid="button-copy-title"
                               >
-                                <i className="fas fa-copy"></i>
+                                <i className="fas fa-copy text-xs sm:text-sm"></i>
                               </Button>
                             </div>
                           )}
 
-                          <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                            <div>
-                              <div className="font-medium text-gray-900">First Name</div>
-                              <div className="text-gray-600" data-testid="first-name">{generatedName.firstName}</div>
+                          <div className="flex items-center justify-between p-2 sm:p-3 bg-blue-50 rounded-lg border border-blue-200">
+                            <div className="flex-1 min-w-0">
+                              <div className="text-xs sm:text-sm font-medium text-gray-900">First Name</div>
+                              <div className="text-sm sm:text-base text-gray-600 truncate" data-testid="first-name">{generatedName.firstName}</div>
                             </div>
                             <Button
                               onClick={() => handleCopyToClipboard(generatedName.firstName)}
                               variant="ghost"
                               size="sm"
+                              className="ml-2 flex-shrink-0"
                               data-testid="button-copy-first-name"
                             >
-                              <i className="fas fa-copy"></i>
+                              <i className="fas fa-copy text-xs sm:text-sm"></i>
                             </Button>
                           </div>
 
                           {generatedName.middleName && (
-                            <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                              <div>
-                                <div className="font-medium text-gray-900">Middle Name</div>
-                                <div className="text-gray-600" data-testid="middle-name">{generatedName.middleName}</div>
+                            <div className="flex items-center justify-between p-2 sm:p-3 bg-green-50 rounded-lg border border-green-200">
+                              <div className="flex-1 min-w-0">
+                                <div className="text-xs sm:text-sm font-medium text-gray-900">Middle Name</div>
+                                <div className="text-sm sm:text-base text-gray-600 truncate" data-testid="middle-name">{generatedName.middleName}</div>
                               </div>
                               <Button
                                 onClick={() => handleCopyToClipboard(generatedName.middleName!)}
                                 variant="ghost"
                                 size="sm"
+                                className="ml-2 flex-shrink-0"
                                 data-testid="button-copy-middle-name"
                               >
-                                <i className="fas fa-copy"></i>
+                                <i className="fas fa-copy text-xs sm:text-sm"></i>
                               </Button>
                             </div>
                           )}
 
-                          <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                            <div>
-                              <div className="font-medium text-gray-900">Last Name</div>
-                              <div className="text-gray-600" data-testid="last-name">{generatedName.lastName}</div>
+                          <div className="flex items-center justify-between p-2 sm:p-3 bg-purple-50 rounded-lg border border-purple-200">
+                            <div className="flex-1 min-w-0">
+                              <div className="text-xs sm:text-sm font-medium text-gray-900">Last Name</div>
+                              <div className="text-sm sm:text-base text-gray-600 truncate" data-testid="last-name">{generatedName.lastName}</div>
                             </div>
                             <Button
                               onClick={() => handleCopyToClipboard(generatedName.lastName)}
                               variant="ghost"
                               size="sm"
+                              className="ml-2 flex-shrink-0"
                               data-testid="button-copy-last-name"
                             >
-                              <i className="fas fa-copy"></i>
+                              <i className="fas fa-copy text-xs sm:text-sm"></i>
                             </Button>
                           </div>
                         </div>
 
                         {/* Action Buttons */}
-                        <div className="flex gap-3">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                           <Button
                             onClick={() => handleCopyToClipboard(generatedName.fullName)}
                             variant="outline"
-                            className="flex-1"
+                            className="h-10 sm:h-12 text-xs sm:text-sm"
                             data-testid="button-copy-full-name"
                           >
-                            <i className="fas fa-copy mr-2"></i>
-                            Copy Full Name
+                            <i className="fas fa-copy mr-1 sm:mr-2 text-xs sm:text-sm"></i>
+                            <span className="hidden sm:inline">Copy Full Name</span>
+                            <span className="sm:hidden">Copy Name</span>
                           </Button>
                           <Button
                             onClick={handleCopyAll}
                             variant="outline"
-                            className="flex-1"
+                            className="h-10 sm:h-12 text-xs sm:text-sm"
                             data-testid="button-copy-all"
                           >
-                            <i className="fas fa-clipboard mr-2"></i>
-                            Copy All Details
+                            <i className="fas fa-clipboard mr-1 sm:mr-2 text-xs sm:text-sm"></i>
+                            <span className="hidden sm:inline">Copy All Details</span>
+                            <span className="sm:hidden">Copy All</span>
                           </Button>
                         </div>
                       </div>
@@ -390,17 +399,17 @@ Nationality: ${generatedName.nationality}`;
                 {/* Name History */}
                 {nameHistory.length > 0 && (
                   <>
-                    <Separator className="my-8" />
+                    <Separator className="my-6 sm:my-8" />
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Recently Generated Names</h3>
-                      <div className="space-y-2">
+                      <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Recently Generated Names</h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                         {nameHistory.slice(0, 5).map((name, index) => (
-                          <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                            <div>
-                              <div className="font-medium text-gray-900" data-testid={`history-name-${index}`}>
+                          <div key={index} className="flex items-center justify-between p-3 sm:p-4 bg-gray-50 rounded-lg">
+                            <div className="flex-1 min-w-0">
+                              <div className="text-sm sm:text-base font-medium text-gray-900 truncate" data-testid={`history-name-${index}`}>
                                 {name.fullName}
                               </div>
-                              <div className="text-sm text-gray-500 capitalize">
+                              <div className="text-xs sm:text-sm text-gray-500 capitalize mt-1">
                                 {name.gender} • {name.nationality}
                               </div>
                             </div>
@@ -408,9 +417,10 @@ Nationality: ${generatedName.nationality}`;
                               onClick={() => handleCopyToClipboard(name.fullName)}
                               variant="ghost"
                               size="sm"
+                              className="ml-2 flex-shrink-0"
                               data-testid={`button-copy-history-${index}`}
                             >
-                              <i className="fas fa-copy"></i>
+                              <i className="fas fa-copy text-xs sm:text-sm"></i>
                             </Button>
                           </div>
                         ))}
@@ -424,10 +434,10 @@ Nationality: ${generatedName.nationality}`;
         </section>
 
         {/* Information Sections */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 sm:pb-12 lg:pb-16">
           {/* What is a Fake Name Generator */}
-          <div className="mt-12 bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">What is a Fake Name Generator?</h2>
+          <div className="mt-8 sm:mt-12 bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">What is a Fake Name Generator?</h2>
             <div className="prose max-w-none">
               <p className="text-lg text-gray-700 mb-6">
                 A <strong>fake name generator</strong> is a sophisticated tool that creates realistic but completely fictional names for various legitimate purposes including software testing, privacy protection, creative writing, game development, and educational activities. Our advanced <strong>random name generator</strong> uses authentic name databases from different cultures and nationalities to produce believable, culturally appropriate names that maintain statistical accuracy without representing real individuals.

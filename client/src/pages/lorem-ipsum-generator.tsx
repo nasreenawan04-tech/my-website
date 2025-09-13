@@ -143,32 +143,32 @@ const LoremIpsumGenerator = () => {
       
       <main>
         {/* Hero Section */}
-        <section className="gradient-hero text-white py-16 pt-24">
+        <section className="gradient-hero text-white py-12 pt-20 sm:py-16 sm:pt-24">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-              <i className="fas fa-paragraph text-3xl"></i>
+            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6">
+              <i className="fas fa-paragraph text-2xl sm:text-3xl"></i>
             </div>
-            <h1 className="text-4xl sm:text-5xl font-bold mb-6" data-testid="text-page-title">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6" data-testid="text-page-title">
               Lorem Ipsum Generator
             </h1>
-            <p className="text-xl text-blue-100 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-blue-100 max-w-2xl mx-auto px-2">
               Generate placeholder text for your designs, websites, and documents with customizable options
             </p>
           </div>
         </section>
 
         {/* Generator Section */}
-        <section className="py-16">
+        <section className="py-8 sm:py-12 lg:py-16">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <Card className="bg-white shadow-sm border-0">
-              <CardContent className="px-16 py-8">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <CardContent className="px-4 py-6 sm:px-6 sm:py-8 lg:px-12 lg:py-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
                   {/* Settings Section */}
-                  <div className="space-y-6">
-                    <h2 className="text-2xl font-semibold text-gray-900 mb-8">Generation Settings</h2>
+                  <div className="space-y-4 sm:space-y-6">
+                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6 lg:mb-8">Generation Settings</h2>
                     
                     {/* Type Selection */}
-                    <div className="space-y-3">
+                    <div className="space-y-2 sm:space-y-3">
                       <Label htmlFor="type-select" className="text-sm font-medium text-gray-700">
                         Generate Type
                       </Label>
@@ -190,7 +190,7 @@ const LoremIpsumGenerator = () => {
                     </div>
 
                     {/* Count Input */}
-                    <div className="space-y-3">
+                    <div className="space-y-2 sm:space-y-3">
                       <Label htmlFor="count-input" className="text-sm font-medium text-gray-700">
                         Number of {options.type.charAt(0).toUpperCase() + options.type.slice(1)}
                       </Label>
@@ -201,13 +201,13 @@ const LoremIpsumGenerator = () => {
                         max="50"
                         value={options.count}
                         onChange={(e) => setOptions(prev => ({ ...prev, count: parseInt(e.target.value) || 1 }))}
-                        className="w-full p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full p-2 sm:p-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-base"
                         data-testid="input-count"
                       />
                     </div>
 
                     {/* Start with Lorem Option */}
-                    <div className="flex items-center space-x-3">
+                    <div className="flex items-center space-x-2 sm:space-x-3">
                       <input
                         id="start-lorem"
                         type="checkbox"
@@ -224,20 +224,21 @@ const LoremIpsumGenerator = () => {
                     {/* Generate Button */}
                     <Button
                       onClick={generateLorem}
-                      className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                      className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 py-2 sm:py-3"
                       data-testid="button-generate"
                     >
                       <i className="fas fa-magic mr-2"></i>
-                      Generate Lorem Ipsum
+                      <span className="hidden sm:inline">Generate Lorem Ipsum</span>
+                      <span className="sm:hidden">Generate</span>
                     </Button>
                   </div>
 
                   {/* Output Section */}
-                  <div className="space-y-6">
-                    <h2 className="text-2xl font-semibold text-gray-900 mb-8">Generated Text</h2>
+                  <div className="space-y-4 sm:space-y-6">
+                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6 lg:mb-8">Generated Text</h2>
                     
                     {/* Generated Text Area */}
-                    <div className="space-y-3">
+                    <div className="space-y-2 sm:space-y-3">
                       <Label htmlFor="generated-text" className="text-sm font-medium text-gray-700">
                         Your Lorem Ipsum Text
                       </Label>
@@ -245,46 +246,48 @@ const LoremIpsumGenerator = () => {
                         id="generated-text"
                         value={generatedText}
                         readOnly
-                        className="w-full h-80 p-4 text-base border border-gray-200 rounded-lg bg-gray-50 resize-none"
-                        placeholder="Click 'Generate Lorem Ipsum' to create placeholder text..."
+                        className="w-full h-48 sm:h-64 lg:h-80 p-3 sm:p-4 text-sm sm:text-base border border-gray-200 rounded-lg bg-gray-50 resize-none"
+                        placeholder="Click 'Generate' to create placeholder text..."
                         data-testid="textarea-generated-text"
                       />
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex gap-4">
+                    <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
                       <Button
                         onClick={handleCopy}
                         variant="outline"
-                        className="flex-1"
+                        className="flex-1 py-2 sm:py-3"
                         disabled={!generatedText}
                         data-testid="button-copy-text"
                       >
                         <i className="fas fa-copy mr-2"></i>
-                        Copy Text
+                        <span className="hidden sm:inline">Copy Text</span>
+                        <span className="sm:hidden">Copy</span>
                       </Button>
                       <Button
                         onClick={handleClear}
                         variant="outline"
-                        className="flex-1"
+                        className="flex-1 py-2 sm:py-3"
                         disabled={!generatedText}
                         data-testid="button-clear-text"
                       >
                         <i className="fas fa-trash mr-2"></i>
-                        Clear
+                        <span className="hidden sm:inline">Clear</span>
+                        <span className="sm:hidden">Clear</span>
                       </Button>
                     </div>
 
                     {/* Text Statistics */}
                     {generatedText && (
-                      <div className="bg-blue-50 rounded-lg p-4" data-testid="text-statistics">
-                        <h3 className="font-semibold text-blue-900 mb-2">Text Statistics</h3>
-                        <div className="grid grid-cols-2 gap-4 text-sm">
-                          <div>
+                      <div className="bg-blue-50 rounded-lg p-3 sm:p-4" data-testid="text-statistics">
+                        <h3 className="font-semibold text-blue-900 mb-2 text-sm sm:text-base">Text Statistics</h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 text-xs sm:text-sm">
+                          <div className="flex justify-between sm:block">
                             <span className="text-blue-600 font-medium">Characters: </span>
                             <span className="text-gray-700">{generatedText.length.toLocaleString()}</span>
                           </div>
-                          <div>
+                          <div className="flex justify-between sm:block">
                             <span className="text-blue-600 font-medium">Words: </span>
                             <span className="text-gray-700">
                               {generatedText.trim() ? generatedText.trim().split(/\s+/).length.toLocaleString() : 0}
@@ -301,36 +304,36 @@ const LoremIpsumGenerator = () => {
         </section>
 
         {/* Information Sections */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 sm:pb-12 lg:pb-16">
           {/* What is Lorem Ipsum */}
-          <div className="mt-12 bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">What is Lorem Ipsum Generator?</h2>
+          <div className="mt-8 sm:mt-12 bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">What is Lorem Ipsum Generator?</h2>
             <div className="prose max-w-none">
-              <p className="text-lg text-gray-700 mb-6">
+              <p className="text-base sm:text-lg text-gray-700 mb-4 sm:mb-6">
                 A <strong>Lorem Ipsum Generator</strong> is a powerful text generation tool that creates placeholder content for design and development projects. Our advanced Lorem ipsum generator produces dummy text that mimics natural language patterns without distracting from visual design elements.
               </p>
               
-              <p className="text-gray-700 mb-6">
+              <p className="text-sm sm:text-base text-gray-700 mb-4 sm:mb-6">
                 <strong>Lorem Ipsum</strong> itself is placeholder text commonly used in the printing and typesetting industry since the 1500s. It's derived from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. The text has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
               </p>
 
-              <p className="text-gray-700 mb-6">
+              <p className="text-sm sm:text-base text-gray-700 mb-4 sm:mb-6">
                 Our Lorem ipsum text generator allows you to customize the output by choosing between paragraphs, sentences, or individual words, giving you complete control over the amount and format of placeholder text you need for your projects.
               </p>
             </div>
           </div>
 
           {/* Benefits and Use Cases */}
-          <div className="mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Why Use a Lorem Ipsum Generator?</h2>
+          <div className="mt-6 sm:mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Why Use a Lorem Ipsum Generator?</h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-              <div className="space-y-4">
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Key Benefits</h3>
-                <div className="space-y-3">
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-blue-600 rounded-full mt-2"></div>
-                    <p className="text-gray-700"><strong>Focus on Design:</strong> Removes content distraction during visual design phases</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8">
+              <div className="space-y-3 sm:space-y-4">
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Key Benefits</h3>
+                <div className="space-y-2 sm:space-y-3">
+                  <div className="flex items-start space-x-2 sm:space-x-3">
+                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
+                    <p className="text-sm sm:text-base text-gray-700"><strong>Focus on Design:</strong> Removes content distraction during visual design phases</p>
                   </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-blue-600 rounded-full mt-2"></div>
@@ -347,12 +350,12 @@ const LoremIpsumGenerator = () => {
                 </div>
               </div>
 
-              <div className="space-y-4">
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Professional Applications</h3>
-                <div className="space-y-3">
-                  <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-indigo-600 rounded-full mt-2"></div>
-                    <p className="text-gray-700"><strong>Website Development:</strong> Fill content areas during site construction</p>
+              <div className="space-y-3 sm:space-y-4">
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Professional Applications</h3>
+                <div className="space-y-2 sm:space-y-3">
+                  <div className="flex items-start space-x-2 sm:space-x-3">
+                    <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-indigo-600 rounded-full mt-2 flex-shrink-0"></div>
+                    <p className="text-sm sm:text-base text-gray-700"><strong>Website Development:</strong> Fill content areas during site construction</p>
                   </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-indigo-600 rounded-full mt-2"></div>
@@ -372,15 +375,15 @@ const LoremIpsumGenerator = () => {
           </div>
 
           {/* Use Cases by Audience */}
-          <div className="mt-8 bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Lorem Ipsum Generator Use Cases by Profession</h2>
+          <div className="mt-6 sm:mt-8 bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Lorem Ipsum Generator Use Cases by Profession</h2>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <div className="space-y-6">
-                <div className="border-l-4 border-blue-500 pl-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">🎨 Web Designers & Developers</h3>
-                  <p className="text-gray-700 mb-3">Use our Lorem ipsum generator to fill website templates, test responsive layouts, and demonstrate content hierarchy without client content distractions.</p>
-                  <p className="text-sm text-gray-600">Perfect for wireframes, prototypes, and client presentations.</p>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+              <div className="space-y-4 sm:space-y-6">
+                <div className="border-l-4 border-blue-500 pl-4 sm:pl-6">
+                  <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2 sm:mb-3">🎨 Web Designers & Developers</h3>
+                  <p className="text-sm sm:text-base text-gray-700 mb-2 sm:mb-3">Use our Lorem ipsum generator to fill website templates, test responsive layouts, and demonstrate content hierarchy without client content distractions.</p>
+                  <p className="text-xs sm:text-sm text-gray-600">Perfect for wireframes, prototypes, and client presentations.</p>
                 </div>
 
                 <div className="border-l-4 border-green-500 pl-6">
@@ -419,39 +422,39 @@ const LoremIpsumGenerator = () => {
           </div>
 
           {/* Related Tools */}
-          <div className="mt-8 bg-gradient-to-r from-gray-50 to-blue-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Related Text & Content Tools</h2>
-            <p className="text-gray-700 mb-8">Enhance your text processing workflow with these complementary tools designed for content creators and developers.</p>
+          <div className="mt-6 sm:mt-8 bg-gradient-to-r from-gray-50 to-blue-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Related Text & Content Tools</h2>
+            <p className="text-sm sm:text-base text-gray-700 mb-6 sm:mb-8">Enhance your text processing workflow with these complementary tools designed for content creators and developers.</p>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <a href="/tools/word-counter" className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow group">
-                <div className="flex items-center mb-3">
-                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
-                    <i className="fas fa-calculator text-blue-600"></i>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6">
+              <a href="/tools/word-counter" className="bg-white rounded-lg p-3 sm:p-4 lg:p-6 shadow-sm hover:shadow-md transition-shadow group">
+                <div className="flex items-center mb-2 sm:mb-3">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-2 sm:mr-3">
+                    <i className="fas fa-calculator text-blue-600 text-sm sm:text-base"></i>
                   </div>
-                  <h3 className="font-semibold text-gray-900 group-hover:text-blue-600">Word Counter</h3>
+                  <h3 className="text-sm sm:text-base font-semibold text-gray-900 group-hover:text-blue-600">Word Counter</h3>
                 </div>
-                <p className="text-gray-600 text-sm">Count words, characters, and paragraphs in your Lorem ipsum or real content to meet specific requirements.</p>
+                <p className="text-gray-600 text-xs sm:text-sm">Count words, characters, and paragraphs in your Lorem ipsum or real content to meet specific requirements.</p>
               </a>
 
-              <a href="/tools/character-counter" className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow group">
-                <div className="flex items-center mb-3">
-                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-3">
-                    <i className="fas fa-font text-green-600"></i>
+              <a href="/tools/character-counter" className="bg-white rounded-lg p-3 sm:p-4 lg:p-6 shadow-sm hover:shadow-md transition-shadow group">
+                <div className="flex items-center mb-2 sm:mb-3">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-green-100 rounded-lg flex items-center justify-center mr-2 sm:mr-3">
+                    <i className="fas fa-font text-green-600 text-sm sm:text-base"></i>
                   </div>
-                  <h3 className="font-semibold text-gray-900 group-hover:text-blue-600">Character Counter</h3>
+                  <h3 className="text-sm sm:text-base font-semibold text-gray-900 group-hover:text-blue-600">Character Counter</h3>
                 </div>
-                <p className="text-gray-600 text-sm">Precisely count characters in generated text for social media, meta descriptions, and character-limited content.</p>
+                <p className="text-gray-600 text-xs sm:text-sm">Precisely count characters in generated text for social media, meta descriptions, and character-limited content.</p>
               </a>
 
-              <a href="/tools/case-converter" className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow group">
-                <div className="flex items-center mb-3">
-                  <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center mr-3">
-                    <i className="fas fa-text-height text-orange-600"></i>
+              <a href="/tools/case-converter" className="bg-white rounded-lg p-3 sm:p-4 lg:p-6 shadow-sm hover:shadow-md transition-shadow group">
+                <div className="flex items-center mb-2 sm:mb-3">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-orange-100 rounded-lg flex items-center justify-center mr-2 sm:mr-3">
+                    <i className="fas fa-text-height text-orange-600 text-sm sm:text-base"></i>
                   </div>
-                  <h3 className="font-semibold text-gray-900 group-hover:text-blue-600">Case Converter</h3>
+                  <h3 className="text-sm sm:text-base font-semibold text-gray-900 group-hover:text-blue-600">Case Converter</h3>
                 </div>
-                <p className="text-gray-600 text-sm">Convert your generated Lorem ipsum text between uppercase, lowercase, title case, and other formatting styles.</p>
+                <p className="text-gray-600 text-xs sm:text-sm">Convert your generated Lorem ipsum text between uppercase, lowercase, title case, and other formatting styles.</p>
               </a>
 
               <a href="/tools/sentence-counter" className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow group">

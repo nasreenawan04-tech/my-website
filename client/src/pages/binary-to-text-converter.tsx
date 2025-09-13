@@ -266,44 +266,44 @@ const BinaryToTextConverter = () => {
       
       <main>
         {/* Hero Section */}
-        <section className="gradient-hero text-white py-16 pt-24">
+        <section className="gradient-hero text-white py-12 sm:py-16 pt-20 sm:pt-24">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-              <i className="fas fa-exchange-alt text-3xl"></i>
+            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6">
+              <i className="fas fa-exchange-alt text-2xl sm:text-3xl"></i>
             </div>
-            <h1 className="text-4xl sm:text-5xl font-bold mb-6" data-testid="text-page-title">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6" data-testid="text-page-title">
               Binary to Text Converter
             </h1>
-            <p className="text-xl text-blue-100 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-blue-100 max-w-2xl mx-auto px-4">
               Convert binary code, decimal values, and hexadecimal back to readable text
             </p>
           </div>
         </section>
 
         {/* Introduction Section */}
-        <section className="py-12 bg-white">
+        <section className="py-8 sm:py-12 bg-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">What is a Binary to Text Converter?</h2>
-              <p className="text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
+            <div className="text-center mb-8 sm:mb-12">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">What is a Binary to Text Converter?</h2>
+              <p className="text-base sm:text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
                 A binary to text converter is a powerful online tool that transforms binary code (sequences of 0s and 1s) 
                 back into human-readable text. Whether you're working with binary data, decimal values, or hexadecimal codes, 
                 this converter seamlessly translates computer language into plain text that anyone can understand.
               </p>
             </div>
             
-            <div className="grid md:grid-cols-2 gap-8 mb-12">
-              <div className="space-y-4">
-                <h3 className="text-xl font-semibold text-gray-900">How It Works</h3>
-                <p className="text-gray-700">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-8 sm:mb-12">
+              <div className="space-y-3 sm:space-y-4">
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900">How It Works</h3>
+                <p className="text-sm sm:text-base text-gray-700">
                   Our binary decoder processes your input by breaking down binary strings into 8-bit chunks (bytes), 
                   converting each byte to its corresponding ASCII or Unicode character. The tool supports multiple input 
                   formats including pure binary, decimal values, and hexadecimal codes.
                 </p>
               </div>
-              <div className="space-y-4">
-                <h3 className="text-xl font-semibold text-gray-900">Key Features</h3>
-                <ul className="text-gray-700 space-y-2">
+              <div className="space-y-3 sm:space-y-4">
+                <h3 className="text-lg sm:text-xl font-semibold text-gray-900">Key Features</h3>
+                <ul className="text-sm sm:text-base text-gray-700 space-y-1 sm:space-y-2">
                   <li>• Multiple input formats (binary, decimal, hex)</li>
                   <li>• UTF-8 and ASCII encoding support</li>
                   <li>• Real-time conversion as you type</li>
@@ -316,10 +316,10 @@ const BinaryToTextConverter = () => {
         </section>
 
         {/* Converter Section */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-8 sm:py-12 lg:py-16 bg-gray-50">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <Card className="bg-white shadow-sm border-0">
-              <CardContent className="p-8">
+              <CardContent className="p-4 sm:p-6 lg:p-8">
                 <div className="space-y-8">
                   {/* Input Section */}
                   <div>
@@ -345,18 +345,18 @@ const BinaryToTextConverter = () => {
                     </div>
 
                     {/* Conversion Options */}
-                    <div className="mt-6 space-y-4">
-                      <h3 className="text-lg font-semibold text-gray-900">Conversion Options</h3>
+                    <div className="mt-4 sm:mt-6 space-y-3 sm:space-y-4">
+                      <h3 className="text-base sm:text-lg font-semibold text-gray-900">Conversion Options</h3>
                       
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                         {/* Input Format */}
-                        <div className="space-y-3">
+                        <div className="space-y-2 sm:space-y-3">
                           <Label className="text-sm font-medium">Input Format</Label>
                           <Select 
                             value={options.inputFormat} 
                             onValueChange={(value: typeof options.inputFormat) => updateOption('inputFormat', value)}
                           >
-                            <SelectTrigger data-testid="select-input-format">
+                            <SelectTrigger className="h-10 sm:h-12 text-sm sm:text-base" data-testid="select-input-format">
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent>
@@ -373,13 +373,13 @@ const BinaryToTextConverter = () => {
                         </div>
 
                         {/* Encoding */}
-                        <div className="space-y-3">
+                        <div className="space-y-2 sm:space-y-3">
                           <Label className="text-sm font-medium">Character Encoding</Label>
                           <Select 
                             value={options.encoding} 
                             onValueChange={(value: typeof options.encoding) => updateOption('encoding', value)}
                           >
-                            <SelectTrigger data-testid="select-encoding">
+                            <SelectTrigger className="h-10 sm:h-12 text-sm sm:text-base" data-testid="select-encoding">
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent>
@@ -394,41 +394,44 @@ const BinaryToTextConverter = () => {
                       </div>
 
                       {/* Display Options */}
-                      <div className="space-y-4">
-                        <h4 className="font-medium text-gray-900">Display Alternative Formats</h4>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                          <div className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
-                            <div className="space-y-1">
+                      <div className="space-y-3 sm:space-y-4">
+                        <h4 className="text-sm sm:text-base font-medium text-gray-900">Display Alternative Formats</h4>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+                          <div className="flex items-center justify-between p-3 sm:p-4 border border-gray-200 rounded-lg">
+                            <div className="space-y-1 flex-1 min-w-0 pr-3">
                               <Label className="text-sm font-medium">Show Binary</Label>
                               <p className="text-xs text-gray-500">Display binary representation</p>
                             </div>
                             <Switch
                               checked={options.showBinary}
                               onCheckedChange={(value) => updateOption('showBinary', value)}
+                              className="flex-shrink-0"
                               data-testid="switch-show-binary"
                             />
                           </div>
 
-                          <div className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
-                            <div className="space-y-1">
+                          <div className="flex items-center justify-between p-3 sm:p-4 border border-gray-200 rounded-lg">
+                            <div className="space-y-1 flex-1 min-w-0 pr-3">
                               <Label className="text-sm font-medium">Show Decimal</Label>
                               <p className="text-xs text-gray-500">Display decimal representation</p>
                             </div>
                             <Switch
                               checked={options.showDecimal}
                               onCheckedChange={(value) => updateOption('showDecimal', value)}
+                              className="flex-shrink-0"
                               data-testid="switch-show-decimal"
                             />
                           </div>
 
-                          <div className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
-                            <div className="space-y-1">
+                          <div className="flex items-center justify-between p-3 sm:p-4 border border-gray-200 rounded-lg">
+                            <div className="space-y-1 flex-1 min-w-0 pr-3">
                               <Label className="text-sm font-medium">Show Hexadecimal</Label>
                               <p className="text-xs text-gray-500">Display hexadecimal representation</p>
                             </div>
                             <Switch
                               checked={options.showHex}
                               onCheckedChange={(value) => updateOption('showHex', value)}
+                              className="flex-shrink-0"
                               data-testid="switch-show-hex"
                             />
                           </div>
@@ -437,33 +440,36 @@ const BinaryToTextConverter = () => {
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex gap-4 mt-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 lg:gap-4 mt-4 sm:mt-6">
                       <Button
                         onClick={handleClear}
                         variant="outline"
-                        className="flex-1"
+                        className="h-10 sm:h-12 text-xs sm:text-sm"
                         data-testid="button-clear-code"
                       >
-                        <i className="fas fa-trash mr-2"></i>
-                        Clear Code
+                        <i className="fas fa-trash mr-1 sm:mr-2 text-xs sm:text-sm"></i>
+                        <span className="hidden sm:inline">Clear Code</span>
+                        <span className="sm:hidden">Clear</span>
                       </Button>
                       <Button
                         onClick={handleSampleCode}
                         variant="outline"
-                        className="flex-1"
+                        className="h-10 sm:h-12 text-xs sm:text-sm"
                         data-testid="button-sample-code"
                       >
-                        <i className="fas fa-file-text mr-2"></i>
-                        Sample Code
+                        <i className="fas fa-file-text mr-1 sm:mr-2 text-xs sm:text-sm"></i>
+                        <span className="hidden sm:inline">Sample Code</span>
+                        <span className="sm:hidden">Sample</span>
                       </Button>
                       <Button
                         onClick={convertCode}
                         disabled={!inputCode.trim()}
-                        className="flex-1"
+                        className="h-10 sm:h-12 text-xs sm:text-sm font-semibold"
                         data-testid="button-convert"
                       >
-                        <i className="fas fa-exchange-alt mr-2"></i>
-                        Convert to Text
+                        <i className="fas fa-exchange-alt mr-1 sm:mr-2 text-xs sm:text-sm"></i>
+                        <span className="hidden sm:inline">Convert to Text</span>
+                        <span className="sm:hidden">Convert</span>
                       </Button>
                     </div>
                   </div>
@@ -471,25 +477,26 @@ const BinaryToTextConverter = () => {
                   {/* Results Section */}
                   {conversionResult && (
                     <div>
-                      <h2 className="text-2xl font-semibold text-gray-900 mb-6">Conversion Results</h2>
+                      <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6">Conversion Results</h2>
                       
-                      <div className="space-y-6" data-testid="conversion-results">
+                      <div className="space-y-4 sm:space-y-6" data-testid="conversion-results">
                         {/* Text Output */}
-                        <div className="space-y-3">
+                        <div className="space-y-2 sm:space-y-3">
                           <div className="flex items-center justify-between">
-                            <Label className="text-lg font-medium text-gray-900">Decoded Text</Label>
+                            <Label className="text-base sm:text-lg font-medium text-gray-900">Decoded Text</Label>
                             <Button
                               onClick={() => handleCopyToClipboard(conversionResult.text)}
                               variant="ghost"
                               size="sm"
+                              className="flex-shrink-0"
                               data-testid="button-copy-text"
                             >
-                              <i className="fas fa-copy mr-1"></i>
-                              Copy
+                              <i className="fas fa-copy mr-1 text-xs sm:text-sm"></i>
+                              <span className="hidden sm:inline">Copy</span>
                             </Button>
                           </div>
-                          <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                            <div className="text-base break-words text-gray-800" data-testid="text-output">
+                          <div className="bg-blue-50 p-3 sm:p-4 rounded-lg border border-blue-200">
+                            <div className="text-sm sm:text-base break-words text-gray-800" data-testid="text-output">
                               {conversionResult.text || '(empty result)'}
                             </div>
                           </div>
@@ -497,21 +504,22 @@ const BinaryToTextConverter = () => {
 
                         {/* Binary Output */}
                         {options.showBinary && (
-                          <div className="space-y-3">
+                          <div className="space-y-2 sm:space-y-3">
                             <div className="flex items-center justify-between">
-                              <Label className="text-lg font-medium text-gray-900">Binary Code</Label>
+                              <Label className="text-base sm:text-lg font-medium text-gray-900">Binary Code</Label>
                               <Button
                                 onClick={() => handleCopyToClipboard(conversionResult.binary)}
                                 variant="ghost"
                                 size="sm"
+                                className="flex-shrink-0"
                                 data-testid="button-copy-binary"
                               >
-                                <i className="fas fa-copy mr-1"></i>
-                                Copy
+                                <i className="fas fa-copy mr-1 text-xs sm:text-sm"></i>
+                                <span className="hidden sm:inline">Copy</span>
                               </Button>
                             </div>
-                            <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                              <div className="font-mono text-sm break-all text-gray-800" data-testid="binary-output">
+                            <div className="bg-yellow-50 p-3 sm:p-4 rounded-lg border border-yellow-200">
+                              <div className="font-mono text-xs sm:text-sm break-all text-gray-800" data-testid="binary-output">
                                 {conversionResult.binary}
                               </div>
                             </div>
@@ -520,21 +528,22 @@ const BinaryToTextConverter = () => {
 
                         {/* Decimal Output */}
                         {options.showDecimal && (
-                          <div className="space-y-3">
+                          <div className="space-y-2 sm:space-y-3">
                             <div className="flex items-center justify-between">
-                              <Label className="text-lg font-medium text-gray-900">Decimal Values</Label>
+                              <Label className="text-base sm:text-lg font-medium text-gray-900">Decimal Values</Label>
                               <Button
                                 onClick={() => handleCopyToClipboard(conversionResult.decimal)}
                                 variant="ghost"
                                 size="sm"
+                                className="flex-shrink-0"
                                 data-testid="button-copy-decimal"
                               >
-                                <i className="fas fa-copy mr-1"></i>
-                                Copy
+                                <i className="fas fa-copy mr-1 text-xs sm:text-sm"></i>
+                                <span className="hidden sm:inline">Copy</span>
                               </Button>
                             </div>
-                            <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                              <div className="font-mono text-sm break-all text-gray-800" data-testid="decimal-output">
+                            <div className="bg-green-50 p-3 sm:p-4 rounded-lg border border-green-200">
+                              <div className="font-mono text-xs sm:text-sm break-all text-gray-800" data-testid="decimal-output">
                                 {conversionResult.decimal}
                               </div>
                             </div>
@@ -543,21 +552,22 @@ const BinaryToTextConverter = () => {
 
                         {/* Hexadecimal Output */}
                         {options.showHex && (
-                          <div className="space-y-3">
+                          <div className="space-y-2 sm:space-y-3">
                             <div className="flex items-center justify-between">
-                              <Label className="text-lg font-medium text-gray-900">Hexadecimal Values</Label>
+                              <Label className="text-base sm:text-lg font-medium text-gray-900">Hexadecimal Values</Label>
                               <Button
                                 onClick={() => handleCopyToClipboard(conversionResult.hexadecimal)}
                                 variant="ghost"
                                 size="sm"
+                                className="flex-shrink-0"
                                 data-testid="button-copy-hex"
                               >
-                                <i className="fas fa-copy mr-1"></i>
-                                Copy
+                                <i className="fas fa-copy mr-1 text-xs sm:text-sm"></i>
+                                <span className="hidden sm:inline">Copy</span>
                               </Button>
                             </div>
-                            <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                              <div className="font-mono text-sm break-all text-gray-800" data-testid="hex-output">
+                            <div className="bg-purple-50 p-3 sm:p-4 rounded-lg border border-purple-200">
+                              <div className="font-mono text-xs sm:text-sm break-all text-gray-800" data-testid="hex-output">
                                 {conversionResult.hexadecimal}
                               </div>
                             </div>
@@ -565,33 +575,33 @@ const BinaryToTextConverter = () => {
                         )}
 
                         {/* Stats */}
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                          <div className="bg-blue-50 p-4 rounded-lg text-center">
-                            <div className="text-2xl font-bold text-blue-600" data-testid="char-count">
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+                          <div className="bg-blue-50 p-3 sm:p-4 rounded-lg text-center">
+                            <div className="text-lg sm:text-2xl font-bold text-blue-600" data-testid="char-count">
                               {conversionResult.charCount}
                             </div>
-                            <div className="text-sm text-blue-800">Characters</div>
+                            <div className="text-xs sm:text-sm text-blue-800">Characters</div>
                           </div>
                           
-                          <div className="bg-green-50 p-4 rounded-lg text-center">
-                            <div className="text-2xl font-bold text-green-600" data-testid="byte-count">
+                          <div className="bg-green-50 p-3 sm:p-4 rounded-lg text-center">
+                            <div className="text-lg sm:text-2xl font-bold text-green-600" data-testid="byte-count">
                               {conversionResult.byteCount}
                             </div>
-                            <div className="text-sm text-green-800">Bytes</div>
+                            <div className="text-xs sm:text-sm text-green-800">Bytes</div>
                           </div>
                           
-                          <div className="bg-purple-50 p-4 rounded-lg text-center">
-                            <div className="text-2xl font-bold text-purple-600">
+                          <div className="bg-purple-50 p-3 sm:p-4 rounded-lg text-center">
+                            <div className="text-sm sm:text-lg lg:text-xl font-bold text-purple-600">
                               {options.inputFormat.toUpperCase()}
                             </div>
                             <div className="text-sm text-purple-800">Input Format</div>
                           </div>
                           
-                          <div className="bg-orange-50 p-4 rounded-lg text-center">
-                            <div className="text-2xl font-bold text-orange-600">
+                          <div className="bg-orange-50 p-3 sm:p-4 rounded-lg text-center">
+                            <div className="text-sm sm:text-lg lg:text-xl font-bold text-orange-600">
                               {options.encoding.toUpperCase()}
                             </div>
-                            <div className="text-sm text-orange-800">Encoding</div>
+                            <div className="text-xs sm:text-sm text-orange-800">Encoding</div>
                           </div>
                         </div>
                       </div>
@@ -599,44 +609,46 @@ const BinaryToTextConverter = () => {
                   )}
 
                   {!conversionResult && !inputCode.trim() && (
-                    <div className="text-center py-12 text-gray-500">
-                      <i className="fas fa-exchange-alt text-4xl mb-4"></i>
-                      <p className="text-lg">Enter {options.inputFormat} code above to convert to text</p>
+                    <div className="text-center py-8 sm:py-12 text-gray-500">
+                      <i className="fas fa-exchange-alt text-3xl sm:text-4xl mb-3 sm:mb-4"></i>
+                      <p className="text-base sm:text-lg">Enter {options.inputFormat} code above to convert to text</p>
                     </div>
                   )}
 
                   {/* Conversion History */}
                   {conversionHistory.length > 0 && (
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Recent Conversions</h3>
-                      <div className="space-y-3">
+                      <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Recent Conversions</h3>
+                      <div className="space-y-2 sm:space-y-3">
                         {conversionHistory.slice(0, 5).map((item, index) => (
-                          <div key={index} className="bg-gray-50 rounded-lg p-4">
+                          <div key={index} className="bg-gray-50 rounded-lg p-3 sm:p-4">
                             <div className="flex items-start justify-between">
-                              <div className="flex-1">
-                                <div className="font-medium text-gray-900 mb-2" data-testid={`history-text-${index}`}>
+                              <div className="flex-1 min-w-0">
+                                <div className="text-sm sm:text-base font-medium text-gray-900 mb-2 truncate" data-testid={`history-text-${index}`}>
                                   "{item.text}"
                                 </div>
                                 <div className="font-mono text-xs text-gray-600 break-all" data-testid={`history-code-${index}`}>
-                                  {item.originalInput.length > 100 ? item.originalInput.substring(0, 100) + '...' : item.originalInput}
+                                  {item.originalInput.length > 80 ? item.originalInput.substring(0, 80) + '...' : item.originalInput}
                                 </div>
                               </div>
-                              <div className="ml-4 flex gap-2">
+                              <div className="ml-2 sm:ml-4 flex gap-1 sm:gap-2 flex-shrink-0">
                                 <Button
                                   onClick={() => handleCopyToClipboard(item.text)}
                                   variant="ghost"
                                   size="sm"
+                                  className="p-2"
                                   data-testid={`button-copy-history-${index}`}
                                 >
-                                  <i className="fas fa-copy"></i>
+                                  <i className="fas fa-copy text-xs sm:text-sm"></i>
                                 </Button>
                                 <Button
                                   onClick={() => setInputCode(item.originalInput)}
                                   variant="ghost"
                                   size="sm"
+                                  className="p-2"
                                   data-testid={`button-load-history-${index}`}
                                 >
-                                  <i className="fas fa-redo"></i>
+                                  <i className="fas fa-redo text-xs sm:text-sm"></i>
                                 </Button>
                               </div>
                             </div>

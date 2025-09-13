@@ -266,34 +266,34 @@ const FakeAddressGenerator = () => {
       
       <main>
         {/* Hero Section */}
-        <section className="gradient-hero text-white py-16 pt-24">
+        <section className="gradient-hero text-white py-12 pt-20 sm:py-16 sm:pt-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-              <i className="fas fa-map-marker-alt text-3xl"></i>
+            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6">
+              <i className="fas fa-map-marker-alt text-2xl sm:text-3xl"></i>
             </div>
-            <h1 className="text-4xl sm:text-5xl font-bold mb-6" data-testid="text-page-title">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6" data-testid="text-page-title">
               Fake Address Generator
             </h1>
-            <p className="text-xl text-blue-100 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-blue-100 max-w-2xl mx-auto px-2">
               Generate realistic fake addresses for testing, privacy, and development purposes
             </p>
           </div>
         </section>
 
         {/* Generator Section */}
-        <section className="py-16">
+        <section className="py-8 sm:py-12 lg:py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <Card className="bg-white shadow-sm border-0">
-              <CardContent className="p-8">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <CardContent className="p-4 sm:p-6 lg:p-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
                   {/* Generator Options */}
-                  <div className="space-y-8">
-                    <h2 className="text-2xl font-semibold text-gray-900 mb-6">Generator Options</h2>
+                  <div className="space-y-6 sm:space-y-8">
+                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6">Generator Options</h2>
                     
-                    <div className="space-y-6">
+                    <div className="space-y-4 sm:space-y-6">
                       {/* Country Selection */}
-                      <div className="space-y-3">
-                        <Label className="text-base font-medium">Country</Label>
+                      <div className="space-y-2 sm:space-y-3">
+                        <Label className="text-sm sm:text-base font-medium">Country</Label>
                         <Select 
                           value={options.country} 
                           onValueChange={(value: typeof options.country) => updateOption('country', value)}
@@ -310,8 +310,8 @@ const FakeAddressGenerator = () => {
                       </div>
 
                       {/* Address Format */}
-                      <div className="space-y-3">
-                        <Label className="text-base font-medium">Address Format</Label>
+                      <div className="space-y-2 sm:space-y-3">
+                        <Label className="text-sm sm:text-base font-medium">Address Format</Label>
                         <Select 
                           value={options.format} 
                           onValueChange={(value: typeof options.format) => updateOption('format', value)}
@@ -328,13 +328,13 @@ const FakeAddressGenerator = () => {
                       </div>
 
                       {/* Additional Options */}
-                      <div className="space-y-4">
-                        <h3 className="font-medium text-gray-900">Additional Options</h3>
+                      <div className="space-y-3 sm:space-y-4">
+                        <h3 className="text-sm sm:text-base font-medium text-gray-900">Additional Options</h3>
                         
-                        <div className="space-y-3">
+                        <div className="space-y-2 sm:space-y-3">
                           <div className="flex items-center justify-between">
-                            <div>
-                              <Label className="text-sm font-medium">Include Apartment/Unit</Label>
+                            <div className="flex-1 mr-3">
+                              <Label className="text-xs sm:text-sm font-medium">Include Apartment/Unit</Label>
                               <p className="text-xs text-gray-500">Add apartment or unit number</p>
                             </div>
                             <Switch
@@ -375,154 +375,163 @@ const FakeAddressGenerator = () => {
                       {/* Generate Button */}
                       <Button 
                         onClick={handleGenerateAddress}
-                        className="w-full h-12 text-base"
+                        className="w-full h-10 sm:h-12 text-sm sm:text-base"
                         data-testid="button-generate-address"
                       >
                         <i className="fas fa-refresh mr-2"></i>
-                        Generate New Address
+                        <span className="hidden sm:inline">Generate New Address</span>
+                        <span className="sm:hidden">Generate</span>
                       </Button>
                     </div>
                   </div>
 
                   {/* Generated Address Display */}
-                  <div className="space-y-6">
-                    <h2 className="text-2xl font-semibold text-gray-900 mb-6">Generated Address</h2>
+                  <div className="space-y-4 sm:space-y-6">
+                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6">Generated Address</h2>
                     
                     {generatedAddress && (
-                      <div className="space-y-6" data-testid="generated-address-display">
+                      <div className="space-y-4 sm:space-y-6" data-testid="generated-address-display">
                         {/* Main Address Display */}
-                        <div className="bg-blue-50 rounded-lg p-6">
-                          <div className="text-lg font-mono text-blue-600 whitespace-pre-line" data-testid="main-address">
+                        <div className="bg-blue-50 rounded-lg p-3 sm:p-4 lg:p-6">
+                          <div className="text-sm sm:text-base lg:text-lg font-mono text-blue-600 whitespace-pre-line" data-testid="main-address">
                             {getFormattedAddress()}
                           </div>
                         </div>
 
                         {/* Address Components */}
-                        <div className="space-y-4">
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                              <div>
-                                <div className="font-medium text-gray-900">Street Number</div>
-                                <div className="text-gray-600" data-testid="street-number">{generatedAddress.streetNumber}</div>
+                        <div className="space-y-3 sm:space-y-4">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 lg:gap-4">
+                            <div className="flex items-center justify-between p-2 sm:p-3 bg-gray-50 rounded-lg">
+                              <div className="flex-1 min-w-0">
+                                <div className="text-xs sm:text-sm font-medium text-gray-900">Street Number</div>
+                                <div className="text-sm sm:text-base text-gray-600 truncate" data-testid="street-number">{generatedAddress.streetNumber}</div>
                               </div>
                               <Button
                                 onClick={() => handleCopyToClipboard(generatedAddress.streetNumber)}
                                 variant="ghost"
                                 size="sm"
+                                className="ml-2 flex-shrink-0"
                                 data-testid="button-copy-street-number"
                               >
-                                <i className="fas fa-copy"></i>
+                                <i className="fas fa-copy text-xs sm:text-sm"></i>
                               </Button>
                             </div>
 
-                            <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                              <div>
-                                <div className="font-medium text-gray-900">Street Name</div>
-                                <div className="text-gray-600" data-testid="street-name">{generatedAddress.streetName} {generatedAddress.streetType}</div>
+                            <div className="flex items-center justify-between p-2 sm:p-3 bg-gray-50 rounded-lg">
+                              <div className="flex-1 min-w-0">
+                                <div className="text-xs sm:text-sm font-medium text-gray-900">Street Name</div>
+                                <div className="text-sm sm:text-base text-gray-600 truncate" data-testid="street-name">{generatedAddress.streetName} {generatedAddress.streetType}</div>
                               </div>
                               <Button
                                 onClick={() => handleCopyToClipboard(`${generatedAddress.streetName} ${generatedAddress.streetType}`)}
                                 variant="ghost"
                                 size="sm"
+                                className="ml-2 flex-shrink-0"
                                 data-testid="button-copy-street-name"
                               >
-                                <i className="fas fa-copy"></i>
+                                <i className="fas fa-copy text-xs sm:text-sm"></i>
                               </Button>
                             </div>
 
-                            <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                              <div>
-                                <div className="font-medium text-gray-900">City</div>
-                                <div className="text-gray-600" data-testid="city">{generatedAddress.city}</div>
+                            <div className="flex items-center justify-between p-2 sm:p-3 bg-gray-50 rounded-lg">
+                              <div className="flex-1 min-w-0">
+                                <div className="text-xs sm:text-sm font-medium text-gray-900">City</div>
+                                <div className="text-sm sm:text-base text-gray-600 truncate" data-testid="city">{generatedAddress.city}</div>
                               </div>
                               <Button
                                 onClick={() => handleCopyToClipboard(generatedAddress.city)}
                                 variant="ghost"
                                 size="sm"
+                                className="ml-2 flex-shrink-0"
                                 data-testid="button-copy-city"
                               >
-                                <i className="fas fa-copy"></i>
+                                <i className="fas fa-copy text-xs sm:text-sm"></i>
                               </Button>
                             </div>
 
-                            <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                              <div>
-                                <div className="font-medium text-gray-900">{options.country === 'US' ? 'State' : options.country === 'Canada' ? 'Province' : 'County'}</div>
-                                <div className="text-gray-600" data-testid="state">{generatedAddress.state}</div>
+                            <div className="flex items-center justify-between p-2 sm:p-3 bg-gray-50 rounded-lg">
+                              <div className="flex-1 min-w-0">
+                                <div className="text-xs sm:text-sm font-medium text-gray-900">{options.country === 'US' ? 'State' : options.country === 'Canada' ? 'Province' : 'County'}</div>
+                                <div className="text-sm sm:text-base text-gray-600 truncate" data-testid="state">{generatedAddress.state}</div>
                               </div>
                               <Button
                                 onClick={() => handleCopyToClipboard(generatedAddress.state)}
                                 variant="ghost"
                                 size="sm"
+                                className="ml-2 flex-shrink-0"
                                 data-testid="button-copy-state"
                               >
-                                <i className="fas fa-copy"></i>
+                                <i className="fas fa-copy text-xs sm:text-sm"></i>
                               </Button>
                             </div>
 
-                            <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                              <div>
-                                <div className="font-medium text-gray-900">{options.country === 'US' ? 'ZIP Code' : 'Postal Code'}</div>
-                                <div className="text-gray-600 font-mono" data-testid="zip-code">{generatedAddress.zipCode}</div>
+                            <div className="flex items-center justify-between p-2 sm:p-3 bg-gray-50 rounded-lg">
+                              <div className="flex-1 min-w-0">
+                                <div className="text-xs sm:text-sm font-medium text-gray-900">{options.country === 'US' ? 'ZIP Code' : 'Postal Code'}</div>
+                                <div className="text-sm sm:text-base text-gray-600 font-mono truncate" data-testid="zip-code">{generatedAddress.zipCode}</div>
                               </div>
                               <Button
                                 onClick={() => handleCopyToClipboard(generatedAddress.zipCode)}
                                 variant="ghost"
                                 size="sm"
+                                className="ml-2 flex-shrink-0"
                                 data-testid="button-copy-zip"
                               >
-                                <i className="fas fa-copy"></i>
+                                <i className="fas fa-copy text-xs sm:text-sm"></i>
                               </Button>
                             </div>
 
-                            <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                              <div>
-                                <div className="font-medium text-gray-900">Country</div>
-                                <div className="text-gray-600" data-testid="country">{generatedAddress.country}</div>
+                            <div className="flex items-center justify-between p-2 sm:p-3 bg-gray-50 rounded-lg">
+                              <div className="flex-1 min-w-0">
+                                <div className="text-xs sm:text-sm font-medium text-gray-900">Country</div>
+                                <div className="text-sm sm:text-base text-gray-600 truncate" data-testid="country">{generatedAddress.country}</div>
                               </div>
                               <Button
                                 onClick={() => handleCopyToClipboard(generatedAddress.country)}
                                 variant="ghost"
                                 size="sm"
+                                className="ml-2 flex-shrink-0"
                                 data-testid="button-copy-country"
                               >
-                                <i className="fas fa-copy"></i>
+                                <i className="fas fa-copy text-xs sm:text-sm"></i>
                               </Button>
                             </div>
                           </div>
 
                           {(generatedAddress.apartment || generatedAddress.secondaryAddress) && (
-                            <div className="space-y-3">
+                            <div className="space-y-2 sm:space-y-3">
                               {generatedAddress.apartment && (
-                                <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                                  <div>
-                                    <div className="font-medium text-gray-900">Apartment/Unit</div>
-                                    <div className="text-gray-600" data-testid="apartment">{generatedAddress.apartment}</div>
+                                <div className="flex items-center justify-between p-2 sm:p-3 bg-yellow-50 rounded-lg border border-yellow-200">
+                                  <div className="flex-1 min-w-0">
+                                    <div className="text-xs sm:text-sm font-medium text-gray-900">Apartment/Unit</div>
+                                    <div className="text-sm sm:text-base text-gray-600 truncate" data-testid="apartment">{generatedAddress.apartment}</div>
                                   </div>
                                   <Button
                                     onClick={() => handleCopyToClipboard(generatedAddress.apartment!)}
                                     variant="ghost"
                                     size="sm"
+                                    className="ml-2 flex-shrink-0"
                                     data-testid="button-copy-apartment"
                                   >
-                                    <i className="fas fa-copy"></i>
+                                    <i className="fas fa-copy text-xs sm:text-sm"></i>
                                   </Button>
                                 </div>
                               )}
 
                               {generatedAddress.secondaryAddress && (
-                                <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                                  <div>
-                                    <div className="font-medium text-gray-900">Secondary Address</div>
-                                    <div className="text-gray-600" data-testid="secondary-address">{generatedAddress.secondaryAddress}</div>
+                                <div className="flex items-center justify-between p-2 sm:p-3 bg-green-50 rounded-lg border border-green-200">
+                                  <div className="flex-1 min-w-0">
+                                    <div className="text-xs sm:text-sm font-medium text-gray-900">Secondary Address</div>
+                                    <div className="text-sm sm:text-base text-gray-600 truncate" data-testid="secondary-address">{generatedAddress.secondaryAddress}</div>
                                   </div>
                                   <Button
                                     onClick={() => handleCopyToClipboard(generatedAddress.secondaryAddress!)}
                                     variant="ghost"
                                     size="sm"
+                                    className="ml-2 flex-shrink-0"
                                     data-testid="button-copy-secondary"
                                   >
-                                    <i className="fas fa-copy"></i>
+                                    <i className="fas fa-copy text-xs sm:text-sm"></i>
                                   </Button>
                                 </div>
                               )}
@@ -531,15 +540,38 @@ const FakeAddressGenerator = () => {
                         </div>
 
                         {/* Action Buttons */}
-                        <div className="flex gap-3">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 lg:gap-4">
                           <Button
                             onClick={() => handleCopyToClipboard(getFormattedAddress())}
                             variant="outline"
-                            className="flex-1"
+                            className="h-10 sm:h-12 text-xs sm:text-sm"
                             data-testid="button-copy-full-address"
                           >
-                            <i className="fas fa-copy mr-2"></i>
-                            Copy Full Address
+                            <i className="fas fa-copy mr-1 sm:mr-2"></i>
+                            <span className="hidden sm:inline">Copy Full Address</span>
+                            <span className="sm:hidden">Copy Full</span>
+                          </Button>
+                          
+                          <Button
+                            onClick={() => handleCopyToClipboard(generatedAddress.singleLineAddress)}
+                            variant="outline"
+                            className="h-10 sm:h-12 text-xs sm:text-sm"
+                            data-testid="button-copy-single-line"
+                          >
+                            <i className="fas fa-minus mr-1 sm:mr-2"></i>
+                            <span className="hidden sm:inline">Copy Single Line</span>
+                            <span className="sm:hidden">Copy Line</span>
+                          </Button>
+                          
+                          <Button
+                            onClick={() => handleCopyToClipboard(generatedAddress.mailingAddress)}
+                            variant="outline"
+                            className="h-10 sm:h-12 text-xs sm:text-sm"
+                            data-testid="button-copy-mailing"
+                          >
+                            <i className="fas fa-envelope mr-1 sm:mr-2"></i>
+                            <span className="hidden sm:inline">Copy Mailing Format</span>
+                            <span className="sm:hidden">Copy Mail</span>
                           </Button>
                         </div>
                       </div>
@@ -550,15 +582,15 @@ const FakeAddressGenerator = () => {
                 {/* Address History */}
                 {addressHistory.length > 0 && (
                   <>
-                    <Separator className="my-8" />
+                    <Separator className="my-6 sm:my-8" />
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Recently Generated</h3>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Recently Generated</h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                         {addressHistory.slice(0, 6).map((address, index) => (
-                          <div key={index} className="bg-gray-50 rounded-lg p-4">
+                          <div key={index} className="bg-gray-50 rounded-lg p-3 sm:p-4">
                             <div className="flex items-start justify-between">
-                              <div className="flex-1">
-                                <div className="text-sm font-mono text-gray-900 whitespace-pre-line mb-2" data-testid={`history-address-${index}`}>
+                              <div className="flex-1 min-w-0">
+                                <div className="text-xs sm:text-sm font-mono text-gray-900 whitespace-pre-line mb-2 truncate" data-testid={`history-address-${index}`}>
                                   {address.singleLineAddress}
                                 </div>
                                 <div className="text-xs text-gray-500">
@@ -569,9 +601,10 @@ const FakeAddressGenerator = () => {
                                 onClick={() => handleCopyToClipboard(address.fullAddress)}
                                 variant="ghost"
                                 size="sm"
+                                className="ml-2 flex-shrink-0"
                                 data-testid={`button-copy-history-${index}`}
                               >
-                                <i className="fas fa-copy"></i>
+                                <i className="fas fa-copy text-xs sm:text-sm"></i>
                               </Button>
                             </div>
                           </div>
