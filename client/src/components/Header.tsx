@@ -3,7 +3,9 @@ import { Link, useLocation } from 'wouter';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { searchTools } from '@/lib/search';
 import { tools } from '@/data/tools';
-import Logo from '@/components/Logo';
+import { FavoritesDropdown } from './FavoritesDropdown';
+import { RecentToolsDropdown } from './RecentToolsDropdown';
+import Logo from './Logo';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -37,7 +39,7 @@ const Header = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo Section */}
           <Logo />
-          
+
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
             {navLinks.map((link) => (
@@ -53,10 +55,10 @@ const Header = () => {
               </Link>
             ))}
           </nav>
-          
+
           {/* Search and Mobile Menu */}
           <div className="flex items-center space-x-2">
-            
+
             {/* Search */}
             <button 
               className="p-2 text-neutral-600 dark:text-neutral-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
@@ -66,7 +68,7 @@ const Header = () => {
             >
               <i className="fas fa-search text-lg"></i>
             </button>
-            
+
             {/* Mobile Menu */}
             <button
               className="lg:hidden p-2 text-neutral-600 dark:text-neutral-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
@@ -78,12 +80,12 @@ const Header = () => {
           </div>
         </div>
       </div>
-      
+
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="lg:hidden bg-white dark:bg-neutral-900 border-t border-gray-200 dark:border-neutral-700" data-testid="mobile-menu">
           <div className="px-4 py-3 space-y-3">
-            
+
             {navLinks.map((link) => (
               <Link
                 key={link.href}
