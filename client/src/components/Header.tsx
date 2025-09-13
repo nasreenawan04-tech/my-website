@@ -3,9 +3,8 @@ import { Link, useLocation } from 'wouter';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { searchTools } from '@/lib/search';
 import { tools } from '@/data/tools';
-import { FavoritesDropdown } from './FavoritesDropdown';
-import { RecentToolsDropdown } from './RecentToolsDropdown';
 import Logo from './Logo';
+import { Search, Menu, X } from 'lucide-react';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -64,9 +63,10 @@ const Header = () => {
               className="p-2 text-neutral-600 dark:text-neutral-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
               onClick={() => setIsSearchOpen(true)}
               data-testid="button-search"
+              aria-label="Search tools"
               title="Search tools"
             >
-              <i className="fas fa-search text-lg"></i>
+              <Search size={18} />
             </button>
 
             {/* Mobile Menu */}
@@ -74,8 +74,10 @@ const Header = () => {
               className="lg:hidden p-2 text-neutral-600 dark:text-neutral-300 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               data-testid="button-mobile-menu"
+              aria-label={isMobileMenuOpen ? "Close mobile menu" : "Open mobile menu"}
+              aria-expanded={isMobileMenuOpen}
             >
-              <i className="fas fa-bars text-lg"></i>
+              <Menu size={18} />
             </button>
           </div>
         </div>
@@ -83,7 +85,11 @@ const Header = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-white dark:bg-neutral-900 border-t border-gray-200 dark:border-neutral-700" data-testid="mobile-menu">
+        <nav 
+          className="lg:hidden bg-white dark:bg-neutral-900 border-t border-gray-200 dark:border-neutral-700" 
+          data-testid="mobile-menu"
+          aria-label="Mobile navigation"
+        >
           <div className="px-4 py-3 space-y-3">
 
             {navLinks.map((link) => (
@@ -98,13 +104,18 @@ const Header = () => {
               </Link>
             ))}
           </div>
-        </div>
+        </nav>
       )}
 
       {/* Search Modal */}
       {isSearchOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-start justify-center pt-20">
-          <div className="bg-white dark:bg-neutral-900 rounded-lg shadow-xl w-full max-w-2xl mx-4 max-h-96 overflow-hidden">
+          <div 
+            className="bg-white dark:bg-neutral-900 rounded-lg shadow-xl w-full max-w-2xl mx-4 max-h-96 overflow-hidden"
+            role="dialog"
+            aria-label="Search tools"
+            aria-modal="true"
+          >
             <div className="p-4 border-b border-gray-200 dark:border-neutral-700">
               <div className="relative">
                 <input
@@ -115,13 +126,15 @@ const Header = () => {
                   className="w-full py-3 px-4 pr-12 text-lg border border-gray-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
                   autoFocus
                   data-testid="search-modal-input"
+                  aria-label="Search for tools"
                 />
                 <button
                   onClick={() => setIsSearchOpen(false)}
                   className="absolute right-3 top-3 text-gray-400 dark:text-neutral-500 hover:text-gray-600 dark:hover:text-neutral-300"
                   data-testid="search-modal-close"
+                  aria-label="Close search"
                 >
-                  <i className="fas fa-times text-lg"></i>
+                  <X size={18} />
                 </button>
               </div>
             </div>
@@ -136,7 +149,7 @@ const Header = () => {
                   >
                     <div className="flex items-center space-x-3">
                       <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <i className={`${tool.icon} text-white text-sm`}></i>
+                        <span className="text-white text-lg">{tool.icon}</span>
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="font-medium text-gray-900 dark:text-neutral-100 truncate">{tool.name}</div>
@@ -152,7 +165,7 @@ const Header = () => {
                 ))
               ) : (
                 <div className="p-8 text-center text-gray-500 dark:text-neutral-400">
-                  <i className="fas fa-search text-3xl mb-4"></i>
+                  <Search size={48} className="mx-auto mb-4" />
                   <p>No tools found matching "{searchQuery}"</p>
                 </div>
               )}
