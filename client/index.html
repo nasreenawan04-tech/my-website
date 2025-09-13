@@ -55,12 +55,34 @@
     
     <!-- Structured Data -->
     <script type="application/ld+json">
+    [{
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "DapsiWow",
+      "description": "Professional online tools platform offering 180+ free utilities for business and personal use",
+      "url": "https://dapsiwow.com/",
+      "logo": "https://dapsiwow.com/logo.svg",
+      "foundingDate": "2024",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "availableLanguage": "English"
+      },
+      "sameAs": [
+        "https://twitter.com/dapsiwow"
+      ]
+    },
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "DapsiWow",
       "description": "Professional online tools platform offering 180+ free utilities for business and personal use",
       "url": "https://dapsiwow.com/",
+      "publisher": {
+        "@type": "Organization",
+        "name": "DapsiWow",
+        "logo": "https://dapsiwow.com/logo.svg"
+      },
       "potentialAction": {
         "@type": "SearchAction",
         "target": "https://dapsiwow.com/tools?search={search_term_string}",
@@ -84,7 +106,7 @@
           "worstRating": "1"
         }
       }
-    }
+    }]
     </script>
     
     <!-- Performance Hints -->
