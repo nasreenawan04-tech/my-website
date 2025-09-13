@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useLocation } from 'wouter';
 import { searchTools } from '@/lib/search';
 import { tools } from '@/data/tools';
+import { Search } from 'lucide-react';
 
 const HeroSection = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -78,7 +79,7 @@ const HeroSection = () => {
               className="absolute right-2 top-2 bottom-2 px-6 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all duration-200 shadow-md hover:shadow-lg"
               data-testid="button-search-tools"
             >
-              <i className="fas fa-search"></i>
+              <Search size={20} />
             </button>
           </form>
 
@@ -96,7 +97,7 @@ const HeroSection = () => {
                     >
                       <div className="flex items-center space-x-3">
                         <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                          <i className={`${tool.icon} text-white text-sm`}></i>
+                          <span className="text-white text-lg">{tool.icon}</span>
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="font-medium text-gray-900 truncate">{tool.name}</div>
@@ -125,7 +126,7 @@ const HeroSection = () => {
                 </div>
               ) : searchQuery.trim() ? (
                 <div className="p-8 text-center text-gray-500">
-                  <i className="fas fa-search text-3xl mb-4"></i>
+                  <Search size={48} className="mx-auto mb-4" />
                   <p>No tools found matching "{searchQuery}"</p>
                   <button
                     onClick={() => setLocation('/all-tools')}

@@ -1,5 +1,6 @@
 import { useFavorites } from '@/hooks/use-favorites';
 import { Tool } from '@/data/tools';
+import { Star } from 'lucide-react';
 
 interface FavoriteButtonProps {
   tool: Tool;
@@ -23,10 +24,10 @@ const FavoriteButton = ({
     lg: 'p-3 text-lg'
   };
 
-  const iconSizeClasses = {
-    sm: 'text-xs',
-    md: 'text-sm',
-    lg: 'text-base'
+  const iconSizes = {
+    sm: 14,
+    md: 16,
+    lg: 20
   };
 
   return (
@@ -48,7 +49,10 @@ const FavoriteButton = ({
       title={isToolFavorite ? 'Remove from favorites' : 'Add to favorites'}
       data-testid={`button-favorite-${tool.id}`}
     >
-      <i className={`${isToolFavorite ? 'fas' : 'far'} fa-star ${iconSizeClasses[size]}`}></i>
+      <Star 
+        size={iconSizes[size]} 
+        className={isToolFavorite ? 'fill-current' : ''}
+      />
       {showLabel && (
         <span className="ml-2 text-xs font-medium">
           {isToolFavorite ? 'Favorited' : 'Add to Favorites'}

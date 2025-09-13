@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { tools, categories } from '@/data/tools';
+import { Filter, ChevronUp, ChevronDown, RotateCcw } from 'lucide-react';
 
 interface SearchFiltersProps {
   onFiltersChange: (filters: SearchFilters) => void;
@@ -59,7 +60,7 @@ const EnhancedSearchFilters = ({ onFiltersChange, className = '' }: SearchFilter
           data-testid="button-toggle-filters"
         >
           <div className="flex items-center space-x-2">
-            <i className="fas fa-filter text-blue-600 dark:text-blue-400"></i>
+            <Filter className="text-blue-600 dark:text-blue-400" size={16} />
             <span className="font-medium text-neutral-800 dark:text-neutral-100">
               Advanced Filters
             </span>
@@ -69,7 +70,7 @@ const EnhancedSearchFilters = ({ onFiltersChange, className = '' }: SearchFilter
               </span>
             )}
           </div>
-          <i className={`fas fa-chevron-${isExpanded ? 'up' : 'down'} text-neutral-400`}></i>
+          {isExpanded ? <ChevronUp className="text-neutral-400" size={16} /> : <ChevronDown className="text-neutral-400" size={16} />}
         </button>
       </div>
 
@@ -153,7 +154,7 @@ const EnhancedSearchFilters = ({ onFiltersChange, className = '' }: SearchFilter
                 className="w-full px-4 py-2 text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 border border-gray-300 dark:border-neutral-600 rounded-lg hover:bg-gray-50 dark:hover:bg-neutral-700 transition-colors"
                 data-testid="button-reset-filters"
               >
-                <i className="fas fa-undo mr-2"></i>
+                <RotateCcw className="mr-2" size={16} />
                 Reset Filters
               </button>
             </div>

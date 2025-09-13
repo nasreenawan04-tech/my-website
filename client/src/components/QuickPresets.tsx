@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Wand2 } from 'lucide-react';
 
 interface PresetOption {
   id: string;
@@ -30,7 +31,7 @@ const QuickPresets = ({ presets, onPresetSelect, className = '' }: QuickPresetsP
   return (
     <div className={`bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg p-4 ${className}`}>
       <h3 className="text-lg font-semibold text-neutral-800 dark:text-neutral-100 mb-3 flex items-center">
-        <i className="fas fa-magic text-blue-600 dark:text-blue-400 mr-2"></i>
+        <Wand2 className="text-blue-600 dark:text-blue-400 mr-2" size={20} />
         Quick Presets
       </h3>
       <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">
@@ -56,7 +57,7 @@ const QuickPresets = ({ presets, onPresetSelect, className = '' }: QuickPresetsP
             <div className="flex items-start space-x-3">
               {preset.icon && (
                 <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <i className={`${preset.icon} text-white text-sm`}></i>
+                  <span className="text-white text-lg">{preset.icon}</span>
                 </div>
               )}
               <div className="flex-1 min-w-0">

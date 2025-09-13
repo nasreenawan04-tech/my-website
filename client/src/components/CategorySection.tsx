@@ -1,5 +1,6 @@
 import { useLocation } from 'wouter';
 import { getCategoryStats } from '@/data/tools';
+import { Calculator, PenTool, HeartPulse, ArrowRight } from 'lucide-react';
 
 const CategorySection = () => {
   const [, setLocation] = useLocation();
@@ -11,7 +12,7 @@ const CategorySection = () => {
       title: '30+ Finance Tools',
       description: 'Loan Calculator, Mortgage Calculator, Currency Converter, ROI Calculator',
       gradient: 'from-blue-500 via-blue-600 to-indigo-700',
-      icon: 'fas fa-calculator',
+      icon: Calculator,
       buttonColor: 'text-blue-600 hover:bg-blue-50',
       href: '/finance'
     },
@@ -20,7 +21,7 @@ const CategorySection = () => {
       title: '30+ Text Tools',
       description: 'Word Counter, Grammar Checker, AI Writer, Plagiarism Checker',
       gradient: 'from-yellow-500 via-orange-500 to-red-600',
-      icon: 'fas fa-pen-fancy',
+      icon: PenTool,
       buttonColor: 'text-orange-600 hover:bg-orange-50',
       href: '/text'
     },
@@ -29,7 +30,7 @@ const CategorySection = () => {
       title: '30+ Health Tools',
       description: 'BMI Calculator, Calorie Counter, Pregnancy Calculator, Fitness Tracker',
       gradient: 'from-pink-500 via-rose-600 to-red-700',
-      icon: 'fas fa-heartbeat',
+      icon: HeartPulse,
       buttonColor: 'text-pink-600 hover:bg-pink-50',
       href: '/health'
     }
@@ -60,7 +61,7 @@ const CategorySection = () => {
               data-testid={`card-category-${category.key}`}
             >
               <div className="w-16 h-16 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mb-6">
-                <i className={`${category.icon} text-2xl`}></i>
+                <category.icon size={32} />
               </div>
               <h3 className="text-2xl font-bold mb-4" data-testid={`text-category-title-${category.key}`}>
                 {category.title}
@@ -73,7 +74,7 @@ const CategorySection = () => {
                 data-testid={`button-explore-${category.key}`}
               >
                 Explore {category.key.charAt(0).toUpperCase() + category.key.slice(1)} Tools
-                <i className="fas fa-arrow-right ml-2"></i>
+                <ArrowRight className="ml-2" size={16} />
               </button>
             </div>
           ))}

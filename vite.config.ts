@@ -30,6 +30,25 @@ export default defineConfig({
   build: {
     outDir: path.resolve(__dirname, "dist"),
     emptyOutDir: true,
+    target: "esnext",
+    minify: "esbuild",
+    cssMinify: true,
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ["react", "react-dom"],
+          ui: ["@radix-ui/react-dialog", "@radix-ui/react-dropdown-menu", "@radix-ui/react-tabs"],
+          charts: ["recharts"],
+          utils: ["clsx", "tailwind-merge", "framer-motion"]
+        },
+        chunkFileNames: "assets/[name]-[hash].js",
+        entryFileNames: "assets/[name]-[hash].js",
+        assetFileNames: "assets/[name]-[hash].[ext]"
+      }
+    },
+    reportCompressedSize: false,
+    chunkSizeWarningLimit: 1000
   },
   server: {
     host: "0.0.0.0",
@@ -43,4 +62,11 @@ export default defineConfig({
       deny: ["**/.*"],
     },
   },
+  optimizeDeps: {
+    include: ["react", "react-dom", "wouter", "@tanstack/react-query"],
+    exclude: ["@vite/client", "@vite/env"]
+  },
+  esbuild: {
+    drop: process.env.NODE_ENV === "production" ? ["console", "debugger"] : [],
+  }
 });
