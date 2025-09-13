@@ -6,30 +6,35 @@ import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 export default defineConfig({
   plugins: [
     react(),
-    runtimeErrorOverlay(),
     ...(process.env.NODE_ENV !== "production" &&
     process.env.REPL_ID !== undefined
-      ? [
-          await import("@replit/vite-plugin-cartographer").then((m) =>
-            m.cartographer(),
-          ),
-        ]
+      ? [runtimeErrorOverlay()]
       : []),
+    // Temporarily disable cartographer plugin due to Babel traverse compatibility issue
+    // ...(process.env.NODE_ENV !== "production" &&
+    // process.env.REPL_ID !== undefined
+    //   ? [
+    //       await import("@replit/vite-plugin-cartographer").then((m) =>
+    //         m.cartographer(),
+    //       ),
+    //     ]
+    //   : []),
   ],
   resolve: {
     alias: {
-      "@": path.resolve(import.meta.dirname, "client", "src"),
-      "@assets": path.resolve(import.meta.dirname, "attached_assets"),
+      "@": path.resolve(__dirname, "client", "src"),
+      "@assets": path.resolve(__dirname, "attached_assets"),
     },
   },
-  root: path.resolve(import.meta.dirname, "client"),
+  root: path.resolve(__dirname, "client"),
   build: {
-    outDir: path.resolve(import.meta.dirname, "dist"),
+    outDir: path.resolve(__dirname, "dist"),
     emptyOutDir: true,
   },
   server: {
     host: "0.0.0.0",
     port: 5000,
+    allowedHosts: true,
     hmr: {
       clientPort: 443,
     },
