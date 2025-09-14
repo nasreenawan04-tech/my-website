@@ -741,6 +741,323 @@ export default function EMICalculator() {
               </CardContent>
             </Card>
           </div>
+
+          {/* Additional SEO Content Sections */}
+          <div className="mt-12 space-y-8">
+            {/* Types of Loans Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Types of Loans for EMI Calculation</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Home Loans</h4>
+                    <p className="text-gray-600">
+                      Home loans typically have the longest tenure (15-30 years) and competitive interest rates. 
+                      EMI calculations help you determine affordability based on your monthly income and plan for 
+                      property purchases effectively.
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Car Loans</h4>
+                    <p className="text-gray-600">
+                      Auto loans usually range from 1-7 years with moderate interest rates. Use our EMI calculator 
+                      to compare different car financing options and choose the best loan tenure for your budget.
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Personal Loans</h4>
+                    <p className="text-gray-600">
+                      Personal loans offer flexibility but come with higher interest rates. Calculate EMI to ensure 
+                      the monthly payment fits comfortably within your budget without affecting other financial goals.
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Business Loans</h4>
+                    <p className="text-gray-600">
+                      Business loans help entrepreneurs grow their ventures. EMI calculations are crucial for 
+                      cash flow planning and ensuring loan payments don't strain business operations.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Factors Affecting EMI */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Factors Affecting EMI Amount</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <div className="border-l-4 border-blue-500 pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-2">Principal Amount</h4>
+                      <p className="text-sm">Higher loan amounts result in higher EMIs. Borrow only what you need and can afford to repay comfortably.</p>
+                    </div>
+                    <div className="border-l-4 border-green-500 pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-2">Interest Rate</h4>
+                      <p className="text-sm">Lower interest rates reduce EMI burden. Compare rates from different lenders and negotiate for better terms.</p>
+                    </div>
+                    <div className="border-l-4 border-orange-500 pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-2">Loan Tenure</h4>
+                      <p className="text-sm">Longer tenure reduces EMI but increases total interest. Find the right balance for your financial situation.</p>
+                    </div>
+                    <div className="border-l-4 border-purple-500 pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-2">Credit Score</h4>
+                      <p className="text-sm">Better credit scores qualify for lower interest rates, reducing your EMI amount significantly.</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">EMI Planning Strategies</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <div className="bg-blue-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-blue-800 mb-2">50-30-20 Rule</h4>
+                      <p className="text-sm text-blue-700">Limit total EMIs to 50% of your monthly income, keeping 30% for expenses and 20% for savings.</p>
+                    </div>
+                    <div className="bg-green-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-green-800 mb-2">Step-Up EMI</h4>
+                      <p className="text-sm text-green-700">Start with lower EMIs that increase annually with your expected salary growth, saving on total interest.</p>
+                    </div>
+                    <div className="bg-orange-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-orange-800 mb-2">Prepayment Strategy</h4>
+                      <p className="text-sm text-orange-700">Use bonuses, tax refunds, or windfalls to make prepayments and reduce loan tenure significantly.</p>
+                    </div>
+                    <div className="bg-purple-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-purple-800 mb-2">Balance Transfer</h4>
+                      <p className="text-sm text-purple-700">Transfer high-interest loans to lenders offering lower rates to reduce EMI burden.</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* EMI FAQs Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions about EMI</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">What happens if I miss an EMI payment?</h4>
+                      <p className="text-gray-600 text-sm">Missing EMI payments can result in late fees, negative impact on credit score, and potential legal action. Contact your lender immediately if you anticipate payment difficulties.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Can I change my EMI amount during the loan tenure?</h4>
+                      <p className="text-gray-600 text-sm">Yes, through loan restructuring, prepayments, or step-up/step-down EMI options. Consult your lender for available options based on your financial situation.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Is EMI tax deductible?</h4>
+                      <p className="text-gray-600 text-sm">Home loan EMIs qualify for tax deductions - principal under Section 80C and interest under Section 24. Personal and car loan EMIs generally don't qualify for tax benefits.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">What's the maximum loan tenure available?</h4>
+                      <p className="text-gray-600 text-sm">Home loans can extend up to 30 years, car loans up to 7 years, and personal loans typically up to 5 years. Longer tenure reduces EMI but increases total interest cost.</p>
+                    </div>
+                  </div>
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Should I choose fixed or floating interest rates?</h4>
+                      <p className="text-gray-600 text-sm">Fixed rates provide EMI certainty but are typically higher. Floating rates can save money when rates decline but carry uncertainty. Choose based on your risk tolerance and market outlook.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How does prepayment reduce my loan burden?</h4>
+                      <p className="text-gray-600 text-sm">Prepayments directly reduce the principal amount, which decreases the total interest payable and can significantly shorten your loan tenure, saving substantial money.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">What's the ideal EMI-to-income ratio?</h4>
+                      <p className="text-gray-600 text-sm">Financial experts recommend keeping total EMIs below 40-50% of your monthly income to maintain financial stability and accommodate unexpected expenses.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Can I get a loan with bad credit?</h4>
+                      <p className="text-gray-600 text-sm">Yes, but expect higher interest rates and stricter terms. Consider improving your credit score, providing collateral, or getting a co-signer to improve loan terms.</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Interest Rate Types */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">Fixed Interest Rate</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <p className="text-sm">
+                      Fixed rates remain constant throughout the loan tenure, providing EMI predictability and budget certainty.
+                    </p>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-green-800 text-sm">Advantages:</h4>
+                      <ul className="text-xs space-y-1 list-disc list-inside text-green-700">
+                        <li>Predictable monthly payments</li>
+                        <li>Protection from rate increases</li>
+                        <li>Easy budget planning</li>
+                      </ul>
+                    </div>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-red-800 text-sm">Disadvantages:</h4>
+                      <ul className="text-xs space-y-1 list-disc list-inside text-red-700">
+                        <li>Higher initial rates</li>
+                        <li>No benefit from rate decreases</li>
+                        <li>Limited flexibility</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">Floating Interest Rate</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <p className="text-sm">
+                      Floating rates fluctuate with market conditions, typically linked to benchmark rates like repo rate or MCLR.
+                    </p>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-green-800 text-sm">Advantages:</h4>
+                      <ul className="text-xs space-y-1 list-disc list-inside text-green-700">
+                        <li>Lower initial rates</li>
+                        <li>Benefit from rate decreases</li>
+                        <li>Potential interest savings</li>
+                      </ul>
+                    </div>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-red-800 text-sm">Disadvantages:</h4>
+                      <ul className="text-xs space-y-1 list-disc list-inside text-red-700">
+                        <li>EMI uncertainty</li>
+                        <li>Risk of rate increases</li>
+                        <li>Difficult to budget</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">Hybrid Interest Rate</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <p className="text-sm">
+                      Hybrid loans start with fixed rates for an initial period, then switch to floating rates.
+                    </p>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-green-800 text-sm">Advantages:</h4>
+                      <ul className="text-xs space-y-1 list-disc list-inside text-green-700">
+                        <li>Initial rate certainty</li>
+                        <li>Future flexibility</li>
+                        <li>Balanced approach</li>
+                      </ul>
+                    </div>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-red-800 text-sm">Disadvantages:</h4>
+                      <ul className="text-xs space-y-1 list-disc list-inside text-red-700">
+                        <li>Complex structure</li>
+                        <li>Future rate uncertainty</li>
+                        <li>Transition complexity</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Common Mistakes Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Common EMI Calculation Mistakes to Avoid</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <div className="bg-red-50 border-l-4 border-red-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-red-800 mb-2">Ignoring Hidden Costs</h4>
+                      <p className="text-red-700 text-sm">Many borrowers forget processing fees, insurance, and other charges when calculating total loan cost. Always factor in all associated expenses.</p>
+                    </div>
+                    <div className="bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-orange-800 mb-2">Not Considering Income Growth</h4>
+                      <p className="text-orange-700 text-sm">Step-up EMI options can save significant interest if your income is expected to grow. Don't stick to fixed EMI if you can handle increases.</p>
+                    </div>
+                    <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-yellow-800 mb-2">Choosing Maximum Tenure Always</h4>
+                      <p className="text-yellow-700 text-sm">While longer tenure reduces EMI, it significantly increases total interest cost. Balance EMI affordability with total cost.</p>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-blue-800 mb-2">Not Shopping for Better Rates</h4>
+                      <p className="text-blue-700 text-sm">Even a 0.5% difference in interest rate can save thousands over the loan tenure. Compare offers from multiple lenders before deciding.</p>
+                    </div>
+                    <div className="bg-purple-50 border-l-4 border-purple-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-purple-800 mb-2">Overlooking Prepayment Options</h4>
+                      <p className="text-purple-700 text-sm">Many loans allow partial or full prepayment without penalties. Use windfalls like bonuses to reduce principal and save on interest.</p>
+                    </div>
+                    <div className="bg-green-50 border-l-4 border-green-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-green-800 mb-2">Ignoring Credit Score Impact</h4>
+                      <p className="text-green-700 text-sm">A good credit score can significantly reduce interest rates. Work on improving your score before applying for loans.</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Loan vs Investment Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">EMI vs Investment: Making Smart Financial Decisions</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">When to Take a Loan</h4>
+                    <div className="space-y-3 text-gray-600">
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-sm">Essential purchases like home or vehicle where immediate need exists</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-sm">Business expansion opportunities with higher expected returns</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-sm">Tax benefits available (home loans, education loans)</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-sm">Loan interest rate is lower than potential investment returns</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">When to Avoid Loans</h4>
+                    <div className="space-y-3 text-gray-600">
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-sm">Lifestyle purchases or discretionary spending</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-sm">EMI would strain your monthly budget significantly</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-sm">High interest rates with no tax benefits</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-sm">Uncertain income or job security</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg">
+                  <h4 className="font-semibold text-blue-800 mb-2">Smart Strategy</h4>
+                  <p className="text-blue-700 text-sm">
+                    Use our EMI calculator to determine monthly payments, then compare the cost of borrowing with potential 
+                    investment returns. Consider your risk tolerance, financial goals, and market conditions before deciding 
+                    between borrowing and self-funding.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </main>
       
