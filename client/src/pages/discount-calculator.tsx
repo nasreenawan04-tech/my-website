@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import ToolHeroSection from '@/components/ToolHeroSection';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -122,18 +123,11 @@ const DiscountCalculator = () => {
 
         <main className="flex-1 bg-neutral-50">
           {/* Hero Section */}
-          <section className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 py-20 sm:py-24 lg:py-28">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <div className="space-y-6">
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white leading-tight" data-testid="text-page-title">
-                  Discount Calculator
-                </h1>
-                <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
-                  Calculate sale prices, discount amounts, and savings with support for multiple currencies worldwide
-                </p>
-              </div>
-            </div>
-          </section>
+          <ToolHeroSection
+            title="Discount Calculator"
+            description="Calculate sale prices, discount amounts, and savings with support for multiple currencies worldwide"
+            testId="text-discount-title"
+          />
 
           {/* Calculator Section */}
           <section className="py-16">
