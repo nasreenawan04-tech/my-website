@@ -49,7 +49,9 @@ const HealthTools = () => {
           <section className="bg-gradient-to-r from-pink-600 via-rose-500 to-red-700 text-white py-16">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
               <div className="w-24 h-24 bg-white bg-opacity-20 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                <i className="fas fa-heartbeat text-4xl text-white"></i>
+                <svg className="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+                </svg>
               </div>
               <h1 className="text-4xl sm:text-5xl font-bold mb-4" data-testid="text-page-title">
                 Health Tools
