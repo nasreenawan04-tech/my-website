@@ -176,17 +176,16 @@ const CalorieCalculator = () => {
         
         <main className="flex-1 bg-neutral-50">
           {/* Hero Section */}
-          <section className="text-white py-16" style={{ background: 'linear-gradient(135deg, #f43f5e 0%, #e11d48 100%)' }}>
+          <section className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 py-20 sm:py-24 lg:py-28">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <i className="fas fa-utensils text-3xl"></i>
+              <div className="space-y-6">
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white leading-tight" data-testid="text-page-title">
+                  Calorie Calculator
+                </h1>
+                <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
+                  Calculate your daily calorie needs and macronutrient breakdown for achieving your fitness and health goals
+                </p>
               </div>
-              <h1 className="text-4xl sm:text-5xl font-bold mb-6" data-testid="text-page-title">
-                Calorie Calculator
-              </h1>
-              <p className="text-xl text-red-100 max-w-2xl mx-auto">
-                Calculate your daily calorie needs and macronutrient breakdown for achieving your fitness and health goals
-              </p>
             </div>
           </section>
 

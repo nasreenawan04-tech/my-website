@@ -120,14 +120,16 @@ const CarLoanCalculator = () => {
         
         <main className="flex-1 bg-neutral-50">
           {/* Hero Section */}
-          <section className="gradient-hero text-white py-16">
+          <section className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 py-20 sm:py-24 lg:py-28">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <h1 className="text-4xl sm:text-5xl font-bold mb-6" data-testid="text-page-title">
-                Car Loan Calculator
-              </h1>
-              <p className="text-xl text-blue-100 max-w-2xl mx-auto">
-                Calculate monthly car loan payments, total interest, and total cost for your vehicle purchase
-              </p>
+              <div className="space-y-6">
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white leading-tight" data-testid="text-page-title">
+                  Car Loan Calculator
+                </h1>
+                <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
+                  Calculate monthly car loan payments, total interest, and total cost for your vehicle purchase
+                </p>
+              </div>
             </div>
           </section>
 

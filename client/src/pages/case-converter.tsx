@@ -231,14 +231,16 @@ const CaseConverter = () => {
       
       <main>
         {/* Hero Section */}
-        <section className="gradient-hero text-white py-12 sm:py-16 pt-20 sm:pt-24">
+        <section className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 py-20 sm:py-24 lg:py-28">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6" data-testid="text-page-title">
-              Case Converter
-            </h1>
-            <p className="text-lg sm:text-xl text-blue-100 max-w-2xl mx-auto px-2">
-              Transform text between UPPERCASE, lowercase, Title Case, camelCase, PascalCase and many other formats
-            </p>
+            <div className="space-y-6">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white leading-tight" data-testid="text-page-title">
+                Case Converter
+              </h1>
+              <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
+                Transform text between UPPERCASE, lowercase, Title Case, camelCase, PascalCase and many other formats
+              </p>
+            </div>
           </div>
         </section>
 
