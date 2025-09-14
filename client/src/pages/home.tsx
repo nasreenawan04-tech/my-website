@@ -5,6 +5,7 @@ import PopularToolsSection from '@/components/PopularToolsSection';
 import CategorySection from '@/components/CategorySection';
 import Footer from '@/components/Footer';
 import FavoritesSection from '@/components/FavoritesSection';
+import { Calculator, PenTool, HeartPulse } from 'lucide-react';
 
 const Home = () => {
   return (
@@ -59,7 +60,7 @@ const Home = () => {
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
                   <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
                     <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
-                      <i className="fas fa-calculator text-blue-600 text-xl"></i>
+                      <Calculator className="text-blue-600" size={20} />
                     </div>
                     <h3 className="text-lg font-semibold text-neutral-800 mb-2">Finance Tools</h3>
                     <p className="text-neutral-600 text-sm">Calculators for loans, mortgages, investments, taxes, and more financial planning needs</p>
@@ -67,7 +68,7 @@ const Home = () => {
 
                   <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
                     <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
-                      <i className="fas fa-font text-purple-600 text-xl"></i>
+                      <PenTool className="text-purple-600" size={20} />
                     </div>
                     <h3 className="text-lg font-semibold text-neutral-800 mb-2">Text Tools</h3>
                     <p className="text-neutral-600 text-sm">Word counters, case converters, grammar checkers, and content generation tools</p>
@@ -75,7 +76,7 @@ const Home = () => {
 
                   <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
                     <div className="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
-                      <i className="fas fa-heartbeat text-pink-600 text-xl"></i>
+                      <HeartPulse className="text-pink-600" size={20} />
                     </div>
                     <h3 className="text-lg font-semibold text-neutral-800 mb-2">Health Tools</h3>
                     <p className="text-neutral-600 text-sm">BMI calculators, calorie counters, and wellness tracking tools for healthy living</p>
