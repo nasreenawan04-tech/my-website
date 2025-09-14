@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { Shield, UserX, EyeOff, Handshake, Database, Check, Monitor, X, Laptop, Lock, Trash2, UserMinus, XCircle, BarChart, MousePointer, Cookie, CheckCircle, Clock, Calendar, Infinity, Eye, Download, Edit, Mail, ShieldCheck, Server, TrendingUp, UserCheck, HandHeart } from 'lucide-react';
 
 export default function PrivacyPolicy() {
   return (
@@ -68,7 +69,7 @@ export default function PrivacyPolicy() {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               <div className="text-center">
                 <div className="w-20 h-20 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <i className="fas fa-shield-alt text-white text-2xl"></i>
+                  <Shield className="text-white" size={24} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h3 className="text-xl font-bold text-neutral-800 mb-4">Privacy First</h3>
                 <p className="text-neutral-600 leading-relaxed">
@@ -78,7 +79,7 @@ export default function PrivacyPolicy() {
 
               <div className="text-center">
                 <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <i className="fas fa-user-slash text-white text-2xl"></i>
+                  <UserX className="text-white" size={24} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h3 className="text-xl font-bold text-neutral-800 mb-4">No Registration</h3>
                 <p className="text-neutral-600 leading-relaxed">
@@ -88,7 +89,7 @@ export default function PrivacyPolicy() {
 
               <div className="text-center">
                 <div className="w-20 h-20 bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <i className="fas fa-eye-slash text-white text-2xl"></i>
+                  <EyeOff className="text-white" size={24} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h3 className="text-xl font-bold text-neutral-800 mb-4">No Tracking</h3>
                 <p className="text-neutral-600 leading-relaxed">
@@ -98,7 +99,7 @@ export default function PrivacyPolicy() {
 
               <div className="text-center">
                 <div className="w-20 h-20 bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <i className="fas fa-handshake text-white text-2xl"></i>
+                  <Handshake className="text-white" size={24} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h3 className="text-xl font-bold text-neutral-800 mb-4">Transparent</h3>
                 <p className="text-neutral-600 leading-relaxed">
@@ -115,7 +116,7 @@ export default function PrivacyPolicy() {
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div>
                 <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mb-8">
-                  <i className="fas fa-database text-white text-2xl"></i>
+                  <Database className="text-white" size={24} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h2 className="text-4xl font-bold text-neutral-800 mb-6">Information We Collect</h2>
                 <p className="text-lg text-neutral-600 leading-relaxed mb-6">
@@ -126,7 +127,7 @@ export default function PrivacyPolicy() {
                 <div className="space-y-6">
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
-                      <i className="fas fa-check text-green-600"></i>
+                      <Check className="text-green-600" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                     </div>
                     <div>
                       <h4 className="font-semibold text-neutral-800 mb-2">Basic Analytics</h4>
@@ -135,7 +136,7 @@ export default function PrivacyPolicy() {
                   </div>
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
-                      <i className="fas fa-browser text-blue-600"></i>
+                      <Monitor className="text-blue-600" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                     </div>
                     <div>
                       <h4 className="font-semibold text-neutral-800 mb-2">Technical Information</h4>
@@ -144,7 +145,7 @@ export default function PrivacyPolicy() {
                   </div>
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center">
-                      <i className="fas fa-times text-red-600"></i>
+                      <X className="text-red-600" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                     </div>
                     <div>
                       <h4 className="font-semibold text-neutral-800 mb-2">No Personal Data</h4>
@@ -172,7 +173,7 @@ export default function PrivacyPolicy() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 shadow-lg">
                 <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6">
-                  <i className="fas fa-laptop text-white text-xl"></i>
+                  <Laptop className="text-white" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h3 className="text-xl font-bold text-neutral-800 mb-4">Local Processing</h3>
                 <p className="text-neutral-600">
@@ -182,7 +183,7 @@ export default function PrivacyPolicy() {
 
               <div className="bg-gradient-to-br from-green-50 to-emerald-100 rounded-2xl p-8 shadow-lg">
                 <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center mb-6">
-                  <i className="fas fa-lock text-white text-xl"></i>
+                  <Lock className="text-white" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h3 className="text-xl font-bold text-neutral-800 mb-4">HTTPS Encryption</h3>
                 <p className="text-neutral-600">
@@ -192,7 +193,7 @@ export default function PrivacyPolicy() {
 
               <div className="bg-gradient-to-br from-purple-50 to-violet-100 rounded-2xl p-8 shadow-lg">
                 <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6">
-                  <i className="fas fa-trash-alt text-white text-xl"></i>
+                  <Trash2 className="text-white" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h3 className="text-xl font-bold text-neutral-800 mb-4">Automatic Deletion</h3>
                 <p className="text-neutral-600">
@@ -218,43 +219,43 @@ export default function PrivacyPolicy() {
             <div className="space-y-12">
               <div className="bg-white rounded-2xl p-8 shadow-lg">
                 <h3 className="text-2xl font-bold text-neutral-800 mb-6 flex items-center">
-                  <i className="fas fa-user-times text-red-500 mr-4"></i>
+                  <UserMinus className="text-red-500 mr-4" size={24} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                   Personal Information We DO NOT Collect
                 </h3>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-3">
                     <div className="flex items-center space-x-3">
-                      <i className="fas fa-times-circle text-red-500"></i>
+                      <XCircle className="text-red-500" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                       <span className="text-neutral-600">Names or personal identifiers</span>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <i className="fas fa-times-circle text-red-500"></i>
+                      <XCircle className="text-red-500" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                       <span className="text-neutral-600">Email addresses or contact information</span>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <i className="fas fa-times-circle text-red-500"></i>
+                      <XCircle className="text-red-500" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                       <span className="text-neutral-600">Phone numbers or physical addresses</span>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <i className="fas fa-times-circle text-red-500"></i>
+                      <XCircle className="text-red-500" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                       <span className="text-neutral-600">Credit card or payment information</span>
                     </div>
                   </div>
                   <div className="space-y-3">
                     <div className="flex items-center space-x-3">
-                      <i className="fas fa-times-circle text-red-500"></i>
+                      <XCircle className="text-red-500" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                       <span className="text-neutral-600">Social security or government ID numbers</span>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <i className="fas fa-times-circle text-red-500"></i>
+                      <XCircle className="text-red-500" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                       <span className="text-neutral-600">Biometric data or facial recognition</span>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <i className="fas fa-times-circle text-red-500"></i>
+                      <XCircle className="text-red-500" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                       <span className="text-neutral-600">Location tracking or GPS coordinates</span>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <i className="fas fa-times-circle text-red-500"></i>
+                      <XCircle className="text-red-500" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                       <span className="text-neutral-600">Cross-site tracking or behavioral profiles</span>
                     </div>
                   </div>
@@ -263,22 +264,22 @@ export default function PrivacyPolicy() {
 
               <div className="bg-white rounded-2xl p-8 shadow-lg">
                 <h3 className="text-2xl font-bold text-neutral-800 mb-6 flex items-center">
-                  <i className="fas fa-chart-bar text-blue-500 mr-4"></i>
+                  <BarChart className="text-blue-500 mr-4" size={24} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                   Anonymous Technical Data We Collect
                 </h3>
                 <div className="grid md:grid-cols-3 gap-6">
                   <div className="text-center p-6 bg-blue-50 rounded-xl">
-                    <i className="fas fa-browser text-blue-600 text-3xl mb-4"></i>
+                    <Monitor className="text-blue-600 mb-4 mx-auto" size={48} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                     <h4 className="font-semibold text-neutral-800 mb-2">Browser Information</h4>
                     <p className="text-sm text-neutral-600">Browser type, version, and capabilities to ensure tool compatibility and optimize performance across different platforms.</p>
                   </div>
                   <div className="text-center p-6 bg-green-50 rounded-xl">
-                    <i className="fas fa-desktop text-green-600 text-3xl mb-4"></i>
+                    <Monitor className="text-green-600 mb-4 mx-auto" size={48} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                     <h4 className="font-semibold text-neutral-800 mb-2">Device Information</h4>
                     <p className="text-sm text-neutral-600">Screen resolution, device type (desktop/mobile), and operating system to provide responsive designs and optimal user experience.</p>
                   </div>
                   <div className="text-center p-6 bg-purple-50 rounded-xl">
-                    <i className="fas fa-mouse-pointer text-purple-600 text-3xl mb-4"></i>
+                    <MousePointer className="text-purple-600 mb-4 mx-auto" size={48} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                     <h4 className="font-semibold text-neutral-800 mb-2">Usage Analytics</h4>
                     <p className="text-sm text-neutral-600">Anonymous usage patterns, popular tools, and general engagement metrics to improve our platform and develop new features.</p>
                   </div>
@@ -294,7 +295,7 @@ export default function PrivacyPolicy() {
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div>
                 <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mb-8">
-                  <i className="fas fa-cookie-bite text-white text-2xl"></i>
+                  <Cookie className="text-white" size={24} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h2 className="text-4xl font-bold text-neutral-800 mb-6">Cookies & Tracking Technology</h2>
                 <p className="text-lg text-neutral-600 leading-relaxed mb-6">
@@ -302,21 +303,21 @@ export default function PrivacyPolicy() {
                 </p>
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
-                    <i className="fas fa-check-circle text-green-500 mt-1"></i>
+                    <CheckCircle className="text-green-500 mt-1" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                     <div>
                       <h4 className="font-semibold text-neutral-800">Essential Cookies Only</h4>
                       <p className="text-neutral-600 text-sm">Required for basic site functionality and user preferences</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <i className="fas fa-times-circle text-red-500 mt-1"></i>
+                    <XCircle className="text-red-500 mt-1" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                     <div>
                       <h4 className="font-semibold text-neutral-800">No Advertising Cookies</h4>
                       <p className="text-neutral-600 text-sm">We don't use cookies for ads, marketing, or behavioral targeting</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <i className="fas fa-times-circle text-red-500 mt-1"></i>
+                    <XCircle className="text-red-500 mt-1" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                     <div>
                       <h4 className="font-semibold text-neutral-800">No Third-Party Tracking</h4>
                       <p className="text-neutral-600 text-sm">No external tracking scripts, pixels, or analytics beyond basic usage</p>
@@ -360,7 +361,7 @@ export default function PrivacyPolicy() {
             <div className="grid md:grid-cols-3 gap-8">
               <div className="bg-white rounded-2xl p-8 shadow-lg text-center">
                 <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <i className="fas fa-clock text-white text-xl"></i>
+                  <Clock className="text-white" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h3 className="text-xl font-bold text-neutral-800 mb-4">Immediate Deletion</h3>
                 <p className="text-neutral-600 mb-4">Files uploaded for processing are automatically deleted immediately after your session ends.</p>
@@ -373,7 +374,7 @@ export default function PrivacyPolicy() {
 
               <div className="bg-white rounded-2xl p-8 shadow-lg text-center">
                 <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <i className="fas fa-calendar-week text-white text-xl"></i>
+                  <Calendar className="text-white" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h3 className="text-xl font-bold text-neutral-800 mb-4">30-Day Retention</h3>
                 <p className="text-neutral-600 mb-4">Anonymous usage statistics and error logs are kept for 30 days to improve our services.</p>
@@ -386,7 +387,7 @@ export default function PrivacyPolicy() {
 
               <div className="bg-white rounded-2xl p-8 shadow-lg text-center">
                 <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <i className="fas fa-infinity text-white text-xl"></i>
+                  <Infinity className="text-white" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h3 className="text-xl font-bold text-neutral-800 mb-4">No Long-Term Storage</h3>
                 <p className="text-neutral-600 mb-4">We don't keep long-term databases of user activity or create permanent records of your tool usage.</p>
@@ -414,25 +415,25 @@ export default function PrivacyPolicy() {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-6 text-center">
-                <i className="fas fa-eye text-blue-600 text-3xl mb-4"></i>
+                <Eye className="text-blue-600 mb-4 mx-auto" size={48} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 <h3 className="text-lg font-bold text-neutral-800 mb-3">Right to Know</h3>
                 <p className="text-neutral-600 text-sm">You have the right to know what data we collect and how we use it. This privacy policy provides complete transparency.</p>
               </div>
 
               <div className="bg-gradient-to-br from-green-50 to-emerald-100 rounded-2xl p-6 text-center">
-                <i className="fas fa-download text-green-600 text-3xl mb-4"></i>
+                <Download className="text-green-600 mb-4 mx-auto" size={48} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 <h3 className="text-lg font-bold text-neutral-800 mb-3">Right to Access</h3>
                 <p className="text-neutral-600 text-sm">Request a copy of any data we have about you, though since we collect minimal data, there's usually nothing to provide.</p>
               </div>
 
               <div className="bg-gradient-to-br from-purple-50 to-violet-100 rounded-2xl p-6 text-center">
-                <i className="fas fa-edit text-purple-600 text-3xl mb-4"></i>
+                <Edit className="text-purple-600 mb-4 mx-auto" size={48} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 <h3 className="text-lg font-bold text-neutral-800 mb-3">Right to Correct</h3>
                 <p className="text-neutral-600 text-sm">Request correction of any inaccurate data, though our minimal data collection makes this rarely necessary.</p>
               </div>
 
               <div className="bg-gradient-to-br from-red-50 to-pink-100 rounded-2xl p-6 text-center">
-                <i className="fas fa-trash text-red-600 text-3xl mb-4"></i>
+                <Trash2 className="text-red-600 mb-4 mx-auto" size={48} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 <h3 className="text-lg font-bold text-neutral-800 mb-3">Right to Delete</h3>
                 <p className="text-neutral-600 text-sm">Request deletion of your data at any time. Contact us and we'll remove any information we have within 48 hours.</p>
               </div>
@@ -442,17 +443,17 @@ export default function PrivacyPolicy() {
               <h3 className="text-2xl font-bold text-neutral-800 mb-4 text-center">How to Exercise Your Rights</h3>
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="text-center">
-                  <i className="fas fa-envelope text-orange-600 text-2xl mb-3"></i>
+                  <Mail className="text-orange-600 mb-3 mx-auto" size={24} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                   <h4 className="font-semibold text-neutral-800 mb-2">Contact Us</h4>
                   <p className="text-neutral-600 text-sm">Send us your request through our contact form with details about what you need.</p>
                 </div>
                 <div className="text-center">
-                  <i className="fas fa-clock text-orange-600 text-2xl mb-3"></i>
+                  <Clock className="text-orange-600 mb-3 mx-auto" size={24} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                   <h4 className="font-semibold text-neutral-800 mb-2">48-Hour Response</h4>
                   <p className="text-neutral-600 text-sm">We'll respond to your request within 48 hours with the information or action you requested.</p>
                 </div>
                 <div className="text-center">
-                  <i className="fas fa-shield-check text-orange-600 text-2xl mb-3"></i>
+                  <ShieldCheck className="text-orange-600 mb-3 mx-auto" size={24} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                   <h4 className="font-semibold text-neutral-800 mb-2">Identity Verification</h4>
                   <p className="text-neutral-600 text-sm">We may ask for verification to protect your privacy, but since we don't collect personal data, this is rarely needed.</p>
                 </div>
@@ -477,7 +478,7 @@ export default function PrivacyPolicy() {
               <div className="bg-white rounded-2xl p-8 shadow-lg">
                 <div className="flex items-start space-x-6">
                   <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center">
-                    <i className="fas fa-server text-white text-xl"></i>
+                    <Server className="text-white" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl font-bold text-neutral-800 mb-3">Hosting & Infrastructure</h3>
@@ -486,19 +487,19 @@ export default function PrivacyPolicy() {
                     </p>
                     <div className="grid md:grid-cols-2 gap-4">
                       <div className="flex items-center space-x-2">
-                        <i className="fas fa-check text-green-500"></i>
+                        <Check className="text-green-500" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                         <span className="text-neutral-600 text-sm">GDPR and CCPA compliant hosting</span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <i className="fas fa-check text-green-500"></i>
+                        <Check className="text-green-500" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                         <span className="text-neutral-600 text-sm">No data sharing with hosting providers</span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <i className="fas fa-check text-green-500"></i>
+                        <Check className="text-green-500" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                         <span className="text-neutral-600 text-sm">Encrypted data transmission</span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <i className="fas fa-check text-green-500"></i>
+                        <Check className="text-green-500" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                         <span className="text-neutral-600 text-sm">Regular security audits</span>
                       </div>
                     </div>
@@ -509,7 +510,7 @@ export default function PrivacyPolicy() {
               <div className="bg-white rounded-2xl p-8 shadow-lg">
                 <div className="flex items-start space-x-6">
                   <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center">
-                    <i className="fas fa-chart-line text-white text-xl"></i>
+                    <TrendingUp className="text-white" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl font-bold text-neutral-800 mb-3">Anonymous Analytics</h3>
@@ -518,19 +519,19 @@ export default function PrivacyPolicy() {
                     </p>
                     <div className="grid md:grid-cols-2 gap-4">
                       <div className="flex items-center space-x-2">
-                        <i className="fas fa-check text-green-500"></i>
+                        <Check className="text-green-500" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                         <span className="text-neutral-600 text-sm">No personal identifiers collected</span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <i className="fas fa-check text-green-500"></i>
+                        <Check className="text-green-500" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                         <span className="text-neutral-600 text-sm">No cross-site tracking</span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <i className="fas fa-check text-green-500"></i>
+                        <Check className="text-green-500" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                         <span className="text-neutral-600 text-sm">Aggregated data only</span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <i className="fas fa-check text-green-500"></i>
+                        <Check className="text-green-500" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                         <span className="text-neutral-600 text-sm">Automatic data deletion</span>
                       </div>
                     </div>
@@ -551,17 +552,17 @@ export default function PrivacyPolicy() {
               </p>
               <div className="grid md:grid-cols-3 gap-6 mb-8">
                 <div className="text-center p-4">
-                  <i className="fas fa-clock text-blue-600 text-2xl mb-2"></i>
+                  <Clock className="text-blue-600 mb-2 mx-auto" size={24} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                   <h4 className="font-semibold text-neutral-800 mb-1">Quick Response</h4>
                   <p className="text-neutral-600 text-sm">Usually within 24 hours</p>
                 </div>
                 <div className="text-center p-4">
-                  <i className="fas fa-user-shield text-blue-600 text-2xl mb-2"></i>
+                  <UserCheck className="text-blue-600 mb-2 mx-auto" size={24} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                   <h4 className="font-semibold text-neutral-800 mb-1">Privacy Expert</h4>
                   <p className="text-neutral-600 text-sm">Dedicated privacy team</p>
                 </div>
                 <div className="text-center p-4">
-                  <i className="fas fa-hands-helping text-blue-600 text-2xl mb-2"></i>
+                  <HandHeart className="text-blue-600 mb-2 mx-auto" size={24} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                   <h4 className="font-semibold text-neutral-800 mb-1">Helpful Support</h4>
                   <p className="text-neutral-600 text-sm">Clear, honest answers</p>
                 </div>

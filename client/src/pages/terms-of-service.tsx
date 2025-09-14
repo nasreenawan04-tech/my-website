@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { Gift, Handshake, Scale, Shield, UserCheck, Check, Briefcase, X, CheckCircle, ThumbsUp, XCircle, Ban, Copyright, Info, AlertTriangle, UserX, Gavel, Undo, RotateCcw, Bell, Calendar, Eye, Wrench, ShieldCheck, Clock, Plus, MessageCircle, HelpCircle } from 'lucide-react';
 
 export default function TermsOfService() {
   return (
@@ -68,7 +69,7 @@ export default function TermsOfService() {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               <div className="text-center">
                 <div className="w-20 h-20 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <i className="fas fa-gift text-white text-2xl"></i>
+                  <Gift className="text-white" size={24} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h3 className="text-xl font-bold text-neutral-800 mb-4">Always Free</h3>
                 <p className="text-neutral-600 leading-relaxed">
@@ -78,7 +79,7 @@ export default function TermsOfService() {
 
               <div className="text-center">
                 <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <i className="fas fa-handshake text-white text-2xl"></i>
+                  <Handshake className="text-white" size={24} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h3 className="text-xl font-bold text-neutral-800 mb-4">Fair Use</h3>
                 <p className="text-neutral-600 leading-relaxed">
@@ -88,7 +89,7 @@ export default function TermsOfService() {
 
               <div className="text-center">
                 <div className="w-20 h-20 bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <i className="fas fa-balance-scale text-white text-2xl"></i>
+                  <Scale className="text-white" size={24} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h3 className="text-xl font-bold text-neutral-800 mb-4">No Fine Print</h3>
                 <p className="text-neutral-600 leading-relaxed">
@@ -98,7 +99,7 @@ export default function TermsOfService() {
 
               <div className="text-center">
                 <div className="w-20 h-20 bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <i className="fas fa-shield-alt text-white text-2xl"></i>
+                  <Shield className="text-white" size={24} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h3 className="text-xl font-bold text-neutral-800 mb-4">Mutual Respect</h3>
                 <p className="text-neutral-600 leading-relaxed">
@@ -115,7 +116,7 @@ export default function TermsOfService() {
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div>
                 <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mb-8">
-                  <i className="fas fa-user-check text-white text-2xl"></i>
+                  <UserCheck className="text-white" size={24} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h2 className="text-4xl font-bold text-neutral-800 mb-6">Usage Guidelines</h2>
                 <p className="text-lg text-neutral-600 leading-relaxed mb-6">
@@ -126,7 +127,7 @@ export default function TermsOfService() {
                 <div className="space-y-6">
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
-                      <i className="fas fa-check text-green-600"></i>
+                      <Check className="text-green-600" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                     </div>
                     <div>
                       <h4 className="font-semibold text-neutral-800 mb-2">Use Responsibly</h4>
@@ -135,7 +136,7 @@ export default function TermsOfService() {
                   </div>
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
-                      <i className="fas fa-briefcase text-blue-600"></i>
+                      <Briefcase className="text-blue-600" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                     </div>
                     <div>
                       <h4 className="font-semibold text-neutral-800 mb-2">Commercial Use OK</h4>
@@ -144,7 +145,7 @@ export default function TermsOfService() {
                   </div>
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center">
-                      <i className="fas fa-times text-red-600"></i>
+                      <X className="text-red-600" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                     </div>
                     <div>
                       <h4 className="font-semibold text-neutral-800 mb-2">No Abuse</h4>
@@ -172,24 +173,24 @@ export default function TermsOfService() {
             <div className="grid md:grid-cols-2 gap-12">
               <div className="bg-gradient-to-br from-green-50 to-emerald-100 rounded-2xl p-8 shadow-lg">
                 <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center mb-6">
-                  <i className="fas fa-user-shield text-white text-xl"></i>
+                  <UserCheck className="text-white" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h3 className="text-2xl font-bold text-neutral-800 mb-6">Your Rights</h3>
                 <ul className="space-y-4">
                   <li className="flex items-start space-x-3">
-                    <i className="fas fa-check text-green-600 mt-1"></i>
+                    <Check className="text-green-600 mt-1" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                     <span className="text-neutral-600">Free access to all 150+ tools without restrictions</span>
                   </li>
                   <li className="flex items-start space-x-3">
-                    <i className="fas fa-check text-green-600 mt-1"></i>
+                    <Check className="text-green-600 mt-1" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                     <span className="text-neutral-600">Privacy protection and secure data handling</span>
                   </li>
                   <li className="flex items-start space-x-3">
-                    <i className="fas fa-check text-green-600 mt-1"></i>
+                    <Check className="text-green-600 mt-1" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                     <span className="text-neutral-600">Use tools for personal and commercial purposes</span>
                   </li>
                   <li className="flex items-start space-x-3">
-                    <i className="fas fa-check text-green-600 mt-1"></i>
+                    <Check className="text-green-600 mt-1" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                     <span className="text-neutral-600">Support and assistance when needed</span>
                   </li>
                 </ul>
@@ -197,24 +198,24 @@ export default function TermsOfService() {
 
               <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 shadow-lg">
                 <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6">
-                  <i className="fas fa-balance-scale text-white text-xl"></i>
+                  <Scale className="text-white" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h3 className="text-2xl font-bold text-neutral-800 mb-6">Our Rights</h3>
                 <ul className="space-y-4">
                   <li className="flex items-start space-x-3">
-                    <i className="fas fa-shield-alt text-blue-600 mt-1"></i>
+                    <Shield className="text-blue-600 mt-1" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                     <span className="text-neutral-600">Maintain service quality and platform integrity</span>
                   </li>
                   <li className="flex items-start space-x-3">
-                    <i className="fas fa-shield-alt text-blue-600 mt-1"></i>
+                    <Shield className="text-blue-600 mt-1" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                     <span className="text-neutral-600">Update terms with reasonable notice</span>
                   </li>
                   <li className="flex items-start space-x-3">
-                    <i className="fas fa-shield-alt text-blue-600 mt-1"></i>
+                    <Shield className="text-blue-600 mt-1" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                     <span className="text-neutral-600">Restrict access for misuse or abuse</span>
                   </li>
                   <li className="flex items-start space-x-3">
-                    <i className="fas fa-shield-alt text-blue-600 mt-1"></i>
+                    <Shield className="text-blue-600 mt-1" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                     <span className="text-neutral-600">Protect our intellectual property</span>
                   </li>
                 </ul>
@@ -238,7 +239,7 @@ export default function TermsOfService() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div className="bg-white rounded-2xl p-8 shadow-lg">
                 <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6">
-                  <i className="fas fa-tools text-white text-xl"></i>
+                  <Wrench className="text-white" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h3 className="text-xl font-bold text-neutral-800 mb-4">150+ Free Tools</h3>
                 <p className="text-neutral-600 mb-4">
@@ -253,7 +254,7 @@ export default function TermsOfService() {
 
               <div className="bg-white rounded-2xl p-8 shadow-lg">
                 <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center mb-6">
-                  <i className="fas fa-shield-check text-white text-xl"></i>
+                  <ShieldCheck className="text-white" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h3 className="text-xl font-bold text-neutral-800 mb-4">Secure Processing</h3>
                 <p className="text-neutral-600 mb-4">
@@ -269,7 +270,7 @@ export default function TermsOfService() {
 
               <div className="bg-white rounded-2xl p-8 shadow-lg">
                 <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6">
-                  <i className="fas fa-clock text-white text-xl"></i>
+                  <Clock className="text-white" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h3 className="text-xl font-bold text-neutral-800 mb-4">24/7 Availability</h3>
                 <p className="text-neutral-600 mb-4">
@@ -302,33 +303,33 @@ export default function TermsOfService() {
               <div className="space-y-8">
                 <div className="bg-gradient-to-br from-green-50 to-emerald-100 rounded-2xl p-8">
                   <h3 className="text-2xl font-bold text-neutral-800 mb-6 flex items-center">
-                    <i className="fas fa-check-circle text-green-600 mr-4"></i>
+                    <CheckCircle className="text-green-600 mr-4" size={24} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                     Encouraged Uses
                   </h3>
                   <div className="space-y-4">
                     <div className="flex items-start space-x-3">
-                      <i className="fas fa-thumbs-up text-green-600 mt-1"></i>
+                      <ThumbsUp className="text-green-600 mt-1" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                       <div>
                         <h4 className="font-semibold text-neutral-800">Personal Projects</h4>
                         <p className="text-neutral-600 text-sm">Use our tools for personal documents, calculations, and creative projects</p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-3">
-                      <i className="fas fa-thumbs-up text-green-600 mt-1"></i>
+                      <ThumbsUp className="text-green-600 mt-1" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                       <div>
                         <h4 className="font-semibold text-neutral-800">Business Operations</h4>
                         <p className="text-neutral-600 text-sm">Commercial use for legitimate business needs and professional projects</p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-3">
-                      <i className="fas fa-thumbs-up text-green-600 mt-1"></i>
+                      <ThumbsUp className="text-green-600 mt-1" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                       <div>
                         <h4 className="font-semibold text-neutral-800">Educational Purposes</h4>
                         <p className="text-neutral-600 text-sm">Academic research, learning projects, and educational content creation</p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-3">
-                      <i className="fas fa-thumbs-up text-green-600 mt-1"></i>
+                      <ThumbsUp className="text-green-600 mt-1" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                       <div>
                         <h4 className="font-semibold text-neutral-800">Non-Profit Activities</h4>
                         <p className="text-neutral-600 text-sm">Charitable organizations and community service projects</p>
@@ -341,33 +342,33 @@ export default function TermsOfService() {
               <div className="space-y-8">
                 <div className="bg-gradient-to-br from-red-50 to-pink-100 rounded-2xl p-8">
                   <h3 className="text-2xl font-bold text-neutral-800 mb-6 flex items-center">
-                    <i className="fas fa-times-circle text-red-600 mr-4"></i>
+                    <XCircle className="text-red-600 mr-4" size={24} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                     Prohibited Uses
                   </h3>
                   <div className="space-y-4">
                     <div className="flex items-start space-x-3">
-                      <i className="fas fa-ban text-red-600 mt-1"></i>
+                      <Ban className="text-red-600 mt-1" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                       <div>
                         <h4 className="font-semibold text-neutral-800">Illegal Activities</h4>
                         <p className="text-neutral-600 text-sm">Any use that violates local, national, or international laws</p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-3">
-                      <i className="fas fa-ban text-red-600 mt-1"></i>
+                      <Ban className="text-red-600 mt-1" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                       <div>
                         <h4 className="font-semibold text-neutral-800">Harmful Content</h4>
                         <p className="text-neutral-600 text-sm">Processing content that promotes hate, violence, or illegal activities</p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-3">
-                      <i className="fas fa-ban text-red-600 mt-1"></i>
+                      <Ban className="text-red-600 mt-1" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                       <div>
                         <h4 className="font-semibold text-neutral-800">System Abuse</h4>
                         <p className="text-neutral-600 text-sm">Attempts to overload, hack, or exploit our systems and infrastructure</p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-3">
-                      <i className="fas fa-ban text-red-600 mt-1"></i>
+                      <Ban className="text-red-600 mt-1" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                       <div>
                         <h4 className="font-semibold text-neutral-800">Intellectual Property Violation</h4>
                         <p className="text-neutral-600 text-sm">Processing copyrighted material without proper authorization</p>
@@ -386,7 +387,7 @@ export default function TermsOfService() {
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div>
                 <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-2xl flex items-center justify-center mb-8">
-                  <i className="fas fa-copyright text-white text-2xl"></i>
+                  <Copyright className="text-white" size={24} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h2 className="text-4xl font-bold text-neutral-800 mb-6">Intellectual Property Rights</h2>
                 <p className="text-lg text-neutral-600 leading-relaxed mb-6">
@@ -394,21 +395,21 @@ export default function TermsOfService() {
                 </p>
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
-                    <i className="fas fa-info-circle text-blue-500 mt-1"></i>
+                    <Info className="text-blue-500 mt-1" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                     <div>
                       <h4 className="font-semibold text-neutral-800">Your Content Remains Yours</h4>
                       <p className="text-neutral-600 text-sm">You retain all rights to content you create or process using our tools</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <i className="fas fa-info-circle text-blue-500 mt-1"></i>
+                    <Info className="text-blue-500 mt-1" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                     <div>
                       <h4 className="font-semibold text-neutral-800">Our Platform Protection</h4>
                       <p className="text-neutral-600 text-sm">DapsiWow's code, design, and branding are protected by intellectual property laws</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <i className="fas fa-info-circle text-blue-500 mt-1"></i>
+                    <Info className="text-blue-500 mt-1" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                     <div>
                       <h4 className="font-semibold text-neutral-800">Respect Third-Party Rights</h4>
                       <p className="text-neutral-600 text-sm">Only process content you own or have permission to use</p>
@@ -467,7 +468,7 @@ export default function TermsOfService() {
             <div className="grid md:grid-cols-2 gap-12">
               <div className="bg-gradient-to-br from-yellow-50 to-orange-100 rounded-2xl p-8 shadow-lg">
                 <div className="w-16 h-16 bg-gradient-to-r from-yellow-500 to-orange-600 rounded-2xl flex items-center justify-center mb-6">
-                  <i className="fas fa-exclamation-triangle text-white text-xl"></i>
+                  <AlertTriangle className="text-white" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h3 className="text-2xl font-bold text-neutral-800 mb-6">Service Disclaimers</h3>
                 <div className="space-y-4">
@@ -497,7 +498,7 @@ export default function TermsOfService() {
 
               <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 shadow-lg">
                 <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mb-6">
-                  <i className="fas fa-shield-alt text-white text-xl"></i>
+                  <Shield className="text-white" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h3 className="text-2xl font-bold text-neutral-800 mb-6">Limitation of Liability</h3>
                 <div className="space-y-4">
@@ -543,7 +544,7 @@ export default function TermsOfService() {
             <div className="grid md:grid-cols-3 gap-8">
               <div className="bg-white rounded-2xl p-8 shadow-lg text-center">
                 <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <i className="fas fa-user-slash text-white text-xl"></i>
+                  <UserX className="text-white" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h3 className="text-xl font-bold text-neutral-800 mb-4">Violation Consequences</h3>
                 <p className="text-neutral-600 mb-4">
@@ -559,7 +560,7 @@ export default function TermsOfService() {
 
               <div className="bg-white rounded-2xl p-8 shadow-lg text-center">
                 <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <i className="fas fa-gavel text-white text-xl"></i>
+                  <Gavel className="text-white" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h3 className="text-xl font-bold text-neutral-800 mb-4">Fair Process</h3>
                 <p className="text-neutral-600 mb-4">
@@ -575,7 +576,7 @@ export default function TermsOfService() {
 
               <div className="bg-white rounded-2xl p-8 shadow-lg text-center">
                 <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <i className="fas fa-undo text-white text-xl"></i>
+                  <Undo className="text-white" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h3 className="text-xl font-bold text-neutral-800 mb-4">User-Initiated Termination</h3>
                 <p className="text-neutral-600 mb-4">
@@ -598,7 +599,7 @@ export default function TermsOfService() {
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div>
                 <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mb-8">
-                  <i className="fas fa-sync-alt text-white text-2xl"></i>
+                  <RotateCcw className="text-white" size={24} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h2 className="text-4xl font-bold text-neutral-800 mb-6">Terms Updates & Changes</h2>
                 <p className="text-lg text-neutral-600 leading-relaxed mb-6">
@@ -606,21 +607,21 @@ export default function TermsOfService() {
                 </p>
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
-                    <i className="fas fa-bell text-purple-500 mt-1"></i>
+                    <Bell className="text-purple-500 mt-1" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                     <div>
                       <h4 className="font-semibold text-neutral-800">Advance Notice</h4>
                       <p className="text-neutral-600 text-sm">Significant changes will be communicated 30 days in advance</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <i className="fas fa-calendar text-purple-500 mt-1"></i>
+                    <Calendar className="text-purple-500 mt-1" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                     <div>
                       <h4 className="font-semibold text-neutral-800">Clear Dating</h4>
                       <p className="text-neutral-600 text-sm">All updates include clear effective dates and version numbers</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <i className="fas fa-eye text-purple-500 mt-1"></i>
+                    <Eye className="text-purple-500 mt-1" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                     <div>
                       <h4 className="font-semibold text-neutral-800">Continued Use</h4>
                       <p className="text-neutral-600 text-sm">Using our services after updates indicates acceptance of new terms</p>
@@ -633,7 +634,7 @@ export default function TermsOfService() {
                 <div className="space-y-6">
                   <div className="bg-white rounded-xl p-6 shadow-sm">
                     <h4 className="font-semibold text-neutral-800 mb-2 flex items-center">
-                      <i className="fas fa-plus-circle text-green-500 mr-2"></i>
+                      <Plus className="text-green-500 mr-2" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                       Service Improvements
                     </h4>
                     <p className="text-neutral-600 text-sm">
@@ -642,7 +643,7 @@ export default function TermsOfService() {
                   </div>
                   <div className="bg-white rounded-xl p-6 shadow-sm">
                     <h4 className="font-semibold text-neutral-800 mb-2 flex items-center">
-                      <i className="fas fa-balance-scale text-blue-500 mr-2"></i>
+                      <Scale className="text-blue-500 mr-2" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                       Legal Compliance
                     </h4>
                     <p className="text-neutral-600 text-sm">
@@ -651,7 +652,7 @@ export default function TermsOfService() {
                   </div>
                   <div className="bg-white rounded-xl p-6 shadow-sm">
                     <h4 className="font-semibold text-neutral-800 mb-2 flex items-center">
-                      <i className="fas fa-comments text-orange-500 mr-2"></i>
+                      <MessageCircle className="text-orange-500 mr-2" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                       User Feedback
                     </h4>
                     <p className="text-neutral-600 text-sm">
@@ -675,17 +676,17 @@ export default function TermsOfService() {
               </p>
               <div className="grid md:grid-cols-3 gap-6 mb-8">
                 <div className="text-center p-4">
-                  <i className="fas fa-question-circle text-blue-600 text-2xl mb-2"></i>
+                  <HelpCircle className="text-blue-600 mb-2 mx-auto" size={24} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                   <h4 className="font-semibold text-neutral-800 mb-1">Terms Clarification</h4>
                   <p className="text-neutral-600 text-sm">Get clear explanations</p>
                 </div>
                 <div className="text-center p-4">
-                  <i className="fas fa-handshake text-blue-600 text-2xl mb-2"></i>
+                  <Handshake className="text-blue-600 mb-2 mx-auto" size={24} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                   <h4 className="font-semibold text-neutral-800 mb-1">Usage Guidance</h4>
                   <p className="text-neutral-600 text-sm">Learn best practices</p>
                 </div>
                 <div className="text-center p-4">
-                  <i className="fas fa-gavel text-blue-600 text-2xl mb-2"></i>
+                  <Gavel className="text-blue-600 mb-2 mx-auto" size={24} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                   <h4 className="font-semibold text-neutral-800 mb-1">Legal Support</h4>
                   <p className="text-neutral-600 text-sm">Professional assistance</p>
                 </div>

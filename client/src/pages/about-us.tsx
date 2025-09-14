@@ -2,6 +2,7 @@
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { Rocket, Users, Heart, Shield, Calculator, Type, Activity, Gift, UserCheck, Smile, CheckCircle } from 'lucide-react';
 
 const AboutUs = () => {
   return (
@@ -58,7 +59,7 @@ const AboutUs = () => {
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div>
                 <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mb-8">
-                  <i className="fas fa-rocket text-white text-2xl"></i>
+                  <Rocket className="text-white" size={24} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h2 className="text-4xl font-bold text-neutral-800 mb-6">Our Mission</h2>
                 <p className="text-lg text-neutral-600 leading-relaxed mb-6">
@@ -75,7 +76,7 @@ const AboutUs = () => {
                 <div className="space-y-8">
                   <div className="flex items-center space-x-4">
                     <div className="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center">
-                      <i className="fas fa-users text-white"></i>
+                      <Users className="text-white" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                     </div>
                     <div>
                       <h4 className="font-semibold text-neutral-800">For Everyone</h4>
@@ -84,7 +85,7 @@ const AboutUs = () => {
                   </div>
                   <div className="flex items-center space-x-4">
                     <div className="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center">
-                      <i className="fas fa-heart text-white"></i>
+                      <Heart className="text-white" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                     </div>
                     <div>
                       <h4 className="font-semibold text-neutral-800">Always Free</h4>
@@ -93,7 +94,7 @@ const AboutUs = () => {
                   </div>
                   <div className="flex items-center space-x-4">
                     <div className="w-12 h-12 bg-purple-500 rounded-xl flex items-center justify-center">
-                      <i className="fas fa-shield-alt text-white"></i>
+                      <Shield className="text-white" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                     </div>
                     <div>
                       <h4 className="font-semibold text-neutral-800">Privacy First</h4>
@@ -122,7 +123,7 @@ const AboutUs = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6">
-                  <i className="fas fa-calculator text-white text-xl"></i>
+                  <Calculator className="text-white" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h3 className="text-xl font-bold text-neutral-800 mb-4">Finance Tools</h3>
                 <p className="text-neutral-600 mb-4">
@@ -140,7 +141,7 @@ const AboutUs = () => {
 
               <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6">
-                  <i className="fas fa-font text-white text-xl"></i>
+                  <Type className="text-white" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h3 className="text-xl font-bold text-neutral-800 mb-4">Text Tools</h3>
                 <p className="text-neutral-600 mb-4">
@@ -157,7 +158,7 @@ const AboutUs = () => {
 
               <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <div className="w-16 h-16 bg-gradient-to-r from-pink-500 to-pink-600 rounded-2xl flex items-center justify-center mb-6">
-                  <i className="fas fa-heartbeat text-white text-xl"></i>
+                  <Activity className="text-white" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h3 className="text-xl font-bold text-neutral-800 mb-4">Health Tools</h3>
                 <p className="text-neutral-600 mb-4">
@@ -189,7 +190,7 @@ const AboutUs = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               <div className="text-center">
                 <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <i className="fas fa-gift text-white text-2xl"></i>
+                  <Gift className="text-white" size={24} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h3 className="text-xl font-bold text-neutral-800 mb-4">Free Forever</h3>
                 <p className="text-neutral-600 leading-relaxed">
@@ -200,7 +201,7 @@ const AboutUs = () => {
 
               <div className="text-center">
                 <div className="w-20 h-20 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <i className="fas fa-user-shield text-white text-2xl"></i>
+                  <UserCheck className="text-white" size={24} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h3 className="text-xl font-bold text-neutral-800 mb-4">Privacy First</h3>
                 <p className="text-neutral-600 leading-relaxed">
@@ -211,7 +212,7 @@ const AboutUs = () => {
 
               <div className="text-center">
                 <div className="w-20 h-20 bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <i className="fas fa-smile text-white text-2xl"></i>
+                  <Smile className="text-white" size={24} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h3 className="text-xl font-bold text-neutral-800 mb-4">User-Friendly</h3>
                 <p className="text-neutral-600 leading-relaxed">
@@ -222,7 +223,7 @@ const AboutUs = () => {
 
               <div className="text-center">
                 <div className="w-20 h-20 bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <i className="fas fa-check-circle text-white text-2xl"></i>
+                  <CheckCircle className="text-white" size={24} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                 </div>
                 <h3 className="text-xl font-bold text-neutral-800 mb-4">Reliable</h3>
                 <p className="text-neutral-600 leading-relaxed">

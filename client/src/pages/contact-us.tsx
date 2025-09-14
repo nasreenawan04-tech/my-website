@@ -5,6 +5,7 @@ import emailjs from '@emailjs/browser';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useToast } from '@/hooks/use-toast';
+import { Loader2, Send, Mail, Clock, HelpCircle, Check } from 'lucide-react';
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -190,12 +191,12 @@ const ContactUs = () => {
                     >
                       {isSubmitting ? (
                         <>
-                          <i className="fas fa-spinner fa-spin mr-2"></i>
+                          <Loader2 className="mr-2 animate-spin" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                           Sending...
                         </>
                       ) : (
                         <>
-                          <i className="fas fa-paper-plane mr-2"></i>
+                          <Send className="mr-2" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                           Send Message
                         </>
                       )}
@@ -210,7 +211,7 @@ const ContactUs = () => {
                     <div className="space-y-6">
                       <div className="flex items-start">
                         <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
-                          <i className="fas fa-envelope text-green-600"></i>
+                          <Mail className="text-green-600" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                         </div>
                         <div>
                           <h3 className="font-semibold text-neutral-800">Email</h3>
@@ -220,7 +221,7 @@ const ContactUs = () => {
 
                       <div className="flex items-start">
                         <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
-                          <i className="fas fa-clock text-blue-600"></i>
+                          <Clock className="text-blue-600" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                         </div>
                         <div>
                           <h3 className="font-semibold text-neutral-800">Response Time</h3>
@@ -230,7 +231,7 @@ const ContactUs = () => {
 
                       <div className="flex items-start">
                         <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
-                          <i className="fas fa-question-circle text-purple-600"></i>
+                          <HelpCircle className="text-purple-600" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                         </div>
                         <div>
                           <h3 className="font-semibold text-neutral-800">Quick Help</h3>
@@ -252,15 +253,15 @@ const ContactUs = () => {
                     </p>
                     <ul className="text-sm text-neutral-600 space-y-2">
                       <li className="flex items-center">
-                        <i className="fas fa-check text-green-500 mr-2"></i>
+                        <Check className="text-green-500 mr-2" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                         24-hour response time
                       </li>
                       <li className="flex items-center">
-                        <i className="fas fa-check text-green-500 mr-2"></i>
+                        <Check className="text-green-500 mr-2" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                         Friendly support team
                       </li>
                       <li className="flex items-center">
-                        <i className="fas fa-check text-green-500 mr-2"></i>
+                        <Check className="text-green-500 mr-2" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                         We value your feedback
                       </li>
                     </ul>

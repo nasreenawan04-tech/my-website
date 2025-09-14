@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { Search, PlayCircle, Calculator, FileText, Settings, Shield, Briefcase, Flame, HelpCircle, Mail, Lightbulb, Monitor, Smartphone } from 'lucide-react';
 
 const HelpCenter = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -12,46 +13,61 @@ const HelpCenter = () => {
     {
       id: 'getting-started',
       name: 'Getting Started',
-      icon: 'fas fa-play-circle',
+      icon: 'PlayCircle',
       color: 'from-blue-500 to-blue-600',
       description: 'New to DapsiWow? Start here to learn the basics'
     },
     {
       id: 'finance-tools',
       name: 'Finance Tools',
-      icon: 'fas fa-calculator',
+      icon: 'Calculator',
       color: 'from-green-500 to-green-600',
       description: 'Help with calculators and financial tools'
     },
     {
       id: 'file-tools',
       name: 'File Tools',
-      icon: 'fas fa-file-alt',
+      icon: 'FileText',
       color: 'from-red-500 to-red-600',
       description: 'PDF and document processing'
     },
     {
       id: 'technical',
       name: 'Technical Support',
-      icon: 'fas fa-cog',
+      icon: 'Settings',
       color: 'from-purple-500 to-purple-600',
       description: 'Technical issues and troubleshooting'
     },
     {
       id: 'account',
       name: 'Account & Privacy',
-      icon: 'fas fa-shield-alt',
+      icon: 'Shield',
       color: 'from-indigo-500 to-indigo-600',
       description: 'Privacy, security, and account questions'
     },
     {
       id: 'business',
       name: 'Business Use',
-      icon: 'fas fa-briefcase',
+      icon: 'Briefcase',
       color: 'from-orange-500 to-orange-600',
       description: 'Using DapsiWow for commercial purposes'
     }
   ];
+
+  // Icon component mapping
+  const iconComponents = {
+    PlayCircle,
+    Calculator,
+    FileText,
+    Settings,
+    Shield,
+    Briefcase
+  };
+
+  const renderIcon = (iconName: string) => {
+    const IconComponent = iconComponents[iconName as keyof typeof iconComponents];
+    return IconComponent ? <IconComponent size={24} aria-hidden="true" style={{ pointerEvents: 'none' }} /> : null;
+  };
 
   const faqs = [
     {
@@ -160,7 +176,7 @@ const HelpCenter = () => {
                       className="w-full px-6 py-4 pl-14 text-neutral-800 bg-white rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-opacity-50 text-lg"
                       data-testid="input-search-help"
                     />
-                    <i className="fas fa-search absolute left-5 top-1/2 transform -translate-y-1/2 text-neutral-400 text-lg"></i>
+                    <Search className="absolute left-5 top-1/2 transform -translate-y-1/2 text-neutral-400" size={18} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                   </div>
                 </div>
 
@@ -210,7 +226,7 @@ const HelpCenter = () => {
                     data-testid={`button-category-${category.id}`}
                   >
                     <div className={`w-16 h-16 bg-gradient-to-r ${category.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                      <i className={`${category.icon} text-white text-2xl`}></i>
+                      <div className="text-white">{renderIcon(category.icon)}</div>
                     </div>
                     <h3 className="text-xl font-bold text-neutral-800 mb-3">{category.name}</h3>
                     <p className="text-neutral-600 leading-relaxed">{category.description}</p>
@@ -228,7 +244,7 @@ const HelpCenter = () => {
                 <div className="lg:col-span-1">
                   <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8">
                     <h3 className="text-2xl font-bold text-neutral-800 mb-6 flex items-center">
-                      <i className="fas fa-fire text-orange-500 mr-3"></i>
+                      <Flame className="text-orange-500 mr-3" size={24} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                       Popular Topics
                     </h3>
                     <div className="space-y-4">
@@ -273,7 +289,7 @@ const HelpCenter = () => {
                       filteredFAQs.map((faq, index) => (
                         <div key={index} className="bg-white rounded-xl shadow-sm border border-neutral-200 p-6 hover:shadow-md transition-shadow duration-200">
                           <h4 className="text-lg font-semibold text-neutral-800 mb-3 flex items-start">
-                            <i className="fas fa-question-circle text-blue-500 mr-3 mt-1 flex-shrink-0"></i>
+                            <HelpCircle className="text-blue-500 mr-3 mt-1 flex-shrink-0" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                             {faq.question}
                           </h4>
                           <p className="text-neutral-600 leading-relaxed ml-8">
@@ -283,7 +299,7 @@ const HelpCenter = () => {
                       ))
                     ) : (
                       <div className="text-center py-12 text-neutral-500">
-                        <i className="fas fa-search text-4xl mb-4"></i>
+                        <Search className="mx-auto mb-4" size={48} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                         <p className="text-lg">No questions found matching your search.</p>
                       </div>
                     )}
@@ -304,7 +320,7 @@ const HelpCenter = () => {
                 
                 <div className="mb-12">
                   <div className="bg-white bg-opacity-80 backdrop-blur-sm rounded-2xl p-8 shadow-md max-w-2xl mx-auto">
-                    <i className="fas fa-envelope text-4xl text-blue-600 mb-4"></i>
+                    <Mail className="text-blue-600 mb-4 mx-auto" size={48} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                     <h3 className="text-xl font-bold mb-3 text-gray-800">Email Support</h3>
                     <p className="text-gray-600 mb-6">Get detailed help via email within 24 hours</p>
                     <a 
@@ -312,7 +328,7 @@ const HelpCenter = () => {
                       className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors"
                       data-testid="button-email-support"
                     >
-                      <i className="fas fa-envelope mr-2"></i>
+                      <Mail className="mr-2" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                       Send Message
                     </a>
                   </div>
@@ -322,21 +338,21 @@ const HelpCenter = () => {
                   <h3 className="text-2xl font-bold mb-4 text-gray-800">Quick Tips</h3>
                   <div className="grid md:grid-cols-3 gap-6 text-left">
                     <div className="flex items-start space-x-3">
-                      <i className="fas fa-lightbulb text-yellow-500 mt-1 flex-shrink-0"></i>
+                      <Lightbulb className="text-yellow-500 mt-1 flex-shrink-0" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                       <div>
                         <h4 className="font-semibold text-gray-800">Try refreshing</h4>
                         <p className="text-sm text-gray-600">Most issues resolve with a simple page refresh</p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-3">
-                      <i className="fas fa-browser text-blue-600 mt-1 flex-shrink-0"></i>
+                      <Monitor className="text-blue-600 mt-1 flex-shrink-0" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                       <div>
                         <h4 className="font-semibold text-gray-800">Clear cache</h4>
                         <p className="text-sm text-gray-600">Clear browser cache if tools aren't loading</p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-3">
-                      <i className="fas fa-mobile-alt text-green-600 mt-1 flex-shrink-0"></i>
+                      <Smartphone className="text-green-600 mt-1 flex-shrink-0" size={20} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                       <div>
                         <h4 className="font-semibold text-gray-800">Try mobile</h4>
                         <p className="text-sm text-gray-600">All tools work great on mobile devices</p>
