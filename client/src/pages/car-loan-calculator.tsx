@@ -122,9 +122,6 @@ const CarLoanCalculator = () => {
           {/* Hero Section */}
           <section className="gradient-hero text-white py-16">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <i className="fas fa-car text-3xl"></i>
-              </div>
               <h1 className="text-4xl sm:text-5xl font-bold mb-6" data-testid="text-page-title">
                 Car Loan Calculator
               </h1>

@@ -4,7 +4,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { searchTools } from '@/lib/search';
 import { tools } from '@/data/tools';
 import Logo from './Logo';
-import { Search, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -66,7 +66,7 @@ const Header = () => {
               aria-label="Search tools"
               title="Search tools"
             >
-              <Search size={18} />
+              Search
             </button>
 
             {/* Mobile Menu */}
@@ -148,9 +148,6 @@ const Header = () => {
                     data-testid={`search-result-${tool.id}`}
                   >
                     <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <span className="text-white text-lg">{tool.icon}</span>
-                      </div>
                       <div className="flex-1 min-w-0">
                         <div className="font-medium text-gray-900 dark:text-neutral-100 truncate">{tool.name}</div>
                         <div className="text-sm text-gray-500 dark:text-neutral-400 truncate">{tool.description}</div>
@@ -165,7 +162,6 @@ const Header = () => {
                 ))
               ) : (
                 <div className="p-8 text-center text-gray-500 dark:text-neutral-400">
-                  <Search size={48} className="mx-auto mb-4" />
                   <p>No tools found matching "{searchQuery}"</p>
                 </div>
               )}

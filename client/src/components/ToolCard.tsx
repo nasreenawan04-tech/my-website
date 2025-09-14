@@ -44,9 +44,6 @@ const ToolCard = ({ tool, onClick }: ToolCardProps) => {
         <FavoriteButton tool={tool} size="sm" />
       </div>
 
-      <div className={`w-12 h-12 bg-gradient-to-r ${iconColors[tool.category]} rounded-lg flex items-center justify-center mb-4`}>
-        <i className={`${tool.icon} text-white text-xl`}></i>
-      </div>
       
       <h3 className="text-xl font-semibold text-neutral-800 dark:text-neutral-100 mb-3 pr-8" data-testid={`text-tool-name-${tool.id}`}>
         {tool.name}
@@ -66,7 +63,6 @@ const ToolCard = ({ tool, onClick }: ToolCardProps) => {
         
         {tool.isPopular && (
           <div className="bg-yellow-100 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-100 text-xs px-2 py-1 rounded-full flex items-center">
-            <i className="fas fa-star mr-1"></i>
             Popular
           </div>
         )}
