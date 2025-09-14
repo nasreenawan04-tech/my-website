@@ -14,13 +14,10 @@ const Home = () => {
         <title>DapsiWow: Free AI Writing, PDF, Image, and other Online Tools</title>
         <meta name="description" content="Support your productivity with premium tools that stay out of your way and work smarter. Create without limits, ads, or roadblocks. Get instant access to 180+ free online tools including finance calculators, text converters, and health trackers." />
         <meta name="keywords" content="DapsiWow, dapsiwow, free online tools, loan calculator, mortgage calculator, business loan calculator, lease calculator, productivity tools, finance calculators, text tools, health calculators, online utilities, web tools, no registration tools" />
-        <meta property="og:title" content="DapsiWow - 180+ Free Online Tools for Business & Personal Use" />
-        <meta property="og:description" content="Discover 180+ powerful free online tools for finance calculations, text analysis, and health monitoring. Professional-grade utilities with no sign-up required." />
+        <meta property="og:title" content="DapsiWow: Free AI Writing, PDF, Image, and other Online Tools" />
+        <meta property="og:description" content="Support your productivity with premium tools that stay out of your way and work smarter. Create without limits, ads, or roadblocks. Get instant access to 180+ free online tools." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dapsiwow.com/" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -33,35 +30,58 @@ const Home = () => {
               "target": "https://dapsiwow.com/all-tools?search={search_term_string}",
               "query-input": "required name=search_term_string"
             },
-            "mainEntity": [
-              {
-                "@type": "SoftwareApplication",
-                "name": "Finance Tools",
-                "description": "Professional financial calculators including loan, mortgage, EMI, and investment calculators",
-                "applicationCategory": "FinanceApplication",
-                "operatingSystem": "Web Browser",
-                "url": "https://dapsiwow.com/finance-tools",
-                "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-              },
-              {
-                "@type": "SoftwareApplication", 
-                "name": "Text Tools",
-                "description": "Text processing and analysis tools including word counters, case converters, and generators",
-                "applicationCategory": "UtilityApplication",
-                "operatingSystem": "Web Browser",
-                "url": "https://dapsiwow.com/text-tools",
-                "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-              },
-              {
-                "@type": "SoftwareApplication",
-                "name": "Health Tools", 
-                "description": "Health and fitness calculators including BMI, calorie, and body composition tools",
-                "applicationCategory": "HealthApplication",
-                "operatingSystem": "Web Browser", 
-                "url": "https://dapsiwow.com/health-tools",
-                "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-              }
-            ]
+            "mainEntity": {
+              "@type": "ItemList",
+              "name": "DapsiWow Tool Categories",
+              "description": "Complete collection of professional online tools organized by category",
+              "numberOfItems": 4,
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "item": {
+                    "@type": "CollectionPage",
+                    "@id": "https://dapsiwow.com/finance-tools",
+                    "name": "Finance Tools",
+                    "description": "Professional financial calculators including loan, mortgage, EMI, and investment calculators",
+                    "url": "https://dapsiwow.com/finance-tools"
+                  }
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "item": {
+                    "@type": "CollectionPage",
+                    "@id": "https://dapsiwow.com/text-tools",
+                    "name": "Text Tools",
+                    "description": "Text processing and analysis tools including word counters, case converters, and generators",
+                    "url": "https://dapsiwow.com/text-tools"
+                  }
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "item": {
+                    "@type": "CollectionPage",
+                    "@id": "https://dapsiwow.com/health-tools",
+                    "name": "Health Tools",
+                    "description": "Health and fitness calculators including BMI, calorie, and body composition tools",
+                    "url": "https://dapsiwow.com/health-tools"
+                  }
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 4,
+                  "item": {
+                    "@type": "CollectionPage",
+                    "@id": "https://dapsiwow.com/image-tools",
+                    "name": "Image Tools",
+                    "description": "Image processing and editing tools for optimization, conversion, and enhancement",
+                    "url": "https://dapsiwow.com/image-tools"
+                  }
+                }
+              ]
+            }
           })}
         </script>
       </Helmet>
@@ -353,7 +373,7 @@ const Home = () => {
                   Trusted by Users Worldwide
                 </h2>
                 <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
-                  Join thousands of professionals, students, and individuals who rely on ToolForge for their daily tasks
+                  Join thousands of professionals, students, and individuals who rely on DapsiWow for their daily tasks
                 </p>
               </div>
               
