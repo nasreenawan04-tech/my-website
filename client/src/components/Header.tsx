@@ -4,7 +4,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { searchTools } from '@/lib/search';
 import { tools } from '@/data/tools';
 import Logo from './Logo';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Search } from 'lucide-react';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -66,7 +66,7 @@ const Header = () => {
               aria-label="Search tools"
               title="Search tools"
             >
-              Search
+              <Search size={18} />
             </button>
 
             {/* Mobile Menu */}
