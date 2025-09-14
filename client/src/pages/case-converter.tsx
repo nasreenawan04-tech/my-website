@@ -593,9 +593,6 @@ const CaseConverter = () => {
               </div>
               
               <div className="text-center">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-bullhorn text-green-600 text-xl"></i>
-                </div>
                 <h3 className="font-semibold text-gray-900 mb-2">Marketers</h3>
                 <p className="text-gray-600 text-sm">Create consistent formatting for campaigns and content.</p>
               </div>
