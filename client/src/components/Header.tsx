@@ -118,13 +118,12 @@ const Header = () => {
           >
             <div className="p-4 border-b border-gray-200 dark:border-neutral-700">
               <div className="relative">
-                <Search className="absolute left-3 top-3 text-gray-400 dark:text-neutral-500" size={20} />
                 <input
                   type="text"
                   placeholder="Search for tools..."
                   value={searchQuery}
                   onChange={(e) => handleSearch(e.target.value)}
-                  className="w-full py-3 pl-12 pr-12 text-lg border border-gray-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
+                  className="w-full py-3 px-4 pr-12 text-lg border border-gray-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
                   autoFocus
                   data-testid="search-modal-input"
                   aria-label="Search for tools"

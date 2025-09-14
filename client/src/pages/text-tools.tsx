@@ -43,15 +43,13 @@ const TextTools = () => {
 
       <div className="min-h-screen flex flex-col" data-testid="page-text-tools">
         <Header />
-
+        
         <main className="flex-1 bg-neutral-50">
           {/* Hero Section */}
           <section className="bg-gradient-to-r from-yellow-600 via-orange-500 to-red-600 text-white py-16">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
               <div className="w-24 h-24 bg-white bg-opacity-20 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                <svg className="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-                </svg>
+                <i className="fas fa-pen-fancy text-4xl text-white"></i>
               </div>
               <h1 className="text-4xl sm:text-5xl font-bold mb-4" data-testid="text-page-title">
                 Text Tools
@@ -59,19 +57,16 @@ const TextTools = () => {
               <p className="text-xl text-yellow-100 mb-8 max-w-3xl mx-auto">
                 30+ free text and writing tools to analyze, improve, and transform your content
               </p>
-
+              
               {/* Search Bar */}
               <div className="max-w-2xl mx-auto">
                 <div className="relative">
-                  <div className="absolute left-5 top-1/2 transform -translate-y-1/2 text-neutral-400">
-                    <i className="fas fa-search text-lg"></i>
-                  </div>
                   <input
                     type="text"
                     placeholder="Search text tools..."
                     value={searchQuery}
                     onChange={handleSearchChange}
-                    className="w-full py-4 pl-14 pr-16 text-lg text-neutral-800 bg-white rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-yellow-200 transition-all duration-200"
+                    className="w-full py-4 px-6 pr-16 text-lg text-neutral-800 bg-white rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-yellow-200 transition-all duration-200"
                     data-testid="input-search-text-tools"
                   />
                   <div className="absolute right-2 top-2 bottom-2 px-6 bg-gradient-to-r from-yellow-500 to-orange-600 text-white rounded-xl flex items-center">
@@ -139,7 +134,7 @@ const TextTools = () => {
             </div>
           </section>
         </main>
-
+        
         <Footer />
       </div>
     </>

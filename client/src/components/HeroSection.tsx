@@ -64,9 +64,6 @@ const HeroSection = () => {
         {/* Search Bar */}
         <div className="max-w-2xl mx-auto mb-16 relative">
           <form onSubmit={handleSearch} className="relative">
-            <div className="absolute left-5 top-1/2 transform -translate-y-1/2 text-neutral-400">
-              <Search size={20} />
-            </div>
             <input 
               type="text" 
               placeholder="Search for tools..."
@@ -74,7 +71,7 @@ const HeroSection = () => {
               onChange={handleSearchChange}
               onFocus={handleInputFocus}
               onBlur={handleInputBlur}
-              className="w-full py-4 pl-14 pr-16 text-lg text-neutral-800 bg-white rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-200 transition-all duration-200"
+              className="w-full py-4 px-6 pr-16 text-lg text-neutral-800 bg-white rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-200 transition-all duration-200"
               data-testid="input-search-tools"
             />
             <button 

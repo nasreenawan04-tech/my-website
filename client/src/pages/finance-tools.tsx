@@ -43,15 +43,13 @@ const FinanceTools = () => {
 
       <div className="min-h-screen flex flex-col" data-testid="page-finance-tools">
         <Header />
-
+        
         <main className="flex-1 bg-neutral-50">
           {/* Hero Section */}
           <section className="bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-700 text-white py-16">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
               <div className="w-24 h-24 bg-white bg-opacity-20 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                <svg className="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V4a2 2 0 00-2-2H6zm1 2a1 1 0 000 2h6a1 1 0 100-2H7zm6 7a1 1 0 011 1v3a1 1 0 11-2 0v-3a1 1 0 011-1zm-3 3a1 1 0 100 2h.01a1 1 0 100-2H10zm-4 1a1 1 0 011-1h.01a1 1 0 110 2H7a1 1 0 01-1-1zm1-4a1 1 0 100 2h.01a1 1 0 110 2H10a1 1 0 01-1-1zm4-4a1 1 0 100 2h.01a1 1 0 100-2H13zm-2 1a1 1 0 011-1h.01a1 1 0 110 2H12a1 1 0 01-1-1zm-2-1a1 1 0 100 2h.01a1 1 0 100-2H9zm-2 1a1 1 0 011-1h.01a1 1 0 110 2H8a1 1 0 01-1-1z" clipRule="evenodd" />
-                </svg>
+                <i className="fas fa-calculator text-4xl text-white"></i>
               </div>
               <h1 className="text-4xl sm:text-5xl font-bold mb-4" data-testid="text-page-title">
                 Finance Tools
@@ -59,22 +57,19 @@ const FinanceTools = () => {
               <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
                 30+ free financial calculators and tools to help you make smart money decisions
               </p>
-
+              
               {/* Search Bar */}
               <div className="max-w-2xl mx-auto">
                 <div className="relative">
-                  <div className="absolute left-5 top-1/2 transform -translate-y-1/2 text-neutral-400">
-                    <i className="fas fa-search text-lg"></i>
-                  </div>
                   <input
                     type="text"
                     placeholder="Search finance tools..."
                     value={searchQuery}
                     onChange={handleSearchChange}
-                    className="w-full py-4 pl-14 pr-16 text-lg text-neutral-800 bg-white rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-200 transition-all duration-200"
+                    className="w-full py-4 px-6 pr-16 text-lg text-neutral-800 bg-white rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-200 transition-all duration-200"
                     data-testid="input-search-finance-tools"
                   />
-                  <div className="absolute right-2 top-2 bottom-2 px-6 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-xl flex items-center">
+                  <div className="absolute right-2 top-2 bottom-2 px-6 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl flex items-center">
                     <i className="fas fa-search"></i>
                   </div>
                 </div>
@@ -139,7 +134,7 @@ const FinanceTools = () => {
             </div>
           </section>
         </main>
-
+        
         <Footer />
       </div>
     </>
