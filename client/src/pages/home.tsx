@@ -5,7 +5,7 @@ import PopularToolsSection from '@/components/PopularToolsSection';
 import CategorySection from '@/components/CategorySection';
 import Footer from '@/components/Footer';
 import FavoritesSection from '@/components/FavoritesSection';
-import { Calculator, PenTool, HeartPulse } from 'lucide-react';
+import { Calculator, PenTool, HeartPulse, Zap, Shield, Smartphone, Globe } from 'lucide-react';
 
 const Home = () => {
   return (
@@ -142,7 +142,7 @@ const Home = () => {
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div className="text-center">
                   <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                    <i className="fas fa-bolt text-white text-2xl"></i>
+                    <Zap className="text-white" size={24} />
                   </div>
                   <h4 className="text-xl font-bold text-neutral-800 mb-4">Lightning Fast</h4>
                   <p className="text-neutral-600 leading-relaxed">
@@ -153,7 +153,7 @@ const Home = () => {
                 
                 <div className="text-center">
                   <div className="w-20 h-20 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                    <i className="fas fa-shield-alt text-white text-2xl"></i>
+                    <Shield className="text-white" size={24} />
                   </div>
                   <h4 className="text-xl font-bold text-neutral-800 mb-4">Secure & Private</h4>
                   <p className="text-neutral-600 leading-relaxed">
@@ -164,7 +164,7 @@ const Home = () => {
                 
                 <div className="text-center">
                   <div className="w-20 h-20 bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                    <i className="fas fa-mobile-alt text-white text-2xl"></i>
+                    <Smartphone className="text-white" size={24} />
                   </div>
                   <h4 className="text-xl font-bold text-neutral-800 mb-4">Works Everywhere</h4>
                   <p className="text-neutral-600 leading-relaxed">
@@ -175,7 +175,7 @@ const Home = () => {
                 
                 <div className="text-center">
                   <div className="w-20 h-20 bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                    <i className="fas fa-globe text-white text-2xl"></i>
+                    <Globe className="text-white" size={24} />
                   </div>
                   <h4 className="text-xl font-bold text-neutral-800 mb-4">Global Support</h4>
                   <p className="text-neutral-600 leading-relaxed">
