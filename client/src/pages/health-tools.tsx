@@ -43,7 +43,7 @@ const HealthTools = () => {
 
       <div className="min-h-screen flex flex-col" data-testid="page-health-tools">
         <Header />
-        
+
         <main className="flex-1 bg-neutral-50">
           {/* Hero Section */}
           <section className="bg-gradient-to-r from-pink-600 via-rose-500 to-red-700 text-white py-16">
@@ -59,16 +59,19 @@ const HealthTools = () => {
               <p className="text-xl text-pink-100 mb-8 max-w-3xl mx-auto">
                 30+ free health and fitness tools to track, calculate, and improve your wellbeing
               </p>
-              
+
               {/* Search Bar */}
               <div className="max-w-2xl mx-auto">
                 <div className="relative">
+                  <div className="absolute left-5 top-1/2 transform -translate-y-1/2 text-neutral-400">
+                    <i className="fas fa-search text-lg"></i>
+                  </div>
                   <input
                     type="text"
                     placeholder="Search health tools..."
                     value={searchQuery}
-                    onChange={handleSearchChange}
-                    className="w-full py-4 px-6 pr-16 text-lg text-neutral-800 bg-white rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-pink-200 transition-all duration-200"
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full py-4 pl-14 pr-16 text-lg text-neutral-800 bg-white rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-pink-200 transition-all duration-200"
                     data-testid="input-search-health-tools"
                   />
                   <div className="absolute right-2 top-2 bottom-2 px-6 bg-gradient-to-r from-pink-500 to-rose-600 text-white rounded-xl flex items-center">
@@ -111,7 +114,7 @@ const HealthTools = () => {
               <div className="mt-16 bg-white rounded-2xl shadow-lg p-8">
                 <h2 className="text-2xl font-bold text-neutral-800 mb-6 text-center">Popular Health Tools</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  <div 
+                  <div
                     className="text-center p-4 bg-pink-50 rounded-xl cursor-pointer hover:bg-pink-100 transition-colors duration-200"
                     onClick={() => setLocation('/tools/bmi-calculator')}
                   >
@@ -119,7 +122,7 @@ const HealthTools = () => {
                     <h3 className="font-semibold text-neutral-800">BMI Calculator</h3>
                     <p className="text-sm text-neutral-600">Calculate body mass index</p>
                   </div>
-                  <div 
+                  <div
                     className="text-center p-4 bg-red-50 rounded-xl cursor-pointer hover:bg-red-100 transition-colors duration-200"
                     onClick={() => setLocation('/tools/calorie-calculator')}
                   >
@@ -127,7 +130,7 @@ const HealthTools = () => {
                     <h3 className="font-semibold text-neutral-800">Calorie Calculator</h3>
                     <p className="text-sm text-neutral-600">Calculate daily calories</p>
                   </div>
-                  <div 
+                  <div
                     className="text-center p-4 bg-blue-50 rounded-xl cursor-pointer hover:bg-blue-100 transition-colors duration-200"
                     onClick={() => setLocation('/tools/pregnancy-due-date-calculator')}
                   >
@@ -135,7 +138,7 @@ const HealthTools = () => {
                     <h3 className="font-semibold text-neutral-800">Pregnancy Due Date Calculator</h3>
                     <p className="text-sm text-neutral-600">Calculate expected delivery date and pregnancy milestones</p>
                   </div>
-                  <div 
+                  <div
                     className="text-center p-4 bg-purple-50 rounded-xl cursor-pointer hover:bg-purple-100 transition-colors duration-200"
                     onClick={() => setLocation('/tools/ideal-weight-calculator')}
                   >
@@ -148,7 +151,7 @@ const HealthTools = () => {
             </div>
           </section>
         </main>
-        
+
         <Footer />
       </div>
     </>

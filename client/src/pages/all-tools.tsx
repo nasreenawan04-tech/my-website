@@ -18,7 +18,7 @@ const AllTools = () => {
     const urlParams = new URLSearchParams(location.split('?')[1] || '');
     const searchParam = urlParams.get('search') || '';
     const categoryParam = urlParams.get('category') || 'all';
-    
+
     setSearchQuery(searchParam);
     setSelectedCategory(categoryParam);
   }, [location]);
@@ -56,7 +56,7 @@ const AllTools = () => {
 
       <div className="min-h-screen flex flex-col" data-testid="page-all-tools">
         <Header />
-        
+
         <main className="flex-1 bg-neutral-50">
           {/* Hero Section */}
           <section className="bg-gradient-to-r from-blue-600 via-blue-500 to-purple-600 text-white py-16">
@@ -67,21 +67,21 @@ const AllTools = () => {
               <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
                 Discover all 150+ free online tools to boost your productivity
               </p>
-              
+
               {/* Search Bar */}
               <div className="max-w-2xl mx-auto">
                 <div className="relative">
+                  <div className="absolute left-5 top-1/2 transform -translate-y-1/2 text-neutral-400">
+                    <i className="fas fa-search text-lg"></i>
+                  </div>
                   <input
                     type="text"
-                    placeholder="Search tools..."
+                    placeholder="Search tools by name or keyword..."
                     value={searchQuery}
-                    onChange={handleSearchChange}
-                    className="w-full py-4 px-6 pr-16 text-lg text-neutral-800 bg-white rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-200 transition-all duration-200"
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full pl-14 pr-6 py-4 text-lg border border-gray-300 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-300 focus:border-blue-500"
                     data-testid="input-search-all-tools"
                   />
-                  <div className="absolute right-2 top-2 bottom-2 px-6 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl flex items-center">
-                    <i className="fas fa-search"></i>
-                  </div>
                 </div>
               </div>
             </div>
@@ -138,7 +138,7 @@ const AllTools = () => {
             </div>
           </section>
         </main>
-        
+
         <Footer />
       </div>
     </>
