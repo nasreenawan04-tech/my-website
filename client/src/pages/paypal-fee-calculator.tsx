@@ -153,10 +153,10 @@ const PayPalFeeCalculator = () => {
   return (
     <>
       <Helmet>
-        <title>PayPal Fee Calculator - Calculate PayPal Transaction Fees | ToolsHub</title>
+        <title>PayPal Fee Calculator - Calculate PayPal Transaction Fees | DapsiWow</title>
         <meta name="description" content="Free PayPal fee calculator to calculate transaction fees for receiving money, sending payments, and international transfers. Supports 12+ currencies, personal & business accounts. Perfect for freelancers, online sellers, and businesses." />
         <meta name="keywords" content="paypal fee calculator, paypal transaction fees, paypal fees, online payment calculator, paypal cost calculator, paypal business fees, international paypal fees, paypal merchant fees, freelancer paypal calculator, paypal selling fees, paypal invoice fees, paypal cross border fees" />
-        <meta property="og:title" content="PayPal Fee Calculator - Calculate PayPal Transaction Fees | ToolsHub" />
+        <meta property="og:title" content="PayPal Fee Calculator - Calculate PayPal Transaction Fees | DapsiWow" />
         <meta property="og:description" content="Free PayPal fee calculator to calculate transaction fees for receiving money, sending payments, and international transfers. Supports 12+ currencies, personal & business accounts. Perfect for freelancers, online sellers, and businesses." />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="/tools/paypal-fee-calculator" />

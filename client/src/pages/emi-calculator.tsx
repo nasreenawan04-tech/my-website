@@ -210,14 +210,14 @@ const EMICalculator = () => {
   return (
     <>
       <Helmet>
-        <title>EMI Calculator - Free Loan EMI Calculator for Home, Car & Personal Loans | ToolsHub</title>
+        <title>EMI Calculator - Free Loan EMI Calculator for Home, Car & Personal Loans | DapsiWow</title>
         <meta name="description" content="Calculate EMI for home loans, car loans, personal loans & more with our free EMI calculator. Get instant results with multiple currency support. Compare loan options easily." />
         <meta name="keywords" content="EMI calculator, loan EMI calculator, home loan EMI, car loan EMI, personal loan EMI, monthly installment calculator, loan payment calculator, equated monthly installment, loan calculator online, EMI formula, loan comparison tool" />
-        <meta property="og:title" content="EMI Calculator - Free Loan EMI Calculator for All Types of Loans | ToolsHub" />
+        <meta property="og:title" content="EMI Calculator - Free Loan EMI Calculator for All Types of Loans | DapsiWow" />
         <meta property="og:description" content="Calculate EMI for home loans, car loans, personal loans & more with our free EMI calculator. Get instant results with multiple currency support. Compare loan options easily." />
         <meta property="og:type" content="website" />
         <meta name="robots" content="index, follow" />
-        <meta name="author" content="ToolsHub" />
+        <meta name="author" content="DapsiWow" />
         <link rel="canonical" href="/tools/emi-calculator" />
         <script type="application/ld+json">
           {JSON.stringify({

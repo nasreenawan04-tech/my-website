@@ -172,10 +172,10 @@ const RunningPaceCalculator = () => {
   return (
     <>
       <Helmet>
-        <title>Running Pace Calculator - Calculate Running Pace, Speed & Time | ToolsHub</title>
+        <title>Running Pace Calculator - Calculate Running Pace, Speed & Time | DapsiWow</title>
         <meta name="description" content="Free running pace calculator to calculate your pace per mile/km, running speed, and race finish times. Perfect for training and race planning." />
         <meta name="keywords" content="running pace calculator, pace per mile, pace per km, running speed calculator, race time calculator, marathon pace, 5k pace" />
-        <meta property="og:title" content="Running Pace Calculator - Calculate Running Pace, Speed & Time | ToolsHub" />
+        <meta property="og:title" content="Running Pace Calculator - Calculate Running Pace, Speed & Time | DapsiWow" />
         <meta property="og:description" content="Calculate your running pace, speed, and race finish times with our free running pace calculator." />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="/tools/running-pace-calculator" />

@@ -113,10 +113,10 @@ const BreakEvenCalculator = () => {
   return (
     <>
       <Helmet>
-        <title>Break-Even Calculator - Calculate Break-Even Point | ToolsHub</title>
+        <title>Break-Even Calculator - Calculate Break-Even Point | DapsiWow</title>
         <meta name="description" content="Free break-even calculator for businesses, entrepreneurs, and students. Calculate break-even point, contribution margin, and profit analysis with multi-currency support. Essential business planning tool." />
         <meta name="keywords" content="break even calculator, break even analysis, business calculator, profit calculator, break even point, contribution margin, business planning, financial analysis, startup calculator, small business tools, revenue calculator, cost analysis, margin of safety, break even formula, business finance, entrepreneur tools" />
-        <meta property="og:title" content="Break-Even Calculator - Calculate Break-Even Point | ToolsHub" />
+        <meta property="og:title" content="Break-Even Calculator - Calculate Break-Even Point | DapsiWow" />
         <meta property="og:description" content="Free break-even calculator to determine the break-even point for your business. Calculate units and revenue needed to cover costs." />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="/tools/break-even-calculator" />

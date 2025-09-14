@@ -199,7 +199,7 @@ export default function ROICalculator() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Helmet>
-        <title>ROI Calculator - Calculate Return on Investment | ToolsHub</title>
+        <title>ROI Calculator - Calculate Return on Investment | DapsiWow</title>
         <meta name="description" content="Free ROI Calculator - Calculate Return on Investment for stocks, business projects, real estate, and financial decisions. Get instant ROI analysis with our comprehensive investment calculator tool." />
       </Helmet>
       

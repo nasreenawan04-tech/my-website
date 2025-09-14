@@ -205,10 +205,10 @@ const CyclingSpeedCalculator = () => {
   return (
     <>
       <Helmet>
-        <title>Cycling Speed Calculator - Calculate Cycling Speed, Distance & Time | ToolsHub</title>
+        <title>Cycling Speed Calculator - Calculate Cycling Speed, Distance & Time | DapsiWow</title>
         <meta name="description" content="Free cycling speed calculator to calculate your cycling speed, distance, and ride time. Perfect for training, commuting, and fitness tracking." />
         <meta name="keywords" content="cycling speed calculator, bike speed calculator, cycling distance calculator, cycling time calculator, cycling pace, bike pace" />
-        <meta property="og:title" content="Cycling Speed Calculator - Calculate Cycling Speed, Distance & Time | ToolsHub" />
+        <meta property="og:title" content="Cycling Speed Calculator - Calculate Cycling Speed, Distance & Time | DapsiWow" />
         <meta property="og:description" content="Calculate your cycling speed, distance, and ride time with our free cycling calculator." />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="/tools/cycling-speed-calculator" />

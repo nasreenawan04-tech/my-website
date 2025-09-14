@@ -155,12 +155,12 @@ export default function TipCalculator() {
         <meta property="og:title" content="Free Tip Calculator - Calculate Tips & Split Bills Worldwide" />
         <meta property="og:description" content="Advanced tip calculator with global tipping standards, bill splitting, currency conversion, and service quality assessment. Perfect for travelers, students, and business professionals." />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="ToolsHub" />
+        <meta property="og:site_name" content="DapsiWow" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Free Tip Calculator - Global Tipping Standards & Bill Splitting" />
         <meta name="twitter:description" content="Calculate tips accurately with cultural intelligence. Supports 15+ countries, multiple currencies, and advanced bill splitting for any dining scenario." />
         <meta name="robots" content="index, follow" />
-        <meta name="author" content="ToolsHub" />
+        <meta name="author" content="DapsiWow" />
         <link rel="canonical" href="https://toolshub.com/tools/tip-calculator" />
         <script type="application/ld+json">
           {JSON.stringify({

@@ -166,10 +166,10 @@ const CreditCardInterestCalculator = () => {
   return (
     <>
       <Helmet>
-        <title>Credit Card Interest Calculator - Calculate Credit Card Payoff Time | ToolsHub</title>
+        <title>Credit Card Interest Calculator - Calculate Credit Card Payoff Time | DapsiWow</title>
         <meta name="description" content="Calculate credit card payoff time, total interest, and monthly payments. Free credit card debt calculator with multiple payment strategies and worldwide currency support." />
         <meta name="keywords" content="credit card calculator, credit card interest calculator, credit card payoff calculator, debt payoff calculator, credit card debt calculator" />
-        <meta property="og:title" content="Credit Card Interest Calculator - Calculate Credit Card Payoff Time | ToolsHub" />
+        <meta property="og:title" content="Credit Card Interest Calculator - Calculate Credit Card Payoff Time | DapsiWow" />
         <meta property="og:description" content="Calculate credit card payoff time, total interest, and monthly payments. Free credit card debt calculator with multiple payment strategies and worldwide currency support." />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="/tools/credit-card-interest-calculator" />

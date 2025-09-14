@@ -108,10 +108,10 @@ const DiscountCalculator = () => {
   return (
     <>
       <Helmet>
-        <title>Discount Calculator - Calculate Sale Prices & Savings | ToolsHub</title>
+        <title>Discount Calculator - Calculate Sale Prices & Savings | DapsiWow</title>
         <meta name="description" content="Free discount calculator to calculate sale prices, discount amounts, and savings. Support for multiple currencies worldwide. Perfect for shopping, sales, and business pricing." />
         <meta name="keywords" content="discount calculator, sale price calculator, percentage discount, savings calculator, price reduction calculator, best deals, shopping discounts" />
-        <meta property="og:title" content="Discount Calculator - Calculate Sale Prices & Savings | ToolsHub" />
+        <meta property="og:title" content="Discount Calculator - Calculate Sale Prices & Savings | DapsiWow" />
         <meta property="og:description" content="Free discount calculator to calculate sale prices, discount amounts, and savings. Support for multiple currencies worldwide." />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="/tools/discount-calculator" />

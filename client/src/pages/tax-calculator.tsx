@@ -283,10 +283,10 @@ export default function TaxCalculator() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Helmet>
-        <title>Tax Calculator - Calculate Income Tax Worldwide | ToolsHub</title>
+        <title>Tax Calculator - Calculate Income Tax Worldwide | DapsiWow</title>
         <meta name="description" content="Free income tax calculator for 10+ countries. Calculate taxes for USA, UK, Canada, Australia, Germany, France, India & more. Get instant tax estimates, effective rates, and detailed breakdowns for tax planning." />
         <meta name="keywords" content="tax calculator, income tax calculator, tax estimator, effective tax rate, marginal tax rate, tax planning, USA tax calculator, UK tax calculator, Canada tax calculator, Australia tax calculator, free tax calculator, online tax calculator, tax bracket calculator, federal tax calculator, take home pay calculator" />
-        <meta property="og:title" content="Free Tax Calculator - Calculate Income Tax Worldwide | ToolsHub" />
+        <meta property="og:title" content="Free Tax Calculator - Calculate Income Tax Worldwide | DapsiWow" />
         <meta property="og:description" content="Calculate income tax for multiple countries with our free online tax calculator. Get instant estimates, detailed breakdowns, and tax planning insights." />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />

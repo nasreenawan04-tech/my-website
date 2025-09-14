@@ -138,10 +138,10 @@ const SwimmingCalorieCalculator = () => {
   return (
     <>
       <Helmet>
-        <title>Swimming Calorie Calculator - Calculate Calories Burned Swimming | ToolsHub</title>
+        <title>Swimming Calorie Calculator - Calculate Calories Burned Swimming | DapsiWow</title>
         <meta name="description" content="Free swimming calorie calculator to calculate calories burned during swimming workouts. Supports all stroke types and intensity levels." />
         <meta name="keywords" content="swimming calorie calculator, calories burned swimming, swimming workout calculator, swimming fitness tracker" />
-        <meta property="og:title" content="Swimming Calorie Calculator - Calculate Calories Burned Swimming | ToolsHub" />
+        <meta property="og:title" content="Swimming Calorie Calculator - Calculate Calories Burned Swimming | DapsiWow" />
         <meta property="og:description" content="Calculate calories burned during your swimming workouts with our free swimming calorie calculator." />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="/tools/swimming-calorie-calculator" />

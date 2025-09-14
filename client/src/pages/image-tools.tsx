@@ -32,10 +32,10 @@ const ImageTools = () => {
   return (
     <>
       <Helmet>
-        <title>Image Tools - 30+ Free Image Editors & Converters | ToolsHub</title>
+        <title>Image Tools - 30+ Free Image Editors & Converters | DapsiWow</title>
         <meta name="description" content="Free image tools including background remover, image resizer, image compressor, format converter, and 25+ more image editing utilities. No sign-up required." />
         <meta name="keywords" content="image tools, background remover, image resizer, image compressor, image converter, photo editor" />
-        <meta property="og:title" content="Image Tools - 30+ Free Image Editors & Converters | ToolsHub" />
+        <meta property="og:title" content="Image Tools - 30+ Free Image Editors & Converters | DapsiWow" />
         <meta property="og:description" content="Free image tools including background remover, image resizer, image compressor, and 25+ more image editing utilities." />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="/image" />

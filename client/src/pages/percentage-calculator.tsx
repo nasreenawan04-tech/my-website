@@ -271,10 +271,10 @@ const PercentageCalculator = () => {
   return (
     <>
       <Helmet>
-        <title>Percentage Calculator - Calculate Percentages, Changes & More | ToolsHub</title>
+        <title>Percentage Calculator - Calculate Percentages, Changes & More | DapsiWow</title>
         <meta name="description" content="Free percentage calculator for calculating percentages, percentage changes, increases, decreases, and ratios. Perfect for students, professionals, and everyday calculations worldwide." />
         <meta name="keywords" content="percentage calculator, percent calculator, percentage change calculator, calculate percentage" />
-        <meta property="og:title" content="Percentage Calculator - Calculate Percentages, Changes & More | ToolsHub" />
+        <meta property="og:title" content="Percentage Calculator - Calculate Percentages, Changes & More | DapsiWow" />
         <meta property="og:description" content="Free percentage calculator for calculating percentages, percentage changes, increases, decreases, and ratios. Perfect for students, professionals, and everyday calculations worldwide." />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="/tools/percentage-calculator" />

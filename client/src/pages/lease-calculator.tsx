@@ -111,14 +111,14 @@ const LeaseCalculator = () => {
   return (
     <>
       <Helmet>
-        <title>Lease Calculator - Calculate Monthly Car Lease Payments | ToolsHub</title>
+        <title>Lease Calculator - Calculate Monthly Car Lease Payments | DapsiWow</title>
         <meta name="description" content="Free lease calculator to calculate monthly lease payments, total cost, and lease terms. Compare leasing vs buying with accurate estimates." />
         <meta name="keywords" content="lease calculator, car lease calculator, monthly lease payment, auto lease calculator, vehicle lease, lease vs buy calculator" />
-        <meta property="og:title" content="Lease Calculator - Calculate Monthly Car Lease Payments | ToolsHub" />
+        <meta property="og:title" content="Lease Calculator - Calculate Monthly Car Lease Payments | DapsiWow" />
         <meta property="og:description" content="Free lease calculator to calculate monthly lease payments, total cost, and lease terms. Compare leasing vs buying with accurate estimates." />
         <meta property="og:type" content="website" />
         <meta name="robots" content="index, follow" />
-        <meta name="author" content="ToolsHub" />
+        <meta name="author" content="DapsiWow" />
         <link rel="canonical" href="/tools/lease-calculator" />
         <script type="application/ld+json">
           {JSON.stringify({

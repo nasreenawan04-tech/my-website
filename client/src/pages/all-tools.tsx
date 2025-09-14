@@ -40,7 +40,6 @@ const AllTools = () => {
   const categoryTabs = [
     { key: 'all', label: 'All Tools', count: tools.length },
     { key: 'finance', label: 'Finance', count: tools.filter(t => t.category === 'finance').length },
-    { key: 'pdf', label: 'PDF', count: tools.filter(t => t.category === 'pdf').length },
     { key: 'text', label: 'Text', count: tools.filter(t => t.category === 'text').length },
     { key: 'health', label: 'Health', count: tools.filter(t => t.category === 'health').length }
   ];
@@ -48,8 +47,8 @@ const AllTools = () => {
   return (
     <>
       <Helmet>
-        <title>All Tools - 150+ Free Online Tools | ToolsHub</title>
-        <meta name="description" content="Browse all 150+ free online tools including Finance Calculators, PDF Tools, Image Editors, Text Tools, and Health Calculators." />
+        <title>DapsiWow Tools Directory - 150+ Free Online Tools | Finance, Text, Health</title>
+        <meta name="description" content="Browse all 150+ professional-grade free online tools including Finance Calculators, Text Analyzers, Health Trackers, and Productivity Tools. No registration required." />
         <meta name="keywords" content="online tools directory, free tools, PDF converter, image editor, calculator tools" />
         <link rel="canonical" href="/tools" />
       </Helmet>

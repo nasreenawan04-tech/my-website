@@ -109,14 +109,14 @@ const BusinessLoanCalculator = () => {
   return (
     <>
       <Helmet>
-        <title>Business Loan Calculator - Calculate Monthly Business Loan Payments | ToolsHub</title>
+        <title>Business Loan Calculator - Calculate Monthly Business Loan Payments | DapsiWow</title>
         <meta name="description" content="Free business loan calculator to calculate monthly payments, debt service coverage, and loan costs. Compare different business financing options." />
         <meta name="keywords" content="business loan calculator, commercial loan calculator, SBA loan calculator, business financing calculator, debt service coverage ratio" />
-        <meta property="og:title" content="Business Loan Calculator - Calculate Monthly Business Loan Payments | ToolsHub" />
+        <meta property="og:title" content="Business Loan Calculator - Calculate Monthly Business Loan Payments | DapsiWow" />
         <meta property="og:description" content="Free business loan calculator to calculate monthly payments, debt service coverage, and loan costs. Compare different business financing options." />
         <meta property="og:type" content="website" />
         <meta name="robots" content="index, follow" />
-        <meta name="author" content="ToolsHub" />
+        <meta name="author" content="DapsiWow" />
         <link rel="canonical" href="/tools/business-loan-calculator" />
         <script type="application/ld+json">
           {JSON.stringify({

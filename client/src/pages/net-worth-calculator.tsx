@@ -216,7 +216,7 @@ export default function NetWorthCalculator() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Helmet>
-        <title>Net Worth Calculator - Calculate Your Total Net Worth | ToolsHub</title>
+        <title>Net Worth Calculator - Calculate Your Total Net Worth | DapsiWow</title>
         <meta name="description" content="Calculate your net worth by tracking assets and liabilities. Free net worth calculator with worldwide currency support for financial planning." />
       </Helmet>
       

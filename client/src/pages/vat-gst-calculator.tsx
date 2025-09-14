@@ -121,10 +121,10 @@ const VATGSTCalculator = () => {
   return (
     <>
       <Helmet>
-        <title>VAT/GST Calculator - Calculate Value Added Tax & GST Worldwide | ToolsHub</title>
+        <title>VAT/GST Calculator - Calculate Value Added Tax & GST Worldwide | DapsiWow</title>
         <meta name="description" content="Free VAT/GST calculator for calculating value added tax and goods & services tax. Supports 15+ countries, 16+ currencies. Perfect for businesses, accountants, students. Get instant accurate tax calculations." />
         <meta name="keywords" content="VAT calculator, GST calculator, value added tax calculator, goods services tax calculator, tax calculator, business tax calculator, VAT calculation, GST calculation, tax rate calculator, EU VAT calculator, UK VAT calculator, Australia GST calculator, India GST calculator, international tax calculator" />
-        <meta property="og:title" content="VAT/GST Calculator - Calculate Value Added Tax & GST Worldwide | ToolsHub" />
+        <meta property="og:title" content="VAT/GST Calculator - Calculate Value Added Tax & GST Worldwide | DapsiWow" />
         <meta property="og:description" content="Free VAT/GST calculator for calculating value added tax and goods & services tax. Supports 15+ countries, 16+ currencies. Perfect for businesses, accountants, students. Get instant accurate tax calculations." />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="/tools/vat-gst-calculator" />

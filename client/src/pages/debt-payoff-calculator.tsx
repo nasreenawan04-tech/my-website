@@ -313,10 +313,10 @@ export default function DebtPayoffCalculator() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Helmet>
-        <title>Debt Payoff Calculator - Plan Your Debt Freedom Strategy | ToolsHub</title>
+        <title>Debt Payoff Calculator - Plan Your Debt Freedom Strategy | DapsiWow</title>
         <meta name="description" content="Free debt payoff calculator to compare snowball vs avalanche strategies. Calculate payoff time, interest savings, and create your debt elimination plan with multiple payment methods." />
         <meta name="keywords" content="debt payoff calculator, debt snowball, debt avalanche, debt elimination, credit card payoff, debt consolidation, debt freedom, debt reduction strategy" />
-        <meta property="og:title" content="Debt Payoff Calculator - Plan Your Debt Freedom Strategy | ToolsHub" />
+        <meta property="og:title" content="Debt Payoff Calculator - Plan Your Debt Freedom Strategy | DapsiWow" />
         <meta property="og:description" content="Free debt payoff calculator to compare snowball vs avalanche strategies. Calculate payoff time, interest savings, and create your debt elimination plan." />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="/tools/debt-payoff-calculator" />

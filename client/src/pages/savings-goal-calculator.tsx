@@ -275,18 +275,18 @@ export default function SavingsGoalCalculator() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Helmet>
-        <title>Free Savings Goal Calculator - Achieve Financial Goals with Smart Planning | ToolsHub</title>
+        <title>Free Savings Goal Calculator - Achieve Financial Goals with Smart Planning | DapsiWow</title>
         <meta name="description" content="Advanced savings goal calculator with compound interest projections, multiple calculation modes, and 16+ countries. Plan emergency funds, retirement savings, vacation funds, and major purchases with precision." />
         <meta name="keywords" content="savings goal calculator, financial planning tool, emergency fund calculator, retirement savings calculator, vacation fund planner, monthly savings calculator, compound interest calculator, savings tracker, financial goal planner, money saving calculator, savings projection calculator, budgeting tool, personal finance calculator, savings strategy planner, financial independence calculator" />
         <meta property="og:title" content="Free Savings Goal Calculator - Achieve Financial Goals with Smart Planning" />
         <meta property="og:description" content="Calculate exactly how to reach any savings goal with compound interest projections, flexible timeframes, and multi-currency support for global users." />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="ToolsHub" />
+        <meta property="og:site_name" content="DapsiWow" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Savings Goal Calculator - Smart Financial Planning Tool" />
         <meta name="twitter:description" content="Plan and achieve any financial goal with precise calculations, compound interest projections, and personalized savings strategies." />
         <meta name="robots" content="index, follow" />
-        <meta name="author" content="ToolsHub" />
+        <meta name="author" content="DapsiWow" />
         <link rel="canonical" href="https://toolshub.com/tools/savings-goal-calculator" />
         <script type="application/ld+json">
           {JSON.stringify({

@@ -101,10 +101,10 @@ const EducationLoanCalculator = () => {
   return (
     <>
       <Helmet>
-        <title>Education Loan Calculator - Student Loan EMI Calculator | ToolsHub</title>
+        <title>Education Loan Calculator - Student Loan EMI Calculator | DapsiWow</title>
         <meta name="description" content="Calculate education loan EMI, total interest, and repayment schedule for student loans. Free online education loan calculator with grace period support." />
         <meta name="keywords" content="education loan calculator, student loan calculator, education loan EMI, student loan EMI, college loan calculator, university loan calculator" />
-        <meta property="og:title" content="Education Loan Calculator - Student Loan EMI Calculator | ToolsHub" />
+        <meta property="og:title" content="Education Loan Calculator - Student Loan EMI Calculator | DapsiWow" />
         <meta property="og:description" content="Calculate education loan EMI, total interest, and repayment schedule for student loans. Free online education loan calculator with grace period support." />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="/tools/education-loan-calculator" />

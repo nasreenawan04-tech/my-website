@@ -33,10 +33,10 @@ const TextTools = () => {
   return (
     <>
       <Helmet>
-        <title>Text Tools - 30+ Free Writing & Text Utilities | ToolsHub</title>
+        <title>Text Tools - 30+ Free Writing & Text Utilities | DapsiWow</title>
         <meta name="description" content="Free text tools including word counter, grammar checker, plagiarism checker, text summarizer, and 25+ more writing utilities. No sign-up required." />
         <meta name="keywords" content="text tools, word counter, grammar checker, plagiarism checker, text summarizer, writing tools" />
-        <meta property="og:title" content="Text Tools - 30+ Free Writing & Text Utilities | ToolsHub" />
+        <meta property="og:title" content="Text Tools - 30+ Free Writing & Text Utilities | DapsiWow" />
         <meta property="og:description" content="Free text tools including word counter, grammar checker, plagiarism checker, and 25+ more writing utilities." />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="/text" />

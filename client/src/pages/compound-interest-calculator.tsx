@@ -223,7 +223,7 @@ export default function CompoundInterestCalculator() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Helmet>
-        <title>Compound Interest Calculator - Calculate Investment Growth | ToolsHub</title>
+        <title>Compound Interest Calculator - Calculate Investment Growth | DapsiWow</title>
         <meta name="description" content="Free compound interest calculator to calculate investment growth over time. See how compound interest accelerates wealth building with detailed breakdowns, multiple currencies, and flexible compounding options for retirement planning and savings goals." />
       </Helmet>
       

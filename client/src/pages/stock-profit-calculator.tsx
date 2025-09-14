@@ -300,7 +300,7 @@ export default function StockProfitCalculator() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Helmet>
-        <title>Stock Profit Calculator - Calculate Stock Investment Returns | ToolsHub</title>
+        <title>Stock Profit Calculator - Calculate Stock Investment Returns | DapsiWow</title>
         <meta name="description" content="Free stock profit calculator with tax optimization, fee analysis, and multi-currency support. Calculate investment returns, set target prices, and analyze portfolio performance for stocks worldwide." />
       </Helmet>
       

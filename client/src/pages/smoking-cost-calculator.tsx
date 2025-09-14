@@ -134,10 +134,10 @@ const SmokingCostCalculator = () => {
   return (
     <>
       <Helmet>
-        <title>Smoking Cost Calculator - Calculate Financial Cost of Smoking | ToolsHub</title>
+        <title>Smoking Cost Calculator - Calculate Financial Cost of Smoking | DapsiWow</title>
         <meta name="description" content="Free smoking cost calculator to calculate how much money you spend on cigarettes daily, monthly, and yearly. See potential savings from quitting smoking." />
         <meta name="keywords" content="smoking cost calculator, cigarette cost calculator, smoking expenses, quit smoking savings, tobacco cost" />
-        <meta property="og:title" content="Smoking Cost Calculator - Calculate Financial Cost of Smoking | ToolsHub" />
+        <meta property="og:title" content="Smoking Cost Calculator - Calculate Financial Cost of Smoking | DapsiWow" />
         <meta property="og:description" content="Calculate how much money you spend on smoking and see potential savings from quitting." />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="/tools/smoking-cost-calculator" />

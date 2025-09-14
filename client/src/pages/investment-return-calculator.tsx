@@ -120,10 +120,10 @@ const InvestmentReturnCalculator = () => {
   return (
     <>
       <Helmet>
-        <title>Investment Return Calculator - Calculate Investment Returns | ToolsHub</title>
+        <title>Investment Return Calculator - Calculate Investment Returns | DapsiWow</title>
         <meta name="description" content="Free investment return calculator to calculate returns on investments with compound interest, monthly contributions, and inflation adjustment." />
         <meta name="keywords" content="investment calculator, return on investment, compound interest calculator, investment growth calculator" />
-        <meta property="og:title" content="Investment Return Calculator - Calculate Investment Returns | ToolsHub" />
+        <meta property="og:title" content="Investment Return Calculator - Calculate Investment Returns | DapsiWow" />
         <meta property="og:description" content="Free investment return calculator to calculate returns on investments with compound interest, monthly contributions, and inflation adjustment." />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="/tools/investment-return-calculator" />
