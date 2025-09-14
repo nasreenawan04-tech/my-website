@@ -580,9 +580,6 @@ const CaseConverter = () => {
             <h2 className="text-3xl font-bold text-gray-900 mb-6">Who Uses Case Converters?</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="text-center">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-code text-blue-600 text-xl"></i>
-                </div>
                 <h3 className="font-semibold text-gray-900 mb-2">Developers</h3>
                 <p className="text-gray-600 text-sm">Convert variable names and follow naming conventions.</p>
               </div>
