@@ -95,10 +95,7 @@ const HeroSection = () => {
                       className="w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0"
                       data-testid={`hero-search-result-${tool.id}`}
                     >
-                      <div className="flex items-center space-x-3">
-                        <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                          <span className="text-white text-lg">{tool.icon}</span>
-                        </div>
+                      <div className="flex items-center justify-between">
                         <div className="flex-1 min-w-0">
                           <div className="font-medium text-gray-900 truncate">{tool.name}</div>
                           <div className="text-sm text-gray-500 truncate">{tool.description}</div>
