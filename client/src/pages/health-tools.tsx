@@ -48,8 +48,8 @@ const HealthTools = () => {
           {/* Hero Section */}
           <section className="bg-gradient-to-r from-pink-600 via-rose-500 to-red-700 text-white py-16">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <i className="fas fa-heartbeat text-3xl"></i>
+              <div className="w-24 h-24 bg-white bg-opacity-20 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <i className="fas fa-heartbeat text-4xl text-white"></i>
               </div>
               <h1 className="text-4xl sm:text-5xl font-bold mb-4" data-testid="text-page-title">
                 Health Tools
