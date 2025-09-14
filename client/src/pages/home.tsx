@@ -11,8 +11,8 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>DapsiWow - 180+ Free Online Tools for Business & Personal Use | No Registration Required</title>
-        <meta name="description" content="Discover 180+ powerful free online tools for finance calculations, text analysis, and health monitoring. Professional-grade utilities with no sign-up required, working on all devices worldwide." />
+        <title>DapsiWow: Free AI Writing, PDF, Image, and other Online Tools</title>
+        <meta name="description" content="Support your productivity with premium tools that stay out of your way and work smarter. Create without limits, ads, or roadblocks. Get instant access to 180+ free online tools including finance calculators, text converters, and health trackers." />
         <meta name="keywords" content="DapsiWow, dapsiwow, free online tools, loan calculator, mortgage calculator, business loan calculator, lease calculator, productivity tools, finance calculators, text tools, health calculators, online utilities, web tools, no registration tools" />
         <meta property="og:title" content="DapsiWow - 180+ Free Online Tools for Business & Personal Use" />
         <meta property="og:description" content="Discover 180+ powerful free online tools for finance calculations, text analysis, and health monitoring. Professional-grade utilities with no sign-up required." />
@@ -32,7 +32,36 @@ const Home = () => {
               "@type": "SearchAction",
               "target": "https://dapsiwow.com/all-tools?search={search_term_string}",
               "query-input": "required name=search_term_string"
-            }
+            },
+            "mainEntity": [
+              {
+                "@type": "SoftwareApplication",
+                "name": "Finance Tools",
+                "description": "Professional financial calculators including loan, mortgage, EMI, and investment calculators",
+                "applicationCategory": "FinanceApplication",
+                "operatingSystem": "Web Browser",
+                "url": "https://dapsiwow.com/finance-tools",
+                "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+              },
+              {
+                "@type": "SoftwareApplication", 
+                "name": "Text Tools",
+                "description": "Text processing and analysis tools including word counters, case converters, and generators",
+                "applicationCategory": "UtilityApplication",
+                "operatingSystem": "Web Browser",
+                "url": "https://dapsiwow.com/text-tools",
+                "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+              },
+              {
+                "@type": "SoftwareApplication",
+                "name": "Health Tools", 
+                "description": "Health and fitness calculators including BMI, calorie, and body composition tools",
+                "applicationCategory": "HealthApplication",
+                "operatingSystem": "Web Browser", 
+                "url": "https://dapsiwow.com/health-tools",
+                "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+              }
+            ]
           })}
         </script>
       </Helmet>
