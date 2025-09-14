@@ -209,17 +209,16 @@ const PasswordGenerator = () => {
       
       <main>
         {/* Hero Section */}
-        <section className="gradient-hero text-white py-12 sm:py-16 pt-20 sm:pt-24">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6">
-              <i className="fas fa-key text-2xl sm:text-3xl"></i>
+        <section className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 py-20 sm:py-24 lg:py-28">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="space-y-6">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white leading-tight" data-testid="text-page-title">
+                Random Password Generator
+              </h1>
+              <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
+                Create strong, secure passwords with customizable options to protect your accounts and data
+              </p>
             </div>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6" data-testid="text-page-title">
-              Random Password Generator
-            </h1>
-            <p className="text-lg sm:text-xl text-blue-100 max-w-2xl mx-auto px-2">
-              Create strong, secure passwords with customizable options to protect your accounts and data
-            </p>
           </div>
         </section>
 
