@@ -3,7 +3,6 @@ import { Link, useLocation } from 'wouter';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { searchTools } from '@/lib/search';
 import { tools } from '@/data/tools';
-import Logo from './Logo';
 import { Search, Menu, X } from 'lucide-react';
 
 const Header = () => {
@@ -36,8 +35,6 @@ const Header = () => {
     <header className="sticky top-0 z-50 bg-white dark:bg-neutral-900 shadow-sm border-b border-gray-200 dark:border-neutral-700 transition-colors duration-200" data-testid="header-main">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo Section */}
-          <Logo />
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
