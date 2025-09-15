@@ -21,22 +21,21 @@
 
 <!-- Category Pages -->
 <url>
-  <loc>https://dapsiwow.com/finance</loc>
-  <lastmod>2025-09-13</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.8</priority>
-</url>
-
-
-<url>
-  <loc>https://dapsiwow.com/text</loc>
-  <lastmod>2025-09-13</lastmod>
+  <loc>https://dapsiwow.com/finance-tools</loc>
+  <lastmod>2025-09-15</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.8</priority>
 </url>
 
 <url>
-  <loc>https://dapsiwow.com/health</loc>
+  <loc>https://dapsiwow.com/text-tools</loc>
+  <lastmod>2025-09-15</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.8</priority>
+</url>
+
+<url>
+  <loc>https://dapsiwow.com/health-tools</loc>
   <lastmod>2025-09-13</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.8</priority>
@@ -44,35 +43,35 @@
 
 <!-- Static Pages -->
 <url>
-  <loc>https://dapsiwow.com/about</loc>
+  <loc>https://dapsiwow.com/about-us</loc>
   <lastmod>2025-09-13</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.6</priority>
 </url>
 
 <url>
-  <loc>https://dapsiwow.com/contact</loc>
+  <loc>https://dapsiwow.com/contact-us</loc>
   <lastmod>2025-09-13</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.6</priority>
 </url>
 
 <url>
-  <loc>https://dapsiwow.com/privacy</loc>
+  <loc>https://dapsiwow.com/privacy-policy</loc>
   <lastmod>2025-09-13</lastmod>
   <changefreq>yearly</changefreq>
   <priority>0.4</priority>
 </url>
 
 <url>
-  <loc>https://dapsiwow.com/terms</loc>
+  <loc>https://dapsiwow.com/terms-of-service</loc>
   <lastmod>2025-09-13</lastmod>
   <changefreq>yearly</changefreq>
   <priority>0.4</priority>
 </url>
 
 <url>
-  <loc>https://dapsiwow.com/help</loc>
+  <loc>https://dapsiwow.com/help-center</loc>
   <lastmod>2025-09-13</lastmod>
   <changefreq>monthly</changefreq>
   <priority>0.5</priority>
@@ -606,19 +605,6 @@
   <priority>0.7</priority>
 </url>
 
-<url>
-  <loc>https://dapsiwow.com/pdf-to-images-enhanced</loc>
-  <lastmod>2025-09-13</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.7</priority>
-</url>
-
-<url>
-  <loc>https://dapsiwow.com/images-to-pdf</loc>
-  <lastmod>2025-09-13</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.7</priority>
-</url>
 
 <url>
   <loc>https://dapsiwow.com/pdf-version-converter</loc>
