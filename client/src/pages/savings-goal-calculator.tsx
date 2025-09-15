@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { PiggyBank, TrendingUp, Clock, Target } from 'lucide-react';
 
 interface SavingsResult {
   goalAmount: number;
@@ -654,28 +655,96 @@ export default function SavingsGoalCalculator() {
                         </div>
                       </div>
 
-                      {/* Savings Summary */}
-                      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-200">
-                        <h4 className="font-bold text-blue-800 mb-4 text-lg">Savings Summary</h4>
-                        <div className="space-y-3">
-                          <div className="flex justify-between items-center">
-                            <span className="text-blue-700 font-medium">Monthly Contribution:</span>
-                            <span className="font-bold text-blue-800 text-lg">
+                      {/* Enhanced Savings Summary */}
+                      <div className="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 rounded-2xl p-6 border border-blue-200 shadow-lg">
+                        <div className="flex items-center gap-3 mb-6">
+                          <div className="p-2 bg-blue-100 rounded-lg">
+                            <PiggyBank className="w-6 h-6 text-blue-600" />
+                          </div>
+                          <h4 className="font-bold text-blue-900 text-xl">Savings Summary</h4>
+                        </div>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                          <div className="bg-white/70 backdrop-blur-sm rounded-xl p-4 border border-blue-100">
+                            <div className="flex items-center gap-2 mb-2">
+                              <Target className="w-4 h-4 text-blue-600" />
+                              <span className="text-blue-700 font-medium text-sm">Monthly Contribution</span>
+                            </div>
+                            <div className="font-bold text-blue-900 text-xl">
                               {formatCurrency(result.monthlyContribution)}
-                            </span>
+                            </div>
                           </div>
-                          <div className="flex justify-between items-center">
-                            <span className="text-blue-700 font-medium">Time Period:</span>
-                            <span className="font-bold text-blue-800 text-lg">
+                          
+                          <div className="bg-white/70 backdrop-blur-sm rounded-xl p-4 border border-blue-100">
+                            <div className="flex items-center gap-2 mb-2">
+                              <Clock className="w-4 h-4 text-indigo-600" />
+                              <span className="text-indigo-700 font-medium text-sm">Time Period</span>
+                            </div>
+                            <div className="font-bold text-indigo-900 text-xl">
                               {formatTime(result.timeToReach)}
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="bg-white/70 backdrop-blur-sm rounded-xl p-4 border border-green-100 mb-4">
+                          <div className="flex items-center gap-2 mb-3">
+                            <TrendingUp className="w-4 h-4 text-green-600" />
+                            <span className="text-green-700 font-medium">Interest Growth Analysis</span>
+                          </div>
+                          <div className="grid grid-cols-2 gap-4">
+                            <div>
+                              <div className="text-xs text-green-600 uppercase tracking-wide mb-1">Growth Rate</div>
+                              <div className="font-bold text-green-800 text-lg">
+                                {((result.interestEarned / result.totalContributions) * 100).toFixed(1)}%
+                              </div>
+                            </div>
+                            <div>
+                              <div className="text-xs text-green-600 uppercase tracking-wide mb-1">Interest Earned</div>
+                              <div className="font-bold text-green-800 text-lg">
+                                {formatCurrency(result.interestEarned)}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Visual Progress Bar */}
+                        <div className="bg-white/70 backdrop-blur-sm rounded-xl p-4 border border-gray-100">
+                          <div className="text-sm font-medium text-gray-700 mb-3">Contribution vs Interest Breakdown</div>
+                          <div className="flex h-3 bg-gray-200 rounded-full overflow-hidden mb-2">
+                            <div 
+                              className="bg-gradient-to-r from-blue-500 to-blue-600 transition-all duration-500"
+                              style={{ width: `${(result.totalContributions / (result.totalContributions + result.interestEarned)) * 100}%` }}
+                            ></div>
+                            <div 
+                              className="bg-gradient-to-r from-green-500 to-green-600 transition-all duration-500"
+                              style={{ width: `${(result.interestEarned / (result.totalContributions + result.interestEarned)) * 100}%` }}
+                            ></div>
+                          </div>
+                          <div className="flex justify-between text-xs">
+                            <span className="flex items-center gap-1">
+                              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                              <span className="text-gray-600">
+                                Contributions ({Math.round((result.totalContributions / (result.totalContributions + result.interestEarned)) * 100)}%)
+                              </span>
+                            </span>
+                            <span className="flex items-center gap-1">
+                              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                              <span className="text-gray-600">
+                                Interest ({Math.round((result.interestEarned / (result.totalContributions + result.interestEarned)) * 100)}%)
+                              </span>
                             </span>
                           </div>
-                          <div className="flex justify-between items-center">
-                            <span className="text-blue-700 font-medium">Interest Growth:</span>
-                            <span className="font-bold text-blue-800 text-lg">
-                              {((result.interestEarned / result.totalContributions) * 100).toFixed(1)}%
-                            </span>
-                          </div>
+                        </div>
+
+                        {/* Key Insight */}
+                        <div className="mt-4 p-3 bg-gradient-to-r from-amber-50 to-orange-50 rounded-lg border border-amber-200">
+                          <p className="text-sm text-amber-800">
+                            <strong>💡 Insight:</strong> {result.interestEarned > result.totalContributions ? 
+                              "Compound interest is working powerfully for you! Your interest earnings exceed your contributions." :
+                              result.interestEarned > (result.totalContributions * 0.2) ?
+                              "Good growth! Interest will contribute significantly to reaching your goal." :
+                              "Consider a longer timeframe or higher interest rate to maximize compound growth."}
+                          </p>
                         </div>
                       </div>
                     </div>
