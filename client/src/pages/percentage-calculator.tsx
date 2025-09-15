@@ -598,9 +598,9 @@ const PercentageCalculator = () => {
                       Discount & Sale Calculators
                     </h3>
                     <ul className="text-sm text-gray-600 space-y-1 mb-3">
-                      <li>• <a href="/tools/discount-calculator" className="text-blue-600 hover:text-blue-700">Discount Calculator</a> - Calculate sale prices and savings</li>
-                      <li>• <a href="/tools/tip-calculator" className="text-blue-600 hover:text-blue-700">Tip Calculator</a> - Calculate tips and split bills</li>
-                      <li>• <a href="/tools/paypal-fee-calculator" className="text-blue-600 hover:text-blue-700">PayPal Fee Calculator</a> - Calculate transaction fees</li>
+                      <li>• Calculate sale prices and savings</li>
+                      <li>• Calculate tips and split bills</li>
+                      <li>• Calculate transaction fees</li>
                     </ul>
                   </div>
 
@@ -610,10 +610,10 @@ const PercentageCalculator = () => {
                       Investment & Growth Tools
                     </h3>
                     <ul className="text-sm text-gray-600 space-y-1 mb-3">
-                      <li>• <a href="/tools/compound-interest-calculator" className="text-blue-600 hover:text-blue-700">Compound Interest Calculator</a> - Calculate compound growth</li>
-                      <li>• <a href="/tools/simple-interest-calculator" className="text-blue-600 hover:text-blue-700">Simple Interest Calculator</a> - Basic interest calculations</li>
-                      <li>• <a href="/tools/investment-return-calculator" className="text-blue-600 hover:text-blue-700">Investment Return Calculator</a> - ROI analysis</li>
-                      <li>• <a href="/tools/roi-calculator" className="text-blue-600 hover:text-blue-700">ROI Calculator</a> - Return on investment analysis</li>
+                      <li>• Calculate compound growth</li>
+                      <li>• Basic interest calculations</li>
+                      <li>• ROI analysis</li>
+                      <li>• Return on investment analysis</li>
                     </ul>
                   </div>
 
@@ -623,10 +623,10 @@ const PercentageCalculator = () => {
                       Loan & Finance Calculators
                     </h3>
                     <ul className="text-sm text-gray-600 space-y-1 mb-3">
-                      <li>• <a href="/tools/loan-calculator" className="text-blue-600 hover:text-blue-700">Loan Calculator</a> - General loan calculations</li>
-                      <li>• <a href="/tools/mortgage-calculator" className="text-blue-600 hover:text-blue-700">Mortgage Calculator</a> - Home loan payments</li>
-                      <li>• <a href="/tools/emi-calculator" className="text-blue-600 hover:text-blue-700">EMI Calculator</a> - Monthly installment calculator</li>
-                      <li>• <a href="/tools/credit-card-interest-calculator" className="text-blue-600 hover:text-blue-700">Credit Card Interest Calculator</a> - Credit card debt analysis</li>
+                      <li>• General loan calculations</li>
+                      <li>• Home loan payments</li>
+                      <li>• Monthly installment calculator</li>
+                      <li>• Credit card debt analysis</li>
                     </ul>
                   </div>
 
@@ -636,10 +636,10 @@ const PercentageCalculator = () => {
                       Savings & Planning Tools
                     </h3>
                     <ul className="text-sm text-gray-600 space-y-1 mb-3">
-                      <li>• <a href="/tools/savings-goal-calculator" className="text-blue-600 hover:text-blue-700">Savings Goal Calculator</a> - Plan your savings</li>
-                      <li>• <a href="/tools/retirement-calculator" className="text-blue-600 hover:text-blue-700">Retirement Calculator</a> - Retirement planning</li>
-                      <li>• <a href="/tools/sip-calculator" className="text-blue-600 hover:text-blue-700">SIP Calculator</a> - Systematic investment plans</li>
-                      <li>• <a href="/tools/debt-payoff-calculator" className="text-blue-600 hover:text-blue-700">Debt Payoff Calculator</a> - Debt elimination strategy</li>
+                      <li>• Plan your savings</li>
+                      <li>• Retirement planning</li>
+                      <li>• Systematic investment plans</li>
+                      <li>• Debt elimination strategy</li>
                     </ul>
                   </div>
 
@@ -649,10 +649,10 @@ const PercentageCalculator = () => {
                       Business & Professional Tools
                     </h3>
                     <ul className="text-sm text-gray-600 space-y-1 mb-3">
-                      <li>• <a href="/tools/break-even-calculator" className="text-blue-600 hover:text-blue-700">Break-Even Calculator</a> - Business break-even analysis</li>
-                      <li>• <a href="/tools/business-loan-calculator" className="text-blue-600 hover:text-blue-700">Business Loan Calculator</a> - Commercial loan planning</li>
-                      <li>• <a href="/tools/salary-to-hourly-calculator" className="text-blue-600 hover:text-blue-700">Salary to Hourly Calculator</a> - Convert salary to hourly rate</li>
-                      <li>• <a href="/tools/stock-profit-calculator" className="text-blue-600 hover:text-blue-700">Stock Profit Calculator</a> - Trading profit analysis</li>
+                      <li>• Business break-even analysis</li>
+                      <li>• Commercial loan planning</li>
+                      <li>• Convert salary to hourly rate</li>
+                      <li>• Trading profit analysis</li>
                     </ul>
                   </div>
 
@@ -662,10 +662,10 @@ const PercentageCalculator = () => {
                       Currency & Conversion Tools
                     </h3>
                     <ul className="text-sm text-gray-600 space-y-1 mb-3">
-                      <li>• <a href="/tools/currency-converter" className="text-blue-600 hover:text-blue-700">Currency Converter</a> - Real-time exchange rates</li>
-                      <li>• <a href="/tools/cryptocurrency-converter" className="text-blue-600 hover:text-blue-700">Cryptocurrency Converter</a> - Crypto price conversion</li>
-                      <li>• <a href="/tools/inflation-calculator" className="text-blue-600 hover:text-blue-700">Inflation Calculator</a> - Inflation impact analysis</li>
-                      <li>• <a href="/tools/net-worth-calculator" className="text-blue-600 hover:text-blue-700">Net Worth Calculator</a> - Financial net worth tracking</li>
+                      <li>• Real-time exchange rates</li>
+                      <li>• Crypto price conversion</li>
+                      <li>• Inflation impact analysis</li>
+                      <li>• Financial net worth tracking</li>
                     </ul>
                   </div>
                 </div>
