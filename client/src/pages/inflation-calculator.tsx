@@ -232,7 +232,7 @@ export default function InflationCalculator() {
   const currentCountryData = countries.find(c => c.code === country) || countries[0];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
         <title>Free Inflation Calculator - Calculate Money Value Impact Over Time | Financial Planning Tool</title>
         <meta name="description" content="Advanced inflation calculator with 20+ country data. Calculate future value, purchasing power loss, and inflation impact on investments. Free tool for financial planning, retirement, and economic analysis." />
@@ -277,32 +277,45 @@ export default function InflationCalculator() {
       
       <main>
         {/* Hero Section */}
-        <section className="gradient-hero text-white py-16 pt-24">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl sm:text-5xl font-bold mb-6">
-              Inflation Calculator
-            </h1>
-            <p className="text-xl text-blue-100 max-w-2xl mx-auto">
-              Calculate the impact of inflation on money value over time with worldwide country-specific rates
-            </p>
+        <section className="relative py-20 sm:py-28 lg:py-32 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
+          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="space-y-8">
+              <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+                <span className="text-sm font-medium text-blue-700">Advanced Inflation Calculator</span>
+              </div>
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight">
+                Smart Inflation
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                  Calculator
+                </span>
+              </h1>
+              <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                Calculate inflation impact with global economic data and purchasing power analysis for comprehensive financial planning
+              </p>
+            </div>
           </div>
         </section>
 
-        <div className="max-w-6xl mx-auto px-4 py-12">
-          <Card className="bg-white shadow-sm border-0">
-            <CardContent className="p-8">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="max-w-7xl mx-auto px-4 py-16">
+          {/* Main Calculator Card */}
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+            <CardContent className="p-0">
+              <div className="grid grid-cols-1 xl:grid-cols-5 gap-0">
                 {/* Input Section */}
-                <div className="space-y-6">
-                  <h2 className="text-2xl font-semibold text-gray-900 mb-8">Inflation Calculator</h2>
+                <div className="xl:col-span-3 p-8 lg:p-12 space-y-8">
+                  <div>
+                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Inflation Configuration</h2>
+                    <p className="text-gray-600">Enter your amount and time period for accurate inflation impact calculations</p>
+                  </div>
                   
                   {/* Country Selection */}
                   <div className="space-y-3">
-                    <Label htmlFor="country" className="text-sm font-medium text-gray-700">
-                      Country (Sets historical inflation data)
+                    <Label htmlFor="country" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                      Country (Sets Historical Inflation Data)
                     </Label>
                     <Select value={country} onValueChange={handleCountryChange}>
-                      <SelectTrigger className="h-12 border-gray-200 rounded-lg">
+                      <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-country">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -313,7 +326,7 @@ export default function InflationCalculator() {
                         ))}
                       </SelectContent>
                     </Select>
-                    <div className="text-xs text-gray-500">
+                    <div className="text-sm text-gray-500">
                       Average inflation rate: {currentCountryData.avgInflation}% annually
                     </div>
                   </div>
@@ -327,169 +340,237 @@ export default function InflationCalculator() {
                     </TabsList>
 
                     <TabsContent value="future-value" className="space-y-6 mt-6">
-                      <div className="space-y-3">
-                        <Label htmlFor="current-amount" className="text-sm font-medium text-gray-700">
-                          Current Amount ({currency})
-                        </Label>
-                        <Input
-                          id="current-amount"
-                          type="number"
-                          value={currentAmount}
-                          onChange={(e) => setCurrentAmount(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
-                          placeholder="10,000"
-                          min="0"
-                          step="0.01"
-                        />
-                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="space-y-3">
+                          <Label htmlFor="current-amount" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                            Current Amount
+                          </Label>
+                          <div className="relative">
+                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">
+                              {currency === 'USD' ? '$' : 
+                               currency === 'CAD' ? 'C$' :
+                               currency === 'EUR' ? '€' : 
+                               currency === 'GBP' ? '£' : 
+                               currency === 'AUD' ? 'A$' :
+                               currency === 'JPY' ? '¥' : 
+                               currency === 'KRW' ? '₩' :
+                               currency === 'INR' ? '₹' :
+                               currency === 'BRL' ? 'R$' :
+                               currency === 'MXN' ? 'MX$' :
+                               currency === 'SGD' ? 'S$' :
+                               currency === 'NZD' ? 'NZ$' : '$'}
+                            </span>
+                            <Input
+                              id="current-amount"
+                              type="number"
+                              value={currentAmount}
+                              onChange={(e) => setCurrentAmount(e.target.value)}
+                              className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              placeholder="10,000"
+                              min="0"
+                              step="0.01"
+                              data-testid="input-current-amount"
+                            />
+                          </div>
+                        </div>
 
-                      <div className="space-y-3">
-                        <Label htmlFor="inflation-rate" className="text-sm font-medium text-gray-700">
-                          Annual Inflation Rate (%)
-                        </Label>
-                        <Input
-                          id="inflation-rate"
-                          type="number"
-                          value={inflationRate}
-                          onChange={(e) => setInflationRate(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
-                          placeholder="3.5"
-                          min="0"
-                          max="50"
-                          step="0.1"
-                        />
-                      </div>
+                        <div className="space-y-3">
+                          <Label htmlFor="inflation-rate" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                            Annual Inflation Rate
+                          </Label>
+                          <div className="relative">
+                            <Input
+                              id="inflation-rate"
+                              type="number"
+                              value={inflationRate}
+                              onChange={(e) => setInflationRate(e.target.value)}
+                              className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              placeholder="3.5"
+                              min="0"
+                              max="50"
+                              step="0.1"
+                              data-testid="input-inflation-rate"
+                            />
+                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
+                          </div>
+                        </div>
 
-                      <div className="space-y-3">
-                        <Label htmlFor="years" className="text-sm font-medium text-gray-700">
-                          Number of Years
-                        </Label>
-                        <Input
-                          id="years"
-                          type="number"
-                          value={years}
-                          onChange={(e) => setYears(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
-                          placeholder="10"
-                          min="1"
-                          max="100"
-                        />
+                        <div className="space-y-3">
+                          <Label htmlFor="years" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                            Number of Years
+                          </Label>
+                          <Input
+                            id="years"
+                            type="number"
+                            value={years}
+                            onChange={(e) => setYears(e.target.value)}
+                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                            placeholder="10"
+                            min="1"
+                            max="100"
+                            data-testid="input-years"
+                          />
+                        </div>
                       </div>
                     </TabsContent>
 
                     <TabsContent value="past-value" className="space-y-6 mt-6">
-                      <div className="space-y-3">
-                        <Label htmlFor="past-amount" className="text-sm font-medium text-gray-700">
-                          Past Amount ({currency})
-                        </Label>
-                        <Input
-                          id="past-amount"
-                          type="number"
-                          value={pastAmount}
-                          onChange={(e) => setPastAmount(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
-                          placeholder="1,000"
-                          min="0"
-                          step="0.01"
-                        />
-                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="space-y-3">
+                          <Label htmlFor="past-amount" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                            Past Amount
+                          </Label>
+                          <div className="relative">
+                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">
+                              {currency === 'USD' ? '$' : 
+                               currency === 'CAD' ? 'C$' :
+                               currency === 'EUR' ? '€' : 
+                               currency === 'GBP' ? '£' : 
+                               currency === 'AUD' ? 'A$' :
+                               currency === 'JPY' ? '¥' : 
+                               currency === 'KRW' ? '₩' :
+                               currency === 'INR' ? '₹' :
+                               currency === 'BRL' ? 'R$' :
+                               currency === 'MXN' ? 'MX$' :
+                               currency === 'SGD' ? 'S$' :
+                               currency === 'NZD' ? 'NZ$' : '$'}
+                            </span>
+                            <Input
+                              id="past-amount"
+                              type="number"
+                              value={pastAmount}
+                              onChange={(e) => setPastAmount(e.target.value)}
+                              className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              placeholder="1,000"
+                              min="0"
+                              step="0.01"
+                              data-testid="input-past-amount"
+                            />
+                          </div>
+                        </div>
 
-                      <div className="space-y-3">
-                        <Label htmlFor="past-year" className="text-sm font-medium text-gray-700">
-                          Past Year
-                        </Label>
-                        <Input
-                          id="past-year"
-                          type="number"
-                          value={pastYear}
-                          onChange={(e) => setPastYear(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
-                          placeholder="2000"
-                          min="1900"
-                          max="2024"
-                        />
-                      </div>
+                        <div className="space-y-3">
+                          <Label htmlFor="past-year" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                            Past Year
+                          </Label>
+                          <Input
+                            id="past-year"
+                            type="number"
+                            value={pastYear}
+                            onChange={(e) => setPastYear(e.target.value)}
+                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                            placeholder="2000"
+                            min="1900"
+                            max="2024"
+                            data-testid="input-past-year"
+                          />
+                        </div>
 
-                      <div className="space-y-3">
-                        <Label htmlFor="current-year" className="text-sm font-medium text-gray-700">
-                          Current Year
-                        </Label>
-                        <Input
-                          id="current-year"
-                          type="number"
-                          value={currentYear}
-                          onChange={(e) => setCurrentYear(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
-                          placeholder="2024"
-                          min="1900"
-                          max="2024"
-                        />
+                        <div className="space-y-3">
+                          <Label htmlFor="current-year" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                            Current Year
+                          </Label>
+                          <Input
+                            id="current-year"
+                            type="number"
+                            value={currentYear}
+                            onChange={(e) => setCurrentYear(e.target.value)}
+                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                            placeholder="2024"
+                            min="1900"
+                            max="2024"
+                            data-testid="input-current-year"
+                          />
+                        </div>
                       </div>
                     </TabsContent>
 
                     <TabsContent value="purchasing-power" className="space-y-6 mt-6">
-                      <div className="space-y-3">
-                        <Label htmlFor="base-amount" className="text-sm font-medium text-gray-700">
-                          Amount ({currency})
-                        </Label>
-                        <Input
-                          id="base-amount"
-                          type="number"
-                          value={baseAmount}
-                          onChange={(e) => setBaseAmount(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
-                          placeholder="50,000"
-                          min="0"
-                          step="0.01"
-                        />
-                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="space-y-3">
+                          <Label htmlFor="base-amount" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                            Amount
+                          </Label>
+                          <div className="relative">
+                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">
+                              {currency === 'USD' ? '$' : 
+                               currency === 'CAD' ? 'C$' :
+                               currency === 'EUR' ? '€' : 
+                               currency === 'GBP' ? '£' : 
+                               currency === 'AUD' ? 'A$' :
+                               currency === 'JPY' ? '¥' : 
+                               currency === 'KRW' ? '₩' :
+                               currency === 'INR' ? '₹' :
+                               currency === 'BRL' ? 'R$' :
+                               currency === 'MXN' ? 'MX$' :
+                               currency === 'SGD' ? 'S$' :
+                               currency === 'NZD' ? 'NZ$' : '$'}
+                            </span>
+                            <Input
+                              id="base-amount"
+                              type="number"
+                              value={baseAmount}
+                              onChange={(e) => setBaseAmount(e.target.value)}
+                              className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              placeholder="50,000"
+                              min="0"
+                              step="0.01"
+                              data-testid="input-base-amount"
+                            />
+                          </div>
+                        </div>
 
-                      <div className="space-y-3">
-                        <Label htmlFor="base-year" className="text-sm font-medium text-gray-700">
-                          Base Year
-                        </Label>
-                        <Input
-                          id="base-year"
-                          type="number"
-                          value={baseYear}
-                          onChange={(e) => setBaseYear(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
-                          placeholder="2024"
-                          min="1900"
-                          max="2050"
-                        />
-                      </div>
+                        <div className="space-y-3">
+                          <Label htmlFor="base-year" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                            Base Year
+                          </Label>
+                          <Input
+                            id="base-year"
+                            type="number"
+                            value={baseYear}
+                            onChange={(e) => setBaseYear(e.target.value)}
+                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                            placeholder="2024"
+                            min="1900"
+                            max="2050"
+                            data-testid="input-base-year"
+                          />
+                        </div>
 
-                      <div className="space-y-3">
-                        <Label htmlFor="target-year" className="text-sm font-medium text-gray-700">
-                          Target Year
-                        </Label>
-                        <Input
-                          id="target-year"
-                          type="number"
-                          value={targetYear}
-                          onChange={(e) => setTargetYear(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
-                          placeholder="2030"
-                          min="1900"
-                          max="2050"
-                        />
+                        <div className="space-y-3">
+                          <Label htmlFor="target-year" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                            Target Year
+                          </Label>
+                          <Input
+                            id="target-year"
+                            type="number"
+                            value={targetYear}
+                            onChange={(e) => setTargetYear(e.target.value)}
+                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                            placeholder="2030"
+                            min="1900"
+                            max="2050"
+                            data-testid="input-target-year"
+                          />
+                        </div>
                       </div>
                     </TabsContent>
                   </Tabs>
 
                   {/* Action Buttons */}
-                  <div className="flex gap-4 pt-6">
+                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
                     <Button
                       onClick={calculateInflation}
-                      className="flex-1 h-12 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg"
+                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      data-testid="button-calculate"
                     >
-                      Calculate
+                      Calculate Inflation
                     </Button>
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-12 px-8 border-gray-200 text-gray-600 hover:bg-gray-50 font-medium rounded-lg"
+                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      data-testid="button-reset"
                     >
                       Reset
                     </Button>
@@ -497,7 +578,7 @@ export default function InflationCalculator() {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gray-50 rounded-xl p-8">
+                <div className="xl:col-span-2 bg-gradient-to-br from-blue-50 to-indigo-50 p-8 lg:p-12">
                   <h2 className="text-2xl font-semibold text-gray-900 mb-8">Inflation Analysis</h2>
                   
                   {result ? (
