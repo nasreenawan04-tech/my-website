@@ -554,9 +554,9 @@ const CarLoanCalculator = () => {
                         <li>• Calculate total cost of ownership</li>
                       </ul>
                       <div className="mt-4 pt-4 border-t border-gray-200">
-                        <a href="/tools/loan-calculator" className="text-blue-600 hover:text-blue-700 font-medium text-sm">
-                          General Loan Calculator →
-                        </a>
+                        <p className="text-xs text-gray-500">
+                          Perfect for students and first-time car buyers
+                        </p>
                       </div>
                     </div>
 
@@ -574,9 +574,9 @@ const CarLoanCalculator = () => {
                         <li>• Integrate with retirement planning</li>
                       </ul>
                       <div className="mt-4 pt-4 border-t border-gray-200">
-                        <a href="/tools/retirement-calculator" className="text-green-600 hover:text-green-700 font-medium text-sm">
-                          Retirement Calculator →
-                        </a>
+                        <p className="text-xs text-gray-500">
+                          Essential for working professionals' financial planning
+                        </p>
                       </div>
                     </div>
 
@@ -594,9 +594,9 @@ const CarLoanCalculator = () => {
                         <li>• Compare commercial loan options</li>
                       </ul>
                       <div className="mt-4 pt-4 border-t border-gray-200">
-                        <a href="/tools/business-loan-calculator" className="text-purple-600 hover:text-purple-700 font-medium text-sm">
-                          Business Loan Calculator →
-                        </a>
+                        <p className="text-xs text-gray-500">
+                          Ideal for business vehicle financing decisions
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -724,110 +724,37 @@ const CarLoanCalculator = () => {
                 </CardContent>
               </Card>
 
-              {/* Related Financial Planning Tools */}
+              {/* Car Loan Benefits Summary */}
               <Card className="mt-8 bg-white border-0 shadow-sm">
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Complete Your Financial Planning</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Maximize Your Car Loan Decision</h2>
                   <p className="text-gray-600 mb-8">
-                    Maximize your car purchase decision with our comprehensive suite of financial calculators designed to work together for complete budget analysis and financial planning.
+                    Our comprehensive car loan calculator provides all the tools you need to make informed vehicle financing decisions and optimize your auto purchase budget.
                   </p>
                   
-                  {/* Loan & Debt Calculators */}
-                  <div className="mb-8">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-6">🚗 Related Loan & Debt Calculators</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                      <a href="/tools/loan-calculator" className="block p-6 bg-blue-50 rounded-lg border border-blue-100 hover:border-blue-200 transition-all hover:shadow-md">
-                        <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center mb-3">
-                          <i className="fas fa-calculator text-white text-sm"></i>
-                        </div>
-                        <h4 className="font-semibold text-gray-900 mb-2">General Loan Calculator</h4>
-                        <p className="text-gray-600 text-sm mb-3">Calculate monthly payments for personal loans, student loans, and other installment debt.</p>
-                        <span className="text-blue-600 text-sm font-medium">Calculate Loan Payments →</span>
-                      </a>
-
-                      <a href="/tools/debt-payoff-calculator" className="block p-6 bg-red-50 rounded-lg border border-red-100 hover:border-red-200 transition-all hover:shadow-md">
-                        <div className="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center mb-3">
-                          <i className="fas fa-credit-card text-white text-sm"></i>
-                        </div>
-                        <h4 className="font-semibold text-gray-900 mb-2">Debt Payoff Calculator</h4>
-                        <p className="text-gray-600 text-sm mb-3">Plan debt elimination strategies including credit cards and other loans alongside your car payment.</p>
-                        <span className="text-red-600 text-sm font-medium">Plan Debt Payoff →</span>
-                      </a>
-
-                      <a href="/tools/credit-card-interest-calculator" className="block p-6 bg-orange-50 rounded-lg border border-orange-100 hover:border-orange-200 transition-all hover:shadow-md">
-                        <div className="w-8 h-8 bg-orange-600 rounded-lg flex items-center justify-center mb-3">
-                          <i className="fas fa-percentage text-white text-sm"></i>
-                        </div>
-                        <h4 className="font-semibold text-gray-900 mb-2">Credit Card Calculator</h4>
-                        <p className="text-gray-600 text-sm mb-3">Manage credit card debt while planning your car loan budget and payment capacity.</p>
-                        <span className="text-orange-600 text-sm font-medium">Calculate CC Interest →</span>
-                      </a>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="bg-blue-50 rounded-lg p-6">
+                      <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-calculator text-white text-xl"></i>
+                      </div>
+                      <h3 className="font-semibold text-gray-900 mb-2">Accurate Calculations</h3>
+                      <p className="text-gray-600 text-sm">Get precise monthly payment estimates using industry-standard amortization formulas for all loan scenarios.</p>
                     </div>
-                  </div>
-
-                  {/* Housing & Investment Tools */}
-                  <div className="mb-8">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-6">🏠 Housing & Investment Calculators</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                      <a href="/tools/mortgage-calculator" className="block p-6 bg-green-50 rounded-lg border border-green-100 hover:border-green-200 transition-all hover:shadow-md">
-                        <div className="w-8 h-8 bg-green-600 rounded-lg flex items-center justify-center mb-3">
-                          <i className="fas fa-home text-white text-sm"></i>
-                        </div>
-                        <h4 className="font-semibold text-gray-900 mb-2">Mortgage Calculator</h4>
-                        <p className="text-gray-600 text-sm mb-3">Balance housing costs with car payments to optimize your total monthly budget allocation.</p>
-                        <span className="text-green-600 text-sm font-medium">Calculate Mortgage →</span>
-                      </a>
-
-                      <a href="/tools/compound-interest-calculator" className="block p-6 bg-purple-50 rounded-lg border border-purple-100 hover:border-purple-200 transition-all hover:shadow-md">
-                        <div className="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center mb-3">
-                          <i className="fas fa-chart-line text-white text-sm"></i>
-                        </div>
-                        <h4 className="font-semibold text-gray-900 mb-2">Compound Interest Calculator</h4>
-                        <p className="text-gray-600 text-sm mb-3">Compare car loan interest with investment growth potential for informed financing decisions.</p>
-                        <span className="text-purple-600 text-sm font-medium">Calculate Growth →</span>
-                      </a>
-
-                      <a href="/tools/investment-return-calculator" className="block p-6 bg-indigo-50 rounded-lg border border-indigo-100 hover:border-indigo-200 transition-all hover:shadow-md">
-                        <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center mb-3">
-                          <i className="fas fa-trending-up text-white text-sm"></i>
-                        </div>
-                        <h4 className="font-semibold text-gray-900 mb-2">Investment Return Calculator</h4>
-                        <p className="text-gray-600 text-sm mb-3">Evaluate opportunity cost of car payments versus investment potential over time.</p>
-                        <span className="text-indigo-600 text-sm font-medium">Calculate Returns →</span>
-                      </a>
+                    
+                    <div className="bg-green-50 rounded-lg p-6">
+                      <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-chart-pie text-white text-xl"></i>
+                      </div>
+                      <h3 className="font-semibold text-gray-900 mb-2">Visual Breakdown</h3>
+                      <p className="text-gray-600 text-sm">See detailed payment breakdowns with visual charts showing principal vs. interest over time.</p>
                     </div>
-                  </div>
-
-                  {/* Financial Planning Tools */}
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-6">📊 Budget & Planning Calculators</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                      <a href="/tools/net-worth-calculator" className="block p-6 bg-teal-50 rounded-lg border border-teal-100 hover:border-teal-200 transition-all hover:shadow-md">
-                        <div className="w-8 h-8 bg-teal-600 rounded-lg flex items-center justify-center mb-3">
-                          <i className="fas fa-chart-bar text-white text-sm"></i>
-                        </div>
-                        <h4 className="font-semibold text-gray-900 mb-2">Net Worth Calculator</h4>
-                        <p className="text-gray-600 text-sm mb-3">Track how car purchases and loans impact your overall financial health and net worth.</p>
-                        <span className="text-teal-600 text-sm font-medium">Calculate Net Worth →</span>
-                      </a>
-
-                      <a href="/tools/retirement-calculator" className="block p-6 bg-yellow-50 rounded-lg border border-yellow-100 hover:border-yellow-200 transition-all hover:shadow-md">
-                        <div className="w-8 h-8 bg-yellow-600 rounded-lg flex items-center justify-center mb-3">
-                          <i className="fas fa-piggy-bank text-white text-sm"></i>
-                        </div>
-                        <h4 className="font-semibold text-gray-900 mb-2">Retirement Calculator</h4>
-                        <p className="text-gray-600 text-sm mb-3">Ensure car loan payments don't compromise long-term retirement savings goals.</p>
-                        <span className="text-yellow-600 text-sm font-medium">Plan Retirement →</span>
-                      </a>
-
-                      <a href="/tools/salary-to-hourly-calculator" className="block p-6 bg-pink-50 rounded-lg border border-pink-100 hover:border-pink-200 transition-all hover:shadow-md">
-                        <div className="w-8 h-8 bg-pink-600 rounded-lg flex items-center justify-center mb-3">
-                          <i className="fas fa-dollar-sign text-white text-sm"></i>
-                        </div>
-                        <h4 className="font-semibold text-gray-900 mb-2">Salary Calculator</h4>
-                        <p className="text-gray-600 text-sm mb-3">Convert salary to hourly rates to better understand car payment affordability relative to income.</p>
-                        <span className="text-pink-600 text-sm font-medium">Convert Salary →</span>
-                      </a>
+                    
+                    <div className="bg-purple-50 rounded-lg p-6">
+                      <div className="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center mb-4">
+                        <i className="fas fa-globe text-white text-xl"></i>
+                      </div>
+                      <h3 className="font-semibold text-gray-900 mb-2">Multi-Currency</h3>
+                      <p className="text-gray-600 text-sm">Calculate car loans in 10 major global currencies for international vehicle purchases.</p>
                     </div>
                   </div>
                 </CardContent>
