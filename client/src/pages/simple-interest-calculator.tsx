@@ -111,14 +111,14 @@ export default function SimpleInterestCalculator() {
         <meta property="og:title" content="Simple Interest Calculator - Calculate Interest Earnings | DapsiWow" />
         <meta property="og:description" content="Calculate simple interest on loans and investments with our free professional calculator. Get instant results with detailed breakdown and yearly projections." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://dapsiwow.com/simple-interest-calculator" />
+        <link rel="canonical" href="https://dapsiwow.com/simple-interest-Calculator" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebApplication",
             "name": "Simple Interest Calculator",
             "description": "Professional simple interest calculator for loans, savings, and investments with detailed breakdown and multiple currency support",
-            "url": "https://dapsiwow.com/simple-interest-calculator",
+            "url": "https://dapsiwow.com/simple-interest-Calculator",
             "applicationCategory": "FinanceApplication",
             "operatingSystem": "Any",
             "offers": {

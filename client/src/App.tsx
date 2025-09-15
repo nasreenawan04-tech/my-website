@@ -130,7 +130,7 @@ function Router() {
       <Route path="/tools/mortgage-calculator" component={MortgageCalculator} />
       <Route path="/tools/emi-calculator" component={EMICalculator} />
       <Route path="/tools/compound-interest-Calculator" component={CompoundInterestCalculator} />
-      <Route path="/tools/simple-interest" component={SimpleInterestCalculator} />
+      <Route path="/tools/simple-interest-Calculator" component={SimpleInterestCalculator} />
       <Route path="/tools/roi-calculator" component={ROICalculator} />
       <Route path="/tools/tax-calculator" component={TaxCalculator} />
       <Route path="/tools/salary-to-hourly" component={SalaryToHourlyCalculator} />
