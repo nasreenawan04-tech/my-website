@@ -231,14 +231,14 @@ export default function CompoundInterestCalculator() {
         <meta property="og:type" content="website" />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/compound-interest-calculator" />
+        <link rel="canonical" href="https://dapsiwow.com/tools/compound-interest-Calculator" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebApplication",
             "name": "Compound Interest Calculator",
             "description": "Free online compound interest calculator to calculate investment growth, savings goals, and retirement planning with SIP investments and inflation analysis.",
-            "url": "https://dapsiwow.com/tools/compound-interest-calculator",
+            "url": "https://dapsiwow.com/tools/compound-interest-Calculator",
             "applicationCategory": "FinanceApplication",
             "operatingSystem": "Any",
             "offers": {
