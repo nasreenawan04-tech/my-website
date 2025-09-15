@@ -669,10 +669,10 @@ const CreditCardInterestCalculator = () => {
                       Debt Management Tools
                     </h3>
                     <ul className="text-sm text-gray-600 space-y-2">
-                      <li>• <a href="/tools/debt-payoff-calculator" className="text-blue-600 hover:text-blue-800 hover:underline">Debt Payoff Calculator</a> - Plan multiple debt elimination strategies</li>
-                      <li>• <a href="/tools/loan-calculator" className="text-blue-600 hover:text-blue-800 hover:underline">Loan Calculator</a> - Compare personal loan terms and rates</li>
-                      <li>• <a href="/tools/compound-interest-calculator" className="text-blue-600 hover:text-blue-800 hover:underline">Compound Interest Calculator</a> - Understand debt growth and savings potential</li>
-                      <li>• <a href="/tools/simple-interest-calculator" className="text-blue-600 hover:text-blue-800 hover:underline">Simple Interest Calculator</a> - Calculate basic interest scenarios</li>
+                      <li>• Debt Payoff Calculator - Plan multiple debt elimination strategies</li>
+                      <li>• Loan Calculator - Compare personal loan terms and rates</li>
+                      <li>• Compound Interest Calculator - Understand debt growth and savings potential</li>
+                      <li>• Simple Interest Calculator - Calculate basic interest scenarios</li>
                     </ul>
                   </div>
 
@@ -682,10 +682,10 @@ const CreditCardInterestCalculator = () => {
                       Major Purchase Planning
                     </h3>
                     <ul className="text-sm text-gray-600 space-y-2">
-                      <li>• <a href="/tools/mortgage-calculator" className="text-blue-600 hover:text-blue-800 hover:underline">Mortgage Calculator</a> - Plan home financing and monthly payments</li>
-                      <li>• <a href="/tools/car-loan-calculator" className="text-blue-600 hover:text-blue-800 hover:underline">Car Loan Calculator</a> - Auto financing options and comparisons</li>
-                      <li>• <a href="/tools/home-loan-calculator" className="text-blue-600 hover:text-blue-800 hover:underline">Home Loan Calculator</a> - Detailed home buying financial analysis</li>
-                      <li>• <a href="/tools/lease-calculator" className="text-blue-600 hover:text-blue-800 hover:underline">Lease Calculator</a> - Compare leasing vs buying options</li>
+                      <li>• Mortgage Calculator - Plan home financing and monthly payments</li>
+                      <li>• Car Loan Calculator - Auto financing options and comparisons</li>
+                      <li>• Home Loan Calculator - Detailed home buying financial analysis</li>
+                      <li>• Lease Calculator - Compare leasing vs buying options</li>
                     </ul>
                   </div>
 
@@ -695,10 +695,10 @@ const CreditCardInterestCalculator = () => {
                       Investment & Savings
                     </h3>
                     <ul className="text-sm text-gray-600 space-y-2">
-                      <li>• <a href="/tools/savings-goal-calculator" className="text-blue-600 hover:text-blue-800 hover:underline">Savings Goal Calculator</a> - Plan future financial goals</li>
-                      <li>• <a href="/tools/retirement-calculator" className="text-blue-600 hover:text-blue-800 hover:underline">Retirement Calculator</a> - Long-term retirement planning</li>
-                      <li>• <a href="/tools/investment-return-calculator" className="text-blue-600 hover:text-blue-800 hover:underline">Investment Return Calculator</a> - ROI and investment analysis</li>
-                      <li>• <a href="/tools/sip-calculator" className="text-blue-600 hover:text-blue-800 hover:underline">SIP Calculator</a> - Systematic investment planning</li>
+                      <li>• Savings Goal Calculator - Plan future financial goals</li>
+                      <li>• Retirement Calculator - Long-term retirement planning</li>
+                      <li>• Investment Return Calculator - ROI and investment analysis</li>
+                      <li>• SIP Calculator - Systematic investment planning</li>
                     </ul>
                   </div>
 
@@ -708,10 +708,10 @@ const CreditCardInterestCalculator = () => {
                       Business Finance Tools
                     </h3>
                     <ul className="text-sm text-gray-600 space-y-2">
-                      <li>• <a href="/tools/business-loan-calculator" className="text-blue-600 hover:text-blue-800 hover:underline">Business Loan Calculator</a> - Commercial financing solutions</li>
-                      <li>• <a href="/tools/break-even-calculator" className="text-blue-600 hover:text-blue-800 hover:underline">Break-Even Calculator</a> - Business profitability analysis</li>
-                      <li>• <a href="/tools/roi-calculator" className="text-blue-600 hover:text-blue-800 hover:underline">ROI Calculator</a> - Return on investment calculations</li>
-                      <li>• <a href="/tools/emi-calculator" className="text-blue-600 hover:text-blue-800 hover:underline">EMI Calculator</a> - Equated monthly installment planning</li>
+                      <li>• Business Loan Calculator - Commercial financing solutions</li>
+                      <li>• Break-Even Calculator - Business profitability analysis</li>
+                      <li>• ROI Calculator - Return on investment calculations</li>
+                      <li>• EMI Calculator - Equated monthly installment planning</li>
                     </ul>
                   </div>
 
@@ -721,10 +721,10 @@ const CreditCardInterestCalculator = () => {
                       Financial Utilities
                     </h3>
                     <ul className="text-sm text-gray-600 space-y-2">
-                      <li>• <a href="/tools/percentage-calculator" className="text-blue-600 hover:text-blue-800 hover:underline">Percentage Calculator</a> - Financial percentage calculations</li>
-                      <li>• <a href="/tools/discount-calculator" className="text-blue-600 hover:text-blue-800 hover:underline">Discount Calculator</a> - Savings and discount analysis</li>
-                      <li>• <a href="/tools/inflation-calculator" className="text-blue-600 hover:text-blue-800 hover:underline">Inflation Calculator</a> - Purchasing power analysis</li>
-                      <li>• <a href="/tools/net-worth-calculator" className="text-blue-600 hover:text-blue-800 hover:underline">Net Worth Calculator</a> - Personal wealth assessment</li>
+                      <li>• Percentage Calculator - Financial percentage calculations</li>
+                      <li>• Discount Calculator - Savings and discount analysis</li>
+                      <li>• Inflation Calculator - Purchasing power analysis</li>
+                      <li>• Net Worth Calculator - Personal wealth assessment</li>
                     </ul>
                   </div>
 
@@ -734,10 +734,10 @@ const CreditCardInterestCalculator = () => {
                       Currency & International
                     </h3>
                     <ul className="text-sm text-gray-600 space-y-2">
-                      <li>• <a href="/tools/currency-converter" className="text-blue-600 hover:text-blue-800 hover:underline">Currency Converter</a> - Live exchange rates and conversions</li>
-                      <li>• <a href="/tools/cryptocurrency-converter" className="text-blue-600 hover:text-blue-800 hover:underline">Cryptocurrency Converter</a> - Digital currency calculations</li>
-                      <li>• <a href="/tools/paypal-fee-calculator" className="text-blue-600 hover:text-blue-800 hover:underline">PayPal Fee Calculator</a> - International payment fees</li>
-                      <li>• <a href="/tools/salary-to-hourly-calculator" className="text-blue-600 hover:text-blue-800 hover:underline">Salary Calculator</a> - Income conversions</li>
+                      <li>• Currency Converter - Live exchange rates and conversions</li>
+                      <li>• Cryptocurrency Converter - Digital currency calculations</li>
+                      <li>• PayPal Fee Calculator - International payment fees</li>
+                      <li>• Salary Calculator - Income conversions</li>
                     </ul>
                   </div>
                 </div>
@@ -1175,9 +1175,9 @@ const CreditCardInterestCalculator = () => {
                       Debt Management Tools
                     </h3>
                     <ul className="text-sm text-gray-600 space-y-1 mb-3">
-                      <li>• <a href="/tools/debt-payoff-calculator" className="text-blue-600 hover:text-blue-700">Debt Payoff Calculator</a> - Plan multiple debt elimination</li>
-                      <li>• <a href="/tools/loan-calculator" className="text-blue-600 hover:text-blue-700">Loan Calculator</a> - Compare loan terms and rates</li>
-                      <li>• <a href="/tools/compound-interest-calculator" className="text-blue-600 hover:text-blue-700">Compound Interest Calculator</a> - See growth potential</li>
+                      <li>• Debt Payoff Calculator - Plan multiple debt elimination</li>
+                      <li>• Loan Calculator - Compare loan terms and rates</li>
+                      <li>• Compound Interest Calculator - See growth potential</li>
                     </ul>
                   </div>
 
@@ -1187,9 +1187,9 @@ const CreditCardInterestCalculator = () => {
                       Major Purchase Planning
                     </h3>
                     <ul className="text-sm text-gray-600 space-y-1 mb-3">
-                      <li>• <a href="/tools/mortgage-calculator" className="text-blue-600 hover:text-blue-700">Mortgage Calculator</a> - Plan home financing</li>
-                      <li>• <a href="/tools/car-loan-calculator" className="text-blue-600 hover:text-blue-700">Car Loan Calculator</a> - Auto financing options</li>
-                      <li>• <a href="/tools/home-loan-calculator" className="text-blue-600 hover:text-blue-700">Home Loan Calculator</a> - Detailed home buying analysis</li>
+                      <li>• Mortgage Calculator - Plan home financing</li>
+                      <li>• Car Loan Calculator - Auto financing options</li>
+                      <li>• Home Loan Calculator - Detailed home buying analysis</li>
                     </ul>
                   </div>
 
@@ -1199,9 +1199,9 @@ const CreditCardInterestCalculator = () => {
                       Investment & Savings
                     </h3>
                     <ul className="text-sm text-gray-600 space-y-1 mb-3">
-                      <li>• <a href="/tools/savings-goal-calculator" className="text-blue-600 hover:text-blue-700">Savings Goal Calculator</a> - Plan future goals</li>
-                      <li>• <a href="/tools/retirement-calculator" className="text-blue-600 hover:text-blue-700">Retirement Calculator</a> - Long-term planning</li>
-                      <li>• <a href="/tools/investment-return-calculator" className="text-blue-600 hover:text-blue-700">Investment Return Calculator</a> - ROI analysis</li>
+                      <li>• Savings Goal Calculator - Plan future goals</li>
+                      <li>• Retirement Calculator - Long-term planning</li>
+                      <li>• Investment Return Calculator - ROI analysis</li>
                     </ul>
                   </div>
 
@@ -1211,9 +1211,9 @@ const CreditCardInterestCalculator = () => {
                       Business Finance Tools
                     </h3>
                     <ul className="text-sm text-gray-600 space-y-1 mb-3">
-                      <li>• <a href="/tools/business-loan-calculator" className="text-blue-600 hover:text-blue-700">Business Loan Calculator</a> - Commercial financing</li>
-                      <li>• <a href="/tools/break-even-calculator" className="text-blue-600 hover:text-blue-700">Break-Even Calculator</a> - Business profitability</li>
-                      <li>• <a href="/tools/roi-calculator" className="text-blue-600 hover:text-blue-700">ROI Calculator</a> - Return on investment analysis</li>
+                      <li>• Business Loan Calculator - Commercial financing</li>
+                      <li>• Break-Even Calculator - Business profitability</li>
+                      <li>• ROI Calculator - Return on investment analysis</li>
                     </ul>
                   </div>
 
@@ -1223,9 +1223,9 @@ const CreditCardInterestCalculator = () => {
                       Tax & Finance Utilities
                     </h3>
                     <ul className="text-sm text-gray-600 space-y-1 mb-3">
-                      <li>• <a href="/tools/tax-calculator" className="text-blue-600 hover:text-blue-700">Tax Calculator</a> - Income tax estimation</li>
-                      <li>• <a href="/tools/percentage-calculator" className="text-blue-600 hover:text-blue-700">Percentage Calculator</a> - Financial percentages</li>
-                      <li>• <a href="/tools/tip-calculator" className="text-blue-600 hover:text-blue-700">Tip Calculator</a> - Service charge calculations</li>
+                      <li>• Tax Calculator - Income tax estimation</li>
+                      <li>• Percentage Calculator - Financial percentages</li>
+                      <li>• Tip Calculator - Service charge calculations</li>
                     </ul>
                   </div>
 
@@ -1235,9 +1235,9 @@ const CreditCardInterestCalculator = () => {
                       Currency & International
                     </h3>
                     <ul className="text-sm text-gray-600 space-y-1 mb-3">
-                      <li>• <a href="/tools/currency-converter" className="text-blue-600 hover:text-blue-700">Currency Converter</a> - Live exchange rates</li>
-                      <li>• <a href="/tools/inflation-calculator" className="text-blue-600 hover:text-blue-700">Inflation Calculator</a> - Purchasing power analysis</li>
-                      <li>• <a href="/tools/vat-gst-calculator" className="text-blue-600 hover:text-blue-700">VAT/GST Calculator</a> - International tax calculations</li>
+                      <li>• Currency Converter - Live exchange rates</li>
+                      <li>• Inflation Calculator - Purchasing power analysis</li>
+                      <li>• VAT/GST Calculator - International tax calculations</li>
                     </ul>
                   </div>
                 </div>
