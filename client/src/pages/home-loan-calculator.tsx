@@ -375,7 +375,476 @@ const HomeLoanCalculator = () => {
                 </CardContent>
               </Card>
 
-              
+              {/* What is a Home Loan Calculator Section */}
+              <Card className="mt-12 bg-white border-0 shadow-sm">
+                <CardContent className="p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">What is a Home Loan Calculator?</h2>
+                  <div className="prose max-w-none text-gray-600">
+                    <p className="mb-4">
+                      A home loan calculator is an essential financial planning tool that helps you estimate your monthly mortgage payments, 
+                      total interest costs, and overall loan expenses before purchasing a property. Our free online home loan EMI calculator 
+                      uses advanced algorithms to compute accurate payment schedules based on your loan amount, interest rate, and repayment tenure.
+                    </p>
+                    <p className="mb-4">
+                      Whether you're a first-time homebuyer, looking to refinance your existing mortgage, or planning to invest in real estate, 
+                      this housing loan calculator provides instant, reliable estimates to help you make informed property investment decisions. 
+                      The calculator uses the standard EMI formula: EMI = [P x R x (1+R)^N] / [(1+R)^N - 1], where P is principal, R is monthly interest rate, and N is tenure.
+                      For more detailed mortgage calculations, consider exploring advanced mortgage planning tools.
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* How to Use Home Loan Calculator Section */}
+              <Card className="mt-8 bg-white border-0 shadow-sm">
+                <CardContent className="p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">How to Use Our Home Loan Calculator</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Step-by-Step Process</h3>
+                      <ol className="text-gray-600 space-y-2 list-decimal list-inside">
+                        <li>Select your preferred currency from 10+ global options</li>
+                        <li>Enter the total home loan amount you need</li>
+                        <li>Input the annual interest rate offered by your lender</li>
+                        <li>Choose loan tenure in years or months</li>
+                        <li>Add processing fees if applicable (optional)</li>
+                        <li>Click "Calculate" to get instant EMI results</li>
+                      </ol>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">What You'll Get</h3>
+                      <ul className="text-gray-600 space-y-2">
+                        <li>• Monthly EMI payment amount</li>
+                        <li>• Total interest payable over loan tenure</li>
+                        <li>• Complete payment breakdown</li>
+                        <li>• Principal vs interest ratio visualization</li>
+                        <li>• Interest percentage of total payment</li>
+                        <li>• Processing fee calculations</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Benefits and Use Cases Section */}
+              <Card className="mt-8 bg-white border-0 shadow-sm">
+                <CardContent className="p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Benefits and Use Cases of Home Loan Calculator</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="bg-blue-50 rounded-lg p-6">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">🏠 First-Time Homebuyers</h3>
+                      <p className="text-gray-600 text-sm">
+                        Plan your budget, understand affordability, and compare different loan options before making your first property purchase. 
+                        Determine how much house you can afford with different down payment scenarios.
+                      </p>
+                    </div>
+                    <div className="bg-green-50 rounded-lg p-6">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">🔄 Loan Refinancing</h3>
+                      <p className="text-gray-600 text-sm">
+                        Compare your current mortgage payments with potential refinancing options. Calculate savings from lower interest rates 
+                        and decide if refinancing makes financial sense for your situation.
+                      </p>
+                    </div>
+                    <div className="bg-purple-50 rounded-lg p-6">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">📊 Investment Planning</h3>
+                      <p className="text-gray-600 text-sm">
+                        Analyze rental property investments by calculating mortgage costs versus potential rental income. 
+                        Make informed decisions about real estate investment opportunities and assess profitability.
+                      </p>
+                    </div>
+                    <div className="bg-orange-50 rounded-lg p-6">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">💰 Budget Planning</h3>
+                      <p className="text-gray-600 text-sm">
+                        Understand your monthly financial commitments and plan your household budget effectively. 
+                        Ensure your EMI fits comfortably within your income and expense structure.
+                      </p>
+                    </div>
+                    <div className="bg-teal-50 rounded-lg p-6">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">⚖️ Loan Comparison</h3>
+                      <p className="text-gray-600 text-sm">
+                        Compare offers from multiple lenders by analyzing EMIs, total interest costs, and processing fees. 
+                        Choose the most cost-effective home loan option for your needs.
+                      </p>
+                    </div>
+                    <div className="bg-yellow-50 rounded-lg p-6">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">📈 Financial Planning</h3>
+                      <p className="text-gray-600 text-sm">
+                        Integrate home loan payments into your long-term financial planning. 
+                        Understand the impact of property purchase on your overall financial goals and retirement planning.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Key Features Section */}
+              <Card className="mt-8 bg-white border-0 shadow-sm">
+                <CardContent className="p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Key Features of Our Home Loan EMI Calculator</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">🌍 Multi-Currency Support</h3>
+                      <p className="text-gray-600 mb-4">
+                        Calculate home loan EMIs in 10+ major global currencies including USD, EUR, GBP, INR, JPY, CAD, AUD, CNY, BRL, and MXN. 
+                        Perfect for international property investments or expatriate home purchases.
+                      </p>
+
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">📱 Mobile-Friendly Design</h3>
+                      <p className="text-gray-600 mb-4">
+                        Access our home loan calculator from any device - desktop, tablet, or smartphone. 
+                        The responsive design ensures accurate calculations and easy navigation on all screen sizes.
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">🔢 Accurate Calculations</h3>
+                      <p className="text-gray-600 mb-4">
+                        Uses industry-standard EMI formulas for precise calculations. Includes processing fees, 
+                        displays principal vs interest breakdown, and provides comprehensive payment analysis.
+                      </p>
+
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">⚡ Instant Results</h3>
+                      <p className="text-gray-600 mb-4">
+                        Get immediate EMI calculations without waiting. Real-time updates as you modify loan parameters, 
+                        allowing you to experiment with different scenarios and find the best loan structure.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Educational Content */}
+              <Card className="mt-8 bg-white border-0 shadow-sm">
+                <CardContent className="p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Complete Home Loan Guide</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Before Applying for Home Loan</h3>
+                      <ul className="text-gray-600 space-y-2 mb-6">
+                        <li>• Check and improve your credit score (750+ recommended)</li>
+                        <li>• Gather income documents, tax returns, and bank statements</li>
+                        <li>• Research property values and market trends</li>
+                        <li>• Save for down payment (typically 10-20% of property value)</li>
+                        <li>• Get pre-approval to understand your borrowing capacity</li>
+                        <li>• Compare interest rates from multiple lenders</li>
+                      </ul>
+
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">EMI Planning Guidelines</h3>
+                      <ul className="text-gray-600 space-y-2">
+                        <li>• Follow the 40% rule - EMI ≤ 40% of monthly income</li>
+                        <li>• Consider all housing costs (maintenance, taxes, insurance)</li>
+                        <li>• Maintain emergency fund for 6-12 months of EMI payments</li>
+                        <li>• Account for property taxes and homeowner's insurance</li>
+                        <li>• Plan for future income changes and job stability</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Important Loan Features</h3>
+                      <ul className="text-gray-600 space-y-2 mb-6">
+                        <li>• <strong>Fixed Rate:</strong> Stable payments, higher initial rate</li>
+                        <li>• <strong>Floating Rate:</strong> Variable payments, market-linked rates</li>
+                        <li>• <strong>Prepayment:</strong> Check charges for early payments</li>
+                        <li>• <strong>Processing Fees:</strong> One-time charges (0.5-1% of loan amount)</li>
+                        <li>• <strong>Insurance:</strong> Consider mortgage protection insurance</li>
+                        <li>• <strong>Tax Benefits:</strong> Deductions on principal and interest payments</li>
+                      </ul>
+
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Loan Tenure Considerations</h3>
+                      <ul className="text-gray-600 space-y-2">
+                        <li>• Longer tenure = Lower EMI but higher total interest</li>
+                        <li>• Shorter tenure = Higher EMI but significant interest savings</li>
+                        <li>• Most common tenures: 15-30 years</li>
+                        <li>• Consider your age and retirement plans</li>
+                        <li>• Balance monthly affordability with total cost</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* FAQ Section */}
+              <Card className="mt-8 bg-white border-0 shadow-sm">
+                <CardContent className="p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">What factors affect home loan EMI calculations?</h3>
+                      <p className="text-gray-600">
+                        Home loan EMI depends on three main factors: loan amount (principal), interest rate, and loan tenure. 
+                        Higher loan amounts and interest rates increase EMI, while longer tenure reduces monthly payments but increases total interest.
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">How accurate is this home loan calculator?</h3>
+                      <p className="text-gray-600">
+                        Our calculator uses the standard EMI formula and provides highly accurate estimates. However, final loan terms may vary 
+                        based on lender policies, credit score, and additional fees. Always verify calculations with your chosen lender.
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Should I choose fixed or floating interest rates?</h3>
+                      <p className="text-gray-600">
+                        Fixed rates offer payment stability but are typically higher initially. Floating rates can save money if market rates decline 
+                        but involve payment uncertainty. Consider your risk tolerance, market conditions, and financial planning preferences.
+                      </p>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">What is the ideal down payment for a home loan?</h3>
+                      <p className="text-gray-600">
+                        Most lenders require 10-20% down payment. Higher down payments reduce loan amount, lower EMIs, and may qualify you for better interest rates. 
+                        However, maintain sufficient liquidity for other expenses and emergency funds.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Currency Information */}
+              <div className="mt-8 bg-blue-50 rounded-xl p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                  <i className="fas fa-globe mr-2"></i>
+                  Global Home Financing
+                </h3>
+                <p className="text-gray-600">
+                  This home loan calculator supports major global currencies including USD, EUR, GBP, INR, JPY, CAD, AUD, CNY, BRL, and MXN. 
+                  Calculate your home loan EMI regardless of your location for informed property investment decisions worldwide.
+                </p>
+              </div>
+
+              {/* Advanced Home Loan Planning Section */}
+              <Card className="mt-8 bg-white border-0 shadow-sm">
+                <CardContent className="p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Advanced Home Loan Planning Strategies</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">🏠 For Different Buyer Types</h3>
+                      <div className="space-y-4">
+                        <div className="border-l-4 border-blue-500 pl-4">
+                          <h4 className="font-semibold text-gray-900">First-Time Homebuyers</h4>
+                          <p className="text-sm text-gray-600">
+                            Use our home loan calculator to determine affordability before house hunting. 
+                            Consider government schemes, lower down payment options, and factor in closing costs. 
+                            Plan systematically for down payment accumulation.
+                          </p>
+                        </div>
+                        <div className="border-l-4 border-green-500 pl-4">
+                          <h4 className="font-semibold text-gray-900">Professionals & Salaried Individuals</h4>
+                          <p className="text-sm text-gray-600">
+                            Optimize loan tenure based on career progression and salary growth. 
+                            Use the EMI to income ratio guidelines and plan prepayments strategically.
+                          </p>
+                        </div>
+                        <div className="border-l-4 border-purple-500 pl-4">
+                          <h4 className="font-semibold text-gray-900">Business Owners & Entrepreneurs</h4>
+                          <p className="text-sm text-gray-600">
+                            Consider variable income patterns and maintain higher emergency funds. 
+                            Explore business loan options alongside home loans for comprehensive financial planning.
+                          </p>
+                        </div>
+                        <div className="border-l-4 border-orange-500 pl-4">
+                          <h4 className="font-semibold text-gray-900">Real Estate Investors</h4>
+                          <p className="text-sm text-gray-600">
+                            Calculate investment property financing with rental income considerations. 
+                            Analyze property investments and determine optimal leverage ratios for maximum returns.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">💡 Smart EMI Management</h3>
+                      <div className="space-y-4">
+                        <div className="bg-blue-50 rounded-lg p-4">
+                          <h4 className="font-semibold text-gray-900 mb-2">EMI Optimization Strategies</h4>
+                          <ul className="text-sm text-gray-600 space-y-1">
+                            <li>• Make partial prepayments during bonus periods</li>
+                            <li>• Consider step-up EMI options for growing incomes</li>
+                            <li>• Balance between EMI amount and investment opportunities</li>
+                            <li>• Use tax benefits under Section 80C and 24(b)</li>
+                          </ul>
+                        </div>
+                        <div className="bg-green-50 rounded-lg p-4">
+                          <h4 className="font-semibold text-gray-900 mb-2">Interest Rate Management</h4>
+                          <ul className="text-sm text-gray-600 space-y-1">
+                            <li>• Monitor rate changes for floating rate loans</li>
+                            <li>• Consider refinancing when rates drop significantly</li>
+                            <li>• Negotiate with lenders for better rates</li>
+                            <li>• Compare fixed vs floating options regularly</li>
+                          </ul>
+                        </div>
+                        <div className="bg-yellow-50 rounded-lg p-4">
+                          <h4 className="font-semibold text-gray-900 mb-2">Financial Integration</h4>
+                          <p className="text-sm text-gray-600">
+                            Integrate home loan planning with overall financial goals. Consider retirement planning 
+                            and investment returns to ensure your home purchase doesn't compromise long-term wealth building.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Home Loan Types and Features */}
+              <Card className="mt-8 bg-white border-0 shadow-sm">
+                <CardContent className="p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Understanding Home Loan Types and Features</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="bg-blue-50 rounded-lg p-6">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">🏠 Purchase Loans</h3>
+                      <p className="text-gray-600 text-sm mb-4">
+                        Standard home loans for buying residential property. Typically require 10-20% down payment 
+                        with competitive interest rates for primary residences.
+                      </p>
+                      <ul className="text-xs text-gray-600 space-y-1">
+                        <li>• Lower interest rates for primary residence</li>
+                        <li>• Loan amount up to 80-90% of property value</li>
+                        <li>• Longer repayment tenure (up to 30 years)</li>
+                        <li>• Tax benefits on principal and interest</li>
+                      </ul>
+                    </div>
+                    <div className="bg-green-50 rounded-lg p-6">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">🔄 Refinancing Loans</h3>
+                      <p className="text-gray-600 text-sm mb-4">
+                        Replace existing mortgage with new loan at better terms. Compare potential savings 
+                        using our calculator before switching lenders.
+                      </p>
+                      <ul className="text-xs text-gray-600 space-y-1">
+                        <li>• Lower interest rates can reduce EMI</li>
+                        <li>• Change from fixed to floating or vice versa</li>
+                        <li>• Access home equity for other investments</li>
+                        <li>• Processing fees and charges apply</li>
+                      </ul>
+                    </div>
+                    <div className="bg-purple-50 rounded-lg p-6">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">🏗️ Construction Loans</h3>
+                      <p className="text-gray-600 text-sm mb-4">
+                        Financing for building new homes with staged disbursements. Interest charged 
+                        only on disbursed amounts during construction phase.
+                      </p>
+                      <ul className="text-xs text-gray-600 space-y-1">
+                        <li>• Staged payments as construction progresses</li>
+                        <li>• Pre-EMI interest during construction</li>
+                        <li>• Converts to regular home loan post-completion</li>
+                        <li>• Higher documentation and monitoring</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Home Loan Process and Documentation */}
+              <Card className="mt-8 bg-white border-0 shadow-sm">
+                <CardContent className="p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Home Loan Application Process Guide</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">📋 Required Documents</h3>
+                      <div className="space-y-3">
+                        <div>
+                          <h4 className="font-semibold text-gray-900 text-sm">Identity & Address Proof</h4>
+                          <p className="text-xs text-gray-600">Passport, Driving License, Voter ID, Aadhaar Card, Utility Bills</p>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-gray-900 text-sm">Income Documentation</h4>
+                          <p className="text-xs text-gray-600">Salary certificates, bank statements, ITR, Form 16, business financials</p>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-gray-900 text-sm">Property Documents</h4>
+                          <p className="text-xs text-gray-600">Sale deed, NOC, property tax receipts, building approvals</p>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-gray-900 text-sm">Financial Records</h4>
+                          <p className="text-xs text-gray-600">Bank statements, investment proofs, existing loan details, CIBIL report</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">⚡ Application Timeline</h3>
+                      <div className="space-y-3">
+                        <div className="flex items-start space-x-3">
+                          <div className="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs font-bold">1</div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900 text-sm">Pre-Approval (3-7 days)</h4>
+                            <p className="text-xs text-gray-600">Document verification, credit check, income assessment</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start space-x-3">
+                          <div className="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs font-bold">2</div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900 text-sm">Property Evaluation (5-10 days)</h4>
+                            <p className="text-xs text-gray-600">Technical and legal verification, property valuation</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start space-x-3">
+                          <div className="w-6 h-6 bg-purple-500 text-white rounded-full flex items-center justify-center text-xs font-bold">3</div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900 text-sm">Final Approval (7-15 days)</h4>
+                            <p className="text-xs text-gray-600">Loan sanction, agreement signing, disbursement processing</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start space-x-3">
+                          <div className="w-6 h-6 bg-orange-500 text-white rounded-full flex items-center justify-center text-xs font-bold">4</div>
+                          <div>
+                            <h4 className="font-semibold text-gray-900 text-sm">Disbursement (1-3 days)</h4>
+                            <p className="text-xs text-gray-600">Registration, insurance, fund transfer to seller</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Interest Rate Trends and Market Analysis */}
+              <Card className="mt-8 bg-white border-0 shadow-sm">
+                <CardContent className="p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Home Loan Interest Rate Analysis</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">📊 Rate Comparison Strategy</h3>
+                      <p className="text-gray-600 mb-4">
+                        Home loan interest rates vary significantly across lenders and loan products. Use our calculator 
+                        to compare the total cost impact of different interest rates on your specific loan amount and tenure.
+                      </p>
+                      <div className="bg-yellow-50 rounded-lg p-4 mb-4">
+                        <h4 className="font-semibold text-gray-900 mb-2">💡 Rate Shopping Tips</h4>
+                        <ul className="text-sm text-gray-600 space-y-1">
+                          <li>• Compare rates from at least 3-4 different lenders</li>
+                          <li>• Consider both fixed and floating rate options</li>
+                          <li>• Factor in processing fees and hidden charges</li>
+                          <li>• Negotiate based on your credit profile and relationship</li>
+                          <li>• Use general loan calculators for quick comparisons</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-4">🎯 Factors Affecting Your Rate</h3>
+                      <div className="space-y-3">
+                        <div className="border-l-4 border-green-500 pl-3">
+                          <h4 className="font-semibold text-sm text-gray-900">Credit Score Impact</h4>
+                          <p className="text-xs text-gray-600">Score above 750 can get you 0.5-1% lower rates</p>
+                        </div>
+                        <div className="border-l-4 border-blue-500 pl-3">
+                          <h4 className="font-semibold text-sm text-gray-900">Down Payment Size</h4>
+                          <p className="text-xs text-gray-600">Higher down payment reduces lender risk and rates</p>
+                        </div>
+                        <div className="border-l-4 border-purple-500 pl-3">
+                          <h4 className="font-semibold text-sm text-gray-900">Income Stability</h4>
+                          <p className="text-xs text-gray-600">Salaried employees often get better rates than self-employed</p>
+                        </div>
+                        <div className="border-l-4 border-orange-500 pl-3">
+                          <h4 className="font-semibold text-sm text-gray-900">Property Location</h4>
+                          <p className="text-xs text-gray-600">Prime locations may qualify for preferential rates</p>
+                        </div>
+                      </div>
+                      <div className="mt-4 bg-blue-50 rounded-lg p-4">
+                        <p className="text-sm text-gray-600">
+                          Use interest calculators to understand the long-term impact of rate differences on your total payment amount.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
 
               
             </div>
