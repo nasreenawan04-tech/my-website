@@ -1094,6 +1094,7 @@ const LeaseCalculator = () => {
                 </p>
               </div>
             </div>
+          </div>
           </section>
         </main>
 
