@@ -60,11 +60,11 @@ export default function TipCalculator() {
   const calculateTip = () => {
     const bill = parseFloat(billAmount);
     const people = parseInt(numberOfPeople);
-    
+
     if (bill <= 0 || people <= 0) return;
 
     let tipPercent: number;
-    
+
     if (calculationType === 'percentage') {
       tipPercent = parseFloat(tipPercentage);
     } else if (calculationType === 'custom') {
@@ -132,7 +132,7 @@ export default function TipCalculator() {
     };
 
     const config = currencyMap[currency] || currencyMap.USD;
-    
+
     return new Intl.NumberFormat(config.locale, {
       style: 'currency',
       currency: config.currency,
@@ -187,7 +187,7 @@ export default function TipCalculator() {
 
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50" data-testid="page-tip-calculator">
         <Header />
-        
+
         <main>
           {/* Hero Section */}
           <section className="relative py-20 sm:py-28 lg:py-32 overflow-hidden">
@@ -251,12 +251,12 @@ export default function TipCalculator() {
                           </Label>
                           <div className="relative">
                             <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">
-                              {currency === 'USD' ? '$' : 
+                              {currency === 'USD' ? '$' :
                                currency === 'CAD' ? 'C$' :
-                               currency === 'EUR' ? '€' : 
-                               currency === 'GBP' ? '£' : 
+                               currency === 'EUR' ? '€' :
+                               currency === 'GBP' ? '£' :
                                currency === 'AUD' ? 'A$' :
-                               currency === 'JPY' ? '¥' : 
+                               currency === 'JPY' ? '¥' :
                                currency === 'KRW' ? '₩' :
                                currency === 'INR' ? '₹' :
                                currency === 'BRL' ? 'R$' :
@@ -315,7 +315,7 @@ export default function TipCalculator() {
                       {/* Dynamic Input Based on Calculation Type */}
                       <div className="border-t border-gray-200 pt-8 space-y-6">
                         <h3 className="text-xl font-bold text-gray-900">Tip Details</h3>
-                        
+
                         {calculationType === 'percentage' && (
                           <div className="space-y-4">
                             <Label className="text-sm font-medium text-gray-700">Quick Tip Percentages</Label>
@@ -418,7 +418,7 @@ export default function TipCalculator() {
                     <div className="xl:col-span-2 bg-gradient-to-br from-blue-50 to-purple-50 p-8 lg:p-12">
                       <div className="sticky top-8">
                         <h2 className="text-3xl font-bold text-gray-900 mb-8">Tip Breakdown</h2>
-                        
+
                         {result ? (
                           <div className="space-y-6">
                             {/* Main Results */}
@@ -444,7 +444,7 @@ export default function TipCalculator() {
                             {/* Bill Summary */}
                             <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 space-y-4">
                               <h3 className="text-lg font-bold text-gray-900">Summary</h3>
-                              
+
                               <div className="space-y-3">
                                 <div className="flex justify-between items-center py-2 border-b border-gray-100">
                                   <span className="text-gray-600">Original Bill</span>
@@ -516,22 +516,22 @@ export default function TipCalculator() {
           <section className="py-20 bg-white">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="space-y-16">
-                
+
                 {/* Main Content */}
                 <div className="prose prose-lg max-w-none">
                   <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">
                     Complete Guide to Tipping: Cultural Standards and Best Practices
                   </h2>
-                  
+
                   <div className="text-xl text-gray-700 leading-relaxed space-y-6">
                     <p>
                       Understanding proper tipping etiquette is essential in today's global dining and service culture. Our comprehensive tip calculator goes beyond simple percentage calculations to provide culturally-aware guidance that respects local customs while ensuring fair compensation for service providers. Whether you're a frequent traveler, business professional, or simply someone who dines out regularly, knowing how to tip appropriately demonstrates cultural awareness and social responsibility.
                     </p>
-                    
+
                     <p>
                       Tipping practices vary dramatically across different countries and cultures, making it challenging to navigate without proper guidance. In the United States and Canada, tipping 18-22% at restaurants is considered standard for good service, while in many European countries like Germany and France, tipping 5-10% is more common due to higher base wages for service workers. Some countries like Japan traditionally discourage tipping altogether, viewing exceptional service as an inherent part of professional duty rather than something requiring additional compensation.
                     </p>
-                    
+
                     <p>
                       Our advanced tip calculator incorporates these cultural nuances, automatically adjusting suggested tip ranges based on your selected country. This feature is particularly valuable for international travelers who want to avoid the embarrassment of over-tipping or under-tipping due to unfamiliarity with local customs. The calculator also accounts for different service scenarios, from casual dining to fine dining establishments, each with their own tipping expectations and standards.
                     </p>
@@ -546,14 +546,14 @@ export default function TipCalculator() {
                       Pre-configured tipping standards for 15+ countries, ensuring you always tip appropriately regardless of your location. Includes currency conversion and local customs guidance for seamless international dining experiences.
                     </p>
                   </div>
-                  
+
                   <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6">
                     <h3 className="text-xl font-bold text-gray-900 mb-4">Smart Bill Splitting</h3>
                     <p className="text-gray-700">
                       Advanced bill splitting functionality that calculates individual contributions including tip portions. Perfect for group dining, business meals, and social gatherings where accurate cost division is essential.
                     </p>
                   </div>
-                  
+
                   <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6">
                     <h3 className="text-xl font-bold text-gray-900 mb-4">Service Quality Assessment</h3>
                     <p className="text-gray-700">
@@ -565,16 +565,16 @@ export default function TipCalculator() {
                 {/* Detailed Content */}
                 <div className="prose prose-lg max-w-none">
                   <h3 className="text-3xl font-bold text-gray-900 mb-6">Understanding Tipping Psychology and Economics</h3>
-                  
+
                   <div className="text-lg text-gray-700 leading-relaxed space-y-6">
                     <p>
                       The practice of tipping serves multiple economic and social functions beyond simple gratuity. Research in behavioral economics shows that tipping can significantly impact service quality, as servers and service providers often adjust their attention and care based on expected gratuity. This creates a feedback loop where excellent service leads to better tips, which in turn motivates continued high-quality service delivery.
                     </p>
-                    
+
                     <p>
                       From an economic perspective, tipping allows restaurants and service businesses to maintain lower base wages while enabling servers to earn income proportional to their performance and customer satisfaction levels. This model incentivizes exceptional customer service and creates opportunities for skilled service professionals to earn substantially more than fixed-wage positions. However, it also creates income variability that some workers find challenging to manage.
                     </p>
-                    
+
                     <p>
                       Cultural attitudes toward tipping also reflect broader social values about work, compensation, and customer-service provider relationships. In tip-encouraged cultures, gratuity represents appreciation for personalized service and recognition of individual effort. In contrast, cultures that discourage tipping often emphasize professional service as a standard expectation rather than an exceptional effort deserving additional compensation.
                     </p>
@@ -584,7 +584,7 @@ export default function TipCalculator() {
                 {/* Industry-Specific Guidelines */}
                 <div className="bg-gray-50 rounded-2xl p-8">
                   <h3 className="text-3xl font-bold text-gray-900 mb-8 text-center">Industry-Specific Tipping Guidelines</h3>
-                  
+
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <div>
                       <h4 className="text-xl font-bold text-gray-900 mb-4">Restaurant and Food Service</h4>
@@ -595,7 +595,7 @@ export default function TipCalculator() {
                         <p><strong>Delivery Services:</strong> 15-20% plus consideration for distance, weather conditions, and delivery complexity, with minimum amounts for small orders.</p>
                       </div>
                     </div>
-                    
+
                     <div>
                       <h4 className="text-xl font-bold text-gray-900 mb-4">Personal and Professional Services</h4>
                       <div className="space-y-3 text-gray-700">
@@ -611,20 +611,20 @@ export default function TipCalculator() {
                 {/* Best Practices */}
                 <div className="prose prose-lg max-w-none">
                   <h3 className="text-3xl font-bold text-gray-900 mb-6">Tipping Best Practices and Digital Age Considerations</h3>
-                  
+
                   <div className="text-lg text-gray-700 leading-relaxed space-y-6">
                     <p>
                       Modern payment technology has transformed tipping practices, with digital payment systems, mobile apps, and contactless transactions becoming increasingly common. Many point-of-sale systems now prompt for tip amounts, sometimes suggesting percentages that may exceed traditional norms. It's important to evaluate these suggestions against actual service quality rather than feeling pressured by default options that may not reflect appropriate gratuity levels.
                     </p>
-                    
+
                     <p>
                       When using our tip calculator, consider factors beyond the base bill amount, including service complexity, time spent, special accommodations, and overall satisfaction with your experience. For group dining situations, ensure that tip calculations account for shared appetizers, beverages, and any special dietary accommodations that required additional server attention. Our calculator's bill-splitting feature helps ensure equitable contribution from all participants while maintaining appropriate overall gratuity levels.
                     </p>
-                    
+
                     <p>
                       Cash versus digital tipping can also impact how much of your gratuity actually reaches service providers. Cash tips typically go directly to servers, while digital tips may be subject to processing fees, delayed distribution, or pooling arrangements. When possible, consider asking about establishment policies regarding tip distribution to ensure your gratuity reaches intended recipients in the most beneficial manner.
                     </p>
-                    
+
                     <p>
                       Finally, remember that tipping is ultimately about recognizing good service and supporting service industry workers who often depend on gratuities as a significant portion of their income. Our calculator provides guidance based on established norms and cultural standards, but your personal experience and satisfaction should always inform final tipping decisions. Exceptional service deserves recognition, while consistently poor service may warrant reduced gratuities along with constructive feedback to management.
                     </p>
@@ -634,7 +634,7 @@ export default function TipCalculator() {
             </div>
           </section>
         </main>
-        
+
         <Footer />
       </div>
     </>
