@@ -411,313 +411,33 @@ const PercentageCalculator = () => {
             </div>
           </section>
 
-          {/* Comprehensive Educational Content */}
-          <div className="py-16 bg-white">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              
-              {/* What is a Percentage Calculator Section */}
-              <section className="mb-16">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-                  What is a Percentage Calculator?
-                </h2>
-                <div className="max-w-4xl mx-auto">
-                  <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                    A <strong>percentage calculator</strong> is an essential mathematical tool that simplifies complex percentage 
-                    calculations for students, professionals, and everyday users worldwide. Our advanced online percentage 
-                    calculator provides instant, accurate results for various percentage-related computations including basic 
-                    percentage calculations, percentage changes, increases, decreases, and ratio analysis.
-                  </p>
-                  <p className="text-lg text-gray-600 leading-relaxed">
-                    Whether you're calculating discounts while shopping, analyzing business growth rates, determining test 
-                    scores, or working on financial projections, this free percentage calculator eliminates the guesswork 
-                    and provides detailed step-by-step explanations to help you understand the mathematical concepts behind 
-                    each calculation.
-                  </p>
+          {/* How to Use Section */}
+          <section className="py-16 bg-white">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">How to Use</h3>
+                  <ul className="space-y-2 text-gray-600">
+                    <li>• Select your calculation type from the dropdown menu</li>
+                    <li>• Enter the required values in the input fields</li>
+                    <li>• Click Calculate to get instant, accurate results</li>
+                    <li>• View detailed explanations and mathematical formulas</li>
+                    <li>• Use Reset to clear all fields and start a new calculation</li>
+                  </ul>
                 </div>
-              </section>
-
-              {/* How to Use Section */}
-              <section className="mb-16">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">How to Use the Calculator</h3>
-                    <ul className="space-y-2 text-gray-600">
-                      <li>• Select your calculation type from the dropdown menu</li>
-                      <li>• Enter the required values in the input fields</li>
-                      <li>• Click Calculate to get instant, accurate results</li>
-                      <li>• View detailed explanations and mathematical formulas</li>
-                      <li>• Use Reset to clear all fields and start a new calculation</li>
-                      <li>• Copy results or explanations for future reference</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Calculation Types Available</h3>
-                    <ul className="space-y-2 text-gray-600">
-                      <li>• <strong>Basic Percentage:</strong> Calculate X% of any number</li>
-                      <li>• <strong>Percentage Ratio:</strong> Find what percentage one number is of another</li>
-                      <li>• <strong>Percentage Change:</strong> Calculate change between two values</li>
-                      <li>• <strong>Percentage Increase:</strong> Add a percentage to a base number</li>
-                      <li>• <strong>Percentage Decrease:</strong> Subtract a percentage from a number</li>
-                    </ul>
-                  </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Calculation Types Available</h3>
+                  <ul className="space-y-2 text-gray-600">
+                    <li>• <strong>Basic Percentage:</strong> Calculate X% of any number</li>
+                    <li>• <strong>Percentage Ratio:</strong> Find what percentage one number is of another</li>
+                    <li>• <strong>Percentage Change:</strong> Calculate change between two values</li>
+                    <li>• <strong>Percentage Increase:</strong> Add a percentage to a base number</li>
+                    <li>• <strong>Percentage Decrease:</strong> Subtract a percentage from a number</li>
+                  </ul>
                 </div>
-              </section>
-
-              {/* Common Use Cases */}
-              <section className="mb-16">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-                  Common Use Cases for Percentage Calculations
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                  <div className="bg-blue-50 rounded-xl p-6">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                      <i className="fas fa-shopping-cart mr-2 text-blue-600"></i>
-                      Shopping & Discounts
-                    </h3>
-                    <ul className="space-y-2 text-gray-600">
-                      <li>• Calculate sale prices and discounts</li>
-                      <li>• Compare savings across different offers</li>
-                      <li>• Determine final prices after tax</li>
-                      <li>• Calculate cashback percentages</li>
-                    </ul>
-                  </div>
-                  <div className="bg-green-50 rounded-xl p-6">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                      <i className="fas fa-chart-line mr-2 text-green-600"></i>
-                      Business & Finance
-                    </h3>
-                    <ul className="space-y-2 text-gray-600">
-                      <li>• Analyze growth rates and trends</li>
-                      <li>• Calculate profit margins</li>
-                      <li>• Determine interest rates</li>
-                      <li>• Assess investment returns</li>
-                    </ul>
-                  </div>
-                  <div className="bg-purple-50 rounded-xl p-6">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                      <i className="fas fa-graduation-cap mr-2 text-purple-600"></i>
-                      Education & Grades
-                    </h3>
-                    <ul className="space-y-2 text-gray-600">
-                      <li>• Calculate test scores and grades</li>
-                      <li>• Determine attendance percentages</li>
-                      <li>• Analyze academic performance</li>
-                      <li>• Convert between different grading systems</li>
-                    </ul>
-                  </div>
-                </div>
-              </section>
-
-              {/* Mathematical Formulas */}
-              <section className="mb-16">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-                  Percentage Calculation Formulas
-                </h2>
-                <div className="bg-gray-50 rounded-xl p-8">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Basic Formulas</h3>
-                      <div className="space-y-4 text-gray-700">
-                        <div className="bg-white p-4 rounded-lg border">
-                          <strong>Basic Percentage:</strong><br />
-                          Result = (Percentage ÷ 100) × Value
-                        </div>
-                        <div className="bg-white p-4 rounded-lg border">
-                          <strong>Percentage of Total:</strong><br />
-                          Percentage = (Part ÷ Whole) × 100
-                        </div>
-                        <div className="bg-white p-4 rounded-lg border">
-                          <strong>Percentage Change:</strong><br />
-                          Change% = ((New - Old) ÷ Old) × 100
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Advanced Formulas</h3>
-                      <div className="space-y-4 text-gray-700">
-                        <div className="bg-white p-4 rounded-lg border">
-                          <strong>Percentage Increase:</strong><br />
-                          Result = Original + (Original × %÷100)
-                        </div>
-                        <div className="bg-white p-4 rounded-lg border">
-                          <strong>Percentage Decrease:</strong><br />
-                          Result = Original - (Original × %÷100)
-                        </div>
-                        <div className="bg-white p-4 rounded-lg border">
-                          <strong>Percentage Error:</strong><br />
-                          Error% = |Actual - Expected| ÷ Expected × 100
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-
-              {/* Tips and Best Practices */}
-              <section className="mb-16">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-                  Tips for Accurate Percentage Calculations
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Best Practices</h3>
-                    <ul className="space-y-3 text-gray-600">
-                      <li>• Always double-check your input values for accuracy</li>
-                      <li>• Understand the context of your calculation</li>
-                      <li>• Round results appropriately for your use case</li>
-                      <li>• Use the correct formula for your specific need</li>
-                      <li>• Verify results with manual calculations when possible</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Common Mistakes to Avoid</h3>
-                    <ul className="space-y-3 text-gray-600">
-                      <li>• Confusing percentage increase with percentage of total</li>
-                      <li>• Using the wrong base value in calculations</li>
-                      <li>• Forgetting to convert percentages to decimals</li>
-                      <li>• Mixing up positive and negative percentage changes</li>
-                      <li>• Not considering the order of operations in complex calculations</li>
-                    </ul>
-                  </div>
-                </div>
-              </section>
-
-              {/* Related Tools Section */}
-              <section className="mb-16">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-                  Related Financial & Math Tools
-                </h2>
-                <p className="text-lg text-gray-600 mb-8 text-center max-w-3xl mx-auto">
-                  Enhance your calculations with our comprehensive suite of financial and mathematical tools designed for students, professionals, and businesses worldwide.
-                </p>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
-                    <h3 className="font-semibold text-gray-900 mb-2">
-                      <i className="fas fa-calculator text-blue-500 mr-2"></i>
-                      Discount & Sale Calculators
-                    </h3>
-                    <ul className="text-sm text-gray-600 space-y-1 mb-3">
-                      <li>• Calculate sale prices and savings</li>
-                      <li>• Calculate tips and split bills</li>
-                      <li>• Calculate transaction fees</li>
-                    </ul>
-                  </div>
-
-                  <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
-                    <h3 className="font-semibold text-gray-900 mb-2">
-                      <i className="fas fa-chart-line text-green-500 mr-2"></i>
-                      Investment & Growth Tools
-                    </h3>
-                    <ul className="text-sm text-gray-600 space-y-1 mb-3">
-                      <li>• Calculate compound growth</li>
-                      <li>• Basic interest calculations</li>
-                      <li>• ROI analysis</li>
-                      <li>• Return on investment analysis</li>
-                    </ul>
-                  </div>
-
-                  <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
-                    <h3 className="font-semibold text-gray-900 mb-2">
-                      <i className="fas fa-home text-purple-500 mr-2"></i>
-                      Loan & Finance Calculators
-                    </h3>
-                    <ul className="text-sm text-gray-600 space-y-1 mb-3">
-                      <li>• General loan calculations</li>
-                      <li>• Home loan payments</li>
-                      <li>• Monthly installment calculator</li>
-                      <li>• Credit card debt analysis</li>
-                    </ul>
-                  </div>
-
-                  <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
-                    <h3 className="font-semibold text-gray-900 mb-2">
-                      <i className="fas fa-piggy-bank text-orange-500 mr-2"></i>
-                      Savings & Planning Tools
-                    </h3>
-                    <ul className="text-sm text-gray-600 space-y-1 mb-3">
-                      <li>• Plan your savings</li>
-                      <li>• Retirement planning</li>
-                      <li>• Systematic investment plans</li>
-                      <li>• Debt elimination strategy</li>
-                    </ul>
-                  </div>
-
-                  <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
-                    <h3 className="font-semibold text-gray-900 mb-2">
-                      <i className="fas fa-dollar-sign text-teal-500 mr-2"></i>
-                      Business & Professional Tools
-                    </h3>
-                    <ul className="text-sm text-gray-600 space-y-1 mb-3">
-                      <li>• Business break-even analysis</li>
-                      <li>• Commercial loan planning</li>
-                      <li>• Convert salary to hourly rate</li>
-                      <li>• Trading profit analysis</li>
-                    </ul>
-                  </div>
-
-                  <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
-                    <h3 className="font-semibold text-gray-900 mb-2">
-                      <i className="fas fa-exchange-alt text-red-500 mr-2"></i>
-                      Currency & Conversion Tools
-                    </h3>
-                    <ul className="text-sm text-gray-600 space-y-1 mb-3">
-                      <li>• Real-time exchange rates</li>
-                      <li>• Crypto price conversion</li>
-                      <li>• Inflation impact analysis</li>
-                      <li>• Financial net worth tracking</li>
-                    </ul>
-                  </div>
-                </div>
-              </section>
-
-              {/* FAQ Section */}
-              <section>
-                <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-                  Frequently Asked Questions
-                </h2>
-                <div className="space-y-6 max-w-4xl mx-auto">
-                  <div className="border-b border-gray-200 pb-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                      What's the difference between percentage increase and percentage of total?
-                    </h3>
-                    <p className="text-gray-600">
-                      Percentage increase adds a percentage to an original value (e.g., increasing $100 by 20% gives $120), 
-                      while percentage of total calculates what portion one number represents of another (e.g., 20 out of 100 is 20%).
-                    </p>
-                  </div>
-                  <div className="border-b border-gray-200 pb-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                      How do I calculate compound percentage changes?
-                    </h3>
-                    <p className="text-gray-600">
-                      For compound changes, apply each percentage change sequentially rather than adding them. For example, 
-                      a 10% increase followed by a 5% increase equals 15.5% total increase, not 15%.
-                    </p>
-                  </div>
-                  <div className="border-b border-gray-200 pb-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                      Can I use this calculator for negative percentages?
-                    </h3>
-                    <p className="text-gray-600">
-                      Yes, our calculator handles negative values and percentages. Negative percentage changes indicate 
-                      decreases, while negative base values are processed according to standard mathematical rules.
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                      Is this percentage calculator accurate for large numbers?
-                    </h3>
-                    <p className="text-gray-600">
-                      Our calculator maintains high precision for both small and large numbers, automatically formatting 
-                      results with appropriate decimal places and using scientific notation when necessary for very large values.
-                    </p>
-                  </div>
-                </div>
-              </section>
-
+              </div>
             </div>
-          </div>
+          </section>
         </main>
         
         <Footer />
