@@ -18,7 +18,6 @@ const LoanCalculator = lazy(() => import("@/pages/loan-calculator"));
 const MortgageCalculator = lazy(() => import("@/pages/mortgage-calculator"));
 const EMICalculator = lazy(() => import("@/pages/emi-calculator"));
 const FinanceTools = lazy(() => import("@/pages/finance-tools"));
-const ImageTools = lazy(() => import("@/pages/image-tools"));
 const TextTools = lazy(() => import("@/pages/text-tools"));
 const HealthTools = lazy(() => import("@/pages/health-tools"));
 const HelpCenter = lazy(() => import("@/pages/help-center"));
@@ -203,7 +202,6 @@ function Router() {
         <Route path="/tools/lorem-ipsum-generator" component={LoremIpsumGenerator} />
       <Route path="/tools/:toolId" component={ToolPage} />
       <Route path="/finance" component={FinanceTools} />
-      <Route path="/image" component={ImageTools} />
       <Route path="/text" component={TextTools} />
       <Route path="/health" component={HealthTools} />
       <Route path="/contact" component={ContactUs} />
