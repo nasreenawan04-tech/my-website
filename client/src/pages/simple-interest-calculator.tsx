@@ -3,13 +3,11 @@ import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import ToolHeroSection from '@/components/ToolHeroSection';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Percent, Calculator, TrendingUp, DollarSign, Clock, BookOpen } from 'lucide-react';
 
 interface SimpleInterestResult {
   simpleInterest: number;
@@ -105,22 +103,22 @@ export default function SimpleInterestCalculator() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>Simple Interest Calculator - Calculate Interest Earnings Online | Free Tool</title>
-        <meta name="description" content="Free simple interest calculator. Calculate interest earnings on loans, savings, and investments. Easy-to-use tool with breakdown, examples, and multiple currencies. Calculate simple interest formula SI = P × R × T." />
-        <meta name="keywords" content="simple interest calculator, interest calculator, loan calculator, savings calculator, financial calculator, simple interest formula, calculate interest, investment calculator, principal interest, annual interest rate" />
-        <meta property="og:title" content="Simple Interest Calculator - Free Online Tool" />
-        <meta property="og:description" content="Calculate simple interest on loans and investments with our free calculator. Get instant results with detailed breakdown and yearly projections." />
+        <title>Simple Interest Calculator - Calculate Interest Earnings Online | DapsiWow</title>
+        <meta name="description" content="Free simple interest calculator for loans, savings, and investments. Calculate interest using the SI = P × R × T formula. Get instant results with detailed breakdowns, yearly projections, and multiple currency support. Professional-grade financial calculator." />
+        <meta name="keywords" content="simple interest calculator, interest calculator, loan calculator, savings calculator, financial calculator, simple interest formula, calculate interest, investment calculator, principal interest, annual interest rate, SI formula" />
+        <meta property="og:title" content="Simple Interest Calculator - Calculate Interest Earnings | DapsiWow" />
+        <meta property="og:description" content="Calculate simple interest on loans and investments with our free professional calculator. Get instant results with detailed breakdown and yearly projections." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://toolshub.replit.app/simple-interest-calculator" />
+        <link rel="canonical" href="https://dapsiwow.com/simple-interest-calculator" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebApplication",
             "name": "Simple Interest Calculator",
-            "description": "Calculate simple interest on loans, savings, and investments with detailed breakdown",
-            "url": "https://toolshub.replit.app/simple-interest-calculator",
+            "description": "Professional simple interest calculator for loans, savings, and investments with detailed breakdown and multiple currency support",
+            "url": "https://dapsiwow.com/simple-interest-calculator",
             "applicationCategory": "FinanceApplication",
             "operatingSystem": "Any",
             "offers": {
@@ -136,121 +134,142 @@ export default function SimpleInterestCalculator() {
       
       <main>
         {/* Hero Section */}
-        <section className="gradient-hero text-white py-16 pt-24">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-              <Percent className="w-8 h-8 text-white" />
+        <section className="relative py-20 sm:py-28 lg:py-32 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
+          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="space-y-8">
+              <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+                <span className="text-sm font-medium text-blue-700">Professional Interest Calculator</span>
+              </div>
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight">
+                Simple Interest
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                  Calculator
+                </span>
+              </h1>
+              <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                Calculate interest earnings on loans, savings, and investments with precision using the SI = P × R × T formula
+              </p>
             </div>
-            <h1 className="text-4xl sm:text-5xl font-bold mb-6">
-              Simple Interest Calculator
-            </h1>
-            <p className="text-xl text-blue-100 max-w-2xl mx-auto leading-relaxed">
-              Calculate simple interest on loans, savings accounts, and investments with our free online calculator. 
-              Get instant results with detailed yearly breakdown and projections.
-            </p>
           </div>
         </section>
 
-        <div className="max-w-6xl mx-auto px-4 py-12">
-          <Card className="bg-white shadow-sm border-0">
-            <CardContent className="p-8">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="max-w-7xl mx-auto px-4 py-16">
+          {/* Main Calculator Card */}
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+            <CardContent className="p-0">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
                 {/* Input Section */}
-                <div className="space-y-6">
-                  <h2 className="text-2xl font-semibold text-gray-900 mb-8">Investment Details</h2>
+                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
+                  <div>
+                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Interest Configuration</h2>
+                    <p className="text-gray-600">Enter your investment details to calculate simple interest earnings</p>
+                  </div>
                   
-                  {/* Currency Selection */}
-                  <div className="space-y-3">
-                    <Label htmlFor="currency" className="text-sm font-medium text-gray-700">
-                      Currency
-                    </Label>
-                    <Select value={currency} onValueChange={setCurrency}>
-                      <SelectTrigger className="h-12 border-gray-200 rounded-lg">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="USD">USD - US Dollar</SelectItem>
-                        <SelectItem value="EUR">EUR - Euro</SelectItem>
-                        <SelectItem value="GBP">GBP - British Pound</SelectItem>
-                        <SelectItem value="INR">INR - Indian Rupee</SelectItem>
-                        <SelectItem value="JPY">JPY - Japanese Yen</SelectItem>
-                        <SelectItem value="CAD">CAD - Canadian Dollar</SelectItem>
-                        <SelectItem value="AUD">AUD - Australian Dollar</SelectItem>
-                        <SelectItem value="CNY">CNY - Chinese Yuan</SelectItem>
-                        <SelectItem value="BRL">BRL - Brazilian Real</SelectItem>
-                        <SelectItem value="MXN">MXN - Mexican Peso</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  {/* Principal Amount */}
-                  <div className="space-y-3">
-                    <Label htmlFor="principal" className="text-sm font-medium text-gray-700">
-                      Principal Amount
-                    </Label>
-                    <Input
-                      id="principal"
-                      type="number"
-                      value={principal}
-                      onChange={(e) => setPrincipal(e.target.value)}
-                      className="h-12 text-base border-gray-200 rounded-lg"
-                      placeholder="10,000"
-                    />
-                  </div>
-
-                  {/* Interest Rate */}
-                  <div className="space-y-3">
-                    <Label htmlFor="interest-rate" className="text-sm font-medium text-gray-700">
-                      Annual Interest Rate (%)
-                    </Label>
-                    <Input
-                      id="interest-rate"
-                      type="number"
-                      value={interestRate}
-                      onChange={(e) => setInterestRate(e.target.value)}
-                      className="h-12 text-base border-gray-200 rounded-lg"
-                      placeholder="8"
-                      step="0.01"
-                    />
-                  </div>
-
-                  {/* Time Period */}
-                  <div className="space-y-3">
-                    <Label className="text-sm font-medium text-gray-700">Time Period</Label>
-                    <div className="grid grid-cols-2 gap-3">
-                      <Input
-                        type="number"
-                        value={timePeriod}
-                        onChange={(e) => setTimePeriod(e.target.value)}
-                        className="h-12 text-base border-gray-200 rounded-lg"
-                        placeholder="5"
-                        min="1"
-                      />
-                      <Select value={timeUnit} onValueChange={setTimeUnit}>
-                        <SelectTrigger className="h-12 border-gray-200 rounded-lg">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Currency Selection */}
+                    <div className="space-y-3">
+                      <Label htmlFor="currency" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Currency
+                      </Label>
+                      <Select value={currency} onValueChange={setCurrency}>
+                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-currency">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="years">Years</SelectItem>
-                          <SelectItem value="months">Months</SelectItem>
+                          <SelectItem value="USD">USD - US Dollar</SelectItem>
+                          <SelectItem value="EUR">EUR - Euro</SelectItem>
+                          <SelectItem value="GBP">GBP - British Pound</SelectItem>
+                          <SelectItem value="INR">INR - Indian Rupee</SelectItem>
+                          <SelectItem value="JPY">JPY - Japanese Yen</SelectItem>
+                          <SelectItem value="CAD">CAD - Canadian Dollar</SelectItem>
+                          <SelectItem value="AUD">AUD - Australian Dollar</SelectItem>
+                          <SelectItem value="CNY">CNY - Chinese Yuan</SelectItem>
+                          <SelectItem value="BRL">BRL - Brazilian Real</SelectItem>
+                          <SelectItem value="MXN">MXN - Mexican Peso</SelectItem>
                         </SelectContent>
                       </Select>
+                    </div>
+
+                    {/* Principal Amount */}
+                    <div className="space-y-3">
+                      <Label htmlFor="principal" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Principal Amount
+                      </Label>
+                      <div className="relative">
+                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                        <Input
+                          id="principal"
+                          type="number"
+                          value={principal}
+                          onChange={(e) => setPrincipal(e.target.value)}
+                          className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          placeholder="10,000"
+                          data-testid="input-principal"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Interest Rate */}
+                    <div className="space-y-3">
+                      <Label htmlFor="interest-rate" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Annual Interest Rate
+                      </Label>
+                      <div className="relative">
+                        <Input
+                          id="interest-rate"
+                          type="number"
+                          value={interestRate}
+                          onChange={(e) => setInterestRate(e.target.value)}
+                          className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          placeholder="8.00"
+                          step="0.01"
+                          data-testid="input-interest-rate"
+                        />
+                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
+                      </div>
+                    </div>
+
+                    {/* Time Period */}
+                    <div className="space-y-3">
+                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Time Period</Label>
+                      <div className="grid grid-cols-2 gap-3">
+                        <Input
+                          type="number"
+                          value={timePeriod}
+                          onChange={(e) => setTimePeriod(e.target.value)}
+                          className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          placeholder="5"
+                          min="1"
+                          data-testid="input-time-period"
+                        />
+                        <Select value={timeUnit} onValueChange={setTimeUnit}>
+                          <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-time-unit">
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="years">Years</SelectItem>
+                            <SelectItem value="months">Months</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
                     </div>
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex gap-4 pt-6">
+                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
                     <Button
                       onClick={calculateSimpleInterest}
-                      className="flex-1 h-12 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg"
+                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      data-testid="button-calculate"
                     >
-                      <Calculator className="w-4 h-4 mr-2" />
                       Calculate Interest
                     </Button>
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-12 px-8 border-gray-200 text-gray-600 hover:bg-gray-50 font-medium rounded-lg"
+                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      data-testid="button-reset"
                     >
                       Reset
                     </Button>
@@ -258,54 +277,62 @@ export default function SimpleInterestCalculator() {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gray-50 rounded-xl p-8">
-                  <h2 className="text-2xl font-semibold text-gray-900 mb-8">Results</h2>
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Results</h2>
                   
                   {result ? (
-                    <div className="space-y-6">
-                      {/* Simple Interest */}
-                      <div className="bg-white rounded-lg p-6 border border-gray-100">
-                        <div className="text-sm text-gray-600 mb-1">Simple Interest Earned</div>
-                        <div className="text-3xl font-bold text-blue-600">
+                    <div className="space-y-6" data-testid="interest-results">
+                      {/* Simple Interest Highlight */}
+                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
+                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Simple Interest Earned</div>
+                        <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" data-testid="text-simple-interest">
                           {formatCurrency(result.simpleInterest)}
                         </div>
                       </div>
 
-                      {/* Summary */}
+                      {/* Interest Breakdown */}
                       <div className="space-y-4">
-                        <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                          <span className="text-gray-600">Principal Amount</span>
-                          <span className="font-semibold text-gray-900">
-                            {formatCurrency(result.principalAmount)}
-                          </span>
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Principal Amount</span>
+                            <span className="font-bold text-gray-900" data-testid="text-principal-amount">
+                              {formatCurrency(result.principalAmount)}
+                            </span>
+                          </div>
                         </div>
-                        <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                          <span className="text-gray-600">Total Amount</span>
-                          <span className="font-semibold text-green-600">
-                            {formatCurrency(result.totalAmount)}
-                          </span>
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Total Amount</span>
+                            <span className="font-bold text-green-600" data-testid="text-total-amount">
+                              {formatCurrency(result.totalAmount)}
+                            </span>
+                          </div>
                         </div>
-                        <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                          <span className="text-gray-600">Monthly Interest</span>
-                          <span className="font-semibold text-blue-600">
-                            {formatCurrency(result.monthlyInterest)}
-                          </span>
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Monthly Interest</span>
+                            <span className="font-bold text-blue-600" data-testid="text-monthly-interest">
+                              {formatCurrency(result.monthlyInterest)}
+                            </span>
+                          </div>
                         </div>
-                        <div className="flex justify-between items-center py-3">
-                          <span className="text-gray-600">Interest Rate</span>
-                          <span className="font-semibold text-gray-900">
-                            {interestRate}% per year
-                          </span>
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Interest Rate</span>
+                            <span className="font-bold text-gray-900">
+                              {interestRate}% per year
+                            </span>
+                          </div>
                         </div>
                       </div>
 
                       {/* Yearly Breakdown */}
                       {result.yearlyBreakdown.length > 0 && (
                         <div className="mt-8">
-                          <h3 className="text-lg font-semibold text-gray-900 mb-4">Yearly Breakdown</h3>
+                          <h3 className="text-lg font-bold text-gray-900 mb-4">Yearly Breakdown</h3>
                           <div className="max-h-60 overflow-y-auto space-y-2">
                             {result.yearlyBreakdown.slice(0, 5).map((year) => (
-                              <div key={year.year} className="bg-white rounded-lg p-4 border border-gray-100">
+                              <div key={year.year} className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
                                 <div className="flex justify-between items-center mb-2">
                                   <span className="font-medium text-gray-900">Year {year.year}</span>
                                   <span className="font-bold text-green-600">
@@ -322,9 +349,11 @@ export default function SimpleInterestCalculator() {
                       )}
                     </div>
                   ) : (
-                    <div className="text-center py-12">
-                      <Percent className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-                      <p className="text-gray-500">Enter investment details and click calculate to see results</p>
+                    <div className="text-center py-16" data-testid="no-results">
+                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <div className="text-3xl font-bold text-gray-400">%</div>
+                      </div>
+                      <p className="text-gray-500 text-lg">Enter investment details and calculate to see results</p>
                     </div>
                   )}
                 </div>
@@ -332,160 +361,209 @@ export default function SimpleInterestCalculator() {
             </CardContent>
           </Card>
 
-          {/* Comprehensive Information Section */}
+          {/* Comprehensive SEO Content Section */}
           <div className="mt-16 space-y-12">
             {/* What is Simple Interest */}
-            <section className="bg-white rounded-xl p-8 shadow-sm">
-              <div className="flex items-start gap-4 mb-6">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <BookOpen className="w-6 h-6 text-blue-600" />
-                </div>
-                <div>
-                  <h2 className="text-3xl font-bold text-gray-900 mb-4">What is Simple Interest?</h2>
-                  <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                    Simple interest is a method of calculating interest earnings or charges based only on the original principal amount. 
-                    Unlike compound interest, simple interest doesn't earn interest on previously accumulated interest, making it 
-                    straightforward to calculate and understand.
-                  </p>
-                </div>
+            <section className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 lg:p-12 shadow-xl border border-gray-100">
+              <div className="mb-8">
+                <h2 className="text-4xl font-bold text-gray-900 mb-6">Understanding Simple Interest Calculator</h2>
+                <p className="text-xl text-gray-700 leading-relaxed mb-8">
+                  Simple interest is a fundamental financial concept that calculates interest earnings or charges based solely on the original principal amount. 
+                  Unlike compound interest, simple interest does not accumulate on previously earned interest, making it one of the most straightforward 
+                  methods for calculating returns on investments, loans, and savings accounts.
+                </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Simple Interest Formula</h3>
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-4">
-                    <div className="text-2xl font-bold text-blue-800 text-center mb-2">SI = P × R × T</div>
-                    <div className="text-sm text-blue-700 space-y-1">
-                      <div><strong>SI</strong> = Simple Interest</div>
-                      <div><strong>P</strong> = Principal Amount</div>
-                      <div><strong>R</strong> = Annual Interest Rate (as decimal)</div>
-                      <div><strong>T</strong> = Time Period in Years</div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Simple Interest Formula Explained</h3>
+                  <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-2xl p-8 mb-6">
+                    <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 text-center mb-4">
+                      SI = P × R × T
+                    </div>
+                    <div className="space-y-3 text-gray-700">
+                      <div className="flex justify-between">
+                        <strong className="text-blue-700">SI</strong>
+                        <span>Simple Interest Amount</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <strong className="text-blue-700">P</strong>
+                        <span>Principal Amount (Initial Investment)</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <strong className="text-blue-700">R</strong>
+                        <span>Annual Interest Rate (as decimal)</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <strong className="text-blue-700">T</strong>
+                        <span>Time Period in Years</span>
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-gray-600 leading-relaxed">
+                    The simple interest formula is the foundation for calculating interest on various financial products. 
+                    To convert percentage to decimal, divide by 100 (e.g., 8% = 0.08). For monthly or daily calculations, 
+                    adjust the rate and time period accordingly.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Key Characteristics of Simple Interest</h3>
+                  <div className="space-y-4">
+                    <div className="bg-gray-50 rounded-xl p-6">
+                      <h4 className="font-bold text-gray-900 mb-2">Linear Growth Pattern</h4>
+                      <p className="text-gray-700">Interest earnings remain constant for each time period, creating a predictable linear growth pattern over time.</p>
+                    </div>
+                    <div className="bg-gray-50 rounded-xl p-6">
+                      <h4 className="font-bold text-gray-900 mb-2">Principal-Only Calculation</h4>
+                      <p className="text-gray-700">Interest is calculated exclusively on the original principal amount, never on accumulated interest.</p>
+                    </div>
+                    <div className="bg-gray-50 rounded-xl p-6">
+                      <h4 className="font-bold text-gray-900 mb-2">Easy Computation</h4>
+                      <p className="text-gray-700">The straightforward formula makes it ideal for quick calculations and financial planning scenarios.</p>
+                    </div>
+                    <div className="bg-gray-50 rounded-xl p-6">
+                      <h4 className="font-bold text-gray-900 mb-2">Transparency</h4>
+                      <p className="text-gray-700">The simple calculation method provides clear visibility into how interest is determined and accumulated.</p>
                     </div>
                   </div>
                 </div>
-
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Key Characteristics</h3>
-                  <ul className="space-y-3">
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-gray-700">Interest calculated only on principal amount</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-gray-700">Fixed interest amount each period</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-gray-700">Linear growth over time</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-gray-700">Easy to calculate and understand</span>
-                    </li>
-                  </ul>
-                </div>
               </div>
             </section>
 
-            {/* Use Cases */}
-            <section className="bg-white rounded-xl p-8 shadow-sm">
-              <div className="flex items-start gap-4 mb-6">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <TrendingUp className="w-6 h-6 text-green-600" />
+            {/* Applications and Use Cases */}
+            <section className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 lg:p-12 shadow-xl border border-gray-100">
+              <div className="mb-8">
+                <h2 className="text-4xl font-bold text-gray-900 mb-6">When to Use Simple Interest Calculator</h2>
+                <p className="text-xl text-gray-700 leading-relaxed mb-8">
+                  Simple interest calculations are prevalent across various financial instruments and scenarios. Understanding when and how 
+                  simple interest applies can help you make informed decisions about loans, investments, and savings strategies.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Short-Term Lending</h3>
+                  <div className="space-y-3 text-gray-700">
+                    <p className="font-medium">Personal Loans (3-12 months)</p>
+                    <p className="font-medium">Payday Advances</p>
+                    <p className="font-medium">Bridge Financing</p>
+                    <p className="font-medium">Equipment Financing</p>
+                    <p className="font-medium">Seasonal Business Loans</p>
+                  </div>
+                  <p className="text-sm text-gray-600 mt-4">
+                    Simple interest on short-term loans provides borrowers with transparent cost calculations and predictable payment schedules.
+                  </p>
                 </div>
-                <div>
-                  <h2 className="text-3xl font-bold text-gray-900 mb-4">When is Simple Interest Used?</h2>
-                  <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                    Simple interest is commonly used in various financial scenarios, particularly for short-term loans 
-                    and specific types of investments where interest calculations need to be straightforward.
+
+                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Fixed-Return Investments</h3>
+                  <div className="space-y-3 text-gray-700">
+                    <p className="font-medium">Fixed Deposit Accounts</p>
+                    <p className="font-medium">Certificate of Deposits (CDs)</p>
+                    <p className="font-medium">Treasury Bills</p>
+                    <p className="font-medium">Government Bonds</p>
+                    <p className="font-medium">Corporate Bonds (some)</p>
+                  </div>
+                  <p className="text-sm text-gray-600 mt-4">
+                    Conservative investors often prefer simple interest products for their predictable returns and lower risk profiles.
+                  </p>
+                </div>
+
+                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Educational & Planning</h3>
+                  <div className="space-y-3 text-gray-700">
+                    <p className="font-medium">Financial Literacy Programs</p>
+                    <p className="font-medium">Investment Education</p>
+                    <p className="font-medium">Loan Comparison Analysis</p>
+                    <p className="font-medium">Budget Planning</p>
+                    <p className="font-medium">Retirement Calculations</p>
+                  </div>
+                  <p className="text-sm text-gray-600 mt-4">
+                    Simple interest serves as an excellent foundation for understanding more complex financial concepts and calculations.
                   </p>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div className="bg-blue-50 rounded-lg p-6">
-                  <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center mb-4">
-                    <DollarSign className="w-4 h-4 text-white" />
+              <div className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-2xl p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Real-World Simple Interest Applications</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <h4 className="text-lg font-bold text-gray-900 mb-3">Banking and Finance</h4>
+                    <p className="text-gray-700 leading-relaxed">
+                      Many banks use simple interest for calculating returns on fixed deposits, especially for shorter terms. 
+                      Small credit unions and community banks often employ simple interest for personal loans to provide 
+                      transparent pricing to their members.
+                    </p>
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Short-term Loans</h3>
-                  <ul className="text-gray-700 space-y-2 text-sm">
-                    <li>• Payday loans</li>
-                    <li>• Personal loans (some)</li>
-                    <li>• Business loans</li>
-                    <li>• Auto loans (some)</li>
-                  </ul>
-                </div>
-
-                <div className="bg-green-50 rounded-lg p-6">
-                  <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center mb-4">
-                    <TrendingUp className="w-4 h-4 text-white" />
+                  <div>
+                    <h4 className="text-lg font-bold text-gray-900 mb-3">Business Applications</h4>
+                    <p className="text-gray-700 leading-relaxed">
+                      Businesses use simple interest calculations for invoice financing, trade credit terms, and 
+                      short-term cash flow management. Accounts receivable factoring often employs simple interest 
+                      structures for clarity and ease of calculation.
+                    </p>
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Savings Products</h3>
-                  <ul className="text-gray-700 space-y-2 text-sm">
-                    <li>• Fixed deposits</li>
-                    <li>• Certificates of deposit</li>
-                    <li>• Treasury bills</li>
-                    <li>• Government bonds</li>
-                  </ul>
-                </div>
-
-                <div className="bg-purple-50 rounded-lg p-6">
-                  <div className="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center mb-4">
-                    <Calculator className="w-4 h-4 text-white" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Educational Context</h3>
-                  <ul className="text-gray-700 space-y-2 text-sm">
-                    <li>• Financial literacy</li>
-                    <li>• Mathematics education</li>
-                    <li>• Basic investment concepts</li>
-                    <li>• Loan comparison</li>
-                  </ul>
                 </div>
               </div>
             </section>
 
-            {/* Examples and Comparison */}
+            {/* Detailed Examples and Comparisons */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <Card className="bg-white border-0 shadow-sm">
-                <CardContent className="p-8">
-                  <div className="flex items-center gap-3 mb-6">
-                    <Calculator className="w-8 h-8 text-blue-600" />
-                    <h3 className="text-2xl font-semibold text-gray-900">Simple Interest Example</h3>
-                  </div>
+              <Card className="bg-white/90 backdrop-blur-sm border-0 shadow-xl rounded-2xl">
+                <CardContent className="p-8 lg:p-10">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Practical Simple Interest Example</h3>
                   
-                  <div className="bg-blue-50 rounded-lg p-6 mb-6">
-                    <h4 className="font-semibold text-gray-900 mb-3">Scenario:</h4>
-                    <ul className="space-y-2 text-gray-700">
-                      <li>• Principal: $10,000</li>
-                      <li>• Interest Rate: 5% per year</li>
-                      <li>• Time Period: 3 years</li>
-                    </ul>
+                  <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 mb-6">
+                    <h4 className="font-bold text-gray-900 mb-4">Investment Scenario:</h4>
+                    <div className="space-y-3 text-gray-700">
+                      <div className="flex justify-between">
+                        <span className="font-medium">Principal Amount:</span>
+                        <span className="font-bold text-blue-600">$25,000</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="font-medium">Annual Interest Rate:</span>
+                        <span className="font-bold text-blue-600">6.5%</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="font-medium">Investment Period:</span>
+                        <span className="font-bold text-blue-600">4 years</span>
+                      </div>
+                    </div>
                   </div>
 
-                  <div className="space-y-3">
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Calculation:</span>
-                      <span className="font-mono text-gray-900">10,000 × 0.05 × 3</span>
+                  <div className="space-y-4">
+                    <div className="bg-white rounded-xl p-4 border border-gray-200">
+                      <div className="flex justify-between">
+                        <span className="text-gray-700">Calculation:</span>
+                        <span className="font-mono text-gray-900">25,000 × 0.065 × 4</span>
+                      </div>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Simple Interest:</span>
-                      <span className="font-semibold text-blue-600">$1,500</span>
+                    <div className="bg-white rounded-xl p-4 border border-gray-200">
+                      <div className="flex justify-between">
+                        <span className="text-gray-700">Simple Interest Earned:</span>
+                        <span className="font-bold text-blue-600 text-lg">$6,500</span>
+                      </div>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Total Amount:</span>
-                      <span className="font-bold text-green-600">$11,500</span>
+                    <div className="bg-white rounded-xl p-4 border border-gray-200">
+                      <div className="flex justify-between">
+                        <span className="text-gray-700">Total Amount After 4 Years:</span>
+                        <span className="font-bold text-green-600 text-lg">$31,500</span>
+                      </div>
+                    </div>
+                    <div className="bg-white rounded-xl p-4 border border-gray-200">
+                      <div className="flex justify-between">
+                        <span className="text-gray-700">Annual Interest Income:</span>
+                        <span className="font-bold text-purple-600">$1,625</span>
+                      </div>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="bg-white border-0 shadow-sm">
-                <CardContent className="p-8">
-                  <div className="flex items-center gap-3 mb-6">
-                    <TrendingUp className="w-8 h-8 text-purple-600" />
-                    <h3 className="text-2xl font-semibold text-gray-900">Simple vs Compound Interest</h3>
-                  </div>
+              <Card className="bg-white/90 backdrop-blur-sm border-0 shadow-xl rounded-2xl">
+                <CardContent className="p-8 lg:p-10">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Simple vs Compound Interest Comparison</h3>
                   
                   <div className="space-y-4">
                     <div className="bg-yellow-50 rounded-lg p-4">
@@ -581,261 +659,221 @@ export default function SimpleInterestCalculator() {
             </section>
 
             {/* Benefits for Different Audiences */}
-            <section className="bg-white rounded-xl p-8 shadow-sm">
-              <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Who Benefits from Simple Interest Calculators?</h2>
+            <section className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 lg:p-12 shadow-xl border border-gray-100">
+              <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">Who Benefits from Simple Interest Calculator</h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {/* Students */}
-                <div className="bg-blue-50 rounded-xl p-6">
-                  <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center mb-4">
-                    <BookOpen className="w-6 h-6 text-white" />
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Students & Learners</h3>
+                  <div className="space-y-3 text-gray-700">
+                    <p className="font-medium">Understanding basic financial concepts</p>
+                    <p className="font-medium">Calculating student loan interest costs</p>
+                    <p className="font-medium">Learning mathematical applications</p>
+                    <p className="font-medium">Planning education expenses</p>
+                    <p className="font-medium">Preparing for financial literacy exams</p>
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Students & Learners</h3>
-                  <ul className="text-gray-700 space-y-2">
-                    <li>• Understanding basic financial concepts</li>
-                    <li>• Calculating student loan interest</li>
-                    <li>• Learning mathematical applications</li>
-                    <li>• Planning education expenses</li>
-                    <li>• Preparing for financial literacy exams</li>
-                  </ul>
-                  <div className="mt-4 text-sm text-blue-700">
-                    <strong>Tip:</strong> Use our <a href="/education-loan-calculator" className="underline hover:text-blue-800">Education Loan Calculator</a> for detailed student loan planning.
+                  <div className="mt-6 p-4 bg-white rounded-xl">
+                    <p className="text-sm text-blue-700 font-medium">
+                      Perfect for understanding how interest works before taking on student loans or starting investment journeys.
+                    </p>
                   </div>
                 </div>
 
                 {/* Professionals */}
-                <div className="bg-green-50 rounded-xl p-6">
-                  <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mb-4">
-                    <TrendingUp className="w-6 h-6 text-white" />
+                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Working Professionals</h3>
+                  <div className="space-y-3 text-gray-700">
+                    <p className="font-medium">Personal loan cost analysis</p>
+                    <p className="font-medium">Quick investment return assessments</p>
+                    <p className="font-medium">Emergency fund growth planning</p>
+                    <p className="font-medium">Salary advance interest calculations</p>
+                    <p className="font-medium">Financial goal milestone tracking</p>
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Working Professionals</h3>
-                  <ul className="text-gray-700 space-y-2">
-                    <li>• Personal loan calculations</li>
-                    <li>• Quick investment assessments</li>
-                    <li>• Emergency fund planning</li>
-                    <li>• Salary advance interest</li>
-                    <li>• Financial goal setting</li>
-                  </ul>
-                  <div className="mt-4 text-sm text-green-700">
-                    <strong>Tip:</strong> Try our <a href="/salary-to-hourly-calculator" className="underline hover:text-green-800">Salary Calculator</a> and <a href="/savings-goal-calculator" className="underline hover:text-green-800">Savings Goal Calculator</a> for comprehensive planning.
+                  <div className="mt-6 p-4 bg-white rounded-xl">
+                    <p className="text-sm text-green-700 font-medium">
+                      Essential for making informed decisions about personal finances and short-term borrowing needs.
+                    </p>
                   </div>
                 </div>
 
                 {/* Business Owners */}
-                <div className="bg-purple-50 rounded-xl p-6">
-                  <div className="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center mb-4">
-                    <DollarSign className="w-6 h-6 text-white" />
+                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Business Owners</h3>
+                  <div className="space-y-3 text-gray-700">
+                    <p className="font-medium">Short-term business loan evaluation</p>
+                    <p className="font-medium">Cash flow interest impact analysis</p>
+                    <p className="font-medium">Equipment financing cost assessment</p>
+                    <p className="font-medium">Vendor payment term negotiations</p>
+                    <p className="font-medium">Working capital requirement planning</p>
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Business Owners</h3>
-                  <ul className="text-gray-700 space-y-2">
-                    <li>• Short-term business loan costs</li>
-                    <li>• Cash flow interest calculations</li>
-                    <li>• Equipment financing analysis</li>
-                    <li>• Vendor payment terms</li>
-                    <li>• Working capital planning</li>
-                  </ul>
-                  <div className="mt-4 text-sm text-purple-700">
-                    <strong>Tip:</strong> Use our <a href="/business-loan-calculator" className="underline hover:text-purple-800">Business Loan Calculator</a> for detailed business financing analysis.
+                  <div className="mt-6 p-4 bg-white rounded-xl">
+                    <p className="text-sm text-purple-700 font-medium">
+                      Critical for understanding the true cost of business financing and optimizing cash flow management.
+                    </p>
                   </div>
                 </div>
 
                 {/* Investors */}
-                <div className="bg-yellow-50 rounded-xl p-6">
-                  <div className="w-12 h-12 bg-yellow-500 rounded-lg flex items-center justify-center mb-4">
-                    <Calculator className="w-6 h-6 text-white" />
+                <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-2xl p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Investors & Savers</h3>
+                  <div className="space-y-3 text-gray-700">
+                    <p className="font-medium">Fixed deposit return calculations</p>
+                    <p className="font-medium">Bond yield analysis and comparison</p>
+                    <p className="font-medium">Certificate of deposit planning</p>
+                    <p className="font-medium">Treasury bill investment evaluation</p>
+                    <p className="font-medium">Conservative portfolio construction</p>
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Investors & Savers</h3>
-                  <ul className="text-gray-700 space-y-2">
-                    <li>• Fixed deposit returns</li>
-                    <li>• Bond yield calculations</li>
-                    <li>• Certificate of deposit planning</li>
-                    <li>• Treasury bill analysis</li>
-                    <li>• Conservative investment planning</li>
-                  </ul>
-                  <div className="mt-4 text-sm text-yellow-700">
-                    <strong>Tip:</strong> Compare with our <a href="/compound-interest-calculator" className="underline hover:text-yellow-800">Compound Interest Calculator</a> for long-term investments.
+                  <div className="mt-6 p-4 bg-white rounded-xl">
+                    <p className="text-sm text-yellow-700 font-medium">
+                      Ideal for conservative investors seeking predictable returns and risk-averse investment strategies.
+                    </p>
                   </div>
                 </div>
 
                 {/* Seniors */}
-                <div className="bg-indigo-50 rounded-xl p-6">
-                  <div className="w-12 h-12 bg-indigo-500 rounded-lg flex items-center justify-center mb-4">
-                    <Clock className="w-6 h-6 text-white" />
+                <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-2xl p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Retirees & Seniors</h3>
+                  <div className="space-y-3 text-gray-700">
+                    <p className="font-medium">Fixed income stream planning</p>
+                    <p className="font-medium">Pension supplement calculations</p>
+                    <p className="font-medium">Safe investment return projections</p>
+                    <p className="font-medium">Healthcare financing interest costs</p>
+                    <p className="font-medium">Estate planning financial considerations</p>
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Retirees & Seniors</h3>
-                  <ul className="text-gray-700 space-y-2">
-                    <li>• Fixed income planning</li>
-                    <li>• Pension supplement calculations</li>
-                    <li>• Safe investment returns</li>
-                    <li>• Healthcare loan interest</li>
-                    <li>• Estate planning considerations</li>
-                  </ul>
-                  <div className="mt-4 text-sm text-indigo-700">
-                    <strong>Tip:</strong> Check our <a href="/retirement-calculator" className="underline hover:text-indigo-800">Retirement Calculator</a> for comprehensive retirement planning.
+                  <div className="mt-6 p-4 bg-white rounded-xl">
+                    <p className="text-sm text-indigo-700 font-medium">
+                      Essential for retirement income planning and understanding guaranteed return investment options.
+                    </p>
                   </div>
                 </div>
 
                 {/* Financial Advisors */}
-                <div className="bg-red-50 rounded-xl p-6">
-                  <div className="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center mb-4">
-                    <TrendingUp className="w-6 h-6 text-white" />
+                <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-2xl p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Financial Advisors</h3>
+                  <div className="space-y-3 text-gray-700">
+                    <p className="font-medium">Client consultation demonstrations</p>
+                    <p className="font-medium">Quick scenario analysis tools</p>
+                    <p className="font-medium">Educational workshop materials</p>
+                    <p className="font-medium">Loan comparison presentations</p>
+                    <p className="font-medium">Financial literacy training aids</p>
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Financial Advisors</h3>
-                  <ul className="text-gray-700 space-y-2">
-                    <li>• Client consultation tools</li>
-                    <li>• Quick scenario analysis</li>
-                    <li>• Educational demonstrations</li>
-                    <li>• Loan comparison presentations</li>
-                    <li>• Financial literacy training</li>
-                  </ul>
-                  <div className="mt-4 text-sm text-red-700">
-                    <strong>Tip:</strong> Use our <a href="/loan-calculator" className="underline hover:text-red-800">Loan Calculator</a> and <a href="/emi-calculator" className="underline hover:text-red-800">EMI Calculator</a> for client presentations.
+                  <div className="mt-6 p-4 bg-white rounded-xl">
+                    <p className="text-sm text-red-700 font-medium">
+                      Valuable for explaining basic interest concepts and demonstrating financial product differences to clients.
+                    </p>
                   </div>
                 </div>
               </div>
             </section>
 
             {/* Related Financial Tools */}
-            <section className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">Related Financial Calculators</h2>
-              <p className="text-lg text-gray-600 text-center mb-8">
+            <section className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 lg:p-12">
+              <h2 className="text-4xl font-bold text-gray-900 mb-6 text-center">Related Financial Calculators</h2>
+              <p className="text-xl text-gray-600 text-center mb-12">
                 Explore our comprehensive suite of financial calculators to make informed decisions about loans, investments, and savings.
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <a href="/compound-interest-calculator" className="bg-white rounded-lg p-6 hover:shadow-lg transition-shadow">
-                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                    <TrendingUp className="w-5 h-5 text-blue-600" />
-                  </div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Compound Interest Calculator</h3>
-                  <p className="text-gray-600 text-sm">Calculate exponential growth with compound interest for long-term investments.</p>
+                <a href="/compound-interest-calculator" className="bg-white rounded-2xl p-6 hover:shadow-xl transition-all duration-200 hover:scale-105">
+                  <h3 className="font-bold text-gray-900 mb-3 text-lg">Compound Interest Calculator</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">Calculate exponential growth with compound interest for long-term investments and retirement planning.</p>
                 </a>
 
-                <a href="/loan-calculator" className="bg-white rounded-lg p-6 hover:shadow-lg transition-shadow">
-                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                    <DollarSign className="w-5 h-5 text-green-600" />
-                  </div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Loan Calculator</h3>
-                  <p className="text-gray-600 text-sm">Calculate monthly payments and total interest for various loan types.</p>
+                <a href="/loan-calculator" className="bg-white rounded-2xl p-6 hover:shadow-xl transition-all duration-200 hover:scale-105">
+                  <h3 className="font-bold text-gray-900 mb-3 text-lg">Loan Calculator</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">Calculate monthly payments and total interest for personal loans, auto loans, and business financing.</p>
                 </a>
 
-                <a href="/emi-calculator" className="bg-white rounded-lg p-6 hover:shadow-lg transition-shadow">
-                  <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                    <Calculator className="w-5 h-5 text-purple-600" />
-                  </div>
-                  <h3 className="font-semibold text-gray-900 mb-2">EMI Calculator</h3>
-                  <p className="text-gray-600 text-sm">Calculate Equated Monthly Installments for loans and mortgages.</p>
+                <a href="/emi-calculator" className="bg-white rounded-2xl p-6 hover:shadow-xl transition-all duration-200 hover:scale-105">
+                  <h3 className="font-bold text-gray-900 mb-3 text-lg">EMI Calculator</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">Calculate Equated Monthly Installments for loans, mortgages, and hire purchase agreements.</p>
                 </a>
 
-                <a href="/mortgage-calculator" className="bg-white rounded-lg p-6 hover:shadow-lg transition-shadow">
-                  <div className="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
-                    <Clock className="w-5 h-5 text-yellow-600" />
-                  </div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Mortgage Calculator</h3>
-                  <p className="text-gray-600 text-sm">Plan your home purchase with detailed mortgage calculations.</p>
+                <a href="/mortgage-calculator" className="bg-white rounded-2xl p-6 hover:shadow-xl transition-all duration-200 hover:scale-105">
+                  <h3 className="font-bold text-gray-900 mb-3 text-lg">Mortgage Calculator</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">Plan your home purchase with detailed mortgage calculations and amortization schedules.</p>
                 </a>
 
-                <a href="/investment-return-calculator" className="bg-white rounded-lg p-6 hover:shadow-lg transition-shadow">
-                  <div className="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
-                    <TrendingUp className="w-5 h-5 text-indigo-600" />
-                  </div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Investment Return Calculator</h3>
-                  <p className="text-gray-600 text-sm">Analyze potential returns on various investment options.</p>
+                <a href="/investment-return-calculator" className="bg-white rounded-2xl p-6 hover:shadow-xl transition-all duration-200 hover:scale-105">
+                  <h3 className="font-bold text-gray-900 mb-3 text-lg">Investment Return Calculator</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">Analyze potential returns on stocks, bonds, mutual funds, and other investment vehicles.</p>
                 </a>
 
-                <a href="/sip-calculator" className="bg-white rounded-lg p-6 hover:shadow-lg transition-shadow">
-                  <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mb-4">
-                    <DollarSign className="w-5 h-5 text-red-600" />
-                  </div>
-                  <h3 className="font-semibold text-gray-900 mb-2">SIP Calculator</h3>
-                  <p className="text-gray-600 text-sm">Calculate returns from Systematic Investment Plans in mutual funds.</p>
+                <a href="/sip-calculator" className="bg-white rounded-2xl p-6 hover:shadow-xl transition-all duration-200 hover:scale-105">
+                  <h3 className="font-bold text-gray-900 mb-3 text-lg">SIP Calculator</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">Calculate returns from Systematic Investment Plans in mutual funds and ETFs.</p>
                 </a>
 
-                <a href="/savings-goal-calculator" className="bg-white rounded-lg p-6 hover:shadow-lg transition-shadow">
-                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
-                    <Clock className="w-5 h-5 text-teal-600" />
-                  </div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Savings Goal Calculator</h3>
-                  <p className="text-gray-600 text-sm">Plan monthly savings to reach your financial goals.</p>
+                <a href="/savings-goal-calculator" className="bg-white rounded-2xl p-6 hover:shadow-xl transition-all duration-200 hover:scale-105">
+                  <h3 className="font-bold text-gray-900 mb-3 text-lg">Savings Goal Calculator</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">Plan monthly savings required to reach your financial goals and milestones.</p>
                 </a>
 
-                <a href="/retirement-calculator" className="bg-white rounded-lg p-6 hover:shadow-lg transition-shadow">
-                  <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
-                    <TrendingUp className="w-5 h-5 text-orange-600" />
-                  </div>
-                  <h3 className="font-semibold text-gray-900 mb-2">Retirement Calculator</h3>
-                  <p className="text-gray-600 text-sm">Plan for a secure retirement with our comprehensive calculator.</p>
+                <a href="/retirement-calculator" className="bg-white rounded-2xl p-6 hover:shadow-xl transition-all duration-200 hover:scale-105">
+                  <h3 className="font-bold text-gray-900 mb-3 text-lg">Retirement Calculator</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">Plan for a secure retirement with our comprehensive retirement savings calculator.</p>
                 </a>
               </div>
             </section>
 
             {/* Benefits and Tips */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <Card className="bg-white border-0 shadow-sm">
-                <CardContent className="p-8">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                      <TrendingUp className="w-5 h-5 text-green-600" />
-                    </div>
-                    <h3 className="text-2xl font-semibold text-gray-900">Benefits of Using Our Calculator</h3>
-                  </div>
+              <Card className="bg-white/90 backdrop-blur-sm border-0 shadow-xl rounded-2xl">
+                <CardContent className="p-8 lg:p-10">
+                  <h3 className="text-3xl font-bold text-gray-900 mb-8">Benefits of Using Our Calculator</h3>
                   
-                  <ul className="space-y-4">
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-gray-700"><strong>Instant Results:</strong> Get immediate calculations without manual math</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-gray-700"><strong>Multiple Currencies:</strong> Calculate in USD, EUR, GBP, INR, and more</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-gray-700"><strong>Detailed Breakdown:</strong> See yearly projections and monthly interest</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-gray-700"><strong>Free to Use:</strong> No registration or payment required</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-gray-700"><strong>Mobile Friendly:</strong> Works perfectly on all devices</span>
-                    </li>
-                  </ul>
+                  <div className="space-y-6">
+                    <div className="bg-green-50 rounded-xl p-6">
+                      <h4 className="font-bold text-green-800 mb-2">Instant Accurate Results</h4>
+                      <p className="text-green-700">Get immediate calculations without manual computation errors or complex mathematical operations.</p>
+                    </div>
+                    <div className="bg-blue-50 rounded-xl p-6">
+                      <h4 className="font-bold text-blue-800 mb-2">Multi-Currency Support</h4>
+                      <p className="text-blue-700">Calculate in USD, EUR, GBP, INR, JPY, CAD, AUD, CNY, BRL, and MXN with proper formatting.</p>
+                    </div>
+                    <div className="bg-purple-50 rounded-xl p-6">
+                      <h4 className="font-bold text-purple-800 mb-2">Comprehensive Breakdown</h4>
+                      <p className="text-purple-700">View yearly projections, monthly interest amounts, and detailed financial planning insights.</p>
+                    </div>
+                    <div className="bg-yellow-50 rounded-xl p-6">
+                      <h4 className="font-bold text-yellow-800 mb-2">Completely Free</h4>
+                      <p className="text-yellow-700">No registration, subscriptions, or hidden fees. Professional-grade calculations at no cost.</p>
+                    </div>
+                    <div className="bg-indigo-50 rounded-xl p-6">
+                      <h4 className="font-bold text-indigo-800 mb-2">Mobile Optimized</h4>
+                      <p className="text-indigo-700">Responsive design works flawlessly on smartphones, tablets, and desktop computers.</p>
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
 
-              <Card className="bg-white border-0 shadow-sm">
-                <CardContent className="p-8">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                      <Clock className="w-5 h-5 text-blue-600" />
-                    </div>
-                    <h3 className="text-2xl font-semibold text-gray-900">Tips for Better Results</h3>
-                  </div>
+              <Card className="bg-white/90 backdrop-blur-sm border-0 shadow-xl rounded-2xl">
+                <CardContent className="p-8 lg:p-10">
+                  <h3 className="text-3xl font-bold text-gray-900 mb-8">Professional Tips for Accuracy</h3>
                   
-                  <ul className="space-y-4">
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-gray-700"><strong>Double-check rates:</strong> Ensure you're using annual interest rates</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-gray-700"><strong>Consider inflation:</strong> Factor in inflation for long-term calculations</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-gray-700"><strong>Compare options:</strong> Use different scenarios to compare investments</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-gray-700"><strong>Verify terms:</strong> Always confirm actual terms with financial institutions</span>
-                    </li>
-                    <li className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-gray-700"><strong>Use scenarios:</strong> Try different amounts and rates to understand impacts</span>
-                    </li>
-                  </ul>
+                  <div className="space-y-6">
+                    <div className="bg-blue-50 rounded-xl p-6">
+                      <h4 className="font-bold text-blue-800 mb-2">Verify Interest Rate Format</h4>
+                      <p className="text-blue-700">Always confirm you're using annual interest rates. Convert monthly or daily rates accordingly.</p>
+                    </div>
+                    <div className="bg-green-50 rounded-xl p-6">
+                      <h4 className="font-bold text-green-800 mb-2">Consider Economic Factors</h4>
+                      <p className="text-green-700">Factor in inflation rates and economic conditions for realistic long-term financial projections.</p>
+                    </div>
+                    <div className="bg-purple-50 rounded-xl p-6">
+                      <h4 className="font-bold text-purple-800 mb-2">Compare Multiple Scenarios</h4>
+                      <p className="text-purple-700">Use different principal amounts and interest rates to understand how changes impact your returns.</p>
+                    </div>
+                    <div className="bg-yellow-50 rounded-xl p-6">
+                      <h4 className="font-bold text-yellow-800 mb-2">Verify with Institutions</h4>
+                      <p className="text-yellow-700">Always confirm actual loan or investment terms with financial institutions before making decisions.</p>
+                    </div>
+                    <div className="bg-indigo-50 rounded-xl p-6">
+                      <h4 className="font-bold text-indigo-800 mb-2">Plan for Flexibility</h4>
+                      <p className="text-indigo-700">Consider various time periods and amounts to understand the impact of different financial strategies.</p>
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
             </div>
