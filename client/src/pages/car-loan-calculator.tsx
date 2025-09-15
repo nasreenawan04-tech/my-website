@@ -107,9 +107,8 @@ const CarLoanCalculator = () => {
   return (
     <>
       <Helmet>
-        <title>Car Loan Calculator - Calculate Auto Loan Payments | ToolForge</title>
-        <meta name="description" content="Free car loan calculator to calculate monthly auto loan payments, total interest, and loan costs. Plan your car purchase with accurate estimates." />
-        <meta name="keywords" content="car loan calculator, auto loan calculator, vehicle loan calculator, car payment calculator, auto financing" />
+        <title>Car Loan Calculator - Calculate Auto Loan Payments | DapsiWow</title>
+        <meta name="description" content="Calculate monthly car loan payments, total interest, and total cost for your vehicle purchase." />
         <meta property="og:title" content="Car Loan Calculator - Calculate Auto Loan Payments | ToolForge" />
         <meta property="og:description" content="Free car loan calculator to calculate monthly auto loan payments, total interest, and loan costs. Plan your car purchase with accurate estimates." />
         <meta property="og:type" content="website" />
@@ -391,59 +390,7 @@ const CarLoanCalculator = () => {
                 </CardContent>
               </Card>
 
-              {/* What is a Car Loan Calculator Section */}
-              <Card className="mt-12 bg-white border-0 shadow-sm">
-                <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">What is a Car Loan Calculator?</h2>
-                  <div className="prose max-w-none text-gray-600">
-                    <p className="mb-4">
-                      A car loan calculator helps you determine the monthly payment, total interest cost, and overall affordability 
-                      of purchasing a vehicle through financing. Our calculator uses standard amortization formulas to provide 
-                      accurate estimates based on your loan amount, interest rate, loan term, and down payment.
-                    </p>
-                    <p className="mb-4">
-                      Whether you're buying a new car, used vehicle, or considering auto refinancing, this calculator 
-                      enables you to compare different financing scenarios and make informed decisions about your car purchase.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Key Features */}
-              <Card className="mt-8 bg-white border-0 shadow-sm">
-                <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Key Features</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="text-center">
-                      <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                        <i className="fas fa-calculator text-blue-600 text-2xl"></i>
-                      </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Accurate Calculations</h3>
-                      <p className="text-gray-600 text-sm">
-                        Uses standard amortization formulas for precise monthly payment calculations.
-                      </p>
-                    </div>
-                    <div className="text-center">
-                      <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                        <i className="fas fa-globe text-green-600 text-2xl"></i>
-                      </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Multi-Currency Support</h3>
-                      <p className="text-gray-600 text-sm">
-                        Calculate car loans in 10 major currencies worldwide.
-                      </p>
-                    </div>
-                    <div className="text-center">
-                      <div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                        <i className="fas fa-chart-pie text-purple-600 text-2xl"></i>
-                      </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Visual Breakdown</h3>
-                      <p className="text-gray-600 text-sm">
-                        Interactive charts showing principal vs. interest payments.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+              
             </div>
           </section>
         </main>

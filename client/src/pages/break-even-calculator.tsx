@@ -114,8 +114,7 @@ const BreakEvenCalculator = () => {
     <>
       <Helmet>
         <title>Break-Even Calculator - Calculate Break-Even Point | DapsiWow</title>
-        <meta name="description" content="Free break-even calculator for businesses, entrepreneurs, and students. Calculate break-even point, contribution margin, and profit analysis with multi-currency support. Essential business planning tool." />
-        <meta name="keywords" content="break even calculator, break even analysis, business calculator, profit calculator, break even point, contribution margin, business planning, financial analysis, startup calculator, small business tools, revenue calculator, cost analysis, margin of safety, break even formula, business finance, entrepreneur tools" />
+        <meta name="description" content="Calculate break-even point for your business. Determine units and revenue needed to cover costs." />
         <meta property="og:title" content="Break-Even Calculator - Calculate Break-Even Point | DapsiWow" />
         <meta property="og:description" content="Free break-even calculator to determine the break-even point for your business. Calculate units and revenue needed to cover costs." />
         <meta property="og:type" content="website" />
@@ -136,7 +135,7 @@ const BreakEvenCalculator = () => {
                 Break-Even Calculator
               </h1>
               <p className="text-xl text-blue-100 max-w-2xl mx-auto">
-                Calculate the break-even point for your business to determine when you'll start making profit worldwide
+                Calculate the break-even point for your business
               </p>
             </div>
           </section>
@@ -386,21 +385,7 @@ const BreakEvenCalculator = () => {
                 </CardContent>
               </Card>
 
-              {/* What is Break-Even Calculator Section */}
-              <div className="mt-12 bg-white rounded-2xl shadow-lg p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">What is a Break-Even Calculator?</h2>
-                <div className="prose max-w-none text-gray-600">
-                  <p className="mb-4">
-                    A break-even calculator is a financial tool that helps businesses determine the point where total revenue equals total costs, 
-                    resulting in zero profit or loss. This calculator helps you understand the minimum number of units you need to sell 
-                    or the minimum revenue required to cover all your business expenses.
-                  </p>
-                  <p className="mb-4">
-                    Whether you're launching a new product, evaluating pricing strategies, or making business decisions, 
-                    this calculator provides accurate financial analysis with support for multiple currencies worldwide.
-                  </p>
-                </div>
-              </div>
+              
             </div>
           </section>
         </main>
