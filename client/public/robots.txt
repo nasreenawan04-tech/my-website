@@ -10,7 +10,6 @@ Allow: /tools/
 Allow: /finance/
 Allow: /health/
 Allow: /text/
-Allow: /image/
 Allow: /about-us/
 Allow: /contact-us/
 Allow: /privacy-policy/
