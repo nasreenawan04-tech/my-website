@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -35,13 +34,13 @@ interface DebtEntry {
 
 export default function DebtPayoffCalculator() {
   const [calculationType, setCalculationType] = useState('single-debt');
-  
+
   // Single Debt inputs
   const [currentBalance, setCurrentBalance] = useState('5000');
   const [interestRate, setInterestRate] = useState('18.5');
   const [monthlyPayment, setMonthlyPayment] = useState('150');
   const [extraPayment, setExtraPayment] = useState('0');
-  
+
   // Multiple Debts
   const [debts, setDebts] = useState<DebtEntry[]>([
     { id: '1', name: 'Credit Card 1', balance: 3000, interestRate: 19.5, minimumPayment: 75 },
@@ -50,12 +49,12 @@ export default function DebtPayoffCalculator() {
   ]);
   const [totalExtraPayment, setTotalExtraPayment] = useState('100');
   const [payoffStrategy, setPayoffStrategy] = useState('avalanche'); // avalanche or snowball
-  
+
   // Target Date inputs
   const [targetBalance, setTargetBalance] = useState('10000');
   const [targetRate, setTargetRate] = useState('16.0');
   const [targetMonths, setTargetMonths] = useState('24');
-  
+
   const [currency, setCurrency] = useState('USD');
   const [country, setCountry] = useState('US');
   const [result, setResult] = useState<DebtPayoffResult | null>(null);
@@ -94,7 +93,7 @@ export default function DebtPayoffCalculator() {
     const rate = parseFloat(interestRate) / 100 / 12;
     const payment = parseFloat(monthlyPayment);
     const extra = parseFloat(extraPayment) || 0;
-    
+
     if (balance <= 0 || payment <= 0 || rate < 0) return;
 
     // Calculate without extra payment
@@ -141,7 +140,7 @@ export default function DebtPayoffCalculator() {
 
   const calculateMultipleDebts = () => {
     const extra = parseFloat(totalExtraPayment) || 0;
-    
+
     // Sort debts based on strategy
     const sortedDebts = [...debts].sort((a, b) => {
       if (payoffStrategy === 'avalanche') {
@@ -162,7 +161,7 @@ export default function DebtPayoffCalculator() {
 
     while (remainingDebts.length > 0) {
       totalMonths++;
-      
+
       // Pay minimum on all debts
       remainingDebts.forEach(debt => {
         const monthlyInterest = (debt.balance * debt.interestRate / 100) / 12;
@@ -203,7 +202,7 @@ export default function DebtPayoffCalculator() {
     const balance = parseFloat(targetBalance);
     const rate = parseFloat(targetRate) / 100 / 12;
     const months = parseFloat(targetMonths);
-    
+
     if (balance <= 0 || months <= 0 || rate < 0) return;
 
     // Calculate required monthly payment
@@ -286,7 +285,7 @@ export default function DebtPayoffCalculator() {
     };
 
     const config = currencyMap[currency] || currencyMap.USD;
-    
+
     return new Intl.NumberFormat(config.locale, {
       style: 'currency',
       currency: config.currency,
@@ -298,7 +297,7 @@ export default function DebtPayoffCalculator() {
   const formatTime = (months: number) => {
     const years = Math.floor(months / 12);
     const remainingMonths = Math.round(months % 12);
-    
+
     if (years === 0) {
       return `${remainingMonths} month${remainingMonths !== 1 ? 's' : ''}`;
     } else if (remainingMonths === 0) {
@@ -321,9 +320,9 @@ export default function DebtPayoffCalculator() {
         <meta property="og:type" content="website" />
         <link rel="canonical" href="/tools/debt-payoff-calculator" />
       </Helmet>
-      
+
       <Header />
-      
+
       <main>
         {/* Hero Section */}
         <section className="gradient-hero text-white py-16 pt-24">
@@ -347,7 +346,7 @@ export default function DebtPayoffCalculator() {
                 {/* Input Section */}
                 <div className="space-y-6">
                   <h2 className="text-2xl font-semibold text-gray-900 mb-8">Debt Payoff Calculator</h2>
-                  
+
                   {/* Country Selection */}
                   <div className="space-y-3">
                     <Label htmlFor="country" className="text-sm font-medium text-gray-700">
@@ -606,7 +605,7 @@ export default function DebtPayoffCalculator() {
                 {/* Results Section */}
                 <div className="bg-gray-50 rounded-xl p-8">
                   <h2 className="text-2xl font-semibold text-gray-900 mb-8">Payoff Plan</h2>
-                  
+
                   {(result || multipleDebtsResult) ? (
                     <div className="space-y-6">
                       {/* Main Results */}
@@ -637,7 +636,7 @@ export default function DebtPayoffCalculator() {
                       {result && (
                         <div className="space-y-4">
                           <h3 className="text-lg font-semibold text-gray-900">Debt Details</h3>
-                          
+
                           <div className="flex justify-between items-center py-3 border-b border-gray-200">
                             <span className="text-gray-600">Current Balance</span>
                             <span className="font-semibold text-gray-900">
@@ -688,7 +687,7 @@ export default function DebtPayoffCalculator() {
                           <h3 className="text-lg font-semibold text-gray-900">
                             {multipleDebtsResult.strategy === 'avalanche' ? 'Debt Avalanche' : 'Debt Snowball'} Strategy
                           </h3>
-                          
+
                           <div className="flex justify-between items-center py-3 border-b border-gray-200">
                             <span className="text-gray-600">Total Debt</span>
                             <span className="font-semibold text-gray-900">
@@ -810,7 +809,7 @@ export default function DebtPayoffCalculator() {
                   </div>
                 </div>
               </div>
-              
+
               <div className="border-l-4 border-blue-500 pl-6">
                 <h3 className="text-2xl font-semibold text-gray-900 mb-4">⚡ Debt Snowball Method</h3>
                 <p className="text-gray-600 mb-4">
@@ -937,7 +936,7 @@ export default function DebtPayoffCalculator() {
                     <li>• Make bi-weekly payments instead of monthly</li>
                   </ul>
                 </div>
-                
+
                 <div className="bg-white rounded-lg p-6 shadow-sm">
                   <h3 className="text-lg font-semibold text-gray-900 mb-3">🔄 Balance Transfer Considerations</h3>
                   <ul className="space-y-2 text-gray-600">
@@ -948,7 +947,7 @@ export default function DebtPayoffCalculator() {
                   </ul>
                 </div>
               </div>
-              
+
               <div className="space-y-6">
                 <div className="bg-white rounded-lg p-6 shadow-sm">
                   <h3 className="text-lg font-semibold text-gray-900 mb-3">📱 Technology & Automation</h3>
@@ -959,7 +958,7 @@ export default function DebtPayoffCalculator() {
                     <li>• Automate savings to prevent new debt accumulation</li>
                   </ul>
                 </div>
-                
+
                 <div className="bg-white rounded-lg p-6 shadow-sm">
                   <h3 className="text-lg font-semibold text-gray-900 mb-3">🛡️ Preventing Future Debt</h3>
                   <ul className="space-y-2 text-gray-600">
@@ -985,7 +984,7 @@ export default function DebtPayoffCalculator() {
                   often exceeds potential investment returns after taxes and risk.
                 </p>
               </div>
-              
+
               <div className="border-b border-gray-200 pb-6">
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">How much extra should I pay toward debt each month?</h3>
                 <p className="text-gray-600">
@@ -994,7 +993,7 @@ export default function DebtPayoffCalculator() {
                   extra payment amounts affect your timeline and total interest costs.
                 </p>
               </div>
-              
+
               <div className="border-b border-gray-200 pb-6">
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">Is debt consolidation always a good idea?</h3>
                 <p className="text-gray-600">
@@ -1003,7 +1002,7 @@ export default function DebtPayoffCalculator() {
                   Use our calculator to compare your current plan with potential consolidation scenarios.
                 </p>
               </div>
-              
+
               <div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">Which is better: debt snowball or avalanche?</h3>
                 <p className="text-gray-600">
@@ -1016,7 +1015,7 @@ export default function DebtPayoffCalculator() {
           </section>
         </div>
       </main>
-      
+
       <Footer />
     </div>
   );
