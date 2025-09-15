@@ -11,10 +11,10 @@ const Home = () => {
   return (
     <>
       <Helmet>
-        <title>DapsiWow: Free AI Writing, PDF, Image, and other Online Tools</title>
+        <title>DapsiWow: Free Finance, Text, Health and other Online Tools</title>
         <meta name="description" content="Support your productivity with premium tools that stay out of your way and work smarter. Create without limits, ads, or roadblocks. Get instant access to 180+ free online tools including finance calculators, text converters, and health trackers." />
         <meta name="keywords" content="DapsiWow, dapsiwow, free online tools, loan calculator, mortgage calculator, business loan calculator, lease calculator, productivity tools, finance calculators, text tools, health calculators, online utilities, web tools, no registration tools" />
-        <meta property="og:title" content="DapsiWow: Free AI Writing, PDF, Image, and other Online Tools" />
+        <meta property="og:title" content="DapsiWow: Free Finance, Text, Health and other Online Tools" />
         <meta property="og:description" content="Support your productivity with premium tools that stay out of your way and work smarter. Create without limits, ads, or roadblocks. Get instant access to 180+ free online tools." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dapsiwow.com/" />
@@ -34,7 +34,7 @@ const Home = () => {
               "@type": "ItemList",
               "name": "DapsiWow Tool Categories",
               "description": "Complete collection of professional online tools organized by category",
-              "numberOfItems": 4,
+              "numberOfItems": 3,
               "itemListElement": [
                 {
                   "@type": "ListItem",
@@ -67,17 +67,6 @@ const Home = () => {
                     "name": "Health Tools",
                     "description": "Health and fitness calculators including BMI, calorie, and body composition tools",
                     "url": "https://dapsiwow.com/health-tools"
-                  }
-                },
-                {
-                  "@type": "ListItem",
-                  "position": 4,
-                  "item": {
-                    "@type": "CollectionPage",
-                    "@id": "https://dapsiwow.com/image-tools",
-                    "name": "Image Tools",
-                    "description": "Image processing and editing tools for optimization, conversion, and enhancement",
-                    "url": "https://dapsiwow.com/image-tools"
                   }
                 }
               ]
@@ -177,7 +166,7 @@ const Home = () => {
                       <div className="text-neutral-700 font-medium">Registration Required</div>
                     </div>
                     <div>
-                      <div className="text-4xl font-bold text-purple-600 mb-2">4</div>
+                      <div className="text-4xl font-bold text-purple-600 mb-2">3</div>
                       <div className="text-neutral-700 font-medium">Main Categories</div>
                     </div>
                     <div>
