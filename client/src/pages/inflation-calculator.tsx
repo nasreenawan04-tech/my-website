@@ -1029,7 +1029,6 @@ export default function InflationCalculator() {
                   <Card className="bg-white border border-gray-200 hover:shadow-lg transition-shadow">
                     <CardContent className="p-6">
                       <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
-                        <i className="fas fa-home text-red-600 text-xl"></i>
                       </div>
                       <h3 className="text-xl font-semibold text-gray-900 mb-3">Real Estate Decisions</h3>
                       <p className="text-gray-600">Compare historical property values and understand how inflation affects real estate investments and home prices.</p>
@@ -1038,7 +1037,6 @@ export default function InflationCalculator() {
                   <Card className="bg-white border border-gray-200 hover:shadow-lg transition-shadow">
                     <CardContent className="p-6">
                       <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
-                        <i className="fas fa-calculator text-indigo-600 text-xl"></i>
                       </div>
                       <h3 className="text-xl font-semibold text-gray-900 mb-3">Budget Planning</h3>
                       <p className="text-gray-600">Create realistic long-term budgets by accounting for inflation's impact on future expenses and costs.</p>
@@ -1186,7 +1184,103 @@ export default function InflationCalculator() {
               </Card>
             </div>
 
-            {/* FAQ Section */}
+            {/* Factors Affecting Inflation */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Factors Affecting Inflation Rates</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <div className="border-l-4 border-blue-500 pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-2">Monetary Policy</h4>
+                      <p className="text-sm">Central bank decisions on interest rates and money supply directly impact inflation. Lower rates and increased money supply typically drive higher inflation.</p>
+                    </div>
+                    <div className="border-l-4 border-green-500 pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-2">Supply and Demand</h4>
+                      <p className="text-sm">Economic imbalances where demand exceeds supply lead to price increases. Global supply chain disruptions can cause significant inflationary pressure.</p>
+                    </div>
+                    <div className="border-l-4 border-orange-500 pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-2">Energy Prices</h4>
+                      <p className="text-sm">Oil and energy costs affect transportation and production expenses across all sectors, making energy price fluctuations a major inflation driver.</p>
+                    </div>
+                    <div className="border-l-4 border-purple-500 pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-2">Government Policies</h4>
+                      <p className="text-sm">Fiscal policies, taxes, regulations, and government spending can influence price levels and economic demand patterns significantly.</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Inflation Protection Strategies</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <div className="bg-blue-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-blue-800 mb-2">Diversified Investment Portfolio</h4>
+                      <p className="text-sm text-blue-700">Invest across asset classes including stocks, real estate, and commodities that historically outpace inflation over time.</p>
+                    </div>
+                    <div className="bg-green-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-green-800 mb-2">Treasury Inflation-Protected Securities</h4>
+                      <p className="text-sm text-green-700">TIPS adjust principal values based on inflation, providing direct protection against purchasing power erosion.</p>
+                    </div>
+                    <div className="bg-orange-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-orange-800 mb-2">Real Estate Investments</h4>
+                      <p className="text-sm text-orange-700">Property values and rental income typically rise with inflation, making real estate an effective long-term inflation hedge.</p>
+                    </div>
+                    <div className="bg-purple-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-purple-800 mb-2">Fixed-Rate Debt Strategy</h4>
+                      <p className="text-sm text-purple-700">Lock in current low rates on mortgages and loans before inflation drives interest rates higher, effectively paying back debt with cheaper dollars.</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Comprehensive FAQ Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions about Inflation</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">What's the difference between inflation and deflation?</h4>
+                      <p className="text-gray-600 text-sm">Inflation is when prices rise over time, reducing purchasing power. Deflation is the opposite - falling prices that increase purchasing power but can signal economic trouble and reduce spending.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How does inflation affect my retirement savings?</h4>
+                      <p className="text-gray-600 text-sm">Inflation erodes the purchasing power of fixed savings. A retirement fund that seems adequate today may not cover the same lifestyle decades later due to rising costs.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Should I pay off debt or invest during high inflation?</h4>
+                      <p className="text-gray-600 text-sm">With fixed-rate debt, inflation can work in your favor as you repay loans with cheaper dollars. However, high-return investments that beat inflation may be more beneficial than early debt repayment.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How often should I adjust my financial plan for inflation?</h4>
+                      <p className="text-gray-600 text-sm">Review your financial plan annually and adjust for inflation. Major life changes or significant economic shifts may require more frequent adjustments to maintain purchasing power.</p>
+                    </div>
+                  </div>
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">What's the ideal inflation rate for an economy?</h4>
+                      <p className="text-gray-600 text-sm">Most central banks target 2-3% annual inflation as optimal. This rate encourages spending and investment while avoiding the negative effects of deflation or excessive inflation.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How do I protect my salary from inflation?</h4>
+                      <p className="text-gray-600 text-sm">Negotiate annual salary increases that at minimum match inflation rates. Develop skills that are in high demand to maintain bargaining power for above-inflation raises.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Are there any benefits to inflation?</h4>
+                      <p className="text-gray-600 text-sm">Moderate inflation encourages spending over hoarding money, stimulates economic growth, and can reduce the real burden of fixed debt. It also provides flexibility for monetary policy.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How accurate are long-term inflation predictions?</h4>
+                      <p className="text-gray-600 text-sm">While historical averages provide reasonable estimates, actual inflation can vary significantly due to economic cycles, policy changes, and global events. Use calculations as guides, not guarantees.</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Original FAQ Section */}
             <section>
               <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
                 Frequently Asked Questions About Inflation Calculators
