@@ -378,13 +378,13 @@ const EducationLoanCalculator = () => {
                   <h2 className="text-3xl font-bold text-gray-900 mb-8">What is an Education Loan Calculator?</h2>
                   <div className="prose max-w-none text-gray-700 space-y-6">
                     <p className="text-lg leading-relaxed">
-                      An education loan calculator is a sophisticated financial tool that helps students, parents, and education financing professionals calculate the exact monthly EMI (Equated Monthly Installment), total interest cost, and repayment schedule for student loans. Our advanced education loan calculator considers unique aspects of student financing including course duration, grace periods, and moratorium benefits that make education loans different from standard <a href="/tools/loan-calculator" className="text-blue-600 hover:text-blue-700 font-medium">personal loans</a>.
+                      An education loan calculator is a sophisticated financial tool that helps students, parents, and education financing professionals calculate the exact monthly EMI (Equated Monthly Installment), total interest cost, and repayment schedule for student loans. Our advanced education loan calculator considers unique aspects of student financing including course duration, grace periods, and moratorium benefits that make education loans different from standard personal loans.
                     </p>
                     <p className="leading-relaxed">
-                      Unlike a basic <a href="/tools/emi-calculator" className="text-blue-600 hover:text-blue-700 font-medium">EMI calculator</a>, our education loan calculator specifically accounts for the interest that accumulates during your study period and any grace period after course completion. This comprehensive approach gives you accurate projections for planning your education financing, whether you're pursuing undergraduate studies, postgraduate programs, or professional courses domestically or abroad.
+                      Unlike a basic EMI calculator, our education loan calculator specifically accounts for the interest that accumulates during your study period and any grace period after course completion. This comprehensive approach gives you accurate projections for planning your education financing, whether you're pursuing undergraduate studies, postgraduate programs, or professional courses domestically or abroad.
                     </p>
                     <p className="leading-relaxed">
-                      The calculator supports multiple currencies and provides detailed breakdowns including principal amount, total interest payable, monthly EMI amount, and visual payment distribution charts. This makes it an essential tool for comparing different education loan offers and planning your academic investment alongside other financial tools like our <a href="/tools/retirement-calculator" className="text-blue-600 hover:text-blue-700 font-medium">retirement planning calculator</a> for long-term financial health.
+                      The calculator supports multiple currencies and provides detailed breakdowns including principal amount, total interest payable, monthly EMI amount, and visual payment distribution charts. This makes it an essential tool for comparing different education loan offers and planning your academic investment for long-term financial health.
                     </p>
                   </div>
                 </div>
@@ -484,7 +484,7 @@ const EducationLoanCalculator = () => {
                         <li>• Estimate post-graduation salary requirements</li>
                       </ul>
                       <div className="mt-4 text-xs text-blue-700">
-                        <strong>Pro Tip:</strong> Use with our <a href="/tools/salary-to-hourly-calculator" className="underline hover:text-blue-800">salary calculator</a> to plan future earnings
+                        <strong>Pro Tip:</strong> Consider your future earning potential when planning education financing
                       </div>
                     </div>
 
@@ -503,7 +503,7 @@ const EducationLoanCalculator = () => {
                         <li>• Optimize tax benefits from education loan interest</li>
                       </ul>
                       <div className="mt-4 text-xs text-green-700">
-                        <strong>Pro Tip:</strong> Combine with our <a href="/tools/investment-return-calculator" className="underline hover:text-green-800">investment calculator</a> for education planning
+                        <strong>Pro Tip:</strong> Plan education savings and investments alongside loan requirements
                       </div>
                     </div>
 
@@ -522,7 +522,7 @@ const EducationLoanCalculator = () => {
                         <li>• Create education funding roadmaps</li>
                       </ul>
                       <div className="mt-4 text-xs text-purple-700">
-                        <strong>Pro Tip:</strong> Use with our <a href="/tools/net-worth-calculator" className="underline hover:text-purple-800">net worth calculator</a> for holistic planning
+                        <strong>Pro Tip:</strong> Integrate education planning with comprehensive financial strategies
                       </div>
                     </div>
 
@@ -541,7 +541,7 @@ const EducationLoanCalculator = () => {
                         <li>• Calculate opportunity cost of education breaks</li>
                       </ul>
                       <div className="mt-4 text-xs text-orange-700">
-                        <strong>Pro Tip:</strong> Compare with our <a href="/tools/business-loan-calculator" className="underline hover:text-orange-800">business loan calculator</a> for entrepreneurship
+                        <strong>Pro Tip:</strong> Consider entrepreneurship financing options for post-education ventures
                       </div>
                     </div>
 
@@ -560,7 +560,7 @@ const EducationLoanCalculator = () => {
                         <li>• Support international student financing guidance</li>
                       </ul>
                       <div className="mt-4 text-xs text-teal-700">
-                        <strong>Integration:</strong> Ideal for student counseling with our <a href="/tools/compound-interest-calculator" className="underline hover:text-teal-800">compound interest tool</a>
+                        <strong>Integration:</strong> Perfect for comprehensive student financial counseling
                       </div>
                     </div>
 
@@ -579,7 +579,7 @@ const EducationLoanCalculator = () => {
                         <li>• Enable quick loan comparison and scenario analysis</li>
                       </ul>
                       <div className="mt-4 text-xs text-red-700">
-                        <strong>Integration:</strong> Works alongside our <a href="/tools/home-loan-calculator" className="underline hover:text-red-800">home loan calculator</a> for comprehensive services
+                        <strong>Integration:</strong> Essential for comprehensive loan service offerings
                       </div>
                     </div>
                   </div>
@@ -593,13 +593,13 @@ const EducationLoanCalculator = () => {
                     <div>
                       <h3 className="text-xl font-semibold text-gray-900 mb-4">What is an Education Loan?</h3>
                       <p className="text-gray-600 mb-6 leading-relaxed">
-                        An education loan, also known as a student loan, is a specialized financial product designed to help students fund their higher education expenses including tuition fees, accommodation, books, and other academic costs. Unlike regular <a href="/tools/loan-calculator" className="text-blue-600 hover:text-blue-700 font-medium">personal loans</a>, education loans typically have lower interest rates, flexible repayment options, and tax benefits.
+                        An education loan, also known as a student loan, is a specialized financial product designed to help students fund their higher education expenses including tuition fees, accommodation, books, and other academic costs. Unlike regular personal loans, education loans typically have lower interest rates, flexible repayment options, and tax benefits.
                       </p>
                       
                       <h3 className="text-xl font-semibold text-gray-900 mb-4">Key Features of Education Loans</h3>
                       <ul className="text-gray-600 space-y-2">
                         <li>• <strong>Grace Period:</strong> No EMI during course duration and usually 6-12 months after completion</li>
-                        <li>• <strong>Lower Interest Rates:</strong> Competitive rates compared to <a href="/tools/emi-calculator" className="text-blue-600 hover:text-blue-700">regular EMI-based loans</a></li>
+                        <li>• <strong>Lower Interest Rates:</strong> Competitive rates compared to regular EMI-based loans</li>
                         <li>• <strong>Tax Benefits:</strong> Interest paid is tax-deductible in many countries</li>
                         <li>• <strong>Flexible Repayment:</strong> Options to start repayment after getting a job</li>
                         <li>• <strong>Higher Loan Amounts:</strong> Can cover entire education costs</li>
@@ -619,7 +619,7 @@ const EducationLoanCalculator = () => {
                             <li>• Tax benefits on interest payments</li>
                           </ul>
                           <p className="text-xs text-blue-700 mt-2">
-                            Compare with our <a href="/tools/loan-calculator" className="underline">general loan calculator</a>
+                            Compare with general loan options for better understanding
                           </p>
                         </div>
                         
@@ -632,7 +632,7 @@ const EducationLoanCalculator = () => {
                             <li>• Build credit history through regular repayments</li>
                           </ul>
                           <p className="text-xs text-green-700 mt-2">
-                            Plan with our <a href="/tools/investment-return-calculator" className="underline">investment calculator</a>
+                            Plan with careful investment and savings strategies
                           </p>
                         </div>
                       </div>
@@ -758,30 +758,26 @@ const EducationLoanCalculator = () => {
 
                 {/* Related Financial Tools */}
                 <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Related Financial Calculators for Education Planning</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Education Finance Planning Considerations</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 hover:shadow-md transition-shadow">
+                    <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6">
                       <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4">
                         <i className="fas fa-calculator text-white text-xl"></i>
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                        <a href="/tools/emi-calculator" className="hover:text-blue-600 transition-colors">EMI Calculator</a>
-                      </h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">EMI Planning</h3>
                       <p className="text-gray-600 text-sm mb-3">
-                        Calculate EMI for any type of loan including personal loans, home loans, and business loans alongside your education loan.
+                        Consider your monthly EMI obligations including education loans alongside other financial commitments.
                       </p>
                       <div className="text-xs text-blue-700">
-                        Perfect for comparing education loans with other EMI obligations
+                        Balance education loans with other EMI obligations
                       </div>
                     </div>
 
-                    <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 hover:shadow-md transition-shadow">
+                    <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6">
                       <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mb-4">
                         <i className="fas fa-chart-line text-white text-xl"></i>
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                        <a href="/tools/investment-return-calculator" className="hover:text-green-600 transition-colors">Investment Return Calculator</a>
-                      </h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Investment Returns</h3>
                       <p className="text-gray-600 text-sm mb-3">
                         Plan education savings and calculate returns on investments earmarked for education expenses.
                       </p>
@@ -790,13 +786,11 @@ const EducationLoanCalculator = () => {
                       </div>
                     </div>
 
-                    <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6 hover:shadow-md transition-shadow">
+                    <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6">
                       <div className="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center mb-4">
                         <i className="fas fa-piggy-bank text-white text-xl"></i>
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                        <a href="/tools/savings-goal-calculator" className="hover:text-purple-600 transition-colors">Savings Goal Calculator</a>
-                      </h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Savings Goals</h3>
                       <p className="text-gray-600 text-sm mb-3">
                         Set and track education savings goals, calculate monthly contributions needed for future education costs.
                       </p>
@@ -805,28 +799,24 @@ const EducationLoanCalculator = () => {
                       </div>
                     </div>
 
-                    <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-6 hover:shadow-md transition-shadow">
+                    <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-6">
                       <div className="w-12 h-12 bg-orange-600 rounded-lg flex items-center justify-center mb-4">
                         <i className="fas fa-building text-white text-xl"></i>
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                        <a href="/tools/business-loan-calculator" className="hover:text-orange-600 transition-colors">Business Loan Calculator</a>
-                      </h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Business Financing</h3>
                       <p className="text-gray-600 text-sm mb-3">
-                        For MBA graduates planning to start their own business, calculate business loan requirements and EMIs.
+                        For MBA graduates planning to start their own business, consider business loan requirements and EMIs.
                       </p>
                       <div className="text-xs text-orange-700">
                         Bridge education investment to entrepreneurial ventures
                       </div>
                     </div>
 
-                    <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-6 hover:shadow-md transition-shadow">
+                    <div className="bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-6">
                       <div className="w-12 h-12 bg-teal-600 rounded-lg flex items-center justify-center mb-4">
                         <i className="fas fa-home text-white text-xl"></i>
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                        <a href="/tools/home-loan-calculator" className="hover:text-teal-600 transition-colors">Home Loan Calculator</a>
-                      </h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Housing Loans</h3>
                       <p className="text-gray-600 text-sm mb-3">
                         Plan home purchase after education completion, considering education loan EMIs in debt-to-income ratio.
                       </p>
@@ -835,13 +825,11 @@ const EducationLoanCalculator = () => {
                       </div>
                     </div>
 
-                    <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-6 hover:shadow-md transition-shadow">
+                    <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-6">
                       <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mb-4">
                         <i className="fas fa-credit-card text-white text-xl"></i>
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                        <a href="/tools/debt-payoff-calculator" className="hover:text-red-600 transition-colors">Debt Payoff Calculator</a>
-                      </h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Debt Management</h3>
                       <p className="text-gray-600 text-sm mb-3">
                         Create comprehensive debt payoff strategies including education loans, credit cards, and other debts.
                       </p>
@@ -852,22 +840,22 @@ const EducationLoanCalculator = () => {
                   </div>
                   
                   <div className="mt-8 bg-gray-50 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Complete Education Finance Planning Toolkit</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Complete Education Finance Planning Strategy</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
                         <h4 className="font-medium text-gray-900 mb-3">Pre-Education Planning</h4>
                         <ul className="text-sm text-gray-600 space-y-2">
-                          <li>• <a href="/tools/savings-goal-calculator" className="text-blue-600 hover:text-blue-700 font-medium">Savings Goal Calculator</a> - Plan education fund accumulation</li>
-                          <li>• <a href="/tools/investment-return-calculator" className="text-blue-600 hover:text-blue-700 font-medium">Investment Calculator</a> - Grow education savings through investments</li>
-                          <li>• <a href="/tools/compound-interest-calculator" className="text-blue-600 hover:text-blue-700 font-medium">Compound Interest Calculator</a> - Calculate long-term education savings growth</li>
+                          <li>• Savings Goal Planning - Plan education fund accumulation</li>
+                          <li>• Investment Growth - Grow education savings through investments</li>
+                          <li>• Compound Interest - Calculate long-term education savings growth</li>
                         </ul>
                       </div>
                       <div>
                         <h4 className="font-medium text-gray-900 mb-3">Post-Education Financial Planning</h4>
                         <ul className="text-sm text-gray-600 space-y-2">
-                          <li>• <a href="/tools/salary-to-hourly-calculator" className="text-blue-600 hover:text-blue-700 font-medium">Salary Calculator</a> - Plan career earnings vs loan obligations</li>
-                          <li>• <a href="/tools/retirement-calculator" className="text-blue-600 hover:text-blue-700 font-medium">Retirement Calculator</a> - Balance early career loan payments with retirement planning</li>
-                          <li>• <a href="/tools/net-worth-calculator" className="text-blue-600 hover:text-blue-700 font-medium">Net Worth Calculator</a> - Track overall financial progress including education ROI</li>
+                          <li>• Salary Planning - Plan career earnings vs loan obligations</li>
+                          <li>• Retirement Planning - Balance early career loan payments with retirement planning</li>
+                          <li>• Net Worth Tracking - Track overall financial progress including education ROI</li>
                         </ul>
                       </div>
                     </div>
