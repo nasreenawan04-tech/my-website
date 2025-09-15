@@ -182,7 +182,7 @@ export default function SalaryToHourlyCalculator() {
         <title>Salary to Hourly Calculator - Convert Salary and Hourly Wages | DapsiWow</title>
         <meta name="description" content="Free salary to hourly calculator. Convert annual salary to hourly wage or hourly rate to yearly salary. Supports 12+ countries, multiple currencies, and includes vacation time calculations. Get instant results with detailed pay period breakdowns." />
         <meta name="keywords" content="salary to hourly calculator, hourly to salary converter, annual salary calculator, hourly wage calculator, salary converter, wage calculator, pay calculator, income converter, salary breakdown, hourly rate calculator" />
-        <link rel="canonical" href="https://toolshub.com/salary-to-hourly-calculator" />
+        <link rel="canonical" href="https://dapsiwow.com/tools/salary-to-hourly-calculator" />
       </Helmet>
       
       <Header />

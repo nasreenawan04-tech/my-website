@@ -24,7 +24,7 @@ const toolsData = [
   { id: 'simple-interest', name: 'Simple Interest Calculator', description: 'Calculate simple interest on principal amount', category: 'finance' as const, icon: 'fas fa-percent', href: '/tools/simple-interest-Calculator' },
   { id: 'roi-calculator', name: 'ROI Calculator', description: 'Calculate return on investment percentage', category: 'finance' as const, icon: 'fas fa-trending-up', href: '/tools/roi-calculator' },
   { id: 'tax-calculator', name: 'Tax Calculator', description: 'Calculate income tax based on your salary', category: 'finance' as const, icon: 'fas fa-receipt', href: '/tools/tax-calculator' },
-  { id: 'salary-hourly', name: 'Salary to Hourly Calculator', description: 'Convert annual salary to hourly wage', category: 'finance' as const, icon: 'fas fa-clock', href: '/tools/salary-to-hourly' },
+  { id: 'salary-hourly', name: 'Salary to Hourly Calculator', description: 'Convert annual salary to hourly wage', category: 'finance' as const, icon: 'fas fa-clock', href: '/tools/salary-to-hourly-calculator' },
   { id: 'tip-calculator', name: 'Tip Calculator', description: 'Calculate tip amount and split bills', category: 'finance' as const, icon: 'fas fa-hand-holding-usd', href: '/tools/tip-calculator' },
   { id: 'inflation-calculator', name: 'Inflation Calculator', description: 'Calculate inflation impact over time', category: 'finance' as const, icon: 'fas fa-arrow-up', href: '/tools/inflation-calculator' },
   { id: 'savings-goal', name: 'Savings Goal Calculator', description: 'Plan and track your savings goals', category: 'finance' as const, icon: 'fas fa-piggy-bank', href: '/tools/savings-goal-calculator' },
