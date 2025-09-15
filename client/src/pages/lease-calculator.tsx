@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -53,7 +52,7 @@ const LeaseCalculator = () => {
       const monthlyDepreciation = depreciation / term;
       const monthlyInterest = (price + residualValue) * rate;
       const monthlyFees = acqFee / term;
-      
+
       const monthlyPayment = monthlyDepreciation + monthlyInterest + monthlyFees - (down / term);
       const totalAmount = (monthlyPayment * term) + down + dispFee;
       const totalInterest = monthlyInterest * term;
@@ -99,7 +98,7 @@ const LeaseCalculator = () => {
     };
 
     const config = currencyMap[currency] || currencyMap.USD;
-    
+
     return new Intl.NumberFormat(config.locale, {
       style: 'currency',
       currency: config.currency,
@@ -140,7 +139,7 @@ const LeaseCalculator = () => {
 
       <div className="min-h-screen flex flex-col" data-testid="page-lease-calculator">
         <Header />
-        
+
         <main className="flex-1 bg-neutral-50">
           {/* Hero Section */}
           <section className="gradient-hero text-white py-16">
@@ -166,7 +165,7 @@ const LeaseCalculator = () => {
                     {/* Input Section */}
                     <div className="space-y-6">
                       <h2 className="text-2xl font-semibold text-gray-900 mb-8">Lease Details</h2>
-                      
+
                       {/* Currency Selection */}
                       <div className="space-y-3">
                         <Label htmlFor="currency" className="text-sm font-medium text-gray-700">
@@ -226,7 +225,7 @@ const LeaseCalculator = () => {
                             <Label htmlFor="amount">Dollar Amount</Label>
                           </div>
                         </RadioGroup>
-                        
+
                         {usePercentage ? (
                           <div className="relative">
                             <Input
@@ -318,7 +317,7 @@ const LeaseCalculator = () => {
                       {/* Fees */}
                       <div className="border-t pt-6 space-y-4">
                         <h3 className="text-lg font-semibold mb-4">Additional Fees</h3>
-                        
+
                         <div className="space-y-3">
                           <Label htmlFor="acquisition-fee" className="text-sm font-medium text-gray-700">
                             Acquisition Fee
@@ -378,7 +377,7 @@ const LeaseCalculator = () => {
                     {/* Results Section */}
                     <div className="bg-gray-50 rounded-xl p-8">
                       <h2 className="text-2xl font-semibold text-gray-900 mb-8">Lease Calculation Results</h2>
-                      
+
                       {result ? (
                         <div className="space-y-4" data-testid="lease-results">
                           {/* Monthly Payment */}
@@ -487,7 +486,7 @@ const LeaseCalculator = () => {
                 {/* What is a Lease Calculator Section */}
                 <div className="bg-white rounded-2xl shadow-lg p-8">
                   <h2 className="text-3xl font-bold text-gray-900 mb-8">What is a Lease Calculator and How Does It Work?</h2>
-                  
+
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <div>
                       <h3 className="text-xl font-semibold text-gray-900 mb-4">Understanding Vehicle Lease Calculations</h3>
@@ -497,7 +496,7 @@ const LeaseCalculator = () => {
                         vehicle price, down payment, lease term, interest rate (money factor), residual value, and additional fees to provide 
                         accurate monthly payment estimates.
                       </p>
-                      
+
                       <h3 className="text-xl font-semibold text-gray-900 mb-4">How Our Lease Calculator Works</h3>
                       <p className="text-gray-600 mb-4">
                         The lease payment calculation involves several key components that work together:
@@ -511,7 +510,7 @@ const LeaseCalculator = () => {
                         <li><strong>Additional Fees:</strong> Acquisition fees, disposition fees, and other charges</li>
                       </ul>
                     </div>
-                    
+
                     <div>
                       <h3 className="text-xl font-semibold text-gray-900 mb-4">Benefits of Using a Lease Calculator</h3>
                       <ul className="text-gray-600 space-y-3">
@@ -556,7 +555,7 @@ const LeaseCalculator = () => {
                 {/* Audience-Specific Benefits Section */}
                 <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8">
                   <h2 className="text-2xl font-bold text-gray-900 mb-8">Who Benefits from Using Our Lease Calculator?</h2>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {/* Students */}
                     <div className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
@@ -687,7 +686,7 @@ const LeaseCalculator = () => {
                 <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8">
                   <h2 className="text-2xl font-bold text-gray-900 mb-6">Essential Lease Terms Every Car Shopper Should Know</h2>
                   <p className="text-gray-600 mb-8">Master these key lease terminology to make informed decisions and negotiate better deals:</p>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                       <i className="fas fa-dollar-sign text-2xl text-blue-600 mb-4"></i>
@@ -700,7 +699,7 @@ const LeaseCalculator = () => {
                         <strong>Negotiation Tip:</strong> Always negotiate the cap cost, not just monthly payments
                       </div>
                     </div>
-                    
+
                     <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                       <i className="fas fa-chart-line text-2xl text-green-600 mb-4"></i>
                       <h3 className="text-lg font-semibold text-gray-900 mb-3">Residual Value</h3>
@@ -712,7 +711,7 @@ const LeaseCalculator = () => {
                         <strong>Smart Shopping:</strong> Compare residual values across similar vehicles
                       </div>
                     </div>
-                    
+
                     <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                       <i className="fas fa-percentage text-2xl text-purple-600 mb-4"></i>
                       <h3 className="text-lg font-semibold text-gray-900 mb-3">Money Factor (MF)</h3>
@@ -721,10 +720,10 @@ const LeaseCalculator = () => {
                         to get the equivalent APR for comparison with loan rates.
                       </p>
                       <div className="text-xs text-purple-600 bg-purple-50 p-2 rounded">
-                        <strong>Rate Check:</strong> Compare with current <a href="/tools/car-loan-calculator" className="underline">auto loan rates</a>
+                        <strong>Rate Check:</strong> Compare with current auto loan rates for best financing decisions
                       </div>
                     </div>
-                    
+
                     <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                       <i className="fas fa-road text-2xl text-orange-600 mb-4"></i>
                       <h3 className="text-lg font-semibold text-gray-900 mb-3">Mileage Allowance</h3>
@@ -736,7 +735,7 @@ const LeaseCalculator = () => {
                         <strong>Calculate:</strong> Track current mileage for 3-6 months to estimate needs
                       </div>
                     </div>
-                    
+
                     <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                       <i className="fas fa-file-invoice text-2xl text-teal-600 mb-4"></i>
                       <h3 className="text-lg font-semibold text-gray-900 mb-3">Acquisition Fee</h3>
@@ -748,7 +747,7 @@ const LeaseCalculator = () => {
                         <strong>Budget Tip:</strong> Factor into your <a href="/tools/loan-calculator" className="underline">total financing costs</a>
                       </div>
                     </div>
-                    
+
                     <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                       <i className="fas fa-handshake text-2xl text-red-600 mb-4"></i>
                       <h3 className="text-lg font-semibold text-gray-900 mb-3">Disposition Fee</h3>
@@ -806,7 +805,7 @@ const LeaseCalculator = () => {
                     Master these proven strategies used by automotive experts and financial advisors to get the best lease deals 
                     and avoid common pitfalls that cost thousands of dollars.
                   </p>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div>
                       <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
@@ -836,7 +835,7 @@ const LeaseCalculator = () => {
                         </li>
                       </ul>
                     </div>
-                    
+
                     <div>
                       <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
                         <i className="fas fa-shield-alt text-green-500 mr-2"></i>
@@ -865,7 +864,7 @@ const LeaseCalculator = () => {
                         </li>
                       </ul>
                     </div>
-                    
+
                     <div>
                       <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
                         <i className="fas fa-exclamation-triangle text-orange-500 mr-2"></i>
@@ -910,7 +909,7 @@ const LeaseCalculator = () => {
                           <li>• Use our <a href="/tools/business-loan-calculator" className="text-blue-600 hover:text-blue-700 underline">business loan calculator</a> to compare financing options</li>
                         </ul>
                       </div>
-                      
+
                       <div className="bg-green-50 p-6 rounded-lg">
                         <h4 className="font-semibold text-gray-900 mb-3">Lease-End Options Strategy</h4>
                         <ul className="text-gray-600 space-y-2 text-sm">
@@ -932,7 +931,7 @@ const LeaseCalculator = () => {
                     Make informed leasing decisions by combining our lease calculator with these powerful financial planning tools 
                     for comprehensive analysis of your automotive financing options.
                   </p>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {/* Financing Comparison Tools */}
                     <div className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
@@ -1053,7 +1052,7 @@ const LeaseCalculator = () => {
                         and how long you typically keep vehicles.
                       </p>
                     </div>
-                    
+
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">What happens if I exceed the mileage limit?</h3>
                       <p className="text-gray-600">
@@ -1061,7 +1060,7 @@ const LeaseCalculator = () => {
                         estimate your annual driving accurately when choosing a mileage allowance.
                       </p>
                     </div>
-                    
+
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I end my lease early?</h3>
                       <p className="text-gray-600">
@@ -1069,7 +1068,7 @@ const LeaseCalculator = () => {
                         early termination fees, and the difference between the car's current value and remaining lease balance.
                       </p>
                     </div>
-                    
+
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">What is considered normal wear and tear?</h3>
                       <p className="text-gray-600">
@@ -1095,10 +1094,9 @@ const LeaseCalculator = () => {
                 </p>
               </div>
             </div>
-          </div>
           </section>
         </main>
-        
+
         <Footer />
       </div>
     </>
