@@ -706,8 +706,7 @@ export default function NetWorthCalculator() {
                     </ul>
                     <div className="mt-4 p-3 bg-white rounded-lg">
                       <p className="text-xs text-blue-700">
-                        <strong>Pro Tip:</strong> Even a small positive net worth in your 20s can compound significantly over time. 
-                        Use our <a href="/compound-interest-calculator" className="text-blue-600 hover:text-blue-800 underline">Compound Interest Calculator</a> to see your wealth potential.
+                        <strong>Pro Tip:</strong> Even a small positive net worth in your 20s can compound significantly over time through smart investing and consistent saving habits.
                       </p>
                     </div>
                   </div>
@@ -728,9 +727,7 @@ export default function NetWorthCalculator() {
                     </ul>
                     <div className="mt-4 p-3 bg-white rounded-lg">
                       <p className="text-xs text-green-700">
-                        <strong>Career Insight:</strong> Track how salary increases affect your net worth with our 
-                        <a href="/salary-to-hourly-calculator" className="text-green-600 hover:text-green-800 underline"> Salary Calculator</a> and 
-                        <a href="/retirement-calculator" className="text-green-600 hover:text-green-800 underline"> Retirement Planning Tool</a>.
+                        <strong>Career Insight:</strong> Track how salary increases affect your net worth by monitoring asset growth and debt reduction progress regularly.
                       </p>
                     </div>
                   </div>
@@ -751,8 +748,7 @@ export default function NetWorthCalculator() {
                     </ul>
                     <div className="mt-4 p-3 bg-white rounded-lg">
                       <p className="text-xs text-purple-700">
-                        <strong>Business Tip:</strong> Use our <a href="/business-loan-calculator" className="text-purple-600 hover:text-purple-800 underline">Business Loan Calculator</a> and 
-                        <a href="/roi-calculator" className="text-purple-600 hover:text-purple-800 underline"> ROI Calculator</a> to evaluate business investments.
+                        <strong>Business Tip:</strong> Carefully evaluate business investments and their impact on your personal net worth through strategic financial planning.
                       </p>
                     </div>
                   </div>
@@ -785,7 +781,7 @@ export default function NetWorthCalculator() {
                     </div>
                     <div className="mt-4 text-center">
                       <p className="text-sm text-gray-600">
-                        Calculate potential returns with our <a href="/investment-return-calculator" className="text-blue-600 hover:text-blue-800 underline">Investment Return Calculator</a>
+                        Calculate potential returns with compound interest calculations
                       </p>
                     </div>
                   </CardContent>
@@ -841,7 +837,7 @@ export default function NetWorthCalculator() {
                     </div>
                     <div className="mt-4 text-center">
                       <p className="text-sm text-gray-600">
-                        Plan your debt payoff with our <a href="/debt-payoff-calculator" className="text-blue-600 hover:text-blue-800 underline">Debt Payoff Calculator</a>
+                        Plan your debt payoff strategy systematically
                       </p>
                     </div>
                   </CardContent>
@@ -879,95 +875,7 @@ export default function NetWorthCalculator() {
             </div>
           </div>
 
-          {/* Related Financial Tools */}
-          <div className="mt-12 bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Complete Your Financial Picture</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <Card className="bg-gray-50 border-0 hover:shadow-md transition-shadow">
-                <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                    💰 <a href="/debt-payoff-calculator" className="text-blue-600 hover:text-blue-800">Debt Payoff Calculator</a>
-                  </h3>
-                  <p className="text-sm text-gray-600 mb-3">
-                    Create a strategic debt elimination plan to improve your net worth faster. Compare snowball vs avalanche methods.
-                  </p>
-                  <div className="text-xs text-blue-600">
-                    Optimize debt reduction → Increase net worth
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-gray-50 border-0 hover:shadow-md transition-shadow">
-                <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                    🏠 <a href="/mortgage-calculator" className="text-blue-600 hover:text-blue-800">Mortgage Calculator</a>
-                  </h3>
-                  <p className="text-sm text-gray-600 mb-3">
-                    Calculate monthly payments and total interest for home loans. Understand how homeownership affects your assets.
-                  </p>
-                  <div className="text-xs text-blue-600">
-                    Home equity = Major asset growth
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-gray-50 border-0 hover:shadow-md transition-shadow">
-                <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                    📈 <a href="/investment-return-calculator" className="text-blue-600 hover:text-blue-800">Investment Return Calculator</a>
-                  </h3>
-                  <p className="text-sm text-gray-600 mb-3">
-                    Project investment growth over time with compound interest. Plan asset allocation for optimal returns.
-                  </p>
-                  <div className="text-xs text-blue-600">
-                    Smart investing = Wealth multiplication
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-gray-50 border-0 hover:shadow-md transition-shadow">
-                <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                    🎯 <a href="/retirement-calculator" className="text-blue-600 hover:text-blue-800">Retirement Calculator</a>
-                  </h3>
-                  <p className="text-sm text-gray-600 mb-3">
-                    Determine if your net worth will support your retirement lifestyle. Plan for financial independence.
-                  </p>
-                  <div className="text-xs text-blue-600">
-                    Retirement readiness assessment
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-gray-50 border-0 hover:shadow-md transition-shadow">
-                <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                    💵 <a href="/compound-interest-calculator" className="text-blue-600 hover:text-blue-800">Compound Interest Calculator</a>
-                  </h3>
-                  <p className="text-sm text-gray-600 mb-3">
-                    See how your assets can grow exponentially over time. Understand the power of compound returns.
-                  </p>
-                  <div className="text-xs text-blue-600">
-                    Time + Compounding = Wealth
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-gray-50 border-0 hover:shadow-md transition-shadow">
-                <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                    🎖️ <a href="/savings-goal-calculator" className="text-blue-600 hover:text-blue-800">Savings Goal Calculator</a>
-                  </h3>
-                  <p className="text-sm text-gray-600 mb-3">
-                    Plan systematic savings to reach net worth targets. Set and achieve specific financial milestones.
-                  </p>
-                  <div className="text-xs text-blue-600">
-                    Goal-based wealth building
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
+          
 
           {/* FAQ Section */}
           <div className="mt-12 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-8">
@@ -1040,13 +948,6 @@ export default function NetWorthCalculator() {
                 className="bg-white text-blue-600 hover:bg-blue-50 font-semibold px-8 py-3 rounded-lg"
               >
                 Calculate Your Net Worth Now
-              </Button>
-              <Button 
-                onClick={() => window.location.href = '/finance-tools'}
-                variant="outline"
-                className="border-white text-white hover:bg-white hover:text-blue-600 font-semibold px-8 py-3 rounded-lg"
-              >
-                Explore All Financial Tools
               </Button>
             </div>
           </div>
