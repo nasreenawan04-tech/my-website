@@ -409,7 +409,7 @@ export default function SIPCalculator() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">How to Calculate SIP Returns?</h3>
                 <div className="space-y-4 text-gray-600">
                   <p>
-                    The SIP formula is: M = P × [{(1+R)^N-1}/R] × (1+R)
+                    The SIP formula is: M = P × [{`{(1+R)^N-1}/R`}] × (1+R)
                   </p>
                   <ul className="space-y-2 list-disc list-inside">
                     <li>M = Maturity amount</li>
