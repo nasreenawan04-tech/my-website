@@ -9,7 +9,6 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { TrendingUp } from 'lucide-react';
 
 interface InflationResult {
   originalAmount: number;
@@ -280,9 +279,6 @@ export default function InflationCalculator() {
         {/* Hero Section */}
         <section className="gradient-hero text-white py-16 pt-24">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-              <TrendingUp className="w-8 h-8 text-white" />
-            </div>
             <h1 className="text-4xl sm:text-5xl font-bold mb-6">
               Inflation Calculator
             </h1>
@@ -488,7 +484,6 @@ export default function InflationCalculator() {
                       onClick={calculateInflation}
                       className="flex-1 h-12 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg"
                     >
-                      <TrendingUp className="w-4 h-4 mr-2" />
                       Calculate
                     </Button>
                     <Button
@@ -590,7 +585,6 @@ export default function InflationCalculator() {
                     </div>
                   ) : (
                     <div className="text-center py-12">
-                      <TrendingUp className="w-16 h-16 text-gray-300 mx-auto mb-4" />
                       <p className="text-gray-500">Enter amount and time period to calculate inflation impact</p>
                     </div>
                   )}
@@ -624,21 +618,18 @@ export default function InflationCalculator() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
                   <div className="bg-white rounded-lg p-6 shadow-sm">
                     <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                      <TrendingUp className="w-6 h-6 text-blue-600" />
                     </div>
                     <h3 className="font-semibold text-gray-900 mb-2">Precise Calculations</h3>
                     <p className="text-gray-600 text-sm">Mathematical accuracy using compound inflation formulas with country-specific historical data for reliable projections.</p>
                   </div>
                   <div className="bg-white rounded-lg p-6 shadow-sm">
                     <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                      <TrendingUp className="w-6 h-6 text-green-600" />
                     </div>
                     <h3 className="font-semibold text-gray-900 mb-2">Global Economic Data</h3>
                     <p className="text-gray-600 text-sm">Comprehensive inflation rates from 20+ countries with historical trends and regional economic insights.</p>
                   </div>
                   <div className="bg-white rounded-lg p-6 shadow-sm">
                     <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                      <TrendingUp className="w-6 h-6 text-purple-600" />
                     </div>
                     <h3 className="font-semibold text-gray-900 mb-2">Multi-Purpose Analysis</h3>
                     <p className="text-gray-600 text-sm">Future value, past value, and purchasing power calculations for comprehensive financial planning.</p>
@@ -754,28 +745,24 @@ export default function InflationCalculator() {
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <div className="text-center">
                       <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <TrendingUp className="w-8 h-8 text-red-600" />
                       </div>
                       <h4 className="font-semibold text-gray-900 mb-2">Cost of Living</h4>
                       <p className="text-gray-600 text-sm">Analyze how inflation affects daily expenses, housing costs, and living standards over time</p>
                     </div>
                     <div className="text-center">
                       <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <TrendingUp className="w-8 h-8 text-blue-600" />
                       </div>
                       <h4 className="font-semibold text-gray-900 mb-2">Salary Negotiations</h4>
                       <p className="text-gray-600 text-sm">Calculate real wage changes and negotiate salary increases that maintain purchasing power</p>
                     </div>
                     <div className="text-center">
                       <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <TrendingUp className="w-8 h-8 text-green-600" />
                       </div>
                       <h4 className="font-semibold text-gray-900 mb-2">Real Estate</h4>
                       <p className="text-gray-600 text-sm">Evaluate property values, rental income, and mortgage payments adjusted for inflation</p>
                     </div>
                     <div className="text-center">
                       <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <TrendingUp className="w-8 h-8 text-purple-600" />
                       </div>
                       <h4 className="font-semibold text-gray-900 mb-2">Insurance Planning</h4>
                       <p className="text-gray-600 text-sm">Adjust coverage amounts and premiums to account for inflation and changing needs</p>
@@ -924,7 +911,6 @@ export default function InflationCalculator() {
                   <Card className="bg-white border border-gray-200 hover:shadow-lg transition-shadow">
                     <CardContent className="p-6">
                       <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                        <TrendingUp className="w-6 h-6 text-blue-600" />
                       </div>
                       <h3 className="text-xl font-semibold text-gray-900 mb-3">Retirement Planning</h3>
                       <p className="text-gray-600">Calculate how much you'll need for retirement considering inflation's impact on your future expenses and purchasing power.</p>
@@ -933,7 +919,6 @@ export default function InflationCalculator() {
                   <Card className="bg-white border border-gray-200 hover:shadow-lg transition-shadow">
                     <CardContent className="p-6">
                       <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                        <i className="fas fa-chart-line text-green-600 text-xl"></i>
                       </div>
                       <h3 className="text-xl font-semibold text-gray-900 mb-3">Investment Analysis</h3>
                       <p className="text-gray-600">Evaluate if your investment returns are beating inflation and maintaining real purchasing power over time.</p>
@@ -942,7 +927,6 @@ export default function InflationCalculator() {
                   <Card className="bg-white border border-gray-200 hover:shadow-lg transition-shadow">
                     <CardContent className="p-6">
                       <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                        <i className="fas fa-money-bill-wave text-purple-600 text-xl"></i>
                       </div>
                       <h3 className="text-xl font-semibold text-gray-900 mb-3">Salary Negotiations</h3>
                       <p className="text-gray-600">Understand how inflation affects your real income and negotiate salary increases that maintain your purchasing power.</p>
@@ -951,7 +935,6 @@ export default function InflationCalculator() {
                   <Card className="bg-white border border-gray-200 hover:shadow-lg transition-shadow">
                     <CardContent className="p-6">
                       <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
-                        <i className="fas fa-graduation-cap text-yellow-600 text-xl"></i>
                       </div>
                       <h3 className="text-xl font-semibold text-gray-900 mb-3">Education Planning</h3>
                       <p className="text-gray-600">Plan for future education costs by understanding how inflation will affect tuition and related expenses.</p>
