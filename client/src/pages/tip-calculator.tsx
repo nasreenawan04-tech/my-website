@@ -927,76 +927,7 @@ export default function TipCalculator() {
                 </div>
               </div>
             </section>
-            {/* Related Financial Tools */}
-            <section className="bg-gradient-to-r from-gray-50 to-slate-50 rounded-2xl p-8">
-              <div className="max-w-4xl mx-auto">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">
-                  Related Financial Calculators & Tools
-                </h2>
-                <p className="text-lg text-gray-600 text-center mb-10">
-                  Enhance your financial planning with our comprehensive suite of calculator tools designed for personal and business use.
-                </p>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  <a href="/tools/percentage-calculator" className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100 hover:border-blue-200 group">
-                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-200 transition-colors">
-                      <DollarSign className="w-6 h-6 text-blue-600" />
-                    </div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Percentage Calculator</h3>
-                    <p className="text-gray-600 text-sm">Calculate percentages, percentage increases, decreases, and find what percent one number is of another.</p>
-                  </a>
-                  
-                  <a href="/tools/discount-calculator" className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100 hover:border-green-200 group">
-                    <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-green-200 transition-colors">
-                      <DollarSign className="w-6 h-6 text-green-600" />
-                    </div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Discount Calculator</h3>
-                    <p className="text-gray-600 text-sm">Calculate sale prices, discount amounts, and savings on purchases with our easy-to-use discount calculator.</p>
-                  </a>
-                  
-                  <a href="/tools/tax-calculator" className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100 hover:border-purple-200 group">
-                    <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-purple-200 transition-colors">
-                      <DollarSign className="w-6 h-6 text-purple-600" />
-                    </div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Tax Calculator</h3>
-                    <p className="text-gray-600 text-sm">Estimate your income taxes, deductions, and refunds with our comprehensive tax calculation tool.</p>
-                  </a>
-                  
-                  <a href="/tools/salary-to-hourly" className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100 hover:border-orange-200 group">
-                    <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-orange-200 transition-colors">
-                      <DollarSign className="w-6 h-6 text-orange-600" />
-                    </div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Salary to Hourly Calculator</h3>
-                    <p className="text-gray-600 text-sm">Convert annual salary to hourly wage and vice versa with detailed breakdowns for different pay periods.</p>
-                  </a>
-                  
-                  <a href="/tools/loan-calculator" className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100 hover:border-red-200 group">
-                    <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-red-200 transition-colors">
-                      <DollarSign className="w-6 h-6 text-red-600" />
-                    </div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Loan Calculator</h3>
-                    <p className="text-gray-600 text-sm">Calculate monthly payments, total interest, and amortization schedules for personal and business loans.</p>
-                  </a>
-                  
-                  <a href="/tools/compound-interest" className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100 hover:border-indigo-200 group">
-                    <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-indigo-200 transition-colors">
-                      <DollarSign className="w-6 h-6 text-indigo-600" />
-                    </div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Compound Interest Calculator</h3>
-                    <p className="text-gray-600 text-sm">Calculate investment growth with compound interest including principal, interest rates, and time periods.</p>
-                  </a>
-                </div>
-                
-                <div className="text-center mt-8">
-                  <a href="/finance" className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium">
-                    View All Financial Tools
-                    <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </section>
+            
 
             {/* SEO Content Section */}
             <section className="max-w-4xl mx-auto">
