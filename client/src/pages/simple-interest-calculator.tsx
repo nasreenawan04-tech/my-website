@@ -767,55 +767,7 @@ export default function SimpleInterestCalculator() {
               </div>
             </section>
 
-            {/* Related Financial Tools */}
-            <section className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 lg:p-12">
-              <h2 className="text-4xl font-bold text-gray-900 mb-6 text-center">Related Financial Calculators</h2>
-              <p className="text-xl text-gray-600 text-center mb-12">
-                Explore our comprehensive suite of financial calculators to make informed decisions about loans, investments, and savings.
-              </p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <a href="/compound-interest-calculator" className="bg-white rounded-2xl p-6 hover:shadow-xl transition-all duration-200 hover:scale-105">
-                  <h3 className="font-bold text-gray-900 mb-3 text-lg">Compound Interest Calculator</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">Calculate exponential growth with compound interest for long-term investments and retirement planning.</p>
-                </a>
-
-                <a href="/loan-calculator" className="bg-white rounded-2xl p-6 hover:shadow-xl transition-all duration-200 hover:scale-105">
-                  <h3 className="font-bold text-gray-900 mb-3 text-lg">Loan Calculator</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">Calculate monthly payments and total interest for personal loans, auto loans, and business financing.</p>
-                </a>
-
-                <a href="/emi-calculator" className="bg-white rounded-2xl p-6 hover:shadow-xl transition-all duration-200 hover:scale-105">
-                  <h3 className="font-bold text-gray-900 mb-3 text-lg">EMI Calculator</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">Calculate Equated Monthly Installments for loans, mortgages, and hire purchase agreements.</p>
-                </a>
-
-                <a href="/mortgage-calculator" className="bg-white rounded-2xl p-6 hover:shadow-xl transition-all duration-200 hover:scale-105">
-                  <h3 className="font-bold text-gray-900 mb-3 text-lg">Mortgage Calculator</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">Plan your home purchase with detailed mortgage calculations and amortization schedules.</p>
-                </a>
-
-                <a href="/investment-return-calculator" className="bg-white rounded-2xl p-6 hover:shadow-xl transition-all duration-200 hover:scale-105">
-                  <h3 className="font-bold text-gray-900 mb-3 text-lg">Investment Return Calculator</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">Analyze potential returns on stocks, bonds, mutual funds, and other investment vehicles.</p>
-                </a>
-
-                <a href="/sip-calculator" className="bg-white rounded-2xl p-6 hover:shadow-xl transition-all duration-200 hover:scale-105">
-                  <h3 className="font-bold text-gray-900 mb-3 text-lg">SIP Calculator</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">Calculate returns from Systematic Investment Plans in mutual funds and ETFs.</p>
-                </a>
-
-                <a href="/savings-goal-calculator" className="bg-white rounded-2xl p-6 hover:shadow-xl transition-all duration-200 hover:scale-105">
-                  <h3 className="font-bold text-gray-900 mb-3 text-lg">Savings Goal Calculator</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">Plan monthly savings required to reach your financial goals and milestones.</p>
-                </a>
-
-                <a href="/retirement-calculator" className="bg-white rounded-2xl p-6 hover:shadow-xl transition-all duration-200 hover:scale-105">
-                  <h3 className="font-bold text-gray-900 mb-3 text-lg">Retirement Calculator</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">Plan for a secure retirement with our comprehensive retirement savings calculator.</p>
-                </a>
-              </div>
-            </section>
+            
 
             {/* Benefits and Tips */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -918,18 +870,10 @@ export default function SimpleInterestCalculator() {
                       <td className="border border-gray-200 p-4">Complex</td>
                     </tr>
                     <tr>
-                      <td className="border border-gray-200 p-4 font-medium">Related Calculator</td>
-                      <td className="border border-gray-200 p-4">This calculator</td>
-                      <td className="border border-gray-200 p-4">
-                        <a href="/compound-interest-calculator" className="text-blue-600 hover:text-blue-700 underline">
-                          Compound Interest Calculator
-                        </a>
-                      </td>
-                      <td className="border border-gray-200 p-4">
-                        <a href="/loan-calculator" className="text-blue-600 hover:text-blue-700 underline">
-                          Loan Calculator
-                        </a>
-                      </td>
+                      <td className="border border-gray-200 p-4 font-medium">Method Type</td>
+                      <td className="border border-gray-200 p-4">Basic calculation</td>
+                      <td className="border border-gray-200 p-4">Advanced calculation</td>
+                      <td className="border border-gray-200 p-4">Comprehensive rate calculation</td>
                     </tr>
                   </tbody>
                 </table>
