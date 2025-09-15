@@ -1,16 +1,13 @@
-
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import ToolHeroSection from '@/components/ToolHeroSection';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { DollarSign } from 'lucide-react';
 
 interface TipResult {
   billAmount: number;
@@ -113,8 +110,7 @@ export default function TipCalculator() {
     const countryData = countries.find(c => c.code === newCountry);
     if (countryData) {
       setCurrency(countryData.currency);
-      // Set default tip percentage based on country
-      const defaultTip = countryData.customTips[2] || '15'; // Use middle option
+      const defaultTip = countryData.customTips[2] || '15';
       setTipPercentage(defaultTip);
     }
   };
@@ -148,7 +144,7 @@ export default function TipCalculator() {
   const currentCountryData = countries.find(c => c.code === country) || countries[0];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <>
       <Helmet>
         <title>Free Tip Calculator - Calculate Tips & Split Bills Worldwide | Global Tipping Standards</title>
         <meta name="description" content="Advanced tip calculator with global tipping standards for 15+ countries. Calculate restaurant tips, split bills among groups, and learn cultural tipping etiquette. Free online tool with currency conversion and service quality assessment." />
@@ -162,7 +158,7 @@ export default function TipCalculator() {
         <meta name="twitter:description" content="Calculate tips accurately with cultural intelligence. Supports 15+ countries, multiple currencies, and advanced bill splitting for any dining scenario." />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://toolshub.com/tools/tip-calculator" />
+        <link rel="canonical" href="https://dapsiwow.com/tip-calculator" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -188,811 +184,459 @@ export default function TipCalculator() {
           })}
         </script>
       </Helmet>
-      
-      <Header />
-      
-      <main>
-        {/* Hero Section */}
-        <ToolHeroSection
-          title="Tip Calculator"
-          description="Calculate tips and split bills with worldwide tipping standards and customs"
-          testId="text-tip-title"
-        />
 
-        <div className="max-w-6xl mx-auto px-4 py-12">
-          <Card className="bg-white shadow-sm border-0">
-            <CardContent className="p-8">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                {/* Input Section */}
-                <div className="space-y-6">
-                  <h2 className="text-2xl font-semibold text-gray-900 mb-8">Tip Calculator</h2>
-                  
-                  {/* Country Selection */}
-                  <div className="space-y-3">
-                    <Label htmlFor="country" className="text-sm font-medium text-gray-700">
-                      Country (Sets local tipping customs)
-                    </Label>
-                    <Select value={country} onValueChange={handleCountryChange}>
-                      <SelectTrigger className="h-12 border-gray-200 rounded-lg">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {countries.map((country) => (
-                          <SelectItem key={country.code} value={country.code}>
-                            {country.name} ({country.tipRange})
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <div className="text-xs text-gray-500">
-                      Standard tip range: {currentCountryData.tipRange}
-                    </div>
-                  </div>
-
-                  {/* Bill Amount */}
-                  <div className="space-y-3">
-                    <Label htmlFor="bill-amount" className="text-sm font-medium text-gray-700">
-                      Bill Amount ({currency})
-                    </Label>
-                    <Input
-                      id="bill-amount"
-                      type="number"
-                      value={billAmount}
-                      onChange={(e) => setBillAmount(e.target.value)}
-                      className="h-12 text-base border-gray-200 rounded-lg"
-                      placeholder="50.00"
-                      min="0"
-                      step="0.01"
-                    />
-                  </div>
-
-                  {/* Tip Calculation Method */}
-                  <Tabs value={calculationType} onValueChange={setCalculationType} className="w-full">
-                    <TabsList className="grid w-full grid-cols-3">
-                      <TabsTrigger value="percentage">Percentage</TabsTrigger>
-                      <TabsTrigger value="quality">Service</TabsTrigger>
-                      <TabsTrigger value="custom">Custom</TabsTrigger>
-                    </TabsList>
-
-                    <TabsContent value="percentage" className="space-y-6 mt-6">
-                      <div className="space-y-3">
-                        <Label className="text-sm font-medium text-gray-700">
-                          Tip Percentage
-                        </Label>
-                        <div className="grid grid-cols-5 gap-2 mb-4">
-                          {currentCountryData.customTips.map((tip) => (
-                            <Button
-                              key={tip}
-                              type="button"
-                              variant={tipPercentage === tip ? "default" : "outline"}
-                              className="h-10 text-sm"
-                              onClick={() => setTipPercentage(tip)}
-                            >
-                              {tip}%
-                            </Button>
-                          ))}
-                        </div>
-                        <Input
-                          type="number"
-                          value={tipPercentage}
-                          onChange={(e) => setTipPercentage(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
-                          placeholder="18"
-                          min="0"
-                          max="100"
-                          step="0.1"
-                        />
-                      </div>
-                    </TabsContent>
-
-                    <TabsContent value="quality" className="space-y-6 mt-6">
-                      <div className="space-y-3">
-                        <Label className="text-sm font-medium text-gray-700">
-                          Service Quality
-                        </Label>
-                        <Select value={serviceQuality} onValueChange={setServiceQuality}>
-                          <SelectTrigger className="h-12 border-gray-200 rounded-lg">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {Object.entries(serviceQualities).map(([key, value]) => (
-                              <SelectItem key={key} value={key}>
-                                {value.label}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </TabsContent>
-
-                    <TabsContent value="custom" className="space-y-6 mt-6">
-                      <div className="space-y-3">
-                        <Label htmlFor="custom-tip" className="text-sm font-medium text-gray-700">
-                          Custom Tip Percentage
-                        </Label>
-                        <Input
-                          id="custom-tip"
-                          type="number"
-                          value={customTip}
-                          onChange={(e) => setCustomTip(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
-                          placeholder="15.5"
-                          min="0"
-                          max="100"
-                          step="0.1"
-                        />
-                      </div>
-                    </TabsContent>
-                  </Tabs>
-
-                  {/* Number of People */}
-                  <div className="space-y-3">
-                    <Label htmlFor="people" className="text-sm font-medium text-gray-700">
-                      Number of People (Bill Splitting)
-                    </Label>
-                    <Input
-                      id="people"
-                      type="number"
-                      value={numberOfPeople}
-                      onChange={(e) => setNumberOfPeople(e.target.value)}
-                      className="h-12 text-base border-gray-200 rounded-lg"
-                      placeholder="1"
-                      min="1"
-                      max="50"
-                    />
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex gap-4 pt-6">
-                    <Button
-                      onClick={calculateTip}
-                      className="flex-1 h-12 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg"
-                    >
-                      <DollarSign className="w-4 h-4 mr-2" />
-                      Calculate Tip
-                    </Button>
-                    <Button
-                      onClick={resetCalculator}
-                      variant="outline"
-                      className="h-12 px-8 border-gray-200 text-gray-600 hover:bg-gray-50 font-medium rounded-lg"
-                    >
-                      Reset
-                    </Button>
-                  </div>
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50" data-testid="page-tip-calculator">
+        <Header />
+        
+        <main>
+          {/* Hero Section */}
+          <section className="relative py-20 sm:py-28 lg:py-32 overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-purple-600/20"></div>
+            <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <div className="space-y-8">
+                <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-purple-200">
+                  <span className="text-sm font-medium text-purple-700">Smart Tip Calculator</span>
                 </div>
+                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight">
+                  Global Tip
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+                    Calculator
+                  </span>
+                </h1>
+                <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                  Calculate tips and split bills with worldwide tipping standards, cultural customs, and service quality assessment
+                </p>
+              </div>
+            </div>
+          </section>
 
-                {/* Results Section */}
-                <div className="bg-gray-50 rounded-xl p-8">
-                  <h2 className="text-2xl font-semibold text-gray-900 mb-8">Tip Breakdown</h2>
-                  
-                  {result ? (
-                    <div className="space-y-6">
-                      {/* Main Results */}
-                      <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-white rounded-lg p-4 border border-gray-100">
-                          <div className="text-center space-y-2">
-                            <div className="text-sm text-gray-600">Tip Amount</div>
-                            <div className="text-2xl font-bold text-green-600">
-                              {formatCurrency(result.tipAmount)}
-                            </div>
+          {/* Calculator Section */}
+          <section className="py-16">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="grid grid-cols-1 xl:grid-cols-5 gap-0">
+                    {/* Input Section */}
+                    <div className="xl:col-span-3 p-8 lg:p-12 space-y-8">
+                      <div>
+                        <h2 className="text-3xl font-bold text-gray-900 mb-2">Tip Configuration</h2>
+                        <p className="text-gray-600">Enter your bill details and preferences for accurate tip calculations</p>
+                      </div>
+
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        {/* Country Selection */}
+                        <div className="space-y-3">
+                          <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Country</Label>
+                          <Select value={country} onValueChange={handleCountryChange}>
+                            <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg focus:border-purple-500 focus:ring-purple-500" data-testid="select-country">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {countries.map((country) => (
+                                <SelectItem key={country.code} value={country.code}>
+                                  {country.name} ({country.tipRange})
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                          <p className="text-xs text-gray-500">
+                            Standard tip range: {currentCountryData.tipRange}
+                          </p>
+                        </div>
+
+                        {/* Bill Amount */}
+                        <div className="space-y-3">
+                          <Label htmlFor="bill-amount" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                            Bill Amount
+                          </Label>
+                          <div className="relative">
+                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">
+                              {currency === 'USD' ? '$' : 
+                               currency === 'CAD' ? 'C$' :
+                               currency === 'EUR' ? '€' : 
+                               currency === 'GBP' ? '£' : 
+                               currency === 'AUD' ? 'A$' :
+                               currency === 'JPY' ? '¥' : 
+                               currency === 'KRW' ? '₩' :
+                               currency === 'INR' ? '₹' :
+                               currency === 'BRL' ? 'R$' :
+                               currency === 'MXN' ? 'MX$' :
+                               currency === 'SGD' ? 'S$' :
+                               currency === 'NZD' ? 'NZ$' : '$'}
+                            </span>
+                            <Input
+                              id="bill-amount"
+                              type="number"
+                              value={billAmount}
+                              onChange={(e) => setBillAmount(e.target.value)}
+                              className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:ring-purple-500"
+                              placeholder="50.00"
+                              min="0"
+                              step="0.01"
+                              data-testid="input-bill-amount"
+                            />
                           </div>
                         </div>
-                        <div className="bg-white rounded-lg p-4 border border-gray-100">
-                          <div className="text-center space-y-2">
-                            <div className="text-sm text-gray-600">Total Amount</div>
-                            <div className="text-2xl font-bold text-blue-600">
-                              {formatCurrency(result.totalAmount)}
-                            </div>
-                          </div>
+
+                        {/* Number of People */}
+                        <div className="space-y-3">
+                          <Label htmlFor="people" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                            Number of People
+                          </Label>
+                          <Input
+                            id="people"
+                            type="number"
+                            value={numberOfPeople}
+                            onChange={(e) => setNumberOfPeople(e.target.value)}
+                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:ring-purple-500"
+                            placeholder="1"
+                            min="1"
+                            max="50"
+                            data-testid="input-people"
+                          />
+                        </div>
+
+                        {/* Calculation Method */}
+                        <div className="space-y-3">
+                          <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Calculation Method</Label>
+                          <Select value={calculationType} onValueChange={setCalculationType}>
+                            <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg focus:border-purple-500 focus:ring-purple-500" data-testid="select-calculation-type">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="percentage">Percentage</SelectItem>
+                              <SelectItem value="quality">Service Quality</SelectItem>
+                              <SelectItem value="custom">Custom Amount</SelectItem>
+                            </SelectContent>
+                          </Select>
                         </div>
                       </div>
 
-                      {/* Bill Breakdown */}
-                      <div className="space-y-4">
-                        <h3 className="text-lg font-semibold text-gray-900">Bill Summary</h3>
+                      {/* Dynamic Input Based on Calculation Type */}
+                      <div className="border-t border-gray-200 pt-8 space-y-6">
+                        <h3 className="text-xl font-bold text-gray-900">Tip Details</h3>
                         
-                        <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                          <span className="text-gray-600">Original Bill</span>
-                          <span className="font-semibold text-gray-900">
-                            {formatCurrency(result.billAmount)}
-                          </span>
-                        </div>
-                        <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                          <span className="text-gray-600">Tip ({result.tipPercentage}%)</span>
-                          <span className="font-semibold text-green-600">
-                            +{formatCurrency(result.tipAmount)}
-                          </span>
-                        </div>
-                        <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                          <span className="text-gray-600 font-medium">Total with Tip</span>
-                          <span className="font-bold text-blue-600 text-lg">
-                            {formatCurrency(result.totalAmount)}
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Per Person Breakdown */}
-                      {result.numberOfPeople > 1 && (
-                        <div className="mt-8">
-                          <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                            Per Person ({result.numberOfPeople} people)
-                          </h3>
-                          <div className="grid grid-cols-1 gap-3">
-                            <div className="bg-white rounded-lg p-3 border border-gray-100 flex justify-between text-sm">
-                              <span className="text-gray-600">Bill per person</span>
-                              <span className="font-medium text-gray-900">
-                                {formatCurrency(result.perPersonBill)}
-                              </span>
+                        {calculationType === 'percentage' && (
+                          <div className="space-y-4">
+                            <Label className="text-sm font-medium text-gray-700">Quick Tip Percentages</Label>
+                            <div className="grid grid-cols-5 gap-2">
+                              {currentCountryData.customTips.map((tip) => (
+                                <Button
+                                  key={tip}
+                                  type="button"
+                                  variant={tipPercentage === tip ? "default" : "outline"}
+                                  className="h-12 text-sm font-medium"
+                                  onClick={() => setTipPercentage(tip)}
+                                  data-testid={`button-tip-${tip}`}
+                                >
+                                  {tip}%
+                                </Button>
+                              ))}
                             </div>
-                            <div className="bg-white rounded-lg p-3 border border-gray-100 flex justify-between text-sm">
-                              <span className="text-gray-600">Tip per person</span>
-                              <span className="font-medium text-green-600">
-                                {formatCurrency(result.perPersonTip)}
-                              </span>
-                            </div>
-                            <div className="bg-white rounded-lg p-3 border border-gray-100 flex justify-between text-sm">
-                              <span className="text-gray-600 font-medium">Total per person</span>
-                              <span className="font-bold text-blue-600">
-                                {formatCurrency(result.perPersonTotal)}
-                              </span>
+                            <div className="space-y-2">
+                              <Label htmlFor="tip-percentage" className="text-sm font-medium text-gray-700">Custom Percentage</Label>
+                              <div className="relative">
+                                <Input
+                                  id="tip-percentage"
+                                  type="number"
+                                  value={tipPercentage}
+                                  onChange={(e) => setTipPercentage(e.target.value)}
+                                  className="h-12 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:ring-purple-500"
+                                  placeholder="18"
+                                  min="0"
+                                  max="100"
+                                  step="0.1"
+                                  data-testid="input-tip-percentage"
+                                />
+                                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      )}
-                    </div>
-                  ) : (
-                    <div className="text-center py-12">
-                      <DollarSign className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-                      <p className="text-gray-500">Enter bill amount and tip details to calculate</p>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+                        )}
 
-          {/* Educational Content */}
-          <div className="mt-16 space-y-16">
-            {/* What is a Tip Calculator */}
-            <section className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8">
-              <div className="max-w-4xl mx-auto">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">
-                  What is a Tip Calculator and How Does It Work?
-                </h2>
-                <div className="prose prose-lg text-gray-700 mx-auto mb-8">
-                  <p className="text-xl leading-relaxed mb-6">
-                    A tip calculator is an essential financial tool that automatically computes gratuity amounts based on your bill total, chosen tip percentage, and number of people sharing the bill. Our advanced tip calculator takes the guesswork out of tipping by providing accurate calculations that consider local customs, service quality, and cultural expectations across 15+ countries worldwide.
-                  </p>
-                  
-                  <p className="text-lg leading-relaxed mb-6">
-                    The calculator works by applying mathematical formulas to determine the exact tip amount, total bill with gratuity, and individual costs when splitting among multiple people. Simply enter your bill amount, select your country or preferred tip percentage, specify the number of people, and instantly receive a complete breakdown of all costs including per-person amounts.
-                  </p>
-                  
-                  <p className="text-lg leading-relaxed">
-                    Beyond basic calculations, our tool incorporates real-world tipping standards from different cultures, making it invaluable for travelers, business professionals, and anyone dining out. The built-in service quality assessment feature helps you determine appropriate tip amounts based on your actual dining or service experience.
-                  </p>
-                </div>
+                        {calculationType === 'quality' && (
+                          <div className="space-y-2">
+                            <Label className="text-sm font-medium text-gray-700">Service Quality</Label>
+                            <Select value={serviceQuality} onValueChange={setServiceQuality}>
+                              <SelectTrigger className="h-12 border-2 border-gray-200 rounded-xl text-lg focus:border-purple-500 focus:ring-purple-500" data-testid="select-service-quality">
+                                <SelectValue />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {Object.entries(serviceQualities).map(([key, value]) => (
+                                  <SelectItem key={key} value={key}>
+                                    {value.label}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </div>
+                        )}
+
+                        {calculationType === 'custom' && (
+                          <div className="space-y-2">
+                            <Label htmlFor="custom-tip" className="text-sm font-medium text-gray-700">Custom Tip Percentage</Label>
+                            <div className="relative">
+                              <Input
+                                id="custom-tip"
+                                type="number"
+                                value={customTip}
+                                onChange={(e) => setCustomTip(e.target.value)}
+                                className="h-12 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:ring-purple-500"
+                                placeholder="15.5"
+                                min="0"
+                                max="100"
+                                step="0.1"
+                                data-testid="input-custom-tip"
+                              />
+                              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Action Buttons */}
+                      <div className="flex gap-4 pt-6">
+                        <Button
+                          onClick={calculateTip}
+                          className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold text-lg rounded-xl shadow-lg"
+                          data-testid="button-calculate"
+                        >
+                          Calculate Tip
+                        </Button>
+                        <Button
+                          onClick={resetCalculator}
+                          variant="outline"
+                          className="h-14 px-8 border-2 border-gray-200 text-gray-600 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                          data-testid="button-reset"
+                        >
+                          Reset
+                        </Button>
+                      </div>
+                    </div>
+
+                    {/* Results Section */}
+                    <div className="xl:col-span-2 bg-gradient-to-br from-blue-50 to-purple-50 p-8 lg:p-12">
+                      <div className="sticky top-8">
+                        <h2 className="text-3xl font-bold text-gray-900 mb-8">Tip Breakdown</h2>
+                        
+                        {result ? (
+                          <div className="space-y-6">
+                            {/* Main Results */}
+                            <div className="grid grid-cols-1 gap-4">
+                              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                                <div className="text-center space-y-2">
+                                  <div className="text-sm text-gray-600 uppercase tracking-wide font-medium">Tip Amount</div>
+                                  <div className="text-3xl font-bold text-green-600">
+                                    {formatCurrency(result.tipAmount)}
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+                                <div className="text-center space-y-2">
+                                  <div className="text-sm text-gray-600 uppercase tracking-wide font-medium">Total Amount</div>
+                                  <div className="text-3xl font-bold text-blue-600">
+                                    {formatCurrency(result.totalAmount)}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Bill Summary */}
+                            <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 space-y-4">
+                              <h3 className="text-lg font-bold text-gray-900">Summary</h3>
+                              
+                              <div className="space-y-3">
+                                <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                                  <span className="text-gray-600">Original Bill</span>
+                                  <span className="font-semibold text-gray-900">
+                                    {formatCurrency(result.billAmount)}
+                                  </span>
+                                </div>
+                                <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                                  <span className="text-gray-600">Tip ({result.tipPercentage}%)</span>
+                                  <span className="font-semibold text-green-600">
+                                    +{formatCurrency(result.tipAmount)}
+                                  </span>
+                                </div>
+                                <div className="flex justify-between items-center py-2">
+                                  <span className="text-gray-900 font-bold">Total</span>
+                                  <span className="font-bold text-blue-600 text-lg">
+                                    {formatCurrency(result.totalAmount)}
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Per Person Breakdown */}
+                            {result.numberOfPeople > 1 && (
+                              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 space-y-4">
+                                <h3 className="text-lg font-bold text-gray-900">
+                                  Per Person ({result.numberOfPeople} people)
+                                </h3>
+                                <div className="space-y-3">
+                                  <div className="flex justify-between items-center text-sm">
+                                    <span className="text-gray-600">Bill per person</span>
+                                    <span className="font-medium text-gray-900">
+                                      {formatCurrency(result.perPersonBill)}
+                                    </span>
+                                  </div>
+                                  <div className="flex justify-between items-center text-sm">
+                                    <span className="text-gray-600">Tip per person</span>
+                                    <span className="font-medium text-green-600">
+                                      {formatCurrency(result.perPersonTip)}
+                                    </span>
+                                  </div>
+                                  <div className="flex justify-between items-center py-2 border-t border-gray-100">
+                                    <span className="text-gray-900 font-bold">Total per person</span>
+                                    <span className="font-bold text-blue-600">
+                                      {formatCurrency(result.perPersonTotal)}
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        ) : (
+                          <div className="text-center py-12">
+                            <div className="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
+                              <span className="text-3xl text-gray-400">$</span>
+                            </div>
+                            <p className="text-gray-500 text-lg">Enter bill details to calculate your tip</p>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </section>
+
+          {/* SEO Content Section */}
+          <section className="py-20 bg-white">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="space-y-16">
                 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-                  <div className="bg-white rounded-lg p-6 shadow-sm">
-                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                      <DollarSign className="w-6 h-6 text-blue-600" />
-                    </div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Instant Calculations</h3>
-                    <p className="text-gray-600 text-sm">Get immediate, precise tip amounts and bill totals with support for 15+ currencies and real-time conversion rates.</p>
-                  </div>
-                  <div className="bg-white rounded-lg p-6 shadow-sm">
-                    <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                      <DollarSign className="w-6 h-6 text-green-600" />
-                    </div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Global Tipping Standards</h3>
-                    <p className="text-gray-600 text-sm">Country-specific guidelines ensure culturally appropriate tipping from Japan's no-tip culture to America's 20% standard.</p>
-                  </div>
-                  <div className="bg-white rounded-lg p-6 shadow-sm">
-                    <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                      <DollarSign className="w-6 h-6 text-purple-600" />
-                    </div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Smart Bill Splitting</h3>
-                    <p className="text-gray-600 text-sm">Automatically divide bills and tips among up to 50 people with detailed per-person breakdowns for group dining.</p>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* Benefits and Use Cases */}
-            <section>
-              <div className="max-w-6xl mx-auto">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-                  Benefits and Use Cases for Every Audience
-                </h2>
-                
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
-                  {/* Students */}
-                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-8">
-                    <h3 className="text-2xl font-semibold text-gray-900 mb-4">For Students</h3>
-                    <ul className="space-y-3 text-gray-700">
-                      <li className="flex items-start">
-                        <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                        <span><strong>Budget Management:</strong> Calculate exact tip amounts to stay within tight budgets while dining with friends</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                        <span><strong>Group Study Sessions:</strong> Split pizza delivery bills and tips fairly among study group members</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                        <span><strong>Learning Financial Responsibility:</strong> Understand tipping etiquette and appropriate gratuity percentages</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                        <span><strong>International Students:</strong> Learn local tipping customs when studying abroad in different countries</span>
-                      </li>
-                    </ul>
-                  </div>
-
-                  {/* Professionals */}
-                  <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-8">
-                    <h3 className="text-2xl font-semibold text-gray-900 mb-4">For Business Professionals</h3>
-                    <ul className="space-y-3 text-gray-700">
-                      <li className="flex items-start">
-                        <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                        <span><strong>Client Dinners:</strong> Ensure professional tipping standards during business meals and entertainment</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                        <span><strong>Expense Reporting:</strong> Calculate accurate tip amounts for business expense reimbursements</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                        <span><strong>International Business Travel:</strong> Navigate tipping customs in different countries and cultures professionally</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                        <span><strong>Team Lunches:</strong> Split group dining bills accurately among colleagues and team members</span>
-                      </li>
-                    </ul>
-                  </div>
-
-                  {/* Business Owners */}
-                  <div className="bg-gradient-to-br from-purple-50 to-violet-50 rounded-xl p-8">
-                    <h3 className="text-2xl font-semibold text-gray-900 mb-4">For Business Owners</h3>
-                    <ul className="space-y-3 text-gray-700">
-                      <li className="flex items-start">
-                        <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                        <span><strong>Staff Training:</strong> Educate hospitality employees about appropriate tipping expectations and standards</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                        <span><strong>Event Planning:</strong> Budget accurately for catered events and service gratuities</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                        <span><strong>Client Relations:</strong> Maintain professional standards when entertaining clients at restaurants</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="w-2 h-2 bg-purple-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                        <span><strong>Financial Planning:</strong> Include accurate gratuity costs in business dining and event budgets</span>
-                      </li>
-                    </ul>
-                  </div>
-
-                  {/* Travelers */}
-                  <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl p-8">
-                    <h3 className="text-2xl font-semibold text-gray-900 mb-4">For Travelers & Tourists</h3>
-                    <ul className="space-y-3 text-gray-700">
-                      <li className="flex items-start">
-                        <span className="w-2 h-2 bg-orange-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                        <span><strong>Cultural Awareness:</strong> Respect local tipping customs and avoid cultural faux pas while traveling</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="w-2 h-2 bg-orange-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                        <span><strong>Currency Conversion:</strong> Calculate tips in local currencies without confusion or overpaying</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="w-2 h-2 bg-orange-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                        <span><strong>Travel Budget Management:</strong> Plan restaurant expenses including appropriate gratuities for different countries</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="w-2 h-2 bg-orange-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                        <span><strong>Group Tours:</strong> Split meal costs and tips fairly among travel companions and tour groups</span>
-                      </li>
-                    </ul>
+                {/* Main Content */}
+                <div className="prose prose-lg max-w-none">
+                  <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">
+                    Complete Guide to Tipping: Cultural Standards and Best Practices
+                  </h2>
+                  
+                  <div className="text-xl text-gray-700 leading-relaxed space-y-6">
+                    <p>
+                      Understanding proper tipping etiquette is essential in today's global dining and service culture. Our comprehensive tip calculator goes beyond simple percentage calculations to provide culturally-aware guidance that respects local customs while ensuring fair compensation for service providers. Whether you're a frequent traveler, business professional, or simply someone who dines out regularly, knowing how to tip appropriately demonstrates cultural awareness and social responsibility.
+                    </p>
+                    
+                    <p>
+                      Tipping practices vary dramatically across different countries and cultures, making it challenging to navigate without proper guidance. In the United States and Canada, tipping 18-22% at restaurants is considered standard for good service, while in many European countries like Germany and France, tipping 5-10% is more common due to higher base wages for service workers. Some countries like Japan traditionally discourage tipping altogether, viewing exceptional service as an inherent part of professional duty rather than something requiring additional compensation.
+                    </p>
+                    
+                    <p>
+                      Our advanced tip calculator incorporates these cultural nuances, automatically adjusting suggested tip ranges based on your selected country. This feature is particularly valuable for international travelers who want to avoid the embarrassment of over-tipping or under-tipping due to unfamiliarity with local customs. The calculator also accounts for different service scenarios, from casual dining to fine dining establishments, each with their own tipping expectations and standards.
+                    </p>
                   </div>
                 </div>
 
-                {/* Additional Use Cases */}
-                <div className="bg-gray-50 rounded-xl p-8">
-                  <h3 className="text-2xl font-semibold text-gray-900 mb-6 text-center">Universal Applications</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div className="text-center">
-                      <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <DollarSign className="w-8 h-8 text-red-600" />
-                      </div>
-                      <h4 className="font-semibold text-gray-900 mb-2">Restaurant Dining</h4>
-                      <p className="text-gray-600 text-sm">Calculate tips for fine dining, casual restaurants, food delivery, and takeout orders</p>
-                    </div>
-                    <div className="text-center">
-                      <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <DollarSign className="w-8 h-8 text-blue-600" />
-                      </div>
-                      <h4 className="font-semibold text-gray-900 mb-2">Service Industries</h4>
-                      <p className="text-gray-600 text-sm">Determine appropriate tips for hair salons, spas, taxis, and personal services</p>
-                    </div>
-                    <div className="text-center">
-                      <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <DollarSign className="w-8 h-8 text-green-600" />
-                      </div>
-                      <h4 className="font-semibold text-gray-900 mb-2">Special Events</h4>
-                      <p className="text-gray-600 text-sm">Plan gratuities for weddings, parties, catering, and special occasion services</p>
-                    </div>
-                    <div className="text-center">
-                      <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                        <DollarSign className="w-8 h-8 text-purple-600" />
-                      </div>
-                      <h4 className="font-semibold text-gray-900 mb-2">Group Activities</h4>
-                      <p className="text-gray-600 text-sm">Split bills for birthday parties, corporate events, and social gatherings</p>
-                    </div>
+                {/* Features Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6">
+                    <h3 className="text-xl font-bold text-gray-900 mb-4">Global Standards</h3>
+                    <p className="text-gray-700">
+                      Pre-configured tipping standards for 15+ countries, ensuring you always tip appropriately regardless of your location. Includes currency conversion and local customs guidance for seamless international dining experiences.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6">
+                    <h3 className="text-xl font-bold text-gray-900 mb-4">Smart Bill Splitting</h3>
+                    <p className="text-gray-700">
+                      Advanced bill splitting functionality that calculates individual contributions including tip portions. Perfect for group dining, business meals, and social gatherings where accurate cost division is essential.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6">
+                    <h3 className="text-xl font-bold text-gray-900 mb-4">Service Quality Assessment</h3>
+                    <p className="text-gray-700">
+                      Built-in service quality evaluation system that suggests appropriate tip percentages based on your dining experience, from basic service to exceptional hospitality that exceeds expectations.
+                    </p>
                   </div>
                 </div>
-              </div>
-            </section>
 
-            {/* How to Use */}
-            <section>
-              <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-                How to Use the Tip Calculator: Step-by-Step Guide
-              </h2>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <div className="space-y-6">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold text-sm">1</div>
+                {/* Detailed Content */}
+                <div className="prose prose-lg max-w-none">
+                  <h3 className="text-3xl font-bold text-gray-900 mb-6">Understanding Tipping Psychology and Economics</h3>
+                  
+                  <div className="text-lg text-gray-700 leading-relaxed space-y-6">
+                    <p>
+                      The practice of tipping serves multiple economic and social functions beyond simple gratuity. Research in behavioral economics shows that tipping can significantly impact service quality, as servers and service providers often adjust their attention and care based on expected gratuity. This creates a feedback loop where excellent service leads to better tips, which in turn motivates continued high-quality service delivery.
+                    </p>
+                    
+                    <p>
+                      From an economic perspective, tipping allows restaurants and service businesses to maintain lower base wages while enabling servers to earn income proportional to their performance and customer satisfaction levels. This model incentivizes exceptional customer service and creates opportunities for skilled service professionals to earn substantially more than fixed-wage positions. However, it also creates income variability that some workers find challenging to manage.
+                    </p>
+                    
+                    <p>
+                      Cultural attitudes toward tipping also reflect broader social values about work, compensation, and customer-service provider relationships. In tip-encouraged cultures, gratuity represents appreciation for personalized service and recognition of individual effort. In contrast, cultures that discourage tipping often emphasize professional service as a standard expectation rather than an exceptional effort deserving additional compensation.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Industry-Specific Guidelines */}
+                <div className="bg-gray-50 rounded-2xl p-8">
+                  <h3 className="text-3xl font-bold text-gray-900 mb-8 text-center">Industry-Specific Tipping Guidelines</h3>
+                  
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <div>
-                      <h3 className="font-semibold text-gray-900 mb-2">Select Your Country or Region</h3>
-                      <p className="text-gray-600">Choose your location to automatically apply local tipping standards and currency formatting.</p>
+                      <h4 className="text-xl font-bold text-gray-900 mb-4">Restaurant and Food Service</h4>
+                      <div className="space-y-3 text-gray-700">
+                        <p><strong>Fine Dining:</strong> 20-25% for exceptional service, complex meal preparation, and attentive table service throughout extended dining experiences.</p>
+                        <p><strong>Casual Dining:</strong> 15-20% for standard table service, order taking, food delivery, and basic customer interaction in family-style restaurants.</p>
+                        <p><strong>Fast Casual:</strong> 10-15% or tip jar contributions for counter service, food preparation, and minimal table interaction in quick-service establishments.</p>
+                        <p><strong>Delivery Services:</strong> 15-20% plus consideration for distance, weather conditions, and delivery complexity, with minimum amounts for small orders.</p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold text-sm">2</div>
+                    
                     <div>
-                      <h3 className="font-semibold text-gray-900 mb-2">Enter Bill Amount</h3>
-                      <p className="text-gray-600">Input your total bill amount before tip in your local currency.</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold text-sm">3</div>
-                    <div>
-                      <h3 className="font-semibold text-gray-900 mb-2">Choose Tip Method</h3>
-                      <p className="text-gray-600">Select from percentage, service quality rating, or enter a custom tip amount.</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold text-sm">4</div>
-                    <div>
-                      <h3 className="font-semibold text-gray-900 mb-2">Add People Count</h3>
-                      <p className="text-gray-600">Specify how many people are splitting the bill for automatic per-person calculations.</p>
+                      <h4 className="text-xl font-bold text-gray-900 mb-4">Personal and Professional Services</h4>
+                      <div className="space-y-3 text-gray-700">
+                        <p><strong>Hair and Beauty Services:</strong> 15-25% for stylists, colorists, and beauty professionals, with higher percentages for specialized services and long-term client relationships.</p>
+                        <p><strong>Transportation:</strong> 15-20% for taxi and rideshare services, with adjustments for traffic conditions, route efficiency, and vehicle cleanliness.</p>
+                        <p><strong>Hotel Services:</strong> Variable rates for housekeeping, concierge, room service, and bellhop services, typically ranging from fixed amounts to percentage-based gratuities.</p>
+                        <p><strong>Spa and Wellness:</strong> 18-22% for massage therapists, estheticians, and wellness professionals providing personal care and therapeutic services.</p>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div className="bg-gray-50 rounded-xl p-8">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-6">Quick Tip Guide</h3>
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                      <span className="text-gray-600">Restaurants (US)</span>
-                      <span className="font-semibold text-gray-900">18-22%</span>
-                    </div>
-                    <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                      <span className="text-gray-600">Bars & Pubs</span>
-                      <span className="font-semibold text-gray-900">15-20%</span>
-                    </div>
-                    <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                      <span className="text-gray-600">Taxi/Rideshare</span>
-                      <span className="font-semibold text-gray-900">10-15%</span>
-                    </div>
-                    <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                      <span className="text-gray-600">Hair Salon</span>
-                      <span className="font-semibold text-gray-900">15-20%</span>
-                    </div>
-                    <div className="flex justify-between items-center py-2">
-                      <span className="text-gray-600">Hotel Housekeeping</span>
-                      <span className="font-semibold text-gray-900">$2-5/day</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
 
-            {/* Global Tipping Standards */}
-            <section>
-              <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-                Global Tipping Standards & Customs
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <Card className="bg-white border-0 shadow-sm">
-                  <CardContent className="p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">North America</h3>
-                    <div className="space-y-3 text-sm text-gray-600">
-                      <div className="flex justify-between">
-                        <span>United States:</span>
-                        <span className="font-medium">18-22%</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Canada:</span>
-                        <span className="font-medium">15-20%</span>
-                      </div>
-                      <p className="text-xs text-gray-500 mt-3">
-                        Tipping is expected and considered part of service workers' income.
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="bg-white border-0 shadow-sm">
-                  <CardContent className="p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Europe</h3>
-                    <div className="space-y-3 text-sm text-gray-600">
-                      <div className="flex justify-between">
-                        <span>UK:</span>
-                        <span className="font-medium">10-15%</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Germany/France:</span>
-                        <span className="font-medium">5-10%</span>
-                      </div>
-                      <p className="text-xs text-gray-500 mt-3">
-                        Service charges often included. Rounding up is common practice.
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="bg-white border-0 shadow-sm">
-                  <CardContent className="p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Asia Pacific</h3>
-                    <div className="space-y-3 text-sm text-gray-600">
-                      <div className="flex justify-between">
-                        <span>Japan:</span>
-                        <span className="font-medium">Not expected</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Australia:</span>
-                        <span className="font-medium">5-10%</span>
-                      </div>
-                      <p className="text-xs text-gray-500 mt-3">
-                        Varies greatly. Research local customs before visiting.
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </section>
-
-            {/* When to Tip */}
-            <section className="bg-gray-50 rounded-2xl p-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-                When and How Much to Tip
-              </h2>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-6">Service Quality Guidelines</h3>
-                  <div className="space-y-4">
-                    <div className="bg-white rounded-lg p-4 border-l-4 border-red-400">
-                      <div className="flex justify-between items-center mb-2">
-                        <span className="font-medium text-gray-900">Poor Service</span>
-                        <span className="font-bold text-red-600">10-12%</span>
-                      </div>
-                      <p className="text-sm text-gray-600">Slow service, unfriendly staff, or incorrect orders</p>
-                    </div>
-                    <div className="bg-white rounded-lg p-4 border-l-4 border-yellow-400">
-                      <div className="flex justify-between items-center mb-2">
-                        <span className="font-medium text-gray-900">Average Service</span>
-                        <span className="font-bold text-yellow-600">15-18%</span>
-                      </div>
-                      <p className="text-sm text-gray-600">Standard service meeting basic expectations</p>
-                    </div>
-                    <div className="bg-white rounded-lg p-4 border-l-4 border-green-400">
-                      <div className="flex justify-between items-center mb-2">
-                        <span className="font-medium text-gray-900">Good Service</span>
-                        <span className="font-bold text-green-600">18-20%</span>
-                      </div>
-                      <p className="text-sm text-gray-600">Attentive, friendly, and efficient service</p>
-                    </div>
-                    <div className="bg-white rounded-lg p-4 border-l-4 border-blue-400">
-                      <div className="flex justify-between items-center mb-2">
-                        <span className="font-medium text-gray-900">Excellent Service</span>
-                        <span className="font-bold text-blue-600">20-25%</span>
-                      </div>
-                      <p className="text-sm text-gray-600">Exceptional service that goes above and beyond</p>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-6">Industry-Specific Tips</h3>
-                  <div className="space-y-4">
-                    <div className="bg-white rounded-lg p-4">
-                      <h4 className="font-medium text-gray-900 mb-2">Restaurants & Dining</h4>
-                      <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• Full-service restaurants: 18-22%</li>
-                        <li>• Fast-casual: 10-15% or tip jar</li>
-                        <li>• Buffets: 10-15%</li>
-                        <li>• Food delivery: 15-20% + delivery fee</li>
-                      </ul>
-                    </div>
-                    <div className="bg-white rounded-lg p-4">
-                      <h4 className="font-medium text-gray-900 mb-2">Personal Services</h4>
-                      <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• Hair stylist: 15-20%</li>
-                        <li>• Massage therapist: 15-20%</li>
-                        <li>• Nail technician: 15-20%</li>
-                        <li>• Barber: $2-5 or 15-20%</li>
-                      </ul>
-                    </div>
-                    <div className="bg-white rounded-lg p-4">
-                      <h4 className="font-medium text-gray-900 mb-2">Transportation</h4>
-                      <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• Taxi: 15-20%</li>
-                        <li>• Rideshare (Uber/Lyft): 15-20%</li>
-                        <li>• Valet parking: $2-5</li>
-                        <li>• Airport shuttle: $1-2 per bag</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* FAQ Section */}
-            <section>
-              <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-                Frequently Asked Questions
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="space-y-6">
-                  <div className="bg-white rounded-lg p-6 shadow-sm">
-                    <h3 className="font-semibold text-gray-900 mb-3">Should I tip on tax?</h3>
-                    <p className="text-gray-600 text-sm">
-                      It's generally recommended to calculate your tip based on the pre-tax amount. However, some people prefer to tip on the total including tax, which is also acceptable.
+                {/* Best Practices */}
+                <div className="prose prose-lg max-w-none">
+                  <h3 className="text-3xl font-bold text-gray-900 mb-6">Tipping Best Practices and Digital Age Considerations</h3>
+                  
+                  <div className="text-lg text-gray-700 leading-relaxed space-y-6">
+                    <p>
+                      Modern payment technology has transformed tipping practices, with digital payment systems, mobile apps, and contactless transactions becoming increasingly common. Many point-of-sale systems now prompt for tip amounts, sometimes suggesting percentages that may exceed traditional norms. It's important to evaluate these suggestions against actual service quality rather than feeling pressured by default options that may not reflect appropriate gratuity levels.
                     </p>
-                  </div>
-                  <div className="bg-white rounded-lg p-6 shadow-sm">
-                    <h3 className="font-semibold text-gray-900 mb-3">What if service charge is included?</h3>
-                    <p className="text-gray-600 text-sm">
-                      If a service charge is already included in your bill, additional tipping is optional. You may still tip extra for exceptional service, typically 5-10% more.
+                    
+                    <p>
+                      When using our tip calculator, consider factors beyond the base bill amount, including service complexity, time spent, special accommodations, and overall satisfaction with your experience. For group dining situations, ensure that tip calculations account for shared appetizers, beverages, and any special dietary accommodations that required additional server attention. Our calculator's bill-splitting feature helps ensure equitable contribution from all participants while maintaining appropriate overall gratuity levels.
                     </p>
-                  </div>
-                  <div className="bg-white rounded-lg p-6 shadow-sm">
-                    <h3 className="font-semibold text-gray-900 mb-3">How to tip for large groups?</h3>
-                    <p className="text-gray-600 text-sm">
-                      Many restaurants automatically add an 18-20% gratuity for parties of 6 or more. Check your bill carefully and adjust accordingly if needed.
+                    
+                    <p>
+                      Cash versus digital tipping can also impact how much of your gratuity actually reaches service providers. Cash tips typically go directly to servers, while digital tips may be subject to processing fees, delayed distribution, or pooling arrangements. When possible, consider asking about establishment policies regarding tip distribution to ensure your gratuity reaches intended recipients in the most beneficial manner.
                     </p>
-                  </div>
-                </div>
-                <div className="space-y-6">
-                  <div className="bg-white rounded-lg p-6 shadow-sm">
-                    <h3 className="font-semibold text-gray-900 mb-3">Should I tip in cash or card?</h3>
-                    <p className="text-gray-600 text-sm">
-                      Cash tips are often preferred by service workers as they receive them immediately. However, card tips are perfectly acceptable and increasingly common.
-                    </p>
-                  </div>
-                  <div className="bg-white rounded-lg p-6 shadow-sm">
-                    <h3 className="font-semibold text-gray-900 mb-3">What about poor service?</h3>
-                    <p className="text-gray-600 text-sm">
-                      For genuinely poor service, you can reduce the tip to 10-12%. However, consider speaking with a manager about serious service issues rather than just reducing the tip.
-                    </p>
-                  </div>
-                  <div className="bg-white rounded-lg p-6 shadow-sm">
-                    <h3 className="font-semibold text-gray-900 mb-3">Tipping while traveling abroad?</h3>
-                    <p className="text-gray-600 text-sm">
-                      Research local customs before traveling. What's normal in one country may be offensive in another. Our calculator includes guidelines for major destinations.
+                    
+                    <p>
+                      Finally, remember that tipping is ultimately about recognizing good service and supporting service industry workers who often depend on gratuities as a significant portion of their income. Our calculator provides guidance based on established norms and cultural standards, but your personal experience and satisfaction should always inform final tipping decisions. Exceptional service deserves recognition, while consistently poor service may warrant reduced gratuities along with constructive feedback to management.
                     </p>
                   </div>
                 </div>
               </div>
-            </section>
-
-            {/* Benefits */}
-            <section className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-8">
-              <div className="max-w-4xl mx-auto text-center">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                  Why Use Our Tip Calculator?
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
-                  <div className="bg-white rounded-lg p-6 shadow-sm">
-                    <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                      <DollarSign className="w-6 h-6 text-green-600" />
-                    </div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Save Time</h3>
-                    <p className="text-gray-600 text-sm">Instantly calculate tips and split bills without mental math.</p>
-                  </div>
-                  <div className="bg-white rounded-lg p-6 shadow-sm">
-                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                      <DollarSign className="w-6 h-6 text-blue-600" />
-                    </div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Avoid Awkwardness</h3>
-                    <p className="text-gray-600 text-sm">Know exactly how much to tip in any situation or country.</p>
-                  </div>
-                  <div className="bg-white rounded-lg p-6 shadow-sm">
-                    <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                      <DollarSign className="w-6 h-6 text-purple-600" />
-                    </div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Fair Tipping</h3>
-                    <p className="text-gray-600 text-sm">Ensure service workers receive appropriate compensation.</p>
-                  </div>
-                  <div className="bg-white rounded-lg p-6 shadow-sm">
-                    <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                      <DollarSign className="w-6 h-6 text-orange-600" />
-                    </div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Cultural Awareness</h3>
-                    <p className="text-gray-600 text-sm">Learn and respect tipping customs from around the world.</p>
-                  </div>
-                </div>
-              </div>
-            </section>
-            
-
-            {/* SEO Content Section */}
-            <section className="max-w-4xl mx-auto">
-              <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                  Why Use Our Advanced Tip Calculator?
-                </h2>
-                
-                <div className="prose prose-lg text-gray-700 max-w-none">
-                  <p className="mb-6">
-                    Our tip calculator stands out as the most comprehensive gratuity calculation tool available online. Unlike basic tip calculators that only handle simple percentage calculations, our advanced tool incorporates cultural intelligence, currency conversion, and sophisticated bill-splitting algorithms to provide accurate results for any dining or service scenario.
-                  </p>
-                  
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Key Features That Set Us Apart:</h3>
-                  
-                  <ul className="space-y-3 mb-6">
-                    <li className="flex items-start">
-                      <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                      <span><strong>Global Currency Support:</strong> Calculate tips in 15+ major currencies with proper formatting and decimal handling</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                      <span><strong>Cultural Tipping Standards:</strong> Pre-loaded with appropriate tipping ranges for different countries and regions</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                      <span><strong>Service Quality Assessment:</strong> Tip suggestions based on actual service experience from poor to outstanding</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                      <span><strong>Advanced Bill Splitting:</strong> Divide costs among up to 50 people with detailed per-person breakdowns</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                      <span><strong>Multiple Calculation Methods:</strong> Choose from percentage-based, service quality-based, or custom tip amounts</span>
-                    </li>
-                  </ul>
-                  
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Perfect for International Use:</h3>
-                  
-                  <p className="mb-6">
-                    Whether you're traveling for business or pleasure, our tip calculator ensures you always tip appropriately regardless of your location. From Japan's no-tipping culture to America's standard 15-20% gratuity expectations, our tool automatically adjusts recommendations based on local customs and cultural norms.
-                  </p>
-                  
-                  <p className="mb-6">
-                    Business travelers particularly appreciate our expense-reporting features, which provide detailed breakdowns suitable for reimbursement documentation. The tool's precision ensures you never over-tip or under-tip, helping maintain professional relationships while respecting cultural expectations.
-                  </p>
-                  
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Mathematical Accuracy and Reliability:</h3>
-                  
-                  <p className="mb-4">
-                    Our calculator uses precise mathematical algorithms to ensure accuracy down to the smallest currency denomination. All calculations are performed using standard financial rounding methods, and results are formatted according to each currency's conventional display format.
-                  </p>
-                  
-                  <p>
-                    The tool's reliability has made it the preferred choice for restaurants, travel agencies, and financial planning services worldwide. With regular updates to reflect changing tipping standards and currency fluctuations, you can trust our calculator to provide current, accurate results every time.
-                  </p>
-                </div>
-              </div>
-            </section>
-          </div>
-        </div>
-      </main>
-      
-      <Footer />
-    </div>
+            </div>
+          </section>
+        </main>
+        
+        <Footer />
+      </div>
+    </>
   );
 }
