@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -5,8 +6,11 @@ import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Separator } from '@/components/ui/separator';
+import { Calculator, Target } from 'lucide-react';
 
 interface BreakEvenResult {
   breakEvenUnits: number;
@@ -19,11 +23,13 @@ interface BreakEvenResult {
 }
 
 const BreakEvenCalculator = () => {
-  const [fixedCosts, setFixedCosts] = useState('50000');
-  const [variableCostPerUnit, setVariableCostPerUnit] = useState('25');
-  const [sellingPricePerUnit, setSellingPricePerUnit] = useState('50');
-  const [targetUnits, setTargetUnits] = useState('2500');
+  const [fixedCosts, setFixedCosts] = useState('');
+  const [variableCostPerUnit, setVariableCostPerUnit] = useState('');
+  const [sellingPricePerUnit, setSellingPricePerUnit] = useState('');
+  const [targetUnits, setTargetUnits] = useState('');
+  const [targetRevenue, setTargetRevenue] = useState('');
   const [currency, setCurrency] = useState('USD');
+  const [calculationType, setCalculationType] = useState('units');
   const [result, setResult] = useState<BreakEvenResult | null>(null);
 
   const calculateBreakEven = () => {
@@ -39,7 +45,7 @@ const BreakEvenCalculator = () => {
 
       // Calculate break-even point in units
       const breakEvenUnits = fixed / contributionMargin;
-
+      
       // Calculate break-even point in revenue
       const breakEvenRevenue = breakEvenUnits * sellingPrice;
 
@@ -63,11 +69,13 @@ const BreakEvenCalculator = () => {
   };
 
   const resetCalculator = () => {
-    setFixedCosts('50000');
-    setVariableCostPerUnit('25');
-    setSellingPricePerUnit('50');
-    setTargetUnits('2500');
+    setFixedCosts('');
+    setVariableCostPerUnit('');
+    setSellingPricePerUnit('');
+    setTargetUnits('');
+    setTargetRevenue('');
     setCurrency('USD');
+    setCalculationType('units');
     setResult(null);
   };
 
@@ -86,7 +94,7 @@ const BreakEvenCalculator = () => {
     };
 
     const config = currencyMap[currency] || currencyMap.USD;
-
+    
     return new Intl.NumberFormat(config.locale, {
       style: 'currency',
       currency: config.currency,
@@ -103,7 +111,7 @@ const BreakEvenCalculator = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+    <>
       <Helmet>
         <title>Break-Even Calculator - Calculate Break-Even Point | DapsiWow</title>
         <meta name="description" content="Free break-even calculator for businesses, entrepreneurs, and students. Calculate break-even point, contribution margin, and profit analysis with multi-currency support. Essential business planning tool." />
@@ -111,736 +119,900 @@ const BreakEvenCalculator = () => {
         <meta property="og:title" content="Break-Even Calculator - Calculate Break-Even Point | DapsiWow" />
         <meta property="og:description" content="Free break-even calculator to determine the break-even point for your business. Calculate units and revenue needed to cover costs." />
         <meta property="og:type" content="website" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/break-even-calculator" />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Break-Even Calculator",
-            "description": "Free online break-even calculator to calculate the break-even point for your business. Determine when you'll start making profit and analyze contribution margins.",
-            "url": "https://dapsiwow.com/tools/break-even-calculator",
-            "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "featureList": [
-              "Calculate break-even point in units and revenue",
-              "Support for multiple currencies",
-              "Contribution margin analysis",
-              "Margin of safety calculations",
-              "Profit projections",
-              "Business planning insights"
-            ]
-          })}
-        </script>
+        <link rel="canonical" href="/tools/break-even-calculator" />
       </Helmet>
 
-      <Header />
-
-      <main>
-        {/* Hero Section */}
-        <section className="relative py-20 sm:py-28 lg:py-32 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
-          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="space-y-8">
-              <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
-                <span className="text-sm font-medium text-blue-700">Professional Break-Even Calculator</span>
+      <div className="min-h-screen flex flex-col" data-testid="page-break-even-calculator">
+        <Header />
+        
+        <main className="flex-1 bg-neutral-50">
+          {/* Hero Section */}
+          <section className="gradient-hero text-white py-16">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <Target className="text-3xl w-10 h-10" />
               </div>
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight">
-                Break-Even
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
-                  Calculator
-                </span>
+              <h1 className="text-4xl sm:text-5xl font-bold mb-6" data-testid="text-page-title">
+                Break-Even Calculator
               </h1>
-              <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-                Calculate your business break-even point and make informed financial decisions for sustainable growth
+              <p className="text-xl text-blue-100 max-w-2xl mx-auto">
+                Calculate the break-even point for your business to determine when you'll start making profit worldwide
               </p>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <div className="max-w-7xl mx-auto px-4 py-16">
-          {/* Main Calculator Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
-            <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
-                {/* Input Section */}
-                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
-                  <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Business Configuration</h2>
-                    <p className="text-gray-600">Enter your business details to calculate break-even point</p>
-                  </div>
+          {/* Calculator Section */}
+          <section className="py-16">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+              <Card className="bg-white shadow-sm border-0">
+                <CardContent className="p-8">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    {/* Input Section */}
+                    <div className="space-y-6">
+                      <h2 className="text-2xl font-semibold text-gray-900 mb-8">Business Details</h2>
+                      
+                      {/* Currency Selection */}
+                      <div className="space-y-3">
+                        <Label htmlFor="currency" className="text-sm font-medium text-gray-700">
+                          Currency
+                        </Label>
+                        <Select value={currency} onValueChange={setCurrency}>
+                          <SelectTrigger className="h-12 border-gray-200 rounded-lg" data-testid="select-currency">
+                            <SelectValue placeholder="Select currency" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="USD">USD - US Dollar</SelectItem>
+                            <SelectItem value="EUR">EUR - Euro</SelectItem>
+                            <SelectItem value="GBP">GBP - British Pound</SelectItem>
+                            <SelectItem value="INR">INR - Indian Rupee</SelectItem>
+                            <SelectItem value="JPY">JPY - Japanese Yen</SelectItem>
+                            <SelectItem value="CAD">CAD - Canadian Dollar</SelectItem>
+                            <SelectItem value="AUD">AUD - Australian Dollar</SelectItem>
+                            <SelectItem value="CNY">CNY - Chinese Yuan</SelectItem>
+                            <SelectItem value="BRL">BRL - Brazilian Real</SelectItem>
+                            <SelectItem value="MXN">MXN - Mexican Peso</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* Currency Selection */}
-                    <div className="space-y-3">
-                      <Label htmlFor="currency" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
-                        Currency
-                      </Label>
-                      <Select value={currency} onValueChange={setCurrency}>
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-currency">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="USD">USD - US Dollar</SelectItem>
-                          <SelectItem value="EUR">EUR - Euro</SelectItem>
-                          <SelectItem value="GBP">GBP - British Pound</SelectItem>
-                          <SelectItem value="INR">INR - Indian Rupee</SelectItem>
-                          <SelectItem value="JPY">JPY - Japanese Yen</SelectItem>
-                          <SelectItem value="CAD">CAD - Canadian Dollar</SelectItem>
-                          <SelectItem value="AUD">AUD - Australian Dollar</SelectItem>
-                          <SelectItem value="CNY">CNY - Chinese Yuan</SelectItem>
-                          <SelectItem value="BRL">BRL - Brazilian Real</SelectItem>
-                          <SelectItem value="MXN">MXN - Mexican Peso</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    {/* Fixed Costs */}
-                    <div className="space-y-3">
-                      <Label htmlFor="fixed-costs" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
-                        Total Fixed Costs
-                      </Label>
-                      <div className="relative">
-                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                      {/* Fixed Costs */}
+                      <div className="space-y-3">
+                        <Label htmlFor="fixed-costs" className="text-sm font-medium text-gray-700">
+                          Total Fixed Costs (Monthly/Annual)
+                        </Label>
                         <Input
                           id="fixed-costs"
                           type="number"
                           value={fixedCosts}
                           onChange={(e) => setFixedCosts(e.target.value)}
-                          className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
-                          placeholder="50,000"
+                          className="h-12 text-base border-gray-200 rounded-lg"
+                          placeholder="Enter total fixed costs"
+                          min="0"
+                          step="0.01"
                           data-testid="input-fixed-costs"
                         />
+                        <p className="text-xs text-gray-500">
+                          Include rent, salaries, insurance, and other fixed expenses
+                        </p>
                       </div>
-                      <p className="text-xs text-gray-500">
-                        Include rent, salaries, insurance, and other fixed expenses
-                      </p>
-                    </div>
 
-                    {/* Selling Price Per Unit */}
-                    <div className="space-y-3">
-                      <Label htmlFor="selling-price" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
-                        Selling Price Per Unit
-                      </Label>
-                      <div className="relative">
-                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                      {/* Selling Price Per Unit */}
+                      <div className="space-y-3">
+                        <Label htmlFor="selling-price" className="text-sm font-medium text-gray-700">
+                          Selling Price Per Unit
+                        </Label>
                         <Input
                           id="selling-price"
                           type="number"
                           value={sellingPricePerUnit}
                           onChange={(e) => setSellingPricePerUnit(e.target.value)}
-                          className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
-                          placeholder="50"
+                          className="h-12 text-base border-gray-200 rounded-lg"
+                          placeholder="Enter selling price per unit"
+                          min="0"
                           step="0.01"
                           data-testid="input-selling-price"
                         />
                       </div>
-                    </div>
 
-                    {/* Variable Cost Per Unit */}
-                    <div className="space-y-3">
-                      <Label htmlFor="variable-cost" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
-                        Variable Cost Per Unit
-                      </Label>
-                      <div className="relative">
-                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                      {/* Variable Cost Per Unit */}
+                      <div className="space-y-3">
+                        <Label htmlFor="variable-cost" className="text-sm font-medium text-gray-700">
+                          Variable Cost Per Unit
+                        </Label>
                         <Input
                           id="variable-cost"
                           type="number"
                           value={variableCostPerUnit}
                           onChange={(e) => setVariableCostPerUnit(e.target.value)}
-                          className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
-                          placeholder="25"
+                          className="h-12 text-base border-gray-200 rounded-lg"
+                          placeholder="Enter variable cost per unit"
+                          min="0"
                           step="0.01"
                           data-testid="input-variable-cost"
                         />
+                        <p className="text-xs text-gray-500">
+                          Include materials, direct labor, and other variable expenses per unit
+                        </p>
                       </div>
-                      <p className="text-xs text-gray-500">
-                        Include materials, direct labor, and other variable expenses per unit
-                      </p>
+
+                      {/* Target Units */}
+                      <div className="space-y-3">
+                        <Label htmlFor="target-units" className="text-sm font-medium text-gray-700">
+                          Target Units to Sell (Optional)
+                        </Label>
+                        <Input
+                          id="target-units"
+                          type="number"
+                          value={targetUnits}
+                          onChange={(e) => setTargetUnits(e.target.value)}
+                          className="h-12 text-base border-gray-200 rounded-lg"
+                          placeholder="Enter target units for analysis"
+                          min="0"
+                          step="1"
+                          data-testid="input-target-units"
+                        />
+                        <p className="text-xs text-gray-500">
+                          Enter expected sales volume to calculate profit and margin of safety
+                        </p>
+                      </div>
+
+                      {/* Action Buttons */}
+                      <div className="flex gap-4 pt-6">
+                        <Button
+                          onClick={calculateBreakEven}
+                          className="flex-1 h-12 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg"
+                          data-testid="button-calculate"
+                        >
+                          <Calculator className="w-4 h-4 mr-2" />
+                          Calculate
+                        </Button>
+                        <Button
+                          onClick={resetCalculator}
+                          variant="outline"
+                          className="h-12 px-8 border-gray-200 text-gray-600 hover:bg-gray-50 font-medium rounded-lg"
+                          data-testid="button-reset"
+                        >
+                          Reset
+                        </Button>
+                      </div>
                     </div>
 
-                    {/* Target Units */}
-                    <div className="space-y-3 md:col-span-2">
-                      <Label htmlFor="target-units" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
-                        Target Units to Sell
-                      </Label>
-                      <Input
-                        id="target-units"
-                        type="number"
-                        value={targetUnits}
-                        onChange={(e) => setTargetUnits(e.target.value)}
-                        className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
-                        placeholder="2,500"
-                        min="0"
-                        step="1"
-                        data-testid="input-target-units"
-                      />
-                      <p className="text-xs text-gray-500">
-                        Enter expected sales volume to calculate profit and margin of safety
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
-                    <Button
-                      onClick={calculateBreakEven}
-                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
-                      data-testid="button-calculate"
-                    >
-                      Calculate Break-Even
-                    </Button>
-                    <Button
-                      onClick={resetCalculator}
-                      variant="outline"
-                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
-                      data-testid="button-reset"
-                    >
-                      Reset
-                    </Button>
-                  </div>
-                </div>
-
-                {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Results</h2>
-
-                  {result ? (
-                    <div className="space-y-6" data-testid="break-even-results">
-                      {/* Break-Even Units Highlight */}
-                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
-                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Break-Even Units</div>
-                        <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" data-testid="text-break-even-units">
-                          {formatNumber(result.breakEvenUnits)}
-                        </div>
-                      </div>
-
-                      {/* Key Metrics */}
-                      <div className="space-y-4">
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Break-Even Revenue</span>
-                            <span className="font-bold text-gray-900" data-testid="text-break-even-revenue">
-                              {formatCurrency(result.breakEvenRevenue)}
-                            </span>
+                    {/* Results Section */}
+                    <div className="bg-gray-50 rounded-xl p-8">
+                      <h2 className="text-2xl font-semibold text-gray-900 mb-8">Break-Even Analysis</h2>
+                      
+                      {result ? (
+                        <div className="space-y-4" data-testid="break-even-results">
+                          {/* Break-Even Units */}
+                          <div className="bg-white rounded-lg p-4 border-l-4 border-orange-500">
+                            <div className="flex justify-between items-center">
+                              <span className="font-semibold text-gray-700">Break-Even Units</span>
+                              <span className="text-2xl font-bold text-orange-600" data-testid="text-break-even-units">
+                                {formatNumber(result.breakEvenUnits)}
+                              </span>
+                            </div>
                           </div>
-                        </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Contribution Margin</span>
-                            <span className="font-bold text-green-600" data-testid="text-contribution-margin">
-                              {formatCurrency(result.contributionMargin)}
-                            </span>
-                          </div>
-                        </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Margin Ratio</span>
-                            <span className="font-bold text-blue-600" data-testid="text-contribution-margin-ratio">
-                              {result.contributionMarginRatio}%
-                            </span>
-                          </div>
-                        </div>
-                      </div>
 
-                      {/* Target Analysis */}
-                      {parseFloat(targetUnits) > 0 && (
-                        <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-6 border border-green-200">
-                          <h4 className="font-bold text-green-800 mb-4 text-lg">Target Analysis</h4>
+                          {/* Break-Even Revenue */}
+                          <div className="bg-white rounded-lg p-4 border-l-4 border-purple-500">
+                            <div className="flex justify-between items-center">
+                              <span className="font-semibold text-gray-700">Break-Even Revenue</span>
+                              <span className="text-xl font-bold text-purple-600" data-testid="text-break-even-revenue">
+                                {formatCurrency(result.breakEvenRevenue)}
+                              </span>
+                            </div>
+                          </div>
+
+                          {/* Contribution Margin */}
                           <div className="space-y-3">
-                            <div className="flex justify-between items-center">
-                              <span className="text-green-700 font-medium">Profit at Target:</span>
-                              <span className={`font-bold text-lg ${result.profitAtTargetUnits >= 0 ? 'text-green-800' : 'text-red-600'}`} data-testid="text-profit-target">
-                                {formatCurrency(result.profitAtTargetUnits)}
+                            <div className="flex justify-between">
+                              <span className="text-gray-600">Contribution Margin per Unit</span>
+                              <span className="font-semibold" data-testid="text-contribution-margin">
+                                {formatCurrency(result.contributionMargin)}
                               </span>
                             </div>
-                            <div className="flex justify-between items-center">
-                              <span className="text-green-700 font-medium">Margin of Safety:</span>
-                              <span className="font-bold text-green-800 text-lg" data-testid="text-margin-safety">
-                                {formatNumber(result.marginOfSafety)} units
-                              </span>
-                            </div>
-                            <div className="flex justify-between items-center">
-                              <span className="text-green-700 font-medium">Safety Percentage:</span>
-                              <span className="font-bold text-green-800 text-lg" data-testid="text-margin-safety-percent">
-                                {result.marginOfSafetyPercentage}%
+                            <div className="flex justify-between">
+                              <span className="text-gray-600">Contribution Margin Ratio</span>
+                              <span className="font-semibold" data-testid="text-contribution-margin-ratio">
+                                {result.contributionMarginRatio}%
                               </span>
                             </div>
                           </div>
+
+                          {/* Target Analysis */}
+                          {parseFloat(targetUnits) > 0 && (
+                            <div className="border-t pt-4 space-y-3">
+                              <h3 className="text-lg font-semibold text-gray-900">Target Analysis</h3>
+                              <div className="flex justify-between">
+                                <span className="text-gray-600">Profit at Target Units</span>
+                                <span className={`font-semibold ${result.profitAtTargetUnits >= 0 ? 'text-green-600' : 'text-red-600'}`} data-testid="text-profit-target">
+                                  {formatCurrency(result.profitAtTargetUnits)}
+                                </span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-gray-600">Margin of Safety (Units)</span>
+                                <span className="font-semibold" data-testid="text-margin-safety">
+                                  {formatNumber(result.marginOfSafety)}
+                                </span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-gray-600">Margin of Safety (%)</span>
+                                <span className="font-semibold" data-testid="text-margin-safety-percent">
+                                  {result.marginOfSafetyPercentage}%
+                                </span>
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Visual Break-Even Chart */}
+                          <div className="mt-6">
+                            <h3 className="text-lg font-semibold text-gray-900 mb-3">Break-Even Visualization</h3>
+                            <div className="space-y-2">
+                              {parseFloat(targetUnits) > 0 && (
+                                <>
+                                  <div className="flex items-center">
+                                    <div 
+                                      className="h-4 bg-red-400 rounded-l"
+                                      style={{ width: `${Math.min((result.breakEvenUnits / parseFloat(targetUnits)) * 100, 100)}%` }}
+                                    ></div>
+                                    <div 
+                                      className="h-4 bg-green-500 rounded-r"
+                                      style={{ width: `${Math.max(100 - (result.breakEvenUnits / parseFloat(targetUnits)) * 100, 0)}%` }}
+                                    ></div>
+                                  </div>
+                                  <div className="flex justify-between text-sm">
+                                    <span className="flex items-center">
+                                      <div className="w-3 h-3 bg-red-400 rounded-full mr-2"></div>
+                                      Loss Zone
+                                    </span>
+                                    <span className="flex items-center">
+                                      <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                                      Profit Zone
+                                    </span>
+                                  </div>
+                                </>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="text-center py-8" data-testid="no-results">
+                          <Target className="w-16 h-16 text-gray-400 mb-4 mx-auto" />
+                          <p className="text-gray-500">Enter business details to calculate break-even point</p>
                         </div>
                       )}
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
 
-                      {/* Visual Break-Even Chart */}
-                      <div className="bg-white rounded-xl p-6 shadow-sm">
-                        <h4 className="font-bold text-gray-900 mb-4">Break-Even Visualization</h4>
-                        {parseFloat(targetUnits) > 0 && (
-                          <div className="space-y-3">
-                            <div className="flex items-center">
-                              <div 
-                                className="h-4 bg-red-400 rounded-l"
-                                style={{ width: `${Math.min((result.breakEvenUnits / parseFloat(targetUnits)) * 100, 100)}%` }}
-                              ></div>
-                              <div 
-                                className="h-4 bg-green-500 rounded-r"
-                                style={{ width: `${Math.max(100 - (result.breakEvenUnits / parseFloat(targetUnits)) * 100, 0)}%` }}
-                              ></div>
-                            </div>
-                            <div className="flex justify-between text-sm">
-                              <span className="flex items-center">
-                                <div className="w-3 h-3 bg-red-400 rounded-full mr-2"></div>
-                                Loss Zone
-                              </span>
-                              <span className="flex items-center">
-                                <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
-                                Profit Zone
-                              </span>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="text-center py-16" data-testid="no-results">
-                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <div className="text-3xl font-bold text-gray-400">₹</div>
-                      </div>
-                      <p className="text-gray-500 text-lg">Enter business details to calculate break-even point</p>
-                    </div>
-                  )}
+              {/* What is Break-Even Calculator Section */}
+              <div className="mt-12 bg-white rounded-2xl shadow-lg p-8">
+                <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">What is a Break-Even Calculator?</h2>
+                <div className="max-w-4xl mx-auto">
+                  <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                    A break-even calculator is an essential financial analysis tool that helps businesses and entrepreneurs determine 
+                    the exact point where total revenue equals total costs, resulting in zero profit or loss. Our comprehensive 
+                    break-even analysis calculator enables you to calculate the minimum number of units you need to sell or the 
+                    minimum revenue required to cover all your business expenses, making it invaluable for strategic business 
+                    planning and financial forecasting.
+                  </p>
+                  <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                    This powerful business calculator supports multiple currencies worldwide and provides detailed insights into 
+                    your cost structure, contribution margins, profit projections, and margin of safety calculations. Whether 
+                    you're launching a new product, evaluating pricing strategies, or making critical business decisions, our 
+                    break-even point calculator delivers accurate financial analysis to guide your decision-making process.
+                  </p>
                 </div>
-                  ) : (
-                    <div className="text-center py-16" data-testid="no-results">
-                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <div className="text-3xl font-bold text-gray-400">₹</div>
-                      </div>
-                      <p className="text-gray-500 text-lg">Enter business details to calculate break-even point</p>
-                    </div>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* SEO Content Section */}
-            <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">What is Break-Even Analysis?</h3>
-                  <div className="space-y-4 text-gray-600">
-                    <p>
-                      Break-even analysis is a fundamental financial calculation that determines the point where total revenue 
-                      equals total costs, resulting in neither profit nor loss. This critical business metric helps entrepreneurs, 
-                      business owners, and financial analysts understand the minimum sales volume required to cover all expenses.
-                    </p>
-                    <p>
-                      Our comprehensive break-even calculator enables you to quickly determine your break-even point in both 
-                      units and revenue, analyze contribution margins, and evaluate profit potential at different sales levels. 
-                      This essential tool supports strategic decision-making for pricing, production planning, and business growth.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">How to Calculate Break-Even Point?</h3>
-                  <div className="space-y-4 text-gray-600">
-                    <p>
-                      The break-even formula is: Break-Even Units = Fixed Costs ÷ (Selling Price - Variable Cost per Unit)
-                    </p>
-                    <ul className="space-y-2 list-disc list-inside">
-                      <li>Fixed Costs: Expenses that remain constant regardless of production volume</li>
-                      <li>Variable Costs: Expenses that change with production quantity</li>
-                      <li>Contribution Margin: Selling price minus variable cost per unit</li>
-                      <li>Break-Even Revenue: Break-even units × selling price per unit</li>
-                    </ul>
-                    <p>
-                      Our calculator automatically applies these formulas and provides detailed insights including margin of 
-                      safety, profit projections, and visual analysis to support your business planning decisions.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Key Features of Our Calculator</h3>
-                  <div className="space-y-3 text-gray-600">
-                    <div className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <span>Support for 10+ international currencies</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <span>Comprehensive contribution margin analysis</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <span>Margin of safety calculations</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <span>Visual profit and loss zone analysis</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <span>Target sales volume profit projections</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Business Applications</h3>
-                  <div className="space-y-3 text-gray-600">
-                    <div className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <span>Startup business planning and validation</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <span>Pricing strategy development and optimization</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <span>Production capacity and inventory planning</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <span>Investment decision analysis and evaluation</span>
-                    </div>
-                    <div className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                      <span>Financial forecasting and budget preparation</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Additional SEO Content Sections */}
-            <div className="mt-12 space-y-8">
-              {/* Industry Applications */}
-              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Industry-Specific Break-Even Applications</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div className="space-y-4">
-                      <h4 className="text-lg font-semibold text-gray-800">Manufacturing</h4>
-                      <p className="text-gray-600 text-sm">
-                        Manufacturing businesses use break-even analysis to determine optimal production volumes, 
-                        evaluate new product lines, and make equipment investment decisions. Calculate minimum 
-                        production runs needed to cover fixed costs like machinery, facility rent, and overhead expenses.
-                      </p>
-                    </div>
-                    <div className="space-y-4">
-                      <h4 className="text-lg font-semibold text-gray-800">Retail & E-commerce</h4>
-                      <p className="text-gray-600 text-sm">
-                        Retailers leverage break-even calculations for inventory planning, store profitability analysis, 
-                        and pricing strategies. Determine minimum sales volumes required to cover rent, staff salaries, 
-                        and other fixed operating costs while maintaining healthy profit margins.
-                      </p>
-                    </div>
-                    <div className="space-y-4">
-                      <h4 className="text-lg font-semibold text-gray-800">Service Businesses</h4>
-                      <p className="text-gray-600 text-sm">
-                        Service providers use break-even analysis to set hourly rates, determine client capacity 
-                        requirements, and evaluate service profitability. Calculate minimum billable hours or 
-                        clients needed to cover fixed costs and achieve target profit levels.
-                      </p>
-                    </div>
-                    <div className="space-y-4">
-                      <h4 className="text-lg font-semibold text-gray-800">Software & SaaS</h4>
-                      <p className="text-gray-600 text-sm">
-                        Software companies apply break-even analysis to subscription pricing models, customer 
-                        acquisition cost evaluation, and product development decisions. Determine minimum subscriber 
-                        counts needed to cover development, hosting, and operational expenses.
-                      </p>
-                    </div>
-                    <div className="space-y-4">
-                      <h4 className="text-lg font-semibold text-gray-800">Restaurants & Food</h4>
-                      <p className="text-gray-600 text-sm">
-                        Restaurant operators use break-even calculations for menu pricing, daily sales targets, 
-                        and location viability assessment. Calculate minimum covers per day needed to cover 
-                        rent, labor, food costs, and other operational expenses.
-                      </p>
-                    </div>
-                    <div className="space-y-4">
-                      <h4 className="text-lg font-semibold text-gray-800">Freelancers & Consultants</h4>
-                      <p className="text-gray-600 text-sm">
-                        Independent professionals utilize break-even analysis to set competitive rates, 
-                        determine minimum project requirements, and plan capacity allocation. Calculate 
-                        billable hours needed to cover business expenses and personal income requirements.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Understanding Costs */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-                  <CardContent className="p-8">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-6">Understanding Fixed vs Variable Costs</h3>
-                    <div className="space-y-6">
-                      <div className="border-l-4 border-blue-500 pl-4">
-                        <h4 className="font-semibold text-blue-800 mb-2">Fixed Costs</h4>
-                        <p className="text-gray-600 text-sm mb-3">
-                          Fixed costs remain constant regardless of production volume or sales activity. 
-                          These expenses must be paid whether you sell zero units or thousands.
-                        </p>
-                        <ul className="text-gray-600 text-sm space-y-1 list-disc list-inside">
-                          <li>Rent and lease payments</li>
-                          <li>Insurance premiums</li>
-                          <li>Fixed salaries and benefits</li>
-                          <li>Equipment depreciation</li>
-                          <li>Software subscriptions</li>
-                          <li>Loan payments and interest</li>
-                        </ul>
-                      </div>
-
-                      <div className="border-l-4 border-green-500 pl-4">
-                        <h4 className="font-semibold text-green-800 mb-2">Variable Costs</h4>
-                        <p className="text-gray-600 text-sm mb-3">
-                          Variable costs change proportionally with production volume. These costs 
-                          increase as you produce more units and decrease with lower production.
-                        </p>
-                        <ul className="text-gray-600 text-sm space-y-1 list-disc list-inside">
-                          <li>Raw materials and inventory</li>
-                          <li>Direct labor costs</li>
-                          <li>Packaging and shipping</li>
-                          <li>Sales commissions</li>
-                          <li>Transaction fees</li>
-                          <li>Utility costs (production-related)</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-                  <CardContent className="p-8">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-6">Break-Even Analysis Benefits</h3>
-                    <div className="space-y-4">
-                      <div className="bg-blue-50 rounded-lg p-4">
-                        <h4 className="font-semibold text-blue-800 mb-2">Strategic Planning</h4>
-                        <p className="text-blue-700 text-sm">
-                          Break-even analysis provides crucial insights for strategic business planning, 
-                          helping you set realistic sales targets and make informed pricing decisions.
-                        </p>
-                      </div>
-                      <div className="bg-green-50 rounded-lg p-4">
-                        <h4 className="font-semibold text-green-800 mb-2">Risk Assessment</h4>
-                        <p className="text-green-700 text-sm">
-                          Understanding your break-even point helps assess business risk and determine 
-                          the margin of safety for your operations during market fluctuations.
-                        </p>
-                      </div>
-                      <div className="bg-purple-50 rounded-lg p-4">
-                        <h4 className="font-semibold text-purple-800 mb-2">Investment Decisions</h4>
-                        <p className="text-purple-700 text-sm">
-                          Use break-even calculations to evaluate new product launches, expansion 
-                          opportunities, and equipment investments before committing resources.
-                        </p>
-                      </div>
-                      <div className="bg-orange-50 rounded-lg p-4">
-                        <h4 className="font-semibold text-orange-800 mb-2">Performance Monitoring</h4>
-                        <p className="text-orange-700 text-sm">
-                          Regular break-even analysis helps monitor business performance and identify 
-                          areas for cost optimization and efficiency improvements.
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
               </div>
 
-              {/* Advanced Break-Even Concepts */}
-              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Advanced Break-Even Analysis Concepts</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Benefits for Different Audiences */}
+              <div className="mt-8 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Who Benefits from Break-Even Analysis?</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  
+                  {/* Students & Entrepreneurs */}
+                  <div className="bg-white rounded-xl p-6 shadow-sm">
+                    <div className="w-12 h-12 bg-blue-500 text-white rounded-lg flex items-center justify-center mb-4">
+                      <i className="fas fa-graduation-cap text-xl"></i>
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Students & Entrepreneurs</h3>
+                    <ul className="text-gray-600 space-y-2 text-sm">
+                      <li>• Learn fundamental business financial concepts</li>
+                      <li>• Validate startup business ideas and models</li>
+                      <li>• Calculate minimum viable product pricing</li>
+                      <li>• Understand cost structures for business plans</li>
+                      <li>• Prepare for investor presentations with solid data</li>
+                    </ul>
+                    <div className="mt-4 pt-4 border-t border-gray-100">
+                      <p className="text-xs text-gray-500">
+                        Essential for comprehensive business analysis and financial planning
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Small Business Owners */}
+                  <div className="bg-white rounded-xl p-6 shadow-sm">
+                    <div className="w-12 h-12 bg-green-500 text-white rounded-lg flex items-center justify-center mb-4">
+                      <i className="fas fa-store text-xl"></i>
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Small Business Owners</h3>
+                    <ul className="text-gray-600 space-y-2 text-sm">
+                      <li>• Set realistic sales targets and goals</li>
+                      <li>• Optimize pricing strategies for profitability</li>
+                      <li>• Make informed inventory and production decisions</li>
+                      <li>• Plan seasonal business operations</li>
+                      <li>• Evaluate expansion opportunities</li>
+                    </ul>
+                    <div className="mt-4 pt-4 border-t border-gray-100">
+                      <p className="text-xs text-gray-500">
+                        Perfect for optimizing business operations and financial planning
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Corporate Professionals */}
+                  <div className="bg-white rounded-xl p-6 shadow-sm">
+                    <div className="w-12 h-12 bg-purple-500 text-white rounded-lg flex items-center justify-center mb-4">
+                      <i className="fas fa-briefcase text-xl"></i>
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Corporate Professionals</h3>
+                    <ul className="text-gray-600 space-y-2 text-sm">
+                      <li>• Analyze new product line viability</li>
+                      <li>• Support budget planning and forecasting</li>
+                      <li>• Evaluate operational efficiency improvements</li>
+                      <li>• Present financial projections to stakeholders</li>
+                      <li>• Optimize resource allocation decisions</li>
+                    </ul>
+                    <div className="mt-4 pt-4 border-t border-gray-100">
+                      <p className="text-xs text-gray-500">
+                        Ideal for strategic business planning and corporate analysis
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Financial Advisors */}
+                  <div className="bg-white rounded-xl p-6 shadow-sm">
+                    <div className="w-12 h-12 bg-orange-500 text-white rounded-lg flex items-center justify-center mb-4">
+                      <i className="fas fa-chart-line text-xl"></i>
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Financial Advisors</h3>
+                    <ul className="text-gray-600 space-y-2 text-sm">
+                      <li>• Provide comprehensive client business analysis</li>
+                      <li>• Support small business financial consulting</li>
+                      <li>• Validate client investment opportunities</li>
+                      <li>• Create detailed financial projections</li>
+                      <li>• Assess business loan requirements</li>
+                    </ul>
+                    <div className="mt-4 pt-4 border-t border-gray-100">
+                      <p className="text-xs text-gray-500">
+                        Essential tools for comprehensive financial advisory services
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* E-commerce Businesses */}
+                  <div className="bg-white rounded-xl p-6 shadow-sm">
+                    <div className="w-12 h-12 bg-pink-500 text-white rounded-lg flex items-center justify-center mb-4">
+                      <i className="fas fa-shopping-cart text-xl"></i>
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">E-commerce Businesses</h3>
+                    <ul className="text-gray-600 space-y-2 text-sm">
+                      <li>• Calculate product profitability thresholds</li>
+                      <li>• Optimize advertising spend and customer acquisition</li>
+                      <li>• Plan inventory levels and seasonal stocking</li>
+                      <li>• Evaluate marketplace fees and commission impact</li>
+                      <li>• Assess shipping strategy profitability</li>
+                    </ul>
+                    <div className="mt-4 pt-4 border-t border-gray-100">
+                      <p className="text-xs text-gray-500">
+                        Critical for e-commerce profitability and business optimization
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Freelancers & Consultants */}
+                  <div className="bg-white rounded-xl p-6 shadow-sm">
+                    <div className="w-12 h-12 bg-teal-500 text-white rounded-lg flex items-center justify-center mb-4">
+                      <i className="fas fa-user-tie text-xl"></i>
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Freelancers & Consultants</h3>
+                    <ul className="text-gray-600 space-y-2 text-sm">
+                      <li>• Determine minimum hourly rates for profitability</li>
+                      <li>• Calculate monthly income requirements</li>
+                      <li>• Plan for seasonal business fluctuations</li>
+                      <li>• Evaluate project minimum requirements</li>
+                      <li>• Set realistic client capacity targets</li>
+                    </ul>
+                    <div className="mt-4 pt-4 border-t border-gray-100">
+                      <p className="text-xs text-gray-500">
+                        Essential for sustainable freelance and consulting businesses
+                      </p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              {/* Why Use Our Break-Even Calculator */}
+              <div className="mt-8 bg-white rounded-2xl shadow-lg p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Why Choose Our Break-Even Calculator?</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Advanced Features</h3>
+                    <ul className="space-y-3 text-gray-600">
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <span><strong>Multi-Currency Support:</strong> Calculate in USD, EUR, GBP, INR, JPY, and 7 other major currencies</span>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <span><strong>Visual Analysis:</strong> Interactive charts showing profit zones, loss areas, and safety margins</span>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <span><strong>Comprehensive Metrics:</strong> Detailed contribution margins, profit projections, and safety analysis</span>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <span><strong>Real-Time Calculations:</strong> Instant results as you input your business data</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">User Benefits</h3>
+                    <ul className="space-y-3 text-gray-600">
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <span><strong>100% Free:</strong> No registration required, unlimited calculations</span>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <span><strong>Mobile Optimized:</strong> Fully responsive design works on all devices</span>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <span><strong>Privacy Focused:</strong> All calculations performed locally, no data stored</span>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <span><strong>Educational Value:</strong> Learn financial concepts while calculating</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* How to Use Break-Even Calculator Section */}
+              <div className="mt-8 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">How to Use the Break-Even Calculator</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">1</div>
+                    <h3 className="font-semibold text-gray-900 mb-2">Enter Fixed Costs</h3>
+                    <p className="text-gray-600 text-sm">Input your total fixed costs including rent, salaries, insurance, and other expenses that don't change with production volume.</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">2</div>
+                    <h3 className="font-semibold text-gray-900 mb-2">Set Pricing Details</h3>
+                    <p className="text-gray-600 text-sm">Enter your selling price per unit and variable cost per unit to calculate the contribution margin.</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">3</div>
+                    <h3 className="font-semibold text-gray-900 mb-2">Add Target Units</h3>
+                    <p className="text-gray-600 text-sm">Optionally enter your target sales volume to analyze profit potential and margin of safety.</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">4</div>
+                    <h3 className="font-semibold text-gray-900 mb-2">Get Results</h3>
+                    <p className="text-gray-600 text-sm">View detailed break-even analysis including units needed, revenue targets, and profitability projections.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Key Features Section */}
+              <div className="mt-8 bg-white rounded-2xl shadow-lg p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Key Features of Our Break-Even Calculator</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="text-center p-6 bg-gray-50 rounded-xl">
+                    <div className="w-12 h-12 bg-green-500 text-white rounded-lg flex items-center justify-center mx-auto mb-4">
+                      <Calculator className="w-6 h-6" />
+                    </div>
+                    <h3 className="font-semibold text-gray-900 mb-2">Multi-Currency Support</h3>
+                    <p className="text-gray-600 text-sm">Calculate break-even points in USD, EUR, GBP, INR, JPY, and other major currencies worldwide.</p>
+                  </div>
+                  <div className="text-center p-6 bg-gray-50 rounded-xl">
+                    <div className="w-12 h-12 bg-blue-500 text-white rounded-lg flex items-center justify-center mx-auto mb-4">
+                      <Target className="w-6 h-6" />
+                    </div>
+                    <h3 className="font-semibold text-gray-900 mb-2">Visual Analysis</h3>
+                    <p className="text-gray-600 text-sm">Interactive charts and visual breakdowns showing profit zones, loss zones, and margin of safety.</p>
+                  </div>
+                  <div className="text-center p-6 bg-gray-50 rounded-xl">
+                    <div className="w-12 h-12 bg-purple-500 text-white rounded-lg flex items-center justify-center mx-auto mb-4">
+                      <i className="fas fa-chart-bar"></i>
+                    </div>
+                    <h3 className="font-semibold text-gray-900 mb-2">Detailed Metrics</h3>
+                    <p className="text-gray-600 text-sm">Comprehensive analysis including contribution margins, profit projections, and safety margins.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Business Applications Section */}
+              <div className="mt-8 bg-white rounded-2xl shadow-lg p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Break-Even Analysis Applications</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Startup & New Business Planning</h3>
+                    <ul className="text-gray-600 space-y-2">
+                      <li>• Determine minimum viable product pricing</li>
+                      <li>• Set realistic sales targets for new ventures</li>
+                      <li>• Evaluate business model feasibility</li>
+                      <li>• Calculate funding requirements</li>
+                      <li>• Plan operational capacity needs</li>
+                    </ul>
+                    
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4 mt-6">Product Launch Strategy</h3>
+                    <ul className="text-gray-600 space-y-2">
+                      <li>• Optimize product pricing strategies</li>
+                      <li>• Calculate marketing budget requirements</li>
+                      <li>• Set production volume targets</li>
+                      <li>• Evaluate distribution channel costs</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Financial Planning & Analysis</h3>
+                    <ul className="text-gray-600 space-y-2">
+                      <li>• Monthly and annual budget planning</li>
+                      <li>• Investment decision making</li>
+                      <li>• Cost structure optimization</li>
+                      <li>• Profit margin analysis</li>
+                      <li>• Risk assessment and management</li>
+                    </ul>
+                    
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4 mt-6">Operational Decisions</h3>
+                    <ul className="text-gray-600 space-y-2">
+                      <li>• Production planning and scheduling</li>
+                      <li>• Capacity utilization optimization</li>
+                      <li>• Make-or-buy decisions</li>
+                      <li>• Outsourcing cost analysis</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Industry Use Cases Section */}
+              <div className="mt-8 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Industry-Specific Use Cases</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div className="bg-white rounded-xl p-6">
+                    <h3 className="font-semibold text-gray-900 mb-3">Manufacturing</h3>
+                    <p className="text-gray-600 text-sm mb-3">Calculate break-even points for production runs, new product lines, and equipment investments.</p>
+                    <ul className="text-gray-500 text-xs space-y-1">
+                      <li>• Production capacity planning</li>
+                      <li>• Equipment ROI analysis</li>
+                      <li>• Raw material cost optimization</li>
+                    </ul>
+                  </div>
+                  <div className="bg-white rounded-xl p-6">
+                    <h3 className="font-semibold text-gray-900 mb-3">Retail & E-commerce</h3>
+                    <p className="text-gray-600 text-sm mb-3">Determine minimum sales volumes, pricing strategies, and inventory requirements.</p>
+                    <ul className="text-gray-500 text-xs space-y-1">
+                      <li>• Store profitability analysis</li>
+                      <li>• Product mix optimization</li>
+                      <li>• Seasonal planning</li>
+                    </ul>
+                  </div>
+                  <div className="bg-white rounded-xl p-6">
+                    <h3 className="font-semibold text-gray-900 mb-3">Service Businesses</h3>
+                    <p className="text-gray-600 text-sm mb-3">Calculate client volume requirements, service pricing, and staff utilization rates.</p>
+                    <ul className="text-gray-500 text-xs space-y-1">
+                      <li>• Service pricing models</li>
+                      <li>• Staff productivity targets</li>
+                      <li>• Contract profitability</li>
+                    </ul>
+                  </div>
+                  <div className="bg-white rounded-xl p-6">
+                    <h3 className="font-semibold text-gray-900 mb-3">Software & SaaS</h3>
+                    <p className="text-gray-600 text-sm mb-3">Analyze subscription models, customer acquisition costs, and pricing tiers.</p>
+                    <ul className="text-gray-500 text-xs space-y-1">
+                      <li>• Subscription pricing optimization</li>
+                      <li>• Customer lifetime value</li>
+                      <li>• Feature tier analysis</li>
+                    </ul>
+                  </div>
+                  <div className="bg-white rounded-xl p-6">
+                    <h3 className="font-semibold text-gray-900 mb-3">Restaurants & Food</h3>
+                    <p className="text-gray-600 text-sm mb-3">Calculate covers needed, menu pricing, and operational break-even points.</p>
+                    <ul className="text-gray-500 text-xs space-y-1">
+                      <li>• Menu pricing strategies</li>
+                      <li>• Daily sales targets</li>
+                      <li>• Labor cost optimization</li>
+                    </ul>
+                  </div>
+                  <div className="bg-white rounded-xl p-6">
+                    <h3 className="font-semibold text-gray-900 mb-3">Consulting & Freelancing</h3>
+                    <p className="text-gray-600 text-sm mb-3">Determine hourly rates, project minimums, and capacity requirements.</p>
+                    <ul className="text-gray-500 text-xs space-y-1">
+                      <li>• Hourly rate calculations</li>
+                      <li>• Project profitability</li>
+                      <li>• Capacity planning</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* Understanding Break-Even Components */}
+              <div className="mt-8 bg-white rounded-2xl shadow-lg p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Understanding Break-Even Analysis Components</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Fixed Costs Explained</h3>
+                    <p className="text-gray-600 mb-3">
+                      Fixed costs remain constant regardless of production volume or sales activity. These expenses must be 
+                      paid whether you sell zero units or thousands of units.
+                    </p>
+                    <div className="bg-gray-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-gray-800 mb-2">Common Fixed Costs Include:</h4>
+                      <ul className="text-gray-600 text-sm space-y-1">
+                        <li>• Rent and lease payments</li>
+                        <li>• Insurance premiums</li>
+                        <li>• Fixed salaries and benefits</li>
+                        <li>• Loan payments and interest</li>
+                        <li>• Software subscriptions</li>
+                        <li>• Depreciation expenses</li>
+                        <li>• Property taxes</li>
+                      </ul>
+                    </div>
+                    
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4 mt-6">Variable Costs Explained</h3>
+                    <p className="text-gray-600 mb-3">
+                      Variable costs change proportionally with production volume. These costs increase as you produce 
+                      more units and decrease when production slows down.
+                    </p>
+                    <div className="bg-gray-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-gray-800 mb-2">Common Variable Costs Include:</h4>
+                      <ul className="text-gray-600 text-sm space-y-1">
+                        <li>• Raw materials and inventory</li>
+                        <li>• Direct labor costs</li>
+                        <li>• Packaging and shipping</li>
+                        <li>• Sales commissions</li>
+                        <li>• Transaction fees</li>
+                        <li>• Utility costs (production-related)</li>
+                        <li>• Quality control costs</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Key Formulas & Calculations</h3>
                     <div className="space-y-4">
-                      <h4 className="text-lg font-semibold text-gray-800">Margin of Safety</h4>
-                      <p className="text-gray-600 text-sm mb-3">
-                        Margin of safety represents the difference between your actual or projected sales 
-                        and the break-even point. A higher margin indicates lower business risk.
-                      </p>
-                      <div className="bg-gray-50 rounded-lg p-4">
-                        <p className="text-gray-700 text-sm font-mono">
-                          Margin of Safety = (Actual Sales - Break-Even Sales) ÷ Actual Sales × 100
+                      <div className="bg-blue-50 rounded-lg p-4 border-l-4 border-blue-500">
+                        <h4 className="font-semibold text-blue-900 mb-2">Break-Even Point (Units)</h4>
+                        <p className="text-blue-800 font-mono text-sm">
+                          BEP = Fixed Costs ÷ (Selling Price - Variable Cost per Unit)
                         </p>
                       </div>
-
-                      <h4 className="text-lg font-semibold text-gray-800 mt-6">Contribution Margin</h4>
-                      <p className="text-gray-600 text-sm mb-3">
-                        Contribution margin is the amount remaining from sales revenue after variable 
-                        costs are deducted. This amount contributes to covering fixed costs and profit.
-                      </p>
-                      <div className="bg-gray-50 rounded-lg p-4">
-                        <p className="text-gray-700 text-sm font-mono">
-                          Contribution Margin = Selling Price - Variable Cost per Unit
+                      
+                      <div className="bg-green-50 rounded-lg p-4 border-l-4 border-green-500">
+                        <h4 className="font-semibold text-green-900 mb-2">Break-Even Point (Revenue)</h4>
+                        <p className="text-green-800 font-mono text-sm">
+                          BEP Revenue = Break-Even Units × Selling Price per Unit
+                        </p>
+                      </div>
+                      
+                      <div className="bg-purple-50 rounded-lg p-4 border-l-4 border-purple-500">
+                        <h4 className="font-semibold text-purple-900 mb-2">Contribution Margin</h4>
+                        <p className="text-purple-800 font-mono text-sm">
+                          CM = Selling Price - Variable Cost per Unit
+                        </p>
+                      </div>
+                      
+                      <div className="bg-orange-50 rounded-lg p-4 border-l-4 border-orange-500">
+                        <h4 className="font-semibold text-orange-900 mb-2">Margin of Safety</h4>
+                        <p className="text-orange-800 font-mono text-sm">
+                          MOS = (Actual Sales - Break-Even Sales) ÷ Actual Sales × 100
                         </p>
                       </div>
                     </div>
-
-                    <div className="space-y-4">
-                      <h4 className="text-lg font-semibold text-gray-800">Multi-Product Analysis</h4>
-                      <p className="text-gray-600 text-sm mb-3">
-                        For businesses with multiple products, weighted average contribution margins 
-                        help determine overall break-even points based on sales mix.
-                      </p>
-                      <ul className="text-gray-600 text-sm space-y-1 list-disc list-inside">
-                        <li>Calculate individual product contribution margins</li>
-                        <li>Determine sales mix percentages</li>
-                        <li>Compute weighted average contribution margin</li>
-                        <li>Apply standard break-even formula</li>
+                    
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4 mt-6">Important Considerations</h3>
+                    <div className="bg-yellow-50 rounded-lg p-4 border-l-4 border-yellow-500">
+                      <ul className="text-yellow-800 text-sm space-y-2">
+                        <li>• Break-even analysis assumes linear cost behavior</li>
+                        <li>• All units produced are sold (no inventory changes)</li>
+                        <li>• Product mix remains constant</li>
+                        <li>• Fixed costs remain truly fixed within relevant range</li>
+                        <li>• Variable costs per unit remain constant</li>
+                        <li>• Selling price remains constant per unit</li>
                       </ul>
-
-                      <h4 className="text-lg font-semibold text-gray-800 mt-6">Target Profit Analysis</h4>
-                      <p className="text-gray-600 text-sm mb-3">
-                        Extend break-even analysis to determine sales volume needed to achieve 
-                        specific profit targets beyond the break-even point.
-                      </p>
-                      <div className="bg-gray-50 rounded-lg p-4">
-                        <p className="text-gray-700 text-sm font-mono">
-                          Target Units = (Fixed Costs + Target Profit) ÷ Contribution Margin
-                        </p>
-                      </div>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
 
-              {/* FAQs Section */}
-              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h3>
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div className="space-y-6">
-                      <div>
-                        <h4 className="font-semibold text-gray-800 mb-2">What is a good break-even point?</h4>
-                        <p className="text-gray-600 text-sm">
-                          A good break-even point is achievable within your market capacity and allows for 
-                          reasonable profit margins. Generally, a lower break-even point indicates better 
-                          business efficiency and reduced risk.
-                        </p>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-gray-800 mb-2">How often should I calculate break-even?</h4>
-                        <p className="text-gray-600 text-sm">
-                          Review break-even analysis monthly or quarterly, and whenever there are significant 
-                          changes in costs, pricing, or business operations. Regular analysis helps maintain 
-                          profitability awareness.
-                        </p>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-gray-800 mb-2">Can break-even analysis help with pricing?</h4>
-                        <p className="text-gray-600 text-sm">
-                          Yes, break-even analysis is excellent for pricing decisions. It shows the minimum 
-                          price needed to cover costs and helps evaluate how pricing changes affect profitability.
-                        </p>
-                      </div>
-                    </div>
-                    <div className="space-y-6">
-                      <div>
-                        <h4 className="font-semibold text-gray-800 mb-2">What if my costs vary significantly?</h4>
-                        <p className="text-gray-600 text-sm">
-                          For businesses with highly variable costs, use average costs or create multiple 
-                          scenarios to understand different break-even points under various conditions.
-                        </p>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-gray-800 mb-2">Is break-even analysis suitable for service businesses?</h4>
-                        <p className="text-gray-600 text-sm">
-                          Absolutely. Service businesses can use break-even analysis by treating billable hours, 
-                          clients served, or projects completed as their "units" for calculation purposes.
-                        </p>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-gray-800 mb-2">How does seasonality affect break-even analysis?</h4>
-                        <p className="text-gray-600 text-sm">
-                          Seasonal businesses should calculate break-even points for different periods and ensure 
-                          peak seasons generate sufficient profit to cover off-season fixed costs.
-                        </p>
-                      </div>
-                    </div>
+              {/* Tips for Effective Break-Even Analysis */}
+              <div className="mt-8 bg-gradient-to-br from-green-50 to-teal-50 rounded-2xl p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Tips for Effective Break-Even Analysis</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Best Practices</h3>
+                    <ul className="space-y-3">
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <span className="text-gray-600 text-sm">Use accurate, up-to-date cost data for reliable calculations</span>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <span className="text-gray-600 text-sm">Regularly update your break-even analysis as costs change</span>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <span className="text-gray-600 text-sm">Consider seasonal variations in both costs and sales</span>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <span className="text-gray-600 text-sm">Perform sensitivity analysis on key variables</span>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <span className="text-gray-600 text-sm">Include all relevant costs in your analysis</span>
+                      </li>
+                    </ul>
                   </div>
-                </CardContent>
-              </Card>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Common Mistakes to Avoid</h3>
+                    <ul className="space-y-3">
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-red-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <span className="text-gray-600 text-sm">Misclassifying costs as fixed when they're actually variable</span>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-red-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <span className="text-gray-600 text-sm">Ignoring capacity constraints in the analysis</span>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-red-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <span className="text-gray-600 text-sm">Using outdated or inaccurate cost information</span>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-red-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <span className="text-gray-600 text-sm">Assuming costs remain linear at all production levels</span>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="w-2 h-2 bg-red-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                        <span className="text-gray-600 text-sm">Failing to consider market demand constraints</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
 
-              {/* Best Practices */}
-              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Break-Even Analysis Best Practices</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Financial Analysis Best Practices */}
+              <div className="mt-8 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Financial Analysis Best Practices</h2>
+                <p className="text-gray-600 text-center mb-8 max-w-3xl mx-auto">
+                  Maximize the effectiveness of your break-even analysis by following these proven financial planning 
+                  strategies. Build a comprehensive understanding of your business finances and make data-driven decisions.
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                  
+                  <div className="bg-white rounded-lg p-4 text-center">
+                    <div className="w-12 h-12 bg-blue-500 text-white rounded-lg flex items-center justify-center mx-auto mb-3">
+                      <i className="fas fa-calculator text-xl"></i>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">ROI Analysis</h4>
+                    <p className="text-xs text-gray-600">Calculate return on investment for business decisions and compare opportunities effectively</p>
+                  </div>
+
+                  <div className="bg-white rounded-lg p-4 text-center">
+                    <div className="w-12 h-12 bg-green-500 text-white rounded-lg flex items-center justify-center mx-auto mb-3">
+                      <i className="fas fa-hand-holding-usd text-xl"></i>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Loan Planning</h4>
+                    <p className="text-xs text-gray-600">Calculate loan payments and understand financing costs for business expansion planning</p>
+                  </div>
+
+                  <div className="bg-white rounded-lg p-4 text-center">
+                    <div className="w-12 h-12 bg-purple-500 text-white rounded-lg flex items-center justify-center mx-auto mb-3">
+                      <i className="fas fa-chart-area text-xl"></i>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Investment Returns</h4>
+                    <p className="text-xs text-gray-600">Analyze investment performance and compare different investment strategies systematically</p>
+                  </div>
+
+                  <div className="bg-white rounded-lg p-4 text-center">
+                    <div className="w-12 h-12 bg-orange-500 text-white rounded-lg flex items-center justify-center mx-auto mb-3">
+                      <i className="fas fa-piggy-bank text-xl"></i>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Growth Planning</h4>
+                    <p className="text-xs text-gray-600">Calculate growth of business savings and develop long-term investment strategies</p>
+                  </div>
+
+                  <div className="bg-white rounded-lg p-4 text-center">
+                    <div className="w-12 h-12 bg-teal-500 text-white rounded-lg flex items-center justify-center mx-auto mb-3">
+                      <i className="fas fa-balance-scale text-xl"></i>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Net Worth Tracking</h4>
+                    <p className="text-xs text-gray-600">Track business and personal financial health with comprehensive analysis methods</p>
+                  </div>
+
+                  <div className="bg-white rounded-lg p-4 text-center">
+                    <div className="w-12 h-12 bg-pink-500 text-white rounded-lg flex items-center justify-center mx-auto mb-3">
+                      <i className="fas fa-percentage text-xl"></i>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Pricing Strategy</h4>
+                    <p className="text-xs text-gray-600">Calculate pricing strategies and promotional discounts for effective sales planning</p>
+                  </div>
+
+                  <div className="bg-white rounded-lg p-4 text-center">
+                    <div className="w-12 h-12 bg-indigo-500 text-white rounded-lg flex items-center justify-center mx-auto mb-3">
+                      <i className="fas fa-coins text-xl"></i>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Investment Planning</h4>
+                    <p className="text-xs text-gray-600">Plan systematic investment strategies for sustainable business growth funding</p>
+                  </div>
+
+                  <div className="bg-white rounded-lg p-4 text-center">
+                    <div className="w-12 h-12 bg-yellow-500 text-white rounded-lg flex items-center justify-center mx-auto mb-3">
+                      <i className="fas fa-clock text-xl"></i>
+                    </div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Long-term Planning</h4>
+                    <p className="text-xs text-gray-600">Plan long-term financial security and develop strategic business exit strategies</p>
+                  </div>
+
+                </div>
+              </div>
+
+              {/* FAQ Section */}
+              <div className="mt-8 bg-white rounded-2xl shadow-lg p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Frequently Asked Questions About Break-Even Analysis</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
                     <div>
-                      <h4 className="text-lg font-semibold text-gray-800 mb-4">Do's</h4>
-                      <ul className="space-y-3">
-                        <li className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-gray-600 text-sm">Use accurate, up-to-date cost data</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-gray-600 text-sm">Regularly update your analysis as costs change</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-gray-600 text-sm">Consider seasonal variations in both costs and sales</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-gray-600 text-sm">Perform sensitivity analysis on key variables</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-gray-600 text-sm">Include all relevant costs in your analysis</span>
-                        </li>
-                      </ul>
+                      <h3 className="font-semibold text-gray-900 mb-2">What is a good break-even point?</h3>
+                      <p className="text-gray-600 text-sm">A good break-even point is one that's achievable within your market capacity and allows for reasonable profit margins above the break-even level. Generally, a lower break-even point indicates better business efficiency and reduced risk.</p>
                     </div>
                     <div>
-                      <h4 className="text-lg font-semibold text-gray-800 mb-4">Don'ts</h4>
-                      <ul className="space-y-3">
-                        <li className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-gray-600 text-sm">Misclassify costs as fixed when they're variable</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-gray-600 text-sm">Ignore capacity constraints in your analysis</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-gray-600 text-sm">Use outdated or inaccurate cost information</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-gray-600 text-sm">Assume costs remain linear at all production levels</span>
-                        </li>
-                        <li className="flex items-start gap-3">
-                          <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-gray-600 text-sm">Fail to consider market demand constraints</span>
-                        </li>
-                      </ul>
+                      <h3 className="font-semibold text-gray-900 mb-2">How often should I calculate break-even?</h3>
+                      <p className="text-gray-600 text-sm">Review your break-even analysis monthly or quarterly, and whenever there are significant changes in costs, pricing, or business operations. Regular analysis helps you stay on top of profitability trends.</p>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-900 mb-2">Can break-even analysis help with pricing?</h3>
+                      <p className="text-gray-600 text-sm">Yes, break-even analysis is excellent for pricing decisions. It shows the minimum price needed to cover costs and helps evaluate pricing strategies' profitability impact for optimal business performance.</p>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-900 mb-2">What's the difference between break-even analysis and ROI?</h3>
+                      <p className="text-gray-600 text-sm">Break-even analysis determines when you'll recover costs, while ROI measures investment profitability. Both are crucial for comprehensive business decision-making and financial planning.</p>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
+                  <div className="space-y-4">
+                    <div>
+                      <h3 className="font-semibold text-gray-900 mb-2">What if my costs vary significantly?</h3>
+                      <p className="text-gray-600 text-sm">For businesses with highly variable costs, consider using average costs or creating multiple scenarios to understand different break-even points under various conditions. This provides a more comprehensive risk assessment.</p>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-900 mb-2">Is break-even analysis suitable for service businesses?</h3>
+                      <p className="text-gray-600 text-sm">Absolutely. Service businesses can use break-even analysis by treating billable hours, clients served, or projects completed as their "units." It's particularly useful for freelancers and consultants.</p>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-900 mb-2">How does seasonality affect break-even analysis?</h3>
+                      <p className="text-gray-600 text-sm">Seasonal businesses should calculate break-even points for different periods and ensure they generate sufficient profit during peak seasons to cover off-season fixed costs. Consider creating monthly break-even targets.</p>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-900 mb-2">Can I use this for loan planning?</h3>
+                      <p className="text-gray-600 text-sm">Yes, break-even analysis helps determine loan affordability by showing minimum revenue requirements for comprehensive financial planning and risk assessment.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </main>
-
-      <Footer />
-    </div>
+          </section>
+        </main>
+        
+        <Footer />
+      </div>
+    </>
   );
 };
 
