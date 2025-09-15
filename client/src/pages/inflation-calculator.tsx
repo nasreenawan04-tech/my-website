@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -24,22 +23,22 @@ interface InflationResult {
 
 export default function InflationCalculator() {
   const [calculationType, setCalculationType] = useState('future-value');
-  
+
   // Future Value inputs
   const [currentAmount, setCurrentAmount] = useState('10000');
   const [inflationRate, setInflationRate] = useState('3.5');
   const [years, setYears] = useState('10');
-  
+
   // Past Value inputs
   const [pastAmount, setPastAmount] = useState('1000');
   const [pastYear, setPastYear] = useState('2000');
   const [currentYear, setCurrentYear] = useState('2024');
-  
+
   // Purchasing Power inputs
   const [baseAmount, setBaseAmount] = useState('50000');
   const [targetYear, setTargetYear] = useState('2030');
   const [baseYear, setBaseYear] = useState('2024');
-  
+
   const [currency, setCurrency] = useState('USD');
   const [country, setCountry] = useState('US');
   const [result, setResult] = useState<InflationResult | null>(null);
@@ -81,7 +80,7 @@ export default function InflationCalculator() {
     const amount = parseFloat(currentAmount);
     const rate = parseFloat(inflationRate) / 100;
     const time = parseFloat(years);
-    
+
     if (amount <= 0 || rate < 0 || time <= 0) return;
 
     const futureValue = amount * Math.pow(1 + rate, time);
@@ -106,13 +105,13 @@ export default function InflationCalculator() {
     const startYear = parseFloat(pastYear);
     const endYear = parseFloat(currentYear);
     const yearsDiff = endYear - startYear;
-    
+
     if (amount <= 0 || yearsDiff <= 0) return;
 
     // Use country-specific average inflation rate
     const countryData = countries.find(c => c.code === country);
     const avgRate = (countryData?.avgInflation || 3.0) / 100;
-    
+
     const currentValue = amount * Math.pow(1 + avgRate, yearsDiff);
     const totalInflation = ((currentValue - amount) / amount) * 100;
     const purchasingPowerLoss = ((amount / currentValue) * 100) - 100;
@@ -135,16 +134,16 @@ export default function InflationCalculator() {
     const startYear = parseFloat(baseYear);
     const endYear = parseFloat(targetYear);
     const yearsDiff = endYear - startYear;
-    
+
     if (amount <= 0 || yearsDiff === 0) return;
 
     // Use country-specific average inflation rate
     const countryData = countries.find(c => c.code === country);
     const avgRate = (countryData?.avgInflation || 3.0) / 100;
-    
+
     let futureValue: number;
     let purchasingPowerLoss: number;
-    
+
     if (yearsDiff > 0) {
       // Future purchasing power
       futureValue = amount * Math.pow(1 + avgRate, yearsDiff);
@@ -154,7 +153,7 @@ export default function InflationCalculator() {
       futureValue = amount / Math.pow(1 + avgRate, Math.abs(yearsDiff));
       purchasingPowerLoss = ((futureValue / amount) * 100) - 100;
     }
-    
+
     const totalInflation = ((futureValue - amount) / amount) * 100;
 
     setResult({
@@ -216,7 +215,7 @@ export default function InflationCalculator() {
     };
 
     const config = currencyMap[currency] || currencyMap.USD;
-    
+
     return new Intl.NumberFormat(config.locale, {
       style: 'currency',
       currency: config.currency,
@@ -271,7 +270,7 @@ export default function InflationCalculator() {
 
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50" data-testid="page-inflation-calculator">
         <Header />
-        
+
         <main>
           {/* Hero Section */}
           <section className="relative py-20 sm:py-28 lg:py-32 overflow-hidden">
@@ -306,7 +305,7 @@ export default function InflationCalculator() {
                         <h2 className="text-3xl font-bold text-gray-900 mb-2">Inflation Configuration</h2>
                         <p className="text-gray-600">Enter your amount and time period for accurate inflation impact calculations</p>
                       </div>
-                      
+
                       {/* Country Selection */}
                       <div className="space-y-3">
                         <Label htmlFor="country" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
@@ -578,7 +577,7 @@ export default function InflationCalculator() {
                     {/* Results Section */}
                     <div className="xl:col-span-2 bg-gradient-to-br from-gray-50 to-purple-50 p-8 lg:p-12">
                       <h2 className="text-2xl font-bold text-gray-900 mb-8">Inflation Analysis</h2>
-                      
+
                       {result ? (
                         <div className="space-y-6" data-testid="inflation-results">
                           {/* Final Amount Highlight */}
@@ -602,7 +601,7 @@ export default function InflationCalculator() {
                                 </span>
                               </div>
                             </div>
-                            
+
                             <div className="bg-white rounded-xl p-4 shadow-sm">
                               <div className="flex justify-between items-center">
                                 <span className="font-medium text-gray-700">Time Period</span>
@@ -698,17 +697,17 @@ export default function InflationCalculator() {
                       <h3 className="font-bold text-gray-900 mb-2">Global Economic Data</h3>
                       <p className="text-gray-600">Access historical inflation rates from 20+ countries for accurate regional analysis and localized projections.</p>
                     </div>
-                    
+
                     <div className="border-l-4 border-green-500 pl-6">
                       <h3 className="font-bold text-gray-900 mb-2">Multiple Calculation Types</h3>
                       <p className="text-gray-600">Calculate future value, analyze past equivalents, and compare purchasing power across different time periods.</p>
                     </div>
-                    
+
                     <div className="border-l-4 border-purple-500 pl-6">
                       <h3 className="font-bold text-gray-900 mb-2">Currency Support</h3>
                       <p className="text-gray-600">Support for major global currencies with accurate formatting and regional inflation data integration.</p>
                     </div>
-                    
+
                     <div className="border-l-4 border-orange-500 pl-6">
                       <h3 className="font-bold text-gray-900 mb-2">Financial Planning Insights</h3>
                       <p className="text-gray-600">Detailed analysis of purchasing power erosion and inflation impact for informed financial decision-making.</p>
@@ -725,17 +724,17 @@ export default function InflationCalculator() {
                       <h3 className="font-bold text-gray-900 mb-2">Financial Planners</h3>
                       <p className="text-gray-600 text-sm">Provide clients with accurate inflation projections for retirement planning and long-term investment strategies.</p>
                     </div>
-                    
+
                     <div className="bg-green-50 rounded-xl p-4">
                       <h3 className="font-bold text-gray-900 mb-2">Investors</h3>
                       <p className="text-gray-600 text-sm">Evaluate real returns on investments by factoring in inflation impact and purchasing power changes.</p>
                     </div>
-                    
+
                     <div className="bg-purple-50 rounded-xl p-4">
                       <h3 className="font-bold text-gray-900 mb-2">Economists & Researchers</h3>
                       <p className="text-gray-600 text-sm">Analyze historical economic trends and compare purchasing power across different countries and time periods.</p>
                     </div>
-                    
+
                     <div className="bg-orange-50 rounded-xl p-4">
                       <h3 className="font-bold text-gray-900 mb-2">Retirees</h3>
                       <p className="text-gray-600 text-sm">Understand how inflation affects retirement savings and plan for maintaining purchasing power in retirement.</p>
@@ -759,7 +758,7 @@ export default function InflationCalculator() {
                       <p><strong>Planning Tip:</strong> Factor location-specific housing inflation for accurate projections</p>
                     </div>
                   </div>
-                  
+
                   <div className="bg-white rounded-xl p-6 shadow-sm">
                     <h3 className="text-xl font-bold text-blue-900 mb-4">Healthcare & Education</h3>
                     <div className="space-y-3 text-sm text-blue-800">
@@ -769,7 +768,7 @@ export default function InflationCalculator() {
                       <p><strong>Strategy:</strong> Dedicated savings accounts for healthcare and education costs</p>
                     </div>
                   </div>
-                  
+
                   <div className="bg-white rounded-xl p-6 shadow-sm">
                     <h3 className="text-xl font-bold text-green-900 mb-4">Food & Energy</h3>
                     <div className="space-y-3 text-sm text-green-800">
@@ -809,7 +808,7 @@ export default function InflationCalculator() {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div>
                     <h3 className="text-xl font-bold text-orange-900 mb-4">Modern Inflation Protection</h3>
                     <div className="space-y-4">
@@ -898,21 +897,21 @@ export default function InflationCalculator() {
                         Our calculator uses historical data and established economic patterns to provide highly accurate projections. However, actual inflation can vary due to unexpected economic events, policy changes, and global factors. The tool is most accurate for long-term trends rather than short-term fluctuations.
                       </p>
                     </div>
-                    
+
                     <div>
                       <h3 className="text-lg font-bold text-gray-900 mb-3">What's the difference between inflation and deflation?</h3>
                       <p className="text-gray-600 leading-relaxed">
                         Inflation represents rising prices and decreasing purchasing power over time, while deflation is the opposite - falling prices and increasing purchasing power. Both can impact economic planning, but deflation is generally rarer and can indicate economic problems.
                       </p>
                     </div>
-                    
+
                     <div>
                       <h3 className="text-lg font-bold text-gray-900 mb-3">How does inflation affect different age groups?</h3>
                       <p className="text-gray-600 leading-relaxed">
                         Young people benefit from inflation if wages rise faster than prices, while retirees on fixed incomes suffer most. Middle-aged individuals with mortgages may benefit as loan payments become easier with inflated wages, but face higher costs for goods and services.
                       </p>
                     </div>
-                    
+
                     <div>
                       <h3 className="text-lg font-bold text-gray-900 mb-3">Should I adjust my savings strategy for inflation?</h3>
                       <p className="text-gray-600 leading-relaxed">
@@ -920,7 +919,7 @@ export default function InflationCalculator() {
                       </p>
                     </div>
                   </div>
-                  
+
                   <div className="space-y-6">
                     <div>
                       <h3 className="text-lg font-bold text-gray-900 mb-3">Why do inflation rates vary between countries?</h3>
@@ -928,21 +927,21 @@ export default function InflationCalculator() {
                         Different monetary policies, economic structures, currency stability, and development levels create varying inflation environments. Emerging economies often experience higher inflation due to rapid growth and currency volatility, while developed nations target lower, stable rates.
                       </p>
                     </div>
-                    
+
                     <div>
                       <h3 className="text-lg font-bold text-gray-900 mb-3">How do central banks control inflation?</h3>
                       <p className="text-gray-600 leading-relaxed">
                         Central banks use interest rate adjustments, money supply management, and forward guidance to influence inflation. Higher rates typically reduce inflation by making borrowing more expensive and encouraging saving, while lower rates stimulate economic activity and can increase inflation.
                       </p>
                     </div>
-                    
+
                     <div>
                       <h3 className="text-lg font-bold text-gray-900 mb-3">What's considered a healthy inflation rate?</h3>
                       <p className="text-gray-600 leading-relaxed">
                         Most developed economies target 2-3% annual inflation as healthy for economic growth. This rate encourages spending and investment while maintaining price stability. Rates below 1% may indicate economic weakness, while rates above 4% can signal overheating.
                       </p>
                     </div>
-                    
+
                     <div>
                       <h3 className="text-lg font-bold text-gray-900 mb-3">How often should I recalculate inflation impact?</h3>
                       <p className="text-gray-600 leading-relaxed">
@@ -1064,7 +1063,7 @@ export default function InflationCalculator() {
             </Card>
           </div>
         </main>
-        
+
         <Footer />
       </div>
     </>
