@@ -9,7 +9,6 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Clock } from 'lucide-react';
 
 interface SalaryResult {
   annualSalary: number;
@@ -177,11 +176,14 @@ export default function SalaryToHourlyCalculator() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>Salary to Hourly Calculator - Convert Salary and Hourly Wages | DapsiWow</title>
+        <title>Salary to Hourly Calculator - Convert Annual Salary to Hourly Wage | DapsiWow</title>
         <meta name="description" content="Free salary to hourly calculator. Convert annual salary to hourly wage or hourly rate to yearly salary. Supports 12+ countries, multiple currencies, and includes vacation time calculations. Get instant results with detailed pay period breakdowns." />
         <meta name="keywords" content="salary to hourly calculator, hourly to salary converter, annual salary calculator, hourly wage calculator, salary converter, wage calculator, pay calculator, income converter, salary breakdown, hourly rate calculator" />
+        <meta property="og:title" content="Salary to Hourly Calculator - Convert Annual Salary to Hourly Wage | DapsiWow" />
+        <meta property="og:description" content="Free salary to hourly calculator with support for multiple currencies and country-specific working hour standards." />
+        <meta property="og:type" content="website" />
         <link rel="canonical" href="https://dapsiwow.com/tools/salary-to-hourly-calculator" />
       </Helmet>
       
@@ -189,41 +191,45 @@ export default function SalaryToHourlyCalculator() {
       
       <main>
         {/* Hero Section */}
-        <section className="gradient-hero text-white py-16 pt-24">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-              <Clock className="w-8 h-8 text-white" />
-            </div>
-            <h1 className="text-4xl sm:text-5xl font-bold mb-6">
-              Salary to Hourly Calculator - Convert Annual Salary to Hourly Wage
-            </h1>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
-              Free online salary to hourly calculator. Instantly convert annual salary to hourly rate or hourly wage to yearly salary. Supports multiple currencies and country-specific working hours standards.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4 text-sm">
-              <span className="bg-white bg-opacity-20 px-3 py-1 rounded-full">✓ Multiple Currencies</span>
-              <span className="bg-white bg-opacity-20 px-3 py-1 rounded-full">✓ Country Standards</span>
-              <span className="bg-white bg-opacity-20 px-3 py-1 rounded-full">✓ Vacation Time Included</span>
-              <span className="bg-white bg-opacity-20 px-3 py-1 rounded-full">✓ Detailed Breakdown</span>
+        <section className="relative py-20 sm:py-28 lg:py-32 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
+          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="space-y-8">
+              <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+                <span className="text-sm font-medium text-blue-700">Professional Salary Calculator</span>
+              </div>
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight">
+                Salary to Hourly
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                  Calculator
+                </span>
+              </h1>
+              <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                Convert annual salary to hourly wage or hourly rate to yearly salary with precision and country-specific calculations
+              </p>
             </div>
           </div>
         </section>
 
-        <div className="max-w-6xl mx-auto px-4 py-12">
-          <Card className="bg-white shadow-sm border-0">
-            <CardContent className="p-8">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="max-w-7xl mx-auto px-4 py-16">
+          {/* Main Calculator Card */}
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+            <CardContent className="p-0">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
                 {/* Input Section */}
-                <div className="space-y-6">
-                  <h2 className="text-2xl font-semibold text-gray-900 mb-8">Salary Converter</h2>
+                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
+                  <div>
+                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Salary Configuration</h2>
+                    <p className="text-gray-600">Convert between annual salary and hourly wage with accurate calculations</p>
+                  </div>
                   
                   {/* Country Selection */}
                   <div className="space-y-3">
-                    <Label htmlFor="country" className="text-sm font-medium text-gray-700">
+                    <Label htmlFor="country" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
                       Country (Auto-fills standard working hours)
                     </Label>
                     <Select value={country} onValueChange={handleCountryChange}>
-                      <SelectTrigger className="h-12 border-gray-200 rounded-lg">
+                      <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-country">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -244,124 +250,137 @@ export default function SalaryToHourlyCalculator() {
                     </TabsList>
 
                     <TabsContent value="salary-to-hourly" className="space-y-6 mt-6">
-                      <div className="space-y-3">
-                        <Label htmlFor="annual-salary" className="text-sm font-medium text-gray-700">
-                          Annual Salary ({currency})
-                        </Label>
-                        <Input
-                          id="annual-salary"
-                          type="number"
-                          value={annualSalary}
-                          onChange={(e) => setAnnualSalary(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
-                          placeholder="50,000"
-                          min="0"
-                        />
-                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="md:col-span-2 space-y-3">
+                          <Label htmlFor="annual-salary" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                            Annual Salary ({currency})
+                          </Label>
+                          <div className="relative">
+                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                            <Input
+                              id="annual-salary"
+                              type="number"
+                              value={annualSalary}
+                              onChange={(e) => setAnnualSalary(e.target.value)}
+                              className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              placeholder="50,000"
+                              min="0"
+                              data-testid="input-annual-salary"
+                            />
+                          </div>
+                        </div>
 
-                      <div className="space-y-3">
-                        <Label htmlFor="hours-per-week" className="text-sm font-medium text-gray-700">
-                          Hours per Week
-                        </Label>
-                        <Input
-                          id="hours-per-week"
-                          type="number"
-                          value={hoursPerWeek}
-                          onChange={(e) => setHoursPerWeek(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
-                          placeholder="40"
-                          min="1"
-                          max="168"
-                        />
-                      </div>
+                        <div className="space-y-3">
+                          <Label htmlFor="hours-per-week" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                            Hours per Week
+                          </Label>
+                          <Input
+                            id="hours-per-week"
+                            type="number"
+                            value={hoursPerWeek}
+                            onChange={(e) => setHoursPerWeek(e.target.value)}
+                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                            placeholder="40"
+                            min="1"
+                            max="168"
+                            data-testid="input-hours-per-week"
+                          />
+                        </div>
 
-                      <div className="space-y-3">
-                        <Label htmlFor="weeks-per-year" className="text-sm font-medium text-gray-700">
-                          Working Weeks per Year
-                        </Label>
-                        <Input
-                          id="weeks-per-year"
-                          type="number"
-                          value={weeksPerYear}
-                          onChange={(e) => setWeeksPerYear(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
-                          placeholder="52"
-                          min="1"
-                          max="52"
-                        />
-                        <div className="text-xs text-gray-500">
-                          Accounts for vacation, holidays, and unpaid leave
+                        <div className="space-y-3">
+                          <Label htmlFor="weeks-per-year" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                            Working Weeks per Year
+                          </Label>
+                          <Input
+                            id="weeks-per-year"
+                            type="number"
+                            value={weeksPerYear}
+                            onChange={(e) => setWeeksPerYear(e.target.value)}
+                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                            placeholder="52"
+                            min="1"
+                            max="52"
+                            data-testid="input-weeks-per-year"
+                          />
+                          <p className="text-sm text-gray-500">Accounts for vacation, holidays, and unpaid leave</p>
                         </div>
                       </div>
                     </TabsContent>
 
                     <TabsContent value="hourly-to-salary" className="space-y-6 mt-6">
-                      <div className="space-y-3">
-                        <Label htmlFor="hourly-wage" className="text-sm font-medium text-gray-700">
-                          Hourly Wage ({currency})
-                        </Label>
-                        <Input
-                          id="hourly-wage"
-                          type="number"
-                          value={hourlyWage}
-                          onChange={(e) => setHourlyWage(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
-                          placeholder="25.00"
-                          min="0"
-                          step="0.01"
-                        />
-                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="md:col-span-2 space-y-3">
+                          <Label htmlFor="hourly-wage" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                            Hourly Wage ({currency})
+                          </Label>
+                          <div className="relative">
+                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                            <Input
+                              id="hourly-wage"
+                              type="number"
+                              value={hourlyWage}
+                              onChange={(e) => setHourlyWage(e.target.value)}
+                              className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              placeholder="25.00"
+                              min="0"
+                              step="0.01"
+                              data-testid="input-hourly-wage"
+                            />
+                          </div>
+                        </div>
 
-                      <div className="space-y-3">
-                        <Label htmlFor="work-hours-per-week" className="text-sm font-medium text-gray-700">
-                          Hours per Week
-                        </Label>
-                        <Input
-                          id="work-hours-per-week"
-                          type="number"
-                          value={workHoursPerWeek}
-                          onChange={(e) => setWorkHoursPerWeek(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
-                          placeholder="40"
-                          min="1"
-                          max="168"
-                        />
-                      </div>
+                        <div className="space-y-3">
+                          <Label htmlFor="work-hours-per-week" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                            Hours per Week
+                          </Label>
+                          <Input
+                            id="work-hours-per-week"
+                            type="number"
+                            value={workHoursPerWeek}
+                            onChange={(e) => setWorkHoursPerWeek(e.target.value)}
+                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                            placeholder="40"
+                            min="1"
+                            max="168"
+                            data-testid="input-work-hours-per-week"
+                          />
+                        </div>
 
-                      <div className="space-y-3">
-                        <Label htmlFor="work-weeks-per-year" className="text-sm font-medium text-gray-700">
-                          Working Weeks per Year
-                        </Label>
-                        <Input
-                          id="work-weeks-per-year"
-                          type="number"
-                          value={workWeeksPerYear}
-                          onChange={(e) => setWorkWeeksPerYear(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
-                          placeholder="52"
-                          min="1"
-                          max="52"
-                        />
-                        <div className="text-xs text-gray-500">
-                          Accounts for vacation, holidays, and unpaid leave
+                        <div className="space-y-3">
+                          <Label htmlFor="work-weeks-per-year" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                            Working Weeks per Year
+                          </Label>
+                          <Input
+                            id="work-weeks-per-year"
+                            type="number"
+                            value={workWeeksPerYear}
+                            onChange={(e) => setWorkWeeksPerYear(e.target.value)}
+                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                            placeholder="52"
+                            min="1"
+                            max="52"
+                            data-testid="input-work-weeks-per-year"
+                          />
+                          <p className="text-sm text-gray-500">Accounts for vacation, holidays, and unpaid leave</p>
                         </div>
                       </div>
                     </TabsContent>
                   </Tabs>
 
                   {/* Action Buttons */}
-                  <div className="flex gap-4 pt-6">
+                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
                     <Button
                       onClick={calculationType === 'salary-to-hourly' ? calculateSalaryToHourly : calculateHourlyToSalary}
-                      className="flex-1 h-12 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg"
+                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      data-testid="button-convert"
                     >
-                      <Clock className="w-4 h-4 mr-2" />
-                      Convert
+                      Convert Salary
                     </Button>
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-12 px-8 border-gray-200 text-gray-600 hover:bg-gray-50 font-medium rounded-lg"
+                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      data-testid="button-reset"
                     >
                       Reset
                     </Button>
@@ -369,90 +388,102 @@ export default function SalaryToHourlyCalculator() {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gray-50 rounded-xl p-8">
-                  <h2 className="text-2xl font-semibold text-gray-900 mb-8">Conversion Results</h2>
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Results</h2>
                   
                   {result ? (
-                    <div className="space-y-6">
-                      {/* Main Results */}
-                      <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-white rounded-lg p-4 border border-gray-100">
-                          <div className="text-center space-y-2">
-                            <div className="text-sm text-gray-600">Hourly Rate</div>
-                            <div className="text-2xl font-bold text-blue-600">
-                              {formatCurrency(result.hourlyWage)}
-                            </div>
+                    <div className="space-y-6" data-testid="salary-results">
+                      {/* Main Result Highlights */}
+                      <div className="space-y-4">
+                        <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
+                          <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Hourly Rate</div>
+                          <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" data-testid="text-hourly-rate">
+                            {formatCurrency(result.hourlyWage)}
                           </div>
                         </div>
-                        <div className="bg-white rounded-lg p-4 border border-gray-100">
-                          <div className="text-center space-y-2">
-                            <div className="text-sm text-gray-600">Annual Salary</div>
-                            <div className="text-2xl font-bold text-green-600">
-                              {formatCurrency(result.annualSalary)}
-                            </div>
+                        <div className="bg-white rounded-2xl p-6 shadow-lg border border-green-100">
+                          <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Annual Salary</div>
+                          <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600" data-testid="text-annual-salary">
+                            {formatCurrency(result.annualSalary)}
                           </div>
                         </div>
                       </div>
 
                       {/* Detailed Breakdown */}
                       <div className="space-y-4">
-                        <h3 className="text-lg font-semibold text-gray-900">Pay Period Breakdown</h3>
+                        <h3 className="text-lg font-bold text-gray-900">Pay Period Breakdown</h3>
                         
-                        <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                          <span className="text-gray-600">Daily Rate</span>
-                          <span className="font-semibold text-gray-900">
-                            {formatCurrency(result.dailyWage)}
-                          </span>
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Daily Rate</span>
+                            <span className="font-bold text-gray-900" data-testid="text-daily-rate">
+                              {formatCurrency(result.dailyWage)}
+                            </span>
+                          </div>
                         </div>
-                        <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                          <span className="text-gray-600">Weekly Rate</span>
-                          <span className="font-semibold text-gray-900">
-                            {formatCurrency(result.weeklyWage)}
-                          </span>
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Weekly Rate</span>
+                            <span className="font-bold text-gray-900" data-testid="text-weekly-rate">
+                              {formatCurrency(result.weeklyWage)}
+                            </span>
+                          </div>
                         </div>
-                        <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                          <span className="text-gray-600">Monthly Rate</span>
-                          <span className="font-semibold text-gray-900">
-                            {formatCurrency(result.monthlyWage)}
-                          </span>
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Monthly Rate</span>
+                            <span className="font-bold text-gray-900" data-testid="text-monthly-rate">
+                              {formatCurrency(result.monthlyWage)}
+                            </span>
+                          </div>
                         </div>
-                        <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                          <span className="text-gray-600">Annual Rate</span>
-                          <span className="font-semibold text-green-600">
-                            {formatCurrency(result.annualSalary)}
-                          </span>
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Annual Rate</span>
+                            <span className="font-bold text-green-600" data-testid="text-annual-rate">
+                              {formatCurrency(result.annualSalary)}
+                            </span>
+                          </div>
                         </div>
                       </div>
 
                       {/* Work Schedule Info */}
                       <div className="mt-8">
-                        <h3 className="text-lg font-semibold text-gray-900 mb-4">Work Schedule</h3>
-                        <div className="grid grid-cols-1 gap-3">
-                          <div className="bg-white rounded-lg p-3 border border-gray-100 flex justify-between text-sm">
-                            <span className="text-gray-600">Working Hours per Year</span>
-                            <span className="font-medium text-gray-900">
-                              {result.workingHoursPerYear.toLocaleString()} hours
-                            </span>
+                        <h3 className="text-lg font-bold text-gray-900 mb-4">Work Schedule</h3>
+                        <div className="space-y-3">
+                          <div className="bg-white rounded-xl p-4 shadow-sm">
+                            <div className="flex justify-between items-center">
+                              <span className="font-medium text-gray-700">Working Hours per Year</span>
+                              <span className="font-bold text-gray-900" data-testid="text-working-hours-year">
+                                {result.workingHoursPerYear.toLocaleString()} hours
+                              </span>
+                            </div>
                           </div>
-                          <div className="bg-white rounded-lg p-3 border border-gray-100 flex justify-between text-sm">
-                            <span className="text-gray-600">Working Days per Year</span>
-                            <span className="font-medium text-gray-900">
-                              {result.workingDaysPerYear} days
-                            </span>
+                          <div className="bg-white rounded-xl p-4 shadow-sm">
+                            <div className="flex justify-between items-center">
+                              <span className="font-medium text-gray-700">Working Days per Year</span>
+                              <span className="font-bold text-gray-900" data-testid="text-working-days-year">
+                                {result.workingDaysPerYear} days
+                              </span>
+                            </div>
                           </div>
-                          <div className="bg-white rounded-lg p-3 border border-gray-100 flex justify-between text-sm">
-                            <span className="text-gray-600">Working Weeks per Year</span>
-                            <span className="font-medium text-gray-900">
-                              {result.workingWeeksPerYear} weeks
-                            </span>
+                          <div className="bg-white rounded-xl p-4 shadow-sm">
+                            <div className="flex justify-between items-center">
+                              <span className="font-medium text-gray-700">Working Weeks per Year</span>
+                              <span className="font-bold text-gray-900" data-testid="text-working-weeks-year">
+                                {result.workingWeeksPerYear} weeks
+                              </span>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   ) : (
-                    <div className="text-center py-12">
-                      <Clock className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-                      <p className="text-gray-500">Enter salary or hourly wage details and click convert to see results</p>
+                    <div className="text-center py-16" data-testid="no-results">
+                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <div className="text-3xl font-bold text-gray-400">$</div>
+                      </div>
+                      <p className="text-gray-500 text-lg">Enter salary or hourly wage details and calculate to see results</p>
                     </div>
                   )}
                 </div>
@@ -460,17 +491,18 @@ export default function SalaryToHourlyCalculator() {
             </CardContent>
           </Card>
 
-          {/* Comprehensive Educational Content */}
+          {/* Comprehensive SEO Content */}
           <div className="mt-16 space-y-12">
             {/* Introduction Section with SEO Content */}
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                Free Salary to Hourly Calculator - Convert Annual Salary to Hourly Wage
+                Professional Salary to Hourly Calculator - Convert Annual Salary to Hourly Wage
               </h2>
               <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed">
-                Calculate your hourly wage from annual salary or convert hourly rate to yearly income with our comprehensive 
-                salary converter. Perfect for job negotiations, career planning, freelance pricing, and financial planning. 
-                Supports 12+ countries and multiple currencies with accurate working hour standards and vacation time calculations.
+                Transform your financial planning with our advanced salary to hourly calculator. Whether you're negotiating a job offer, 
+                planning a career change, setting freelance rates, or comparing employment opportunities, our comprehensive tool provides 
+                accurate conversions between annual salary and hourly wages. Supporting 12+ countries with region-specific working hour 
+                standards, vacation calculations, and multiple currencies for precise international comparisons.
               </p>
             </div>
 
@@ -571,83 +603,59 @@ export default function SalaryToHourlyCalculator() {
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Who Benefits from a Salary to Hourly Calculator?</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                   <div className="space-y-6">
-                    <div className="space-y-3">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                          <span className="text-blue-600 font-semibold">🎓</span>
-                        </div>
-                        <h3 className="font-semibold text-gray-900">Students & Recent Graduates</h3>
-                      </div>
-                      <p className="text-sm text-gray-600 ml-13">
+                    <div className="bg-blue-50 p-6 rounded-xl">
+                      <h3 className="font-bold text-blue-900 mb-3">Students & Recent Graduates</h3>
+                      <p className="text-blue-800">
                         Compare entry-level job offers, understand compensation packages, and make informed decisions about 
                         internships vs. part-time work. Calculate if graduate school investment pays off compared to immediate employment.
+                        Essential for career planning and educational investment decisions.
                       </p>
                     </div>
                     
-                    <div className="space-y-3">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                          <span className="text-green-600 font-semibold">💼</span>
-                        </div>
-                        <h3 className="font-semibold text-gray-900">Working Professionals</h3>
-                      </div>
-                      <p className="text-sm text-gray-600 ml-13">
+                    <div className="bg-green-50 p-6 rounded-xl">
+                      <h3 className="font-bold text-green-900 mb-3">Working Professionals</h3>
+                      <p className="text-green-800">
                         Negotiate salaries effectively, compare job offers from different companies, and understand the true value 
                         of benefits packages. Evaluate consulting opportunities and side hustles against full-time employment.
+                        Critical for career advancement and salary negotiations.
                       </p>
                     </div>
 
-                    <div className="space-y-3">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-                          <span className="text-purple-600 font-semibold">🏢</span>
-                        </div>
-                        <h3 className="font-semibold text-gray-900">Business Owners & Entrepreneurs</h3>
-                      </div>
-                      <p className="text-sm text-gray-600 ml-13">
+                    <div className="bg-purple-50 p-6 rounded-xl">
+                      <h3 className="font-bold text-purple-900 mb-3">Business Owners & Entrepreneurs</h3>
+                      <p className="text-purple-800">
                         Determine fair compensation for employees, budget for payroll expenses, and compare contractor rates 
-                        vs. full-time employee costs. Essential for startup founders planning compensation structures.
+                        vs. full-time employee costs. Essential for startup founders planning compensation structures and 
+                        maintaining competitive advantage in talent acquisition.
                       </p>
                     </div>
                   </div>
 
                   <div className="space-y-6">
-                    <div className="space-y-3">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
-                          <span className="text-orange-600 font-semibold">🎨</span>
-                        </div>
-                        <h3 className="font-semibold text-gray-900">Freelancers & Contractors</h3>
-                      </div>
-                      <p className="text-sm text-gray-600 ml-13">
+                    <div className="bg-orange-50 p-6 rounded-xl">
+                      <h3 className="font-bold text-orange-900 mb-3">Freelancers & Contractors</h3>
+                      <p className="text-orange-800">
                         Set competitive hourly rates, bid on projects accurately, and determine annual income goals. 
                         Compare freelance earnings potential with traditional employment benefits and security.
+                        Vital for independent professionals and gig economy workers.
                       </p>
                     </div>
 
-                    <div className="space-y-3">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
-                          <span className="text-red-600 font-semibold">🏛️</span>
-                        </div>
-                        <h3 className="font-semibold text-gray-900">HR Professionals</h3>
-                      </div>
-                      <p className="text-sm text-gray-600 ml-13">
+                    <div className="bg-red-50 p-6 rounded-xl">
+                      <h3 className="font-bold text-red-900 mb-3">HR Professionals</h3>
+                      <p className="text-red-800">
                         Develop competitive compensation packages, analyze market rates, ensure legal compliance with 
                         minimum wage laws, and create transparent pay scales for different positions and experience levels.
+                        Essential for maintaining equitable and competitive workplace compensation.
                       </p>
                     </div>
 
-                    <div className="space-y-3">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center">
-                          <span className="text-indigo-600 font-semibold">📊</span>
-                        </div>
-                        <h3 className="font-semibold text-gray-900">Financial Planners</h3>
-                      </div>
-                      <p className="text-sm text-gray-600 ml-13">
+                    <div className="bg-indigo-50 p-6 rounded-xl">
+                      <h3 className="font-bold text-indigo-900 mb-3">Financial Planners</h3>
+                      <p className="text-indigo-800">
                         Help clients understand their earning capacity, plan for retirement, evaluate career changes, 
                         and make informed decisions about education investments and career development opportunities.
+                        Critical for comprehensive financial advisory services.
                       </p>
                     </div>
                   </div>
@@ -660,64 +668,50 @@ export default function SalaryToHourlyCalculator() {
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Common Use Cases for Salary to Hourly Conversion</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  <div className="space-y-3">
-                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                      <span className="text-blue-600 font-semibold">💼</span>
-                    </div>
-                    <h3 className="font-semibold text-gray-900">Job Negotiations</h3>
-                    <p className="text-sm text-gray-600">
+                  <div className="bg-blue-50 p-6 rounded-xl">
+                    <h3 className="font-bold text-blue-900 mb-3">Job Negotiations</h3>
+                    <p className="text-blue-800">
                       Compare salary offers with hourly positions, understand overtime potential, and negotiate better 
-                      compensation packages with confidence using accurate hourly rate calculations.
+                      compensation packages with confidence using accurate hourly rate calculations. Essential for maximizing 
+                      earning potential in new positions.
                     </p>
                   </div>
-                  <div className="space-y-3">
-                    <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                      <span className="text-green-600 font-semibold">🔄</span>
-                    </div>
-                    <h3 className="font-semibold text-gray-900">Career Transitions</h3>
-                    <p className="text-sm text-gray-600">
+                  <div className="bg-green-50 p-6 rounded-xl">
+                    <h3 className="font-bold text-green-900 mb-3">Career Transitions</h3>
+                    <p className="text-green-800">
                       Switching between salaried and hourly positions? Calculate equivalent pay rates to ensure you're 
-                      making financially smart career moves and not leaving money on the table.
+                      making financially smart career moves and not leaving money on the table. Critical for career pivots 
+                      and industry changes.
                     </p>
                   </div>
-                  <div className="space-y-3">
-                    <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-                      <span className="text-purple-600 font-semibold">📊</span>
-                    </div>
-                    <h3 className="font-semibold text-gray-900">Freelance Pricing Strategy</h3>
-                    <p className="text-sm text-gray-600">
+                  <div className="bg-purple-50 p-6 rounded-xl">
+                    <h3 className="font-bold text-purple-900 mb-3">Freelance Pricing Strategy</h3>
+                    <p className="text-purple-800">
                       Set competitive hourly rates based on desired annual income, factor in vacation time and business 
-                      expenses, and price services competitively in the marketplace.
+                      expenses, and price services competitively in the marketplace. Vital for independent contractor success.
                     </p>
                   </div>
-                  <div className="space-y-3">
-                    <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
-                      <span className="text-orange-600 font-semibold">💰</span>
-                    </div>
-                    <h3 className="font-semibold text-gray-900">Financial Planning</h3>
-                    <p className="text-sm text-gray-600">
+                  <div className="bg-orange-50 p-6 rounded-xl">
+                    <h3 className="font-bold text-orange-900 mb-3">Financial Planning</h3>
+                    <p className="text-orange-800">
                       Understand your true earning capacity for budgeting, loan applications, retirement planning, and 
-                      making informed decisions about major purchases and investments.
+                      making informed decisions about major purchases and investments. Foundation for long-term financial health.
                     </p>
                   </div>
-                  <div className="space-y-3">
-                    <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
-                      <span className="text-red-600 font-semibold">📋</span>
-                    </div>
-                    <h3 className="font-semibold text-gray-900">HR & Payroll Management</h3>
-                    <p className="text-sm text-gray-600">
-                      Develop competitive compensation packages, analyze market rates, ensure compliance with labor laws, 
-                      and create transparent pay scales for different positions.
-                    </p>
-                  </div>
-                  <div className="space-y-3">
-                    <div className="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center">
-                      <span className="text-indigo-600 font-semibold">⚖️</span>
-                    </div>
-                    <h3 className="font-semibold text-gray-900">Legal & Compliance</h3>
-                    <p className="text-sm text-gray-600">
+                  <div className="bg-red-50 p-6 rounded-xl">
+                    <h3 className="font-bold text-red-900 mb-3">Compliance & Legal</h3>
+                    <p className="text-red-800">
                       Ensure compliance with minimum wage laws, overtime regulations, and fair labor standards when 
-                      converting between salary and hourly rates for legal documentation.
+                      converting between salary and hourly rates for legal documentation. Essential for HR compliance 
+                      and legal wage calculations.
+                    </p>
+                  </div>
+                  <div className="bg-indigo-50 p-6 rounded-xl">
+                    <h3 className="font-bold text-indigo-900 mb-3">HR & Payroll Management</h3>
+                    <p className="text-indigo-800">
+                      Develop competitive compensation packages, analyze market rates, ensure compliance with labor laws, 
+                      and create transparent pay scales for different positions. Critical for human resources and 
+                      payroll administration.
                     </p>
                   </div>
                 </div>
