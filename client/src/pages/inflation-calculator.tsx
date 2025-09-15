@@ -579,27 +579,30 @@ export default function InflationCalculator() {
 
                 {/* Results Section */}
                 <div className="xl:col-span-2 bg-gradient-to-br from-blue-50 to-indigo-50 p-8 lg:p-12">
-                  <h2 className="text-2xl font-semibold text-gray-900 mb-8">Inflation Analysis</h2>
+                  <div className="mb-8">
+                    <h2 className="text-2xl font-bold text-gray-900 mb-2">Inflation Analysis</h2>
+                    <p className="text-gray-600">Detailed inflation impact analysis for your financial planning</p>
+                  </div>
                   
                   {result ? (
                     <div className="space-y-6">
                       {/* Main Results */}
-                      <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-white rounded-lg p-4 border border-gray-100">
-                          <div className="text-center space-y-2">
-                            <div className="text-sm text-gray-600">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
+                          <div className="text-center space-y-3">
+                            <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide">
                               {calculationType === 'future-value' ? 'Future Value' : 
                                calculationType === 'past-value' ? 'Current Value' : 'Equivalent Value'}
                             </div>
-                            <div className="text-2xl font-bold text-blue-600">
+                            <div className="text-3xl font-bold text-blue-600" data-testid="text-final-amount">
                               {formatCurrency(result.finalAmount)}
                             </div>
                           </div>
                         </div>
-                        <div className="bg-white rounded-lg p-4 border border-gray-100">
-                          <div className="text-center space-y-2">
-                            <div className="text-sm text-gray-600">Purchasing Power Loss</div>
-                            <div className="text-2xl font-bold text-red-600">
+                        <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
+                          <div className="text-center space-y-3">
+                            <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide">Purchasing Power Loss</div>
+                            <div className="text-3xl font-bold text-red-600" data-testid="text-power-loss">
                               -{formatPercentage(result.purchasingPowerLoss)}
                             </div>
                           </div>
@@ -607,54 +610,56 @@ export default function InflationCalculator() {
                       </div>
 
                       {/* Detailed Breakdown */}
-                      <div className="space-y-4">
-                        <h3 className="text-lg font-semibold text-gray-900">Impact Analysis</h3>
+                      <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
+                        <h3 className="text-lg font-bold text-gray-900 mb-4">Impact Analysis</h3>
                         
-                        <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                          <span className="text-gray-600">Original Amount</span>
-                          <span className="font-semibold text-gray-900">
-                            {formatCurrency(result.originalAmount)}
-                          </span>
-                        </div>
-                        <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                          <span className="text-gray-600">
-                            {calculationType === 'future-value' ? 'Future Value' : 
-                             calculationType === 'past-value' ? 'Current Value' : 'Equivalent Value'}
-                          </span>
-                          <span className="font-semibold text-blue-600">
-                            {formatCurrency(result.finalAmount)}
-                          </span>
-                        </div>
-                        <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                          <span className="text-gray-600">Time Period</span>
-                          <span className="font-semibold text-gray-900">
-                            {result.years} years
-                          </span>
-                        </div>
-                        <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                          <span className="text-gray-600">Average Annual Inflation</span>
-                          <span className="font-semibold text-orange-600">
-                            {formatPercentage(result.averageAnnualInflation)}
-                          </span>
-                        </div>
-                        <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                          <span className="text-gray-600">Total Inflation</span>
-                          <span className="font-semibold text-red-600">
-                            {formatPercentage(Math.abs(result.totalInflation))}
-                          </span>
-                        </div>
-                        <div className="flex justify-between items-center py-3">
-                          <span className="text-gray-600">Purchasing Power Loss</span>
-                          <span className="font-semibold text-red-600">
-                            -{formatPercentage(result.purchasingPowerLoss)}
-                          </span>
+                        <div className="space-y-4">
+                          <div className="flex justify-between items-center py-3 border-b border-gray-200">
+                            <span className="text-gray-600">Original Amount</span>
+                            <span className="font-bold text-gray-900" data-testid="text-original-amount">
+                              {formatCurrency(result.originalAmount)}
+                            </span>
+                          </div>
+                          <div className="flex justify-between items-center py-3 border-b border-gray-200">
+                            <span className="text-gray-600">
+                              {calculationType === 'future-value' ? 'Future Value' : 
+                               calculationType === 'past-value' ? 'Current Value' : 'Equivalent Value'}
+                            </span>
+                            <span className="font-bold text-blue-600" data-testid="text-result-amount">
+                              {formatCurrency(result.finalAmount)}
+                            </span>
+                          </div>
+                          <div className="flex justify-between items-center py-3 border-b border-gray-200">
+                            <span className="text-gray-600">Time Period</span>
+                            <span className="font-bold text-gray-900" data-testid="text-time-period">
+                              {result.years} years
+                            </span>
+                          </div>
+                          <div className="flex justify-between items-center py-3 border-b border-gray-200">
+                            <span className="text-gray-600">Average Annual Inflation</span>
+                            <span className="font-bold text-orange-600" data-testid="text-avg-inflation">
+                              {formatPercentage(result.averageAnnualInflation)}
+                            </span>
+                          </div>
+                          <div className="flex justify-between items-center py-3 border-b border-gray-200">
+                            <span className="text-gray-600">Total Inflation</span>
+                            <span className="font-bold text-red-600" data-testid="text-total-inflation">
+                              {formatPercentage(Math.abs(result.totalInflation))}
+                            </span>
+                          </div>
+                          <div className="flex justify-between items-center py-3">
+                            <span className="text-gray-600">Purchasing Power Loss</span>
+                            <span className="font-bold text-red-600" data-testid="text-purchasing-power-loss">
+                              -{formatPercentage(result.purchasingPowerLoss)}
+                            </span>
+                          </div>
                         </div>
                       </div>
 
                       {/* Explanation */}
-                      <div className="mt-8 bg-blue-50 rounded-lg p-4">
-                        <h4 className="text-sm font-semibold text-blue-900 mb-2">What this means:</h4>
-                        <p className="text-sm text-blue-800">
+                      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-100">
+                        <h4 className="text-lg font-bold text-blue-900 mb-3">Key Insights</h4>
+                        <p className="text-blue-800 leading-relaxed">
                           {calculationType === 'future-value' 
                             ? `In ${result.years} years, you would need ${formatCurrency(result.finalAmount)} to have the same purchasing power as ${formatCurrency(result.originalAmount)} today.`
                             : calculationType === 'past-value'
