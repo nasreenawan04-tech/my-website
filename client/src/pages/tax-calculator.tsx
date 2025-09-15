@@ -9,7 +9,6 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Receipt } from 'lucide-react';
 
 interface TaxResult {
   grossIncome: number;
@@ -281,7 +280,7 @@ export default function TaxCalculator() {
   const currentFilingStatuses = filingStatuses[country as keyof typeof filingStatuses] || filingStatuses.US;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
         <title>Tax Calculator - Calculate Income Tax Worldwide | DapsiWow</title>
         <meta name="description" content="Free income tax calculator for 10+ countries. Calculate taxes for USA, UK, Canada, Australia, Germany, France, India & more. Get instant tax estimates, effective rates, and detailed breakdowns for tax planning." />
@@ -298,109 +297,129 @@ export default function TaxCalculator() {
       
       <main>
         {/* Hero Section */}
-        <section className="gradient-hero text-white py-16 pt-24">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-              <Receipt className="w-8 h-8 text-white" />
+        <section className="relative py-20 sm:py-28 lg:py-32 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
+          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="space-y-8">
+              <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+                <span className="text-sm font-medium text-blue-700">Professional Tax Calculator</span>
+              </div>
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight">
+                Smart Tax
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                  Calculator
+                </span>
+              </h1>
+              <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                Calculate income tax for multiple countries with detailed breakdown and analysis
+              </p>
             </div>
-            <h1 className="text-4xl sm:text-5xl font-bold mb-6">
-              Tax Calculator
-            </h1>
-            <p className="text-xl text-blue-100 max-w-2xl mx-auto">
-              Calculate income tax for multiple countries with detailed breakdown and analysis
-            </p>
           </div>
         </section>
 
-        <div className="max-w-6xl mx-auto px-4 py-12">
-          <Card className="bg-white shadow-sm border-0">
-            <CardContent className="p-8">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="max-w-7xl mx-auto px-4 py-16">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+            <CardContent className="p-0">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
                 {/* Input Section */}
-                <div className="space-y-6">
-                  <h2 className="text-2xl font-semibold text-gray-900 mb-8">Income Tax Calculator</h2>
+                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
+                  <div>
+                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Tax Configuration</h2>
+                    <p className="text-gray-600">Enter your income details to get accurate tax calculations</p>
+                  </div>
                   
-                  {/* Country Selection */}
-                  <div className="space-y-3">
-                    <Label htmlFor="country" className="text-sm font-medium text-gray-700">
-                      Country
-                    </Label>
-                    <Select value={country} onValueChange={handleCountryChange}>
-                      <SelectTrigger className="h-12 border-gray-200 rounded-lg">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {countries.map((country) => (
-                          <SelectItem key={country.code} value={country.code}>
-                            {country.name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Country Selection */}
+                    <div className="space-y-3">
+                      <Label htmlFor="country" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Country
+                      </Label>
+                      <Select value={country} onValueChange={handleCountryChange}>
+                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-country">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {countries.map((country) => (
+                            <SelectItem key={country.code} value={country.code}>
+                              {country.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
 
-                  {/* Annual Income */}
-                  <div className="space-y-3">
-                    <Label htmlFor="income" className="text-sm font-medium text-gray-700">
-                      Annual Gross Income ({currency})
-                    </Label>
-                    <Input
-                      id="income"
-                      type="number"
-                      value={income}
-                      onChange={(e) => setIncome(e.target.value)}
-                      className="h-12 text-base border-gray-200 rounded-lg"
-                      placeholder="50,000"
-                      min="0"
-                    />
-                  </div>
+                    {/* Annual Income */}
+                    <div className="space-y-3">
+                      <Label htmlFor="income" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Annual Gross Income
+                      </Label>
+                      <div className="relative">
+                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">{currency === 'USD' ? '$' : currency}</span>
+                        <Input
+                          id="income"
+                          type="number"
+                          value={income}
+                          onChange={(e) => setIncome(e.target.value)}
+                          className="h-14 pl-12 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          placeholder="50,000"
+                          min="0"
+                          data-testid="input-income"
+                        />
+                      </div>
+                    </div>
 
-                  {/* Filing Status */}
-                  <div className="space-y-3">
-                    <Label className="text-sm font-medium text-gray-700">Filing Status</Label>
-                    <Select value={filingStatus} onValueChange={setFilingStatus}>
-                      <SelectTrigger className="h-12 border-gray-200 rounded-lg">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {currentFilingStatuses.map((status) => (
-                          <SelectItem key={status.value} value={status.value}>
-                            {status.label}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
+                    {/* Filing Status */}
+                    <div className="space-y-3">
+                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Filing Status</Label>
+                      <Select value={filingStatus} onValueChange={setFilingStatus}>
+                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-filing-status">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {currentFilingStatuses.map((status) => (
+                            <SelectItem key={status.value} value={status.value}>
+                              {status.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
 
-                  {/* Deductions */}
-                  <div className="space-y-3">
-                    <Label htmlFor="deductions" className="text-sm font-medium text-gray-700">
-                      Total Deductions ({currency})
-                    </Label>
-                    <Input
-                      id="deductions"
-                      type="number"
-                      value={deductions}
-                      onChange={(e) => setDeductions(e.target.value)}
-                      className="h-12 text-base border-gray-200 rounded-lg"
-                      placeholder="12,950"
-                      min="0"
-                    />
+                    {/* Deductions */}
+                    <div className="space-y-3">
+                      <Label htmlFor="deductions" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Total Deductions
+                      </Label>
+                      <div className="relative">
+                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">{currency === 'USD' ? '$' : currency}</span>
+                        <Input
+                          id="deductions"
+                          type="number"
+                          value={deductions}
+                          onChange={(e) => setDeductions(e.target.value)}
+                          className="h-14 pl-12 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          placeholder="12,950"
+                          min="0"
+                          data-testid="input-deductions"
+                        />
+                      </div>
+                    </div>
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex gap-4 pt-6">
+                  <div className="flex flex-col sm:flex-row gap-4 pt-8">
                     <Button
                       onClick={calculateTax}
-                      className="flex-1 h-12 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg"
+                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      data-testid="button-calculate"
                     >
-                      <Receipt className="w-4 h-4 mr-2" />
                       Calculate Tax
                     </Button>
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-12 px-8 border-gray-200 text-gray-600 hover:bg-gray-50 font-medium rounded-lg"
+                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      data-testid="button-reset"
                     >
                       Reset
                     </Button>
@@ -408,92 +427,99 @@ export default function TaxCalculator() {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gray-50 rounded-xl p-8">
-                  <h2 className="text-2xl font-semibold text-gray-900 mb-8">Tax Analysis</h2>
-                  
-                  {result ? (
-                    <div className="space-y-6">
-                      {/* Tax Summary */}
-                      <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-white rounded-lg p-4 border border-gray-100">
-                          <div className="text-center space-y-2">
-                            <div className="text-sm text-gray-600">Income Tax</div>
-                            <div className="text-2xl font-bold text-red-600">
-                              {formatCurrency(result.incomeTax)}
-                            </div>
-                          </div>
-                        </div>
-                        <div className="bg-white rounded-lg p-4 border border-gray-100">
-                          <div className="text-center space-y-2">
-                            <div className="text-sm text-gray-600">Net Income</div>
-                            <div className="text-2xl font-bold text-green-600">
-                              {formatCurrency(result.netIncome)}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Detailed Breakdown */}
-                      <div className="space-y-4">
-                        <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                          <span className="text-gray-600">Gross Income</span>
-                          <span className="font-semibold text-gray-900">
-                            {formatCurrency(result.grossIncome)}
-                          </span>
-                        </div>
-                        <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                          <span className="text-gray-600">Total Deductions</span>
-                          <span className="font-semibold text-gray-900">
-                            -{formatCurrency(result.grossIncome - result.taxableIncome)}
-                          </span>
-                        </div>
-                        <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                          <span className="text-gray-600">Taxable Income</span>
-                          <span className="font-semibold text-gray-900">
-                            {formatCurrency(result.taxableIncome)}
-                          </span>
-                        </div>
-                        <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                          <span className="text-gray-600">Effective Tax Rate</span>
-                          <span className="font-semibold text-red-600">
-                            {formatPercentage(result.effectiveTaxRate)}
-                          </span>
-                        </div>
-                        <div className="flex justify-between items-center py-3">
-                          <span className="text-gray-600">Marginal Tax Rate</span>
-                          <span className="font-semibold text-red-600">
-                            {formatPercentage(result.marginalTaxRate)}
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Tax Bracket Breakdown */}
-                      {result.taxBreakdown.length > 0 && (
-                        <div className="mt-8">
-                          <h3 className="text-lg font-semibold text-gray-900 mb-4">Tax Bracket Breakdown</h3>
-                          <div className="space-y-2">
-                            {result.taxBreakdown.map((bracket, index) => (
-                              <div key={index} className="bg-white rounded-lg p-3 border border-gray-100">
-                                <div className="flex justify-between items-center text-sm">
-                                  <span className="text-gray-600">
-                                    {bracket.bracket} ({formatPercentage(bracket.rate)})
-                                  </span>
-                                  <span className="font-medium text-gray-900">
-                                    {formatCurrency(bracket.amount)}
-                                  </span>
-                                </div>
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
+                  <div className="space-y-8">
+                    <div>
+                      <h2 className="text-2xl font-bold text-gray-900 mb-2">Tax Analysis</h2>
+                      <p className="text-gray-600">Your calculated tax breakdown and analysis</p>
+                    </div>
+                    
+                    {result ? (
+                      <div className="space-y-6">
+                        {/* Tax Summary */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div className="bg-white/90 backdrop-blur-sm rounded-xl p-6 border border-white/50 shadow-lg">
+                            <div className="text-center space-y-3">
+                              <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide">Income Tax</div>
+                              <div className="text-3xl font-bold text-red-600">
+                                {formatCurrency(result.incomeTax)}
                               </div>
-                            ))}
+                            </div>
+                          </div>
+                          <div className="bg-white/90 backdrop-blur-sm rounded-xl p-6 border border-white/50 shadow-lg">
+                            <div className="text-center space-y-3">
+                              <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide">Net Income</div>
+                              <div className="text-3xl font-bold text-green-600">
+                                {formatCurrency(result.netIncome)}
+                              </div>
+                            </div>
                           </div>
                         </div>
-                      )}
-                    </div>
-                  ) : (
-                    <div className="text-center py-12">
-                      <Receipt className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-                      <p className="text-gray-500">Enter your income details and click calculate to see tax analysis</p>
-                    </div>
-                  )}
+
+                        {/* Detailed Breakdown */}
+                        <div className="bg-white/90 backdrop-blur-sm rounded-xl p-6 border border-white/50 shadow-lg space-y-4">
+                          <div className="flex justify-between items-center py-3 border-b border-gray-200">
+                            <span className="text-gray-600 font-medium">Gross Income</span>
+                            <span className="font-bold text-gray-900 text-lg">
+                              {formatCurrency(result.grossIncome)}
+                            </span>
+                          </div>
+                          <div className="flex justify-between items-center py-3 border-b border-gray-200">
+                            <span className="text-gray-600 font-medium">Total Deductions</span>
+                            <span className="font-bold text-gray-900 text-lg">
+                              -{formatCurrency(result.grossIncome - result.taxableIncome)}
+                            </span>
+                          </div>
+                          <div className="flex justify-between items-center py-3 border-b border-gray-200">
+                            <span className="text-gray-600 font-medium">Taxable Income</span>
+                            <span className="font-bold text-gray-900 text-lg">
+                              {formatCurrency(result.taxableIncome)}
+                            </span>
+                          </div>
+                          <div className="flex justify-between items-center py-3 border-b border-gray-200">
+                            <span className="text-gray-600 font-medium">Effective Tax Rate</span>
+                            <span className="font-bold text-red-600 text-lg">
+                              {formatPercentage(result.effectiveTaxRate)}
+                            </span>
+                          </div>
+                          <div className="flex justify-between items-center py-3">
+                            <span className="text-gray-600 font-medium">Marginal Tax Rate</span>
+                            <span className="font-bold text-red-600 text-lg">
+                              {formatPercentage(result.marginalTaxRate)}
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Tax Bracket Breakdown */}
+                        {result.taxBreakdown.length > 0 && (
+                          <div className="bg-white/90 backdrop-blur-sm rounded-xl p-6 border border-white/50 shadow-lg">
+                            <h3 className="text-lg font-bold text-gray-900 mb-4">Tax Bracket Breakdown</h3>
+                            <div className="space-y-3">
+                              {result.taxBreakdown.map((bracket, index) => (
+                                <div key={index} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                                  <div className="flex justify-between items-center">
+                                    <span className="text-gray-700 font-medium">
+                                      {bracket.bracket} ({formatPercentage(bracket.rate)})
+                                    </span>
+                                    <span className="font-bold text-gray-900 text-lg">
+                                      {formatCurrency(bracket.amount)}
+                                    </span>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      <div className="text-center py-16">
+                        <div className="w-24 h-24 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-6 border border-white/50 shadow-lg">
+                          <span className="text-4xl font-bold text-gray-400">%</span>
+                        </div>
+                        <p className="text-gray-500 text-lg">Enter your income details and click calculate to see tax analysis</p>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </CardContent>
@@ -517,21 +543,21 @@ export default function TaxCalculator() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
               <div className="text-center p-6 bg-blue-50 rounded-lg">
                 <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <Receipt className="w-6 h-6 text-white" />
+                  <span className="text-lg font-bold text-white">$$</span>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Multi-Country Support</h3>
                 <p className="text-gray-600">Calculate taxes for 10+ countries including USA, UK, Canada, Australia, Germany, France, India, Japan, Singapore, and New Zealand with real-time currency conversion.</p>
               </div>
               <div className="text-center p-6 bg-green-50 rounded-lg">
                 <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <Receipt className="w-6 h-6 text-white" />
+                  <span className="text-lg font-bold text-white">%</span>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Detailed Tax Analysis</h3>
                 <p className="text-gray-600">Get comprehensive tax breakdown with effective rates, marginal rates, and detailed tax bracket analysis for complete understanding of your tax obligations.</p>
               </div>
               <div className="text-center p-6 bg-purple-50 rounded-lg">
                 <div className="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <Receipt className="w-6 h-6 text-white" />
+                  <span className="text-lg font-bold text-white">$</span>
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Smart Tax Planning</h3>
                 <p className="text-gray-600">Use our calculator for strategic tax planning, annual budgeting, retirement planning, and making informed financial decisions year-round.</p>
@@ -553,7 +579,7 @@ export default function TaxCalculator() {
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">🧮 How It Works</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">How It Works</h3>
                     <ul className="space-y-2 text-gray-600">
                       <li className="flex items-start"><span className="text-blue-600 mr-2">•</span>Enter your annual gross income in local currency</li>
                       <li className="flex items-start"><span className="text-blue-600 mr-2">•</span>Select your country and filing status</li>
@@ -564,7 +590,7 @@ export default function TaxCalculator() {
                     </ul>
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">📊 Key Calculations</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Key Calculations</h3>
                     <ul className="space-y-2 text-gray-600">
                       <li className="flex items-start"><span className="text-green-600 mr-2">•</span>Taxable income (gross income minus deductions)</li>
                       <li className="flex items-start"><span className="text-green-600 mr-2">•</span>Total income tax liability</li>
@@ -598,7 +624,7 @@ export default function TaxCalculator() {
                 <Card className="bg-white border-0 shadow-sm">
                   <CardContent className="p-6">
                     <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                      <span className="text-blue-600 text-xl">🎓</span>
+                      <span className="text-blue-600 text-lg font-bold">ST</span>
                     </div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-3">Students & New Graduates</h3>
                     <ul className="text-gray-600 space-y-2 text-sm">
@@ -615,7 +641,7 @@ export default function TaxCalculator() {
                 <Card className="bg-white border-0 shadow-sm">
                   <CardContent className="p-6">
                     <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                      <span className="text-green-600 text-xl">💼</span>
+                      <span className="text-green-600 text-lg font-bold">PR</span>
                     </div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-3">Working Professionals</h3>
                     <ul className="text-gray-600 space-y-2 text-sm">
@@ -632,7 +658,7 @@ export default function TaxCalculator() {
                 <Card className="bg-white border-0 shadow-sm">
                   <CardContent className="p-6">
                     <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                      <span className="text-purple-600 text-xl">🏢</span>
+                      <span className="text-purple-600 text-lg font-bold">BZ</span>
                     </div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-3">Business Owners & Entrepreneurs</h3>
                     <ul className="text-gray-600 space-y-2 text-sm">
@@ -649,7 +675,7 @@ export default function TaxCalculator() {
                 <Card className="bg-white border-0 shadow-sm">
                   <CardContent className="p-6">
                     <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
-                      <span className="text-orange-600 text-xl">💻</span>
+                      <span className="text-orange-600 text-lg font-bold">FL</span>
                     </div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-3">Freelancers & Contractors</h3>
                     <ul className="text-gray-600 space-y-2 text-sm">
@@ -666,7 +692,7 @@ export default function TaxCalculator() {
                 <Card className="bg-white border-0 shadow-sm">
                   <CardContent className="p-6">
                     <div className="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
-                      <span className="text-indigo-600 text-xl">🏖️</span>
+                      <span className="text-indigo-600 text-lg font-bold">RT</span>
                     </div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-3">Retirees & Pre-Retirees</h3>
                     <ul className="text-gray-600 space-y-2 text-sm">
@@ -683,7 +709,7 @@ export default function TaxCalculator() {
                 <Card className="bg-white border-0 shadow-sm">
                   <CardContent className="p-6">
                     <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mb-4">
-                      <span className="text-red-600 text-xl">🌍</span>
+                      <span className="text-red-600 text-lg font-bold">IN</span>
                     </div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-3">International Workers</h3>
                     <ul className="text-gray-600 space-y-2 text-sm">
@@ -710,37 +736,34 @@ export default function TaxCalculator() {
 
               {/* Income & Salary Tools */}
               <div className="mb-10">
-                <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
-                  <span className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
-                    💰
-                  </span>
+                <h3 className="text-xl font-semibold text-gray-900 mb-6">
                   Income & Salary Planning Tools
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                   <a href="/tools/salary-to-hourly" className="group p-4 bg-blue-50 rounded-lg border border-blue-100 hover:border-blue-200 transition-all hover:shadow-md">
                     <div className="text-center">
-                      <i className="fas fa-clock text-blue-600 text-xl mb-2 group-hover:scale-110 transition-transform"></i>
+                      <span className="text-blue-600 text-xl mb-2 group-hover:scale-110 transition-transform block font-bold">HR</span>
                       <h4 className="font-semibold text-gray-900 mb-1 text-sm">Salary to Hourly</h4>
                       <p className="text-gray-600 text-xs">Convert annual salary to hourly rates</p>
                     </div>
                   </a>
                   <a href="/tools/tip-calculator" className="group p-4 bg-blue-50 rounded-lg border border-blue-100 hover:border-blue-200 transition-all hover:shadow-md">
                     <div className="text-center">
-                      <i className="fas fa-hand-holding-usd text-blue-600 text-xl mb-2 group-hover:scale-110 transition-transform"></i>
+                      <span className="text-blue-600 text-xl mb-2 group-hover:scale-110 transition-transform block font-bold">TIP</span>
                       <h4 className="font-semibold text-gray-900 mb-1 text-sm">Tip Calculator</h4>
                       <p className="text-gray-600 text-xs">Calculate tips and split bills</p>
                     </div>
                   </a>
                   <a href="/tools/net-worth-calculator" className="group p-4 bg-blue-50 rounded-lg border border-blue-100 hover:border-blue-200 transition-all hover:shadow-md">
                     <div className="text-center">
-                      <i className="fas fa-balance-scale text-blue-600 text-xl mb-2 group-hover:scale-110 transition-transform"></i>
+                      <span className="text-blue-600 text-xl mb-2 group-hover:scale-110 transition-transform block font-bold">NW</span>
                       <h4 className="font-semibold text-gray-900 mb-1 text-sm">Net Worth</h4>
                       <p className="text-gray-600 text-xs">Calculate total net worth</p>
                     </div>
                   </a>
                   <a href="/tools/inflation-calculator" className="group p-4 bg-blue-50 rounded-lg border border-blue-100 hover:border-blue-200 transition-all hover:shadow-md">
                     <div className="text-center">
-                      <i className="fas fa-arrow-up text-blue-600 text-xl mb-2 group-hover:scale-110 transition-transform"></i>
+                      <span className="text-blue-600 text-xl mb-2 group-hover:scale-110 transition-transform block font-bold">INF</span>
                       <h4 className="font-semibold text-gray-900 mb-1 text-sm">Inflation Impact</h4>
                       <p className="text-gray-600 text-xs">Calculate inflation over time</p>
                     </div>
@@ -750,37 +773,34 @@ export default function TaxCalculator() {
 
               {/* Loan & Debt Tools */}
               <div className="mb-10">
-                <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
-                  <span className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3">
-                    🏦
-                  </span>
+                <h3 className="text-xl font-semibold text-gray-900 mb-6">
                   Loan & Debt Management Tools
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                   <a href="/tools/loan-calculator" className="group p-4 bg-green-50 rounded-lg border border-green-100 hover:border-green-200 transition-all hover:shadow-md">
                     <div className="text-center">
-                      <i className="fas fa-calculator text-green-600 text-xl mb-2 group-hover:scale-110 transition-transform"></i>
+                      <span className="text-green-600 text-xl mb-2 group-hover:scale-110 transition-transform block font-bold">LN</span>
                       <h4 className="font-semibold text-gray-900 mb-1 text-sm">Loan Calculator</h4>
                       <p className="text-gray-600 text-xs">Calculate loan payments & interest</p>
                     </div>
                   </a>
                   <a href="/tools/mortgage-calculator" className="group p-4 bg-green-50 rounded-lg border border-green-100 hover:border-green-200 transition-all hover:shadow-md">
                     <div className="text-center">
-                      <i className="fas fa-home text-green-600 text-xl mb-2 group-hover:scale-110 transition-transform"></i>
+                      <span className="text-green-600 text-xl mb-2 group-hover:scale-110 transition-transform block font-bold">MG</span>
                       <h4 className="font-semibold text-gray-900 mb-1 text-sm">Mortgage Calculator</h4>
                       <p className="text-gray-600 text-xs">Calculate home loan payments</p>
                     </div>
                   </a>
                   <a href="/tools/debt-payoff-calculator" className="group p-4 bg-green-50 rounded-lg border border-green-100 hover:border-green-200 transition-all hover:shadow-md">
                     <div className="text-center">
-                      <i className="fas fa-credit-card text-green-600 text-xl mb-2 group-hover:scale-110 transition-transform"></i>
+                      <span className="text-green-600 text-xl mb-2 group-hover:scale-110 transition-transform block font-bold">DB</span>
                       <h4 className="font-semibold text-gray-900 mb-1 text-sm">Debt Payoff</h4>
                       <p className="text-gray-600 text-xs">Plan debt elimination strategy</p>
                     </div>
                   </a>
                   <a href="/tools/business-loan-calculator" className="group p-4 bg-green-50 rounded-lg border border-green-100 hover:border-green-200 transition-all hover:shadow-md">
                     <div className="text-center">
-                      <i className="fas fa-briefcase text-green-600 text-xl mb-2 group-hover:scale-110 transition-transform"></i>
+                      <span className="text-green-600 text-xl mb-2 group-hover:scale-110 transition-transform block font-bold">BL</span>
                       <h4 className="font-semibold text-gray-900 mb-1 text-sm">Business Loan</h4>
                       <p className="text-gray-600 text-xs">Calculate business financing</p>
                     </div>
@@ -790,37 +810,34 @@ export default function TaxCalculator() {
 
               {/* Investment & Savings Tools */}
               <div className="mb-10">
-                <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
-                  <span className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
-                    📈
-                  </span>
+                <h3 className="text-xl font-semibold text-gray-900 mb-6">
                   Investment & Savings Tools
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                   <a href="/tools/compound-interest-calculator" className="group p-4 bg-purple-50 rounded-lg border border-purple-100 hover:border-purple-200 transition-all hover:shadow-md">
                     <div className="text-center">
-                      <i className="fas fa-chart-line text-purple-600 text-xl mb-2 group-hover:scale-110 transition-transform"></i>
+                      <span className="text-purple-600 text-xl mb-2 group-hover:scale-110 transition-transform block font-bold">CI</span>
                       <h4 className="font-semibold text-gray-900 mb-1 text-sm">Compound Interest</h4>
                       <p className="text-gray-600 text-xs">Calculate investment growth</p>
                     </div>
                   </a>
                   <a href="/tools/roi-calculator" className="group p-4 bg-purple-50 rounded-lg border border-purple-100 hover:border-purple-200 transition-all hover:shadow-md">
                     <div className="text-center">
-                      <i className="fas fa-trending-up text-purple-600 text-xl mb-2 group-hover:scale-110 transition-transform"></i>
+                      <span className="text-purple-600 text-xl mb-2 group-hover:scale-110 transition-transform block font-bold">ROI</span>
                       <h4 className="font-semibold text-gray-900 mb-1 text-sm">ROI Calculator</h4>
                       <p className="text-gray-600 text-xs">Calculate return on investment</p>
                     </div>
                   </a>
                   <a href="/tools/retirement-calculator" className="group p-4 bg-purple-50 rounded-lg border border-purple-100 hover:border-purple-200 transition-all hover:shadow-md">
                     <div className="text-center">
-                      <i className="fas fa-user-clock text-purple-600 text-xl mb-2 group-hover:scale-110 transition-transform"></i>
+                      <span className="text-purple-600 text-xl mb-2 group-hover:scale-110 transition-transform block font-bold">RT</span>
                       <h4 className="font-semibold text-gray-900 mb-1 text-sm">Retirement Planner</h4>
                       <p className="text-gray-600 text-xs">Plan retirement savings</p>
                     </div>
                   </a>
                   <a href="/tools/savings-goal-calculator" className="group p-4 bg-purple-50 rounded-lg border border-purple-100 hover:border-purple-200 transition-all hover:shadow-md">
                     <div className="text-center">
-                      <i className="fas fa-piggy-bank text-purple-600 text-xl mb-2 group-hover:scale-110 transition-transform"></i>
+                      <span className="text-purple-600 text-xl mb-2 group-hover:scale-110 transition-transform block font-bold">SV</span>
                       <h4 className="font-semibold text-gray-900 mb-1 text-sm">Savings Goal</h4>
                       <p className="text-gray-600 text-xs">Track savings progress</p>
                     </div>
@@ -830,37 +847,34 @@ export default function TaxCalculator() {
 
               {/* Additional Financial Tools */}
               <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center">
-                  <span className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center mr-3">
-                    🧮
-                  </span>
+                <h3 className="text-xl font-semibold text-gray-900 mb-6">
                   Additional Financial Calculators
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                   <a href="/tools/percentage-calculator" className="group p-4 bg-orange-50 rounded-lg border border-orange-100 hover:border-orange-200 transition-all hover:shadow-md">
                     <div className="text-center">
-                      <i className="fas fa-percentage text-orange-600 text-xl mb-2 group-hover:scale-110 transition-transform"></i>
+                      <span className="text-orange-600 text-xl mb-2 group-hover:scale-110 transition-transform block font-bold">%</span>
                       <h4 className="font-semibold text-gray-900 mb-1 text-sm">Percentage</h4>
                       <p className="text-gray-600 text-xs">Calculate percentages</p>
                     </div>
                   </a>
                   <a href="/tools/currency-converter" className="group p-4 bg-orange-50 rounded-lg border border-orange-100 hover:border-orange-200 transition-all hover:shadow-md">
                     <div className="text-center">
-                      <i className="fas fa-exchange-alt text-orange-600 text-xl mb-2 group-hover:scale-110 transition-transform"></i>
+                      <span className="text-orange-600 text-xl mb-2 group-hover:scale-110 transition-transform block font-bold">CUR</span>
                       <h4 className="font-semibold text-gray-900 mb-1 text-sm">Currency Converter</h4>
                       <p className="text-gray-600 text-xs">Convert currencies</p>
                     </div>
                   </a>
                   <a href="/tools/discount-calculator" className="group p-4 bg-orange-50 rounded-lg border border-orange-100 hover:border-orange-200 transition-all hover:shadow-md">
                     <div className="text-center">
-                      <i className="fas fa-tags text-orange-600 text-xl mb-2 group-hover:scale-110 transition-transform"></i>
+                      <span className="text-orange-600 text-xl mb-2 group-hover:scale-110 transition-transform block font-bold">DC</span>
                       <h4 className="font-semibold text-gray-900 mb-1 text-sm">Discount</h4>
                       <p className="text-gray-600 text-xs">Calculate discounts & savings</p>
                     </div>
                   </a>
                   <a href="/tools/vat-gst-calculator" className="group p-4 bg-orange-50 rounded-lg border border-orange-100 hover:border-orange-200 transition-all hover:shadow-md">
                     <div className="text-center">
-                      <i className="fas fa-file-invoice text-orange-600 text-xl mb-2 group-hover:scale-110 transition-transform"></i>
+                      <span className="text-orange-600 text-xl mb-2 group-hover:scale-110 transition-transform block font-bold">VAT</span>
                       <h4 className="font-semibold text-gray-900 mb-1 text-sm">VAT/GST</h4>
                       <p className="text-gray-600 text-xs">Calculate sales tax</p>
                     </div>
@@ -937,7 +951,7 @@ export default function TaxCalculator() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border-0">
                   <CardContent className="p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">💼 Career Planning</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Career Planning</h3>
                     <ul className="space-y-2 text-gray-600">
                       <li>• Evaluating job offers and salary negotiations</li>
                       <li>• Planning career moves and income changes</li>
@@ -1092,7 +1106,7 @@ export default function TaxCalculator() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <Card className="bg-white border-0 shadow-sm">
                 <CardContent className="p-8">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-6">💰 Smart Tax Planning Tips</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-6">Smart Tax Planning Tips</h3>
                   <div className="space-y-4">
                     <div className="space-y-2 text-gray-600">
                       <div className="flex items-start">
@@ -1122,7 +1136,7 @@ export default function TaxCalculator() {
 
               <Card className="bg-white border-0 shadow-sm">
                 <CardContent className="p-8">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-6">⚠️ Important Disclaimers</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-6">Important Disclaimers</h3>
                   <div className="space-y-4">
                     <div className="space-y-2 text-gray-600">
                       <div className="flex items-start">
