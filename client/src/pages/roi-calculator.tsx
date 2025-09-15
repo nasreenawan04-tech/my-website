@@ -636,9 +636,9 @@ export default function ROICalculator() {
                     <h3 className="text-xl font-semibold text-gray-900 mb-4">Students & New Investors</h3>
                     <div className="space-y-3 text-gray-700">
                       <p><strong>Learn Investment Fundamentals:</strong> Understand how returns work across different investment types and time horizons.</p>
-                      <p><strong>Education Planning:</strong> Calculate the return on investment for college courses, certifications, or educational programs using our <a href="/tools/education-loan-calculator" className="text-blue-600 hover:text-blue-700 underline">Education Loan Calculator</a>.</p>
-                      <p><strong>First-Time Investing:</strong> Compare potential returns from stocks, bonds, and <a href="/tools/compound-interest-calculator" className="text-blue-600 hover:text-blue-700 underline">compound interest</a> investments.</p>
-                      <p><strong>Goal Setting:</strong> Plan for financial milestones like buying a car or saving for a down payment with our <a href="/tools/savings-goal-calculator" className="text-blue-600 hover:text-blue-700 underline">Savings Goal Calculator</a>.</p>
+                      <p><strong>Education Planning:</strong> Calculate the return on investment for college courses, certifications, or educational programs.</p>
+                      <p><strong>First-Time Investing:</strong> Compare potential returns from stocks, bonds, and compound interest investments.</p>
+                      <p><strong>Goal Setting:</strong> Plan for financial milestones like buying a car or saving for a down payment.</p>
                     </div>
                   </div>
 
@@ -648,11 +648,11 @@ export default function ROICalculator() {
                     </div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-4">Working Professionals</h3>
                     <div className="space-y-3 text-gray-700">
-                      <p><strong>Retirement Planning:</strong> Optimize 401(k) and IRA contributions with our comprehensive <a href="/tools/retirement-calculator" className="text-green-600 hover:text-green-700 underline">Retirement Calculator</a>.</p>
+                      <p><strong>Retirement Planning:</strong> Optimize 401(k) and IRA contributions for long-term wealth building.</p>
                       <p><strong>Career Investment:</strong> Evaluate the ROI of professional certifications, MBA programs, or skill development courses.</p>
-                      <p><strong>Home Ownership:</strong> Analyze real estate investments and mortgage decisions using our <a href="/tools/mortgage-calculator" className="text-green-600 hover:text-green-700 underline">Mortgage Calculator</a>.</p>
+                      <p><strong>Home Ownership:</strong> Analyze real estate investments and mortgage decisions.</p>
                       <p><strong>Stock Portfolio Management:</strong> Track and optimize your investment portfolio performance with detailed ROI analysis.</p>
-                      <p><strong>Debt Management:</strong> Compare investment returns with debt payoff strategies using our <a href="/tools/debt-payoff-calculator" className="text-green-600 hover:text-green-700 underline">Debt Payoff Calculator</a>.</p>
+                      <p><strong>Debt Management:</strong> Compare investment returns with debt payoff strategies.</p>
                     </div>
                   </div>
 
@@ -662,12 +662,12 @@ export default function ROICalculator() {
                     </div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-4">Business Owners & Entrepreneurs</h3>
                     <div className="space-y-3 text-gray-700">
-                      <p><strong>Business Financing:</strong> Evaluate loan options and capital investments with our <a href="/tools/business-loan-calculator" className="text-purple-600 hover:text-purple-700 underline">Business Loan Calculator</a>.</p>
+                      <p><strong>Business Financing:</strong> Evaluate loan options and capital investments.</p>
                       <p><strong>Marketing ROI:</strong> Measure advertising campaign effectiveness and customer acquisition costs across different channels.</p>
                       <p><strong>Equipment & Technology:</strong> Justify capital expenditures on machinery, software, or technology upgrades.</p>
                       <p><strong>Expansion Analysis:</strong> Evaluate new location openings, product launches, or market expansion opportunities.</p>
                       <p><strong>Investment Decisions:</strong> Compare business reinvestment options with external investment opportunities.</p>
-                      <p><strong>Break-Even Planning:</strong> Determine project viability with our <a href="/tools/break-even-calculator" className="text-purple-600 hover:text-purple-700 underline">Break-Even Calculator</a>.</p>
+                      <p><strong>Break-Even Planning:</strong> Determine project viability and time to profitability.</p>
                     </div>
                   </div>
                 </div>
@@ -693,7 +693,7 @@ export default function ROICalculator() {
                         <div className="w-2 h-2 bg-blue-500 rounded-full mr-3 mt-2"></div>
                         <div>
                           <strong className="text-gray-900">Real Estate Investments:</strong>
-                          <span className="text-gray-600"> Evaluate rental properties, REITs, and property appreciation using our <a href="/tools/mortgage-calculator" className="text-blue-600 hover:text-blue-700 underline">Mortgage Calculator</a></span>
+                          <span className="text-gray-600"> Evaluate rental properties, REITs, and property appreciation</span>
                         </div>
                       </div>
                       <div className="flex items-start">
@@ -707,14 +707,14 @@ export default function ROICalculator() {
                         <div className="w-2 h-2 bg-blue-500 rounded-full mr-3 mt-2"></div>
                         <div>
                           <strong className="text-gray-900">Retirement Accounts:</strong>
-                          <span className="text-gray-600"> Project 401(k), IRA, and pension growth with our <a href="/tools/retirement-calculator" className="text-blue-600 hover:text-blue-700 underline">Retirement Calculator</a></span>
+                          <span className="text-gray-600"> Project 401(k), IRA, and pension growth</span>
                         </div>
                       </div>
                       <div className="flex items-start">
                         <div className="w-2 h-2 bg-blue-500 rounded-full mr-3 mt-2"></div>
                         <div>
                           <strong className="text-gray-900">SIP Investments:</strong>
-                          <span className="text-gray-600"> Calculate systematic investment plan returns with our <a href="/tools/sip-calculator" className="text-blue-600 hover:text-blue-700 underline">SIP Calculator</a></span>
+                          <span className="text-gray-600"> Calculate systematic investment plan returns</span>
                         </div>
                       </div>
                     </div>
@@ -748,7 +748,7 @@ export default function ROICalculator() {
                         <div className="w-2 h-2 bg-green-500 rounded-full mr-3 mt-2"></div>
                         <div>
                           <strong className="text-gray-900">Business Loans:</strong>
-                          <span className="text-gray-600"> Evaluate financing options and loan terms with our <a href="/tools/business-loan-calculator" className="text-green-600 hover:text-green-700 underline">Business Loan Calculator</a></span>
+                          <span className="text-gray-600"> Evaluate financing options and loan terms</span>
                         </div>
                       </div>
                       <div className="flex items-start">
@@ -759,43 +759,6 @@ export default function ROICalculator() {
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-
-                <div className="mt-8 p-6 bg-gray-50 rounded-lg">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">🔗 Related Financial Planning Tools</h3>
-                  <p className="text-gray-600 mb-4">
-                    Maximize your ROI analysis by combining it with our other financial calculators for comprehensive planning:
-                  </p>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <a href="/tools/compound-interest-calculator" className="group text-center p-4 bg-white rounded-xl hover:bg-blue-50 transition-colors border border-gray-200 hover:border-blue-300 hover:shadow-md">
-                      <div className="w-12 h-12 bg-gradient-to-br from-green-100 to-green-200 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-105 transition-transform">
-                        <span className="text-xl font-bold text-green-600">%</span>
-                      </div>
-                      <div className="text-sm font-medium text-gray-900 group-hover:text-blue-800">Compound Interest</div>
-                      <div className="text-xs text-gray-500 mt-1">Growth calculation</div>
-                    </a>
-                    <a href="/tools/simple-interest-calculator" className="group text-center p-4 bg-white rounded-xl hover:bg-blue-50 transition-colors border border-gray-200 hover:border-blue-300 hover:shadow-md">
-                      <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-105 transition-transform">
-                        <span className="text-xl font-bold text-blue-600">$</span>
-                      </div>
-                      <div className="text-sm font-medium text-gray-900 group-hover:text-blue-800">Simple Interest</div>
-                      <div className="text-xs text-gray-500 mt-1">Basic calculation</div>
-                    </a>
-                    <a href="/tools/investment-return-calculator" className="group text-center p-4 bg-white rounded-xl hover:bg-blue-50 transition-colors border border-gray-200 hover:border-blue-300 hover:shadow-md">
-                      <div className="w-12 h-12 bg-gradient-to-br from-purple-100 to-purple-200 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-105 transition-transform">
-                        <span className="text-xl font-bold text-purple-600">↗</span>
-                      </div>
-                      <div className="text-sm font-medium text-gray-900 group-hover:text-blue-800">Investment Returns</div>
-                      <div className="text-xs text-gray-500 mt-1">Portfolio analysis</div>
-                    </a>
-                    <a href="/tools/net-worth-calculator" className="group text-center p-4 bg-white rounded-xl hover:bg-blue-50 transition-colors border border-gray-200 hover:border-blue-300 hover:shadow-md">
-                      <div className="w-12 h-12 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-105 transition-transform">
-                        <span className="text-xl font-bold text-yellow-600">Σ</span>
-                      </div>
-                      <div className="text-sm font-medium text-gray-900 group-hover:text-blue-800">Net Worth</div>
-                      <div className="text-xs text-gray-500 mt-1">Wealth tracking</div>
-                    </a>
                   </div>
                 </div>
               </CardContent>
@@ -1373,12 +1336,12 @@ export default function ROICalculator() {
                   <div className="space-y-6">
                     <div>
                       <h4 className="text-lg font-semibold text-gray-900 mb-2">What is a good ROI percentage?</h4>
-                      <p className="text-gray-600">A good ROI depends on the investment type and risk level. Stock market investments averaging 10-15% annually are excellent, while business projects often target 20%+ ROI. Real estate typically yields 8-12%, and our <a href="/tools/compound-interest-calculator" className="text-blue-600 hover:text-blue-700 underline">Compound Interest Calculator</a> can help you understand long-term growth potential.</p>
+                      <p className="text-gray-600">A good ROI depends on the investment type and risk level. Stock market investments averaging 10-15% annually are excellent, while business projects often target 20%+ ROI. Real estate typically yields 8-12%, which can help you understand long-term growth potential.</p>
                     </div>
                     
                     <div>
                       <h4 className="text-lg font-semibold text-gray-900 mb-2">How do I calculate ROI for multiple investments?</h4>
-                      <p className="text-gray-600">Calculate ROI for each investment separately, then determine your portfolio's weighted average ROI based on investment amounts and individual returns. Use our <a href="/tools/investment-return-calculator" className="text-blue-600 hover:text-blue-700 underline">Investment Return Calculator</a> for comprehensive portfolio analysis.</p>
+                      <p className="text-gray-600">Calculate ROI for each investment separately, then determine your portfolio's weighted average ROI based on investment amounts and individual returns for comprehensive portfolio analysis.</p>
                     </div>
                     
                     <div>
@@ -1388,12 +1351,12 @@ export default function ROICalculator() {
 
                     <div>
                       <h4 className="text-lg font-semibold text-gray-900 mb-2">How does ROI differ from simple and compound interest?</h4>
-                      <p className="text-gray-600">ROI measures overall investment performance, while interest calculations focus on growth rates. Compare using our <a href="/tools/simple-interest-calculator" className="text-blue-600 hover:text-blue-700 underline">Simple Interest Calculator</a> for basic growth or <a href="/tools/compound-interest-calculator" className="text-blue-600 hover:text-blue-700 underline">Compound Interest Calculator</a> for reinvested earnings.</p>
+                      <p className="text-gray-600">ROI measures overall investment performance, while interest calculations focus on growth rates. Simple interest provides basic growth calculations, while compound interest accounts for reinvested earnings.</p>
                     </div>
 
                     <div>
                       <h4 className="text-lg font-semibold text-gray-900 mb-2">What's the best ROI calculator for business decisions?</h4>
-                      <p className="text-gray-600">Our business ROI feature handles project costs, revenues, and operating expenses. Combine it with our <a href="/tools/business-loan-calculator" className="text-blue-600 hover:text-blue-700 underline">Business Loan Calculator</a> and <a href="/tools/break-even-calculator" className="text-blue-600 hover:text-blue-700 underline">Break-Even Calculator</a> for comprehensive business analysis.</p>
+                      <p className="text-gray-600">Our business ROI feature handles project costs, revenues, and operating expenses for comprehensive business analysis including break-even calculations.</p>
                     </div>
                   </div>
                   
@@ -1405,22 +1368,22 @@ export default function ROICalculator() {
                     
                     <div>
                       <h4 className="text-lg font-semibold text-gray-900 mb-2">Can ROI be negative?</h4>
-                      <p className="text-gray-600">Yes, negative ROI indicates a loss on your investment. This occurs when the final value is less than the initial investment amount. Use our <a href="/tools/debt-payoff-calculator" className="text-blue-600 hover:text-blue-700 underline">Debt Payoff Calculator</a> to compare paying down debt vs. investing.</p>
+                      <p className="text-gray-600">Yes, negative ROI indicates a loss on your investment. This occurs when the final value is less than the initial investment amount. Compare paying down debt vs. investing to make optimal financial decisions.</p>
                     </div>
                     
                     <div>
-                      <h4 className="text-lg font-semibent text-gray-900 mb-2">How often should I calculate ROI?</h4>
-                      <p className="text-gray-600">Review ROI quarterly for active investments and annually for long-term investments. However, avoid making frequent changes based on short-term fluctuations. Use our <a href="/tools/retirement-calculator" className="text-blue-600 hover:text-blue-700 underline">Retirement Calculator</a> for long-term planning.</p>
+                      <h4 className="text-lg font-semibold text-gray-900 mb-2">How often should I calculate ROI?</h4>
+                      <p className="text-gray-600">Review ROI quarterly for active investments and annually for long-term investments. However, avoid making frequent changes based on short-term fluctuations for long-term planning.</p>
                     </div>
 
                     <div>
                       <h4 className="text-lg font-semibold text-gray-900 mb-2">How do I factor in taxes when calculating ROI?</h4>
-                      <p className="text-gray-600">Calculate ROI using after-tax returns for accurate analysis. Consider capital gains taxes, dividend taxes, and tax-advantaged accounts like 401(k)s and IRAs. Our calculators can help you understand pre-tax vs. post-tax scenarios.</p>
+                      <p className="text-gray-600">Calculate ROI using after-tax returns for accurate analysis. Consider capital gains taxes, dividend taxes, and tax-advantaged accounts like 401(k)s and IRAs. Understanding pre-tax vs. post-tax scenarios is crucial for accurate analysis.</p>
                     </div>
 
                     <div>
                       <h4 className="text-lg font-semibold text-gray-900 mb-2">Is this ROI calculator suitable for real estate investments?</h4>
-                      <p className="text-gray-600">Yes! Use our basic ROI calculator for property appreciation or the business ROI feature for rental properties. For mortgage-specific calculations, check our <a href="/tools/mortgage-calculator" className="text-blue-600 hover:text-blue-700 underline">Mortgage Calculator</a> to understand financing costs.</p>
+                      <p className="text-gray-600">Yes! Use our basic ROI calculator for property appreciation or the business ROI feature for rental properties. Understanding financing costs is essential for real estate investment analysis.</p>
                     </div>
                   </div>
                 </div>
@@ -1428,14 +1391,14 @@ export default function ROICalculator() {
                 <div className="mt-8 p-6 bg-blue-50 border border-blue-200 rounded-lg">
                   <h3 className="text-lg font-semibold text-blue-900 mb-3">💡 Pro Tip: Maximize Your ROI Analysis</h3>
                   <p className="text-blue-800 mb-3">
-                    Get the most accurate ROI calculations by using our suite of financial tools together:
+                    Get the most accurate ROI calculations by considering all aspects of your financial strategy:
                   </p>
                   <ul className="text-blue-700 space-y-2 text-sm">
-                    <li>• Start with our <a href="/tools/savings-goal-calculator" className="underline hover:text-blue-900">Savings Goal Calculator</a> to set investment targets</li>
-                    <li>• Use <a href="/tools/compound-interest-calculator" className="underline hover:text-blue-900">Compound Interest Calculator</a> for growth projections</li>
-                    <li>• Calculate loan impacts with our <a href="/tools/loan-calculator" className="underline hover:text-blue-900">Loan Calculator</a></li>
-                    <li>• Plan for retirement with our <a href="/tools/retirement-calculator" className="underline hover:text-blue-900">Retirement Calculator</a></li>
-                    <li>• Track your progress with our <a href="/tools/net-worth-calculator" className="underline hover:text-blue-900">Net Worth Calculator</a></li>
+                    <li>• Set clear investment targets and goals</li>
+                    <li>• Consider compound growth for long-term projections</li>
+                    <li>• Factor in loan impacts and financing costs</li>
+                    <li>• Plan for retirement and long-term wealth building</li>
+                    <li>• Track your progress and net worth over time</li>
                   </ul>
                 </div>
               </CardContent>
