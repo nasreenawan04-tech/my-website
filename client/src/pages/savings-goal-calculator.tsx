@@ -877,76 +877,7 @@ export default function SavingsGoalCalculator() {
               </div>
             </section>
 
-            {/* Related Financial Tools */}
-            <section className="bg-gradient-to-r from-gray-50 to-slate-50 rounded-2xl p-8">
-              <div className="max-w-4xl mx-auto">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">
-                  Related Financial Planning & Savings Tools
-                </h2>
-                <p className="text-lg text-gray-600 text-center mb-10">
-                  Complete your financial planning with our comprehensive suite of calculators and tools designed for smart money management.
-                </p>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  <a href="/tools/compound-interest" className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100 hover:border-green-200 group">
-                    <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-green-200 transition-colors">
-                      <PiggyBank className="w-6 h-6 text-green-600" />
-                    </div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Compound Interest Calculator</h3>
-                    <p className="text-gray-600 text-sm">Calculate investment growth with compound interest to optimize your savings strategy and retirement planning.</p>
-                  </a>
-                  
-                  <a href="/tools/inflation-calculator" className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100 hover:border-blue-200 group">
-                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-200 transition-colors">
-                      <PiggyBank className="w-6 h-6 text-blue-600" />
-                    </div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Inflation Calculator</h3>
-                    <p className="text-gray-600 text-sm">Adjust your savings goals for inflation to maintain purchasing power and real value over time.</p>
-                  </a>
-                  
-                  <a href="/tools/retirement-calculator" className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100 hover:border-purple-200 group">
-                    <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-purple-200 transition-colors">
-                      <PiggyBank className="w-6 h-6 text-purple-600" />
-                    </div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Retirement Calculator</h3>
-                    <p className="text-gray-600 text-sm">Plan retirement savings with age-specific strategies and withdrawal rate calculations.</p>
-                  </a>
-                  
-                  <a href="/tools/net-worth-calculator" className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100 hover:border-orange-200 group">
-                    <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-orange-200 transition-colors">
-                      <PiggyBank className="w-6 h-6 text-orange-600" />
-                    </div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Net Worth Calculator</h3>
-                    <p className="text-gray-600 text-sm">Track total wealth and monitor progress toward financial independence and long-term goals.</p>
-                  </a>
-                  
-                  <a href="/tools/tip-calculator" className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100 hover:border-red-200 group">
-                    <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-red-200 transition-colors">
-                      <PiggyBank className="w-6 h-6 text-red-600" />
-                    </div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Tip Calculator</h3>
-                    <p className="text-gray-600 text-sm">Calculate tips and split bills accurately for dining, services, and hospitality expenses.</p>
-                  </a>
-                  
-                  <a href="/tools/investment-return-calculator" className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100 hover:border-indigo-200 group">
-                    <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-indigo-200 transition-colors">
-                      <PiggyBank className="w-6 h-6 text-indigo-600" />
-                    </div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Investment Return Calculator</h3>
-                    <p className="text-gray-600 text-sm">Analyze investment performance and potential returns for portfolio optimization strategies.</p>
-                  </a>
-                </div>
-                
-                <div className="text-center mt-8">
-                  <a href="/finance" className="inline-flex items-center px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium">
-                    View All Financial Tools
-                    <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </section>
+            
 
             {/* Advanced SEO Content */}
             <section className="max-w-4xl mx-auto">
