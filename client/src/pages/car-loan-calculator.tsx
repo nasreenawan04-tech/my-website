@@ -397,57 +397,22 @@ const CarLoanCalculator = () => {
                   <h2 className="text-2xl font-bold text-gray-900 mb-6">What is a Car Loan Calculator?</h2>
                   <div className="prose max-w-none text-gray-600">
                     <p className="mb-4">
-                      A car loan calculator is an essential financial tool that helps you determine the monthly payment, 
-                      total interest cost, and overall affordability of purchasing a vehicle through financing. Our free 
-                      auto loan calculator uses advanced mathematical formulas to provide accurate estimates based on 
-                      your loan amount, interest rate, loan term, and down payment.
+                      A car loan calculator helps you determine the monthly payment, total interest cost, and overall affordability 
+                      of purchasing a vehicle through financing. Our calculator uses standard amortization formulas to provide 
+                      accurate estimates based on your loan amount, interest rate, loan term, and down payment.
                     </p>
                     <p className="mb-4">
                       Whether you're buying a new car, used vehicle, or considering auto refinancing, this calculator 
-                      enables you to compare different financing scenarios and make informed decisions about your car 
-                      purchase. It helps you understand the true cost of borrowing and plan your budget effectively.
+                      enables you to compare different financing scenarios and make informed decisions about your car purchase.
                     </p>
                   </div>
                 </CardContent>
               </Card>
 
-              {/* How to Use Car Loan Calculator */}
+              {/* Key Features */}
               <Card className="mt-8 bg-white border-0 shadow-sm">
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">How to Use the Car Loan Calculator</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Step-by-Step Guide</h3>
-                      <ol className="text-gray-600 space-y-2 list-decimal list-inside">
-                        <li>Select your preferred currency from the dropdown menu</li>
-                        <li>Enter the total car price including taxes and fees</li>
-                        <li>Choose between percentage or dollar amount for down payment</li>
-                        <li>Input your down payment amount or percentage</li>
-                        <li>Set the loan term (number of years to repay)</li>
-                        <li>Enter the annual interest rate offered by your lender</li>
-                        <li>Click "Calculate" to see your monthly payment breakdown</li>
-                      </ol>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Understanding Results</h3>
-                      <p className="text-gray-600 mb-4">
-                        The calculator provides comprehensive results including:
-                      </p>
-                      <ul className="text-gray-600 space-y-2">
-                        <li>• <strong>Monthly Payment:</strong> Your fixed monthly car payment</li>
-                        <li>• <strong>Total Amount Paid:</strong> Sum of all payments over loan term</li>
-                        <li>• <strong>Total Interest:</strong> Interest paid over the life of the loan</li>
-                        <li>• <strong>Payment Breakdown:</strong> Visual representation of principal vs. interest</li>
-                      </ul>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Benefits and Features */}
-              <Card className="mt-8 bg-white border-0 shadow-sm">
-                <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Benefits of Using Our Car Loan Calculator</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Key Features</h2>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div className="text-center">
                       <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
@@ -455,7 +420,7 @@ const CarLoanCalculator = () => {
                       </div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">Accurate Calculations</h3>
                       <p className="text-gray-600 text-sm">
-                        Uses standard amortization formulas for precise monthly payment calculations and interest projections.
+                        Uses standard amortization formulas for precise monthly payment calculations.
                       </p>
                     </div>
                     <div className="text-center">
@@ -464,7 +429,7 @@ const CarLoanCalculator = () => {
                       </div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">Multi-Currency Support</h3>
                       <p className="text-gray-600 text-sm">
-                        Calculate car loans in 10 major currencies including USD, EUR, GBP, INR, JPY, and more.
+                        Calculate car loans in 10 major currencies worldwide.
                       </p>
                     </div>
                     <div className="text-center">
@@ -473,304 +438,12 @@ const CarLoanCalculator = () => {
                       </div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">Visual Breakdown</h3>
                       <p className="text-gray-600 text-sm">
-                        Interactive charts showing the split between principal and interest payments over time.
+                        Interactive charts showing principal vs. interest payments.
                       </p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
-
-              {/* Car Loan Types and Use Cases */}
-              <Card className="mt-8 bg-white border-0 shadow-sm">
-                <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Car Loan Types and Use Cases</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Types of Auto Loans</h3>
-                      <div className="space-y-4">
-                        <div className="border-l-4 border-blue-500 pl-4">
-                          <h4 className="font-semibold text-gray-900">New Car Loans</h4>
-                          <p className="text-gray-600 text-sm">Lower interest rates, longer terms available, full warranty coverage.</p>
-                        </div>
-                        <div className="border-l-4 border-green-500 pl-4">
-                          <h4 className="font-semibold text-gray-900">Used Car Loans</h4>
-                          <p className="text-gray-600 text-sm">Higher rates than new cars, shorter terms, requires vehicle inspection.</p>
-                        </div>
-                        <div className="border-l-4 border-purple-500 pl-4">
-                          <h4 className="font-semibold text-gray-900">Certified Pre-Owned</h4>
-                          <p className="text-gray-600 text-sm">Balance between new and used, manufacturer warranty, competitive rates.</p>
-                        </div>
-                        <div className="border-l-4 border-orange-500 pl-4">
-                          <h4 className="font-semibold text-gray-900">Refinancing</h4>
-                          <p className="text-gray-600 text-sm">Replace existing loan with better terms, lower rates, or different payment schedule.</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Common Use Cases</h3>
-                      <ul className="text-gray-600 space-y-3">
-                        <li className="flex items-start">
-                          <i className="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                          <span><strong>Budget Planning:</strong> Determine affordable monthly payments before car shopping</span>
-                        </li>
-                        <li className="flex items-start">
-                          <i className="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                          <span><strong>Loan Comparison:</strong> Compare offers from banks, credit unions, and dealers</span>
-                        </li>
-                        <li className="flex items-start">
-                          <i className="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                          <span><strong>Down Payment Planning:</strong> See how different down payments affect monthly costs</span>
-                        </li>
-                        <li className="flex items-start">
-                          <i className="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                          <span><strong>Term Analysis:</strong> Understand the trade-off between payment amount and loan duration</span>
-                        </li>
-                        <li className="flex items-start">
-                          <i className="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
-                          <span><strong>Refinancing Evaluation:</strong> Calculate potential savings from refinancing existing loans</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Audience-Specific Car Loan Benefits */}
-              <Card className="mt-8 bg-gradient-to-br from-blue-50 to-indigo-50 border-0">
-                <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Car Loan Calculator Benefits by Audience</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {/* Students */}
-                    <div className="bg-white rounded-xl p-6 shadow-sm">
-                      <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                        <i className="fas fa-graduation-cap text-blue-600 text-xl"></i>
-                      </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Students & First-Time Buyers</h3>
-                      <ul className="text-gray-600 space-y-2 text-sm">
-                        <li>• Budget tight finances while building credit</li>
-                        <li>• Compare student-friendly loan options</li>
-                        <li>• Plan for insurance and maintenance costs</li>
-                        <li>• Understand co-signer requirements</li>
-                        <li>• Calculate total cost of ownership</li>
-                      </ul>
-                      <div className="mt-4 pt-4 border-t border-gray-200">
-                        <p className="text-xs text-gray-500">
-                          Perfect for students and first-time car buyers
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Professionals */}
-                    <div className="bg-white rounded-xl p-6 shadow-sm">
-                      <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                        <i className="fas fa-briefcase text-green-600 text-xl"></i>
-                      </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Working Professionals</h3>
-                      <ul className="text-gray-600 space-y-2 text-sm">
-                        <li>• Balance car payments with savings goals</li>
-                        <li>• Optimize monthly budget allocation</li>
-                        <li>• Consider lease vs. buy scenarios</li>
-                        <li>• Plan for career mobility needs</li>
-                        <li>• Integrate with retirement planning</li>
-                      </ul>
-                      <div className="mt-4 pt-4 border-t border-gray-200">
-                        <p className="text-xs text-gray-500">
-                          Essential for working professionals' financial planning
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Business Owners */}
-                    <div className="bg-white rounded-xl p-6 shadow-sm">
-                      <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                        <i className="fas fa-building text-purple-600 text-xl"></i>
-                      </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Business Owners</h3>
-                      <ul className="text-gray-600 space-y-2 text-sm">
-                        <li>• Evaluate business vs. personal financing</li>
-                        <li>• Consider tax implications and deductions</li>
-                        <li>• Plan for multiple vehicle financing</li>
-                        <li>• Manage cash flow and working capital</li>
-                        <li>• Compare commercial loan options</li>
-                      </ul>
-                      <div className="mt-4 pt-4 border-t border-gray-200">
-                        <p className="text-xs text-gray-500">
-                          Ideal for business vehicle financing decisions
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Educational Content */}
-              <div className="mt-8 bg-white rounded-2xl shadow-lg p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Complete Car Loan Planning Guide</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Before You Buy</h3>
-                    <p className="text-gray-600 mb-4">
-                      Research the car's value using resources like KBB or Edmunds, get pre-approved for financing, 
-                      and compare loan offers from multiple lenders including banks, credit unions, and dealer financing. 
-                      Check your credit score and get your financial documents ready.
-                    </p>
-                    
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Down Payment Strategy</h3>
-                    <p className="text-gray-600 mb-4">
-                      A larger down payment reduces your loan amount, monthly payments, and total interest paid. 
-                      Aim for at least 20% down on a new car, 10% on used cars. This also helps avoid being 
-                      "underwater" on your loan where you owe more than the car's worth.
-                    </p>
-
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Interest Rate Factors</h3>
-                    <ul className="text-gray-600 space-y-2">
-                      <li>• Credit score (most important factor)</li>
-                      <li>• Loan term length</li>
-                      <li>• New vs. used vehicle</li>
-                      <li>• Down payment amount</li>
-                      <li>• Debt-to-income ratio</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Loan Term Considerations</h3>
-                    <ul className="text-gray-600 space-y-2 mb-4">
-                      <li>• <strong>Short terms (2-4 years):</strong> Higher payments, less total interest</li>
-                      <li>• <strong>Medium terms (5-6 years):</strong> Balanced payments and interest</li>
-                      <li>• <strong>Long terms (7+ years):</strong> Lower payments, much more interest</li>
-                      <li>• Consider the car's depreciation vs. loan balance</li>
-                      <li>• Factor in warranty coverage with loan term</li>
-                    </ul>
-
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3">Additional Costs to Consider</h3>
-                    <ul className="text-gray-600 space-y-2">
-                      <li>• Auto insurance (full coverage required)</li>
-                      <li>• Sales tax and registration fees</li>
-                      <li>• Extended warranties and service contracts</li>
-                      <li>• Gap insurance for new cars</li>
-                      <li>• Regular maintenance and repairs</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              {/* Car Loan Formula and Tips */}
-              <Card className="mt-8 bg-gray-50 border-0">
-                <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Car Loan Formula and Expert Tips</h2>
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Monthly Payment Formula</h3>
-                      <div className="bg-white rounded-lg p-4 border">
-                        <code className="text-sm text-gray-700">
-                          M = P × [r(1+r)^n] / [(1+r)^n - 1]
-                        </code>
-                        <div className="mt-3 text-sm text-gray-600">
-                          <p><strong>M</strong> = Monthly payment</p>
-                          <p><strong>P</strong> = Principal loan amount</p>
-                          <p><strong>r</strong> = Monthly interest rate</p>
-                          <p><strong>n</strong> = Number of payments</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Expert Car Buying Tips</h3>
-                      <ul className="text-gray-600 space-y-2">
-                        <li>• 🎯 Keep total vehicle expenses under 20% of income</li>
-                        <li>• 💰 Shop for financing before visiting dealerships</li>
-                        <li>• 📊 Compare APR, not just monthly payments</li>
-                        <li>• 🔍 Read all loan terms and conditions carefully</li>
-                        <li>• ⚖️ Consider certified pre-owned for best value</li>
-                        <li>• 📱 Use our calculator to negotiate better deals</li>
-                      </ul>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Frequently Asked Questions */}
-              <Card className="mt-8 bg-white border-0 shadow-sm">
-                <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
-                  <div className="space-y-6">
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">What credit score do I need for a car loan?</h3>
-                      <p className="text-gray-600">
-                        While you can get approved with scores as low as 500, the best rates typically require scores of 700+. 
-                        Scores of 600-699 get decent rates, while below 600 may result in higher interest rates or require a co-signer.
-                      </p>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Should I finance through the dealer or my bank?</h3>
-                      <p className="text-gray-600">
-                        Compare both options. Banks and credit unions often offer competitive rates, especially for members with good credit. 
-                        Dealers may have promotional rates but could mark up the interest. Get pre-approved elsewhere first for negotiating power.
-                      </p>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">How much should I put down on a car?</h3>
-                      <p className="text-gray-600">
-                        For new cars, aim for 20% down; for used cars, 10% minimum. A larger down payment reduces monthly payments, 
-                        total interest, and helps avoid negative equity. However, don't drain your emergency fund for a down payment.
-                      </p>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">What's the ideal car loan term?</h3>
-                      <p className="text-gray-600">
-                        Most financial experts recommend 4-5 years maximum. While longer terms reduce monthly payments, they result in 
-                        significantly more interest paid and higher risk of negative equity. Shorter terms save money but increase monthly payments.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Car Loan Benefits Summary */}
-              <Card className="mt-8 bg-white border-0 shadow-sm">
-                <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Maximize Your Car Loan Decision</h2>
-                  <p className="text-gray-600 mb-8">
-                    Our comprehensive car loan calculator provides all the tools you need to make informed vehicle financing decisions and optimize your auto purchase budget.
-                  </p>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="bg-blue-50 rounded-lg p-6">
-                      <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4">
-                        <i className="fas fa-calculator text-white text-xl"></i>
-                      </div>
-                      <h3 className="font-semibold text-gray-900 mb-2">Accurate Calculations</h3>
-                      <p className="text-gray-600 text-sm">Get precise monthly payment estimates using industry-standard amortization formulas for all loan scenarios.</p>
-                    </div>
-                    
-                    <div className="bg-green-50 rounded-lg p-6">
-                      <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mb-4">
-                        <i className="fas fa-chart-pie text-white text-xl"></i>
-                      </div>
-                      <h3 className="font-semibold text-gray-900 mb-2">Visual Breakdown</h3>
-                      <p className="text-gray-600 text-sm">See detailed payment breakdowns with visual charts showing principal vs. interest over time.</p>
-                    </div>
-                    
-                    <div className="bg-purple-50 rounded-lg p-6">
-                      <div className="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center mb-4">
-                        <i className="fas fa-globe text-white text-xl"></i>
-                      </div>
-                      <h3 className="font-semibold text-gray-900 mb-2">Multi-Currency</h3>
-                      <p className="text-gray-600 text-sm">Calculate car loans in 10 major global currencies for international vehicle purchases.</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Currency Information */}
-              <div className="mt-8 bg-blue-50 rounded-xl p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                  <i className="fas fa-globe mr-2"></i>
-                  Global Auto Financing
-                </h3>
-                <p className="text-gray-600">
-                  This car loan calculator supports major global currencies including USD, EUR, GBP, INR, JPY, CAD, AUD, CNY, BRL, and MXN. 
-                  Calculate your auto loan payments regardless of your location for informed car buying decisions worldwide.
-                </p>
-              </div>
             </div>
           </section>
         </main>
