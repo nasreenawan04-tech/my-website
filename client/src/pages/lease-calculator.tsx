@@ -36,8 +36,8 @@ const LeaseCalculator = () => {
 
   const calculateLease = () => {
     const price = parseFloat(vehiclePrice);
-    const down = usePercentage 
-      ? (price * parseFloat(downPaymentPercent)) / 100 
+    const down = usePercentage
+      ? (price * parseFloat(downPaymentPercent)) / 100
       : parseFloat(downPayment);
     const term = parseFloat(leaseTerm);
     const rate = parseFloat(interestRate) / 100 / 12; // Monthly interest rate
@@ -187,8 +187,8 @@ const LeaseCalculator = () => {
                       {/* Down Payment */}
                       <div className="space-y-3">
                         <Label className="text-sm font-medium text-gray-700">Down Payment</Label>
-                        <RadioGroup 
-                          value={usePercentage ? "percentage" : "amount"} 
+                        <RadioGroup
+                          value={usePercentage ? "percentage" : "amount"}
                           onValueChange={(value) => setUsePercentage(value === "percentage")}
                           className="flex gap-6"
                         >
@@ -416,15 +416,15 @@ const LeaseCalculator = () => {
                             <h3 className="text-lg font-semibold text-gray-900 mb-3">Cost Breakdown</h3>
                             <div className="space-y-2">
                               <div className="flex items-center">
-                                <div 
+                                <div
                                   className="h-4 bg-blue-500 rounded-l"
                                   style={{ width: `${(result.depreciation / result.totalAmount) * 100}%` }}
                                 ></div>
-                                <div 
+                                <div
                                   className="h-4 bg-red-400"
                                   style={{ width: `${(result.totalInterest / result.totalAmount) * 100}%` }}
                                 ></div>
-                                <div 
+                                <div
                                   className="h-4 bg-gray-400 rounded-r"
                                   style={{ width: `${((result.acquisitionFee + result.dispositionFee) / result.totalAmount) * 100}%` }}
                                 ></div>
@@ -457,7 +457,8 @@ const LeaseCalculator = () => {
                 </CardContent>
               </Card>
 
-              
+
+            </div>
           </section>
         </main>
 
