@@ -389,7 +389,7 @@ const HomeLoanCalculator = () => {
                       Whether you're a first-time homebuyer, looking to refinance your existing mortgage, or planning to invest in real estate, 
                       this housing loan calculator provides instant, reliable estimates to help you make informed property investment decisions. 
                       The calculator uses the standard EMI formula: EMI = [P x R x (1+R)^N] / [(1+R)^N - 1], where P is principal, R is monthly interest rate, and N is tenure.
-                      For more detailed mortgage calculations, explore our <a href="/tools/mortgage-calculator" className="text-blue-600 hover:underline">Mortgage Calculator</a>.
+                      For more detailed mortgage calculations, consider exploring advanced mortgage planning tools.
                     </p>
                   </div>
                 </CardContent>
@@ -442,35 +442,35 @@ const HomeLoanCalculator = () => {
                       <h3 className="text-lg font-semibold text-gray-900 mb-3">🔄 Loan Refinancing</h3>
                       <p className="text-gray-600 text-sm">
                         Compare your current mortgage payments with potential refinancing options. Calculate savings from lower interest rates 
-                        and decide if refinancing makes financial sense for your situation. For detailed comparison, use our <a href="/tools/mortgage-calculator" className="text-blue-600 hover:underline">Mortgage Calculator</a>.
+                        and decide if refinancing makes financial sense for your situation.
                       </p>
                     </div>
                     <div className="bg-purple-50 rounded-lg p-6">
                       <h3 className="text-lg font-semibold text-gray-900 mb-3">📊 Investment Planning</h3>
                       <p className="text-gray-600 text-sm">
                         Analyze rental property investments by calculating mortgage costs versus potential rental income. 
-                        Make informed decisions about real estate investment opportunities. Use our <a href="/tools/roi-calculator" className="text-blue-600 hover:underline">ROI calculator</a> to assess profitability.
+                        Make informed decisions about real estate investment opportunities and assess profitability.
                       </p>
                     </div>
                     <div className="bg-orange-50 rounded-lg p-6">
                       <h3 className="text-lg font-semibold text-gray-900 mb-3">💰 Budget Planning</h3>
                       <p className="text-gray-600 text-sm">
                         Understand your monthly financial commitments and plan your household budget effectively. 
-                        Ensure your EMI fits comfortably within your income and expense structure. Our <a href="/tools/personal-budget-calculator" className="text-blue-600 hover:underline">personal budget calculator</a> can help.
+                        Ensure your EMI fits comfortably within your income and expense structure.
                       </p>
                     </div>
                     <div className="bg-teal-50 rounded-lg p-6">
                       <h3 className="text-lg font-semibold text-gray-900 mb-3">⚖️ Loan Comparison</h3>
                       <p className="text-gray-600 text-sm">
                         Compare offers from multiple lenders by analyzing EMIs, total interest costs, and processing fees. 
-                        Choose the most cost-effective home loan option for your needs. Our <a href="/tools/loan-calculator" className="text-blue-600 hover:underline">Loan Calculator</a> is ideal for this.
+                        Choose the most cost-effective home loan option for your needs.
                       </p>
                     </div>
                     <div className="bg-yellow-50 rounded-lg p-6">
                       <h3 className="text-lg font-semibold text-gray-900 mb-3">📈 Financial Planning</h3>
                       <p className="text-gray-600 text-sm">
                         Integrate home loan payments into your long-term financial planning. 
-                        Understand the impact of property purchase on your overall financial goals and retirement planning. Use our <a href="/tools/retirement-calculator" className="text-blue-600 hover:underline">Retirement Calculator</a>.
+                        Understand the impact of property purchase on your overall financial goals and retirement planning.
                       </p>
                     </div>
                   </div>
@@ -623,31 +623,28 @@ const HomeLoanCalculator = () => {
                           <p className="text-sm text-gray-600">
                             Use our home loan calculator to determine affordability before house hunting. 
                             Consider government schemes, lower down payment options, and factor in closing costs. 
-                            Plan with our <a href="/tools/savings-goal-calculator" className="text-blue-600 hover:underline">savings goal calculator</a> for down payment accumulation.
+                            Plan systematically for down payment accumulation.
                           </p>
                         </div>
                         <div className="border-l-4 border-green-500 pl-4">
                           <h4 className="font-semibold text-gray-900">Professionals & Salaried Individuals</h4>
                           <p className="text-sm text-gray-600">
                             Optimize loan tenure based on career progression and salary growth. 
-                            Use the EMI to income ratio guidelines and plan prepayments strategically. 
-                            Calculate potential savings with our <a href="/tools/compound-interest-calculator" className="text-blue-600 hover:underline">compound interest calculator</a>.
+                            Use the EMI to income ratio guidelines and plan prepayments strategically.
                           </p>
                         </div>
                         <div className="border-l-4 border-purple-500 pl-4">
                           <h4 className="font-semibold text-gray-900">Business Owners & Entrepreneurs</h4>
                           <p className="text-sm text-gray-600">
                             Consider variable income patterns and maintain higher emergency funds. 
-                            Explore business loan options alongside home loans using our <a href="/tools/business-loan-calculator" className="text-blue-600 hover:underline">business loan calculator</a> 
-                            for comprehensive financial planning.
+                            Explore business loan options alongside home loans for comprehensive financial planning.
                           </p>
                         </div>
                         <div className="border-l-4 border-orange-500 pl-4">
                           <h4 className="font-semibold text-gray-900">Real Estate Investors</h4>
                           <p className="text-sm text-gray-600">
                             Calculate investment property financing with rental income considerations. 
-                            Use our <a href="/tools/roi-calculator" className="text-blue-600 hover:underline">ROI calculator</a> to analyze property investments 
-                            and determine optimal leverage ratios for maximum returns.
+                            Analyze property investments and determine optimal leverage ratios for maximum returns.
                           </p>
                         </div>
                       </div>
@@ -676,10 +673,8 @@ const HomeLoanCalculator = () => {
                         <div className="bg-yellow-50 rounded-lg p-4">
                           <h4 className="font-semibold text-gray-900 mb-2">Financial Integration</h4>
                           <p className="text-sm text-gray-600">
-                            Integrate home loan planning with overall financial goals. Use our 
-                            <a href="/tools/retirement-calculator" className="text-blue-600 hover:underline mx-1">retirement calculator</a> 
-                            and <a href="/tools/investment-return-calculator" className="text-blue-600 hover:underline">investment return calculator</a> 
-                            to ensure your home purchase doesn't compromise long-term wealth building.
+                            Integrate home loan planning with overall financial goals. Consider retirement planning 
+                            and investment returns to ensure your home purchase doesn't compromise long-term wealth building.
                           </p>
                         </div>
                       </div>
@@ -817,7 +812,7 @@ const HomeLoanCalculator = () => {
                           <li>• Consider both fixed and floating rate options</li>
                           <li>• Factor in processing fees and hidden charges</li>
                           <li>• Negotiate based on your credit profile and relationship</li>
-                          <li>• Use our <a href="/tools/loan-calculator" className="text-blue-600 hover:underline">general loan calculator</a> for quick comparisons</li>
+                          <li>• Use general loan calculators for quick comparisons</li>
                         </ul>
                       </div>
                     </div>
@@ -843,8 +838,7 @@ const HomeLoanCalculator = () => {
                       </div>
                       <div className="mt-4 bg-blue-50 rounded-lg p-4">
                         <p className="text-sm text-gray-600">
-                          Use our <a href="/tools/credit-card-interest-calculator" className="text-blue-600 hover:underline">interest calculator</a> 
-                          to understand the long-term impact of rate differences on your total payment amount.
+                          Use interest calculators to understand the long-term impact of rate differences on your total payment amount.
                         </p>
                       </div>
                     </div>
@@ -852,117 +846,7 @@ const HomeLoanCalculator = () => {
                 </CardContent>
               </Card>
 
-              {/* Related Financial Planning Tools */}
-              <Card className="mt-8 bg-gradient-to-r from-blue-50 to-purple-50 border-0 shadow-sm">
-                <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                    <i className="fas fa-calculator mr-3"></i>
-                    Complete Home Finance Planning Toolkit
-                  </h2>
-                  <p className="text-gray-600 mb-6">
-                    Complement your home loan planning with our comprehensive suite of financial calculators. 
-                    Make informed decisions about your property purchase, financing options, and long-term wealth building strategy.
-                  </p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <div className="bg-white rounded-lg p-4 hover:shadow-md transition-shadow border-l-4 border-blue-500">
-                      <h4 className="font-semibold text-gray-900 mb-2">
-                        <a href="/tools/mortgage-calculator" className="text-blue-600 hover:text-blue-700">
-                          Mortgage Calculator
-                        </a>
-                      </h4>
-                      <p className="text-sm text-gray-600">
-                        Advanced mortgage calculations including taxes, insurance, and PMI for complete cost analysis.
-                      </p>
-                    </div>
-                    <div className="bg-white rounded-lg p-4 hover:shadow-md transition-shadow border-l-4 border-green-500">
-                      <h4 className="font-semibold text-gray-900 mb-2">
-                        <a href="/tools/loan-calculator" className="text-green-600 hover:text-green-700">
-                          General Loan Calculator
-                        </a>
-                      </h4>
-                      <p className="text-sm text-gray-600">
-                        Calculate EMI for personal loans, car loans, and other financing to plan your total debt obligations.
-                      </p>
-                    </div>
-                    <div className="bg-white rounded-lg p-4 hover:shadow-md transition-shadow border-l-4 border-purple-500">
-                      <h4 className="font-semibold text-gray-900 mb-2">
-                        <a href="/tools/emi-calculator" className="text-purple-600 hover:text-purple-700">
-                          EMI Calculator
-                        </a>
-                      </h4>
-                      <p className="text-sm text-gray-600">
-                        Quick EMI calculations for various loan scenarios and payment planning across different tenures.
-                      </p>
-                    </div>
-                    <div className="bg-white rounded-lg p-4 hover:shadow-md transition-shadow border-l-4 border-orange-500">
-                      <h4 className="font-semibold text-gray-900 mb-2">
-                        <a href="/tools/savings-goal-calculator" className="text-orange-600 hover:text-orange-700">
-                          Savings Goal Calculator
-                        </a>
-                      </h4>
-                      <p className="text-sm text-gray-600">
-                        Plan and track your down payment savings goal with systematic investment strategies.
-                      </p>
-                    </div>
-                    <div className="bg-white rounded-lg p-4 hover:shadow-md transition-shadow border-l-4 border-teal-500">
-                      <h4 className="font-semibold text-gray-900 mb-2">
-                        <a href="/tools/compound-interest-calculator" className="text-teal-600 hover:text-teal-700">
-                          Compound Interest Calculator
-                        </a>
-                      </h4>
-                      <p className="text-sm text-gray-600">
-                        Calculate long-term investment returns to balance home loan payments with wealth building.
-                      </p>
-                    </div>
-                    <div className="bg-white rounded-lg p-4 hover:shadow-md transition-shadow border-l-4 border-red-500">
-                      <h4 className="font-semibold text-gray-900 mb-2">
-                        <a href="/tools/retirement-calculator" className="text-red-600 hover:text-red-700">
-                          Retirement Calculator
-                        </a>
-                      </h4>
-                      <p className="text-sm text-gray-600">
-                        Ensure your home loan payments don't compromise your retirement planning and long-term security.
-                      </p>
-                    </div>
-                    <div className="bg-white rounded-lg p-4 hover:shadow-md transition-shadow border-l-4 border-indigo-500">
-                      <h4 className="font-semibold text-gray-900 mb-2">
-                        <a href="/tools/roi-calculator" className="text-indigo-600 hover:text-indigo-700">
-                          ROI Calculator
-                        </a>
-                      </h4>
-                      <p className="text-sm text-gray-600">
-                        Analyze real estate investment returns and compare with other investment opportunities.
-                      </p>
-                    </div>
-                    <div className="bg-white rounded-lg p-4 hover:shadow-md transition-shadow border-l-4 border-pink-500">
-                      <h4 className="font-semibold text-gray-900 mb-2">
-                        <a href="/tools/simple-interest-calculator" className="text-pink-600 hover:text-pink-700">
-                          Simple Interest Calculator
-                        </a>
-                      </h4>
-                      <p className="text-sm text-gray-600">
-                        Calculate simple interest for short-term financing and bridge loan planning.
-                      </p>
-                    </div>
-                    <div className="bg-white rounded-lg p-4 hover:shadow-md transition-shadow border-l-4 border-yellow-500">
-                      <h4 className="font-semibold text-gray-900 mb-2">
-                        <a href="/tools/business-loan-calculator" className="text-yellow-600 hover:text-yellow-700">
-                          Business Loan Calculator
-                        </a>
-                      </h4>
-                      <p className="text-sm text-gray-600">
-                        Plan business financing alongside personal home loans for entrepreneurs and business owners.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="mt-6 text-center">
-                    <a href="/tools" className="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-                      <i className="fas fa-tools mr-2"></i>
-                      Explore All Financial Tools
-                    </a>
-                  </div>
-                </CardContent>
-              </Card>
+              
             </div>
           </section>
         </main>
