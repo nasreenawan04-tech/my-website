@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -114,7 +113,7 @@ const UsernameGenerator = () => {
       case 'adjective-noun':
         const adjective = getRandomItem(data.adjectives);
         const noun = getRandomItem(data.nouns);
-        baseUsername = opts.capitalizeWords 
+        baseUsername = opts.capitalizeWords
           ? capitalizeWord(adjective) + separator + capitalizeWord(noun)
           : adjective + separator + noun;
         break;
@@ -184,7 +183,7 @@ const UsernameGenerator = () => {
       } else {
         variation = variation + getRandomNumber(1, 99);
       }
-      
+
       if (variation !== finalUsername && !variations.includes(variation)) {
         variations.push(variation);
       }
@@ -200,7 +199,7 @@ const UsernameGenerator = () => {
   const handleGenerateUsername = () => {
     const newUsername = generateUsername(options);
     setGeneratedUsername(newUsername);
-    
+
     // Add to history (keep last 10)
     setUsernameHistory(prev => {
       const updated = [newUsername, ...prev.filter(u => u.username !== newUsername.username)];
@@ -271,9 +270,9 @@ const UsernameGenerator = () => {
           })}
         </script>
       </Helmet>
-      
+
       <Header />
-      
+
       <main>
         {/* Hero Section */}
         <section className="relative py-20 sm:py-28 lg:py-32 overflow-hidden">
@@ -300,14 +299,14 @@ const UsernameGenerator = () => {
           {/* Main Generator Card */}
           <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+              <div className="grid grid-cols-1 lg:grid-cols-[1.7fr_1.3fr] gap-0">
                 {/* Input Section */}
-                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
+                <div className="p-8 lg:p-12 space-y-8">
                   <div>
                     <h2 className="text-3xl font-bold text-gray-900 mb-2">Username Configuration</h2>
                     <p className="text-gray-600">Customize your username preferences to generate the perfect handle</p>
                   </div>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {/* Style Selection */}
                     <div className="space-y-3">
@@ -375,7 +374,7 @@ const UsernameGenerator = () => {
                   {/* Advanced Options */}
                   <div className="space-y-6 border-t pt-8">
                     <h3 className="text-xl font-bold text-gray-900">Advanced Options</h3>
-                    
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       {/* Include Numbers */}
                       <div className="space-y-4 bg-gray-50 rounded-xl p-6">
@@ -453,7 +452,7 @@ const UsernameGenerator = () => {
                 {/* Results Section */}
                 <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
                   <h2 className="text-2xl font-bold text-gray-900 mb-8">Generated Username</h2>
-                  
+
                   {generatedUsername ? (
                     <div className="space-y-6" data-testid="generated-username-display">
                       {/* Main Username Display */}
@@ -707,7 +706,7 @@ const UsernameGenerator = () => {
                         <strong>Examples:</strong> CoolWarrior, SwiftEagle, DarkPhoenix, BrightStorm
                       </div>
                     </div>
-                    
+
                     <div className="border-l-4 border-green-500 pl-6">
                       <h4 className="text-lg font-semibold text-gray-900 mb-2">Gaming Style</h4>
                       <p className="text-gray-600 text-sm mb-3">Specifically designed for gamers with terms like Pro, Elite, Slayer, and Champion. Ideal for competitive gaming platforms.</p>
@@ -724,7 +723,7 @@ const UsernameGenerator = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="space-y-6">
                     <div className="border-l-4 border-orange-500 pl-6">
                       <h4 className="text-lg font-semibold text-gray-900 mb-2">Name-Based Style</h4>
@@ -733,7 +732,7 @@ const UsernameGenerator = () => {
                         <strong>Examples:</strong> AlexStorm, CaseyWolf, JordanStar, TaylorBlade
                       </div>
                     </div>
-                    
+
                     <div className="border-l-4 border-red-500 pl-6">
                       <h4 className="text-lg font-semibold text-gray-900 mb-2">Random Mix Style</h4>
                       <p className="text-gray-600 text-sm mb-3">Combines words from all categories randomly, producing the most diverse and unpredictable username combinations.</p>
@@ -898,7 +897,7 @@ const UsernameGenerator = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="space-y-6">
                     <div className="bg-red-50 rounded-lg p-6 border-l-4 border-red-500">
                       <h4 className="font-semibold text-red-900 mb-3">Common Username Mistakes to Avoid</h4>
@@ -970,12 +969,12 @@ const UsernameGenerator = () => {
                       <h4 className="text-lg font-semibold text-gray-900 mb-2">How does the random username generator work?</h4>
                       <p className="text-gray-600 text-sm">Our generator combines words from curated databases using advanced algorithms to create unique usernames. You can customize style, length, and formatting options to match your specific needs and platform requirements.</p>
                     </div>
-                    
+
                     <div>
                       <h4 className="text-lg font-semibold text-gray-900 mb-2">Are the generated usernames truly unique?</h4>
                       <p className="text-gray-600 text-sm">While our generator creates millions of possible combinations, true uniqueness depends on platform availability. We provide multiple variations with each generation to increase your chances of finding available usernames.</p>
                     </div>
-                    
+
                     <div>
                       <h4 className="text-lg font-semibold text-gray-900 mb-2">What's the best username style for gaming?</h4>
                       <p className="text-gray-600 text-sm">Gaming style or Adjective-Noun combinations work best for gaming platforms. Include numbers for uniqueness and keep the length between 8-16 characters. Avoid excessive symbols that might be hard to type quickly.</p>
@@ -1014,7 +1013,7 @@ const UsernameGenerator = () => {
           </div>
         </div>
       </main>
-      
+
       <Footer />
     </div>
   );
