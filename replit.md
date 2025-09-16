@@ -2,7 +2,7 @@
 
 ## Overview
 
-DapsiWow is a comprehensive web platform providing 180+ free online tools across multiple categories including finance, text processing, health, and more. The application is built as a client-side React application with no backend dependencies, focusing on providing instant, accessible tools without requiring user registration or sign-ups.
+DapsiWow is a comprehensive web platform providing 180+ free online tools across three main categories: finance, text processing, and health. The application is built as a client-side React application with no backend dependencies, focusing on providing instant, accessible tools without requiring user registration or sign-ups.
 
 The platform emphasizes user privacy, speed, and accessibility while offering professional-grade calculators, converters, and utilities that would typically require paid software or services.
 
@@ -51,6 +51,15 @@ Preferred communication style: Simple, everyday language.
 - **Static Hosting**: Designed for deployment on Vercel, Netlify, or similar platforms
 - **CDN Distribution**: All assets served through CDN for global performance
 - **Progressive Web App**: Service worker and manifest for app-like experience
+
+## Recent Changes
+
+### September 16, 2025 - PDF Category Removal
+- **Removed PDF category and all references**: Completely eliminated the PDF tools category from the website to streamline the platform focus
+- **Updated content**: Removed PDF mentions from all meta tags, help center, privacy policy, terms of service, and home page descriptions
+- **Cleaned sitemap**: Removed ~50 PDF tool URLs from client/public/sitemap.xml 
+- **Updated sitemap splitter**: Modified sitemap_splitter.py to exclude PDF category, now generates only 4 category sitemaps (main, finance, health, text)
+- **Preserved functionality**: All existing finance, text, and health tools remain fully functional
 
 ## External Dependencies
 
