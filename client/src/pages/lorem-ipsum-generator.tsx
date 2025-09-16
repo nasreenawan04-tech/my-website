@@ -44,47 +44,47 @@ const LoremIpsumGenerator = () => {
 
   const generateRandomWords = (count: number, startWithLorem: boolean = false): string[] => {
     const words: string[] = [];
-    
+
     if (startWithLorem && count >= 5) {
       words.push('Lorem', 'ipsum', 'dolor', 'sit', 'amet');
       count -= 5;
     }
-    
+
     for (let i = 0; i < count; i++) {
       const randomIndex = Math.floor(Math.random() * loremWords.length);
       words.push(loremWords[randomIndex]);
     }
-    
+
     return words;
   };
 
   const generateSentence = (startWithLorem: boolean = false): string => {
     const wordCount = Math.floor(Math.random() * 15) + 5; // 5-20 words per sentence
     const words = generateRandomWords(wordCount, startWithLorem);
-    
+
     // Capitalize first word
     if (words.length > 0) {
       words[0] = words[0].charAt(0).toUpperCase() + words[0].slice(1);
     }
-    
+
     return words.join(' ') + '.';
   };
 
   const generateParagraph = (startWithLorem: boolean = false): string => {
     const sentenceCount = Math.floor(Math.random() * 6) + 3; // 3-8 sentences per paragraph
     const sentences: string[] = [];
-    
+
     for (let i = 0; i < sentenceCount; i++) {
       const shouldStartWithLorem = startWithLorem && i === 0;
       sentences.push(generateSentence(shouldStartWithLorem));
     }
-    
+
     return sentences.join(' ');
   };
 
   const generateLorem = () => {
     let result = '';
-    
+
     switch (options.type) {
       case 'words':
         const words = generateRandomWords(options.count, options.startWithLorem);
@@ -93,7 +93,7 @@ const LoremIpsumGenerator = () => {
         }
         result = words.join(' ') + '.';
         break;
-        
+
       case 'sentences':
         const sentences: string[] = [];
         for (let i = 0; i < options.count; i++) {
@@ -102,7 +102,7 @@ const LoremIpsumGenerator = () => {
         }
         result = sentences.join(' ');
         break;
-        
+
       case 'paragraphs':
       default:
         const paragraphs: string[] = [];
@@ -113,7 +113,7 @@ const LoremIpsumGenerator = () => {
         result = paragraphs.join('\n\n');
         break;
     }
-    
+
     setGeneratedText(result);
   };
 
@@ -138,9 +138,9 @@ const LoremIpsumGenerator = () => {
         <meta property="og:type" content="website" />
         <link rel="canonical" href="/tools/lorem-ipsum-generator" />
       </Helmet>
-      
+
       <Header />
-      
+
       <main>
         {/* Hero Section */}
         <section className="gradient-hero text-white py-12 pt-20 sm:py-16 sm:pt-24">
@@ -162,11 +162,11 @@ const LoremIpsumGenerator = () => {
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <Card className="bg-white shadow-sm border-0">
               <CardContent className="px-4 py-6 sm:px-6 sm:py-8 lg:px-12 lg:py-10">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
                   {/* Settings Section */}
                   <div className="space-y-4 sm:space-y-6">
                     <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6 lg:mb-8">Generation Settings</h2>
-                    
+
                     {/* Type Selection */}
                     <div className="space-y-2 sm:space-y-3">
                       <Label htmlFor="type-select" className="text-sm font-medium text-gray-700">
@@ -236,7 +236,7 @@ const LoremIpsumGenerator = () => {
                   {/* Output Section */}
                   <div className="space-y-4 sm:space-y-6">
                     <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6 lg:mb-8">Generated Text</h2>
-                    
+
                     {/* Generated Text Area */}
                     <div className="space-y-2 sm:space-y-3">
                       <Label htmlFor="generated-text" className="text-sm font-medium text-gray-700">
@@ -312,7 +312,7 @@ const LoremIpsumGenerator = () => {
               <p className="text-base sm:text-lg text-gray-700 mb-4 sm:mb-6">
                 A <strong>Lorem Ipsum Generator</strong> is a powerful text generation tool that creates placeholder content for design and development projects. Our advanced Lorem ipsum generator produces dummy text that mimics natural language patterns without distracting from visual design elements.
               </p>
-              
+
               <p className="text-sm sm:text-base text-gray-700 mb-4 sm:mb-6">
                 <strong>Lorem Ipsum</strong> itself is placeholder text commonly used in the printing and typesetting industry since the 1500s. It's derived from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. The text has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
               </p>
@@ -326,7 +326,7 @@ const LoremIpsumGenerator = () => {
           {/* Benefits and Use Cases */}
           <div className="mt-6 sm:mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Why Use a Lorem Ipsum Generator?</h2>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8">
               <div className="space-y-3 sm:space-y-4">
                 <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Key Benefits</h3>
@@ -377,7 +377,7 @@ const LoremIpsumGenerator = () => {
           {/* Use Cases by Audience */}
           <div className="mt-6 sm:mt-8 bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8">
             <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Lorem Ipsum Generator Use Cases by Profession</h2>
-            
+
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
               <div className="space-y-4 sm:space-y-6">
                 <div className="border-l-4 border-blue-500 pl-4 sm:pl-6">
@@ -425,7 +425,7 @@ const LoremIpsumGenerator = () => {
           <div className="mt-6 sm:mt-8 bg-gradient-to-r from-gray-50 to-blue-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8">
             <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Related Text & Content Tools</h2>
             <p className="text-sm sm:text-base text-gray-700 mb-6 sm:mb-8">Enhance your text processing workflow with these complementary tools designed for content creators and developers.</p>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6">
               <a href="/tools/word-counter" className="bg-white rounded-lg p-3 sm:p-4 lg:p-6 shadow-sm hover:shadow-md transition-shadow group">
                 <div className="flex items-center mb-2 sm:mb-3">
@@ -508,7 +508,7 @@ const LoremIpsumGenerator = () => {
                     <p className="text-gray-600">Select whether you want to generate paragraphs, sentences, or individual words.</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start space-x-3">
                   <div className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold">2</div>
                   <div>
@@ -517,7 +517,7 @@ const LoremIpsumGenerator = () => {
                   </div>
                 </div>
               </div>
-              
+
               <div className="space-y-4">
                 <div className="flex items-start space-x-3">
                   <div className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold">3</div>
@@ -526,7 +526,7 @@ const LoremIpsumGenerator = () => {
                     <p className="text-gray-600">Decide whether to start with the traditional "Lorem ipsum" phrase or random text.</p>
                   </div>
                 </div>
-                
+
                 <div className="flex items-start space-x-3">
                   <div className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold">4</div>
                   <div>
@@ -549,7 +549,7 @@ const LoremIpsumGenerator = () => {
                 <h3 className="font-semibold text-gray-900 mb-2">Web Design</h3>
                 <p className="text-gray-600 text-sm">Fill content areas while designing websites and web applications.</p>
               </div>
-              
+
               <div className="text-center">
                 <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <i className="fas fa-print text-purple-600 text-xl"></i>
@@ -557,7 +557,7 @@ const LoremIpsumGenerator = () => {
                 <h3 className="font-semibold text-gray-900 mb-2">Print Design</h3>
                 <p className="text-gray-600 text-sm">Create layouts for brochures, flyers, and printed materials.</p>
               </div>
-              
+
               <div className="text-center">
                 <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <i className="fas fa-code text-green-600 text-xl"></i>
@@ -565,7 +565,7 @@ const LoremIpsumGenerator = () => {
                 <h3 className="font-semibold text-gray-900 mb-2">Development</h3>
                 <p className="text-gray-600 text-sm">Test layouts and templates during software development.</p>
               </div>
-              
+
               <div className="text-center">
                 <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <i className="fas fa-pencil-alt text-orange-600 text-xl"></i>
@@ -585,17 +585,17 @@ const LoremIpsumGenerator = () => {
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Why use Lorem Ipsum instead of real text?</h3>
                   <p className="text-gray-600">Lorem Ipsum prevents content from distracting viewers during design phases, allowing focus on visual elements, typography, and layout rather than readable content. It helps designers and clients concentrate on the visual aspects without getting caught up in the actual text.</p>
                 </div>
-                
+
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Is Lorem Ipsum just random text?</h3>
                   <p className="text-gray-600">No, Lorem Ipsum is based on classical Latin literature from Cicero's "de Finibus Bonorum et Malorum" written in 45 BC, though it has been altered over the centuries to remove meaningful content while maintaining natural language patterns.</p>
                 </div>
-                
+
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I use this Lorem ipsum generator for commercial projects?</h3>
                   <p className="text-gray-600">Yes! Lorem Ipsum is free to use for any purpose, including commercial projects, websites, print materials, and software development. It's the industry standard placeholder text recognized worldwide.</p>
                 </div>
-                
+
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">How many words should I generate for my project?</h3>
                   <p className="text-gray-600">It depends on your needs. For web design, 2-3 paragraphs (150-300 words) usually work well. For blog layouts, try 500-800 words. For testing layouts, adjust based on your content areas and design requirements.</p>
@@ -607,17 +607,17 @@ const LoremIpsumGenerator = () => {
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">What's the difference between paragraphs, sentences, and words?</h3>
                   <p className="text-gray-600">Paragraphs generate complete text blocks with multiple sentences (ideal for content areas), sentences create individual statements (perfect for headlines or short content), and words generate lists of individual terms (useful for testing spacing and typography).</p>
                 </div>
-                
+
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Should I start with "Lorem ipsum dolor sit amet"?</h3>
                   <p className="text-gray-600">Starting with the traditional "Lorem ipsum" phrase is recognizable and professional, but you can choose random text if you prefer more variety. The traditional start is commonly used in the design industry.</p>
                 </div>
-                
+
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I customize the Lorem ipsum text output?</h3>
                   <p className="text-gray-600">Our Lorem ipsum generator offers multiple customization options: choose between paragraphs, sentences, or words; set custom quantities; and decide whether to start with traditional Lorem ipsum text or random content.</p>
                 </div>
-                
+
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Is this Lorem ipsum generator tool free to use?</h3>
                   <p className="text-gray-600">Yes, our Lorem ipsum generator is completely free with no registration required. Generate unlimited placeholder text for all your design, development, and content planning projects without any restrictions.</p>
@@ -633,11 +633,11 @@ const LoremIpsumGenerator = () => {
               <p className="text-gray-700 mb-4">
                 Our advanced <strong>Lorem ipsum generator</strong> provides the most comprehensive placeholder text solution for modern design and development workflows. Whether you're creating websites, mobile apps, print materials, or digital content, our tool generates professional-quality dummy text that meets industry standards.
               </p>
-              
+
               <p className="text-gray-700 mb-4">
                 The Lorem ipsum text generator has been trusted by designers, developers, and content creators worldwide for over two decades. With customizable output options, instant generation, and mobile-friendly interface, it's the perfect tool for any project requiring placeholder content.
               </p>
-              
+
               <p className="text-gray-700">
                 Start generating professional Lorem ipsum text today and experience the difference quality placeholder content makes in your design process. Our free Lorem ipsum generator tool is optimized for speed, reliability, and ease of use across all devices and platforms.
               </p>
@@ -645,7 +645,7 @@ const LoremIpsumGenerator = () => {
           </div>
         </div>
       </main>
-      
+
       <Footer />
     </div>
   );
