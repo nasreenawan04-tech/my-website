@@ -169,8 +169,7 @@ const AllTools = () => {
                         className="absolute right-2 top-2 bottom-2 px-6 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl flex items-center justify-center hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all duration-200 shadow-lg hover:shadow-xl active:scale-95"
                         data-testid="button-search-all-tools"
                       >
-                        <span className="text-sm font-medium hidden sm:inline">Search</span>
-                        <Search size={18} className="sm:hidden" />
+                        <Search size={20} />
                       </button>
                     </form>
                     
