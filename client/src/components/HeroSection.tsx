@@ -27,9 +27,9 @@ const HeroSection = () => {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      setLocation(`/all-tools?search=${encodeURIComponent(searchQuery.trim())}`);
+      setLocation(`/tools?search=${encodeURIComponent(searchQuery.trim())}`);
     } else {
-      setLocation('/all-tools');
+      setLocation('/tools');
     }
     setIsSearchOpen(false);
   };
@@ -126,7 +126,7 @@ const HeroSection = () => {
                   <Search size={48} className="mx-auto mb-4" />
                   <p>No tools found matching "{searchQuery}"</p>
                   <button
-                    onClick={() => setLocation('/all-tools')}
+                    onClick={() => setLocation('/tools')}
                     className="mt-4 text-blue-600 hover:text-blue-700 font-medium"
                   >
                     Browse all tools →

@@ -1,13 +1,13 @@
 
 import { useEffect, useState } from 'react';
 import { useLocation } from 'wouter';
-import { tools } from '@/data/tools';
+import { tools, type Tool } from '@/data/tools';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 const ToolPage = () => {
   const [location] = useLocation();
-  const [tool, setTool] = useState(null);
+  const [tool, setTool] = useState<Tool | null>(null);
 
   useEffect(() => {
     // Extract tool ID from URL path like /tools/loan-calculator
@@ -16,7 +16,9 @@ const ToolPage = () => {
     
     if (toolId) {
       const foundTool = tools.find(t => t.id === toolId);
-      setTool(foundTool);
+      setTool(foundTool || null);
+    } else {
+      setTool(null);
     }
   }, [location]);
 
@@ -29,7 +31,7 @@ const ToolPage = () => {
             <h1 className="text-3xl font-bold text-neutral-800 mb-4">Tool Not Found</h1>
             <p className="text-neutral-600 mb-8">The tool you're looking for doesn't exist or isn't available yet.</p>
             <a 
-              href="/all-tools"
+              href="/tools"
               className="inline-block px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
             >
               Browse All Tools
@@ -121,7 +123,7 @@ const ToolPage = () => {
                     Browse {tool.category.charAt(0).toUpperCase() + tool.category.slice(1)} Tools
                   </a>
                   <a
-                    href="/all-tools"
+                    href="/tools"
                     className="px-6 py-3 border border-neutral-300 text-neutral-700 rounded-lg hover:bg-neutral-50 transition-colors"
                   >
                     View All Tools

@@ -899,7 +899,7 @@ const FakeAddressGenerator = () => {
             </div>
             
             <div className="mt-6 text-center">
-              <a href="/all-tools" className="inline-flex items-center px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+              <a href="/tools" className="inline-flex items-center px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
                 <i className="fas fa-tools mr-2"></i>
                 View All Tools
               </a>

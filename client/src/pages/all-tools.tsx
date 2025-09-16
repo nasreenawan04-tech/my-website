@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import ToolCard from '@/components/ToolCard';
 import { tools, categories } from '@/data/tools';
 import { searchAndFilterTools } from '@/lib/search';
+import { Search, Calculator, FileText, Heart, Zap, Users, Target, TrendingUp } from 'lucide-react';
 
 const AllTools = () => {
   const [location] = useLocation();
@@ -15,7 +16,7 @@ const AllTools = () => {
 
   // Parse URL parameters
   useEffect(() => {
-    const urlParams = new URLSearchParams(location.split('?')[1] || '');
+    const urlParams = new URLSearchParams(window.location.search);
     const searchParam = urlParams.get('search') || '';
     const categoryParam = urlParams.get('category') || 'all';
     
@@ -30,11 +31,31 @@ const AllTools = () => {
   }, [searchQuery, selectedCategory]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);
+    const query = e.target.value;
+    setSearchQuery(query);
+    updateURL(query, selectedCategory);
   };
 
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
+    updateURL(searchQuery, category);
+  };
+
+  const handleSearch = (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    updateURL(searchQuery, selectedCategory);
+  };
+
+  const updateURL = (search: string, category: string) => {
+    const params = new URLSearchParams();
+    if (search.trim()) {
+      params.set('search', search.trim());
+    }
+    if (category !== 'all') {
+      params.set('category', category);
+    }
+    const newURL = `/tools${params.toString() ? '?' + params.toString() : ''}`;
+    window.history.replaceState({}, '', newURL);
   };
 
   const categoryTabs = [
@@ -42,6 +63,36 @@ const AllTools = () => {
     { key: 'finance', label: 'Finance', count: tools.filter(t => t.category === 'finance').length },
     { key: 'text', label: 'Text', count: tools.filter(t => t.category === 'text').length },
     { key: 'health', label: 'Health', count: tools.filter(t => t.category === 'health').length }
+  ];
+
+  const quickCategories = [
+    { 
+      key: 'finance', 
+      label: 'Finance Tools', 
+      icon: Calculator, 
+      color: 'from-blue-500 to-blue-600',
+      bgColor: 'bg-blue-50',
+      textColor: 'text-blue-600',
+      count: tools.filter(t => t.category === 'finance').length
+    },
+    { 
+      key: 'text', 
+      label: 'Text Tools', 
+      icon: FileText, 
+      color: 'from-purple-500 to-purple-600',
+      bgColor: 'bg-purple-50', 
+      textColor: 'text-purple-600',
+      count: tools.filter(t => t.category === 'text').length
+    },
+    { 
+      key: 'health', 
+      label: 'Health Tools', 
+      icon: Heart, 
+      color: 'from-pink-500 to-pink-600',
+      bgColor: 'bg-pink-50',
+      textColor: 'text-pink-600',
+      count: tools.filter(t => t.category === 'health').length
+    }
   ];
 
   return (
@@ -57,30 +108,93 @@ const AllTools = () => {
         <Header />
         
         <main className="flex-1 bg-neutral-50">
-          {/* Hero Section */}
-          <section className="bg-gradient-to-r from-blue-600 via-blue-500 to-purple-600 text-white py-16">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <h1 className="text-4xl sm:text-5xl font-bold mb-4" data-testid="text-page-title">
-                All Tools Directory
-              </h1>
-              <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-                Discover all 150+ free online tools to boost your productivity
-              </p>
-              
-              {/* Search Bar */}
-              <div className="max-w-2xl mx-auto">
-                <div className="relative">
-                  <input
-                    type="text"
-                    placeholder="Search tools..."
-                    value={searchQuery}
-                    onChange={handleSearchChange}
-                    className="w-full py-4 px-6 pr-16 text-lg text-neutral-800 bg-white rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-200 transition-all duration-200"
-                    data-testid="input-search-all-tools"
-                  />
-                  <div className="absolute right-2 top-2 bottom-2 px-6 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl flex items-center">
-                    <i className="fas fa-search"></i>
+          {/* Modern Hero Section */}
+          <section className="relative bg-gradient-to-br from-blue-600 via-blue-500 to-purple-600 text-white py-20 lg:py-24 overflow-hidden">
+            {/* Background Pattern */}
+            <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]" />
+            <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent" />
+            
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              {/* Main Content */}
+              <div className="text-center mb-12">
+                {/* Icon Badge */}
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl mb-6">
+                  <Zap className="w-8 h-8 text-white" />
+                </div>
+                
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight" data-testid="text-page-title">
+                  Complete Tools Directory
+                </h1>
+                <p className="text-xl lg:text-2xl text-blue-100 mb-8 max-w-4xl mx-auto leading-relaxed">
+                  Access our complete collection of 150+ professional-grade tools. Everything you need for finance, text processing, and health calculations in one place.
+                </p>
+
+                {/* Trust Indicators */}
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8 max-w-2xl lg:max-w-4xl mx-auto mb-12">
+                  <div className="text-center">
+                    <div className="text-2xl lg:text-3xl font-bold mb-1">{tools.length}+</div>
+                    <div className="text-blue-100 text-sm">Free Tools</div>
                   </div>
+                  <div className="text-center">
+                    <div className="text-2xl lg:text-3xl font-bold mb-1">1M+</div>
+                    <div className="text-blue-100 text-sm">Users</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl lg:text-3xl font-bold mb-1">24/7</div>
+                    <div className="text-blue-100 text-sm">Available</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl lg:text-3xl font-bold mb-1">100%</div>
+                    <div className="text-blue-100 text-sm">Free</div>
+                  </div>
+                </div>
+                
+                {/* Enhanced Search Bar */}
+                <div className="max-w-2xl mx-auto mb-12">
+                  <form onSubmit={handleSearch} className="relative">
+                    <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
+                      <Search size={20} />
+                    </div>
+                    <input
+                      type="text"
+                      placeholder="Search through 150+ tools..."
+                      value={searchQuery}
+                      onChange={handleSearchChange}
+                      className="w-full py-4 pl-12 pr-20 text-lg text-neutral-800 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 focus:outline-none focus:ring-4 focus:ring-white/30 focus:bg-white transition-all duration-200"
+                      data-testid="input-search-all-tools"
+                    />
+                    <button
+                      type="submit"
+                      className="absolute right-2 top-2 bottom-2 px-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl flex items-center justify-center hover:from-blue-600 hover:to-purple-700 transition-all duration-200 shadow-lg"
+                      data-testid="button-search-all-tools"
+                    >
+                      <span className="text-sm font-medium">Search</span>
+                    </button>
+                  </form>
+                </div>
+
+                {/* Quick Category Access */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+                  {quickCategories.map((category) => {
+                    const IconComponent = category.icon;
+                    return (
+                      <button
+                        key={category.key}
+                        onClick={() => handleCategoryChange(category.key)}
+                        className="group bg-white/10 backdrop-blur-sm hover:bg-white/20 rounded-2xl p-6 transition-all duration-200 border border-white/20 hover:border-white/30 hover:scale-105"
+                        data-testid={`quick-category-${category.key}`}
+                      >
+                        <div className="flex items-center justify-center w-12 h-12 bg-white/20 rounded-xl mb-4 mx-auto group-hover:bg-white/30 transition-all duration-200">
+                          <IconComponent className="w-6 h-6 text-white" />
+                        </div>
+                        <h3 className="text-lg font-semibold text-white mb-2">{category.label}</h3>
+                        <p className="text-blue-100 text-sm mb-3">{category.count} tools available</p>
+                        <div className="inline-flex items-center text-white text-sm font-medium group-hover:gap-2 transition-all duration-200">
+                          Explore <Target className="w-4 h-4 ml-1 group-hover:ml-0 transition-all duration-200" />
+                        </div>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             </div>

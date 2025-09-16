@@ -27,7 +27,7 @@ const Home = () => {
             "url": "https://dapsiwow.com/",
             "potentialAction": {
               "@type": "SearchAction",
-              "target": "https://dapsiwow.com/all-tools?search={search_term_string}",
+              "target": "https://dapsiwow.com/tools?search={search_term_string}",
               "query-input": "required name=search_term_string"
             },
             "mainEntity": {
