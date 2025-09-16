@@ -298,9 +298,9 @@ const CaseConverter = () => {
           {/* Main Calculator Card */}
           <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-2xl sm:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 xl:grid-cols-3 gap-0">
+              <div className="flex flex-col">
                 {/* Input Section */}
-                <div className="xl:col-span-2 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 space-y-6 sm:space-y-8">
+                <div className="p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 space-y-6 sm:space-y-8">
                   <div>
                     <h2 className="text-3xl font-bold text-gray-900 mb-2">Text Conversion</h2>
                     <p className="text-gray-600">Enter your text to convert between different case formats</p>
@@ -473,7 +473,7 @@ const CaseConverter = () => {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 border-t xl:border-t-0">
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 border-t">
                   <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">Converted Text</h2>
                   
                   {result && result.original ? (
