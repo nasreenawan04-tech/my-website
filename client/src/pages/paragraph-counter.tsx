@@ -242,7 +242,7 @@ Finally, this last paragraph completes our sample text, giving you four distinct
                         id="text-input"
                         value={text}
                         onChange={(e) => setText(e.target.value)}
-                        className="w-full h-80 p-4 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500 resize-none"
+                        className="w-full h-96 p-4 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500 resize-none"
                         placeholder="Type or paste your text here to get instant paragraph count and detailed text structure analysis..."
                         data-testid="textarea-text-input"
                       />
