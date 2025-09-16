@@ -178,25 +178,37 @@ const AllTools = () => {
                     <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-sm text-blue-100">
                       <span className="opacity-75">Popular searches:</span>
                       <button 
-                        onClick={() => {setSearchQuery('calculator'); handleSearch();}}
+                        onClick={() => {
+                          setSearchQuery('calculator'); 
+                          updateURL('calculator', selectedCategory);
+                        }}
                         className="px-3 py-1 bg-white/20 rounded-full hover:bg-white/30 transition-all duration-200 cursor-pointer"
                       >
                         Calculator
                       </button>
                       <button 
-                        onClick={() => {setSearchQuery('BMI'); handleSearch();}}
+                        onClick={() => {
+                          setSearchQuery('BMI'); 
+                          updateURL('BMI', selectedCategory);
+                        }}
                         className="px-3 py-1 bg-white/20 rounded-full hover:bg-white/30 transition-all duration-200 cursor-pointer"
                       >
                         BMI
                       </button>
                       <button 
-                        onClick={() => {setSearchQuery('converter'); handleSearch();}}
+                        onClick={() => {
+                          setSearchQuery('converter'); 
+                          updateURL('converter', selectedCategory);
+                        }}
                         className="px-3 py-1 bg-white/20 rounded-full hover:bg-white/30 transition-all duration-200 cursor-pointer"
                       >
                         Converter
                       </button>
                       <button 
-                        onClick={() => {setSearchQuery('generator'); handleSearch();}}
+                        onClick={() => {
+                          setSearchQuery('generator'); 
+                          updateURL('generator', selectedCategory);
+                        }}
                         className="px-3 py-1 bg-white/20 rounded-full hover:bg-white/30 transition-all duration-200 cursor-pointer"
                       >
                         Generator
