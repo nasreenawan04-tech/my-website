@@ -73,6 +73,29 @@ const Home = () => {
             }
           })}
         </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "DapsiWow",
+            "url": "https://dapsiwow.com/",
+            "logo": "https://dapsiwow.com/logo.svg",
+            "description": "Professional online tools platform offering 180+ free utilities for business and personal use including finance calculators, text converters, and health trackers.",
+            "foundingDate": "2025",
+            "slogan": "Free Finance, Text, Health and other Online Tools",
+            "knowsAbout": [
+              "Financial Calculators",
+              "Text Processing Tools", 
+              "Health Calculators",
+              "Online Utilities",
+              "Productivity Tools"
+            ],
+            "sameAs": [
+              "https://dapsiwow.com/about",
+              "https://dapsiwow.com/contact"
+            ]
+          })}
+        </script>
       </Helmet>
       
       <div className="min-h-screen flex flex-col" data-testid="page-home">
