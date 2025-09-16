@@ -24,9 +24,7 @@ const BreakEvenCalculator = () => {
   const [variableCostPerUnit, setVariableCostPerUnit] = useState('');
   const [sellingPricePerUnit, setSellingPricePerUnit] = useState('');
   const [targetUnits, setTargetUnits] = useState('');
-  const [targetRevenue, setTargetRevenue] = useState('');
   const [currency, setCurrency] = useState('USD');
-  const [calculationType, setCalculationType] = useState('units');
   const [result, setResult] = useState<BreakEvenResult | null>(null);
 
   const calculateBreakEven = () => {
@@ -70,9 +68,7 @@ const BreakEvenCalculator = () => {
     setVariableCostPerUnit('');
     setSellingPricePerUnit('');
     setTargetUnits('');
-    setTargetRevenue('');
     setCurrency('USD');
-    setCalculationType('units');
     setResult(null);
   };
 
@@ -174,7 +170,7 @@ const BreakEvenCalculator = () => {
           <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
             <CardContent className="p-0">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
-                    {/* Input Section */}
+                {/* Input Section */}
                 <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
                   <div>
                     <h2 className="text-3xl font-bold text-gray-900 mb-2">Break-Even Configuration</h2>
@@ -319,68 +315,66 @@ const BreakEvenCalculator = () => {
 
                 {/* Results Section */}
                 <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
-                  <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Break-Even Analysis</div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-8">Your Results</h3>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Break-Even Analysis</h2>
                   
                   {result ? (
                     <div className="space-y-6" data-testid="break-even-results">
-                      {/* Main Results */}
-                      <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-                        <div className="grid grid-cols-1 gap-6">
-                          {/* Break-Even Units */}
-                          <div className="flex justify-between items-center py-3 border-b border-gray-100 last:border-0">
-                            <div className="text-sm font-semibold text-gray-700 uppercase tracking-wide">Break-Even Units</div>
-                            <div className="text-2xl font-bold text-blue-600" data-testid="text-break-even-units">
-                              {formatNumber(result.breakEvenUnits)}
-                            </div>
-                          </div>
+                      {/* Break-Even Units Highlight */}
+                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
+                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Break-Even Units</div>
+                        <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" data-testid="text-break-even-units">
+                          {formatNumber(result.breakEvenUnits)}
+                        </div>
+                      </div>
 
-                          {/* Break-Even Revenue */}
-                          <div className="flex justify-between items-center py-3 border-b border-gray-100 last:border-0">
-                            <div className="text-sm font-semibold text-gray-700 uppercase tracking-wide">Break-Even Revenue</div>
-                            <div className="text-2xl font-bold text-indigo-600" data-testid="text-break-even-revenue">
+                      {/* Analysis Breakdown */}
+                      <div className="space-y-4">
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Break-Even Revenue</span>
+                            <span className="font-bold text-gray-900" data-testid="text-break-even-revenue">
                               {formatCurrency(result.breakEvenRevenue)}
-                            </div>
+                            </span>
                           </div>
-
-                          {/* Contribution Margin */}
-                          <div className="flex justify-between items-center py-3 border-b border-gray-100 last:border-0">
-                            <div className="text-sm font-semibold text-gray-700 uppercase tracking-wide">Contribution Margin</div>
-                            <div className="text-xl font-bold text-green-600" data-testid="text-contribution-margin">
+                        </div>
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Contribution Margin</span>
+                            <span className="font-bold text-green-600" data-testid="text-contribution-margin">
                               {formatCurrency(result.contributionMargin)}
-                            </div>
+                            </span>
                           </div>
-
-                          {/* Contribution Margin Ratio */}
-                          <div className="flex justify-between items-center py-3 border-b border-gray-100 last:border-0">
-                            <div className="text-sm font-semibold text-gray-700 uppercase tracking-wide">Margin Ratio</div>
-                            <div className="text-xl font-bold text-purple-600" data-testid="text-contribution-margin-ratio">
+                        </div>
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Margin Ratio</span>
+                            <span className="font-bold text-purple-600" data-testid="text-contribution-margin-ratio">
                               {result.contributionMarginRatio}%
-                            </div>
+                            </span>
                           </div>
                         </div>
                       </div>
 
                       {/* Target Analysis */}
                       {parseFloat(targetUnits) > 0 && (
-                        <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-                          <h4 className="text-lg font-bold text-gray-900 mb-4">Target Analysis</h4>
-                          <div className="grid grid-cols-1 gap-4">
+                        <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-6 border border-green-200">
+                          <h4 className="font-bold text-green-800 mb-4 text-lg">Target Analysis</h4>
+                          <div className="space-y-3">
                             <div className="flex justify-between items-center">
-                              <span className="text-sm font-medium text-gray-600">Profit at Target Units</span>
-                              <span className={`text-lg font-bold ${result.profitAtTargetUnits >= 0 ? 'text-green-600' : 'text-red-600'}`} data-testid="text-profit-target">
+                              <span className="text-green-700 font-medium">Profit at Target Units:</span>
+                              <span className={`font-bold text-lg ${result.profitAtTargetUnits >= 0 ? 'text-green-800' : 'text-red-600'}`} data-testid="text-profit-target">
                                 {formatCurrency(result.profitAtTargetUnits)}
                               </span>
                             </div>
                             <div className="flex justify-between items-center">
-                              <span className="text-sm font-medium text-gray-600">Margin of Safety (Units)</span>
-                              <span className="text-lg font-bold text-blue-600" data-testid="text-margin-safety">
+                              <span className="text-green-700 font-medium">Margin of Safety (Units):</span>
+                              <span className="font-bold text-green-800 text-lg" data-testid="text-margin-safety">
                                 {formatNumber(result.marginOfSafety)}
                               </span>
                             </div>
                             <div className="flex justify-between items-center">
-                              <span className="text-sm font-medium text-gray-600">Margin of Safety (%)</span>
-                              <span className="text-lg font-bold text-indigo-600" data-testid="text-margin-safety-percent">
+                              <span className="text-green-700 font-medium">Margin of Safety (%):</span>
+                              <span className="font-bold text-green-800 text-lg" data-testid="text-margin-safety-percent">
                                 {result.marginOfSafetyPercentage}%
                               </span>
                             </div>
@@ -420,9 +414,9 @@ const BreakEvenCalculator = () => {
                       )}
                     </div>
                   ) : (
-                    <div className="text-center py-12" data-testid="no-results">
-                      <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <div className="w-10 h-10 bg-blue-500 rounded-lg"></div>
+                    <div className="text-center py-16" data-testid="no-results">
+                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <div className="text-3xl font-bold text-gray-400">$</div>
                       </div>
                       <p className="text-gray-500 text-lg">Enter business details to calculate break-even point</p>
                     </div>
@@ -433,172 +427,371 @@ const BreakEvenCalculator = () => {
           </Card>
         </div>
 
-        {/* Educational Content Section */}
-        <section className="py-16 bg-white">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="space-y-12">
-              {/* What is Break-Even Analysis */}
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">What is Break-Even Analysis?</h2>
-                <div className="prose prose-lg text-gray-700 space-y-4">
+        {/* SEO Content Section */}
+        <div className="max-w-7xl mx-auto px-4 py-16">
+          {/* Educational Content Sections */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">What is Break-Even Analysis?</h3>
+                <div className="space-y-4 text-gray-600">
                   <p>
-                    Break-even analysis is a fundamental financial planning tool that helps businesses determine the exact point where total revenues equal total costs. At this critical point, known as the break-even point, a business neither makes a profit nor incurs a loss. This analysis is essential for entrepreneurs, business owners, and financial managers who need to understand the minimum performance requirements to avoid losses.
+                    Break-even analysis is a fundamental financial planning tool that helps businesses determine the exact point where total revenues equal total costs. At this critical point, known as the break-even point, a business neither makes a profit nor incurs a loss.
                   </p>
                   <p>
-                    The break-even point can be calculated in two primary ways: the number of units that must be sold (break-even units) or the dollar amount of revenue required (break-even revenue). Understanding both metrics provides comprehensive insight into your business's financial requirements and helps establish realistic sales targets and pricing strategies.
-                  </p>
-                  <p>
-                    Our break-even calculator simplifies these complex calculations by automatically computing your break-even point, contribution margin, and margin of safety. This powerful tool supports multiple currencies and provides detailed analysis including profit projections at different sales volumes, making it invaluable for business planning and decision-making.
+                    Our break-even calculator simplifies these complex calculations by automatically computing your break-even point, contribution margin, and margin of safety. This powerful tool supports multiple currencies and provides detailed analysis including profit projections at different sales volumes.
                   </p>
                 </div>
-              </div>
+              </CardContent>
+            </Card>
 
-              {/* How Break-Even Analysis Works */}
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">How Break-Even Analysis Works</h2>
-                <div className="prose prose-lg text-gray-700 space-y-4">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">How to Calculate Break-Even Point?</h3>
+                <div className="space-y-4 text-gray-600">
                   <p>
-                    Break-even analysis relies on the fundamental relationship between three key components: fixed costs, variable costs, and selling price. Fixed costs remain constant regardless of production volume and include expenses like rent, salaries, insurance, and equipment leases. Variable costs change directly with production levels and typically include materials, direct labor, and per-unit manufacturing expenses.
+                    The break-even formula is: Break-Even Units = Fixed Costs ÷ (Selling Price - Variable Cost Per Unit)
                   </p>
-                  <p>
-                    The contribution margin, calculated as selling price minus variable cost per unit, represents the amount each unit contributes toward covering fixed costs and generating profit. Once you understand your contribution margin, determining the break-even point becomes straightforward: divide total fixed costs by the contribution margin per unit to find the break-even units.
-                  </p>
-                  <p>
-                    For example, if your business has $10,000 in monthly fixed costs, sells products for $50 each, and incurs $30 in variable costs per unit, your contribution margin is $20 per unit. Your break-even point would be 500 units ($10,000 ÷ $20), meaning you need to sell 500 units to cover all costs and reach profitability.
-                  </p>
+                  <ul className="space-y-2 list-disc list-inside">
+                    <li>Fixed Costs = Total expenses that don't change with production</li>
+                    <li>Variable Cost = Per-unit costs that vary with production</li>
+                    <li>Selling Price = Revenue per unit sold</li>
+                    <li>Contribution Margin = Selling Price - Variable Cost</li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Comprehensive Break-Even Analysis Guide */}
+          <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl mb-12">
+            <CardContent className="p-8">
+              <h2 className="text-3xl font-bold text-gray-900 mb-8">Complete Guide to Break-Even Analysis</h2>
+              
+              <div className="space-y-8">
+                {/* Understanding Break-Even Components */}
+                <div>
+                  <h3 className="text-2xl font-semibold text-gray-900 mb-4">Understanding Break-Even Components</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="bg-blue-50 rounded-lg p-6">
+                      <h4 className="text-lg font-semibold text-blue-900 mb-3">Fixed Costs</h4>
+                      <p className="text-sm text-blue-800 mb-3">
+                        Expenses that remain constant regardless of production volume. These costs must be paid whether you sell zero units or thousands.
+                      </p>
+                      <ul className="text-xs text-blue-700 space-y-1 list-disc list-inside">
+                        <li>Rent and utilities</li>
+                        <li>Insurance premiums</li>
+                        <li>Fixed salaries</li>
+                        <li>Equipment leases</li>
+                        <li>Software subscriptions</li>
+                      </ul>
+                    </div>
+                    <div className="bg-green-50 rounded-lg p-6">
+                      <h4 className="text-lg font-semibold text-green-900 mb-3">Variable Costs</h4>
+                      <p className="text-sm text-green-800 mb-3">
+                        Costs that change directly with production levels. These increase as you produce more units and decrease when production slows.
+                      </p>
+                      <ul className="text-xs text-green-700 space-y-1 list-disc list-inside">
+                        <li>Raw materials</li>
+                        <li>Direct labor</li>
+                        <li>Sales commissions</li>
+                        <li>Shipping costs</li>
+                        <li>Transaction fees</li>
+                      </ul>
+                    </div>
+                    <div className="bg-purple-50 rounded-lg p-6">
+                      <h4 className="text-lg font-semibold text-purple-900 mb-3">Contribution Margin</h4>
+                      <p className="text-sm text-purple-800 mb-3">
+                        The amount each unit contributes toward covering fixed costs and generating profit after variable costs are deducted.
+                      </p>
+                      <ul className="text-xs text-purple-700 space-y-1 list-disc list-inside">
+                        <li>Higher margin = Better profitability</li>
+                        <li>Helps optimize pricing</li>
+                        <li>Guides product decisions</li>
+                        <li>Shows cost efficiency</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Break-Even Applications */}
+                <div>
+                  <h3 className="text-2xl font-semibold text-gray-900 mb-6">Business Applications of Break-Even Analysis</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="space-y-6">
+                      <div className="border-l-4 border-blue-500 pl-6">
+                        <h4 className="text-lg font-semibold text-gray-900 mb-2">Startup Planning</h4>
+                        <p className="text-gray-600 text-sm">
+                          New businesses use break-even analysis to determine minimum viable sales levels, set initial pricing strategies, and calculate funding requirements. This analysis helps entrepreneurs understand how long it will take to achieve profitability and plan their cash flow accordingly.
+                        </p>
+                      </div>
+                      <div className="border-l-4 border-green-500 pl-6">
+                        <h4 className="text-lg font-semibold text-gray-900 mb-2">Product Launch Strategy</h4>
+                        <p className="text-gray-600 text-sm">
+                          Before launching new products, companies perform break-even analysis to ensure the product can generate sufficient profit. This includes evaluating production costs, marketing expenses, and expected sales volumes to determine product viability and optimal launch strategies.
+                        </p>
+                      </div>
+                      <div className="border-l-4 border-orange-500 pl-6">
+                        <h4 className="text-lg font-semibold text-gray-900 mb-2">Pricing Optimization</h4>
+                        <p className="text-gray-600 text-sm">
+                          Businesses regularly use break-even analysis to optimize pricing strategies. By understanding how price changes affect break-even points and profit margins, companies can find the optimal balance between competitive pricing and profitability.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="space-y-6">
+                      <div className="border-l-4 border-purple-500 pl-6">
+                        <h4 className="text-lg font-semibold text-gray-900 mb-2">Investment Decisions</h4>
+                        <p className="text-gray-600 text-sm">
+                          Break-even analysis is invaluable for evaluating investment opportunities and business expansions. It helps determine whether potential investments will generate sufficient returns and how long it will take to recover initial costs.
+                        </p>
+                      </div>
+                      <div className="border-l-4 border-red-500 pl-6">
+                        <h4 className="text-lg font-semibold text-gray-900 mb-2">Risk Assessment</h4>
+                        <p className="text-gray-600 text-sm">
+                          Understanding your break-even point enables better risk assessment and management. The margin of safety calculation shows how much sales can decline before reaching the break-even point, helping businesses prepare for market fluctuations.
+                        </p>
+                      </div>
+                      <div className="border-l-4 border-indigo-500 pl-6">
+                        <h4 className="text-lg font-semibold text-gray-900 mb-2">Capacity Planning</h4>
+                        <p className="text-gray-600 text-sm">
+                          Manufacturing and service businesses use break-even analysis for capacity planning decisions. This helps determine optimal production levels, staffing requirements, and facility utilization to maximize efficiency and profitability.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Advanced Break-Even Concepts */}
+                <div>
+                  <h3 className="text-2xl font-semibold text-gray-900 mb-6">Advanced Break-Even Concepts</h3>
+                  <div className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-xl p-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                      <div>
+                        <h4 className="text-xl font-semibold text-gray-900 mb-4">Multi-Product Break-Even Analysis</h4>
+                        <p className="text-gray-600 mb-4">
+                          For businesses selling multiple products with different contribution margins, calculating a weighted average contribution margin based on the sales mix is essential. This approach provides a comprehensive view of overall break-even requirements across your entire product portfolio.
+                        </p>
+                        <div className="bg-white rounded-lg p-4 border-l-4 border-blue-500">
+                          <p className="text-sm text-gray-700">
+                            <strong>Example:</strong> If Product A has a 60% contribution margin with 70% of sales, and Product B has a 40% contribution margin with 30% of sales, the weighted average contribution margin would be (0.6 × 0.7) + (0.4 × 0.3) = 54%.
+                          </p>
+                        </div>
+                      </div>
+                      <div>
+                        <h4 className="text-xl font-semibold text-gray-900 mb-4">Scenario Planning with Break-Even</h4>
+                        <p className="text-gray-600 mb-4">
+                          Break-even analysis supports scenario planning and sensitivity analysis. By adjusting variables such as selling prices, costs, or sales volumes, businesses can model different scenarios and understand how changes in market conditions might affect their profitability.
+                        </p>
+                        <div className="bg-white rounded-lg p-4 border-l-4 border-green-500">
+                          <p className="text-sm text-gray-700">
+                            <strong>Best Practice:</strong> Create three scenarios (pessimistic, realistic, optimistic) with different price and volume assumptions to stress-test your business model and develop contingency plans.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
+            </CardContent>
+          </Card>
 
-              {/* Key Benefits */}
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">Key Benefits of Break-Even Analysis</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="space-y-4">
-                    <h3 className="text-xl font-semibold text-gray-900">Strategic Planning</h3>
-                    <p className="text-gray-700">
-                      Break-even analysis provides crucial insights for strategic business planning by establishing minimum performance thresholds. It helps entrepreneurs set realistic sales targets, determine appropriate pricing strategies, and make informed decisions about product launches, market expansion, and resource allocation.
-                    </p>
-                  </div>
-                  <div className="space-y-4">
-                    <h3 className="text-xl font-semibold text-gray-900">Risk Assessment</h3>
-                    <p className="text-gray-700">
-                      Understanding your break-even point enables better risk assessment and management. The margin of safety calculation shows how much sales can decline before reaching the break-even point, helping businesses prepare for market fluctuations and economic downturns.
-                    </p>
-                  </div>
-                  <div className="space-y-4">
-                    <h3 className="text-xl font-semibold text-gray-900">Cost Control</h3>
-                    <p className="text-gray-700">
-                      Regular break-even analysis encourages ongoing cost monitoring and control. By understanding the impact of fixed and variable costs on profitability, businesses can identify opportunities to reduce expenses and improve their break-even position.
-                    </p>
-                  </div>
-                  <div className="space-y-4">
-                    <h3 className="text-xl font-semibold text-gray-900">Investment Decisions</h3>
-                    <p className="text-gray-700">
-                      Break-even analysis is invaluable for evaluating investment opportunities and business expansions. It helps determine whether potential investments will generate sufficient returns and how long it will take to recover initial costs.
-                    </p>
-                  </div>
+          {/* Industry-Specific Applications */}
+          <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl mb-12">
+            <CardContent className="p-8">
+              <h2 className="text-3xl font-bold text-gray-900 mb-8">Break-Even Analysis by Industry</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="bg-blue-50 rounded-lg p-6">
+                  <h4 className="text-lg font-semibold text-blue-900 mb-3">Manufacturing</h4>
+                  <p className="text-sm text-blue-800 mb-3">
+                    Manufacturing companies use break-even analysis to optimize production schedules, determine minimum order quantities, and evaluate new product lines.
+                  </p>
+                  <ul className="text-xs text-blue-700 space-y-1 list-disc list-inside">
+                    <li>Production capacity planning</li>
+                    <li>Equipment investment decisions</li>
+                    <li>Seasonal demand management</li>
+                    <li>Supply chain optimization</li>
+                  </ul>
+                </div>
+                <div className="bg-green-50 rounded-lg p-6">
+                  <h4 className="text-lg font-semibold text-green-900 mb-3">Retail & E-commerce</h4>
+                  <p className="text-sm text-green-800 mb-3">
+                    Retailers apply break-even analysis for inventory management, pricing strategies, and store expansion decisions.
+                  </p>
+                  <ul className="text-xs text-green-700 space-y-1 list-disc list-inside">
+                    <li>Store location analysis</li>
+                    <li>Seasonal inventory planning</li>
+                    <li>Marketing campaign ROI</li>
+                    <li>Product mix optimization</li>
+                  </ul>
+                </div>
+                <div className="bg-purple-50 rounded-lg p-6">
+                  <h4 className="text-lg font-semibold text-purple-900 mb-3">Service Businesses</h4>
+                  <p className="text-sm text-purple-800 mb-3">
+                    Service companies adapt break-even analysis by treating billable hours or service units as their "products" to determine minimum billing requirements.
+                  </p>
+                  <ul className="text-xs text-purple-700 space-y-1 list-disc list-inside">
+                    <li>Hourly rate optimization</li>
+                    <li>Staff capacity planning</li>
+                    <li>Service package pricing</li>
+                    <li>Client acquisition costs</li>
+                  </ul>
+                </div>
+                <div className="bg-orange-50 rounded-lg p-6">
+                  <h4 className="text-lg font-semibold text-orange-900 mb-3">SaaS & Technology</h4>
+                  <p className="text-sm text-orange-800 mb-3">
+                    Software companies use break-even analysis for subscription pricing, customer acquisition cost (CAC) payback, and feature development ROI.
+                  </p>
+                  <ul className="text-xs text-orange-700 space-y-1 list-disc list-inside">
+                    <li>Subscription tier pricing</li>
+                    <li>Customer lifetime value</li>
+                    <li>Development cost recovery</li>
+                    <li>Market penetration strategy</li>
+                  </ul>
+                </div>
+                <div className="bg-red-50 rounded-lg p-6">
+                  <h4 className="text-lg font-semibold text-red-900 mb-3">Restaurants & Food Service</h4>
+                  <p className="text-sm text-red-800 mb-3">
+                    Food service businesses use break-even analysis for menu pricing, portion control, and location viability assessments.
+                  </p>
+                  <ul className="text-xs text-red-700 space-y-1 list-disc list-inside">
+                    <li>Menu engineering</li>
+                    <li>Food cost management</li>
+                    <li>Staff scheduling optimization</li>
+                    <li>Location feasibility studies</li>
+                  </ul>
+                </div>
+                <div className="bg-indigo-50 rounded-lg p-6">
+                  <h4 className="text-lg font-semibold text-indigo-900 mb-3">Consulting & Professional Services</h4>
+                  <p className="text-sm text-indigo-800 mb-3">
+                    Professional service firms use break-even analysis to determine minimum project sizes, optimal team structures, and sustainable growth rates.
+                  </p>
+                  <ul className="text-xs text-indigo-700 space-y-1 list-disc list-inside">
+                    <li>Project profitability analysis</li>
+                    <li>Resource allocation planning</li>
+                    <li>Partnership evaluation</li>
+                    <li>Practice area expansion</li>
+                  </ul>
                 </div>
               </div>
+            </CardContent>
+          </Card>
 
-              {/* Advanced Applications */}
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">Advanced Break-Even Applications</h2>
-                <div className="prose prose-lg text-gray-700 space-y-4">
-                  <p>
-                    Beyond basic break-even calculations, advanced applications include multi-product break-even analysis for businesses selling multiple products with different contribution margins. This involves calculating a weighted average contribution margin based on the sales mix to determine overall break-even points.
-                  </p>
-                  <p>
-                    Break-even analysis also supports scenario planning and sensitivity analysis. By adjusting variables such as selling prices, costs, or sales volumes, businesses can model different scenarios and understand how changes in market conditions might affect their profitability. This helps in developing contingency plans and stress-testing business models.
-                  </p>
-                  <p>
-                    Service businesses can adapt break-even analysis by treating billable hours as units and calculating hourly contribution margins. This approach helps service providers determine minimum billing requirements and optimal pricing structures for sustained profitability.
-                  </p>
-                </div>
-              </div>
-
-              {/* Common Use Cases */}
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">Common Business Use Cases</h2>
+          {/* Common Mistakes and Best Practices */}
+          <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl mb-12">
+            <CardContent className="p-8">
+              <h2 className="text-3xl font-bold text-gray-900 mb-8">Common Mistakes in Break-Even Analysis</h2>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div className="space-y-6">
-                  <div className="bg-blue-50 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-blue-900 mb-3">Startup Planning</h3>
-                    <p className="text-blue-800">
-                      New businesses use break-even analysis to determine minimum viable sales levels, set initial pricing strategies, and calculate funding requirements. This analysis helps entrepreneurs understand how long it will take to achieve profitability and plan their cash flow accordingly.
-                    </p>
+                  <h3 className="text-xl font-semibold text-gray-900">Mistakes to Avoid</h3>
+                  <div className="space-y-4">
+                    <div className="bg-red-50 border-l-4 border-red-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-red-800 mb-2">Misclassifying Costs</h4>
+                      <p className="text-red-700 text-sm">
+                        Incorrectly categorizing semi-variable costs as purely fixed or variable can significantly skew break-even calculations. Carefully analyze each cost component to ensure accurate classification.
+                      </p>
+                    </div>
+                    <div className="bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-orange-800 mb-2">Ignoring Market Reality</h4>
+                      <p className="text-orange-700 text-sm">
+                        Calculating break-even without considering market size, competition, or demand constraints can lead to unrealistic expectations. Validate your break-even requirements against market capacity.
+                      </p>
+                    </div>
+                    <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-yellow-800 mb-2">Using Outdated Data</h4>
+                      <p className="text-yellow-700 text-sm">
+                        Break-even analysis based on old cost or pricing data can be misleading. Regularly update your inputs to reflect current market conditions and operational changes.
+                      </p>
+                    </div>
                   </div>
-                  <div className="bg-green-50 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-green-900 mb-3">Product Launch</h3>
-                    <p className="text-green-800">
-                      Before launching new products, companies perform break-even analysis to ensure the product can generate sufficient profit. This includes evaluating production costs, marketing expenses, and expected sales volumes to determine product viability.
-                    </p>
-                  </div>
-                  <div className="bg-purple-50 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-purple-900 mb-3">Pricing Optimization</h3>
-                    <p className="text-purple-800">
-                      Businesses regularly use break-even analysis to optimize pricing strategies. By understanding how price changes affect break-even points and profit margins, companies can find the optimal balance between competitive pricing and profitability.
-                    </p>
-                  </div>
-                  <div className="bg-orange-50 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-orange-900 mb-3">Capacity Planning</h3>
-                    <p className="text-orange-800">
-                      Manufacturing and service businesses use break-even analysis for capacity planning decisions. This helps determine optimal production levels, staffing requirements, and facility utilization to maximize efficiency and profitability.
-                    </p>
+                </div>
+                <div className="space-y-6">
+                  <h3 className="text-xl font-semibold text-gray-900">Best Practices</h3>
+                  <div className="space-y-4">
+                    <div className="bg-green-50 border-l-4 border-green-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-green-800 mb-2">Regular Review and Updates</h4>
+                      <p className="text-green-700 text-sm">
+                        Conduct break-even analysis quarterly or whenever significant changes occur in your business model, costs, or market conditions to maintain accuracy and relevance.
+                      </p>
+                    </div>
+                    <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-blue-800 mb-2">Scenario Planning</h4>
+                      <p className="text-blue-700 text-sm">
+                        Develop multiple scenarios (optimistic, realistic, pessimistic) to understand your break-even requirements under different market conditions and prepare contingency plans.
+                      </p>
+                    </div>
+                    <div className="bg-purple-50 border-l-4 border-purple-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-purple-800 mb-2">Integrate with Financial Planning</h4>
+                      <p className="text-purple-700 text-sm">
+                        Use break-even analysis as part of your comprehensive financial planning process, integrating it with cash flow projections, budgeting, and strategic planning activities.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
+            </CardContent>
+          </Card>
 
-              {/* Tips for Accurate Analysis */}
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">Tips for Accurate Break-Even Analysis</h2>
-                <div className="prose prose-lg text-gray-700 space-y-4">
-                  <p>
-                    <strong>Accurate Cost Classification:</strong> Properly distinguish between fixed and variable costs. Semi-variable costs that contain both fixed and variable components should be carefully analyzed and allocated appropriately. Review your cost structure regularly as business operations evolve.
-                  </p>
-                  <p>
-                    <strong>Realistic Assumptions:</strong> Base your analysis on realistic market conditions and historical data when available. Consider factors such as seasonality, market trends, and competitive dynamics that might affect your sales volumes and pricing power.
-                  </p>
-                  <p>
-                    <strong>Regular Updates:</strong> Break-even analysis should be updated regularly to reflect changes in costs, prices, and market conditions. Quarterly reviews help ensure your analysis remains relevant and accurate for decision-making purposes.
-                  </p>
-                  <p>
-                    <strong>Scenario Planning:</strong> Conduct break-even analysis under different scenarios including best-case, worst-case, and most-likely outcomes. This provides a more comprehensive understanding of potential risks and opportunities.
-                  </p>
-                </div>
-              </div>
-
-              {/* FAQ Section */}
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
+          {/* FAQ Section */}
+          <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+            <CardContent className="p-8">
+              <h2 className="text-3xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h2>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">What's the difference between break-even point and breakeven analysis?</h3>
-                    <p className="text-gray-700">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-3">What's the difference between break-even point and breakeven analysis?</h4>
+                    <p className="text-gray-600 text-sm">
                       The break-even point is the specific sales volume or revenue level where total costs equal total revenues. Break-even analysis is the comprehensive process of calculating and interpreting this point, including related metrics like contribution margin and margin of safety.
                     </p>
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">How often should I perform break-even analysis?</h3>
-                    <p className="text-gray-700">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-3">How often should I perform break-even analysis?</h4>
+                    <p className="text-gray-600 text-sm">
                       Perform break-even analysis quarterly or whenever significant changes occur in your cost structure, pricing, or market conditions. Many businesses also conduct this analysis before major decisions like product launches, expansion, or pricing changes.
                     </p>
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Can break-even analysis be used for service businesses?</h3>
-                    <p className="text-gray-700">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-3">Can break-even analysis be used for service businesses?</h4>
+                    <p className="text-gray-600 text-sm">
                       Yes, service businesses can adapt break-even analysis by treating billable hours, client projects, or service units as their "products." Calculate the contribution margin per hour or per service and apply the same principles to determine break-even points.
                     </p>
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">What is margin of safety and why is it important?</h3>
-                    <p className="text-gray-700">
-                      Margin of safety represents the difference between actual sales and break-even sales, expressed in units or as a percentage. It indicates how much sales can decline before the business reaches its break-even point, providing a measure of risk tolerance.
+                    <h4 className="text-lg font-semibold text-gray-900 mb-3">What is margin of safety and why is it important?</h4>
+                    <p className="text-gray-600 text-sm">
+                      Margin of safety represents the difference between actual sales and break-even sales, expressed in units or as a percentage. It indicates how much sales can decline before the business reaches its break-even point, providing a measure of risk tolerance and financial cushion.
+                    </p>
+                  </div>
+                </div>
+                <div className="space-y-6">
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-3">How do I handle semi-variable costs in break-even analysis?</h4>
+                    <p className="text-gray-600 text-sm">
+                      Semi-variable costs contain both fixed and variable components. Separate these costs by identifying the fixed portion (base cost) and the variable portion (cost per unit). Include the fixed portion in your total fixed costs and the variable portion in your variable cost per unit calculations.
+                    </p>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-3">What's a good break-even point for a new business?</h4>
+                    <p className="text-gray-600 text-sm">
+                      A good break-even point is one that's achievable within your target market capacity and timeline. Generally, a lower break-even point indicates better business efficiency and reduced risk. Aim for a break-even point that allows you to reach profitability within 12-18 months of launch.
+                    </p>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-3">How does seasonality affect break-even analysis?</h4>
+                    <p className="text-gray-600 text-sm">
+                      Seasonal businesses should calculate monthly break-even points rather than annual averages. Consider peak and off-peak seasons separately, and ensure that profitable months generate enough revenue to cover losses during slower periods.
+                    </p>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-3">Can I use break-even analysis for investment decisions?</h4>
+                    <p className="text-gray-600 text-sm">
+                      Absolutely. Break-even analysis helps evaluate the viability of new investments, product launches, or business expansions. It shows how much additional sales volume is needed to justify the investment and helps assess the risk-return profile of business opportunities.
                     </p>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
+            </CardContent>
+          </Card>
+        </div>
       </main>
       
       <Footer />
