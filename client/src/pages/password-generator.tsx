@@ -256,8 +256,8 @@ export default function PasswordGenerator() {
           {/* Main Generator Card */}
           <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              {/* Updated grid to accommodate 1.5:1.5 proportion */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+              {/* Updated grid to accommodate 1.7:1.3 proportion */}
+              <div className="grid grid-cols-1 lg:grid-cols-[1.7fr_1.3fr] gap-0"></div>
                 {/* Input Section */}
                 <div className="lg:col-span-1 p-8 lg:p-12 space-y-8">
                   <div>
