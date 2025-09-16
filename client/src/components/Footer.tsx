@@ -28,8 +28,8 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-6">Popular Tools</h3>
             <ul className="space-y-3 text-neutral-300">
               <li><Link href="/tools/loan-calculator" className="hover:text-white transition-colors" data-testid="link-loan-calculator">Loan Calculator</Link></li>
-              <li><Link href="/text" className="hover:text-white transition-colors" data-testid="link-grammar-checker">Grammar Checker</Link></li>
-              <li><Link href="/health" className="hover:text-white transition-colors" data-testid="link-bmi-calculator">BMI Calculator</Link></li>
+              <li><Link href="/tools/word-counter" className="hover:text-white transition-colors" data-testid="link-word-counter">Word Counter</Link></li>
+              <li><Link href="/tools/bmi-calculator" className="hover:text-white transition-colors" data-testid="link-bmi-calculator">BMI Calculator</Link></li>
             </ul>
           </div>
 
