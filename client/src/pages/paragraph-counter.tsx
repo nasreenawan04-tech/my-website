@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -52,12 +51,12 @@ const ParagraphCounter = () => {
 
     // Split text into paragraphs - handle both double line breaks and single line text
     let paragraphs = inputText.split(/\n\s*\n/).filter(paragraph => paragraph.trim().length > 0);
-    
+
     // If no double line breaks found, treat single line text as one paragraph
     if (paragraphs.length === 0 && inputText.trim().length > 0) {
       paragraphs = [inputText.trim()];
     }
-    
+
     const totalParagraphs = paragraphs.length;
 
     // Calculate word counts for each paragraph
@@ -143,7 +142,7 @@ Total Sentences: ${result.sentences}
 Total Characters: ${result.characters}
 Total Lines: ${result.lines}
 Reading Time: ${result.readingTime} minute(s)`;
-      
+
       navigator.clipboard.writeText(stats);
     }
   };
@@ -160,770 +159,592 @@ Finally, this last paragraph completes our sample text, giving you four distinct
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
         <title>Paragraph Counter - Count Paragraphs & Text Structure Analysis | DapsiWow</title>
-        <meta name="description" content="Free online paragraph counter tool to count paragraphs, analyze text structure, and get detailed paragraph statistics. Real-time analysis with paragraph length categorization." />
-        <meta name="keywords" content="paragraph counter, paragraph count tool, text structure analysis, paragraph statistics, writing analysis, document analysis" />
-        <meta property="og:title" content="Paragraph Counter - Count Paragraphs & Text Structure Analysis" />
-        <meta property="og:description" content="Free online paragraph counter with detailed text structure analysis. Count paragraphs and analyze text composition instantly." />
+        <meta name="description" content="Free online paragraph counter tool to analyze text structure, count paragraphs, and get detailed paragraph statistics for better writing and content organization." />
+        <meta name="keywords" content="paragraph counter, text structure analysis, paragraph count tool, writing analysis, paragraph statistics, content structure, document analysis, text organization" />
+        <meta property="og:title" content="Paragraph Counter - Count Paragraphs & Text Structure Analysis | DapsiWow" />
+        <meta property="og:description" content="Free paragraph counter with detailed text structure analysis. Count paragraphs and analyze text composition instantly with our professional tool." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="/tools/paragraph-counter" />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="DapsiWow" />
+        <link rel="canonical" href="https://dapsiwow.com/tools/paragraph-counter" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Paragraph Counter",
+            "description": "Free online paragraph counter tool to analyze text structure, count paragraphs, and get detailed paragraph statistics for better writing and content organization.",
+            "url": "https://dapsiwow.com/tools/paragraph-counter",
+            "applicationCategory": "UtilityApplication",
+            "operatingSystem": "Any",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "featureList": [
+              "Real-time paragraph counting",
+              "Paragraph length categorization",
+              "Text structure analysis",
+              "Reading time estimation",
+              "Detailed paragraph statistics",
+              "Writing insights and metrics"
+            ]
+          })}
+        </script>
       </Helmet>
-      
+
       <Header />
-      
+
       <main>
         {/* Hero Section */}
-        <section className="gradient-hero text-white py-12 sm:py-16 pt-20 sm:pt-24">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6">
-              <i className="fas fa-paragraph text-2xl sm:text-3xl"></i>
+        <section className="relative py-20 sm:py-28 lg:py-32 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
+          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="space-y-8">
+              <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+                <span className="text-sm font-medium text-blue-700">Professional Text Analysis</span>
+              </div>
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight">
+                Paragraph
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                  Counter
+                </span>
+              </h1>
+              <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                Analyze text structure, count paragraphs, and get detailed insights for better content organization
+              </p>
             </div>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6" data-testid="text-page-title">
-              Paragraph Counter
-            </h1>
-            <p className="text-lg sm:text-xl text-blue-100 max-w-2xl mx-auto px-2">
-              Count paragraphs, analyze text structure, and get detailed paragraph composition statistics
-            </p>
           </div>
         </section>
 
-        {/* Calculator Section */}
-        <section className="py-8 sm:py-12 lg:py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <Card className="bg-white shadow-sm border-0">
-              <CardContent className="p-4 sm:p-6 lg:p-8">
-                <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
-                  {/* Input Section */}
-                  <div className="space-y-4 sm:space-y-6">
-                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-8">Enter Your Text</h2>
-                    
+        <div className="max-w-7xl mx-auto px-4 py-16">
+          {/* Main Calculator Card */}
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+            <CardContent className="p-0">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+                {/* Input Section */}
+                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
+                  <div>
+                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Text Analysis</h2>
+                    <p className="text-gray-600">Enter your text to get instant paragraph statistics and structure analysis</p>
+                  </div>
+
+                  <div className="space-y-6">
                     {/* Text Area */}
-                    <div className="space-y-2 sm:space-y-3">
-                      <Label htmlFor="text-input" className="text-sm font-medium text-gray-700">
+                    <div className="space-y-3">
+                      <Label htmlFor="text-input" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Text to Analyze
                       </Label>
                       <textarea
                         id="text-input"
                         value={text}
                         onChange={(e) => setText(e.target.value)}
-                        className="w-full h-60 sm:h-72 lg:h-80 p-3 sm:p-4 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                        className="w-full h-80 p-4 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500 resize-none"
                         placeholder="Type or paste your text here to get instant paragraph count and detailed text structure analysis..."
                         data-testid="textarea-text-input"
                       />
                     </div>
 
                     {/* Options */}
-                    <div className="space-y-2 sm:space-y-3">
-                      <div className="flex items-center space-x-2">
+                    <div className="space-y-4 bg-gray-50 rounded-xl p-6">
+                      <div className="flex items-center space-x-3">
                         <Checkbox
                           id="show-details"
                           checked={showDetails}
                           onCheckedChange={(checked) => setShowDetails(checked === true)}
+                          className="h-5 w-5 text-blue-600 border-2 border-gray-300 rounded focus:ring-blue-500"
                           data-testid="checkbox-show-details"
                         />
-                        <Label htmlFor="show-details" className="text-xs sm:text-sm text-gray-700">
-                          Show detailed paragraph breakdown
+                        <Label htmlFor="show-details" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                          Enable Detailed Analysis
                         </Label>
                       </div>
-                    </div>
-
-                    {/* Action Buttons */}
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 lg:gap-4">
-                      <Button
-                        onClick={handleClear}
-                        variant="outline"
-                        className="py-2.5 sm:py-2 text-xs sm:text-sm"
-                        data-testid="button-clear-text"
-                      >
-                        <i className="fas fa-trash mr-1 sm:mr-2"></i>
-                        <span className="hidden sm:inline">Clear Text</span>
-                        <span className="sm:hidden">Clear</span>
-                      </Button>
-                      <Button
-                        onClick={handleSampleText}
-                        variant="outline"
-                        className="py-2.5 sm:py-2 text-xs sm:text-sm"
-                        data-testid="button-sample-text"
-                      >
-                        <i className="fas fa-file-text mr-1 sm:mr-2"></i>
-                        <span className="hidden sm:inline">Sample Text</span>
-                        <span className="sm:hidden">Sample</span>
-                      </Button>
-                      <Button
-                        onClick={handleCopy}
-                        variant="outline"
-                        className="py-2.5 sm:py-2 text-xs sm:text-sm"
-                        disabled={!result || result.totalParagraphs === 0}
-                        data-testid="button-copy-stats"
-                      >
-                        <i className="fas fa-copy mr-1 sm:mr-2"></i>
-                        <span className="hidden sm:inline">Copy Stats</span>
-                        <span className="sm:hidden">Copy</span>
-                      </Button>
+                      <p className="text-sm text-gray-600 ml-8">
+                        Show comprehensive paragraph breakdown including averages and length statistics
+                      </p>
                     </div>
                   </div>
 
-                  {/* Results Section */}
-                  <div className="space-y-4 sm:space-y-6">
-                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-8">Paragraph Statistics</h2>
-                    
-                    {result && (
-                      <div className="space-y-3 sm:space-y-4" data-testid="paragraph-statistics">
-                        {/* Main Paragraph Count */}
-                        <div className="bg-blue-50 rounded-lg p-4 sm:p-6 text-center">
-                          <div className="text-2xl sm:text-3xl font-bold text-blue-600" data-testid="stat-total-paragraphs">
-                            {result.totalParagraphs.toLocaleString()}
-                          </div>
-                          <div className="text-xs sm:text-sm text-gray-600">Total Paragraphs</div>
-                        </div>
+                  {/* Action Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                    <Button
+                      onClick={handleSampleText}
+                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      data-testid="button-sample-text"
+                    >
+                      Load Sample Text
+                    </Button>
+                    <Button
+                      onClick={handleClear}
+                      variant="outline"
+                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      data-testid="button-clear-text"
+                    >
+                      Clear
+                    </Button>
+                    <Button
+                      onClick={handleCopy}
+                      variant="outline"
+                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      disabled={!result || result.totalParagraphs === 0}
+                      data-testid="button-copy-stats"
+                    >
+                      Copy Stats
+                    </Button>
+                  </div>
+                </div>
 
-                        {/* Paragraph Categories */}
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 lg:gap-4">
-                          <div className="bg-green-50 rounded-lg p-3 sm:p-4 text-center">
-                            <div className="text-lg sm:text-2xl font-bold text-green-600" data-testid="stat-short-paragraphs">
+                {/* Results Section */}
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Results</h2>
+
+                  {result ? (
+                    <div className="space-y-6" data-testid="paragraph-statistics">
+                      {/* Main Paragraph Count Highlight */}
+                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
+                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Total Paragraphs</div>
+                        <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" data-testid="stat-total-paragraphs">
+                          {result.totalParagraphs.toLocaleString()}
+                        </div>
+                      </div>
+
+                      {/* Category Breakdown */}
+                      <div className="space-y-4">
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Short Paragraphs (≤50 words)</span>
+                            <span className="font-bold text-green-600" data-testid="stat-short-paragraphs">
                               {result.shortParagraphs.toLocaleString()}
-                            </div>
-                            <div className="text-xs sm:text-sm text-gray-600">Short (≤50 words)</div>
+                            </span>
                           </div>
-                          <div className="bg-yellow-50 rounded-lg p-3 sm:p-4 text-center">
-                            <div className="text-lg sm:text-2xl font-bold text-yellow-600" data-testid="stat-medium-paragraphs">
+                        </div>
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Medium Paragraphs (51-150)</span>
+                            <span className="font-bold text-yellow-600" data-testid="stat-medium-paragraphs">
                               {result.mediumParagraphs.toLocaleString()}
-                            </div>
-                            <div className="text-xs sm:text-sm text-gray-600">Medium (51-150)</div>
+                            </span>
                           </div>
-                          <div className="bg-red-50 rounded-lg p-3 sm:p-4 text-center">
-                            <div className="text-lg sm:text-2xl font-bold text-red-600" data-testid="stat-long-paragraphs">
+                        </div>
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Long Paragraphs (&gt;150 words)</span>
+                            <span className="font-bold text-red-600" data-testid="stat-long-paragraphs">
                               {result.longParagraphs.toLocaleString()}
-                            </div>
-                            <div className="text-xs sm:text-sm text-gray-600">Long (&gt;150 words)</div>
+                            </span>
                           </div>
                         </div>
+                      </div>
 
-                        {/* Quick Stats */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 lg:gap-4">
-                          <div className="bg-gray-50 rounded-lg p-3 text-center">
-                            <div className="text-base sm:text-lg font-bold text-gray-600" data-testid="stat-words">
+                      {/* Quick Stats */}
+                      <div className="space-y-4">
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Total Words</span>
+                            <span className="font-bold text-gray-900" data-testid="stat-words">
                               {result.words.toLocaleString()}
-                            </div>
-                            <div className="text-xs sm:text-sm text-gray-600">Total Words</div>
-                          </div>
-                          <div className="bg-gray-50 rounded-lg p-3 text-center">
-                            <div className="text-base sm:text-lg font-bold text-gray-600" data-testid="stat-sentences">
-                              {result.sentences.toLocaleString()}
-                            </div>
-                            <div className="text-xs sm:text-sm text-gray-600">Total Sentences</div>
+                            </span>
                           </div>
                         </div>
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Reading Time</span>
+                            <span className="font-bold text-gray-900" data-testid="stat-reading-time">
+                              {result.readingTime} min
+                            </span>
+                          </div>
+                        </div>
+                      </div>
 
-                        {/* Detailed Breakdown */}
-                        {showDetails && (
-                          <div className="space-y-3 sm:space-y-4">
-                            <h3 className="text-base sm:text-lg font-semibold text-gray-900 border-t pt-3 sm:pt-4">Detailed Paragraph Analysis</h3>
-                            
-                            {/* Averages */}
-                            <div className="bg-indigo-50 rounded-lg p-3 sm:p-4">
-                              <h4 className="text-sm sm:text-base font-semibold text-indigo-900 mb-2 sm:mb-3">Average Statistics</h4>
-                              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
-                                <div className="text-center">
-                                  <div className="text-base sm:text-lg font-bold text-indigo-600" data-testid="stat-avg-words">
-                                    {result.averageWordsPerParagraph.toLocaleString()}
-                                  </div>
-                                  <div className="text-xs sm:text-sm text-gray-600">Words/Paragraph</div>
-                                </div>
-                                <div className="text-center">
-                                  <div className="text-base sm:text-lg font-bold text-indigo-600" data-testid="stat-avg-sentences">
-                                    {result.averageSentencesPerParagraph}
-                                  </div>
-                                  <div className="text-xs sm:text-sm text-gray-600">Sentences/Paragraph</div>
-                                </div>
-                                <div className="text-center">
-                                  <div className="text-base sm:text-lg font-bold text-indigo-600" data-testid="stat-avg-characters">
-                                    {result.averageCharactersPerParagraph.toLocaleString()}
-                                  </div>
-                                  <div className="text-xs sm:text-sm text-gray-600">Characters/Paragraph</div>
-                                </div>
+                      {/* Detailed Analysis */}
+                      {showDetails && (
+                        <div className="space-y-4">
+                          <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-6 border border-indigo-200">
+                            <h4 className="font-bold text-indigo-800 mb-4 text-lg">Average Statistics</h4>
+                            <div className="space-y-3">
+                              <div className="flex justify-between items-center">
+                                <span className="text-indigo-700 font-medium">Words per Paragraph:</span>
+                                <span className="font-bold text-indigo-800 text-lg" data-testid="stat-avg-words">
+                                  {result.averageWordsPerParagraph.toLocaleString()}
+                                </span>
                               </div>
-                            </div>
-
-                            {/* Length Range */}
-                            <div className="bg-orange-50 rounded-lg p-3 sm:p-4">
-                              <h4 className="text-sm sm:text-base font-semibold text-orange-900 mb-2 sm:mb-3">Paragraph Length Range</h4>
-                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                                <div className="text-center">
-                                  <div className="text-base sm:text-lg font-bold text-orange-600" data-testid="stat-longest">
-                                    {result.longestParagraph.toLocaleString()}
-                                  </div>
-                                  <div className="text-xs sm:text-sm text-gray-600">Longest (words)</div>
-                                </div>
-                                <div className="text-center">
-                                  <div className="text-base sm:text-lg font-bold text-orange-600" data-testid="stat-shortest">
-                                    {result.shortestParagraph.toLocaleString()}
-                                  </div>
-                                  <div className="text-xs sm:text-sm text-gray-600">Shortest (words)</div>
-                                </div>
+                              <div className="flex justify-between items-center">
+                                <span className="text-indigo-700 font-medium">Sentences per Paragraph:</span>
+                                <span className="font-bold text-indigo-800 text-lg" data-testid="stat-avg-sentences">
+                                  {result.averageSentencesPerParagraph}
+                                </span>
                               </div>
-                            </div>
-
-                            {/* Additional Stats */}
-                            <div className="bg-teal-50 rounded-lg p-3 sm:p-4">
-                              <h4 className="text-sm sm:text-base font-semibold text-teal-900 mb-2 sm:mb-3">Additional Information</h4>
-                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                                <div className="text-center">
-                                  <div className="text-base sm:text-lg font-bold text-teal-600" data-testid="stat-lines">
-                                    {result.lines.toLocaleString()}
-                                  </div>
-                                  <div className="text-xs sm:text-sm text-gray-600">Total Lines</div>
-                                </div>
-                                <div className="text-center">
-                                  <div className="text-base sm:text-lg font-bold text-teal-600" data-testid="stat-reading-time">
-                                    {result.readingTime} min
-                                  </div>
-                                  <div className="text-xs sm:text-sm text-gray-600">Reading Time</div>
-                                </div>
+                              <div className="flex justify-between items-center">
+                                <span className="text-indigo-700 font-medium">Characters per Paragraph:</span>
+                                <span className="font-bold text-indigo-800 text-lg" data-testid="stat-avg-characters">
+                                  {result.averageCharactersPerParagraph.toLocaleString()}
+                                </span>
                               </div>
                             </div>
                           </div>
-                        )}
-                      </div>
-                    )}
 
-                    {!result || result.totalParagraphs === 0 ? (
-                      <div className="text-center py-8 sm:py-12 text-gray-500">
-                        <i className="fas fa-paragraph text-3xl sm:text-4xl mb-3 sm:mb-4"></i>
-                        <p className="text-base sm:text-lg">Start typing to see your paragraph statistics</p>
+                          <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl p-6 border border-orange-200">
+                            <h4 className="font-bold text-orange-800 mb-4 text-lg">Length Range</h4>
+                            <div className="space-y-3">
+                              <div className="flex justify-between items-center">
+                                <span className="text-orange-700 font-medium">Longest Paragraph:</span>
+                                <span className="font-bold text-orange-800 text-lg" data-testid="stat-longest">
+                                  {result.longestParagraph.toLocaleString()} words
+                                </span>
+                              </div>
+                              <div className="flex justify-between items-center">
+                                <span className="text-orange-700 font-medium">Shortest Paragraph:</span>
+                                <span className="font-bold text-orange-800 text-lg" data-testid="stat-shortest">
+                                  {result.shortestParagraph.toLocaleString()} words
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="text-center py-16" data-testid="no-results">
+                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <div className="text-3xl font-bold text-gray-400">¶</div>
                       </div>
-                    ) : null}
+                      <p className="text-gray-500 text-lg">Enter text to see paragraph analysis</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* SEO Content Sections */}
+          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">What is a Paragraph Counter?</h3>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    A paragraph counter is a specialized text analysis tool that counts and examines the structural organization 
+                    of written content. Unlike basic word counters or character counters, our paragraph counter provides 
+                    comprehensive insights into text structure, paragraph distribution, and content organization patterns.
+                  </p>
+                  <p>
+                    This advanced tool categorizes paragraphs by length (short, medium, long), calculates reading time, 
+                    and provides detailed statistics about your writing composition. It's essential for writers, editors, 
+                    students, and content creators who need to optimize text structure for better readability and engagement.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">How to Use Our Paragraph Counter</h3>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    Using our paragraph counter is simple and intuitive. Simply paste or type your text into the input area, 
+                    and the tool will instantly analyze your content structure. The real-time analysis provides immediate 
+                    feedback as you type or edit your text.
+                  </p>
+                  <ul className="space-y-2 list-disc list-inside">
+                    <li>Paste your text into the analysis area</li>
+                    <li>View real-time paragraph counts and categorization</li>
+                    <li>Enable detailed analysis for comprehensive statistics</li>
+                    <li>Copy results for documentation or reports</li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Benefits of Paragraph Analysis</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Improve content structure and readability</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Ensure balanced paragraph distribution</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Meet academic and professional formatting requirements</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Optimize content for different audiences and platforms</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Enhance reader engagement and comprehension</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Features of Our Tool</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Real-time paragraph counting and analysis</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Automatic paragraph length categorization</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Detailed statistical analysis and insights</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Reading time estimation for content planning</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Free to use with no registration required</span>
                   </div>
                 </div>
               </CardContent>
             </Card>
           </div>
-        </section>
 
-        {/* Information Sections */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 sm:pb-12 lg:pb-16">
-          {/* What is a Paragraph Counter */}
-          <div className="mt-8 sm:mt-12 bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">What is a Paragraph Counter?</h2>
-            <div className="prose max-w-none">
-              <p className="text-lg text-gray-700 mb-6">
-                A <strong>paragraph counter</strong> is a specialized text analysis tool that counts and analyzes the paragraph structure of your content. Unlike simple <a href="/tools/word-counter" className="text-blue-600 hover:text-blue-800 transition-colors">word counters</a> or <a href="/tools/character-counter" className="text-blue-600 hover:text-blue-800 transition-colors">character counters</a>, our paragraph counter provides detailed insights into text organization, paragraph length distribution, and overall document structure.
-              </p>
-              
-              <p className="text-gray-700 mb-6">
-                This advanced tool goes beyond basic counting by categorizing paragraphs into short (≤50 words), medium (51-150 words), and long ({'>'}150 words) segments. It calculates essential metrics like average words per paragraph, sentence distribution, and reading time estimates. The tool also works seamlessly with our <a href="/tools/sentence-counter" className="text-blue-600 hover:text-blue-800 transition-colors">sentence counter</a> to provide comprehensive text analysis.
-              </p>
-              
-              <p className="text-gray-700 mb-6">
-                Our paragraph counter is invaluable for writers, editors, students, and content creators who need to analyze text structure, ensure proper paragraph distribution, or meet specific formatting requirements. Whether you're writing essays, articles, or reports, understanding your paragraph structure helps improve readability and flow.
-              </p>
-            </div>
-          </div>
+          {/* Additional SEO Content Sections */}
+          <div className="mt-12 space-y-8">
+            {/* Who Benefits Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-8">Who Benefits from Paragraph Analysis?</h3>
 
-          {/* Benefits and Use Cases */}
-          <div className="mt-6 sm:mt-8 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-4 sm:p-6 lg:p-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Benefits of Using a Paragraph Counter</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
-              <div className="space-y-4 sm:space-y-6">
-                <div className="flex items-start space-x-3 sm:space-x-4">
-                  <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 bg-indigo-600 text-white rounded-full flex items-center justify-center">
-                    <i className="fas fa-chart-line text-sm sm:text-lg"></i>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {/* Students & Academics */}
+                  <div className="bg-blue-50 rounded-xl p-6">
+                    <h4 className="text-xl font-bold text-blue-800 mb-4">Students & Academics</h4>
+                    <ul className="space-y-3 text-gray-700">
+                      <li className="flex items-start space-x-2">
+                        <span className="text-blue-600 font-bold">•</span>
+                        <span>Ensure essays meet paragraph count requirements</span>
+                      </li>
+                      <li className="flex items-start space-x-2">
+                        <span className="text-blue-600 font-bold">•</span>
+                        <span>Analyze thesis and dissertation structure</span>
+                      </li>
+                      <li className="flex items-start space-x-2">
+                        <span className="text-blue-600 font-bold">•</span>
+                        <span>Improve academic writing flow and organization</span>
+                      </li>
+                      <li className="flex items-start space-x-2">
+                        <span className="text-blue-600 font-bold">•</span>
+                        <span>Meet formatting guidelines for assignments</span>
+                      </li>
+                    </ul>
                   </div>
-                  <div>
-                    <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-1 sm:mb-2">Improve Text Structure</h3>
-                    <p className="text-sm sm:text-base text-gray-600">Analyze paragraph distribution to ensure balanced content flow and better readability for your audience.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-10 h-10 bg-purple-600 text-white rounded-full flex items-center justify-center">
-                    <i className="fas fa-eye text-lg"></i>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Enhance Readability</h3>
-                    <p className="text-gray-600">Identify overly long or short paragraphs that might affect reader engagement and comprehension.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center">
-                    <i className="fas fa-bullseye text-lg"></i>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Meet Requirements</h3>
-                    <p className="text-gray-600">Ensure your content meets specific formatting guidelines for academic, professional, or publishing standards.</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-10 h-10 bg-green-600 text-white rounded-full flex items-center justify-center">
-                    <i className="fas fa-clock text-lg"></i>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Save Time</h3>
-                    <p className="text-gray-600">Instantly analyze text structure instead of manually counting paragraphs and calculating averages.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-10 h-10 bg-red-600 text-white rounded-full flex items-center justify-center">
-                    <i className="fas fa-search text-lg"></i>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Content Optimization</h3>
-                    <p className="text-gray-600">Optimize content structure for better readability and user experience.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-10 h-10 bg-orange-600 text-white rounded-full flex items-center justify-center">
-                    <i className="fas fa-users text-lg"></i>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Audience Engagement</h3>
-                    <p className="text-gray-600">Create well-structured content that keeps readers engaged and improves comprehension rates.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
 
-          {/* Use Cases by Audience */}
-          <div className="mt-8 bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Who Benefits from Paragraph Analysis?</h2>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-              {/* Students */}
-              <div className="bg-blue-50 rounded-xl p-6">
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center mr-4">
-                    <i className="fas fa-graduation-cap text-xl"></i>
+                  {/* Content Creators */}
+                  <div className="bg-green-50 rounded-xl p-6">
+                    <h4 className="text-xl font-bold text-green-800 mb-4">Content Creators</h4>
+                    <ul className="space-y-3 text-gray-700">
+                      <li className="flex items-start space-x-2">
+                        <span className="text-green-600 font-bold">•</span>
+                        <span>Optimize blog posts for better readability</span>
+                      </li>
+                      <li className="flex items-start space-x-2">
+                        <span className="text-green-600 font-bold">•</span>
+                        <span>Ensure content meets platform requirements</span>
+                      </li>
+                      <li className="flex items-start space-x-2">
+                        <span className="text-green-600 font-bold">•</span>
+                        <span>Improve user engagement and retention</span>
+                      </li>
+                      <li className="flex items-start space-x-2">
+                        <span className="text-green-600 font-bold">•</span>
+                        <span>Analyze competitor content structures</span>
+                      </li>
+                    </ul>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900">Students & Academics</h3>
-                </div>
-                <ul className="space-y-3 text-gray-700">
-                  <li className="flex items-start space-x-2">
-                    <i className="fas fa-check text-blue-600 mt-1"></i>
-                    <span>Ensure essays meet paragraph count requirements</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <i className="fas fa-check text-blue-600 mt-1"></i>
-                    <span>Analyze thesis and dissertation structure</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <i className="fas fa-check text-blue-600 mt-1"></i>
-                    <span>Improve academic writing flow and organization</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <i className="fas fa-check text-blue-600 mt-1"></i>
-                    <span>Meet specific formatting guidelines for assignments</span>
-                  </li>
-                </ul>
-                <div className="mt-4 text-sm text-blue-700">
-                  <strong>Tip:</strong> Use alongside our <a href="/tools/word-counter" className="underline hover:text-blue-900">word counter</a> for complete assignment analysis.
-                </div>
-              </div>
 
-              {/* Writers & Authors */}
-              <div className="bg-green-50 rounded-xl p-6">
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center mr-4">
-                    <i className="fas fa-pen-nib text-xl"></i>
+                  {/* Professional Writers */}
+                  <div className="bg-purple-50 rounded-xl p-6">
+                    <h4 className="text-xl font-bold text-purple-800 mb-4">Professional Writers</h4>
+                    <ul className="space-y-3 text-gray-700">
+                      <li className="flex items-start space-x-2">
+                        <span className="text-purple-600 font-bold">•</span>
+                        <span>Maintain consistent narrative pacing</span>
+                      </li>
+                      <li className="flex items-start space-x-2">
+                        <span className="text-purple-600 font-bold">•</span>
+                        <span>Balance dialogue and narrative paragraphs</span>
+                      </li>
+                      <li className="flex items-start space-x-2">
+                        <span className="text-purple-600 font-bold">•</span>
+                        <span>Ensure proper chapter structure</span>
+                      </li>
+                      <li className="flex items-start space-x-2">
+                        <span className="text-purple-600 font-bold">•</span>
+                        <span>Optimize reader engagement patterns</span>
+                      </li>
+                    </ul>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900">Writers & Authors</h3>
-                </div>
-                <ul className="space-y-3 text-gray-700">
-                  <li className="flex items-start space-x-2">
-                    <i className="fas fa-check text-green-600 mt-1"></i>
-                    <span>Optimize novel and story structure</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <i className="fas fa-check text-green-600 mt-1"></i>
-                    <span>Maintain consistent pacing throughout chapters</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <i className="fas fa-check text-green-600 mt-1"></i>
-                    <span>Analyze dialogue vs. narrative paragraph balance</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <i className="fas fa-check text-green-600 mt-1"></i>
-                    <span>Ensure proper paragraph variety for reader engagement</span>
-                  </li>
-                </ul>
-                <div className="mt-4 text-sm text-green-700">
-                  <strong>Tip:</strong> Combine with our <a href="/tools/sentence-counter" className="underline hover:text-green-900">sentence counter</a> for comprehensive writing analysis.
-                </div>
-              </div>
 
-              {/* Content Marketers */}
-              <div className="bg-purple-50 rounded-xl p-6">
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-purple-600 text-white rounded-full flex items-center justify-center mr-4">
-                    <i className="fas fa-bullhorn text-xl"></i>
+                  {/* Business Professionals */}
+                  <div className="bg-orange-50 rounded-xl p-6">
+                    <h4 className="text-xl font-bold text-orange-800 mb-4">Business Professionals</h4>
+                    <ul className="space-y-3 text-gray-700">
+                      <li className="flex items-start space-x-2">
+                        <span className="text-orange-600 font-bold">•</span>
+                        <span>Structure reports and proposals effectively</span>
+                      </li>
+                      <li className="flex items-start space-x-2">
+                        <span className="text-orange-600 font-bold">•</span>
+                        <span>Optimize executive summaries</span>
+                      </li>
+                      <li className="flex items-start space-x-2">
+                        <span className="text-orange-600 font-bold">•</span>
+                        <span>Meet corporate communication standards</span>
+                      </li>
+                      <li className="flex items-start space-x-2">
+                        <span className="text-orange-600 font-bold">•</span>
+                        <span>Improve presentation documentation</span>
+                      </li>
+                    </ul>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900">Content Marketers</h3>
                 </div>
-                <ul className="space-y-3 text-gray-700">
-                  <li className="flex items-start space-x-2">
-                    <i className="fas fa-check text-purple-600 mt-1"></i>
-                    <span>Optimize blog posts for better readability and structure</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <i className="fas fa-check text-purple-600 mt-1"></i>
-                    <span>Ensure content meets platform-specific requirements</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <i className="fas fa-check text-purple-600 mt-1"></i>
-                    <span>Improve content readability and user engagement</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <i className="fas fa-check text-purple-600 mt-1"></i>
-                    <span>Analyze competitor content structure patterns</span>
-                  </li>
-                </ul>
-                <div className="mt-4 text-sm text-purple-700">
-                  <strong>Tip:</strong> Use with our <a href="/tools/character-counter" className="underline hover:text-purple-900">character counter</a> for social media optimization.
-                </div>
-              </div>
+              </CardContent>
+            </Card>
 
-              {/* Business Professionals */}
-              <div className="bg-orange-50 rounded-xl p-6">
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-orange-600 text-white rounded-full flex items-center justify-center mr-4">
-                    <i className="fas fa-briefcase text-xl"></i>
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900">Business Professionals</h3>
-                </div>
-                <ul className="space-y-3 text-gray-700">
-                  <li className="flex items-start space-x-2">
-                    <i className="fas fa-check text-orange-600 mt-1"></i>
-                    <span>Structure reports and proposals effectively</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <i className="fas fa-check text-orange-600 mt-1"></i>
-                    <span>Ensure executive summaries are well-organized</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <i className="fas fa-check text-orange-600 mt-1"></i>
-                    <span>Optimize presentations and documentation</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <i className="fas fa-check text-orange-600 mt-1"></i>
-                    <span>Meet corporate communication standards</span>
-                  </li>
-                </ul>
-                <div className="mt-4 text-sm text-orange-700">
-                  <strong>Tip:</strong> Perfect for analyzing documents before important presentations or client meetings.
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Advanced Features */}
-          <div className="mt-8 bg-gradient-to-r from-gray-50 to-blue-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Advanced Text Analysis Features</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                  <i className="fas fa-layer-group text-blue-600 text-xl"></i>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Smart Categorization</h3>
-                <p className="text-gray-600 mb-4">Automatically categorizes paragraphs by length to help you identify text balance and structure issues.</p>
-                <ul className="text-sm text-gray-500 space-y-1">
-                  <li>• Short: ≤50 words</li>
-                  <li>• Medium: 51-150 words</li>
-                  <li>• Long: {'>'}150 words</li>
-                </ul>
-              </div>
-              
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                  <i className="fas fa-calculator text-green-600 text-xl"></i>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Statistical Analysis</h3>
-                <p className="text-gray-600 mb-4">Provides comprehensive statistics including averages, ranges, and distribution metrics.</p>
-                <ul className="text-sm text-gray-500 space-y-1">
-                  <li>• Average words per paragraph</li>
-                  <li>• Sentence distribution</li>
-                  <li>• Character count analysis</li>
-                </ul>
-              </div>
-              
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                  <i className="fas fa-clock text-purple-600 text-xl"></i>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Reading Time Estimation</h3>
-                <p className="text-gray-600 mb-4">Calculates estimated reading time based on average reading speeds for content planning.</p>
-                <ul className="text-sm text-gray-500 space-y-1">
-                  <li>• Based on 200 words/minute</li>
-                  <li>• Helps with content planning</li>
-                  <li>• Audience engagement insights</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Related Tools */}
-          <div className="mt-8 bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Related Text Analysis Tools</h2>
-            <p className="text-gray-600 mb-8">Enhance your writing analysis with our comprehensive suite of text tools:</p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-blue-50 rounded-lg p-4 text-center hover:bg-blue-100 transition-colors">
-                <div className="w-12 h-12 bg-blue-600 text-white rounded-lg flex items-center justify-center mx-auto mb-3">
-                  <i className="fas fa-font text-xl"></i>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  <a href="/tools/word-counter" className="text-blue-600 hover:text-blue-800 transition-colors">
-                    Word Counter
-                  </a>
-                </h3>
-                <p className="text-gray-600 text-sm">Count words, characters, and analyze basic text statistics for any content type.</p>
-              </div>
-
-              <div className="bg-green-50 rounded-lg p-4 text-center hover:bg-green-100 transition-colors">
-                <div className="w-12 h-12 bg-green-600 text-white rounded-lg flex items-center justify-center mx-auto mb-3">
-                  <i className="fas fa-quote-right text-xl"></i>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  <a href="/tools/sentence-counter" className="text-green-600 hover:text-green-800 transition-colors">
-                    Sentence Counter
-                  </a>
-                </h3>
-                <p className="text-gray-600 text-sm">Analyze sentence structure, count sentences, and improve text flow and readability.</p>
-              </div>
-
-              <div className="bg-purple-50 rounded-lg p-4 text-center hover:bg-purple-100 transition-colors">
-                <div className="w-12 h-12 bg-purple-600 text-white rounded-lg flex items-center justify-center mx-auto mb-3">
-                  <i className="fas fa-spell-check text-xl"></i>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  <a href="/tools/character-counter" className="text-purple-600 hover:text-purple-800 transition-colors">
-                    Character Counter
-                  </a>
-                </h3>
-                <p className="text-gray-600 text-sm">Precise character counting for social media, forms, and length-restricted content.</p>
-              </div>
-
-              <div className="bg-orange-50 rounded-lg p-4 text-center hover:bg-orange-100 transition-colors">
-                <div className="w-12 h-12 bg-orange-600 text-white rounded-lg flex items-center justify-center mx-auto mb-3">
-                  <i className="fas fa-text-height text-xl"></i>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  <a href="/tools/case-converter" className="text-orange-600 hover:text-orange-800 transition-colors">
-                    Case Converter
-                  </a>
-                </h3>
-                <p className="text-gray-600 text-sm">Convert text between different cases: uppercase, lowercase, title case, and more.</p>
-              </div>
-            </div>
-
-            <div className="mt-6 text-center">
-              <a href="/tools" className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium transition-colors">
-                View All Text Tools
-                <i className="fas fa-arrow-right ml-2"></i>
-              </a>
-            </div>
-          </div>
-
-          {/* Writing Tips */}
-          <div className="mt-8 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Paragraph Writing Best Practices</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="space-y-4">
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Structure Guidelines</h3>
-                <div className="space-y-3">
-                  <div className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-yellow-600 text-white rounded-full flex items-center justify-center text-sm font-semibold mt-1">1</div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900">One Main Idea Per Paragraph</h4>
-                      <p className="text-gray-600 text-sm">Each paragraph should focus on a single main idea or topic to maintain clarity and flow.</p>
+            {/* Writing Guidelines */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Paragraph Writing Best Practices</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="space-y-4">
+                    <h4 className="text-xl font-semibold text-gray-900 mb-4">Structure Guidelines</h4>
+                    <div className="space-y-4">
+                      <div className="bg-yellow-50 rounded-lg p-4 border-l-4 border-yellow-400">
+                        <h5 className="font-semibold text-yellow-800 mb-2">One Main Idea</h5>
+                        <p className="text-yellow-700 text-sm">Each paragraph should focus on a single main idea or topic to maintain clarity and coherence.</p>
+                      </div>
+                      <div className="bg-green-50 rounded-lg p-4 border-l-4 border-green-400">
+                        <h5 className="font-semibold text-green-800 mb-2">Vary Length</h5>
+                        <p className="text-green-700 text-sm">Mix short, medium, and long paragraphs to create rhythm and maintain reader interest.</p>
+                      </div>
+                      <div className="bg-blue-50 rounded-lg p-4 border-l-4 border-blue-400">
+                        <h5 className="font-semibold text-blue-800 mb-2">Use Transitions</h5>
+                        <p className="text-blue-700 text-sm">Connect paragraphs with smooth transitions to maintain logical flow throughout your content.</p>
+                      </div>
                     </div>
                   </div>
-                  
-                  <div className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-yellow-600 text-white rounded-full flex items-center justify-center text-sm font-semibold mt-1">2</div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900">Vary Paragraph Length</h4>
-                      <p className="text-gray-600 text-sm">Mix short, medium, and long paragraphs to create rhythm and maintain reader engagement.</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start space-x-3">
-                    <div className="w-6 h-6 bg-yellow-600 text-white rounded-full flex items-center justify-center text-sm font-semibold mt-1">3</div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900">Use Transition Sentences</h4>
-                      <p className="text-gray-600 text-sm">Connect paragraphs with smooth transitions to maintain logical flow throughout your content.</p>
+
+                  <div className="space-y-4">
+                    <h4 className="text-xl font-semibold text-gray-900 mb-4">Length Recommendations</h4>
+                    <div className="space-y-4">
+                      <div className="bg-white rounded-lg p-4 border border-gray-200">
+                        <h5 className="font-semibold text-gray-900 mb-2">Academic Writing</h5>
+                        <p className="text-gray-600 text-sm">4-8 sentences (100-200 words) for most academic paragraphs, with longer paragraphs for complex arguments.</p>
+                      </div>
+                      <div className="bg-white rounded-lg p-4 border border-gray-200">
+                        <h5 className="font-semibold text-gray-900 mb-2">Web Content</h5>
+                        <p className="text-gray-600 text-sm">2-4 sentences (50-100 words) for better online readability and mobile viewing experience.</p>
+                      </div>
+                      <div className="bg-white rounded-lg p-4 border border-gray-200">
+                        <h5 className="font-semibold text-gray-900 mb-2">Business Writing</h5>
+                        <p className="text-gray-600 text-sm">3-5 sentences (75-150 words) for professional documents, reports, and proposals.</p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              
-              <div className="space-y-4">
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Length Recommendations</h3>
-                <div className="space-y-4">
-                  <div className="bg-white rounded-lg p-4 border-l-4 border-green-500">
-                    <h4 className="font-semibold text-gray-900 mb-2">Academic Writing</h4>
-                    <p className="text-gray-600 text-sm">4-8 sentences (100-200 words) for most academic paragraphs, with longer paragraphs for complex arguments.</p>
-                  </div>
-                  
-                  <div className="bg-white rounded-lg p-4 border-l-4 border-blue-500">
-                    <h4 className="font-semibold text-gray-900 mb-2">Web Content</h4>
-                    <p className="text-gray-600 text-sm">2-4 sentences (50-100 words) for better online readability and mobile viewing experience.</p>
-                  </div>
-                  
-                  <div className="bg-white rounded-lg p-4 border-l-4 border-purple-500">
-                    <h4 className="font-semibold text-gray-900 mb-2">Business Writing</h4>
-                    <p className="text-gray-600 text-sm">3-5 sentences (75-150 words) for professional documents, reports, and proposals.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+              </CardContent>
+            </Card>
 
-          {/* How to Use */}
-          <div className="mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">How to Use the Paragraph Counter</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="space-y-4">
-                <div className="flex items-start space-x-3">
-                  <div className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold">1</div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Enter Your Text</h3>
-                    <p className="text-gray-600">Type or paste your content into the text area for instant paragraph analysis.</p>
+            {/* FAQ Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How does the tool identify paragraphs?</h4>
+                      <p className="text-gray-600 text-sm">Paragraphs are identified by double line breaks (blank lines between text blocks). This is the standard method used in most word processors and publishing formats.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">What do the length categories mean?</h4>
+                      <p className="text-gray-600 text-sm">Short paragraphs have 50 words or fewer, medium paragraphs have 51-150 words, and long paragraphs have more than 150 words. These categories help analyze text density and readability.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How accurate are the statistics?</h4>
+                      <p className="text-gray-600 text-sm">Our paragraph counter uses precise algorithms to count and analyze text structure. All statistics are calculated in real-time and provide accurate measurements.</p>
+                    </div>
+                  </div>
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Can I use this for different document types?</h4>
+                      <p className="text-gray-600 text-sm">Yes! This tool works with any type of text including essays, articles, reports, stories, and academic papers. It's perfect for analyzing any document structure.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Is the reading time calculation accurate?</h4>
+                      <p className="text-gray-600 text-sm">Reading time is estimated based on an average reading speed of 200 words per minute, which is standard for adult readers. Actual reading time may vary.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Can I export the analysis results?</h4>
+                      <p className="text-gray-600 text-sm">Yes, you can copy all paragraph statistics to your clipboard using the "Copy Stats" button for use in reports or documentation.</p>
+                    </div>
                   </div>
                 </div>
-                
-                <div className="flex items-start space-x-3">
-                  <div className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold">2</div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">View Real-time Counts</h3>
-                    <p className="text-gray-600">See paragraph counts and categorizations update automatically as you type.</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="space-y-4">
-                <div className="flex items-start space-x-3">
-                  <div className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold">3</div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Enable Detailed Analysis</h3>
-                    <p className="text-gray-600">Check the detailed breakdown option to see averages and length statistics.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-3">
-                  <div className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold">4</div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Export or Reset</h3>
-                    <p className="text-gray-600">Copy the paragraph statistics for your records or clear to start fresh.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+              </CardContent>
+            </Card>
 
-          {/* Key Features */}
-          <div className="mt-8 bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Key Features of Our Paragraph Counter</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-layer-group text-2xl"></i>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Structure Analysis</h3>
-                <p className="text-gray-600">Comprehensive paragraph structure analysis with length categorization.</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-16 h-16 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-chart-bar text-2xl"></i>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Detailed Statistics</h3>
-                <p className="text-gray-600">Average words, sentences, and characters per paragraph with range analysis.</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-16 h-16 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-bolt text-2xl"></i>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Real-time Analysis</h3>
-                <p className="text-gray-600">Instant paragraph counting and analysis as you type or edit your text.</p>
-              </div>
-            </div>
-          </div>
+            {/* Related Tools */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Related Text Analysis Tools</h3>
+                <p className="text-gray-600 mb-8">Enhance your writing analysis with our comprehensive suite of text tools:</p>
 
-          {/* Use Cases */}
-          <div className="mt-8 bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Common Use Cases</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="text-center">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-graduation-cap text-blue-600 text-xl"></i>
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Academic Writing</h3>
-                <p className="text-gray-600 text-sm">Analyze essay structure and ensure proper paragraph distribution.</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-newspaper text-purple-600 text-xl"></i>
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Content Writing</h3>
-                <p className="text-gray-600 text-sm">Optimize article structure and improve readability.</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-edit text-green-600 text-xl"></i>
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Editing</h3>
-                <p className="text-gray-600 text-sm">Review document structure and identify paragraph length issues.</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-book text-orange-600 text-xl"></i>
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Publishing</h3>
-                <p className="text-gray-600 text-sm">Ensure consistent paragraph structure across publications.</p>
-              </div>
-            </div>
-          </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div className="bg-blue-50 rounded-lg p-4 text-center hover:bg-blue-100 transition-colors">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
+                      <a href="/tools/word-counter" className="text-blue-600 hover:text-blue-800 transition-colors">
+                        Word Counter
+                      </a>
+                    </h4>
+                    <p className="text-gray-600 text-sm">Count words, characters, and analyze basic text statistics for any content type.</p>
+                  </div>
 
-          {/* FAQ */}
-          <div className="mt-8 bg-gradient-to-r from-gray-50 to-blue-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">How does the tool identify paragraphs?</h3>
-                <p className="text-gray-600">Paragraphs are identified by double line breaks (blank lines between text blocks). This is the standard method used in most word processors and publishing formats.</p>
-              </div>
-              
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">What do the paragraph length categories mean?</h3>
-                <p className="text-gray-600">Short paragraphs have 50 words or fewer, medium paragraphs have 51-150 words, and long paragraphs have more than 150 words. These categories help you understand text density and readability.</p>
-              </div>
-              
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">How accurate are the statistics?</h3>
-                <p className="text-gray-600">Our paragraph counter uses precise algorithms to count and analyze text structure. All statistics are calculated in real-time and provide accurate measurements of your content.</p>
-              </div>
-              
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I use this for different types of documents?</h3>
-                <p className="text-gray-600">Yes! This tool works with any type of text including essays, articles, reports, stories, and academic papers. It's perfect for analyzing any document structure.</p>
-              </div>
-            </div>
+                  <div className="bg-green-50 rounded-lg p-4 text-center hover:bg-green-100 transition-colors">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
+                      <a href="/tools/sentence-counter" className="text-green-600 hover:text-green-800 transition-colors">
+                        Sentence Counter
+                      </a>
+                    </h4>
+                    <p className="text-gray-600 text-sm">Analyze sentence structure, count sentences, and improve text flow and readability.</p>
+                  </div>
+
+                  <div className="bg-purple-50 rounded-lg p-4 text-center hover:bg-purple-100 transition-colors">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-2">
+                      <a href="/tools/character-counter" className="text-purple-600 hover:text-purple-800 transition-colors">
+                        Character Counter
+                      </a>
+                    </h4>
+                    <p className="text-gray-600 text-sm">Precise character counting for social media, forms, and length-restricted content.</p>
+                  </div>
+                </div>
+
+                <div className="mt-6 text-center">
+                  <a href="/tools" className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium transition-colors">
+                    View All Text Tools
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </main>
-      
+
       <Footer />
     </div>
   );
