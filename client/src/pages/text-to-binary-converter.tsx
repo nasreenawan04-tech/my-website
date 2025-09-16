@@ -694,7 +694,7 @@ const TextToBinaryConverter = () => {
             </div>
             
             <div className="text-center mt-12">
-              <a href="/tools/text-tools" className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors">
+              <a href="/text" className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors">
                 View All Text Tools
                 <i className="fas fa-arrow-right ml-2"></i>
               </a>
