@@ -6,6 +6,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Textarea } from '@/components/ui/textarea';
 
 interface ParagraphCountResult {
   totalParagraphs: number;
@@ -238,11 +239,11 @@ Finally, this last paragraph completes our sample text, giving you four distinct
                       <Label htmlFor="text-input" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Text to Analyze
                       </Label>
-                      <textarea
+                      <Textarea
                         id="text-input"
                         value={text}
                         onChange={(e) => setText(e.target.value)}
-                        className="w-full h-[500px] p-4 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500 resize-none"
+                        className="min-h-[300px] lg:min-h-[400px] text-base border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500 resize-none"
                         placeholder="Type or paste your text here to get instant paragraph count and detailed text structure analysis..."
                         data-testid="textarea-text-input"
                       />
