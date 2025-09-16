@@ -173,29 +173,7 @@ const AllTools = () => {
                   </form>
                 </div>
 
-                {/* Quick Category Access */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
-                  {quickCategories.map((category) => {
-                    const IconComponent = category.icon;
-                    return (
-                      <button
-                        key={category.key}
-                        onClick={() => handleCategoryChange(category.key)}
-                        className="group bg-white/10 backdrop-blur-sm hover:bg-white/20 rounded-2xl p-6 transition-all duration-200 border border-white/20 hover:border-white/30 hover:scale-105"
-                        data-testid={`quick-category-${category.key}`}
-                      >
-                        <div className="flex items-center justify-center w-12 h-12 bg-white/20 rounded-xl mb-4 mx-auto group-hover:bg-white/30 transition-all duration-200">
-                          <IconComponent className="w-6 h-6 text-white" />
-                        </div>
-                        <h3 className="text-lg font-semibold text-white mb-2">{category.label}</h3>
-                        <p className="text-blue-100 text-sm mb-3">{category.count} tools available</p>
-                        <div className="inline-flex items-center text-white text-sm font-medium group-hover:gap-2 transition-all duration-200">
-                          Explore <Target className="w-4 h-4 ml-1 group-hover:ml-0 transition-all duration-200" />
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
+                
               </div>
             </div>
           </section>
