@@ -11,7 +11,9 @@ import xml.etree.ElementTree as ET
 from datetime import datetime
 import re
 import os
-from typing import Dict, List, Tuple
+import sys
+from urllib.parse import urlparse
+from typing import Dict, List, Tuple, Set
 
 class SitemapSplitter:
     def __init__(self, input_file: str = "sitemap.xml", base_url: str = "https://dapsiwow.com"):
@@ -251,8 +253,13 @@ class SitemapSplitter:
 
     def categorize_url(self, url: str) -> str:
         """Categorize a URL based on patterns"""
-        # Extract path from URL for pattern matching
-        path = url.replace(self.base_url, '').lower()
+        # Extract and normalize path from URL for pattern matching
+        try:
+            parsed_url = urlparse(url)
+            path = parsed_url.path.lower().rstrip('/')
+        except Exception:
+            # Fallback to simple replacement if URL parsing fails
+            path = url.replace(self.base_url, '').lower()
         
         # Check each category (skip main, check it last)
         for category_name, category_data in self.categories.items():
@@ -300,28 +307,32 @@ class SitemapSplitter:
         
         print(f"Created {filename} with {len(urls)} URLs")
 
-    def create_sitemap_index(self) -> None:
-        """Create the main sitemap index file"""
+    def create_sitemap_index(self, created_categories: Set[str], index_filename: str = 'sitemap.xml') -> None:
+        """Create the main sitemap index file for categories that actually have content"""
         sitemapindex = ET.Element('sitemapindex')
         sitemapindex.set('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9')
         
-        for category_data in self.categories.values():
-            sitemap_elem = ET.SubElement(sitemapindex, 'sitemap')
-            
-            loc_elem = ET.SubElement(sitemap_elem, 'loc')
-            loc_elem.text = f"{self.base_url}/{category_data['file']}"
-            
-            lastmod_elem = ET.SubElement(sitemap_elem, 'lastmod')
-            lastmod_elem.text = self.current_date
+        created_count = 0
+        for category_name, category_data in self.categories.items():
+            if category_name in created_categories:
+                sitemap_elem = ET.SubElement(sitemapindex, 'sitemap')
+                
+                loc_elem = ET.SubElement(sitemap_elem, 'loc')
+                loc_elem.text = f"{self.base_url}/{category_data['file']}"
+                
+                lastmod_elem = ET.SubElement(sitemap_elem, 'lastmod')
+                lastmod_elem.text = self.current_date
+                
+                created_count += 1
         
         # Create ElementTree and write to file
         tree = ET.ElementTree(sitemapindex)
         ET.indent(tree, space="  ", level=0)
         
-        with open('sitemap.xml', 'wb') as f:
+        with open(index_filename, 'wb') as f:
             tree.write(f, encoding='utf-8', xml_declaration=True)
         
-        print(f"Created sitemap.xml index file referencing {len(self.categories)} category sitemaps")
+        print(f"Created {index_filename} index file referencing {created_count} category sitemaps")
 
     def split_sitemap(self) -> None:
         """Main method to split the sitemap"""
@@ -349,20 +360,35 @@ class SitemapSplitter:
         for category, urls in categorized_urls.items():
             print(f"  {category}: {len(urls)} URLs")
         
-        # Create category sitemaps
+        # Create category sitemaps and track which ones were created
+        created_categories = set()
         for category, urls in categorized_urls.items():
             if urls:  # Only create sitemap if there are URLs
                 filename = self.categories[category]['file']
                 self.create_sitemap_xml(urls, filename)
+                created_categories.add(category)
         
-        # Create sitemap index
-        self.create_sitemap_index()
+        # Determine index filename to prevent overwriting source
+        index_filename = 'sitemap.xml'
+        if self.input_file == 'sitemap.xml':
+            # Backup original file first
+            if os.path.exists('sitemap.xml'):
+                backup_name = f'sitemap_backup_{self.current_date.replace("-", "")}.xml'
+                os.rename('sitemap.xml', backup_name)
+                print(f"Backed up original sitemap to {backup_name}")
+        
+        # Create sitemap index only for categories that have content
+        self.create_sitemap_index(created_categories, index_filename)
         
         print("\n✅ Sitemap splitting completed successfully!")
         print("\nGenerated files:")
-        for category_data in self.categories.values():
-            print(f"  - {category_data['file']}")
-        print("  - sitemap.xml (index file)")
+        for category in created_categories:
+            print(f"  - {self.categories[category]['file']}")
+        print(f"  - {index_filename} (index file)")
+        
+        if len(created_categories) < len(self.categories):
+            empty_categories = set(self.categories.keys()) - created_categories
+            print(f"\nNote: Skipped empty categories: {', '.join(empty_categories)}")
 
 def main():
     """Main function to run the sitemap splitter"""
@@ -374,11 +400,11 @@ def main():
     base_url = "https://dapsiwow.com"  # Change this to your domain
     
     # Check if custom input file is provided
-    if len(os.sys.argv) > 1:
-        input_sitemap = os.sys.argv[1]
+    if len(sys.argv) > 1:
+        input_sitemap = sys.argv[1]
     
-    if len(os.sys.argv) > 2:
-        base_url = os.sys.argv[2]
+    if len(sys.argv) > 2:
+        base_url = sys.argv[2]
     
     # Create and run the splitter
     splitter = SitemapSplitter(input_sitemap, base_url)
