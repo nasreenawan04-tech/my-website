@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea';
 
 interface WordCountResult {
   characters: number;
@@ -20,29 +21,30 @@ interface WordCountResult {
 const WordCounter = () => {
   const [text, setText] = useState('');
   const [result, setResult] = useState<WordCountResult | null>(null);
+  const [showAdvancedStats, setShowAdvancedStats] = useState(false);
 
   const calculateWordCount = (inputText: string): WordCountResult => {
     // Characters (including spaces)
     const characters = inputText.length;
-    
+
     // Characters (excluding spaces)
     const charactersNoSpaces = inputText.replace(/\s/g, '').length;
-    
+
     // Words - split by whitespace and filter out empty strings
     const words = inputText.trim() === '' ? 0 : inputText.trim().split(/\s+/).filter(word => word.length > 0).length;
-    
+
     // Sentences - split by sentence-ending punctuation
     const sentences = inputText.trim() === '' ? 0 : inputText.split(/[.!?]+/).filter(sentence => sentence.trim().length > 0).length;
-    
+
     // Paragraphs - split by double line breaks or single line breaks
     const paragraphs = inputText.trim() === '' ? 0 : inputText.split(/\n\s*\n/).filter(paragraph => paragraph.trim().length > 0).length;
-    
+
     // Lines - split by line breaks
     const lines = inputText === '' ? 0 : inputText.split('\n').length;
-    
+
     // Reading time (average 200 words per minute)
     const readingTime = Math.ceil(words / 200);
-    
+
     // Speaking time (average 130 words per minute)
     const speakingTime = Math.ceil(words / 130);
 
@@ -79,13 +81,13 @@ Paragraphs: ${result.paragraphs}
 Lines: ${result.lines}
 Reading time: ${result.readingTime} minute(s)
 Speaking time: ${result.speakingTime} minute(s)`;
-      
+
       navigator.clipboard.writeText(stats);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
         <title>Word Counter - Count Words, Characters & Text Statistics | DapsiWow</title>
         <meta name="description" content="Free online word counter tool to count words, characters, sentences, paragraphs and calculate reading time. Real-time text analysis for writers, students and professionals." />
@@ -94,750 +96,512 @@ Speaking time: ${result.speakingTime} minute(s)`;
         <meta property="og:description" content="Free online word counter with real-time text analysis. Count words, characters, sentences and calculate reading time instantly." />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="/tools/word-counter" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Word Counter",
+            "description": "Free online word counter tool for counting words, characters, sentences, paragraphs with real-time analysis and reading time estimates.",
+            "url": "https://dapsiwow.com/tools/word-counter",
+            "applicationCategory": "UtilityApplication",
+            "operatingSystem": "Any",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "featureList": [
+              "Real-time word counting",
+              "Character analysis with and without spaces",
+              "Sentence and paragraph counting",
+              "Reading time estimation",
+              "Speaking time calculation",
+              "Text statistics export"
+            ]
+          })}
+        </script>
       </Helmet>
-      
+
       <Header />
-      
+
       <main>
         {/* Hero Section */}
-        <section className="gradient-hero text-white py-12 sm:py-16 pt-20 sm:pt-24">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6">
-              <i className="fas fa-calculator text-2xl sm:text-3xl"></i>
+        <section className="relative py-20 sm:py-28 lg:py-32 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
+          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="space-y-8">
+              <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+                <span className="text-sm font-medium text-blue-700">Professional Text Analysis</span>
+              </div>
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight" data-testid="text-page-title">
+                Smart Word
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                  Counter
+                </span>
+              </h1>
+              <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                Count words, characters, sentences, and paragraphs with real-time analysis and reading time estimates
+              </p>
             </div>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6" data-testid="text-page-title">
-              Word Counter
-            </h1>
-            <p className="text-lg sm:text-xl text-blue-100 max-w-2xl mx-auto px-2">
-              Count words, characters, sentences, and paragraphs with real-time text analysis and reading time estimates
-            </p>
           </div>
         </section>
 
-        {/* Calculator Section */}
-        <section className="py-8 sm:py-12 lg:py-16">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <Card className="bg-white shadow-sm border-0">
-              <CardContent className="p-4 sm:p-6 lg:p-8">
-                <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
-                  {/* Input Section */}
-                  <div className="space-y-4 sm:space-y-6">
-                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-8">Enter Your Text</h2>
-                    
-                    {/* Text Area */}
-                    <div className="space-y-2 sm:space-y-3">
-                      <Label htmlFor="text-input" className="text-sm font-medium text-gray-700">
-                        Text to Analyze
-                      </Label>
-                      <textarea
-                        id="text-input"
-                        value={text}
-                        onChange={(e) => setText(e.target.value)}
-                        className="w-full h-60 sm:h-72 lg:h-80 p-3 sm:p-4 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-                        placeholder="Type or paste your text here to get instant word count and text statistics..."
-                        data-testid="textarea-text-input"
-                      />
-                    </div>
-
-                    {/* Action Buttons */}
-                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                      <Button
-                        onClick={handleClear}
-                        variant="outline"
-                        className="flex-1 py-2.5 sm:py-2 text-sm sm:text-base"
-                        data-testid="button-clear-text"
-                      >
-                        <i className="fas fa-trash mr-2"></i>
-                        <span className="hidden sm:inline">Clear Text</span>
-                        <span className="sm:hidden">Clear</span>
-                      </Button>
-                      <Button
-                        onClick={handleCopy}
-                        variant="outline"
-                        className="flex-1 py-2.5 sm:py-2 text-sm sm:text-base"
-                        disabled={!result || result.words === 0}
-                        data-testid="button-copy-stats"
-                      >
-                        <i className="fas fa-copy mr-2"></i>
-                        <span className="hidden sm:inline">Copy Stats</span>
-                        <span className="sm:hidden">Copy</span>
-                      </Button>
-                    </div>
+        <div className="max-w-7xl mx-auto px-4 py-16">
+          {/* Main Calculator Card */}
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+            <CardContent className="p-0">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+                {/* Input Section */}
+                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
+                  <div>
+                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Text Analysis</h2>
+                    <p className="text-gray-600">Enter your text to get instant word count and detailed statistics</p>
                   </div>
 
-                  {/* Results Section */}
-                  <div className="space-y-4 sm:space-y-6">
-                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-8">Text Statistics</h2>
-                    
-                    {result && (
-                      <div className="space-y-4" data-testid="text-statistics">
-                        {/* Main Counts */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                          <div className="bg-blue-50 rounded-lg p-3 sm:p-4 text-center">
-                            <div className="text-xl sm:text-2xl font-bold text-blue-600" data-testid="stat-words">
-                              {result.words.toLocaleString()}
-                            </div>
-                            <div className="text-xs sm:text-sm text-gray-600">Words</div>
-                          </div>
-                          <div className="bg-green-50 rounded-lg p-3 sm:p-4 text-center">
-                            <div className="text-xl sm:text-2xl font-bold text-green-600" data-testid="stat-characters">
+                  {/* Text Area */}
+                  <div className="space-y-4">
+                    <Label htmlFor="text-input" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                      Text to Analyze
+                    </Label>
+                    <Textarea
+                      id="text-input"
+                      value={text}
+                      onChange={(e) => setText(e.target.value)}
+                      className="min-h-[300px] lg:min-h-[400px] text-base border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500 resize-none"
+                      placeholder="Type or paste your text here to get instant word count and text statistics..."
+                      data-testid="textarea-text-input"
+                    />
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                    <Button
+                      onClick={handleClear}
+                      variant="outline"
+                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      data-testid="button-clear-text"
+                    >
+                      Clear Text
+                    </Button>
+                    <Button
+                      onClick={handleCopy}
+                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      disabled={!result || result.words === 0}
+                      data-testid="button-copy-stats"
+                    >
+                      Copy Statistics
+                    </Button>
+                  </div>
+
+                  {/* Advanced Options */}
+                  {result && (
+                    <div className="flex flex-wrap gap-3 pt-4">
+                      <Button
+                        onClick={() => setShowAdvancedStats(!showAdvancedStats)}
+                        variant="outline"
+                        size="sm"
+                        className="rounded-full"
+                        data-testid="button-show-advanced"
+                      >
+                        {showAdvancedStats ? 'Hide' : 'Show'} Advanced Statistics
+                      </Button>
+                    </div>
+                  )}
+                </div>
+
+                {/* Results Section */}
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Text Statistics</h2>
+
+                  {result ? (
+                    <div className="space-y-6" data-testid="text-statistics">
+                      {/* Word Count Highlight */}
+                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
+                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Total Words</div>
+                        <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" data-testid="stat-words">
+                          {result.words.toLocaleString()}
+                        </div>
+                      </div>
+
+                      {/* Main Statistics */}
+                      <div className="space-y-4">
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Characters (with spaces)</span>
+                            <span className="font-bold text-gray-900" data-testid="stat-characters">
                               {result.characters.toLocaleString()}
-                            </div>
-                            <div className="text-xs sm:text-sm text-gray-600">Characters</div>
+                            </span>
                           </div>
-                          <div className="bg-purple-50 rounded-lg p-3 sm:p-4 text-center">
-                            <div className="text-xl sm:text-2xl font-bold text-purple-600" data-testid="stat-characters-no-spaces">
+                        </div>
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Characters (without spaces)</span>
+                            <span className="font-bold text-purple-600" data-testid="stat-characters-no-spaces">
                               {result.charactersNoSpaces.toLocaleString()}
-                            </div>
-                            <div className="text-xs sm:text-sm text-gray-600">Characters (no spaces)</div>
+                            </span>
                           </div>
-                          <div className="bg-orange-50 rounded-lg p-3 sm:p-4 text-center">
-                            <div className="text-xl sm:text-2xl font-bold text-orange-600" data-testid="stat-sentences">
+                        </div>
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Sentences</span>
+                            <span className="font-bold text-orange-600" data-testid="stat-sentences">
                               {result.sentences.toLocaleString()}
-                            </div>
-                            <div className="text-xs sm:text-sm text-gray-600">Sentences</div>
+                            </span>
                           </div>
                         </div>
-
-                        {/* Additional Counts */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                          <div className="bg-gray-50 rounded-lg p-3 sm:p-4 text-center">
-                            <div className="text-lg sm:text-xl font-bold text-gray-600" data-testid="stat-paragraphs">
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Paragraphs</span>
+                            <span className="font-bold text-green-600" data-testid="stat-paragraphs">
                               {result.paragraphs.toLocaleString()}
-                            </div>
-                            <div className="text-xs sm:text-sm text-gray-600">Paragraphs</div>
-                          </div>
-                          <div className="bg-gray-50 rounded-lg p-3 sm:p-4 text-center">
-                            <div className="text-lg sm:text-xl font-bold text-gray-600" data-testid="stat-lines">
-                              {result.lines.toLocaleString()}
-                            </div>
-                            <div className="text-xs sm:text-sm text-gray-600">Lines</div>
-                          </div>
-                        </div>
-
-                        {/* Reading Time */}
-                        <div className="bg-indigo-50 rounded-lg p-3 sm:p-4">
-                          <h3 className="text-sm sm:text-base font-semibold text-indigo-900 mb-2">Reading & Speaking Time</h3>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                            <div className="text-center">
-                              <div className="text-base sm:text-lg font-bold text-indigo-600" data-testid="stat-reading-time">
-                                {result.readingTime} min
-                              </div>
-                              <div className="text-xs sm:text-sm text-gray-600">Reading time</div>
-                              <div className="text-xs text-gray-500">(200 wpm)</div>
-                            </div>
-                            <div className="text-center">
-                              <div className="text-base sm:text-lg font-bold text-indigo-600" data-testid="stat-speaking-time">
-                                {result.speakingTime} min
-                              </div>
-                              <div className="text-xs sm:text-sm text-gray-600">Speaking time</div>
-                              <div className="text-xs text-gray-500">(130 wpm)</div>
-                            </div>
+                            </span>
                           </div>
                         </div>
                       </div>
-                    )}
 
-                    {!result || result.words === 0 ? (
-                      <div className="text-center py-8 sm:py-12 text-gray-500">
-                        <i className="fas fa-pen text-3xl sm:text-4xl mb-3 sm:mb-4"></i>
-                        <p className="text-base sm:text-lg">Start typing to see your text statistics</p>
+                      {/* Advanced Statistics */}
+                      {showAdvancedStats && (
+                        <div className="space-y-4">
+                          <div className="bg-white rounded-xl p-4 shadow-sm">
+                            <div className="flex justify-between items-center">
+                              <span className="font-medium text-gray-700">Lines</span>
+                              <span className="font-bold text-gray-600" data-testid="stat-lines">
+                                {result.lines.toLocaleString()}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Reading Time Analysis */}
+                      <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-6 border border-indigo-200">
+                        <h4 className="font-bold text-indigo-800 mb-4 text-lg">Reading & Speaking Time</h4>
+                        <div className="space-y-3">
+                          <div className="flex justify-between items-center">
+                            <span className="text-indigo-700 font-medium">Reading time:</span>
+                            <span className="font-bold text-indigo-800 text-lg" data-testid="stat-reading-time">
+                              {result.readingTime} min
+                            </span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-indigo-700 font-medium">Speaking time:</span>
+                            <span className="font-bold text-indigo-800 text-lg" data-testid="stat-speaking-time">
+                              {result.speakingTime} min
+                            </span>
+                          </div>
+                          <div className="text-xs text-indigo-600 mt-2">
+                            Based on 200 wpm reading, 130 wpm speaking
+                          </div>
+                        </div>
                       </div>
-                    ) : null}
+                    </div>
+                  ) : (
+                    <div className="text-center py-16" data-testid="no-results">
+                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <div className="text-3xl font-bold text-gray-400">Aa</div>
+                      </div>
+                      <p className="text-gray-500 text-lg">Enter text above to see detailed statistics</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Content Sections */}
+          <div className="mt-16 space-y-12">
+            {/* What is a Word Counter */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">What is a Word Counter Tool?</h2>
+                <div className="prose max-w-none text-gray-700 space-y-4">
+                  <p className="text-lg leading-relaxed">
+                    A <strong>word counter</strong> is an essential digital tool that provides comprehensive text analysis
+                    by calculating various statistical metrics about your written content. Unlike simple counting applications,
+                    our advanced word counter delivers real-time insights including precise word counts, character analysis
+                    (with and without spaces), sentence structure evaluation, paragraph organization assessment, and
+                    estimated reading and speaking times.
+                  </p>
+
+                  <p className="leading-relaxed">
+                    This powerful text analysis tool works instantaneously, automatically updating all statistics as you
+                    type or paste content. The real-time functionality makes it indispensable for writers crafting novels,
+                    students completing academic assignments, content creators developing blog posts, marketers creating
+                    social media campaigns, and professionals preparing business documents with specific length requirements.
+                  </p>
+
+                  <p className="leading-relaxed">
+                    Our word counter calculates reading time based on the standard adult reading speed of 200 words per
+                    minute, while speaking time estimates use an average conversational pace of 130 words per minute.
+                    These calculations are particularly valuable for content creators planning presentations, educators
+                    preparing lectures, speakers timing their talks, and writers estimating content consumption duration
+                    for their audiences.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Features and Benefits */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Key Features</h2>
+                  <div className="space-y-4">
+                    <div className="border-l-4 border-blue-500 pl-4">
+                      <h3 className="font-semibold text-gray-800 mb-2">Real-Time Analysis</h3>
+                      <p className="text-gray-600 text-sm">Get instant feedback as you type with live word counting and text statistics that update automatically without page refreshes.</p>
+                    </div>
+                    <div className="border-l-4 border-green-500 pl-4">
+                      <h3 className="font-semibold text-gray-800 mb-2">Comprehensive Statistics</h3>
+                      <p className="text-gray-600 text-sm">Track multiple metrics including words, characters, sentences, paragraphs, lines, and time estimates in one location.</p>
+                    </div>
+                    <div className="border-l-4 border-purple-500 pl-4">
+                      <h3 className="font-semibold text-gray-800 mb-2">Reading Time Calculator</h3>
+                      <p className="text-gray-600 text-sm">Estimate how long it takes to read or speak your content based on standard reading and speaking speeds.</p>
+                    </div>
+                    <div className="border-l-4 border-orange-500 pl-4">
+                      <h3 className="font-semibold text-gray-800 mb-2">Mobile Responsive</h3>
+                      <p className="text-gray-600 text-sm">Count words and analyze text on any device with our fully responsive design optimized for desktop, tablet, and mobile.</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Why Use Our Tool?</h2>
+                  <div className="space-y-4">
+                    <div className="border-l-4 border-indigo-500 pl-4">
+                      <h3 className="font-semibold text-gray-800 mb-2">Academic Excellence</h3>
+                      <p className="text-gray-600 text-sm">Perfect for students who need to meet specific word count requirements for essays, research papers, and academic assignments.</p>
+                    </div>
+                    <div className="border-l-4 border-cyan-500 pl-4">
+                      <h3 className="font-semibold text-gray-800 mb-2">Professional Content Creation</h3>
+                      <p className="text-gray-600 text-sm">Ideal for copywriters, marketers, and content creators who need precise text metrics for various platforms and requirements.</p>
+                    </div>
+                    <div className="border-l-4 border-teal-500 pl-4">
+                      <h3 className="font-semibold text-gray-800 mb-2">SEO Optimization</h3>
+                      <p className="text-gray-600 text-sm">Optimize blog posts, meta descriptions, and web content by monitoring word counts for better search engine performance.</p>
+                    </div>
+                    <div className="border-l-4 border-rose-500 pl-4">
+                      <h3 className="font-semibold text-gray-800 mb-2">Free and Accessible</h3>
+                      <p className="text-gray-600 text-sm">No registration required, completely free to use, and accessible from any browser on any device worldwide.</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Use Cases by Profession */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h2 className="text-3xl font-bold text-gray-900 mb-8">Professional Use Cases</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  <div className="text-center p-6 bg-blue-50 rounded-xl">
+                    <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+                      S
+                    </div>
+                    <h3 className="font-semibold text-gray-900 mb-2">Students</h3>
+                    <p className="text-gray-600 text-sm">Meet essay requirements, track assignment progress, and ensure academic compliance with precise word count monitoring.</p>
+                  </div>
+                  <div className="text-center p-6 bg-green-50 rounded-xl">
+                    <div className="w-16 h-16 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+                      W
+                    </div>
+                    <h3 className="font-semibold text-gray-900 mb-2">Writers</h3>
+                    <p className="text-gray-600 text-sm">Track daily writing goals, monitor novel progress, and optimize content length for different publishing platforms.</p>
+                  </div>
+                  <div className="text-center p-6 bg-purple-50 rounded-xl">
+                    <div className="w-16 h-16 bg-purple-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+                      M
+                    </div>
+                    <h3 className="font-semibold text-gray-900 mb-2">Marketers</h3>
+                    <p className="text-gray-600 text-sm">Create platform-specific content, optimize ad copy length, and ensure social media posts meet character limits.</p>
+                  </div>
+                  <div className="text-center p-6 bg-orange-50 rounded-xl">
+                    <div className="w-16 h-16 bg-orange-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+                      P
+                    </div>
+                    <h3 className="font-semibold text-gray-900 mb-2">Professionals</h3>
+                    <p className="text-gray-600 text-sm">Prepare business documents, create executive summaries, and ensure professional communication meets length requirements.</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
-          </div>
-        </section>
 
-        {/* Information Sections */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 sm:pb-12 lg:pb-16">
-          {/* What is a Word Counter */}
-          <div className="mt-8 sm:mt-12 bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">What is a Word Counter Tool?</h2>
-            <div className="prose max-w-none">
-              <p className="text-lg text-gray-700 mb-6">
-                A <strong>word counter</strong> is a powerful text analysis tool that instantly calculates various statistics about your written content. Unlike basic counting tools, our advanced word counter provides comprehensive insights including word count, character count (with and without spaces), sentence count, paragraph count, reading time estimates, and speaking time calculations.
-              </p>
-              
-              <p className="text-gray-700 mb-6">
-                Our online word counter tool works in real-time, automatically updating statistics as you type or paste text. This makes it perfect for writers, students, content creators, and professionals who need to monitor text length, meet specific requirements, or analyze content structure for optimal readability and engagement.
-              </p>
-
-              <p className="text-gray-700 mb-6">
-                The tool calculates reading time based on an average reading speed of 200 words per minute and speaking time at 130 words per minute, helping you estimate how long it will take audiences to consume your content. This is particularly valuable for presentations, speeches, blog posts, and educational materials.
-              </p>
-            </div>
-          </div>
-
-          {/* Benefits and Features */}
-          <div className="mt-6 sm:mt-8 bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-4 sm:p-6 lg:p-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Why Use Our Word Counter Tool?</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-              <div className="space-y-4 sm:space-y-6">
-                <div>
-                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2 sm:mb-3">Real-Time Analysis</h3>
-                  <p className="text-sm sm:text-base text-gray-700">Get instant feedback as you type with live word counting, character analysis, and text statistics that update automatically without refreshing the page.</p>
-                </div>
-                
-                <div>
-                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2 sm:mb-3">Comprehensive Statistics</h3>
-                  <p className="text-sm sm:text-base text-gray-700">Track multiple metrics including words, characters (with/without spaces), sentences, paragraphs, lines, and estimated reading/speaking times in one convenient location.</p>
-                </div>
-
-                <div>
-                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2 sm:mb-3">Content Optimization</h3>
-                  <p className="text-sm sm:text-base text-gray-700">Optimize your content by monitoring word count for blog posts, meta descriptions, and web content to meet best practices and improve readability.</p>
-                </div>
-              </div>
-
-              <div className="space-y-4 sm:space-y-6">
-                <div>
-                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2 sm:mb-3">Academic Writing Support</h3>
-                  <p className="text-sm sm:text-base text-gray-700">Perfect for students and researchers who need to meet specific word count requirements for essays, research papers, dissertations, and academic assignments.</p>
-                </div>
-                
-                <div>
-                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2 sm:mb-3">Professional Content Creation</h3>
-                  <p className="text-sm sm:text-base text-gray-700">Ideal for copywriters, marketers, and content creators who need to create content that fits specific length requirements for social media, advertisements, and marketing materials.</p>
-                </div>
-
-                <div>
-                  <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2 sm:mb-3">Free and Accessible</h3>
-                  <p className="text-sm sm:text-base text-gray-700">No registration required, completely free to use, and works on all devices including desktop, tablet, and mobile browsers for counting words anywhere, anytime.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Use Cases by Audience */}
-          <div className="mt-6 sm:mt-8 bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Word Counter Use Cases for Different Audiences</h2>
-            
-            <div className="space-y-6 sm:space-y-8">
-              {/* Students */}
-              <div className="border-l-4 border-blue-500 pl-4 sm:pl-6">
-                <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-3 sm:mb-4">👨‍🎓 Students & Academics</h3>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-                  <div>
-                    <h4 className="text-sm sm:text-base font-semibold text-gray-800 mb-2">Essay Writing</h4>
-                    <p className="text-sm sm:text-base text-gray-700 mb-3 sm:mb-4">Meet exact word count requirements for college essays, scholarship applications, and academic assignments. Avoid penalties for going over or under specified limits.</p>
-                    
-                    <h4 className="text-sm sm:text-base font-semibold text-gray-800 mb-2">Research Papers</h4>
-                    <p className="text-sm sm:text-base text-gray-700">Track progress on dissertations, theses, and research papers. Monitor section lengths to maintain balanced content distribution and meet publication requirements.</p>
+            {/* Content Optimization Guide */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">Content Length Guidelines</h2>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Digital Content</h3>
+                      <div className="space-y-3 text-gray-700">
+                        <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
+                          <span className="font-medium">Blog Posts:</span>
+                          <span className="text-blue-600 font-semibold">1,500-2,500 words</span>
+                        </div>
+                        <div className="flex justify-between items-center p-3 bg-green-50 rounded-lg">
+                          <span className="font-medium">Social Media Posts:</span>
+                          <span className="text-green-600 font-semibold">40-100 characters</span>
+                        </div>
+                        <div className="flex justify-between items-center p-3 bg-purple-50 rounded-lg">
+                          <span className="font-medium">Meta Descriptions:</span>
+                          <span className="text-purple-600 font-semibold">150-160 characters</span>
+                        </div>
+                        <div className="flex justify-between items-center p-3 bg-orange-50 rounded-lg">
+                          <span className="font-medium">Email Newsletters:</span>
+                          <span className="text-orange-600 font-semibold">50-125 words</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="text-sm sm:text-base font-semibold text-gray-800 mb-2">Study Materials</h4>
-                    <p className="text-sm sm:text-base text-gray-700 mb-3 sm:mb-4">Create study guides and summaries with optimal length for retention. Estimate reading time for study sessions and exam preparation.</p>
-                    
-                    <h4 className="text-sm sm:text-base font-semibold text-gray-800 mb-2">Presentations</h4>
-                    <p className="text-sm sm:text-base text-gray-700">Calculate speaking time for presentations and oral exams. Ensure your presentation fits within allocated time slots.</p>
+
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Academic Writing</h3>
+                      <div className="space-y-3 text-gray-700">
+                        <div className="flex justify-between items-center p-3 bg-indigo-50 rounded-lg">
+                          <span className="font-medium">Short Essays:</span>
+                          <span className="text-indigo-600 font-semibold">500-1,000 words</span>
+                        </div>
+                        <div className="flex justify-between items-center p-3 bg-cyan-50 rounded-lg">
+                          <span className="font-medium">Research Papers:</span>
+                          <span className="text-cyan-600 font-semibold">3,000-5,000 words</span>
+                        </div>
+                        <div className="flex justify-between items-center p-3 bg-teal-50 rounded-lg">
+                          <span className="font-medium">Thesis Chapters:</span>
+                          <span className="text-teal-600 font-semibold">8,000-12,000 words</span>
+                        </div>
+                        <div className="flex justify-between items-center p-3 bg-rose-50 rounded-lg">
+                          <span className="font-medium">Abstracts:</span>
+                          <span className="text-rose-600 font-semibold">150-300 words</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </CardContent>
+            </Card>
 
-              {/* Content Creators */}
-              <div className="border-l-4 border-green-500 pl-4 sm:pl-6">
-                <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-3 sm:mb-4">✍️ Writers & Content Creators</h3>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-2">Blog Writing</h4>
-                    <p className="text-gray-700 mb-4">Optimize blog post length for reader engagement. Most successful blog posts range from 1,500-2,500 words for better reader retention and comprehensive coverage.</p>
-                    
-                    <h4 className="font-semibold text-gray-800 mb-2">Social Media Content</h4>
-                    <p className="text-gray-700">Stay within character limits for Twitter (280 characters), Facebook posts, LinkedIn articles, and Instagram captions to maximize engagement and avoid truncation.</p>
+            {/* How to Use Guide */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">How to Use the Word Counter</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="space-y-4">
+                    <div className="flex items-start space-x-4">
+                      <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900 mb-2">Enter Your Text</h3>
+                        <p className="text-gray-600 text-sm">Type directly in the text area or paste content from any document, website, or application.</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start space-x-4">
+                      <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900 mb-2">View Real-Time Results</h3>
+                        <p className="text-gray-600 text-sm">Watch statistics update instantly as you type or edit your text content.</p>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-2">Novel Writing</h4>
-                    <p className="text-gray-700 mb-4">Track daily writing goals and monitor progress toward target word counts. Most novels range from 70,000-100,000 words depending on genre.</p>
-                    
-                    <h4 className="font-semibold text-gray-800 mb-2">Article Submissions</h4>
-                    <p className="text-gray-700">Meet publisher requirements for magazine articles, guest posts, and freelance writing assignments with precise word count tracking.</p>
+
+                  <div className="space-y-4">
+                    <div className="flex items-start space-x-4">
+                      <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900 mb-2">Analyze Statistics</h3>
+                        <p className="text-gray-600 text-sm">Review comprehensive text metrics including reading time and character analysis.</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start space-x-4">
+                      <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900 mb-2">Export or Clear</h3>
+                        <p className="text-gray-600 text-sm">Copy statistics for your records or clear the text to start analyzing new content.</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </CardContent>
+            </Card>
 
-              {/* Business Professionals */}
-              <div className="border-l-4 border-purple-500 pl-4 sm:pl-6">
-                <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-3 sm:mb-4">💼 Business Professionals</h3>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-2">Marketing Copy</h4>
-                    <p className="text-gray-700 mb-4">Create compelling ad copy, email campaigns, and marketing materials that fit platform requirements and maintain reader attention.</p>
-                    
-                    <h4 className="font-semibold text-gray-800 mb-2">Business Reports</h4>
-                    <p className="text-gray-700">Ensure executive summaries, quarterly reports, and business proposals meet length requirements while maintaining clarity and impact.</p>
+            {/* FAQ Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h2 className="text-3xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h2>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">How accurate is the word count?</h3>
+                      <p className="text-gray-600 text-sm">Our word counter uses industry-standard algorithms identical to those used by Microsoft Word, Google Docs, and other professional writing software, ensuring consistent and accurate results.</p>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">What defines a word in the count?</h3>
+                      <p className="text-gray-600 text-sm">A word is any sequence of characters separated by spaces, including numbers, abbreviations, hyphenated words, and contractions, each counted as individual words.</p>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">How is reading time calculated?</h3>
+                      <p className="text-gray-600 text-sm">Reading time uses an average speed of 200 words per minute for adults, while speaking time is calculated at 130 words per minute based on conversational pace.</p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-2">Website Content</h4>
-                    <p className="text-gray-700 mb-4">Optimize web page content while ensuring readability. Product descriptions, landing pages, and service pages benefit from optimal word counts.</p>
-                    
-                    <h4 className="font-semibold text-gray-800 mb-2">Proposals & Contracts</h4>
-                    <p className="text-gray-700">Maintain professional standards in business documents while meeting client specifications for length and detail.</p>
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Is my text data secure and private?</h3>
+                      <p className="text-gray-600 text-sm">Yes, all text analysis happens locally in your browser. Your content is never transmitted to our servers, stored, or shared with any third parties.</p>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Does the tool work with different languages?</h3>
+                      <p className="text-gray-600 text-sm">Our word counter works with most languages that use space-separated words, including English, Spanish, French, German, and many other Latin script languages.</p>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I use this for academic writing?</h3>
+                      <p className="text-gray-600 text-sm">Absolutely! Our tool is perfect for academic assignments, research papers, dissertations, and any writing with specific word count requirements.</p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </CardContent>
+            </Card>
 
-              {/* Researchers */}
-              <div className="border-l-4 border-orange-500 pl-4 sm:pl-6">
-                <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-3 sm:mb-4">🔬 Researchers & Analysts</h3>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-2">Grant Applications</h4>
-                    <p className="text-gray-700 mb-4">Meet strict word limits for research grant proposals, ensuring all critical information fits within specified constraints.</p>
-                    
-                    <h4 className="font-semibold text-gray-800 mb-2">Journal Submissions</h4>
-                    <p className="text-gray-700">Adhere to academic journal requirements for abstracts, manuscripts, and research papers with precise word count monitoring.</p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-2">Survey Analysis</h4>
-                    <p className="text-gray-700 mb-4">Analyze open-ended survey responses and qualitative data by measuring text length and complexity for research insights.</p>
-                    
-                    <h4 className="font-semibold text-gray-800 mb-2">Conference Presentations</h4>
-                    <p className="text-gray-700">Prepare conference abstracts and presentation materials that meet submission guidelines and time constraints.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Related Tools Integration */}
-          <div className="mt-6 sm:mt-8 bg-gradient-to-r from-indigo-50 to-cyan-50 rounded-2xl p-4 sm:p-6 lg:p-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Enhance Your Text Analysis with Related Tools</h2>
-            <p className="text-base sm:text-lg text-gray-700 mb-6 sm:mb-8">
-              Maximize your writing productivity by combining our word counter with other powerful text analysis and editing tools available on our platform.
-            </p>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-              <div className="bg-white rounded-lg p-4 sm:p-6 shadow-sm border border-gray-100">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-3 sm:mb-4">
-                  <i className="fas fa-font text-blue-600 text-lg sm:text-xl"></i>
-                </div>
-                <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">
-                  <a href="/tools/character-counter" className="text-blue-600 hover:text-blue-800 transition-colors">
-                    Character Counter
+            {/* Related Tools */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">Related Text Tools</h2>
+                <p className="text-gray-600 mb-8">Enhance your text analysis workflow with our comprehensive suite of complementary tools.</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <a href="/tools/character-counter" className="block bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl hover:shadow-lg transition-shadow group border border-blue-100">
+                    <div className="w-12 h-12 bg-blue-600 text-white rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-700 transition-colors text-xl font-bold">
+                      C
+                    </div>
+                    <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-blue-600">Character Counter</h3>
+                    <p className="text-gray-600 text-sm">Count characters with precision for social media posts, meta descriptions, and character-limited content.</p>
                   </a>
-                </h3>
-                <p className="text-gray-600 text-xs sm:text-sm">Count characters with and without spaces, perfect for social media posts, meta descriptions, and text messages with character limits.</p>
-              </div>
 
-              <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                  <i className="fas fa-list text-green-600 text-xl"></i>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  <a href="/tools/sentence-counter" className="text-blue-600 hover:text-blue-800 transition-colors">
-                    Sentence Counter
+                  <a href="/tools/sentence-counter" className="block bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-xl hover:shadow-lg transition-shadow group border border-green-100">
+                    <div className="w-12 h-12 bg-green-600 text-white rounded-lg flex items-center justify-center mb-4 group-hover:bg-green-700 transition-colors text-xl font-bold">
+                      S
+                    </div>
+                    <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-green-600">Sentence Counter</h3>
+                    <p className="text-gray-600 text-sm">Analyze sentence structure and count sentences to improve readability and writing flow.</p>
                   </a>
-                </h3>
-                <p className="text-gray-600 text-sm">Analyze sentence structure and count sentences to improve readability and writing flow for better content engagement.</p>
-              </div>
 
-              <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100">
-                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                  <i className="fas fa-paragraph text-purple-600 text-xl"></i>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  <a href="/tools/paragraph-counter" className="text-blue-600 hover:text-blue-800 transition-colors">
-                    Paragraph Counter
+                  <a href="/tools/paragraph-counter" className="block bg-gradient-to-br from-purple-50 to-violet-50 p-6 rounded-xl hover:shadow-lg transition-shadow group border border-purple-100">
+                    <div className="w-12 h-12 bg-purple-600 text-white rounded-lg flex items-center justify-center mb-4 group-hover:bg-purple-700 transition-colors text-xl font-bold">
+                      P
+                    </div>
+                    <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-purple-600">Paragraph Counter</h3>
+                    <p className="text-gray-600 text-sm">Count paragraphs and analyze text structure for better content organization and formatting.</p>
                   </a>
-                </h3>
-                <p className="text-gray-600 text-sm">Count paragraphs and analyze text structure to ensure proper formatting and organization for academic and professional writing.</p>
-              </div>
-
-              <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100">
-                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
-                  <i className="fas fa-text-width text-orange-600 text-xl"></i>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  <a href="/tools/case-converter" className="text-blue-600 hover:text-blue-800 transition-colors">
-                    Case Converter
-                  </a>
-                </h3>
-                <p className="text-gray-600 text-sm">Convert text between uppercase, lowercase, title case, and other formats to maintain consistent formatting across your content.</p>
-              </div>
-
-              <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100">
-                <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
-                  <i className="fas fa-undo text-red-600 text-xl"></i>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  <a href="/tools/reverse-text-tool" className="text-blue-600 hover:text-blue-800 transition-colors">
-                    Reverse Text Tool
-                  </a>
-                </h3>
-                <p className="text-gray-600 text-sm">Reverse text character by character or word by word for creative writing, puzzles, and unique content creation needs.</p>
-              </div>
-
-              <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-100">
-                <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
-                  <i className="fas fa-font text-indigo-600 text-xl"></i>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  <a href="/tools/font-style-changer" className="text-blue-600 hover:text-blue-800 transition-colors">
-                    Font Style Changer
-                  </a>
-                </h3>
-                <p className="text-gray-600 text-sm">Transform your text with various font styles and decorative characters for social media, presentations, and creative projects.</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Content Guidelines Section */}
-          <div className="mt-8 bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Word Count Guidelines for Content Marketing</h2>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Blog Posts and Articles</h3>
-                  <ul className="space-y-2 text-gray-700">
-                    <li className="flex items-start">
-                      <span className="font-medium text-green-600 mr-2">•</span>
-                      <span><strong>Short-form content:</strong> 300-600 words for quick reads and news updates</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-medium text-green-600 mr-2">•</span>
-                      <span><strong>Medium-form content:</strong> 1,000-1,500 words for how-to guides and tutorials</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-medium text-green-600 mr-2">•</span>
-                      <span><strong>Long-form content:</strong> 2,000+ words for comprehensive guides and research articles</span>
-                    </li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Social Media Optimization</h3>
-                  <ul className="space-y-2 text-gray-700">
-                    <li className="flex items-start">
-                      <span className="font-medium text-blue-600 mr-2">•</span>
-                      <span><strong>Twitter:</strong> 280 characters maximum, but 100-150 characters for better engagement</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-medium text-blue-600 mr-2">•</span>
-                      <span><strong>Facebook:</strong> 40-80 characters for posts, up to 125 characters for optimal reach</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-medium text-blue-600 mr-2">•</span>
-                      <span><strong>LinkedIn:</strong> 150-300 characters for posts, 150-200 words for articles</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Web Page Content</h3>
-                  <ul className="space-y-2 text-gray-700">
-                    <li className="flex items-start">
-                      <span className="font-medium text-purple-600 mr-2">•</span>
-                      <span><strong>Homepage:</strong> 500-800 words to explain your business clearly</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-medium text-purple-600 mr-2">•</span>
-                      <span><strong>Product pages:</strong> 300-500 words with detailed descriptions</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-medium text-purple-600 mr-2">•</span>
-                      <span><strong>About pages:</strong> 500-1,000 words to build trust and credibility</span>
-                    </li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Email Marketing</h3>
-                  <ul className="space-y-2 text-gray-700">
-                    <li className="flex items-start">
-                      <span className="font-medium text-orange-600 mr-2">•</span>
-                      <span><strong>Subject lines:</strong> 30-50 characters for mobile optimization</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-medium text-orange-600 mr-2">•</span>
-                      <span><strong>Email body:</strong> 50-125 words for newsletters, 200-300 words for detailed content</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-medium text-orange-600 mr-2">•</span>
-                      <span><strong>Call-to-action:</strong> 2-5 words for maximum impact</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* How to Use */}
-          <div className="mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">How to Use the Word Counter</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="space-y-4">
-                <div className="flex items-start space-x-3">
-                  <div className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold">1</div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Type or Paste Text</h3>
-                    <p className="text-gray-600">Enter your text directly in the text area or paste content from another document.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-3">
-                  <div className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold">2</div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">View Real-time Statistics</h3>
-                    <p className="text-gray-600">Watch the statistics update automatically as you type or edit your text.</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="space-y-4">
-                <div className="flex items-start space-x-3">
-                  <div className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold">3</div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Analyze Results</h3>
-                    <p className="text-gray-600">Review detailed statistics including reading time and speaking time estimates.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-3">
-                  <div className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold">4</div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Copy or Clear</h3>
-                    <p className="text-gray-600">Copy the statistics for your records or clear the text to start fresh.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Key Features */}
-          <div className="mt-8 bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Key Features of Our Word Counter</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-bolt text-2xl"></i>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Real-time Analysis</h3>
-                <p className="text-gray-600">Get instant statistics as you type with live text analysis and counting.</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-16 h-16 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-chart-bar text-2xl"></i>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Comprehensive Stats</h3>
-                <p className="text-gray-600">Track words, characters, sentences, paragraphs, and reading time in one place.</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-16 h-16 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-mobile-alt text-2xl"></i>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Mobile Friendly</h3>
-                <p className="text-gray-600">Count words and analyze text on any device with our responsive design.</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Use Cases */}
-          <div className="mt-8 bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Who Uses Word Counters?</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="text-center">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-graduation-cap text-blue-600 text-xl"></i>
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Students</h3>
-                <p className="text-gray-600 text-sm">Meet essay and assignment word requirements accurately.</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-pen text-purple-600 text-xl"></i>
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Writers</h3>
-                <p className="text-gray-600 text-sm">Track daily writing goals and monitor progress.</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-bullhorn text-green-600 text-xl"></i>
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Marketers</h3>
-                <p className="text-gray-600 text-sm">Optimize content length for social media and ads.</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-briefcase text-orange-600 text-xl"></i>
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Professionals</h3>
-                <p className="text-gray-600 text-sm">Create reports and documents with precise word counts.</p>
-              </div>
-            </div>
-          </div>
-
-          {/* FAQ */}
-          <div className="mt-8 bg-gradient-to-r from-gray-50 to-blue-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Frequently Asked Questions About Word Counting</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">How accurate is the word count?</h3>
-                  <p className="text-gray-600">Our word counter uses industry-standard algorithms that match those used by popular word processors like Microsoft Word, Google Docs, and professional writing software, ensuring consistent and accurate results across platforms.</p>
-                </div>
-                
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">What counts as a word?</h3>
-                  <p className="text-gray-600">A word is defined as any sequence of characters separated by spaces. This includes numbers (like "2024"), abbreviations (like "Dr."), hyphenated words (like "twenty-one"), and contractions (like "don't"), each counted as individual words.</p>
-                </div>
-                
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">How is reading time calculated?</h3>
-                  <p className="text-gray-600">Reading time is based on an average reading speed of 200 words per minute for adults, which is the standard used by most content management systems. Speaking time uses 130 words per minute, representing average conversational speaking pace.</p>
-                </div>
-                
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I use this for academic writing?</h3>
-                  <p className="text-gray-600">Absolutely! Our word counter is perfect for academic writing, including essays, research papers, dissertations, grant applications, and any assignment with specific word count requirements. It helps ensure you meet exact specifications.</p>
-                </div>
-
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Is my text data secure and private?</h3>
-                  <p className="text-gray-600">Yes, your privacy is our priority. All text analysis happens in your browser locally - your content is never sent to our servers, stored, or shared with third parties. Your text remains completely private and secure.</p>
-                </div>
-              </div>
-
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Does the tool work with different languages?</h3>
-                  <p className="text-gray-600">Yes, our word counter works with most languages that use space-separated words, including English, Spanish, French, German, and many others. However, it's optimized for languages that use Latin script and space-based word separation.</p>
-                </div>
-
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">What's the maximum text length I can analyze?</h3>
-                  <p className="text-gray-600">There's no hard limit on text length. Our tool can handle everything from short tweets to full-length novels and academic papers. Performance remains fast even with very large documents.</p>
-                </div>
-
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I copy the statistics for my records?</h3>
-                  <p className="text-gray-600">Yes! Use the "Copy Stats" button to copy all text statistics to your clipboard in a formatted layout. This is perfect for including word count information in reports, submissions, or project documentation.</p>
-                </div>
-
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">How does this compare to Microsoft Word's word count?</h3>
-                  <p className="text-gray-600">Our word counter follows the same counting standards as Microsoft Word and Google Docs. You should see identical or very similar results, making it a reliable alternative for when you don't have access to desktop software.</p>
-                </div>
-
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Is the tool optimized for mobile devices?</h3>
-                  <p className="text-gray-600">Yes, our word counter is fully responsive and optimized for mobile devices, tablets, and desktop computers. The interface adapts to your screen size while maintaining full functionality across all devices.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Writing Tips Section */}
-          <div className="mt-8 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Professional Writing Tips Using Word Count Analysis</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">📝 Improve Writing Quality</h3>
-                  <ul className="space-y-3 text-gray-700">
-                    <li className="flex items-start">
-                      <span className="font-medium text-emerald-600 mr-2">•</span>
-                      <span>Use word count to identify overly long sentences that may confuse readers</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-medium text-emerald-600 mr-2">•</span>
-                      <span>Balance paragraph lengths for better readability and visual appeal</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-medium text-emerald-600 mr-2">•</span>
-                      <span>Track daily writing goals to maintain consistent productivity</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-medium text-emerald-600 mr-2">•</span>
-                      <span>Monitor reading time to ensure content fits audience attention spans</span>
-                    </li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">🎯 Content Strategy</h3>
-                  <ul className="space-y-3 text-gray-700">
-                    <li className="flex items-start">
-                      <span className="font-medium text-emerald-600 mr-2">•</span>
-                      <span>Create content pillars with consistent word counts for brand voice</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-medium text-emerald-600 mr-2">•</span>
-                      <span>Optimize content length based on audience engagement metrics</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-medium text-emerald-600 mr-2">•</span>
-                      <span>Plan content series with progressive word count increases</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-medium text-emerald-600 mr-2">•</span>
-                      <span>Analyze competitor content lengths for market positioning</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">📊 Content Optimization</h3>
-                  <ul className="space-y-3 text-gray-700">
-                    <li className="flex items-start">
-                      <span className="font-medium text-emerald-600 mr-2">•</span>
-                      <span>Target optimal word counts for different content types and audiences</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-medium text-emerald-600 mr-2">•</span>
-                      <span>Create comprehensive content that provides thorough coverage</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-medium text-emerald-600 mr-2">•</span>
-                      <span>Ensure meta descriptions stay within 150-160 character limits</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-medium text-emerald-600 mr-2">•</span>
-                      <span>Balance content depth with natural, readable flow</span>
-                    </li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">⏱️ Time Management</h3>
-                  <ul className="space-y-3 text-gray-700">
-                    <li className="flex items-start">
-                      <span className="font-medium text-emerald-600 mr-2">•</span>
-                      <span>Estimate project completion times using word count targets</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-medium text-emerald-600 mr-2">•</span>
-                      <span>Plan presentation lengths based on speaking time calculations</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-medium text-emerald-600 mr-2">•</span>
-                      <span>Set realistic writing quotas based on historical performance</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="font-medium text-emerald-600 mr-2">•</span>
-                      <span>Break large projects into manageable word count milestones</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </main>
-      
+
       <Footer />
     </div>
   );
