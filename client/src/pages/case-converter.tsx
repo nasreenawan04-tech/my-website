@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -7,6 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import { Separator } from '@/components/ui/separator';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 
@@ -200,6 +202,21 @@ const CaseConverter = () => {
     setAdvancedOptions(prev => ({ ...prev, [key]: value }));
   };
 
+  const resetCalculator = () => {
+    setText('');
+    setAdvancedOptions({
+      preserveNumbers: true,
+      ignorePunctuation: false,
+      customSeparator: '',
+      prefix: '',
+      suffix: '',
+      removeExtraSpaces: true,
+      preserveLineBreaks: false
+    });
+    setShowAdvanced(false);
+    setResult(null);
+  };
+
   const conversionTypes = [
     { key: 'uppercase', label: 'UPPERCASE', description: 'ALL LETTERS CAPITALIZED' },
     { key: 'lowercase', label: 'lowercase', description: 'all letters in small case' },
@@ -216,110 +233,124 @@ const CaseConverter = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
         <title>Case Converter - Convert Text to UPPER, lower, Title, camelCase | DapsiWow</title>
-        <meta name="description" content="Free online case converter tool to transform text between UPPERCASE, lowercase, Title Case, camelCase, PascalCase, snake_case, kebab-case and more. Instant text case conversion." />
-        <meta name="keywords" content="case converter, text converter, uppercase, lowercase, title case, camelCase, PascalCase, snake_case, kebab-case, text transformation" />
+        <meta name="description" content="Free online case converter tool to transform text between UPPERCASE, lowercase, Title Case, camelCase, PascalCase, snake_case, kebab-case and more. Instant text case conversion with advanced customization options." />
+        <meta name="keywords" content="case converter, text converter, uppercase, lowercase, title case, camelCase, PascalCase, snake_case, kebab-case, text transformation, programming naming conventions, variable name converter" />
         <meta property="og:title" content="Case Converter - Convert Text to UPPER, lower, Title, camelCase" />
-        <meta property="og:description" content="Free online case converter for all text transformation needs. Convert between uppercase, lowercase, camelCase and more instantly." />
+        <meta property="og:description" content="Free online case converter for all text transformation needs. Convert between uppercase, lowercase, camelCase and more instantly with advanced customization features." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="/tools/case-converter" />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="DapsiWow" />
+        <link rel="canonical" href="https://dapsiwow.com/tools/case-converter" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Case Converter Tool",
+            "description": "Free online case converter to transform text between various case formats including UPPERCASE, lowercase, Title Case, camelCase, PascalCase, snake_case, and kebab-case.",
+            "url": "https://dapsiwow.com/tools/case-converter",
+            "applicationCategory": "ProductivityApplication",
+            "operatingSystem": "Any",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "featureList": [
+              "Convert to 12+ different case formats",
+              "Real-time text conversion",
+              "Advanced customization options",
+              "Programming naming conventions",
+              "Copy to clipboard functionality",
+              "Prefix and suffix support"
+            ]
+          })}
+        </script>
       </Helmet>
       
       <Header />
       
       <main>
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 py-20 sm:py-24 lg:py-28">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="space-y-6">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white leading-tight" data-testid="text-page-title">
-                Case Converter
+        <section className="relative py-20 sm:py-28 lg:py-32 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
+          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="space-y-8">
+              <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+                <span className="text-sm font-medium text-blue-700">Professional Text Converter</span>
+              </div>
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight" data-testid="text-page-title">
+                Smart Case
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                  Converter
+                </span>
               </h1>
-              <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
-                Transform text between UPPERCASE, lowercase, Title Case, camelCase, PascalCase and many other formats
+              <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                Transform text between UPPERCASE, lowercase, Title Case, camelCase, PascalCase and many other formats instantly
               </p>
             </div>
           </div>
         </section>
 
-        {/* Calculator Section */}
-        <section className="py-8 sm:py-12 lg:py-16">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <Card className="bg-white shadow-sm border-0">
-              <CardContent className="p-4 sm:p-6 lg:p-8">
-                <div className="space-y-6 sm:space-y-8">
-                  {/* Input Section */}
+        <div className="max-w-7xl mx-auto px-4 py-16">
+          {/* Main Calculator Card */}
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+            <CardContent className="p-0">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+                {/* Input Section */}
+                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
                   <div>
-                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6">Enter Your Text</h2>
-                    
-                    {/* Text Area */}
-                    <div className="space-y-3 sm:space-y-4">
-                      <Label htmlFor="text-input" className="text-sm font-medium text-gray-700">
+                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Text Conversion</h2>
+                    <p className="text-gray-600">Enter your text to convert between different case formats</p>
+                  </div>
+                  
+                  <div className="space-y-6">
+                    {/* Text Input */}
+                    <div className="space-y-3">
+                      <Label htmlFor="text-input" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Text to Convert
                       </Label>
-                      <textarea
+                      <Textarea
                         id="text-input"
                         value={text}
                         onChange={(e) => setText(e.target.value)}
-                        className="w-full h-28 sm:h-32 p-3 sm:p-4 text-sm sm:text-base border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                        className="min-h-[120px] text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500 resize-none"
                         placeholder="Type or paste your text here to convert between different case formats..."
                         data-testid="textarea-text-input"
                       />
                     </div>
+                  </div>
 
-                    {/* Action Buttons */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 lg:gap-4 mt-3 sm:mt-4">
-                      <Button
-                        onClick={handleClear}
-                        variant="outline"
-                        className="py-2.5 sm:py-2 text-xs sm:text-sm"
-                        data-testid="button-clear-text"
-                      >
-                        <i className="fas fa-trash mr-1 sm:mr-2"></i>
-                        <span className="hidden sm:inline">Clear Text</span>
-                        <span className="sm:hidden">Clear</span>
-                      </Button>
-                      <Button
-                        onClick={handleSampleText}
-                        variant="outline"
-                        className="py-2.5 sm:py-2 text-xs sm:text-sm"
-                        data-testid="button-sample-text"
-                      >
-                        <i className="fas fa-file-text mr-1 sm:mr-2"></i>
-                        <span className="hidden sm:inline">Sample Text</span>
-                        <span className="sm:hidden">Sample</span>
-                      </Button>
-                    </div>
-
-                    {/* Advanced Options */}
+                  {/* Advanced Options */}
+                  <div className="space-y-6 border-t pt-8">
+                    <h3 className="text-xl font-bold text-gray-900">Advanced Options</h3>
+                    
                     <Collapsible open={showAdvanced} onOpenChange={setShowAdvanced}>
                       <CollapsibleTrigger asChild>
                         <Button 
                           variant="ghost" 
-                          className="w-full mt-3 sm:mt-4 justify-between text-xs sm:text-sm py-2.5 sm:py-2"
+                          className="w-full justify-between text-sm py-4 h-auto"
                           data-testid="button-toggle-advanced"
                         >
                           <span className="flex items-center">
-                            <i className="fas fa-cog mr-1 sm:mr-2 text-xs sm:text-sm"></i>
-                            <span className="hidden sm:inline">Advanced Options</span>
-                            <span className="sm:hidden">Options</span>
+                            Advanced Customization
                           </span>
-                          <i className={`fas ${showAdvanced ? 'fa-chevron-up' : 'fa-chevron-down'} text-xs sm:text-sm`}></i>
+                          <span className={`transform transition-transform ${showAdvanced ? 'rotate-180' : ''}`}>▼</span>
                         </Button>
                       </CollapsibleTrigger>
-                      <CollapsibleContent className="space-y-4 sm:space-y-6 mt-3 sm:mt-4">
+                      <CollapsibleContent className="space-y-6 mt-4">
                         <Separator />
                         
                         {/* Text Processing Options */}
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-                          <div className="space-y-3 sm:space-y-4">
-                            <h3 className="text-sm sm:text-base font-semibold text-gray-900">Text Processing</h3>
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                          <div className="space-y-4 bg-gray-50 rounded-xl p-6">
+                            <h4 className="text-base font-semibold text-gray-900">Text Processing</h4>
                             
                             <div className="flex items-center justify-between">
                               <div className="space-y-1 flex-1 pr-2">
-                                <Label className="text-xs sm:text-sm font-medium">Preserve Numbers</Label>
+                                <Label className="text-sm font-medium">Preserve Numbers</Label>
                                 <p className="text-xs text-gray-500">Keep digits in programming cases</p>
                               </div>
                               <Switch
@@ -367,16 +398,16 @@ const CaseConverter = () => {
                           </div>
 
                           {/* Customization Options */}
-                          <div className="space-y-3 sm:space-y-4">
-                            <h3 className="text-sm sm:text-base font-semibold text-gray-900">Customization</h3>
+                          <div className="space-y-4 bg-gray-50 rounded-xl p-6">
+                            <h4 className="text-base font-semibold text-gray-900">Customization</h4>
                             
                             <div className="space-y-2">
-                              <Label className="text-xs sm:text-sm font-medium">Custom Separator</Label>
+                              <Label className="text-sm font-medium">Custom Separator</Label>
                               <Input
                                 value={advancedOptions.customSeparator}
                                 onChange={(e) => updateAdvancedOption('customSeparator', e.target.value)}
                                 placeholder="e.g., _, -, |, ."
-                                className="text-xs sm:text-sm h-8 sm:h-10"
+                                className="text-sm h-12 border-2 border-gray-200 rounded-lg"
                                 data-testid="input-custom-separator"
                               />
                               <p className="text-xs text-gray-500">Override default separators for snake_case and kebab-case</p>
@@ -388,7 +419,7 @@ const CaseConverter = () => {
                                 value={advancedOptions.prefix}
                                 onChange={(e) => updateAdvancedOption('prefix', e.target.value)}
                                 placeholder="e.g., get_, set_, is_"
-                                className="text-sm"
+                                className="text-sm h-12 border-2 border-gray-200 rounded-lg"
                                 data-testid="input-prefix"
                               />
                               <p className="text-xs text-gray-500">Add prefix to programming case formats</p>
@@ -400,7 +431,7 @@ const CaseConverter = () => {
                                 value={advancedOptions.suffix}
                                 onChange={(e) => updateAdvancedOption('suffix', e.target.value)}
                                 placeholder="e.g., _value, _count, _id"
-                                className="text-sm"
+                                className="text-sm h-12 border-2 border-gray-200 rounded-lg"
                                 data-testid="input-suffix"
                               />
                               <p className="text-xs text-gray-500">Add suffix to programming case formats</p>
@@ -413,543 +444,465 @@ const CaseConverter = () => {
                     </Collapsible>
                   </div>
 
-                  {/* Results Section */}
-                  <div>
-                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6">Converted Text</h2>
-                    
-                    {result && result.original ? (
-                      <div className="space-y-3 sm:space-y-4" data-testid="case-conversions">
-                        {conversionTypes.map((type, index) => {
-                          const convertedText = result[type.key as keyof CaseConversionResult] as string;
-                          const colorClasses = [
-                            'bg-blue-50 border-blue-200',
-                            'bg-green-50 border-green-200',
-                            'bg-purple-50 border-purple-200',
-                            'bg-orange-50 border-orange-200',
-                            'bg-pink-50 border-pink-200',
-                            'bg-indigo-50 border-indigo-200',
-                            'bg-teal-50 border-teal-200',
-                            'bg-red-50 border-red-200',
-                            'bg-yellow-50 border-yellow-200',
-                            'bg-cyan-50 border-cyan-200',
-                            'bg-emerald-50 border-emerald-200',
-                            'bg-rose-50 border-rose-200'
-                          ];
-                          
-                          return (
-                            <div 
-                              key={type.key} 
-                              className={`border-2 rounded-lg p-3 sm:p-4 ${colorClasses[index % colorClasses.length]}`}
-                            >
-                              <div className="flex items-start sm:items-center justify-between mb-2 gap-2">
-                                <div className="flex-1 min-w-0">
-                                  <h3 className="text-sm sm:text-base font-semibold text-gray-900 truncate">{type.label}</h3>
-                                  <p className="text-xs sm:text-sm text-gray-600">{type.description}</p>
-                                </div>
-                                <Button
-                                  onClick={() => handleCopyToClipboard(convertedText, type.label)}
-                                  variant="outline"
-                                  size="sm"
-                                  className="text-xs px-2 py-1 sm:px-3 sm:py-2 flex-shrink-0"
-                                  data-testid={`button-copy-${type.key}`}
-                                >
-                                  <i className="fas fa-copy mr-1"></i>
-                                  <span className="hidden sm:inline">Copy</span>
-                                  <span className="sm:hidden">Copy</span>
-                                </Button>
+                  {/* Action Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                    <Button
+                      onClick={handleSampleText}
+                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      data-testid="button-sample-text"
+                    >
+                      Load Sample Text
+                    </Button>
+                    <Button
+                      onClick={handleClear}
+                      variant="outline"
+                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      data-testid="button-clear-text"
+                    >
+                      Clear
+                    </Button>
+                    <Button
+                      onClick={resetCalculator}
+                      variant="outline"
+                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      data-testid="button-reset"
+                    >
+                      Reset
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Results Section */}
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Converted Text</h2>
+                  
+                  {result && result.original ? (
+                    <div className="space-y-4" data-testid="case-conversions">
+                      {conversionTypes.map((type, index) => {
+                        const convertedText = result[type.key as keyof CaseConversionResult] as string;
+                        const colorClasses = [
+                          'bg-blue-50 border-blue-200',
+                          'bg-green-50 border-green-200',
+                          'bg-purple-50 border-purple-200',
+                          'bg-orange-50 border-orange-200',
+                          'bg-pink-50 border-pink-200',
+                          'bg-indigo-50 border-indigo-200',
+                          'bg-teal-50 border-teal-200',
+                          'bg-red-50 border-red-200',
+                          'bg-yellow-50 border-yellow-200',
+                          'bg-cyan-50 border-cyan-200',
+                          'bg-emerald-50 border-emerald-200',
+                          'bg-rose-50 border-rose-200'
+                        ];
+                        
+                        return (
+                          <div 
+                            key={type.key} 
+                            className={`border-2 rounded-xl p-4 ${colorClasses[index % colorClasses.length]}`}
+                          >
+                            <div className="flex items-start justify-between mb-3 gap-2">
+                              <div className="flex-1 min-w-0">
+                                <h3 className="text-base font-semibold text-gray-900 truncate">{type.label}</h3>
+                                <p className="text-sm text-gray-600">{type.description}</p>
                               </div>
-                              <div 
-                                className="bg-white p-2 sm:p-3 rounded border border-gray-200 text-xs sm:text-sm font-mono break-words"
-                                data-testid={`converted-${type.key}`}
+                              <Button
+                                onClick={() => handleCopyToClipboard(convertedText, type.label)}
+                                variant="outline"
+                                size="sm"
+                                className="text-xs px-3 py-2 flex-shrink-0 rounded-lg"
+                                data-testid={`button-copy-${type.key}`}
                               >
-                                {convertedText || '(empty)'}
-                              </div>
+                                Copy
+                              </Button>
                             </div>
-                          );
-                        })}
+                            <div 
+                              className="bg-white p-3 rounded-lg border border-gray-200 text-sm font-mono break-words min-h-[40px] flex items-center"
+                              data-testid={`converted-${type.key}`}
+                            >
+                              {convertedText || '(empty)'}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    <div className="text-center py-16" data-testid="no-results">
+                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <div className="text-3xl font-bold text-gray-400">Aa</div>
                       </div>
-                    ) : (
-                      <div className="text-center py-8 sm:py-12 text-gray-500">
-                        <i className="fas fa-text-height text-3xl sm:text-4xl mb-3 sm:mb-4"></i>
-                        <p className="text-base sm:text-lg">Start typing to see your text converted to different cases</p>
+                      <p className="text-gray-500 text-lg">Enter text to see converted case formats</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* SEO Content Sections */}
+          <div className="mt-16 space-y-8">
+            {/* What is a Case Converter */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">What is a Case Converter?</h2>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    A <strong>case converter</strong> is an essential text transformation tool that automatically changes the capitalization pattern of your text according to different formatting standards. Our comprehensive case converter supports over 12 different case formats, making it the perfect solution for developers, writers, content creators, and anyone who needs to standardize text formatting quickly and efficiently.
+                  </p>
+                  <p>
+                    Whether you're working with programming variable names, writing content for different platforms, or need to format text according to specific style guidelines, our case converter provides instant transformation between all major case formats including uppercase, lowercase, title case, and specialized programming conventions like camelCase, PascalCase, snake_case, and kebab-case.
+                  </p>
+                  <p>
+                    The tool features real-time conversion as you type, advanced customization options including prefix and suffix support, custom separators, and intelligent text processing that handles numbers, punctuation, and special characters appropriately for each case format.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Case Types Guide */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Standard Case Formats</h2>
+                  <div className="space-y-4">
+                    <div className="bg-blue-50 rounded-lg p-4">
+                      <h3 className="font-semibold text-blue-900 mb-2">UPPERCASE</h3>
+                      <p className="text-blue-800 text-sm mb-2">ALL LETTERS CONVERTED TO CAPITAL LETTERS</p>
+                      <p className="text-blue-700 text-xs">Perfect for headings, emphasis, constants, and attention-grabbing text. Commonly used in marketing materials and document titles.</p>
+                    </div>
+                    
+                    <div className="bg-green-50 rounded-lg p-4">
+                      <h3 className="font-semibold text-green-900 mb-2">lowercase</h3>
+                      <p className="text-green-800 text-sm mb-2">all letters converted to small letters</p>
+                      <p className="text-green-700 text-xs">Standard format for general text, email addresses, URLs, and casual content. Provides a clean, readable appearance.</p>
+                    </div>
+                    
+                    <div className="bg-purple-50 rounded-lg p-4">
+                      <h3 className="font-semibold text-purple-900 mb-2">Title Case</h3>
+                      <p className="text-purple-800 text-sm mb-2">First Letter Of Each Word Capitalized</p>
+                      <p className="text-purple-700 text-xs">Ideal for headlines, book titles, article headings, and formal document titles following standard publishing guidelines.</p>
+                    </div>
+                    
+                    <div className="bg-orange-50 rounded-lg p-4">
+                      <h3 className="font-semibold text-orange-900 mb-2">Sentence case</h3>
+                      <p className="text-orange-800 text-sm mb-2">First letter of sentences capitalized</p>
+                      <p className="text-orange-700 text-xs">Standard format for paragraphs, descriptions, and regular text content following grammatical conventions.</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Programming Case Formats</h2>
+                  <div className="space-y-4">
+                    <div className="bg-indigo-50 rounded-lg p-4">
+                      <h3 className="font-semibold text-indigo-900 mb-2">camelCase</h3>
+                      <p className="text-indigo-800 text-sm mb-2">firstWordLowercaseOthersCapitalized</p>
+                      <p className="text-indigo-700 text-xs">Standard for JavaScript variables, Java methods, and many modern programming languages. No spaces or separators.</p>
+                    </div>
+                    
+                    <div className="bg-teal-50 rounded-lg p-4">
+                      <h3 className="font-semibold text-teal-900 mb-2">PascalCase</h3>
+                      <p className="text-teal-800 text-sm mb-2">AllWordsCapitalizedNoSpaces</p>
+                      <p className="text-teal-700 text-xs">Used for class names, component names, and type definitions in programming. Also called UpperCamelCase.</p>
+                    </div>
+                    
+                    <div className="bg-red-50 rounded-lg p-4">
+                      <h3 className="font-semibold text-red-900 mb-2">snake_case</h3>
+                      <p className="text-red-800 text-sm mb-2">words_separated_by_underscores</p>
+                      <p className="text-red-700 text-xs">Popular in Python, Ruby, and database naming. All lowercase with underscores separating words.</p>
+                    </div>
+                    
+                    <div className="bg-yellow-50 rounded-lg p-4">
+                      <h3 className="font-semibold text-yellow-900 mb-2">kebab-case</h3>
+                      <p className="text-yellow-800 text-sm mb-2">words-separated-by-hyphens</p>
+                      <p className="text-yellow-700 text-xs">Standard for URLs, CSS classes, and HTML attributes. Also called dash-case or spinal-case.</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Programming Language Conventions */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Programming Language Naming Conventions</h2>
+                <p className="text-gray-600 mb-8">Different programming languages have established naming conventions that improve code readability and maintainability. Our case converter helps you follow these industry standards.</p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div className="border border-gray-200 rounded-lg p-4">
+                    <div className="flex items-center mb-3">
+                      <div className="w-8 h-8 bg-yellow-500 rounded flex items-center justify-center mr-3">
+                        <span className="text-white font-bold text-sm">JS</span>
                       </div>
-                    )}
+                      <h3 className="font-semibold text-gray-900">JavaScript</h3>
+                    </div>
+                    <ul className="text-sm text-gray-600 space-y-1">
+                      <li><strong>Variables:</strong> camelCase</li>
+                      <li><strong>Functions:</strong> camelCase</li>
+                      <li><strong>Classes:</strong> PascalCase</li>
+                      <li><strong>Constants:</strong> UPPER_SNAKE_CASE</li>
+                    </ul>
+                  </div>
+
+                  <div className="border border-gray-200 rounded-lg p-4">
+                    <div className="flex items-center mb-3">
+                      <div className="w-8 h-8 bg-blue-500 rounded flex items-center justify-center mr-3">
+                        <span className="text-white font-bold text-sm">PY</span>
+                      </div>
+                      <h3 className="font-semibold text-gray-900">Python</h3>
+                    </div>
+                    <ul className="text-sm text-gray-600 space-y-1">
+                      <li><strong>Variables:</strong> snake_case</li>
+                      <li><strong>Functions:</strong> snake_case</li>
+                      <li><strong>Classes:</strong> PascalCase</li>
+                      <li><strong>Constants:</strong> UPPER_SNAKE_CASE</li>
+                    </ul>
+                  </div>
+
+                  <div className="border border-gray-200 rounded-lg p-4">
+                    <div className="flex items-center mb-3">
+                      <div className="w-8 h-8 bg-orange-500 rounded flex items-center justify-center mr-3">
+                        <span className="text-white font-bold text-sm">GO</span>
+                      </div>
+                      <h3 className="font-semibold text-gray-900">Go</h3>
+                    </div>
+                    <ul className="text-sm text-gray-600 space-y-1">
+                      <li><strong>Public:</strong> PascalCase</li>
+                      <li><strong>Private:</strong> camelCase</li>
+                      <li><strong>Constants:</strong> PascalCase</li>
+                      <li><strong>Packages:</strong> lowercase</li>
+                    </ul>
+                  </div>
+
+                  <div className="border border-gray-200 rounded-lg p-4">
+                    <div className="flex items-center mb-3">
+                      <div className="w-8 h-8 bg-red-500 rounded flex items-center justify-center mr-3">
+                        <span className="text-white font-bold text-sm">RB</span>
+                      </div>
+                      <h3 className="font-semibold text-gray-900">Ruby</h3>
+                    </div>
+                    <ul className="text-sm text-gray-600 space-y-1">
+                      <li><strong>Variables:</strong> snake_case</li>
+                      <li><strong>Methods:</strong> snake_case</li>
+                      <li><strong>Classes:</strong> PascalCase</li>
+                      <li><strong>Constants:</strong> UPPER_SNAKE_CASE</li>
+                    </ul>
+                  </div>
+
+                  <div className="border border-gray-200 rounded-lg p-4">
+                    <div className="flex items-center mb-3">
+                      <div className="w-8 h-8 bg-purple-500 rounded flex items-center justify-center mr-3">
+                        <span className="text-white font-bold text-sm">C#</span>
+                      </div>
+                      <h3 className="font-semibold text-gray-900">C#</h3>
+                    </div>
+                    <ul className="text-sm text-gray-600 space-y-1">
+                      <li><strong>Properties:</strong> PascalCase</li>
+                      <li><strong>Methods:</strong> PascalCase</li>
+                      <li><strong>Classes:</strong> PascalCase</li>
+                      <li><strong>Variables:</strong> camelCase</li>
+                    </ul>
+                  </div>
+
+                  <div className="border border-gray-200 rounded-lg p-4">
+                    <div className="flex items-center mb-3">
+                      <div className="w-8 h-8 bg-green-500 rounded flex items-center justify-center mr-3">
+                        <span className="text-white font-bold text-sm">RS</span>
+                      </div>
+                      <h3 className="font-semibold text-gray-900">Rust</h3>
+                    </div>
+                    <ul className="text-sm text-gray-600 space-y-1">
+                      <li><strong>Variables:</strong> snake_case</li>
+                      <li><strong>Functions:</strong> snake_case</li>
+                      <li><strong>Types:</strong> PascalCase</li>
+                      <li><strong>Constants:</strong> UPPER_SNAKE_CASE</li>
+                    </ul>
                   </div>
                 </div>
               </CardContent>
             </Card>
-          </div>
-        </section>
 
-        {/* Information Sections */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 sm:pb-12 lg:pb-16">
-          {/* What is a Case Converter */}
-          <div className="mt-8 sm:mt-12 bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">What is a Case Converter?</h2>
-            <div className="prose max-w-none">
-              <p className="text-lg text-gray-700 mb-6">
-                A <strong>case converter</strong> is a text transformation tool that changes the capitalization pattern of your text. Our comprehensive case converter supports multiple formats including standard cases like UPPERCASE and lowercase, as well as programming conventions like camelCase, PascalCase, snake_case, and kebab-case.
-              </p>
-              
-              <p className="text-gray-700 mb-6">
-                Whether you're a developer working with different programming languages, a writer formatting content, or someone who needs to standardize text formatting, our case converter provides instant transformation between all major case formats with just one click.
-              </p>
-            </div>
-          </div>
-
-          {/* Case Types Explained */}
-          <div className="mt-6 sm:mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-4 sm:p-6 lg:p-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Understanding Different Case Types</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-              <div className="space-y-4">
-                <div className="bg-white rounded-lg p-4 shadow-sm">
-                  <h3 className="font-semibold text-gray-900 mb-2">UPPERCASE</h3>
-                  <p className="text-gray-600 text-sm">All letters converted to capital letters. Great for headings and emphasis.</p>
-                </div>
-                
-                <div className="bg-white rounded-lg p-4 shadow-sm">
-                  <h3 className="font-semibold text-gray-900 mb-2">Title Case</h3>
-                  <p className="text-gray-600 text-sm">First letter of each word capitalized. Perfect for titles and headings.</p>
-                </div>
-                
-                <div className="bg-white rounded-lg p-4 shadow-sm">
-                  <h3 className="font-semibold text-gray-900 mb-2">camelCase</h3>
-                  <p className="text-gray-600 text-sm">First word lowercase, subsequent words capitalized. Common in JavaScript and Java.</p>
-                </div>
-                
-                <div className="bg-white rounded-lg p-4 shadow-sm">
-                  <h3 className="font-semibold text-gray-900 mb-2">snake_case</h3>
-                  <p className="text-gray-600 text-sm">Words separated by underscores, all lowercase. Popular in Python and databases.</p>
-                </div>
-              </div>
-              
-              <div className="space-y-4">
-                <div className="bg-white rounded-lg p-4 shadow-sm">
-                  <h3 className="font-semibold text-gray-900 mb-2">lowercase</h3>
-                  <p className="text-gray-600 text-sm">All letters converted to small letters. Used for general text formatting.</p>
-                </div>
-                
-                <div className="bg-white rounded-lg p-4 shadow-sm">
-                  <h3 className="font-semibold text-gray-900 mb-2">Sentence case</h3>
-                  <p className="text-gray-600 text-sm">First letter of sentences capitalized. Standard for regular text writing.</p>
-                </div>
-                
-                <div className="bg-white rounded-lg p-4 shadow-sm">
-                  <h3 className="font-semibold text-gray-900 mb-2">PascalCase</h3>
-                  <p className="text-gray-600 text-sm">All words capitalized without spaces. Common for class names in programming.</p>
-                </div>
-                
-                <div className="bg-white rounded-lg p-4 shadow-sm">
-                  <h3 className="font-semibold text-gray-900 mb-2">kebab-case</h3>
-                  <p className="text-gray-600 text-sm">Words separated by hyphens, all lowercase. Used in URLs and CSS classes.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Key Features */}
-          <div className="mt-8 bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Key Features of Our Case Converter</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-bolt text-2xl"></i>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Instant Conversion</h3>
-                <p className="text-gray-600">Real-time conversion as you type with immediate results for all case types.</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-16 h-16 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-list text-2xl"></i>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Multiple Formats</h3>
-                <p className="text-gray-600">Support for 10+ different case formats including programming conventions.</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-16 h-16 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-copy text-2xl"></i>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">One-Click Copy</h3>
-                <p className="text-gray-600">Easy copy-to-clipboard functionality for each converted format.</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Use Cases */}
-          <div className="mt-8 bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Who Uses Case Converters?</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="text-center">
-                <h3 className="font-semibold text-gray-900 mb-2">Developers</h3>
-                <p className="text-gray-600 text-sm">Convert variable names and follow naming conventions.</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-pen text-purple-600 text-xl"></i>
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Writers</h3>
-                <p className="text-gray-600 text-sm">Format titles, headings, and content properly.</p>
-              </div>
-              
-              <div className="text-center">
-                <h3 className="font-semibold text-gray-900 mb-2">Marketers</h3>
-                <p className="text-gray-600 text-sm">Create consistent formatting for campaigns and content.</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <i className="fas fa-graduation-cap text-orange-600 text-xl"></i>
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Students</h3>
-                <p className="text-gray-600 text-sm">Format assignments and research papers correctly.</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Professional Use Cases */}
-          <div className="mt-8 bg-gradient-to-r from-purple-50 to-indigo-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Professional Benefits of Case Conversion</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="bg-white rounded-xl p-6 shadow-sm">
-                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                  <i className="fas fa-laptop-code text-purple-600 text-xl"></i>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Software Development</h3>
-                <p className="text-gray-600 mb-4">Essential for maintaining consistent naming conventions across programming languages. Convert variables, functions, and class names to match your coding standards.</p>
-                <ul className="text-sm text-gray-500 space-y-1">
-                  <li>• JavaScript: camelCase for variables</li>
-                  <li>• Python: snake_case for functions</li>
-                  <li>• CSS: kebab-case for classes</li>
-                  <li>• Constants: UPPER_SNAKE_CASE</li>
-                </ul>
-              </div>
-
-              <div className="bg-white rounded-xl p-6 shadow-sm">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                  <i className="fas fa-newspaper text-blue-600 text-xl"></i>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Content Creation</h3>
-                <p className="text-gray-600 mb-4">Perfect for bloggers, writers, and content marketers who need to format text for different platforms and publishing requirements.</p>
-                <ul className="text-sm text-gray-500 space-y-1">
-                  <li>• Blog post titles and headings</li>
-                  <li>• Social media content formatting</li>
-                  <li>• Email subject lines</li>
-                  <li>• Marketing copy variations</li>
-                </ul>
-              </div>
-
-              <div className="bg-white rounded-xl p-6 shadow-sm">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                  <i className="fas fa-university text-green-600 text-xl"></i>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Academic Research</h3>
-                <p className="text-gray-600 mb-4">Students and researchers can format citations, references, and academic papers according to different style guides and institutional requirements.</p>
-                <ul className="text-sm text-gray-500 space-y-1">
-                  <li>• Citation formatting</li>
-                  <li>• Research paper titles</li>
-                  <li>• Bibliography entries</li>
-                  <li>• Thesis chapter headings</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Related Tools */}
-          <div className="mt-8 bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Related Text Processing Tools</h2>
-            <p className="text-gray-600 mb-8">Enhance your text processing workflow with our comprehensive suite of complementary tools designed for writers, developers, and content creators.</p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="bg-blue-50 rounded-lg p-4 text-center hover:bg-blue-100 transition-colors">
-                <div className="w-12 h-12 bg-blue-600 text-white rounded-lg flex items-center justify-center mx-auto mb-3">
-                  <i className="fas fa-calculator text-xl"></i>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  <a href="/tools/word-counter" className="text-blue-600 hover:text-blue-800 transition-colors">
-                    Word Counter
-                  </a>
-                </h3>
-                <p className="text-gray-600 text-sm">Count words, characters, sentences, and paragraphs in your text instantly.</p>
-              </div>
-
-              <div className="bg-green-50 rounded-lg p-4 text-center hover:bg-green-100 transition-colors">
-                <div className="w-12 h-12 bg-green-600 text-white rounded-lg flex items-center justify-center mx-auto mb-3">
-                  <i className="fas fa-font text-xl"></i>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  <a href="/tools/character-counter" className="text-green-600 hover:text-green-800 transition-colors">
-                    Character Counter
-                  </a>
-                </h3>
-                <p className="text-gray-600 text-sm">Track character count for social media posts, SMS, and content limits.</p>
-              </div>
-
-              <div className="bg-purple-50 rounded-lg p-4 text-center hover:bg-purple-100 transition-colors">
-                <div className="w-12 h-12 bg-purple-600 text-white rounded-lg flex items-center justify-center mx-auto mb-3">
-                  <i className="fas fa-paragraph text-xl"></i>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  <a href="/tools/paragraph-counter" className="text-purple-600 hover:text-purple-800 transition-colors">
-                    Paragraph Counter
-                  </a>
-                </h3>
-                <p className="text-gray-600 text-sm">Analyze text structure and count paragraphs for better content organization.</p>
-              </div>
-
-              <div className="bg-orange-50 rounded-lg p-4 text-center hover:bg-orange-100 transition-colors">
-                <div className="w-12 h-12 bg-orange-600 text-white rounded-lg flex items-center justify-center mx-auto mb-3">
-                  <i className="fas fa-list-ol text-xl"></i>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  <a href="/tools/sentence-counter" className="text-orange-600 hover:text-orange-800 transition-colors">
-                    Sentence Counter
-                  </a>
-                </h3>
-                <p className="text-gray-600 text-sm">Count sentences and analyze text readability for better content flow.</p>
-              </div>
-
-              <div className="bg-indigo-50 rounded-lg p-4 text-center hover:bg-indigo-100 transition-colors">
-                <div className="w-12 h-12 bg-indigo-600 text-white rounded-lg flex items-center justify-center mx-auto mb-3">
-                  <i className="fas fa-key text-xl"></i>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  <a href="/tools/password-generator" className="text-indigo-600 hover:text-indigo-800 transition-colors">
-                    Password Generator
-                  </a>
-                </h3>
-                <p className="text-gray-600 text-sm">Create secure passwords with custom length and character sets.</p>
-              </div>
-
-              <div className="bg-teal-50 rounded-lg p-4 text-center hover:bg-teal-100 transition-colors">
-                <div className="w-12 h-12 bg-teal-600 text-white rounded-lg flex items-center justify-center mx-auto mb-3">
-                  <i className="fas fa-file-alt text-xl"></i>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  <a href="/tools/lorem-ipsum-generator" className="text-teal-600 hover:text-teal-800 transition-colors">
-                    Lorem Ipsum Generator
-                  </a>
-                </h3>
-                <p className="text-gray-600 text-sm">Generate placeholder text for design mockups and testing.</p>
-              </div>
-
-              <div className="bg-red-50 rounded-lg p-4 text-center hover:bg-red-100 transition-colors">
-                <div className="w-12 h-12 bg-red-600 text-white rounded-lg flex items-center justify-center mx-auto mb-3">
-                  <i className="fas fa-exchange-alt text-xl"></i>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  <a href="/tools/reverse-text-tool" className="text-red-600 hover:text-red-800 transition-colors">
-                    Reverse Text
-                  </a>
-                </h3>
-                <p className="text-gray-600 text-sm">Reverse text characters or words for creative and puzzle purposes.</p>
-              </div>
-
-              <div className="bg-yellow-50 rounded-lg p-4 text-center hover:bg-yellow-100 transition-colors">
-                <div className="w-12 h-12 bg-yellow-600 text-white rounded-lg flex items-center justify-center mx-auto mb-3">
-                  <i className="fas fa-palette text-xl"></i>
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  <a href="/tools/font-style-changer" className="text-yellow-600 hover:text-yellow-800 transition-colors">
-                    Font Style Changer
-                  </a>
-                </h3>
-                <p className="text-gray-600 text-sm">Transform text with different Unicode fonts and styling options.</p>
-              </div>
-            </div>
-
-            <div className="mt-8 text-center">
-              <a href="/tools" className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors">
-                <i className="fas fa-tools mr-2"></i>
-                Explore All Text Tools
-              </a>
-            </div>
-          </div>
-
-          {/* Web Development Benefits */}
-          <div className="mt-8 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Why Choose Our Case Converter?</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Performance & Reliability</h3>
-                <ul className="space-y-3 text-gray-600">
-                  <li className="flex items-start">
-                    <i className="fas fa-check-circle text-emerald-500 mr-3 mt-1"></i>
-                    <span><strong>Lightning Fast:</strong> Real-time conversion as you type with zero delays</span>
-                  </li>
-                  <li className="flex items-start">
-                    <i className="fas fa-check-circle text-emerald-500 mr-3 mt-1"></i>
-                    <span><strong>No File Limits:</strong> Process text of any length without restrictions</span>
-                  </li>
-                  <li className="flex items-start">
-                    <i className="fas fa-check-circle text-emerald-500 mr-3 mt-1"></i>
-                    <span><strong>Privacy First:</strong> All processing happens in your browser - no data sent to servers</span>
-                  </li>
-                  <li className="flex items-start">
-                    <i className="fas fa-check-circle text-emerald-500 mr-3 mt-1"></i>
-                    <span><strong>Mobile Optimized:</strong> Works perfectly on smartphones and tablets</span>
-                  </li>
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Advanced Features</h3>
-                <ul className="space-y-3 text-gray-600">
-                  <li className="flex items-start">
-                    <i className="fas fa-check-circle text-emerald-500 mr-3 mt-1"></i>
-                    <span><strong>12+ Case Types:</strong> From basic uppercase to programming conventions</span>
-                  </li>
-                  <li className="flex items-start">
-                    <i className="fas fa-check-circle text-emerald-500 mr-3 mt-1"></i>
-                    <span><strong>Custom Options:</strong> Prefixes, suffixes, and custom separators</span>
-                  </li>
-                  <li className="flex items-start">
-                    <i className="fas fa-check-circle text-emerald-500 mr-3 mt-1"></i>
-                    <span><strong>Smart Processing:</strong> Handles numbers, punctuation, and special characters</span>
-                  </li>
-                  <li className="flex items-start">
-                    <i className="fas fa-check-circle text-emerald-500 mr-3 mt-1"></i>
-                    <span><strong>One-Click Copy:</strong> Instantly copy any converted format to clipboard</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Programming Languages Guide */}
-          <div className="mt-8 bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Case Conventions by Programming Language</h2>
-            <p className="text-gray-600 mb-8">Different programming languages have established naming conventions. Use our case converter to ensure your code follows best practices.</p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="border border-gray-200 rounded-lg p-4">
-                <div className="flex items-center mb-3">
-                  <div className="w-8 h-8 bg-yellow-500 rounded flex items-center justify-center mr-3">
-                    <span className="text-white font-bold text-sm">JS</span>
+            {/* Use Cases and Benefits */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Who Uses Case Converters?</h2>
+                  <div className="space-y-4">
+                    <div className="bg-blue-50 rounded-lg p-4">
+                      <h3 className="font-semibold text-blue-900 mb-2">Software Developers</h3>
+                      <p className="text-blue-800 text-sm">Convert variable names, function names, and class names to follow programming language conventions. Essential for code refactoring and maintaining consistency across projects.</p>
+                    </div>
+                    
+                    <div className="bg-green-50 rounded-lg p-4">
+                      <h3 className="font-semibold text-green-900 mb-2">Content Writers & Editors</h3>
+                      <p className="text-green-800 text-sm">Format titles, headings, and content for different platforms. Ensure consistency in capitalization across articles, blogs, and marketing materials.</p>
+                    </div>
+                    
+                    <div className="bg-purple-50 rounded-lg p-4">
+                      <h3 className="font-semibold text-purple-900 mb-2">Digital Marketers</h3>
+                      <p className="text-purple-800 text-sm">Create consistent formatting for social media posts, email campaigns, and advertising copy. Convert text for different platform requirements.</p>
+                    </div>
+                    
+                    <div className="bg-orange-50 rounded-lg p-4">
+                      <h3 className="font-semibold text-orange-900 mb-2">Students & Researchers</h3>
+                      <p className="text-orange-800 text-sm">Format citations, references, and academic papers according to different style guides. Ensure proper capitalization in research documents.</p>
+                    </div>
                   </div>
-                  <h3 className="font-semibold text-gray-900">JavaScript</h3>
-                </div>
-                <ul className="text-sm text-gray-600 space-y-1">
-                  <li><strong>Variables:</strong> camelCase</li>
-                  <li><strong>Functions:</strong> camelCase</li>
-                  <li><strong>Classes:</strong> PascalCase</li>
-                  <li><strong>Constants:</strong> UPPER_SNAKE_CASE</li>
-                </ul>
-              </div>
+                </CardContent>
+              </Card>
 
-              <div className="border border-gray-200 rounded-lg p-4">
-                <div className="flex items-center mb-3">
-                  <div className="w-8 h-8 bg-blue-500 rounded flex items-center justify-center mr-3">
-                    <span className="text-white font-bold text-sm">PY</span>
-                  </div>
-                  <h3 className="font-semibold text-gray-900">Python</h3>
-                </div>
-                <ul className="text-sm text-gray-600 space-y-1">
-                  <li><strong>Variables:</strong> snake_case</li>
-                  <li><strong>Functions:</strong> snake_case</li>
-                  <li><strong>Classes:</strong> PascalCase</li>
-                  <li><strong>Constants:</strong> UPPER_SNAKE_CASE</li>
-                </ul>
-              </div>
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Key Features & Benefits</h2>
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-xs font-bold">✓</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-1">Real-Time Conversion</h4>
+                        <p className="text-gray-600 text-sm">Instant text transformation as you type with immediate results for all supported case formats.</p>
+                      </div>
+                    </div>
 
-              <div className="border border-gray-200 rounded-lg p-4">
-                <div className="flex items-center mb-3">
-                  <div className="w-8 h-8 bg-orange-500 rounded flex items-center justify-center mr-3">
-                    <span className="text-white font-bold text-sm">GO</span>
-                  </div>
-                  <h3 className="font-semibold text-gray-900">Go</h3>
-                </div>
-                <ul className="text-sm text-gray-600 space-y-1">
-                  <li><strong>Public:</strong> PascalCase</li>
-                  <li><strong>Private:</strong> camelCase</li>
-                  <li><strong>Constants:</strong> PascalCase</li>
-                  <li><strong>Packages:</strong> lowercase</li>
-                </ul>
-              </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-xs font-bold">✓</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-1">12+ Case Formats</h4>
+                        <p className="text-gray-600 text-sm">Support for all major case types including programming conventions and standard text formats.</p>
+                      </div>
+                    </div>
 
-              <div className="border border-gray-200 rounded-lg p-4">
-                <div className="flex items-center mb-3">
-                  <div className="w-8 h-8 bg-red-500 rounded flex items-center justify-center mr-3">
-                    <span className="text-white font-bold text-sm">RB</span>
-                  </div>
-                  <h3 className="font-semibold text-gray-900">Ruby</h3>
-                </div>
-                <ul className="text-sm text-gray-600 space-y-1">
-                  <li><strong>Variables:</strong> snake_case</li>
-                  <li><strong>Methods:</strong> snake_case</li>
-                  <li><strong>Classes:</strong> PascalCase</li>
-                  <li><strong>Constants:</strong> UPPER_SNAKE_CASE</li>
-                </ul>
-              </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-xs font-bold">✓</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-1">Advanced Customization</h4>
+                        <p className="text-gray-600 text-sm">Custom prefixes, suffixes, separators, and intelligent text processing options.</p>
+                      </div>
+                    </div>
 
-              <div className="border border-gray-200 rounded-lg p-4">
-                <div className="flex items-center mb-3">
-                  <div className="w-8 h-8 bg-purple-500 rounded flex items-center justify-center mr-3">
-                    <span className="text-white font-bold text-sm">C#</span>
-                  </div>
-                  <h3 className="font-semibold text-gray-900">C#</h3>
-                </div>
-                <ul className="text-sm text-gray-600 space-y-1">
-                  <li><strong>Properties:</strong> PascalCase</li>
-                  <li><strong>Methods:</strong> PascalCase</li>
-                  <li><strong>Classes:</strong> PascalCase</li>
-                  <li><strong>Variables:</strong> camelCase</li>
-                </ul>
-              </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-xs font-bold">✓</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-1">One-Click Copy</h4>
+                        <p className="text-gray-600 text-sm">Easy copy-to-clipboard functionality for each converted format with instant feedback.</p>
+                      </div>
+                    </div>
 
-              <div className="border border-gray-200 rounded-lg p-4">
-                <div className="flex items-center mb-3">
-                  <div className="w-8 h-8 bg-green-500 rounded flex items-center justify-center mr-3">
-                    <span className="text-white font-bold text-sm">RS</span>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-teal-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-xs font-bold">✓</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-1">Privacy Protected</h4>
+                        <p className="text-gray-600 text-sm">All processing happens in your browser - no data sent to servers, ensuring complete privacy.</p>
+                      </div>
+                    </div>
                   </div>
-                  <h3 className="font-semibold text-gray-900">Rust</h3>
-                </div>
-                <ul className="text-sm text-gray-600 space-y-1">
-                  <li><strong>Variables:</strong> snake_case</li>
-                  <li><strong>Functions:</strong> snake_case</li>
-                  <li><strong>Types:</strong> PascalCase</li>
-                  <li><strong>Constants:</strong> UPPER_SNAKE_CASE</li>
-                </ul>
-              </div>
+                </CardContent>
+              </Card>
             </div>
-          </div>
 
-          {/* FAQ */}
-          <div className="mt-8 bg-gradient-to-r from-gray-50 to-blue-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">What is the difference between camelCase and PascalCase?</h3>
-                <p className="text-gray-600">CamelCase starts with a lowercase letter (myVariableName), while PascalCase starts with an uppercase letter (MyClassName). Both capitalize subsequent words without spaces.</p>
-              </div>
-              
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">When should I use snake_case vs kebab-case?</h3>
-                <p className="text-gray-600">Snake_case is commonly used in Python, databases, and file names. Kebab-case is preferred for URLs, CSS classes, and HTML attributes because hyphens are web-friendly and optimized for readability.</p>
-              </div>
-              
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">How does the alternating case work?</h3>
-                <p className="text-gray-600">Alternating case switches between lowercase and uppercase for each character position, creating a pattern like "aLtErNaTiNg CaSe". It's often used for stylistic purposes, mocking text, or creative content.</p>
-              </div>
-              
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I convert special characters and numbers?</h3>
-                <p className="text-gray-600">Yes! Our tool handles all characters including numbers, punctuation, and special symbols. Programming cases (camelCase, snake_case, etc.) will intelligently clean special characters to create valid variable names.</p>
-              </div>
+            {/* Frequently Asked Questions */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h2>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">What's the difference between camelCase and PascalCase?</h3>
+                      <p className="text-gray-600 text-sm">CamelCase starts with a lowercase letter (myVariableName), while PascalCase starts with an uppercase letter (MyClassName). Both capitalize subsequent words without spaces. CamelCase is typically used for variables and functions, while PascalCase is used for classes and types.</p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">When should I use snake_case vs kebab-case?</h3>
+                      <p className="text-gray-600 text-sm">Snake_case uses underscores and is common in Python, databases, and file names. Kebab-case uses hyphens and is preferred for URLs, CSS classes, and HTML attributes because hyphens are web-friendly and improve SEO readability.</p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Can the tool handle special characters and numbers?</h3>
+                      <p className="text-gray-600 text-sm">Yes! Our converter intelligently handles numbers, punctuation, and special characters. You can configure whether to preserve numbers and how to handle punctuation through the advanced options panel.</p>
+                    </div>
 
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Is the case converter free to use?</h3>
-                <p className="text-gray-600">Absolutely! Our case converter is completely free with no registration required. You can convert unlimited text and access all features including advanced options and custom separators.</p>
-              </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Is the case converter free to use?</h3>
+                      <p className="text-gray-600 text-sm">Absolutely! Our case converter is completely free with no registration required, no usage limits, and access to all features including advanced customization options.</p>
+                    </div>
+                  </div>
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">How does the alternating case work?</h3>
+                      <p className="text-gray-600 text-sm">Alternating case switches between lowercase and uppercase for each character position, creating patterns like "aLtErNaTiNg CaSe". It's often used for stylistic purposes, mocking text, or creative content on social media.</p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I add custom prefixes and suffixes?</h3>
+                      <p className="text-gray-600 text-sm">Yes! The advanced options allow you to add custom prefixes (like "get_", "set_") and suffixes (like "_value", "_count") to programming case formats, making it perfect for generating consistent variable names.</p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Does the tool work offline?</h3>
+                      <p className="text-gray-600 text-sm">Yes! Once the page loads, all text conversion happens locally in your browser without requiring an internet connection. Your text never leaves your device, ensuring complete privacy and security.</p>
+                    </div>
 
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Does the tool work offline?</h3>
-                <p className="text-gray-600">Yes! Once the page loads, all text conversion happens in your browser without internet connection. Your text never leaves your device, ensuring complete privacy and security.</p>
-              </div>
-            </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">What programming languages benefit from this tool?</h3>
+                      <p className="text-gray-600 text-sm">All modern programming languages including JavaScript, Python, Java, C#, Go, Rust, Ruby, PHP, and more. Each language has specific naming conventions that our converter supports.</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Best Practices */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Best Practices for Text Case Conversion</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Programming Guidelines</h3>
+                    <div className="space-y-3">
+                      <div className="bg-blue-50 border-l-4 border-blue-400 p-3 rounded-r-lg">
+                        <h4 className="font-semibold text-blue-900 text-sm">Variable Naming</h4>
+                        <p className="text-blue-800 text-xs mt-1">Use camelCase for JavaScript/Java variables, snake_case for Python variables. Be consistent within your codebase.</p>
+                      </div>
+                      <div className="bg-green-50 border-l-4 border-green-400 p-3 rounded-r-lg">
+                        <h4 className="font-semibold text-green-900 text-sm">Class Names</h4>
+                        <p className="text-green-800 text-xs mt-1">Always use PascalCase for class names across all programming languages. This improves code readability and follows industry standards.</p>
+                      </div>
+                      <div className="bg-purple-50 border-l-4 border-purple-400 p-3 rounded-r-lg">
+                        <h4 className="font-semibold text-purple-900 text-sm">Constants</h4>
+                        <p className="text-purple-800 text-xs mt-1">Use UPPER_SNAKE_CASE for constants in most languages. This makes them easily identifiable and follows convention.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Content Writing Guidelines</h3>
+                    <div className="space-y-3">
+                      <div className="bg-orange-50 border-l-4 border-orange-400 p-3 rounded-r-lg">
+                        <h4 className="font-semibold text-orange-900 text-sm">Headlines & Titles</h4>
+                        <p className="text-orange-800 text-xs mt-1">Use Title Case for headlines and article titles. Avoid capitalizing articles, prepositions, and conjunctions unless they start the title.</p>
+                      </div>
+                      <div className="bg-teal-50 border-l-4 border-teal-400 p-3 rounded-r-lg">
+                        <h4 className="font-semibold text-teal-900 text-sm">URL Optimization</h4>
+                        <p className="text-teal-800 text-xs mt-1">Use kebab-case for URLs and slugs. Search engines prefer hyphens over underscores, improving SEO performance.</p>
+                      </div>
+                      <div className="bg-red-50 border-l-4 border-red-400 p-3 rounded-r-lg">
+                        <h4 className="font-semibold text-red-900 text-sm">Social Media</h4>
+                        <p className="text-red-800 text-xs mt-1">Use sentence case for social media posts and captions. Avoid excessive capitalization which can appear as shouting.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </main>
