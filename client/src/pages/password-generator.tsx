@@ -282,7 +282,7 @@ const PasswordGenerator = () => {
                 <span className="text-xs sm:text-sm font-medium text-blue-700">Cryptographically Secure</span>
               </div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-slate-900 leading-tight" data-testid="text-page-title">
-                Password
+                Random Password
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
                   Generator
                 </span>
