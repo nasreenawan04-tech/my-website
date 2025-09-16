@@ -294,19 +294,19 @@ const CaseConverter = () => {
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
           {/* Main Calculator Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-2xl sm:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+              <div className="grid grid-cols-1 xl:grid-cols-3 gap-0">
                 {/* Input Section */}
-                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
+                <div className="xl:col-span-2 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 space-y-6 sm:space-y-8">
                   <div>
                     <h2 className="text-3xl font-bold text-gray-900 mb-2">Text Conversion</h2>
                     <p className="text-gray-600">Enter your text to convert between different case formats</p>
                   </div>
                   
-                  <div className="space-y-6">
+                  <div className="space-y-4 sm:space-y-6">
                     {/* Text Input */}
                     <div className="space-y-3">
                       <Label htmlFor="text-input" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
@@ -316,7 +316,7 @@ const CaseConverter = () => {
                         id="text-input"
                         value={text}
                         onChange={(e) => setText(e.target.value)}
-                        className="min-h-[120px] text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500 resize-none"
+                        className="min-h-[100px] sm:min-h-[120px] lg:min-h-[140px] text-base sm:text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500 resize-none"
                         placeholder="Type or paste your text here to convert between different case formats..."
                         data-testid="textarea-text-input"
                       />
@@ -324,14 +324,14 @@ const CaseConverter = () => {
                   </div>
 
                   {/* Advanced Options */}
-                  <div className="space-y-6 border-t pt-8">
-                    <h3 className="text-xl font-bold text-gray-900">Advanced Options</h3>
+                  <div className="space-y-4 sm:space-y-6 border-t pt-6 sm:pt-8">
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-900">Advanced Options</h3>
                     
                     <Collapsible open={showAdvanced} onOpenChange={setShowAdvanced}>
                       <CollapsibleTrigger asChild>
                         <Button 
                           variant="ghost" 
-                          className="w-full justify-between text-sm py-4 h-auto"
+                          className="w-full justify-between text-sm sm:text-base py-3 sm:py-4 h-auto"
                           data-testid="button-toggle-advanced"
                         >
                           <span className="flex items-center">
@@ -340,17 +340,17 @@ const CaseConverter = () => {
                           <span className={`transform transition-transform ${showAdvanced ? 'rotate-180' : ''}`}>▼</span>
                         </Button>
                       </CollapsibleTrigger>
-                      <CollapsibleContent className="space-y-6 mt-4">
+                      <CollapsibleContent className="space-y-4 sm:space-y-6 mt-4">
                         <Separator />
                         
                         {/* Text Processing Options */}
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                          <div className="space-y-4 bg-gray-50 rounded-xl p-6">
-                            <h4 className="text-base font-semibold text-gray-900">Text Processing</h4>
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                          <div className="space-y-4 bg-gray-50 rounded-xl p-4 sm:p-6">
+                            <h4 className="text-sm sm:text-base font-semibold text-gray-900">Text Processing</h4>
                             
-                            <div className="flex items-center justify-between">
-                              <div className="space-y-1 flex-1 pr-2">
-                                <Label className="text-sm font-medium">Preserve Numbers</Label>
+                            <div className="flex items-center justify-between gap-2">
+                              <div className="space-y-1 flex-1 min-w-0">
+                                <Label className="text-xs sm:text-sm font-medium">Preserve Numbers</Label>
                                 <p className="text-xs text-gray-500">Keep digits in programming cases</p>
                               </div>
                               <Switch
@@ -360,9 +360,9 @@ const CaseConverter = () => {
                               />
                             </div>
 
-                            <div className="flex items-center justify-between">
-                              <div className="space-y-1">
-                                <Label className="text-sm font-medium">Remove Extra Spaces</Label>
+                            <div className="flex items-center justify-between gap-2">
+                              <div className="space-y-1 flex-1 min-w-0">
+                                <Label className="text-xs sm:text-sm font-medium">Remove Extra Spaces</Label>
                                 <p className="text-xs text-gray-500">Clean up multiple consecutive spaces</p>
                               </div>
                               <Switch
@@ -372,9 +372,9 @@ const CaseConverter = () => {
                               />
                             </div>
 
-                            <div className="flex items-center justify-between">
-                              <div className="space-y-1">
-                                <Label className="text-sm font-medium">Preserve Line Breaks</Label>
+                            <div className="flex items-center justify-between gap-2">
+                              <div className="space-y-1 flex-1 min-w-0">
+                                <Label className="text-xs sm:text-sm font-medium">Preserve Line Breaks</Label>
                                 <p className="text-xs text-gray-500">Keep original line breaks in text</p>
                               </div>
                               <Switch
@@ -384,9 +384,9 @@ const CaseConverter = () => {
                               />
                             </div>
 
-                            <div className="flex items-center justify-between">
-                              <div className="space-y-1">
-                                <Label className="text-sm font-medium">Ignore Punctuation</Label>
+                            <div className="flex items-center justify-between gap-2">
+                              <div className="space-y-1 flex-1 min-w-0">
+                                <Label className="text-xs sm:text-sm font-medium">Ignore Punctuation</Label>
                                 <p className="text-xs text-gray-500">Keep punctuation in programming cases</p>
                               </div>
                               <Switch
@@ -398,40 +398,40 @@ const CaseConverter = () => {
                           </div>
 
                           {/* Customization Options */}
-                          <div className="space-y-4 bg-gray-50 rounded-xl p-6">
-                            <h4 className="text-base font-semibold text-gray-900">Customization</h4>
+                          <div className="space-y-4 bg-gray-50 rounded-xl p-4 sm:p-6">
+                            <h4 className="text-sm sm:text-base font-semibold text-gray-900">Customization</h4>
                             
                             <div className="space-y-2">
-                              <Label className="text-sm font-medium">Custom Separator</Label>
+                              <Label className="text-xs sm:text-sm font-medium">Custom Separator</Label>
                               <Input
                                 value={advancedOptions.customSeparator}
                                 onChange={(e) => updateAdvancedOption('customSeparator', e.target.value)}
                                 placeholder="e.g., _, -, |, ."
-                                className="text-sm h-12 border-2 border-gray-200 rounded-lg"
+                                className="text-sm h-10 sm:h-12 border-2 border-gray-200 rounded-lg"
                                 data-testid="input-custom-separator"
                               />
                               <p className="text-xs text-gray-500">Override default separators for snake_case and kebab-case</p>
                             </div>
 
                             <div className="space-y-2">
-                              <Label className="text-sm font-medium">Prefix</Label>
+                              <Label className="text-xs sm:text-sm font-medium">Prefix</Label>
                               <Input
                                 value={advancedOptions.prefix}
                                 onChange={(e) => updateAdvancedOption('prefix', e.target.value)}
                                 placeholder="e.g., get_, set_, is_"
-                                className="text-sm h-12 border-2 border-gray-200 rounded-lg"
+                                className="text-sm h-10 sm:h-12 border-2 border-gray-200 rounded-lg"
                                 data-testid="input-prefix"
                               />
                               <p className="text-xs text-gray-500">Add prefix to programming case formats</p>
                             </div>
 
                             <div className="space-y-2">
-                              <Label className="text-sm font-medium">Suffix</Label>
+                              <Label className="text-xs sm:text-sm font-medium">Suffix</Label>
                               <Input
                                 value={advancedOptions.suffix}
                                 onChange={(e) => updateAdvancedOption('suffix', e.target.value)}
                                 placeholder="e.g., _value, _count, _id"
-                                className="text-sm h-12 border-2 border-gray-200 rounded-lg"
+                                className="text-sm h-10 sm:h-12 border-2 border-gray-200 rounded-lg"
                                 data-testid="input-suffix"
                               />
                               <p className="text-xs text-gray-500">Add suffix to programming case formats</p>
@@ -445,10 +445,10 @@ const CaseConverter = () => {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 sm:pt-6">
                     <Button
                       onClick={handleSampleText}
-                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="flex-1 h-12 sm:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-base sm:text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                       data-testid="button-sample-text"
                     >
                       Load Sample Text
@@ -456,7 +456,7 @@ const CaseConverter = () => {
                     <Button
                       onClick={handleClear}
                       variant="outline"
-                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      className="h-12 sm:h-14 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-base sm:text-lg rounded-xl"
                       data-testid="button-clear-text"
                     >
                       Clear
@@ -464,7 +464,7 @@ const CaseConverter = () => {
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      className="h-12 sm:h-14 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-base sm:text-lg rounded-xl"
                       data-testid="button-reset"
                     >
                       Reset
@@ -473,11 +473,11 @@ const CaseConverter = () => {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Converted Text</h2>
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 border-t xl:border-t-0">
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">Converted Text</h2>
                   
                   {result && result.original ? (
-                    <div className="space-y-4" data-testid="case-conversions">
+                    <div className="space-y-3 sm:space-y-4" data-testid="case-conversions">
                       {conversionTypes.map((type, index) => {
                         const convertedText = result[type.key as keyof CaseConversionResult] as string;
                         const colorClasses = [
@@ -498,25 +498,25 @@ const CaseConverter = () => {
                         return (
                           <div 
                             key={type.key} 
-                            className={`border-2 rounded-xl p-4 ${colorClasses[index % colorClasses.length]}`}
+                            className={`border-2 rounded-xl p-3 sm:p-4 ${colorClasses[index % colorClasses.length]}`}
                           >
-                            <div className="flex items-start justify-between mb-3 gap-2">
+                            <div className="flex items-start justify-between mb-3 gap-3">
                               <div className="flex-1 min-w-0">
-                                <h3 className="text-base font-semibold text-gray-900 truncate">{type.label}</h3>
-                                <p className="text-sm text-gray-600">{type.description}</p>
+                                <h3 className="text-sm sm:text-base font-semibold text-gray-900 truncate">{type.label}</h3>
+                                <p className="text-xs sm:text-sm text-gray-600 break-words">{type.description}</p>
                               </div>
                               <Button
                                 onClick={() => handleCopyToClipboard(convertedText, type.label)}
                                 variant="outline"
                                 size="sm"
-                                className="text-xs px-3 py-2 flex-shrink-0 rounded-lg"
+                                className="text-xs px-2 sm:px-3 py-2 flex-shrink-0 rounded-lg min-w-[60px] sm:min-w-[70px] h-8 sm:h-9"
                                 data-testid={`button-copy-${type.key}`}
                               >
                                 Copy
                               </Button>
                             </div>
                             <div 
-                              className="bg-white p-3 rounded-lg border border-gray-200 text-sm font-mono break-words min-h-[40px] flex items-center"
+                              className="bg-white p-2 sm:p-3 rounded-lg border border-gray-200 text-xs sm:text-sm font-mono break-all min-h-[40px] sm:min-h-[44px] flex items-center"
                               data-testid={`converted-${type.key}`}
                             >
                               {convertedText || '(empty)'}
@@ -526,11 +526,11 @@ const CaseConverter = () => {
                       })}
                     </div>
                   ) : (
-                    <div className="text-center py-16" data-testid="no-results">
-                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <div className="text-3xl font-bold text-gray-400">Aa</div>
+                    <div className="text-center py-12 sm:py-16" data-testid="no-results">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
+                        <div className="text-2xl sm:text-3xl font-bold text-gray-400">Aa</div>
                       </div>
-                      <p className="text-gray-500 text-lg">Enter text to see converted case formats</p>
+                      <p className="text-gray-500 text-base sm:text-lg px-4">Enter text to see converted case formats</p>
                     </div>
                   )}
                 </div>
