@@ -183,19 +183,20 @@ const AllTools = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               {/* Category Filters */}
               <div className="mb-12">
-                <div className="flex flex-wrap gap-3 justify-center">
+                <div className="flex flex-wrap gap-2 sm:gap-3 justify-center px-2">
                   {categoryTabs.map((tab) => (
                     <button
                       key={tab.key}
                       onClick={() => handleCategoryChange(tab.key)}
-                      className={`px-6 py-3 rounded-xl font-semibold transition-all duration-200 ${
+                      className={`px-3 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold transition-all duration-200 text-sm sm:text-base whitespace-nowrap ${
                         selectedCategory === tab.key
                           ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-md'
                           : 'bg-white text-neutral-600 hover:bg-neutral-50 shadow-sm border border-neutral-200'
                       }`}
                       data-testid={`button-filter-${tab.key}`}
                     >
-                      {tab.label} ({tab.count})
+                      <span className="hidden sm:inline">{tab.label} ({tab.count})</span>
+                      <span className="sm:hidden">{tab.label.split(' ')[0]} ({tab.count})</span>
                     </button>
                   ))}
                 </div>
