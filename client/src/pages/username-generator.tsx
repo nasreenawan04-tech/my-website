@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -9,7 +10,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Switch } from '@/components/ui/switch';
 import { Slider } from '@/components/ui/slider';
 import { Input } from '@/components/ui/input';
-import { Separator } from '@/components/ui/separator';
 
 interface UsernameOptions {
   style: 'random' | 'adjective-noun' | 'name-based' | 'gaming' | 'professional';
@@ -216,808 +216,801 @@ const UsernameGenerator = () => {
     navigator.clipboard.writeText(text);
   };
 
+  const resetGenerator = () => {
+    setOptions({
+      style: 'adjective-noun',
+      length: 12,
+      includeNumbers: true,
+      includeSymbols: false,
+      capitalizeWords: false,
+      separator: 'none'
+    });
+    setGeneratedUsername(null);
+    setUsernameHistory([]);
+  };
+
   // Generate initial username
   useEffect(() => {
     handleGenerateUsername();
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
         <title>Random Username Generator - Create Unique Usernames | DapsiWow</title>
-        <meta name="description" content="Generate unique, creative usernames for social media, gaming, and online accounts. Customize style, length, and format to create the perfect username." />
-        <meta name="keywords" content="username generator, random username, unique username, gaming username, social media username, account name generator" />
-        <meta property="og:title" content="Random Username Generator - Create Unique Usernames" />
-        <meta property="og:description" content="Generate creative usernames with customizable options for gaming, social media, and professional accounts." />
+        <meta name="description" content="Free username generator to create unique, creative usernames for gaming, social media, and online accounts. Customize style, length, and format to create the perfect username." />
+        <meta name="keywords" content="username generator, random username, unique username, gaming username, social media username, account name generator, username creator, handle generator, online username, creative username" />
+        <meta property="og:title" content="Random Username Generator - Create Unique Usernames | DapsiWow" />
+        <meta property="og:description" content="Generate creative usernames with customizable options for gaming, social media, and professional accounts. Free online username generator with instant results." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="/tools/username-generator" />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="DapsiWow" />
+        <link rel="canonical" href="https://dapsiwow.com/tools/username-generator" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Random Username Generator",
+            "description": "Free online username generator to create unique, memorable usernames for gaming, social media, and online accounts with customizable options.",
+            "url": "https://dapsiwow.com/tools/username-generator",
+            "applicationCategory": "UtilityApplication",
+            "operatingSystem": "Any",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "featureList": [
+              "Generate unique usernames instantly",
+              "Multiple username styles available",
+              "Customizable length and format options",
+              "Gaming and professional username options",
+              "Username variations generator",
+              "Copy usernames with one click"
+            ]
+          })}
+        </script>
       </Helmet>
       
       <Header />
       
       <main>
         {/* Hero Section */}
-        <section className="gradient-hero text-white py-16 pt-24">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-              <i className="fas fa-user text-3xl"></i>
+        <section className="relative py-20 sm:py-28 lg:py-32 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
+          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="space-y-8">
+              <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+                <span className="text-sm font-medium text-blue-700">Smart Username Generator</span>
+              </div>
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight" data-testid="text-page-title">
+                Random Username
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                  Generator
+                </span>
+              </h1>
+              <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                Create unique, memorable usernames for gaming, social media, and professional accounts with advanced customization options
+              </p>
             </div>
-            <h1 className="text-4xl sm:text-5xl font-bold mb-6" data-testid="text-page-title">
-              Random Username Generator
-            </h1>
-            <p className="text-xl text-blue-100 max-w-2xl mx-auto">
-              Create unique, memorable usernames for gaming, social media, and online accounts
-            </p>
           </div>
         </section>
 
-        {/* Generator Section */}
-        <section className="py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <Card className="bg-white shadow-sm border-0">
-              <CardContent className="p-8">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                  {/* Generator Options */}
-                  <div className="space-y-8">
-                    <h2 className="text-2xl font-semibold text-gray-900 mb-6">Generator Options</h2>
-                    
-                    <div className="space-y-6">
-                      {/* Style Selection */}
-                      <div className="space-y-3">
-                        <Label className="text-base font-medium">Username Style</Label>
-                        <Select 
-                          value={options.style} 
-                          onValueChange={(value: typeof options.style) => updateOption('style', value)}
-                        >
-                          <SelectTrigger data-testid="select-style">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="adjective-noun">Adjective + Noun</SelectItem>
-                            <SelectItem value="name-based">Name Based</SelectItem>
-                            <SelectItem value="gaming">Gaming Style</SelectItem>
-                            <SelectItem value="professional">Professional</SelectItem>
-                            <SelectItem value="random">Random Mix</SelectItem>
-                          </SelectContent>
-                        </Select>
+        <div className="max-w-7xl mx-auto px-4 py-16">
+          {/* Main Generator Card */}
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+            <CardContent className="p-0">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+                {/* Input Section */}
+                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
+                  <div>
+                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Username Configuration</h2>
+                    <p className="text-gray-600">Customize your username preferences to generate the perfect handle</p>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Style Selection */}
+                    <div className="space-y-3">
+                      <Label htmlFor="username-style" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Username Style
+                      </Label>
+                      <Select value={options.style} onValueChange={(value: typeof options.style) => updateOption('style', value)}>
+                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-style">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="adjective-noun">Adjective + Noun</SelectItem>
+                          <SelectItem value="name-based">Name Based</SelectItem>
+                          <SelectItem value="gaming">Gaming Style</SelectItem>
+                          <SelectItem value="professional">Professional</SelectItem>
+                          <SelectItem value="random">Random Mix</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    {/* Word Separator */}
+                    <div className="space-y-3">
+                      <Label htmlFor="separator" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Word Separator
+                      </Label>
+                      <Select value={options.separator} onValueChange={(value: typeof options.separator) => updateOption('separator', value)}>
+                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-separator">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="none">None (combined)</SelectItem>
+                          <SelectItem value="underscore">Underscore (_)</SelectItem>
+                          <SelectItem value="dash">Dash (-)</SelectItem>
+                          <SelectItem value="dot">Dot (.)</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    {/* Length Slider */}
+                    <div className="md:col-span-2 space-y-4">
+                      <div className="flex items-center justify-between">
+                        <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                          Username Length
+                        </Label>
+                        <span className="text-2xl font-bold text-blue-600">{options.length}</span>
                       </div>
-
-                      {/* Length Setting */}
-                      <div className="space-y-4">
-                        <div className="flex items-center justify-between">
-                          <Label className="text-base font-medium">Username Length</Label>
-                          <span className="text-lg font-bold text-blue-600">{options.length}</span>
-                        </div>
-                        <div className="px-2">
-                          <Slider
-                            value={[options.length]}
-                            onValueChange={(value) => updateOption('length', value[0])}
-                            max={30}
-                            min={6}
-                            step={1}
-                            className="w-full"
-                            data-testid="slider-length"
-                          />
-                          <div className="flex justify-between text-sm text-gray-500 mt-1">
-                            <span>6</span>
-                            <span>30</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Separator Selection */}
-                      <div className="space-y-3">
-                        <Label className="text-base font-medium">Word Separator</Label>
-                        <Select 
-                          value={options.separator} 
-                          onValueChange={(value: typeof options.separator) => updateOption('separator', value)}
-                        >
-                          <SelectTrigger data-testid="select-separator">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="none">None (combined)</SelectItem>
-                            <SelectItem value="underscore">Underscore (_)</SelectItem>
-                            <SelectItem value="dash">Dash (-)</SelectItem>
-                            <SelectItem value="dot">Dot (.)</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-
-                      {/* Additional Options */}
-                      <div className="space-y-4">
-                        <h3 className="font-medium text-gray-900">Additional Options</h3>
-                        
-                        <div className="space-y-3">
-                          <div className="flex items-center justify-between">
-                            <div>
-                              <Label className="text-sm font-medium">Include Numbers</Label>
-                              <p className="text-xs text-gray-500">Add random numbers to username</p>
-                            </div>
-                            <Switch
-                              checked={options.includeNumbers}
-                              onCheckedChange={(value) => updateOption('includeNumbers', value)}
-                              data-testid="switch-numbers"
-                            />
-                          </div>
-
-                          <div className="flex items-center justify-between">
-                            <div>
-                              <Label className="text-sm font-medium">Include Symbols</Label>
-                              <p className="text-xs text-gray-500">Add symbols like _, -, .</p>
-                            </div>
-                            <Switch
-                              checked={options.includeSymbols}
-                              onCheckedChange={(value) => updateOption('includeSymbols', value)}
-                              data-testid="switch-symbols"
-                            />
-                          </div>
-
-                          <div className="flex items-center justify-between">
-                            <div>
-                              <Label className="text-sm font-medium">Capitalize Words</Label>
-                              <p className="text-xs text-gray-500">Start each word with capital letter</p>
-                            </div>
-                            <Switch
-                              checked={options.capitalizeWords}
-                              onCheckedChange={(value) => updateOption('capitalizeWords', value)}
-                              data-testid="switch-capitalize"
-                            />
-                          </div>
+                      <div className="px-2">
+                        <Slider
+                          value={[options.length]}
+                          onValueChange={(value) => updateOption('length', value[0])}
+                          max={30}
+                          min={6}
+                          step={1}
+                          className="w-full"
+                          data-testid="slider-length"
+                        />
+                        <div className="flex justify-between text-sm text-gray-500 mt-2">
+                          <span>6 characters</span>
+                          <span>30 characters</span>
                         </div>
                       </div>
-
-                      {/* Generate Button */}
-                      <Button 
-                        onClick={handleGenerateUsername}
-                        className="w-full h-12 text-base"
-                        data-testid="button-generate-username"
-                      >
-                        <i className="fas fa-refresh mr-2"></i>
-                        Generate New Username
-                      </Button>
                     </div>
                   </div>
 
-                  {/* Generated Username Display */}
-                  <div className="space-y-6">
-                    <h2 className="text-2xl font-semibold text-gray-900 mb-6">Generated Username</h2>
+                  {/* Advanced Options */}
+                  <div className="space-y-6 border-t pt-8">
+                    <h3 className="text-xl font-bold text-gray-900">Advanced Options</h3>
                     
-                    {generatedUsername && (
-                      <div className="space-y-6" data-testid="generated-username-display">
-                        {/* Main Username Display */}
-                        <div className="bg-blue-50 rounded-lg p-6 text-center">
-                          <div className="text-3xl font-bold text-blue-600 mb-2 font-mono" data-testid="main-username">
-                            {generatedUsername.username}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {/* Include Numbers */}
+                      <div className="space-y-4 bg-gray-50 rounded-xl p-6">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                              Include Numbers
+                            </Label>
+                            <p className="text-sm text-gray-600 mt-1">Add random numbers to make usernames unique</p>
                           </div>
-                          <div className="text-sm text-gray-600">
-                            Style: {generatedUsername.style}
-                          </div>
-                        </div>
-
-                        {/* Username Details */}
-                        <div className="space-y-4">
-                          <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                            <div>
-                              <div className="font-medium text-gray-900">Username</div>
-                              <div className="text-gray-600 font-mono" data-testid="username-text">{generatedUsername.username}</div>
-                            </div>
-                            <Button
-                              onClick={() => handleCopyToClipboard(generatedUsername.username)}
-                              variant="ghost"
-                              size="sm"
-                              data-testid="button-copy-username"
-                            >
-                              <i className="fas fa-copy"></i>
-                            </Button>
-                          </div>
-
-                          <div className="p-3 bg-gray-50 rounded-lg">
-                            <div className="font-medium text-gray-900 mb-2">Length</div>
-                            <div className="text-gray-600" data-testid="username-length">
-                              {generatedUsername.username.length} characters
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Username Variations */}
-                        {generatedUsername.variations.length > 0 && (
-                          <div className="space-y-3">
-                            <h3 className="text-lg font-semibold text-gray-900">Similar Variations</h3>
-                            <div className="space-y-2">
-                              {generatedUsername.variations.map((variation, index) => (
-                                <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                                  <div className="font-mono text-gray-700" data-testid={`variation-${index}`}>
-                                    {variation}
-                                  </div>
-                                  <Button
-                                    onClick={() => handleCopyToClipboard(variation)}
-                                    variant="ghost"
-                                    size="sm"
-                                    data-testid={`button-copy-variation-${index}`}
-                                  >
-                                    <i className="fas fa-copy"></i>
-                                  </Button>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-
-                        {/* Action Buttons */}
-                        <div className="flex gap-3">
-                          <Button
-                            onClick={() => handleCopyToClipboard(generatedUsername.username)}
-                            variant="outline"
-                            className="flex-1"
-                            data-testid="button-copy-main"
-                          >
-                            <i className="fas fa-copy mr-2"></i>
-                            Copy Username
-                          </Button>
+                          <Switch
+                            checked={options.includeNumbers}
+                            onCheckedChange={(value) => updateOption('includeNumbers', value)}
+                            data-testid="switch-numbers"
+                          />
                         </div>
                       </div>
-                    )}
+
+                      {/* Include Symbols */}
+                      <div className="space-y-4 bg-gray-50 rounded-xl p-6">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                              Include Symbols
+                            </Label>
+                            <p className="text-sm text-gray-600 mt-1">Add symbols like _, -, . for uniqueness</p>
+                          </div>
+                          <Switch
+                            checked={options.includeSymbols}
+                            onCheckedChange={(value) => updateOption('includeSymbols', value)}
+                            data-testid="switch-symbols"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Capitalize Words */}
+                      <div className="space-y-4 bg-gray-50 rounded-xl p-6 md:col-span-2">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                              Capitalize Words
+                            </Label>
+                            <p className="text-sm text-gray-600 mt-1">Start each word with a capital letter</p>
+                          </div>
+                          <Switch
+                            checked={options.capitalizeWords}
+                            onCheckedChange={(value) => updateOption('capitalizeWords', value)}
+                            data-testid="switch-capitalize"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                    <Button
+                      onClick={handleGenerateUsername}
+                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      data-testid="button-generate-username"
+                    >
+                      Generate Username
+                    </Button>
+                    <Button
+                      onClick={resetGenerator}
+                      variant="outline"
+                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      data-testid="button-reset"
+                    >
+                      Reset
+                    </Button>
                   </div>
                 </div>
 
-                {/* Username History */}
-                {usernameHistory.length > 0 && (
-                  <>
-                    <Separator className="my-8" />
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Recently Generated</h3>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        {usernameHistory.slice(0, 6).map((username, index) => (
-                          <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                            <div>
-                              <div className="font-mono text-gray-900" data-testid={`history-username-${index}`}>
-                                {username.username}
-                              </div>
-                              <div className="text-sm text-gray-500">
-                                {username.style}
-                              </div>
-                            </div>
-                            <Button
-                              onClick={() => handleCopyToClipboard(username.username)}
-                              variant="ghost"
-                              size="sm"
-                              data-testid={`button-copy-history-${index}`}
-                            >
-                              <i className="fas fa-copy"></i>
-                            </Button>
-                          </div>
-                        ))}
+                {/* Results Section */}
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Generated Username</h2>
+                  
+                  {generatedUsername ? (
+                    <div className="space-y-6" data-testid="generated-username-display">
+                      {/* Main Username Display */}
+                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
+                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Your Username</div>
+                        <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 font-mono mb-2" data-testid="main-username">
+                          {generatedUsername.username}
+                        </div>
+                        <div className="text-sm text-gray-500">Style: {generatedUsername.style}</div>
                       </div>
+
+                      {/* Username Details */}
+                      <div className="space-y-4">
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Length</span>
+                            <span className="font-bold text-gray-900" data-testid="username-length">
+                              {generatedUsername.username.length} characters
+                            </span>
+                          </div>
+                        </div>
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Contains Numbers</span>
+                            <span className="font-bold text-gray-900">
+                              {/\d/.test(generatedUsername.username) ? 'Yes' : 'No'}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Contains Symbols</span>
+                            <span className="font-bold text-gray-900">
+                              {/[_\-.]/.test(generatedUsername.username) ? 'Yes' : 'No'}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Username Variations */}
+                      {generatedUsername.variations.length > 0 && (
+                        <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-6 border border-green-200">
+                          <h4 className="font-bold text-green-800 mb-4 text-lg">Alternative Suggestions</h4>
+                          <div className="space-y-3">
+                            {generatedUsername.variations.map((variation, index) => (
+                              <div key={index} className="flex items-center justify-between p-3 bg-white rounded-lg shadow-sm">
+                                <div className="font-mono text-gray-700" data-testid={`variation-${index}`}>
+                                  {variation}
+                                </div>
+                                <Button
+                                  onClick={() => handleCopyToClipboard(variation)}
+                                  variant="ghost"
+                                  size="sm"
+                                  className="text-green-600 hover:text-green-700 hover:bg-green-50"
+                                  data-testid={`button-copy-variation-${index}`}
+                                >
+                                  Copy
+                                </Button>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Copy Button */}
+                      <Button
+                        onClick={() => handleCopyToClipboard(generatedUsername.username)}
+                        className="w-full h-12 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl"
+                        data-testid="button-copy-main"
+                      >
+                        Copy Username
+                      </Button>
                     </div>
-                  </>
-                )}
+                  ) : (
+                    <div className="text-center py-16" data-testid="no-results">
+                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <div className="text-3xl font-bold text-gray-400">@</div>
+                      </div>
+                      <p className="text-gray-500 text-lg">Configure options and generate to see username results</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Username History */}
+          {usernameHistory.length > 1 && (
+            <Card className="mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Recently Generated Usernames</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {usernameHistory.slice(1, 7).map((username, index) => (
+                    <div key={index} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-blue-50 transition-colors">
+                      <div>
+                        <div className="font-mono text-gray-900 font-medium" data-testid={`history-username-${index}`}>
+                          {username.username}
+                        </div>
+                        <div className="text-sm text-gray-500">
+                          {username.style}
+                        </div>
+                      </div>
+                      <Button
+                        onClick={() => handleCopyToClipboard(username.username)}
+                        variant="ghost"
+                        size="sm"
+                        className="text-blue-600 hover:text-blue-700 hover:bg-blue-100"
+                        data-testid={`button-copy-history-${index}`}
+                      >
+                        Copy
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* SEO Content Section */}
+          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">What is a Username Generator?</h3>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    A <strong>username generator</strong> is an intelligent online tool that automatically creates unique, memorable usernames for your digital accounts across various platforms. Our advanced random username generator combines creative algorithms with customizable options to produce distinctive handles that reflect your personality and intended use case.
+                  </p>
+                  <p>
+                    Whether you need a <strong>gaming username</strong> for your favorite online games, a professional handle for business networks, or creative usernames for social media platforms, our generator provides unlimited combinations with instant results. The tool eliminates the frustration of brainstorming usernames and ensures you always have backup options.
+                  </p>
+                  <p>
+                    Our username generator stands out by offering extensive customization options including style selection, length control, number integration, symbol inclusion, and separator choices, making it the most versatile username creation tool available online.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">How Our Username Generator Works</h3>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    Our sophisticated username generator algorithm combines carefully curated word databases with intelligent randomization to create usernames that are both unique and memorable. The process involves multiple steps to ensure quality results every time.
+                  </p>
+                  <div className="space-y-3">
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <span className="text-xs font-bold text-blue-600">1</span>
+                      </div>
+                      <span className="text-sm"><strong>Style Selection:</strong> Choose from adjective-noun, gaming, professional, or random combinations</span>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <span className="text-xs font-bold text-blue-600">2</span>
+                      </div>
+                      <span className="text-sm"><strong>Word Combination:</strong> Intelligently combines words from extensive databases</span>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <span className="text-xs font-bold text-blue-600">3</span>
+                      </div>
+                      <span className="text-sm"><strong>Customization:</strong> Applies your preferences for numbers, symbols, and formatting</span>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <span className="text-xs font-bold text-blue-600">4</span>
+                      </div>
+                      <span className="text-sm"><strong>Variation Generation:</strong> Creates multiple alternatives for maximum availability</span>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Username Generation Features</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span><strong>Multiple Styles:</strong> Adjective-noun, gaming, professional, name-based, and random combinations</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span><strong>Customizable Length:</strong> Generate usernames from 6 to 30 characters to fit platform requirements</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span><strong>Number Integration:</strong> Add random numbers to increase uniqueness and availability</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span><strong>Symbol Options:</strong> Include underscores, dashes, or dots for better formatting</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span><strong>Capitalization Control:</strong> Choose between lowercase or capitalized words</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span><strong>Alternative Variations:</strong> Get multiple username suggestions with each generation</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Why Use Our Username Generator?</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span><strong>Instant Results:</strong> Generate unlimited unique usernames in seconds without delays</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span><strong>No Registration Required:</strong> Use our generator completely free without creating accounts</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span><strong>Privacy Protected:</strong> All generation happens locally in your browser</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span><strong>Cross-Platform Compatible:</strong> Create usernames suitable for any platform or service</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span><strong>Mobile Responsive:</strong> Generate usernames on any device, anywhere</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span><strong>History Tracking:</strong> Keep track of recently generated usernames for easy access</span>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </div>
-        </section>
 
-        {/* Information Sections */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-          {/* What is a Username Generator */}
-          <div className="mt-12 bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">What is a Random Username Generator?</h2>
-            <div className="prose max-w-none">
-              <p className="text-lg text-gray-700 mb-6">
-                A <strong>random username generator</strong> is an intelligent tool that automatically creates unique, memorable usernames for your online accounts, gaming profiles, and social media platforms. Our advanced generator combines creative word patterns, customizable styles, and smart algorithms to produce distinctive usernames that stand out from the crowd.
-              </p>
-              
-              <p className="text-gray-700 mb-6">
-                Unlike simple username generators, our tool offers extensive customization options including style selection (gaming, professional, name-based), length control, number integration, symbol inclusion, and word separators. Whether you're creating a <strong>gaming username</strong>, professional handle, or social media identity, our generator ensures your username is both unique and memorable.
-              </p>
-
-              <p className="text-gray-700 mb-6">
-                The generator works by combining carefully curated word lists with intelligent algorithms to create usernames that are not only unique but also easy to remember and type. With over 1000+ word combinations and multiple styling options, you'll never run out of creative username ideas.
-              </p>
-            </div>
-          </div>
-
-          {/* How It Works */}
-          <div className="mt-8 bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">How Does the Username Generator Work?</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                  <i className="fas fa-cogs text-purple-600 text-xl"></i>
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-3">1. Select Your Style</h3>
-                <p className="text-gray-600 text-sm">Choose from adjective-noun, gaming, professional, name-based, or random mix styles to match your intended use case.</p>
-              </div>
-              
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                  <i className="fas fa-sliders-h text-blue-600 text-xl"></i>
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-3">2. Customize Options</h3>
-                <p className="text-gray-600 text-sm">Adjust length (6-30 characters), add numbers, include symbols, choose separators, and enable capitalization.</p>
-              </div>
-              
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                  <i className="fas fa-magic text-green-600 text-xl"></i>
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-3">3. Generate & Copy</h3>
-                <p className="text-gray-600 text-sm">Instantly generate unique usernames with variations. Copy your favorite with one click and use immediately.</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Benefits Section */}
-          <div className="mt-8 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Why Use Our Username Generator?</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="space-y-4">
-                <div className="flex items-start space-x-3">
-                  <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <i className="fas fa-check text-emerald-600 text-sm"></i>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Instant Results</h3>
-                    <p className="text-gray-600 text-sm">Generate unlimited unique usernames instantly without any delays or registration requirements.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-3">
-                  <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <i className="fas fa-check text-emerald-600 text-sm"></i>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Highly Customizable</h3>
-                    <p className="text-gray-600 text-sm">Control every aspect of your username including style, length, symbols, numbers, and separators.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-3">
-                  <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <i className="fas fa-check text-emerald-600 text-sm"></i>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Multiple Variations</h3>
-                    <p className="text-gray-600 text-sm">Get multiple username variations for each generation, increasing your chances of finding available usernames.</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="space-y-4">
-                <div className="flex items-start space-x-3">
-                  <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <i className="fas fa-check text-emerald-600 text-sm"></i>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Cross-Platform Ready</h3>
-                    <p className="text-gray-600 text-sm">Create usernames suitable for gaming platforms, social media, forums, and professional networks.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-3">
-                  <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <i className="fas fa-check text-emerald-600 text-sm"></i>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">Privacy Focused</h3>
-                    <p className="text-gray-600 text-sm">Generate usernames locally in your browser - no data is stored or transmitted to our servers.</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-3">
-                  <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <i className="fas fa-check text-emerald-600 text-sm"></i>
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900 mb-2">History Tracking</h3>
-                    <p className="text-gray-600 text-sm">Keep track of recently generated usernames to revisit your favorite options.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Username Styles Explained */}
-          <div className="mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Username Styles Explained</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-4">
-                <div className="bg-white rounded-lg p-4 shadow-sm">
-                  <h3 className="font-semibold text-gray-900 mb-2">Adjective + Noun</h3>
-                  <p className="text-gray-600 text-sm">Combines descriptive words with nouns (e.g., CoolWarrior, SwiftEagle)</p>
-                </div>
-                
-                <div className="bg-white rounded-lg p-4 shadow-sm">
-                  <h3 className="font-semibold text-gray-900 mb-2">Name Based</h3>
-                  <p className="text-gray-600 text-sm">Uses common names with additional words (e.g., AlexStorm, CaseyWolf)</p>
-                </div>
-                
-                <div className="bg-white rounded-lg p-4 shadow-sm">
-                  <h3 className="font-semibold text-gray-900 mb-2">Gaming Style</h3>
-                  <p className="text-gray-600 text-sm">Perfect for gamers with terms like Pro, Elite, Slayer (e.g., ProSniper, EliteDestroyer)</p>
-                </div>
-              </div>
-              
-              <div className="space-y-4">
-                <div className="bg-white rounded-lg p-4 shadow-sm">
-                  <h3 className="font-semibold text-gray-900 mb-2">Professional</h3>
-                  <p className="text-gray-600 text-sm">Tech and business focused for work accounts (e.g., DevCoder, TechAdmin)</p>
-                </div>
-                
-                <div className="bg-white rounded-lg p-4 shadow-sm">
-                  <h3 className="font-semibold text-gray-900 mb-2">Random Mix</h3>
-                  <p className="text-gray-600 text-sm">Combines words from all categories for unique results</p>
-                </div>
-                
-                <div className="bg-white rounded-lg p-4 shadow-sm">
-                  <h3 className="font-semibold text-gray-900 mb-2">Customization</h3>
-                  <p className="text-gray-600 text-sm">Add numbers, symbols, separators, and capitalization</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Use Cases by Audience */}
-          <div className="mt-8 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Perfect Username Generator for Every User</h2>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-              <div className="space-y-6">
-                <div className="bg-white rounded-lg p-6 shadow-sm">
-                  <div className="flex items-center mb-4">
-                    <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mr-4">
-                      <i className="fas fa-gamepad text-red-600"></i>
+          {/* Username Style Guide */}
+          <div className="mt-8 space-y-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Complete Guide to Username Styles</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-6">
+                    <div className="border-l-4 border-blue-500 pl-6">
+                      <h4 className="text-lg font-semibold text-gray-900 mb-2">Adjective + Noun Style</h4>
+                      <p className="text-gray-600 text-sm mb-3">Combines descriptive adjectives with powerful nouns to create memorable usernames. Perfect for general use across most platforms.</p>
+                      <div className="text-xs text-gray-500 bg-gray-50 p-3 rounded-lg">
+                        <strong>Examples:</strong> CoolWarrior, SwiftEagle, DarkPhoenix, BrightStorm
+                      </div>
                     </div>
-                    <h3 className="text-xl font-semibold text-gray-900">Gamers</h3>
-                  </div>
-                  <p className="text-gray-600 mb-4">Create epic gaming usernames for Steam, Xbox Live, PlayStation Network, Discord, and online multiplayer games. Generate handles that intimidate opponents and represent your gaming persona.</p>
-                  <ul className="text-sm text-gray-600 space-y-1">
-                    <li>• Battle royale game profiles</li>
-                    <li>• MMORPG character names</li>
-                    <li>• Esports team handles</li>
-                    <li>• Streaming platform usernames</li>
-                  </ul>
-                </div>
-
-                <div className="bg-white rounded-lg p-6 shadow-sm">
-                  <div className="flex items-center mb-4">
-                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
-                      <i className="fas fa-hashtag text-blue-600"></i>
+                    
+                    <div className="border-l-4 border-green-500 pl-6">
+                      <h4 className="text-lg font-semibold text-gray-900 mb-2">Gaming Style</h4>
+                      <p className="text-gray-600 text-sm mb-3">Specifically designed for gamers with terms like Pro, Elite, Slayer, and Champion. Ideal for competitive gaming platforms.</p>
+                      <div className="text-xs text-gray-500 bg-gray-50 p-3 rounded-lg">
+                        <strong>Examples:</strong> ProSniper, EliteDestroyer, LegendSlayer, ChampionRusher
+                      </div>
                     </div>
-                    <h3 className="text-xl font-semibold text-gray-900">Social Media Influencers</h3>
-                  </div>
-                  <p className="text-gray-600 mb-4">Build your brand with memorable usernames for Instagram, TikTok, Twitter, YouTube, and Facebook. Create handles that are easy to remember and help build your online presence.</p>
-                  <ul className="text-sm text-gray-600 space-y-1">
-                    <li>• Instagram business accounts</li>
-                    <li>• TikTok creator profiles</li>
-                    <li>• YouTube channel names</li>
-                    <li>• Twitter handles for brands</li>
-                  </ul>
-                </div>
 
-                <div className="bg-white rounded-lg p-6 shadow-sm">
-                  <div className="flex items-center mb-4">
-                    <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-4">
-                      <i className="fas fa-briefcase text-green-600"></i>
+                    <div className="border-l-4 border-purple-500 pl-6">
+                      <h4 className="text-lg font-semibold text-gray-900 mb-2">Professional Style</h4>
+                      <p className="text-gray-600 text-sm mb-3">Tech and business-focused usernames perfect for professional networks, GitHub, LinkedIn, and work-related accounts.</p>
+                      <div className="text-xs text-gray-500 bg-gray-50 p-3 rounded-lg">
+                        <strong>Examples:</strong> DevCoder, TechAdmin, DataAnalyst, CloudArchitect
+                      </div>
                     </div>
-                    <h3 className="text-xl font-semibold text-gray-900">Professionals</h3>
                   </div>
-                  <p className="text-gray-600 mb-4">Generate professional usernames for LinkedIn, GitHub, work email accounts, and business platforms. Create handles that reflect your expertise and industry.</p>
-                  <ul className="text-sm text-gray-600 space-y-1">
-                    <li>• LinkedIn professional profiles</li>
-                    <li>• GitHub developer accounts</li>
-                    <li>• Business email addresses</li>
-                    <li>• Professional forum accounts</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className="space-y-6">
-                <div className="bg-white rounded-lg p-6 shadow-sm">
-                  <div className="flex items-center mb-4">
-                    <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
-                      <i className="fas fa-graduation-cap text-purple-600"></i>
+                  
+                  <div className="space-y-6">
+                    <div className="border-l-4 border-orange-500 pl-6">
+                      <h4 className="text-lg font-semibold text-gray-900 mb-2">Name-Based Style</h4>
+                      <p className="text-gray-600 text-sm mb-3">Uses common names combined with additional words, creating personal yet unique usernames suitable for social media.</p>
+                      <div className="text-xs text-gray-500 bg-gray-50 p-3 rounded-lg">
+                        <strong>Examples:</strong> AlexStorm, CaseyWolf, JordanStar, TaylorBlade
+                      </div>
                     </div>
-                    <h3 className="text-xl font-semibold text-gray-900">Students</h3>
-                  </div>
-                  <p className="text-gray-600 mb-4">Create appropriate usernames for educational platforms, online courses, study groups, and academic forums. Balance creativity with professionalism for school-related accounts.</p>
-                  <ul className="text-sm text-gray-600 space-y-1">
-                    <li>• Online learning platforms</li>
-                    <li>• Educational forums</li>
-                    <li>• Study group accounts</li>
-                    <li>• Academic social networks</li>
-                  </ul>
-                </div>
-
-                <div className="bg-white rounded-lg p-6 shadow-sm">
-                  <div className="flex items-center mb-4">
-                    <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
-                      <i className="fas fa-pen text-orange-600"></i>
+                    
+                    <div className="border-l-4 border-red-500 pl-6">
+                      <h4 className="text-lg font-semibold text-gray-900 mb-2">Random Mix Style</h4>
+                      <p className="text-gray-600 text-sm mb-3">Combines words from all categories randomly, producing the most diverse and unpredictable username combinations.</p>
+                      <div className="text-xs text-gray-500 bg-gray-50 p-3 rounded-lg">
+                        <strong>Examples:</strong> NinjaCode, StormDev, PhoenixGamer, CyberSage
+                      </div>
                     </div>
-                    <h3 className="text-xl font-semibold text-gray-900">Content Creators & Bloggers</h3>
-                  </div>
-                  <p className="text-gray-600 mb-4">Establish your content brand with unique usernames for blogging platforms, Medium, WordPress, and content management systems. Create memorable handles that represent your niche.</p>
-                  <ul className="text-sm text-gray-600 space-y-1">
-                    <li>• Blog author profiles</li>
-                    <li>• Content platform accounts</li>
-                    <li>• Newsletter writer handles</li>
-                    <li>• Medium publication names</li>
-                  </ul>
-                </div>
 
-                <div className="bg-white rounded-lg p-6 shadow-sm">
-                  <div className="flex items-center mb-4">
-                    <div className="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center mr-4">
-                      <i className="fas fa-microscope text-indigo-600"></i>
+                    <div className="border-l-4 border-indigo-500 pl-6">
+                      <h4 className="text-lg font-semibold text-gray-900 mb-2">Customization Options</h4>
+                      <p className="text-gray-600 text-sm mb-3">All styles can be enhanced with numbers, symbols, separators, and capitalization to create truly unique combinations.</p>
+                      <div className="text-xs text-gray-500 bg-gray-50 p-3 rounded-lg">
+                        <strong>Enhanced:</strong> Cool_Warrior99, swift-eagle, Dark.Phoenix, BRIGHTSTORM
+                      </div>
                     </div>
-                    <h3 className="text-xl font-semibold text-gray-900">Researchers & Academics</h3>
                   </div>
-                  <p className="text-gray-600 mb-4">Generate professional yet memorable usernames for research platforms, academic databases, conference systems, and scholarly networks.</p>
-                  <ul className="text-sm text-gray-600 space-y-1">
-                    <li>• Research platform accounts</li>
-                    <li>• Academic conference systems</li>
-                    <li>• Scholarly database profiles</li>
-                    <li>• Peer review platforms</li>
-                  </ul>
                 </div>
-              </div>
-            </div>
-          </div>
+              </CardContent>
+            </Card>
 
-          {/* Platform-Specific Uses */}
-          <div className="mt-8 bg-gradient-to-r from-gray-50 to-slate-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Platform-Specific Username Ideas</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <h3 className="font-semibold text-gray-900 mb-3 flex items-center">
-                  <i className="fab fa-discord text-indigo-600 mr-2"></i>
-                  Discord & Gaming
-                </h3>
-                <p className="text-gray-600 text-sm mb-3">Perfect for gaming communities and voice chat platforms.</p>
-                <div className="text-xs text-gray-500 space-y-1">
-                  <div>• Style: Gaming or Adjective-Noun</div>
-                  <div>• Include numbers for uniqueness</div>
-                  <div>• 8-16 characters recommended</div>
-                </div>
-              </div>
-
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <h3 className="font-semibold text-gray-900 mb-3 flex items-center">
-                  <i className="fab fa-linkedin text-blue-600 mr-2"></i>
-                  LinkedIn & Professional
-                </h3>
-                <p className="text-gray-600 text-sm mb-3">Professional usernames for career networking.</p>
-                <div className="text-xs text-gray-500 space-y-1">
-                  <div>• Style: Professional or Name-based</div>
-                  <div>• Avoid excessive symbols</div>
-                  <div>• Keep it clean and memorable</div>
-                </div>
-              </div>
-
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <h3 className="font-semibold text-gray-900 mb-3 flex items-center">
-                  <i className="fab fa-instagram text-pink-600 mr-2"></i>
-                  Instagram & Social
-                </h3>
-                <p className="text-gray-600 text-sm mb-3">Catchy usernames for social media growth.</p>
-                <div className="text-xs text-gray-500 space-y-1">
-                  <div>• Style: Creative mix</div>
-                  <div>• Use underscores as separators</div>
-                  <div>• Keep under 15 characters</div>
-                </div>
-              </div>
-
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <h3 className="font-semibold text-gray-900 mb-3 flex items-center">
-                  <i className="fab fa-github text-gray-700 mr-2"></i>
-                  GitHub & Development
-                </h3>
-                <p className="text-gray-600 text-sm mb-3">Professional handles for code repositories.</p>
-                <div className="text-xs text-gray-500 space-y-1">
-                  <div>• Style: Professional or Tech-focused</div>
-                  <div>• Use dashes for readability</div>
-                  <div>• Reflect your coding expertise</div>
-                </div>
-              </div>
-
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <h3 className="font-semibold text-gray-900 mb-3 flex items-center">
-                  <i className="fab fa-twitch text-purple-600 mr-2"></i>
-                  Twitch & Streaming
-                </h3>
-                <p className="text-gray-600 text-sm mb-3">Memorable names for content creators.</p>
-                <div className="text-xs text-gray-500 space-y-1">
-                  <div>• Style: Gaming or Creative</div>
-                  <div>• Easy to pronounce on stream</div>
-                  <div>• Brandable and unique</div>
-                </div>
-              </div>
-
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <h3 className="font-semibold text-gray-900 mb-3 flex items-center">
-                  <i className="fas fa-envelope text-blue-500 mr-2"></i>
-                  Email & Forums
-                </h3>
-                <p className="text-gray-600 text-sm mb-3">Versatile usernames for general use.</p>
-                <div className="text-xs text-gray-500 space-y-1">
-                  <div>• Style: Name-based or Random</div>
-                  <div>• Include numbers for availability</div>
-                  <div>• Balance uniqueness and simplicity</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Related Tools */}
-          <div className="mt-8 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Related Tools for Online Identity</h2>
-            <p className="text-gray-600 mb-6">Complete your online presence with our comprehensive suite of generators and converters:</p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <a href="/tools/password-generator" className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow group">
-                <div className="flex items-center mb-3">
-                  <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mr-3">
-                    <i className="fas fa-lock text-red-600"></i>
+            {/* Platform-Specific Username Guidelines */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Platform-Specific Username Guidelines</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6">
+                    <h4 className="font-semibold text-blue-900 mb-3">Gaming Platforms</h4>
+                    <div className="space-y-2 text-sm text-blue-800">
+                      <p><strong>Steam, Xbox, PlayStation:</strong></p>
+                      <ul className="list-disc list-inside space-y-1 text-xs">
+                        <li>Gaming or Adjective-Noun styles work best</li>
+                        <li>Include numbers for uniqueness</li>
+                        <li>8-20 character length recommended</li>
+                        <li>Underscores widely supported</li>
+                      </ul>
+                    </div>
                   </div>
-                  <h3 className="font-semibold text-gray-900 group-hover:text-blue-600">Password Generator</h3>
-                </div>
-                <p className="text-gray-600 text-sm">Create secure passwords to protect your new username accounts.</p>
-              </a>
 
-              <a href="/tools/fake-name-generator" className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow group">
-                <div className="flex items-center mb-3">
-                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-3">
-                    <i className="fas fa-user text-green-600"></i>
+                  <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6">
+                    <h4 className="font-semibold text-green-900 mb-3">Social Media</h4>
+                    <div className="space-y-2 text-sm text-green-800">
+                      <p><strong>Instagram, Twitter, TikTok:</strong></p>
+                      <ul className="list-disc list-inside space-y-1 text-xs">
+                        <li>Creative and memorable styles preferred</li>
+                        <li>Shorter usernames get better engagement</li>
+                        <li>Avoid excessive symbols</li>
+                        <li>Consider brand consistency</li>
+                      </ul>
+                    </div>
                   </div>
-                  <h3 className="font-semibold text-gray-900 group-hover:text-blue-600">Fake Name Generator</h3>
-                </div>
-                <p className="text-gray-600 text-sm">Generate complete fake identities for testing and creative projects.</p>
-              </a>
 
-              <a href="/tools/qr-text-generator" className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow group">
-                <div className="flex items-center mb-3">
-                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
-                    <i className="fas fa-qrcode text-blue-600"></i>
+                  <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6">
+                    <h4 className="font-semibold text-purple-900 mb-3">Professional Networks</h4>
+                    <div className="space-y-2 text-sm text-purple-800">
+                      <p><strong>LinkedIn, GitHub:</strong></p>
+                      <ul className="list-disc list-inside space-y-1 text-xs">
+                        <li>Professional or Name-based styles</li>
+                        <li>Clean formatting with minimal symbols</li>
+                        <li>Reflect your expertise or industry</li>
+                        <li>Consistent across platforms</li>
+                      </ul>
+                    </div>
                   </div>
-                  <h3 className="font-semibold text-gray-900 group-hover:text-blue-600">QR Code Generator</h3>
-                </div>
-                <p className="text-gray-600 text-sm">Create QR codes for your social media profiles and usernames.</p>
-              </a>
 
-              <a href="/tools/lorem-ipsum-generator" className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow group">
-                <div className="flex items-center mb-3">
-                  <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
-                    <i className="fas fa-paragraph text-purple-600"></i>
+                  <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg p-6">
+                    <h4 className="font-semibold text-orange-900 mb-3">Content Creation</h4>
+                    <div className="space-y-2 text-sm text-orange-800">
+                      <p><strong>YouTube, Twitch, Medium:</strong></p>
+                      <ul className="list-disc list-inside space-y-1 text-xs">
+                        <li>Brandable and easy to remember</li>
+                        <li>Easy to pronounce for verbal mention</li>
+                        <li>Reflects your content niche</li>
+                        <li>Available across multiple platforms</li>
+                      </ul>
+                    </div>
                   </div>
-                  <h3 className="font-semibold text-gray-900 group-hover:text-blue-600">Lorem Ipsum Generator</h3>
-                </div>
-                <p className="text-gray-600 text-sm">Generate placeholder text for your profile descriptions and bios.</p>
-              </a>
 
-              <a href="/tools/case-converter" className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow group">
-                <div className="flex items-center mb-3">
-                  <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center mr-3">
-                    <i className="fas fa-font text-orange-600"></i>
+                  <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-6">
+                    <h4 className="font-semibold text-red-900 mb-3">Forums & Communities</h4>
+                    <div className="space-y-2 text-sm text-red-800">
+                      <p><strong>Reddit, Discord, Forums:</strong></p>
+                      <ul className="list-disc list-inside space-y-1 text-xs">
+                        <li>Community-appropriate styles</li>
+                        <li>Memorable for regular interactions</li>
+                        <li>Consider community culture</li>
+                        <li>Avoid offensive or controversial terms</li>
+                      </ul>
+                    </div>
                   </div>
-                  <h3 className="font-semibold text-gray-900 group-hover:text-blue-600">Case Converter</h3>
-                </div>
-                <p className="text-gray-600 text-sm">Convert username text between different case formats.</p>
-              </a>
 
-              <a href="/tools/word-counter" className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow group">
-                <div className="flex items-center mb-3">
-                  <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center mr-3">
-                    <i className="fas fa-calculator text-teal-600"></i>
+                  <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-6">
+                    <h4 className="font-semibold text-indigo-900 mb-3">Email & General Use</h4>
+                    <div className="space-y-2 text-sm text-indigo-800">
+                      <p><strong>Email, General Accounts:</strong></p>
+                      <ul className="list-disc list-inside space-y-1 text-xs">
+                        <li>Professional yet memorable</li>
+                        <li>Easy to spell and communicate</li>
+                        <li>Include numbers for availability</li>
+                        <li>Balance uniqueness with simplicity</li>
+                      </ul>
+                    </div>
                   </div>
-                  <h3 className="font-semibold text-gray-900 group-hover:text-blue-600">Word Counter</h3>
                 </div>
-                <p className="text-gray-600 text-sm">Count characters and words for username length requirements.</p>
-              </a>
-            </div>
-          </div>
+              </CardContent>
+            </Card>
 
-          {/* Enhanced FAQ */}
-          <div className="mt-8 bg-gradient-to-r from-gray-50 to-blue-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Frequently Asked Questions About Username Generation</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">How do I choose the right username style?</h3>
-                  <p className="text-gray-600">Consider your platform and purpose. Gaming style works great for games and Discord, professional style for LinkedIn and GitHub, adjective-noun combinations work well for most social media platforms, and name-based styles are perfect for personal accounts.</p>
-                </div>
-                
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Should I include numbers in my username?</h3>
-                  <p className="text-gray-600">Numbers can help make your username unique, especially if your preferred name is taken. However, avoid too many numbers as they can make usernames harder to remember. Use 1-3 numbers maximum for the best balance.</p>
-                </div>
-                
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">What's the ideal username length?</h3>
-                  <p className="text-gray-600">Most platforms accept 6-30 characters. Shorter usernames (6-12 characters) are easier to remember and type, while longer ones (13-20 characters) give you more creative options. We recommend 8-15 characters for optimal balance.</p>
-                </div>
+            {/* Username Best Practices */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Username Best Practices and Tips</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <div className="bg-green-50 rounded-lg p-6 border-l-4 border-green-500">
+                      <h4 className="font-semibold text-green-900 mb-3">Do's for Great Usernames</h4>
+                      <ul className="space-y-2 text-sm text-green-800">
+                        <li className="flex items-start gap-2">
+                          <span className="text-green-600 font-bold">✓</span>
+                          <span>Keep it memorable and easy to spell</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-green-600 font-bold">✓</span>
+                          <span>Use consistent usernames across platforms</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-green-600 font-bold">✓</span>
+                          <span>Check availability before settling on a choice</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-green-600 font-bold">✓</span>
+                          <span>Consider your target audience and platform culture</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-green-600 font-bold">✓</span>
+                          <span>Think long-term - choose names that age well</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-green-600 font-bold">✓</span>
+                          <span>Use our generator for backup options</span>
+                        </li>
+                      </ul>
+                    </div>
 
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Which separators should I use?</h3>
-                  <p className="text-gray-600">Underscores (_) work on most platforms, dashes (-) are professional-looking, dots (.) are good for email-style usernames, and no separators create cleaner, more modern handles.</p>
-                </div>
-              </div>
+                    <div className="bg-blue-50 rounded-lg p-6 border-l-4 border-blue-500">
+                      <h4 className="font-semibold text-blue-900 mb-3">Character Length Guidelines</h4>
+                      <div className="space-y-3 text-sm text-blue-800">
+                        <div className="flex justify-between items-center p-2 bg-white rounded">
+                          <span><strong>6-8 characters:</strong> Short & punchy</span>
+                          <span className="text-xs bg-blue-100 px-2 py-1 rounded">Gaming</span>
+                        </div>
+                        <div className="flex justify-between items-center p-2 bg-white rounded">
+                          <span><strong>9-15 characters:</strong> Balanced & versatile</span>
+                          <span className="text-xs bg-blue-100 px-2 py-1 rounded">Social Media</span>
+                        </div>
+                        <div className="flex justify-between items-center p-2 bg-white rounded">
+                          <span><strong>16-20 characters:</strong> Descriptive & unique</span>
+                          <span className="text-xs bg-blue-100 px-2 py-1 rounded">Professional</span>
+                        </div>
+                        <div className="flex justify-between items-center p-2 bg-white rounded">
+                          <span><strong>20+ characters:</strong> Very specific</span>
+                          <span className="text-xs bg-blue-100 px-2 py-1 rounded">Specialized</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-6">
+                    <div className="bg-red-50 rounded-lg p-6 border-l-4 border-red-500">
+                      <h4 className="font-semibold text-red-900 mb-3">Common Username Mistakes to Avoid</h4>
+                      <ul className="space-y-2 text-sm text-red-800">
+                        <li className="flex items-start gap-2">
+                          <span className="text-red-600 font-bold">✗</span>
+                          <span>Using personal information like birth dates or addresses</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-red-600 font-bold">✗</span>
+                          <span>Creating usernames that are too similar to existing brands</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-red-600 font-bold">✗</span>
+                          <span>Using offensive, controversial, or inappropriate terms</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-red-600 font-bold">✗</span>
+                          <span>Making usernames too complex or hard to remember</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-red-600 font-bold">✗</span>
+                          <span>Ignoring platform-specific character restrictions</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-red-600 font-bold">✗</span>
+                          <span>Not having backup options when your first choice is taken</span>
+                        </li>
+                      </ul>
+                    </div>
 
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I check if a username is available?</h3>
-                  <p className="text-gray-600">Our generator creates unique combinations, but availability depends on each platform. After generating a username you like, check its availability on your desired platforms. We provide variations to increase your chances of finding available options.</p>
+                    <div className="bg-yellow-50 rounded-lg p-6 border-l-4 border-yellow-500">
+                      <h4 className="font-semibold text-yellow-900 mb-3">Pro Tips for Username Success</h4>
+                      <ul className="space-y-2 text-sm text-yellow-800">
+                        <li className="flex items-start gap-2">
+                          <span className="text-yellow-600 font-bold">💡</span>
+                          <span>Test pronunciation - can others say it easily?</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-yellow-600 font-bold">💡</span>
+                          <span>Consider domain availability if building a brand</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-yellow-600 font-bold">💡</span>
+                          <span>Use our generator's variations for backup options</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-yellow-600 font-bold">💡</span>
+                          <span>Keep a list of favorites for different purposes</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-yellow-600 font-bold">💡</span>
+                          <span>Research trademark issues for commercial use</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
+              </CardContent>
+            </Card>
 
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Are the generated usernames truly random?</h3>
-                  <p className="text-gray-600">Yes, our algorithm combines words randomly from curated lists with mathematical randomization. This ensures each generated username is unique and unpredictable while maintaining readability and memorability.</p>
-                </div>
+            {/* FAQ Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions About Username Generation</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="text-lg font-semibold text-gray-900 mb-2">How does the random username generator work?</h4>
+                      <p className="text-gray-600 text-sm">Our generator combines words from curated databases using advanced algorithms to create unique usernames. You can customize style, length, and formatting options to match your specific needs and platform requirements.</p>
+                    </div>
+                    
+                    <div>
+                      <h4 className="text-lg font-semibold text-gray-900 mb-2">Are the generated usernames truly unique?</h4>
+                      <p className="text-gray-600 text-sm">While our generator creates millions of possible combinations, true uniqueness depends on platform availability. We provide multiple variations with each generation to increase your chances of finding available usernames.</p>
+                    </div>
+                    
+                    <div>
+                      <h4 className="text-lg font-semibold text-gray-900 mb-2">What's the best username style for gaming?</h4>
+                      <p className="text-gray-600 text-sm">Gaming style or Adjective-Noun combinations work best for gaming platforms. Include numbers for uniqueness and keep the length between 8-16 characters. Avoid excessive symbols that might be hard to type quickly.</p>
+                    </div>
 
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I use these usernames commercially?</h3>
-                  <p className="text-gray-600">Absolutely! All generated usernames are free to use for personal and commercial purposes. However, always check trademark databases if you plan to use a username for serious business purposes.</p>
-                </div>
+                    <div>
+                      <h4 className="text-lg font-semibold text-gray-900 mb-2">Can I check if a username is available on different platforms?</h4>
+                      <p className="text-gray-600 text-sm">Our generator creates usernames but doesn't check availability across platforms. After generating a username you like, manually check its availability on your desired platforms using their search or registration features.</p>
+                    </div>
+                  </div>
 
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">How often should I change my username?</h3>
-                  <p className="text-gray-600">It depends on your needs. For gaming, you might change frequently. For professional accounts, consistency is key. For social media, consider your brand and audience recognition when deciding to change.</p>
-                </div>
-              </div>
-            </div>
-          </div>
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="text-lg font-semibold text-gray-900 mb-2">Should I use the same username across all platforms?</h4>
+                      <p className="text-gray-600 text-sm">Using consistent usernames helps with brand recognition and makes it easier for people to find you. However, consider platform-specific cultures and whether a username appropriate for gaming is also suitable for professional networks.</p>
+                    </div>
 
-          {/* Tips and Best Practices */}
-          <div className="mt-8 bg-gradient-to-r from-yellow-50 to-amber-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Username Best Practices & Tips</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <div className="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
-                  <i className="fas fa-lightbulb text-yellow-600"></i>
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-3">Keep It Memorable</h3>
-                <p className="text-gray-600 text-sm">Choose usernames that are easy to remember and spell. Avoid complex combinations that people might forget or misspell.</p>
-              </div>
+                    <div>
+                      <h4 className="text-lg font-semibold text-gray-900 mb-2">How long should my username be?</h4>
+                      <p className="text-gray-600 text-sm">The ideal length depends on your platform and purpose. 8-15 characters work well for most platforms, being memorable yet unique. Gaming platforms often accept longer usernames, while social media favors shorter, catchier handles.</p>
+                    </div>
 
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                  <i className="fas fa-shield-alt text-blue-600"></i>
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-3">Avoid Personal Info</h3>
-                <p className="text-gray-600 text-sm">Don't include personal information like birth dates, addresses, or real names in public usernames for privacy and security.</p>
-              </div>
+                    <div>
+                      <h4 className="text-lg font-semibold text-gray-900 mb-2">Is it safe to use this username generator?</h4>
+                      <p className="text-gray-600 text-sm">Yes, our generator is completely safe and private. All username generation happens locally in your browser, and we don't store, track, or transmit any generated usernames. Your privacy is fully protected.</p>
+                    </div>
 
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                  <i className="fas fa-sync text-green-600"></i>
+                    <div>
+                      <h4 className="text-lg font-semibold text-gray-900 mb-2">Can I customize the word combinations used?</h4>
+                      <p className="text-gray-600 text-sm">Currently, our generator uses pre-selected word databases optimized for different styles. However, you can influence the output by choosing different styles, adding numbers and symbols, and adjusting length and capitalization settings.</p>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-3">Stay Consistent</h3>
-                <p className="text-gray-600 text-sm">Use similar usernames across platforms to build brand recognition and make it easier for people to find you.</p>
-              </div>
-
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                  <i className="fas fa-search text-purple-600"></i>
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-3">Check Availability</h3>
-                <p className="text-gray-600 text-sm">Before settling on a username, check its availability across all platforms you plan to use to maintain consistency.</p>
-              </div>
-
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mb-4">
-                  <i className="fas fa-exclamation-triangle text-red-600"></i>
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-3">Avoid Offensive Content</h3>
-                <p className="text-gray-600 text-sm">Ensure your username is appropriate for all audiences and won't get flagged or banned on various platforms.</p>
-              </div>
-
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <div className="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
-                  <i className="fas fa-rocket text-indigo-600"></i>
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-3">Think Long-term</h3>
-                <p className="text-gray-600 text-sm">Choose usernames that will still represent you in the future. Avoid trends that might become outdated quickly.</p>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </main>
