@@ -6,7 +6,7 @@ import Footer from '@/components/Footer';
 import ToolCard from '@/components/ToolCard';
 import { tools, categories } from '@/data/tools';
 import { searchAndFilterTools } from '@/lib/search';
-import { Search, Calculator, FileText, Heart, Zap, Users, Target, TrendingUp, X } from 'lucide-react';
+import { Search, Calculator, FileText, Heart, Zap, Users, Target, TrendingUp } from 'lucide-react';
 
 const AllTools = () => {
   const [location] = useLocation();
@@ -150,80 +150,27 @@ const AllTools = () => {
                 </div>
                 
                 {/* Enhanced Search Bar */}
-                <div className="max-w-3xl mx-auto mb-12">
-                  <form onSubmit={handleSearch} className="relative group">
-                    {/* Search Icon */}
-                    <div className="absolute left-5 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-blue-500 transition-colors duration-200">
-                      <Search size={22} />
+                <div className="max-w-2xl mx-auto mb-12">
+                  <form onSubmit={handleSearch} className="relative">
+                    <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
+                      <Search size={20} />
                     </div>
-                    
-                    {/* Main Input */}
                     <input
                       type="text"
-                      placeholder="Search through 150+ tools... Try 'BMI', 'loan', 'password'"
+                      placeholder="Search through 150+ tools..."
                       value={searchQuery}
                       onChange={handleSearchChange}
-                      className="w-full py-5 pl-14 pr-32 text-lg text-neutral-800 bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl border-2 border-white/30 focus:outline-none focus:ring-4 focus:ring-blue-200 focus:border-blue-300 focus:bg-white transition-all duration-300 placeholder:text-gray-400"
+                      className="w-full py-4 pl-12 pr-20 text-lg text-neutral-800 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 focus:outline-none focus:ring-4 focus:ring-white/30 focus:bg-white transition-all duration-200"
                       data-testid="input-search-all-tools"
                     />
-                    
-                    {/* Clear Button */}
-                    {searchQuery && (
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setSearchQuery('');
-                          updateURL('', selectedCategory);
-                        }}
-                        className="absolute right-24 top-1/2 transform -translate-y-1/2 p-1 text-gray-400 hover:text-gray-600 transition-colors duration-200"
-                        data-testid="button-clear-search"
-                      >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                      </button>
-                    )}
-                    
-                    {/* Search Button */}
                     <button
                       type="submit"
-                      className="absolute right-2 top-2 bottom-2 px-6 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl flex items-center justify-center hover:from-blue-600 hover:to-purple-700 focus:ring-4 focus:ring-blue-200 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
+                      className="absolute right-2 top-2 bottom-2 px-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl flex items-center justify-center hover:from-blue-600 hover:to-purple-700 transition-all duration-200 shadow-lg"
                       data-testid="button-search-all-tools"
                     >
-                      <Search size={18} className="mr-2" />
-                      <span className="text-sm font-semibold hidden sm:inline">Search</span>
+                      <span className="text-sm font-medium">Search</span>
                     </button>
                   </form>
-                  
-                  {/* Search Suggestions */}
-                  <div className="mt-4 flex flex-wrap justify-center gap-2">
-                    {['BMI Calculator', 'Loan Calculator', 'Word Counter', 'Password Generator', 'Tax Calculator'].map((suggestion, index) => (
-                      <button
-                        key={suggestion}
-                        onClick={() => {
-                          setSearchQuery(suggestion);
-                          updateURL(suggestion, selectedCategory);
-                        }}
-                        className="px-4 py-2 text-sm bg-white/20 backdrop-blur-sm text-white rounded-full hover:bg-white/30 transition-all duration-200 border border-white/20 hover:border-white/40"
-                        data-testid={`search-suggestion-${index}`}
-                      >
-                        {suggestion}
-                      </button>
-                    ))}
-                  </div>
-                  
-                  {/* Quick Stats */}
-                  <div className="mt-6 text-center">
-                    <p className="text-blue-100 text-sm">
-                      <span className="font-semibold">{tools.length}</span> tools available • 
-                      <span className="font-semibold"> {filteredTools.length}</span> currently showing
-                      {searchQuery && (
-                        <>
-                          {' '}• Results for "<span className="font-semibold">{searchQuery}</span>"
-                        </>
-                      )}
-                    </p>
-                  </div>
                 </div>
 
                 
