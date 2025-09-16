@@ -1,26 +1,111 @@
-<?xml version='1.0' encoding='utf-8'?>
+
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://dapsiwow.com/tools/word-counter</loc>
-    <lastmod>2025-09-16</lastmod>
+    <lastmod>2025-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dapsiwow.com/tools/character-counter</loc>
-    <lastmod>2025-09-16</lastmod>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dapsiwow.com/tools/sentence-counter</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dapsiwow.com/tools/paragraph-counter</loc>
+    <lastmod>2025-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dapsiwow.com/tools/case-converter</loc>
-    <lastmod>2025-09-16</lastmod>
+    <lastmod>2025-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dapsiwow.com/tools/password-generator</loc>
-    <lastmod>2025-09-16</lastmod>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dapsiwow.com/tools/fake-name-generator</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dapsiwow.com/tools/username-generator</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dapsiwow.com/tools/fake-address-generator</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dapsiwow.com/tools/qr-text-generator</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dapsiwow.com/tools/font-style-changer</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dapsiwow.com/tools/reverse-text-tool</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dapsiwow.com/tools/text-to-qr-code</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dapsiwow.com/tools/text-to-binary-converter</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dapsiwow.com/tools/binary-to-text-converter</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dapsiwow.com/tools/qr-code-scanner</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dapsiwow.com/tools/markdown-to-html</loc>
+    <lastmod>2025-01-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dapsiwow.com/tools/lorem-ipsum-generator</loc>
+    <lastmod>2025-01-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
