@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -174,9 +173,9 @@ export default function LoremIpsumGenerator() {
           })}
         </script>
       </Helmet>
-      
+
       <Header />
-      
+
       <main>
         {/* Hero Section */}
         <section className="relative py-20 sm:py-28 lg:py-32 overflow-hidden">
@@ -203,14 +202,14 @@ export default function LoremIpsumGenerator() {
           {/* Main Generator Card */}
           <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                 {/* Input Section */}
-                <div className="lg:col-span-1.5 p-8 lg:p-12 space-y-8">
+                <div className="p-8 lg:p-12 space-y-8">
                   <div>
                     <h2 className="text-3xl font-bold text-gray-900 mb-2">Generation Settings</h2>
                     <p className="text-gray-600">Configure your placeholder text requirements</p>
                   </div>
-                  
+
                   <div className="space-y-6">
                     {/* Type Selection */}
                     <div className="space-y-3">
@@ -294,9 +293,9 @@ export default function LoremIpsumGenerator() {
                 </div>
 
                 {/* Results Section */}
-                <div className="lg:col-span-1.5 bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
                   <h2 className="text-2xl font-bold text-gray-900 mb-8">Generated Text</h2>
-                  
+
                   {generatedText ? (
                     <div className="space-y-6" data-testid="text-results">
                       {/* Generated Text Display */}
@@ -672,7 +671,7 @@ export default function LoremIpsumGenerator() {
           </div>
         </div>
       </main>
-      
+
       <Footer />
     </div>
   );
