@@ -150,27 +150,66 @@ const AllTools = () => {
                 </div>
                 
                 {/* Enhanced Search Bar */}
-                <div className="max-w-2xl mx-auto mb-12">
-                  <form onSubmit={handleSearch} className="relative">
-                    <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
-                      <Search size={20} />
+                <div className="max-w-3xl mx-auto mb-12">
+                  <div className="relative group">
+                    <form onSubmit={handleSearch} className="relative">
+                      <div className="absolute left-5 top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-blue-500 transition-colors duration-200">
+                        <Search size={22} />
+                      </div>
+                      <input
+                        type="text"
+                        placeholder="Search through 150+ tools... (e.g., calculator, BMI, converter)"
+                        value={searchQuery}
+                        onChange={handleSearchChange}
+                        className="w-full py-5 pl-14 pr-32 text-lg text-neutral-800 bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl border-2 border-white/30 focus:outline-none focus:ring-4 focus:ring-white/40 focus:border-white/50 focus:bg-white focus:shadow-3xl transition-all duration-300 placeholder:text-gray-400"
+                        data-testid="input-search-all-tools"
+                      />
+                      <button
+                        type="submit"
+                        className="absolute right-2 top-2 bottom-2 px-6 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl flex items-center justify-center hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all duration-200 shadow-lg hover:shadow-xl active:scale-95"
+                        data-testid="button-search-all-tools"
+                      >
+                        <span className="text-sm font-medium hidden sm:inline">Search</span>
+                        <Search size={18} className="sm:hidden" />
+                      </button>
+                    </form>
+                    
+                    {/* Search Enhancement Features */}
+                    <div className="mt-4 flex flex-wrap items-center justify-center gap-2 text-sm text-blue-100">
+                      <span className="opacity-75">Popular searches:</span>
+                      <button 
+                        onClick={() => {setSearchQuery('calculator'); handleSearch();}}
+                        className="px-3 py-1 bg-white/20 rounded-full hover:bg-white/30 transition-all duration-200 cursor-pointer"
+                      >
+                        Calculator
+                      </button>
+                      <button 
+                        onClick={() => {setSearchQuery('BMI'); handleSearch();}}
+                        className="px-3 py-1 bg-white/20 rounded-full hover:bg-white/30 transition-all duration-200 cursor-pointer"
+                      >
+                        BMI
+                      </button>
+                      <button 
+                        onClick={() => {setSearchQuery('converter'); handleSearch();}}
+                        className="px-3 py-1 bg-white/20 rounded-full hover:bg-white/30 transition-all duration-200 cursor-pointer"
+                      >
+                        Converter
+                      </button>
+                      <button 
+                        onClick={() => {setSearchQuery('generator'); handleSearch();}}
+                        className="px-3 py-1 bg-white/20 rounded-full hover:bg-white/30 transition-all duration-200 cursor-pointer"
+                      >
+                        Generator
+                      </button>
                     </div>
-                    <input
-                      type="text"
-                      placeholder="Search through 150+ tools..."
-                      value={searchQuery}
-                      onChange={handleSearchChange}
-                      className="w-full py-4 pl-12 pr-20 text-lg text-neutral-800 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 focus:outline-none focus:ring-4 focus:ring-white/30 focus:bg-white transition-all duration-200"
-                      data-testid="input-search-all-tools"
-                    />
-                    <button
-                      type="submit"
-                      className="absolute right-2 top-2 bottom-2 px-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl flex items-center justify-center hover:from-blue-600 hover:to-purple-700 transition-all duration-200 shadow-lg"
-                      data-testid="button-search-all-tools"
-                    >
-                      <span className="text-sm font-medium">Search</span>
-                    </button>
-                  </form>
+                    
+                    {/* Search Tips */}
+                    {searchQuery.length === 0 && (
+                      <div className="mt-3 text-center text-blue-100/80 text-sm">
+                        💡 Try searching by category (finance, health, text) or function (calculate, convert, generate)
+                      </div>
+                    )}
+                  </div>
                 </div>
 
                 
