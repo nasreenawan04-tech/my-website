@@ -243,11 +243,11 @@ export default function TermsOfService() {
                 </div>
                 <h3 className="text-xl font-bold text-neutral-800 mb-4">150+ Free Tools</h3>
                 <p className="text-neutral-600 mb-4">
-                  Access to a comprehensive collection of online utilities including finance calculators, PDF processors, text tools, and health calculators.
+                  Access to a comprehensive collection of online utilities including finance calculators, document processors, text tools, and health calculators.
                 </p>
                 <ul className="text-sm text-neutral-500 space-y-1">
                   <li>• Financial calculators and converters</li>
-                  <li>• PDF processing and conversion</li>
+                  <li>• Document processing and conversion</li>
                   <li>• Text analysis and formatting</li>
                 </ul>
               </div>

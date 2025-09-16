@@ -366,7 +366,7 @@ export default function PrivacyPolicy() {
                 <h3 className="text-xl font-bold text-neutral-800 mb-4">Immediate Deletion</h3>
                 <p className="text-neutral-600 mb-4">Files uploaded for processing are automatically deleted immediately after your session ends.</p>
                 <div className="text-sm text-neutral-500 space-y-1">
-                  <div>• PDF conversions</div>
+                  <div>• Document conversions</div>
                   <div>• Image processing</div>
                   <div>• Document uploads</div>
                 </div>

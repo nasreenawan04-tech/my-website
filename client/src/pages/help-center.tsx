@@ -29,7 +29,7 @@ const HelpCenter = () => {
       name: 'File Tools',
       icon: 'FileText',
       color: 'from-red-500 to-red-600',
-      description: 'PDF and document processing'
+      description: 'Document and file processing'
     },
     {
       id: 'technical',
@@ -92,7 +92,7 @@ const HelpCenter = () => {
     },
     {
       question: "What file formats are supported?",
-      answer: "We support all major file formats including PDF, Word, Excel, PowerPoint, JPG, PNG, WebP, MP4, and many more. Each tool specifies its supported formats.",
+      answer: "We support all major file formats including Word, Excel, PowerPoint, JPG, PNG, WebP, MP4, and many more. Each tool specifies its supported formats.",
       category: 'file-tools'
     },
     {
@@ -123,7 +123,7 @@ const HelpCenter = () => {
   ];
 
   const popularTopics = [
-    { title: "How to convert PDF to Word", category: "file-tools", views: "15.2k" },
+    { title: "How to format text documents", category: "text-tools", views: "15.2k" },
     { title: "Using the Loan Calculator", category: "finance-tools", views: "12.8k" },
     { title: "Privacy and Data Security", category: "account", views: "9.4k" },
     { title: "Commercial Use Guidelines", category: "business", views: "7.1k" },

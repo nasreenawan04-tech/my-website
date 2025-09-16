@@ -648,7 +648,7 @@ What makes a good sentence? Is it the length, the structure, or the meaning it c
               
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">Does the tool work with different languages and formats?</h3>
-                <p className="text-gray-600 mb-6">The sentence counter works best with English text, as it relies on English punctuation patterns and sentence structure rules. It can handle various text formats including plain text, documents copied from Word, PDFs, and web content. For other languages, accuracy may vary based on punctuation conventions.</p>
+                <p className="text-gray-600 mb-6">The sentence counter works best with English text, as it relies on English punctuation patterns and sentence structure rules. It can handle various text formats including plain text, documents copied from Word, and web content. For other languages, accuracy may vary based on punctuation conventions.</p>
               </div>
               
               <div>

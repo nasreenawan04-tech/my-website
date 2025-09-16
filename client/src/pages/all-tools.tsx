@@ -49,7 +49,7 @@ const AllTools = () => {
       <Helmet>
         <title>DapsiWow Tools Directory - 150+ Free Online Tools | Finance, Text, Health</title>
         <meta name="description" content="Browse all 150+ professional-grade free online tools including Finance Calculators, Text Analyzers, Health Trackers, and Productivity Tools. No registration required." />
-        <meta name="keywords" content="online tools directory, free tools, PDF converter, calculator tools, text tools, finance tools, health tools" />
+        <meta name="keywords" content="online tools directory, free tools, calculator tools, text tools, finance tools, health tools" />
         <link rel="canonical" href="/tools" />
       </Helmet>
 
