@@ -300,9 +300,9 @@ const UsernameGenerator = () => {
           {/* Main Generator Card */}
           <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+              <div className="grid grid-cols-1 lg:grid-cols-[1.7fr_1.3fr] gap-0">
                 {/* Input Section */}
-                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
+                <div className="p-8 lg:p-12 space-y-8"></div>
                   <div>
                     <h2 className="text-3xl font-bold text-gray-900 mb-2">Username Configuration</h2>
                     <p className="text-gray-600">Customize your username preferences to generate the perfect handle</p>
