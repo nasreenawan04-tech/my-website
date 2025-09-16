@@ -36,7 +36,6 @@ class SitemapSplitter:
                     r'/finance$',  # Finance category page
                     r'/health$',  # Health category page
                     r'/text$',  # Text category page
-                    r'/pdf$',  # PDF category page
                 ]
             },
             'finance': {
@@ -104,37 +103,6 @@ class SitemapSplitter:
                     r'swimming.*calorie',
                     r'alcohol.*calorie',
                     r'smoking.*cost',
-                ]
-            },
-            'pdf': {
-                'file': 'sitemap-pdf.xml',
-                'patterns': [
-                    r'merge.*pdf',
-                    r'split.*pdf',
-                    r'compress.*pdf',
-                    r'pdf.*compress',
-                    r'pdf.*merge',
-                    r'pdf.*split',
-                    r'pdf.*convert',
-                    r'convert.*pdf',
-                    r'pdf.*to.*image',
-                    r'image.*to.*pdf',
-                    r'pdf.*to.*word',
-                    r'word.*to.*pdf',
-                    r'pdf.*to.*excel',
-                    r'excel.*to.*pdf',
-                    r'pdf.*encrypt',
-                    r'encrypt.*pdf',
-                    r'pdf.*decrypt',
-                    r'decrypt.*pdf',
-                    r'pdf.*rotate',
-                    r'rotate.*pdf',
-                    r'pdf.*watermark',
-                    r'watermark.*pdf',
-                    r'pdf.*sign',
-                    r'sign.*pdf',
-                    r'pdf.*edit',
-                    r'edit.*pdf',
                 ]
             },
             'text': {
@@ -242,10 +210,6 @@ class SitemapSplitter:
             (f"{self.base_url}/tools/case-converter", self.current_date, "weekly", "0.8"),
             (f"{self.base_url}/tools/password-generator", self.current_date, "weekly", "0.8"),
             
-            # PDF tools (examples)
-            (f"{self.base_url}/tools/merge-pdf", self.current_date, "weekly", "0.8"),
-            (f"{self.base_url}/tools/split-pdf", self.current_date, "weekly", "0.8"),
-            (f"{self.base_url}/tools/compress-pdf", self.current_date, "weekly", "0.8"),
         ]
         
         print(f"Created {len(example_urls)} example URLs for demonstration")
