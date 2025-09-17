@@ -138,11 +138,6 @@ const TextToBinaryConverter = () => {
     navigator.clipboard.writeText(text);
   };
 
-  const handleClear = () => {
-    setInputText('');
-    setConversionResult(null);
-  };
-
   const handleSampleText = () => {
     setInputText('Hello World! Welcome to DapsiWow\'s Text to Binary Converter. This tool transforms your text into binary code.');
   };
@@ -416,14 +411,6 @@ const TextToBinaryConverter = () => {
                       data-testid="button-sample-text"
                     >
                       Sample
-                    </Button>
-                    <Button
-                      onClick={handleClear}
-                      variant="outline"
-                      className="h-12 sm:h-14 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-base sm:text-lg rounded-xl"
-                      data-testid="button-clear"
-                    >
-                      Clear
                     </Button>
                     <Button
                       onClick={resetConverter}
