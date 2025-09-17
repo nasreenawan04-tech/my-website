@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -290,7 +291,7 @@ const TextToDecimalConverter = () => {
                           <SelectValue placeholder="Select encoding" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="utf8">Unicode (Full Range)</SelectItem>
+                          <SelectItem value="utf8">UTF-8 (Unicode)</SelectItem>
                           <SelectItem value="ascii">ASCII (7-bit)</SelectItem>
                         </SelectContent>
                       </Select>
@@ -537,39 +538,27 @@ const TextToDecimalConverter = () => {
                         </div>
                       )}
 
-                      {/* Conversion Statistics */}
-                      <div className="bg-gray-50 border-2 border-gray-200 rounded-xl p-3 sm:p-4">
-                        <h4 className="text-sm sm:text-base font-semibold text-gray-900 mb-3">Conversion Statistics</h4>
-                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 text-xs sm:text-sm">
-                          <div className="bg-white p-2 sm:p-3 rounded-lg border border-gray-200">
-                            <div className="text-gray-600">Characters</div>
-                            <div className="font-mono font-semibold text-blue-600" data-testid="stat-char-count">
-                              {conversionResult.charCount}
-                            </div>
+                      {/* Text Statistics */}
+                      <div className="bg-white rounded-xl p-3 sm:p-4 shadow-sm border border-gray-200" data-testid="text-statistics">
+                        <h3 className="text-sm sm:text-base font-bold text-gray-900 mb-4">Text Statistics</h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div className="bg-blue-50 rounded-lg p-4 text-center">
+                            <div className="text-2xl font-bold text-blue-600" data-testid="char-count">{conversionResult.charCount}</div>
+                            <div className="text-sm text-blue-700 font-medium">Characters</div>
                           </div>
-                          <div className="bg-white p-2 sm:p-3 rounded-lg border border-gray-200">
-                            <div className="text-gray-600">Bytes</div>
-                            <div className="font-mono font-semibold text-green-600" data-testid="stat-byte-count">
-                              {conversionResult.byteCount}
-                            </div>
-                          </div>
-                          <div className="bg-white p-2 sm:p-3 rounded-lg border border-gray-200 col-span-2 sm:col-span-1">
-                            <div className="text-gray-600">Timestamp</div>
-                            <div className="font-mono font-semibold text-purple-600 text-xs" data-testid="stat-timestamp">
-                              {conversionResult.timestamp.toLocaleTimeString()}
-                            </div>
+                          <div className="bg-green-50 rounded-lg p-4 text-center">
+                            <div className="text-2xl font-bold text-green-600" data-testid="byte-count">{conversionResult.byteCount}</div>
+                            <div className="text-sm text-green-700 font-medium">Bytes</div>
                           </div>
                         </div>
                       </div>
                     </div>
                   ) : (
-                    <div className="text-center py-8 sm:py-12">
-                      <div className="text-gray-400 text-lg sm:text-xl font-medium">
-                        Enter text above to see the converted decimal codes
+                    <div className="text-center py-12 sm:py-16" data-testid="no-results">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
+                        <div className="text-2xl sm:text-3xl font-bold text-gray-400">123</div>
                       </div>
-                      <p className="text-gray-500 text-sm sm:text-base mt-2">
-                        Example: "Hello" converts to 72 101 108 108 111
-                      </p>
+                      <p className="text-gray-500 text-base sm:text-lg px-4">Enter text to convert to decimal character codes</p>
                     </div>
                   )}
                 </div>
@@ -577,59 +566,504 @@ const TextToDecimalConverter = () => {
             </CardContent>
           </Card>
 
-          {/* Information Section */}
-          <div className="mt-8 sm:mt-12 lg:mt-16 grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-            <Card className="bg-white/80 backdrop-blur-sm border-0 shadow-lg rounded-xl sm:rounded-2xl">
-              <CardContent className="p-6 sm:p-8">
-                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-4">How to Use This Tool</h3>
-                <div className="space-y-4 text-sm sm:text-base text-gray-600">
-                  <div className="flex gap-3">
-                    <span className="flex-shrink-0 w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs font-bold">1</span>
-                    <p>Enter any text you want to convert to decimal character codes</p>
+          {/* SEO Content Sections */}
+          <div className="mt-16 space-y-8">
+            {/* What is Text to Decimal Conversion */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">What is Text to Decimal Conversion?</h2>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    <strong>Text to decimal conversion</strong> is the fundamental process of transforming human-readable text into decimal numerical representations of each character's Unicode or ASCII code point. This essential computer science concept allows text data to be represented in a numerical format that computers can efficiently process, store, and transmit across different systems and platforms.
+                  </p>
+                  <p>
+                    Our professional text encoder supports comprehensive UTF-8 and ASCII encoding options with multiple output formats including space-separated, comma-separated, and newline-separated decimal values. This flexibility makes it perfect for programming projects, data analysis, debugging applications, educational purposes, and understanding how computers internally represent textual information.
+                  </p>
+                  <p>
+                    The tool features real-time conversion as you type, advanced customization options including prefix and suffix support, and intelligent text processing that handles special characters, numbers, and international Unicode characters appropriately for each encoding system. All processing happens locally in your browser for complete privacy and security.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Encoding Systems and Output Formats */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Understanding Character Encoding Systems</h2>
+                <p className="text-gray-600 mb-8">Character encoding systems define how text characters are mapped to numerical values. Our converter supports both modern Unicode (UTF-8) and legacy ASCII encoding standards, each with specific use cases and character ranges.</p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="space-y-4">
+                    <h3 className="text-xl font-semibold text-gray-900">UTF-8 Encoding</h3>
+                    <div className="bg-blue-50 rounded-lg p-6">
+                      <p className="text-blue-800 text-sm mb-4">
+                        UTF-8 is a variable-width encoding capable of representing any Unicode character using 1-4 bytes. It's backward compatible with ASCII and supports international characters, emojis, and special symbols from all languages worldwide.
+                      </p>
+                      <div className="space-y-3">
+                        <div className="bg-white p-3 rounded border">
+                          <h4 className="font-medium text-blue-900 mb-1">Example: "Hello 世界"</h4>
+                          <code className="text-xs font-mono text-blue-800">72 101 108 108 111 32 19990 30028</code>
+                        </div>
+                        <div className="space-y-2">
+                          <h4 className="font-medium text-blue-900 text-sm">Best for:</h4>
+                          <ul className="text-xs text-blue-700 space-y-1">
+                            <li>• Modern web applications and websites</li>
+                            <li>• International text and multilingual content</li>
+                            <li>• Unicode characters and emojis</li>
+                            <li>• Contemporary software development</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex gap-3">
-                    <span className="flex-shrink-0 w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs font-bold">2</span>
-                    <p>Select encoding (UTF-8 for modern text, ASCII for legacy compatibility)</p>
+
+                  <div className="space-y-4">
+                    <h3 className="text-xl font-semibold text-gray-900">ASCII Encoding</h3>
+                    <div className="bg-orange-50 rounded-lg p-6">
+                      <p className="text-orange-800 text-sm mb-4">
+                        ASCII uses exactly 7 bits to represent 128 characters (0-127), including English letters, numbers, punctuation, and basic control characters. It's limited to basic English text but ensures maximum compatibility with legacy systems.
+                      </p>
+                      <div className="space-y-3">
+                        <div className="bg-white p-3 rounded border">
+                          <h4 className="font-medium text-orange-900 mb-1">Example: "Hello!"</h4>
+                          <code className="text-xs font-mono text-orange-800">72 101 108 108 111 33</code>
+                        </div>
+                        <div className="space-y-2">
+                          <h4 className="font-medium text-orange-900 text-sm">Best for:</h4>
+                          <ul className="text-xs text-orange-700 space-y-1">
+                            <li>• Legacy systems and older software</li>
+                            <li>• Basic English-only text processing</li>
+                            <li>• Embedded systems with memory constraints</li>
+                            <li>• Protocol specifications and standards</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex gap-3">
-                    <span className="flex-shrink-0 w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs font-bold">3</span>
-                    <p>Choose output format (space, comma, or newline separated)</p>
-                  </div>
-                  <div className="flex gap-3">
-                    <span className="flex-shrink-0 w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs font-bold">4</span>
-                    <p>View the decimal codes and copy results to your clipboard</p>
+                </div>
+
+                <div className="mt-8">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Output Format Options</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="bg-green-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-green-900 mb-2">Space Separated</h4>
+                      <code className="text-sm font-mono text-green-800 block mb-2">72 101 108 108 111</code>
+                      <p className="text-xs text-green-700">Most common format, easy to read and process. Ideal for general use and copy-paste operations.</p>
+                    </div>
+                    <div className="bg-purple-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-purple-900 mb-2">Comma Separated</h4>
+                      <code className="text-sm font-mono text-purple-800 block mb-2">72, 101, 108, 108, 111</code>
+                      <p className="text-xs text-purple-700">CSV-compatible format perfect for spreadsheets and data analysis applications.</p>
+                    </div>
+                    <div className="bg-teal-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-teal-900 mb-2">Newline Separated</h4>
+                      <code className="text-sm font-mono text-teal-800 block mb-2">72<br/>101<br/>108</code>
+                      <p className="text-xs text-teal-700">Each value on separate line, excellent for programming and data processing scripts.</p>
+                    </div>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-white/80 backdrop-blur-sm border-0 shadow-lg rounded-xl sm:rounded-2xl">
-              <CardContent className="p-6 sm:p-8">
-                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-4">Key Features</h3>
-                <div className="space-y-3 text-sm sm:text-base text-gray-600">
-                  <div className="flex items-start gap-3">
-                    <span className="text-green-500 text-sm">✓</span>
-                    <p>Support for UTF-8 and ASCII character encoding</p>
+            {/* Professional Applications and Use Cases */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Professional Use Cases</h2>
+                  <p className="text-gray-600 mb-6">Text to decimal conversion serves critical functions across numerous professional domains and educational contexts. Understanding these applications helps you leverage the tool effectively.</p>
+                  
+                  <div className="space-y-4">
+                    <div className="bg-blue-50 rounded-lg p-4">
+                      <h3 className="font-semibold text-blue-900 mb-2">Software Development</h3>
+                      <ul className="text-blue-800 text-sm space-y-1">
+                        <li>• Character encoding debugging</li>
+                        <li>• Data serialization and protocols</li>
+                        <li>• File format specification development</li>
+                        <li>• Cross-platform compatibility testing</li>
+                      </ul>
+                    </div>
+                    
+                    <div className="bg-green-50 rounded-lg p-4">
+                      <h3 className="font-semibold text-green-900 mb-2">Data Analysis & Processing</h3>
+                      <ul className="text-green-800 text-sm space-y-1">
+                        <li>• Text preprocessing for machine learning</li>
+                        <li>• Character frequency analysis</li>
+                        <li>• Data migration and transformation</li>
+                        <li>• Quality assurance validation</li>
+                      </ul>
+                    </div>
+                    
+                    <div className="bg-purple-50 rounded-lg p-4">
+                      <h3 className="font-semibold text-purple-900 mb-2">Education & Research</h3>
+                      <ul className="text-purple-800 text-sm space-y-1">
+                        <li>• Computer science fundamentals</li>
+                        <li>• Programming assignments</li>
+                        <li>• Algorithm implementation</li>
+                        <li>• Academic research projects</li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-orange-50 rounded-lg p-4">
+                      <h3 className="font-semibold text-orange-900 mb-2">Cybersecurity & Forensics</h3>
+                      <ul className="text-orange-800 text-sm space-y-1">
+                        <li>• Digital evidence analysis</li>
+                        <li>• Malware reverse engineering</li>
+                        <li>• Data obfuscation techniques</li>
+                        <li>• Incident response investigation</li>
+                      </ul>
+                    </div>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-green-500 text-sm">✓</span>
-                    <p>Multiple output formats: space, comma, and newline separated</p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Advanced Features & Benefits</h2>
+                  <p className="text-gray-600 mb-6">Our text to decimal converter provides professional-grade features designed for accuracy, efficiency, and ease of use across all skill levels.</p>
+                  
+                  <div className="space-y-4">
+                    <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-blue-900 mb-2">Real-Time Conversion</h4>
+                      <p className="text-blue-800 text-sm">Automatic encoding as you type with 300ms debouncing for optimal performance and immediate feedback on character processing.</p>
+                    </div>
+                    <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-l-4 border-green-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-green-900 mb-2">Multiple Output Formats</h4>
+                      <p className="text-green-800 text-sm">View results in decimal, binary, and hexadecimal formats simultaneously with customizable display options and formatting.</p>
+                    </div>
+                    <div className="bg-gradient-to-r from-purple-50 to-violet-50 border-l-4 border-purple-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-purple-900 mb-2">Text Customization</h4>
+                      <p className="text-purple-800 text-sm">Add custom prefixes and suffixes to encoded output for specific formatting requirements and workflow integration.</p>
+                    </div>
+                    <div className="bg-gradient-to-r from-orange-50 to-red-50 border-l-4 border-orange-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-orange-900 mb-2">Privacy & Security</h4>
+                      <p className="text-orange-800 text-sm">All processing happens locally in your browser - no data transmitted to servers, ensuring complete privacy and security.</p>
+                    </div>
+                    <div className="bg-gradient-to-r from-teal-50 to-cyan-50 border-l-4 border-teal-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-teal-900 mb-2">Cross-Platform Compatibility</h4>
+                      <p className="text-teal-800 text-sm">Works on all modern browsers and devices with responsive design and accessibility features for universal access.</p>
+                    </div>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-green-500 text-sm">✓</span>
-                    <p>Real-time conversion with instant results</p>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Common Conversion Examples and Patterns */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Common Conversion Examples & Character Patterns</h2>
+                <p className="text-gray-600 mb-8">Understanding how different character types convert to decimal values helps you predict and validate conversion results. These examples demonstrate common patterns and ranges for various character categories.</p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div className="bg-blue-50 rounded-lg p-6">
+                    <h3 className="font-semibold text-blue-900 mb-4">Basic ASCII Characters</h3>
+                    <div className="space-y-3">
+                      <div className="bg-white p-3 rounded border">
+                        <h4 className="font-medium text-blue-900 mb-1">Uppercase Letters (A-Z)</h4>
+                        <code className="text-xs font-mono text-blue-800">A=65, B=66, C=67, Z=90</code>
+                      </div>
+                      <div className="bg-white p-3 rounded border">
+                        <h4 className="font-medium text-blue-900 mb-1">Lowercase Letters (a-z)</h4>
+                        <code className="text-xs font-mono text-blue-800">a=97, b=98, c=99, z=122</code>
+                      </div>
+                      <div className="bg-white p-3 rounded border">
+                        <h4 className="font-medium text-blue-900 mb-1">Numbers (0-9)</h4>
+                        <code className="text-xs font-mono text-blue-800">0=48, 1=49, 5=53, 9=57</code>
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-green-500 text-sm">✓</span>
-                    <p>Optional binary and hexadecimal output display</p>
+
+                  <div className="bg-green-50 rounded-lg p-6">
+                    <h3 className="font-semibold text-green-900 mb-4">Special Characters</h3>
+                    <div className="space-y-3">
+                      <div className="bg-white p-3 rounded border">
+                        <h4 className="font-medium text-green-900 mb-1">Common Punctuation</h4>
+                        <code className="text-xs font-mono text-green-800">!=33, ?=63, .=46, ,=44</code>
+                      </div>
+                      <div className="bg-white p-3 rounded border">
+                        <h4 className="font-medium text-green-900 mb-1">Whitespace Characters</h4>
+                        <code className="text-xs font-mono text-green-800">Space=32, Tab=9, Newline=10</code>
+                      </div>
+                      <div className="bg-white p-3 rounded border">
+                        <h4 className="font-medium text-green-900 mb-1">Mathematical Symbols</h4>
+                        <code className="text-xs font-mono text-green-800">+=43, -=45, *=42, /=47</code>
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-green-500 text-sm">✓</span>
-                    <p>Copy to clipboard functionality for easy sharing</p>
+
+                  <div className="bg-purple-50 rounded-lg p-6">
+                    <h3 className="font-semibold text-purple-900 mb-4">International Characters</h3>
+                    <div className="space-y-3">
+                      <div className="bg-white p-3 rounded border">
+                        <h4 className="font-medium text-purple-900 mb-1">European Characters</h4>
+                        <code className="text-xs font-mono text-purple-800">é=233, ñ=241, ü=252</code>
+                      </div>
+                      <div className="bg-white p-3 rounded border">
+                        <h4 className="font-medium text-purple-900 mb-1">Currency Symbols</h4>
+                        <code className="text-xs font-mono text-purple-800">$=36, €=8364, £=163</code>
+                      </div>
+                      <div className="bg-white p-3 rounded border">
+                        <h4 className="font-medium text-purple-900 mb-1">Emoji Examples</h4>
+                        <code className="text-xs font-mono text-purple-800">😀=128512, ❤️=10084</code>
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <span className="text-green-500 text-sm">✓</span>
-                    <p>Detailed conversion statistics and error handling</p>
+                </div>
+
+                <div className="mt-8 bg-gray-50 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Practical Conversion Examples</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-4">
+                      <div className="bg-white p-4 rounded border">
+                        <h4 className="font-medium text-gray-900 mb-2">Programming Keywords</h4>
+                        <p className="text-sm text-gray-600 mb-2">"function" converts to:</p>
+                        <code className="text-xs font-mono text-gray-800 block">102 117 110 99 116 105 111 110</code>
+                      </div>
+                      <div className="bg-white p-4 rounded border">
+                        <h4 className="font-medium text-gray-900 mb-2">Common Passwords</h4>
+                        <p className="text-sm text-gray-600 mb-2">"Password123!" converts to:</p>
+                        <code className="text-xs font-mono text-gray-800 block">80 97 115 115 119 111 114 100 49 50 51 33</code>
+                      </div>
+                    </div>
+                    <div className="space-y-4">
+                      <div className="bg-white p-4 rounded border">
+                        <h4 className="font-medium text-gray-900 mb-2">Email Address</h4>
+                        <p className="text-sm text-gray-600 mb-2">"user@domain.com" converts to:</p>
+                        <code className="text-xs font-mono text-gray-800 block">117 115 101 114 64 100 111 109 97 105 110 46 99 111 109</code>
+                      </div>
+                      <div className="bg-white p-4 rounded border">
+                        <h4 className="font-medium text-gray-900 mb-2">URL Components</h4>
+                        <p className="text-sm text-gray-600 mb-2">"https://" converts to:</p>
+                        <code className="text-xs font-mono text-gray-800 block">104 116 116 112 115 58 47 47</code>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Best Practices and Troubleshooting */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Best Practices & Troubleshooting Guide</h2>
+                <p className="text-gray-600 mb-8">Follow these professional guidelines to ensure accurate text to decimal conversion results and troubleshoot common issues that may arise during the encoding process.</p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Conversion Best Practices</h3>
+                    <div className="space-y-4">
+                      <div className="bg-blue-50 rounded-lg p-4">
+                        <h4 className="font-semibold text-blue-900 mb-2">Choose the Right Encoding</h4>
+                        <ul className="text-blue-800 text-sm space-y-1">
+                          <li>• Use UTF-8 for modern applications and international text</li>
+                          <li>• Select ASCII only for legacy systems or basic English text</li>
+                          <li>• Consider the target system's encoding capabilities</li>
+                          <li>• Test with sample data before processing large amounts</li>
+                        </ul>
+                      </div>
+                      <div className="bg-green-50 rounded-lg p-4">
+                        <h4 className="font-semibold text-green-900 mb-2">Output Format Selection</h4>
+                        <ul className="text-green-800 text-sm space-y-1">
+                          <li>• Use space-separated for general purposes and readability</li>
+                          <li>• Choose comma-separated for CSV imports and data analysis</li>
+                          <li>• Select newline-separated for programming scripts</li>
+                          <li>• Consider the destination application's requirements</li>
+                        </ul>
+                      </div>
+                      <div className="bg-purple-50 rounded-lg p-4">
+                        <h4 className="font-semibold text-purple-900 mb-2">Data Validation</h4>
+                        <ul className="text-purple-800 text-sm space-y-1">
+                          <li>• Verify output matches expected character ranges</li>
+                          <li>• Check character count against original text length</li>
+                          <li>• Test conversion with known character examples</li>
+                          <li>• Validate special characters and unicode symbols</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Common Issues & Solutions</h3>
+                    <div className="space-y-4">
+                      <div className="bg-red-50 rounded-lg p-4">
+                        <h4 className="font-semibold text-red-900 mb-2">Unexpected Character Values</h4>
+                        <p className="text-red-800 text-sm mb-2">Problem: Special characters showing wrong decimal values</p>
+                        <p className="text-red-700 text-xs">Solution: Ensure UTF-8 encoding is selected for international characters. ASCII encoding replaces non-ASCII characters with "?" (decimal 63).</p>
+                      </div>
+                      <div className="bg-orange-50 rounded-lg p-4">
+                        <h4 className="font-semibold text-orange-900 mb-2">Large Numbers for Simple Characters</h4>
+                        <p className="text-orange-800 text-sm mb-2">Problem: Basic characters showing very high decimal values</p>
+                        <p className="text-orange-700 text-xs">Solution: This indicates Unicode characters or emojis. Switch to ASCII encoding if only basic English characters are needed.</p>
+                      </div>
+                      <div className="bg-yellow-50 rounded-lg p-4">
+                        <h4 className="font-semibold text-yellow-900 mb-2">Inconsistent Output Format</h4>
+                        <p className="text-yellow-800 text-sm mb-2">Problem: Numbers not separated as expected</p>
+                        <p className="text-yellow-700 text-xs">Solution: Check the output format setting (space, comma, or newline separated) and select the appropriate option for your needs.</p>
+                      </div>
+                      <div className="bg-teal-50 rounded-lg p-4">
+                        <h4 className="font-semibold text-teal-900 mb-2">Copy-Paste Issues</h4>
+                        <p className="text-teal-800 text-sm mb-2">Problem: Copied text loses formatting or contains extra characters</p>
+                        <p className="text-teal-700 text-xs">Solution: Use the built-in copy buttons for each output format. Avoid manual text selection which may include extra whitespace.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-8 bg-gray-50 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Performance Optimization Tips</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="bg-white p-4 rounded border">
+                      <h4 className="font-medium text-gray-900 mb-2">Large Text Processing</h4>
+                      <p className="text-gray-700 text-sm">For very large texts, consider processing in smaller chunks to maintain browser responsiveness and avoid memory issues.</p>
+                    </div>
+                    <div className="bg-white p-4 rounded border">
+                      <h4 className="font-medium text-gray-900 mb-2">Real-Time Conversion</h4>
+                      <p className="text-gray-700 text-sm">The tool automatically converts as you type with a 300ms delay. For immediate results, click the Convert button.</p>
+                    </div>
+                    <div className="bg-white p-4 rounded border">
+                      <h4 className="font-medium text-gray-900 mb-2">Browser Compatibility</h4>
+                      <p className="text-gray-700 text-sm">Works on all modern browsers. For older browsers, ensure JavaScript is enabled and try refreshing the page.</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Frequently Asked Questions */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h2>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">What is text to decimal conversion used for?</h3>
+                      <p className="text-gray-600 text-sm">
+                        Text to decimal conversion transforms human-readable text into numerical character codes. It's essential for programming, data processing, debugging character encoding issues, educational purposes, and understanding how computers internally represent text data.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">What's the difference between UTF-8 and ASCII encoding?</h3>
+                      <p className="text-gray-600 text-sm">
+                        UTF-8 supports all Unicode characters (including international languages and emojis) using 1-4 bytes per character. ASCII uses exactly 1 byte for 128 basic English characters (0-127). Choose UTF-8 for modern applications and ASCII for legacy systems.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I convert emojis and special characters?</h3>
+                      <p className="text-gray-600 text-sm">
+                        Yes, when using UTF-8 encoding, the converter handles emojis, international characters, mathematical symbols, and other Unicode characters. ASCII encoding will replace non-ASCII characters with "?" (decimal 63).
+                      </p>
+                    </div>
+
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">How secure is this text to decimal converter?</h3>
+                      <p className="text-gray-600 text-sm">
+                        Completely secure! All conversion processing happens locally in your browser using client-side JavaScript. No text data is transmitted to servers, stored remotely, or accessed by third parties, ensuring complete privacy.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Which output format should I choose?</h3>
+                      <p className="text-gray-600 text-sm">
+                        Space-separated is most common and readable. Comma-separated works well for spreadsheets and CSV files. Newline-separated is ideal for programming scripts and databases. Choose based on your intended use case.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Is there a limit to how much text I can convert?</h3>
+                      <p className="text-gray-600 text-sm">
+                        There's no strict character limit, but very large texts may take longer to process due to browser memory constraints. The tool displays character and byte counts to help you monitor input size and processing performance.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I customize the output with prefixes and suffixes?</h3>
+                      <p className="text-gray-600 text-sm">
+                        Yes! Advanced options include custom prefixes and suffixes for the decimal output, display toggles for binary and hexadecimal formats, and various formatting options to match your specific workflow requirements.
+                      </p>
+                    </div>
+
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Does this work offline after loading?</h3>
+                      <p className="text-gray-600 text-sm">
+                        Yes! Once the page loads completely, all conversion functionality works offline without requiring an internet connection. The tool runs entirely in your browser, making it reliable for secure environments.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Technical Specifications */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Technical Specifications & Compatibility</h2>
+                <p className="text-gray-600 mb-8">Our text to decimal converter is built with modern web technologies to ensure maximum compatibility, performance, and reliability across all platforms and devices.</p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Encoding Support & Ranges</h3>
+                    <div className="space-y-4">
+                      <div className="bg-blue-50 rounded-lg p-4">
+                        <h4 className="font-semibold text-blue-900 mb-2">UTF-8 Unicode</h4>
+                        <ul className="text-blue-800 text-sm space-y-1">
+                          <li>• Character Range: 0 to 1,114,111 (U+10FFFF)</li>
+                          <li>• Variable Length: 1-4 bytes per character</li>
+                          <li>• Backward Compatible: With ASCII (0-127)</li>
+                          <li>• Language Support: All modern languages and scripts</li>
+                        </ul>
+                      </div>
+                      <div className="bg-green-50 rounded-lg p-4">
+                        <h4 className="font-semibold text-green-900 mb-2">ASCII Standard</h4>
+                        <ul className="text-green-800 text-sm space-y-1">
+                          <li>• Character Range: 0 to 127 (7-bit)</li>
+                          <li>• Fixed Length: Exactly 1 byte per character</li>
+                          <li>• Character Set: Basic Latin alphabet and symbols</li>
+                          <li>• Legacy Support: Maximum compatibility with old systems</li>
+                        </ul>
+                      </div>
+                      <div className="bg-purple-50 rounded-lg p-4">
+                        <h4 className="font-semibold text-purple-900 mb-2">Output Formats</h4>
+                        <ul className="text-purple-800 text-sm space-y-1">
+                          <li>• Space Separated: Standard readable format</li>
+                          <li>• Comma Separated: CSV-compatible format</li>
+                          <li>• Newline Separated: Programming-friendly format</li>
+                          <li>• Custom Prefixes/Suffixes: Workflow integration</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Browser & Platform Support</h3>
+                    <div className="space-y-4">
+                      <div className="bg-gray-50 rounded-lg p-4">
+                        <h4 className="font-semibold text-gray-900 mb-2">Desktop Browsers</h4>
+                        <ul className="text-gray-700 text-sm space-y-1">
+                          <li>• Chrome 90+ (recommended performance)</li>
+                          <li>• Firefox 88+ (excellent Unicode support)</li>
+                          <li>• Safari 14+ (full compatibility)</li>
+                          <li>• Edge 90+ (optimal user experience)</li>
+                        </ul>
+                      </div>
+                      <div className="bg-gray-50 rounded-lg p-4">
+                        <h4 className="font-semibold text-gray-900 mb-2">Mobile Devices</h4>
+                        <ul className="text-gray-700 text-sm space-y-1">
+                          <li>• iOS Safari 14+ (responsive design)</li>
+                          <li>• Android Chrome 90+ (touch optimized)</li>
+                          <li>• Samsung Internet 13+ (full features)</li>
+                          <li>• Mobile Firefox 88+ (complete support)</li>
+                        </ul>
+                      </div>
+                      <div className="bg-gray-50 rounded-lg p-4">
+                        <h4 className="font-semibold text-gray-900 mb-2">Performance Features</h4>
+                        <ul className="text-gray-700 text-sm space-y-1">
+                          <li>• Real-time conversion (300ms debounce)</li>
+                          <li>• Client-side processing (no server calls)</li>
+                          <li>• Responsive design (all screen sizes)</li>
+                          <li>• Accessibility compliant (WCAG 2.1)</li>
+                        </ul>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </CardContent>
