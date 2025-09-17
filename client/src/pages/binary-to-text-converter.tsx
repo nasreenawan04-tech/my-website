@@ -251,18 +251,12 @@ const BinaryToTextConverter = () => {
     });
   };
 
-  // Auto-convert when code or options change
+  // Clear results when input is cleared
   useEffect(() => {
-    if (inputCode.trim()) {
-      const timeoutId = setTimeout(() => {
-        convertCode();
-      }, 300);
-      
-      return () => clearTimeout(timeoutId);
-    } else {
+    if (!inputCode.trim()) {
       setConversionResult(null);
     }
-  }, [inputCode, options]);
+  }, [inputCode]);
 
   const getInputFormatLabel = () => {
     switch (options.inputFormat) {
