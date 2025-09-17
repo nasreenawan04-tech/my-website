@@ -44,6 +44,7 @@ const TextToQRCode = () => {
   const [qrHistory, setQRHistory] = useState<QRResult[]>([]);
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [showResults, setShowResults] = useState(false);
   const [options, setOptions] = useState<QROptions>({
     size: 300,
     margin: 4,
@@ -110,10 +111,12 @@ const TextToQRCode = () => {
   const generateQRCodes = async () => {
     if (!inputText.trim()) {
       setQRResults([]);
+      setShowResults(false);
       return;
     }
 
     setIsGenerating(true);
+    setShowResults(false);
 
     try {
       const extractedContent = extractContentFromText(inputText);
@@ -152,6 +155,7 @@ const TextToQRCode = () => {
       }
 
       setQRResults(newQRResults);
+      setShowResults(true);
 
       // Add to history (keep last 10)
       setQRHistory(prev => {
@@ -197,6 +201,7 @@ const TextToQRCode = () => {
   const handleClear = () => {
     setInputText('');
     setQRResults([]);
+    setShowResults(false);
   };
 
   const handleSampleText = () => {
@@ -206,6 +211,7 @@ const TextToQRCode = () => {
   const resetConverter = () => {
     setInputText('');
     setQRResults([]);
+    setShowResults(false);
     setShowAdvanced(false);
     setOptions({
       size: 300,
@@ -222,18 +228,13 @@ const TextToQRCode = () => {
     });
   };
 
-  // Auto-generate when text or options change
+  // Clear results when input is empty
   useEffect(() => {
-    if (inputText.trim()) {
-      const timeoutId = setTimeout(() => {
-        generateQRCodes();
-      }, 300);
-      
-      return () => clearTimeout(timeoutId);
-    } else {
+    if (!inputText.trim()) {
       setQRResults([]);
+      setShowResults(false);
     }
-  }, [inputText, options]);
+  }, [inputText]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
@@ -556,10 +557,11 @@ const TextToQRCode = () => {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 border-t">
-                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">Generated QR Codes</h2>
+                {showResults && (
+                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 border-t">
+                    <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">Generated QR Codes</h2>
 
-                  {qrResults.length > 0 ? (
+                    {qrResults.length > 0 ? (
                     <div className="space-y-6" data-testid="qr-results">
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {qrResults.map((qr, index) => (
@@ -658,8 +660,9 @@ const TextToQRCode = () => {
                       </div>
                       <p className="text-gray-500 text-base sm:text-lg px-4">Enter text to generate QR codes</p>
                     </div>
-                  )}
-                </div>
+                    )}
+                  </div>
+                )}
               </div>
             </CardContent>
           </Card>
