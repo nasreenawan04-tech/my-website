@@ -162,18 +162,12 @@ const TextToBinaryConverter = () => {
     });
   };
 
-  // Auto-convert when text or options change
+  // Clear results when text is cleared
   useEffect(() => {
-    if (inputText.trim()) {
-      const timeoutId = setTimeout(() => {
-        convertText();
-      }, 300);
-      
-      return () => clearTimeout(timeoutId);
-    } else {
+    if (!inputText.trim()) {
       setConversionResult(null);
     }
-  }, [inputText, options]);
+  }, [inputText]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
@@ -203,7 +197,7 @@ const TextToBinaryConverter = () => {
             },
             "featureList": [
               "UTF-8 and ASCII encoding support",
-              "Real-time text conversion",
+              "On-demand text conversion",
               "Multiple output formats (binary, decimal, hex)",
               "Customizable spacing options",
               "One-click copy functionality"
