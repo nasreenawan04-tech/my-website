@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import ToolHeroSection from '@/components/ToolHeroSection';
 import { Card, CardContent } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
@@ -395,11 +394,26 @@ const FontStyleChanger = () => {
       <Header />
 
       <main>
-        <ToolHeroSection
-          title="Font Style Changer"
-          description="Transform your text into stylish Unicode fonts for social media and creative content"
-          testId="text-page-title"
-        />
+        {/* Hero Section */}
+        <section className="relative py-20 sm:py-28 lg:py-32 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
+          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="space-y-8">
+              <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+                <span className="text-sm font-medium text-blue-700">Unicode Font Generator</span>
+              </div>
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight" data-testid="text-page-title">
+                Font Style
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                  Changer
+                </span>
+              </h1>
+              <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                Transform your text into stylish Unicode fonts for social media and creative content
+              </p>
+            </div>
+          </div>
+        </section>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
           {/* Main Converter Card */}
