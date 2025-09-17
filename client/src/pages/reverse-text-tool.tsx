@@ -99,7 +99,6 @@ const ReverseTextTool = () => {
 
   const performReverse = () => {
     if (!inputText.trim()) {
-      setReverseResult(null);
       return;
     }
 
@@ -126,7 +125,7 @@ const ReverseTextTool = () => {
         return updated.slice(0, 10);
       });
     } catch (error) {
-      setReverseResult(null);
+      console.error('Error reversing text:', error);
     }
   };
 
@@ -161,18 +160,12 @@ const ReverseTextTool = () => {
     });
   };
 
-  // Auto-reverse when text or options change
+  // Clear results when input is cleared
   useEffect(() => {
-    if (inputText.trim()) {
-      const timeoutId = setTimeout(() => {
-        performReverse();
-      }, 300);
-      
-      return () => clearTimeout(timeoutId);
-    } else {
+    if (!inputText.trim()) {
       setReverseResult(null);
     }
-  }, [inputText, options]);
+  }, [inputText]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
@@ -438,11 +431,12 @@ const ReverseTextTool = () => {
                   </div>
                 </div>
 
-                {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 border-t">
-                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">Reversed Results</h2>
+                {/* Results Section - Only show when reverseResult exists */}
+                {reverseResult && reverseResult.originalText && (
+                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 border-t">
+                    <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">Reversed Results</h2>
 
-                  {reverseResult && reverseResult.originalText ? (
+                    {(
                     <div className="space-y-3 sm:space-y-4" data-testid="reverse-results">
                       {/* Main Reversed Text Display */}
                       <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-3 sm:p-4">
@@ -515,15 +509,9 @@ const ReverseTextTool = () => {
                         </div>
                       </div>
                     </div>
-                  ) : (
-                    <div className="text-center py-12 sm:py-16" data-testid="no-results">
-                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
-                        <div className="text-2xl sm:text-3xl font-bold text-gray-400">⮐</div>
-                      </div>
-                      <p className="text-gray-500 text-base sm:text-lg px-4">Enter text to see reversed results</p>
-                    </div>
-                  )}
-                </div>
+                    )}
+                  </div>
+                )}
               </div>
             </CardContent>
           </Card>
