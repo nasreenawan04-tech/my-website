@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -7,8 +8,6 @@ import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
-import { Input } from '@/components/ui/input';
-import { Separator } from '@/components/ui/separator';
 
 interface NameOptions {
   gender: 'male' | 'female' | 'both';
@@ -142,15 +141,18 @@ const FakeNameGenerator = () => {
     navigator.clipboard.writeText(text);
   };
 
-  const handleCopyAll = () => {
-    if (generatedName) {
-      const nameInfo = `Name: ${generatedName.fullName}
-First Name: ${generatedName.firstName}
-${generatedName.middleName ? `Middle Name: ${generatedName.middleName}\n` : ''}Last Name: ${generatedName.lastName}
-Gender: ${generatedName.gender.charAt(0).toUpperCase() + generatedName.gender.slice(1)}
-Nationality: ${generatedName.nationality}`;
-      navigator.clipboard.writeText(nameInfo);
-    }
+  const handleClear = () => {
+    setGeneratedName(null);
+  };
+
+  const resetGenerator = () => {
+    setOptions({
+      gender: 'both',
+      nationality: 'american',
+      includeMiddleName: true,
+      includeTitle: false
+    });
+    setGeneratedName(null);
   };
 
   // Generate initial name
@@ -159,646 +161,564 @@ Nationality: ${generatedName.nationality}`;
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>Fake Name Generator - Generate Random Names for Testing | DapsiWow</title>
-        <meta name="description" content="Generate realistic fake names for testing purposes. Choose gender, nationality, and customize options to create authentic-looking names instantly." />
-        <meta name="keywords" content="fake name generator, random name generator, test names, dummy names, name generator tool, fake identity generator" />
-        <meta property="og:title" content="Fake Name Generator - Generate Random Names for Testing" />
-        <meta property="og:description" content="Generate realistic fake names with customizable options for testing and development purposes." />
+        <title>Fake Name Generator - Create Realistic Test Names | DapsiWow</title>
+        <meta name="description" content="Generate realistic fake names for testing, development, and privacy purposes. Support for multiple nationalities with customizable options and instant generation." />
+        <meta name="keywords" content="fake name generator, random name generator, test name generator, dummy name generator, mock name, name generator tool, testing names, realistic names, privacy protection" />
+        <meta property="og:title" content="Fake Name Generator - Create Realistic Test Names | DapsiWow" />
+        <meta property="og:description" content="Free fake name generator for developers and testers. Create realistic test names for multiple nationalities with customizable options instantly." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="/tools/fake-name-generator" />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="DapsiWow" />
+        <link rel="canonical" href="https://dapsiwow.com/tools/fake-name-generator" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Fake Name Generator",
+            "description": "Professional fake name generator for creating realistic test names for development, testing, and privacy purposes with support for multiple nationalities and cultures.",
+            "url": "https://dapsiwow.com/tools/fake-name-generator",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Any",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "featureList": [
+              "Generate names for American, British, and International cultures",
+              "Gender selection with male, female, and random options",
+              "Customizable name components: titles, middle names",
+              "Instant name generation and copying",
+              "Realistic test data for developers and testers",
+              "Enhances privacy and security in testing"
+            ]
+          })}
+        </script>
       </Helmet>
-      
+
       <Header />
-      
+
       <main>
         {/* Hero Section */}
-        <section className="gradient-hero text-white py-12 sm:py-16 pt-20 sm:pt-24">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6">
-              <i className="fas fa-id-card text-2xl sm:text-3xl"></i>
+        <section className="relative py-20 sm:py-28 lg:py-32 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
+          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="space-y-8">
+              <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+                <span className="text-sm font-medium text-blue-700">Professional Name Generator</span>
+              </div>
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight">
+                Fake Name
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                  Generator
+                </span>
+              </h1>
+              <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                Generate realistic test names for development, testing, and privacy protection
+              </p>
             </div>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6" data-testid="text-page-title">
-              Fake Name Generator
-            </h1>
-            <p className="text-lg sm:text-xl text-blue-100 max-w-2xl mx-auto px-4">
-              Generate realistic fake names for testing, development, and privacy protection
-            </p>
           </div>
         </section>
 
-        {/* Generator Section */}
-        <section className="py-8 sm:py-12 lg:py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <Card className="bg-white shadow-sm border-0">
-              <CardContent className="p-4 sm:p-6 lg:p-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-12">
-                  {/* Generator Options */}
-                  <div className="space-y-6 sm:space-y-8">
-                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6">Generate Options</h2>
-                    
-                    <div className="space-y-4 sm:space-y-6">
-                      {/* Gender Selection */}
-                      <div className="space-y-2 sm:space-y-3">
-                        <Label className="text-sm sm:text-base font-medium">Gender</Label>
-                        <Select 
-                          value={options.gender} 
-                          onValueChange={(value: 'male' | 'female' | 'both') => updateOption('gender', value)}
-                        >
-                          <SelectTrigger className="h-10 sm:h-12 text-sm sm:text-base" data-testid="select-gender">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="both">Both (Random)</SelectItem>
-                            <SelectItem value="male">Male</SelectItem>
-                            <SelectItem value="female">Female</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
+        <div className="max-w-7xl mx-auto px-4 py-16">
+          {/* Main Generator Card */}
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+            <CardContent className="p-0">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+                {/* Input Section */}
+                <div className="p-8 lg:p-12 space-y-8">
+                  <div>
+                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Generation Settings</h2>
+                    <p className="text-gray-600">Configure your name generation preferences</p>
+                  </div>
 
-                      {/* Nationality Selection */}
-                      <div className="space-y-2 sm:space-y-3">
-                        <Label className="text-sm sm:text-base font-medium">Nationality</Label>
-                        <Select 
-                          value={options.nationality} 
-                          onValueChange={(value: 'american' | 'british' | 'international') => updateOption('nationality', value)}
-                        >
-                          <SelectTrigger className="h-10 sm:h-12 text-sm sm:text-base" data-testid="select-nationality">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="american">American</SelectItem>
-                            <SelectItem value="british">British</SelectItem>
-                            <SelectItem value="international">International</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
+                  <div className="space-y-6">
+                    {/* Gender Selection */}
+                    <div className="space-y-3">
+                      <Label htmlFor="gender-select" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Gender
+                      </Label>
+                      <Select
+                        value={options.gender}
+                        onValueChange={(value: 'male' | 'female' | 'both') => 
+                          updateOption('gender', value)
+                        }
+                      >
+                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-gender">
+                          <SelectValue placeholder="Select gender" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="both">Both (Random)</SelectItem>
+                          <SelectItem value="male">Male</SelectItem>
+                          <SelectItem value="female">Female</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
 
-                      {/* Options */}
-                      <div className="space-y-3 sm:space-y-4">
-                        <h3 className="text-sm sm:text-base font-medium text-gray-900">Additional Options</h3>
-                        
-                        <div className="space-y-3 sm:space-y-4">
-                          <div className="flex items-center justify-between p-2 sm:p-0">
-                            <div className="flex-1 min-w-0 pr-4">
-                              <Label className="text-sm font-medium">Include Middle Name</Label>
-                              <p className="text-xs text-gray-500 mt-1">Add a middle name to the generated name</p>
-                            </div>
-                            <Switch
-                              checked={options.includeMiddleName}
-                              onCheckedChange={(value) => updateOption('includeMiddleName', value)}
-                              className="flex-shrink-0"
-                              data-testid="switch-middle-name"
-                            />
+                    {/* Nationality Selection */}
+                    <div className="space-y-3">
+                      <Label htmlFor="nationality-select" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Nationality
+                      </Label>
+                      <Select
+                        value={options.nationality}
+                        onValueChange={(value: 'american' | 'british' | 'international') => 
+                          updateOption('nationality', value)
+                        }
+                      >
+                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-nationality">
+                          <SelectValue placeholder="Select nationality" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="american">American</SelectItem>
+                          <SelectItem value="british">British</SelectItem>
+                          <SelectItem value="international">International</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    {/* Additional Options */}
+                    <div className="space-y-4 bg-gray-50 rounded-xl p-6">
+                      <h3 className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Additional Options</h3>
+
+                      <div className="space-y-4">
+                        <div className="flex items-center justify-between">
+                          <div className="flex-1">
+                            <Label className="text-sm font-medium text-gray-700">Include Middle Name</Label>
+                            <p className="text-xs text-gray-500">Add middle name to the generated name</p>
                           </div>
+                          <Switch
+                            checked={options.includeMiddleName}
+                            onCheckedChange={(value) => updateOption('includeMiddleName', value)}
+                            data-testid="switch-middle-name"
+                          />
+                        </div>
 
-                          <div className="flex items-center justify-between p-2 sm:p-0">
-                            <div className="flex-1 min-w-0 pr-4">
-                              <Label className="text-sm font-medium">Include Title</Label>
-                              <p className="text-xs text-gray-500 mt-1">Add title like Mr., Mrs., Dr., Prof.</p>
-                            </div>
-                            <Switch
-                              checked={options.includeTitle}
-                              onCheckedChange={(value) => updateOption('includeTitle', value)}
-                              className="flex-shrink-0"
-                              data-testid="switch-title"
-                            />
+                        <div className="flex items-center justify-between">
+                          <div className="flex-1">
+                            <Label className="text-sm font-medium text-gray-700">Include Title</Label>
+                            <p className="text-xs text-gray-500">Add title like Mr., Mrs., Dr., Prof.</p>
                           </div>
+                          <Switch
+                            checked={options.includeTitle}
+                            onCheckedChange={(value) => updateOption('includeTitle', value)}
+                            data-testid="switch-title"
+                          />
                         </div>
                       </div>
+                    </div>
 
-                      {/* Generate Button */}
-                      <Button 
+                    {/* Action Buttons */}
+                    <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                      <Button
                         onClick={handleGenerateName}
-                        className="w-full h-12 sm:h-14 text-sm sm:text-base font-semibold"
+                        className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                         data-testid="button-generate-name"
                       >
-                        <i className="fas fa-refresh mr-2 text-sm sm:text-base"></i>
-                        <span className="hidden sm:inline">Generate New Name</span>
-                        <span className="sm:hidden">Generate Name</span>
+                        Generate Name
+                      </Button>
+                      <Button
+                        onClick={resetGenerator}
+                        variant="outline"
+                        className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                        data-testid="button-reset"
+                      >
+                        Reset
                       </Button>
                     </div>
                   </div>
-
-                  {/* Generated Name Display */}
-                  <div className="space-y-4 sm:space-y-6">
-                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6">Generated Name</h2>
-                    
-                    {generatedName && (
-                      <div className="space-y-4 sm:space-y-6" data-testid="generated-name-display">
-                        {/* Full Name Display */}
-                        <div className="bg-blue-50 rounded-lg p-4 sm:p-6 text-center">
-                          <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-blue-600 mb-2 break-words" data-testid="full-name">
-                            {generatedName.fullName}
-                          </div>
-                          <div className="text-xs sm:text-sm text-gray-600 capitalize">
-                            {generatedName.gender} • {generatedName.nationality}
-                          </div>
-                        </div>
-
-                        {/* Name Components */}
-                        <div className="space-y-2 sm:space-y-3">
-                          {generatedName.title && (
-                            <div className="flex items-center justify-between p-2 sm:p-3 bg-yellow-50 rounded-lg border border-yellow-200">
-                              <div className="flex-1 min-w-0">
-                                <div className="text-xs sm:text-sm font-medium text-gray-900">Title</div>
-                                <div className="text-sm sm:text-base text-gray-600 truncate" data-testid="name-title">{generatedName.title}</div>
-                              </div>
-                              <Button
-                                onClick={() => handleCopyToClipboard(generatedName.title!)}
-                                variant="ghost"
-                                size="sm"
-                                className="ml-2 flex-shrink-0"
-                                data-testid="button-copy-title"
-                              >
-                                <i className="fas fa-copy text-xs sm:text-sm"></i>
-                              </Button>
-                            </div>
-                          )}
-
-                          <div className="flex items-center justify-between p-2 sm:p-3 bg-blue-50 rounded-lg border border-blue-200">
-                            <div className="flex-1 min-w-0">
-                              <div className="text-xs sm:text-sm font-medium text-gray-900">First Name</div>
-                              <div className="text-sm sm:text-base text-gray-600 truncate" data-testid="first-name">{generatedName.firstName}</div>
-                            </div>
-                            <Button
-                              onClick={() => handleCopyToClipboard(generatedName.firstName)}
-                              variant="ghost"
-                              size="sm"
-                              className="ml-2 flex-shrink-0"
-                              data-testid="button-copy-first-name"
-                            >
-                              <i className="fas fa-copy text-xs sm:text-sm"></i>
-                            </Button>
-                          </div>
-
-                          {generatedName.middleName && (
-                            <div className="flex items-center justify-between p-2 sm:p-3 bg-green-50 rounded-lg border border-green-200">
-                              <div className="flex-1 min-w-0">
-                                <div className="text-xs sm:text-sm font-medium text-gray-900">Middle Name</div>
-                                <div className="text-sm sm:text-base text-gray-600 truncate" data-testid="middle-name">{generatedName.middleName}</div>
-                              </div>
-                              <Button
-                                onClick={() => handleCopyToClipboard(generatedName.middleName!)}
-                                variant="ghost"
-                                size="sm"
-                                className="ml-2 flex-shrink-0"
-                                data-testid="button-copy-middle-name"
-                              >
-                                <i className="fas fa-copy text-xs sm:text-sm"></i>
-                              </Button>
-                            </div>
-                          )}
-
-                          <div className="flex items-center justify-between p-2 sm:p-3 bg-purple-50 rounded-lg border border-purple-200">
-                            <div className="flex-1 min-w-0">
-                              <div className="text-xs sm:text-sm font-medium text-gray-900">Last Name</div>
-                              <div className="text-sm sm:text-base text-gray-600 truncate" data-testid="last-name">{generatedName.lastName}</div>
-                            </div>
-                            <Button
-                              onClick={() => handleCopyToClipboard(generatedName.lastName)}
-                              variant="ghost"
-                              size="sm"
-                              className="ml-2 flex-shrink-0"
-                              data-testid="button-copy-last-name"
-                            >
-                              <i className="fas fa-copy text-xs sm:text-sm"></i>
-                            </Button>
-                          </div>
-                        </div>
-
-                        {/* Action Buttons */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-                          <Button
-                            onClick={() => handleCopyToClipboard(generatedName.fullName)}
-                            variant="outline"
-                            className="h-10 sm:h-12 text-xs sm:text-sm"
-                            data-testid="button-copy-full-name"
-                          >
-                            <i className="fas fa-copy mr-1 sm:mr-2 text-xs sm:text-sm"></i>
-                            <span className="hidden sm:inline">Copy Full Name</span>
-                            <span className="sm:hidden">Copy Name</span>
-                          </Button>
-                          <Button
-                            onClick={handleCopyAll}
-                            variant="outline"
-                            className="h-10 sm:h-12 text-xs sm:text-sm"
-                            data-testid="button-copy-all"
-                          >
-                            <i className="fas fa-clipboard mr-1 sm:mr-2 text-xs sm:text-sm"></i>
-                            <span className="hidden sm:inline">Copy All Details</span>
-                            <span className="sm:hidden">Copy All</span>
-                          </Button>
-                        </div>
-                      </div>
-                    )}
-                  </div>
                 </div>
 
-                {/* Name History */}
-                {nameHistory.length > 0 && (
-                  <>
-                    <Separator className="my-6 sm:my-8" />
-                    <div>
-                      <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Recently Generated Names</h3>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-                        {nameHistory.slice(0, 5).map((name, index) => (
-                          <div key={index} className="flex items-center justify-between p-3 sm:p-4 bg-gray-50 rounded-lg">
-                            <div className="flex-1 min-w-0">
-                              <div className="text-sm sm:text-base font-medium text-gray-900 truncate" data-testid={`history-name-${index}`}>
-                                {name.fullName}
-                              </div>
-                              <div className="text-xs sm:text-sm text-gray-500 capitalize mt-1">
-                                {name.gender} • {name.nationality}
-                              </div>
+                {/* Results Section */}
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Generated Name</h2>
+
+                  {generatedName ? (
+                    <div className="space-y-6" data-testid="name-results">
+                      {/* Generated Name Display */}
+                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
+                        <div className="text-2xl lg:text-3xl font-bold text-blue-600 text-center mb-2" data-testid="main-name">
+                          {generatedName.fullName}
+                        </div>
+                        <div className="text-sm text-gray-600 text-center capitalize">
+                          {generatedName.gender} • {generatedName.nationality}
+                        </div>
+                      </div>
+
+                      {/* Name Components */}
+                      <div className="bg-white rounded-xl p-6 shadow-sm" data-testid="name-components">
+                        <h3 className="font-bold text-gray-900 mb-4 text-lg">Name Components</h3>
+                        <div className="grid grid-cols-1 gap-3">
+                          {generatedName.title && (
+                            <div className="bg-yellow-50 rounded-lg p-3 border border-yellow-200">
+                              <div className="text-xs font-medium text-gray-600 uppercase tracking-wide">Title</div>
+                              <div className="text-sm font-mono text-gray-900">{generatedName.title}</div>
                             </div>
-                            <Button
-                              onClick={() => handleCopyToClipboard(name.fullName)}
-                              variant="ghost"
-                              size="sm"
-                              className="ml-2 flex-shrink-0"
-                              data-testid={`button-copy-history-${index}`}
-                            >
-                              <i className="fas fa-copy text-xs sm:text-sm"></i>
-                            </Button>
+                          )}
+                          <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
+                            <div className="text-xs font-medium text-gray-600 uppercase tracking-wide">First Name</div>
+                            <div className="text-sm font-mono text-gray-900">{generatedName.firstName}</div>
                           </div>
-                        ))}
+                          {generatedName.middleName && (
+                            <div className="bg-green-50 rounded-lg p-3 border border-green-200">
+                              <div className="text-xs font-medium text-gray-600 uppercase tracking-wide">Middle Name</div>
+                              <div className="text-sm font-mono text-gray-900">{generatedName.middleName}</div>
+                            </div>
+                          )}
+                          <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
+                            <div className="text-xs font-medium text-gray-600 uppercase tracking-wide">Last Name</div>
+                            <div className="text-sm font-mono text-gray-900">{generatedName.lastName}</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Action Buttons */}
+                      <div className="flex flex-col sm:flex-row gap-4">
+                        <Button
+                          onClick={() => handleCopyToClipboard(generatedName.fullName)}
+                          className="flex-1 h-12 bg-green-600 hover:bg-green-700 text-white font-medium rounded-xl"
+                          data-testid="button-copy-name"
+                        >
+                          Copy Name
+                        </Button>
+                        <Button
+                          onClick={handleClear}
+                          variant="outline"
+                          className="flex-1 h-12 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-medium rounded-xl"
+                          data-testid="button-clear"
+                        >
+                          Clear
+                        </Button>
                       </div>
                     </div>
-                  </>
-                )}
+                  ) : (
+                    <div className="text-center py-16" data-testid="no-results">
+                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <div className="text-3xl font-bold text-gray-400">👤</div>
+                      </div>
+                      <p className="text-gray-500 text-lg">Configure settings and generate to see name</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* SEO Content Section */}
+          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">What is a Fake Name Generator?</h3>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    A fake name generator is a professional development tool that creates realistic but 
+                    completely fictional names for testing, privacy protection, and development purposes. 
+                    These names follow proper naming conventions while ensuring they don't correspond 
+                    to real individuals.
+                  </p>
+                  <p>
+                    Our name generator supports multiple nationalities including American, British, 
+                    and international names, providing authentic-looking names that are safe for testing 
+                    environments, educational projects, and any scenario where real names would be inappropriate.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Why Use This Name Generator?</h3>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    Our fake name generator creates realistic test data that follows authentic naming 
+                    patterns, making it perfect for form validation testing, database seeding, and software 
+                    development workflows without the risk of using real names.
+                  </p>
+                  <ul className="space-y-2 list-disc list-inside">
+                    <li>Completely safe for testing and development</li>
+                    <li>Multiple nationality formats and naming styles</li>
+                    <li>Customizable name components</li>
+                    <li>Professional industry-standard tool</li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Generator Features</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Support for American, British, and international names</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Gender selection: male, female, or random</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Optional middle names and professional titles</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Cultural authenticity with proper naming patterns</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Instant generation with copy functionality</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Professional Use Cases</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Software testing and quality assurance</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Database seeding and development workflows</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Creative writing and character development</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Privacy protection and educational projects</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Game development and character creation</span>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </div>
-        </section>
 
-        {/* Information Sections */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 sm:pb-12 lg:pb-16">
-          {/* What is a Fake Name Generator */}
-          <div className="mt-8 sm:mt-12 bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">What is a Fake Name Generator?</h2>
-            <div className="prose max-w-none">
-              <p className="text-lg text-gray-700 mb-6">
-                A <strong>fake name generator</strong> is a sophisticated tool that creates realistic but completely fictional names for various legitimate purposes including software testing, privacy protection, creative writing, game development, and educational activities. Our advanced <strong>random name generator</strong> uses authentic name databases from different cultures and nationalities to produce believable, culturally appropriate names that maintain statistical accuracy without representing real individuals.
-              </p>
-              
-              <p className="text-gray-700 mb-6">
-                This powerful <strong>name generator tool</strong> is essential for developers, writers, researchers, and professionals who need authentic-looking placeholder names for their projects. Whether you're building applications, creating fictional characters, conducting academic research, or protecting your privacy online, our generator provides instant access to realistic names from American, British, and international databases.
-              </p>
-              
-              <p className="text-gray-700 mb-6">
-                Unlike simple random generators, our tool intelligently combines first names, middle names, and surnames based on actual naming patterns and cultural conventions. This ensures that generated names sound natural and appropriate for their selected nationality while maintaining complete fictional status for safe, ethical use in any project.
-              </p>
-            </div>
-          </div>
-
-          {/* How It Works */}
-          <div className="mt-8 bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">How Our Fake Name Generator Works</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-purple-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold">1</span>
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Select Options</h3>
-                <p className="text-gray-600 text-sm">Choose gender, nationality, and additional preferences like titles and middle names.</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-16 h-16 bg-purple-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold">2</span>
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Algorithm Processing</h3>
-                <p className="text-gray-600 text-sm">Our system intelligently combines names from authentic cultural databases.</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-16 h-16 bg-purple-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold">3</span>
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Generate Names</h3>
-                <p className="text-gray-600 text-sm">Receive realistic, culturally appropriate names with all components.</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-16 h-16 bg-purple-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold">4</span>
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2">Copy & Use</h3>
-                <p className="text-gray-600 text-sm">Easily copy individual components or complete names for your projects.</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Benefits for Different Audiences */}
-          <div className="mt-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Benefits for Different Professionals</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                  <i className="fas fa-code text-blue-600 text-xl"></i>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">Software Developers</h3>
-                <ul className="text-gray-600 space-y-2 text-sm">
-                  <li>• Generate test data for user registration systems</li>
-                  <li>• Create realistic database entries for development</li>
-                  <li>• Test form validation and user interfaces</li>
-                  <li>• Populate demo applications with sample users</li>
-                  <li>• Quality assurance and automated testing</li>
-                </ul>
-              </div>
-              
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                  <i className="fas fa-pen text-purple-600 text-xl"></i>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">Writers & Authors</h3>
-                <ul className="text-gray-600 space-y-2 text-sm">
-                  <li>• Create believable character names for novels</li>
-                  <li>• Develop diverse casts with cultural authenticity</li>
-                  <li>• Generate names for short stories and scripts</li>
-                  <li>• Overcome writer's block with instant inspiration</li>
-                  <li>• Maintain consistency in fictional worlds</li>
-                </ul>
-              </div>
-              
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                  <i className="fas fa-graduation-cap text-green-600 text-xl"></i>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">Students & Researchers</h3>
-                <ul className="text-gray-600 space-y-2 text-sm">
-                  <li>• Create anonymous survey participants</li>
-                  <li>• Generate sample data for academic projects</li>
-                  <li>• Protect privacy in research studies</li>
-                  <li>• Develop case studies with fictional subjects</li>
-                  <li>• Practice data analysis techniques</li>
-                </ul>
-              </div>
-              
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
-                  <i className="fas fa-briefcase text-orange-600 text-xl"></i>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">Business Professionals</h3>
-                <ul className="text-gray-600 space-y-2 text-sm">
-                  <li>• Create customer personas for marketing</li>
-                  <li>• Develop training scenarios and examples</li>
-                  <li>• Generate sample client lists for presentations</li>
-                  <li>• Test CRM systems with dummy contacts</li>
-                  <li>• Create realistic business case studies</li>
-                </ul>
-              </div>
-              
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
-                  <i className="fas fa-gamepad text-red-600 text-xl"></i>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">Game Developers</h3>
-                <ul className="text-gray-600 space-y-2 text-sm">
-                  <li>• Generate NPC names for video games</li>
-                  <li>• Create diverse character rosters</li>
-                  <li>• Populate virtual worlds with realistic inhabitants</li>
-                  <li>• Develop culturally appropriate character names</li>
-                  <li>• Generate random encounter characters</li>
-                </ul>
-              </div>
-              
-              <div className="bg-white rounded-lg p-6 shadow-sm">
-                <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
-                  <i className="fas fa-shield-alt text-teal-600 text-xl"></i>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">Privacy-Conscious Users</h3>
-                <ul className="text-gray-600 space-y-2 text-sm">
-                  <li>• Protect identity during online registrations</li>
-                  <li>• Use aliases for social media accounts</li>
-                  <li>• Create pen names for creative work</li>
-                  <li>• Generate names for testing services</li>
-                  <li>• Maintain anonymity in forums and communities</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Advanced Features */}
-          <div className="mt-8 bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Advanced Generator Features</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Customization Options</h3>
-                <ul className="space-y-3 text-gray-700">
-                  <li className="flex items-start">
-                    <i className="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
-                    <span><strong>Gender Selection:</strong> Choose male, female, or random gender assignment</span>
-                  </li>
-                  <li className="flex items-start">
-                    <i className="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
-                    <span><strong>Cultural Authenticity:</strong> American, British, and international name databases</span>
-                  </li>
-                  <li className="flex items-start">
-                    <i className="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
-                    <span><strong>Name Components:</strong> Optional middle names and professional titles</span>
-                  </li>
-                  <li className="flex items-start">
-                    <i className="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
-                    <span><strong>Format Options:</strong> Full names or individual components</span>
-                  </li>
-                </ul>
-              </div>
-              
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">User-Friendly Features</h3>
-                <ul className="space-y-3 text-gray-700">
-                  <li className="flex items-start">
-                    <i className="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
-                    <span><strong>One-Click Copying:</strong> Instantly copy names to clipboard</span>
-                  </li>
-                  <li className="flex items-start">
-                    <i className="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
-                    <span><strong>Generation History:</strong> Track recently generated names</span>
-                  </li>
-                  <li className="flex items-start">
-                    <i className="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
-                    <span><strong>Bulk Generation:</strong> Generate multiple names at once</span>
-                  </li>
-                  <li className="flex items-start">
-                    <i className="fas fa-check-circle text-green-600 mt-1 mr-3"></i>
-                    <span><strong>Mobile Optimized:</strong> Works perfectly on all devices</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Related Tools */}
-          <div className="mt-8 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Related Generator Tools</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <a href="/tools/fake-address-generator" className="group bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                  <i className="fas fa-map-marker-alt text-blue-600 text-xl"></i>
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-blue-600">Fake Address Generator</h3>
-                <p className="text-gray-600 text-sm">Generate realistic addresses for testing and development purposes.</p>
-              </a>
-              
-              <a href="/tools/random-password-generator" className="group bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                  <i className="fas fa-lock text-green-600 text-xl"></i>
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-blue-600">Password Generator</h3>
-                <p className="text-gray-600 text-sm">Create secure, random passwords with customizable options.</p>
-              </a>
-              
-              <a href="/tools/random-username-generator" className="group bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
-                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                  <i className="fas fa-user text-purple-600 text-xl"></i>
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-blue-600">Username Generator</h3>
-                <p className="text-gray-600 text-sm">Generate unique usernames for accounts and online profiles.</p>
-              </a>
-              
-              <a href="/tools/lorem-ipsum-generator" className="group bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
-                <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
-                  <i className="fas fa-paragraph text-red-600 text-xl"></i>
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-blue-600">Lorem Ipsum Generator</h3>
-                <p className="text-gray-600 text-sm">Generate placeholder text for design and development projects.</p>
-              </a>
-            </div>
-          </div>
-
-          {/* Use Cases & Examples */}
-          <div className="mt-8 bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Real-World Applications & Examples</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Software Development Scenarios</h3>
-                <div className="space-y-4">
-                  <div className="border-l-4 border-blue-500 pl-4">
-                    <h4 className="font-semibold text-gray-900">User Registration Testing</h4>
-                    <p className="text-gray-600 text-sm">Generate hundreds of realistic names to test user registration forms, database constraints, and user interface validation. Essential for quality assurance and load testing.</p>
+          {/* Additional SEO Content Sections */}
+          <div className="mt-12 space-y-8">
+            {/* Use Cases by Profession */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Fake Name Generator for Different Professionals</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Software Developers & Engineers</h4>
+                    <p className="text-gray-600">
+                      Use generated names for testing user registration systems, API endpoints, and database operations. 
+                      Perfect for unit testing, integration testing, and ensuring your applications handle various 
+                      name formats correctly without using real user data.
+                    </p>
                   </div>
-                  <div className="border-l-4 border-green-500 pl-4">
-                    <h4 className="font-semibold text-gray-900">Demo Data Population</h4>
-                    <p className="text-gray-600 text-sm">Create convincing demo environments with realistic user profiles for client presentations, stakeholder reviews, and product demonstrations.</p>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">QA Testers & Analysts</h4>
+                    <p className="text-gray-600">
+                      Create comprehensive test datasets with realistic name data for testing user registration 
+                      flows, contact management systems, and user profile features. Essential for edge case testing 
+                      and international name format validation.
+                    </p>
                   </div>
-                  <div className="border-l-4 border-purple-500 pl-4">
-                    <h4 className="font-semibold text-gray-900">API Testing</h4>
-                    <p className="text-gray-600 text-sm">Generate consistent test data for API endpoints, ensuring robust testing of user management systems and data processing workflows.</p>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Creative Writers & Authors</h4>
+                    <p className="text-gray-600">
+                      Generate authentic character names for novels, screenplays, and creative projects. Our 
+                      international name database helps create diverse, believable characters while maintaining 
+                      cultural authenticity in storytelling.
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Game Developers & Designers</h4>
+                    <p className="text-gray-600">
+                      Create realistic NPC names, character rosters, and player profiles for video games. 
+                      Generate names that fit different cultural contexts and gaming scenarios while maintaining 
+                      immersion and authenticity.
+                    </p>
                   </div>
                 </div>
-              </div>
-              
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Creative & Educational Uses</h3>
-                <div className="space-y-4">
-                  <div className="border-l-4 border-orange-500 pl-4">
-                    <h4 className="font-semibold text-gray-900">Character Development</h4>
-                    <p className="text-gray-600 text-sm">Authors and screenwriters use our generator to create diverse, culturally authentic character names that enhance story believability and reader engagement.</p>
+              </CardContent>
+            </Card>
+
+            {/* Name Format Details */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">American Names</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <p className="text-sm">
+                      Generate US names with authentic first names, middle names, and surnames. 
+                      Includes support for common American naming patterns and regional variations.
+                    </p>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-green-800 text-sm">Features:</h4>
+                      <ul className="text-xs space-y-1 list-disc list-inside text-green-700">
+                        <li>Popular American first names</li>
+                        <li>Traditional middle name options</li>
+                        <li>Common American surnames</li>
+                        <li>Gender-appropriate selections</li>
+                      </ul>
+                    </div>
                   </div>
-                  <div className="border-l-4 border-red-500 pl-4">
-                    <h4 className="font-semibold text-gray-900">Academic Research</h4>
-                    <p className="text-gray-600 text-sm">Researchers create anonymous participant profiles for studies, ensuring privacy compliance while maintaining realistic data for statistical analysis.</p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">British Names</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <p className="text-sm">
+                      Create UK names with British naming conventions, traditional surnames, and 
+                      cultural naming patterns following authentic British standards.
+                    </p>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-blue-800 text-sm">Features:</h4>
+                      <ul className="text-xs space-y-1 list-disc list-inside text-blue-700">
+                        <li>British first name traditions</li>
+                        <li>Traditional UK middle names</li>
+                        <li>Common British surnames</li>
+                        <li>Cultural naming authenticity</li>
+                      </ul>
+                    </div>
                   </div>
-                  <div className="border-l-4 border-teal-500 pl-4">
-                    <h4 className="font-semibold text-gray-900">Educational Projects</h4>
-                    <p className="text-gray-600 text-sm">Students generate sample datasets for database design courses, statistics projects, and computer science assignments requiring realistic personal data.</p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">International Names</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <p className="text-sm">
+                      Generate diverse international names from various cultures and regions, 
+                      maintaining authentic linguistic patterns and cultural appropriateness.
+                    </p>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-purple-800 text-sm">Features:</h4>
+                      <ul className="text-xs space-y-1 list-disc list-inside text-purple-700">
+                        <li>Multi-cultural name database</li>
+                        <li>Authentic linguistic patterns</li>
+                        <li>Regional naming variations</li>
+                        <li>Cultural sensitivity maintained</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Best Practices and Safety */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Best Practices and Safety Guidelines</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-4 text-gray-600">
+                    <h4 className="font-semibold text-gray-800 mb-2">Recommended Uses</h4>
+                    <ul className="space-y-2 text-sm list-disc list-inside">
+                      <li>Software testing and quality assurance workflows</li>
+                      <li>Database seeding and development environments</li>
+                      <li>Creative writing and character development</li>
+                      <li>Educational projects and programming tutorials</li>
+                      <li>Game development and NPC creation</li>
+                      <li>Privacy protection in testing scenarios</li>
+                    </ul>
+                    <h4 className="font-semibold text-gray-800 mb-2 mt-4">Safety Features</h4>
+                    <ul className="space-y-2 text-sm list-disc list-inside">
+                      <li>All names are completely fictional</li>
+                      <li>No real person correspondence guaranteed</li>
+                      <li>Safe for testing environments</li>
+                      <li>Privacy-compliant data generation</li>
+                    </ul>
+                  </div>
+                  <div className="space-y-4 text-gray-600">
+                    <h4 className="font-semibold text-gray-800 mb-2">Important Disclaimers</h4>
+                    <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                      <h5 className="font-semibold text-red-800 mb-2">Never Use For:</h5>
+                      <ul className="space-y-1 text-sm list-disc list-inside text-red-700">
+                        <li>Creating fake identities for fraud</li>
+                        <li>Legal documents or official forms</li>
+                        <li>Financial applications or services</li>
+                        <li>Government registrations</li>
+                        <li>Any illegal or unethical activities</li>
+                        <li>Impersonation of real individuals</li>
+                      </ul>
+                    </div>
+                    <h4 className="font-semibold text-gray-800 mb-2 mt-4">Compliance Notes</h4>
+                    <p className="text-sm">
+                      Generated names are designed for testing and development purposes only. Always ensure 
+                      your use case complies with applicable privacy laws and regulations in your jurisdiction.
+                    </p>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
+              </CardContent>
+            </Card>
 
-          {/* SEO Content - Best Practices */}
-          <div className="mt-8 bg-gradient-to-r from-indigo-50 to-blue-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Best Practices for Using Fake Names</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Ethical Guidelines</h3>
-                <ul className="space-y-3 text-gray-700">
-                  <li className="flex items-start">
-                    <i className="fas fa-check text-green-600 mt-1 mr-3"></i>
-                    <span>Always use generated names for legitimate purposes only</span>
-                  </li>
-                  <li className="flex items-start">
-                    <i className="fas fa-check text-green-600 mt-1 mr-3"></i>
-                    <span>Ensure compliance with privacy laws and regulations</span>
-                  </li>
-                  <li className="flex items-start">
-                    <i className="fas fa-check text-green-600 mt-1 mr-3"></i>
-                    <span>Never use fake names for fraudulent activities</span>
-                  </li>
-                  <li className="flex items-start">
-                    <i className="fas fa-check text-green-600 mt-1 mr-3"></i>
-                    <span>Respect cultural sensitivity when using international names</span>
-                  </li>
-                </ul>
-              </div>
-              
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Technical Recommendations</h3>
-                <ul className="space-y-3 text-gray-700">
-                  <li className="flex items-start">
-                    <i className="fas fa-lightbulb text-yellow-600 mt-1 mr-3"></i>
-                    <span>Generate sufficient variety for comprehensive testing</span>
-                  </li>
-                  <li className="flex items-start">
-                    <i className="fas fa-lightbulb text-yellow-600 mt-1 mr-3"></i>
-                    <span>Consider cultural context for international applications</span>
-                  </li>
-                  <li className="flex items-start">
-                    <i className="fas fa-lightbulb text-yellow-600 mt-1 mr-3"></i>
-                    <span>Test edge cases with various name lengths and formats</span>
-                  </li>
-                  <li className="flex items-start">
-                    <i className="fas fa-lightbulb text-yellow-600 mt-1 mr-3"></i>
-                    <span>Document test data sources for development teams</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* FAQ */}
-          <div className="mt-8 bg-gradient-to-r from-gray-50 to-slate-50 rounded-2xl p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
-            <div className="space-y-6">
-              <div className="border-b border-gray-200 pb-4">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Are the generated names based on real people?</h3>
-                <p className="text-gray-600">No, all generated names are completely fictional. While our tool uses authentic naming patterns and statistical distributions from various cultures, the combinations are entirely random and don't represent actual individuals. This ensures complete safety for testing and development purposes.</p>
-              </div>
-              
-              <div className="border-b border-gray-200 pb-4">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I use these names for commercial projects?</h3>
-                <p className="text-gray-600">Yes, absolutely. Since all generated names are fictional and created through random combinations, you can use them freely for any legitimate purpose including commercial applications, creative works, testing environments, and business projects without any legal concerns.</p>
-              </div>
-              
-              <div className="border-b border-gray-200 pb-4">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">How culturally accurate are the international names?</h3>
-                <p className="text-gray-600">Our international database includes authentic naming patterns from various cultures and regions. We maintain separate databases for different nationalities to ensure cultural appropriateness and linguistic accuracy, though all combinations remain fictional.</p>
-              </div>
-              
-              <div className="border-b border-gray-200 pb-4">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">What's the difference between the nationality options?</h3>
-                <p className="text-gray-600">American names focus on common US naming patterns, British names use traditional UK conventions, and International includes diverse global names from various cultures. Each database maintains authentic linguistic and cultural characteristics for maximum realism.</p>
-              </div>
-              
-              <div className="border-b border-gray-200 pb-4">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Is there a limit to how many names I can generate?</h3>
-                <p className="text-gray-600">No, you can generate unlimited names using our tool. Whether you need a few names for a small project or hundreds for extensive testing, our generator can handle any volume of requests without restrictions.</p>
-              </div>
-              
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Do you store or track the generated names?</h3>
-                <p className="text-gray-600">No, we don't store any generated names on our servers. All name generation happens in your browser, and the recent history feature only maintains names locally in your current session for your convenience.</p>
-              </div>
-            </div>
+            {/* FAQ Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Are these names based on real people?</h4>
+                      <p className="text-gray-600 text-sm">
+                        No, all generated names are completely fictional. While our tool uses authentic naming 
+                        patterns from various cultures, the combinations are entirely random and don't represent 
+                        actual individuals.
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Can I use these for commercial projects?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Yes, you can use generated names for legitimate commercial purposes like software testing, 
+                        creative writing, and game development. However, never use them for fraudulent activities 
+                        or identity deception.
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How culturally accurate are the names?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Our name databases maintain authentic cultural and linguistic patterns for each nationality. 
+                        American, British, and international names follow proper naming conventions while remaining 
+                        completely fictional.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Is this tool free to use?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Yes, our fake name generator is completely free with no registration required. 
+                        Generate unlimited names for all your testing and development needs without restrictions.
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Which nationalities are supported?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Currently, we support American, British, and international names. Each category maintains 
+                        authentic naming patterns and cultural appropriateness for realistic test data generation.
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Can I customize the name components?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Yes, you can choose gender preferences, add or remove middle names, include professional 
+                        titles, and select from different nationality databases to customize your generated names.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </main>
-      
+
       <Footer />
     </div>
   );
