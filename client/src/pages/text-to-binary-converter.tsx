@@ -41,9 +41,9 @@ const TextToBinaryConverter = () => {
   const [options, setOptions] = useState<ConversionOptions>({
     encoding: 'utf8',
     spacing: 'space',
-    showDecimal: true,
-    showHex: true,
-    preserveNumbers: true,
+    showDecimal: false,
+    showHex: false,
+    preserveNumbers: false,
     addPrefix: '',
     addSuffix: ''
   });
@@ -154,9 +154,9 @@ const TextToBinaryConverter = () => {
     setOptions({
       encoding: 'utf8',
       spacing: 'space',
-      showDecimal: true,
-      showHex: true,
-      preserveNumbers: true,
+      showDecimal: false,
+      showHex: false,
+      preserveNumbers: false,
       addPrefix: '',
       addSuffix: ''
     });
