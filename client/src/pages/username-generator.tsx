@@ -299,7 +299,7 @@ const UsernameGenerator = () => {
           {/* Main Generator Card */}
           <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-[1.7fr_1.3fr] gap-0">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                 {/* Input Section */}
                 <div className="p-8 lg:p-12 space-y-8">
                   <div>
