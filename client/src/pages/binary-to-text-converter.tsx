@@ -595,31 +595,6 @@ const BinaryToTextConverter = () => {
                       </div>
 
                       {/* Alternative Format Outputs */}
-                      {options.showBinary && (
-                        <div className="bg-yellow-50 border-2 border-yellow-200 rounded-xl p-3 sm:p-4">
-                          <div className="flex items-center justify-between mb-3 gap-3">
-                            <div className="flex-1 min-w-0">
-                              <h4 className="text-sm sm:text-base font-semibold text-gray-900 truncate">Binary Code</h4>
-                              <p className="text-xs sm:text-sm text-gray-600 break-words">Binary representation (0s and 1s)</p>
-                            </div>
-                            <Button
-                              onClick={() => handleCopyToClipboard(conversionResult.binary)}
-                              variant="outline"
-                              size="sm"
-                              className="text-xs px-2 sm:px-3 py-2 flex-shrink-0 rounded-lg min-w-[60px] sm:min-w-[70px] h-11 sm:h-9 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
-                              data-testid="button-copy-binary"
-                            >
-                              Copy
-                            </Button>
-                          </div>
-                          <div 
-                            className="bg-white p-2 sm:p-3 rounded-lg border border-gray-200 text-xs sm:text-sm font-mono break-all min-h-[40px] sm:min-h-[44px] flex items-center"
-                            data-testid="binary-output"
-                          >
-                            {conversionResult.binary}
-                          </div>
-                        </div>
-                      )}
 
                       {options.showDecimal && (
                         <div className="bg-green-50 border-2 border-green-200 rounded-xl p-3 sm:p-4">
