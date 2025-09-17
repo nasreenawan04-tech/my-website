@@ -454,14 +454,6 @@ const CaseConverter = () => {
                       Load Sample Text
                     </Button>
                     <Button
-                      onClick={handleClear}
-                      variant="outline"
-                      className="h-12 sm:h-14 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-base sm:text-lg rounded-xl"
-                      data-testid="button-clear-text"
-                    >
-                      Clear
-                    </Button>
-                    <Button
                       onClick={resetCalculator}
                       variant="outline"
                       className="h-12 sm:h-14 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-base sm:text-lg rounded-xl"
