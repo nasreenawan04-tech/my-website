@@ -12,41 +12,36 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 
 interface BMRResult {
   bmr: number;
-  tdee: {
-    sedentary: number;
-    lightlyActive: number;
-    moderatelyActive: number;
-    veryActive: number;
-    extraActive: number;
-  };
-  caloriesForWeightLoss: {
+  tdee: number;
+  maintenanceCalories: number;
+  weightLossCalories: {
     mild: number;
     moderate: number;
-    extreme: number;
+    aggressive: number;
   };
-  caloriesForWeightGain: {
+  weightGainCalories: {
     mild: number;
     moderate: number;
   };
-  macronutrients: {
+  macroBreakdown: {
     protein: { grams: number; calories: number };
     carbs: { grams: number; calories: number };
-    fats: { grams: number; calories: number };
+    fat: { grams: number; calories: number };
   };
+  activityMultiplier: number;
+  equation: string;
 }
 
-const BMRCalculator = () => {
-  const [weight, setWeight] = useState('');
-  const [height, setHeight] = useState('');
-  const [feet, setFeet] = useState('');
-  const [inches, setInches] = useState('');
-  const [age, setAge] = useState('');
-  const [gender, setGender] = useState('');
+export default function BMRCalculator() {
+  const [weight, setWeight] = useState('70');
+  const [height, setHeight] = useState('175');
+  const [feet, setFeet] = useState('5');
+  const [inches, setInches] = useState('9');
+  const [age, setAge] = useState('30');
+  const [gender, setGender] = useState('male');
   const [unitSystem, setUnitSystem] = useState('metric');
-  const [activityLevel, setActivityLevel] = useState('');
-  const [goal, setGoal] = useState('maintain');
-  const [bodyFatPercentage, setBodyFatPercentage] = useState('');
-  const [useAdvanced, setUseAdvanced] = useState(false);
+  const [activityLevel, setActivityLevel] = useState('moderately-active');
+  const [equation, setEquation] = useState('mifflin');
   const [result, setResult] = useState<BMRResult | null>(null);
 
   const calculateBMR = () => {
@@ -64,133 +59,126 @@ const BMRCalculator = () => {
     }
 
     const ageYears = parseFloat(age);
-    const bodyFat = parseFloat(bodyFatPercentage) || 0;
 
     if (weightKg && heightCm && ageYears && gender) {
       let bmr: number;
+      let equationUsed: string;
 
-      if (useAdvanced && bodyFat > 0) {
-        // Katch-McArdle Formula (more accurate with body fat percentage)
-        const leanBodyMass = weightKg * (1 - bodyFat / 100);
-        bmr = 370 + (21.6 * leanBodyMass);
-      } else {
-        // Mifflin-St Jeor Equation (most commonly used)
+      // Calculate BMR using selected equation
+      if (equation === 'mifflin') {
+        // Mifflin-St Jeor Equation (most accurate)
         if (gender === 'male') {
           bmr = 10 * weightKg + 6.25 * heightCm - 5 * ageYears + 5;
         } else {
           bmr = 10 * weightKg + 6.25 * heightCm - 5 * ageYears - 161;
         }
+        equationUsed = 'Mifflin-St Jeor';
+      } else {
+        // Harris-Benedict Equation (revised)
+        if (gender === 'male') {
+          bmr = 88.362 + (13.397 * weightKg) + (4.799 * heightCm) - (5.677 * ageYears);
+        } else {
+          bmr = 447.593 + (9.247 * weightKg) + (3.098 * heightCm) - (4.330 * ageYears);
+        }
+        equationUsed = 'Harris-Benedict';
       }
 
-      // Calculate TDEE based on activity levels
-      const tdee = {
-        sedentary: bmr * 1.2,
-        lightlyActive: bmr * 1.375,
-        moderatelyActive: bmr * 1.55,
-        veryActive: bmr * 1.725,
-        extraActive: bmr * 1.9
+      // Activity multipliers
+      const activityMultipliers = {
+        'sedentary': 1.2,
+        'lightly-active': 1.375,
+        'moderately-active': 1.55,
+        'very-active': 1.725,
+        'extra-active': 1.9
       };
 
-      // Calculate calorie targets based on goal
-      const selectedTDEE = activityLevel ? tdee[activityLevel as keyof typeof tdee] : tdee.moderatelyActive;
-      
-      let caloriesForWeightLoss, caloriesForWeightGain;
+      const multiplier = activityMultipliers[activityLevel as keyof typeof activityMultipliers];
+      const tdee = bmr * multiplier;
 
-      if (goal === 'lose') {
-        caloriesForWeightLoss = {
-          mild: selectedTDEE - 250,
-          moderate: selectedTDEE - 500,
-          extreme: selectedTDEE - 750
-        };
-        caloriesForWeightGain = {
-          mild: selectedTDEE,
-          moderate: selectedTDEE
-        };
-      } else if (goal === 'gain') {
-        caloriesForWeightLoss = {
-          mild: selectedTDEE,
-          moderate: selectedTDEE,
-          extreme: selectedTDEE
-        };
-        caloriesForWeightGain = {
-          mild: selectedTDEE + 250,
-          moderate: selectedTDEE + 500
-        };
-      } else {
-        caloriesForWeightLoss = {
-          mild: selectedTDEE - 250,
-          moderate: selectedTDEE - 500,
-          extreme: selectedTDEE - 750
-        };
-        caloriesForWeightGain = {
-          mild: selectedTDEE + 250,
-          moderate: selectedTDEE + 500
-        };
-      }
+      // Calculate calorie goals
+      const maintenanceCalories = tdee;
+      const weightLossCalories = {
+        mild: tdee - 250,      // 0.5 lbs/week
+        moderate: tdee - 500,  // 1 lb/week
+        aggressive: tdee - 750 // 1.5 lbs/week
+      };
+      const weightGainCalories = {
+        mild: tdee + 250,      // 0.5 lbs/week
+        moderate: tdee + 500   // 1 lb/week
+      };
 
-      // Calculate macronutrients (moderate approach)
-      const targetCalories = goal === 'lose' ? caloriesForWeightLoss.moderate : 
-                            goal === 'gain' ? caloriesForWeightGain.moderate : selectedTDEE;
-      
-      const proteinGrams = Math.round(weightKg * 1.6); // 1.6g per kg bodyweight
-      const proteinCalories = proteinGrams * 4;
-      
-      const fatCalories = Math.round(targetCalories * 0.25); // 25% of calories from fat
-      const fatGrams = Math.round(fatCalories / 9);
-      
-      const carbCalories = targetCalories - proteinCalories - fatCalories;
-      const carbGrams = Math.round(carbCalories / 4);
+      // Calculate macro breakdown for maintenance calories (40% carbs, 30% protein, 30% fat)
+      const proteinCalories = maintenanceCalories * 0.30;
+      const carbsCalories = maintenanceCalories * 0.40;
+      const fatCalories = maintenanceCalories * 0.30;
+
+      const macroBreakdown = {
+        protein: {
+          grams: Math.round(proteinCalories / 4), // 4 cal/g
+          calories: Math.round(proteinCalories)
+        },
+        carbs: {
+          grams: Math.round(carbsCalories / 4), // 4 cal/g
+          calories: Math.round(carbsCalories)
+        },
+        fat: {
+          grams: Math.round(fatCalories / 9), // 9 cal/g
+          calories: Math.round(fatCalories)
+        }
+      };
 
       setResult({
         bmr: Math.round(bmr),
-        tdee: {
-          sedentary: Math.round(tdee.sedentary),
-          lightlyActive: Math.round(tdee.lightlyActive),
-          moderatelyActive: Math.round(tdee.moderatelyActive),
-          veryActive: Math.round(tdee.veryActive),
-          extraActive: Math.round(tdee.extraActive)
+        tdee: Math.round(tdee),
+        maintenanceCalories: Math.round(maintenanceCalories),
+        weightLossCalories: {
+          mild: Math.round(weightLossCalories.mild),
+          moderate: Math.round(weightLossCalories.moderate),
+          aggressive: Math.round(weightLossCalories.aggressive)
         },
-        caloriesForWeightLoss: {
-          mild: Math.round(caloriesForWeightLoss.mild),
-          moderate: Math.round(caloriesForWeightLoss.moderate),
-          extreme: Math.round(caloriesForWeightLoss.extreme)
+        weightGainCalories: {
+          mild: Math.round(weightGainCalories.mild),
+          moderate: Math.round(weightGainCalories.moderate)
         },
-        caloriesForWeightGain: {
-          mild: Math.round(caloriesForWeightGain.mild),
-          moderate: Math.round(caloriesForWeightGain.moderate)
-        },
-        macronutrients: {
-          protein: { grams: proteinGrams, calories: proteinCalories },
-          carbs: { grams: carbGrams, calories: Math.round(carbCalories) },
-          fats: { grams: fatGrams, calories: fatCalories }
-        }
+        macroBreakdown,
+        activityMultiplier: multiplier,
+        equation: equationUsed
       });
     }
   };
 
   const resetCalculator = () => {
-    setWeight('');
-    setHeight('');
-    setFeet('');
-    setInches('');
-    setAge('');
-    setGender('');
-    setActivityLevel('');
-    setGoal('maintain');
-    setBodyFatPercentage('');
+    setWeight('70');
+    setHeight('175');
+    setFeet('5');
+    setInches('9');
+    setAge('30');
+    setGender('male');
     setUnitSystem('metric');
-    setUseAdvanced(false);
+    setActivityLevel('moderately-active');
+    setEquation('mifflin');
     setResult(null);
+  };
+
+  const getActivityDescription = (level: string) => {
+    const descriptions = {
+      'sedentary': 'Little to no exercise',
+      'lightly-active': 'Light exercise 1-3 days/week',
+      'moderately-active': 'Moderate exercise 3-5 days/week',
+      'very-active': 'Hard exercise 6-7 days/week',
+      'extra-active': 'Very hard exercise + physical job'
+    };
+    return descriptions[level as keyof typeof descriptions] || '';
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>BMR Calculator - Calculate Basal Metabolic Rate & Daily Calories | DapsiWow</title>
-        <meta name="description" content="Free BMR calculator to calculate your Basal Metabolic Rate and daily calorie needs. Get accurate TDEE calculations and personalized calorie targets for weight loss, muscle gain, and maintenance using advanced formulas." />
-        <meta name="keywords" content="BMR calculator, basal metabolic rate calculator, daily calorie calculator, TDEE calculator, metabolism calculator, calorie needs, Mifflin St Jeor equation, Katch McArdle formula, weight loss calculator, muscle gain calculator, metabolic rate, daily energy expenditure, calories burned at rest, nutrition calculator, fitness calculator, macro calculator" />
-        <meta property="og:title" content="BMR Calculator - Calculate Basal Metabolic Rate & Daily Calories | DapsiWow" />
-        <meta property="og:description" content="Calculate your BMR (Basal Metabolic Rate) and daily calorie needs. Get personalized calorie targets and macronutrient recommendations for weight management." />
+        <title>BMR Calculator - Calculate Basal Metabolic Rate | DapsiWow</title>
+        <meta name="description" content="Free BMR calculator to calculate your Basal Metabolic Rate and daily calorie needs. Get accurate BMR calculations using Mifflin-St Jeor and Harris-Benedict equations with activity level adjustments." />
+        <meta name="keywords" content="BMR calculator, basal metabolic rate calculator, daily calorie calculator, metabolism calculator, TDEE calculator, calorie needs calculator, BMR formula, metabolic rate" />
+        <meta property="og:title" content="BMR Calculator - Calculate Basal Metabolic Rate | DapsiWow" />
+        <meta property="og:description" content="Calculate your Basal Metabolic Rate (BMR) and Total Daily Energy Expenditure (TDEE) with our accurate BMR calculator." />
         <meta property="og:type" content="website" />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="DapsiWow" />
@@ -200,7 +188,7 @@ const BMRCalculator = () => {
             "@context": "https://schema.org",
             "@type": "WebApplication",
             "name": "BMR Calculator",
-            "description": "Free online BMR calculator to calculate Basal Metabolic Rate and daily calorie needs using advanced formulas including Mifflin-St Jeor and Katch-McArdle equations. Features TDEE calculation, calorie targets, and macronutrient recommendations.",
+            "description": "Free online BMR calculator to calculate Basal Metabolic Rate and daily calorie needs using scientifically proven equations.",
             "url": "https://dapsiwow.com/tools/bmr-calculator",
             "applicationCategory": "HealthApplication",
             "operatingSystem": "Any",
@@ -210,12 +198,12 @@ const BMRCalculator = () => {
               "priceCurrency": "USD"
             },
             "featureList": [
-              "Calculate BMR using multiple formulas",
-              "TDEE calculation for all activity levels",
-              "Weight management calorie targets",
-              "Macronutrient recommendations",
-              "Advanced body composition analysis",
-              "Support for metric and imperial units"
+              "Calculate BMR using multiple equations",
+              "Support for metric and imperial units",
+              "Activity level adjustments",
+              "TDEE calculations",
+              "Weight loss and gain calorie targets",
+              "Macronutrient breakdown"
             ]
           })}
         </script>
@@ -226,20 +214,20 @@ const BMRCalculator = () => {
       <main>
         {/* Hero Section */}
         <section className="relative py-20 sm:py-28 lg:py-32 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-rose-600/10 to-pink-600/20"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
           <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="space-y-8">
-              <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-rose-200">
-                <span className="text-sm font-medium text-rose-700">Professional BMR Calculator</span>
+              <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+                <span className="text-sm font-medium text-blue-700">Professional BMR Calculator</span>
               </div>
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight">
-                Advanced BMR
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-pink-600">
+                Smart BMR
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
                   Calculator
                 </span>
               </h1>
               <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-                Calculate your Basal Metabolic Rate and daily calorie needs with advanced formulas and personalized recommendations
+                Calculate your Basal Metabolic Rate and daily calorie needs with scientifically proven equations
               </p>
             </div>
           </div>
@@ -254,7 +242,7 @@ const BMRCalculator = () => {
                 <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
                   <div>
                     <h2 className="text-3xl font-bold text-gray-900 mb-2">BMR Configuration</h2>
-                    <p className="text-gray-600">Enter your personal information to calculate your metabolic rate</p>
+                    <p className="text-gray-600">Enter your personal details to calculate your metabolic rate</p>
                   </div>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -305,7 +293,7 @@ const BMRCalculator = () => {
                         type="number"
                         value={age}
                         onChange={(e) => setAge(e.target.value)}
-                        className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-rose-500 focus:ring-rose-500"
+                        className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
                         placeholder="30"
                         min="15"
                         max="120"
@@ -323,7 +311,7 @@ const BMRCalculator = () => {
                         type="number"
                         value={weight}
                         onChange={(e) => setWeight(e.target.value)}
-                        className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-rose-500 focus:ring-rose-500"
+                        className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
                         placeholder={unitSystem === 'metric' ? "70" : "154"}
                         min="0"
                         step="0.1"
@@ -341,7 +329,7 @@ const BMRCalculator = () => {
                           type="number"
                           value={height}
                           onChange={(e) => setHeight(e.target.value)}
-                          className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-rose-500 focus:ring-rose-500"
+                          className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
                           placeholder="175"
                           min="0"
                           step="0.1"
@@ -356,7 +344,7 @@ const BMRCalculator = () => {
                               type="number"
                               value={feet}
                               onChange={(e) => setFeet(e.target.value)}
-                              className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-rose-500 focus:ring-rose-500"
+                              className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
                               placeholder="5"
                               min="0"
                               max="8"
@@ -370,7 +358,7 @@ const BMRCalculator = () => {
                               type="number"
                               value={inches}
                               onChange={(e) => setInches(e.target.value)}
-                              className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-rose-500 focus:ring-rose-500"
+                              className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
                               placeholder="9"
                               min="0"
                               max="11"
@@ -392,79 +380,36 @@ const BMRCalculator = () => {
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="sedentary">Sedentary - Little to no exercise</SelectItem>
-                          <SelectItem value="lightlyActive">Lightly Active - Light exercise 1-3 days/week</SelectItem>
-                          <SelectItem value="moderatelyActive">Moderately Active - Moderate exercise 3-5 days/week</SelectItem>
-                          <SelectItem value="veryActive">Very Active - Hard exercise 6-7 days/week</SelectItem>
-                          <SelectItem value="extraActive">Extra Active - Very hard exercise + physical job</SelectItem>
+                          <SelectItem value="lightly-active">Lightly Active - Light exercise 1-3 days/week</SelectItem>
+                          <SelectItem value="moderately-active">Moderately Active - Moderate exercise 3-5 days/week</SelectItem>
+                          <SelectItem value="very-active">Very Active - Hard exercise 6-7 days/week</SelectItem>
+                          <SelectItem value="extra-active">Extra Active - Very hard exercise + physical job</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
 
-                    {/* Goal */}
+                    {/* Equation Selection */}
                     <div className="space-y-3">
                       <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
-                        Goal
+                        Calculation Method
                       </Label>
-                      <Select value={goal} onValueChange={setGoal}>
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-goal">
-                          <SelectValue />
+                      <Select value={equation} onValueChange={setEquation}>
+                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-equation">
+                          <SelectValue placeholder="Select equation" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="lose">Weight Loss</SelectItem>
-                          <SelectItem value="maintain">Maintain Weight</SelectItem>
-                          <SelectItem value="gain">Weight Gain</SelectItem>
+                          <SelectItem value="mifflin">Mifflin-St Jeor (Most Accurate)</SelectItem>
+                          <SelectItem value="harris">Harris-Benedict (Revised)</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
-                  </div>
-
-                  {/* Advanced Options */}
-                  <div className="space-y-6 border-t pt-8">
-                    <div className="flex items-center space-x-3">
-                      <input
-                        type="checkbox"
-                        id="use-advanced"
-                        checked={useAdvanced}
-                        onChange={(e) => setUseAdvanced(e.target.checked)}
-                        className="h-5 w-5 text-rose-600 border-2 border-gray-300 rounded focus:ring-rose-500"
-                        data-testid="checkbox-advanced"
-                      />
-                      <label htmlFor="use-advanced" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
-                        Advanced Mode (Body Fat %)
-                      </label>
-                    </div>
-                    
-                    {useAdvanced && (
-                      <div className="bg-gray-50 rounded-xl p-6">
-                        <div className="space-y-3">
-                          <Label htmlFor="body-fat" className="text-sm font-medium text-gray-700">
-                            Body Fat Percentage (%)
-                          </Label>
-                          <Input
-                            id="body-fat"
-                            type="number"
-                            value={bodyFatPercentage}
-                            onChange={(e) => setBodyFatPercentage(e.target.value)}
-                            className="h-12 border-2 border-gray-200 rounded-lg"
-                            placeholder="15"
-                            min="5"
-                            max="50"
-                            step="0.1"
-                            data-testid="input-body-fat"
-                          />
-                          <p className="text-sm text-gray-500">
-                            Uses Katch-McArdle formula for more accurate results when body fat is known
-                          </p>
-                        </div>
-                      </div>
-                    )}
                   </div>
 
                   {/* Action Buttons */}
                   <div className="flex flex-col sm:flex-row gap-4 pt-6">
                     <Button
                       onClick={calculateBMR}
-                      className="flex-1 h-14 bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                       data-testid="button-calculate"
                     >
                       Calculate BMR
@@ -481,126 +426,100 @@ const BMRCalculator = () => {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-rose-50 p-8 lg:p-12">
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
                   <h2 className="text-2xl font-bold text-gray-900 mb-8">Results</h2>
                   
                   {result ? (
                     <div className="space-y-6" data-testid="bmr-results">
-                      {/* BMR Value */}
-                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-rose-100">
+                      {/* BMR Highlight */}
+                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
                         <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Basal Metabolic Rate</div>
-                        <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-pink-600" data-testid="text-bmr-value">
+                        <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mb-2" data-testid="text-bmr">
                           {result.bmr} cal/day
                         </div>
-                        <p className="text-sm text-gray-500 mt-1">Calories burned at rest</p>
+                        <div className="text-xs text-gray-500">Using {result.equation} equation</div>
                       </div>
 
-                      {/* TDEE Values */}
-                      <div className="bg-white rounded-xl p-6 shadow-sm">
-                        <h3 className="font-bold text-gray-900 mb-4 text-lg">Total Daily Energy Expenditure (TDEE)</h3>
-                        <div className="space-y-3">
-                          <div className="flex justify-between items-center py-2">
-                            <span className="text-gray-700 font-medium">Sedentary</span>
-                            <span className="font-bold text-gray-900" data-testid="text-sedentary">
-                              {result.tdee.sedentary} cal/day
+                      {/* TDEE */}
+                      <div className="bg-white rounded-xl p-4 shadow-sm">
+                        <div className="flex justify-between items-center">
+                          <span className="font-medium text-gray-700">Total Daily Energy Expenditure</span>
+                          <span className="font-bold text-gray-900" data-testid="text-tdee">
+                            {result.tdee} cal/day
+                          </span>
+                        </div>
+                        <div className="text-xs text-gray-500 mt-1">
+                          Activity multiplier: {result.activityMultiplier}x
+                        </div>
+                      </div>
+
+                      {/* Calorie Goals */}
+                      <div className="space-y-4">
+                        <h4 className="font-bold text-gray-900 text-lg">Calorie Goals</h4>
+                        
+                        <div className="bg-green-50 rounded-xl p-4 border border-green-200">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-green-800">Maintain Weight</span>
+                            <span className="font-bold text-green-800" data-testid="text-maintenance">
+                              {result.maintenanceCalories} cal/day
                             </span>
                           </div>
-                          <div className="flex justify-between items-center py-2">
-                            <span className="text-gray-700 font-medium">Lightly Active</span>
-                            <span className="font-bold text-gray-900" data-testid="text-lightly-active">
-                              {result.tdee.lightlyActive} cal/day
-                            </span>
+                        </div>
+
+                        <div className="bg-red-50 rounded-xl p-4 border border-red-200">
+                          <h5 className="font-semibold text-red-800 mb-3">Weight Loss</h5>
+                          <div className="space-y-2 text-sm">
+                            <div className="flex justify-between">
+                              <span className="text-red-700">Mild (0.5 lbs/week):</span>
+                              <span className="font-bold text-red-800">{result.weightLossCalories.mild} cal/day</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="text-red-700">Moderate (1 lb/week):</span>
+                              <span className="font-bold text-red-800">{result.weightLossCalories.moderate} cal/day</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="text-red-700">Aggressive (1.5 lbs/week):</span>
+                              <span className="font-bold text-red-800">{result.weightLossCalories.aggressive} cal/day</span>
+                            </div>
                           </div>
-                          <div className="flex justify-between items-center py-2">
-                            <span className="text-gray-700 font-medium">Moderately Active</span>
-                            <span className="font-bold text-gray-900" data-testid="text-moderately-active">
-                              {result.tdee.moderatelyActive} cal/day
-                            </span>
-                          </div>
-                          <div className="flex justify-between items-center py-2">
-                            <span className="text-gray-700 font-medium">Very Active</span>
-                            <span className="font-bold text-gray-900" data-testid="text-very-active">
-                              {result.tdee.veryActive} cal/day
-                            </span>
-                          </div>
-                          <div className="flex justify-between items-center py-2">
-                            <span className="text-gray-700 font-medium">Extra Active</span>
-                            <span className="font-bold text-gray-900" data-testid="text-extra-active">
-                              {result.tdee.extraActive} cal/day
-                            </span>
+                        </div>
+
+                        <div className="bg-blue-50 rounded-xl p-4 border border-blue-200">
+                          <h5 className="font-semibold text-blue-800 mb-3">Weight Gain</h5>
+                          <div className="space-y-2 text-sm">
+                            <div className="flex justify-between">
+                              <span className="text-blue-700">Mild (0.5 lbs/week):</span>
+                              <span className="font-bold text-blue-800">{result.weightGainCalories.mild} cal/day</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="text-blue-700">Moderate (1 lb/week):</span>
+                              <span className="font-bold text-blue-800">{result.weightGainCalories.moderate} cal/day</span>
+                            </div>
                           </div>
                         </div>
                       </div>
 
-                      {/* Calorie Targets */}
-                      {goal !== 'maintain' && (
-                        <div className="space-y-4">
-                          {goal === 'lose' && (
-                            <div className="bg-gradient-to-r from-red-50 to-orange-50 rounded-xl p-6 border border-red-200">
-                              <h4 className="font-bold text-red-800 mb-4 text-lg">Weight Loss Targets</h4>
-                              <div className="space-y-2">
-                                <div className="flex justify-between">
-                                  <span className="text-red-700 font-medium">Mild Loss (0.5 lbs/week):</span>
-                                  <span className="font-bold text-red-800" data-testid="text-weight-loss-mild">
-                                    {result.caloriesForWeightLoss.mild} cal/day
-                                  </span>
-                                </div>
-                                <div className="flex justify-between">
-                                  <span className="text-red-700 font-medium">Moderate Loss (1 lb/week):</span>
-                                  <span className="font-bold text-red-800" data-testid="text-weight-loss-moderate">
-                                    {result.caloriesForWeightLoss.moderate} cal/day
-                                  </span>
-                                </div>
-                                <div className="flex justify-between">
-                                  <span className="text-red-700 font-medium">Aggressive Loss (1.5 lbs/week):</span>
-                                  <span className="font-bold text-red-800" data-testid="text-weight-loss-extreme">
-                                    {result.caloriesForWeightLoss.extreme} cal/day
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-                          )}
-
-                          {goal === 'gain' && (
-                            <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-6 border border-green-200">
-                              <h4 className="font-bold text-green-800 mb-4 text-lg">Weight Gain Targets</h4>
-                              <div className="space-y-2">
-                                <div className="flex justify-between">
-                                  <span className="text-green-700 font-medium">Mild Gain (0.5 lbs/week):</span>
-                                  <span className="font-bold text-green-800" data-testid="text-weight-gain-mild">
-                                    {result.caloriesForWeightGain.mild} cal/day
-                                  </span>
-                                </div>
-                                <div className="flex justify-between">
-                                  <span className="text-green-700 font-medium">Moderate Gain (1 lb/week):</span>
-                                  <span className="font-bold text-green-800" data-testid="text-weight-gain-moderate">
-                                    {result.caloriesForWeightGain.moderate} cal/day
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      )}
-
-                      {/* Macronutrient Breakdown */}
-                      <div className="bg-white rounded-xl p-6 shadow-sm">
-                        <h4 className="font-bold text-gray-900 mb-4 text-lg">Macronutrient Recommendations</h4>
-                        <div className="grid grid-cols-3 gap-4">
-                          <div className="text-center">
-                            <div className="text-2xl font-bold text-blue-600">{result.macronutrients.protein.grams}g</div>
-                            <div className="text-sm text-gray-600">Protein</div>
-                            <div className="text-xs text-gray-500">{result.macronutrients.protein.calories} cal</div>
+                      {/* Macros */}
+                      <div className="bg-white rounded-xl p-4 shadow-sm">
+                        <h4 className="font-semibold text-gray-900 mb-3">Recommended Macros (Maintenance)</h4>
+                        <div className="space-y-2 text-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="text-blue-700 font-medium">Protein (30%)</span>
+                            <span className="font-bold text-blue-800" data-testid="text-protein">
+                              {result.macroBreakdown.protein.grams}g / {result.macroBreakdown.protein.calories} cal
+                            </span>
                           </div>
-                          <div className="text-center">
-                            <div className="text-2xl font-bold text-orange-600">{result.macronutrients.carbs.grams}g</div>
-                            <div className="text-sm text-gray-600">Carbs</div>
-                            <div className="text-xs text-gray-500">{result.macronutrients.carbs.calories} cal</div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-green-700 font-medium">Carbs (40%)</span>
+                            <span className="font-bold text-green-800" data-testid="text-carbs">
+                              {result.macroBreakdown.carbs.grams}g / {result.macroBreakdown.carbs.calories} cal
+                            </span>
                           </div>
-                          <div className="text-center">
-                            <div className="text-2xl font-bold text-green-600">{result.macronutrients.fats.grams}g</div>
-                            <div className="text-sm text-gray-600">Fats</div>
-                            <div className="text-xs text-gray-500">{result.macronutrients.fats.calories} cal</div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-orange-700 font-medium">Fat (30%)</span>
+                            <span className="font-bold text-orange-800" data-testid="text-fat">
+                              {result.macroBreakdown.fat.grams}g / {result.macroBreakdown.fat.calories} cal
+                            </span>
                           </div>
                         </div>
                       </div>
@@ -608,9 +527,9 @@ const BMRCalculator = () => {
                   ) : (
                     <div className="text-center py-16" data-testid="no-results">
                       <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <div className="text-3xl font-bold text-gray-400">🔥</div>
+                        <div className="text-3xl font-bold text-gray-400">BMR</div>
                       </div>
-                      <p className="text-gray-500 text-lg">Enter your information to calculate BMR and daily calorie needs</p>
+                      <p className="text-gray-500 text-lg">Enter your details and calculate to see BMR results</p>
                     </div>
                   )}
                 </div>
@@ -622,19 +541,17 @@ const BMRCalculator = () => {
           <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
             <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">What is BMR (Basal Metabolic Rate)?</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">What is BMR?</h3>
                 <div className="space-y-4 text-gray-600">
                   <p>
-                    BMR (Basal Metabolic Rate) represents the number of calories your body needs to perform essential 
-                    physiological functions while at complete rest. This includes vital processes such as breathing, 
-                    circulation, cell production, nutrient processing, protein synthesis, and maintaining organ function. 
-                    BMR typically accounts for 60-75% of total daily energy expenditure in sedentary individuals.
+                    BMR (Basal Metabolic Rate) is the number of calories your body needs to maintain basic physiological 
+                    functions while at complete rest. This includes breathing, circulation, cell production, nutrient processing, 
+                    protein synthesis, and ion transport. BMR represents the minimum energy required to keep your body alive.
                   </p>
                   <p>
-                    Our advanced BMR calculator uses scientifically validated formulas including the Mifflin-St Jeor 
-                    equation and the Katch-McArdle formula for enhanced accuracy when body composition is known. 
-                    This comprehensive tool provides detailed insights into your metabolic rate, daily calorie requirements, 
-                    and personalized macronutrient recommendations to support your health and fitness goals.
+                    Our BMR calculator uses scientifically proven equations like the Mifflin-St Jeor equation, which is 
+                    considered the most accurate method for calculating metabolic rate. Understanding your BMR is crucial 
+                    for determining daily calorie needs and creating effective nutrition plans.
                   </p>
                 </div>
               </CardContent>
@@ -642,27 +559,50 @@ const BMRCalculator = () => {
 
             <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">How BMR Calculation Works</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">How to Calculate BMR?</h3>
                 <div className="space-y-4 text-gray-600">
                   <p>
-                    Our calculator employs multiple scientifically proven formulas to ensure accuracy across different 
-                    body compositions and metabolic profiles.
+                    The Mifflin-St Jeor equation is:
                   </p>
-                  <div className="bg-rose-50 rounded-lg p-4 mb-4">
-                    <h4 className="font-semibold text-rose-800 mb-2">Mifflin-St Jeor Formula (Standard)</h4>
-                    <p className="font-mono text-sm text-rose-700">
-                      <strong>Men:</strong> BMR = 10 × weight(kg) + 6.25 × height(cm) - 5 × age + 5<br />
-                      <strong>Women:</strong> BMR = 10 × weight(kg) + 6.25 × height(cm) - 5 × age - 161
-                    </p>
-                  </div>
                   <div className="bg-blue-50 rounded-lg p-4">
-                    <h4 className="font-semibold text-blue-800 mb-2">Katch-McArdle Formula (Advanced)</h4>
-                    <p className="font-mono text-sm text-blue-700">
-                      BMR = 370 + (21.6 × Lean Body Mass in kg)
-                    </p>
-                    <p className="text-xs text-blue-600 mt-2">
-                      More accurate when body fat percentage is known
-                    </p>
+                    <p className="font-mono text-sm"><strong>Men:</strong> BMR = 10 × weight(kg) + 6.25 × height(cm) - 5 × age + 5</p>
+                    <p className="font-mono text-sm"><strong>Women:</strong> BMR = 10 × weight(kg) + 6.25 × height(cm) - 5 × age - 161</p>
+                  </div>
+                  <p>
+                    Our calculator multiplies your BMR by an activity factor to determine your Total Daily Energy 
+                    Expenditure (TDEE), which represents your total calorie needs including physical activity.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">BMR vs TDEE vs RMR</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <div>
+                      <strong>BMR (Basal Metabolic Rate):</strong> Energy needed for basic body functions at complete rest
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <div>
+                      <strong>TDEE (Total Daily Energy Expenditure):</strong> BMR plus calories burned through activity
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <div>
+                      <strong>RMR (Resting Metabolic Rate):</strong> Similar to BMR but measured in less restrictive conditions
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <div>
+                      <strong>TEF (Thermic Effect of Food):</strong> Energy cost of digesting and processing food
+                    </div>
                   </div>
                 </div>
               </CardContent>
@@ -670,63 +610,27 @@ const BMRCalculator = () => {
 
             <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Features of Our BMR Calculator</h3>
-                <div className="space-y-3 text-gray-600">
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-rose-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Multiple calculation methods (Mifflin-St Jeor & Katch-McArdle)</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-rose-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Complete TDEE calculations for all activity levels</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-rose-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Goal-specific calorie targets (weight loss/gain/maintenance)</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-rose-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Personalized macronutrient recommendations</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-rose-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Advanced body composition analysis</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-rose-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Support for metric and imperial measurement systems</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Benefits of BMR Calculation</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Benefits of Using Our Calculator</h3>
                 <div className="space-y-3 text-gray-600">
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Establish accurate baseline calorie requirements</span>
+                    <span>Accurate BMR calculations using validated equations</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Create effective weight management strategies</span>
+                    <span>Support for both metric and imperial units</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Optimize nutrition planning and meal preparation</span>
+                    <span>Activity-adjusted TDEE calculations</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Monitor metabolic changes over time</span>
+                    <span>Personalized calorie goals for weight management</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Support athletic performance and recovery</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Free to use with professional-grade accuracy</span>
+                    <span>Detailed macronutrient recommendations</span>
                   </div>
                 </div>
               </CardContent>
@@ -735,412 +639,322 @@ const BMRCalculator = () => {
 
           {/* Additional SEO Content Sections */}
           <div className="mt-12 space-y-8">
-            {/* Understanding Metabolism Section */}
+            {/* Factors Affecting BMR */}
             <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Understanding Your Metabolism</h3>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  <div>
-                    <h4 className="text-xl font-semibold text-gray-900 mb-4">Components of Total Daily Energy Expenditure</h4>
-                    <div className="space-y-4">
-                      <div className="border-l-4 border-rose-500 pl-4">
-                        <h5 className="font-semibold text-gray-800 mb-2">BMR - Basal Metabolic Rate (60-75%)</h5>
-                        <p className="text-sm text-gray-600">Energy required for essential bodily functions at rest including organ function, breathing, and cellular maintenance.</p>
-                      </div>
-                      <div className="border-l-4 border-blue-500 pl-4">
-                        <h5 className="font-semibold text-gray-800 mb-2">NEAT - Non-Exercise Activity Thermogenesis (15-30%)</h5>
-                        <p className="text-sm text-gray-600">Energy expended for activities that are not sleeping, eating, or sports-like exercise including fidgeting and maintaining posture.</p>
-                      </div>
-                      <div className="border-l-4 border-green-500 pl-4">
-                        <h5 className="font-semibold text-gray-800 mb-2">TEF - Thermic Effect of Food (8-15%)</h5>
-                        <p className="text-sm text-gray-600">Energy cost of digesting, absorbing, and processing food nutrients. Protein has the highest thermic effect.</p>
-                      </div>
-                      <div className="border-l-4 border-orange-500 pl-4">
-                        <h5 className="font-semibold text-gray-800 mb-2">EAT - Exercise Activity Thermogenesis (15-30%)</h5>
-                        <p className="text-sm text-gray-600">Energy expended during planned physical activities and structured exercise sessions.</p>
-                      </div>
-                    </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Factors That Affect Your BMR</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Body Composition</h4>
+                    <p className="text-gray-600">
+                      Muscle tissue is metabolically active and burns more calories at rest than fat tissue. People with 
+                      higher muscle mass typically have higher BMRs. This is why strength training can boost metabolism 
+                      by increasing lean body mass.
+                    </p>
                   </div>
-                  
-                  <div>
-                    <h4 className="text-xl font-semibold text-gray-900 mb-4">Factors Affecting BMR</h4>
-                    <div className="space-y-4">
-                      <div className="bg-gray-50 rounded-lg p-4">
-                        <h5 className="font-semibold text-gray-800 mb-2">Body Composition</h5>
-                        <p className="text-sm text-gray-600">Muscle tissue burns significantly more calories at rest than fat tissue. Higher muscle mass correlates with increased BMR.</p>
-                      </div>
-                      <div className="bg-gray-50 rounded-lg p-4">
-                        <h5 className="font-semibold text-gray-800 mb-2">Age and Gender</h5>
-                        <p className="text-sm text-gray-600">BMR typically decreases with age due to muscle loss. Men generally have higher BMR than women due to larger body size and muscle mass.</p>
-                      </div>
-                      <div className="bg-gray-50 rounded-lg p-4">
-                        <h5 className="font-semibold text-gray-800 mb-2">Genetics and Hormones</h5>
-                        <p className="text-sm text-gray-600">Genetic factors and hormonal status (thyroid, insulin, cortisol) significantly influence metabolic rate and energy expenditure.</p>
-                      </div>
-                      <div className="bg-gray-50 rounded-lg p-4">
-                        <h5 className="font-semibold text-gray-800 mb-2">Environmental Factors</h5>
-                        <p className="text-sm text-gray-600">Temperature, altitude, and stress levels can temporarily affect metabolic rate through adaptive thermogenesis.</p>
-                      </div>
-                    </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Age and Gender</h4>
+                    <p className="text-gray-600">
+                      BMR generally decreases with age due to loss of muscle mass and changes in hormone levels. 
+                      Men typically have higher BMRs than women due to greater muscle mass and larger body size. 
+                      The equations account for these differences.
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Genetics and Hormones</h4>
+                    <p className="text-gray-600">
+                      Genetic factors can influence metabolic rate by 5-10%. Thyroid hormones, particularly T3 and T4, 
+                      significantly affect metabolism. Medical conditions like hypothyroidism can lower BMR, while 
+                      hyperthyroidism can increase it.
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Environmental Factors</h4>
+                    <p className="text-gray-600">
+                      Temperature extremes can affect BMR as your body works harder to maintain core temperature. 
+                      Altitude, pregnancy, illness, and certain medications can also influence metabolic rate. 
+                      Calorie restriction can lead to adaptive thermogenesis, lowering BMR.
+                    </p>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            {/* TDEE and Activity Levels */}
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">TDEE & Activity Level Guidelines</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg p-6 shadow-sm">
-                    <h4 className="text-lg font-semibold text-gray-900 mb-3">Sedentary (1.2x BMR)</h4>
-                    <p className="text-gray-600 text-sm mb-4">
-                      Desk job with little to no exercise. Mostly sitting throughout the day with minimal physical activity.
-                    </p>
-                    <div className="text-xs text-blue-700 font-medium">
-                      Examples: Office workers, students, remote employees without regular exercise routines
-                    </div>
-                  </div>
-                  
-                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-6 shadow-sm">
-                    <h4 className="text-lg font-semibold text-gray-900 mb-3">Lightly Active (1.375x BMR)</h4>
-                    <p className="text-gray-600 text-sm mb-4">
-                      Light exercise or sports 1-3 days per week. May include walking, light jogging, or recreational activities.
-                    </p>
-                    <div className="text-xs text-green-700 font-medium">
-                      Examples: Weekend warriors, casual gym-goers, recreational sports participants
-                    </div>
-                  </div>
-                  
-                  <div className="bg-gradient-to-br from-orange-50 to-red-50 rounded-lg p-6 shadow-sm">
-                    <h4 className="text-lg font-semibold text-gray-900 mb-3">Moderately Active (1.55x BMR)</h4>
-                    <p className="text-gray-600 text-sm mb-4">
-                      Moderate exercise 3-5 days per week. Consistent workout routines with regular physical activity.
-                    </p>
-                    <div className="text-xs text-orange-700 font-medium">
-                      Examples: Regular gym members, fitness enthusiasts, recreational athletes
-                    </div>
-                  </div>
-                  
-                  <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-lg p-6 shadow-sm">
-                    <h4 className="text-lg font-semibold text-gray-900 mb-3">Very Active (1.725x BMR)</h4>
-                    <p className="text-gray-600 text-sm mb-4">
-                      Hard exercise 6-7 days per week. Intensive training schedules with high-intensity workouts.
-                    </p>
-                    <div className="text-xs text-purple-700 font-medium">
-                      Examples: Serious athletes, competitive sports participants, fitness professionals
-                    </div>
-                  </div>
-                  
-                  <div className="bg-gradient-to-br from-red-50 to-pink-50 rounded-lg p-6 shadow-sm">
-                    <h4 className="text-lg font-semibold text-gray-900 mb-3">Extra Active (1.9x BMR)</h4>
-                    <p className="text-gray-600 text-sm mb-4">
-                      Very hard exercise plus physical job or training twice daily. Extremely demanding physical lifestyle.
-                    </p>
-                    <div className="text-xs text-red-700 font-medium">
-                      Examples: Professional athletes, military personnel, construction workers who train
-                    </div>
-                  </div>
-                  
-                  <div className="bg-gradient-to-br from-gray-50 to-slate-50 rounded-lg p-6 shadow-sm">
-                    <h4 className="text-lg font-semibold text-gray-900 mb-3">Choosing Your Level</h4>
-                    <p className="text-gray-600 text-sm mb-4">
-                      Select the activity level that best matches your weekly exercise routine and daily physical demands.
-                    </p>
-                    <div className="text-xs text-gray-700 font-medium">
-                      Tip: When in doubt, choose a lower activity level to avoid overestimating calorie needs
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Weight Management Strategies */}
+            {/* BMR Equations Comparison */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
                 <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Weight Management Strategies</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">BMR Calculation Equations</h3>
                   <div className="space-y-6">
-                    <div className="bg-red-50 rounded-lg p-6 border border-red-200">
-                      <h4 className="text-lg font-semibold text-red-800 mb-3">Weight Loss Guidelines</h4>
-                      <div className="space-y-3 text-sm">
-                        <div className="flex justify-between items-center">
-                          <span className="text-red-700">Safe weekly loss rate:</span>
-                          <span className="font-bold text-red-800">1-2 pounds (0.5-1 kg)</span>
-                        </div>
-                        <div className="flex justify-between items-center">
-                          <span className="text-red-700">Daily calorie deficit:</span>
-                          <span className="font-bold text-red-800">250-750 calories</span>
-                        </div>
-                        <p className="text-red-600 text-xs leading-relaxed">
-                          Maintain adequate protein intake (1.6-2.2g per kg bodyweight) and incorporate resistance training 
-                          to preserve muscle mass during weight loss. Avoid extreme deficits that can slow metabolism.
-                        </p>
+                    <div className="bg-blue-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-blue-800 mb-2">Mifflin-St Jeor Equation (1990)</h4>
+                      <p className="text-sm text-blue-700 mb-2">Most accurate for normal weight individuals</p>
+                      <div className="space-y-1 text-xs font-mono text-blue-600">
+                        <div>Men: 10W + 6.25H - 5A + 5</div>
+                        <div>Women: 10W + 6.25H - 5A - 161</div>
                       </div>
                     </div>
-
-                    <div className="bg-green-50 rounded-lg p-6 border border-green-200">
-                      <h4 className="text-lg font-semibold text-green-800 mb-3">Weight Gain Guidelines</h4>
-                      <div className="space-y-3 text-sm">
-                        <div className="flex justify-between items-center">
-                          <span className="text-green-700">Healthy weekly gain rate:</span>
-                          <span className="font-bold text-green-800">0.5-1 pound (0.25-0.5 kg)</span>
-                        </div>
-                        <div className="flex justify-between items-center">
-                          <span className="text-green-700">Daily calorie surplus:</span>
-                          <span className="font-bold text-green-800">250-500 calories</span>
-                        </div>
-                        <p className="text-green-600 text-xs leading-relaxed">
-                          Focus on nutrient-dense foods and progressive resistance training to maximize lean muscle gain 
-                          while minimizing fat accumulation. Quality over quantity is key for healthy weight gain.
-                        </p>
+                    <div className="bg-green-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-green-800 mb-2">Harris-Benedict Equation (1984)</h4>
+                      <p className="text-sm text-green-700 mb-2">Revised version, good general accuracy</p>
+                      <div className="space-y-1 text-xs font-mono text-green-600">
+                        <div>Men: 88.362 + 13.397W + 4.799H - 5.677A</div>
+                        <div>Women: 447.593 + 9.247W + 3.098H - 4.330A</div>
                       </div>
                     </div>
-
-                    <div className="bg-blue-50 rounded-lg p-6 border border-blue-200">
-                      <h4 className="text-lg font-semibold text-blue-800 mb-3">Maintenance Strategy</h4>
-                      <p className="text-blue-600 text-sm leading-relaxed">
-                        Eat at your calculated TDEE to maintain current weight. Monitor weekly averages and adjust 
-                        intake based on actual results, as individual metabolic rates can vary from calculations.
-                      </p>
-                    </div>
+                    <p className="text-xs text-gray-500">W = Weight (kg), H = Height (cm), A = Age (years)</p>
                   </div>
                 </CardContent>
               </Card>
 
               <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
                 <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Metabolic Optimization Tips</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Activity Level Multipliers</h3>
                   <div className="space-y-4">
-                    <div className="border-l-4 border-rose-500 pl-4">
-                      <h4 className="font-semibold text-gray-800 mb-2">Build Lean Muscle Mass</h4>
-                      <p className="text-sm text-gray-600 leading-relaxed">
-                        Incorporate resistance training 3-4 times per week. Muscle tissue burns 3x more calories 
-                        at rest than fat tissue, significantly boosting your BMR over time.
-                      </p>
+                    <div className="border-l-4 border-red-500 pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-1">Sedentary (1.2x)</h4>
+                      <p className="text-sm text-gray-600">Desk job, no regular exercise, minimal physical activity</p>
                     </div>
-                    
-                    <div className="border-l-4 border-blue-500 pl-4">
-                      <h4 className="font-semibold text-gray-800 mb-2">Optimize Protein Intake</h4>
-                      <p className="text-sm text-gray-600 leading-relaxed">
-                        Consume 1.6-2.2g protein per kg bodyweight. Protein has the highest thermic effect (20-30% 
-                        of calories burned in digestion) and helps preserve muscle during weight loss.
-                      </p>
-                    </div>
-                    
-                    <div className="border-l-4 border-green-500 pl-4">
-                      <h4 className="font-semibold text-gray-800 mb-2">Stay Consistently Active</h4>
-                      <p className="text-sm text-gray-600 leading-relaxed">
-                        Increase NEAT through daily activities: take stairs, walk during calls, use standing desk, 
-                        park farther away. Small activities compound to significant calorie expenditure.
-                      </p>
-                    </div>
-                    
                     <div className="border-l-4 border-orange-500 pl-4">
-                      <h4 className="font-semibold text-gray-800 mb-2">Prioritize Sleep Quality</h4>
-                      <p className="text-sm text-gray-600 leading-relaxed">
-                        Aim for 7-9 hours of quality sleep. Poor sleep disrupts hormones (leptin, ghrelin, cortisol) 
-                        that regulate metabolism and appetite, potentially lowering BMR.
-                      </p>
+                      <h4 className="font-semibold text-gray-800 mb-1">Lightly Active (1.375x)</h4>
+                      <p className="text-sm text-gray-600">Light exercise 1-3 days/week, some walking or light sports</p>
                     </div>
-                    
-                    <div className="border-l-4 border-purple-500 pl-4">
-                      <h4 className="font-semibold text-gray-800 mb-2">Consider HIIT Training</h4>
-                      <p className="text-sm text-gray-600 leading-relaxed">
-                        High-Intensity Interval Training creates EPOC (excess post-exercise oxygen consumption), 
-                        elevating metabolic rate for hours after exercise completion.
-                      </p>
+                    <div className="border-l-4 border-yellow-500 pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-1">Moderately Active (1.55x)</h4>
+                      <p className="text-sm text-gray-600">Moderate exercise 3-5 days/week, regular gym sessions</p>
                     </div>
-                    
-                    <div className="border-l-4 border-indigo-500 pl-4">
-                      <h4 className="font-semibold text-gray-800 mb-2">Maintain Hydration</h4>
-                      <p className="text-sm text-gray-600 leading-relaxed">
-                        Proper hydration supports optimal metabolic function. Cold water may provide small metabolic 
-                        boost through thermogenesis as body warms the water to body temperature.
-                      </p>
+                    <div className="border-l-4 border-green-500 pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-1">Very Active (1.725x)</h4>
+                      <p className="text-sm text-gray-600">Hard exercise 6-7 days/week, intense training</p>
+                    </div>
+                    <div className="border-l-4 border-blue-500 pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-1">Extra Active (1.9x)</h4>
+                      <p className="text-sm text-gray-600">Very hard exercise + physical job or 2x/day training</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
             </div>
 
-            {/* BMR Applications and Use Cases */}
+            {/* BMR Applications */}
             <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">BMR Calculator Applications & Use Cases</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-8">Practical Applications of BMR</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-gray-900">Personal Fitness & Nutrition</h4>
-                    <ul className="text-gray-600 space-y-2 text-sm">
-                      <li>• <strong>Meal Planning:</strong> Calculate precise calorie targets for daily nutrition planning</li>
-                      <li>• <strong>Weight Management:</strong> Establish sustainable calorie deficits or surpluses</li>
-                      <li>• <strong>Athletic Performance:</strong> Fuel training sessions with appropriate calorie intake</li>
-                      <li>• <strong>Body Recomposition:</strong> Balance calories for simultaneous fat loss and muscle gain</li>
-                      <li>• <strong>Metabolic Tracking:</strong> Monitor changes in metabolic rate over time</li>
+                  <div className="bg-blue-50 rounded-lg p-6 border border-blue-100">
+                    <h4 className="text-lg font-semibold text-blue-800 mb-3">Weight Management</h4>
+                    <p className="text-blue-700 text-sm mb-4">
+                      Use BMR to determine calorie needs for weight loss, maintenance, or gain. Create appropriate 
+                      caloric deficits or surpluses based on your goals.
+                    </p>
+                    <ul className="text-blue-700 text-xs space-y-1">
+                      <li>• Calculate daily calorie targets</li>
+                      <li>• Plan sustainable deficits</li>
+                      <li>• Avoid metabolic damage</li>
                     </ul>
                   </div>
                   
-                  <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-gray-900">Professional Applications</h4>
-                    <ul className="text-gray-600 space-y-2 text-sm">
-                      <li>• <strong>Personal Trainers:</strong> Create evidence-based nutrition protocols for clients</li>
-                      <li>• <strong>Registered Dietitians:</strong> Assess metabolic needs for clinical nutrition therapy</li>
-                      <li>• <strong>Healthcare Providers:</strong> Evaluate metabolic health in patient assessments</li>
-                      <li>• <strong>Fitness Facilities:</strong> Offer comprehensive metabolic assessments to members</li>
-                      <li>• <strong>Research Applications:</strong> Baseline metabolic measurements for scientific studies</li>
+                  <div className="bg-green-50 rounded-lg p-6 border border-green-100">
+                    <h4 className="text-lg font-semibold text-green-800 mb-3">Athletic Performance</h4>
+                    <p className="text-green-700 text-sm mb-4">
+                      Athletes use BMR calculations to fuel training properly and optimize recovery. Ensures adequate 
+                      energy intake for performance and adaptation.
+                    </p>
+                    <ul className="text-green-700 text-xs space-y-1">
+                      <li>• Fuel training sessions</li>
+                      <li>• Optimize recovery nutrition</li>
+                      <li>• Prevent relative energy deficiency</li>
                     </ul>
                   </div>
                   
-                  <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-gray-900">Special Populations</h4>
-                    <ul className="text-gray-600 space-y-2 text-sm">
-                      <li>• <strong>Athletes:</strong> Optimize performance nutrition and recovery protocols</li>
-                      <li>• <strong>Older Adults:</strong> Address age-related metabolic decline and muscle loss</li>
-                      <li>• <strong>Weight Management Clients:</strong> Establish realistic and sustainable goals</li>
-                      <li>• <strong>Rehabilitation Patients:</strong> Support recovery with appropriate calorie provision</li>
-                      <li>• <strong>Metabolic Disorders:</strong> Monitor and manage conditions affecting metabolism</li>
+                  <div className="bg-purple-50 rounded-lg p-6 border border-purple-100">
+                    <h4 className="text-lg font-semibold text-purple-800 mb-3">Health Monitoring</h4>
+                    <p className="text-purple-700 text-sm mb-4">
+                      Healthcare providers use BMR in metabolic assessments and treatment planning for conditions 
+                      affecting metabolism like thyroid disorders.
+                    </p>
+                    <ul className="text-purple-700 text-xs space-y-1">
+                      <li>• Assess metabolic health</li>
+                      <li>• Monitor treatment progress</li>
+                      <li>• Detect metabolic abnormalities</li>
+                    </ul>
+                  </div>
+                  
+                  <div className="bg-orange-50 rounded-lg p-6 border border-orange-100">
+                    <h4 className="text-lg font-semibold text-orange-800 mb-3">Meal Planning</h4>
+                    <p className="text-orange-700 text-sm mb-4">
+                      Nutritionists use BMR calculations to create personalized meal plans that meet individual 
+                      energy needs while supporting health goals.
+                    </p>
+                    <ul className="text-orange-700 text-xs space-y-1">
+                      <li>• Design balanced meal plans</li>
+                      <li>• Calculate portion sizes</li>
+                      <li>• Plan nutrient distribution</li>
+                    </ul>
+                  </div>
+                  
+                  <div className="bg-red-50 rounded-lg p-6 border border-red-100">
+                    <h4 className="text-lg font-semibold text-red-800 mb-3">Fitness Programming</h4>
+                    <p className="text-red-700 text-sm mb-4">
+                      Personal trainers use BMR to design appropriate exercise programs and nutrition strategies 
+                      that align with client goals and metabolic capacity.
+                    </p>
+                    <ul className="text-red-700 text-xs space-y-1">
+                      <li>• Customize training intensity</li>
+                      <li>• Plan workout frequency</li>
+                      <li>• Integrate nutrition timing</li>
+                    </ul>
+                  </div>
+                  
+                  <div className="bg-indigo-50 rounded-lg p-6 border border-indigo-100">
+                    <h4 className="text-lg font-semibold text-indigo-800 mb-3">Medical Applications</h4>
+                    <p className="text-indigo-700 text-sm mb-4">
+                      Medical professionals use BMR in clinical settings for patients with metabolic disorders, 
+                      eating disorders, or those requiring specialized nutrition support.
+                    </p>
+                    <ul className="text-indigo-700 text-xs space-y-1">
+                      <li>• Clinical nutrition assessment</li>
+                      <li>• Eating disorder treatment</li>
+                      <li>• Critical care nutrition</li>
                     </ul>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Frequently Asked Questions */}
+            {/* BMR Optimization Tips */}
             <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions About BMR</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">How to Optimize Your BMR</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                      <h4 className="font-semibold text-green-800 mb-2">✅ Build Lean Muscle Mass</h4>
+                      <p className="text-green-700 text-sm">
+                        Resistance training increases muscle mass, which burns more calories at rest than fat tissue. 
+                        Each pound of muscle burns approximately 6-7 calories per day at rest.
+                      </p>
+                    </div>
+                    
+                    <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                      <h4 className="font-semibold text-green-800 mb-2">✅ Maintain Adequate Protein Intake</h4>
+                      <p className="text-green-700 text-sm">
+                        Protein has a higher thermic effect than carbs or fats, meaning your body burns more calories 
+                        digesting it. Aim for 0.8-1.2g per kg of body weight daily.
+                      </p>
+                    </div>
+                    
+                    <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                      <h4 className="font-semibold text-green-800 mb-2">✅ Stay Hydrated and Get Quality Sleep</h4>
+                      <p className="text-green-700 text-sm">
+                        Dehydration can slow metabolism by up to 3%. Poor sleep affects hormones that regulate 
+                        metabolism, including thyroid hormones and cortisol.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-6">
+                    <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                      <h4 className="font-semibold text-red-800 mb-2">❌ Avoid Extreme Calorie Restriction</h4>
+                      <p className="text-red-700 text-sm">
+                        Very low-calorie diets can cause adaptive thermogenesis, lowering your BMR by 10-40%. 
+                        Aim for moderate deficits of 10-20% below TDEE for sustainable weight loss.
+                      </p>
+                    </div>
+                    
+                    <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                      <h4 className="font-semibold text-red-800 mb-2">❌ Don't Skip Meals Regularly</h4>
+                      <p className="text-red-700 text-sm">
+                        Inconsistent eating patterns can negatively affect metabolic rate and hormone regulation. 
+                        Maintain regular meal timing to support optimal metabolism.
+                      </p>
+                    </div>
+                    
+                    <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                      <h4 className="font-semibold text-red-800 mb-2">❌ Avoid Chronic Stress</h4>
+                      <p className="text-red-700 text-sm">
+                        Chronic stress elevates cortisol, which can negatively impact metabolism and promote 
+                        fat storage, particularly in the abdominal area. Practice stress management techniques.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* BMR FAQs */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions about BMR</h3>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                   <div className="space-y-6">
                     <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-3">How accurate are BMR calculators?</h4>
-                      <p className="text-gray-600 text-sm leading-relaxed">
-                        BMR calculators using the Mifflin-St Jeor equation are accurate within ±10% for most people. 
-                        The Katch-McArdle formula (using body fat percentage) can be more accurate for individuals 
-                        with known body composition. For precise measurements, consider indirect calorimetry testing.
+                      <h4 className="font-semibold text-gray-800 mb-2">Can I eat below my BMR to lose weight faster?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Eating below BMR is not recommended as it can lead to muscle loss, nutrient deficiencies, and 
+                        metabolic slowdown. Always eat at least your BMR and create deficits through activity or eating 
+                        between BMR and TDEE.
                       </p>
                     </div>
-                    
                     <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-3">Should I eat below my BMR for weight loss?</h4>
-                      <p className="text-gray-600 text-sm leading-relaxed">
-                        Generally no. Eating significantly below BMR long-term can trigger adaptive thermogenesis, 
-                        slowing metabolism and potentially causing muscle loss. Instead, create a moderate deficit 
-                        from your TDEE (300-500 calories) for sustainable weight loss while preserving metabolic health.
+                      <h4 className="font-semibold text-gray-800 mb-2">How accurate are BMR calculations?</h4>
+                      <p className="text-gray-600 text-sm">
+                        BMR equations are estimates with about 10-15% accuracy for most people. Individual variations in 
+                        genetics, body composition, and health status can affect actual metabolic rate. Use results as 
+                        starting points and adjust based on real-world results.
                       </p>
                     </div>
-                    
                     <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-3">Why is my BMR different from online estimates?</h4>
-                      <p className="text-gray-600 text-sm leading-relaxed">
-                        Individual BMR can vary due to genetics, medical conditions, medication effects, stress levels, 
-                        sleep quality, and body composition variations. Formulas provide population averages - your 
-                        actual BMR may be 10-15% higher or lower than calculated values.
+                      <h4 className="font-semibold text-gray-800 mb-2">Does BMR change with weight loss?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Yes, BMR decreases as you lose weight because there's less body mass to maintain. Additionally, 
+                        adaptive thermogenesis can further reduce metabolic rate during prolonged calorie restriction. 
+                        Recalculate BMR every 10-15 pounds of weight change.
                       </p>
                     </div>
-                    
                     <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-3">How often should I recalculate my BMR?</h4>
-                      <p className="text-gray-600 text-sm leading-relaxed">
-                        Recalculate BMR every 10-15 pounds of weight change, significant body composition changes, 
-                        or every 3-6 months during active weight management. Age-related changes occur gradually, 
-                        so annual recalculation is sufficient for maintenance phases.
+                      <h4 className="font-semibold text-gray-800 mb-2">What's the difference between BMR and RMR?</h4>
+                      <p className="text-gray-600 text-sm">
+                        BMR is measured under very strict conditions (12-hour fast, 8-hour sleep, controlled temperature). 
+                        RMR is measured in less restrictive conditions and is typically 10-20% higher than BMR. For 
+                        practical purposes, the terms are often used interchangeably.
                       </p>
                     </div>
                   </div>
-                  
                   <div className="space-y-6">
                     <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-3">What's the difference between BMR and RMR?</h4>
-                      <p className="text-gray-600 text-sm leading-relaxed">
-                        BMR (Basal Metabolic Rate) is measured under strict laboratory conditions after 8+ hours sleep 
-                        and 12+ hours fasting. RMR (Resting Metabolic Rate) is measured under less restrictive conditions. 
-                        RMR is typically 10-20% higher than BMR and more practical for everyday applications.
+                      <h4 className="font-semibold text-gray-800 mb-2">Can medications affect my BMR?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Yes, certain medications can significantly affect metabolic rate. Thyroid medications, stimulants, 
+                        antidepressants, and some diabetes medications can increase or decrease BMR. Consult your healthcare 
+                        provider if you suspect medication is affecting your metabolism.
                       </p>
                     </div>
-                    
                     <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-3">Can medications affect my BMR?</h4>
-                      <p className="text-gray-600 text-sm leading-relaxed">
-                        Yes, certain medications significantly impact metabolism. Thyroid medications, antidepressants, 
-                        beta-blockers, corticosteroids, and diabetes medications can all affect BMR. Consult your 
-                        healthcare provider about how medications might influence your metabolic rate and calorie needs.
+                      <h4 className="font-semibold text-gray-800 mb-2">How does age affect BMR?</h4>
+                      <p className="text-gray-600 text-sm">
+                        BMR typically decreases by 2-3% per decade after age 30, primarily due to loss of muscle mass and 
+                        changes in hormone levels. However, maintaining muscle mass through resistance training can help 
+                        minimize age-related metabolic decline.
                       </p>
                     </div>
-                    
                     <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-3">How does age affect BMR calculations?</h4>
-                      <p className="text-gray-600 text-sm leading-relaxed">
-                        BMR typically decreases 1-2% per decade after age 30, primarily due to muscle mass loss and 
-                        hormonal changes. This decline can be minimized through regular strength training, adequate 
-                        protein intake, and maintaining active lifestyle habits throughout life.
+                      <h4 className="font-semibold text-gray-800 mb-2">Should I eat the same calories every day?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Not necessarily. Some people benefit from calorie cycling, eating more on training days and less 
+                        on rest days. The key is maintaining your weekly calorie target while ensuring you don't go below 
+                        BMR on low-calorie days.
                       </p>
                     </div>
-                    
                     <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-3">What if my calculated calories don't match my results?</h4>
-                      <p className="text-gray-600 text-sm leading-relaxed">
-                        Use calculated values as starting points, then adjust based on real-world results. Track weight 
-                        changes over 2-4 weeks and modify calorie intake by 100-200 calories if results don't match 
-                        expectations. Individual metabolic rates can vary from population averages.
+                      <h4 className="font-semibold text-gray-800 mb-2">Can I increase my BMR naturally?</h4>
+                      <p className="text-gray-600 text-sm">
+                        While genetics largely determine BMR, you can influence it through strength training (builds muscle), 
+                        adequate protein intake, proper hydration, quality sleep, and avoiding extreme dieting. These 
+                        strategies can help optimize your metabolic rate within your genetic potential.
                       </p>
                     </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Related Tools */}
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Related Health & Fitness Calculators</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                  <a href="/tools/bmi-calculator" className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-200 hover:scale-105 border border-blue-100">
-                    <div className="text-2xl font-bold text-blue-600 mb-3">📊</div>
-                    <h4 className="font-semibold text-gray-900 mb-2">BMI Calculator</h4>
-                    <p className="text-gray-600 text-xs">Calculate Body Mass Index and health status</p>
-                  </a>
-                  
-                  <a href="/tools/tdee-calculator" className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-200 hover:scale-105 border border-green-100">
-                    <div className="text-2xl font-bold text-green-600 mb-3">⚡</div>
-                    <h4 className="font-semibold text-gray-900 mb-2">TDEE Calculator</h4>
-                    <p className="text-gray-600 text-xs">Total Daily Energy Expenditure calculator</p>
-                  </a>
-                  
-                  <a href="/tools/body-fat-calculator" className="bg-gradient-to-br from-orange-50 to-red-50 rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-200 hover:scale-105 border border-orange-100">
-                    <div className="text-2xl font-bold text-orange-600 mb-3">📏</div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Body Fat Calculator</h4>
-                    <p className="text-gray-600 text-xs">Estimate body fat percentage accurately</p>
-                  </a>
-                  
-                  <a href="/tools/calorie-calculator" className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-200 hover:scale-105 border border-purple-100">
-                    <div className="text-2xl font-bold text-purple-600 mb-3">🍽️</div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Calorie Calculator</h4>
-                    <p className="text-gray-600 text-xs">Calculate daily calorie needs for goals</p>
-                  </a>
-
-                  <a href="/tools/ideal-weight-calculator" className="bg-gradient-to-br from-rose-50 to-pink-50 rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-200 hover:scale-105 border border-rose-100">
-                    <div className="text-2xl font-bold text-rose-600 mb-3">⚖️</div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Ideal Weight Calculator</h4>
-                    <p className="text-gray-600 text-xs">Calculate ideal body weight using proven formulas</p>
-                  </a>
-
-                  <a href="/tools/protein-intake-calculator" className="bg-gradient-to-br from-teal-50 to-cyan-50 rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-200 hover:scale-105 border border-teal-100">
-                    <div className="text-2xl font-bold text-teal-600 mb-3">🥩</div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Protein Calculator</h4>
-                    <p className="text-gray-600 text-xs">Calculate daily protein requirements</p>
-                  </a>
-
-                  <a href="/tools/water-intake-calculator" className="bg-gradient-to-br from-sky-50 to-blue-50 rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-200 hover:scale-105 border border-sky-100">
-                    <div className="text-2xl font-bold text-sky-600 mb-3">💧</div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Water Intake Calculator</h4>
-                    <p className="text-gray-600 text-xs">Calculate daily water requirements</p>
-                  </a>
-
-                  <a href="/tools/heart-rate-calculator" className="bg-gradient-to-br from-red-50 to-rose-50 rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-200 hover:scale-105 border border-red-100">
-                    <div className="text-2xl font-bold text-red-600 mb-3">❤️</div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Heart Rate Calculator</h4>
-                    <p className="text-gray-600 text-xs">Calculate target heart rate zones</p>
-                  </a>
                 </div>
               </CardContent>
             </Card>
@@ -1151,6 +965,4 @@ const BMRCalculator = () => {
       <Footer />
     </div>
   );
-};
-
-export default BMRCalculator;
+}
