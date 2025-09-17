@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Slider } from '@/components/ui/slider';
 
 interface ConversionOptions {
   encoding: 'utf8' | 'ascii';
@@ -27,6 +28,7 @@ interface ConversionResult {
 export default function TextToBinaryConverter() {
   const [inputText, setInputText] = useState('');
   const [conversionResult, setConversionResult] = useState<ConversionResult | null>(null);
+  const [fontSize, setFontSize] = useState([14]);
   const [options, setOptions] = useState<ConversionOptions>({
     encoding: 'utf8',
     spacing: 'space',
@@ -326,7 +328,32 @@ export default function TextToBinaryConverter() {
 
                 {/* Results Section */}
                 <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Conversion Results</h2>
+                  <div className="flex justify-between items-center mb-6">
+                    <h2 className="text-2xl font-bold text-gray-900">Conversion Results</h2>
+                  </div>
+
+                  {/* Font Size Slider */}
+                  <div className="mb-8 bg-white rounded-xl p-6 shadow-sm">
+                    <div className="flex items-center justify-between mb-4">
+                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Output Font Size
+                      </Label>
+                      <span className="text-sm text-gray-600 font-mono">{fontSize[0]}px</span>
+                    </div>
+                    <Slider
+                      value={fontSize}
+                      onValueChange={setFontSize}
+                      max={24}
+                      min={10}
+                      step={2}
+                      className="w-full"
+                      data-testid="slider-font-size"
+                    />
+                    <div className="flex justify-between text-xs text-gray-400 mt-2">
+                      <span>10px</span>
+                      <span>24px</span>
+                    </div>
+                  </div>
 
                   {conversionResult ? (
                     <div className="space-y-6" data-testid="conversion-results">
@@ -342,7 +369,11 @@ export default function TextToBinaryConverter() {
                             Copy Binary
                           </Button>
                         </div>
-                        <div className="font-mono text-sm bg-blue-50 p-4 rounded-lg border break-all" data-testid="binary-output">
+                        <div 
+                          className="font-mono bg-blue-50 p-4 rounded-lg border break-all" 
+                          style={{ fontSize: `${fontSize[0]}px` }}
+                          data-testid="binary-output"
+                        >
                           {conversionResult.binary}
                         </div>
                       </div>
@@ -360,7 +391,11 @@ export default function TextToBinaryConverter() {
                               Copy Decimal
                             </Button>
                           </div>
-                          <div className="font-mono text-sm bg-green-50 p-4 rounded-lg border break-all" data-testid="decimal-output">
+                          <div 
+                            className="font-mono bg-green-50 p-4 rounded-lg border break-all" 
+                            style={{ fontSize: `${fontSize[0]}px` }}
+                            data-testid="decimal-output"
+                          >
                             {conversionResult.decimal}
                           </div>
                         </div>
@@ -379,7 +414,11 @@ export default function TextToBinaryConverter() {
                               Copy Hex
                             </Button>
                           </div>
-                          <div className="font-mono text-sm bg-purple-50 p-4 rounded-lg border break-all" data-testid="hex-output">
+                          <div 
+                            className="font-mono bg-purple-50 p-4 rounded-lg border break-all" 
+                            style={{ fontSize: `${fontSize[0]}px` }}
+                            data-testid="hex-output"
+                          >
                             {conversionResult.hexadecimal}
                           </div>
                         </div>
