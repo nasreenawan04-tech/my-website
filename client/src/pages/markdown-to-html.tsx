@@ -720,7 +720,7 @@ function hello() {
                       <div className="space-y-1 text-sm">
                         <code className="block bg-teal-100 text-teal-800 px-2 py-1 rounded text-xs">`inline code`</code>
                         <code className="block bg-teal-100 text-teal-800 px-2 py-1 rounded text-xs">```code block```</code>
-                        <code className="block bg-teal-100 text-teal-800 px-2 py-1 rounded text-xs">> Blockquote text</code>
+                        <code className="block bg-teal-100 text-teal-800 px-2 py-1 rounded text-xs">&gt; Blockquote text</code>
                         <code className="block bg-teal-100 text-teal-800 px-2 py-1 rounded text-xs">--- Horizontal rule</code>
                       </div>
                     </div>
