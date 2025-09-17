@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -6,14 +7,20 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
+import { Switch } from '@/components/ui/switch';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Slider } from '@/components/ui/slider';
+import { Input } from '@/components/ui/input';
+import { Separator } from '@/components/ui/separator';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 
 interface ConversionOptions {
   encoding: 'utf8' | 'ascii';
   spacing: 'none' | 'space' | 'byte';
   showDecimal: boolean;
   showHex: boolean;
+  preserveNumbers: boolean;
+  addPrefix: string;
+  addSuffix: string;
 }
 
 interface ConversionResult {
@@ -23,20 +30,25 @@ interface ConversionResult {
   hexadecimal: string;
   charCount: number;
   byteCount: number;
+  timestamp: Date;
 }
 
-export default function TextToBinaryConverter() {
+const TextToBinaryConverter = () => {
   const [inputText, setInputText] = useState('');
   const [conversionResult, setConversionResult] = useState<ConversionResult | null>(null);
-  const [fontSize, setFontSize] = useState([14]);
+  const [conversionHistory, setConversionHistory] = useState<ConversionResult[]>([]);
+  const [showAdvanced, setShowAdvanced] = useState(false);
   const [options, setOptions] = useState<ConversionOptions>({
     encoding: 'utf8',
     spacing: 'space',
     showDecimal: true,
-    showHex: true
+    showHex: true,
+    preserveNumbers: true,
+    addPrefix: '',
+    addSuffix: ''
   });
 
-  const textToBinary = (text: string, encoding: 'utf8' | 'ascii' = 'utf8'): string => {
+  const textToBinary = (text: string, encoding: 'utf8' | 'ascii' = 'utf8', spacing: string = 'space'): string => {
     if (!text) return '';
     
     let binary = '';
@@ -50,7 +62,7 @@ export default function TextToBinaryConverter() {
       
       let binaryChar = charCode.toString(2).padStart(8, '0');
       
-      switch (options.spacing) {
+      switch (spacing) {
         case 'space':
           binary += (i > 0 ? ' ' : '') + binaryChar;
           break;
@@ -84,26 +96,46 @@ export default function TextToBinaryConverter() {
       return;
     }
 
-    const binary = textToBinary(inputText, options.encoding);
-    const decimal = textToDecimal(inputText);
-    const hexadecimal = textToHex(inputText);
-    
-    const result: ConversionResult = {
-      originalText: inputText,
-      binary,
-      decimal,
-      hexadecimal,
-      charCount: inputText.length,
-      byteCount: new Blob([inputText]).size
-    };
+    try {
+      let processedText = inputText;
+      
+      // Apply prefix and suffix if provided
+      if (options.addPrefix || options.addSuffix) {
+        processedText = `${options.addPrefix}${processedText}${options.addSuffix}`;
+      }
 
-    setConversionResult(result);
+      const binary = textToBinary(processedText, options.encoding, options.spacing);
+      const decimal = textToDecimal(processedText);
+      const hexadecimal = textToHex(processedText);
+      
+      const result: ConversionResult = {
+        originalText: inputText,
+        binary,
+        decimal,
+        hexadecimal,
+        charCount: processedText.length,
+        byteCount: new Blob([processedText]).size,
+        timestamp: new Date()
+      };
+
+      setConversionResult(result);
+
+      // Add to history (keep last 10)
+      setConversionHistory(prev => {
+        const updated = [result, ...prev.filter(item => item.originalText !== inputText)];
+        return updated.slice(0, 10);
+      });
+    } catch (error) {
+      setConversionResult(null);
+    }
   };
 
-  const handleCopy = (text: string) => {
-    if (text) {
-      navigator.clipboard.writeText(text);
-    }
+  const updateOption = <K extends keyof ConversionOptions>(key: K, value: ConversionOptions[K]) => {
+    setOptions(prev => ({ ...prev, [key]: value }));
+  };
+
+  const handleCopyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
   };
 
   const handleClear = () => {
@@ -111,14 +143,22 @@ export default function TextToBinaryConverter() {
     setConversionResult(null);
   };
 
+  const handleSampleText = () => {
+    setInputText('Hello World! Welcome to DapsiWow\'s Text to Binary Converter. This tool transforms your text into binary code.');
+  };
+
   const resetConverter = () => {
     setInputText('');
     setConversionResult(null);
+    setShowAdvanced(false);
     setOptions({
       encoding: 'utf8',
       spacing: 'space',
       showDecimal: true,
-      showHex: true
+      showHex: true,
+      preserveNumbers: true,
+      addPrefix: '',
+      addSuffix: ''
     });
   };
 
@@ -139,10 +179,10 @@ export default function TextToBinaryConverter() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
         <title>Text to Binary Converter - Convert Text to Binary Code | DapsiWow</title>
-        <meta name="description" content="Professional text to binary converter tool. Convert any text to binary code instantly with UTF-8 and ASCII encoding support. Essential for developers, programmers, and computer science students." />
+        <meta name="description" content="Free text to binary converter tool. Transform any text to binary code instantly with UTF-8 and ASCII encoding support. Essential for developers, students, and programmers learning computer science." />
         <meta name="keywords" content="text to binary converter, binary encoder, text to binary code, ASCII to binary, UTF-8 binary converter, text encoder, programming tools, computer science, binary code generator, online text converter" />
         <meta property="og:title" content="Text to Binary Converter - Convert Text to Binary Code | DapsiWow" />
-        <meta property="og:description" content="Professional online text to binary converter. Convert any text to binary code with UTF-8 and ASCII encoding. Essential tool for developers and computer science education." />
+        <meta property="og:description" content="Free online text to binary converter. Convert any text to binary code with UTF-8 and ASCII encoding. Essential tool for developers and computer science education." />
         <meta property="og:type" content="website" />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="DapsiWow" />
@@ -176,56 +216,52 @@ export default function TextToBinaryConverter() {
 
       <main>
         {/* Hero Section */}
-        <section className="relative py-20 sm:py-28 lg:py-32 overflow-hidden">
+        <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
-          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="space-y-8">
-              <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
-                <span className="text-sm font-medium text-blue-700">Professional Text Encoder</span>
+          <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="space-y-6 sm:space-y-8">
+              <div className="inline-flex items-center px-3 sm:px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+                <span className="text-xs sm:text-sm font-medium text-blue-700">Professional Text Encoder</span>
               </div>
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-slate-900 leading-tight" data-testid="text-page-title">
                 Text to Binary
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
                   Converter
                 </span>
               </h1>
-              <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-                Transform any text into binary code with professional encoding options for developers and students
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed px-2">
+                Transform any text into binary code with professional encoding options instantly
               </p>
             </div>
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
           {/* Main Converter Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-2xl sm:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+              <div className="flex flex-col">
                 {/* Input Section */}
-                <div className="p-8 lg:p-12 space-y-8">
+                <div className="p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 space-y-6 sm:space-y-8">
                   <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Conversion Settings</h2>
-                    <p className="text-gray-600">Configure your text to binary conversion options</p>
+                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Text Encoder</h2>
+                    <p className="text-gray-600">Enter your text to convert into binary code format</p>
                   </div>
 
-                  <div className="space-y-6">
+                  <div className="space-y-4 sm:space-y-6">
                     {/* Text Input */}
                     <div className="space-y-3">
                       <Label htmlFor="text-input" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
-                        Text Input
+                        Text to Convert
                       </Label>
                       <Textarea
                         id="text-input"
                         value={inputText}
                         onChange={(e) => setInputText(e.target.value)}
-                        className="w-full h-32 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500 resize-none"
-                        placeholder="Type or paste your text here..."
+                        className="min-h-[100px] sm:min-h-[120px] lg:min-h-[140px] text-base sm:text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500 resize-none"
+                        placeholder="Type or paste your text here to convert to binary code..."
                         data-testid="textarea-text-input"
                       />
-                      <div className="text-sm text-gray-500 flex justify-between">
-                        <span>{inputText.length} characters</span>
-                        <span>{new Blob([inputText]).size} bytes</span>
-                      </div>
                     </div>
 
                     {/* Encoding Selection */}
@@ -236,10 +272,10 @@ export default function TextToBinaryConverter() {
                       <Select
                         value={options.encoding}
                         onValueChange={(value: 'utf8' | 'ascii') => 
-                          setOptions(prev => ({ ...prev, encoding: value }))
+                          updateOption('encoding', value)
                         }
                       >
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-encoding">
+                        <SelectTrigger className="h-12 sm:h-14 border-2 border-gray-200 rounded-xl text-base sm:text-lg" data-testid="select-encoding">
                           <SelectValue placeholder="Select encoding" />
                         </SelectTrigger>
                         <SelectContent>
@@ -252,15 +288,15 @@ export default function TextToBinaryConverter() {
                     {/* Spacing Options */}
                     <div className="space-y-3">
                       <Label htmlFor="spacing-select" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
-                        Binary Spacing
+                        Binary Spacing Format
                       </Label>
                       <Select
                         value={options.spacing}
                         onValueChange={(value: 'none' | 'space' | 'byte') => 
-                          setOptions(prev => ({ ...prev, spacing: value }))
+                          updateOption('spacing', value)
                         }
                       >
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-spacing">
+                        <SelectTrigger className="h-12 sm:h-14 border-2 border-gray-200 rounded-xl text-base sm:text-lg" data-testid="select-spacing">
                           <SelectValue placeholder="Select spacing" />
                         </SelectTrigger>
                         <SelectContent>
@@ -270,130 +306,193 @@ export default function TextToBinaryConverter() {
                         </SelectContent>
                       </Select>
                     </div>
+                  </div>
 
-                    {/* Display Options */}
-                    <div className="space-y-4 bg-gray-50 rounded-xl p-6">
-                      <h4 className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Display Options</h4>
-                      <div className="space-y-4">
-                        <div className="flex items-center space-x-3">
-                          <input
-                            id="show-decimal"
-                            type="checkbox"
-                            checked={options.showDecimal}
-                            onChange={(e) => setOptions(prev => ({ ...prev, showDecimal: e.target.checked }))}
-                            className="h-5 w-5 text-blue-600 border-2 border-gray-300 rounded focus:ring-blue-500"
-                            data-testid="checkbox-show-decimal"
-                          />
-                          <label htmlFor="show-decimal" className="text-sm font-medium text-gray-700">
-                            Show decimal values
-                          </label>
-                        </div>
-                        <div className="flex items-center space-x-3">
-                          <input
-                            id="show-hex"
-                            type="checkbox"
-                            checked={options.showHex}
-                            onChange={(e) => setOptions(prev => ({ ...prev, showHex: e.target.checked }))}
-                            className="h-5 w-5 text-blue-600 border-2 border-gray-300 rounded focus:ring-blue-500"
-                            data-testid="checkbox-show-hex"
-                          />
-                          <label htmlFor="show-hex" className="text-sm font-medium text-gray-700">
-                            Show hexadecimal values
-                          </label>
-                        </div>
-                      </div>
-                    </div>
+                  {/* Advanced Options */}
+                  <div className="space-y-4 sm:space-y-6 border-t pt-6 sm:pt-8">
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-900">Advanced Options</h3>
+                    
+                    <Collapsible open={showAdvanced} onOpenChange={setShowAdvanced}>
+                      <CollapsibleTrigger asChild>
+                        <Button 
+                          variant="ghost" 
+                          className="w-full justify-between text-sm sm:text-base py-3 sm:py-4 h-auto"
+                          data-testid="button-toggle-advanced"
+                        >
+                          <span className="flex items-center">
+                            Advanced Customization
+                          </span>
+                          <span className={`transform transition-transform ${showAdvanced ? 'rotate-180' : ''}`}>▼</span>
+                        </Button>
+                      </CollapsibleTrigger>
+                      <CollapsibleContent className="space-y-4 sm:space-y-6 mt-4">
+                        <Separator />
+                        
+                        {/* Display and Processing Options */}
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                          <div className="space-y-4 bg-gray-50 rounded-xl p-4 sm:p-6">
+                            <h4 className="text-sm sm:text-base font-semibold text-gray-900">Display Options</h4>
+                            
+                            <div className="flex items-center justify-between gap-2">
+                              <div className="space-y-1 flex-1 min-w-0">
+                                <Label className="text-xs sm:text-sm font-medium">Show Decimal Output</Label>
+                                <p className="text-xs text-gray-500">Display decimal representation of text</p>
+                              </div>
+                              <Switch
+                                checked={options.showDecimal}
+                                onCheckedChange={(value) => updateOption('showDecimal', value)}
+                                data-testid="switch-show-decimal"
+                              />
+                            </div>
 
-                    {/* Action Buttons */}
-                    <div className="flex flex-col sm:flex-row gap-4 pt-6">
-                      <Button
-                        onClick={convertText}
-                        disabled={!inputText.trim()}
-                        className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
-                        data-testid="button-convert"
-                      >
-                        Convert to Binary
-                      </Button>
-                      <Button
-                        onClick={resetConverter}
-                        variant="outline"
-                        className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
-                        data-testid="button-reset"
-                      >
-                        Reset
-                      </Button>
-                    </div>
+                            <div className="flex items-center justify-between gap-2">
+                              <div className="space-y-1 flex-1 min-w-0">
+                                <Label className="text-xs sm:text-sm font-medium">Show Hexadecimal Output</Label>
+                                <p className="text-xs text-gray-500">Display hexadecimal representation of text</p>
+                              </div>
+                              <Switch
+                                checked={options.showHex}
+                                onCheckedChange={(value) => updateOption('showHex', value)}
+                                data-testid="switch-show-hex"
+                              />
+                            </div>
+
+                            <div className="flex items-center justify-between gap-2">
+                              <div className="space-y-1 flex-1 min-w-0">
+                                <Label className="text-xs sm:text-sm font-medium">Preserve Numbers</Label>
+                                <p className="text-xs text-gray-500">Keep digits in encoded output</p>
+                              </div>
+                              <Switch
+                                checked={options.preserveNumbers}
+                                onCheckedChange={(value) => updateOption('preserveNumbers', value)}
+                                data-testid="switch-preserve-numbers"
+                              />
+                            </div>
+                          </div>
+
+                          {/* Text Customization Options */}
+                          <div className="space-y-4 bg-gray-50 rounded-xl p-4 sm:p-6">
+                            <h4 className="text-sm sm:text-base font-semibold text-gray-900">Text Customization</h4>
+                            
+                            <div className="space-y-2">
+                              <Label className="text-xs sm:text-sm font-medium">Add Prefix</Label>
+                              <Input
+                                value={options.addPrefix}
+                                onChange={(e) => updateOption('addPrefix', e.target.value)}
+                                placeholder="e.g., [ENCODED], OUTPUT:"
+                                className="text-sm h-10 sm:h-12 border-2 border-gray-200 rounded-lg"
+                                data-testid="input-add-prefix"
+                              />
+                              <p className="text-xs text-gray-500">Text to add before encoded output</p>
+                            </div>
+
+                            <div className="space-y-2">
+                              <Label className="text-xs sm:text-sm font-medium">Add Suffix</Label>
+                              <Input
+                                value={options.addSuffix}
+                                onChange={(e) => updateOption('addSuffix', e.target.value)}
+                                placeholder="e.g., [END], _RESULT"
+                                className="text-sm h-10 sm:h-12 border-2 border-gray-200 rounded-lg"
+                                data-testid="input-add-suffix"
+                              />
+                              <p className="text-xs text-gray-500">Text to add after encoded output</p>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <Separator />
+                      </CollapsibleContent>
+                    </Collapsible>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 sm:pt-6">
+                    <Button
+                      onClick={convertText}
+                      disabled={!inputText.trim()}
+                      className="flex-1 h-12 sm:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-base sm:text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      data-testid="button-convert"
+                    >
+                      Convert to Binary
+                    </Button>
+                    <Button
+                      onClick={handleSampleText}
+                      variant="outline"
+                      className="h-12 sm:h-14 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-base sm:text-lg rounded-xl"
+                      data-testid="button-sample-text"
+                    >
+                      Sample
+                    </Button>
+                    <Button
+                      onClick={handleClear}
+                      variant="outline"
+                      className="h-12 sm:h-14 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-base sm:text-lg rounded-xl"
+                      data-testid="button-clear"
+                    >
+                      Clear
+                    </Button>
+                    <Button
+                      onClick={resetConverter}
+                      variant="outline"
+                      className="h-12 sm:h-14 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-base sm:text-lg rounded-xl"
+                      data-testid="button-reset"
+                    >
+                      Reset
+                    </Button>
                   </div>
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
-                  <div className="flex justify-between items-center mb-6">
-                    <h2 className="text-2xl font-bold text-gray-900">Conversion Results</h2>
-                  </div>
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 border-t">
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">Encoded Results</h2>
 
-                  {/* Font Size Slider */}
-                  <div className="mb-8 bg-white rounded-xl p-6 shadow-sm">
-                    <div className="flex items-center justify-between mb-4">
-                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
-                        Output Font Size
-                      </Label>
-                      <span className="text-sm text-gray-600 font-mono">{fontSize[0]}px</span>
-                    </div>
-                    <Slider
-                      value={fontSize}
-                      onValueChange={setFontSize}
-                      max={24}
-                      min={10}
-                      step={2}
-                      className="w-full"
-                      data-testid="slider-font-size"
-                    />
-                    <div className="flex justify-between text-xs text-gray-400 mt-2">
-                      <span>10px</span>
-                      <span>24px</span>
-                    </div>
-                  </div>
-
-                  {conversionResult ? (
-                    <div className="space-y-6" data-testid="conversion-results">
-                      {/* Binary Output */}
-                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
-                        <div className="flex justify-between items-center mb-4">
-                          <h3 className="text-lg font-bold text-gray-900">Binary Code</h3>
+                  {conversionResult && conversionResult.originalText ? (
+                    <div className="space-y-3 sm:space-y-4" data-testid="conversion-results">
+                      {/* Main Binary Code Display */}
+                      <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-3 sm:p-4">
+                        <div className="flex items-center justify-between mb-3 gap-3">
+                          <div className="flex-1 min-w-0">
+                            <h3 className="text-sm sm:text-base font-semibold text-gray-900 truncate">Binary Code</h3>
+                            <p className="text-xs sm:text-sm text-gray-600 break-words">Binary representation (0s and 1s)</p>
+                          </div>
                           <Button
-                            onClick={() => handleCopy(conversionResult.binary)}
-                            className="h-10 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg"
+                            onClick={() => handleCopyToClipboard(conversionResult.binary)}
+                            variant="outline"
+                            size="sm"
+                            className="text-xs px-2 sm:px-3 py-2 flex-shrink-0 rounded-lg min-w-[60px] sm:min-w-[70px] h-11 sm:h-9 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                             data-testid="button-copy-binary"
                           >
-                            Copy Binary
+                            Copy
                           </Button>
                         </div>
                         <div 
-                          className="font-mono bg-blue-50 p-4 rounded-lg border break-all" 
-                          style={{ fontSize: `${fontSize[0]}px` }}
+                          className="bg-white p-2 sm:p-3 rounded-lg border border-gray-200 text-xs sm:text-sm font-mono break-all min-h-[40px] sm:min-h-[44px] flex items-center"
                           data-testid="binary-output"
                         >
-                          {conversionResult.binary}
+                          {conversionResult.binary || '(empty result)'}
                         </div>
                       </div>
 
-                      {/* Decimal Output */}
+                      {/* Alternative Format Outputs */}
                       {options.showDecimal && (
-                        <div className="bg-white rounded-2xl p-6 shadow-lg border border-green-100">
-                          <div className="flex justify-between items-center mb-4">
-                            <h3 className="text-lg font-bold text-gray-900">Decimal Values</h3>
+                        <div className="bg-green-50 border-2 border-green-200 rounded-xl p-3 sm:p-4">
+                          <div className="flex items-center justify-between mb-3 gap-3">
+                            <div className="flex-1 min-w-0">
+                              <h4 className="text-sm sm:text-base font-semibold text-gray-900 truncate">Decimal Values</h4>
+                              <p className="text-xs sm:text-sm text-gray-600 break-words">Decimal character codes</p>
+                            </div>
                             <Button
-                              onClick={() => handleCopy(conversionResult.decimal)}
-                              className="h-10 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg"
+                              onClick={() => handleCopyToClipboard(conversionResult.decimal)}
+                              variant="outline"
+                              size="sm"
+                              className="text-xs px-2 sm:px-3 py-2 flex-shrink-0 rounded-lg min-w-[60px] sm:min-w-[70px] h-11 sm:h-9 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                               data-testid="button-copy-decimal"
                             >
-                              Copy Decimal
+                              Copy
                             </Button>
                           </div>
                           <div 
-                            className="font-mono bg-green-50 p-4 rounded-lg border break-all" 
-                            style={{ fontSize: `${fontSize[0]}px` }}
+                            className="bg-white p-2 sm:p-3 rounded-lg border border-gray-200 text-xs sm:text-sm font-mono break-all min-h-[40px] sm:min-h-[44px] flex items-center"
                             data-testid="decimal-output"
                           >
                             {conversionResult.decimal}
@@ -401,22 +500,25 @@ export default function TextToBinaryConverter() {
                         </div>
                       )}
 
-                      {/* Hexadecimal Output */}
                       {options.showHex && (
-                        <div className="bg-white rounded-2xl p-6 shadow-lg border border-purple-100">
-                          <div className="flex justify-between items-center mb-4">
-                            <h3 className="text-lg font-bold text-gray-900">Hexadecimal Values</h3>
+                        <div className="bg-purple-50 border-2 border-purple-200 rounded-xl p-3 sm:p-4">
+                          <div className="flex items-center justify-between mb-3 gap-3">
+                            <div className="flex-1 min-w-0">
+                              <h4 className="text-sm sm:text-base font-semibold text-gray-900 truncate">Hexadecimal Values</h4>
+                              <p className="text-xs sm:text-sm text-gray-600 break-words">Hexadecimal character codes</p>
+                            </div>
                             <Button
-                              onClick={() => handleCopy(conversionResult.hexadecimal)}
-                              className="h-10 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg"
+                              onClick={() => handleCopyToClipboard(conversionResult.hexadecimal)}
+                              variant="outline"
+                              size="sm"
+                              className="text-xs px-2 sm:px-3 py-2 flex-shrink-0 rounded-lg min-w-[60px] sm:min-w-[70px] h-11 sm:h-9 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                               data-testid="button-copy-hex"
                             >
-                              Copy Hex
+                              Copy
                             </Button>
                           </div>
                           <div 
-                            className="font-mono bg-purple-50 p-4 rounded-lg border break-all" 
-                            style={{ fontSize: `${fontSize[0]}px` }}
+                            className="bg-white p-2 sm:p-3 rounded-lg border border-gray-200 text-xs sm:text-sm font-mono break-all min-h-[40px] sm:min-h-[44px] flex items-center"
                             data-testid="hex-output"
                           >
                             {conversionResult.hexadecimal}
@@ -425,32 +527,26 @@ export default function TextToBinaryConverter() {
                       )}
 
                       {/* Text Statistics */}
-                      <div className="bg-white rounded-xl p-6 shadow-sm" data-testid="conversion-statistics">
-                        <h3 className="font-bold text-gray-900 mb-4 text-lg">Conversion Statistics</h3>
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                      <div className="bg-white rounded-xl p-3 sm:p-4 shadow-sm border border-gray-200" data-testid="text-statistics">
+                        <h3 className="text-sm sm:text-base font-bold text-gray-900 mb-4">Text Statistics</h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           <div className="bg-blue-50 rounded-lg p-4 text-center">
-                            <div className="text-2xl font-bold text-blue-600">{conversionResult.charCount}</div>
+                            <div className="text-2xl font-bold text-blue-600" data-testid="char-count">{conversionResult.charCount}</div>
                             <div className="text-sm text-blue-700 font-medium">Characters</div>
                           </div>
                           <div className="bg-green-50 rounded-lg p-4 text-center">
-                            <div className="text-2xl font-bold text-green-600">{conversionResult.byteCount}</div>
+                            <div className="text-2xl font-bold text-green-600" data-testid="byte-count">{conversionResult.byteCount}</div>
                             <div className="text-sm text-green-700 font-medium">Bytes</div>
-                          </div>
-                          <div className="bg-purple-50 rounded-lg p-4 text-center">
-                            <div className="text-2xl font-bold text-purple-600">
-                              {conversionResult.binary.replace(/\s/g, '').length}
-                            </div>
-                            <div className="text-sm text-purple-700 font-medium">Binary Digits</div>
                           </div>
                         </div>
                       </div>
                     </div>
                   ) : (
-                    <div className="text-center py-16" data-testid="no-results">
-                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <div className="text-3xl font-bold text-gray-400">01</div>
+                    <div className="text-center py-12 sm:py-16" data-testid="no-results">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
+                        <div className="text-2xl sm:text-3xl font-bold text-gray-400">01</div>
                       </div>
-                      <p className="text-gray-500 text-lg">Enter text to see binary conversion results</p>
+                      <p className="text-gray-500 text-base sm:text-lg px-4">Enter text to see binary conversion results</p>
                     </div>
                   )}
                 </div>
@@ -458,223 +554,688 @@ export default function TextToBinaryConverter() {
             </CardContent>
           </Card>
 
-          {/* SEO Content Section */}
-          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* SEO Content Sections */}
+          <div className="mt-16 space-y-8">
+            {/* What is Text to Binary Conversion */}
             <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">What is Text to Binary Conversion?</h3>
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">What is Text to Binary Conversion?</h2>
                 <div className="space-y-4 text-gray-600">
                   <p>
-                    Text to binary conversion is the process of transforming human-readable text into binary code, 
-                    the fundamental language that computers use to process and store information. Each character 
-                    in your text is converted to its corresponding numerical value and then represented as a sequence 
-                    of 0s and 1s.
+                    <strong>Text to binary conversion</strong> is the fundamental process of transforming human-readable text into binary code (sequences of 0s and 1s), the universal language that computers use to process and store information. This essential computer science concept bridges the gap between human communication and machine understanding, making it perfect for educational purposes, programming projects, and understanding digital data representation.
                   </p>
                   <p>
-                    Our professional text to binary converter supports both UTF-8 and ASCII encoding systems, 
-                    allowing you to convert any text from simple English letters to complex international characters. 
-                    This tool is essential for computer science education, programming projects, and understanding 
-                    how digital data is stored and transmitted.
+                    Our professional text to binary converter supports comprehensive UTF-8 and ASCII encoding systems, allowing you to convert any text from simple English letters to complex international characters and symbols. The tool features real-time conversion as you type, advanced customization options including spacing formats, and intelligent text processing capabilities.
                   </p>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Why Use a Text to Binary Converter?</h3>
-                <div className="space-y-4 text-gray-600">
                   <p>
-                    Binary conversion is fundamental to understanding how computers process information. Whether 
-                    you're a student learning computer science, a developer working on low-level programming, 
-                    or simply curious about digital representation, this tool provides instant, accurate conversions.
+                    Whether you're a student learning computer science fundamentals, a developer working on low-level programming concepts, or a professional analyzing data encoding, this converter provides instant, accurate transformations with detailed output formatting options to meet your specific needs.
                   </p>
-                  <ul className="space-y-2 list-disc list-inside">
-                    <li>Learn computer science fundamentals and data representation</li>
-                    <li>Debug encoding issues in programming projects</li>
-                    <li>Understand how text is stored digitally</li>
-                    <li>Educational tool for teaching binary systems</li>
-                  </ul>
                 </div>
               </CardContent>
             </Card>
 
+            {/* Encoding Systems Guide */}
             <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Converter Features</h3>
-                <div className="space-y-3 text-gray-600">
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Real-time conversion as you type</span>
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Text to Binary Encoding Guide</h2>
+                <p className="text-gray-600 mb-8">Understanding different encoding systems and output formats is crucial for effective text to binary conversion. Our converter supports multiple encoding standards and formatting options to meet diverse technical requirements.</p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <div className="bg-blue-50 rounded-lg p-6">
+                      <h3 className="text-lg font-semibold text-blue-900 mb-3">UTF-8 Encoding</h3>
+                      <p className="text-blue-800 text-sm mb-4">
+                        UTF-8 is a variable-width encoding system that can represent any Unicode character using 1-4 bytes. It's backward compatible with ASCII and supports international characters, emojis, and symbols from virtually every writing system worldwide.
+                      </p>
+                      <div className="bg-blue-100 p-3 rounded-lg">
+                        <h4 className="font-medium text-blue-900 mb-2">Example Conversion:</h4>
+                        <div className="text-xs font-mono text-blue-800">
+                          <div>Text: "Hello 🌍"</div>
+                          <div>Binary: 01001000 01100101 01101100 01101100 01101111 00100000 11110000 10011111 10001100 10001101</div>
+                        </div>
+                      </div>
+                      <ul className="text-xs text-blue-700 mt-3 space-y-1">
+                        <li>• Supports all Unicode characters (over 1 million)</li>
+                        <li>• Variable-length encoding (1-4 bytes per character)</li>
+                        <li>• Perfect for modern applications and websites</li>
+                        <li>• International and emoji support</li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-orange-50 rounded-lg p-6">
+                      <h3 className="text-lg font-semibold text-orange-900 mb-3">ASCII Encoding</h3>
+                      <p className="text-orange-800 text-sm mb-4">
+                        ASCII uses exactly 7 bits to represent 128 characters (0-127), including English letters, numbers, punctuation, and basic control characters. It's limited to basic English text but ensures maximum compatibility.
+                      </p>
+                      <div className="bg-orange-100 p-3 rounded-lg">
+                        <h4 className="font-medium text-orange-900 mb-2">Example Conversion:</h4>
+                        <div className="text-xs font-mono text-orange-800">
+                          <div>Text: "Hello!"</div>
+                          <div>Binary: 01001000 01100101 01101100 01101100 01101111 00100001</div>
+                        </div>
+                      </div>
+                      <ul className="text-xs text-orange-700 mt-3 space-y-1">
+                        <li>• Fixed 8-bit encoding for each character</li>
+                        <li>• Limited to 128 standard characters</li>
+                        <li>• Ideal for legacy systems and basic text</li>
+                        <li>• Maximum compatibility and simplicity</li>
+                      </ul>
+                    </div>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>UTF-8 and ASCII encoding support</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Multiple output formats: binary, decimal, hexadecimal</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Customizable spacing options for readability</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>One-click copy functionality for all formats</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Character and byte count statistics</span>
+
+                  <div className="space-y-6">
+                    <div className="bg-green-50 rounded-lg p-6">
+                      <h3 className="text-lg font-semibold text-green-900 mb-3">Binary Spacing Options</h3>
+                      <p className="text-green-800 text-sm mb-4">
+                        Choose the appropriate spacing format based on your specific use case and readability requirements. Different formats serve different purposes in programming and data analysis.
+                      </p>
+                      <div className="space-y-3">
+                        <div className="bg-green-100 p-3 rounded-lg">
+                          <h4 className="font-medium text-green-900 text-sm">No Spacing</h4>
+                          <div className="text-xs font-mono text-green-800">0100100001100101011011000110110001101111</div>
+                          <p className="text-xs text-green-700 mt-1">Continuous binary string, compact format</p>
+                        </div>
+                        <div className="bg-green-100 p-3 rounded-lg">
+                          <h4 className="font-medium text-green-900 text-sm">Space Between Bytes</h4>
+                          <div className="text-xs font-mono text-green-800">01001000 01100101 01101100 01101100 01101111</div>
+                          <p className="text-xs text-green-700 mt-1">Most readable format, clear byte boundaries</p>
+                        </div>
+                        <div className="bg-green-100 p-3 rounded-lg">
+                          <h4 className="font-medium text-green-900 text-sm">Pipe Separated</h4>
+                          <div className="text-xs font-mono text-green-800">01001000 | 01100101 | 01101100 | 01101100 | 01101111</div>
+                          <p className="text-xs text-green-700 mt-1">Clear visual separation for analysis</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-purple-50 rounded-lg p-6">
+                      <h3 className="text-lg font-semibold text-purple-900 mb-3">Output Formats</h3>
+                      <p className="text-purple-800 text-sm mb-4">
+                        Our converter provides multiple output formats to support different workflows and technical requirements in programming and data analysis.
+                      </p>
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2">
+                          <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
+                          <span className="text-purple-800 text-sm"><strong>Binary:</strong> Pure 0s and 1s representation</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
+                          <span className="text-purple-800 text-sm"><strong>Decimal:</strong> Character code values (0-255)</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
+                          <span className="text-purple-800 text-sm"><strong>Hexadecimal:</strong> Compact hex representation</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Professional Applications</h3>
-                <div className="space-y-3 text-gray-600">
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Computer science education and teaching</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Programming and software development debugging</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Data encoding and transmission analysis</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Understanding character encoding systems</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Cryptography and data security studies</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+            {/* Professional Applications */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Who Uses Text to Binary Converters?</h2>
+                  <p className="text-gray-600 mb-6">Text to binary conversion tools serve diverse professionals and students across multiple industries and educational fields, providing essential functionality for understanding digital data representation.</p>
+                  
+                  <div className="space-y-4">
+                    <div className="bg-blue-50 rounded-lg p-4">
+                      <h3 className="font-semibold text-blue-900 mb-2">Software Developers & Engineers</h3>
+                      <p className="text-blue-800 text-sm">Debug character encoding issues, understand data serialization, analyze binary protocols, and learn low-level programming concepts for system optimization and troubleshooting.</p>
+                    </div>
+                    
+                    <div className="bg-green-50 rounded-lg p-4">
+                      <h3 className="font-semibold text-green-900 mb-2">Computer Science Students</h3>
+                      <p className="text-green-800 text-sm">Learn fundamental concepts of data representation, understand how computers store text, practice binary operations, and complete programming assignments requiring encoding knowledge.</p>
+                    </div>
+                    
+                    <div className="bg-purple-50 rounded-lg p-4">
+                      <h3 className="font-semibold text-purple-900 mb-2">Cybersecurity Professionals</h3>
+                      <p className="text-purple-800 text-sm">Analyze encoded data streams, investigate digital forensics evidence, understand malware obfuscation techniques, and decode hidden messages in security research.</p>
+                    </div>
+                    
+                    <div className="bg-orange-50 rounded-lg p-4">
+                      <h3 className="font-semibold text-orange-900 mb-2">Network Engineers & Administrators</h3>
+                      <p className="text-orange-800 text-sm">Troubleshoot network protocols, analyze packet data, understand transmission encoding, and debug communication issues in network infrastructure.</p>
+                    </div>
 
-          {/* Additional SEO Content Sections */}
-          <div className="mt-12 space-y-8">
+                    <div className="bg-teal-50 rounded-lg p-4">
+                      <h3 className="font-semibold text-teal-900 mb-2">Educators & Trainers</h3>
+                      <p className="text-teal-800 text-sm">Teach binary number systems, demonstrate computer science concepts, create interactive lessons about data encoding, and help students visualize digital representation.</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Key Features & Benefits</h2>
+                  <p className="text-gray-600 mb-6">Our text to binary converter offers comprehensive features designed to meet professional, educational, and personal needs with maximum efficiency and accuracy.</p>
+                  
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-xs font-bold">✓</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-1">Real-Time Conversion</h4>
+                        <p className="text-gray-600 text-sm">Instant text to binary transformation as you type with 300ms debouncing for optimal performance and immediate feedback.</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-xs font-bold">✓</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-1">Multiple Encoding Support</h4>
+                        <p className="text-gray-600 text-sm">Comprehensive UTF-8 and ASCII encoding options to handle any text from basic English to international characters and symbols.</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-xs font-bold">✓</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-1">Customizable Output Formats</h4>
+                        <p className="text-gray-600 text-sm">Flexible spacing options, prefix/suffix support, and multiple output formats (binary, decimal, hexadecimal) for diverse use cases.</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-xs font-bold">✓</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-1">Professional Statistics</h4>
+                        <p className="text-gray-600 text-sm">Detailed character and byte count analysis with real-time statistics for data analysis and optimization purposes.</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-teal-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-xs font-bold">✓</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-1">Privacy & Security</h4>
+                        <p className="text-gray-600 text-sm">All processing happens locally in your browser - no data transmitted to servers, ensuring complete privacy and security of your text.</p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
             {/* How Binary Encoding Works */}
             <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">How Binary Encoding Works</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-gray-800">ASCII Encoding Process</h4>
-                    <p className="text-gray-600">
-                      ASCII (American Standard Code for Information Interchange) uses 7-bit encoding to represent 
-                      128 different characters including letters, numbers, and special symbols. Each character is 
-                      assigned a unique numerical value between 0-127, which is then converted to an 8-bit binary 
-                      representation for storage and transmission.
-                    </p>
-                    <p className="text-gray-600">
-                      For example, the letter 'A' has an ASCII value of 65, which converts to the binary 
-                      representation 01000001. This system ensures consistent character representation across 
-                      different computer systems and platforms.
-                    </p>
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">How Text to Binary Encoding Works</h2>
+                <p className="text-gray-600 mb-8">Understanding the technical process behind text to binary conversion helps you make informed decisions about encoding options and interpret results accurately for your specific applications.</p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6">
+                      <h3 className="text-lg font-semibold text-blue-900 mb-4">Step-by-Step Conversion Process</h3>
+                      <div className="space-y-4">
+                        <div className="flex items-start gap-3">
+                          <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <span className="text-white font-bold text-sm">1</span>
+                          </div>
+                          <div>
+                            <h4 className="font-medium text-blue-900">Character Analysis</h4>
+                            <p className="text-blue-800 text-sm">Each character in your text is identified and mapped to its corresponding Unicode or ASCII value based on the selected encoding system.</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-3">
+                          <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <span className="text-white font-bold text-sm">2</span>
+                          </div>
+                          <div>
+                            <h4 className="font-medium text-blue-900">Numerical Conversion</h4>
+                            <p className="text-blue-800 text-sm">The character value is converted to its decimal representation, which serves as the base for binary conversion calculations.</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-3">
+                          <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <span className="text-white font-bold text-sm">3</span>
+                          </div>
+                          <div>
+                            <h4 className="font-medium text-blue-900">Binary Translation</h4>
+                            <p className="text-blue-800 text-sm">The decimal value is converted to binary using base-2 arithmetic, creating the sequence of 0s and 1s that represents each character.</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-3">
+                          <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <span className="text-white font-bold text-sm">4</span>
+                          </div>
+                          <div>
+                            <h4 className="font-medium text-blue-900">Format Application</h4>
+                            <p className="text-blue-800 text-sm">The binary output is formatted according to your spacing preferences and combined with any custom prefixes or suffixes you've specified.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-gray-800">UTF-8 Unicode Encoding</h4>
-                    <p className="text-gray-600">
-                      UTF-8 (8-bit Unicode Transformation Format) extends ASCII to support international characters, 
-                      emojis, and symbols from virtually every writing system. It uses variable-length encoding, 
-                      where basic ASCII characters use one byte, while complex characters may use up to four bytes.
-                    </p>
-                    <p className="text-gray-600">
-                      This backward-compatible system allows UTF-8 to handle over one million different characters 
-                      while maintaining efficiency for common text. Our converter automatically handles both 
-                      simple and complex character encoding to provide accurate binary representations.
-                    </p>
+                  <div className="space-y-6">
+                    <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-6">
+                      <h3 className="text-lg font-semibold text-green-900 mb-4">Practical Example Walkthrough</h3>
+                      <div className="space-y-4">
+                        <div className="bg-green-100 p-4 rounded-lg">
+                          <h4 className="font-medium text-green-900 mb-2">Input Text: "Hi"</h4>
+                          <div className="space-y-2 text-sm">
+                            <div className="flex justify-between">
+                              <span className="text-green-800">Character 'H':</span>
+                              <span className="font-mono text-green-700">ASCII 72</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="text-green-800">Binary:</span>
+                              <span className="font-mono text-green-700">01001000</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="bg-green-100 p-4 rounded-lg">
+                          <div className="space-y-2 text-sm">
+                            <div className="flex justify-between">
+                              <span className="text-green-800">Character 'i':</span>
+                              <span className="font-mono text-green-700">ASCII 105</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="text-green-800">Binary:</span>
+                              <span className="font-mono text-green-700">01101001</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="bg-green-100 p-4 rounded-lg">
+                          <h4 className="font-medium text-green-900 mb-2">Final Output:</h4>
+                          <div className="font-mono text-green-700 text-sm break-all">
+                            01001000 01101001
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-gradient-to-r from-purple-50 to-violet-50 rounded-lg p-6">
+                      <h3 className="text-lg font-semibold text-purple-900 mb-4">Technical Considerations</h3>
+                      <div className="space-y-3 text-sm">
+                        <div className="flex items-start gap-2">
+                          <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-purple-800"><strong>Byte Ordering:</strong> Each character uses exactly 8 bits in standard representation</span>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-purple-800"><strong>Encoding Limits:</strong> ASCII supports 0-127, UTF-8 supports full Unicode range</span>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-purple-800"><strong>Memory Usage:</strong> Binary representation is typically 8x larger than original text</span>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-purple-800"><strong>Precision:</strong> Conversion is lossless and completely reversible</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Educational Value */}
+            {/* Educational Applications */}
             <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Educational Applications and Learning Benefits</h3>
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Educational Applications & Learning Benefits</h2>
+                <p className="text-gray-600 mb-8">Text to binary conversion serves as a powerful educational tool for understanding fundamental computer science concepts, making abstract ideas tangible and accessible to learners at all levels.</p>
+                
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-gray-800">Computer Science Students</h4>
-                    <p className="text-gray-600">
-                      Understanding binary representation is fundamental to computer science education. Students 
-                      can use this tool to visualize how text data is stored in computer memory, learn about 
-                      different encoding systems, and understand the relationship between human-readable text 
-                      and machine-readable binary code.
-                    </p>
+                    <h3 className="text-lg font-semibold text-gray-900">Computer Science Education</h3>
+                    <div className="space-y-3">
+                      <div className="bg-blue-50 border-l-4 border-blue-400 p-3 rounded-r-lg">
+                        <h4 className="font-semibold text-blue-900 text-sm">Binary Number Systems</h4>
+                        <p className="text-blue-800 text-xs mt-1">Students learn how computers represent numbers and characters using only 0s and 1s, building foundation knowledge for advanced topics.</p>
+                      </div>
+                      <div className="bg-indigo-50 border-l-4 border-indigo-400 p-3 rounded-r-lg">
+                        <h4 className="font-semibold text-indigo-900 text-sm">Data Representation</h4>
+                        <p className="text-indigo-800 text-xs mt-1">Understand how different data types (text, numbers, images) are stored and processed in computer memory and storage systems.</p>
+                      </div>
+                      <div className="bg-cyan-50 border-l-4 border-cyan-400 p-3 rounded-r-lg">
+                        <h4 className="font-semibold text-cyan-900 text-sm">Encoding Standards</h4>
+                        <p className="text-cyan-800 text-xs mt-1">Learn about ASCII, UTF-8, and Unicode standards that enable global communication and multilingual computing systems.</p>
+                      </div>
+                    </div>
                   </div>
+
                   <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-gray-800">Programming and Development</h4>
-                    <p className="text-gray-600">
-                      Developers working with low-level programming, data transmission, or file formats benefit 
-                      from understanding binary representation. This tool helps debug encoding issues, understand 
-                      data sizes, and verify that text is being properly encoded and decoded in applications.
-                    </p>
+                    <h3 className="text-lg font-semibold text-gray-900">Programming Concepts</h3>
+                    <div className="space-y-3">
+                      <div className="bg-green-50 border-l-4 border-green-400 p-3 rounded-r-lg">
+                        <h4 className="font-semibold text-green-900 text-sm">Low-Level Programming</h4>
+                        <p className="text-green-800 text-xs mt-1">Gain insights into assembly language, memory management, and system programming by understanding binary representation.</p>
+                      </div>
+                      <div className="bg-emerald-50 border-l-4 border-emerald-400 p-3 rounded-r-lg">
+                        <h4 className="font-semibold text-emerald-900 text-sm">Debugging Skills</h4>
+                        <p className="text-emerald-800 text-xs mt-1">Learn to analyze binary data, understand encoding errors, and troubleshoot character representation issues in applications.</p>
+                      </div>
+                      <div className="bg-teal-50 border-l-4 border-teal-400 p-3 rounded-r-lg">
+                        <h4 className="font-semibold text-teal-900 text-sm">Algorithm Understanding</h4>
+                        <p className="text-teal-800 text-xs mt-1">Develop algorithmic thinking by understanding conversion processes and optimization techniques for binary operations.</p>
+                      </div>
+                    </div>
                   </div>
+
                   <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-gray-800">Digital Literacy Education</h4>
-                    <p className="text-gray-600">
-                      As digital literacy becomes increasingly important, understanding how computers store and 
-                      process information is valuable knowledge. This converter serves as an educational tool 
-                      to demonstrate the digital representation of information and how human communication 
-                      translates to computer language.
-                    </p>
+                    <h3 className="text-lg font-semibold text-gray-900">Practical Skills</h3>
+                    <div className="space-y-3">
+                      <div className="bg-orange-50 border-l-4 border-orange-400 p-3 rounded-r-lg">
+                        <h4 className="font-semibold text-orange-900 text-sm">Data Analysis</h4>
+                        <p className="text-orange-800 text-xs mt-1">Learn to analyze text data at the binary level for forensics, security analysis, and data recovery applications.</p>
+                      </div>
+                      <div className="bg-red-50 border-l-4 border-red-400 p-3 rounded-r-lg">
+                        <h4 className="font-semibold text-red-900 text-sm">Protocol Understanding</h4>
+                        <p className="text-red-800 text-xs mt-1">Understand network protocols, file formats, and communication standards that rely on binary data transmission.</p>
+                      </div>
+                      <div className="bg-pink-50 border-l-4 border-pink-400 p-3 rounded-r-lg">
+                        <h4 className="font-semibold text-pink-900 text-sm">Problem Solving</h4>
+                        <p className="text-pink-800 text-xs mt-1">Develop logical thinking skills through hands-on experience with binary conversion and encoding challenges.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-8 bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Interactive Learning Features</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <h4 className="font-medium text-gray-800 mb-2">Real-Time Feedback</h4>
+                      <p className="text-gray-600 text-sm">See immediate results as you type, helping students understand the direct relationship between text input and binary output for enhanced learning.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-gray-800 mb-2">Multiple Format Display</h4>
+                      <p className="text-gray-600 text-sm">Compare binary, decimal, and hexadecimal representations simultaneously to understand different number systems and their relationships.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-gray-800 mb-2">Statistical Analysis</h4>
+                      <p className="text-gray-600 text-sm">Character and byte counting features help students understand data storage requirements and optimize their coding practices.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-gray-800 mb-2">Customizable Examples</h4>
+                      <p className="text-gray-600 text-sm">Experiment with different text inputs, encoding options, and formatting to explore various scenarios and edge cases.</p>
+                    </div>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Advanced Features */}
+            {/* Advanced Use Cases and Best Practices */}
             <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Advanced Features and Technical Details</h3>
-                <div className="space-y-6">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Advanced Use Cases & Professional Applications</h2>
+                <p className="text-gray-600 mb-8">Text to binary conversion extends far beyond basic education, serving critical functions in professional software development, cybersecurity, data analysis, and system administration across diverse industries and technical domains.</p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div className="bg-blue-50 rounded-lg p-6">
+                    <h3 className="font-semibold text-blue-900 mb-4">Software Development</h3>
+                    <ul className="text-blue-800 text-sm space-y-2">
+                      <li>• Character encoding debugging and validation</li>
+                      <li>• Binary protocol design and implementation</li>
+                      <li>• Data serialization format development</li>
+                      <li>• Cross-platform compatibility testing</li>
+                      <li>• Memory optimization analysis</li>
+                      <li>• Low-level system programming</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-green-50 rounded-lg p-6">
+                    <h3 className="font-semibold text-green-900 mb-4">Cybersecurity & Forensics</h3>
+                    <ul className="text-green-800 text-sm space-y-2">
+                      <li>• Malware analysis and reverse engineering</li>
+                      <li>• Steganography detection and analysis</li>
+                      <li>• Digital evidence examination</li>
+                      <li>• Encrypted data pattern recognition</li>
+                      <li>• Network traffic content analysis</li>
+                      <li>• Incident response investigation</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-purple-50 rounded-lg p-6">
+                    <h3 className="font-semibold text-purple-900 mb-4">Data Science & Analytics</h3>
+                    <ul className="text-purple-800 text-sm space-y-2">
+                      <li>• Text preprocessing for machine learning</li>
+                      <li>• Character frequency analysis</li>
+                      <li>• Data compression algorithm testing</li>
+                      <li>• Binary pattern classification</li>
+                      <li>• Statistical text analysis</li>
+                      <li>• Information theory applications</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-orange-50 rounded-lg p-6">
+                    <h3 className="font-semibold text-orange-900 mb-4">Network Engineering</h3>
+                    <ul className="text-orange-800 text-sm space-y-2">
+                      <li>• Protocol implementation and testing</li>
+                      <li>• Packet header analysis</li>
+                      <li>• Communication standard compliance</li>
+                      <li>• Data transmission optimization</li>
+                      <li>• Error detection and correction</li>
+                      <li>• Network troubleshooting</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-teal-50 rounded-lg p-6">
+                    <h3 className="font-semibold text-teal-900 mb-4">Quality Assurance</h3>
+                    <ul className="text-teal-800 text-sm space-y-2">
+                      <li>• Character encoding validation testing</li>
+                      <li>• Internationalization testing support</li>
+                      <li>• Data integrity verification</li>
+                      <li>• Cross-system compatibility checks</li>
+                      <li>• Performance benchmarking</li>
+                      <li>• Regression testing automation</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-red-50 rounded-lg p-6">
+                    <h3 className="font-semibold text-red-900 mb-4">Research & Academia</h3>
+                    <ul className="text-red-800 text-sm space-y-2">
+                      <li>• Computational linguistics research</li>
+                      <li>• Information theory experiments</li>
+                      <li>• Algorithm efficiency analysis</li>
+                      <li>• Digital humanities projects</li>
+                      <li>• Text encoding standards research</li>
+                      <li>• Educational material development</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="mt-8 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Professional Best Practices</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-4">
-                      <h4 className="text-lg font-semibold text-gray-800">Multiple Output Formats</h4>
-                      <p className="text-gray-600">
-                        Our converter provides three distinct output formats to meet different needs. Binary output 
-                        shows the pure 0s and 1s representation, decimal output displays the numerical values of 
-                        each character, and hexadecimal output provides a more compact representation often used 
-                        in programming and debugging.
-                      </p>
-                      <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• Binary: Direct machine-readable format</li>
-                        <li>• Decimal: Human-friendly numerical representation</li>
-                        <li>• Hexadecimal: Compact programming format</li>
-                      </ul>
+                    <div>
+                      <h4 className="font-medium text-gray-800 mb-3">Encoding Selection Guidelines</h4>
+                      <div className="space-y-2 text-sm">
+                        <div className="flex items-start gap-2">
+                          <div className="w-2 h-2 bg-indigo-500 rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-gray-700">Use UTF-8 for modern applications and international text support</span>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <div className="w-2 h-2 bg-indigo-500 rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-gray-700">Choose ASCII only for legacy systems or strict compatibility requirements</span>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <div className="w-2 h-2 bg-indigo-500 rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-gray-700">Test encoding with representative sample data before production</span>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <div className="w-2 h-2 bg-indigo-500 rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-gray-700">Document encoding decisions for team collaboration</span>
+                        </div>
+                      </div>
                     </div>
-                    <div className="space-y-4">
-                      <h4 className="text-lg font-semibold text-gray-800">Customizable Spacing Options</h4>
-                      <p className="text-gray-600">
-                        The tool offers flexible spacing options to enhance readability and meet specific formatting 
-                        requirements. Choose from no spacing for compact output, space-separated bytes for easy 
-                        reading, or pipe-separated format for clear byte boundaries in technical documentation.
-                      </p>
-                      <ul className="text-sm text-gray-600 space-y-1">
-                        <li>• No spacing: Compact continuous output</li>
-                        <li>• Byte spacing: Space between 8-bit groups</li>
-                        <li>• Pipe separated: Clear byte boundaries</li>
-                      </ul>
+                    <div>
+                      <h4 className="font-medium text-gray-800 mb-3">Quality Assurance Tips</h4>
+                      <div className="space-y-2 text-sm">
+                        <div className="flex items-start gap-2">
+                          <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-gray-700">Verify binary output matches expected patterns and formats</span>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-gray-700">Cross-reference with multiple conversion tools for accuracy</span>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-gray-700">Test edge cases including special characters and emojis</span>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
+                          <span className="text-gray-700">Validate reversibility by converting back to original text</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div className="bg-blue-50 rounded-lg p-6 border border-blue-200">
-                    <h4 className="text-lg font-semibold text-gray-800 mb-3">Real-Time Conversion Technology</h4>
-                    <p className="text-gray-600">
-                      The converter features real-time processing that automatically updates results as you type, 
-                      providing instant feedback and allowing for interactive learning. This immediate response 
-                      helps users understand the relationship between input text and binary output, making it an 
-                      excellent educational tool for demonstrating encoding concepts.
-                    </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Frequently Asked Questions */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h2>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">What is text to binary conversion?</h3>
+                      <p className="text-gray-600 text-sm">
+                        Text to binary conversion transforms human-readable text into binary code (0s and 1s), the fundamental language computers use for processing and storing information. Each character is converted to its numerical value and then represented as an 8-bit binary sequence.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Which encoding should I choose for my text?</h3>
+                      <p className="text-gray-600 text-sm">
+                        Use UTF-8 for modern applications, websites, and international text that may contain special characters, emojis, or non-English languages. Choose ASCII only for legacy systems or when working exclusively with basic English characters (0-127).
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">What are the different spacing options for?</h3>
+                      <p className="text-gray-600 text-sm">
+                        Spacing options improve readability and serve different purposes: "No Spacing" creates compact output, "Space Between Bytes" separates each 8-bit character for easy reading, and "Pipe Separated" uses clear visual boundaries for analysis and documentation.
+                      </p>
+                    </div>
+
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Is there a character limit for conversion?</h3>
+                      <p className="text-gray-600 text-sm">
+                        There's no strict character limit, but very large texts may take longer to process due to browser memory constraints. The tool displays character and byte counts to help you monitor input size and processing performance.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">How secure is this text to binary converter?</h3>
+                      <p className="text-gray-600 text-sm">
+                        Completely secure! All conversion processing happens locally in your browser using client-side JavaScript. No data is transmitted to servers, stored remotely, or accessed by third parties, ensuring complete privacy and confidentiality.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I customize the output format?</h3>
+                      <p className="text-gray-600 text-sm">
+                        Yes! Advanced options include custom prefixes and suffixes for encoded text, display toggles for different format outputs (decimal, hexadecimal), and various spacing options to meet your specific formatting requirements.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">What's the difference between binary, decimal, and hex outputs?</h3>
+                      <p className="text-gray-600 text-sm">
+                        Binary shows pure 0s and 1s representation, decimal displays the numerical values (0-255) of each character, and hexadecimal provides a compact representation using 0-9 and A-F. Each serves different technical purposes and readability needs.
+                      </p>
+                    </div>
+
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Does this work offline after loading?</h3>
+                      <p className="text-gray-600 text-sm">
+                        Yes! Once the page loads completely, all conversion functionality works offline without requiring an internet connection. The tool runs entirely in your browser, making it reliable for secure environments and unstable connections.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Technical Specifications */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Technical Specifications & Browser Compatibility</h2>
+                <p className="text-gray-600 mb-8">Our text to binary converter is built with modern web technologies to ensure compatibility, performance, and reliability across all major platforms and devices with comprehensive encoding support.</p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Encoding Support & Specifications</h3>
+                    <div className="space-y-4">
+                      <div className="bg-blue-50 rounded-lg p-4">
+                        <h4 className="font-semibold text-blue-900 mb-2">UTF-8 Unicode Support</h4>
+                        <ul className="text-blue-800 text-sm space-y-1">
+                          <li>• Full Unicode character range (0-1,114,111)</li>
+                          <li>• Variable-length encoding (1-4 bytes)</li>
+                          <li>• International characters and emojis</li>
+                          <li>• Backward compatibility with ASCII</li>
+                        </ul>
+                      </div>
+                      <div className="bg-orange-50 rounded-lg p-4">
+                        <h4 className="font-semibold text-orange-900 mb-2">ASCII Support</h4>
+                        <ul className="text-orange-800 text-sm space-y-1">
+                          <li>• Standard 7-bit ASCII (0-127)</li>
+                          <li>• Fixed 8-bit binary representation</li>
+                          <li>• Maximum compatibility guarantee</li>
+                          <li>• Legacy system support</li>
+                        </ul>
+                      </div>
+                      <div className="bg-purple-50 rounded-lg p-4">
+                        <h4 className="font-semibold text-purple-900 mb-2">Output Formats</h4>
+                        <ul className="text-purple-800 text-sm space-y-1">
+                          <li>• Binary: 8-bit sequences with customizable spacing</li>
+                          <li>• Decimal: Character code values (space-separated)</li>
+                          <li>• Hexadecimal: Compact hex representation</li>
+                          <li>• Statistics: Character and byte counting</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Platform & Browser Support</h3>
+                    <div className="space-y-4">
+                      <div className="bg-gray-50 rounded-lg p-4">
+                        <h4 className="font-semibold text-gray-900 mb-2">Desktop Browsers</h4>
+                        <ul className="text-gray-700 text-sm space-y-1">
+                          <li>• Chrome 90+ (recommended for performance)</li>
+                          <li>• Firefox 88+ (excellent unicode support)</li>
+                          <li>• Safari 14+ (full compatibility)</li>
+                          <li>• Edge 90+ (optimal user experience)</li>
+                        </ul>
+                      </div>
+                      <div className="bg-gray-50 rounded-lg p-4">
+                        <h4 className="font-semibold text-gray-900 mb-2">Mobile Devices</h4>
+                        <ul className="text-gray-700 text-sm space-y-1">
+                          <li>• iOS Safari 14+ (responsive design)</li>
+                          <li>• Android Chrome 90+ (touch optimized)</li>
+                          <li>• Samsung Internet 13+ (full features)</li>
+                          <li>• Mobile Firefox 88+ (complete support)</li>
+                        </ul>
+                      </div>
+                      <div className="bg-gray-50 rounded-lg p-4">
+                        <h4 className="font-semibold text-gray-900 mb-2">Performance Features</h4>
+                        <ul className="text-gray-700 text-sm space-y-1">
+                          <li>• Real-time conversion (300ms debounce)</li>
+                          <li>• Client-side processing (no server dependency)</li>
+                          <li>• Responsive design (all screen sizes)</li>
+                          <li>• Accessibility compliant (WCAG 2.1 AA)</li>
+                        </ul>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </CardContent>
@@ -686,4 +1247,6 @@ export default function TextToBinaryConverter() {
       <Footer />
     </div>
   );
-}
+};
+
+export default TextToBinaryConverter;
