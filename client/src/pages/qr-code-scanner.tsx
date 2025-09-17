@@ -35,6 +35,7 @@ const QRCodeScanner = () => {
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
   const [scannedText, setScannedText] = useState('');
   const [showAdvanced, setShowAdvanced] = useState(false);
+  const [hasScanned, setHasScanned] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [options, setOptions] = useState<QROptions>({
     extractUrls: true,
@@ -120,6 +121,7 @@ const QRCodeScanner = () => {
     setUploadedImage(file);
     setIsScanning(true);
     setScannedText('');
+    setHasScanned(true);
 
     try {
       // Scan QR code from uploaded image
@@ -171,6 +173,7 @@ const QRCodeScanner = () => {
   const clearScannedData = () => {
     setUploadedImage(null);
     setScannedText('');
+    setHasScanned(false);
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
     }
@@ -179,6 +182,7 @@ const QRCodeScanner = () => {
   const resetScanner = () => {
     setUploadedImage(null);
     setScannedText('');
+    setHasScanned(false);
     setShowAdvanced(false);
     setOptions({
       extractUrls: true,
@@ -468,7 +472,7 @@ const QRCodeScanner = () => {
                 <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 border-t">
                   <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">Scanned Results</h2>
 
-                  {scannedText && uploadedImage ? (
+                  {hasScanned && uploadedImage ? (
                     <div className="space-y-3 sm:space-y-4" data-testid="scanned-results">
                       {/* Main Scanned Text Display */}
                       <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-3 sm:p-4">
@@ -551,7 +555,9 @@ const QRCodeScanner = () => {
                       <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
                         <div className="text-2xl sm:text-3xl font-bold text-gray-400">QR</div>
                       </div>
-                      <p className="text-gray-500 text-base sm:text-lg px-4">Upload a QR code image to see extraction results</p>
+                      <p className="text-gray-500 text-base sm:text-lg px-4">
+                        {!hasScanned ? "Upload a QR code image and click 'Scan QR Code' to see extraction results" : "No QR code detected in the uploaded image"}
+                      </p>
                     </div>
                   )}
                 </div>
