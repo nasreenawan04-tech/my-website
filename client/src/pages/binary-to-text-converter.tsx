@@ -204,11 +204,6 @@ const BinaryToTextConverter = () => {
     navigator.clipboard.writeText(text);
   };
 
-  const handleClear = () => {
-    setInputCode('');
-    setConversionResult(null);
-  };
-
   const handleSampleCode = () => {
     switch (options.inputFormat) {
       case 'binary':
@@ -518,14 +513,6 @@ const BinaryToTextConverter = () => {
                       data-testid="button-sample-code"
                     >
                       Sample
-                    </Button>
-                    <Button
-                      onClick={handleClear}
-                      variant="outline"
-                      className="h-12 sm:h-14 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-base sm:text-lg rounded-xl"
-                      data-testid="button-clear"
-                    >
-                      Clear
                     </Button>
                     <Button
                       onClick={resetConverter}
