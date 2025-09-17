@@ -36,6 +36,7 @@ const QRCodeScanner = () => {
   const [scannedText, setScannedText] = useState('');
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [hasScanned, setHasScanned] = useState(false);
+  const [showResults, setShowResults] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [options, setOptions] = useState<QROptions>({
     extractUrls: true,
@@ -114,18 +115,25 @@ const QRCodeScanner = () => {
     navigator.clipboard.writeText(text);
   };
 
-  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return;
 
     setUploadedImage(file);
+    setScannedText('');
+    setHasScanned(false);
+    setShowResults(false);
+  };
+
+  const handleScanQR = async () => {
+    if (!uploadedImage) return;
+
     setIsScanning(true);
     setScannedText('');
-    setHasScanned(true);
 
     try {
       // Scan QR code from uploaded image
-      const result = await QrScanner.scanImage(file);
+      const result = await QrScanner.scanImage(uploadedImage);
       
       if (result) {
         setScannedText(result);
@@ -136,20 +144,25 @@ const QRCodeScanner = () => {
         const scannedQR: ScannedQR = {
           scannedText: result,
           extractedContent: extractedContent.length > 0 ? extractedContent : [result],
-          originalImageUrl: URL.createObjectURL(file),
+          originalImageUrl: URL.createObjectURL(uploadedImage),
           timestamp: new Date(),
-          fileSize: file.size,
-          fileName: file.name
+          fileSize: uploadedImage.size,
+          fileName: uploadedImage.name
         };
 
         setScannedQRs(prev => {
           const updated = [scannedQR, ...prev.filter(qr => qr.scannedText !== result)];
           return updated.slice(0, 10);
         });
+        
+        setHasScanned(true);
+        setShowResults(true);
       }
     } catch (error) {
       console.error('Error scanning QR code:', error);
       setScannedText('Could not scan QR code. Please make sure the image contains a valid QR code.');
+      setHasScanned(true);
+      setShowResults(true);
     } finally {
       setIsScanning(false);
     }
@@ -159,14 +172,14 @@ const QRCodeScanner = () => {
     event.preventDefault();
   };
 
-  const handleDrop = async (event: React.DragEvent) => {
+  const handleDrop = (event: React.DragEvent) => {
     event.preventDefault();
     const file = event.dataTransfer.files[0];
     if (file && file.type.startsWith('image/')) {
-      const fakeEvent = {
-        target: { files: [file] }
-      } as React.ChangeEvent<HTMLInputElement>;
-      await handleFileUpload(fakeEvent);
+      setUploadedImage(file);
+      setScannedText('');
+      setHasScanned(false);
+      setShowResults(false);
     }
   };
 
@@ -174,6 +187,7 @@ const QRCodeScanner = () => {
     setUploadedImage(null);
     setScannedText('');
     setHasScanned(false);
+    setShowResults(false);
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
     }
@@ -183,6 +197,7 @@ const QRCodeScanner = () => {
     setUploadedImage(null);
     setScannedText('');
     setHasScanned(false);
+    setShowResults(false);
     setShowAdvanced(false);
     setOptions({
       extractUrls: true,
@@ -450,9 +465,9 @@ const QRCodeScanner = () => {
                   {/* Action Buttons */}
                   <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 sm:pt-6">
                     <Button
-                      onClick={() => fileInputRef.current?.click()}
-                      disabled={isScanning}
-                      className="flex-1 h-12 sm:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-base sm:text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      onClick={handleScanQR}
+                      disabled={!uploadedImage || isScanning}
+                      className="flex-1 h-12 sm:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-base sm:text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                       data-testid="button-scan-qr"
                     >
                       {isScanning ? 'Scanning...' : 'Scan QR Code'}
@@ -469,10 +484,11 @@ const QRCodeScanner = () => {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 border-t">
-                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">Scanned Results</h2>
+                {showResults && (
+                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 border-t">
+                    <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">Scanned Results</h2>
 
-                  {hasScanned && uploadedImage ? (
+                    {hasScanned && uploadedImage ? (
                     <div className="space-y-3 sm:space-y-4" data-testid="scanned-results">
                       {/* Main Scanned Text Display */}
                       <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-3 sm:p-4">
@@ -560,7 +576,8 @@ const QRCodeScanner = () => {
                       </p>
                     </div>
                   )}
-                </div>
+                  </div>
+                )}
               </div>
             </CardContent>
           </Card>
