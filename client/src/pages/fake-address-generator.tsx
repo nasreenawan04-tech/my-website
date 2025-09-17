@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -515,7 +516,7 @@ const FakeAddressGenerator = () => {
                   ) : (
                     <div className="text-center py-16" data-testid="no-results">
                       <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <div className="text-3xl font-bold text-gray-400">🏠</div>
+                        <div className="text-3xl font-bold text-gray-400">📍</div>
                       </div>
                       <p className="text-gray-500 text-lg">Configure settings and generate to see address</p>
                     </div>
