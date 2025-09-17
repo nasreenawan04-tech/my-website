@@ -58,6 +58,8 @@ const toolsData = [
   { id: 'fake-name-generator', name: 'Fake Name Generator', description: 'Generate fake names for testing', category: 'text' as const, icon: 'fas fa-id-card', href: '/tools/fake-name-generator' },
   { id: 'binary-to-text-converter', name: 'Binary to Text Converter', description: 'Convert binary code to readable text', category: 'text' as const, icon: 'fas fa-exchange-alt', href: '/tools/binary-to-text-converter' },
   { id: 'text-to-binary-converter', name: 'Text to Binary Converter', description: 'Convert text to binary code', category: 'text' as const, icon: 'fas fa-binary', href: '/tools/text-to-binary-converter' },
+  { id: 'decimal-to-text-converter', name: 'Decimal to Text Converter', description: 'Convert decimal character codes to readable text', category: 'text' as const, icon: 'fas fa-arrow-left', href: '/tools/decimal-to-text-converter' },
+  { id: 'text-to-decimal-converter', name: 'Text to Decimal Converter', description: 'Convert text to decimal character codes', category: 'text' as const, icon: 'fas fa-arrow-right', href: '/tools/text-to-decimal-converter' },
   { id: 'font-style-changer', name: 'Font Style Changer', description: 'Transform text with stylish fonts', category: 'text' as const, icon: 'fas fa-font', href: '/tools/font-style-changer' },
   { id: 'markdown-to-html', name: 'Markdown to HTML Converter', description: 'Convert Markdown to HTML format', category: 'text' as const, icon: 'fab fa-markdown', href: '/tools/markdown-to-html' },
   { id: 'reverse-text-tool', name: 'Reverse Text Tool', description: 'Reverse the order of text characters, words, or lines', category: 'text' as const, icon: 'fas fa-backward', href: '/tools/reverse-text-tool' },

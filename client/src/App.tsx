@@ -102,6 +102,8 @@ const ReverseTextTool = lazy(() => import("@/pages/reverse-text-tool"));
 const TextToQRCode = lazy(() => import("@/pages/text-to-qr-code"));
 const TextToBinaryConverter = lazy(() => import("@/pages/text-to-binary-converter"));
 const BinaryToTextConverter = lazy(() => import("@/pages/binary-to-text-converter"));
+const DecimalToTextConverter = lazy(() => import("@/pages/decimal-to-text-converter"));
+const TextToDecimalConverter = lazy(() => import("@/pages/text-to-decimal-converter"));
 const QRCodeScanner = lazy(() => import("@/pages/qr-code-scanner"));
 const MarkdownToHTMLConverter = lazy(() => import("@/pages/markdown-to-html"));
 const LoremIpsumGenerator = lazy(() => import("@/pages/lorem-ipsum-generator"));
@@ -197,6 +199,8 @@ function Router() {
         <Route path="/tools/text-to-qr-code" component={TextToQRCode} />
         <Route path="/tools/text-to-binary-converter" component={TextToBinaryConverter} />
         <Route path="/tools/binary-to-text-converter" component={BinaryToTextConverter} />
+        <Route path="/tools/decimal-to-text-converter" component={DecimalToTextConverter} />
+        <Route path="/tools/text-to-decimal-converter" component={TextToDecimalConverter} />
         <Route path="/tools/qr-code-scanner" component={QRCodeScanner} />
         <Route path="/tools/markdown-to-html" component={MarkdownToHTMLConverter} />
         <Route path="/tools/lorem-ipsum-generator" component={LoremIpsumGenerator} />
