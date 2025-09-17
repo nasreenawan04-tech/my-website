@@ -16,7 +16,6 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/component
 interface ConversionOptions {
   encoding: 'utf8' | 'ascii';
   inputFormat: 'binary' | 'decimal' | 'hex';
-  showBinary: boolean;
   showDecimal: boolean;
   showHex: boolean;
   preserveSpaces: boolean;
@@ -27,7 +26,6 @@ interface ConversionOptions {
 interface ConversionResult {
   originalInput: string;
   text: string;
-  binary: string;
   decimal: string;
   hexadecimal: string;
   charCount: number;
@@ -43,7 +41,6 @@ const BinaryToTextConverter = () => {
   const [options, setOptions] = useState<ConversionOptions>({
     encoding: 'utf8',
     inputFormat: 'binary',
-    showBinary: true,
     showDecimal: false,
     showHex: false,
     preserveSpaces: false,
@@ -129,13 +126,6 @@ const BinaryToTextConverter = () => {
     }
   };
 
-  const textToBinary = (text: string): string => {
-    if (!text) return '';
-    
-    return text.split('').map(char => {
-      return char.charCodeAt(0).toString(2).padStart(8, '0');
-    }).join(' ');
-  };
 
   const textToDecimal = (text: string): string => {
     if (!text) return '';
@@ -180,14 +170,12 @@ const BinaryToTextConverter = () => {
         text = `${options.addPrefix}${text}${options.addSuffix}`;
       }
 
-      const binary = textToBinary(text);
       const decimal = textToDecimal(text);
       const hexadecimal = textToHex(text);
       
       const result: ConversionResult = {
         originalInput: inputCode,
         text,
-        binary,
         decimal,
         hexadecimal,
         charCount: text.length,
@@ -242,7 +230,6 @@ const BinaryToTextConverter = () => {
     setOptions({
       encoding: 'utf8',
       inputFormat: 'binary',
-      showBinary: true,
       showDecimal: false,
       showHex: false,
       preserveSpaces: false,
@@ -278,7 +265,6 @@ const BinaryToTextConverter = () => {
 
   const outputTypes = [
     { key: 'text', label: 'Decoded Text', bgColor: 'bg-blue-50', borderColor: 'border-blue-200' },
-    { key: 'binary', label: 'Binary Code', bgColor: 'bg-yellow-50', borderColor: 'border-yellow-200' },
     { key: 'decimal', label: 'Decimal Values', bgColor: 'bg-green-50', borderColor: 'border-green-200' },
     { key: 'hexadecimal', label: 'Hexadecimal Values', bgColor: 'bg-purple-50', borderColor: 'border-purple-200' }
   ];
@@ -442,17 +428,6 @@ const BinaryToTextConverter = () => {
                           <div className="space-y-4 bg-gray-50 rounded-xl p-4 sm:p-6">
                             <h4 className="text-sm sm:text-base font-semibold text-gray-900">Display Options</h4>
                             
-                            <div className="flex items-center justify-between gap-2">
-                              <div className="space-y-1 flex-1 min-w-0">
-                                <Label className="text-xs sm:text-sm font-medium">Show Binary Output</Label>
-                                <p className="text-xs text-gray-500">Display binary representation of result</p>
-                              </div>
-                              <Switch
-                                checked={options.showBinary}
-                                onCheckedChange={(value) => updateOption('showBinary', value)}
-                                data-testid="switch-show-binary"
-                              />
-                            </div>
 
                             <div className="flex items-center justify-between gap-2">
                               <div className="space-y-1 flex-1 min-w-0">
