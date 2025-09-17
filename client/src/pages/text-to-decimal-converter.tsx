@@ -38,6 +38,7 @@ const TextToDecimalConverter = () => {
   const [conversionResult, setConversionResult] = useState<ConversionResult | null>(null);
   const [conversionHistory, setConversionHistory] = useState<ConversionResult[]>([]);
   const [showAdvanced, setShowAdvanced] = useState(false);
+  const [showResults, setShowResults] = useState(false);
   const [options, setOptions] = useState<ConversionOptions>({
     encoding: 'utf8',
     outputFormat: 'spaced',
@@ -96,6 +97,7 @@ const TextToDecimalConverter = () => {
   const convertText = () => {
     if (!inputText.trim()) {
       setConversionResult(null);
+      setShowResults(false);
       return;
     }
 
@@ -121,6 +123,7 @@ const TextToDecimalConverter = () => {
       };
 
       setConversionResult(result);
+      setShowResults(true);
 
       // Add to history (keep last 10)
       setConversionHistory(prev => {
@@ -129,6 +132,7 @@ const TextToDecimalConverter = () => {
       });
     } catch (error) {
       setConversionResult(null);
+      setShowResults(false);
     }
   };
 
@@ -143,6 +147,7 @@ const TextToDecimalConverter = () => {
   const handleClear = () => {
     setInputText('');
     setConversionResult(null);
+    setShowResults(false);
   };
 
   const handleSampleText = () => {
@@ -152,6 +157,7 @@ const TextToDecimalConverter = () => {
   const resetConverter = () => {
     setInputText('');
     setConversionResult(null);
+    setShowResults(false);
     setShowAdvanced(false);
     setOptions({
       encoding: 'utf8',
@@ -164,18 +170,13 @@ const TextToDecimalConverter = () => {
     });
   };
 
-  // Auto-convert when text or options change
+  // Reset results when input is cleared
   useEffect(() => {
-    if (inputText.trim()) {
-      const timeoutId = setTimeout(() => {
-        convertText();
-      }, 300);
-      
-      return () => clearTimeout(timeoutId);
-    } else {
+    if (!inputText.trim()) {
       setConversionResult(null);
+      setShowResults(false);
     }
-  }, [inputText, options]);
+  }, [inputText]);
 
   const getOutputFormatLabel = () => {
     switch (options.outputFormat) {
@@ -458,7 +459,7 @@ const TextToDecimalConverter = () => {
                 <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 border-t">
                   <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">Encoded Results</h2>
 
-                  {conversionResult && conversionResult.originalText ? (
+                  {showResults && conversionResult && conversionResult.originalText ? (
                     <div className="space-y-3 sm:space-y-4" data-testid="conversion-results">
                       {/* Main Decimal Code Display */}
                       <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-3 sm:p-4">
