@@ -402,8 +402,8 @@ const FontStyleChanger = () => {
               <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
                 <span className="text-sm font-medium text-blue-700">Unicode Font Generator</span>
               </div>
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight" data-testid="text-page-title">
-                Font Style
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight" data-testid="text-page-title">
+                <span className="block">Font Style</span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
                   Changer
                 </span>
