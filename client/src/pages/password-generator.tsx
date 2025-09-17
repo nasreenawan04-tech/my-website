@@ -8,6 +8,8 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Switch } from '@/components/ui/switch';
 import { Slider } from '@/components/ui/slider';
+import { Separator } from '@/components/ui/separator';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 
 interface PasswordOptions {
   length: number;
@@ -30,6 +32,7 @@ interface PasswordStrength {
 export default function PasswordGenerator() {
   const [password, setPassword] = useState('');
   const [passwordHistory, setPasswordHistory] = useState<string[]>([]);
+  const [showAdvanced, setShowAdvanced] = useState(false);
   const [options, setOptions] = useState<PasswordOptions>({
     length: 16,
     includeUppercase: true,
@@ -165,6 +168,7 @@ export default function PasswordGenerator() {
   const resetGenerator = () => {
     setPassword('');
     setPasswordHistory([]);
+    setShowAdvanced(false);
     setOptions({
       length: 16,
       includeUppercase: true,
@@ -352,49 +356,76 @@ export default function PasswordGenerator() {
                   </div>
 
                   {/* Advanced Options */}
-                  <div className="space-y-6 border-t pt-8">
-                    <h3 className="text-xl font-bold text-gray-900">Advanced Options</h3>
+                  <div className="space-y-4 sm:space-y-6 border-t pt-6 sm:pt-8">
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-900">Advanced Options</h3>
+                    
+                    <Collapsible open={showAdvanced} onOpenChange={setShowAdvanced}>
+                      <CollapsibleTrigger asChild>
+                        <Button 
+                          variant="ghost" 
+                          className="w-full justify-between text-sm sm:text-base py-3 sm:py-4 h-auto"
+                          data-testid="button-toggle-advanced"
+                        >
+                          <span className="flex items-center">
+                            Advanced Customization
+                          </span>
+                          <span className={`transform transition-transform ${showAdvanced ? 'rotate-180' : ''}`}>▼</span>
+                        </Button>
+                      </CollapsibleTrigger>
+                      <CollapsibleContent className="space-y-4 sm:space-y-6 mt-4">
+                        <Separator />
+                        
+                        {/* Character Filtering and Customization Options */}
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                          <div className="space-y-4 bg-gray-50 rounded-xl p-4 sm:p-6">
+                            <h4 className="text-sm sm:text-base font-semibold text-gray-900">Character Filtering</h4>
+                            
+                            <div className="flex items-center justify-between gap-2">
+                              <div className="space-y-1 flex-1 min-w-0">
+                                <Label className="text-xs sm:text-sm font-medium">Exclude Similar Characters</Label>
+                                <p className="text-xs text-gray-500">Avoid 0, O, 1, l, I for better readability</p>
+                              </div>
+                              <Switch
+                                checked={options.excludeSimilar}
+                                onCheckedChange={(value) => updateOption('excludeSimilar', value)}
+                                data-testid="switch-exclude-similar"
+                              />
+                            </div>
 
-                    <div className="space-y-4 bg-gray-50 rounded-xl p-6">
-                      <div className="flex items-center justify-between">
-                        <div className="space-y-1">
-                          <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
-                            Exclude Similar Characters
-                          </Label>
-                          <p className="text-xs text-gray-500">Avoid 0, O, 1, l, I for better readability</p>
+                            <div className="flex items-center justify-between gap-2">
+                              <div className="space-y-1 flex-1 min-w-0">
+                                <Label className="text-xs sm:text-sm font-medium">Exclude Ambiguous Characters</Label>
+                                <p className="text-xs text-gray-500">Avoid {}[]()/\'"`~,;.&lt;&gt; for clarity</p>
+                              </div>
+                              <Switch
+                                checked={options.excludeAmbiguous}
+                                onCheckedChange={(value) => updateOption('excludeAmbiguous', value)}
+                                data-testid="switch-exclude-ambiguous"
+                              />
+                            </div>
+                          </div>
+
+                          {/* Character Customization Options */}
+                          <div className="space-y-4 bg-gray-50 rounded-xl p-4 sm:p-6">
+                            <h4 className="text-sm sm:text-base font-semibold text-gray-900">Character Customization</h4>
+                            
+                            <div className="space-y-2">
+                              <Label className="text-xs sm:text-sm font-medium">Custom Characters</Label>
+                              <Input
+                                value={options.customCharacters}
+                                onChange={(e) => updateOption('customCharacters', e.target.value)}
+                                placeholder="e.g., @#$, αβγ, 你好"
+                                className="text-sm h-10 sm:h-12 border-2 border-gray-200 rounded-lg"
+                                data-testid="input-custom-characters"
+                              />
+                              <p className="text-xs text-gray-500">Additional characters to include in generation</p>
+                            </div>
+                          </div>
                         </div>
-                        <Switch
-                          checked={options.excludeSimilar}
-                          onCheckedChange={(value) => updateOption('excludeSimilar', value)}
-                        />
-                      </div>
-
-                      <div className="flex items-center justify-between">
-                        <div className="space-y-1">
-                          <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
-                            Exclude Ambiguous Characters
-                          </Label>
-                          <p className="text-xs text-gray-500">Avoid {}[]()/\'"`~,;.&lt;&gt; for clarity</p>
-                        </div>
-                        <Switch
-                          checked={options.excludeAmbiguous}
-                          onCheckedChange={(value) => updateOption('excludeAmbiguous', value)}
-                        />
-                      </div>
-
-                      <div className="space-y-3">
-                        <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
-                          Custom Characters
-                        </Label>
-                        <Input
-                          value={options.customCharacters}
-                          onChange={(e) => updateOption('customCharacters', e.target.value)}
-                          placeholder="Add your own characters"
-                          className="h-12 border-2 border-gray-200 rounded-xl"
-                        />
-                        <p className="text-xs text-gray-500">Additional characters to include in generation</p>
-                      </div>
-                    </div>
+                        
+                        <Separator />
+                      </CollapsibleContent>
+                    </Collapsible>
                   </div>
 
                   {/* Action Buttons */}
