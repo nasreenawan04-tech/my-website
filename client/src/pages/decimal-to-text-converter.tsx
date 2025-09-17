@@ -38,6 +38,7 @@ const DecimalToTextConverter = () => {
   const [conversionResult, setConversionResult] = useState<ConversionResult | null>(null);
   const [conversionHistory, setConversionHistory] = useState<ConversionResult[]>([]);
   const [showAdvanced, setShowAdvanced] = useState(false);
+  const [showResults, setShowResults] = useState(false);
   const [options, setOptions] = useState<ConversionOptions>({
     encoding: 'utf8',
     inputFormat: 'spaced',
@@ -111,6 +112,7 @@ const DecimalToTextConverter = () => {
   const convertDecimal = () => {
     if (!inputDecimal.trim()) {
       setConversionResult(null);
+      setShowResults(false);
       return;
     }
 
@@ -136,6 +138,7 @@ const DecimalToTextConverter = () => {
       };
 
       setConversionResult(result);
+      setShowResults(true);
 
       // Add to history (keep last 10)
       setConversionHistory(prev => {
@@ -144,6 +147,7 @@ const DecimalToTextConverter = () => {
       });
     } catch (error) {
       setConversionResult(null);
+      setShowResults(false);
     }
   };
 
@@ -158,6 +162,7 @@ const DecimalToTextConverter = () => {
   const handleClear = () => {
     setInputDecimal('');
     setConversionResult(null);
+    setShowResults(false);
   };
 
   const handleSampleDecimal = () => {
@@ -177,6 +182,7 @@ const DecimalToTextConverter = () => {
   const resetConverter = () => {
     setInputDecimal('');
     setConversionResult(null);
+    setShowResults(false);
     setShowAdvanced(false);
     setOptions({
       encoding: 'utf8',
@@ -189,18 +195,13 @@ const DecimalToTextConverter = () => {
     });
   };
 
-  // Auto-convert when decimal or options change
+  // Clear results when input is empty
   useEffect(() => {
-    if (inputDecimal.trim()) {
-      const timeoutId = setTimeout(() => {
-        convertDecimal();
-      }, 300);
-      
-      return () => clearTimeout(timeoutId);
-    } else {
+    if (!inputDecimal.trim()) {
       setConversionResult(null);
+      setShowResults(false);
     }
-  }, [inputDecimal, options]);
+  }, [inputDecimal]);
 
   const getInputFormatLabel = () => {
     switch (options.inputFormat) {
@@ -489,10 +490,11 @@ const DecimalToTextConverter = () => {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 border-t">
-                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">Decoded Results</h2>
+                {showResults && (
+                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 border-t">
+                    <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">Decoded Results</h2>
 
-                  {conversionResult && conversionResult.originalInput ? (
+                    {conversionResult && conversionResult.originalInput ? (
                     <div className="space-y-3 sm:space-y-4" data-testid="conversion-results">
                       {/* Main Decoded Text Display */}
                       <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-3 sm:p-4">
@@ -587,15 +589,16 @@ const DecimalToTextConverter = () => {
                         </div>
                       </div>
                     </div>
-                  ) : (
-                    <div className="text-center py-12 sm:py-16" data-testid="no-results">
-                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
-                        <div className="text-2xl sm:text-3xl font-bold text-gray-400">123</div>
+                    ) : (
+                      <div className="text-center py-12 sm:py-16" data-testid="no-results">
+                        <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
+                          <div className="text-2xl sm:text-3xl font-bold text-gray-400">123</div>
+                        </div>
+                        <p className="text-gray-500 text-base sm:text-lg px-4">Conversion results will appear here</p>
                       </div>
-                      <p className="text-gray-500 text-base sm:text-lg px-4">Enter decimal character codes to decode text</p>
-                    </div>
-                  )}
-                </div>
+                    )}
+                  </div>
+                )}
               </div>
             </CardContent>
           </Card>
