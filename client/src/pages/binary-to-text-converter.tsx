@@ -44,8 +44,8 @@ const BinaryToTextConverter = () => {
     encoding: 'utf8',
     inputFormat: 'binary',
     showBinary: true,
-    showDecimal: true,
-    showHex: true,
+    showDecimal: false,
+    showHex: false,
     preserveSpaces: false,
     addPrefix: '',
     addSuffix: ''
@@ -243,8 +243,8 @@ const BinaryToTextConverter = () => {
       encoding: 'utf8',
       inputFormat: 'binary',
       showBinary: true,
-      showDecimal: true,
-      showHex: true,
+      showDecimal: false,
+      showHex: false,
       preserveSpaces: false,
       addPrefix: '',
       addSuffix: ''
