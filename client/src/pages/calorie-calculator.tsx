@@ -1,38 +1,51 @@
+
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import ToolHeroSection from '@/components/ToolHeroSection';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Calculator } from 'lucide-react';
 
 interface CalorieResult {
   bmr: number;
   tdee: number;
-  goalCalories: number;
-  macros: {
+  maintenanceCalories: number;
+  weightLossCalories: {
+    mild: number;
+    moderate: number;
+    aggressive: number;
+  };
+  weightGainCalories: {
+    mild: number;
+    moderate: number;
+  };
+  macroBreakdown: {
     protein: { grams: number; calories: number };
     carbs: { grams: number; calories: number };
     fat: { grams: number; calories: number };
   };
-  weeklyWeightChange: number;
+  activityMultiplier: number;
+  equation: string;
+  weeklyCalorieDeficit?: number;
+  monthlyWeightLoss?: number;
 }
 
-const CalorieCalculator = () => {
-  const [weight, setWeight] = useState('');
-  const [height, setHeight] = useState('');
-  const [feet, setFeet] = useState('');
-  const [inches, setInches] = useState('');
-  const [age, setAge] = useState('');
-  const [gender, setGender] = useState('');
+export default function CalorieCalculator() {
+  const [weight, setWeight] = useState('70');
+  const [height, setHeight] = useState('175');
+  const [feet, setFeet] = useState('5');
+  const [inches, setInches] = useState('9');
+  const [age, setAge] = useState('30');
+  const [gender, setGender] = useState('male');
   const [unitSystem, setUnitSystem] = useState('metric');
-  const [activityLevel, setActivityLevel] = useState('');
-  const [goal, setGoal] = useState('');
+  const [activityLevel, setActivityLevel] = useState('moderately-active');
+  const [goal, setGoal] = useState('maintain');
+  const [equation, setEquation] = useState('mifflin');
+  const [customDeficit, setCustomDeficit] = useState('500');
   const [result, setResult] = useState<CalorieResult | null>(null);
 
   const calculateCalories = () => {
@@ -51,66 +64,88 @@ const CalorieCalculator = () => {
 
     const ageYears = parseFloat(age);
 
-    if (weightKg && heightCm && ageYears && gender && activityLevel && goal) {
-      // Calculate BMR using Mifflin-St Jeor Equation
+    if (weightKg && heightCm && ageYears && gender) {
       let bmr: number;
-      if (gender === 'male') {
-        bmr = 10 * weightKg + 6.25 * heightCm - 5 * ageYears + 5;
+      let equationUsed: string;
+
+      // Calculate BMR using selected equation
+      if (equation === 'mifflin') {
+        // Mifflin-St Jeor Equation (most accurate)
+        if (gender === 'male') {
+          bmr = 10 * weightKg + 6.25 * heightCm - 5 * ageYears + 5;
+        } else {
+          bmr = 10 * weightKg + 6.25 * heightCm - 5 * ageYears - 161;
+        }
+        equationUsed = 'Mifflin-St Jeor';
       } else {
-        bmr = 10 * weightKg + 6.25 * heightCm - 5 * ageYears - 161;
+        // Harris-Benedict Equation (revised)
+        if (gender === 'male') {
+          bmr = 88.362 + (13.397 * weightKg) + (4.799 * heightCm) - (5.677 * ageYears);
+        } else {
+          bmr = 447.593 + (9.247 * weightKg) + (3.098 * heightCm) - (4.330 * ageYears);
+        }
+        equationUsed = 'Harris-Benedict';
       }
 
       // Activity multipliers
       const activityMultipliers = {
-        sedentary: 1.2,
-        lightlyActive: 1.375,
-        moderatelyActive: 1.55,
-        veryActive: 1.725,
-        extraActive: 1.9
+        'sedentary': 1.2,
+        'lightly-active': 1.375,
+        'moderately-active': 1.55,
+        'very-active': 1.725,
+        'extra-active': 1.9
       };
 
-      const tdee = bmr * activityMultipliers[activityLevel as keyof typeof activityMultipliers];
+      const multiplier = activityMultipliers[activityLevel as keyof typeof activityMultipliers];
+      const tdee = bmr * multiplier;
 
-      // Goal adjustments
-      let goalCalories: number;
-      let weeklyWeightChange: number;
+      // Calculate calorie goals based on selected goal
+      let maintenanceCalories = tdee;
+      let weightLossCalories, weightGainCalories;
+      let weeklyCalorieDeficit, monthlyWeightLoss;
 
-      switch (goal) {
-        case 'lose2':
-          goalCalories = tdee - 1000; // 2 lbs/week
-          weeklyWeightChange = -2;
-          break;
-        case 'lose1':
-          goalCalories = tdee - 500; // 1 lb/week
-          weeklyWeightChange = -1;
-          break;
-        case 'lose0.5':
-          goalCalories = tdee - 250; // 0.5 lbs/week
-          weeklyWeightChange = -0.5;
-          break;
-        case 'maintain':
-          goalCalories = tdee;
-          weeklyWeightChange = 0;
-          break;
-        case 'gain0.5':
-          goalCalories = tdee + 250; // 0.5 lbs/week
-          weeklyWeightChange = 0.5;
-          break;
-        case 'gain1':
-          goalCalories = tdee + 500; // 1 lb/week
-          weeklyWeightChange = 1;
-          break;
-        default:
-          goalCalories = tdee;
-          weeklyWeightChange = 0;
+      if (goal === 'lose') {
+        const customDeficitValue = parseFloat(customDeficit) || 500;
+        weightLossCalories = {
+          mild: tdee - 250,      // 0.5 lbs/week
+          moderate: tdee - customDeficitValue,  // Custom deficit
+          aggressive: tdee - 750 // 1.5 lbs/week
+        };
+        weightGainCalories = {
+          mild: tdee + 250,
+          moderate: tdee + 500
+        };
+        weeklyCalorieDeficit = customDeficitValue * 7;
+        monthlyWeightLoss = (customDeficitValue * 30) / 3500; // 3500 cal = 1 lb
+      } else if (goal === 'gain') {
+        weightLossCalories = {
+          mild: tdee - 250,
+          moderate: tdee - 500,
+          aggressive: tdee - 750
+        };
+        weightGainCalories = {
+          mild: tdee + 250,      // 0.5 lbs/week
+          moderate: tdee + 500   // 1 lb/week
+        };
+      } else {
+        // Maintain weight
+        weightLossCalories = {
+          mild: tdee - 250,
+          moderate: tdee - 500,
+          aggressive: tdee - 750
+        };
+        weightGainCalories = {
+          mild: tdee + 250,
+          moderate: tdee + 500
+        };
       }
 
-      // Calculate macros (protein: 25%, carbs: 45%, fat: 30%)
-      const proteinCalories = goalCalories * 0.25;
-      const carbsCalories = goalCalories * 0.45;
-      const fatCalories = goalCalories * 0.30;
+      // Calculate macro breakdown for maintenance calories (40% carbs, 30% protein, 30% fat)
+      const proteinCalories = maintenanceCalories * 0.30;
+      const carbsCalories = maintenanceCalories * 0.40;
+      const fatCalories = maintenanceCalories * 0.30;
 
-      const macros = {
+      const macroBreakdown = {
         protein: {
           grams: Math.round(proteinCalories / 4), // 4 cal/g
           calories: Math.round(proteinCalories)
@@ -128,803 +163,961 @@ const CalorieCalculator = () => {
       setResult({
         bmr: Math.round(bmr),
         tdee: Math.round(tdee),
-        goalCalories: Math.round(goalCalories),
-        macros,
-        weeklyWeightChange
+        maintenanceCalories: Math.round(maintenanceCalories),
+        weightLossCalories: {
+          mild: Math.round(weightLossCalories.mild),
+          moderate: Math.round(weightLossCalories.moderate),
+          aggressive: Math.round(weightLossCalories.aggressive)
+        },
+        weightGainCalories: {
+          mild: Math.round(weightGainCalories.mild),
+          moderate: Math.round(weightGainCalories.moderate)
+        },
+        macroBreakdown,
+        activityMultiplier: multiplier,
+        equation: equationUsed,
+        weeklyCalorieDeficit,
+        monthlyWeightLoss
       });
     }
   };
 
   const resetCalculator = () => {
-    setWeight('');
-    setHeight('');
-    setFeet('');
-    setInches('');
-    setAge('');
-    setGender('');
-    setActivityLevel('');
-    setGoal('');
+    setWeight('70');
+    setHeight('175');
+    setFeet('5');
+    setInches('9');
+    setAge('30');
+    setGender('male');
     setUnitSystem('metric');
+    setActivityLevel('moderately-active');
+    setGoal('maintain');
+    setEquation('mifflin');
+    setCustomDeficit('500');
     setResult(null);
   };
 
-  const getGoalDescription = (goalValue: string) => {
-    const descriptions = {
-      'lose2': 'Aggressive Weight Loss (2 lbs/week)',
-      'lose1': 'Moderate Weight Loss (1 lb/week)',
-      'lose0.5': 'Mild Weight Loss (0.5 lbs/week)',
-      'maintain': 'Maintain Current Weight',
-      'gain0.5': 'Mild Weight Gain (0.5 lbs/week)',
-      'gain1': 'Moderate Weight Gain (1 lb/week)'
-    };
-    return descriptions[goalValue as keyof typeof descriptions] || '';
-  };
-
   return (
-    <>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>Calorie Calculator - Daily Calorie Needs & Macros | DapsiWow</title>
-        <meta name="description" content="Calculate your daily calorie needs and macronutrient breakdown. Get personalized calorie targets for weight loss, maintenance, or muscle gain." />
-        <meta name="keywords" content="calorie calculator, daily calorie needs, macro calculator, TDEE calculator, weight loss calories, nutrition calculator" />
-        <meta property="og:title" content="Calorie Calculator - Daily Calorie Needs & Macros | DapsiWow" />
-        <meta property="og:description" content="Calculate your daily calorie needs and macronutrient breakdown for optimal nutrition and fitness goals." />
+        <title>Calorie Calculator - Calculate Daily Calorie Needs | DapsiWow</title>
+        <meta name="description" content="Free calorie calculator to determine your daily calorie needs for weight loss, maintenance, or gain. Get personalized calorie targets based on BMR, activity level, and fitness goals with macronutrient breakdown." />
+        <meta name="keywords" content="calorie calculator, daily calorie needs, calorie counter, weight loss calculator, maintenance calories, BMR calculator, TDEE calculator, macro calculator, calorie deficit calculator, calorie surplus calculator" />
+        <meta property="og:title" content="Calorie Calculator - Calculate Daily Calorie Needs | DapsiWow" />
+        <meta property="og:description" content="Calculate your daily calorie needs for weight management with our accurate calorie calculator. Get personalized targets and macro breakdowns." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="/tools/calorie-calculator" />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="DapsiWow" />
+        <link rel="canonical" href="https://dapsiwow.com/tools/calorie-calculator" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Calorie Calculator",
+            "description": "Free online calorie calculator to determine daily calorie needs for weight management, including BMR, TDEE, and macronutrient calculations.",
+            "url": "https://dapsiwow.com/tools/calorie-calculator",
+            "applicationCategory": "HealthApplication",
+            "operatingSystem": "Any",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "featureList": [
+              "Calculate daily calorie needs",
+              "BMR and TDEE calculations",
+              "Weight loss and gain targets",
+              "Macronutrient breakdown",
+              "Multiple calculation methods",
+              "Activity level adjustments"
+            ]
+          })}
+        </script>
       </Helmet>
+      
+      <Header />
+      
+      <main>
+        {/* Hero Section */}
+        <section className="relative py-20 sm:py-28 lg:py-32 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
+          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="space-y-8">
+              <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+                <span className="text-sm font-medium text-blue-700">Professional Calorie Calculator</span>
+              </div>
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight">
+                Smart Calorie
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                  Calculator
+                </span>
+              </h1>
+              <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                Calculate your daily calorie needs for optimal weight management and health goals
+              </p>
+            </div>
+          </div>
+        </section>
 
-      <div className="min-h-screen flex flex-col" data-testid="page-calorie-calculator">
-        <Header />
-        
-        <main className="flex-1 bg-neutral-50">
-          {/* Hero Section */}
-          <ToolHeroSection
-            title="Calorie Calculator"
-            description="Calculate your daily calorie needs and macronutrient breakdown for achieving your fitness and health goals"
-            testId="text-calorie-title"
-          />
-
-          {/* Calculator Section */}
-          <section className="py-16">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <Card className="bg-white shadow-sm border-0">
-                <CardContent className="p-8">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    {/* Input Section */}
-                    <div className="space-y-6">
-                      <h2 className="text-2xl font-semibold text-gray-900 mb-8">Personal Information</h2>
-                      
-                      {/* Unit System */}
-                      <div className="space-y-3">
-                        <Label>Unit System</Label>
-                        <RadioGroup 
-                          value={unitSystem} 
-                          onValueChange={setUnitSystem}
-                          className="flex gap-6"
-                        >
-                          <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="metric" id="metric" data-testid="radio-metric" />
-                            <Label htmlFor="metric">Metric (kg, cm)</Label>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="imperial" id="imperial" data-testid="radio-imperial" />
-                            <Label htmlFor="imperial">Imperial (lbs, ft/in)</Label>
-                          </div>
-                        </RadioGroup>
-                      </div>
-
-                      {/* Gender */}
-                      <div className="space-y-3">
-                        <Label className="text-sm font-medium text-gray-700">
-                          Gender *
-                        </Label>
-                        <Select value={gender} onValueChange={setGender}>
-                          <SelectTrigger className="h-12 border-gray-200 rounded-lg" data-testid="select-gender">
-                            <SelectValue placeholder="Select gender" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="male">Male</SelectItem>
-                            <SelectItem value="female">Female</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-
-                      {/* Age */}
-                      <div className="space-y-3">
-                        <Label htmlFor="age" className="text-sm font-medium text-gray-700">
-                          Age (years) *
-                        </Label>
-                        <Input
-                          id="age"
-                          type="number"
-                          value={age}
-                          onChange={(e) => setAge(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
-                          placeholder="30"
-                          min="15"
-                          max="120"
-                          data-testid="input-age"
-                        />
-                      </div>
-
-                      {/* Weight */}
-                      <div className="space-y-3">
-                        <Label htmlFor="weight" className="text-sm font-medium text-gray-700">
-                          Weight {unitSystem === 'metric' ? '(kg)' : '(lbs)'} *
-                        </Label>
-                        <Input
-                          id="weight"
-                          type="number"
-                          value={weight}
-                          onChange={(e) => setWeight(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
-                          placeholder={unitSystem === 'metric' ? "70" : "154"}
-                          min="0"
-                          step="0.1"
-                          data-testid="input-weight"
-                        />
-                      </div>
-
-                      {/* Height */}
-                      <div className="space-y-3">
-                        <Label className="text-sm font-medium text-gray-700">
-                          Height {unitSystem === 'metric' ? '(cm)' : '(ft/in)'} *
-                        </Label>
-                        {unitSystem === 'metric' ? (
-                          <Input
-                            type="number"
-                            value={height}
-                            onChange={(e) => setHeight(e.target.value)}
-                            className="h-12 text-base border-gray-200 rounded-lg"
-                            placeholder="175"
-                            min="0"
-                            step="0.1"
-                            data-testid="input-height"
-                          />
-                        ) : (
-                          <div className="grid grid-cols-2 gap-3">
-                            <div>
-                              <Label htmlFor="feet" className="text-xs text-gray-500">Feet</Label>
-                              <Input
-                                id="feet"
-                                type="number"
-                                value={feet}
-                                onChange={(e) => setFeet(e.target.value)}
-                                className="h-12 text-base border-gray-200 rounded-lg"
-                                placeholder="5"
-                                min="0"
-                                max="8"
-                                data-testid="input-feet"
-                              />
-                            </div>
-                            <div>
-                              <Label htmlFor="inches" className="text-xs text-gray-500">Inches</Label>
-                              <Input
-                                id="inches"
-                                type="number"
-                                value={inches}
-                                onChange={(e) => setInches(e.target.value)}
-                                className="h-12 text-base border-gray-200 rounded-lg"
-                                placeholder="9"
-                                min="0"
-                                max="11"
-                                data-testid="input-inches"
-                              />
-                            </div>
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Activity Level */}
-                      <div className="space-y-3">
-                        <Label className="text-sm font-medium text-gray-700">
-                          Activity Level *
-                        </Label>
-                        <Select value={activityLevel} onValueChange={setActivityLevel}>
-                          <SelectTrigger className="h-12 border-gray-200 rounded-lg" data-testid="select-activity">
-                            <SelectValue placeholder="Select activity level" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="sedentary">Sedentary - Little to no exercise</SelectItem>
-                            <SelectItem value="lightlyActive">Lightly Active - Light exercise 1-3 days/week</SelectItem>
-                            <SelectItem value="moderatelyActive">Moderately Active - Moderate exercise 3-5 days/week</SelectItem>
-                            <SelectItem value="veryActive">Very Active - Hard exercise 6-7 days/week</SelectItem>
-                            <SelectItem value="extraActive">Extra Active - Very hard exercise + physical job</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-
-                      {/* Goal */}
-                      <div className="space-y-3">
-                        <Label className="text-sm font-medium text-gray-700">
-                          Goal *
-                        </Label>
-                        <Select value={goal} onValueChange={setGoal}>
-                          <SelectTrigger className="h-12 border-gray-200 rounded-lg" data-testid="select-goal">
-                            <SelectValue placeholder="Select your goal" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="lose2">Aggressive Weight Loss (2 lbs/week)</SelectItem>
-                            <SelectItem value="lose1">Moderate Weight Loss (1 lb/week)</SelectItem>
-                            <SelectItem value="lose0.5">Mild Weight Loss (0.5 lbs/week)</SelectItem>
-                            <SelectItem value="maintain">Maintain Current Weight</SelectItem>
-                            <SelectItem value="gain0.5">Mild Weight Gain (0.5 lbs/week)</SelectItem>
-                            <SelectItem value="gain1">Moderate Weight Gain (1 lb/week)</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-
-                      {/* Action Buttons */}
-                      <div className="flex gap-4 pt-6">
-                        <Button
-                          onClick={calculateCalories}
-                          className="flex-1 h-12 text-white font-medium rounded-lg"
-                          style={{ backgroundColor: '#f43f5e' }}
-                          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#e11d48'}
-                          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#f43f5e'}
-                          data-testid="button-calculate"
-                        >
-                          <Calculator className="w-4 h-4 mr-2" />
-                          Calculate Calories
-                        </Button>
-                        <Button
-                          onClick={resetCalculator}
-                          variant="outline"
-                          className="h-12 px-8 border-gray-200 text-gray-600 hover:bg-gray-50 font-medium rounded-lg"
-                          data-testid="button-reset"
-                        >
-                          Reset
-                        </Button>
-                      </div>
+        <div className="max-w-7xl mx-auto px-4 py-16">
+          {/* Main Calculator Card */}
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+            <CardContent className="p-0">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+                {/* Input Section */}
+                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
+                  <div>
+                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Calorie Configuration</h2>
+                    <p className="text-gray-600">Enter your details to calculate personalized daily calorie needs</p>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Unit System */}
+                    <div className="space-y-3">
+                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Unit System
+                      </Label>
+                      <RadioGroup 
+                        value={unitSystem} 
+                        onValueChange={setUnitSystem}
+                        className="flex gap-6"
+                      >
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="metric" id="metric" data-testid="radio-metric" />
+                          <Label htmlFor="metric">Metric (kg, cm)</Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="imperial" id="imperial" data-testid="radio-imperial" />
+                          <Label htmlFor="imperial">Imperial (lbs, ft/in)</Label>
+                        </div>
+                      </RadioGroup>
                     </div>
 
-                    {/* Results Section */}
-                    <div className="bg-gray-50 rounded-xl p-8">
-                      <h2 className="text-2xl font-semibold text-gray-900 mb-8">Calorie Results</h2>
-                      
-                      {result ? (
-                        <div className="space-y-4" data-testid="calorie-results">
-                          {/* Daily Calorie Goal */}
-                          <div className="bg-white rounded-lg p-4 border-l-4 border-rose-500">
-                            <div className="flex justify-between items-center">
-                              <span className="font-semibold text-gray-700">Daily Calorie Goal</span>
-                              <span className="text-2xl font-bold text-rose-600" data-testid="text-goal-calories">
-                                {result.goalCalories} cal/day
-                              </span>
-                            </div>
-                            <p className="text-xs text-gray-500 mt-1">
-                              {result.weeklyWeightChange > 0 
-                                ? `+${result.weeklyWeightChange} lbs/week gain`
-                                : result.weeklyWeightChange < 0 
-                                ? `${Math.abs(result.weeklyWeightChange)} lbs/week loss`
-                                : 'Maintain current weight'
-                              }
-                            </p>
-                          </div>
+                    {/* Gender */}
+                    <div className="space-y-3">
+                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Gender
+                      </Label>
+                      <Select value={gender} onValueChange={setGender}>
+                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-gender">
+                          <SelectValue placeholder="Select gender" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="male">Male</SelectItem>
+                          <SelectItem value="female">Female</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
 
-                          {/* BMR and TDEE */}
-                          <div className="bg-white rounded-lg p-4">
-                            <h3 className="font-semibold text-gray-900 mb-3">Metabolic Information</h3>
-                            <div className="space-y-2 text-sm">
-                              <div className="flex justify-between">
-                                <span className="text-gray-600">Basal Metabolic Rate (BMR)</span>
-                                <span className="font-medium" data-testid="text-bmr">
-                                  {result.bmr} cal/day
-                                </span>
-                              </div>
-                              <div className="flex justify-between">
-                                <span className="text-gray-600">Total Daily Energy Expenditure (TDEE)</span>
-                                <span className="font-medium" data-testid="text-tdee">
-                                  {result.tdee} cal/day
-                                </span>
-                              </div>
-                            </div>
-                          </div>
+                    {/* Age */}
+                    <div className="space-y-3">
+                      <Label htmlFor="age" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Age (years)
+                      </Label>
+                      <Input
+                        id="age"
+                        type="number"
+                        value={age}
+                        onChange={(e) => setAge(e.target.value)}
+                        className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                        placeholder="30"
+                        min="15"
+                        max="120"
+                        data-testid="input-age"
+                      />
+                    </div>
 
-                          {/* Macronutrient Breakdown */}
-                          <div className="bg-white rounded-lg p-4">
-                            <h3 className="font-semibold text-gray-900 mb-3">Macronutrient Breakdown</h3>
-                            <div className="space-y-3">
-                              <div className="bg-blue-50 rounded-lg p-3">
-                                <div className="flex justify-between items-center">
-                                  <span className="text-blue-800 font-medium">Protein (25%)</span>
-                                  <span className="text-blue-800 font-bold" data-testid="text-protein">
-                                    {result.macros.protein.grams}g / {result.macros.protein.calories} cal
-                                  </span>
-                                </div>
-                              </div>
-                              <div className="bg-green-50 rounded-lg p-3">
-                                <div className="flex justify-between items-center">
-                                  <span className="text-green-800 font-medium">Carbs (45%)</span>
-                                  <span className="text-green-800 font-bold" data-testid="text-carbs">
-                                    {result.macros.carbs.grams}g / {result.macros.carbs.calories} cal
-                                  </span>
-                                </div>
-                              </div>
-                              <div className="bg-orange-50 rounded-lg p-3">
-                                <div className="flex justify-between items-center">
-                                  <span className="text-orange-800 font-medium">Fat (30%)</span>
-                                  <span className="text-orange-800 font-bold" data-testid="text-fat">
-                                    {result.macros.fat.grams}g / {result.macros.fat.calories} cal
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                    {/* Weight */}
+                    <div className="space-y-3">
+                      <Label htmlFor="weight" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Weight {unitSystem === 'metric' ? '(kg)' : '(lbs)'}
+                      </Label>
+                      <Input
+                        id="weight"
+                        type="number"
+                        value={weight}
+                        onChange={(e) => setWeight(e.target.value)}
+                        className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                        placeholder={unitSystem === 'metric' ? "70" : "154"}
+                        min="0"
+                        step="0.1"
+                        data-testid="input-weight"
+                      />
+                    </div>
 
-                          {/* Tips */}
-                          <div className="bg-blue-50 rounded-lg p-4">
-                            <h3 className="font-semibold text-gray-900 mb-2">Nutrition Tips</h3>
-                            <ul className="text-sm text-gray-600 space-y-1">
-                              <li>• Track your food intake for better accuracy</li>
-                              <li>• Adjust portions based on your progress</li>
-                              <li>• Stay hydrated and eat whole foods</li>
-                              <li>• Consider consulting a nutritionist for personalized advice</li>
-                            </ul>
-                          </div>
-                        </div>
+                    {/* Height */}
+                    <div className="space-y-3 md:col-span-2">
+                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Height {unitSystem === 'metric' ? '(cm)' : '(ft/in)'}
+                      </Label>
+                      {unitSystem === 'metric' ? (
+                        <Input
+                          type="number"
+                          value={height}
+                          onChange={(e) => setHeight(e.target.value)}
+                          className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          placeholder="175"
+                          min="0"
+                          step="0.1"
+                          data-testid="input-height"
+                        />
                       ) : (
-                        <div className="text-center py-8" data-testid="no-results">
-                          <i className="fas fa-utensils text-4xl text-gray-400 mb-4"></i>
-                          <p className="text-gray-500">Enter your information to calculate daily calorie needs</p>
+                        <div className="grid grid-cols-2 gap-3">
+                          <div>
+                            <Label htmlFor="feet" className="text-xs text-gray-500">Feet</Label>
+                            <Input
+                              id="feet"
+                              type="number"
+                              value={feet}
+                              onChange={(e) => setFeet(e.target.value)}
+                              className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              placeholder="5"
+                              min="0"
+                              max="8"
+                              data-testid="input-feet"
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="inches" className="text-xs text-gray-500">Inches</Label>
+                            <Input
+                              id="inches"
+                              type="number"
+                              value={inches}
+                              onChange={(e) => setInches(e.target.value)}
+                              className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              placeholder="9"
+                              min="0"
+                              max="11"
+                              data-testid="input-inches"
+                            />
+                          </div>
                         </div>
                       )}
+                    </div>
+
+                    {/* Activity Level */}
+                    <div className="space-y-3">
+                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Activity Level
+                      </Label>
+                      <Select value={activityLevel} onValueChange={setActivityLevel}>
+                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-activity">
+                          <SelectValue placeholder="Select activity level" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="sedentary">Sedentary - Little to no exercise</SelectItem>
+                          <SelectItem value="lightly-active">Lightly Active - Light exercise 1-3 days/week</SelectItem>
+                          <SelectItem value="moderately-active">Moderately Active - Moderate exercise 3-5 days/week</SelectItem>
+                          <SelectItem value="very-active">Very Active - Hard exercise 6-7 days/week</SelectItem>
+                          <SelectItem value="extra-active">Extra Active - Very hard exercise + physical job</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    {/* Goal */}
+                    <div className="space-y-3">
+                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Primary Goal
+                      </Label>
+                      <Select value={goal} onValueChange={setGoal}>
+                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-goal">
+                          <SelectValue placeholder="Select your goal" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="lose">Lose Weight</SelectItem>
+                          <SelectItem value="maintain">Maintain Weight</SelectItem>
+                          <SelectItem value="gain">Gain Weight</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    {/* Calculation Method */}
+                    <div className="space-y-3">
+                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Calculation Method
+                      </Label>
+                      <Select value={equation} onValueChange={setEquation}>
+                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-equation">
+                          <SelectValue placeholder="Select equation" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="mifflin">Mifflin-St Jeor (Most Accurate)</SelectItem>
+                          <SelectItem value="harris">Harris-Benedict (Revised)</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    {/* Custom Deficit (only show if goal is lose weight) */}
+                    {goal === 'lose' && (
+                      <div className="space-y-3">
+                        <Label htmlFor="custom-deficit" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                          Daily Calorie Deficit
+                        </Label>
+                        <Input
+                          id="custom-deficit"
+                          type="number"
+                          value={customDeficit}
+                          onChange={(e) => setCustomDeficit(e.target.value)}
+                          className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          placeholder="500"
+                          min="200"
+                          max="1000"
+                          data-testid="input-custom-deficit"
+                        />
+                        <p className="text-xs text-gray-500">Recommended: 250-750 calories/day</p>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                    <Button
+                      onClick={calculateCalories}
+                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      data-testid="button-calculate"
+                    >
+                      Calculate Calories
+                    </Button>
+                    <Button
+                      onClick={resetCalculator}
+                      variant="outline"
+                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      data-testid="button-reset"
+                    >
+                      Reset
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Results Section */}
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Results</h2>
+                  
+                  {result ? (
+                    <div className="space-y-6" data-testid="calorie-results">
+                      {/* Daily Calorie Needs Highlight */}
+                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
+                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Daily Calorie Needs</div>
+                        <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mb-2" data-testid="text-daily-calories">
+                          {result.maintenanceCalories} cal/day
+                        </div>
+                        <div className="text-xs text-gray-500">Using {result.equation} equation</div>
+                      </div>
+
+                      {/* BMR & TDEE */}
+                      <div className="space-y-4">
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Basal Metabolic Rate (BMR)</span>
+                            <span className="font-bold text-gray-900" data-testid="text-bmr">
+                              {result.bmr} cal/day
+                            </span>
+                          </div>
+                        </div>
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Total Daily Energy Expenditure</span>
+                            <span className="font-bold text-gray-900" data-testid="text-tdee">
+                              {result.tdee} cal/day
+                            </span>
+                          </div>
+                          <div className="text-xs text-gray-500 mt-1">
+                            Activity multiplier: {result.activityMultiplier}x
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Goal-based recommendations */}
+                      <div className="space-y-4">
+                        <h4 className="font-bold text-gray-900 text-lg">Calorie Goals</h4>
+                        
+                        <div className="bg-green-50 rounded-xl p-4 border border-green-200">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-green-800">Maintain Weight</span>
+                            <span className="font-bold text-green-800" data-testid="text-maintenance">
+                              {result.maintenanceCalories} cal/day
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="bg-red-50 rounded-xl p-4 border border-red-200">
+                          <h5 className="font-semibold text-red-800 mb-3">Weight Loss</h5>
+                          <div className="space-y-2 text-sm">
+                            <div className="flex justify-between">
+                              <span className="text-red-700">Mild (0.5 lbs/week):</span>
+                              <span className="font-bold text-red-800">{result.weightLossCalories.mild} cal/day</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="text-red-700">Moderate (1 lb/week):</span>
+                              <span className="font-bold text-red-800">{result.weightLossCalories.moderate} cal/day</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="text-red-700">Aggressive (1.5 lbs/week):</span>
+                              <span className="font-bold text-red-800">{result.weightLossCalories.aggressive} cal/day</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="bg-blue-50 rounded-xl p-4 border border-blue-200">
+                          <h5 className="font-semibold text-blue-800 mb-3">Weight Gain</h5>
+                          <div className="space-y-2 text-sm">
+                            <div className="flex justify-between">
+                              <span className="text-blue-700">Mild (0.5 lbs/week):</span>
+                              <span className="font-bold text-blue-800">{result.weightGainCalories.mild} cal/day</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="text-blue-700">Moderate (1 lb/week):</span>
+                              <span className="font-bold text-blue-800">{result.weightGainCalories.moderate} cal/day</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Macros */}
+                      <div className="bg-white rounded-xl p-4 shadow-sm">
+                        <h4 className="font-semibold text-gray-900 mb-3">Recommended Macros (Maintenance)</h4>
+                        <div className="space-y-2 text-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="text-blue-700 font-medium">Protein (30%)</span>
+                            <span className="font-bold text-blue-800" data-testid="text-protein">
+                              {result.macroBreakdown.protein.grams}g / {result.macroBreakdown.protein.calories} cal
+                            </span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-green-700 font-medium">Carbs (40%)</span>
+                            <span className="font-bold text-green-800" data-testid="text-carbs">
+                              {result.macroBreakdown.carbs.grams}g / {result.macroBreakdown.carbs.calories} cal
+                            </span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-orange-700 font-medium">Fat (30%)</span>
+                            <span className="font-bold text-orange-800" data-testid="text-fat">
+                              {result.macroBreakdown.fat.grams}g / {result.macroBreakdown.fat.calories} cal
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Weekly Progress Insight */}
+                      {result.weeklyCalorieDeficit && result.monthlyWeightLoss && (
+                        <div className="bg-purple-50 rounded-xl p-4 border border-purple-200">
+                          <h4 className="font-semibold text-purple-800 mb-3">Progress Insights</h4>
+                          <div className="space-y-2 text-sm">
+                            <div className="flex justify-between">
+                              <span className="text-purple-700">Weekly Calorie Deficit:</span>
+                              <span className="font-bold text-purple-800">{result.weeklyCalorieDeficit} calories</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="text-purple-700">Expected Monthly Weight Loss:</span>
+                              <span className="font-bold text-purple-800">{result.monthlyWeightLoss?.toFixed(1)} lbs</span>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="text-center py-16" data-testid="no-results">
+                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <div className="text-3xl font-bold text-gray-400">CAL</div>
+                      </div>
+                      <p className="text-gray-500 text-lg">Enter your details and calculate to see calorie results</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* SEO Content Section */}
+          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">What is a Calorie Calculator?</h3>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    A calorie calculator is an essential tool that determines your daily caloric needs based on personal 
+                    factors like age, gender, weight, height, and activity level. It calculates your Basal Metabolic Rate (BMR) 
+                    and Total Daily Energy Expenditure (TDEE) to provide accurate calorie targets for your specific health goals.
+                  </p>
+                  <p>
+                    Our advanced calorie calculator uses scientifically proven equations like Mifflin-St Jeor and Harris-Benedict 
+                    to deliver precise results. Whether you want to lose weight, maintain your current weight, or build muscle, 
+                    this calculator provides personalized recommendations with detailed macronutrient breakdowns.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">How to Calculate Daily Calories?</h3>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    Daily calorie calculation involves two main steps:
+                  </p>
+                  <div className="bg-blue-50 rounded-lg p-4">
+                    <p className="font-mono text-sm mb-2"><strong>Step 1: BMR Calculation</strong></p>
+                    <p className="text-sm">Mifflin-St Jeor: BMR = 10×weight(kg) + 6.25×height(cm) - 5×age + gender factor</p>
+                  </div>
+                  <div className="bg-green-50 rounded-lg p-4">
+                    <p className="font-mono text-sm mb-2"><strong>Step 2: Activity Adjustment</strong></p>
+                    <p className="text-sm">TDEE = BMR × Activity Factor (1.2 to 1.9)</p>
+                  </div>
+                  <p>
+                    Our calculator then adjusts these values based on your specific goals, creating personalized 
+                    calorie targets for weight loss, maintenance, or muscle gain.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">BMR vs TDEE vs Daily Calories</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <div>
+                      <strong>BMR (Basal Metabolic Rate):</strong> Calories needed for basic body functions at rest
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <div>
+                      <strong>TDEE (Total Daily Energy Expenditure):</strong> BMR plus calories burned through activity
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <div>
+                      <strong>Daily Calorie Goal:</strong> TDEE adjusted for your specific weight management goals
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <div>
+                      <strong>Calorie Deficit/Surplus:</strong> Amount below or above TDEE for weight change
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Benefits of Our Calculator</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Accurate calculations using validated scientific equations</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Personalized calorie targets for any fitness goal</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Detailed macronutrient breakdown recommendations</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Support for both metric and imperial units</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Multiple activity levels and goal options</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Additional SEO Content Sections */}
+          <div className="mt-12 space-y-8">
+            {/* Factors Affecting Daily Calorie Needs */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Factors That Affect Your Daily Calorie Needs</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Age and Gender</h4>
+                    <p className="text-gray-600">
+                      Metabolism typically slows with age, requiring fewer calories. Men generally need more calories than 
+                      women due to higher muscle mass and larger body size. Our calculator accounts for these biological 
+                      differences using gender-specific equations.
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Body Composition</h4>
+                    <p className="text-gray-600">
+                      Muscle tissue burns more calories at rest than fat tissue. People with higher muscle mass have 
+                      higher metabolic rates and calorie needs. Weight training can increase your daily calorie requirements 
+                      by building lean muscle mass.
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Activity Level</h4>
+                    <p className="text-gray-600">
+                      Physical activity significantly impacts daily calorie needs. Our calculator uses activity multipliers 
+                      ranging from 1.2 (sedentary) to 1.9 (extremely active) to adjust your BMR for your lifestyle and 
+                      exercise habits.
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Health Conditions</h4>
+                    <p className="text-gray-600">
+                      Certain medical conditions like thyroid disorders, diabetes, and PCOS can affect metabolism. 
+                      While our calculator provides general estimates, consult healthcare providers for personalized 
+                      advice if you have metabolic conditions.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Weight Management Strategies */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Weight Loss Strategies</h3>
+                  <div className="space-y-4">
+                    <div className="bg-red-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-red-800 mb-2">Safe Calorie Deficit</h4>
+                      <p className="text-sm text-red-700">Create a deficit of 250-750 calories per day for sustainable weight loss of 0.5-1.5 pounds per week.</p>
+                    </div>
+                    <div className="bg-orange-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-orange-800 mb-2">Never Go Below BMR</h4>
+                      <p className="text-sm text-orange-700">Eating below your BMR can slow metabolism and cause muscle loss. Always eat at least your BMR calories.</p>
+                    </div>
+                    <div className="bg-yellow-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-yellow-800 mb-2">Focus on Protein</h4>
+                      <p className="text-sm text-yellow-700">High protein intake (30% of calories) helps preserve muscle mass and increases satiety during weight loss.</p>
+                    </div>
+                    <div className="bg-blue-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-blue-800 mb-2">Track Progress</h4>
+                      <p className="text-sm text-blue-700">Monitor weight changes weekly and adjust calorie intake based on actual results, not just calculations.</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              {/* Educational Content */}
-              <div className="mt-12 space-y-8">
-                {/* What is Calorie Calculator Section */}
-                <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">What is a Calorie Calculator?</h2>
-                  <div className="max-w-4xl mx-auto">
-                    <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                      A calorie calculator is an essential health and fitness tool that determines your daily caloric needs 
-                      based on your personal characteristics including age, gender, weight, height, and activity level. Our 
-                      comprehensive daily calorie calculator uses scientifically proven formulas like the Mifflin-St Jeor 
-                      equation to calculate your Basal Metabolic Rate (BMR) and Total Daily Energy Expenditure (TDEE), 
-                      providing accurate calorie targets for weight loss, weight gain, or weight maintenance goals.
-                    </p>
-                    <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                      This powerful nutrition calculator not only determines your calorie needs but also provides a detailed 
-                      macronutrient breakdown including protein, carbohydrates, and fat requirements. Whether you're planning 
-                      a diet for weight loss, muscle gain, or maintaining a healthy lifestyle, our calorie counter helps you 
-                      make informed decisions about your nutrition and fitness journey with personalized recommendations 
-                      tailored to your specific goals and lifestyle.
-                    </p>
-                  </div>
-                </div>
-
-                {/* How to Use Calorie Calculator */}
-                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">How to Use the Calorie Calculator</h2>
-                  <div className="max-w-4xl mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                      <div className="space-y-6">
-                        <div className="flex items-start space-x-4">
-                          <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm">1</div>
-                          <div>
-                            <h3 className="text-lg font-semibold text-gray-900 mb-2">Enter Personal Information</h3>
-                            <p className="text-gray-600 text-sm">
-                              Input your age, gender, weight, and height. Choose between metric (kg, cm) or imperial (lbs, ft/in) units for convenience.
-                            </p>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-start space-x-4">
-                          <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm">2</div>
-                          <div>
-                            <h3 className="text-lg font-semibold text-gray-900 mb-2">Select Activity Level</h3>
-                            <p className="text-gray-600 text-sm">
-                              Choose your activity level from sedentary to extra active based on your weekly exercise routine and daily movement.
-                            </p>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-start space-x-4">
-                          <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm">3</div>
-                          <div>
-                            <h3 className="text-lg font-semibold text-gray-900 mb-2">Define Your Goal</h3>
-                            <p className="text-gray-600 text-sm">
-                              Select whether you want to lose weight, maintain current weight, or gain weight, along with your preferred rate of change.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div className="space-y-6">
-                        <div className="flex items-start space-x-4">
-                          <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm">4</div>
-                          <div>
-                            <h3 className="text-lg font-semibold text-gray-900 mb-2">Get Your Results</h3>
-                            <p className="text-gray-600 text-sm">
-                              Receive your personalized daily calorie target, BMR, TDEE, and detailed macronutrient breakdown for optimal nutrition.
-                            </p>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-start space-x-4">
-                          <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm">5</div>
-                          <div>
-                            <h3 className="text-lg font-semibold text-gray-900 mb-2">Track and Adjust</h3>
-                            <p className="text-gray-600 text-sm">
-                              Use the results to plan your meals and monitor your progress, adjusting as needed based on your body's response.
-                            </p>
-                          </div>
-                        </div>
-                        
-                        <div className="bg-white rounded-lg p-4 border border-blue-200">
-                          <h4 className="font-semibold text-gray-900 mb-2">💡 Pro Tip</h4>
-                          <p className="text-gray-600 text-sm">
-                            Recalculate your calories every 10-15 pounds of weight change for the most accurate results.
-                          </p>
-                        </div>
-                      </div>
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Weight Gain Strategies</h3>
+                  <div className="space-y-4">
+                    <div className="bg-green-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-green-800 mb-2">Controlled Surplus</h4>
+                      <p className="text-sm text-green-700">Add 250-500 calories above TDEE for lean muscle gain without excessive fat accumulation.</p>
+                    </div>
+                    <div className="bg-blue-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-blue-800 mb-2">Strength Training</h4>
+                      <p className="text-sm text-blue-700">Combine calorie surplus with resistance training to ensure weight gain comes from muscle, not just fat.</p>
+                    </div>
+                    <div className="bg-purple-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-purple-800 mb-2">Quality Calories</h4>
+                      <p className="text-sm text-purple-700">Choose nutrient-dense foods over empty calories to support healthy weight gain and body composition.</p>
+                    </div>
+                    <div className="bg-indigo-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-indigo-800 mb-2">Patient Progress</h4>
+                      <p className="text-sm text-indigo-700">Aim for 0.5-1 pound weight gain per week. Faster gains typically result in more fat than muscle.</p>
                     </div>
                   </div>
-                </div>
-
-                {/* Use Cases */}
-                <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">When to Use a Calorie Calculator</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div className="bg-red-50 rounded-lg p-6 border border-red-100">
-                      <i className="fas fa-weight text-2xl text-red-600 mb-4"></i>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Weight Loss Journey</h3>
-                      <p className="text-gray-600 text-sm mb-4">
-                        Create a sustainable caloric deficit to lose weight safely and effectively while maintaining muscle mass and energy levels.
-                      </p>
-                      <ul className="text-gray-600 text-xs space-y-1">
-                        <li>• Planning a weight loss diet</li>
-                        <li>• Setting realistic weight loss goals</li>
-                        <li>• Avoiding extreme calorie restriction</li>
-                      </ul>
-                    </div>
-                    
-                    <div className="bg-green-50 rounded-lg p-6 border border-green-100">
-                      <i className="fas fa-dumbbell text-2xl text-green-600 mb-4"></i>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Muscle Building</h3>
-                      <p className="text-gray-600 text-sm mb-4">
-                        Determine the right caloric surplus and protein intake needed to support muscle growth and strength training goals.
-                      </p>
-                      <ul className="text-gray-600 text-xs space-y-1">
-                        <li>• Bulking phase planning</li>
-                        <li>• Optimizing protein intake</li>
-                        <li>• Supporting workout recovery</li>
-                      </ul>
-                    </div>
-                    
-                    <div className="bg-blue-50 rounded-lg p-6 border border-blue-100">
-                      <i className="fas fa-balance-scale text-2xl text-blue-600 mb-4"></i>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Weight Maintenance</h3>
-                      <p className="text-gray-600 text-sm mb-4">
-                        Maintain your current weight by eating the right amount of calories to match your daily energy expenditure.
-                      </p>
-                      <ul className="text-gray-600 text-xs space-y-1">
-                        <li>• Preventing weight regain</li>
-                        <li>• Establishing healthy habits</li>
-                        <li>• Long-term weight management</li>
-                      </ul>
-                    </div>
-                    
-                    <div className="bg-purple-50 rounded-lg p-6 border border-purple-100">
-                      <i className="fas fa-heartbeat text-2xl text-purple-600 mb-4"></i>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Health Improvement</h3>
-                      <p className="text-gray-600 text-sm mb-4">
-                        Support overall health goals including managing diabetes, heart disease, or metabolic syndrome through proper nutrition.
-                      </p>
-                      <ul className="text-gray-600 text-xs space-y-1">
-                        <li>• Managing chronic conditions</li>
-                        <li>• Improving metabolic health</li>
-                        <li>• Supporting medical treatment</li>
-                      </ul>
-                    </div>
-                    
-                    <div className="bg-orange-50 rounded-lg p-6 border border-orange-100">
-                      <i className="fas fa-running text-2xl text-orange-600 mb-4"></i>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Athletic Performance</h3>
-                      <p className="text-gray-600 text-sm mb-4">
-                        Optimize nutrition for athletic performance, endurance training, and competitive sports activities.
-                      </p>
-                      <ul className="text-gray-600 text-xs space-y-1">
-                        <li>• Fueling training sessions</li>
-                        <li>• Competition preparation</li>
-                        <li>• Recovery optimization</li>
-                      </ul>
-                    </div>
-                    
-                    <div className="bg-yellow-50 rounded-lg p-6 border border-yellow-100">
-                      <i className="fas fa-seedling text-2xl text-yellow-600 mb-4"></i>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Lifestyle Changes</h3>
-                      <p className="text-gray-600 text-sm mb-4">
-                        Adapt your nutrition when starting new exercise routines, changing jobs, or experiencing life transitions.
-                      </p>
-                      <ul className="text-gray-600 text-xs space-y-1">
-                        <li>• Starting a fitness program</li>
-                        <li>• Career changes affecting activity</li>
-                        <li>• Age-related metabolism changes</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Understanding Calories */}
-                <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Understanding Calories & Nutrition Science</h2>
-                  
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">What are Calories?</h3>
-                      <p className="text-gray-600 mb-6 leading-relaxed">
-                        A calorie is a unit of energy that measures how much energy food provides to your body. 
-                        Your body needs a certain number of calories each day to function properly, including 
-                        breathing, digestion, circulation, cellular repair, and physical activity. Understanding 
-                        calorie balance is fundamental to achieving any health or fitness goal.
-                      </p>
-                      
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">BMR vs TDEE</h3>
-                      <div className="bg-blue-50 rounded-lg p-4 mb-4">
-                        <div className="space-y-2 text-sm">
-                          <div><strong className="text-blue-800">BMR (Basal Metabolic Rate):</strong> <span className="text-gray-700">Calories needed for basic bodily functions at rest</span></div>
-                          <div><strong className="text-blue-800">TDEE (Total Daily Energy Expenditure):</strong> <span className="text-gray-700">BMR plus calories burned through activity and exercise</span></div>
-                        </div>
-                      </div>
-                      
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Weight Management Principles</h3>
-                      <div className="bg-rose-50 rounded-lg p-4 mb-4">
-                        <ul className="text-rose-800 text-sm space-y-1">
-                          <li><strong>Weight Loss:</strong> Create a caloric deficit (eat fewer calories than you burn)</li>
-                          <li><strong>Weight Maintenance:</strong> Energy balance (calories in = calories out)</li>
-                          <li><strong>Weight Gain:</strong> Create a caloric surplus (eat more calories than you burn)</li>
-                        </ul>
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Macronutrients Explained</h3>
-                      <div className="space-y-3">
-                        <div className="flex items-center p-3 bg-blue-50 rounded-lg">
-                          <div className="w-4 h-4 bg-blue-500 rounded-full mr-3"></div>
-                          <div>
-                            <div className="font-medium">Protein (4 calories per gram)</div>
-                            <div className="text-sm text-gray-600">Builds and repairs tissues, supports immune function, preserves muscle mass</div>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-center p-3 bg-green-50 rounded-lg">
-                          <div className="w-4 h-4 bg-green-500 rounded-full mr-3"></div>
-                          <div>
-                            <div className="font-medium">Carbohydrates (4 calories per gram)</div>
-                            <div className="text-sm text-gray-600">Primary energy source for brain and muscles, fuels physical activity</div>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-center p-3 bg-orange-50 rounded-lg">
-                          <div className="w-4 h-4 bg-orange-500 rounded-full mr-3"></div>
-                          <div>
-                            <div className="font-medium">Fat (9 calories per gram)</div>
-                            <div className="text-sm text-gray-600">Essential for hormone production, nutrient absorption, and cell structure</div>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div className="bg-gray-50 rounded-lg p-4 mt-6">
-                        <h4 className="font-semibold text-gray-900 mb-2">Recommended Macro Ratios</h4>
-                        <div className="text-sm text-gray-600 space-y-1">
-                          <div>• <strong>General Health:</strong> 45-65% carbs, 20-35% fat, 10-35% protein</div>
-                          <div>• <strong>Weight Loss:</strong> 40% carbs, 30% fat, 30% protein</div>
-                          <div>• <strong>Muscle Building:</strong> 40% carbs, 25% fat, 35% protein</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Factors Affecting Calorie Needs */}
-                <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-8">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Factors That Affect Your Calorie Needs</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div className="bg-white rounded-lg p-6 shadow-sm">
-                      <i className="fas fa-birthday-cake text-2xl text-indigo-600 mb-4"></i>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Age</h3>
-                      <p className="text-gray-600 text-sm">
-                        Metabolism generally slows with age due to muscle mass loss and hormonal changes. 
-                        Calorie needs typically decrease by 1-2% per decade after age 30.
-                      </p>
-                    </div>
-                    
-                    <div className="bg-white rounded-lg p-6 shadow-sm">
-                      <i className="fas fa-venus-mars text-2xl text-pink-600 mb-4"></i>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Gender</h3>
-                      <p className="text-gray-600 text-sm">
-                        Men typically have higher calorie needs due to greater muscle mass and larger body size. 
-                        Hormonal differences also affect metabolism and energy expenditure.
-                      </p>
-                    </div>
-                    
-                    <div className="bg-white rounded-lg p-6 shadow-sm">
-                      <i className="fas fa-weight text-2xl text-blue-600 mb-4"></i>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Body Composition</h3>
-                      <p className="text-gray-600 text-sm">
-                        Muscle tissue burns more calories at rest than fat tissue. 
-                        Higher muscle mass increases your metabolic rate and calorie needs.
-                      </p>
-                    </div>
-                    
-                    <div className="bg-white rounded-lg p-6 shadow-sm">
-                      <i className="fas fa-thermometer-half text-2xl text-red-600 mb-4"></i>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Genetics</h3>
-                      <p className="text-gray-600 text-sm">
-                        Some people naturally have faster or slower metabolisms. 
-                        Genetic factors can influence how efficiently your body uses energy.
-                      </p>
-                    </div>
-                    
-                    <div className="bg-white rounded-lg p-6 shadow-sm">
-                      <i className="fas fa-pills text-2xl text-green-600 mb-4"></i>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Health Conditions</h3>
-                      <p className="text-gray-600 text-sm">
-                        Thyroid disorders, PCOS, diabetes, and certain medications can significantly 
-                        affect metabolism and calorie requirements.
-                      </p>
-                    </div>
-                    
-                    <div className="bg-white rounded-lg p-6 shadow-sm">
-                      <i className="fas fa-bed text-2xl text-purple-600 mb-4"></i>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Sleep Quality</h3>
-                      <p className="text-gray-600 text-sm">
-                        Poor sleep affects hormones that regulate hunger and metabolism. 
-                        Lack of sleep can increase appetite and reduce metabolic efficiency.
-                      </p>
-                    </div>
-                    
-                    <div className="bg-white rounded-lg p-6 shadow-sm">
-                      <i className="fas fa-fire text-2xl text-orange-600 mb-4"></i>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Activity Level</h3>
-                      <p className="text-gray-600 text-sm">
-                        Both structured exercise and daily activities (NEAT) significantly impact 
-                        calorie needs. Active individuals require substantially more calories.
-                      </p>
-                    </div>
-                    
-                    <div className="bg-white rounded-lg p-6 shadow-sm">
-                      <i className="fas fa-utensils text-2xl text-yellow-600 mb-4"></i>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Diet History</h3>
-                      <p className="text-gray-600 text-sm">
-                        Previous dieting history can affect metabolic rate. 
-                        Extreme calorie restriction may lead to adaptive metabolic slowdown.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Nutrition Tips */}
-                <div className="bg-gradient-to-r from-rose-50 to-pink-50 rounded-2xl p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Evidence-Based Nutrition Guidelines</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div className="bg-white rounded-lg p-6 shadow-sm">
-                      <i className="fas fa-apple-alt text-2xl text-green-600 mb-4"></i>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Prioritize Whole Foods</h3>
-                      <p className="text-gray-600 text-sm">
-                        Focus on nutrient-dense, minimally processed foods like fruits, vegetables, lean proteins, 
-                        whole grains, nuts, and legumes for optimal nutrition and satiety.
-                      </p>
-                    </div>
-                    
-                    <div className="bg-white rounded-lg p-6 shadow-sm">
-                      <i className="fas fa-tint text-2xl text-blue-600 mb-4"></i>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Stay Properly Hydrated</h3>
-                      <p className="text-gray-600 text-sm">
-                        Drink water throughout the day. Aim for clear, pale yellow urine as a hydration indicator. 
-                        Sometimes thirst is mistaken for hunger.
-                      </p>
-                    </div>
-                    
-                    <div className="bg-white rounded-lg p-6 shadow-sm">
-                      <i className="fas fa-utensils text-2xl text-purple-600 mb-4"></i>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Practice Portion Awareness</h3>
-                      <p className="text-gray-600 text-sm">
-                        Use measuring tools initially to learn proper portions. Eat slowly and mindfully to 
-                        recognize hunger and fullness cues.
-                      </p>
-                    </div>
-                    
-                    <div className="bg-white rounded-lg p-6 shadow-sm">
-                      <i className="fas fa-clock text-2xl text-orange-600 mb-4"></i>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Optimize Meal Timing</h3>
-                      <p className="text-gray-600 text-sm">
-                        Eat regular meals to maintain stable blood sugar and energy. Consider your schedule 
-                        and exercise timing when planning meals.
-                      </p>
-                    </div>
-                    
-                    <div className="bg-white rounded-lg p-6 shadow-sm">
-                      <i className="fas fa-chart-line text-2xl text-red-600 mb-4"></i>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Monitor and Adjust</h3>
-                      <p className="text-gray-600 text-sm">
-                        Track your progress through multiple metrics including weight, energy levels, 
-                        performance, and how you feel. Adjust calories as needed.
-                      </p>
-                    </div>
-                    
-                    <div className="bg-white rounded-lg p-6 shadow-sm">
-                      <i className="fas fa-user-md text-2xl text-indigo-600 mb-4"></i>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Seek Professional Guidance</h3>
-                      <p className="text-gray-600 text-sm">
-                        Consider consulting registered dietitians, nutritionists, or healthcare providers 
-                        for personalized advice, especially with medical conditions.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Common Mistakes */}
-                <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Common Calorie Counting Mistakes to Avoid</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="space-y-6">
-                      <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                        <h3 className="text-lg font-semibold text-red-800 mb-2">❌ Extreme Calorie Restriction</h3>
-                        <p className="text-red-700 text-sm">
-                          Eating too few calories can slow metabolism, cause muscle loss, and lead to nutrient deficiencies. 
-                          Aim for moderate deficits of 500-750 calories per day for sustainable weight loss.
-                        </p>
-                      </div>
-                      
-                      <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                        <h3 className="text-lg font-semibold text-red-800 mb-2">❌ Ignoring Liquid Calories</h3>
-                        <p className="text-red-700 text-sm">
-                          Beverages like sodas, juices, coffee drinks, and alcohol can add significant calories. 
-                          Track all liquid intake including oils and dressings used in cooking.
-                        </p>
-                      </div>
-                      
-                      <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                        <h3 className="text-lg font-semibold text-red-800 mb-2">❌ Overestimating Exercise Calories</h3>
-                        <p className="text-red-700 text-sm">
-                          Many people overestimate calories burned during exercise. Be conservative with exercise 
-                          calorie estimates and focus on consistent activity rather than eating back all exercise calories.
-                        </p>
-                      </div>
-                    </div>
-                    
-                    <div className="space-y-6">
-                      <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                        <h3 className="text-lg font-semibold text-green-800 mb-2">✅ Focus on Food Quality</h3>
-                        <p className="text-green-700 text-sm">
-                          Prioritize nutrient-dense foods that provide satiety and essential nutrients. 
-                          Quality matters as much as quantity for long-term health and weight management.
-                        </p>
-                      </div>
-                      
-                      <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                        <h3 className="text-lg font-semibold text-green-800 mb-2">✅ Be Patient and Consistent</h3>
-                        <p className="text-green-700 text-sm">
-                          Sustainable results take time. Focus on building healthy habits and making gradual 
-                          changes rather than seeking rapid transformations that are difficult to maintain.
-                        </p>
-                      </div>
-                      
-                      <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                        <h3 className="text-lg font-semibold text-green-800 mb-2">✅ Regular Reassessment</h3>
-                        <p className="text-green-700 text-sm">
-                          Recalculate your calorie needs as your weight, activity level, or goals change. 
-                          Your calorie needs will evolve as you progress toward your goals.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                </CardContent>
+              </Card>
             </div>
-          </section>
-        </main>
-        
-        <Footer />
-      </div>
-    </>
-  );
-};
 
-export default CalorieCalculator;
+            {/* Calorie Calculation Methods */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-8">Calorie Calculation Methods Comparison</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <div className="bg-blue-50 rounded-lg p-6 border border-blue-200">
+                      <h4 className="font-semibold text-blue-800 mb-3">Mifflin-St Jeor Equation (1990)</h4>
+                      <p className="text-sm text-blue-700 mb-3">Most accurate for normal weight individuals and widely recommended by nutritionists</p>
+                      <div className="space-y-2 text-xs font-mono text-blue-600">
+                        <div><strong>Men:</strong> 10W + 6.25H - 5A + 5</div>
+                        <div><strong>Women:</strong> 10W + 6.25H - 5A - 161</div>
+                      </div>
+                      <div className="mt-3 text-xs text-blue-600">
+                        <strong>Accuracy:</strong> ±10% for most individuals
+                      </div>
+                    </div>
+                    <div className="bg-green-50 rounded-lg p-6 border border-green-200">
+                      <h4 className="font-semibold text-green-800 mb-3">Harris-Benedict Equation (1984)</h4>
+                      <p className="text-sm text-green-700 mb-3">Revised version of the original 1919 equation, good general accuracy</p>
+                      <div className="space-y-2 text-xs font-mono text-green-600">
+                        <div><strong>Men:</strong> 88.362 + 13.397W + 4.799H - 5.677A</div>
+                        <div><strong>Women:</strong> 447.593 + 9.247W + 3.098H - 4.330A</div>
+                      </div>
+                      <div className="mt-3 text-xs text-green-600">
+                        <strong>Accuracy:</strong> ±15% for most individuals
+                      </div>
+                    </div>
+                  </div>
+                  <div className="space-y-6">
+                    <div className="bg-orange-50 rounded-lg p-6 border border-orange-200">
+                      <h4 className="font-semibold text-orange-800 mb-3">Activity Level Multipliers</h4>
+                      <div className="space-y-3 text-sm">
+                        <div className="flex justify-between items-center">
+                          <span className="text-orange-700">Sedentary:</span>
+                          <span className="font-bold text-orange-800">BMR × 1.2</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-orange-700">Lightly Active:</span>
+                          <span className="font-bold text-orange-800">BMR × 1.375</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-orange-700">Moderately Active:</span>
+                          <span className="font-bold text-orange-800">BMR × 1.55</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-orange-700">Very Active:</span>
+                          <span className="font-bold text-orange-800">BMR × 1.725</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-orange-700">Extra Active:</span>
+                          <span className="font-bold text-orange-800">BMR × 1.9</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="bg-purple-50 rounded-lg p-6 border border-purple-200">
+                      <h4 className="font-semibold text-purple-800 mb-3">Calculation Accuracy Tips</h4>
+                      <div className="space-y-2 text-sm text-purple-700">
+                        <div>• Use body composition for better accuracy</div>
+                        <div>• Account for metabolic adaptation</div>
+                        <div>• Adjust based on real-world results</div>
+                        <div>• Consider individual health factors</div>
+                        <div>• Recalculate with weight changes</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-xs text-gray-500 mt-4">W = Weight (kg), H = Height (cm), A = Age (years)</p>
+              </CardContent>
+            </Card>
+
+            {/* Macronutrient Guidelines */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Macronutrient Distribution Guidelines</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg p-6 border border-blue-100">
+                    <h4 className="text-lg font-semibold text-blue-800 mb-4">Protein (25-35%)</h4>
+                    <div className="space-y-3 text-sm text-blue-700">
+                      <div><strong>Function:</strong> Muscle building and repair</div>
+                      <div><strong>Calories per gram:</strong> 4</div>
+                      <div><strong>Recommended:</strong> 0.8-1.2g per kg body weight</div>
+                      <div><strong>Sources:</strong> Lean meats, fish, eggs, dairy, legumes</div>
+                      <div><strong>Weight Loss:</strong> Increase to 30-35% for satiety</div>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-6 border border-green-100">
+                    <h4 className="text-lg font-semibold text-green-800 mb-4">Carbohydrates (35-50%)</h4>
+                    <div className="space-y-3 text-sm text-green-700">
+                      <div><strong>Function:</strong> Primary energy source</div>
+                      <div><strong>Calories per gram:</strong> 4</div>
+                      <div><strong>Minimum:</strong> 130g per day for brain function</div>
+                      <div><strong>Sources:</strong> Whole grains, fruits, vegetables</div>
+                      <div><strong>Athletes:</strong> Increase to 50-60% for performance</div>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-orange-50 to-red-50 rounded-lg p-6 border border-orange-100">
+                    <h4 className="text-lg font-semibold text-orange-800 mb-4">Fats (20-35%)</h4>
+                    <div className="space-y-3 text-sm text-orange-700">
+                      <div><strong>Function:</strong> Hormone production, absorption</div>
+                      <div><strong>Calories per gram:</strong> 9</div>
+                      <div><strong>Minimum:</strong> 20% for essential functions</div>
+                      <div><strong>Sources:</strong> Nuts, oils, avocado, fish</div>
+                      <div><strong>Keto Diet:</strong> Increase to 70-80% of calories</div>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-6 p-4 bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
+                  <h4 className="font-semibold text-gray-800 mb-2">Personalization Tips</h4>
+                  <p className="text-gray-700 text-sm">
+                    Adjust macronutrient ratios based on your goals: higher protein for muscle building, 
+                    moderate carbs for sustained energy, and adequate fats for hormone health. Our calculator 
+                    provides balanced recommendations that you can modify based on your preferences and results.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Common Calorie Calculation Mistakes */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Common Calorie Calculation Mistakes to Avoid</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <div className="bg-red-50 border-l-4 border-red-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-red-800 mb-2">Overestimating Activity Level</h4>
+                      <p className="text-red-700 text-sm">Many people overestimate their activity level. Be honest about your actual exercise frequency and intensity to get accurate calorie targets.</p>
+                    </div>
+                    <div className="bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-orange-800 mb-2">Ignoring Metabolic Adaptation</h4>
+                      <p className="text-orange-700 text-sm">Your metabolism adapts to calorie restriction over time. Regularly reassess and adjust your calorie needs based on progress and plateaus.</p>
+                    </div>
+                    <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-yellow-800 mb-2">Setting Unrealistic Deficits</h4>
+                      <p className="text-yellow-700 text-sm">Extreme calorie deficits (over 1000 calories) can lead to muscle loss and metabolic slowdown. Stick to moderate, sustainable deficits.</p>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-blue-800 mb-2">Not Tracking Accurately</h4>
+                      <p className="text-blue-700 text-sm">Inaccurate food tracking can undermine calorie calculations. Use food scales and reliable databases for precise calorie counting.</p>
+                    </div>
+                    <div className="bg-purple-50 border-l-4 border-purple-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-purple-800 mb-2">Forgetting Liquid Calories</h4>
+                      <p className="text-purple-700 text-sm">Beverages, oils, and condiments contain significant calories that are often overlooked but can derail calorie goals.</p>
+                    </div>
+                    <div className="bg-green-50 border-l-4 border-green-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-green-800 mb-2">Not Adjusting for Weight Changes</h4>
+                      <p className="text-green-700 text-sm">As you lose or gain weight, your calorie needs change. Recalculate your needs every 10-15 pounds of weight change.</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Calorie Calculator FAQs */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions about Calorie Calculations</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How accurate are calorie calculators?</h4>
+                      <p className="text-gray-600 text-sm">Calorie calculators provide estimates with 10-15% accuracy for most people. Individual factors like genetics, hormones, and metabolic health can affect actual needs. Use results as starting points and adjust based on real-world progress.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Should I eat the same calories every day?</h4>
+                      <p className="text-gray-600 text-sm">You can vary daily calories as long as your weekly average meets your goals. Some people prefer higher calories on training days and lower on rest days, known as calorie cycling.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">What if I'm not losing weight with calculated calories?</h4>
+                      <p className="text-gray-600 text-sm">If weight loss stalls after 2-3 weeks, reduce calories by 100-200 per day or increase activity. Metabolic adaptation and inaccurate tracking are common causes of plateaus.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Can I eat below my BMR?</h4>
+                      <p className="text-gray-600 text-sm">Eating below BMR is generally not recommended as it can slow metabolism and cause muscle loss. Always eat at least your BMR and create deficits through activity or eating between BMR and TDEE.</p>
+                    </div>
+                  </div>
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How often should I recalculate my calorie needs?</h4>
+                      <p className="text-gray-600 text-sm">Recalculate every 10-15 pounds of weight change or if your activity level significantly changes. Also reassess if you experience weight loss plateaus or unexpected weight changes.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Do men and women need different calorie calculations?</h4>
+                      <p className="text-gray-600 text-sm">Yes, men typically have higher muscle mass and different hormonal profiles, requiring separate equations. Our calculator uses gender-specific formulas for accurate results.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">What's the difference between weight loss and fat loss calories?</h4>
+                      <p className="text-gray-600 text-sm">Weight loss includes fat, muscle, and water. For fat loss specifically, maintain adequate protein (30% of calories) and avoid extreme deficits to preserve muscle mass while losing weight.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Can medications affect my calorie needs?</h4>
+                      <p className="text-gray-600 text-sm">Yes, medications for thyroid, diabetes, depression, and other conditions can affect metabolism. Consult healthcare providers for personalized advice if you take medications that impact weight or metabolism.</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Special Populations */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">Athletes & Active Individuals</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <p className="text-sm">
+                      Athletes require specialized calorie calculations that account for training intensity, duration, and sport-specific demands.
+                    </p>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-green-800 text-sm">Endurance Athletes:</h4>
+                      <ul className="text-xs space-y-1 list-disc list-inside text-green-700">
+                        <li>Higher carbohydrate needs (60-70%)</li>
+                        <li>Activity multiplier often exceeds 1.9</li>
+                        <li>Focus on fueling and recovery</li>
+                      </ul>
+                    </div>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-blue-800 text-sm">Strength Athletes:</h4>
+                      <ul className="text-xs space-y-1 list-disc list-inside text-blue-700">
+                        <li>Higher protein needs (2-2.5g/kg)</li>
+                        <li>Moderate calorie surplus for muscle gain</li>
+                        <li>Periodized nutrition plans</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">Older Adults (65+)</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <p className="text-sm">
+                      Aging affects metabolism, muscle mass, and nutrient needs, requiring adjusted calorie calculations.
+                    </p>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-orange-800 text-sm">Key Considerations:</h4>
+                      <ul className="text-xs space-y-1 list-disc list-inside text-orange-700">
+                        <li>Lower BMR due to muscle loss</li>
+                        <li>Higher protein needs (1.2-1.6g/kg)</li>
+                        <li>Focus on nutrient density</li>
+                        <li>Account for medication effects</li>
+                      </ul>
+                    </div>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-purple-800 text-sm">Recommendations:</h4>
+                      <ul className="text-xs space-y-1 list-disc list-inside text-purple-700">
+                        <li>Maintain muscle through resistance training</li>
+                        <li>Avoid aggressive calorie deficits</li>
+                        <li>Regular health monitoring</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">Medical Conditions</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <p className="text-sm">
+                      Certain health conditions require modified calorie calculations and medical supervision.
+                    </p>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-red-800 text-sm">Conditions Affecting Metabolism:</h4>
+                      <ul className="text-xs space-y-1 list-disc list-inside text-red-700">
+                        <li>Thyroid disorders</li>
+                        <li>PCOS and insulin resistance</li>
+                        <li>Diabetes (Type 1 & 2)</li>
+                        <li>Metabolic syndrome</li>
+                      </ul>
+                    </div>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-blue-800 text-sm">Important Notes:</h4>
+                      <ul className="text-xs space-y-1 list-disc list-inside text-blue-700">
+                        <li>Consult healthcare providers</li>
+                        <li>Monitor blood markers</li>
+                        <li>Adjust calculations based on response</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </main>
+      
+      <Footer />
+    </div>
+  );
+}
