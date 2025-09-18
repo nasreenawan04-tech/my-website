@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -7,8 +8,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Calculator } from 'lucide-react';
 
 interface LifeExpectancyResult {
   currentLifeExpectancy: number;
@@ -21,7 +20,7 @@ interface LifeExpectancyResult {
   positiveFactors: string[];
 }
 
-const LifeExpectancyCalculator = () => {
+export default function LifeExpectancyCalculator() {
   const [age, setAge] = useState('');
   const [gender, setGender] = useState('');
   const [height, setHeight] = useState('');
@@ -246,195 +245,230 @@ const LifeExpectancyCalculator = () => {
   };
 
   return (
-    <>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
         <title>Life Expectancy Calculator - Estimate Your Lifespan Based on Lifestyle | DapsiWow</title>
-        <meta name="description" content="Calculate your life expectancy based on lifestyle factors, health habits, and demographics. Get personalized recommendations to improve longevity." />
-        <meta name="keywords" content="life expectancy calculator, lifespan calculator, longevity calculator, health assessment, mortality calculator, lifestyle health" />
+        <meta name="description" content="Free life expectancy calculator to estimate your lifespan based on lifestyle factors including diet, exercise, smoking, and health habits. Get personalized longevity recommendations and health insights." />
+        <meta name="keywords" content="life expectancy calculator, lifespan calculator, longevity calculator, health assessment, mortality calculator, lifestyle health, age calculator, health score, longevity prediction, life span estimator" />
         <meta property="og:title" content="Life Expectancy Calculator - Estimate Your Lifespan Based on Lifestyle | DapsiWow" />
-        <meta property="og:description" content="Calculate your life expectancy based on lifestyle factors and get personalized recommendations for longevity." />
+        <meta property="og:description" content="Calculate your life expectancy based on lifestyle factors and get personalized recommendations for longevity and healthy living." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="/tools/life-expectancy-calculator" />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="DapsiWow" />
+        <link rel="canonical" href="https://dapsiwow.com/tools/life-expectancy-calculator" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Life Expectancy Calculator",
+            "description": "Free online life expectancy calculator to estimate lifespan based on lifestyle factors including diet, exercise, smoking habits, and health indicators. Get personalized recommendations for longevity.",
+            "url": "https://dapsiwow.com/tools/life-expectancy-calculator",
+            "applicationCategory": "HealthApplication",
+            "operatingSystem": "Any",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "featureList": [
+              "Life expectancy estimation",
+              "Health score calculation",
+              "Lifestyle impact analysis",
+              "Personalized longevity recommendations",
+              "Risk factor identification",
+              "BMI integration"
+            ]
+          })}
+        </script>
       </Helmet>
-
-      <div className="min-h-screen flex flex-col" data-testid="page-life-expectancy-calculator">
-        <Header />
-        
-        <main className="flex-1 bg-neutral-50">
-          {/* Hero Section */}
-          <section className="text-white py-16" style={{ background: 'linear-gradient(135deg, #f43f5e 0%, #e11d48 100%)' }}>
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <i className="fas fa-hourglass text-3xl"></i>
+      
+      <Header />
+      
+      <main>
+        {/* Hero Section */}
+        <section className="relative py-20 sm:py-28 lg:py-32 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
+          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="space-y-8">
+              <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+                <span className="text-sm font-medium text-blue-700">Advanced Health Assessment</span>
               </div>
-              <h1 className="text-4xl sm:text-5xl font-bold mb-6" data-testid="text-page-title">
-                Life Expectancy Calculator
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight">
+                Life Expectancy
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                  Calculator
+                </span>
               </h1>
-              <p className="text-xl text-blue-100 max-w-2xl mx-auto">
-                Estimate your life expectancy based on lifestyle factors and get personalized recommendations for longevity
+              <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                Estimate your lifespan based on lifestyle factors and get personalized recommendations for longevity
               </p>
             </div>
-          </section>
+          </div>
+        </section>
 
-          {/* Calculator Section */}
-          <section className="py-16">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <Card className="bg-white shadow-sm border-0">
-                <CardContent className="p-8">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    {/* Input Section */}
-                    <div className="space-y-6">
-                      <h2 className="text-2xl font-semibold text-gray-900 mb-8">Personal Information</h2>
-                      
-                      {/* Unit System */}
-                      <div className="space-y-3">
-                        <Label>Unit System</Label>
-                        <RadioGroup 
-                          value={unitSystem} 
-                          onValueChange={setUnitSystem}
-                          className="flex gap-6"
-                        >
-                          <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="metric" id="metric" data-testid="radio-metric" />
-                            <Label htmlFor="metric">Metric (kg, cm)</Label>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="imperial" id="imperial" data-testid="radio-imperial" />
-                            <Label htmlFor="imperial">Imperial (lbs, ft/in)</Label>
-                          </div>
-                        </RadioGroup>
-                      </div>
+        <div className="max-w-7xl mx-auto px-4 py-16">
+          {/* Main Calculator Card */}
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+            <CardContent className="p-0">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+                {/* Input Section */}
+                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
+                  <div>
+                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Personal Information</h2>
+                    <p className="text-gray-600">Enter your details and lifestyle factors for accurate life expectancy estimation</p>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Unit System */}
+                    <div className="space-y-3">
+                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Unit System
+                      </Label>
+                      <Select value={unitSystem} onValueChange={setUnitSystem}>
+                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-unit-system">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="metric">Metric (kg, cm)</SelectItem>
+                          <SelectItem value="imperial">Imperial (lbs, ft/in)</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
 
-                      {/* Age */}
-                      <div className="space-y-3">
-                        <Label htmlFor="age" className="text-sm font-medium text-gray-700">
-                          Current Age (years) *
-                        </Label>
+                    {/* Age */}
+                    <div className="space-y-3">
+                      <Label htmlFor="age" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Current Age (years)
+                      </Label>
+                      <Input
+                        id="age"
+                        type="number"
+                        value={age}
+                        onChange={(e) => setAge(e.target.value)}
+                        className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                        placeholder="30"
+                        min="1"
+                        max="120"
+                        data-testid="input-age"
+                      />
+                    </div>
+
+                    {/* Gender */}
+                    <div className="space-y-3">
+                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Gender
+                      </Label>
+                      <Select value={gender} onValueChange={setGender}>
+                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-gender">
+                          <SelectValue placeholder="Select gender" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="male">Male</SelectItem>
+                          <SelectItem value="female">Female</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    {/* Weight */}
+                    <div className="space-y-3">
+                      <Label htmlFor="weight" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Weight {unitSystem === 'metric' ? '(kg)' : '(lbs)'}
+                      </Label>
+                      <Input
+                        id="weight"
+                        type="number"
+                        value={weight}
+                        onChange={(e) => setWeight(e.target.value)}
+                        className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                        placeholder={unitSystem === 'metric' ? "70" : "154"}
+                        min="0"
+                        step="0.1"
+                        data-testid="input-weight"
+                      />
+                    </div>
+
+                    {/* Height */}
+                    <div className="space-y-3 md:col-span-2">
+                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Height {unitSystem === 'metric' ? '(cm)' : '(ft/in)'}
+                      </Label>
+                      {unitSystem === 'metric' ? (
                         <Input
-                          id="age"
                           type="number"
-                          value={age}
-                          onChange={(e) => setAge(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
-                          placeholder="30"
-                          min="1"
-                          max="120"
-                          data-testid="input-age"
-                        />
-                      </div>
-
-                      {/* Gender */}
-                      <div className="space-y-3">
-                        <Label className="text-sm font-medium text-gray-700">
-                          Gender *
-                        </Label>
-                        <Select value={gender} onValueChange={setGender}>
-                          <SelectTrigger className="h-12 border-gray-200 rounded-lg" data-testid="select-gender">
-                            <SelectValue placeholder="Select gender" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="male">Male</SelectItem>
-                            <SelectItem value="female">Female</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-
-                      {/* Weight */}
-                      <div className="space-y-3">
-                        <Label htmlFor="weight" className="text-sm font-medium text-gray-700">
-                          Weight {unitSystem === 'metric' ? '(kg)' : '(lbs)'} <span className="text-gray-400 font-normal">- Optional</span>
-                        </Label>
-                        <Input
-                          id="weight"
-                          type="number"
-                          value={weight}
-                          onChange={(e) => setWeight(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
-                          placeholder={unitSystem === 'metric' ? "70" : "154"}
+                          value={height}
+                          onChange={(e) => setHeight(e.target.value)}
+                          className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          placeholder="175"
                           min="0"
                           step="0.1"
-                          data-testid="input-weight"
+                          data-testid="input-height"
                         />
-                      </div>
-
-                      {/* Height */}
-                      <div className="space-y-3">
-                        <Label className="text-sm font-medium text-gray-700">
-                          Height {unitSystem === 'metric' ? '(cm)' : '(ft/in)'} <span className="text-gray-400 font-normal">- Optional</span>
-                        </Label>
-                        {unitSystem === 'metric' ? (
-                          <Input
-                            type="number"
-                            value={height}
-                            onChange={(e) => setHeight(e.target.value)}
-                            className="h-12 text-base border-gray-200 rounded-lg"
-                            placeholder="175"
-                            min="0"
-                            step="0.1"
-                            data-testid="input-height"
-                          />
-                        ) : (
-                          <div className="grid grid-cols-2 gap-3">
-                            <div>
-                              <Label htmlFor="feet" className="text-xs text-gray-500">Feet</Label>
-                              <Input
-                                id="feet"
-                                type="number"
-                                value={feet}
-                                onChange={(e) => setFeet(e.target.value)}
-                                className="h-12 text-base border-gray-200 rounded-lg"
-                                placeholder="5"
-                                min="0"
-                                max="8"
-                                data-testid="input-feet"
-                              />
-                            </div>
-                            <div>
-                              <Label htmlFor="inches" className="text-xs text-gray-500">Inches</Label>
-                              <Input
-                                id="inches"
-                                type="number"
-                                value={inches}
-                                onChange={(e) => setInches(e.target.value)}
-                                className="h-12 text-base border-gray-200 rounded-lg"
-                                placeholder="9"
-                                min="0"
-                                max="11"
-                                data-testid="input-inches"
-                              />
-                            </div>
+                      ) : (
+                        <div className="grid grid-cols-2 gap-3">
+                          <div>
+                            <Label htmlFor="feet" className="text-xs text-gray-500">Feet</Label>
+                            <Input
+                              id="feet"
+                              type="number"
+                              value={feet}
+                              onChange={(e) => setFeet(e.target.value)}
+                              className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              placeholder="5"
+                              min="0"
+                              max="8"
+                              data-testid="input-feet"
+                            />
                           </div>
-                        )}
-                      </div>
+                          <div>
+                            <Label htmlFor="inches" className="text-xs text-gray-500">Inches</Label>
+                            <Input
+                              id="inches"
+                              type="number"
+                              value={inches}
+                              onChange={(e) => setInches(e.target.value)}
+                              className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              placeholder="9"
+                              min="0"
+                              max="11"
+                              data-testid="input-inches"
+                            />
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
 
-                      <h3 className="text-xl font-semibold text-gray-900 mt-8 mb-4">Lifestyle Factors</h3>
-
+                  {/* Lifestyle Factors */}
+                  <div className="space-y-6 border-t pt-8">
+                    <h3 className="text-xl font-bold text-gray-900">Lifestyle Factors</h3>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       {/* Smoking Status */}
                       <div className="space-y-3">
-                        <Label className="text-sm font-medium text-gray-700">
-                          Smoking Status *
+                        <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                          Smoking Status
                         </Label>
                         <Select value={smokingStatus} onValueChange={setSmokingStatus}>
-                          <SelectTrigger className="h-12 border-gray-200 rounded-lg" data-testid="select-smoking">
+                          <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-smoking">
                             <SelectValue placeholder="Select smoking status" />
                           </SelectTrigger>
                           <SelectContent>
                             <SelectItem value="never">Never smoked</SelectItem>
-                            <SelectItem value="former">Former smoker (quit {'>'}1 year ago)</SelectItem>
+                            <SelectItem value="former">Former smoker (quit {'>'} 1 year ago)</SelectItem>
                             <SelectItem value="light">Light smoker (1-10 cigarettes/day)</SelectItem>
                             <SelectItem value="moderate">Moderate smoker (11-20 cigarettes/day)</SelectItem>
-                            <SelectItem value="heavy">Heavy smoker ({'>'}20 cigarettes/day)</SelectItem>
+                            <SelectItem value="heavy">Heavy smoker ({'>'} 20 cigarettes/day)</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
 
                       {/* Exercise Frequency */}
                       <div className="space-y-3">
-                        <Label className="text-sm font-medium text-gray-700">
-                          Exercise Frequency *
+                        <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                          Exercise Frequency
                         </Label>
                         <Select value={exerciseFrequency} onValueChange={setExerciseFrequency}>
-                          <SelectTrigger className="h-12 border-gray-200 rounded-lg" data-testid="select-exercise">
+                          <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-exercise">
                             <SelectValue placeholder="Select exercise frequency" />
                           </SelectTrigger>
                           <SelectContent>
@@ -446,59 +480,31 @@ const LifeExpectancyCalculator = () => {
                         </Select>
                       </div>
 
-                      {/* Action Buttons */}
-                      <div className="flex gap-4 pt-6">
-                        <Button
-                          onClick={calculateLifeExpectancy}
-                          className="flex-1 h-12 text-white font-medium rounded-lg"
-                          style={{ backgroundColor: '#f43f5e' }}
-                          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#e11d48'}
-                          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#f43f5e'}
-                          data-testid="button-calculate"
-                        >
-                          <Calculator className="w-4 h-4 mr-2" />
-                          Calculate Life Expectancy
-                        </Button>
-                        <Button
-                          onClick={resetCalculator}
-                          variant="outline"
-                          className="h-12 px-8 border-gray-200 text-gray-600 hover:bg-gray-50 font-medium rounded-lg"
-                          data-testid="button-reset"
-                        >
-                          Reset
-                        </Button>
-                      </div>
-                    </div>
-
-                    {/* Lifestyle Factors Column 2 */}
-                    <div className="space-y-6">
-                      <h2 className="text-2xl font-semibold text-gray-900 mb-8">Additional Factors</h2>
-
                       {/* Alcohol Consumption */}
                       <div className="space-y-3">
-                        <Label className="text-sm font-medium text-gray-700">
-                          Alcohol Consumption <span className="text-gray-400 font-normal">- Optional</span>
+                        <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                          Alcohol Consumption
                         </Label>
                         <Select value={alcoholConsumption} onValueChange={setAlcoholConsumption}>
-                          <SelectTrigger className="h-12 border-gray-200 rounded-lg" data-testid="select-alcohol">
+                          <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-alcohol">
                             <SelectValue placeholder="Select alcohol consumption" />
                           </SelectTrigger>
                           <SelectContent>
                             <SelectItem value="none">None</SelectItem>
                             <SelectItem value="light">Light (1-3 drinks/week)</SelectItem>
                             <SelectItem value="moderate">Moderate (4-7 drinks/week)</SelectItem>
-                            <SelectItem value="heavy">Heavy ({'>'}7 drinks/week)</SelectItem>
+                            <SelectItem value="heavy">Heavy ({'>'} 7 drinks/week)</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
 
                       {/* Diet Quality */}
                       <div className="space-y-3">
-                        <Label className="text-sm font-medium text-gray-700">
-                          Diet Quality <span className="text-gray-400 font-normal">- Optional</span>
+                        <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                          Diet Quality
                         </Label>
                         <Select value={dietQuality} onValueChange={setDietQuality}>
-                          <SelectTrigger className="h-12 border-gray-200 rounded-lg" data-testid="select-diet">
+                          <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-diet">
                             <SelectValue placeholder="Select diet quality" />
                           </SelectTrigger>
                           <SelectContent>
@@ -512,15 +518,15 @@ const LifeExpectancyCalculator = () => {
 
                       {/* Sleep Hours */}
                       <div className="space-y-3">
-                        <Label htmlFor="sleep" className="text-sm font-medium text-gray-700">
-                          Sleep Hours per Night <span className="text-gray-400 font-normal">- Optional</span>
+                        <Label htmlFor="sleep" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                          Sleep Hours per Night
                         </Label>
                         <Input
                           id="sleep"
                           type="number"
                           value={sleepHours}
                           onChange={(e) => setSleepHours(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
+                          className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
                           placeholder="8"
                           min="3"
                           max="12"
@@ -530,11 +536,11 @@ const LifeExpectancyCalculator = () => {
 
                       {/* Stress Level */}
                       <div className="space-y-3">
-                        <Label className="text-sm font-medium text-gray-700">
-                          Stress Level <span className="text-gray-400 font-normal">- Optional</span>
+                        <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                          Stress Level
                         </Label>
                         <Select value={stressLevel} onValueChange={setStressLevel}>
-                          <SelectTrigger className="h-12 border-gray-200 rounded-lg" data-testid="select-stress">
+                          <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-stress">
                             <SelectValue placeholder="Select stress level" />
                           </SelectTrigger>
                           <SelectContent>
@@ -547,11 +553,11 @@ const LifeExpectancyCalculator = () => {
 
                       {/* Marital Status */}
                       <div className="space-y-3">
-                        <Label className="text-sm font-medium text-gray-700">
-                          Relationship Status <span className="text-gray-400 font-normal">- Optional</span>
+                        <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                          Relationship Status
                         </Label>
                         <Select value={maritalStatus} onValueChange={setMaritalStatus}>
-                          <SelectTrigger className="h-12 border-gray-200 rounded-lg" data-testid="select-marital">
+                          <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-marital">
                             <SelectValue placeholder="Select relationship status" />
                           </SelectTrigger>
                           <SelectContent>
@@ -563,173 +569,497 @@ const LifeExpectancyCalculator = () => {
                           </SelectContent>
                         </Select>
                       </div>
+                    </div>
+                  </div>
 
-                      {/* Results Section */}
-                      <div className="bg-gray-50 rounded-xl p-8 mt-8">
-                        <h2 className="text-2xl font-semibold text-gray-900 mb-8">Life Expectancy Results</h2>
-                        
-                        {result ? (
-                          <div className="space-y-4" data-testid="life-expectancy-results">
-                            {/* Life Expectancy */}
-                            <div className="bg-white rounded-lg p-4 border-l-4 border-indigo-500">
-                              <div className="flex justify-between items-center">
-                                <span className="font-semibold text-gray-700">Estimated Life Expectancy</span>
-                                <span className="text-2xl font-bold text-indigo-600" data-testid="text-life-expectancy">
-                                  {result.adjustedLifeExpectancy} years
-                                </span>
-                              </div>
+                  {/* Action Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                    <Button
+                      onClick={calculateLifeExpectancy}
+                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      data-testid="button-calculate"
+                    >
+                      Calculate Life Expectancy
+                    </Button>
+                    <Button
+                      onClick={resetCalculator}
+                      variant="outline"
+                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      data-testid="button-reset"
+                    >
+                      Reset
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Results Section */}
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Life Expectancy Results</h2>
+                  
+                  {result ? (
+                    <div className="space-y-6" data-testid="life-expectancy-results">
+                      {/* Life Expectancy Highlight */}
+                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
+                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Estimated Life Expectancy</div>
+                        <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" data-testid="text-life-expectancy">
+                          {result.adjustedLifeExpectancy} years
+                        </div>
+                      </div>
+
+                      {/* Health Score */}
+                      <div className="bg-white rounded-xl p-4 shadow-sm">
+                        <div className="flex justify-between items-center">
+                          <span className="font-medium text-gray-700">Health Score</span>
+                          <span className={`font-bold text-2xl ${getHealthScoreColor(result.healthScore)}`} data-testid="text-health-score">
+                            {result.healthScore}/100
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Years Impact */}
+                      {(result.yearsGained > 0 || result.yearsLost > 0) && (
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <h4 className="font-medium text-gray-700 mb-2">Lifestyle Impact</h4>
+                          {result.yearsGained > 0 && (
+                            <div className="text-sm text-green-600 mb-1" data-testid="text-years-gained">
+                              +{result.yearsGained} years from positive factors
                             </div>
-
-                            {/* Health Score */}
-                            <div className="bg-white rounded-lg p-4">
-                              <div className="flex justify-between items-center">
-                                <span className="text-gray-600">Health Score</span>
-                                <span className={`font-semibold text-2xl ${getHealthScoreColor(result.healthScore)}`} data-testid="text-health-score">
-                                  {result.healthScore}/100
-                                </span>
-                              </div>
+                          )}
+                          {result.yearsLost > 0 && (
+                            <div className="text-sm text-red-600" data-testid="text-years-lost">
+                              -{result.yearsLost} years from risk factors
                             </div>
+                          )}
+                        </div>
+                      )}
 
-                            {/* Years Impact */}
-                            {(result.yearsGained > 0 || result.yearsLost > 0) && (
-                              <div className="bg-white rounded-lg p-4">
-                                <h3 className="font-semibold text-gray-900 mb-2">Lifestyle Impact</h3>
-                                {result.yearsGained > 0 && (
-                                  <div className="text-sm text-green-600" data-testid="text-years-gained">
-                                    +{result.yearsGained} years from positive factors
-                                  </div>
-                                )}
-                                {result.yearsLost > 0 && (
-                                  <div className="text-sm text-red-600" data-testid="text-years-lost">
-                                    -{result.yearsLost} years from risk factors
-                                  </div>
-                                )}
+                      {/* Risk Factors */}
+                      {result.riskFactors.length > 0 && (
+                        <div className="bg-gradient-to-r from-red-50 to-orange-50 rounded-xl p-4 border border-red-200">
+                          <h4 className="font-bold text-red-800 mb-3 text-sm">Risk Factors</h4>
+                          <div className="space-y-2">
+                            {result.riskFactors.map((factor, index) => (
+                              <div key={index} className="flex items-start">
+                                <span className="text-red-600 mr-2 mt-1">•</span>
+                                <span className="text-xs text-red-700">{factor}</span>
                               </div>
-                            )}
-
-                            {/* Recommendations */}
-                            <div className="bg-blue-50 rounded-lg p-4">
-                              <h3 className="font-semibold text-gray-900 mb-3">Recommendations</h3>
-                              <div className="space-y-2" data-testid="recommendations">
-                                {result.recommendations.map((recommendation, index) => (
-                                  <div key={index} className="flex items-start">
-                                    <span className="text-blue-600 mr-2 mt-1">•</span>
-                                    <span className="text-sm text-gray-600">{recommendation}</span>
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
+                            ))}
                           </div>
-                        ) : (
-                          <div className="text-center py-8" data-testid="no-results">
-                            <i className="fas fa-hourglass text-4xl text-gray-400 mb-4"></i>
-                            <p className="text-gray-500">Fill in your information to calculate life expectancy</p>
+                        </div>
+                      )}
+
+                      {/* Positive Factors */}
+                      {result.positiveFactors.length > 0 && (
+                        <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-4 border border-green-200">
+                          <h4 className="font-bold text-green-800 mb-3 text-sm">Positive Factors</h4>
+                          <div className="space-y-2">
+                            {result.positiveFactors.map((factor, index) => (
+                              <div key={index} className="flex items-start">
+                                <span className="text-green-600 mr-2 mt-1">•</span>
+                                <span className="text-xs text-green-700">{factor}</span>
+                              </div>
+                            ))}
                           </div>
-                        )}
+                        </div>
+                      )}
+
+                      {/* Recommendations */}
+                      <div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl p-4 border border-purple-200">
+                        <h4 className="font-bold text-purple-800 mb-3 text-sm">Recommendations</h4>
+                        <div className="space-y-2" data-testid="recommendations">
+                          {result.recommendations.map((recommendation, index) => (
+                            <div key={index} className="flex items-start">
+                              <span className="text-purple-600 mr-2 mt-1">•</span>
+                              <span className="text-xs text-purple-700">{recommendation}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="text-center py-16" data-testid="no-results">
+                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <div className="text-3xl font-bold text-gray-400">⏳</div>
+                      </div>
+                      <p className="text-gray-500 text-lg">Enter your information to calculate life expectancy</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* SEO Content Section */}
+          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">What is Life Expectancy?</h3>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    Life expectancy is the average number of years a person is expected to live based on current 
+                    mortality rates and statistical data. Our life expectancy calculator goes beyond basic demographics 
+                    to consider your individual lifestyle factors, health habits, and personal choices that significantly 
+                    impact longevity.
+                  </p>
+                  <p>
+                    This advanced longevity calculator uses scientifically-backed research to assess how factors like 
+                    diet, exercise, smoking, alcohol consumption, sleep quality, and stress levels affect your lifespan. 
+                    By providing personalized recommendations, you can make informed decisions to potentially increase 
+                    your life expectancy and improve your quality of life.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">How Life Expectancy is Calculated</h3>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    Our life expectancy calculator uses a comprehensive algorithm that starts with baseline life 
+                    expectancy data by gender and age, then applies adjustments based on your lifestyle choices 
+                    and health indicators.
+                  </p>
+                  <ul className="space-y-2 list-disc list-inside">
+                    <li>BMI and weight status adjustments</li>
+                    <li>Smoking and alcohol consumption impact</li>
+                    <li>Physical activity and exercise frequency</li>
+                    <li>Diet quality and nutritional habits</li>
+                    <li>Sleep duration and quality assessment</li>
+                    <li>Stress levels and mental health factors</li>
+                    <li>Social support and relationship status</li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Factors That Increase Life Expectancy</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Regular physical exercise (150+ minutes per week)</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Mediterranean or DASH diet patterns</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Never smoking or quitting smoking</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Maintaining healthy weight (BMI 18.5-24.9)</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Quality sleep (7-9 hours per night)</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Strong social connections and relationships</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Effective stress management techniques</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Risk Factors for Reduced Longevity</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Smoking (reduces life expectancy by 10-15 years)</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Obesity and being significantly overweight</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Excessive alcohol consumption</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Sedentary lifestyle with minimal physical activity</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Poor diet quality with processed foods</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Chronic high stress levels</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Inadequate sleep (less than 6 or more than 10 hours)</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Additional SEO Content Sections */}
+          <div className="mt-12 space-y-8">
+            {/* Lifestyle Categories */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Impact of Lifestyle Choices on Longevity</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Physical Health Factors</h4>
+                    <div className="space-y-3">
+                      <div className="border-l-4 border-blue-500 pl-4">
+                        <h5 className="font-semibold text-gray-800 mb-1">Exercise and Physical Activity</h5>
+                        <p className="text-sm text-gray-600">Regular exercise can add 3-7 years to life expectancy. Cardiovascular exercise, strength training, and flexibility work all contribute to longevity.</p>
+                      </div>
+                      <div className="border-l-4 border-green-500 pl-4">
+                        <h5 className="font-semibold text-gray-800 mb-1">Body Weight and BMI</h5>
+                        <p className="text-sm text-gray-600">Maintaining a healthy BMI (18.5-24.9) is associated with longer life. Both underweight and obesity increase mortality risk.</p>
+                      </div>
+                      <div className="border-l-4 border-purple-500 pl-4">
+                        <h5 className="font-semibold text-gray-800 mb-1">Sleep Quality</h5>
+                        <p className="text-sm text-gray-600">Optimal sleep duration (7-9 hours) and quality sleep patterns support immune function, mental health, and cellular repair.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Behavioral and Social Factors</h4>
+                    <div className="space-y-3">
+                      <div className="border-l-4 border-orange-500 pl-4">
+                        <h5 className="font-semibold text-gray-800 mb-1">Smoking and Substance Use</h5>
+                        <p className="text-sm text-gray-600">Smoking is the single largest preventable cause of premature death. Quitting at any age provides significant health benefits.</p>
+                      </div>
+                      <div className="border-l-4 border-yellow-500 pl-4">
+                        <h5 className="font-semibold text-gray-800 mb-1">Social Connections</h5>
+                        <p className="text-sm text-gray-600">Strong relationships and social support networks reduce stress and provide emotional resilience, contributing to longer life.</p>
+                      </div>
+                      <div className="border-l-4 border-indigo-500 pl-4">
+                        <h5 className="font-semibold text-gray-800 mb-1">Stress Management</h5>
+                        <p className="text-sm text-gray-600">Chronic stress accelerates aging and increases disease risk. Effective stress management techniques promote longevity.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Nutrition and Diet */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Nutrition for Longevity</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <p className="text-sm leading-relaxed">
+                      Diet quality plays a crucial role in determining life expectancy. Research shows that certain 
+                      dietary patterns are associated with increased longevity and reduced risk of chronic diseases.
+                    </p>
+                    <div className="space-y-3">
+                      <div className="bg-green-50 rounded-lg p-3">
+                        <h4 className="font-semibold text-green-800 mb-2 text-sm">Mediterranean Diet Benefits</h4>
+                        <p className="text-xs text-green-700">Rich in olive oil, fish, vegetables, and whole grains. Associated with 8-10% reduction in mortality risk.</p>
+                      </div>
+                      <div className="bg-blue-50 rounded-lg p-3">
+                        <h4 className="font-semibold text-blue-800 mb-2 text-sm">DASH Diet Approach</h4>
+                        <p className="text-xs text-blue-700">Emphasizes fruits, vegetables, lean proteins, and low sodium. Proven to reduce cardiovascular disease risk.</p>
+                      </div>
+                      <div className="bg-purple-50 rounded-lg p-3">
+                        <h4 className="font-semibold text-purple-800 mb-2 text-sm">Plant-Based Eating</h4>
+                        <p className="text-xs text-purple-700">Higher intake of plant foods linked to lower mortality rates and reduced chronic disease risk.</p>
                       </div>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              {/* Educational Content */}
-              <div className="mt-12 space-y-8">
-                <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Understanding Life Expectancy</h2>
-                  
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">What Affects Life Expectancy?</h3>
-                      <p className="text-gray-600 mb-6 leading-relaxed">
-                        Life expectancy is influenced by a complex combination of genetic, lifestyle, environmental, 
-                        and social factors. While genetics play a role (about 25%), lifestyle choices have the 
-                        biggest impact on how long and how well you live.
-                      </p>
-                      
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Key Longevity Factors</h3>
-                      <ul className="text-gray-600 space-y-2 text-sm">
-                        <li>• <strong>Physical Activity:</strong> Regular exercise can add 3-7 years</li>
-                        <li>• <strong>Diet Quality:</strong> Mediterranean diet linked to longer life</li>
-                        <li>• <strong>Social Connections:</strong> Strong relationships reduce mortality risk</li>
-                        <li>• <strong>Sleep Quality:</strong> 7-9 hours optimal for longevity</li>
-                        <li>• <strong>Stress Management:</strong> Chronic stress accelerates aging</li>
-                        <li>• <strong>Purpose in Life:</strong> Having goals increases lifespan</li>
-                      </ul>
-                    </div>
-                    
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Risk Factors to Avoid</h3>
-                      <div className="space-y-3">
-                        <div className="p-3 bg-red-50 rounded-lg">
-                          <div className="font-medium text-gray-900">Smoking</div>
-                          <div className="text-sm text-gray-600">Reduces life expectancy by 10-12 years on average</div>
-                        </div>
-                        
-                        <div className="p-3 bg-orange-50 rounded-lg">
-                          <div className="font-medium text-gray-900">Obesity</div>
-                          <div className="text-sm text-gray-600">Can reduce life expectancy by 3-10 years</div>
-                        </div>
-                        
-                        <div className="p-3 bg-yellow-50 rounded-lg">
-                          <div className="font-medium text-gray-900">Excessive Alcohol</div>
-                          <div className="text-sm text-gray-600">Heavy drinking shortens life by 4-5 years</div>
-                        </div>
-                        
-                        <div className="p-3 bg-gray-50 rounded-lg">
-                          <div className="font-medium text-gray-900">Sedentary Lifestyle</div>
-                          <div className="text-sm text-gray-600">Lack of exercise reduces life expectancy by 3-5 years</div>
-                        </div>
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Exercise and Physical Activity Guidelines</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <p className="text-sm leading-relaxed">
+                      Regular physical activity is one of the most powerful predictors of longevity. Different types 
+                      of exercise contribute to various aspects of health and aging.
+                    </p>
+                    <div className="space-y-3">
+                      <div className="bg-red-50 rounded-lg p-3">
+                        <h4 className="font-semibold text-red-800 mb-2 text-sm">Cardiovascular Exercise</h4>
+                        <p className="text-xs text-red-700">150 minutes moderate or 75 minutes vigorous activity weekly. Improves heart health and endurance.</p>
+                      </div>
+                      <div className="bg-orange-50 rounded-lg p-3">
+                        <h4 className="font-semibold text-orange-800 mb-2 text-sm">Strength Training</h4>
+                        <p className="text-xs text-orange-700">2+ sessions per week targeting major muscle groups. Maintains muscle mass and bone density with aging.</p>
+                      </div>
+                      <div className="bg-teal-50 rounded-lg p-3">
+                        <h4 className="font-semibold text-teal-800 mb-2 text-sm">Flexibility and Balance</h4>
+                        <p className="text-xs text-teal-700">Daily stretching and balance exercises. Reduces fall risk and maintains mobility in older adults.</p>
                       </div>
                     </div>
                   </div>
-                </div>
+                </CardContent>
+              </Card>
+            </div>
 
-                <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Strategies for Longevity</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Life Expectancy FAQs */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions about Life Expectancy</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Physical Health</h3>
-                      <ul className="text-gray-600 space-y-2 text-sm">
-                        <li>• Exercise 150+ minutes per week</li>
-                        <li>• Maintain healthy weight (BMI 18.5-24.9)</li>
-                        <li>• Get regular health screenings</li>
-                        <li>• Don't smoke or quit if you do</li>
-                        <li>• Limit alcohol consumption</li>
-                      </ul>
+                      <h4 className="font-semibold text-gray-800 mb-2">How accurate are life expectancy calculators?</h4>
+                      <p className="text-gray-600 text-sm">Life expectancy calculators provide estimates based on statistical models and current research. While they can't predict individual outcomes, they offer valuable insights into how lifestyle choices impact longevity.</p>
                     </div>
-                    
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Mental & Social</h3>
-                      <ul className="text-gray-600 space-y-2 text-sm">
-                        <li>• Maintain strong social connections</li>
-                        <li>• Practice stress management</li>
-                        <li>• Keep learning new things</li>
-                        <li>• Have a sense of purpose</li>
-                        <li>• Practice gratitude and mindfulness</li>
-                      </ul>
+                      <h4 className="font-semibold text-gray-800 mb-2">Can I really increase my life expectancy?</h4>
+                      <p className="text-gray-600 text-sm">Yes, lifestyle modifications can significantly impact life expectancy. Studies show that adopting healthy habits like regular exercise, good nutrition, and not smoking can add years to your life.</p>
                     </div>
-                    
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Lifestyle</h3>
-                      <ul className="text-gray-600 space-y-2 text-sm">
-                        <li>• Follow a Mediterranean-style diet</li>
-                        <li>• Get 7-9 hours of quality sleep</li>
-                        <li>• Stay hydrated and limit processed foods</li>
-                        <li>• Spend time in nature</li>
-                        <li>• Practice safety (seatbelts, helmets)</li>
-                      </ul>
+                      <h4 className="font-semibold text-gray-800 mb-2">What's the most important factor for longevity?</h4>
+                      <p className="text-gray-600 text-sm">While genetics play a role, lifestyle factors like not smoking, regular exercise, healthy diet, and maintaining social connections are the most modifiable and impactful factors for longevity.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How does stress affect life expectancy?</h4>
+                      <p className="text-gray-600 text-sm">Chronic stress accelerates cellular aging, weakens immune function, and increases risk of cardiovascular disease. Effective stress management can add years to your life.</p>
+                    </div>
+                  </div>
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Does genetics determine my lifespan?</h4>
+                      <p className="text-gray-600 text-sm">Genetics account for about 25% of longevity factors. The remaining 75% is influenced by lifestyle choices, environment, and behaviors that you can control.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">What's the healthiest BMI for longevity?</h4>
+                      <p className="text-gray-600 text-sm">Research suggests that a BMI between 20-25 is associated with the lowest mortality risk. However, muscle mass, body composition, and overall fitness are also important factors.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How much exercise do I need for longevity?</h4>
+                      <p className="text-gray-600 text-sm">The minimum recommended is 150 minutes of moderate exercise weekly, but studies show that even higher amounts provide additional longevity benefits, with diminishing returns after about 300-400 minutes weekly.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Can quitting smoking later in life still help?</h4>
+                      <p className="text-gray-600 text-sm">Absolutely. Quitting smoking provides health benefits at any age. Even people who quit in their 60s or 70s can add years to their life expectancy.</p>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </section>
-        </main>
-        
-        <Footer />
-      </div>
-    </>
-  );
-};
+              </CardContent>
+            </Card>
 
-export default LifeExpectancyCalculator;
+            {/* Longevity Research and Science */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Science of Longevity and Healthy Aging</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-3">Blue Zones Research</h4>
+                    <p className="text-gray-600 text-sm mb-3">
+                      Blue Zones are regions with the highest concentrations of centenarians. Common factors include:
+                    </p>
+                    <ul className="text-gray-600 space-y-1 text-xs">
+                      <li>• Plant-based diets with moderate calorie intake</li>
+                      <li>• Regular physical activity integrated into daily life</li>
+                      <li>• Strong social connections and family bonds</li>
+                      <li>• Sense of purpose and meaning in life</li>
+                      <li>• Stress management and relaxation practices</li>
+                    </ul>
+                  </div>
+                  
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-3">Cellular Aging</h4>
+                    <p className="text-gray-600 text-sm mb-3">
+                      Understanding how cells age helps identify longevity factors:
+                    </p>
+                    <ul className="text-gray-600 space-y-1 text-xs">
+                      <li>• Telomere length and cellular regeneration</li>
+                      <li>• Oxidative stress and antioxidant protection</li>
+                      <li>• Inflammation reduction and immune function</li>
+                      <li>• DNA repair mechanisms and genetic stability</li>
+                      <li>• Mitochondrial health and energy production</li>
+                    </ul>
+                  </div>
+                  
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-900 mb-3">Preventive Medicine</h4>
+                    <p className="text-gray-600 text-sm mb-3">
+                      Proactive health management for longevity:
+                    </p>
+                    <ul className="text-gray-600 space-y-1 text-xs">
+                      <li>• Regular health screenings and early detection</li>
+                      <li>• Vaccination and preventive care protocols</li>
+                      <li>• Biomarker monitoring and optimization</li>
+                      <li>• Personalized medicine and genetic testing</li>
+                      <li>• Hormone optimization and metabolic health</li>
+                    </ul>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Action Plan for Longevity */}
+            <Card className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl shadow-xl border-0">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Your Personalized Longevity Action Plan</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  <div className="space-y-3">
+                    <h4 className="text-lg font-semibold text-gray-900">Week 1-2: Assessment</h4>
+                    <ul className="text-gray-600 space-y-2 text-sm">
+                      <li>• Complete comprehensive health screening</li>
+                      <li>• Track current diet and exercise habits</li>
+                      <li>• Assess sleep quality and stress levels</li>
+                      <li>• Identify primary risk factors</li>
+                    </ul>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <h4 className="text-lg font-semibold text-gray-900">Month 1: Foundation</h4>
+                    <ul className="text-gray-600 space-y-2 text-sm">
+                      <li>• Start with 150 minutes weekly exercise</li>
+                      <li>• Improve diet quality gradually</li>
+                      <li>• Establish consistent sleep schedule</li>
+                      <li>• Begin stress management practice</li>
+                    </ul>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <h4 className="text-lg font-semibold text-gray-900">Month 2-3: Building</h4>
+                    <ul className="text-gray-600 space-y-2 text-sm">
+                      <li>• Increase exercise intensity and variety</li>
+                      <li>• Optimize nutrition with whole foods</li>
+                      <li>• Strengthen social connections</li>
+                      <li>• Address specific health concerns</li>
+                    </ul>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <h4 className="text-lg font-semibold text-gray-900">Month 4+: Optimization</h4>
+                    <ul className="text-gray-600 space-y-2 text-sm">
+                      <li>• Fine-tune all lifestyle factors</li>
+                      <li>• Regular health monitoring</li>
+                      <li>• Continuous learning and adaptation</li>
+                      <li>• Maintain long-term motivation</li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="mt-6 p-4 bg-white rounded-lg">
+                  <p className="text-gray-600 text-sm">
+                    <strong>Remember:</strong> Small, consistent changes compound over time. Focus on sustainable habits 
+                    rather than dramatic short-term changes. Consult healthcare providers for personalized advice based 
+                    on your individual health status and risk factors.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </main>
+      
+      <Footer />
+    </div>
+  );
+}
