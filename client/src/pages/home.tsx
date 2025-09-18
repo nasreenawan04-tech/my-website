@@ -12,10 +12,10 @@ const Home = () => {
     <>
       <Helmet>
         <title>DapsiWow: Free Finance, Text, Health and other Online Tools</title>
-        <meta name="description" content="Support your productivity with premium tools that stay out of your way and work smarter. Create without limits, ads, or roadblocks. Get instant access to 180+ free online tools including finance calculators, text converters, and health trackers." />
+        <meta name="description" content="Access 79 professional-grade online tools completely free. No registration required. Finance calculators, text processors, health trackers, and more - all designed to boost your productivity." />
         <meta name="keywords" content="DapsiWow, dapsiwow, free online tools, loan calculator, mortgage calculator, business loan calculator, lease calculator, productivity tools, finance calculators, text tools, health calculators, online utilities, web tools, no registration tools" />
         <meta property="og:title" content="DapsiWow: Free Finance, Text, Health and other Online Tools" />
-        <meta property="og:description" content="Support your productivity with premium tools that stay out of your way and work smarter. Create without limits, ads, or roadblocks. Get instant access to 180+ free online tools." />
+        <meta property="og:description" content="Access 79 professional-grade online tools completely free. No registration required. Finance calculators, text processors, health trackers, and more." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dapsiwow.com/" />
         <script type="application/ld+json">
@@ -23,7 +23,7 @@ const Home = () => {
             "@context": "https://schema.org",
             "@type": "WebSite",
             "name": "DapsiWow",
-            "description": "Professional online tools platform offering 180+ free utilities for business and personal use",
+            "description": "Professional online tools platform offering 79 free utilities for business and personal use",
             "url": "https://dapsiwow.com/",
             "potentialAction": {
               "@type": "SearchAction",
@@ -80,7 +80,7 @@ const Home = () => {
             "name": "DapsiWow",
             "url": "https://dapsiwow.com/",
             "logo": "https://dapsiwow.com/logo.svg",
-            "description": "Professional online tools platform offering 180+ free utilities for business and personal use including finance calculators, text converters, and health trackers.",
+            "description": "Professional online tools platform offering 79 free utilities for business and personal use including finance calculators, text converters, and health trackers.",
             "foundingDate": "2025",
             "slogan": "Free Finance, Text, Health and other Online Tools",
             "knowsAbout": [
@@ -114,33 +114,33 @@ const Home = () => {
                   What is DapsiWow?
                 </h2>
                 <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed mb-8">
-                  DapsiWow is your ultimate online toolkit featuring 150+ professional-grade tools completely free to use. 
-                  No registration required, no hidden fees, no software downloads - just powerful tools that work instantly 
-                  in your browser across all devices.
+                  DapsiWow is your ultimate online toolkit featuring 79 carefully crafted tools completely free to use. 
+                  No registration required, no hidden fees, no software downloads - just powerful, professional-grade tools 
+                  that work instantly in your browser across all devices.
                 </p>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
                   <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
                     <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
                       <Calculator className="text-blue-600" size={20} />
                     </div>
-                    <h3 className="text-lg font-semibold text-neutral-800 mb-2">Finance Tools</h3>
-                    <p className="text-neutral-600 text-sm">Calculators for loans, mortgages, investments, taxes, and more financial planning needs</p>
+                    <h3 className="text-lg font-semibold text-neutral-800 mb-2">30 Finance Tools</h3>
+                    <p className="text-neutral-600 text-sm">Loan calculators, mortgage calculators, EMI calculators, investment tools, tax calculators, and business loan calculators</p>
                   </div>
 
                   <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
                     <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
                       <PenTool className="text-purple-600" size={20} />
                     </div>
-                    <h3 className="text-lg font-semibold text-neutral-800 mb-2">Text Tools</h3>
-                    <p className="text-neutral-600 text-sm">Word counters, case converters, grammar checkers, and content generation tools</p>
+                    <h3 className="text-lg font-semibold text-neutral-800 mb-2">19 Text Tools</h3>
+                    <p className="text-neutral-600 text-sm">Word counters, case converters, QR code generators, binary converters, password generators, and text processors</p>
                   </div>
 
                   <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
                     <div className="w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center mb-4 mx-auto">
                       <HeartPulse className="text-pink-600" size={20} />
                     </div>
-                    <h3 className="text-lg font-semibold text-neutral-800 mb-2">Health Tools</h3>
-                    <p className="text-neutral-600 text-sm">BMI calculators, calorie counters, and wellness tracking tools for healthy living</p>
+                    <h3 className="text-lg font-semibold text-neutral-800 mb-2">30 Health Tools</h3>
+                    <p className="text-neutral-600 text-sm">BMI calculators, calorie calculators, pregnancy tools, fitness trackers, heart rate calculators, and wellness tools</p>
                   </div>
                 </div>
               </div>
@@ -181,7 +181,7 @@ const Home = () => {
                 <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 shadow-inner">
                   <div className="grid grid-cols-2 gap-6 text-center">
                     <div>
-                      <div className="text-4xl font-bold text-blue-600 mb-2">150+</div>
+                      <div className="text-4xl font-bold text-blue-600 mb-2">79</div>
                       <div className="text-neutral-700 font-medium">Free Tools</div>
                     </div>
                     <div>
@@ -396,7 +396,7 @@ const Home = () => {
                   <div className="text-xs text-neutral-500 mt-1">Growing daily</div>
                 </div>
                 <div className="bg-white rounded-lg p-6 shadow-md">
-                  <div className="text-3xl lg:text-4xl font-bold text-green-600 mb-2">150+</div>
+                  <div className="text-3xl lg:text-4xl font-bold text-green-600 mb-2">79</div>
                   <div className="text-neutral-700 font-medium">Free Tools</div>
                   <div className="text-xs text-neutral-500 mt-1">Always expanding</div>
                 </div>
