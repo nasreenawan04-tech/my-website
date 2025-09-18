@@ -45,7 +45,7 @@ const toolsData = [
   { id: 'vat-gst-calculator', name: 'VAT/GST Calculator', description: 'Calculate VAT and GST on products', category: 'finance' as const, icon: 'fas fa-file-invoice', href: '/tools/vat-gst-calculator' },
   { id: 'paypal-fee-calculator', name: 'PayPal Fee Calculator', description: 'Calculate PayPal transaction fees', category: 'finance' as const, icon: 'fab fa-paypal', href: '/tools/paypal-fee-calculator' },
 
-  // Text Tools (17)
+  // Text Tools (19)
   { id: 'word-counter', name: 'Word Counter', description: 'Count words, characters, and paragraphs', category: 'text' as const, icon: 'fas fa-calculator', href: '/tools/word-counter' },
   { id: 'character-counter', name: 'Character Counter', description: 'Count characters in text with/without spaces', category: 'text' as const, icon: 'fas fa-font', href: '/tools/character-counter' },
   { id: 'sentence-counter', name: 'Sentence Counter', description: 'Count sentences in your text', category: 'text' as const, icon: 'fas fa-list', href: '/tools/sentence-counter' },
@@ -60,6 +60,8 @@ const toolsData = [
   { id: 'text-to-binary-converter', name: 'Text to Binary Converter', description: 'Convert text to binary code', category: 'text' as const, icon: 'fas fa-binary', href: '/tools/text-to-binary-converter' },
   { id: 'decimal-to-text-converter', name: 'Decimal to Text Converter', description: 'Convert decimal character codes to readable text', category: 'text' as const, icon: 'fas fa-arrow-left', href: '/tools/decimal-to-text-converter' },
   { id: 'text-to-decimal-converter', name: 'Text to Decimal Converter', description: 'Convert text to decimal character codes', category: 'text' as const, icon: 'fas fa-arrow-right', href: '/tools/text-to-decimal-converter' },
+  { id: 'hex-to-text-converter', name: 'Hex to Text Converter', description: 'Convert hexadecimal values to readable text', category: 'text' as const, icon: 'fas fa-code', href: '/tools/hex-to-text-converter' },
+  { id: 'text-to-hex-converter', name: 'Text to Hex Converter', description: 'Convert text to hexadecimal values', category: 'text' as const, icon: 'fas fa-hashtag', href: '/tools/text-to-hex-converter' },
   { id: 'font-style-changer', name: 'Font Style Changer', description: 'Transform text with stylish fonts', category: 'text' as const, icon: 'fas fa-font', href: '/tools/font-style-changer' },
   { id: 'markdown-to-html', name: 'Markdown to HTML Converter', description: 'Convert Markdown to HTML format', category: 'text' as const, icon: 'fab fa-markdown', href: '/tools/markdown-to-html' },
   { id: 'reverse-text-tool', name: 'Reverse Text Tool', description: 'Reverse the order of text characters, words, or lines', category: 'text' as const, icon: 'fas fa-backward', href: '/tools/reverse-text-tool' },
