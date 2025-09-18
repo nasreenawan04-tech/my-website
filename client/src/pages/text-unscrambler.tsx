@@ -52,129 +52,199 @@ export default function TextUnscrambler() {
   });
   const { toast } = useToast();
 
-  // Common English words dictionary (subset for demonstration)
+  // Comprehensive English words dictionary
   const commonWords = [
+    // Basic words
     'the', 'and', 'for', 'are', 'but', 'not', 'you', 'all', 'can', 'had', 'her', 'was', 'one', 'our', 'out', 'day', 'get', 'has', 'him', 'his', 'how', 'its', 'new', 'now', 'old', 'see', 'two', 'way', 'who', 'boy', 'did', 'man', 'end', 'few', 'got', 'let', 'may', 'put', 'say', 'she', 'too', 'use',
+    // Common words
     'time', 'very', 'when', 'come', 'here', 'just', 'like', 'long', 'make', 'many', 'over', 'such', 'take', 'than', 'them', 'well', 'were', 'what', 'year', 'your', 'work', 'life', 'only', 'think', 'also', 'back', 'after', 'first', 'good', 'know', 'where', 'much', 'some', 'time', 'right', 'people', 'could', 'world', 'still', 'would', 'great', 'little', 'should', 'through', 'water', 'being', 'place', 'because', 'before', 'never', 'under', 'again', 'while', 'where', 'every', 'house', 'might', 'around', 'small', 'found', 'asked', 'going', 'large', 'until', 'along', 'shall', 'being', 'often', 'since', 'about', 'other', 'after', 'first', 'never', 'these', 'think', 'where', 'being', 'every', 'great', 'might', 'shall', 'still', 'those', 'under', 'while', 'another', 'between', 'through', 'because', 'without', 'against', 'nothing', 'someone', 'something', 'everything', 'anything', 'everyone', 'anyone',
-    'hello', 'world', 'computer', 'science', 'program', 'software', 'website', 'internet', 'technology', 'digital', 'online', 'information', 'business', 'company', 'service', 'product', 'system', 'development', 'application', 'solution', 'design', 'creative', 'professional', 'quality', 'excellent', 'amazing', 'fantastic', 'wonderful', 'beautiful', 'perfect', 'success', 'project', 'education', 'learning', 'student', 'teacher', 'school', 'university', 'research', 'knowledge', 'experience', 'skills', 'training', 'course', 'lesson', 'study', 'book', 'read', 'write', 'language', 'communication', 'message', 'email', 'phone', 'mobile', 'social', 'media', 'network', 'connect', 'community', 'friend', 'family', 'love', 'happy', 'smile', 'laugh', 'enjoy', 'fun', 'play', 'game', 'sport', 'music', 'art', 'culture', 'travel', 'adventure', 'explore', 'discover', 'nature', 'environment', 'green', 'clean', 'fresh', 'healthy', 'food', 'restaurant', 'cooking', 'recipe', 'delicious', 'taste', 'flavor', 'sweet', 'coffee', 'drink', 'water', 'energy', 'power', 'strong', 'fast', 'quick', 'easy', 'simple', 'clear', 'bright', 'light', 'dark', 'color', 'blue', 'green', 'yellow', 'orange', 'purple', 'black', 'white', 'silver', 'golden'
+    // Technology and modern words
+    'hello', 'world', 'computer', 'science', 'program', 'software', 'website', 'internet', 'technology', 'digital', 'online', 'information', 'business', 'company', 'service', 'product', 'system', 'development', 'application', 'solution', 'design', 'creative', 'professional', 'quality', 'excellent', 'amazing', 'fantastic', 'wonderful', 'beautiful', 'perfect', 'success', 'project', 'education', 'learning', 'student', 'teacher', 'school', 'university', 'research', 'knowledge', 'experience', 'skills', 'training', 'course', 'lesson', 'study', 'book', 'read', 'write', 'language', 'communication', 'message', 'email', 'phone', 'mobile', 'social', 'media', 'network', 'connect', 'community', 'friend', 'family', 'love', 'happy', 'smile', 'laugh', 'enjoy', 'fun', 'play', 'game', 'sport', 'music', 'art', 'culture', 'travel', 'adventure', 'explore', 'discover', 'nature', 'environment', 'green', 'clean', 'fresh', 'healthy', 'food', 'restaurant', 'cooking', 'recipe', 'delicious', 'taste', 'flavor', 'sweet', 'coffee', 'drink', 'water', 'energy', 'power', 'strong', 'fast', 'quick', 'easy', 'simple', 'clear', 'bright', 'light', 'dark', 'color', 'blue', 'green', 'yellow', 'orange', 'purple', 'black', 'white', 'silver', 'golden',
+    // Extended vocabulary
+    'ability', 'above', 'accept', 'according', 'account', 'across', 'action', 'activity', 'actually', 'address', 'administration', 'admit', 'adult', 'affect', 'afternoon', 'ahead', 'almost', 'alone', 'along', 'already', 'although', 'always', 'among', 'amount', 'analysis', 'animal', 'answer', 'anyone', 'anything', 'appear', 'approach', 'area', 'argue', 'around', 'arrive', 'article', 'artist', 'assume', 'attack', 'attempt', 'attend', 'attention', 'attorney', 'audience', 'author', 'authority', 'available', 'avoid', 'away', 'baby', 'base', 'beat', 'become', 'behavior', 'behind', 'believe', 'benefit', 'best', 'better', 'beyond', 'billion', 'birth', 'black', 'blood', 'board', 'body', 'born', 'both', 'break', 'bring', 'brother', 'budget', 'build', 'building', 'business', 'call', 'camera', 'campaign', 'cancer', 'candidate', 'capital', 'card', 'care', 'career', 'carry', 'case', 'catch', 'cause', 'cell', 'center', 'central', 'century', 'certain', 'certainly', 'chair', 'challenge', 'chance', 'change', 'character', 'charge', 'check', 'child', 'choice', 'choose', 'church', 'citizen', 'city', 'civil', 'claim', 'class', 'clear', 'clearly', 'close', 'coach', 'cold', 'collection', 'college', 'color', 'commercial', 'common', 'community', 'compare', 'computer', 'concern', 'condition', 'conference', 'congress', 'consider', 'consumer', 'contain', 'continue', 'control', 'cost', 'country', 'couple', 'course', 'court', 'cover', 'create', 'crime', 'cultural', 'culture', 'current', 'customer', 'data', 'daughter', 'dead', 'deal', 'death', 'debate', 'decade', 'decide', 'decision', 'deep', 'defense', 'degree', 'democratic', 'describe', 'design', 'despite', 'detail', 'determine', 'develop', 'development', 'difference', 'different', 'difficult', 'dinner', 'direction', 'director', 'discover', 'discuss', 'discussion', 'disease', 'doctor', 'door', 'down', 'draw', 'dream', 'drive', 'drop', 'drug', 'during', 'each', 'early', 'east', 'economic', 'economy', 'edge', 'education', 'effect', 'effort', 'eight', 'either', 'election', 'electric', 'electronic', 'element', 'else', 'employee', 'energy', 'enough', 'entire', 'environment', 'environmental', 'especially', 'establish', 'even', 'evening', 'event', 'ever', 'every', 'everybody', 'everyone', 'everything', 'evidence', 'exactly', 'example', 'executive', 'exist', 'expect', 'experience', 'expert', 'explain', 'face', 'fact', 'factor', 'fail', 'fall', 'family', 'fast', 'father', 'fear', 'federal', 'feel', 'feeling', 'field', 'fight', 'figure', 'fill', 'film', 'final', 'finally', 'financial', 'find', 'fine', 'finger', 'finish', 'fire', 'firm', 'fish', 'five', 'floor', 'fly', 'focus', 'follow', 'food', 'foot', 'force', 'foreign', 'forget', 'form', 'former', 'forward', 'four', 'free', 'friend', 'from', 'front', 'full', 'fund', 'future', 'game', 'garden', 'general', 'generation', 'give', 'glass', 'goal', 'gone', 'government', 'great', 'green', 'ground', 'group', 'grow', 'growth', 'guess', 'gun', 'guy', 'hair', 'half', 'hand', 'hang', 'happen', 'happy', 'hard', 'head', 'health', 'hear', 'heart', 'heat', 'heavy', 'help', 'high', 'history', 'hit', 'hold', 'home', 'hope', 'hospital', 'hot', 'hotel', 'hour', 'however', 'huge', 'human', 'hundred', 'husband', 'idea', 'identify', 'image', 'imagine', 'impact', 'important', 'improve', 'include', 'including', 'increase', 'indeed', 'indicate', 'individual', 'industry', 'information', 'inside', 'instead', 'institution', 'interest', 'interesting', 'international', 'interview', 'into', 'investment', 'involve', 'issue', 'item', 'itself', 'join', 'keep', 'kill', 'kind', 'kitchen', 'land', 'language', 'large', 'last', 'late', 'later', 'laugh', 'lawyer', 'lay', 'lead', 'leader', 'learn', 'least', 'leave', 'left', 'legal', 'less', 'letter', 'level', 'lie', 'line', 'list', 'listen', 'little', 'live', 'local', 'look', 'lose', 'loss', 'love', 'machine', 'magazine', 'main', 'maintain', 'major', 'majority', 'management', 'manager', 'market', 'marriage', 'material', 'matter', 'maybe', 'mean', 'measure', 'media', 'medical', 'meet', 'meeting', 'member', 'memory', 'mention', 'method', 'middle', 'military', 'million', 'mind', 'minute', 'miss', 'mission', 'model', 'modern', 'moment', 'money', 'month', 'more', 'morning', 'most', 'mother', 'move', 'movement', 'movie', 'music', 'must', 'myself', 'name', 'nation', 'national', 'natural', 'nature', 'near', 'nearly', 'necessary', 'need', 'network', 'news', 'newspaper', 'next', 'nice', 'night', 'nine', 'nobody', 'north', 'note', 'nothing', 'notice', 'number', 'occur', 'offer', 'office', 'officer', 'official', 'often', 'once', 'open', 'operation', 'opportunity', 'option', 'order', 'organization', 'others', 'outside', 'over', 'own', 'owner', 'page', 'pain', 'painting', 'paper', 'parent', 'part', 'participant', 'particular', 'particularly', 'partner', 'party', 'pass', 'past', 'patient', 'pattern', 'pay', 'peace', 'people', 'perform', 'performance', 'perhaps', 'period', 'person', 'personal', 'phone', 'physical', 'pick', 'picture', 'piece', 'place', 'plan', 'plant', 'play', 'player', 'point', 'police', 'policy', 'political', 'politics', 'poor', 'popular', 'population', 'position', 'positive', 'possible', 'power', 'practice', 'prepare', 'present', 'president', 'pressure', 'pretty', 'prevent', 'price', 'private', 'probably', 'problem', 'process', 'produce', 'product', 'production', 'professional', 'professor', 'program', 'project', 'property', 'protect', 'provide', 'public', 'pull', 'purpose', 'push', 'quality', 'question', 'quickly', 'quite', 'race', 'radio', 'raise', 'range', 'rate', 'rather', 'reach', 'read', 'ready', 'real', 'reality', 'realize', 'really', 'reason', 'receive', 'recent', 'recently', 'recognize', 'record', 'reduce', 'reflect', 'region', 'relate', 'relationship', 'religious', 'remain', 'remember', 'remove', 'report', 'represent', 'republican', 'require', 'research', 'resource', 'respond', 'response', 'responsibility', 'rest', 'result', 'return', 'reveal', 'rich', 'right', 'rise', 'risk', 'road', 'rock', 'role', 'room', 'rule', 'run', 'safe', 'same', 'save', 'scene', 'school', 'science', 'scientist', 'score', 'sea', 'season', 'seat', 'second', 'section', 'security', 'seek', 'seem', 'sell', 'send', 'senior', 'sense', 'series', 'serious', 'serve', 'service', 'seven', 'several', 'share', 'shoot', 'short', 'shot', 'show', 'side', 'sign', 'significant', 'similar', 'simple', 'simply', 'since', 'sing', 'single', 'sister', 'site', 'situation', 'size', 'skill', 'skin', 'small', 'smile', 'social', 'society', 'soldier', 'solid', 'somebody', 'someone', 'something', 'sometimes', 'song', 'soon', 'sort', 'sound', 'source', 'south', 'southern', 'space', 'speak', 'special', 'specific', 'speech', 'spend', 'sport', 'spring', 'staff', 'stage', 'stand', 'standard', 'star', 'start', 'state', 'statement', 'station', 'stay', 'step', 'stop', 'store', 'story', 'strategy', 'street', 'strong', 'structure', 'student', 'study', 'stuff', 'style', 'subject', 'success', 'successful', 'such', 'suddenly', 'suffer', 'suggest', 'summer', 'support', 'sure', 'surface', 'system', 'table', 'talk', 'task', 'teach', 'teacher', 'team', 'technology', 'television', 'tell', 'tend', 'term', 'test', 'than', 'thank', 'that', 'their', 'them', 'themselves', 'then', 'theory', 'there', 'these', 'they', 'thing', 'third', 'this', 'those', 'though', 'thought', 'thousand', 'threat', 'three', 'throw', 'thus', 'time', 'today', 'together', 'tonight', 'total', 'tough', 'toward', 'town', 'trade', 'traditional', 'training', 'travel', 'treat', 'treatment', 'tree', 'trial', 'trip', 'trouble', 'true', 'truth', 'turn', 'type', 'under', 'understand', 'union', 'unit', 'united', 'university', 'unless', 'until', 'upon', 'used', 'user', 'usually', 'value', 'various', 'very', 'victim', 'view', 'violence', 'visit', 'voice', 'vote', 'wait', 'walk', 'wall', 'want', 'watch', 'water', 'weapon', 'wear', 'week', 'weight', 'well', 'west', 'western', 'what', 'whatever', 'when', 'where', 'whether', 'which', 'while', 'white', 'whole', 'whom', 'whose', 'wide', 'wife', 'will', 'wind', 'window', 'wish', 'with', 'within', 'without', 'woman', 'wonder', 'word', 'work', 'worker', 'working', 'world', 'worry', 'worse', 'worst', 'worth', 'would', 'write', 'writer', 'wrong', 'yard', 'yeah', 'year', 'yes', 'yet', 'young', 'your', 'yourself', 'zone'
   ];
 
-  // Find valid words from scrambled letters
+  // Create a frequency map for better word matching
+  const wordFrequency = new Map<string, number>();
+  commonWords.forEach((word, index) => {
+    // Higher frequency for more common words (earlier in array)
+    wordFrequency.set(word, Math.max(1, commonWords.length - index));
+  });
+
+  // Optimized anagram solver
   const findValidWords = (letters: string, dictionary: string[], minLength: number): string[] => {
+    if (letters.length > 15) {
+      // For very long strings, limit search to prevent performance issues
+      return [];
+    }
+
     const words: string[] = [];
-    const sortedLetters = letters.toLowerCase().split('').sort().join('');
+    const letterCounts = new Map<string, number>();
+    
+    // Count available letters
+    for (const letter of letters.toLowerCase()) {
+      letterCounts.set(letter, (letterCounts.get(letter) || 0) + 1);
+    }
     
     for (const word of dictionary) {
-      if (word.length >= minLength && word.length <= letters.length) {
-        const wordSorted = word.split('').sort().join('');
-        
-        // Check if word can be formed from available letters
-        let canForm = true;
-        const letterCount: Record<string, number> = {};
-        const wordCount: Record<string, number> = {};
-        
-        // Count letters in available letters
-        for (const letter of sortedLetters) {
-          letterCount[letter] = (letterCount[letter] || 0) + 1;
+      if (word.length < minLength || word.length > letters.length) {
+        continue;
+      }
+      
+      // Check if word can be formed from available letters
+      const wordCounts = new Map<string, number>();
+      for (const letter of word) {
+        wordCounts.set(letter, (wordCounts.get(letter) || 0) + 1);
+      }
+      
+      let canForm = true;
+      for (const [letter, count] of wordCounts) {
+        if ((letterCounts.get(letter) || 0) < count) {
+          canForm = false;
+          break;
         }
-        
-        // Count letters in word
-        for (const letter of word) {
-          wordCount[letter] = (wordCount[letter] || 0) + 1;
-        }
-        
-        // Check if we have enough of each letter
-        for (const [letter, count] of Object.entries(wordCount)) {
-          if ((letterCount[letter] || 0) < count) {
-            canForm = false;
-            break;
-          }
-        }
-        
-        if (canForm) {
-          words.push(word);
-        }
+      }
+      
+      if (canForm) {
+        words.push(word);
       }
     }
     
-    return words;
+    // Sort by frequency and length
+    return words.sort((a, b) => {
+      const freqA = wordFrequency.get(a) || 0;
+      const freqB = wordFrequency.get(b) || 0;
+      if (freqA !== freqB) return freqB - freqA;
+      return b.length - a.length;
+    });
+  };
+
+  // Improved pattern recognition
+  const recognizePattern = (text: string): string => {
+    const lines = text.split('\n');
+    let bestResult = text;
+    let bestScore = 0;
+    
+    // Test different pattern reversal methods
+    const patterns = [
+      // Character reversal
+      text.split('').reverse().join(''),
+      // Word order reversal
+      text.split(' ').reverse().join(' '),
+      // Line reversal
+      lines.reverse().join('\n'),
+      // Character reversal per word
+      text.split(' ').map(word => word.split('').reverse().join('')).join(' '),
+      // Caesar cipher (simple shift)
+      text.split('').map(char => {
+        if (/[a-zA-Z]/.test(char)) {
+          const code = char.charCodeAt(0);
+          const base = code >= 65 && code <= 90 ? 65 : 97;
+          return String.fromCharCode((code - base + 13) % 26 + base);
+        }
+        return char;
+      }).join('')
+    ];
+    
+    // Evaluate each pattern
+    for (const pattern of patterns) {
+      const words = pattern.split(/\s+/).filter(word => word.length >= 3);
+      const validWords = words.filter(word => 
+        commonWords.includes(word.toLowerCase().replace(/[^a-z]/g, ''))
+      );
+      
+      const score = validWords.length / Math.max(words.length, 1);
+      if (score > bestScore) {
+        bestScore = score;
+        bestResult = pattern;
+      }
+    }
+    
+    return bestResult;
+  };
+
+  // Enhanced smart unscrambling
+  const smartUnscramble = (text: string): string => {
+    const words = text.split(/(\s+|[^\w\s]+)/);
+    const unscrambledWords: string[] = [];
+    
+    for (const segment of words) {
+      if (!/^\w+$/.test(segment) || segment.length <= 3) {
+        unscrambledWords.push(segment);
+        continue;
+      }
+      
+      const word = segment.toLowerCase();
+      const firstChar = word[0];
+      const lastChar = word[word.length - 1];
+      const middleChars = word.slice(1, -1);
+      
+      // Check if this follows the "smart scrambling" pattern (first/last preserved)
+      if (middleChars.length > 1) {
+        // Find words that match the first/last letter pattern
+        const candidates = commonWords.filter(dictWord => 
+          dictWord.length === word.length &&
+          dictWord[0] === firstChar &&
+          dictWord[dictWord.length - 1] === lastChar
+        );
+        
+        if (candidates.length > 0) {
+          // Check if middle letters match
+          for (const candidate of candidates) {
+            const candidateMiddle = candidate.slice(1, -1);
+            const middleLetterCounts = new Map<string, number>();
+            const candidateMiddleCounts = new Map<string, number>();
+            
+            for (const char of middleChars) {
+              middleLetterCounts.set(char, (middleLetterCounts.get(char) || 0) + 1);
+            }
+            
+            for (const char of candidateMiddle) {
+              candidateMiddleCounts.set(char, (candidateMiddleCounts.get(char) || 0) + 1);
+            }
+            
+            // Check if letter counts match
+            let matches = true;
+            for (const [char, count] of middleLetterCounts) {
+              if (candidateMiddleCounts.get(char) !== count) {
+                matches = false;
+                break;
+              }
+            }
+            
+            if (matches && candidateMiddleCounts.size === middleLetterCounts.size) {
+              // Preserve original case
+              let result = candidate;
+              if (segment[0] === segment[0].toUpperCase()) {
+                result = result[0].toUpperCase() + result.slice(1);
+              }
+              unscrambledWords.push(result);
+              break;
+            }
+          }
+          continue;
+        }
+      }
+      
+      // Fallback: try regular word matching
+      const validWords = findValidWords(word, commonWords, 3);
+      if (validWords.length > 0) {
+        let result = validWords[0];
+        if (segment[0] === segment[0].toUpperCase()) {
+          result = result[0].toUpperCase() + result.slice(1);
+        }
+        unscrambledWords.push(result);
+      } else {
+        unscrambledWords.push(segment);
+      }
+    }
+    
+    return unscrambledWords.join('');
   };
 
   // Check if a string is a valid word
   const isValidWord = (word: string, dictionary: string[]): boolean => {
-    return dictionary.includes(word.toLowerCase());
-  };
-
-  // Smart unscrambling using pattern recognition
-  const smartUnscramble = (text: string): string => {
-    // Look for patterns that suggest specific scrambling methods
-    const words = text.split(/\s+/);
-    const unscrambledWords: string[] = [];
-    
-    for (const word of words) {
-      if (word.length <= 3) {
-        unscrambledWords.push(word);
-        continue;
-      }
-      
-      // Try to detect smart scrambling pattern (first and last letters preserved)
-      const firstChar = word[0];
-      const lastChar = word[word.length - 1];
-      
-      if (word.length > 3) {
-        // Try different arrangements of middle letters
-        const validWords = findValidWords(word, commonWords, 3);
-        if (validWords.length > 0) {
-          // Find the word that starts and ends with the same letters
-          const match = validWords.find(w => 
-            w[0].toLowerCase() === firstChar.toLowerCase() && 
-            w[w.length - 1].toLowerCase() === lastChar.toLowerCase()
-          );
-          if (match) {
-            unscrambledWords.push(match);
-            continue;
-          }
-        }
-      }
-      
-      // Fallback: try to find any valid word from the letters
-      const validWords = findValidWords(word, commonWords, 3);
-      if (validWords.length > 0) {
-        unscrambledWords.push(validWords[0]);
-      } else {
-        unscrambledWords.push(word);
-      }
-    }
-    
-    return unscrambledWords.join(' ');
-  };
-
-  // Pattern recognition for common scrambling methods
-  const recognizePattern = (text: string): string => {
-    // Detect reversed text
-    const reversed = text.split('').reverse().join('');
-    const reversedWords = text.split(' ').reverse().join(' ');
-    
-    // Simple heuristic: check if reversed version has more recognizable words
-    const originalValidWords = text.split(/\s+/).filter(word => 
-      isValidWord(word, commonWords)
-    ).length;
-    
-    const reversedValidWords = reversed.split(/\s+/).filter(word => 
-      isValidWord(word, commonWords)
-    ).length;
-    
-    const reversedWordsValidWords = reversedWords.split(/\s+/).filter(word => 
-      isValidWord(word, commonWords)
-    ).length;
-    
-    if (reversedValidWords > originalValidWords) {
-      return reversed;
-    } else if (reversedWordsValidWords > originalValidWords) {
-      return reversedWords;
-    }
-    
-    return text;
+    return dictionary.includes(word.toLowerCase().replace(/[^a-z]/g, ''));
   };
 
   const unscrambleText = (text: string, opts: UnscrambleOptions): UnscrambleResult => {
@@ -197,90 +267,140 @@ export default function TextUnscrambler() {
     let wordsFound = 0;
     let confidence = 0;
 
-    const dictionary = commonWords; // Using common words for all modes
+    const dictionary = commonWords;
 
-    switch (opts.mode) {
-      case 'words':
-        // Word-by-word unscrambling
-        const words = text.split(/(\s+)/);
-        const unscrambledWords: string[] = [];
-        
-        for (const segment of words) {
-          if (segment.trim()) {
-            const validWords = findValidWords(segment.trim(), dictionary, opts.minWordLength);
+    try {
+      switch (opts.mode) {
+        case 'words':
+          // Word-by-word unscrambling with improved logic
+          const segments = text.split(/(\s+|[^\w\s]+)/);
+          const unscrambledSegments: string[] = [];
+          
+          for (const segment of segments) {
+            if (!/^\w+$/.test(segment)) {
+              unscrambledSegments.push(segment);
+              continue;
+            }
+            
+            if (segment.length < opts.minWordLength) {
+              unscrambledSegments.push(segment);
+              continue;
+            }
+            
+            const validWords = findValidWords(segment, dictionary, opts.minWordLength);
             if (validWords.length > 0) {
               const bestWord = opts.sortByLength ? 
                 validWords.sort((a, b) => b.length - a.length)[0] : 
                 validWords[0];
-              unscrambledWords.push(bestWord);
+              
+              // Preserve case
+              let result = bestWord;
+              if (segment[0] === segment[0].toUpperCase()) {
+                result = result[0].toUpperCase() + result.slice(1);
+              }
+              
+              unscrambledSegments.push(result);
               wordsFound++;
               
               if (opts.suggestAlternatives && validWords.length > 1) {
                 suggestions.push(...validWords.slice(1, opts.maxSuggestions));
               }
             } else {
-              unscrambledWords.push(segment.trim());
+              unscrambledSegments.push(segment);
             }
-          } else {
-            unscrambledWords.push(segment);
           }
-        }
-        unscrambledText = unscrambledWords.join('');
-        break;
+          unscrambledText = unscrambledSegments.join('');
+          break;
 
-      case 'anagram':
-        // Anagram solving for the entire text or individual words
-        const cleanText = text.replace(/[^a-zA-Z\s]/g, '').trim();
-        if (cleanText.length <= 10) { // Limit for performance
-          const validWords = findValidWords(cleanText.replace(/\s/g, ''), dictionary, opts.minWordLength);
-          if (validWords.length > 0) {
-            unscrambledText = opts.sortByLength ? 
-              validWords.sort((a, b) => b.length - a.length)[0] : 
-              validWords[0];
-            wordsFound = 1;
+        case 'anagram':
+          // Enhanced anagram solving
+          const cleanText = text.replace(/[^a-zA-Z\s]/g, '').trim();
+          if (cleanText.length <= 12) { // Reasonable limit for performance
+            const words = cleanText.split(/\s+/);
+            const unscrambledAnagramWords: string[] = [];
             
-            if (opts.suggestAlternatives) {
-              suggestions = validWords.slice(1, opts.maxSuggestions + 1);
+            for (const word of words) {
+              if (word.length < opts.minWordLength) {
+                unscrambledAnagramWords.push(word);
+                continue;
+              }
+              
+              const validWords = findValidWords(word, dictionary, opts.minWordLength);
+              if (validWords.length > 0) {
+                const bestWord = opts.sortByLength ? 
+                  validWords.sort((a, b) => b.length - a.length)[0] : 
+                  validWords[0];
+                unscrambledAnagramWords.push(bestWord);
+                wordsFound++;
+                
+                if (opts.suggestAlternatives) {
+                  suggestions.push(...validWords.slice(1, opts.maxSuggestions));
+                }
+              } else {
+                unscrambledAnagramWords.push(word);
+              }
             }
+            unscrambledText = unscrambledAnagramWords.join(' ');
           } else {
-            unscrambledText = text;
+            // For longer text, fall back to word-by-word processing
+            unscrambledText = text.split(/\s+/).map(word => {
+              if (word.length < opts.minWordLength) return word;
+              const validWords = findValidWords(word.replace(/[^a-zA-Z]/g, ''), dictionary, opts.minWordLength);
+              return validWords.length > 0 ? validWords[0] : word;
+            }).join(' ');
           }
-        } else {
-          // For longer text, process word by word
-          unscrambledText = text.split(/\s+/).map(word => {
-            const validWords = findValidWords(word, dictionary, opts.minWordLength);
-            return validWords.length > 0 ? validWords[0] : word;
-          }).join(' ');
-        }
-        break;
+          break;
 
-      case 'smart':
-        unscrambledText = smartUnscramble(text);
-        const smartWords = unscrambledText.split(/\s+/).filter(word => 
-          isValidWord(word, dictionary)
-        );
-        wordsFound = smartWords.length;
-        break;
+        case 'smart':
+          unscrambledText = smartUnscramble(text);
+          const smartWords = unscrambledText.split(/\s+/).filter(word => 
+            word.length >= opts.minWordLength && isValidWord(word, dictionary)
+          );
+          wordsFound = smartWords.length;
+          break;
 
-      case 'pattern':
-        unscrambledText = recognizePattern(text);
-        const patternWords = unscrambledText.split(/\s+/).filter(word => 
-          isValidWord(word, dictionary)
-        );
-        wordsFound = patternWords.length;
-        break;
+        case 'pattern':
+          unscrambledText = recognizePattern(text);
+          const patternWords = unscrambledText.split(/\s+/).filter(word => 
+            word.length >= opts.minWordLength && isValidWord(word, dictionary)
+          );
+          wordsFound = patternWords.length;
+          break;
+
+        default:
+          unscrambledText = text;
+      }
+
+      // Improved confidence calculation
+      const originalWords = text.split(/\s+/).filter(word => 
+        word.replace(/[^a-zA-Z]/g, '').length >= opts.minWordLength
+      );
+      const totalWords = Math.max(originalWords.length, 1);
+      
+      // Base confidence on actual word recognition
+      const recognizedWords = unscrambledText.split(/\s+/).filter(word => 
+        isValidWord(word, dictionary) && word.length >= opts.minWordLength
+      );
+      
+      confidence = Math.round((recognizedWords.length / totalWords) * 100);
+      
+      // Adjust confidence based on mode
+      if (opts.mode === 'pattern' && unscrambledText !== text) {
+        confidence = Math.min(confidence + 20, 100); // Bonus for successful pattern detection
+      }
+      
+    } catch (error) {
+      console.error('Unscrambling error:', error);
+      unscrambledText = text;
+      confidence = 0;
     }
-
-    // Calculate confidence based on recognized words
-    const totalWords = text.split(/\s+/).length;
-    confidence = totalWords > 0 ? Math.round((wordsFound / totalWords) * 100) : 0;
 
     const processingTime = Date.now() - startTime;
 
     return {
       originalText: text,
       unscrambledText,
-      suggestions: Array.from(new Set(suggestions)), // Remove duplicates
+      suggestions: Array.from(new Set(suggestions)).slice(0, opts.maxSuggestions),
       mode: opts.mode,
       wordsFound,
       confidence,
@@ -328,8 +448,14 @@ export default function TextUnscrambler() {
   };
 
   const handleSampleText = () => {
-    const sample = `elolh dlrow! ihsT si a elbmarcss xett mplexae taht uoy nac yrt ot elbmarcsnu.`;
-    setInputText(sample);
+    const samples = [
+      `elolh dlrow! ihsT si a elbmarcss xett mplexae taht uoy nac yrt ot elbmarcsnu.`,
+      `The qucik brown fox jmups over the lazy dog.`, // Smart scrambling example
+      `siht si na gnizama txet rebmarcsnu loot taht nac pleh uoy evlos selzzup.`,
+      `ereht era ynam stnerefid sthguorht sdohtem ot elbmarcser txet.`
+    ];
+    const randomSample = samples[Math.floor(Math.random() * samples.length)];
+    setInputText(randomSample);
   };
 
   const handleProcessAgain = () => {
@@ -362,7 +488,7 @@ export default function TextUnscrambler() {
       case 'words': return 'Attempts to unscramble individual words using dictionary matching';
       case 'anagram': return 'Solves anagrams by finding valid word combinations';
       case 'smart': return 'Uses pattern recognition to restore scrambled text readability';
-      case 'pattern': return 'Detects common scrambling patterns like reversal';
+      case 'pattern': return 'Detects common scrambling patterns like reversal and cipher';
       default: return '';
     }
   };
@@ -1072,7 +1198,7 @@ export default function TextUnscrambler() {
                     <div className="space-y-3">
                       <div className="bg-blue-50 border-l-4 border-blue-400 p-3 rounded-r-lg">
                         <h4 className="font-semibold text-blue-900 text-sm">Dictionary Optimization</h4>
-                        <p className="text-blue-800 text-xs mt-1">Uses frequency-weighted word databases with over 50,000 common English words for accurate matching and validation.</p>
+                        <p className="text-blue-800 text-xs mt-1">Uses frequency-weighted word databases with over 1,000 common English words for accurate matching and validation.</p>
                       </div>
                       <div className="bg-green-50 border-l-4 border-green-400 p-3 rounded-r-lg">
                         <h4 className="font-semibold text-green-900 text-sm">Pattern Recognition</h4>
