@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -7,7 +8,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Calculator, DollarSign, TrendingDown, AlertTriangle, Calendar, PiggyBank } from 'lucide-react';
 
 interface SmokingResult {
   dailyCost: number;
@@ -132,285 +132,277 @@ const SmokingCostCalculator = () => {
   ];
 
   return (
-    <>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-red-50 to-orange-50">
       <Helmet>
-        <title>Smoking Cost Calculator - Calculate Financial Cost of Smoking | DapsiWow</title>
-        <meta name="description" content="Free smoking cost calculator to calculate how much money you spend on cigarettes daily, monthly, and yearly. See potential savings from quitting smoking." />
-        <meta name="keywords" content="smoking cost calculator, cigarette cost calculator, smoking expenses, quit smoking savings, tobacco cost" />
-        <meta property="og:title" content="Smoking Cost Calculator - Calculate Financial Cost of Smoking | DapsiWow" />
-        <meta property="og:description" content="Calculate how much money you spend on smoking and see potential savings from quitting." />
+        <title>Smoking Cost Calculator - Calculate True Financial Cost of Smoking | DapsiWow</title>
+        <meta name="description" content="Free smoking cost calculator to calculate how much money you spend on cigarettes daily, monthly, and yearly. Discover potential savings from quitting smoking with our comprehensive financial analysis tool." />
+        <meta name="keywords" content="smoking cost calculator, cigarette cost calculator, smoking expenses, quit smoking savings, tobacco cost, smoking financial impact, cigarette price calculator, smoking budget calculator" />
+        <meta property="og:title" content="Smoking Cost Calculator - Calculate True Financial Cost of Smoking | DapsiWow" />
+        <meta property="og:description" content="Calculate the true financial cost of smoking with our comprehensive smoking cost calculator. See daily, monthly, and yearly expenses plus potential savings from quitting." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="/tools/smoking-cost-calculator" />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="DapsiWow" />
+        <link rel="canonical" href="https://dapsiwow.com/tools/smoking-cost-calculator" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Smoking Cost Calculator",
+            "description": "Professional smoking cost calculator for calculating the true financial impact of smoking habits including daily, monthly, and yearly expenses with potential savings analysis.",
+            "url": "https://dapsiwow.com/tools/smoking-cost-calculator",
+            "applicationCategory": "FinanceApplication",
+            "operatingSystem": "Any",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "featureList": [
+              "Calculate daily, monthly, and yearly smoking costs",
+              "Multiple currency support",
+              "Include additional smoking-related expenses",
+              "Potential savings analysis",
+              "Long-term financial projections"
+            ]
+          })}
+        </script>
       </Helmet>
 
-      <div className="min-h-screen flex flex-col" data-testid="page-smoking-cost">
-        <Header />
-        
-        <main className="flex-1 bg-neutral-50">
-          {/* Hero Section */}
-          <section className="bg-gradient-to-r from-red-600 via-orange-500 to-yellow-600 text-white py-16">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <TrendingDown className="w-8 h-8" />
+      <Header />
+
+      <main>
+        {/* Hero Section */}
+        <section className="relative py-20 sm:py-28 lg:py-32 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-red-600/10 to-orange-600/20"></div>
+          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="space-y-8">
+              <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-red-200">
+                <span className="text-sm font-medium text-red-700">Financial Impact Calculator</span>
               </div>
-              <h1 className="text-4xl sm:text-5xl font-bold mb-6" data-testid="text-page-title">
-                Smoking Cost Calculator
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight">
+                Smoking Cost
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-orange-600">
+                  Calculator
+                </span>
               </h1>
-              <p className="text-xl text-orange-100 max-w-2xl mx-auto">
-                Calculate how much money you spend on smoking and discover potential savings from quitting. See the true financial impact of smoking habits.
+              <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                Calculate the true financial cost of smoking and discover your potential savings from quitting
               </p>
             </div>
-          </section>
+          </div>
+        </section>
 
-          {/* Calculator Section */}
-          <section className="py-16">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <Card className="bg-white shadow-lg border-0">
-                <CardContent className="p-8">
-                  <div className="text-center mb-8">
-                    <Calculator className="w-12 h-12 text-red-600 mx-auto mb-4" />
-                    <h2 className="text-2xl font-semibold text-gray-900 mb-2">Smoking Cost Calculator</h2>
-                    <p className="text-gray-600">Calculate the financial impact of your smoking habits</p>
+        <div className="max-w-7xl mx-auto px-4 py-16">
+          {/* Main Calculator Card */}
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+            <CardContent className="p-0">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+                {/* Input Section */}
+                <div className="p-8 lg:p-12 space-y-8">
+                  <div>
+                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Calculation Settings</h2>
+                    <p className="text-gray-600">Enter your smoking habits and costs</p>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {/* Input Section */}
-                    <div className="space-y-6">
-                      {/* Cigarettes per Day */}
-                      <div>
-                        <Label htmlFor="cigarettes-per-day" className="text-base font-medium text-gray-700 mb-2 block">
-                          Cigarettes per Day
-                        </Label>
+                  <div className="space-y-6">
+                    {/* Cigarettes per Day */}
+                    <div className="space-y-3">
+                      <Label htmlFor="cigarettes-per-day" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Cigarettes per Day
+                      </Label>
+                      <Input
+                        id="cigarettes-per-day"
+                        type="number"
+                        value={cigarettesPerDay}
+                        onChange={(e) => setCigarettesPerDay(e.target.value)}
+                        placeholder="Enter cigarettes per day"
+                        step="0.5"
+                        min="0"
+                        className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-red-500 focus:ring-red-500"
+                        data-testid="input-cigarettes-per-day"
+                      />
+                    </div>
+
+                    {/* Price per Pack */}
+                    <div className="space-y-3">
+                      <Label htmlFor="price-per-pack" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Price per Pack
+                      </Label>
+                      <div className="flex gap-2">
                         <Input
-                          id="cigarettes-per-day"
+                          id="price-per-pack"
                           type="number"
-                          value={cigarettesPerDay}
-                          onChange={(e) => setCigarettesPerDay(e.target.value)}
-                          placeholder="Enter cigarettes per day"
-                          step="0.5"
+                          value={pricePerPack}
+                          onChange={(e) => setPricePerPack(e.target.value)}
+                          placeholder="Enter price per pack"
+                          step="0.01"
                           min="0"
-                          data-testid="input-cigarettes-per-day"
+                          className="flex-1 h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-red-500 focus:ring-red-500"
+                          data-testid="input-price-per-pack"
                         />
-                      </div>
-
-                      {/* Price per Pack */}
-                      <div>
-                        <Label htmlFor="price-per-pack" className="text-base font-medium text-gray-700 mb-2 block">
-                          Price per Pack
-                        </Label>
-                        <div className="flex gap-2">
-                          <Input
-                            id="price-per-pack"
-                            type="number"
-                            value={pricePerPack}
-                            onChange={(e) => setPricePerPack(e.target.value)}
-                            placeholder="Enter price per pack"
-                            step="0.01"
-                            min="0"
-                            className="flex-1"
-                            data-testid="input-price-per-pack"
-                          />
-                          <Select value={currency} onValueChange={setCurrency}>
-                            <SelectTrigger className="w-32" data-testid="select-currency">
-                              <SelectValue />
-                            </SelectTrigger>
-                            <SelectContent>
-                              {currencyOptions.map((option) => (
-                                <SelectItem key={option.value} value={option.value}>
-                                  {option.label}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                        </div>
-                      </div>
-
-                      {/* Cigarettes per Pack */}
-                      <div>
-                        <Label htmlFor="cigarettes-per-pack" className="text-base font-medium text-gray-700 mb-2 block">
-                          Cigarettes per Pack
-                        </Label>
-                        <Select value={cigarettesPerPack} onValueChange={setCigarettesPerPack}>
-                          <SelectTrigger data-testid="select-cigarettes-per-pack">
+                        <Select value={currency} onValueChange={setCurrency}>
+                          <SelectTrigger className="w-32 h-14 border-2 border-gray-200 rounded-xl" data-testid="select-currency">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="10">10 cigarettes</SelectItem>
-                            <SelectItem value="20">20 cigarettes (standard)</SelectItem>
-                            <SelectItem value="25">25 cigarettes</SelectItem>
-                            <SelectItem value="30">30 cigarettes</SelectItem>
+                            {currencyOptions.map((option) => (
+                              <SelectItem key={option.value} value={option.value}>
+                                {option.label}
+                              </SelectItem>
+                            ))}
                           </SelectContent>
                         </Select>
                       </div>
+                    </div>
 
-                      {/* Include Extra Costs */}
-                      <div className="flex items-center space-x-2">
+                    {/* Cigarettes per Pack */}
+                    <div className="space-y-3">
+                      <Label htmlFor="cigarettes-per-pack" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Cigarettes per Pack
+                      </Label>
+                      <Select value={cigarettesPerPack} onValueChange={setCigarettesPerPack}>
+                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-cigarettes-per-pack">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="10">10 cigarettes</SelectItem>
+                          <SelectItem value="20">20 cigarettes (standard)</SelectItem>
+                          <SelectItem value="25">25 cigarettes</SelectItem>
+                          <SelectItem value="30">30 cigarettes</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    {/* Include Extra Costs */}
+                    <div className="space-y-4 bg-gray-50 rounded-xl p-6">
+                      <div className="flex items-center space-x-3">
                         <input
                           type="checkbox"
                           id="include-extras"
                           checked={includeExtras}
                           onChange={(e) => setIncludeExtras(e.target.checked)}
-                          className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500"
+                          className="h-5 w-5 text-red-600 border-2 border-gray-300 rounded focus:ring-red-500"
                           data-testid="checkbox-include-extras"
                         />
-                        <Label htmlFor="include-extras" className="text-sm text-gray-700">
-                          Include extra costs (lighters, accessories, etc.)
-                        </Label>
+                        <label htmlFor="include-extras" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                          Include Extra Costs
+                        </label>
                       </div>
-                    </div>
-
-                    {/* Actions and Warning */}
-                    <div className="space-y-6">
-                      <div className="flex flex-col space-y-4">
-                        <Button
-                          onClick={calculateCosts}
-                          className="bg-red-600 hover:bg-red-700 text-white"
-                          data-testid="button-calculate"
-                        >
-                          <Calculator className="w-4 h-4 mr-2" />
-                          Calculate Smoking Costs
-                        </Button>
-                        <Button
-                          onClick={resetCalculator}
-                          variant="outline"
-                          className="text-gray-600 border-gray-300 hover:bg-gray-50"
-                          data-testid="button-reset"
-                        >
-                          Reset Calculator
-                        </Button>
-                      </div>
-
-                      {/* Health Warning */}
-                      <Card className="bg-red-50 border-red-200">
-                        <CardContent className="p-4">
-                          <h3 className="font-semibold text-red-900 mb-2 flex items-center">
-                            <AlertTriangle className="w-4 h-4 mr-2" />
-                            Health Impact
-                          </h3>
-                          <ul className="text-sm text-red-800 space-y-1">
-                            <li>• Smoking increases risk of heart disease, cancer, and stroke</li>
-                            <li>• Each cigarette reduces life expectancy by ~11 minutes</li>
-                            <li>• Quitting at any age provides immediate health benefits</li>
-                            <li>• Financial savings are just one benefit of quitting</li>
-                          </ul>
-                        </CardContent>
-                      </Card>
-
-                      {/* Quick Stats */}
-                      <Card className="bg-gray-50 border-gray-200">
-                        <CardContent className="p-4">
-                          <h3 className="font-semibold text-gray-900 mb-2">Average Costs (USA)</h3>
-                          <div className="text-sm text-gray-700 space-y-1">
-                            <p>📦 Pack price: $6-15</p>
-                            <p>🚬 1 pack/day: $2,500-5,500/year</p>
-                            <p>💰 Lifetime cost: $50,000-150,000</p>
-                            <p>🏥 Health costs: Additional $3,000+/year</p>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Results Section */}
-              {result && (
-                <Card className="mt-8 bg-red-50 border-red-200" data-testid="results-section">
-                  <CardContent className="p-8">
-                    <div className="text-center mb-6">
-                      <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <DollarSign className="w-8 h-8 text-red-600" />
-                      </div>
-                      <h3 className="text-2xl font-semibold text-gray-900 mb-2">Your Smoking Costs</h3>
-                      <p className="text-gray-600">
-                        {parseFloat(cigarettesPerDay)} cigarettes per day at {formatCurrency(parseFloat(pricePerPack))} per pack
+                      <p className="text-sm text-gray-600">
+                        Include additional costs like lighters, accessories, and smoking-related expenses
                       </p>
                     </div>
 
-                    {/* Cost Breakdown */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 mb-8">
-                      <div className="text-center p-4 bg-white rounded-lg border border-red-200">
-                        <Calendar className="w-6 h-6 text-red-600 mx-auto mb-2" />
-                        <div className="text-lg font-bold text-gray-900" data-testid="result-daily-cost">
-                          {formatCurrency(result.dailyCost)}
-                        </div>
-                        <div className="text-xs text-gray-600">Daily</div>
-                      </div>
-
-                      <div className="text-center p-4 bg-white rounded-lg border border-red-200">
-                        <Calendar className="w-6 h-6 text-red-600 mx-auto mb-2" />
-                        <div className="text-lg font-bold text-gray-900" data-testid="result-weekly-cost">
-                          {formatCurrency(result.weeklyCost)}
-                        </div>
-                        <div className="text-xs text-gray-600">Weekly</div>
-                      </div>
-
-                      <div className="text-center p-4 bg-white rounded-lg border border-red-200">
-                        <Calendar className="w-6 h-6 text-red-600 mx-auto mb-2" />
-                        <div className="text-lg font-bold text-gray-900" data-testid="result-monthly-cost">
-                          {formatCurrency(result.monthlyCost)}
-                        </div>
-                        <div className="text-xs text-gray-600">Monthly</div>
-                      </div>
-
-                      <div className="text-center p-4 bg-white rounded-lg border border-red-200">
-                        <Calendar className="w-6 h-6 text-red-600 mx-auto mb-2" />
-                        <div className="text-lg font-bold text-gray-900" data-testid="result-yearly-cost">
-                          {formatCurrency(result.yearlyCost)}
-                        </div>
-                        <div className="text-xs text-gray-600">Yearly</div>
-                      </div>
-
-                      <div className="text-center p-4 bg-white rounded-lg border border-orange-200">
-                        <Calendar className="w-6 h-6 text-orange-600 mx-auto mb-2" />
-                        <div className="text-lg font-bold text-gray-900" data-testid="result-five-year-cost">
-                          {formatCurrency(result.fiveYearCost)}
-                        </div>
-                        <div className="text-xs text-gray-600">5 Years</div>
-                      </div>
-
-                      <div className="text-center p-4 bg-white rounded-lg border border-orange-200">
-                        <Calendar className="w-6 h-6 text-orange-600 mx-auto mb-2" />
-                        <div className="text-lg font-bold text-gray-900" data-testid="result-ten-year-cost">
-                          {formatCurrency(result.tenYearCost)}
-                        </div>
-                        <div className="text-xs text-gray-600">10 Years</div>
-                      </div>
-
-                      <div className="text-center p-4 bg-white rounded-lg border border-yellow-200">
-                        <Calendar className="w-6 h-6 text-yellow-600 mx-auto mb-2" />
-                        <div className="text-lg font-bold text-gray-900" data-testid="result-twenty-year-cost">
-                          {formatCurrency(result.twentyYearCost)}
-                        </div>
-                        <div className="text-xs text-gray-600">20 Years</div>
-                      </div>
+                    {/* Action Buttons */}
+                    <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                      <Button
+                        onClick={calculateCosts}
+                        className="flex-1 h-14 bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                        data-testid="button-calculate"
+                      >
+                        Calculate Costs
+                      </Button>
+                      <Button
+                        onClick={resetCalculator}
+                        variant="outline"
+                        className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                        data-testid="button-reset"
+                      >
+                        Reset
+                      </Button>
                     </div>
+                  </div>
+                </div>
 
-                    {/* Consumption Stats */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                      <div className="text-center p-4 bg-white rounded-lg border border-red-200">
-                        <div className="text-2xl font-bold text-gray-900" data-testid="result-cigarettes-per-year">
-                          {result.cigarettesPerYear.toLocaleString()}
+                {/* Results Section */}
+                <div className="bg-gradient-to-br from-gray-50 to-red-50 p-8 lg:p-12">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Smoking Cost Analysis</h2>
+
+                  {result ? (
+                    <div className="space-y-6" data-testid="results-section">
+                      {/* Cost Summary */}
+                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-red-100">
+                        <h3 className="text-lg font-bold text-gray-900 mb-4">Your Smoking Costs</h3>
+                        <p className="text-gray-600 mb-4">
+                          {parseFloat(cigarettesPerDay)} cigarettes per day at {formatCurrency(parseFloat(pricePerPack))} per pack
+                        </p>
+                        
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="text-center p-3 bg-red-50 rounded-lg">
+                            <div className="text-lg font-bold text-red-600" data-testid="result-daily-cost">
+                              {formatCurrency(result.dailyCost)}
+                            </div>
+                            <div className="text-xs text-gray-600">Daily</div>
+                          </div>
+                          <div className="text-center p-3 bg-red-50 rounded-lg">
+                            <div className="text-lg font-bold text-red-600" data-testid="result-weekly-cost">
+                              {formatCurrency(result.weeklyCost)}
+                            </div>
+                            <div className="text-xs text-gray-600">Weekly</div>
+                          </div>
+                          <div className="text-center p-3 bg-red-50 rounded-lg">
+                            <div className="text-lg font-bold text-red-600" data-testid="result-monthly-cost">
+                              {formatCurrency(result.monthlyCost)}
+                            </div>
+                            <div className="text-xs text-gray-600">Monthly</div>
+                          </div>
+                          <div className="text-center p-3 bg-red-50 rounded-lg">
+                            <div className="text-lg font-bold text-red-600" data-testid="result-yearly-cost">
+                              {formatCurrency(result.yearlyCost)}
+                            </div>
+                            <div className="text-xs text-gray-600">Yearly</div>
+                          </div>
                         </div>
-                        <div className="text-sm text-gray-600">Cigarettes per Year</div>
                       </div>
 
-                      <div className="text-center p-4 bg-white rounded-lg border border-red-200">
-                        <div className="text-2xl font-bold text-gray-900" data-testid="result-packs-per-year">
-                          {result.packsPerYear.toLocaleString()}
+                      {/* Long-term Projections */}
+                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-orange-100">
+                        <h3 className="text-lg font-bold text-gray-900 mb-4">Long-term Cost Projections</h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                          <div className="text-center p-3 bg-orange-50 rounded-lg">
+                            <div className="text-lg font-bold text-orange-600" data-testid="result-five-year-cost">
+                              {formatCurrency(result.fiveYearCost)}
+                            </div>
+                            <div className="text-xs text-gray-600">5 Years</div>
+                          </div>
+                          <div className="text-center p-3 bg-orange-50 rounded-lg">
+                            <div className="text-lg font-bold text-orange-600" data-testid="result-ten-year-cost">
+                              {formatCurrency(result.tenYearCost)}
+                            </div>
+                            <div className="text-xs text-gray-600">10 Years</div>
+                          </div>
+                          <div className="text-center p-3 bg-orange-50 rounded-lg">
+                            <div className="text-lg font-bold text-orange-600" data-testid="result-twenty-year-cost">
+                              {formatCurrency(result.twentyYearCost)}
+                            </div>
+                            <div className="text-xs text-gray-600">20 Years</div>
+                          </div>
                         </div>
-                        <div className="text-sm text-gray-600">Packs per Year</div>
                       </div>
-                    </div>
 
-                    {/* Potential Savings */}
-                    <Card className="bg-green-50 border-green-200">
-                      <CardContent className="p-6">
-                        <h4 className="text-lg font-semibold text-green-900 mb-4 flex items-center">
-                          <PiggyBank className="w-5 h-5 mr-2" />
-                          What You Could Buy Instead (Per Year)
-                        </h4>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      {/* Consumption Statistics */}
+                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                        <h3 className="text-lg font-bold text-gray-900 mb-4">Annual Consumption</h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div className="text-center p-3 bg-gray-50 rounded-lg">
+                            <div className="text-lg font-bold text-gray-700" data-testid="result-cigarettes-per-year">
+                              {result.cigarettesPerYear.toLocaleString()}
+                            </div>
+                            <div className="text-xs text-gray-600">Cigarettes per Year</div>
+                          </div>
+                          <div className="text-center p-3 bg-gray-50 rounded-lg">
+                            <div className="text-lg font-bold text-gray-700" data-testid="result-packs-per-year">
+                              {result.packsPerYear.toLocaleString()}
+                            </div>
+                            <div className="text-xs text-gray-600">Packs per Year</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Potential Savings */}
+                      <div className="bg-green-50 rounded-2xl p-6 shadow-lg border border-green-200">
+                        <h3 className="text-lg font-bold text-green-900 mb-4">What You Could Buy Instead</h3>
+                        <div className="space-y-2">
                           {result.potentialSavings.map((saving, index) => (
                             <div key={index} className="flex items-center text-green-800">
                               <span className="text-green-600 mr-2">✓</span>
@@ -418,125 +410,361 @@ const SmokingCostCalculator = () => {
                             </div>
                           ))}
                         </div>
-                      </CardContent>
-                    </Card>
-                  </CardContent>
-                </Card>
-              )}
-
-              {/* Educational Content */}
-              <div className="mt-12 space-y-8">
-                {/* Hidden Costs */}
-                <Card className="bg-white shadow-lg">
-                  <CardContent className="p-8">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Hidden Costs of Smoking</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                      <div className="p-4 border border-gray-200 rounded-lg">
-                        <h3 className="font-semibold text-gray-900 mb-2">💊 Healthcare Costs</h3>
-                        <p className="text-sm text-gray-600">$3,000+ additional per year in medical expenses</p>
-                      </div>
-                      
-                      <div className="p-4 border border-gray-200 rounded-lg">
-                        <h3 className="font-semibold text-gray-900 mb-2">🏠 Property Damage</h3>
-                        <p className="text-sm text-gray-600">Burns, odors, reduced home value</p>
-                      </div>
-                      
-                      <div className="p-4 border border-gray-200 rounded-lg">
-                        <h3 className="font-semibold text-gray-900 mb-2">🚗 Vehicle Depreciation</h3>
-                        <p className="text-sm text-gray-600">Smoking reduces car resale value by 7-10%</p>
-                      </div>
-                      
-                      <div className="p-4 border border-gray-200 rounded-lg">
-                        <h3 className="font-semibold text-gray-900 mb-2">🦷 Dental Care</h3>
-                        <p className="text-sm text-gray-600">Extra cleanings, treatments, teeth whitening</p>
-                      </div>
-                      
-                      <div className="p-4 border border-gray-200 rounded-lg">
-                        <h3 className="font-semibold text-gray-900 mb-2">💼 Lost Productivity</h3>
-                        <p className="text-sm text-gray-600">Sick days, smoke breaks, reduced income potential</p>
-                      </div>
-                      
-                      <div className="p-4 border border-gray-200 rounded-lg">
-                        <h3 className="font-semibold text-gray-900 mb-2">💸 Insurance Premiums</h3>
-                        <p className="text-sm text-gray-600">Higher life and health insurance costs</p>
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
-
-                {/* Quitting Benefits */}
-                <Card className="bg-white shadow-lg">
-                  <CardContent className="p-8">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Benefits of Quitting Smoking</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                        <h3 className="font-semibold text-gray-900 mb-3">Financial Benefits</h3>
-                        <ul className="space-y-2 text-sm text-gray-600">
-                          <li>• Immediate savings on cigarette purchases</li>
-                          <li>• Lower health insurance premiums</li>
-                          <li>• Reduced medical expenses</li>
-                          <li>• Money available for other goals</li>
-                          <li>• Potential for investment returns</li>
-                        </ul>
+                  ) : (
+                    <div className="text-center py-16" data-testid="no-results">
+                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <div className="text-3xl font-bold text-gray-400">$</div>
                       </div>
-                      
-                      <div>
-                        <h3 className="font-semibold text-gray-900 mb-3">Health Timeline</h3>
-                        <ul className="space-y-2 text-sm text-gray-600">
-                          <li>• 20 minutes: Heart rate and blood pressure drop</li>
-                          <li>• 12 hours: Carbon monoxide levels normalize</li>
-                          <li>• 2-12 weeks: Circulation improves</li>
-                          <li>• 1-9 months: Coughing and shortness of breath decrease</li>
-                          <li>• 1 year: Risk of heart disease cut in half</li>
-                        </ul>
-                      </div>
+                      <p className="text-gray-500 text-lg">Enter your smoking details to see cost analysis</p>
                     </div>
-                  </CardContent>
-                </Card>
-
-                {/* FAQ */}
-                <Card className="bg-white shadow-lg">
-                  <CardContent className="p-8">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
-                    <div className="space-y-4">
-                      <div>
-                        <h3 className="font-semibold text-gray-900 mb-2">How accurate is this cost calculation?</h3>
-                        <p className="text-gray-600 text-sm">
-                          The calculator provides estimates based on your inputs. Actual costs may vary due to taxes, brand preferences, and smoking patterns. This doesn't include additional health-related costs.
-                        </p>
-                      </div>
-                      
-                      <div>
-                        <h3 className="font-semibold text-gray-900 mb-2">What about e-cigarettes and vaping costs?</h3>
-                        <p className="text-gray-600 text-sm">
-                          This calculator focuses on traditional cigarettes. Vaping costs vary widely based on device, liquid consumption, and replacement parts, but are generally 50-80% less than smoking.
-                        </p>
-                      </div>
-                      
-                      <div>
-                        <h3 className="font-semibold text-gray-900 mb-2">How can I use these savings calculations for motivation?</h3>
-                        <p className="text-gray-600 text-sm">
-                          Set specific savings goals and track your progress. Put the money you would have spent on cigarettes into a separate savings account and watch it grow.
-                        </p>
-                      </div>
-                      
-                      <div>
-                        <h3 className="font-semibold text-gray-900 mb-2">Are there resources to help quit smoking?</h3>
-                        <p className="text-gray-600 text-sm">
-                          Yes! Contact your doctor, call 1-800-QUIT-NOW, or visit smokefree.gov for free resources including counseling, apps, and support programs.
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                  )}
+                </div>
               </div>
+            </CardContent>
+          </Card>
+
+          {/* SEO Content Section */}
+          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">What is a Smoking Cost Calculator?</h3>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    A smoking cost calculator is a financial analysis tool that helps smokers understand the true economic 
+                    impact of their tobacco consumption. This calculator goes beyond simple pack prices to show daily, 
+                    monthly, and yearly expenses, providing a comprehensive view of smoking-related costs over time.
+                  </p>
+                  <p>
+                    Our advanced smoking cost calculator factors in additional expenses like lighters, accessories, and 
+                    smoking-related items, giving you a realistic picture of your total smoking expenditure. The tool 
+                    also projects long-term costs and shows potential savings to motivate quitting decisions.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Why Use Our Smoking Cost Calculator?</h3>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    Understanding the financial impact of smoking can be a powerful motivator for quitting. Our calculator 
+                    provides detailed cost breakdowns that many smokers find shocking, helping them visualize how much 
+                    money could be saved by quitting tobacco use.
+                  </p>
+                  <ul className="space-y-2 list-disc list-inside">
+                    <li>Accurate financial projections up to 20 years</li>
+                    <li>Multiple currency support for global users</li>
+                    <li>Includes hidden costs often overlooked</li>
+                    <li>Shows alternative uses for saved money</li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Calculator Features</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Calculate daily, weekly, monthly, and yearly costs</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Long-term financial projections (5, 10, 20 years)</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Support for multiple currencies and pack sizes</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Include additional smoking-related expenses</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Potential savings visualization</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Understanding Smoking Costs</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Direct costs: cigarettes, tobacco products</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Indirect costs: lighters, ashtrays, accessories</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Hidden costs: increased insurance premiums</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Health costs: additional medical expenses</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Property costs: cleaning, repairs, depreciation</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Additional SEO Content Sections */}
+          <div className="mt-12 space-y-8">
+            {/* Hidden Costs of Smoking */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Hidden Financial Costs of Smoking</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Healthcare Expenses</h4>
+                    <p className="text-gray-600 text-sm">
+                      Smokers typically spend $3,000-5,000 more annually on healthcare costs including doctor visits, 
+                      medications, dental care, and treatments for smoking-related conditions. These costs compound 
+                      over time and are often not included in basic smoking cost calculations.
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Insurance Premiums</h4>
+                    <p className="text-gray-600 text-sm">
+                      Life insurance premiums for smokers can be 2-3 times higher than non-smokers. Health insurance 
+                      surcharges, auto insurance increases due to smoking-related accidents, and homeowner's insurance 
+                      adjustments all add to the hidden costs of smoking.
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Property Damage</h4>
+                    <p className="text-gray-600 text-sm">
+                      Smoking causes property damage through burns, stains, and odors that reduce home and vehicle 
+                      resale values. Professional cleaning services, paint jobs, carpet replacement, and other 
+                      maintenance costs can add thousands to annual expenses.
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Lost Productivity</h4>
+                    <p className="text-gray-600 text-sm">
+                      Smoking breaks, sick days, and reduced work performance due to health issues can impact earning 
+                      potential. Studies show smokers miss more work days and may face career limitations in 
+                      smoke-free workplaces, affecting long-term financial growth.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Cost by Demographics */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">Average Smoking Costs by Region</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <div className="text-sm">
+                      <h4 className="font-semibold text-gray-800 mb-2">United States</h4>
+                      <p>Average pack price: $6.50-$15.00</p>
+                      <p>Annual cost (1 pack/day): $2,400-$5,500</p>
+                    </div>
+                    <div className="text-sm">
+                      <h4 className="font-semibold text-gray-800 mb-2">Canada</h4>
+                      <p>Average pack price: $12.00-$17.00</p>
+                      <p>Annual cost (1 pack/day): $4,400-$6,200</p>
+                    </div>
+                    <div className="text-sm">
+                      <h4 className="font-semibold text-gray-800 mb-2">Australia</h4>
+                      <p>Average pack price: $25.00-$35.00</p>
+                      <p>Annual cost (1 pack/day): $9,100-$12,800</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">Smoking Costs by Age Group</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <div className="text-sm">
+                      <h4 className="font-semibold text-gray-800 mb-2">Ages 18-25</h4>
+                      <p>Lifetime smoking cost: $200,000-$400,000</p>
+                      <p>Opportunity cost with investment: $1.5M+</p>
+                    </div>
+                    <div className="text-sm">
+                      <h4 className="font-semibold text-gray-800 mb-2">Ages 26-40</h4>
+                      <p>Lifetime smoking cost: $150,000-$300,000</p>
+                      <p>Opportunity cost with investment: $800K+</p>
+                    </div>
+                    <div className="text-sm">
+                      <h4 className="font-semibold text-gray-800 mb-2">Ages 40+</h4>
+                      <p>Remaining lifetime cost: $100,000-$200,000</p>
+                      <p>Health cost escalation: $5,000+/year</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">Investment Opportunity Cost</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <p className="text-sm">
+                      The opportunity cost of smoking extends beyond direct expenses. Money spent on cigarettes 
+                      could be invested for long-term growth.
+                    </p>
+                    <div className="text-sm">
+                      <h4 className="font-semibold text-gray-800 mb-2">$3,000/year invested:</h4>
+                      <p>10 years @ 7%: $41,500</p>
+                      <p>20 years @ 7%: $123,000</p>
+                      <p>30 years @ 7%: $283,000</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
-          </section>
-        </main>
-        
-        <Footer />
-      </div>
-    </>
+
+            {/* Quitting Benefits Timeline */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Financial Benefits Timeline of Quitting Smoking</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <h4 className="font-semibold text-gray-800 mb-3">Immediate Financial Benefits</h4>
+                    <div className="space-y-4">
+                      <div className="flex items-start gap-3">
+                        <div className="w-3 h-3 bg-green-500 rounded-full mt-1 flex-shrink-0"></div>
+                        <div>
+                          <h5 className="font-medium text-gray-800">Day 1</h5>
+                          <p className="text-gray-600 text-sm">Immediate savings on daily cigarette purchases begin</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-3 h-3 bg-green-500 rounded-full mt-1 flex-shrink-0"></div>
+                        <div>
+                          <h5 className="font-medium text-gray-800">Week 1</h5>
+                          <p className="text-gray-600 text-sm">Average savings of $50-100 depending on smoking habits</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-3 h-3 bg-green-500 rounded-full mt-1 flex-shrink-0"></div>
+                        <div>
+                          <h5 className="font-medium text-gray-800">Month 1</h5>
+                          <p className="text-gray-600 text-sm">$200-500 saved, enough for significant purchases</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-3 h-3 bg-green-500 rounded-full mt-1 flex-shrink-0"></div>
+                        <div>
+                          <h5 className="font-medium text-gray-800">Year 1</h5>
+                          <p className="text-gray-600 text-sm">$2,000-6,000 saved, major financial milestone reached</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="space-y-6">
+                    <h4 className="font-semibold text-gray-800 mb-3">Long-term Financial Recovery</h4>
+                    <div className="space-y-4">
+                      <div className="flex items-start gap-3">
+                        <div className="w-3 h-3 bg-blue-500 rounded-full mt-1 flex-shrink-0"></div>
+                        <div>
+                          <h5 className="font-medium text-gray-800">1-2 Years</h5>
+                          <p className="text-gray-600 text-sm">Insurance premiums begin to decrease, health costs reduce</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-3 h-3 bg-blue-500 rounded-full mt-1 flex-shrink-0"></div>
+                        <div>
+                          <h5 className="font-medium text-gray-800">5 Years</h5>
+                          <p className="text-gray-600 text-sm">Significant health cost savings, improved earning potential</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-3 h-3 bg-blue-500 rounded-full mt-1 flex-shrink-0"></div>
+                        <div>
+                          <h5 className="font-medium text-gray-800">10+ Years</h5>
+                          <p className="text-gray-600 text-sm">Full insurance benefits, maximized investment growth</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* FAQ Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How accurate is this smoking cost calculator?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Our calculator provides highly accurate estimates based on your specific inputs including cigarettes 
+                        per day, pack price, and additional costs. Results may vary based on local taxes, brand preferences, 
+                        and individual smoking patterns, but the calculations provide reliable baseline projections.
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">What costs are included in the "extra expenses" option?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Extra expenses include lighters, matches, ashtrays, smoking accessories, air fresheners, and other 
+                        smoking-related purchases. This typically adds 10-15% to your total smoking costs and provides a 
+                        more comprehensive view of smoking expenses.
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Can I use this calculator for other tobacco products?</h4>
+                      <p className="text-gray-600 text-sm">
+                        While designed for cigarettes, you can adapt the calculator for cigars, pipe tobacco, or other products 
+                        by adjusting the "cigarettes per pack" field and entering appropriate prices. For vaping products, 
+                        consider liquid consumption and device replacement costs.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How does smoking affect my overall financial health?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Smoking significantly impacts financial health through direct costs, healthcare expenses, reduced 
+                        income potential, and lost investment opportunities. The money spent on smoking could instead build 
+                        emergency funds, contribute to retirement, or fund major life goals.
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">What should I do with money saved from quitting smoking?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Consider investing saved money in emergency funds, retirement accounts, or other financial goals. 
+                        Many successful quitters set up automatic transfers to savings accounts to help visualize and 
+                        maximize their financial benefits from quitting.
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Are there resources to help quit smoking?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Yes, many free resources are available including quitlines (1-800-QUIT-NOW), mobile apps, online 
+                        support groups, and healthcare provider programs. Many insurance plans also cover smoking cessation 
+                        programs and medications.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </main>
+
+      <Footer />
+    </div>
   );
 };
 
