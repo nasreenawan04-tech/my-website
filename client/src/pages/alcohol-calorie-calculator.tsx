@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -7,7 +8,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Calculator, Wine, Flame, Info } from 'lucide-react';
 
 interface DrinkPreset {
   name: string;
@@ -67,11 +67,11 @@ const AlcoholCalorieCalculator = () => {
   };
 
   const drinkTypeOptions = [
-    { value: 'beer', label: '🍺 Beer' },
-    { value: 'wine', label: '🍷 Wine' },
-    { value: 'spirits', label: '🥃 Spirits' },
-    { value: 'cocktails', label: '🍸 Cocktails' },
-    { value: 'custom', label: '🔧 Custom Drink' }
+    { value: 'beer', label: 'Beer' },
+    { value: 'wine', label: 'Wine' },
+    { value: 'spirits', label: 'Spirits' },
+    { value: 'cocktails', label: 'Cocktails' },
+    { value: 'custom', label: 'Custom Drink' }
   ];
 
   const servingUnitOptions = [
@@ -169,393 +169,567 @@ const AlcoholCalorieCalculator = () => {
   };
 
   return (
-    <>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>Alcohol Calorie Calculator - Calculate Calories in Alcoholic Drinks | DapsiWow</title>
-        <meta name="description" content="Free alcohol calorie calculator to calculate calories in beer, wine, spirits, and cocktails. Track your alcohol intake for better health." />
-        <meta name="keywords" content="alcohol calorie calculator, drink calories, beer calories, wine calories, cocktail calories, alcohol nutrition" />
-        <meta property="og:title" content="Alcohol Calorie Calculator - Calculate Calories in Alcoholic Drinks | DapsiWow" />
-        <meta property="og:description" content="Calculate calories in your alcoholic beverages with our free alcohol calorie calculator." />
+        <title>Alcohol Calorie Calculator - Calculate Drink Calories Accurately | DapsiWow</title>
+        <meta name="description" content="Free alcohol calorie calculator to accurately calculate calories in beer, wine, spirits, and cocktails. Track your alcohol intake for better health and weight management with our comprehensive drink calorie tool." />
+        <meta name="keywords" content="alcohol calorie calculator, drink calories, beer calories, wine calories, cocktail calories, alcohol nutrition facts, drink calorie counter, alcoholic beverage calories" />
+        <meta property="og:title" content="Alcohol Calorie Calculator - Calculate Drink Calories Accurately | DapsiWow" />
+        <meta property="og:description" content="Calculate calories in alcoholic beverages with precision. Free tool for tracking drink calories including beer, wine, spirits, and cocktails for health-conscious individuals." />
         <meta property="og:type" content="website" />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="DapsiWow" />
         <link rel="canonical" href="https://dapsiwow.com/alcohol-calorie-calculator" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Alcohol Calorie Calculator",
+            "description": "Professional alcohol calorie calculator for accurately determining calories in beer, wine, spirits, and cocktails. Essential tool for health-conscious drinking and weight management.",
+            "url": "https://dapsiwow.com/alcohol-calorie-calculator",
+            "applicationCategory": "HealthApplication",
+            "operatingSystem": "Any",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "featureList": [
+              "Calculate calories in all types of alcoholic beverages",
+              "Preset values for common drinks",
+              "Custom drink calorie calculation",
+              "Alcohol vs non-alcohol calorie breakdown",
+              "Multiple serving size units supported"
+            ]
+          })}
+        </script>
       </Helmet>
 
-      <div className="min-h-screen flex flex-col" data-testid="page-alcohol-calories">
-        <Header />
-        
-        <main className="flex-1 bg-neutral-50">
-          {/* Hero Section */}
-          <section className="bg-gradient-to-r from-purple-600 via-pink-500 to-red-600 text-white py-16">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <Wine className="w-8 h-8" />
+      <Header />
+
+      <main>
+        {/* Hero Section */}
+        <section className="relative py-20 sm:py-28 lg:py-32 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
+          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="space-y-8">
+              <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+                <span className="text-sm font-medium text-blue-700">Health & Nutrition Calculator</span>
               </div>
-              <h1 className="text-4xl sm:text-5xl font-bold mb-6" data-testid="text-page-title">
-                Alcohol Calorie Calculator
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight">
+                Alcohol Calorie
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                  Calculator
+                </span>
               </h1>
-              <p className="text-xl text-purple-100 max-w-2xl mx-auto">
-                Calculate calories in beer, wine, spirits, and cocktails. Track your alcohol intake for better health and fitness goals.
+              <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                Calculate calories in beer, wine, spirits, and cocktails for better health and weight management
               </p>
             </div>
-          </section>
+          </div>
+        </section>
 
-          {/* Calculator Section */}
-          <section className="py-16">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <Card className="bg-white shadow-lg border-0">
-                <CardContent className="p-8">
-                  <div className="text-center mb-8">
-                    <Calculator className="w-12 h-12 text-purple-600 mx-auto mb-4" />
-                    <h2 className="text-2xl font-semibold text-gray-900 mb-2">Alcohol Calorie Calculator</h2>
-                    <p className="text-gray-600">Calculate calories in your alcoholic beverages</p>
+        <div className="max-w-7xl mx-auto px-4 py-16">
+          {/* Main Calculator Card */}
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+            <CardContent className="p-0">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+                {/* Input Section */}
+                <div className="p-8 lg:p-12 space-y-8">
+                  <div>
+                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Drink Details</h2>
+                    <p className="text-gray-600">Configure your alcoholic beverage information</p>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {/* Input Section */}
-                    <div className="space-y-6">
-                      {/* Drink Type Selection */}
-                      <div>
-                        <Label htmlFor="drink-type" className="text-base font-medium text-gray-700 mb-2 block">
-                          Drink Type
+                  <div className="space-y-6">
+                    {/* Drink Type Selection */}
+                    <div className="space-y-3">
+                      <Label htmlFor="drink-type" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Drink Type
+                      </Label>
+                      <Select value={drinkType} onValueChange={setDrinkType}>
+                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-drink-type">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {drinkTypeOptions.map((option) => (
+                            <SelectItem key={option.value} value={option.value}>
+                              {option.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    {/* Preset Selection for non-custom drinks */}
+                    {drinkType !== 'custom' && (
+                      <div className="space-y-3">
+                        <Label htmlFor="preset" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                          Common {drinkTypeOptions.find(d => d.value === drinkType)?.label} Options
                         </Label>
-                        <Select value={drinkType} onValueChange={setDrinkType}>
-                          <SelectTrigger data-testid="select-drink-type">
-                            <SelectValue />
+                        <Select onValueChange={loadPreset}>
+                          <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-preset">
+                            <SelectValue placeholder="Select a common drink" />
                           </SelectTrigger>
                           <SelectContent>
-                            {drinkTypeOptions.map((option) => (
-                              <SelectItem key={option.value} value={option.value}>
-                                {option.label}
+                            {(drinkPresets[drinkType] || []).map((preset) => (
+                              <SelectItem key={preset.name} value={preset.name}>
+                                {preset.name} ({preset.calories} cal, {preset.servingSize})
                               </SelectItem>
                             ))}
                           </SelectContent>
                         </Select>
                       </div>
+                    )}
 
-                      {/* Preset Selection for non-custom drinks */}
-                      {drinkType !== 'custom' && (
-                        <div>
-                          <Label htmlFor="preset" className="text-base font-medium text-gray-700 mb-2 block">
-                            Common {drinkTypeOptions.find(d => d.value === drinkType)?.label.replace(/[🍺🍷🥃🍸]/g, '').trim()} Options
-                          </Label>
-                          <Select onValueChange={loadPreset}>
-                            <SelectTrigger data-testid="select-preset">
-                              <SelectValue placeholder="Select a common drink" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              {(drinkPresets[drinkType] || []).map((preset) => (
-                                <SelectItem key={preset.name} value={preset.name}>
-                                  {preset.name} ({preset.calories} cal, {preset.servingSize})
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                        </div>
-                      )}
-
-                      {/* Custom Drink Calories */}
-                      {drinkType === 'custom' && (
-                        <div>
-                          <Label htmlFor="custom-drink" className="text-base font-medium text-gray-700 mb-2 block">
-                            Calories per Serving
-                          </Label>
-                          <Input
-                            id="custom-drink"
-                            type="number"
-                            value={customDrink}
-                            onChange={(e) => setCustomDrink(e.target.value)}
-                            placeholder="Enter calories per serving"
-                            min="0"
-                            data-testid="input-custom-calories"
-                          />
-                        </div>
-                      )}
-
-                      {/* Serving Size */}
-                      <div>
-                        <Label htmlFor="serving-size" className="text-base font-medium text-gray-700 mb-2 block">
-                          Serving Size {drinkType !== 'custom' ? '(optional - uses standard if empty)' : ''}
-                        </Label>
-                        <div className="flex gap-2">
-                          <Input
-                            id="serving-size"
-                            type="number"
-                            value={servingSize}
-                            onChange={(e) => setServingSize(e.target.value)}
-                            placeholder="Enter serving size"
-                            step="0.1"
-                            min="0"
-                            className="flex-1"
-                            data-testid="input-serving-size"
-                          />
-                          <Select value={servingUnit} onValueChange={setServingUnit}>
-                            <SelectTrigger className="w-20" data-testid="select-serving-unit">
-                              <SelectValue />
-                            </SelectTrigger>
-                            <SelectContent>
-                              {servingUnitOptions.map((unit) => (
-                                <SelectItem key={unit.value} value={unit.value}>
-                                  {unit.label}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                        </div>
-                      </div>
-
-                      {/* Alcohol Content */}
-                      <div>
-                        <Label htmlFor="alcohol-content" className="text-base font-medium text-gray-700 mb-2 block">
-                          Alcohol Content (% ABV) {drinkType !== 'custom' ? '(optional - uses standard if empty)' : ''}
+                    {/* Custom Drink Calories */}
+                    {drinkType === 'custom' && (
+                      <div className="space-y-3">
+                        <Label htmlFor="custom-drink" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                          Calories per Serving
                         </Label>
                         <Input
-                          id="alcohol-content"
+                          id="custom-drink"
                           type="number"
-                          value={alcoholContent}
-                          onChange={(e) => setAlcoholContent(e.target.value)}
-                          placeholder="Enter alcohol percentage"
+                          value={customDrink}
+                          onChange={(e) => setCustomDrink(e.target.value)}
+                          placeholder="Enter calories per serving"
+                          min="0"
+                          className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          data-testid="input-custom-calories"
+                        />
+                      </div>
+                    )}
+
+                    {/* Serving Size */}
+                    <div className="space-y-3">
+                      <Label htmlFor="serving-size" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Serving Size {drinkType !== 'custom' ? '(optional)' : ''}
+                      </Label>
+                      <div className="flex gap-2">
+                        <Input
+                          id="serving-size"
+                          type="number"
+                          value={servingSize}
+                          onChange={(e) => setServingSize(e.target.value)}
+                          placeholder="Enter serving size"
                           step="0.1"
                           min="0"
-                          max="100"
-                          data-testid="input-alcohol-content"
+                          className="flex-1 h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          data-testid="input-serving-size"
                         />
-                      </div>
-
-                      {/* Number of Drinks */}
-                      <div>
-                        <Label htmlFor="number-drinks" className="text-base font-medium text-gray-700 mb-2 block">
-                          Number of Drinks
-                        </Label>
-                        <Input
-                          id="number-drinks"
-                          type="number"
-                          value={numberOfDrinks}
-                          onChange={(e) => setNumberOfDrinks(e.target.value)}
-                          placeholder="Number of drinks"
-                          min="1"
-                          data-testid="input-number-drinks"
-                        />
+                        <Select value={servingUnit} onValueChange={setServingUnit}>
+                          <SelectTrigger className="w-20 h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-serving-unit">
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {servingUnitOptions.map((unit) => (
+                              <SelectItem key={unit.value} value={unit.value}>
+                                {unit.label}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
                       </div>
                     </div>
 
-                    {/* Actions and Tips */}
-                    <div className="space-y-6">
-                      <div className="flex flex-col space-y-4">
-                        <Button
-                          onClick={calculateCalories}
-                          className="bg-purple-600 hover:bg-purple-700 text-white"
-                          data-testid="button-calculate"
-                        >
-                          <Calculator className="w-4 h-4 mr-2" />
-                          Calculate Calories
-                        </Button>
-                        <Button
-                          onClick={resetCalculator}
-                          variant="outline"
-                          className="text-gray-600 border-gray-300 hover:bg-gray-50"
-                          data-testid="button-reset"
-                        >
-                          Reset Calculator
-                        </Button>
-                      </div>
+                    {/* Alcohol Content */}
+                    <div className="space-y-3">
+                      <Label htmlFor="alcohol-content" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Alcohol Content (% ABV) {drinkType !== 'custom' ? '(optional)' : ''}
+                      </Label>
+                      <Input
+                        id="alcohol-content"
+                        type="number"
+                        value={alcoholContent}
+                        onChange={(e) => setAlcoholContent(e.target.value)}
+                        placeholder="Enter alcohol percentage"
+                        step="0.1"
+                        min="0"
+                        max="100"
+                        className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                        data-testid="input-alcohol-content"
+                      />
+                    </div>
 
-                      {/* Health Tips */}
-                      <Card className="bg-purple-50 border-purple-200">
-                        <CardContent className="p-4">
-                          <h3 className="font-semibold text-purple-900 mb-2 flex items-center">
-                            <Info className="w-4 h-4 mr-2" />
-                            Health Tips
-                          </h3>
-                          <ul className="text-sm text-purple-800 space-y-1">
-                            <li>• Moderate drinking: 1 drink/day (women), 2 drinks/day (men)</li>
-                            <li>• Alcohol has 7 calories per gram</li>
-                            <li>• Choose lower-calorie options like light beer or dry wine</li>
-                            <li>• Alternate with water to stay hydrated</li>
-                          </ul>
-                        </CardContent>
-                      </Card>
+                    {/* Number of Drinks */}
+                    <div className="space-y-3">
+                      <Label htmlFor="number-drinks" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Number of Drinks
+                      </Label>
+                      <Input
+                        id="number-drinks"
+                        type="number"
+                        value={numberOfDrinks}
+                        onChange={(e) => setNumberOfDrinks(e.target.value)}
+                        placeholder="Number of drinks"
+                        min="1"
+                        className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                        data-testid="input-number-drinks"
+                      />
+                    </div>
 
-                      {/* Quick Reference */}
-                      <Card className="bg-gray-50 border-gray-200">
-                        <CardContent className="p-4">
-                          <h3 className="font-semibold text-gray-900 mb-2">Quick Reference</h3>
-                          <div className="text-sm text-gray-700 space-y-1">
-                            <p>🍺 Light Beer: ~100 cal</p>
-                            <p>🍷 Wine (5oz): ~120 cal</p>
-                            <p>🥃 Spirit (1.5oz): ~95 cal</p>
-                            <p>🍸 Cocktail: ~150-300 cal</p>
-                          </div>
-                        </CardContent>
-                      </Card>
+                    {/* Action Buttons */}
+                    <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                      <Button
+                        onClick={calculateCalories}
+                        className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                        data-testid="button-calculate"
+                      >
+                        Calculate Calories
+                      </Button>
+                      <Button
+                        onClick={resetCalculator}
+                        variant="outline"
+                        className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                        data-testid="button-reset"
+                      >
+                        Reset
+                      </Button>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
 
-              {/* Results Section */}
-              {result && (
-                <Card className="mt-8 bg-purple-50 border-purple-200" data-testid="results-section">
-                  <CardContent className="p-8">
-                    <div className="text-center mb-6">
-                      <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <Flame className="w-8 h-8 text-purple-600" />
-                      </div>
-                      <h3 className="text-2xl font-semibold text-gray-900 mb-2">Calorie Breakdown</h3>
-                      <p className="text-gray-600">
-                        {result.numberOfDrinks} {result.numberOfDrinks === 1 ? 'serving' : 'servings'} of {result.drinkType.replace(/[🍺🍷🥃🍸🔧]/g, '').trim()}
-                      </p>
-                    </div>
+                {/* Results Section */}
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Calorie Breakdown</h2>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                      <div className="text-center p-4 bg-white rounded-lg border border-purple-200">
-                        <Flame className="w-8 h-8 text-orange-500 mx-auto mb-2" />
-                        <div className="text-3xl font-bold text-gray-900" data-testid="result-total-calories">
-                          {result.totalCalories}
+                  {result ? (
+                    <div className="space-y-6" data-testid="results-section">
+                      {/* Result Summary */}
+                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
+                        <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                          {result.numberOfDrinks} {result.numberOfDrinks === 1 ? 'serving' : 'servings'} of {result.drinkType}
+                        </h3>
+                        
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="text-center p-4 bg-blue-50 rounded-lg">
+                            <div className="text-3xl font-bold text-blue-600" data-testid="result-total-calories">
+                              {result.totalCalories}
+                            </div>
+                            <div className="text-sm text-blue-700 font-medium">Total Calories</div>
+                          </div>
+
+                          <div className="text-center p-4 bg-purple-50 rounded-lg">
+                            <div className="text-3xl font-bold text-purple-600" data-testid="result-alcohol-calories">
+                              {result.alcoholCalories}
+                            </div>
+                            <div className="text-sm text-purple-700 font-medium">From Alcohol</div>
+                          </div>
+
+                          <div className="text-center p-4 bg-green-50 rounded-lg">
+                            <div className="text-3xl font-bold text-green-600" data-testid="result-other-calories">
+                              {result.nonAlcoholCalories}
+                            </div>
+                            <div className="text-sm text-green-700 font-medium">Other Calories</div>
+                          </div>
+
+                          <div className="text-center p-4 bg-orange-50 rounded-lg">
+                            <div className="text-3xl font-bold text-orange-600" data-testid="result-alcohol-grams">
+                              {result.totalAlcoholGrams}g
+                            </div>
+                            <div className="text-sm text-orange-700 font-medium">Pure Alcohol</div>
+                          </div>
                         </div>
-                        <div className="text-sm text-gray-600">Total Calories</div>
                       </div>
 
-                      <div className="text-center p-4 bg-white rounded-lg border border-purple-200">
-                        <Wine className="w-8 h-8 text-purple-600 mx-auto mb-2" />
-                        <div className="text-3xl font-bold text-gray-900" data-testid="result-alcohol-calories">
-                          {result.alcoholCalories}
+                      {/* Additional Info */}
+                      <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200">
+                        <div className="text-center">
+                          <p className="text-sm text-gray-600">
+                            Alcohol contains 7 calories per gram. Other calories come from sugars, carbohydrates, and additional ingredients.
+                          </p>
                         </div>
-                        <div className="text-sm text-gray-600">Alcohol Calories</div>
-                      </div>
-
-                      <div className="text-center p-4 bg-white rounded-lg border border-purple-200">
-                        <Calculator className="w-8 h-8 text-purple-600 mx-auto mb-2" />
-                        <div className="text-3xl font-bold text-gray-900" data-testid="result-other-calories">
-                          {result.nonAlcoholCalories}
-                        </div>
-                        <div className="text-sm text-gray-600">Other Calories</div>
-                      </div>
-
-                      <div className="text-center p-4 bg-white rounded-lg border border-purple-200">
-                        <Info className="w-8 h-8 text-purple-600 mx-auto mb-2" />
-                        <div className="text-3xl font-bold text-gray-900" data-testid="result-alcohol-grams">
-                          {result.totalAlcoholGrams}g
-                        </div>
-                        <div className="text-sm text-gray-600">Total Alcohol</div>
                       </div>
                     </div>
-
-                    <div className="mt-6 p-4 bg-white rounded-lg border border-purple-200">
-                      <p className="text-sm text-gray-600 text-center">
-                        💡 Alcohol contains 7 calories per gram. Other calories come from sugars, carbohydrates, and other ingredients in the beverage.
-                      </p>
+                  ) : (
+                    <div className="text-center py-16" data-testid="no-results">
+                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <div className="text-3xl font-bold text-gray-400">🍷</div>
+                      </div>
+                      <p className="text-gray-500 text-lg">Enter drink details and calculate to see calorie breakdown</p>
                     </div>
-                  </CardContent>
-                </Card>
-              )}
-
-              {/* Educational Content */}
-              <div className="mt-12 space-y-8">
-                {/* Calorie Comparison */}
-                <Card className="bg-white shadow-lg">
-                  <CardContent className="p-8">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Alcohol Calorie Comparison</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                      <div className="p-4 border border-gray-200 rounded-lg text-center">
-                        <h3 className="font-semibold text-gray-900 mb-2">🍺 Light Beer</h3>
-                        <p className="text-2xl font-bold text-gray-900">~100</p>
-                        <p className="text-sm text-gray-600">calories per 12 oz</p>
-                      </div>
-                      
-                      <div className="p-4 border border-gray-200 rounded-lg text-center">
-                        <h3 className="font-semibold text-gray-900 mb-2">🍷 Wine</h3>
-                        <p className="text-2xl font-bold text-gray-900">~120</p>
-                        <p className="text-sm text-gray-600">calories per 5 oz</p>
-                      </div>
-                      
-                      <div className="p-4 border border-gray-200 rounded-lg text-center">
-                        <h3 className="font-semibold text-gray-900 mb-2">🥃 Spirits</h3>
-                        <p className="text-2xl font-bold text-gray-900">~95</p>
-                        <p className="text-sm text-gray-600">calories per 1.5 oz</p>
-                      </div>
-                      
-                      <div className="p-4 border border-gray-200 rounded-lg text-center">
-                        <h3 className="font-semibold text-gray-900 mb-2">🍸 Cocktails</h3>
-                        <p className="text-2xl font-bold text-gray-900">150-300</p>
-                        <p className="text-sm text-gray-600">calories varies widely</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* Health Guidelines */}
-                <Card className="bg-white shadow-lg">
-                  <CardContent className="p-8">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Alcohol & Health Guidelines</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                        <h3 className="font-semibold text-gray-900 mb-3">Moderate Drinking Guidelines</h3>
-                        <ul className="space-y-2 text-sm text-gray-600">
-                          <li>• Women: Up to 1 drink per day</li>
-                          <li>• Men: Up to 2 drinks per day</li>
-                          <li>• 1 drink = 12 oz beer, 5 oz wine, or 1.5 oz spirits</li>
-                          <li>• Have alcohol-free days each week</li>
-                          <li>• Never drink and drive</li>
-                        </ul>
-                      </div>
-                      
-                      <div>
-                        <h3 className="font-semibold text-gray-900 mb-3">Calorie Impact</h3>
-                        <ul className="space-y-2 text-sm text-gray-600">
-                          <li>• Alcohol = 7 calories per gram</li>
-                          <li>• Often called "empty calories" (no nutrients)</li>
-                          <li>• Can contribute to weight gain</li>
-                          <li>• May increase appetite</li>
-                          <li>• Choose lower-calorie options when possible</li>
-                        </ul>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* FAQ */}
-                <Card className="bg-white shadow-lg">
-                  <CardContent className="p-8">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
-                    <div className="space-y-4">
-                      <div>
-                        <h3 className="font-semibold text-gray-900 mb-2">How accurate is this calculator?</h3>
-                        <p className="text-gray-600 text-sm">
-                          The calculator uses standard values for common drinks and scientific formulas for alcohol calories. Results are estimates and actual calories may vary by brand and preparation.
-                        </p>
-                      </div>
-                      
-                      <div>
-                        <h3 className="font-semibold text-gray-900 mb-2">Which alcoholic drinks are lowest in calories?</h3>
-                        <p className="text-gray-600 text-sm">
-                          Generally, straight spirits (vodka, gin, whiskey) have the fewest calories per serving, followed by dry wines and light beers. Cocktails with mixers tend to be highest.
-                        </p>
-                      </div>
-                      
-                      <div>
-                        <h3 className="font-semibold text-gray-900 mb-2">Do all calories from alcohol get stored as fat?</h3>
-                        <p className="text-gray-600 text-sm">
-                          Alcohol calories are metabolized differently than food calories. Your body prioritizes metabolizing alcohol, which can slow fat burning, but alcohol calories don't directly convert to fat.
-                        </p>
-                      </div>
-                      
-                      <div>
-                        <h3 className="font-semibold text-gray-900 mb-2">Can I include alcohol in a weight loss diet?</h3>
-                        <p className="text-gray-600 text-sm">
-                          Moderate alcohol consumption can fit into a weight loss plan if you account for the calories in your daily total. Choose lower-calorie options and drink in moderation.
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                  )}
+                </div>
               </div>
-            </div>
-          </section>
-        </main>
-        
-        <Footer />
-      </div>
-    </>
+            </CardContent>
+          </Card>
+
+          {/* SEO Content Section */}
+          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Understanding Alcohol Calories</h3>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    Alcoholic beverages contain calories from both alcohol and other ingredients like sugars, 
+                    carbohydrates, and additives. Understanding the caloric content of your drinks is essential 
+                    for maintaining a healthy diet and managing weight effectively.
+                  </p>
+                  <p>
+                    Our alcohol calorie calculator provides accurate calculations based on the alcohol by volume 
+                    (ABV) percentage and serving size, giving you detailed insights into both alcohol-derived 
+                    calories and calories from other sources in your beverage.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Why Track Alcohol Calories?</h3>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    Alcohol calories are often called "empty calories" because they provide energy without 
+                    essential nutrients. These calories can significantly impact your daily caloric intake 
+                    and weight management goals, making tracking crucial for health-conscious individuals.
+                  </p>
+                  <ul className="space-y-2 list-disc list-inside">
+                    <li>Better weight management and control</li>
+                    <li>Informed decision-making about drink choices</li>
+                    <li>Understanding nutritional impact of alcohol consumption</li>
+                    <li>Support for fitness and health goals</li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Calculator Features</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Preset values for common alcoholic beverages</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Custom drink calorie calculation support</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Multiple serving size units (oz, ml, cl, L)</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Alcohol vs non-alcohol calorie breakdown</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Pure alcohol content calculation in grams</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Health Applications</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Weight loss and management programs</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Fitness and bodybuilding nutrition planning</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Diabetes and blood sugar management</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Heart health and cardiovascular wellness</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>General nutritional awareness and education</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Additional SEO Content Sections */}
+          <div className="mt-12 space-y-8">
+            {/* Comprehensive Drink Calorie Guide */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Complete Alcoholic Beverage Calorie Guide</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Beer Calories</h4>
+                    <div className="space-y-2 text-sm text-gray-600">
+                      <p>Light Beer (12 oz): 100-110 calories</p>
+                      <p>Regular Beer (12 oz): 140-160 calories</p>
+                      <p>IPA/Craft Beer (12 oz): 170-190 calories</p>
+                      <p>Stout/Porter (12 oz): 200-220 calories</p>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Wine Calories</h4>
+                    <div className="space-y-2 text-sm text-gray-600">
+                      <p>White Wine (5 oz): 115-125 calories</p>
+                      <p>Red Wine (5 oz): 120-130 calories</p>
+                      <p>Rosé Wine (5 oz): 110-120 calories</p>
+                      <p>Champagne (5 oz): 95-105 calories</p>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Spirits Calories</h4>
+                    <div className="space-y-2 text-sm text-gray-600">
+                      <p>Vodka (1.5 oz): 95-100 calories</p>
+                      <p>Whiskey (1.5 oz): 95-100 calories</p>
+                      <p>Rum (1.5 oz): 95-100 calories</p>
+                      <p>Gin (1.5 oz): 95-100 calories</p>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Cocktail Calories</h4>
+                    <div className="space-y-2 text-sm text-gray-600">
+                      <p>Martini: 120-140 calories</p>
+                      <p>Margarita: 160-180 calories</p>
+                      <p>Mojito: 140-160 calories</p>
+                      <p>Piña Colada: 240-260 calories</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Health Guidelines and Recommendations */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Alcohol Consumption Guidelines & Health Impact</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="text-lg font-semibold text-gray-800 mb-3">Moderate Drinking Guidelines</h4>
+                      <div className="space-y-2 text-sm text-gray-600">
+                        <p>According to health authorities, moderate drinking is defined as:</p>
+                        <ul className="list-disc list-inside space-y-1 ml-4">
+                          <li>Women: Up to 1 standard drink per day</li>
+                          <li>Men: Up to 2 standard drinks per day</li>
+                          <li>1 standard drink = 12 oz beer, 5 oz wine, or 1.5 oz spirits</li>
+                        </ul>
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <h4 className="text-lg font-semibold text-gray-800 mb-3">Calorie Impact on Weight</h4>
+                      <div className="space-y-2 text-sm text-gray-600">
+                        <p>Alcohol calories can significantly impact weight management:</p>
+                        <ul className="list-disc list-inside space-y-1 ml-4">
+                          <li>Alcohol contains 7 calories per gram (nearly as much as fat)</li>
+                          <li>These are "empty calories" with no nutritional value</li>
+                          <li>Regular consumption can lead to weight gain</li>
+                          <li>Alcohol may increase appetite and reduce inhibitions around food</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="text-lg font-semibold text-gray-800 mb-3">Health Benefits & Risks</h4>
+                      <div className="space-y-2 text-sm text-gray-600">
+                        <p><strong>Potential Benefits (moderate consumption):</strong></p>
+                        <ul className="list-disc list-inside space-y-1 ml-4 mb-3">
+                          <li>May reduce risk of heart disease</li>
+                          <li>Potential antioxidant properties in wine</li>
+                          <li>Social and relaxation benefits</li>
+                        </ul>
+                        
+                        <p><strong>Health Risks (excessive consumption):</strong></p>
+                        <ul className="list-disc list-inside space-y-1 ml-4">
+                          <li>Increased risk of liver disease</li>
+                          <li>Higher cancer risk</li>
+                          <li>Cardiovascular problems</li>
+                          <li>Mental health impacts</li>
+                          <li>Addiction potential</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* FAQ Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions About Alcohol Calories</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How accurate is this alcohol calorie calculator?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Our calculator uses scientifically accurate formulas based on alcohol content and standard 
+                        nutritional data. It provides highly accurate estimates for common beverages and allows 
+                        custom calculations for precise tracking.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Which alcoholic drinks are lowest in calories?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Generally, straight spirits (vodka, gin, whiskey) have the lowest calories per standard 
+                        serving, followed by dry wines and light beers. Mixed drinks and cocktails with added 
+                        sugars tend to be highest in calories.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Do alcohol calories contribute to weight gain?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Yes, alcohol calories contribute to your daily caloric intake and can lead to weight gain 
+                        if consumed in excess. Your body prioritizes metabolizing alcohol, which can slow down 
+                        fat burning and promote fat storage.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Can I include alcohol in a weight loss diet?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Moderate alcohol consumption can fit into a weight loss plan if you account for the 
+                        calories in your daily total. Choose lower-calorie options, limit frequency, and 
+                        maintain overall caloric deficit for weight loss.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How do I reduce calories from alcoholic drinks?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Choose spirits with low-calorie mixers, opt for dry wines over sweet varieties, select 
+                        light beers, avoid sugary cocktails, use fresh lime/lemon instead of juice, and 
+                        alternate alcoholic drinks with water.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Is this calculator suitable for diabetics?</h4>
+                      <p className="text-gray-600 text-sm">
+                        While this calculator provides calorie information, diabetics should consult healthcare 
+                        providers about alcohol consumption. Alcohol can affect blood sugar levels and 
+                        interfere with diabetes medications.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </main>
+
+      <Footer />
+    </div>
   );
 };
 
