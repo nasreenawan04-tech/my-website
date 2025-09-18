@@ -67,6 +67,8 @@ const toolsData = [
   { id: 'reverse-text-tool', name: 'Reverse Text Tool', description: 'Reverse the order of text characters, words, or lines', category: 'text' as const, icon: 'fas fa-backward', href: '/tools/reverse-text-tool' },
   { id: 'text-to-qr-code', name: 'Text to QR Code', description: 'Extract URLs, emails, and text content and convert to QR codes', category: 'text' as const, icon: 'fas fa-arrow-right', href: '/tools/text-to-qr-code' },
   { id: 'qr-code-scanner', name: 'QR Code Scanner', description: 'Scan QR codes from images to extract text content', category: 'text' as const, icon: 'fas fa-camera', href: '/tools/qr-code-scanner' },
+  { id: 'text-encryptor', name: 'Text Encryptor', description: 'Encrypt and decrypt text using various cipher methods', category: 'text' as const, icon: 'fas fa-lock', href: '/tools/text-encryptor' },
+  { id: 'text-statistics-analyzer', name: 'Text Statistics Analyzer', description: 'Advanced text analysis with readability scores and linguistic metrics', category: 'text' as const, icon: 'fas fa-chart-bar', href: '/tools/text-statistics-analyzer' },
 
 
   // Health Tools (30)
