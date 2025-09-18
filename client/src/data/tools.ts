@@ -15,7 +15,7 @@ export const categories = {
 };
 
 const toolsData = [
-  // Finance Tools (30)
+  // Finance Tools (32)
   { id: 'loan-calculator', name: 'Loan Calculator', description: 'Calculate monthly payments and total interest for any loan', category: 'finance' as const, icon: 'fas fa-calculator', isPopular: true, href: '/tools/loan-calculator' },
   { id: 'mortgage-calculator', name: 'Mortgage Calculator', description: 'Calculate mortgage payments and compare rates', category: 'finance' as const, icon: 'fas fa-home', href: '/tools/mortgage-calculator' },
   { id: 'emi-calculator', name: 'EMI Calculator', description: 'Calculate Equated Monthly Installments for loans', category: 'finance' as const, icon: 'fas fa-chart-line', href: '/tools/emi-calculator' },
@@ -44,6 +44,8 @@ const toolsData = [
   { id: 'discount-calculator', name: 'Discount Calculator', description: 'Calculate discounts and final prices', category: 'finance' as const, icon: 'fas fa-tags', href: '/tools/discount-calculator' },
   { id: 'vat-gst-calculator', name: 'VAT/GST Calculator', description: 'Calculate VAT and GST on products', category: 'finance' as const, icon: 'fas fa-file-invoice', href: '/tools/vat-gst-calculator' },
   { id: 'paypal-fee-calculator', name: 'PayPal Fee Calculator', description: 'Calculate PayPal transaction fees', category: 'finance' as const, icon: 'fab fa-paypal', href: '/tools/paypal-fee-calculator' },
+  { id: 'currency-percentage-change-calculator', name: 'Currency Percentage Change Calculator', description: 'Calculate how much a value increased or decreased in percentage', category: 'finance' as const, icon: 'fas fa-percentage', href: '/tools/currency-percentage-change-calculator' },
+  { id: 'future-value-investment-calculator', name: 'Future Value Investment Calculator', description: 'Project investment growth over time with compound interest', category: 'finance' as const, icon: 'fas fa-chart-line', href: '/tools/future-value-investment-calculator' },
 
   // Text Tools (19)
   { id: 'word-counter', name: 'Word Counter', description: 'Count words, characters, and paragraphs', category: 'text' as const, icon: 'fas fa-calculator', href: '/tools/word-counter' },
