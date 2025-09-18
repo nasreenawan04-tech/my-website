@@ -109,8 +109,6 @@ const MarkdownToHTMLConverter = lazy(() => import("@/pages/markdown-to-html"));
 const LoremIpsumGenerator = lazy(() => import("@/pages/lorem-ipsum-generator"));
 const HexToTextConverter = lazy(() => import("@/pages/hex-to-text-converter"));
 const TextToHexConverter = lazy(() => import("@/pages/text-to-hex-converter"));
-const TextEncryptor = lazy(() => import("@/pages/text-encryptor"));
-const TextStatisticsAnalyzer = lazy(() => import("@/pages/text-statistics-analyzer"));
 
 
 function ScrollToTop() {
@@ -210,8 +208,6 @@ function Router() {
         <Route path="/tools/lorem-ipsum-generator" component={LoremIpsumGenerator} />
         <Route path="/tools/hex-to-text-converter" component={HexToTextConverter} />
         <Route path="/tools/text-to-hex-converter" component={TextToHexConverter} />
-        <Route path="/tools/text-encryptor" component={TextEncryptor} />
-        <Route path="/tools/text-statistics-analyzer" component={TextStatisticsAnalyzer} />
       <Route path="/tools/:toolId" component={ToolPage} />
       <Route path="/finance" component={FinanceTools} />
       <Route path="/text" component={TextTools} />
