@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -8,7 +9,6 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Calculator, Apple } from 'lucide-react';
 
 interface CarbIntakeResult {
   dailyCarbIntake: number;
@@ -213,175 +213,217 @@ const CarbCalculator = () => {
   };
 
   return (
-    <>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-emerald-50 to-green-50">
       <Helmet>
-        <title>Carb Calculator - Calculate Your Daily Carbohydrate Needs | DapsiWow</title>
-        <meta name="description" content="Calculate your daily carbohydrate intake needs based on your goals, activity level, and diet type. Get personalized carb recommendations for optimal energy and performance." />
-        <meta name="keywords" content="carb calculator, carbohydrate calculator, daily carb needs, carb intake, carbohydrate requirements, diet carbs" />
-        <meta property="og:title" content="Carb Calculator - Calculate Your Daily Carbohydrate Needs | DapsiWow" />
-        <meta property="og:description" content="Calculate your personalized daily carbohydrate requirements and get recommendations based on your fitness goals and lifestyle." />
+        <title>Carb Calculator - Calculate Your Daily Carbohydrate Intake | DapsiWow</title>
+        <meta name="description" content="Free carbohydrate calculator to determine your daily carb intake needs based on weight, activity level, fitness goals, and diet type. Get personalized carb recommendations with meal planning suggestions." />
+        <meta name="keywords" content="carb calculator, carbohydrate calculator, daily carb intake, carb requirements, macronutrient calculator, diet carbs, carbohydrate needs, carb intake calculator, nutrition calculator, meal planning carbs" />
+        <meta property="og:title" content="Carb Calculator - Calculate Your Daily Carbohydrate Intake | DapsiWow" />
+        <meta property="og:description" content="Free carbohydrate calculator for determining optimal daily carb intake based on your personal goals and activity level." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="/tools/carb-calculator" />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="DapsiWow" />
+        <link rel="canonical" href="https://dapsiwow.com/tools/carb-calculator" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Carb Calculator",
+            "description": "Free online carbohydrate calculator to determine daily carb intake needs based on personal metrics, activity level, and fitness goals. Features personalized recommendations for different diet types.",
+            "url": "https://dapsiwow.com/tools/carb-calculator",
+            "applicationCategory": "HealthApplication",
+            "operatingSystem": "Any",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "featureList": [
+              "Calculate daily carbohydrate needs",
+              "Support for different diet types",
+              "Activity level adjustments",
+              "Health condition considerations",
+              "Meal timing recommendations",
+              "Food source suggestions"
+            ]
+          })}
+        </script>
       </Helmet>
-
-      <div className="min-h-screen flex flex-col" data-testid="page-carb-calculator">
-        <Header />
-        
-        <main className="flex-1 bg-neutral-50">
-          {/* Hero Section */}
-          <section className="text-white py-16" style={{ background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)' }}>
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <Apple className="text-3xl w-8 h-8" />
+      
+      <Header />
+      
+      <main>
+        {/* Hero Section */}
+        <section className="relative py-20 sm:py-28 lg:py-32 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-emerald-600/10 to-green-600/20"></div>
+          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="space-y-8">
+              <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-emerald-200">
+                <span className="text-sm font-medium text-emerald-700">Professional Carb Calculator</span>
               </div>
-              <h1 className="text-4xl sm:text-5xl font-bold mb-6" data-testid="text-page-title">
-                Carb Calculator
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight">
+                Smart Carb
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-green-600">
+                  Calculator
+                </span>
               </h1>
-              <p className="text-xl text-emerald-100 max-w-2xl mx-auto">
-                Calculate your daily carbohydrate needs based on your goals, activity level, and dietary preferences
+              <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                Calculate your optimal daily carbohydrate intake with personalized recommendations based on your goals and lifestyle
               </p>
             </div>
-          </section>
+          </div>
+        </section>
 
-          {/* Calculator Section */}
-          <section className="py-16">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <Card className="bg-white shadow-sm border-0">
-                <CardContent className="p-8">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    {/* Input Section */}
-                    <div className="space-y-6">
-                      <h2 className="text-2xl font-semibold text-gray-900 mb-8">Personal Information</h2>
-                      
-                      {/* Unit System */}
-                      <div className="space-y-3">
-                        <Label>Unit System</Label>
-                        <RadioGroup 
-                          value={unitSystem} 
-                          onValueChange={setUnitSystem}
-                          className="flex gap-6"
-                        >
-                          <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="metric" id="metric" data-testid="radio-metric" />
-                            <Label htmlFor="metric">Metric (kg, cm)</Label>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="imperial" id="imperial" data-testid="radio-imperial" />
-                            <Label htmlFor="imperial">Imperial (lbs, ft/in)</Label>
-                          </div>
-                        </RadioGroup>
-                      </div>
+        <div className="max-w-7xl mx-auto px-4 py-16">
+          {/* Main Calculator Card */}
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+            <CardContent className="p-0">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+                {/* Input Section */}
+                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
+                  <div>
+                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Carb Configuration</h2>
+                    <p className="text-gray-600">Enter your personal details to get accurate carbohydrate recommendations</p>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Unit System */}
+                    <div className="space-y-3 md:col-span-2">
+                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Unit System
+                      </Label>
+                      <RadioGroup 
+                        value={unitSystem} 
+                        onValueChange={setUnitSystem}
+                        className="flex gap-8"
+                      >
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="metric" id="metric" data-testid="radio-metric" />
+                          <Label htmlFor="metric" className="font-medium">Metric (kg, cm)</Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="imperial" id="imperial" data-testid="radio-imperial" />
+                          <Label htmlFor="imperial" className="font-medium">Imperial (lbs, ft/in)</Label>
+                        </div>
+                      </RadioGroup>
+                    </div>
 
-                      {/* Weight */}
-                      <div className="space-y-3">
-                        <Label htmlFor="weight" className="text-sm font-medium text-gray-700">
-                          Weight {unitSystem === 'metric' ? '(kg)' : '(lbs)'} <span className="text-red-500">*</span>
-                        </Label>
+                    {/* Weight */}
+                    <div className="space-y-3">
+                      <Label htmlFor="weight" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Weight {unitSystem === 'metric' ? '(kg)' : '(lbs)'}
+                      </Label>
+                      <Input
+                        id="weight"
+                        type="number"
+                        value={weight}
+                        onChange={(e) => setWeight(e.target.value)}
+                        className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-emerald-500"
+                        placeholder={unitSystem === 'metric' ? "70" : "154"}
+                        min="0"
+                        step="0.1"
+                        data-testid="input-weight"
+                      />
+                    </div>
+
+                    {/* Height */}
+                    <div className="space-y-3">
+                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Height {unitSystem === 'metric' ? '(cm)' : '(ft/in)'}
+                      </Label>
+                      {unitSystem === 'metric' ? (
                         <Input
-                          id="weight"
                           type="number"
-                          value={weight}
-                          onChange={(e) => setWeight(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
-                          placeholder={unitSystem === 'metric' ? "70" : "154"}
-                          min="0"
+                          value={height}
+                          onChange={(e) => setHeight(e.target.value)}
+                          className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-emerald-500"
+                          placeholder="175"
+                          min="100"
+                          max="250"
                           step="0.1"
-                          data-testid="input-weight"
+                          data-testid="input-height"
                         />
-                      </div>
-
-                      {/* Height */}
-                      <div className="space-y-3">
-                        <Label className="text-sm font-medium text-gray-700">
-                          Height {unitSystem === 'metric' ? '(cm)' : '(ft/in)'} <span className="text-red-500">*</span>
-                        </Label>
-                        {unitSystem === 'metric' ? (
-                          <Input
-                            type="number"
-                            value={height}
-                            onChange={(e) => setHeight(e.target.value)}
-                            className="h-12 text-base border-gray-200 rounded-lg"
-                            placeholder="175"
-                            min="100"
-                            max="250"
-                            step="0.1"
-                            data-testid="input-height"
-                          />
-                        ) : (
-                          <div className="grid grid-cols-2 gap-3">
-                            <div>
-                              <Label htmlFor="feet" className="text-xs text-gray-500">Feet</Label>
-                              <Input
-                                id="feet"
-                                type="number"
-                                value={feet}
-                                onChange={(e) => setFeet(e.target.value)}
-                                className="h-12 text-base border-gray-200 rounded-lg"
-                                placeholder="5"
-                                min="3"
-                                max="8"
-                                data-testid="input-feet"
-                              />
-                            </div>
-                            <div>
-                              <Label htmlFor="inches" className="text-xs text-gray-500">Inches</Label>
-                              <Input
-                                id="inches"
-                                type="number"
-                                value={inches}
-                                onChange={(e) => setInches(e.target.value)}
-                                className="h-12 text-base border-gray-200 rounded-lg"
-                                placeholder="9"
-                                min="0"
-                                max="11"
-                                data-testid="input-inches"
-                              />
-                            </div>
+                      ) : (
+                        <div className="grid grid-cols-2 gap-3">
+                          <div>
+                            <Label htmlFor="feet" className="text-xs text-gray-500 mb-1 block">Feet</Label>
+                            <Input
+                              id="feet"
+                              type="number"
+                              value={feet}
+                              onChange={(e) => setFeet(e.target.value)}
+                              className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-emerald-500"
+                              placeholder="5"
+                              min="3"
+                              max="8"
+                              data-testid="input-feet"
+                            />
                           </div>
-                        )}
-                      </div>
+                          <div>
+                            <Label htmlFor="inches" className="text-xs text-gray-500 mb-1 block">Inches</Label>
+                            <Input
+                              id="inches"
+                              type="number"
+                              value={inches}
+                              onChange={(e) => setInches(e.target.value)}
+                              className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-emerald-500"
+                              placeholder="9"
+                              min="0"
+                              max="11"
+                              data-testid="input-inches"
+                            />
+                          </div>
+                        </div>
+                      )}
+                    </div>
 
-                      {/* Age */}
-                      <div className="space-y-3">
-                        <Label htmlFor="age" className="text-sm font-medium text-gray-700">
-                          Age (years) <span className="text-red-500">*</span>
-                        </Label>
-                        <Input
-                          id="age"
-                          type="number"
-                          value={age}
-                          onChange={(e) => setAge(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
-                          placeholder="30"
-                          min="1"
-                          max="120"
-                          data-testid="input-age"
-                        />
-                      </div>
+                    {/* Age */}
+                    <div className="space-y-3">
+                      <Label htmlFor="age" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Age (years)
+                      </Label>
+                      <Input
+                        id="age"
+                        type="number"
+                        value={age}
+                        onChange={(e) => setAge(e.target.value)}
+                        className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-emerald-500"
+                        placeholder="30"
+                        min="1"
+                        max="120"
+                        data-testid="input-age"
+                      />
+                    </div>
 
-                      {/* Gender */}
-                      <div className="space-y-3">
-                        <Label className="text-sm font-medium text-gray-700">
-                          Gender <span className="text-red-500">*</span>
-                        </Label>
-                        <Select value={gender} onValueChange={setGender}>
-                          <SelectTrigger className="h-12 border-gray-200 rounded-lg" data-testid="select-gender">
-                            <SelectValue placeholder="Select gender" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="male">Male</SelectItem>
-                            <SelectItem value="female">Female</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
+                    {/* Gender */}
+                    <div className="space-y-3">
+                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Gender
+                      </Label>
+                      <Select value={gender} onValueChange={setGender}>
+                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-gender">
+                          <SelectValue placeholder="Select gender" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="male">Male</SelectItem>
+                          <SelectItem value="female">Female</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
 
+                  {/* Advanced Options */}
+                  <div className="space-y-6 border-t pt-8">
+                    <h3 className="text-xl font-bold text-gray-900">Lifestyle & Goals</h3>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       {/* Activity Level */}
                       <div className="space-y-3">
-                        <Label className="text-sm font-medium text-gray-700">
-                          Activity Level <span className="text-red-500">*</span>
+                        <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                          Activity Level
                         </Label>
                         <Select value={activityLevel} onValueChange={setActivityLevel}>
-                          <SelectTrigger className="h-12 border-gray-200 rounded-lg" data-testid="select-activity">
+                          <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-activity">
                             <SelectValue placeholder="Select activity level" />
                           </SelectTrigger>
                           <SelectContent>
@@ -396,11 +438,11 @@ const CarbCalculator = () => {
 
                       {/* Goal */}
                       <div className="space-y-3">
-                        <Label className="text-sm font-medium text-gray-700">
-                          Primary Goal <span className="text-red-500">*</span>
+                        <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                          Primary Goal
                         </Label>
                         <Select value={goal} onValueChange={setGoal}>
-                          <SelectTrigger className="h-12 border-gray-200 rounded-lg" data-testid="select-goal">
+                          <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-goal">
                             <SelectValue placeholder="Select your goal" />
                           </SelectTrigger>
                           <SelectContent>
@@ -414,11 +456,11 @@ const CarbCalculator = () => {
 
                       {/* Diet Type */}
                       <div className="space-y-3">
-                        <Label className="text-sm font-medium text-gray-700">
+                        <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
                           Diet Preference
                         </Label>
                         <Select value={dietType} onValueChange={setDietType}>
-                          <SelectTrigger className="h-12 border-gray-200 rounded-lg" data-testid="select-diet">
+                          <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-diet">
                             <SelectValue placeholder="Select diet type" />
                           </SelectTrigger>
                           <SelectContent>
@@ -433,11 +475,11 @@ const CarbCalculator = () => {
 
                       {/* Health Conditions */}
                       <div className="space-y-3">
-                        <Label className="text-sm font-medium text-gray-700">
+                        <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
                           Health Conditions
                         </Label>
                         <Select value={healthConditions} onValueChange={setHealthConditions}>
-                          <SelectTrigger className="h-12 border-gray-200 rounded-lg" data-testid="select-health">
+                          <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-health">
                             <SelectValue placeholder="Select any relevant conditions" />
                           </SelectTrigger>
                           <SelectContent>
@@ -448,227 +490,594 @@ const CarbCalculator = () => {
                           </SelectContent>
                         </Select>
                       </div>
+                    </div>
+                  </div>
 
-                      {/* Action Buttons */}
-                      <div className="flex gap-4 pt-6">
-                        <Button
-                          onClick={calculateCarbIntake}
-                          className="flex-1 h-12 text-white font-medium rounded-lg"
-                          style={{ backgroundColor: '#10b981' }}
-                          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#059669'}
-                          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#10b981'}
-                          data-testid="button-calculate"
-                        >
-                          <Calculator className="w-4 h-4 mr-2" />
-                          Calculate Carb Intake
-                        </Button>
-                        <Button
-                          onClick={resetCalculator}
-                          variant="outline"
-                          className="h-12 px-8 border-gray-200 text-gray-600 hover:bg-gray-50 font-medium rounded-lg"
-                          data-testid="button-reset"
-                        >
-                          Reset
-                        </Button>
+                  {/* Action Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                    <Button
+                      onClick={calculateCarbIntake}
+                      className="flex-1 h-14 bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      data-testid="button-calculate"
+                    >
+                      Calculate Carb Intake
+                    </Button>
+                    <Button
+                      onClick={resetCalculator}
+                      variant="outline"
+                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      data-testid="button-reset"
+                    >
+                      Reset
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Results Section */}
+                <div className="bg-gradient-to-br from-gray-50 to-emerald-50 p-8 lg:p-12">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Results</h2>
+                  
+                  {result ? (
+                    <div className="space-y-6" data-testid="carb-intake-results">
+                      {/* Daily Carb Intake Highlight */}
+                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-emerald-100">
+                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Daily Carb Intake</div>
+                        <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-green-600" data-testid="text-daily-carbs">
+                          {result.dailyCarbIntake}g
+                        </div>
+                      </div>
+
+                      {/* Carb Distribution */}
+                      <div className="space-y-4">
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Per Meal (3 meals)</span>
+                            <span className="font-bold text-gray-900" data-testid="text-carbs-per-meal">
+                              ~{result.carbsPerMeal}g
+                            </span>
+                          </div>
+                        </div>
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Calories from Carbs</span>
+                            <span className="font-bold text-orange-600">
+                              {result.carbCalories} cal
+                            </span>
+                          </div>
+                        </div>
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">% of Total Calories</span>
+                            <span className="font-bold text-gray-900">
+                              {result.percentageOfCalories}%
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Food Sources */}
+                      <div className="bg-gradient-to-r from-emerald-50 to-green-50 rounded-xl p-6 border border-emerald-200">
+                        <h4 className="font-bold text-emerald-800 mb-4 text-lg">Food Sources (to meet daily needs)</h4>
+                        <div className="space-y-3">
+                          <div className="flex justify-between items-center">
+                            <span className="text-emerald-700 font-medium">White Rice (cooked):</span>
+                            <span className="font-bold text-emerald-800 text-lg">{result.carbSources.rice}g</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-emerald-700 font-medium">Whole Grain Bread:</span>
+                            <span className="font-bold text-emerald-800 text-lg">{result.carbSources.bread}g</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-emerald-700 font-medium">Pasta (cooked):</span>
+                            <span className="font-bold text-emerald-800 text-lg">{result.carbSources.pasta}g</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-emerald-700 font-medium">Bananas (medium):</span>
+                            <span className="font-bold text-emerald-800 text-lg">{result.carbSources.banana}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Timing Recommendations */}
+                      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-200">
+                        <h4 className="font-bold text-blue-800 mb-4 text-lg">Carb Timing Tips</h4>
+                        <div className="space-y-2">
+                          {result.timing.map((tip, index) => (
+                            <div key={index} className="flex items-start gap-3">
+                              <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                              <span className="text-blue-700 text-sm">{tip}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Recommendations */}
+                      <div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl p-6 border border-purple-200">
+                        <h4 className="font-bold text-purple-800 mb-4 text-lg">Personalized Recommendations</h4>
+                        <div className="space-y-2">
+                          {result.recommendations.map((rec, index) => (
+                            <div key={index} className="flex items-start gap-3">
+                              <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
+                              <span className="text-purple-700 text-sm">{rec}</span>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
+                  ) : (
+                    <div className="text-center py-16" data-testid="no-results">
+                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <div className="text-3xl font-bold text-gray-400">C</div>
+                      </div>
+                      <p className="text-gray-500 text-lg">Enter your details and calculate to see carb intake results</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
 
-                    {/* Results Section */}
-                    <div className="bg-gray-50 rounded-xl p-8">
-                      <h2 className="text-2xl font-semibold text-gray-900 mb-8">Carb Intake Results</h2>
-                      
-                      {result ? (
-                        <div className="space-y-4" data-testid="carb-intake-results">
-                          {/* Daily Carb Intake */}
-                          <div className="bg-white rounded-lg p-4 border-l-4 border-emerald-500">
-                            <div className="flex justify-between items-center">
-                              <span className="font-semibold text-gray-700">Daily Carb Intake</span>
-                              <span className="text-2xl font-bold text-emerald-600" data-testid="text-daily-carbs">
-                                {result.dailyCarbIntake}g
-                              </span>
-                            </div>
-                          </div>
+          {/* SEO Content Section */}
+          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">What Are Carbohydrates?</h3>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    Carbohydrates are one of the three main macronutrients that provide energy for your body. 
+                    They're broken down into glucose, which serves as the primary fuel source for your brain, 
+                    muscles, and other vital organs.
+                  </p>
+                  <p>
+                    Our carbohydrate calculator helps you determine the optimal daily carb intake based on your 
+                    individual needs, activity level, and health goals. Whether you're trying to lose weight, 
+                    gain muscle, or maintain your current physique, getting your carb intake right is crucial.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
 
-                          {/* Carb Distribution */}
-                          <div className="bg-emerald-50 rounded-lg p-4">
-                            <h3 className="font-semibold text-gray-900 mb-3">Carb Distribution</h3>
-                            <div className="space-y-2 text-sm">
-                              <div className="flex justify-between">
-                                <span>Per meal (3 meals)</span>
-                                <span className="font-medium" data-testid="text-carbs-per-meal">
-                                  ~{result.carbsPerMeal}g
-                                </span>
-                              </div>
-                              <div className="flex justify-between">
-                                <span>Calories from carbs</span>
-                                <span className="font-medium">{result.carbCalories} cal</span>
-                              </div>
-                              <div className="flex justify-between">
-                                <span>% of total calories</span>
-                                <span className="font-medium">{result.percentageOfCalories}%</span>
-                              </div>
-                            </div>
-                          </div>
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">How to Calculate Carb Intake?</h3>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    The formula for calculating carb intake considers your Total Daily Energy Expenditure (TDEE) 
+                    and allocates a percentage of calories from carbohydrates based on your goals and diet type.
+                  </p>
+                  <ul className="space-y-2 list-disc list-inside">
+                    <li>Weight Loss: 25-40% of total calories</li>
+                    <li>Maintenance: 45-50% of total calories</li>
+                    <li>Muscle Gain: 50-60% of total calories</li>
+                    <li>Athletic Performance: 55-65% of total calories</li>
+                  </ul>
+                  <p>
+                    Our calculator automatically adjusts these percentages based on your activity level and 
+                    any health conditions you may have.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
 
-                          {/* Food Sources */}
-                          <div className="bg-white rounded-lg p-4">
-                            <h3 className="font-semibold text-gray-900 mb-3">Food Sources (to meet daily needs)</h3>
-                            <div className="space-y-2 text-sm">
-                              <div className="flex justify-between">
-                                <span>White rice (cooked)</span>
-                                <span className="font-medium">{result.carbSources.rice}g</span>
-                              </div>
-                              <div className="flex justify-between">
-                                <span>Whole grain bread</span>
-                                <span className="font-medium">{result.carbSources.bread}g</span>
-                              </div>
-                              <div className="flex justify-between">
-                                <span>Pasta (cooked)</span>
-                                <span className="font-medium">{result.carbSources.pasta}g</span>
-                              </div>
-                              <div className="flex justify-between">
-                                <span>Oats (dry)</span>
-                                <span className="font-medium">{result.carbSources.oats}g</span>
-                              </div>
-                              <div className="flex justify-between">
-                                <span>Bananas</span>
-                                <span className="font-medium">{result.carbSources.banana} medium</span>
-                              </div>
-                              <div className="flex justify-between">
-                                <span>Potato (baked)</span>
-                                <span className="font-medium">{result.carbSources.potato}g</span>
-                              </div>
-                            </div>
-                          </div>
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Features of Our Carb Calculator</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-emerald-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Personalized calculations based on individual metrics</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-emerald-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Support for different diet types and preferences</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-emerald-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Activity level and goal-specific adjustments</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-emerald-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Health condition considerations</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-emerald-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Food source recommendations and meal timing tips</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
 
-                          {/* Carb Timing */}
-                          <div className="bg-blue-50 rounded-lg p-4">
-                            <h3 className="font-semibold text-gray-900 mb-3">Carb Timing</h3>
-                            <ul className="space-y-1 text-sm text-gray-600">
-                              {result.timing.map((tip, index) => (
-                                <li key={index} className="flex items-start">
-                                  <span className="text-blue-500 mr-2">•</span>
-                                  {tip}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Benefits of Proper Carb Intake</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Sustained energy levels throughout the day</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Better workout performance and recovery</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Improved brain function and mental clarity</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Support for your specific health and fitness goals</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Better mood regulation and appetite control</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
 
-                          {/* Recommendations */}
-                          <div className="bg-green-50 rounded-lg p-4">
-                            <h3 className="font-semibold text-gray-900 mb-3">Recommendations</h3>
-                            <ul className="space-y-1 text-sm text-gray-600">
-                              {result.recommendations.map((rec, index) => (
-                                <li key={index} className="flex items-start">
-                                  <span className="text-green-500 mr-2">•</span>
-                                  {rec}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        </div>
-                      ) : (
-                        <div className="text-center py-8" data-testid="no-results">
-                          <Apple className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                          <p className="text-gray-500">Enter your information to calculate daily carb intake</p>
-                        </div>
-                      )}
+          {/* Additional SEO Content Sections */}
+          <div className="mt-12 space-y-8">
+            {/* Types of Carbohydrates Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Types of Carbohydrates for Optimal Health</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Complex Carbs</h4>
+                    <p className="text-gray-600 text-sm">
+                      Found in whole grains, vegetables, and legumes, complex carbs provide sustained energy 
+                      and are rich in fiber, vitamins, and minerals. They're ideal for weight management 
+                      and long-term health.
+                    </p>
+                    <div className="space-y-1 text-sm text-gray-500">
+                      <p>• Oats and quinoa</p>
+                      <p>• Sweet potatoes</p>
+                      <p>• Brown rice</p>
+                      <p>• Beans and lentils</p>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Simple Carbs</h4>
+                    <p className="text-gray-600 text-sm">
+                      Quick-digesting carbohydrates that provide rapid energy. Best consumed around 
+                      workouts or when you need immediate energy. Natural sources are preferred 
+                      over processed options.
+                    </p>
+                    <div className="space-y-1 text-sm text-gray-500">
+                      <p>• Fresh fruits</p>
+                      <p>• Dairy products</p>
+                      <p>• Honey and maple syrup</p>
+                      <p>• White rice (post-workout)</p>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Fiber</h4>
+                    <p className="text-gray-600 text-sm">
+                      A type of carbohydrate that your body can't digest, fiber is essential for 
+                      digestive health, blood sugar control, and satiety. It doesn't contribute 
+                      calories but provides numerous health benefits.
+                    </p>
+                    <div className="space-y-1 text-sm text-gray-500">
+                      <p>• Vegetables and fruits</p>
+                      <p>• Whole grains</p>
+                      <p>• Nuts and seeds</p>
+                      <p>• Psyllium husk</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Carb Timing and Diet Types */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Carb Timing Strategies</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <div className="border-l-4 border-emerald-500 pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-2">Pre-Workout</h4>
+                      <p className="text-sm">Consume 30-60g of easily digestible carbs 1-2 hours before exercise for optimal energy and performance.</p>
+                    </div>
+                    <div className="border-l-4 border-blue-500 pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-2">Post-Workout</h4>
+                      <p className="text-sm">Include fast-digesting carbs within 30 minutes post-workout to replenish glycogen stores and support recovery.</p>
+                    </div>
+                    <div className="border-l-4 border-orange-500 pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-2">Throughout the Day</h4>
+                      <p className="text-sm">Spread carb intake evenly across meals to maintain stable blood sugar and consistent energy levels.</p>
+                    </div>
+                    <div className="border-l-4 border-purple-500 pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-2">Evening Considerations</h4>
+                      <p className="text-sm">For weight loss goals, consider reducing carb intake in the evening and focusing on protein and vegetables.</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              {/* Educational Content */}
-              <div className="mt-12 space-y-8">
-                {/* Understanding Carbohydrates */}
-                <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Understanding Carbohydrates</h2>
-                  
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Diet-Specific Carb Guidelines</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <div className="bg-green-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-green-800 mb-2">Balanced Diet</h4>
+                      <p className="text-sm text-green-700">45-50% of calories from carbs, focusing on whole grains, fruits, and vegetables for optimal health.</p>
+                    </div>
+                    <div className="bg-blue-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-blue-800 mb-2">Low Carb</h4>
+                      <p className="text-sm text-blue-700">20-25% of calories from carbs, emphasizing nutrient-dense vegetables and limiting grains and sugars.</p>
+                    </div>
+                    <div className="bg-orange-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-orange-800 mb-2">High Carb</h4>
+                      <p className="text-sm text-orange-700">55-65% of calories from carbs, ideal for endurance athletes and highly active individuals.</p>
+                    </div>
+                    <div className="bg-purple-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-purple-800 mb-2">Mediterranean</h4>
+                      <p className="text-sm text-purple-700">50-55% of calories from carbs, emphasizing whole grains, legumes, fruits, and vegetables.</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Carb Calculator FAQs Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions about Carb Intake</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Why Carbs Matter</h3>
-                      <p className="text-gray-600 mb-6 leading-relaxed">
-                        Carbohydrates are your body's primary energy source, especially for the brain and muscles during exercise. 
-                        They break down into glucose, which fuels cellular activities and maintains blood sugar levels. The key is 
-                        choosing the right types and amounts for your goals.
-                      </p>
-                      
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Factors Affecting Carb Needs</h3>
-                      <ul className="text-gray-600 space-y-2 text-sm">
-                        <li>• Activity level and exercise intensity</li>
-                        <li>• Body composition and metabolism</li>
-                        <li>• Health goals (weight loss, muscle gain, performance)</li>
-                        <li>• Medical conditions (diabetes, insulin resistance)</li>
-                        <li>• Dietary preferences and restrictions</li>
+                      <h4 className="font-semibold text-gray-800 mb-2">How many carbs should I eat per day?</h4>
+                      <p className="text-gray-600 text-sm">Daily carb intake varies based on your goals, activity level, and health status. Generally, it ranges from 100-300g per day, with our calculator providing personalized recommendations.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Are carbs bad for weight loss?</h4>
+                      <p className="text-gray-600 text-sm">Carbs aren't inherently bad for weight loss. The key is choosing the right types and amounts. Complex carbs can actually support weight loss by providing satiety and stable energy.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Should I eat carbs before or after working out?</h4>
+                      <p className="text-gray-600 text-sm">Both! Eat complex carbs 1-2 hours before workouts for energy, and simple carbs within 30 minutes post-workout for recovery and glycogen replenishment.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">What happens if I eat too few carbs?</h4>
+                      <p className="text-gray-600 text-sm">Very low carb intake can lead to fatigue, brain fog, poor workout performance, and difficulty concentrating. Most people need at least 100-130g daily for optimal brain function.</p>
+                    </div>
+                  </div>
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Can diabetics use this carb calculator?</h4>
+                      <p className="text-gray-600 text-sm">Our calculator includes diabetes considerations and provides lower carb recommendations. However, always consult your healthcare provider for personalized diabetes management advice.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How do I track my carb intake?</h4>
+                      <p className="text-gray-600 text-sm">Use food tracking apps, read nutrition labels, and measure portions. Focus on whole foods and learn to estimate serving sizes for common carb sources.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Is it better to count total carbs or net carbs?</h4>
+                      <p className="text-gray-600 text-sm">For general health, total carbs work fine. Net carbs (total minus fiber) are more relevant for ketogenic diets or blood sugar management.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How often should I recalculate my carb needs?</h4>
+                      <p className="text-gray-600 text-sm">Recalculate when your weight changes significantly, activity level changes, or when switching fitness goals. Generally, every 4-6 weeks is reasonable.</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Health Benefits and Considerations */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">Weight Management</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <p className="text-sm">
+                      Proper carb intake is crucial for sustainable weight management. Too few carbs can slow metabolism, while too many can lead to weight gain.
+                    </p>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-green-800 text-sm">For Weight Loss:</h4>
+                      <ul className="text-xs space-y-1 list-disc list-inside text-green-700">
+                        <li>Focus on complex carbs</li>
+                        <li>Time carbs around workouts</li>
+                        <li>Reduce evening carb intake</li>
+                        <li>Prioritize fiber-rich sources</li>
                       </ul>
                     </div>
-                    
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Types of Carbohydrates</h3>
-                      <div className="space-y-3">
-                        <div className="flex items-center p-3 bg-green-50 rounded-lg">
-                          <div className="w-4 h-4 bg-green-500 rounded-full mr-3"></div>
-                          <div>
-                            <div className="font-medium">Complex Carbs</div>
-                            <div className="text-sm text-gray-600">Whole grains, vegetables, legumes</div>
-                          </div>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-blue-800 text-sm">For Weight Gain:</h4>
+                      <ul className="text-xs space-y-1 list-disc list-inside text-blue-700">
+                        <li>Include more starchy carbs</li>
+                        <li>Add healthy carb snacks</li>
+                        <li>Don't fear fruit sugars</li>
+                        <li>Include post-workout carbs</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">Athletic Performance</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <p className="text-sm">
+                      Athletes and active individuals need adequate carbs to fuel performance, support recovery, and maintain training intensity.
+                    </p>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-orange-800 text-sm">Endurance Sports:</h4>
+                      <ul className="text-xs space-y-1 list-disc list-inside text-orange-700">
+                        <li>Higher carb intake (60-65%)</li>
+                        <li>Carb loading before events</li>
+                        <li>During-exercise fueling</li>
+                        <li>Focus on glycogen stores</li>
+                      </ul>
+                    </div>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-purple-800 text-sm">Strength Training:</h4>
+                      <ul className="text-xs space-y-1 list-disc list-inside text-purple-700">
+                        <li>Moderate carb intake (45-55%)</li>
+                        <li>Pre-workout carbs for energy</li>
+                        <li>Post-workout recovery carbs</li>
+                        <li>Support muscle building</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">Health Conditions</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <p className="text-sm">
+                      Certain health conditions require special consideration when determining carb intake. Our calculator accounts for these factors.
+                    </p>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-red-800 text-sm">Diabetes:</h4>
+                      <ul className="text-xs space-y-1 list-disc list-inside text-red-700">
+                        <li>Lower carb percentages</li>
+                        <li>Focus on low glycemic foods</li>
+                        <li>Consistent carb timing</li>
+                        <li>Blood sugar monitoring</li>
+                      </ul>
+                    </div>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-indigo-800 text-sm">PCOS/Insulin Resistance:</h4>
+                      <ul className="text-xs space-y-1 list-disc list-inside text-indigo-700">
+                        <li>Reduced carb intake</li>
+                        <li>Emphasize complex carbs</li>
+                        <li>Pair with protein/fat</li>
+                        <li>Regular meal timing</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Common Mistakes Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Common Carb Intake Mistakes to Avoid</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <div className="bg-red-50 border-l-4 border-red-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-red-800 mb-2">Eliminating Carbs Completely</h4>
+                      <p className="text-red-700 text-sm">Cutting all carbs can lead to fatigue, poor performance, and unsustainable eating patterns. Your brain needs glucose to function optimally.</p>
+                    </div>
+                    <div className="bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-orange-800 mb-2">Not Considering Activity Level</h4>
+                      <p className="text-orange-700 text-sm">Your carb needs change dramatically with activity level. Sedentary individuals need fewer carbs than athletes or highly active people.</p>
+                    </div>
+                    <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-yellow-800 mb-2">Ignoring Carb Quality</h4>
+                      <p className="text-yellow-700 text-sm">Not all carbs are equal. Focus on nutrient-dense sources like vegetables, fruits, and whole grains rather than processed foods.</p>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-blue-800 mb-2">Poor Timing Strategies</h4>
+                      <p className="text-blue-700 text-sm">Eating large amounts of carbs late at night or skipping pre/post-workout carbs can negatively impact results and recovery.</p>
+                    </div>
+                    <div className="bg-purple-50 border-l-4 border-purple-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-purple-800 mb-2">Not Adjusting for Goals</h4>
+                      <p className="text-purple-700 text-sm">Your carb needs differ significantly whether you're trying to lose weight, build muscle, or maintain your current physique.</p>
+                    </div>
+                    <div className="bg-green-50 border-l-4 border-green-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-green-800 mb-2">Forgetting About Fiber</h4>
+                      <p className="text-green-700 text-sm">Fiber is crucial for digestive health and satiety. Aim for 25-35g daily from various plant-based sources.</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Meal Planning Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Carb-Smart Meal Planning Strategies</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Sample Daily Meal Plan</h4>
+                    <div className="space-y-3 text-gray-600">
+                      <div className="flex items-start gap-3">
+                        <div className="w-4 h-4 bg-emerald-500 rounded-full mt-1 flex-shrink-0"></div>
+                        <div>
+                          <span className="font-semibold">Breakfast:</span> Oatmeal with berries and nuts (40g carbs)
                         </div>
-                        
-                        <div className="flex items-center p-3 bg-yellow-50 rounded-lg">
-                          <div className="w-4 h-4 bg-yellow-500 rounded-full mr-3"></div>
-                          <div>
-                            <div className="font-medium">Simple Carbs</div>
-                            <div className="text-sm text-gray-600">Fruits, dairy, refined sugars</div>
-                          </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-4 h-4 bg-blue-500 rounded-full mt-1 flex-shrink-0"></div>
+                        <div>
+                          <span className="font-semibold">Snack:</span> Apple with almond butter (25g carbs)
                         </div>
-                        
-                        <div className="flex items-center p-3 bg-blue-50 rounded-lg">
-                          <div className="w-4 h-4 bg-blue-500 rounded-full mr-3"></div>
-                          <div>
-                            <div className="font-medium">Fiber</div>
-                            <div className="text-sm text-gray-600">Non-digestible carbs that aid health</div>
-                          </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-4 h-4 bg-orange-500 rounded-full mt-1 flex-shrink-0"></div>
+                        <div>
+                          <span className="font-semibold">Lunch:</span> Quinoa salad with vegetables (45g carbs)
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-4 h-4 bg-purple-500 rounded-full mt-1 flex-shrink-0"></div>
+                        <div>
+                          <span className="font-semibold">Pre-workout:</span> Banana (25g carbs)
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-4 h-4 bg-green-500 rounded-full mt-1 flex-shrink-0"></div>
+                        <div>
+                          <span className="font-semibold">Dinner:</span> Sweet potato with lean protein (35g carbs)
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-
-                {/* Tips and Guidelines */}
-                <div className="bg-gradient-to-r from-emerald-50 to-green-50 rounded-2xl p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Carb Optimization Tips</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Smart Carb Choices</h3>
-                      <ul className="text-gray-600 space-y-2 text-sm">
-                        <li>• Choose whole grains over refined grains</li>
-                        <li>• Include plenty of vegetables and fruits</li>
-                        <li>• Combine carbs with protein and healthy fats</li>
-                        <li>• Consider glycemic index for blood sugar control</li>
-                        <li>• Stay consistent with portion sizes</li>
-                      </ul>
-                    </div>
-                    
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Timing Strategies</h3>
-                      <ul className="text-gray-600 space-y-2 text-sm">
-                        <li>• Eat carbs before workouts for energy</li>
-                        <li>• Include carbs post-workout for recovery</li>
-                        <li>• Spread intake evenly throughout the day</li>
-                        <li>• Consider carb cycling for specific goals</li>
-                        <li>• Adjust based on activity and hunger cues</li>
-                      </ul>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Smart Shopping Tips</h4>
+                    <div className="space-y-3 text-gray-600">
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-emerald-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-sm">Shop the perimeter of the store for whole foods</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-emerald-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-sm">Choose brown/wild rice over white rice varieties</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-emerald-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-sm">Look for "100% whole grain" on bread labels</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-emerald-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-sm">Buy seasonal fruits and vegetables for variety</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-emerald-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-sm">Stock up on legumes and beans for plant protein</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-emerald-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-sm">Read labels to avoid added sugars in packaged foods</span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </section>
-        </main>
-        
-        <Footer />
-      </div>
-    </>
+                <div className="mt-6 p-4 bg-gradient-to-r from-emerald-50 to-green-50 rounded-lg">
+                  <h4 className="font-semibold text-emerald-800 mb-2">Pro Tip</h4>
+                  <p className="text-emerald-700 text-sm">
+                    Use our carb calculator weekly to adjust your intake as your activity level, weight, or 
+                    goals change. Consistency with quality carb sources is more important than perfection 
+                    with exact numbers.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </main>
+      
+      <Footer />
+    </div>
   );
 };
 
