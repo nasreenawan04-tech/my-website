@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -7,10 +8,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Separator } from '@/components/ui/separator';
-import { Switch } from '@/components/ui/switch';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 
 interface InvestmentResult {
   futureValue: number;
@@ -43,33 +40,9 @@ export default function FutureValueInvestmentCalculator() {
   const [currency, setCurrency] = useState('USD');
   const [inflationRate, setInflationRate] = useState('3');
   const [enableMonthlyContributions, setEnableMonthlyContributions] = useState(true);
-  const [showRealValue, setShowRealValue] = useState(false);
+  const [enableInflationAdjustment, setEnableInflationAdjustment] = useState(false);
   const [showYearlyBreakdown, setShowYearlyBreakdown] = useState(false);
-  const [showAdvanced, setShowAdvanced] = useState(false);
   const [result, setResult] = useState<InvestmentResult | null>(null);
-
-  const currencies = [
-    { code: 'USD', name: 'US Dollar', symbol: '$' },
-    { code: 'EUR', name: 'Euro', symbol: '€' },
-    { code: 'GBP', name: 'British Pound', symbol: '£' },
-    { code: 'JPY', name: 'Japanese Yen', symbol: '¥' },
-    { code: 'CNY', name: 'Chinese Yuan', symbol: '¥' },
-    { code: 'INR', name: 'Indian Rupee', symbol: '₹' },
-    { code: 'CAD', name: 'Canadian Dollar', symbol: 'C$' },
-    { code: 'AUD', name: 'Australian Dollar', symbol: 'A$' },
-    { code: 'CHF', name: 'Swiss Franc', symbol: 'CHF' },
-    { code: 'SEK', name: 'Swedish Krona', symbol: 'kr' },
-    { code: 'NOK', name: 'Norwegian Krone', symbol: 'kr' },
-    { code: 'DKK', name: 'Danish Krone', symbol: 'kr' },
-    { code: 'PLN', name: 'Polish Złoty', symbol: 'zł' },
-    { code: 'CZK', name: 'Czech Koruna', symbol: 'Kč' },
-    { code: 'HUF', name: 'Hungarian Forint', symbol: 'Ft' },
-    { code: 'BRL', name: 'Brazilian Real', symbol: 'R$' },
-    { code: 'MXN', name: 'Mexican Peso', symbol: '$' },
-    { code: 'KRW', name: 'South Korean Won', symbol: '₩' },
-    { code: 'SGD', name: 'Singapore Dollar', symbol: 'S$' },
-    { code: 'HKD', name: 'Hong Kong Dollar', symbol: 'HK$' }
-  ];
 
   const calculateFutureValue = () => {
     const principal = parseFloat(initialInvestment);
@@ -79,7 +52,6 @@ export default function FutureValueInvestmentCalculator() {
     const compoundsPerYear = parseFloat(compoundFrequency);
     const inflation = parseFloat(inflationRate) / 100;
 
-    // Add NaN guards for all inputs
     if (isNaN(principal) || isNaN(monthlyContrib) || isNaN(annualRate) || isNaN(years) || isNaN(compoundsPerYear) || isNaN(inflation)) return;
     if (principal < 0 || annualRate < 0 || years <= 0 || compoundsPerYear <= 0) return;
 
@@ -158,9 +130,8 @@ export default function FutureValueInvestmentCalculator() {
     setCurrency('USD');
     setInflationRate('3');
     setEnableMonthlyContributions(true);
-    setShowRealValue(false);
+    setEnableInflationAdjustment(false);
     setShowYearlyBreakdown(false);
-    setShowAdvanced(false);
     setResult(null);
   };
 
@@ -169,23 +140,13 @@ export default function FutureValueInvestmentCalculator() {
       USD: { locale: 'en-US', currency: 'USD' },
       EUR: { locale: 'de-DE', currency: 'EUR' },
       GBP: { locale: 'en-GB', currency: 'GBP' },
-      JPY: { locale: 'ja-JP', currency: 'JPY' },
-      CNY: { locale: 'zh-CN', currency: 'CNY' },
       INR: { locale: 'en-IN', currency: 'INR' },
+      JPY: { locale: 'ja-JP', currency: 'JPY' },
       CAD: { locale: 'en-CA', currency: 'CAD' },
       AUD: { locale: 'en-AU', currency: 'AUD' },
-      CHF: { locale: 'de-CH', currency: 'CHF' },
-      SEK: { locale: 'sv-SE', currency: 'SEK' },
-      NOK: { locale: 'nb-NO', currency: 'NOK' },
-      DKK: { locale: 'da-DK', currency: 'DKK' },
-      PLN: { locale: 'pl-PL', currency: 'PLN' },
-      CZK: { locale: 'cs-CZ', currency: 'CZK' },
-      HUF: { locale: 'hu-HU', currency: 'HUF' },
+      CNY: { locale: 'zh-CN', currency: 'CNY' },
       BRL: { locale: 'pt-BR', currency: 'BRL' },
-      MXN: { locale: 'es-MX', currency: 'MXN' },
-      KRW: { locale: 'ko-KR', currency: 'KRW' },
-      SGD: { locale: 'en-SG', currency: 'SGD' },
-      HKD: { locale: 'zh-HK', currency: 'HKD' }
+      MXN: { locale: 'es-MX', currency: 'MXN' }
     };
 
     const config = currencyMap[currency] || currencyMap.USD;
@@ -198,18 +159,14 @@ export default function FutureValueInvestmentCalculator() {
     }).format(amount);
   };
 
-  const formatPercentage = (percentage: number) => {
-    return `${percentage.toFixed(2)}%`;
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>Future Value Investment Calculator - Project Investment Growth | DapsiWow</title>
-        <meta name="description" content="Free future value investment calculator to project investment growth over time. Calculate compound returns, monthly contributions, and retirement planning with inflation adjustments and detailed yearly breakdowns." />
-        <meta name="keywords" content="future value calculator, investment calculator, compound interest calculator, retirement calculator, investment growth projector, financial planning calculator, wealth calculator" />
-        <meta property="og:title" content="Future Value Investment Calculator - Project Investment Growth | DapsiWow" />
-        <meta property="og:description" content="Calculate how your investments will grow over time with compound interest, monthly contributions, and inflation adjustments." />
+        <title>Future Value Investment Calculator - Calculate Investment Growth | DapsiWow</title>
+        <meta name="description" content="Free future value investment calculator to project investment growth over time. Calculate compound returns, monthly contributions, and retirement planning with inflation adjustments. Supports multiple currencies and compound frequencies." />
+        <meta name="keywords" content="future value calculator, investment calculator, compound interest calculator, retirement calculator, investment growth calculator, wealth calculator, financial planning calculator, compound returns calculator, investment projector, future value formula" />
+        <meta property="og:title" content="Future Value Investment Calculator - Calculate Investment Growth | DapsiWow" />
+        <meta property="og:description" content="Calculate how your investments will grow over time with compound interest, monthly contributions, and inflation adjustments. Free online tool with detailed yearly breakdowns." />
         <meta property="og:type" content="website" />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="DapsiWow" />
@@ -219,7 +176,7 @@ export default function FutureValueInvestmentCalculator() {
             "@context": "https://schema.org",
             "@type": "WebApplication",
             "name": "Future Value Investment Calculator",
-            "description": "Free online future value investment calculator to project investment growth over time with compound interest and monthly contributions.",
+            "description": "Free online future value investment calculator to project investment growth over time with compound interest, monthly contributions, and inflation adjustments.",
             "url": "https://dapsiwow.com/tools/future-value-investment-calculator",
             "applicationCategory": "FinanceApplication",
             "operatingSystem": "Any",
@@ -250,7 +207,7 @@ export default function FutureValueInvestmentCalculator() {
           <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="space-y-8">
               <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
-                <span className="text-sm font-medium text-blue-700">Advanced Investment Projector</span>
+                <span className="text-sm font-medium text-blue-700">Professional Investment Calculator</span>
               </div>
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight">
                 Future Value Investment
@@ -259,7 +216,7 @@ export default function FutureValueInvestmentCalculator() {
                 </span>
               </h1>
               <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-                Project how your investments will grow over time with compound interest, monthly contributions, and inflation analysis
+                Project how your investments will grow over time with compound interest and regular contributions
               </p>
             </div>
           </div>
@@ -284,15 +241,20 @@ export default function FutureValueInvestmentCalculator() {
                         Currency
                       </Label>
                       <Select value={currency} onValueChange={setCurrency}>
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500" data-testid="select-currency">
+                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-currency">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          {currencies.map((curr) => (
-                            <SelectItem key={curr.code} value={curr.code}>
-                              {curr.code} - {curr.name}
-                            </SelectItem>
-                          ))}
+                          <SelectItem value="USD">USD - US Dollar</SelectItem>
+                          <SelectItem value="EUR">EUR - Euro</SelectItem>
+                          <SelectItem value="GBP">GBP - British Pound</SelectItem>
+                          <SelectItem value="INR">INR - Indian Rupee</SelectItem>
+                          <SelectItem value="JPY">JPY - Japanese Yen</SelectItem>
+                          <SelectItem value="CAD">CAD - Canadian Dollar</SelectItem>
+                          <SelectItem value="AUD">AUD - Australian Dollar</SelectItem>
+                          <SelectItem value="CNY">CNY - Chinese Yuan</SelectItem>
+                          <SelectItem value="BRL">BRL - Brazilian Real</SelectItem>
+                          <SelectItem value="MXN">MXN - Mexican Peso</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -301,7 +263,7 @@ export default function FutureValueInvestmentCalculator() {
                     <div className="space-y-3">
                       <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Compound Frequency</Label>
                       <Select value={compoundFrequency} onValueChange={setCompoundFrequency}>
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500" data-testid="select-compound-frequency">
+                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-compound-frequency">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -320,15 +282,13 @@ export default function FutureValueInvestmentCalculator() {
                         Initial Investment
                       </Label>
                       <div className="relative">
-                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">
-                          {currencies.find(c => c.code === currency)?.symbol || '$'}
-                        </span>
+                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
                         <Input
                           id="initial-investment"
                           type="number"
                           value={initialInvestment}
                           onChange={(e) => setInitialInvestment(e.target.value)}
-                          className="h-14 pl-12 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
                           placeholder="10,000"
                           step="0.01"
                           data-testid="input-initial-investment"
@@ -347,7 +307,7 @@ export default function FutureValueInvestmentCalculator() {
                           type="number"
                           value={annualInterestRate}
                           onChange={(e) => setAnnualInterestRate(e.target.value)}
-                          className="h-14 pr-12 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
                           placeholder="8.00"
                           step="0.01"
                           data-testid="input-annual-rate"
@@ -357,7 +317,7 @@ export default function FutureValueInvestmentCalculator() {
                     </div>
 
                     {/* Investment Period */}
-                    <div className="md:col-span-2 space-y-3">
+                    <div className="space-y-3">
                       <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Investment Period</Label>
                       <div className="grid grid-cols-2 gap-3">
                         <Input
@@ -370,7 +330,7 @@ export default function FutureValueInvestmentCalculator() {
                           data-testid="input-investment-period"
                         />
                         <Select value={timeUnit} onValueChange={setTimeUnit}>
-                          <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500" data-testid="select-time-unit">
+                          <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-time-unit">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -380,255 +340,222 @@ export default function FutureValueInvestmentCalculator() {
                         </Select>
                       </div>
                     </div>
+
+                    {/* Inflation Rate */}
+                    <div className="space-y-3">
+                      <Label htmlFor="inflation-rate" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Inflation Rate (Optional)
+                      </Label>
+                      <div className="relative">
+                        <Input
+                          id="inflation-rate"
+                          type="number"
+                          value={inflationRate}
+                          onChange={(e) => setInflationRate(e.target.value)}
+                          className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          placeholder="3.00"
+                          step="0.01"
+                          data-testid="input-inflation-rate"
+                        />
+                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
+                      </div>
+                    </div>
                   </div>
 
                   {/* Advanced Options */}
-                  <div className="space-y-4 sm:space-y-6 border-t pt-6 sm:pt-8">
-                    <h3 className="text-lg sm:text-xl font-bold text-gray-900">Advanced Options</h3>
+                  <div className="space-y-6 border-t pt-8">
+                    <h3 className="text-xl font-bold text-gray-900">Advanced Options</h3>
                     
-                    <Collapsible open={showAdvanced} onOpenChange={setShowAdvanced}>
-                      <CollapsibleTrigger asChild>
-                        <Button 
-                          variant="ghost" 
-                          className="w-full justify-between text-sm sm:text-base py-3 sm:py-4 h-auto"
-                          data-testid="button-toggle-advanced"
-                        >
-                          <span className="flex items-center">
-                            Advanced Investment Options
-                          </span>
-                          <span className={`transform transition-transform ${showAdvanced ? 'rotate-180' : ''}`}>▼</span>
-                        </Button>
-                      </CollapsibleTrigger>
-                      <CollapsibleContent className="space-y-4 sm:space-y-6 mt-4">
-                        <Separator />
-                        
-                        {/* Investment and Contribution Settings */}
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-                          <div className="space-y-4 bg-gray-50 rounded-xl p-4 sm:p-6">
-                            <h4 className="text-sm sm:text-base font-semibold text-gray-900">Contribution Settings</h4>
-                            
-                            {/* Monthly Contributions Toggle */}
-                            <div className="flex items-center justify-between gap-2">
-                              <div className="space-y-1 flex-1 min-w-0">
-                                <Label className="text-xs sm:text-sm font-medium">Enable Monthly Contributions</Label>
-                                <p className="text-xs text-gray-500">Add regular monthly investments to your portfolio</p>
-                              </div>
-                              <Switch
-                                checked={enableMonthlyContributions}
-                                onCheckedChange={setEnableMonthlyContributions}
-                                data-testid="checkbox-monthly-contributions"
-                              />
-                            </div>
-                            
-                            {enableMonthlyContributions && (
-                              <div className="space-y-2 border-l-4 border-blue-200 bg-blue-50 p-4 rounded-lg">
-                                <Label htmlFor="monthly-contribution" className="text-xs sm:text-sm font-medium">
-                                  Monthly Contribution Amount
-                                </Label>
-                                <div className="relative">
-                                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm">
-                                    {currencies.find(c => c.code === currency)?.symbol || '$'}
-                                  </span>
-                                  <Input
-                                    id="monthly-contribution"
-                                    type="number"
-                                    value={monthlyContribution}
-                                    onChange={(e) => setMonthlyContribution(e.target.value)}
-                                    className="h-10 sm:h-12 pl-8 text-sm border-2 border-gray-200 rounded-lg"
-                                    placeholder="500"
-                                    step="0.01"
-                                    data-testid="input-monthly-contribution"
-                                  />
-                                </div>
-                                <p className="text-xs text-blue-600">Regular contributions can significantly boost long-term growth</p>
-                              </div>
-                            )}
+                    {/* Monthly Contributions Option */}
+                    <div className="space-y-4 bg-gray-50 rounded-xl p-6">
+                      <div className="flex items-center space-x-3">
+                        <input
+                          type="checkbox"
+                          id="enable-monthly-contributions"
+                          checked={enableMonthlyContributions}
+                          onChange={(e) => setEnableMonthlyContributions(e.target.checked)}
+                          className="h-5 w-5 text-blue-600 border-2 border-gray-300 rounded focus:ring-blue-500"
+                          data-testid="checkbox-monthly-contributions"
+                        />
+                        <label htmlFor="enable-monthly-contributions" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                          Enable Monthly Contributions
+                        </label>
+                      </div>
+                      
+                      {enableMonthlyContributions && (
+                        <div className="mt-4">
+                          <Label htmlFor="monthly-contribution" className="text-sm font-medium text-gray-700">
+                            Monthly Contribution Amount
+                          </Label>
+                          <div className="relative mt-2">
+                            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                            <Input
+                              id="monthly-contribution"
+                              type="number"
+                              value={monthlyContribution}
+                              onChange={(e) => setMonthlyContribution(e.target.value)}
+                              className="h-12 pl-8 border-2 border-gray-200 rounded-lg w-full md:w-64"
+                              placeholder="500"
+                              min="0"
+                              step="0.01"
+                              data-testid="input-monthly-contribution"
+                            />
                           </div>
-
-                          {/* Economic and Display Settings */}
-                          <div className="space-y-4 bg-gray-50 rounded-xl p-4 sm:p-6">
-                            <h4 className="text-sm sm:text-base font-semibold text-gray-900">Economic & Display Settings</h4>
-                            
-                            <div className="space-y-2">
-                              <Label htmlFor="inflation-rate" className="text-xs sm:text-sm font-medium">
-                                Expected Inflation Rate
-                              </Label>
-                              <div className="relative">
-                                <Input
-                                  id="inflation-rate"
-                                  type="number"
-                                  value={inflationRate}
-                                  onChange={(e) => setInflationRate(e.target.value)}
-                                  className="h-10 sm:h-12 pr-8 text-sm border-2 border-gray-200 rounded-lg"
-                                  placeholder="3.00"
-                                  step="0.01"
-                                  data-testid="input-inflation-rate"
-                                />
-                                <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm">%</span>
-                              </div>
-                              <p className="text-xs text-gray-500">Annual inflation rate for real value calculations</p>
-                            </div>
-
-                            <div className="space-y-3">
-                              <Label className="text-xs sm:text-sm font-medium">Display Options</Label>
-                              
-                              <div className="flex items-center justify-between gap-2">
-                                <div className="space-y-1 flex-1 min-w-0">
-                                  <Label className="text-xs font-medium">Show Inflation-Adjusted Values</Label>
-                                  <p className="text-xs text-gray-500">Display real purchasing power of future value</p>
-                                </div>
-                                <Switch
-                                  checked={showRealValue}
-                                  onCheckedChange={setShowRealValue}
-                                  data-testid="checkbox-show-real-value"
-                                />
-                              </div>
-
-                              <div className="flex items-center justify-between gap-2">
-                                <div className="space-y-1 flex-1 min-w-0">
-                                  <Label className="text-xs font-medium">Show Yearly Breakdown Table</Label>
-                                  <p className="text-xs text-gray-500">Detailed year-by-year investment growth analysis</p>
-                                </div>
-                                <Switch
-                                  checked={showYearlyBreakdown}
-                                  onCheckedChange={setShowYearlyBreakdown}
-                                  data-testid="checkbox-show-yearly-breakdown"
-                                />
-                              </div>
-                            </div>
-                          </div>
+                          <p className="text-sm text-gray-500 mt-2">
+                            Regular monthly investments to boost long-term growth
+                          </p>
                         </div>
-                        
-                        <Separator />
-                      </CollapsibleContent>
-                    </Collapsible>
+                      )}
+                    </div>
+
+                    {/* Inflation Adjustment Option */}
+                    <div className="space-y-4 bg-gray-50 rounded-xl p-6">
+                      <div className="flex items-center space-x-3">
+                        <input
+                          type="checkbox"
+                          id="enable-inflation-adjustment"
+                          checked={enableInflationAdjustment}
+                          onChange={(e) => setEnableInflationAdjustment(e.target.checked)}
+                          className="h-5 w-5 text-blue-600 border-2 border-gray-300 rounded focus:ring-blue-500"
+                          data-testid="checkbox-inflation-adjustment"
+                        />
+                        <label htmlFor="enable-inflation-adjustment" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                          Show Inflation-Adjusted Values
+                        </label>
+                      </div>
+                      <p className="text-sm text-gray-500 mt-2">
+                        Display real purchasing power of your future investment value
+                      </p>
+                    </div>
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex gap-4 pt-6">
+                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
                     <Button
                       onClick={calculateFutureValue}
-                      className="flex-1 h-14 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl text-lg"
-                      data-testid="button-calculate-future-value"
+                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      data-testid="button-calculate"
                     >
                       Calculate Future Value
                     </Button>
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-14 px-8 border-gray-200 text-gray-600 hover:bg-gray-50 font-medium rounded-xl"
+                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
                       data-testid="button-reset"
                     >
                       Reset
                     </Button>
                   </div>
+
+                  {/* Display Options */}
+                  {result && (
+                    <div className="flex flex-wrap gap-3 pt-4">
+                      <Button
+                        onClick={() => setShowYearlyBreakdown(!showYearlyBreakdown)}
+                        variant="outline"
+                        size="sm"
+                        className="rounded-full"
+                        data-testid="button-show-breakdown"
+                      >
+                        {showYearlyBreakdown ? 'Hide' : 'Show'} Yearly Breakdown
+                      </Button>
+                    </div>
+                  )}
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 lg:p-12">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Investment Projection</h2>
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Investment Projection</h2>
                   
                   {result ? (
-                    <div className="space-y-6">
-                      {/* Future Value Display */}
-                      <div className="bg-white rounded-xl p-6 border border-gray-100">
-                        <div className="text-center space-y-2">
-                          <div className="text-sm text-gray-600">Future Value</div>
-                          <div className="text-4xl font-bold text-green-600">
-                            {formatCurrency(result.futureValue)}
-                          </div>
-                          {showRealValue && (
-                            <div className="text-sm text-gray-500">
-                              Real Value: {formatCurrency(result.realValue)}
-                            </div>
-                          )}
+                    <div className="space-y-6" data-testid="investment-results">
+                      {/* Future Value Highlight */}
+                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
+                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Future Value</div>
+                        <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" data-testid="text-future-value">
+                          {formatCurrency(result.futureValue)}
                         </div>
+                        {enableInflationAdjustment && (
+                          <div className="text-sm text-gray-500 mt-2">
+                            Real Value: {formatCurrency(result.realValue)}
+                          </div>
+                        )}
                       </div>
 
-                      {/* Key Metrics */}
-                      <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-white rounded-lg p-4 border border-gray-100">
-                          <div className="text-center">
-                            <div className="text-sm text-gray-600">Total Growth</div>
-                            <div className="text-lg font-bold text-green-600">
-                              {formatCurrency(result.totalGrowth)}
-                            </div>
-                          </div>
-                        </div>
-                        <div className="bg-white rounded-lg p-4 border border-gray-100">
-                          <div className="text-center">
-                            <div className="text-sm text-gray-600">Total Contributions</div>
-                            <div className="text-lg font-bold text-blue-600">
-                              {formatCurrency(result.totalContributions)}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Summary */}
+                      {/* Investment Breakdown */}
                       <div className="space-y-4">
-                        <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                          <span className="text-gray-600">Initial Investment</span>
-                          <span className="font-semibold text-gray-900">
-                            {formatCurrency(result.initialInvestment)}
-                          </span>
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Initial Investment</span>
+                            <span className="font-bold text-gray-900" data-testid="text-initial-investment">
+                              {formatCurrency(result.initialInvestment)}
+                            </span>
+                          </div>
                         </div>
                         {enableMonthlyContributions && result.monthlyContributions > 0 && (
-                          <>
-                            <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                              <span className="text-gray-600">Monthly Contributions</span>
-                              <span className="font-semibold text-gray-900">
-                                {formatCurrency(result.monthlyContributions)}
-                              </span>
-                            </div>
-                            <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                              <span className="text-gray-600">Total Monthly Contributions</span>
-                              <span className="font-semibold text-blue-600">
+                          <div className="bg-white rounded-xl p-4 shadow-sm">
+                            <div className="flex justify-between items-center">
+                              <span className="font-medium text-gray-700">Total Monthly Contributions</span>
+                              <span className="font-bold text-blue-600" data-testid="text-monthly-contributions">
                                 {formatCurrency(result.totalMonthlyContributions)}
                               </span>
                             </div>
-                          </>
-                        )}
-                        <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                          <span className="text-gray-600">Average Annual Return</span>
-                          <span className="font-semibold text-green-600">
-                            {formatPercentage(result.averageAnnualReturn)}
-                          </span>
-                        </div>
-                        {showRealValue && (
-                          <div className="flex justify-between items-center py-3">
-                            <span className="text-gray-600">Inflation-Adjusted Gains</span>
-                            <span className={`font-semibold ${result.inflationAdjustedGains >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                              {formatCurrency(result.inflationAdjustedGains)}
-                            </span>
                           </div>
                         )}
-                      </div>
-
-                      {/* Growth Interpretation */}
-                      <div className="mt-8">
-                        <h3 className="text-lg font-semibold text-gray-900 mb-4">Growth Analysis</h3>
-                        <div className="bg-white rounded-lg p-4 border border-gray-100">
-                          <p className="text-gray-700 leading-relaxed">
-                            Your investment of {formatCurrency(result.initialInvestment)}
-                            {enableMonthlyContributions && result.monthlyContributions > 0 && 
-                              ` with monthly contributions of ${formatCurrency(result.monthlyContributions)}`
-                            } is projected to grow to {formatCurrency(result.futureValue)} over the investment period.
-                            This represents a total growth of {formatCurrency(result.totalGrowth)} 
-                            ({formatPercentage((result.totalGrowth / result.totalContributions) * 100)}).
-                          </p>
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Total Growth</span>
+                            <span className="font-bold text-green-600" data-testid="text-total-growth">
+                              {formatCurrency(result.totalGrowth)}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Total Contributions</span>
+                            <span className="font-bold text-gray-900" data-testid="text-total-contributions">
+                              {formatCurrency(result.totalContributions)}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Average Annual Return</span>
+                            <span className="font-bold text-purple-600" data-testid="text-annual-return">
+                              {result.averageAnnualReturn.toFixed(2)}%
+                            </span>
+                          </div>
                         </div>
                       </div>
+
+                      {/* Inflation Adjusted Benefits */}
+                      {enableInflationAdjustment && (
+                        <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl p-6 border border-orange-200">
+                          <h4 className="font-bold text-orange-800 mb-4 text-lg">Inflation Impact Analysis</h4>
+                          <div className="space-y-3">
+                            <div className="flex justify-between items-center">
+                              <span className="text-orange-700 font-medium">Real Future Value:</span>
+                              <span className="font-bold text-orange-800 text-lg">
+                                {formatCurrency(result.realValue)}
+                              </span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                              <span className="text-orange-700 font-medium">Inflation-Adjusted Gains:</span>
+                              <span className={`font-bold text-lg ${result.inflationAdjustedGains >= 0 ? 'text-green-800' : 'text-red-800'}`}>
+                                {formatCurrency(result.inflationAdjustedGains)}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   ) : (
-                    <div className="text-center py-16">
-                      <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i className="fas fa-chart-line text-blue-600 text-xl"></i>
+                    <div className="text-center py-16" data-testid="no-results">
+                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <div className="text-3xl font-bold text-gray-400">$</div>
                       </div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">Ready to Project</h3>
-                      <p className="text-gray-600">
-                        Enter your investment details to see future value projections
-                      </p>
+                      <p className="text-gray-500 text-lg">Enter investment details to see future value projections</p>
                     </div>
                   )}
                 </div>
@@ -638,96 +565,468 @@ export default function FutureValueInvestmentCalculator() {
 
           {/* Yearly Breakdown Table */}
           {result && showYearlyBreakdown && (
-            <div className="mt-16 bg-white rounded-2xl shadow-lg p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Yearly Growth Breakdown</h2>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b-2 border-gray-200">
-                      <th className="text-left py-3 px-2 font-semibold">Year</th>
-                      <th className="text-right py-3 px-2 font-semibold">Start Balance</th>
-                      <th className="text-right py-3 px-2 font-semibold">Contributions</th>
-                      <th className="text-right py-3 px-2 font-semibold">Interest Earned</th>
-                      <th className="text-right py-3 px-2 font-semibold">End Balance</th>
-                      {showRealValue && <th className="text-right py-3 px-2 font-semibold">Real Value</th>}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {result.yearlyBreakdown.map((year) => (
-                      <tr key={year.year} className="border-b border-gray-100 hover:bg-gray-50">
-                        <td className="py-3 px-2 font-medium">{year.year}</td>
-                        <td className="py-3 px-2 text-right">{formatCurrency(year.startBalance)}</td>
-                        <td className="py-3 px-2 text-right text-blue-600">{formatCurrency(year.contributions)}</td>
-                        <td className="py-3 px-2 text-right text-green-600">{formatCurrency(year.interestEarned)}</td>
-                        <td className="py-3 px-2 text-right font-semibold">{formatCurrency(year.endBalance)}</td>
-                        {showRealValue && <td className="py-3 px-2 text-right text-gray-600">{formatCurrency(year.realValue)}</td>}
+            <Card className="mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Yearly Investment Growth Breakdown</h3>
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead>
+                      <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
+                        <th className="px-6 py-4 text-left font-bold text-gray-900 rounded-l-lg">Year</th>
+                        <th className="px-6 py-4 text-right font-bold text-gray-900">Start Balance</th>
+                        <th className="px-6 py-4 text-right font-bold text-gray-900">Contributions</th>
+                        <th className="px-6 py-4 text-right font-bold text-gray-900">Interest Earned</th>
+                        <th className="px-6 py-4 text-right font-bold text-gray-900">End Balance</th>
+                        {enableInflationAdjustment && <th className="px-6 py-4 text-right font-bold text-gray-900 rounded-r-lg">Real Value</th>}
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+                    </thead>
+                    <tbody className="divide-y divide-gray-100">
+                      {result.yearlyBreakdown.map((year, index) => (
+                        <tr key={index} className="hover:bg-blue-50 transition-colors">
+                          <td className="px-6 py-4 font-medium text-gray-900">{year.year}</td>
+                          <td className="px-6 py-4 text-right text-gray-900 font-medium">
+                            {formatCurrency(year.startBalance)}
+                          </td>
+                          <td className="px-6 py-4 text-right text-blue-600 font-bold">
+                            {formatCurrency(year.contributions)}
+                          </td>
+                          <td className="px-6 py-4 text-right text-green-600 font-medium">
+                            {formatCurrency(year.interestEarned)}
+                          </td>
+                          <td className="px-6 py-4 text-right text-gray-900 font-bold">
+                            {formatCurrency(year.endBalance)}
+                          </td>
+                          {enableInflationAdjustment && (
+                            <td className="px-6 py-4 text-right text-orange-600 font-medium">
+                              {formatCurrency(year.realValue)}
+                            </td>
+                          )}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </CardContent>
+            </Card>
           )}
 
-          {/* How to Use Section */}
-          <div className="mt-16 bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">How to Use the Future Value Calculator</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <h3 className="text-lg font-semibold text-gray-800 mb-4">Step-by-Step Guide</h3>
-                <ol className="space-y-3 text-gray-600">
-                  <li className="flex items-start">
-                    <span className="flex-shrink-0 w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-semibold mr-3 mt-0.5">1</span>
-                    <span>Select your currency and compound frequency</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="flex-shrink-0 w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-semibold mr-3 mt-0.5">2</span>
-                    <span>Enter your initial investment amount</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="flex-shrink-0 w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-semibold mr-3 mt-0.5">3</span>
-                    <span>Set expected annual interest rate and investment period</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="flex-shrink-0 w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-semibold mr-3 mt-0.5">4</span>
-                    <span>Optionally enable monthly contributions and set inflation rate</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="flex-shrink-0 w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-semibold mr-3 mt-0.5">5</span>
-                    <span>Click "Calculate Future Value" to see your investment projection</span>
-                  </li>
-                </ol>
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-gray-800 mb-4">Best Practices</h3>
-                <ul className="space-y-2 text-gray-600">
-                  <li className="flex items-center">
-                    <i className="fas fa-chart-line text-green-500 mr-2"></i>
-                    Use conservative return estimates (6-8% annually)
-                  </li>
-                  <li className="flex items-center">
-                    <i className="fas fa-calendar text-blue-500 mr-2"></i>
-                    Include realistic inflation rates (2-4%)
-                  </li>
-                  <li className="flex items-center">
-                    <i className="fas fa-coins text-yellow-500 mr-2"></i>
-                    Start with small, consistent monthly contributions
-                  </li>
-                  <li className="flex items-center">
-                    <i className="fas fa-clock text-purple-500 mr-2"></i>
-                    Take advantage of compound growth over longer periods
-                  </li>
-                  <li className="flex items-center">
-                    <i className="fas fa-shield-alt text-orange-500 mr-2"></i>
-                    Consider diversified investment portfolios
-                  </li>
-                  <li className="flex items-center">
-                    <i className="fas fa-piggy-bank text-pink-500 mr-2"></i>
-                    Review and adjust projections regularly
-                  </li>
-                </ul>
-              </div>
+          {/* SEO Content Section */}
+          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">What is Future Value?</h3>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    Future Value (FV) is a fundamental financial concept that calculates how much an investment 
+                    will be worth at a specific point in the future, given a particular interest rate and time period. 
+                    Our future value calculator uses compound interest formulas to project investment growth accurately.
+                  </p>
+                  <p>
+                    This powerful tool helps investors, financial planners, and anyone planning for retirement 
+                    understand how their money can grow over time. Whether you're planning for retirement, saving 
+                    for a major purchase, or building wealth, understanding future value is essential for making 
+                    informed financial decisions.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">How to Calculate Future Value?</h3>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    The future value formula is: FV = PV × (1 + r)^n
+                  </p>
+                  <ul className="space-y-2 list-disc list-inside">
+                    <li>FV = Future Value of the investment</li>
+                    <li>PV = Present Value (initial investment)</li>
+                    <li>r = Interest rate per compounding period</li>
+                    <li>n = Number of compounding periods</li>
+                  </ul>
+                  <p>
+                    For investments with regular contributions, our calculator uses the more complex future value 
+                    of annuity formula to account for monthly contributions and their compounding effect over time.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Features of Our Calculator</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Support for 10+ international currencies</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Multiple compound frequency options</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Monthly contribution calculations</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Inflation adjustment analysis</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Detailed yearly breakdown tables</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Benefits of Investment Planning</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Visualize long-term wealth accumulation</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Compare different investment scenarios</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Plan for retirement and major life goals</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Understand the power of compound interest</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Make informed financial decisions</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Comprehensive SEO Content Sections */}
+          <div className="mt-12 space-y-8">
+            {/* Investment Types Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Types of Investments for Future Value Calculation</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Stocks and Equity Funds</h4>
+                    <p className="text-gray-600">
+                      Stock investments typically offer higher returns but with greater volatility. Use our calculator 
+                      with historical average returns of 7-10% annually to project long-term stock portfolio growth 
+                      and understand the impact of regular investing through dollar-cost averaging.
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Bonds and Fixed Income</h4>
+                    <p className="text-gray-600">
+                      Bond investments provide steady, predictable returns. Calculate future values for government 
+                      bonds, corporate bonds, and bond funds with typical returns of 3-6% annually, perfect for 
+                      conservative investors seeking capital preservation with modest growth.
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Mutual Funds and ETFs</h4>
+                    <p className="text-gray-600">
+                      Diversified funds offer balanced growth potential. Project future values for index funds, 
+                      sector-specific ETFs, and actively managed mutual funds to compare performance scenarios 
+                      and optimize your investment allocation strategy.
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Retirement Accounts</h4>
+                    <p className="text-gray-600">
+                      401(k), IRA, and Roth IRA calculations are crucial for retirement planning. Use our tool 
+                      to project how regular contributions will grow in tax-advantaged accounts and plan for 
+                      a comfortable retirement with adequate savings.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Compound Interest Factors */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Factors Affecting Investment Growth</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <div className="border-l-4 border-blue-500 pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-2">Initial Investment Amount</h4>
+                      <p className="text-sm">Larger initial investments provide more capital for compound growth. Even small amounts can grow significantly over long periods due to compounding.</p>
+                    </div>
+                    <div className="border-l-4 border-green-500 pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-2">Interest Rate</h4>
+                      <p className="text-sm">Higher returns accelerate wealth building, but consider risk tolerance. A 1% difference in annual returns can mean thousands in additional wealth over decades.</p>
+                    </div>
+                    <div className="border-l-4 border-orange-500 pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-2">Time Horizon</h4>
+                      <p className="text-sm">Time is the most powerful factor in compound growth. Starting early provides exponentially better results than waiting, even with smaller amounts.</p>
+                    </div>
+                    <div className="border-l-4 border-purple-500 pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-2">Regular Contributions</h4>
+                      <p className="text-sm">Consistent monthly investments can dramatically boost future value. Dollar-cost averaging also reduces market timing risk.</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Investment Planning Strategies</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <div className="bg-blue-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-blue-800 mb-2">Dollar-Cost Averaging</h4>
+                      <p className="text-sm text-blue-700">Invest a fixed amount regularly regardless of market conditions. This strategy reduces volatility impact and builds discipline.</p>
+                    </div>
+                    <div className="bg-green-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-green-800 mb-2">Compound Frequency Optimization</h4>
+                      <p className="text-sm text-green-700">Choose investments that compound more frequently. Daily compounding provides better growth than annual compounding.</p>
+                    </div>
+                    <div className="bg-orange-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-orange-800 mb-2">Inflation Protection</h4>
+                      <p className="text-sm text-orange-700">Ensure your investment returns exceed inflation rates to maintain real purchasing power over time.</p>
+                    </div>
+                    <div className="bg-purple-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-purple-800 mb-2">Risk Diversification</h4>
+                      <p className="text-sm text-purple-700">Spread investments across different asset classes to balance growth potential with risk management.</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
+
+            {/* Future Value FAQs Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions about Future Value</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">What is the difference between simple and compound interest?</h4>
+                      <p className="text-gray-600 text-sm">Simple interest is calculated only on the principal amount, while compound interest is calculated on both principal and previously earned interest. Compound interest leads to exponential growth over time.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How does inflation affect my investment's future value?</h4>
+                      <p className="text-gray-600 text-sm">Inflation reduces purchasing power over time. A 3% inflation rate means you need 3% investment growth just to maintain current buying power. Always consider real returns (returns minus inflation).</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">What's a realistic annual return for long-term investments?</h4>
+                      <p className="text-gray-600 text-sm">Historical stock market averages suggest 7-10% annually, but past performance doesn't guarantee future results. Conservative estimates of 6-8% are often used for planning purposes.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How often should I review my investment projections?</h4>
+                      <p className="text-gray-600 text-sm">Review projections annually or when major life events occur. Market conditions, goals, and personal circumstances change, requiring periodic adjustments to your investment strategy.</p>
+                    </div>
+                  </div>
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Is it better to invest a lump sum or make regular contributions?</h4>
+                      <p className="text-gray-600 text-sm">Both strategies have merits. Lump sum investing can maximize time in market, while regular contributions provide dollar-cost averaging benefits and are more manageable for most people.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How do taxes affect future value calculations?</h4>
+                      <p className="text-gray-600 text-sm">Taxes can significantly impact returns. Tax-advantaged accounts like 401(k)s and IRAs allow tax-deferred or tax-free growth, while taxable accounts are subject to capital gains and dividend taxes.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">What compound frequency should I use for calculations?</h4>
+                      <p className="text-gray-600 text-sm">Use the frequency that matches your investment. Most mutual funds compound daily, while some bonds compound semi-annually. More frequent compounding increases future value slightly.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">When should I start investing for retirement?</h4>
+                      <p className="text-gray-600 text-sm">The earlier, the better. Starting in your 20s allows decades of compound growth. Even small amounts invested early can outperform larger amounts invested later due to compounding.</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Investment Scenarios */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">Conservative Investment</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <p className="text-sm">
+                      Conservative portfolios focus on capital preservation with steady, modest growth.
+                    </p>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-green-800 text-sm">Typical Returns:</h4>
+                      <ul className="text-xs space-y-1 list-disc list-inside text-green-700">
+                        <li>Government bonds: 2-4% annually</li>
+                        <li>High-grade corporate bonds: 3-5%</li>
+                        <li>Money market funds: 1-3%</li>
+                      </ul>
+                    </div>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-blue-800 text-sm">Best For:</h4>
+                      <ul className="text-xs space-y-1 list-disc list-inside text-blue-700">
+                        <li>Near-retirement investors</li>
+                        <li>Emergency fund building</li>
+                        <li>Short-term goals (1-5 years)</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">Moderate Investment</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <p className="text-sm">
+                      Balanced portfolios mix stocks and bonds for growth with manageable risk.
+                    </p>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-green-800 text-sm">Typical Returns:</h4>
+                      <ul className="text-xs space-y-1 list-disc list-inside text-green-700">
+                        <li>Balanced mutual funds: 5-7% annually</li>
+                        <li>Target-date funds: 6-8%</li>
+                        <li>Mixed portfolio: 5-8%</li>
+                      </ul>
+                    </div>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-blue-800 text-sm">Best For:</h4>
+                      <ul className="text-xs space-y-1 list-disc list-inside text-blue-700">
+                        <li>Medium-term goals (5-15 years)</li>
+                        <li>Risk-balanced investors</li>
+                        <li>General retirement planning</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">Aggressive Investment</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <p className="text-sm">
+                      Growth-focused portfolios emphasize stocks for maximum long-term appreciation.
+                    </p>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-green-800 text-sm">Typical Returns:</h4>
+                      <ul className="text-xs space-y-1 list-disc list-inside text-green-700">
+                        <li>Stock index funds: 7-10% annually</li>
+                        <li>Growth stocks: 8-12%</li>
+                        <li>Emerging markets: 6-15%</li>
+                      </ul>
+                    </div>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-blue-800 text-sm">Best For:</h4>
+                      <ul className="text-xs space-y-1 list-disc list-inside text-blue-700">
+                        <li>Young investors (20s-30s)</li>
+                        <li>Long-term goals (15+ years)</li>
+                        <li>High risk tolerance</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Common Mistakes Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Common Investment Planning Mistakes to Avoid</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <div className="bg-red-50 border-l-4 border-red-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-red-800 mb-2">Overestimating Returns</h4>
+                      <p className="text-red-700 text-sm">Using unrealistic return assumptions can lead to inadequate savings. Conservative estimates ensure you're prepared for various market scenarios.</p>
+                    </div>
+                    <div className="bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-orange-800 mb-2">Ignoring Inflation</h4>
+                      <p className="text-orange-700 text-sm">Failing to account for inflation means your purchasing power decreases over time. Always consider real returns in your planning.</p>
+                    </div>
+                    <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-yellow-800 mb-2">Starting Too Late</h4>
+                      <p className="text-yellow-700 text-sm">Delaying investment reduces the power of compound interest. Starting early, even with small amounts, is more effective than larger contributions later.</p>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-blue-800 mb-2">Neglecting Tax Implications</h4>
+                      <p className="text-blue-700 text-sm">Taxes significantly impact returns. Utilize tax-advantaged accounts and consider tax-efficient investment strategies to maximize growth.</p>
+                    </div>
+                    <div className="bg-purple-50 border-l-4 border-purple-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-purple-800 mb-2">Emotional Decision Making</h4>
+                      <p className="text-purple-700 text-sm">Market volatility can trigger emotional responses. Stick to your long-term plan and avoid panic selling during market downturns.</p>
+                    </div>
+                    <div className="bg-green-50 border-l-4 border-green-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-green-800 mb-2">Insufficient Diversification</h4>
+                      <p className="text-green-700 text-sm">Putting all money in one investment increases risk. Diversify across asset classes, sectors, and geographic regions for better risk management.</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Retirement Planning Focus */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Using Future Value for Retirement Planning</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Retirement Savings Strategies</h4>
+                    <div className="space-y-3 text-gray-600">
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-sm">Start with employer 401(k) match to get free money</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-sm">Maximize tax-advantaged account contributions</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-sm">Use target-date funds for automatic diversification</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-sm">Increase contributions with salary raises</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Retirement Income Planning</h4>
+                    <div className="space-y-3 text-gray-600">
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-sm">Plan for 25-30 years of retirement expenses</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-sm">Account for healthcare cost inflation</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-sm">Consider Social Security benefits in planning</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                        <span className="text-sm">Use 4% withdrawal rule for sustainability</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg">
+                  <h4 className="font-semibold text-blue-800 mb-2">Retirement Planning Tip</h4>
+                  <p className="text-blue-700 text-sm">
+                    Use our future value calculator to project different retirement scenarios. Aim to replace 70-80% 
+                    of your pre-retirement income through a combination of savings, Social Security, and other retirement 
+                    benefits. Start early and let compound interest work in your favor.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </main>
