@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -8,7 +9,6 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Calculator, Baby } from 'lucide-react';
 
 interface GrowthResult {
   weightPercentile: number;
@@ -32,7 +32,7 @@ interface GrowthResult {
   };
 }
 
-const BabyGrowthChart = () => {
+export default function BabyGrowthChart() {
   const [babyGender, setBabyGender] = useState('');
   const [birthDate, setBirthDate] = useState('');
   const [currentWeight, setCurrentWeight] = useState('');
@@ -103,8 +103,7 @@ const BabyGrowthChart = () => {
     let ageInMonths = (today.getTime() - birth.getTime()) / (1000 * 60 * 60 * 24 * 30.44);
     
     if (isPremature && correctedAgeWeeks) {
-      // Adjust for prematurity
-      const correctionMonths = (40 - correctedAgeWeeks) / 4.33; // weeks to months
+      const correctionMonths = (40 - correctedAgeWeeks) / 4.33;
       ageInMonths -= correctionMonths;
     }
     
@@ -119,7 +118,6 @@ const BabyGrowthChart = () => {
   };
 
   const calculatePercentile = (value: number, percentileData: number[]): number => {
-    // Simplified percentile calculation
     const [p3, p15, p85, p97] = percentileData;
     
     if (value <= p3) return 3;
@@ -144,12 +142,12 @@ const BabyGrowthChart = () => {
   };
 
   const convertWeight = (weight: number, fromUnit: string): number => {
-    if (fromUnit === 'imperial') return weight * 0.453592; // lbs to kg
+    if (fromUnit === 'imperial') return weight * 0.453592;
     return weight;
   };
 
   const convertHeight = (height: number, fromUnit: string): number => {
-    if (fromUnit === 'imperial') return height * 2.54; // inches to cm
+    if (fromUnit === 'imperial') return height * 2.54;
     return height;
   };
 
@@ -208,7 +206,6 @@ const BabyGrowthChart = () => {
     const weightCategory = getCategory(weightPercentile);
     const heightCategory = getCategory(heightPercentile);
     
-    // Growth assessment
     const isHealthy = weightPercentile >= 3 && weightPercentile <= 97 && 
                      heightPercentile >= 3 && heightPercentile <= 97;
     
@@ -239,7 +236,6 @@ const BabyGrowthChart = () => {
     
     const milestones = getDevelopmentalMilestones(ageInMonths);
     
-    // Calculate ideal ranges (15th-85th percentiles)
     const idealWeight = {
       min: weightPercentiles[1],
       max: weightPercentiles[2]
@@ -301,198 +297,241 @@ const BabyGrowthChart = () => {
     return today.toISOString().split('T')[0];
   };
 
-  return (
-    <>
-      <Helmet>
-        <title>Baby Growth Chart Calculator - Track Baby Development | DapsiWow</title>
-        <meta name="description" content="Track your baby's growth and development with WHO growth standards. Calculate weight and height percentiles, get milestone information." />
-        <meta name="keywords" content="baby growth chart, infant development, WHO growth standards, baby weight percentile, baby height percentile, pediatric growth" />
-        <meta property="og:title" content="Baby Growth Chart Calculator - Track Baby Development | DapsiWow" />
-        <meta property="og:description" content="Professional baby growth tracking tool using WHO standards to monitor healthy development and milestones." />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href="/tools/baby-growth-chart" />
-      </Helmet>
+  const formatValue = (value: number, unit: string) => {
+    return `${value.toFixed(1)} ${unit}`;
+  };
 
-      <div className="min-h-screen flex flex-col" data-testid="page-baby-growth-chart">
-        <Header />
-        
-        <main className="flex-1 bg-neutral-50">
-          {/* Hero Section */}
-          <section className="text-white py-16" style={{ background: 'linear-gradient(135deg, #f43f5e 0%, #e11d48 100%)' }}>
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <Baby className="w-10 h-10" />
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      <Helmet>
+        <title>Baby Growth Chart Calculator - Track Your Baby's Development | DapsiWow</title>
+        <meta name="description" content="Free baby growth chart calculator using WHO growth standards. Track your baby's weight, height percentiles, and developmental milestones. Get personalized growth assessments and recommendations." />
+        <meta name="keywords" content="baby growth chart, infant development tracker, WHO growth standards, baby weight percentile, baby height percentile, child growth calculator, pediatric growth chart, baby milestone tracker, infant growth assessment, newborn growth calculator" />
+        <meta property="og:title" content="Baby Growth Chart Calculator - Track Your Baby's Development | DapsiWow" />
+        <meta property="og:description" content="Professional baby growth tracking tool using WHO standards. Monitor healthy development with personalized assessments and milestone tracking." />
+        <meta property="og:type" content="website" />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="DapsiWow" />
+        <link rel="canonical" href="https://dapsiwow.com/tools/baby-growth-chart" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Baby Growth Chart Calculator",
+            "description": "Free online baby growth chart calculator using WHO growth standards to track infant development, weight and height percentiles, and developmental milestones.",
+            "url": "https://dapsiwow.com/tools/baby-growth-chart",
+            "applicationCategory": "HealthApplication",
+            "operatingSystem": "Any",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "featureList": [
+              "WHO Growth Standards tracking",
+              "Weight and height percentiles",
+              "Developmental milestone tracking",
+              "Personalized growth assessments",
+              "Premature baby adjustments",
+              "Multiple measurement units"
+            ]
+          })}
+        </script>
+      </Helmet>
+      
+      <Header />
+      
+      <main>
+        {/* Hero Section */}
+        <section className="relative py-20 sm:py-28 lg:py-32 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
+          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="space-y-8">
+              <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+                <span className="text-sm font-medium text-blue-700">Professional Growth Tracker</span>
               </div>
-              <h1 className="text-4xl sm:text-5xl font-bold mb-6" data-testid="text-page-title">
-                Baby Growth Chart Calculator
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight">
+                Baby Growth
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                  Calculator
+                </span>
               </h1>
-              <p className="text-xl text-blue-100 max-w-2xl mx-auto">
-                Track your baby's growth and development using WHO growth standards with personalized milestone information
+              <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                Track your baby's development with WHO growth standards and personalized milestone assessments
               </p>
             </div>
-          </section>
+          </div>
+        </section>
 
-          {/* Calculator Section */}
-          <section className="py-16">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <Card className="bg-white shadow-sm border-0">
-                <CardContent className="p-8">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    {/* Input Section */}
-                    <div className="space-y-6">
-                      <h2 className="text-2xl font-semibold text-gray-900 mb-8">Baby Information</h2>
-                      
-                      {/* Baby Gender */}
-                      <div className="space-y-3">
-                        <Label className="text-sm font-medium text-gray-700">
-                          Baby's Gender *
-                        </Label>
-                        <RadioGroup 
-                          value={babyGender} 
-                          onValueChange={setBabyGender}
-                          className="flex space-x-6"
-                        >
-                          <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="boys" id="boys" data-testid="radio-boys" />
-                            <Label htmlFor="boys" className="text-sm">Boy</Label>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="girls" id="girls" data-testid="radio-girls" />
-                            <Label htmlFor="girls" className="text-sm">Girl</Label>
-                          </div>
-                        </RadioGroup>
-                      </div>
+        <div className="max-w-7xl mx-auto px-4 py-16">
+          {/* Main Calculator Card */}
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+            <CardContent className="p-0">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+                {/* Input Section */}
+                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
+                  <div>
+                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Baby Information</h2>
+                    <p className="text-gray-600">Enter your baby's details for accurate growth assessment</p>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Baby Gender */}
+                    <div className="space-y-3">
+                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Baby's Gender
+                      </Label>
+                      <RadioGroup 
+                        value={babyGender} 
+                        onValueChange={setBabyGender}
+                        className="flex space-x-6"
+                        data-testid="radio-group-gender"
+                      >
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="boys" id="boys" data-testid="radio-boys" />
+                          <Label htmlFor="boys" className="text-sm">Boy</Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="girls" id="girls" data-testid="radio-girls" />
+                          <Label htmlFor="girls" className="text-sm">Girl</Label>
+                        </div>
+                      </RadioGroup>
+                    </div>
 
-                      {/* Birth Date */}
-                      <div className="space-y-3">
-                        <Label htmlFor="birth-date" className="text-sm font-medium text-gray-700">
-                          Birth Date *
-                        </Label>
-                        <Input
-                          id="birth-date"
-                          type="date"
-                          value={birthDate}
-                          onChange={(e) => setBirthDate(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
-                          max={getTodayDate()}
-                          data-testid="input-birth-date"
-                        />
-                        <p className="text-xs text-gray-500">
-                          Baby's actual birth date
-                        </p>
-                      </div>
+                    {/* Birth Date */}
+                    <div className="space-y-3">
+                      <Label htmlFor="birth-date" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Birth Date
+                      </Label>
+                      <Input
+                        id="birth-date"
+                        type="date"
+                        value={birthDate}
+                        onChange={(e) => setBirthDate(e.target.value)}
+                        className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                        max={getTodayDate()}
+                        data-testid="input-birth-date"
+                      />
+                    </div>
 
-                      {/* Measurement Unit */}
-                      <div className="space-y-3">
-                        <Label className="text-sm font-medium text-gray-700">
-                          Measurement Unit *
-                        </Label>
-                        <RadioGroup 
-                          value={measurementUnit} 
-                          onValueChange={setMeasurementUnit}
-                          className="flex space-x-6"
-                        >
-                          <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="metric" id="metric" data-testid="radio-metric" />
-                            <Label htmlFor="metric" className="text-sm">Metric (kg, cm)</Label>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="imperial" id="imperial" data-testid="radio-imperial" />
-                            <Label htmlFor="imperial" className="text-sm">Imperial (lbs, inches)</Label>
-                          </div>
-                        </RadioGroup>
-                      </div>
+                    {/* Measurement Unit */}
+                    <div className="space-y-3">
+                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Measurement Unit
+                      </Label>
+                      <Select value={measurementUnit} onValueChange={setMeasurementUnit}>
+                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-unit">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="metric">Metric (kg, cm)</SelectItem>
+                          <SelectItem value="imperial">Imperial (lbs, inches)</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
 
-                      {/* Current Weight */}
-                      <div className="space-y-3">
-                        <Label htmlFor="current-weight" className="text-sm font-medium text-gray-700">
-                          Current Weight ({measurementUnit === 'metric' ? 'kg' : 'lbs'}) *
-                        </Label>
+                    {/* Current Weight */}
+                    <div className="space-y-3">
+                      <Label htmlFor="current-weight" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Current Weight
+                      </Label>
+                      <div className="relative">
                         <Input
                           id="current-weight"
                           type="number"
                           value={currentWeight}
                           onChange={(e) => setCurrentWeight(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
+                          className="h-14 pr-16 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
                           placeholder={measurementUnit === 'metric' ? '7.5' : '16.5'}
                           min="1"
                           max={measurementUnit === 'metric' ? '30' : '66'}
                           step="0.1"
                           data-testid="input-weight"
                         />
-                        <p className="text-xs text-gray-500">
-                          Baby's current weight
-                        </p>
+                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">
+                          {measurementUnit === 'metric' ? 'kg' : 'lbs'}
+                        </span>
                       </div>
+                    </div>
 
-                      {/* Current Height */}
-                      <div className="space-y-3">
-                        <Label htmlFor="current-height" className="text-sm font-medium text-gray-700">
-                          Current Height ({measurementUnit === 'metric' ? 'cm' : 'inches'}) *
-                        </Label>
+                    {/* Current Height */}
+                    <div className="space-y-3">
+                      <Label htmlFor="current-height" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Current Height
+                      </Label>
+                      <div className="relative">
                         <Input
                           id="current-height"
                           type="number"
                           value={currentHeight}
                           onChange={(e) => setCurrentHeight(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
+                          className="h-14 pr-16 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
                           placeholder={measurementUnit === 'metric' ? '68' : '27'}
                           min="30"
                           max={measurementUnit === 'metric' ? '120' : '47'}
                           step="0.1"
                           data-testid="input-height"
                         />
-                        <p className="text-xs text-gray-500">
-                          Baby's current height/length
-                        </p>
+                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">
+                          {measurementUnit === 'metric' ? 'cm' : 'in'}
+                        </span>
                       </div>
+                    </div>
 
-                      {/* Head Circumference */}
-                      <div className="space-y-3">
-                        <Label htmlFor="head-circumference" className="text-sm font-medium text-gray-700">
-                          Head Circumference ({measurementUnit === 'metric' ? 'cm' : 'inches'}) <span className="text-gray-400 font-normal">- Optional</span>
-                        </Label>
+                    {/* Head Circumference */}
+                    <div className="space-y-3">
+                      <Label htmlFor="head-circumference" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Head Circumference <span className="text-gray-400 font-normal">(Optional)</span>
+                      </Label>
+                      <div className="relative">
                         <Input
                           id="head-circumference"
                           type="number"
                           value={headCircumference}
                           onChange={(e) => setHeadCircumference(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
+                          className="h-14 pr-16 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
                           placeholder={measurementUnit === 'metric' ? '42' : '16.5'}
                           min="25"
                           max={measurementUnit === 'metric' ? '60' : '24'}
                           step="0.1"
                           data-testid="input-head"
                         />
-                        <p className="text-xs text-gray-500">
-                          Measured around the largest part of baby's head
-                        </p>
+                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">
+                          {measurementUnit === 'metric' ? 'cm' : 'in'}
+                        </span>
                       </div>
+                    </div>
+                  </div>
 
-                      {/* Premature Birth */}
-                      <div className="space-y-3">
-                        <Label className="text-sm font-medium text-gray-700">
-                          Was baby born prematurely? <span className="text-gray-400 font-normal">- Optional</span>
+                  {/* Advanced Options */}
+                  <div className="space-y-6 border-t pt-8">
+                    <h3 className="text-xl font-bold text-gray-900">Advanced Options</h3>
+                    
+                    {/* Premature Birth */}
+                    <div className="space-y-4 bg-gray-50 rounded-xl p-6">
+                      <div className="flex items-center space-x-3">
+                        <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                          Premature Birth
                         </Label>
-                        <RadioGroup 
-                          value={premature} 
-                          onValueChange={setPremature}
-                          className="flex space-x-6"
-                        >
-                          <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="no" id="not-premature" data-testid="radio-not-premature" />
-                            <Label htmlFor="not-premature" className="text-sm">No (full-term)</Label>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="yes" id="premature" data-testid="radio-premature" />
-                            <Label htmlFor="premature" className="text-sm">Yes (premature)</Label>
-                          </div>
-                        </RadioGroup>
                       </div>
-
-                      {/* Corrected Age */}
+                      <RadioGroup 
+                        value={premature} 
+                        onValueChange={setPremature}
+                        className="flex space-x-6"
+                        data-testid="radio-group-premature"
+                      >
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="no" id="not-premature" data-testid="radio-not-premature" />
+                          <Label htmlFor="not-premature" className="text-sm">No (full-term)</Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="yes" id="premature" data-testid="radio-premature" />
+                          <Label htmlFor="premature" className="text-sm">Yes (premature)</Label>
+                        </div>
+                      </RadioGroup>
+                      
                       {premature === 'yes' && (
-                        <div className="space-y-3">
+                        <div className="mt-4">
                           <Label htmlFor="corrected-age" className="text-sm font-medium text-gray-700">
                             Gestational Age at Birth (weeks)
                           </Label>
@@ -501,306 +540,513 @@ const BabyGrowthChart = () => {
                             type="number"
                             value={correctedAge}
                             onChange={(e) => setCorrectedAge(e.target.value)}
-                            className="h-12 text-base border-gray-200 rounded-lg"
+                            className="h-12 border-2 border-gray-200 rounded-lg w-full md:w-48 mt-2"
                             placeholder="32"
                             min="24"
                             max="36"
                             data-testid="input-corrected-age"
                           />
-                          <p className="text-xs text-gray-500">
+                          <p className="text-sm text-gray-500 mt-2">
                             For corrected age calculation (normal is 40 weeks)
                           </p>
                         </div>
                       )}
-
-                      {/* Information Box */}
-                      <div className="bg-blue-50 rounded-lg p-4 mt-6">
-                        <h3 className="font-semibold text-blue-900 mb-2">Measurement Tips</h3>
-                        <ul className="text-sm text-blue-700 space-y-1">
-                          <li>• Weigh baby naked for accuracy</li>
-                          <li>• Measure length lying down (under 2 years)</li>
-                          <li>• Use most recent measurements</li>
-                          <li>• Track growth trends over time</li>
-                        </ul>
-                      </div>
-
-                      {/* Action Buttons */}
-                      <div className="flex gap-4 pt-6">
-                        <Button
-                          onClick={calculateGrowth}
-                          className="flex-1 h-12 text-white font-medium rounded-lg"
-                          style={{ backgroundColor: '#f43f5e' }}
-                          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#e11d48'}
-                          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#f43f5e'}
-                          data-testid="button-calculate"
-                        >
-                          <Calculator className="w-4 h-4 mr-2" />
-                          Calculate Growth
-                        </Button>
-                        <Button
-                          onClick={resetCalculator}
-                          variant="outline"
-                          className="h-12 px-8 border-gray-200 text-gray-600 hover:bg-gray-50 font-medium rounded-lg"
-                          data-testid="button-reset"
-                        >
-                          Reset
-                        </Button>
-                      </div>
                     </div>
+                  </div>
 
-                    {/* Results Section */}
-                    <div className="bg-gray-50 rounded-xl p-8">
-                      <h2 className="text-2xl font-semibold text-gray-900 mb-8">Growth Assessment</h2>
-                      
-                      {result ? (
-                        <div className="space-y-4" data-testid="growth-results">
-                          {/* Growth Percentiles */}
-                          <div className="bg-white rounded-lg p-4 space-y-3">
-                            <h3 className="font-semibold text-gray-900 mb-2">Growth Percentiles</h3>
-                            <div className="space-y-2">
-                              <div className="flex justify-between items-center">
-                                <span className="text-gray-600">Weight Percentile</span>
-                                <span className={`font-bold ${getCategoryColor(result.weightCategory)}`} data-testid="text-weight-percentile">
-                                  {result.weightPercentile}th
-                                </span>
-                              </div>
-                              <div className="flex justify-between items-center">
-                                <span className="text-gray-600">Height Percentile</span>
-                                <span className={`font-bold ${getCategoryColor(result.heightCategory)}`} data-testid="text-height-percentile">
-                                  {result.heightPercentile}th
-                                </span>
-                              </div>
-                            </div>
+                  {/* Action Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                    <Button
+                      onClick={calculateGrowth}
+                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      data-testid="button-calculate"
+                    >
+                      Calculate Growth
+                    </Button>
+                    <Button
+                      onClick={resetCalculator}
+                      variant="outline"
+                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      data-testid="button-reset"
+                    >
+                      Reset
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Results Section */}
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Growth Assessment</h2>
+                  
+                  {result ? (
+                    <div className="space-y-6" data-testid="growth-results">
+                      {/* Growth Status Highlight */}
+                      <div className={`rounded-2xl p-6 shadow-lg border ${result.growth.isHealthy ? 'bg-white border-green-100' : 'bg-white border-orange-100'}`}>
+                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Overall Growth Status</div>
+                        <div className={`text-4xl font-bold ${result.growth.isHealthy ? 'text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600' : 'text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600'}`} data-testid="text-growth-status">
+                          {result.growth.isHealthy ? 'Healthy' : 'Needs Attention'}
+                        </div>
+                      </div>
+
+                      {/* Percentiles */}
+                      <div className="space-y-4">
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Weight Percentile</span>
+                            <span className={`font-bold ${getCategoryColor(result.weightCategory)}`} data-testid="text-weight-percentile">
+                              {result.weightPercentile}th
+                            </span>
                           </div>
-
-                          {/* Growth Categories */}
-                          <div className="bg-white rounded-lg p-4">
-                            <h3 className="font-semibold text-gray-900 mb-2">Growth Categories</h3>
-                            <div className="space-y-1 text-sm">
-                              <div className="flex justify-between">
-                                <span className="text-gray-600">Weight</span>
-                                <span className={`font-medium ${getCategoryColor(result.weightCategory)}`} data-testid="text-weight-category">
-                                  {result.weightCategory}
-                                </span>
-                              </div>
-                              <div className="flex justify-between">
-                                <span className="text-gray-600">Height</span>
-                                <span className={`font-medium ${getCategoryColor(result.heightCategory)}`} data-testid="text-height-category">
-                                  {result.heightCategory}
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Overall Assessment */}
-                          <div className={`rounded-lg p-4 border-l-4 ${result.growth.isHealthy ? 'bg-green-50 border-l-green-500' : 'bg-yellow-50 border-l-yellow-500'}`}>
-                            <div className="flex justify-between items-center">
-                              <span className="font-semibold text-gray-700">Overall Growth</span>
-                              <span className={`font-bold ${result.growth.isHealthy ? 'text-green-600' : 'text-yellow-600'}`} data-testid="text-growth-status">
-                                {result.growth.isHealthy ? 'Healthy' : 'Needs Attention'}
-                              </span>
-                            </div>
-                          </div>
-
-                          {/* Ideal Ranges */}
-                          <div className="bg-blue-50 rounded-lg p-4">
-                            <h3 className="font-semibold text-gray-900 mb-2">Ideal Ranges (15th-85th percentile)</h3>
-                            <div className="space-y-1 text-sm">
-                              <div className="flex justify-between">
-                                <span className="text-gray-600">Weight</span>
-                                <span className="font-medium">
-                                  {result.idealRanges.weight.min.toFixed(1)} - {result.idealRanges.weight.max.toFixed(1)} kg
-                                </span>
-                              </div>
-                              <div className="flex justify-between">
-                                <span className="text-gray-600">Height</span>
-                                <span className="font-medium">
-                                  {result.idealRanges.height.min.toFixed(0)} - {result.idealRanges.height.max.toFixed(0)} cm
-                                </span>
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Concerns */}
-                          {result.growth.concerns.length > 0 && (
-                            <div className="bg-red-50 rounded-lg p-4">
-                              <h3 className="font-semibold text-red-900 mb-2">Areas of Concern</h3>
-                              <ul className="text-sm text-red-700 space-y-1">
-                                {result.growth.concerns.map((concern, index) => (
-                                  <li key={index} className="flex items-start">
-                                    <span className="mr-2">⚠️</span>
-                                    <span>{concern}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          )}
-
-                          {/* Recommendations */}
-                          <div className="bg-green-50 rounded-lg p-4">
-                            <h3 className="font-semibold text-gray-900 mb-2">Recommendations</h3>
-                            <ul className="text-sm text-gray-700 space-y-1">
-                              {result.growth.recommendations.map((rec, index) => (
-                                <li key={index} className="flex items-start">
-                                  <span className="mr-2">•</span>
-                                  <span>{rec}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-
-                          {/* Developmental Milestones */}
-                          <div className="bg-purple-50 rounded-lg p-4">
-                            <h3 className="font-semibold text-gray-900 mb-2">Expected Milestones</h3>
-                            <div className="space-y-2 text-sm">
-                              <div>
-                                <span className="font-medium text-gray-700">Physical:</span>
-                                <ul className="text-gray-600 mt-1">
-                                  {result.milestones.physical.map((milestone, index) => (
-                                    <li key={index}>• {milestone}</li>
-                                  ))}
-                                </ul>
-                              </div>
-                              <div>
-                                <span className="font-medium text-gray-700">Developmental:</span>
-                                <ul className="text-gray-600 mt-1">
-                                  {result.milestones.developmental.map((milestone, index) => (
-                                    <li key={index}>• {milestone}</li>
-                                  ))}
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Next Checkup */}
-                          <div className="bg-orange-50 rounded-lg p-4">
-                            <div className="flex justify-between items-center">
-                              <span className="font-semibold text-gray-700">Next Recommended Checkup</span>
-                              <span className="font-medium text-orange-600" data-testid="text-next-checkup">
-                                {result.nextCheckup}
-                              </span>
-                            </div>
+                          <div className="text-sm text-gray-500 mt-1" data-testid="text-weight-category">
+                            {result.weightCategory}
                           </div>
                         </div>
-                      ) : (
-                        <div className="text-center py-8" data-testid="no-results">
-                          <Baby className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                          <p className="text-gray-500">Enter baby's information to assess growth</p>
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Height Percentile</span>
+                            <span className={`font-bold ${getCategoryColor(result.heightCategory)}`} data-testid="text-height-percentile">
+                              {result.heightPercentile}th
+                            </span>
+                          </div>
+                          <div className="text-sm text-gray-500 mt-1" data-testid="text-height-category">
+                            {result.heightCategory}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Ideal Ranges */}
+                      <div className="bg-white rounded-xl p-4 shadow-sm">
+                        <h4 className="font-bold text-gray-900 mb-4">Healthy Ranges (15th-85th percentile)</h4>
+                        <div className="space-y-3">
+                          <div className="flex justify-between items-center">
+                            <span className="text-gray-700 font-medium">Weight Range:</span>
+                            <span className="font-bold text-blue-800">
+                              {formatValue(result.idealRanges.weight.min, measurementUnit === 'metric' ? 'kg' : 'lbs')} - {formatValue(result.idealRanges.weight.max, measurementUnit === 'metric' ? 'kg' : 'lbs')}
+                            </span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-gray-700 font-medium">Height Range:</span>
+                            <span className="font-bold text-blue-800">
+                              {formatValue(result.idealRanges.height.min, measurementUnit === 'metric' ? 'cm' : 'in')} - {formatValue(result.idealRanges.height.max, measurementUnit === 'metric' ? 'cm' : 'in')}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Concerns */}
+                      {result.growth.concerns.length > 0 && (
+                        <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl p-6 border border-orange-200">
+                          <h4 className="font-bold text-orange-800 mb-4 text-lg">Important Notes</h4>
+                          <div className="space-y-2">
+                            {result.growth.concerns.map((concern, index) => (
+                              <div key={index} className="flex items-start">
+                                <span className="text-orange-600 mr-2">⚠️</span>
+                                <span className="text-orange-700 text-sm">{concern}</span>
+                              </div>
+                            ))}
+                          </div>
                         </div>
                       )}
+
+                      {/* Recommendations */}
+                      <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-6 border border-green-200">
+                        <h4 className="font-bold text-green-800 mb-4 text-lg">Recommendations</h4>
+                        <div className="space-y-2">
+                          {result.growth.recommendations.slice(0, 3).map((rec, index) => (
+                            <div key={index} className="flex items-start">
+                              <span className="text-green-600 mr-2">✓</span>
+                              <span className="text-green-700 text-sm">{rec}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Next Checkup */}
+                      <div className="bg-white rounded-xl p-4 shadow-sm">
+                        <div className="flex justify-between items-center">
+                          <span className="font-medium text-gray-700">Next Recommended Checkup</span>
+                          <span className="font-bold text-indigo-600" data-testid="text-next-checkup">
+                            {result.nextCheckup}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="text-center py-16" data-testid="no-results">
+                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <div className="text-3xl font-bold text-gray-400">👶</div>
+                      </div>
+                      <p className="text-gray-500 text-lg">Enter baby's information to see growth assessment</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Developmental Milestones */}
+          {result && (
+            <Card className="mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Expected Developmental Milestones</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="bg-blue-50 rounded-xl p-6">
+                    <h4 className="font-bold text-blue-800 mb-4">Physical Development</h4>
+                    <ul className="space-y-2">
+                      {result.milestones.physical.map((milestone, index) => (
+                        <li key={index} className="flex items-start">
+                          <span className="text-blue-600 mr-2">•</span>
+                          <span className="text-blue-700 text-sm">{milestone}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="bg-purple-50 rounded-xl p-6">
+                    <h4 className="font-bold text-purple-800 mb-4">Cognitive & Social Development</h4>
+                    <ul className="space-y-2">
+                      {result.milestones.developmental.map((milestone, index) => (
+                        <li key={index} className="flex items-start">
+                          <span className="text-purple-600 mr-2">•</span>
+                          <span className="text-purple-700 text-sm">{milestone}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* SEO Content Section */}
+          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">What is a Baby Growth Chart?</h3>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    A baby growth chart is a standardized tool used by pediatricians and parents worldwide to track 
+                    infant development. Our calculator uses the World Health Organization (WHO) growth standards, 
+                    which are based on data from healthy breastfed babies from diverse ethnic backgrounds.
+                  </p>
+                  <p>
+                    Growth charts help identify whether a baby is growing at a healthy rate by comparing their 
+                    measurements to those of other babies of the same age and gender. The percentile ranking shows 
+                    what percentage of babies are smaller than your child.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Understanding Growth Percentiles</h3>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    Growth percentiles indicate your baby's position relative to other babies. A 50th percentile 
+                    means your baby is average-sized. The 25th percentile means 25% of babies are smaller, while 
+                    75% are larger.
+                  </p>
+                  <ul className="space-y-2 list-disc list-inside">
+                    <li>3rd-15th percentile: Small but typically normal</li>
+                    <li>15th-85th percentile: Average range</li>
+                    <li>85th-97th percentile: Large but typically normal</li>
+                    <li>Below 3rd or above 97th: May need evaluation</li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Benefits of Growth Tracking</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Early detection of growth problems</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Monitor nutritional adequacy</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Track developmental milestones</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Optimize pediatric care</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Peace of mind for parents</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">WHO Growth Standards</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Based on healthy breastfed babies</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>International standard for child growth</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Accounts for genetic diversity</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Updated with modern data</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Trusted by pediatricians worldwide</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Additional SEO Content Sections */}
+          <div className="mt-12 space-y-8">
+            {/* Factors Affecting Growth */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Factors That Influence Baby Growth</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Genetic Factors</h4>
+                    <p className="text-gray-600">
+                      Parents' height and weight significantly influence their baby's growth pattern. Tall parents 
+                      typically have taller babies, while shorter parents may have smaller babies. Family growth 
+                      patterns often repeat across generations.
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Nutritional Factors</h4>
+                    <p className="text-gray-600">
+                      Proper nutrition is crucial for healthy growth. Breastfeeding provides optimal nutrition 
+                      for the first six months, while appropriate introduction of solid foods supports continued 
+                      growth and development.
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Health Conditions</h4>
+                    <p className="text-gray-600">
+                      Chronic illnesses, digestive issues, or hormonal imbalances can affect growth rates. 
+                      Regular pediatric checkups help identify and address any health concerns that might 
+                      impact development.
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Environmental Factors</h4>
+                    <p className="text-gray-600">
+                      Sleep quality, physical activity, stress levels, and overall care environment all 
+                      contribute to healthy growth. A loving, stimulating environment promotes both physical 
+                      and cognitive development.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Age-Based Milestones */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Growth Milestones by Age</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <div className="border-l-4 border-blue-500 pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-2">0-3 Months</h4>
+                      <p className="text-sm">Rapid weight gain, doubles birth weight by 3-4 months. Height increases by 3-4 cm per month. Head circumference grows significantly.</p>
+                    </div>
+                    <div className="border-l-4 border-green-500 pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-2">3-6 Months</h4>
+                      <p className="text-sm">Weight gain slows to 140-200g per week. Height growth continues at 2-3 cm per month. Motor skills develop rapidly.</p>
+                    </div>
+                    <div className="border-l-4 border-orange-500 pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-2">6-12 Months</h4>
+                      <p className="text-sm">Weight triples from birth by first birthday. Height increases by 50% from birth. Solid food introduction affects growth patterns.</p>
+                    </div>
+                    <div className="border-l-4 border-purple-500 pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-2">12-24 Months</h4>
+                      <p className="text-sm">Growth rate slows but remains steady. Weight quadruples from birth by age 2. Height doubles from birth by age 4.</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              {/* Educational Content */}
-              <div className="mt-12 space-y-8">
-                {/* Understanding Growth Charts */}
-                <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Understanding Growth Charts</h2>
-                  
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">What are Percentiles?</h3>
-                      <p className="text-gray-600 mb-6 leading-relaxed">
-                        Growth percentiles show how your baby compares to other babies of the same age and gender. 
-                        The 50th percentile is the average. A baby in the 75th percentile is larger than 75% of babies the same age.
-                      </p>
-                      
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">What's Normal?</h3>
-                      <p className="text-gray-600 mb-4 leading-relaxed">
-                        Most healthy babies fall between the 3rd and 97th percentiles. What matters most is that 
-                        your baby is growing consistently along their own growth curve.
-                      </p>
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">When to Consult a Pediatrician</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <div className="bg-red-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-red-800 mb-2">Immediate Consultation</h4>
+                      <ul className="text-sm text-red-700 space-y-1 list-disc list-inside">
+                        <li>Consistent percentile drops across multiple visits</li>
+                        <li>Weight or height below 3rd percentile</li>
+                        <li>No weight gain for extended periods</li>
+                        <li>Signs of developmental delays</li>
+                      </ul>
                     </div>
-                    
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Percentile Ranges</h3>
-                      <div className="space-y-3">
-                        <div className="flex items-center p-3 bg-red-50 rounded-lg">
-                          <div className="w-4 h-4 bg-red-500 rounded-full mr-3"></div>
-                          <div>
-                            <div className="font-medium">Below 3rd percentile</div>
-                            <div className="text-sm text-gray-600">May need evaluation</div>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-center p-3 bg-yellow-50 rounded-lg">
-                          <div className="w-4 h-4 bg-yellow-500 rounded-full mr-3"></div>
-                          <div>
-                            <div className="font-medium">3rd-15th percentile</div>
-                            <div className="text-sm text-gray-600">Small but likely normal</div>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-center p-3 bg-green-50 rounded-lg">
-                          <div className="w-4 h-4 bg-green-500 rounded-full mr-3"></div>
-                          <div>
-                            <div className="font-medium">15th-85th percentile</div>
-                            <div className="text-sm text-gray-600">Typical range</div>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-center p-3 bg-blue-50 rounded-lg">
-                          <div className="w-4 h-4 bg-blue-500 rounded-full mr-3"></div>
-                          <div>
-                            <div className="font-medium">85th-97th percentile</div>
-                            <div className="text-sm text-gray-600">Large but likely normal</div>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-center p-3 bg-orange-50 rounded-lg">
-                          <div className="w-4 h-4 bg-orange-500 rounded-full mr-3"></div>
-                          <div>
-                            <div className="font-medium">Above 97th percentile</div>
-                            <div className="text-sm text-gray-600">May need monitoring</div>
-                          </div>
-                        </div>
+                    <div className="bg-yellow-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-yellow-800 mb-2">Monitor Closely</h4>
+                      <ul className="text-sm text-yellow-700 space-y-1 list-disc list-inside">
+                        <li>Crossing percentile lines suddenly</li>
+                        <li>Feeding difficulties or refusal</li>
+                        <li>Above 97th percentile consistently</li>
+                        <li>Growth pattern changes significantly</li>
+                      </ul>
+                    </div>
+                    <div className="bg-green-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-green-800 mb-2">Regular Monitoring</h4>
+                      <ul className="text-sm text-green-700 space-y-1 list-disc list-inside">
+                        <li>Consistent growth along percentile lines</li>
+                        <li>Meeting age-appropriate milestones</li>
+                        <li>Good appetite and energy levels</li>
+                        <li>Following family growth patterns</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Feeding and Nutrition */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-8">Nutrition Guidelines for Optimal Growth</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                  <div className="space-y-4">
+                    <h4 className="text-xl font-semibold text-gray-900 mb-4">0-6 Months</h4>
+                    <div className="space-y-3">
+                      <div className="bg-blue-50 rounded-lg p-4">
+                        <h5 className="font-semibold text-blue-800 mb-2">Breastfeeding</h5>
+                        <ul className="text-sm text-blue-700 space-y-1">
+                          <li>• Exclusive breastfeeding recommended</li>
+                          <li>• 8-12 feedings per day</li>
+                          <li>• On-demand feeding schedule</li>
+                          <li>• No water or other liquids needed</li>
+                        </ul>
+                      </div>
+                      <div className="bg-green-50 rounded-lg p-4">
+                        <h5 className="font-semibold text-green-800 mb-2">Formula Feeding</h5>
+                        <ul className="text-sm text-green-700 space-y-1">
+                          <li>• Iron-fortified formula</li>
+                          <li>• 2-4 ounces per feeding initially</li>
+                          <li>• Every 2-4 hours</li>
+                          <li>• Follow pediatrician's guidance</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <h4 className="text-xl font-semibold text-gray-900 mb-4">6-12 Months</h4>
+                    <div className="space-y-3">
+                      <div className="bg-orange-50 rounded-lg p-4">
+                        <h5 className="font-semibold text-orange-800 mb-2">Introducing Solids</h5>
+                        <ul className="text-sm text-orange-700 space-y-1">
+                          <li>• Start with single-grain cereals</li>
+                          <li>• Introduce pureed fruits/vegetables</li>
+                          <li>• One new food every 3-5 days</li>
+                          <li>• Continue breastfeeding/formula</li>
+                        </ul>
+                      </div>
+                      <div className="bg-purple-50 rounded-lg p-4">
+                        <h5 className="font-semibold text-purple-800 mb-2">Texture Progression</h5>
+                        <ul className="text-sm text-purple-700 space-y-1">
+                          <li>• Progress to mashed foods</li>
+                          <li>• Introduce finger foods</li>
+                          <li>• Small, soft pieces</li>
+                          <li>• Encourage self-feeding</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <h4 className="text-xl font-semibold text-gray-900 mb-4">12+ Months</h4>
+                    <div className="space-y-3">
+                      <div className="bg-red-50 rounded-lg p-4">
+                        <h5 className="font-semibold text-red-800 mb-2">Toddler Nutrition</h5>
+                        <ul className="text-sm text-red-700 space-y-1">
+                          <li>• Transition to whole milk</li>
+                          <li>• Variety of family foods</li>
+                          <li>• 3 meals + 2 snacks daily</li>
+                          <li>• Encourage independence</li>
+                        </ul>
+                      </div>
+                      <div className="bg-teal-50 rounded-lg p-4">
+                        <h5 className="font-semibold text-teal-800 mb-2">Balanced Diet</h5>
+                        <ul className="text-sm text-teal-700 space-y-1">
+                          <li>• Include all food groups</li>
+                          <li>• Limit processed foods</li>
+                          <li>• Offer water between meals</li>
+                          <li>• Model healthy eating habits</li>
+                        </ul>
                       </div>
                     </div>
                   </div>
                 </div>
+              </CardContent>
+            </Card>
 
-                {/* Healthy Growth Tips */}
-                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Supporting Healthy Growth</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Common Concerns FAQ */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions About Baby Growth</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Nutrition</h3>
-                      <ul className="text-gray-600 space-y-2 text-sm">
-                        <li>• Exclusive breastfeeding for first 6 months</li>
-                        <li>• Introduce solids gradually around 6 months</li>
-                        <li>• Offer variety of healthy foods</li>
-                        <li>• Follow baby's hunger cues</li>
-                        <li>• Avoid added sugars and salt</li>
-                        <li>• Ensure adequate vitamin D</li>
-                        <li>• Stay hydrated (breastfeeding mothers)</li>
-                      </ul>
+                      <h4 className="font-semibold text-gray-800 mb-2">Is my baby growing too fast or too slow?</h4>
+                      <p className="text-gray-600 text-sm">Growth patterns vary significantly among healthy babies. What matters most is consistent growth along your baby's individual curve. Sudden changes in percentile rankings may warrant pediatric evaluation.</p>
                     </div>
-                    
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Development Support</h3>
-                      <ul className="text-gray-600 space-y-2 text-sm">
-                        <li>• Provide tummy time daily</li>
-                        <li>• Read and talk to your baby</li>
-                        <li>• Encourage safe exploration</li>
-                        <li>• Maintain consistent sleep routines</li>
-                        <li>• Regular pediatric check-ups</li>
-                        <li>• Age-appropriate toys and activities</li>
-                        <li>• Responsive, loving interactions</li>
-                      </ul>
+                      <h4 className="font-semibold text-gray-800 mb-2">Should I be concerned if my baby is in a low percentile?</h4>
+                      <p className="text-gray-600 text-sm">Not necessarily. Many healthy babies consistently track in lower percentiles. Concern arises when there's a significant drop across percentiles or when growth completely stops.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How often should I track my baby's growth?</h4>
+                      <p className="text-gray-600 text-sm">Follow your pediatrician's schedule: frequent visits in the first months, then less frequent as your baby grows. Regular checkups typically occur at 2, 4, 6, 9, 12, 15, 18, and 24 months.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">What if my baby was born prematurely?</h4>
+                      <p className="text-gray-600 text-sm">Premature babies use corrected age for growth assessment until age 2. This adjusts for the weeks they were born early, providing a more accurate growth evaluation.</p>
+                    </div>
+                  </div>
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Can feeding method affect growth patterns?</h4>
+                      <p className="text-gray-600 text-sm">Breastfed and formula-fed babies may show different growth patterns. Breastfed babies often gain weight more rapidly initially, then slow down around 3-4 months. Both feeding methods support healthy growth.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">When do growth spurts typically occur?</h4>
+                      <p className="text-gray-600 text-sm">Common growth spurts occur around 2-3 weeks, 6 weeks, 3 months, and 6 months. During these periods, babies may feed more frequently and seem fussier than usual.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Are home scales accurate enough for tracking growth?</h4>
+                      <p className="text-gray-600 text-sm">While home scales can provide general trends, pediatric office scales are more accurate. Use home measurements as reference points between official checkups, not as primary growth tracking tools.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">What role does sleep play in growth?</h4>
+                      <p className="text-gray-600 text-sm">Growth hormone is primarily released during deep sleep, making adequate rest crucial for healthy development. Newborns need 14-17 hours daily, gradually decreasing with age.</p>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </section>
-        </main>
-
-        <Footer />
-      </div>
-    </>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </main>
+      
+      <Footer />
+    </div>
   );
-};
-
-export default BabyGrowthChart;
+}
