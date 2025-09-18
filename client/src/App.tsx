@@ -114,7 +114,6 @@ const TextScrambler = lazy(() => import("@/pages/text-scrambler"));
 const TextDiffChecker = lazy(() => import("@/pages/text-diff-checker"));
 const TextPatternGenerator = lazy(() => import("@/pages/text-pattern-generator"));
 const TextFormatterBeautifier = lazy(() => import("@/pages/text-formatter-beautifier"));
-const TextStatisticsAnalyzer = lazy(() => import("@/pages/text-statistics-analyzer"));
 
 
 function ScrollToTop() {
@@ -219,7 +218,6 @@ function Router() {
         <Route path="/tools/text-diff-checker" component={TextDiffChecker} />
         <Route path="/tools/text-pattern-generator" component={TextPatternGenerator} />
         <Route path="/tools/text-formatter-beautifier" component={TextFormatterBeautifier} />
-        <Route path="/tools/text-statistics-analyzer" component={TextStatisticsAnalyzer} />
       <Route path="/tools/:toolId" component={ToolPage} />
       <Route path="/finance" component={FinanceTools} />
       <Route path="/text" component={TextTools} />
