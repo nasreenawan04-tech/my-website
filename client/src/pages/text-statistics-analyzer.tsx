@@ -210,10 +210,6 @@ export default function TextStatisticsAnalyzer() {
     setStats(statistics);
   }, [text]);
 
-  const handleClear = () => {
-    setText('');
-  };
-
   const handleCopyStats = () => {
     if (stats) {
       const report = `Text Statistics Report:
@@ -298,11 +294,11 @@ Finally, remember that great writing is rewriting. The first draft is just the b
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>Text Statistics & Readability Analyzer - Advanced Text Analysis Tool | DapsiWow</title>
-        <meta name="description" content="Free online text statistics and readability analyzer. Get comprehensive text metrics, Flesch Reading Ease scores, reading time estimates, word frequency analysis, and detailed content insights for better writing." />
-        <meta name="keywords" content="text statistics analyzer, readability checker, Flesch reading ease, Flesch-Kincaid grade, text metrics, reading time calculator, word frequency analysis, content analysis tool, writing analysis, text complexity checker" />
-        <meta property="og:title" content="Text Statistics & Readability Analyzer - Advanced Text Analysis Tool" />
-        <meta property="og:description" content="Professional text statistics and readability analysis with comprehensive metrics, reading time estimation, and content insights. Free online tool for writers, educators, and content creators." />
+        <title>Text Statistics & Readability Analyzer - Free Text Analysis Tool | DapsiWow</title>
+        <meta name="description" content="Free text statistics and readability analyzer. Analyze text complexity, get Flesch Reading Ease scores, word frequency, reading time estimates, and comprehensive text metrics for better writing." />
+        <meta name="keywords" content="text statistics analyzer, readability checker, Flesch reading ease, text analysis tool, word frequency analysis, content readability, text complexity checker, writing analysis, text metrics" />
+        <meta property="og:title" content="Text Statistics & Readability Analyzer - Free Text Analysis Tool" />
+        <meta property="og:description" content="Comprehensive text analysis tool with readability scores, statistics, word frequency, and reading time estimates. Perfect for writers, content creators, and educators." />
         <meta property="og:type" content="website" />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="DapsiWow" />
@@ -312,7 +308,7 @@ Finally, remember that great writing is rewriting. The first draft is just the b
             "@context": "https://schema.org",
             "@type": "WebApplication",
             "name": "Text Statistics & Readability Analyzer",
-            "description": "Free online tool for comprehensive text analysis including readability scores, statistics, reading time estimation, and content metrics with professional reporting capabilities.",
+            "description": "Free comprehensive text analysis tool with readability scores, statistics, and detailed text metrics for content optimization and writing improvement.",
             "url": "https://dapsiwow.com/tools/text-statistics-analyzer",
             "applicationCategory": "ProductivityApplication",
             "operatingSystem": "Any",
@@ -322,14 +318,12 @@ Finally, remember that great writing is rewriting. The first draft is just the b
               "priceCurrency": "USD"
             },
             "featureList": [
-              "Comprehensive text statistics",
+              "Text readability analysis",
               "Flesch Reading Ease scoring",
-              "Flesch-Kincaid Grade Level analysis",
-              "Reading and speaking time estimation",
               "Word frequency analysis",
-              "Content complexity metrics",
-              "Real-time text analysis",
-              "Professional reporting features"
+              "Reading time estimation",
+              "Text complexity metrics",
+              "Real-time text statistics"
             ]
           })}
         </script>
@@ -353,7 +347,7 @@ Finally, remember that great writing is rewriting. The first draft is just the b
                 </span>
               </h1>
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed px-2">
-                Analyze text readability, get comprehensive statistics, and optimize content for your target audience with professional insights
+                Analyze text readability, get comprehensive statistics, and optimize content for your audience
               </p>
             </div>
           </div>
@@ -520,33 +514,33 @@ Finally, remember that great writing is rewriting. The first draft is just the b
 
           {/* SEO Content Sections */}
           <div className="mt-16 space-y-8">
-            {/* What is Text Statistics Analyzer */}
+            {/* What is Text Statistics & Readability Analyzer */}
             <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">What is a Text Statistics & Readability Analyzer?</h2>
                 <div className="space-y-4 text-gray-600">
                   <p>
-                    A <strong>text statistics and readability analyzer</strong> is a comprehensive digital tool that evaluates written content across multiple dimensions to provide detailed insights into text complexity, readability scores, and linguistic patterns. This advanced analysis tool helps writers, educators, content creators, marketers, and researchers understand how accessible and effective their text is for target audiences while providing actionable data for content optimization.
+                    A text statistics and readability analyzer is a comprehensive tool that evaluates written content to provide detailed insights into text complexity, structure, and accessibility. This analysis helps writers, content creators, educators, and professionals optimize their text for specific audiences by measuring readability scores, word frequency, sentence structure, and various linguistic patterns that impact comprehension and engagement.
                   </p>
                   <p>
-                    Our professional analyzer utilizes proven readability formulas including the Flesch Reading Ease and Flesch-Kincaid Grade Level calculations to provide scientific assessments of text difficulty. Combined with comprehensive statistics on word count, sentence structure, reading time estimates, vocabulary diversity, and content patterns, it offers a complete picture of textual effectiveness and accessibility for different reading levels and demographic contexts.
+                    Our advanced analyzer uses proven readability formulas including Flesch Reading Ease and Flesch-Kincaid Grade Level calculations to scientifically assess text difficulty. The tool provides real-time analysis of character counts, word statistics, sentence composition, paragraph structure, and content complexity metrics, enabling users to make data-driven decisions about their writing style and content optimization strategies.
                   </p>
                   <p>
-                    Perfect for content marketers optimizing for SEO and audience engagement, educators creating grade-appropriate learning materials, technical writers simplifying complex documentation, journalists ensuring news accessibility, and anyone seeking to improve their writing clarity, impact, and reader comprehension. The analyzer provides real-time insights that help transform complex content into accessible, engaging text that resonates with intended audiences while maintaining professional quality and depth.
+                    Perfect for content marketers optimizing for SEO, educators creating grade-appropriate materials, technical writers simplifying documentation, bloggers improving engagement, and anyone seeking to enhance their writing clarity and effectiveness. The analyzer helps transform complex content into accessible, reader-friendly text while maintaining professional quality and informational depth.
                   </p>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Understanding Readability Metrics */}
+            {/* Understanding Readability Scores */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Understanding Readability Scores</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Understanding Readability Metrics</h2>
                   <div className="space-y-4">
                     <div className="bg-blue-50 rounded-lg p-4">
-                      <h3 className="font-semibold text-blue-900 mb-2">Flesch Reading Ease Scale</h3>
-                      <p className="text-blue-800 text-sm mb-2">Measures text difficulty on a 0-100 scale (higher = easier)</p>
+                      <h3 className="font-semibold text-blue-900 mb-2">Flesch Reading Ease Score</h3>
+                      <p className="text-blue-800 text-sm mb-3">Measures text difficulty on a 0-100 scale where higher scores indicate easier reading</p>
                       <div className="space-y-2 text-blue-700 text-xs">
                         <div className="flex justify-between"><span>90-100:</span><span className="font-semibold">Very Easy (5th grade)</span></div>
                         <div className="flex justify-between"><span>80-90:</span><span className="font-semibold">Easy (6th grade)</span></div>
@@ -560,7 +554,7 @@ Finally, remember that great writing is rewriting. The first draft is just the b
                     
                     <div className="bg-green-50 rounded-lg p-4">
                       <h3 className="font-semibold text-green-900 mb-2">Flesch-Kincaid Grade Level</h3>
-                      <p className="text-green-800 text-sm mb-2">Indicates U.S. grade level needed to understand the text</p>
+                      <p className="text-green-800 text-sm mb-3">Indicates the U.S. grade level needed to understand the text</p>
                       <div className="space-y-1 text-green-700 text-xs">
                         <div>• <strong>Grade 1-6:</strong> Elementary school reading level</div>
                         <div>• <strong>Grade 7-9:</strong> Middle school reading level</div>
@@ -568,32 +562,67 @@ Finally, remember that great writing is rewriting. The first draft is just the b
                         <div>• <strong>Grade 13+:</strong> College and graduate level</div>
                       </div>
                     </div>
+
+                    <div className="bg-purple-50 rounded-lg p-4">
+                      <h3 className="font-semibold text-purple-900 mb-2">Reading Time Estimation</h3>
+                      <p className="text-purple-800 text-sm">Calculated using average reading speed of 200 words per minute and speaking speed of 150 words per minute for content planning and presentation timing.</p>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
 
               <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Key Statistics Explained</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Text Analysis Features</h2>
                   <div className="space-y-4">
-                    <div className="bg-purple-50 rounded-lg p-4">
-                      <h3 className="font-semibold text-purple-900 mb-2">Reading & Speaking Time</h3>
-                      <p className="text-purple-800 text-sm">Calculated using average reading speed of 200 words per minute and speaking speed of 150 words per minute. Essential for content planning, podcast scripts, and presentation timing.</p>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-xs font-bold">✓</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-1">Real-Time Analysis</h4>
+                        <p className="text-gray-600 text-sm">Instant text analysis as you type with immediate readability scoring and statistical calculations without delays.</p>
+                      </div>
                     </div>
-                    
-                    <div className="bg-orange-50 rounded-lg p-4">
-                      <h3 className="font-semibold text-orange-900 mb-2">Sentence Structure Analysis</h3>
-                      <p className="text-orange-800 text-sm">Average words per sentence indicates text complexity. Shorter sentences (under 15 words) improve readability, while longer sentences may challenge readers.</p>
+
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-xs font-bold">✓</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-1">Word Frequency Analysis</h4>
+                        <p className="text-gray-600 text-sm">Identify overused terms, vocabulary diversity, and keyword density patterns to optimize content for better engagement.</p>
+                      </div>
                     </div>
-                    
-                    <div className="bg-teal-50 rounded-lg p-4">
-                      <h3 className="font-semibold text-teal-900 mb-2">Vocabulary Diversity</h3>
-                      <p className="text-teal-800 text-sm">Unique word count and frequency analysis reveal vocabulary richness and help identify overused terms that may need variation for better engagement.</p>
+
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-xs font-bold">✓</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-1">Comprehensive Statistics</h4>
+                        <p className="text-gray-600 text-sm">Character counts, word analysis, sentence structure, paragraph organization, and content complexity metrics.</p>
+                      </div>
                     </div>
-                    
-                    <div className="bg-pink-50 rounded-lg p-4">
-                      <h3 className="font-semibold text-pink-900 mb-2">Content Complexity Indicators</h3>
-                      <p className="text-pink-800 text-sm">Complex words, punctuation patterns, and sentence length distribution provide insights into content sophistication and potential comprehension barriers.</p>
+
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-xs font-bold">✓</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-1">Export & Reporting</h4>
+                        <p className="text-gray-600 text-sm">Generate comprehensive analysis reports with all metrics and recommendations for professional documentation.</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-teal-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-xs font-bold">✓</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-1">Privacy Protection</h4>
+                        <p className="text-gray-600 text-sm">All analysis happens locally in your browser - no data transmitted to servers, ensuring complete content privacy.</p>
+                      </div>
                     </div>
                   </div>
                 </CardContent>
@@ -608,48 +637,48 @@ Finally, remember that great writing is rewriting. The first draft is just the b
                   <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl p-6 border border-blue-200">
                     <h3 className="font-bold text-blue-800 mb-4 text-lg">Content Marketing & SEO</h3>
                     <ul className="space-y-2 text-blue-700 text-sm">
-                      <li>• Optimize content readability for target demographics</li>
-                      <li>• Improve search engine ranking with accessible content</li>
-                      <li>• Analyze competitor content complexity and positioning</li>
-                      <li>• Create audience-appropriate blog posts and articles</li>
+                      <li>• Optimize content readability for target audiences</li>
+                      <li>• Improve search engine rankings with accessible content</li>
+                      <li>• Analyze competitor content complexity</li>
+                      <li>• Create audience-appropriate blog posts</li>
                       <li>• Optimize meta descriptions and marketing copy</li>
-                      <li>• Ensure consistent voice across content campaigns</li>
+                      <li>• Ensure consistent brand voice across campaigns</li>
                     </ul>
                   </div>
 
                   <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-xl p-6 border border-green-200">
                     <h3 className="font-bold text-green-800 mb-4 text-lg">Education & Academic Writing</h3>
                     <ul className="space-y-2 text-green-700 text-sm">
-                      <li>• Create grade-appropriate learning materials and textbooks</li>
-                      <li>• Assess student writing complexity and progression</li>
-                      <li>• Develop reading comprehension exercises and tests</li>
-                      <li>• Ensure curriculum text accessibility for diverse learners</li>
-                      <li>• Analyze research papers for publication readiness</li>
+                      <li>• Create grade-appropriate learning materials</li>
+                      <li>• Assess student writing complexity</li>
+                      <li>• Develop reading comprehension exercises</li>
+                      <li>• Ensure curriculum accessibility for diverse learners</li>
+                      <li>• Analyze research papers for publication</li>
                       <li>• Create standardized assessment materials</li>
                     </ul>
                   </div>
 
                   <div className="bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl p-6 border border-purple-200">
-                    <h3 className="font-bold text-purple-800 mb-4 text-lg">Technical & Professional Writing</h3>
+                    <h3 className="font-bold text-purple-800 mb-4 text-lg">Technical & Business Writing</h3>
                     <ul className="space-y-2 text-purple-700 text-sm">
-                      <li>• Simplify complex technical documentation and manuals</li>
-                      <li>• Create user-friendly software guides and tutorials</li>
-                      <li>• Optimize help content and FAQ sections for clarity</li>
-                      <li>• Ensure regulatory compliance documentation clarity</li>
-                      <li>• Analyze legal documents for public accessibility</li>
+                      <li>• Simplify technical documentation</li>
+                      <li>• Create user-friendly software guides</li>
+                      <li>• Optimize help content for clarity</li>
+                      <li>• Ensure regulatory compliance documentation</li>
                       <li>• Improve internal communication effectiveness</li>
+                      <li>• Analyze legal documents for accessibility</li>
                     </ul>
                   </div>
 
                   <div className="bg-gradient-to-r from-orange-50 to-orange-100 rounded-xl p-6 border border-orange-200">
                     <h3 className="font-bold text-orange-800 mb-4 text-lg">Healthcare & Medical Writing</h3>
                     <ul className="space-y-2 text-orange-700 text-sm">
-                      <li>• Create patient-friendly medical information and brochures</li>
-                      <li>• Simplify informed consent documents and forms</li>
-                      <li>• Improve healthcare communication accessibility</li>
+                      <li>• Create patient-friendly medical information</li>
+                      <li>• Simplify informed consent documents</li>
+                      <li>• Improve healthcare communication</li>
                       <li>• Analyze medical research for public understanding</li>
-                      <li>• Develop health education materials for diverse populations</li>
-                      <li>• Optimize pharmaceutical information for patients</li>
+                      <li>• Develop health education materials</li>
+                      <li>• Optimize pharmaceutical information</li>
                     </ul>
                   </div>
 
@@ -657,120 +686,28 @@ Finally, remember that great writing is rewriting. The first draft is just the b
                     <h3 className="font-bold text-teal-800 mb-4 text-lg">Publishing & Journalism</h3>
                     <ul className="space-y-2 text-teal-700 text-sm">
                       <li>• Match content complexity to publication standards</li>
-                      <li>• Ensure news articles are accessible to broad audiences</li>
-                      <li>• Optimize headlines and article summaries for engagement</li>
-                      <li>• Analyze editorial content for consistency and clarity</li>
-                      <li>• Develop style guides based on readability metrics</li>
-                      <li>• Create content strategies for different reader segments</li>
+                      <li>• Ensure news accessibility for broad audiences</li>
+                      <li>• Optimize headlines and summaries</li>
+                      <li>• Analyze editorial content for consistency</li>
+                      <li>• Develop style guides based on readability</li>
+                      <li>• Create targeted content strategies</li>
                     </ul>
                   </div>
 
                   <div className="bg-gradient-to-r from-red-50 to-red-100 rounded-xl p-6 border border-red-200">
-                    <h3 className="font-bold text-red-800 mb-4 text-lg">Research & Data Analysis</h3>
+                    <h3 className="font-bold text-red-800 mb-4 text-lg">Research & Analysis</h3>
                     <ul className="space-y-2 text-red-700 text-sm">
-                      <li>• Analyze text complexity trends across datasets</li>
-                      <li>• Study language patterns in different demographics</li>
-                      <li>• Evaluate readability across academic disciplines</li>
-                      <li>• Compare writing styles and accessibility metrics</li>
-                      <li>• Research content effectiveness for specific audiences</li>
-                      <li>• Analyze survey responses and qualitative data</li>
+                      <li>• Analyze text complexity trends</li>
+                      <li>• Study language patterns in demographics</li>
+                      <li>• Evaluate readability across disciplines</li>
+                      <li>• Compare writing styles and metrics</li>
+                      <li>• Research content effectiveness</li>
+                      <li>• Analyze qualitative survey data</li>
                     </ul>
                   </div>
                 </div>
               </CardContent>
             </Card>
-
-            {/* Advanced Features & Best Practices */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-                <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Advanced Analysis Features</h2>
-                  <div className="space-y-4">
-                    <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                        <span className="text-white text-xs font-bold">✓</span>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-1">Real-Time Analysis Engine</h4>
-                        <p className="text-gray-600 text-sm">Instant text analysis as you type with immediate readability scoring, statistical calculations, and content insights without delays or page refreshes.</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                        <span className="text-white text-xs font-bold">✓</span>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-1">Comprehensive Readability Metrics</h4>
-                        <p className="text-gray-600 text-sm">Multiple readability formulas including Flesch Reading Ease and Flesch-Kincaid Grade Level provide scientific accuracy for professional content assessment.</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                        <span className="text-white text-xs font-bold">✓</span>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-1">Advanced Word Frequency Analysis</h4>
-                        <p className="text-gray-600 text-sm">Identify overused terms, vocabulary diversity, and keyword density patterns to optimize content for better engagement and SEO performance.</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                        <span className="text-white text-xs font-bold">✓</span>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-1">Professional Report Generation</h4>
-                        <p className="text-gray-600 text-sm">Export comprehensive analysis reports with all metrics, readability scores, and recommendations for professional documentation and content strategy.</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 bg-teal-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                        <span className="text-white text-xs font-bold">✓</span>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-1">Privacy-First Design</h4>
-                        <p className="text-gray-600 text-sm">All text analysis happens locally in your browser with no data transmission to servers, ensuring complete privacy and security for sensitive content.</p>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-                <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Content Optimization Best Practices</h2>
-                  <div className="space-y-4">
-                    <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
-                      <h4 className="font-semibold text-blue-900 text-sm mb-1">Target Audience Alignment</h4>
-                      <p className="text-blue-800 text-xs">Match your content's reading level to your target audience. Business content should typically aim for 8th-10th grade level, while academic content may require higher complexity.</p>
-                    </div>
-
-                    <div className="bg-green-50 border-l-4 border-green-400 p-4 rounded-r-lg">
-                      <h4 className="font-semibold text-green-900 text-sm mb-1">Sentence Length Optimization</h4>
-                      <p className="text-green-800 text-xs">Aim for average sentence length of 15-20 words for optimal readability. Mix short and long sentences to create engaging rhythm while maintaining clarity and comprehension.</p>
-                    </div>
-
-                    <div className="bg-purple-50 border-l-4 border-purple-400 p-4 rounded-r-lg">
-                      <h4 className="font-semibold text-purple-900 text-sm mb-1">Vocabulary Diversity Balance</h4>
-                      <p className="text-purple-800 text-xs">Maintain vocabulary richness while avoiding overcomplication. Use varied terms to keep content interesting, but ensure technical jargon is appropriate for your audience level.</p>
-                    </div>
-
-                    <div className="bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r-lg">
-                      <h4 className="font-semibold text-orange-900 text-sm mb-1">Structure and Flow Enhancement</h4>
-                      <p className="text-orange-800 text-xs">Use paragraph breaks, subheadings, and transition words effectively. Monitor sentences per paragraph to ensure digestible content chunks that improve reader engagement and comprehension.</p>
-                    </div>
-
-                    <div className="bg-teal-50 border-l-4 border-teal-400 p-4 rounded-r-lg">
-                      <h4 className="font-semibold text-teal-900 text-sm mb-1">Iterative Content Refinement</h4>
-                      <p className="text-teal-800 text-xs">Use analysis results to refine content iteratively. Test different versions, monitor readability scores, and adjust complexity based on audience feedback and engagement metrics.</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
 
             {/* Frequently Asked Questions */}
             <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
@@ -780,43 +717,43 @@ Finally, remember that great writing is rewriting. The first draft is just the b
                   <div className="space-y-6">
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">How accurate are the readability scores?</h3>
-                      <p className="text-gray-600 text-sm">Our analyzer uses the standard Flesch Reading Ease and Flesch-Kincaid formulas that are widely accepted in academic and professional settings. These formulas have been validated through extensive research and are used by major organizations including government agencies, educational institutions, and publishing companies for content assessment.</p>
+                      <p className="text-gray-600 text-sm">Our analyzer uses standard Flesch Reading Ease and Flesch-Kincaid formulas that are widely accepted in academic and professional settings. These formulas have been validated through extensive research and are used by major organizations for content assessment.</p>
                     </div>
                     
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">What's the ideal readability score for my content?</h3>
-                      <p className="text-gray-600 text-sm">The ideal score depends on your target audience. For general web content and marketing materials, aim for 60-70 (8th-9th grade level). Academic papers may require 30-50 (college level), while children's content should score 80+ (6th grade or easier). Consider your audience's education level and reading context.</p>
+                      <p className="text-gray-600 text-sm">For general web content and marketing materials, aim for 60-70 (8th-9th grade level). Academic papers may require 30-50 (college level), while children's content should score 80+ (6th grade or easier). Consider your audience's education level and reading context.</p>
                     </div>
                     
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I analyze content in languages other than English?</h3>
-                      <p className="text-gray-600 text-sm">While the tool works with any text input, the readability formulas (Flesch Reading Ease and Flesch-Kincaid) were specifically designed for English language patterns. Basic statistics like word count, character count, and sentence analysis work accurately for all languages, but readability scores are most reliable for English text.</p>
+                      <p className="text-gray-600 text-sm">While the tool works with any text input, the readability formulas were designed for English language patterns. Basic statistics like word count and character analysis work for all languages, but readability scores are most reliable for English text.</p>
                     </div>
 
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">How does the tool handle technical or specialized content?</h3>
-                      <p className="text-gray-600 text-sm">The analyzer treats all content objectively, which means technical jargon and specialized terms may lower readability scores. This is actually helpful for identifying when technical content needs simplification or glossaries. For specialized audiences, focus more on sentence structure and organization metrics than absolute readability scores.</p>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">How does word frequency analysis help improve writing?</h3>
+                      <p className="text-gray-600 text-sm">Word frequency analysis identifies overused terms that might make content repetitive. It helps ensure balanced keyword usage for SEO while maintaining natural language flow and vocabulary diversity for better reader engagement.</p>
                     </div>
                   </div>
                   <div className="space-y-6">
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">Is my text data secure and private?</h3>
-                      <p className="text-gray-600 text-sm">Absolutely. All text analysis happens entirely in your browser using JavaScript. No text content is transmitted to our servers or stored anywhere. Your content never leaves your device, ensuring complete privacy for sensitive documents, proprietary content, or personal writing projects.</p>
+                      <p className="text-gray-600 text-sm">Absolutely. All text analysis happens entirely in your browser using JavaScript. No content is transmitted to servers or stored anywhere. Your text never leaves your device, ensuring complete privacy for sensitive documents.</p>
                     </div>
                     
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">What file types can I analyze?</h3>
-                      <p className="text-gray-600 text-sm">The tool accepts plain text input through copy and paste. You can analyze content from Word documents, Google Docs, emails, web pages, PDFs (by copying text), and any other text source. Simply copy your content and paste it into the analysis area for immediate results.</p>
+                      <p className="text-gray-600 text-sm">The tool accepts plain text through copy and paste. You can analyze content from Word documents, Google Docs, emails, web pages, PDFs, and any other text source by copying and pasting into the analysis area.</p>
                     </div>
                     
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">How should I interpret word frequency results?</h3>
-                      <p className="text-gray-600 text-sm">Word frequency analysis helps identify overused terms that might make content repetitive. High-frequency words (excluding common articles and prepositions) may indicate key themes or potential areas for vocabulary diversification. Use this data to ensure balanced keyword usage for SEO while maintaining natural language flow.</p>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">How should I interpret reading time estimates?</h3>
+                      <p className="text-gray-600 text-sm">Reading time is calculated using average reading speed of 200 words per minute, while speaking time uses 150 words per minute. These estimates help with content planning, presentation timing, and user experience optimization.</p>
                     </div>
 
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I use this tool for SEO content optimization?</h3>
-                      <p className="text-gray-600 text-sm">Yes, the analyzer is excellent for SEO content optimization. Readable content (typically 60-70 Flesch score) performs better in search rankings. Use reading time estimates for content planning, word frequency for keyword optimization, and readability scores to ensure your content is accessible to your target audience, which improves engagement metrics.</p>
+                      <p className="text-gray-600 text-sm">Yes! Readable content typically performs better in search rankings. Use readability scores to ensure accessibility, word frequency for keyword optimization, and reading time estimates for content planning and user engagement improvement.</p>
                     </div>
                   </div>
                 </div>
@@ -827,58 +764,58 @@ Finally, remember that great writing is rewriting. The first draft is just the b
             <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Related Text Analysis Tools</h2>
-                <p className="text-gray-600 mb-8">Enhance your writing analysis workflow with our comprehensive suite of professional text tools designed for content creators, writers, and digital marketers.</p>
+                <p className="text-gray-600 mb-8">Enhance your writing analysis workflow with our comprehensive suite of text tools designed for content creators, writers, and digital marketers.</p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
                     <h3 className="font-semibold text-blue-900 mb-2">
                       <a href="/tools/word-counter" className="text-blue-600 hover:text-blue-800 transition-colors">Word Counter</a>
                     </h3>
-                    <p className="text-blue-700 text-sm">Count words, characters, sentences, and paragraphs with detailed text statistics for content planning and optimization.</p>
+                    <p className="text-blue-700 text-sm">Count words, characters, sentences, and paragraphs with detailed text statistics for content planning.</p>
                   </div>
 
                   <div className="bg-gradient-to-r from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
                     <h3 className="font-semibold text-green-900 mb-2">
                       <a href="/tools/character-counter" className="text-green-600 hover:text-green-800 transition-colors">Character Counter</a>
                     </h3>
-                    <p className="text-green-700 text-sm">Precise character counting for social media posts, meta descriptions, and character-limited content optimization.</p>
+                    <p className="text-green-700 text-sm">Precise character counting for social media posts, meta descriptions, and character-limited content.</p>
                   </div>
 
                   <div className="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
                     <h3 className="font-semibold text-purple-900 mb-2">
                       <a href="/tools/case-converter" className="text-purple-600 hover:text-purple-800 transition-colors">Case Converter</a>
                     </h3>
-                    <p className="text-purple-700 text-sm">Transform text between uppercase, lowercase, title case, camelCase, and other formatting styles for consistent content.</p>
+                    <p className="text-purple-700 text-sm">Transform text between uppercase, lowercase, title case, and other formatting styles.</p>
                   </div>
 
                   <div className="bg-gradient-to-r from-orange-50 to-orange-100 rounded-lg p-4 border border-orange-200">
                     <h3 className="font-semibold text-orange-900 mb-2">
                       <a href="/tools/text-formatter-beautifier" className="text-orange-600 hover:text-orange-800 transition-colors">Text Formatter</a>
                     </h3>
-                    <p className="text-orange-700 text-sm">Clean and beautify text by removing extra spaces, fixing punctuation, and standardizing formatting for professional content.</p>
+                    <p className="text-orange-700 text-sm">Clean and beautify text by removing extra spaces, fixing punctuation, and standardizing formatting.</p>
                   </div>
 
                   <div className="bg-gradient-to-r from-teal-50 to-teal-100 rounded-lg p-4 border border-teal-200">
                     <h3 className="font-semibold text-teal-900 mb-2">
                       <a href="/tools/text-diff-checker" className="text-teal-600 hover:text-teal-800 transition-colors">Text Diff Checker</a>
                     </h3>
-                    <p className="text-teal-700 text-sm">Compare two pieces of text side-by-side to identify differences, changes, and revisions for content review and editing.</p>
+                    <p className="text-teal-700 text-sm">Compare two pieces of text side-by-side to identify differences and changes for content review.</p>
                   </div>
 
                   <div className="bg-gradient-to-r from-pink-50 to-pink-100 rounded-lg p-4 border border-pink-200">
                     <h3 className="font-semibold text-pink-900 mb-2">
                       <a href="/tools/sentence-counter" className="text-pink-600 hover:text-pink-800 transition-colors">Sentence Counter</a>
                     </h3>
-                    <p className="text-pink-700 text-sm">Analyze sentence structure, count sentences, and evaluate text organization for improved readability and flow.</p>
+                    <p className="text-pink-700 text-sm">Analyze sentence structure and count sentences for improved readability and text organization.</p>
                   </div>
                 </div>
 
                 <div className="mt-8 text-center">
                   <a
-                    href="/tools/text-tools"
+                    href="/text"
                     className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
                   >
-                    Explore All Text Analysis Tools
+                    Explore All Text Tools
                   </a>
                 </div>
               </CardContent>
