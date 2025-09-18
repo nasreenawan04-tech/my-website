@@ -549,7 +549,7 @@ const Home = () => {
                       What types of tools do you offer?
                     </h3>
                     <p className="text-neutral-600 leading-relaxed">
-                      We offer 180+ tools across 6 main categories: Finance (loan calculators, currency converters), 
+                      We offer 180+ tools across 3 main categories: Finance (loan calculators, tax calculators), 
                       Image (resize, compress, edit), Text (word counters, generators), 
                       content analysis and optimization, and Health (BMI, calorie calculators). New tools are added regularly.
                     </p>
@@ -572,7 +572,7 @@ const Home = () => {
                     </h3>
                     <p className="text-neutral-600 leading-relaxed">
                       Yes! Many of our tools support multiple currencies, date formats, and international standards. 
-                      Our currency converter includes 30+ global currencies with real-time exchange rates, and our 
+                      Our financial tools include comprehensive loan and tax calculators with detailed breakdowns, and our 
                       calculators support various regional formats.
                     </p>
                   </div>

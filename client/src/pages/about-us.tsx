@@ -132,7 +132,6 @@ const AboutUs = () => {
                 <ul className="text-sm text-neutral-500 space-y-1">
                   <li>• Loan & Mortgage Calculators</li>
                   <li>• Investment & ROI Tools</li>
-                  <li>• Currency Converters</li>
                   <li>• Tax & Budget Planners</li>
                 </ul>
               </div>

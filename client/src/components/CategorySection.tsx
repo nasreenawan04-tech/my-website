@@ -10,7 +10,7 @@ const CategorySection = () => {
     {
       key: 'finance',
       title: '30+ Finance Tools',
-      description: 'Loan Calculator, Mortgage Calculator, Currency Converter, ROI Calculator',
+      description: 'Loan Calculator, Mortgage Calculator, Tax Calculator, ROI Calculator',
       gradient: 'from-blue-500 via-blue-600 to-indigo-700',
       icon: Calculator,
       buttonColor: 'text-blue-600 hover:bg-blue-50',

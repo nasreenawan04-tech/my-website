@@ -34,10 +34,10 @@ const FinanceTools = () => {
     <>
       <Helmet>
         <title>Finance Tools - 30+ Free Financial Calculators | DapsiWow</title>
-        <meta name="description" content="Free finance tools including loan calculator, mortgage calculator, currency converter, ROI calculator, and 25+ more financial calculators. No sign-up required." />
-        <meta name="keywords" content="finance tools, loan calculator, mortgage calculator, currency converter, ROI calculator, financial calculators" />
+        <meta name="description" content="Free finance tools including loan calculator, mortgage calculator, tax calculator, ROI calculator, and 25+ more financial calculators. No sign-up required." />
+        <meta name="keywords" content="finance tools, loan calculator, mortgage calculator, tax calculator, ROI calculator, financial calculators" />
         <meta property="og:title" content="Finance Tools - 30+ Free Financial Calculators | DapsiWow" />
-        <meta property="og:description" content="Free finance tools including loan calculator, mortgage calculator, currency converter, and 25+ more financial calculators." />
+        <meta property="og:description" content="Free finance tools including loan calculator, mortgage calculator, tax calculator, and 25+ more financial calculators." />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="https://dapsiwow.com/finance" />
       </Helmet>
@@ -121,9 +121,9 @@ const FinanceTools = () => {
                     <p className="text-sm text-neutral-600">Plan your home purchase</p>
                   </div>
                   <div className="text-center p-4 bg-purple-50 rounded-xl">
-                    <i className="fas fa-exchange-alt text-2xl text-purple-600 mb-2"></i>
-                    <h3 className="font-semibold text-neutral-800">Currency Converter</h3>
-                    <p className="text-sm text-neutral-600">Convert currencies</p>
+                    <i className="fas fa-percentage text-2xl text-purple-600 mb-2"></i>
+                    <h3 className="font-semibold text-neutral-800">Tax Calculator</h3>
+                    <p className="text-sm text-neutral-600">Calculate income tax</p>
                   </div>
                   <div className="text-center p-4 bg-orange-50 rounded-xl">
                     <i className="fas fa-trending-up text-2xl text-orange-600 mb-2"></i>
