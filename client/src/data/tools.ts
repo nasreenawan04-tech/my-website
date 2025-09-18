@@ -86,7 +86,6 @@ const toolsData = [
   { id: 'sleep-calculator', name: 'Sleep Calculator', description: 'Calculate optimal sleep and wake times based on natural sleep cycles', category: 'health' as const, icon: 'fas fa-bed', href: '/tools/sleep-calculator' },
   { id: 'ovulation-calculator', name: 'Ovulation Calculator', description: 'Track fertile days and ovulation date for conception planning', category: 'health' as const, icon: 'fas fa-female', href: '/tools/ovulation-calculator' },
   { id: 'baby-growth-chart', name: 'Baby Growth Chart', description: 'Track baby growth and development using WHO standards', category: 'health' as const, icon: 'fas fa-baby', href: '/tools/baby-growth-chart' },
-  { id: 'baby-growth-percentile', name: 'Baby Growth Chart Calculator', description: 'Track baby growth percentiles', category: 'health' as const, icon: 'fas fa-child', href: '/tools/baby-growth-percentile' },
   { id: 'tdee-calculator', name: 'TDEE Calculator', description: 'Calculate Total Daily Energy Expenditure', category: 'health' as const, icon: 'fas fa-bolt', href: '/tools/tdee-calculator' },
   { id: 'lean-body-mass-calculator', name: 'Lean Body Mass Calculator', description: 'Calculate lean body mass', category: 'health' as const, icon: 'fas fa-user-md', href: '/tools/lean-body-mass-calculator' },
   { id: 'waist-height-ratio-calculator', name: 'Waist-to-Height Ratio Calculator', description: 'Calculate waist-to-height ratio', category: 'health' as const, icon: 'fas fa-ruler', href: '/tools/waist-to-height-ratio-calculator' },
