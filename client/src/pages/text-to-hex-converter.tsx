@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -245,6 +246,7 @@ const TextToHexConverter = () => {
     setConversionResult(null);
     setShowResults(false);
     setShowAdvanced(false);
+    setErrorMessage(null);
     setOptions({
       encoding: 'utf8',
       outputFormat: 'spaced',
@@ -282,6 +284,10 @@ const TextToHexConverter = () => {
       case 'prefixed': return options.uppercase ? '0x48 0x65 0x6C' : '0x48 0x65 0x6c';
       default: return 'Example output';
     }
+  };
+
+  const getInputPlaceholder = () => {
+    return 'Type or paste your text here...';
   };
 
   return (
@@ -340,7 +346,7 @@ const TextToHexConverter = () => {
                 </span>
               </h1>
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed px-2">
-                Convert any text to hexadecimal values instantly with multiple format options
+                Transform readable text into hexadecimal values with professional encoding options instantly
               </p>
             </div>
           </div>
@@ -355,7 +361,7 @@ const TextToHexConverter = () => {
                 <div className="p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 space-y-6 sm:space-y-8">
                   <div>
                     <h2 className="text-3xl font-bold text-gray-900 mb-2">Text Encoder</h2>
-                    <p className="text-gray-600">Enter text to convert to hexadecimal values</p>
+                    <p className="text-gray-600">Enter text to convert it into hexadecimal values</p>
                   </div>
 
                   <div className="space-y-4 sm:space-y-6">
@@ -374,12 +380,11 @@ const TextToHexConverter = () => {
                           <SelectValue placeholder="Select format" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="spaced">Space-separated (48 65 6C 6C 6F)</SelectItem>
-                          <SelectItem value="compact">Compact string (48656C6C6F)</SelectItem>
-                          <SelectItem value="prefixed">0x prefixed (0x48 0x65)</SelectItem>
+                          <SelectItem value="spaced">Space Separated (48 65 6C 6C 6F)</SelectItem>
+                          <SelectItem value="compact">Compact String (48656C6C6F)</SelectItem>
+                          <SelectItem value="prefixed">0x Prefixed (0x48 0x65)</SelectItem>
                         </SelectContent>
                       </Select>
-                      <p className="text-xs text-gray-500">Preview: {getSampleOutput()}</p>
                     </div>
 
                     {/* Spacing Selection (for spaced and prefixed formats) */}
@@ -398,9 +403,9 @@ const TextToHexConverter = () => {
                             <SelectValue placeholder="Select spacing" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="space">Space separated (48 65 6C)</SelectItem>
-                            <SelectItem value="comma">Comma separated (48, 65, 6C)</SelectItem>
-                            <SelectItem value="newline">Newline separated (48\n65\n6C)</SelectItem>
+                            <SelectItem value="space">Space Separated (48 65 6C)</SelectItem>
+                            <SelectItem value="comma">Comma Separated (48, 65, 6C)</SelectItem>
+                            <SelectItem value="newline">Newline Separated</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>
@@ -437,7 +442,7 @@ const TextToHexConverter = () => {
                         value={inputText}
                         onChange={(e) => setInputText(e.target.value)}
                         className="min-h-[100px] sm:min-h-[120px] lg:min-h-[140px] text-base sm:text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500 resize-none"
-                        placeholder="Type or paste your text here..."
+                        placeholder={getInputPlaceholder()}
                         data-testid="textarea-text-input"
                       />
                       {errorMessage && (
@@ -575,174 +580,575 @@ const TextToHexConverter = () => {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 border-t">
-                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">Conversion Results</h2>
+                {showResults && (
+                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 border-t">
+                    <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">Encoded Results</h2>
 
-                  {conversionResult && showResults ? (
+                    {conversionResult && conversionResult.originalText ? (
                     <div className="space-y-3 sm:space-y-4" data-testid="conversion-results">
                       {/* Main Hexadecimal Display */}
                       <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-3 sm:p-4">
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 mb-2">
-                          <h3 className="text-base sm:text-lg font-semibold text-blue-900">Hexadecimal Values</h3>
+                        <div className="flex items-center justify-between mb-3 gap-3">
+                          <div className="flex-1 min-w-0">
+                            <h3 className="text-sm sm:text-base font-semibold text-gray-900 truncate">Hexadecimal Values</h3>
+                            <p className="text-xs sm:text-sm text-gray-600 break-words">Hex representation of text characters</p>
+                          </div>
                           <Button
                             onClick={() => handleCopyToClipboard(conversionResult.hexadecimal)}
                             variant="outline"
                             size="sm"
-                            className="self-start sm:self-auto border-blue-300 text-blue-700 hover:bg-blue-100 text-xs sm:text-sm"
+                            className="text-xs px-2 sm:px-3 py-2 flex-shrink-0 rounded-lg min-w-[60px] sm:min-w-[70px] h-11 sm:h-9 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                             data-testid="button-copy-hex"
                           >
-                            Copy Hex
+                            Copy
                           </Button>
                         </div>
-                        <div className="bg-white rounded-lg p-3 sm:p-4 text-gray-900 font-mono text-sm sm:text-base word-wrap break-words max-h-40 sm:max-h-48 overflow-y-auto" data-testid="text-hex-output">
-                          {conversionResult.hexadecimal || 'No output generated'}
+                        <div 
+                          className="bg-white p-2 sm:p-3 rounded-lg border border-gray-200 text-xs sm:text-sm font-mono break-all min-h-[40px] sm:min-h-[44px] flex items-center"
+                          data-testid="hex-output"
+                        >
+                          {conversionResult.hexadecimal || '(empty result)'}
                         </div>
                       </div>
 
-                      {/* Additional Output Formats */}
-                      {(options.showBinary || options.showDecimal) && (
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4">
-                          {options.showBinary && (
-                            <div className="bg-green-50 border-2 border-green-200 rounded-xl p-3 sm:p-4">
-                              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
-                                <h3 className="text-base font-semibold text-green-900">Binary Values</h3>
-                                <Button
-                                  onClick={() => handleCopyToClipboard(conversionResult.binary)}
-                                  variant="outline"
-                                  size="sm"
-                                  className="self-start sm:self-auto border-green-300 text-green-700 hover:bg-green-100 text-xs sm:text-sm"
-                                  data-testid="button-copy-binary"
-                                >
-                                  Copy
-                                </Button>
-                              </div>
-                              <div className="bg-white rounded-lg p-2 sm:p-3 text-gray-900 font-mono text-xs sm:text-sm word-wrap break-words max-h-32 overflow-y-auto" data-testid="text-binary-output">
-                                {conversionResult.binary}
-                              </div>
+                      {/* Alternative Format Outputs */}
+                      {options.showBinary && (
+                        <div className="bg-yellow-50 border-2 border-yellow-200 rounded-xl p-3 sm:p-4">
+                          <div className="flex items-center justify-between mb-3 gap-3">
+                            <div className="flex-1 min-w-0">
+                              <h4 className="text-sm sm:text-base font-semibold text-gray-900 truncate">Binary Code</h4>
+                              <p className="text-xs sm:text-sm text-gray-600 break-words">Binary representation (0s and 1s)</p>
                             </div>
-                          )}
-
-                          {options.showDecimal && (
-                            <div className="bg-purple-50 border-2 border-purple-200 rounded-xl p-3 sm:p-4">
-                              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
-                                <h3 className="text-base font-semibold text-purple-900">Decimal Values</h3>
-                                <Button
-                                  onClick={() => handleCopyToClipboard(conversionResult.decimal)}
-                                  variant="outline"
-                                  size="sm"
-                                  className="self-start sm:self-auto border-purple-300 text-purple-700 hover:bg-purple-100 text-xs sm:text-sm"
-                                  data-testid="button-copy-decimal"
-                                >
-                                  Copy
-                                </Button>
-                              </div>
-                              <div className="bg-white rounded-lg p-2 sm:p-3 text-gray-900 font-mono text-xs sm:text-sm word-wrap break-words max-h-32 overflow-y-auto" data-testid="text-decimal-output">
-                                {conversionResult.decimal}
-                              </div>
-                            </div>
-                          )}
+                            <Button
+                              onClick={() => handleCopyToClipboard(conversionResult.binary)}
+                              variant="outline"
+                              size="sm"
+                              className="text-xs px-2 sm:px-3 py-2 flex-shrink-0 rounded-lg min-w-[60px] sm:min-w-[70px] h-11 sm:h-9 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                              data-testid="button-copy-binary"
+                            >
+                              Copy
+                            </Button>
+                          </div>
+                          <div 
+                            className="bg-white p-2 sm:p-3 rounded-lg border border-gray-200 text-xs sm:text-sm font-mono break-all min-h-[40px] sm:min-h-[44px] flex items-center"
+                            data-testid="binary-output"
+                          >
+                            {conversionResult.binary}
+                          </div>
                         </div>
                       )}
 
-                      {/* Conversion Statistics */}
-                      <div className="bg-yellow-50 border-2 border-yellow-200 rounded-xl p-3 sm:p-4">
-                        <h3 className="text-base font-semibold text-yellow-900 mb-2">Conversion Details</h3>
-                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 text-xs sm:text-sm">
-                          <div>
-                            <span className="text-yellow-700 font-medium">Characters:</span>
-                            <span className="ml-1 text-gray-900" data-testid="text-char-count">{conversionResult.charCount}</span>
+                      {options.showDecimal && (
+                        <div className="bg-purple-50 border-2 border-purple-200 rounded-xl p-3 sm:p-4">
+                          <div className="flex items-center justify-between mb-3 gap-3">
+                            <div className="flex-1 min-w-0">
+                              <h4 className="text-sm sm:text-base font-semibold text-gray-900 truncate">Decimal Values</h4>
+                              <p className="text-xs sm:text-sm text-gray-600 break-words">Decimal character codes</p>
+                            </div>
+                            <Button
+                              onClick={() => handleCopyToClipboard(conversionResult.decimal)}
+                              variant="outline"
+                              size="sm"
+                              className="text-xs px-2 sm:px-3 py-2 flex-shrink-0 rounded-lg min-w-[60px] sm:min-w-[70px] h-11 sm:h-9 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                              data-testid="button-copy-decimal"
+                            >
+                              Copy
+                            </Button>
                           </div>
-                          <div>
-                            <span className="text-yellow-700 font-medium">Bytes:</span>
-                            <span className="ml-1 text-gray-900" data-testid="text-byte-count">{conversionResult.byteCount}</span>
+                          <div 
+                            className="bg-white p-2 sm:p-3 rounded-lg border border-gray-200 text-xs sm:text-sm font-mono break-all min-h-[40px] sm:min-h-[44px] flex items-center"
+                            data-testid="decimal-output"
+                          >
+                            {conversionResult.decimal}
                           </div>
-                          <div>
-                            <span className="text-yellow-700 font-medium">Encoding:</span>
-                            <span className="ml-1 text-gray-900" data-testid="text-encoding">{options.encoding.toUpperCase()}</span>
+                        </div>
+                      )}
+
+                      {/* Text Statistics */}
+                      <div className="bg-white rounded-xl p-3 sm:p-4 shadow-sm border border-gray-200" data-testid="text-statistics">
+                        <h3 className="text-sm sm:text-base font-bold text-gray-900 mb-4">Text Statistics</h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div className="bg-blue-50 rounded-lg p-4 text-center">
+                            <div className="text-2xl font-bold text-blue-600" data-testid="char-count">{conversionResult.charCount}</div>
+                            <div className="text-sm text-blue-700 font-medium">Characters</div>
                           </div>
-                          <div>
-                            <span className="text-yellow-700 font-medium">Format:</span>
-                            <span className="ml-1 text-gray-900" data-testid="text-format">{options.outputFormat}</span>
+                          <div className="bg-green-50 rounded-lg p-4 text-center">
+                            <div className="text-2xl font-bold text-green-600" data-testid="byte-count">{conversionResult.byteCount}</div>
+                            <div className="text-sm text-green-700 font-medium">Bytes</div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  ) : (
-                    <div className="text-center py-8 sm:py-12 text-gray-500">
-                      <p className="text-base sm:text-lg">Enter text above to see the hexadecimal conversion results</p>
-                    </div>
-                  )}
-                </div>
+                    ) : (
+                      <div className="text-center py-12 sm:py-16" data-testid="no-results">
+                        <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
+                          <div className="text-2xl sm:text-3xl font-bold text-gray-400">HEX</div>
+                        </div>
+                        <p className="text-gray-500 text-base sm:text-lg px-4">Conversion results will appear here</p>
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
             </CardContent>
           </Card>
 
-          {/* Conversion History */}
-          {conversionHistory.length > 0 && (
-            <Card className="mt-6 sm:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden">
-              <CardContent className="p-4 sm:p-6">
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Recent Conversions</h2>
-                <div className="space-y-3 sm:space-y-4 max-h-80 overflow-y-auto">
-                  {conversionHistory.map((item, index) => (
-                    <div key={index} className="border border-gray-200 rounded-lg p-3 sm:p-4 hover:bg-gray-50 transition-colors">
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
-                        <span className="text-xs sm:text-sm text-gray-500">
-                          {item.timestamp.toLocaleString()}
-                        </span>
-                        <Button
-                          onClick={() => setInputText(item.originalText)}
-                          variant="outline"
-                          size="sm"
-                          className="self-start sm:self-auto text-xs border-gray-300"
-                          data-testid={`button-history-${index}`}
-                        >
-                          Use Again
-                        </Button>
-                      </div>
-                      <div className="space-y-1">
-                        <div>
-                          <span className="text-xs font-medium text-gray-700">Input:</span>
-                          <span className="ml-2 text-xs text-gray-900">{item.originalText.slice(0, 100)}{item.originalText.length > 100 ? '...' : ''}</span>
-                        </div>
-                        <div>
-                          <span className="text-xs font-medium text-gray-700">Hex:</span>
-                          <span className="ml-2 text-xs text-gray-900 font-mono break-all">{item.hexadecimal.slice(0, 100)}{item.hexadecimal.length > 100 ? '...' : ''}</span>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+          {/* SEO Content Sections */}
+          <div className="mt-16 space-y-8">
+            {/* What is Text to Hex Conversion */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">What is Text to Hexadecimal Conversion?</h2>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    <strong>Text to hexadecimal conversion</strong> is the fundamental process of transforming human-readable text into hexadecimal (base-16) representations of each character's byte value. This essential computer science concept allows text data to be represented in a numerical format that computers can efficiently process, store, and transmit across different systems and platforms using the hexadecimal numbering system.
+                  </p>
+                  <p>
+                    Our professional text encoder supports comprehensive UTF-8 and ASCII encoding options with multiple output formats including space-separated hex values, compact hex strings, and 0x-prefixed notation. This flexibility makes it perfect for programming projects, web development, debugging applications, educational purposes, and understanding how computers internally represent textual information in hexadecimal format.
+                  </p>
+                  <p>
+                    The tool features real-time conversion with intelligent input validation, advanced customization options including custom prefixes and suffixes, and multi-format output display capabilities that show binary and decimal representations alongside the hexadecimal values for comprehensive analysis and verification of your text encoding results.
+                  </p>
                 </div>
               </CardContent>
             </Card>
-          )}
 
-          {/* How to Use Section */}
-          <Card className="mt-6 sm:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl overflow-hidden">
-            <CardContent className="p-4 sm:p-6 md:p-8">
-              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">How to Use the Text to Hex Converter</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                <div className="space-y-3 sm:space-y-4">
-                  <h3 className="text-lg font-semibold text-gray-800">Basic Steps:</h3>
-                  <ol className="list-decimal list-inside space-y-1 sm:space-y-2 text-gray-700 text-sm sm:text-base">
-                    <li>Choose your output format (spaced, compact, or prefixed)</li>
-                    <li>Select character encoding (UTF-8 or ASCII)</li>
-                    <li>Type or paste your text</li>
-                    <li>Click "Convert to Hex" to encode</li>
-                    <li>Copy the hexadecimal result</li>
-                  </ol>
+            {/* Output Format Guide */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Hexadecimal Output Formats & Usage Guide</h2>
+                <p className="text-gray-600 mb-8">Understanding different hexadecimal output formats is essential for proper text encoding. Our converter supports three distinct output formats, each designed for different applications and use cases in programming, data transmission, and system administration.</p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-semibold text-gray-800">Space-Separated Format</h3>
+                    <p className="text-gray-600 text-sm">
+                      Output hexadecimal values separated by spaces. This is the most common format used in programming debuggers, memory dumps, and educational examples. Each pair represents one byte of character data in hexadecimal notation.
+                    </p>
+                    <div className="bg-blue-50 p-4 rounded-lg">
+                      <h4 className="font-medium text-blue-900 mb-2">Example Output:</h4>
+                      <code className="text-xs font-mono text-blue-800 block mb-2">48 65 6C 6C 6F 20 57 6F 72 6C 64 21</code>
+                      <div className="text-xs text-blue-600 font-medium">Original Text: "Hello World!"</div>
+                    </div>
+                    <div className="bg-blue-50 p-3 rounded-lg">
+                      <h5 className="font-medium text-blue-900 mb-1 text-sm">Best For:</h5>
+                      <ul className="text-xs text-blue-800 space-y-1">
+                        <li>• Programming tutorials and documentation</li>
+                        <li>• Debugging sessions and memory analysis</li>
+                        <li>• Educational demonstrations of hex encoding</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-semibold text-gray-800">Compact String Format</h3>
+                    <p className="text-gray-600 text-sm">
+                      Output hexadecimal values as a continuous string without separators. This format is commonly used in URLs, configuration files, and data transmission protocols where space efficiency and compactness are important.
+                    </p>
+                    <div className="bg-green-50 p-4 rounded-lg">
+                      <h4 className="font-medium text-green-900 mb-2">Example Output:</h4>
+                      <code className="text-xs font-mono text-green-800 block mb-2">48656C6C6F20576F726C6421</code>
+                      <div className="text-xs text-green-600 font-medium">Original Text: "Hello World!"</div>
+                    </div>
+                    <div className="bg-green-50 p-3 rounded-lg">
+                      <h5 className="font-medium text-green-900 mb-1 text-sm">Best For:</h5>
+                      <ul className="text-xs text-green-800 space-y-1">
+                        <li>• URL encoding and web development</li>
+                        <li>• Configuration file processing</li>
+                        <li>• Data transmission and storage</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-semibold text-gray-800">0x Prefixed Format</h3>
+                    <p className="text-gray-600 text-sm">
+                      Output hexadecimal values with the standard "0x" prefix notation. This format is widely used in programming languages like C, C++, JavaScript, and assembly language to explicitly denote hexadecimal values in code.
+                    </p>
+                    <div className="bg-purple-50 p-4 rounded-lg">
+                      <h4 className="font-medium text-purple-900 mb-2">Example Output:</h4>
+                      <code className="text-xs font-mono text-purple-800 block mb-2">0x48 0x65 0x6C 0x6C 0x6F</code>
+                      <div className="text-xs text-purple-600 font-medium">Original Text: "Hello"</div>
+                    </div>
+                    <div className="bg-purple-50 p-3 rounded-lg">
+                      <h5 className="font-medium text-purple-900 mb-1 text-sm">Best For:</h5>
+                      <ul className="text-xs text-purple-800 space-y-1">
+                        <li>• Programming and source code integration</li>
+                        <li>• Assembly language and low-level programming</li>
+                        <li>• System calls and kernel development</li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-                <div className="space-y-3 sm:space-y-4">
-                  <h3 className="text-lg font-semibold text-gray-800">Output Formats:</h3>
-                  <ul className="list-disc list-inside space-y-1 sm:space-y-2 text-gray-700 text-sm sm:text-base">
-                    <li><strong>Space-separated:</strong> 48 65 6C 6C 6F</li>
-                    <li><strong>Compact:</strong> 48656C6C6F</li>
-                    <li><strong>Prefixed:</strong> 0x48 0x65 0x6C</li>
-                    <li><strong>Custom spacing:</strong> Comma or newline separated</li>
-                  </ul>
+              </CardContent>
+            </Card>
+
+            {/* Encoding and Character Ranges */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Character Encoding Options</h2>
+                  <p className="text-gray-600 mb-6">Select the appropriate character encoding based on your text content and target system requirements for accurate text to hexadecimal conversion results.</p>
+                  
+                  <div className="space-y-6">
+                    <div className="bg-blue-50 rounded-lg p-4">
+                      <h3 className="font-semibold text-blue-900 mb-3">UTF-8 Unicode Encoding</h3>
+                      <p className="text-blue-800 text-sm mb-3">
+                        UTF-8 supports the complete Unicode character set with variable-length encoding for international characters. This encoding handles all modern text requirements including emojis, mathematical symbols, and characters from world languages with proper multi-byte sequences.
+                      </p>
+                      <div className="space-y-2">
+                        <h4 className="font-medium text-blue-900 text-sm">Character Support:</h4>
+                        <ul className="text-xs text-blue-700 space-y-1">
+                          <li>• Basic ASCII: A-Z, a-z, 0-9, punctuation (1 byte each)</li>
+                          <li>• Extended Latin: European characters (2 bytes each)</li>
+                          <li>• International: Asian, Arabic, Cyrillic text (2-3 bytes each)</li>
+                          <li>• Symbols & Emojis: Mathematical symbols, emojis (2-4 bytes each)</li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div className="bg-orange-50 rounded-lg p-4">
+                      <h3 className="font-semibold text-orange-900 mb-3">ASCII 7-bit Encoding</h3>
+                      <p className="text-orange-800 text-sm mb-3">
+                        ASCII encoding supports only the basic 128 characters including English letters, digits, punctuation, and control characters. Characters outside this range are automatically replaced with '?' (question mark) for compatibility.
+                      </p>
+                      <div className="space-y-2">
+                        <h4 className="font-medium text-orange-900 text-sm">Character Categories:</h4>
+                        <ul className="text-xs text-orange-700 space-y-1">
+                          <li>• Control characters: 0-31 (non-printable system controls)</li>
+                          <li>• Printable symbols: 32-126 (visible text characters)</li>
+                          <li>• Delete character: 127 (control character)</li>
+                          <li>• Out-of-range values become '?' (hex 3F)</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Professional Applications</h2>
+                  <p className="text-gray-600 mb-6">Text to hexadecimal conversion serves critical functions across numerous professional domains and technical applications.</p>
+                  
+                  <div className="space-y-4">
+                    <div className="bg-green-50 rounded-lg p-4">
+                      <h3 className="font-semibold text-green-900 mb-2">Web Development & APIs</h3>
+                      <p className="text-green-800 text-sm">Encode text for URL parameters, generate hex-encoded form data, process API requests with text payloads, and handle character encoding in web applications.</p>
+                    </div>
+                    
+                    <div className="bg-purple-50 rounded-lg p-4">
+                      <h3 className="font-semibold text-purple-900 mb-2">Software Development</h3>
+                      <p className="text-purple-800 text-sm">Debug character encoding issues, generate test data for applications, create hex literals for programming, and analyze text processing algorithms.</p>
+                    </div>
+                    
+                    <div className="bg-blue-50 rounded-lg p-4">
+                      <h3 className="font-semibold text-blue-900 mb-2">System Administration</h3>
+                      <p className="text-blue-800 text-sm">Generate configuration file entries, create hex-encoded system commands, process log file data, and handle character encoding in scripts.</p>
+                    </div>
+                    
+                    <div className="bg-yellow-50 rounded-lg p-4">
+                      <h3 className="font-semibold text-yellow-900 mb-2">Database Management</h3>
+                      <p className="text-yellow-800 text-sm">Encode text for database storage, generate hex-encoded BLOB data, process data imports and exports, and handle character set conversions.</p>
+                    </div>
+
+                    <div className="bg-teal-50 rounded-lg p-4">
+                      <h3 className="font-semibold text-teal-900 mb-2">Cybersecurity & Forensics</h3>
+                      <p className="text-teal-800 text-sm">Create encoded payloads, analyze malware strings, generate test data for security tools, and encode sensitive information for transmission.</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Advanced Features and Best Practices */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Advanced Features & Encoding Best Practices</h2>
+                <p className="text-gray-600 mb-8">Leverage advanced functionality and follow industry best practices to ensure accurate and reliable text to hexadecimal conversion results for your projects and workflows.</p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Advanced Features</h3>
+                    <div className="space-y-4">
+                      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
+                        <h4 className="font-semibold text-blue-900 mb-2">Real-Time Processing</h4>
+                        <p className="text-blue-800 text-sm">Instant conversion with intelligent debouncing, immediate input validation, and live error detection for seamless user experience and efficient workflow.</p>
+                      </div>
+                      <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-l-4 border-green-400 p-4 rounded-r-lg">
+                        <h4 className="font-semibold text-green-900 mb-2">Multi-Format Display</h4>
+                        <p className="text-green-800 text-sm">Show results in hexadecimal, binary, and decimal formats simultaneously with customizable visibility controls for comprehensive data analysis and verification.</p>
+                      </div>
+                      <div className="bg-gradient-to-r from-purple-50 to-violet-50 border-l-4 border-purple-400 p-4 rounded-r-lg">
+                        <h4 className="font-semibold text-purple-900 mb-2">Text Enhancement</h4>
+                        <p className="text-purple-800 text-sm">Custom prefix and suffix support for input modification, case sensitivity options for hex output, and professional result presentation capabilities.</p>
+                      </div>
+                      <div className="bg-gradient-to-r from-orange-50 to-red-50 border-l-4 border-orange-400 p-4 rounded-r-lg">
+                        <h4 className="font-semibold text-orange-900 mb-2">Security & Privacy</h4>
+                        <p className="text-orange-800 text-sm">Complete client-side processing with no server communication, ensuring data privacy and security for sensitive text encoding tasks.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Best Practices</h3>
+                    <div className="space-y-4">
+                      <div className="bg-gray-50 rounded-lg p-4">
+                        <h4 className="font-semibold text-gray-900 mb-2">Input Preparation</h4>
+                        <ul className="text-gray-700 text-sm space-y-1">
+                          <li>• Verify text contains expected character types</li>
+                          <li>• Consider encoding requirements for target system</li>
+                          <li>• Test with representative text samples first</li>
+                          <li>• Use sample data to validate conversion accuracy</li>
+                        </ul>
+                      </div>
+                      <div className="bg-gray-50 rounded-lg p-4">
+                        <h4 className="font-semibold text-gray-900 mb-2">Encoding Selection</h4>
+                        <ul className="text-gray-700 text-sm space-y-1">
+                          <li>• Choose UTF-8 for modern international applications</li>
+                          <li>• Use ASCII for legacy system compatibility</li>
+                          <li>• Consider target platform character support</li>
+                          <li>• Validate encoding with expected output format</li>
+                        </ul>
+                      </div>
+                      <div className="bg-gray-50 rounded-lg p-4">
+                        <h4 className="font-semibold text-gray-900 mb-2">Output Verification</h4>
+                        <ul className="text-gray-700 text-sm space-y-1">
+                          <li>• Cross-check hex output with expected results</li>
+                          <li>• Verify special characters encode correctly</li>
+                          <li>• Test conversion reversibility when possible</li>
+                          <li>• Validate byte count and character statistics</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+
+            {/* Common Use Cases and Examples */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Common Use Cases & Practical Examples</h2>
+                <p className="text-gray-600 mb-8">Text to hexadecimal conversion finds application in numerous real-world scenarios across web development, software engineering, system administration, and cybersecurity environments.</p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div className="bg-blue-50 rounded-lg p-6">
+                    <h3 className="font-semibold text-blue-900 mb-4">Web Development & APIs</h3>
+                    <ul className="text-blue-800 text-sm space-y-2">
+                      <li>• Encoding text for URL parameters and query strings</li>
+                      <li>• Generating hex-encoded form data submissions</li>
+                      <li>• Processing API requests with text payloads</li>
+                      <li>• Creating hex-encoded HTTP headers and cookies</li>
+                      <li>• Handling character encoding in web applications</li>
+                      <li>• Debugging text transmission issues</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-green-50 rounded-lg p-6">
+                    <h3 className="font-semibold text-green-900 mb-4">Software Development</h3>
+                    <ul className="text-green-800 text-sm space-y-2">
+                      <li>• Creating hex literals for programming languages</li>
+                      <li>• Debugging character encoding issues in code</li>
+                      <li>• Generating test data for application testing</li>
+                      <li>• Analyzing text processing algorithm outputs</li>
+                      <li>• Converting strings for binary file formats</li>
+                      <li>• Validating Unicode support implementation</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-purple-50 rounded-lg p-6">
+                    <h3 className="font-semibold text-purple-900 mb-4">System Administration</h3>
+                    <ul className="text-purple-800 text-sm space-y-2">
+                      <li>• Generating hex-encoded configuration entries</li>
+                      <li>• Creating system commands with encoded text</li>
+                      <li>• Processing log file data and analysis</li>
+                      <li>• Handling character encoding in shell scripts</li>
+                      <li>• Converting text for system configuration files</li>
+                      <li>• Debugging character display problems</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-orange-50 rounded-lg p-6">
+                    <h3 className="font-semibold text-orange-900 mb-4">Database Management</h3>
+                    <ul className="text-orange-800 text-sm space-y-2">
+                      <li>• Encoding text for secure database storage</li>
+                      <li>• Generating hex-encoded BLOB and CLOB data</li>
+                      <li>• Processing data imports and export formats</li>
+                      <li>• Handling character set conversions</li>
+                      <li>• Creating database migration scripts</li>
+                      <li>• Validating data integrity after encoding</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-teal-50 rounded-lg p-6">
+                    <h3 className="font-semibold text-teal-900 mb-4">Cybersecurity & Forensics</h3>
+                    <ul className="text-teal-800 text-sm space-y-2">
+                      <li>• Creating encoded payloads for security testing</li>
+                      <li>• Analyzing malware strings and obfuscated code</li>
+                      <li>• Generating test data for security tools</li>
+                      <li>• Encoding sensitive information for transmission</li>
+                      <li>• Processing digital forensics evidence</li>
+                      <li>• Creating steganography and hiding techniques</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-red-50 rounded-lg p-6">
+                    <h3 className="font-semibold text-red-900 mb-4">Education & Research</h3>
+                    <ul className="text-red-800 text-sm space-y-2">
+                      <li>• Teaching hexadecimal and character encoding</li>
+                      <li>• Computer science curriculum demonstrations</li>
+                      <li>• Creating programming exercise examples</li>
+                      <li>• Digital humanities text analysis projects</li>
+                      <li>• Linguistic data encoding for research</li>
+                      <li>• Machine learning dataset preparation</li>
+                    </ul>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Frequently Asked Questions */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h2>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">What is text to hexadecimal conversion?</h3>
+                      <p className="text-gray-600 text-sm">
+                        Text to hexadecimal conversion transforms readable text characters into their hexadecimal (base-16) byte representations. Each character is converted to its corresponding hex value based on the character encoding (UTF-8 or ASCII), creating a numeric representation of the original text.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Which output format should I choose?</h3>
+                      <p className="text-gray-600 text-sm">
+                        Use space-separated for debugging and general use, compact format for URLs and data transmission, and 0x-prefixed for programming code integration. The choice depends on how you plan to use the hexadecimal output in your target application or system.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">What's the difference between UTF-8 and ASCII encoding?</h3>
+                      <p className="text-gray-600 text-sm">
+                        UTF-8 supports all Unicode characters including international text and emojis with variable-length encoding. ASCII only supports basic English characters (0-127). Choose UTF-8 for modern applications and ASCII for legacy systems or when working exclusively with basic English text.
+                      </p>
+                    </div>
+
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I reverse the hexadecimal back to text?</h3>
+                      <p className="text-gray-600 text-sm">
+                        Yes! Our hexadecimal to text converter can reverse the process. Simply copy the hex output from this tool and paste it into our hex to text converter to get back the original text, ensuring the conversion is accurate and reversible.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Is this tool secure for sensitive data?</h3>
+                      <p className="text-gray-600 text-sm">
+                        Yes, completely secure! All conversion processing occurs locally in your browser using client-side JavaScript. No data is transmitted to servers, stored remotely, or accessible to third parties, ensuring complete privacy and confidentiality for your sensitive text.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I customize the hex output format?</h3>
+                      <p className="text-gray-600 text-sm">
+                        Yes! Advanced options include uppercase/lowercase hex letters, custom prefixes and suffixes for input text, multiple spacing options (space, comma, newline), and toggleable display of binary and decimal representations alongside the hex output.
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">What happens to special characters and emojis?</h3>
+                      <p className="text-gray-600 text-sm">
+                        In UTF-8 mode, special characters and emojis are properly encoded using their Unicode byte sequences (may use 2-4 bytes each). In ASCII mode, characters outside the basic range (0-127) are replaced with '?' to maintain compatibility with ASCII-only systems.
+                      </p>
+                    </div>
+
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Does this work without an internet connection?</h3>
+                      <p className="text-gray-600 text-sm">
+                        Yes! Once the page loads completely, all conversion functionality works offline without requiring an internet connection. The tool runs entirely in your browser, making it reliable for secure environments and situations with limited connectivity.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Technical Specifications */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Technical Specifications & Browser Compatibility</h2>
+                <p className="text-gray-600 mb-8">Our text to hexadecimal converter is built with modern web technologies to ensure optimal performance, compatibility, and reliability across all major platforms and devices.</p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Supported Formats & Features</h3>
+                    <div className="space-y-4">
+                      <div className="bg-blue-50 rounded-lg p-4">
+                        <h4 className="font-semibold text-blue-900 mb-2">Text Input Specifications</h4>
+                        <ul className="text-blue-800 text-sm space-y-1">
+                          <li>• Encoding: UTF-8 (full Unicode) and ASCII (0-127)</li>
+                          <li>• Input: Any text including international characters</li>
+                          <li>• Length: No practical limits for text input</li>
+                          <li>• Validation: Real-time encoding verification</li>
+                        </ul>
+                      </div>
+                      <div className="bg-green-50 rounded-lg p-4">
+                        <h4 className="font-semibold text-green-900 mb-2">Output Capabilities</h4>
+                        <ul className="text-green-800 text-sm space-y-1">
+                          <li>• Primary: Hexadecimal values (uppercase/lowercase)</li>
+                          <li>• Optional: Binary representation display</li>
+                          <li>• Optional: Decimal values conversion</li>
+                          <li>• Statistics: Character and byte count analysis</li>
+                        </ul>
+                      </div>
+                      <div className="bg-purple-50 rounded-lg p-4">
+                        <h4 className="font-semibold text-purple-900 mb-2">Processing Features</h4>
+                        <ul className="text-purple-800 text-sm space-y-1">
+                          <li>• Real-time conversion with intelligent debouncing</li>
+                          <li>• Client-side processing (no server communication)</li>
+                          <li>• Comprehensive error handling and validation</li>
+                          <li>• Advanced copy-to-clipboard functionality</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Browser & Platform Support</h3>
+                    <div className="space-y-4">
+                      <div className="bg-gray-50 rounded-lg p-4">
+                        <h4 className="font-semibold text-gray-900 mb-2">Desktop Browsers</h4>
+                        <ul className="text-gray-700 text-sm space-y-1">
+                          <li>• Chrome 90+ (recommended performance)</li>
+                          <li>• Firefox 88+ (excellent compatibility)</li>
+                          <li>• Safari 14+ (full feature support)</li>
+                          <li>• Edge 90+ (optimal user experience)</li>
+                        </ul>
+                      </div>
+                      <div className="bg-gray-50 rounded-lg p-4">
+                        <h4 className="font-semibold text-gray-900 mb-2">Mobile Devices</h4>
+                        <ul className="text-gray-700 text-sm space-y-1">
+                          <li>• iOS Safari 14+ (responsive design)</li>
+                          <li>• Android Chrome 90+ (touch optimized)</li>
+                          <li>• Samsung Internet 13+ (full features)</li>
+                          <li>• Mobile Firefox 88+ (complete support)</li>
+                        </ul>
+                      </div>
+                      <div className="bg-gray-50 rounded-lg p-4">
+                        <h4 className="font-semibold text-gray-900 mb-2">Accessibility & Standards</h4>
+                        <ul className="text-gray-700 text-sm space-y-1">
+                          <li>• WCAG 2.1 accessibility compliant</li>
+                          <li>• Keyboard navigation support</li>
+                          <li>• Screen reader compatible</li>
+                          <li>• Responsive design (all screen sizes)</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </main>
 
