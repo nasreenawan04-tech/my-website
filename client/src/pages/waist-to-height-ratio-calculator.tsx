@@ -526,7 +526,7 @@ export default function WaistToHeightRatioCalculator() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-6">
                     <div className="border-l-4 border-blue-500 pl-6">
-                      <h4 className="text-lg font-semibold text-blue-800 mb-2">Underweight (< 0.40)</h4>
+                      <h4 className="text-lg font-semibold text-blue-800 mb-2">Underweight (&lt; 0.40)</h4>
                       <p className="text-sm text-gray-600 mb-3">
                         May indicate insufficient body weight or muscle mass. While cardiovascular risk is low, 
                         nutritional deficiencies and osteoporosis risks should be considered.

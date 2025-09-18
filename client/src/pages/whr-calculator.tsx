@@ -543,7 +543,7 @@ export default function WHRCalculator() {
                   <div className="space-y-6">
                     <h4 className="text-lg font-semibold text-gray-800 mb-4">Men's WHR Classifications</h4>
                     <div className="border-l-4 border-green-500 pl-6">
-                      <h5 className="text-md font-semibold text-green-800 mb-2">Low Risk (< 0.85)</h5>
+                      <h5 className="text-md font-semibold text-green-800 mb-2">Low Risk (&lt; 0.85)</h5>
                       <p className="text-sm text-gray-600 mb-3">
                         Optimal fat distribution with minimal cardiovascular risk. Continue healthy lifestyle 
                         practices including regular exercise and balanced nutrition.
@@ -585,7 +585,7 @@ export default function WHRCalculator() {
                   <div className="space-y-6">
                     <h4 className="text-lg font-semibold text-gray-800 mb-4">Women's WHR Classifications</h4>
                     <div className="border-l-4 border-green-500 pl-6">
-                      <h5 className="text-md font-semibold text-green-800 mb-2">Low Risk (< 0.80)</h5>
+                      <h5 className="text-md font-semibold text-green-800 mb-2">Low Risk (&lt; 0.80)</h5>
                       <p className="text-sm text-gray-600 mb-3">
                         Healthy fat distribution pattern associated with lower risk of cardiovascular 
                         disease and metabolic complications.
