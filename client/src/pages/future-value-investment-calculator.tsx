@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -65,27 +64,27 @@ export default function FutureValueInvestmentCalculator() {
     if (principal < 0 || annualRate < 0 || years <= 0 || compoundsPerYear <= 0) return;
 
     const periodRate = annualRate / compoundsPerYear;
-    
+
     let currentBalance = principal;
     let totalContributions = principal;
     const yearlyBreakdown = [];
-    
+
     // Calculate year by year
     for (let year = 1; year <= Math.ceil(years); year++) {
       const startBalance = currentBalance;
       const isPartialYear = year > years;
       const periodsInYear = isPartialYear ? (years - (year - 1)) * compoundsPerYear : compoundsPerYear;
-      
+
       let yearlyContributions = 0;
       let interestEarned = 0;
-      
+
       // Process each compounding period in the year
       for (let period = 1; period <= periodsInYear; period++) {
         // Apply compound interest first to existing balance
         const periodInterest = currentBalance * periodRate;
         currentBalance += periodInterest;
         interestEarned += periodInterest;
-        
+
         // Then add monthly contribution if enabled (convert to per-period basis)
         if (monthlyContrib > 0) {
           const contributionPerPeriod = monthlyContrib * (12 / compoundsPerYear);
@@ -94,9 +93,9 @@ export default function FutureValueInvestmentCalculator() {
           totalContributions += contributionPerPeriod;
         }
       }
-      
+
       const realValue = currentBalance / Math.pow(1 + inflation, year);
-      
+
       yearlyBreakdown.push({
         year,
         startBalance,
@@ -165,7 +164,7 @@ export default function FutureValueInvestmentCalculator() {
     };
 
     const config = currencyMap[currency] || currencyMap.USD;
-    
+
     return new Intl.NumberFormat(config.locale, {
       style: 'currency',
       currency: config.currency,
@@ -212,9 +211,9 @@ export default function FutureValueInvestmentCalculator() {
           })}
         </script>
       </Helmet>
-      
+
       <Header />
-      
+
       <main>
         {/* Hero Section */}
         <section className="relative py-20 sm:py-28 lg:py-32 overflow-hidden">
@@ -241,14 +240,14 @@ export default function FutureValueInvestmentCalculator() {
           {/* Main Calculator Card */}
           <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                 {/* Input Section */}
-                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
+                <div className="lg:col-span-1 p-8 lg:p-12 space-y-8">
                   <div>
                     <h2 className="text-3xl font-bold text-gray-900 mb-2">Investment Configuration</h2>
                     <p className="text-gray-600">Enter your investment details to project future growth with compound interest</p>
                   </div>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {/* Currency Selection */}
                     <div className="space-y-3">
@@ -356,17 +355,17 @@ export default function FutureValueInvestmentCalculator() {
                       </div>
                     </div>
 
-                    
+
                   </div>
 
                   {/* Advanced Options */}
                   <div className="space-y-4 sm:space-y-6 border-t pt-6 sm:pt-8">
                     <h3 className="text-lg sm:text-xl font-bold text-gray-900">Advanced Options</h3>
-                    
+
                     <Collapsible open={showAdvanced} onOpenChange={setShowAdvanced}>
                       <CollapsibleTrigger asChild>
-                        <Button 
-                          variant="ghost" 
+                        <Button
+                          variant="ghost"
                           className="w-full justify-between text-sm sm:text-base py-3 sm:py-4 h-auto"
                           data-testid="button-toggle-advanced"
                         >
@@ -378,12 +377,12 @@ export default function FutureValueInvestmentCalculator() {
                       </CollapsibleTrigger>
                       <CollapsibleContent className="space-y-4 sm:space-y-6 mt-4">
                         <Separator />
-                        
+
                         {/* Investment and Display Options */}
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                           <div className="space-y-4 bg-gray-50 rounded-xl p-4 sm:p-6">
                             <h4 className="text-sm sm:text-base font-semibold text-gray-900">Investment Options</h4>
-                            
+
 
                             <div className="flex items-center justify-between gap-2">
                               <div className="space-y-1 flex-1 min-w-0">
@@ -473,7 +472,7 @@ export default function FutureValueInvestmentCalculator() {
                           {/* Display and Analysis Options */}
                           <div className="space-y-4 bg-gray-50 rounded-xl p-4 sm:p-6">
                             <h4 className="text-sm sm:text-base font-semibold text-gray-900">Display Options</h4>
-                            
+
                             <div className="flex items-center justify-between gap-2">
                               <div className="space-y-1 flex-1 min-w-0">
                                 <Label className="text-xs sm:text-sm font-medium">Show Inflation-Adjusted Values</Label>
@@ -526,7 +525,7 @@ export default function FutureValueInvestmentCalculator() {
                             </div>
                           </div>
                         </div>
-                        
+
                         <Separator />
                       </CollapsibleContent>
                     </Collapsible>
@@ -551,13 +550,13 @@ export default function FutureValueInvestmentCalculator() {
                     </Button>
                   </div>
 
-                  
+
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
+                <div className="lg:col-span-1 bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
                   <h2 className="text-2xl font-bold text-gray-900 mb-8">Investment Projection</h2>
-                  
+
                   {result ? (
                     <div className="space-y-6" data-testid="investment-results">
                       {/* Future Value Highlight */}
@@ -707,14 +706,14 @@ export default function FutureValueInvestmentCalculator() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">What is Future Value?</h3>
                 <div className="space-y-4 text-gray-600">
                   <p>
-                    Future Value (FV) is a fundamental financial concept that calculates how much an investment 
-                    will be worth at a specific point in the future, given a particular interest rate and time period. 
+                    Future Value (FV) is a fundamental financial concept that calculates how much an investment
+                    will be worth at a specific point in the future, given a particular interest rate and time period.
                     Our future value calculator uses compound interest formulas to project investment growth accurately.
                   </p>
                   <p>
-                    This powerful tool helps investors, financial planners, and anyone planning for retirement 
-                    understand how their money can grow over time. Whether you're planning for retirement, saving 
-                    for a major purchase, or building wealth, understanding future value is essential for making 
+                    This powerful tool helps investors, financial planners, and anyone planning for retirement
+                    understand how their money can grow over time. Whether you're planning for retirement, saving
+                    for a major purchase, or building wealth, understanding future value is essential for making
                     informed financial decisions.
                   </p>
                 </div>
@@ -735,7 +734,7 @@ export default function FutureValueInvestmentCalculator() {
                     <li>n = Number of compounding periods</li>
                   </ul>
                   <p>
-                    For investments with regular contributions, our calculator uses the more complex future value 
+                    For investments with regular contributions, our calculator uses the more complex future value
                     of annuity formula to account for monthly contributions and their compounding effect over time.
                   </p>
                 </div>
@@ -809,32 +808,32 @@ export default function FutureValueInvestmentCalculator() {
                   <div className="space-y-4">
                     <h4 className="text-lg font-semibold text-gray-800">Stocks and Equity Funds</h4>
                     <p className="text-gray-600">
-                      Stock investments typically offer higher returns but with greater volatility. Use our calculator 
-                      with historical average returns of 7-10% annually to project long-term stock portfolio growth 
+                      Stock investments typically offer higher returns but with greater volatility. Use our calculator
+                      with historical average returns of 7-10% annually to project long-term stock portfolio growth
                       and understand the impact of regular investing through dollar-cost averaging.
                     </p>
                   </div>
                   <div className="space-y-4">
                     <h4 className="text-lg font-semibold text-gray-800">Bonds and Fixed Income</h4>
                     <p className="text-gray-600">
-                      Bond investments provide steady, predictable returns. Calculate future values for government 
-                      bonds, corporate bonds, and bond funds with typical returns of 3-6% annually, perfect for 
+                      Bond investments provide steady, predictable returns. Calculate future values for government
+                      bonds, corporate bonds, and bond funds with typical returns of 3-6% annually, perfect for
                       conservative investors seeking capital preservation with modest growth.
                     </p>
                   </div>
                   <div className="space-y-4">
                     <h4 className="text-lg font-semibold text-gray-800">Mutual Funds and ETFs</h4>
                     <p className="text-gray-600">
-                      Diversified funds offer balanced growth potential. Project future values for index funds, 
-                      sector-specific ETFs, and actively managed mutual funds to compare performance scenarios 
+                      Diversified funds offer balanced growth potential. Project future values for index funds,
+                      sector-specific ETFs, and actively managed mutual funds to compare performance scenarios
                       and optimize your investment allocation strategy.
                     </p>
                   </div>
                   <div className="space-y-4">
                     <h4 className="text-lg font-semibold text-gray-800">Retirement Accounts</h4>
                     <p className="text-gray-600">
-                      401(k), IRA, and Roth IRA calculations are crucial for retirement planning. Use our tool 
-                      to project how regular contributions will grow in tax-advantaged accounts and plan for 
+                      401(k), IRA, and Roth IRA calculations are crucial for retirement planning. Use our tool
+                      to project how regular contributions will grow in tax-advantaged accounts and plan for
                       a comfortable retirement with adequate savings.
                     </p>
                   </div>
@@ -923,7 +922,7 @@ export default function FutureValueInvestmentCalculator() {
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-800 mb-2">How do taxes affect future value calculations?</h4>
-                      <p className="text-gray-600 text-sm">Taxes can significantly impact returns. Tax-advantaged accounts like 401(k)s and IRAs allow tax-deferred or tax-free growth, while taxable accounts are subject to capital gains and dividend taxes.</p>
+                      <p className="text-gray-600 text-sm">Taxes can significantly impact returns. Utilize tax-advantaged accounts and consider tax-efficient investment strategies to maximize growth.</p>
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-800 mb-2">What compound frequency should I use for calculations?</h4>
@@ -1110,8 +1109,8 @@ export default function FutureValueInvestmentCalculator() {
                 <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg">
                   <h4 className="font-semibold text-blue-800 mb-2">Retirement Planning Tip</h4>
                   <p className="text-blue-700 text-sm">
-                    Use our future value calculator to project different retirement scenarios. Aim to replace 70-80% 
-                    of your pre-retirement income through a combination of savings, Social Security, and other retirement 
+                    Use our future value calculator to project different retirement scenarios. Aim to replace 70-80%
+                    of your pre-retirement income through a combination of savings, Social Security, and other retirement
                     benefits. Start early and let compound interest work in your favor.
                   </p>
                 </div>
@@ -1120,7 +1119,7 @@ export default function FutureValueInvestmentCalculator() {
           </div>
         </div>
       </main>
-      
+
       <Footer />
     </div>
   );
