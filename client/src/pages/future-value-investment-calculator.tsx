@@ -8,6 +8,9 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Separator } from '@/components/ui/separator';
+import { Switch } from '@/components/ui/switch';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 
 interface InvestmentResult {
   futureValue: number;
@@ -42,6 +45,7 @@ export default function FutureValueInvestmentCalculator() {
   const [enableMonthlyContributions, setEnableMonthlyContributions] = useState(true);
   const [showRealValue, setShowRealValue] = useState(false);
   const [showYearlyBreakdown, setShowYearlyBreakdown] = useState(false);
+  const [showAdvanced, setShowAdvanced] = useState(false);
   const [result, setResult] = useState<InvestmentResult | null>(null);
 
   const currencies = [
@@ -156,6 +160,7 @@ export default function FutureValueInvestmentCalculator() {
     setEnableMonthlyContributions(true);
     setShowRealValue(false);
     setShowYearlyBreakdown(false);
+    setShowAdvanced(false);
     setResult(null);
   };
 
@@ -378,98 +383,125 @@ export default function FutureValueInvestmentCalculator() {
                   </div>
 
                   {/* Advanced Options */}
-                  <div className="space-y-6 border-t pt-8">
-                    <h3 className="text-xl font-bold text-gray-900">Advanced Options</h3>
+                  <div className="space-y-4 sm:space-y-6 border-t pt-6 sm:pt-8">
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-900">Advanced Options</h3>
                     
-                    {/* Monthly Contributions Toggle */}
-                    <div className="flex items-center space-x-3">
-                      <input
-                        type="checkbox"
-                        checked={enableMonthlyContributions}
-                        onChange={(e) => setEnableMonthlyContributions(e.target.checked)}
-                        className="w-5 h-5 text-blue-600 border-2 border-gray-300 rounded focus:ring-blue-500"
-                        data-testid="checkbox-monthly-contributions"
-                      />
-                      <label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
-                        Enable Monthly Contributions
-                      </label>
-                    </div>
-                    
-                    {enableMonthlyContributions && (
-                      <div className="pl-8 border-l-4 border-blue-200 bg-blue-50 p-6 rounded-xl">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          <div className="space-y-3">
-                            <Label htmlFor="monthly-contribution" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
-                              Monthly Contribution
-                            </Label>
-                            <div className="relative">
-                              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">
-                                {currencies.find(c => c.code === currency)?.symbol || '$'}
-                              </span>
-                              <Input
-                                id="monthly-contribution"
-                                type="number"
-                                value={monthlyContribution}
-                                onChange={(e) => setMonthlyContribution(e.target.value)}
-                                className="h-14 pl-12 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
-                                placeholder="500"
-                                step="0.01"
-                                data-testid="input-monthly-contribution"
+                    <Collapsible open={showAdvanced} onOpenChange={setShowAdvanced}>
+                      <CollapsibleTrigger asChild>
+                        <Button 
+                          variant="ghost" 
+                          className="w-full justify-between text-sm sm:text-base py-3 sm:py-4 h-auto"
+                          data-testid="button-toggle-advanced"
+                        >
+                          <span className="flex items-center">
+                            Advanced Investment Options
+                          </span>
+                          <span className={`transform transition-transform ${showAdvanced ? 'rotate-180' : ''}`}>▼</span>
+                        </Button>
+                      </CollapsibleTrigger>
+                      <CollapsibleContent className="space-y-4 sm:space-y-6 mt-4">
+                        <Separator />
+                        
+                        {/* Investment and Contribution Settings */}
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                          <div className="space-y-4 bg-gray-50 rounded-xl p-4 sm:p-6">
+                            <h4 className="text-sm sm:text-base font-semibold text-gray-900">Contribution Settings</h4>
+                            
+                            {/* Monthly Contributions Toggle */}
+                            <div className="flex items-center justify-between gap-2">
+                              <div className="space-y-1 flex-1 min-w-0">
+                                <Label className="text-xs sm:text-sm font-medium">Enable Monthly Contributions</Label>
+                                <p className="text-xs text-gray-500">Add regular monthly investments to your portfolio</p>
+                              </div>
+                              <Switch
+                                checked={enableMonthlyContributions}
+                                onCheckedChange={setEnableMonthlyContributions}
+                                data-testid="checkbox-monthly-contributions"
                               />
+                            </div>
+                            
+                            {enableMonthlyContributions && (
+                              <div className="space-y-2 border-l-4 border-blue-200 bg-blue-50 p-4 rounded-lg">
+                                <Label htmlFor="monthly-contribution" className="text-xs sm:text-sm font-medium">
+                                  Monthly Contribution Amount
+                                </Label>
+                                <div className="relative">
+                                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm">
+                                    {currencies.find(c => c.code === currency)?.symbol || '$'}
+                                  </span>
+                                  <Input
+                                    id="monthly-contribution"
+                                    type="number"
+                                    value={monthlyContribution}
+                                    onChange={(e) => setMonthlyContribution(e.target.value)}
+                                    className="h-10 sm:h-12 pl-8 text-sm border-2 border-gray-200 rounded-lg"
+                                    placeholder="500"
+                                    step="0.01"
+                                    data-testid="input-monthly-contribution"
+                                  />
+                                </div>
+                                <p className="text-xs text-blue-600">Regular contributions can significantly boost long-term growth</p>
+                              </div>
+                            )}
+                          </div>
+
+                          {/* Economic and Display Settings */}
+                          <div className="space-y-4 bg-gray-50 rounded-xl p-4 sm:p-6">
+                            <h4 className="text-sm sm:text-base font-semibold text-gray-900">Economic & Display Settings</h4>
+                            
+                            <div className="space-y-2">
+                              <Label htmlFor="inflation-rate" className="text-xs sm:text-sm font-medium">
+                                Expected Inflation Rate
+                              </Label>
+                              <div className="relative">
+                                <Input
+                                  id="inflation-rate"
+                                  type="number"
+                                  value={inflationRate}
+                                  onChange={(e) => setInflationRate(e.target.value)}
+                                  className="h-10 sm:h-12 pr-8 text-sm border-2 border-gray-200 rounded-lg"
+                                  placeholder="3.00"
+                                  step="0.01"
+                                  data-testid="input-inflation-rate"
+                                />
+                                <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm">%</span>
+                              </div>
+                              <p className="text-xs text-gray-500">Annual inflation rate for real value calculations</p>
+                            </div>
+
+                            <div className="space-y-3">
+                              <Label className="text-xs sm:text-sm font-medium">Display Options</Label>
+                              
+                              <div className="flex items-center justify-between gap-2">
+                                <div className="space-y-1 flex-1 min-w-0">
+                                  <Label className="text-xs font-medium">Show Inflation-Adjusted Values</Label>
+                                  <p className="text-xs text-gray-500">Display real purchasing power of future value</p>
+                                </div>
+                                <Switch
+                                  checked={showRealValue}
+                                  onCheckedChange={setShowRealValue}
+                                  data-testid="checkbox-show-real-value"
+                                />
+                              </div>
+
+                              <div className="flex items-center justify-between gap-2">
+                                <div className="space-y-1 flex-1 min-w-0">
+                                  <Label className="text-xs font-medium">Show Yearly Breakdown Table</Label>
+                                  <p className="text-xs text-gray-500">Detailed year-by-year investment growth analysis</p>
+                                </div>
+                                <Switch
+                                  checked={showYearlyBreakdown}
+                                  onCheckedChange={setShowYearlyBreakdown}
+                                  data-testid="checkbox-show-yearly-breakdown"
+                                />
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    )}
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {/* Inflation Rate */}
-                      <div className="space-y-3">
-                        <Label htmlFor="inflation-rate" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
-                          Expected Inflation Rate
-                        </Label>
-                        <div className="relative">
-                          <Input
-                            id="inflation-rate"
-                            type="number"
-                            value={inflationRate}
-                            onChange={(e) => setInflationRate(e.target.value)}
-                            className="h-14 pr-12 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
-                            placeholder="3.00"
-                            step="0.01"
-                            data-testid="input-inflation-rate"
-                          />
-                          <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Display Options */}
-                    <div className="space-y-3">
-                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Display Options</Label>
-                      <div className="space-y-2">
-                        <div className="flex items-center space-x-3">
-                          <input
-                            type="checkbox"
-                            checked={showRealValue}
-                            onChange={(e) => setShowRealValue(e.target.checked)}
-                            className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                            data-testid="checkbox-show-real-value"
-                          />
-                          <label className="text-sm text-gray-700">Show inflation-adjusted values</label>
-                        </div>
-                        <div className="flex items-center space-x-3">
-                          <input
-                            type="checkbox"
-                            checked={showYearlyBreakdown}
-                            onChange={(e) => setShowYearlyBreakdown(e.target.checked)}
-                            className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                            data-testid="checkbox-show-yearly-breakdown"
-                          />
-                          <label className="text-sm text-gray-700">Show yearly breakdown table</label>
-                        </div>
-                      </div>
-                    </div>
+                        
+                        <Separator />
+                      </CollapsibleContent>
+                    </Collapsible>
                   </div>
 
                   {/* Action Buttons */}
