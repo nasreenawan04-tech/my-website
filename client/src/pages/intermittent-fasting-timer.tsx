@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -8,8 +9,6 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import { Switch } from '@/components/ui/switch';
-import { Play, Pause, RotateCcw, Clock, Trophy, Droplets, Target, Bell, BookOpen, Calendar, Share2, Download } from 'lucide-react';
 
 interface FastingSchedule {
   id: string;
@@ -103,27 +102,16 @@ const fastingSchedules: FastingSchedule[] = [
 ];
 
 const motivationalMessages = [
-  "🔥 You're doing great! Stay strong and focused.",
-  "💪 Every hour of fasting is an investment in your health.",
-  "🧠 Your body is switching to fat-burning mode - amazing!",
-  "⚡ Mental clarity and focus are coming your way.",
-  "🎯 Remember why you started - you've got this!",
-  "🌟 Your cells are cleaning themselves through autophagy.",
-  "🏆 Champions are made through consistency, not perfection.",
-  "💎 You're building discipline that will serve you everywhere.",
-  "🔮 Trust the process - your body knows what to do.",
-  "🎪 The magic happens outside your comfort zone."
-];
-
-const breakingFastMeals = [
-  "🥗 Light salad with lean protein and healthy fats",
-  "🥑 Avocado toast with eggs and vegetables",
-  "🍲 Bone broth with steamed vegetables",
-  "🐟 Grilled salmon with quinoa and greens",
-  "🥜 Greek yogurt with nuts and berries",
-  "🍳 Scrambled eggs with spinach and mushrooms",
-  "🥙 Hummus wrap with fresh vegetables",
-  "🍵 Green smoothie with protein powder"
+  "You're doing great! Stay strong and focused.",
+  "Every hour of fasting is an investment in your health.",
+  "Your body is switching to fat-burning mode - amazing!",
+  "Mental clarity and focus are coming your way.",
+  "Remember why you started - you've got this!",
+  "Your cells are cleaning themselves through autophagy.",
+  "Champions are made through consistency, not perfection.",
+  "You're building discipline that will serve you everywhere.",
+  "Trust the process - your body knows what to do.",
+  "The magic happens outside your comfort zone."
 ];
 
 const IntermittentFastingTimer = () => {
@@ -138,25 +126,20 @@ const IntermittentFastingTimer = () => {
   // Enhanced features
   const [fastingStreak, setFastingStreak] = useState(0);
   const [totalFasts, setTotalFasts] = useState(0);
-  const [fastingGoal, setFastingGoal] = useState<FastingGoal>({ type: 'weight_loss', target: 10, current: 0, unit: 'kg' });
   const [waterIntake, setWaterIntake] = useState(0);
   const [fastingNotes, setFastingNotes] = useState('');
   const [enableNotifications, setEnableNotifications] = useState(true);
-  const [enableWaterReminders, setEnableWaterReminders] = useState(true);
   const [currentMotivation, setCurrentMotivation] = useState('');
   const [fastingHistory, setFastingHistory] = useState<FastingSession[]>([]);
-  const [showAdvancedOptions, setShowAdvancedOptions] = useState(false);
 
   // Load data from localStorage
   useEffect(() => {
     const savedStreak = localStorage.getItem('fastingStreak');
     const savedTotal = localStorage.getItem('totalFasts');
-    const savedGoal = localStorage.getItem('fastingGoal');
     const savedHistory = localStorage.getItem('fastingHistory');
     
     if (savedStreak) setFastingStreak(parseInt(savedStreak));
     if (savedTotal) setTotalFasts(parseInt(savedTotal));
-    if (savedGoal) setFastingGoal(JSON.parse(savedGoal));
     if (savedHistory) setFastingHistory(JSON.parse(savedHistory));
     
     // Set random motivational message
@@ -180,18 +163,6 @@ const IntermittentFastingTimer = () => {
     }
     return () => clearInterval(interval);
   }, [isRunning, timeRemaining, currentPhase, selectedSchedule]);
-
-  // Water reminder notifications
-  useEffect(() => {
-    if (enableWaterReminders && currentPhase === 'fasting') {
-      const interval = setInterval(() => {
-        if (enableNotifications) {
-          playNotificationSound();
-        }
-      }, 3600000); // Every hour
-      return () => clearInterval(interval);
-    }
-  }, [enableWaterReminders, currentPhase, enableNotifications]);
 
   const completeFastingPhase = () => {
     setIsRunning(false);
@@ -336,7 +307,6 @@ const IntermittentFastingTimer = () => {
     const data = {
       streak: fastingStreak,
       totalFasts: totalFasts,
-      goal: fastingGoal,
       history: fastingHistory
     };
     
@@ -354,7 +324,7 @@ const IntermittentFastingTimer = () => {
       try {
         await navigator.share({
           title: 'My Intermittent Fasting Progress',
-          text: `🎉 I've completed ${totalFasts} fasting sessions with a ${fastingStreak} day streak! Join me in the intermittent fasting journey.`,
+          text: `I've completed ${totalFasts} fasting sessions with a ${fastingStreak} day streak! Join me in the intermittent fasting journey.`,
           url: window.location.href
         });
       } catch (err) {
@@ -362,7 +332,7 @@ const IntermittentFastingTimer = () => {
       }
     } else {
       // Fallback: copy to clipboard
-      const text = `🎉 I've completed ${totalFasts} fasting sessions with a ${fastingStreak} day streak! Check out this amazing fasting timer: ${window.location.href}`;
+      const text = `I've completed ${totalFasts} fasting sessions with a ${fastingStreak} day streak! Check out this amazing fasting timer: ${window.location.href}`;
       navigator.clipboard.writeText(text);
     }
   };
@@ -388,13 +358,6 @@ const IntermittentFastingTimer = () => {
     return ((totalTime - timeRemaining) / totalTime) * 100;
   };
 
-  const getCurrentSchedule = () => {
-    if (selectedSchedule === 'custom') {
-      return { fastingHours: parseInt(customFastingHours), eatingHours: parseInt(customEatingHours) };
-    }
-    return fastingSchedules.find(s => s.id === selectedSchedule);
-  };
-
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
       case 'Beginner': return 'text-green-600 bg-green-100';
@@ -406,526 +369,678 @@ const IntermittentFastingTimer = () => {
   };
 
   return (
-    <>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
         <title>Intermittent Fasting Timer - Track Your Fasting Schedule | DapsiWow</title>
-        <meta name="description" content="Free intermittent fasting timer to track your fasting and eating windows. Supports 16:8, 18:6, 20:4, OMAD and custom schedules worldwide." />
-        <meta name="keywords" content="intermittent fasting timer, fasting tracker, 16:8 timer, eating window timer, OMAD timer, fasting schedule" />
+        <meta name="description" content="Free intermittent fasting timer to track your fasting and eating windows. Supports 16:8, 18:6, 20:4, OMAD and custom schedules with progress tracking and notifications." />
+        <meta name="keywords" content="intermittent fasting timer, fasting tracker, 16:8 timer, eating window timer, OMAD timer, fasting schedule, autophagy timer, weight loss timer, health tracker, fasting app" />
         <meta property="og:title" content="Intermittent Fasting Timer - Track Your Fasting Schedule | DapsiWow" />
-        <meta property="og:description" content="Free intermittent fasting timer to track your fasting and eating windows with popular schedules." />
+        <meta property="og:description" content="Free intermittent fasting timer with progress tracking, notifications, and support for all popular fasting schedules." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="/tools/intermittent-fasting-timer" />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="DapsiWow" />
+        <link rel="canonical" href="https://dapsiwow.com/tools/intermittent-fasting-timer" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Intermittent Fasting Timer",
+            "description": "Free online intermittent fasting timer to track your fasting and eating windows with popular schedules like 16:8, 18:6, 20:4, and OMAD.",
+            "url": "https://dapsiwow.com/tools/intermittent-fasting-timer",
+            "applicationCategory": "HealthApplication",
+            "operatingSystem": "Any",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "featureList": [
+              "Multiple fasting schedules",
+              "Progress tracking",
+              "Notification alerts",
+              "Custom fasting windows",
+              "Water intake tracking",
+              "Fasting history"
+            ]
+          })}
+        </script>
       </Helmet>
-
-      <div className="min-h-screen flex flex-col" data-testid="page-fasting-timer">
-        <Header />
-        
-        <main className="flex-1 bg-neutral-50">
-          {/* Hero Section */}
-          <section className="text-white py-16" style={{ background: 'linear-gradient(135deg, #f43f5e 0%, #e11d48 100%)' }}>
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <i className="fas fa-clock text-3xl"></i>
+      
+      <Header />
+      
+      <main>
+        {/* Hero Section */}
+        <section className="relative py-20 sm:py-28 lg:py-32 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
+          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="space-y-8">
+              <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+                <span className="text-sm font-medium text-blue-700">Professional Fasting Timer</span>
               </div>
-              <h1 className="text-4xl sm:text-5xl font-bold mb-6" data-testid="text-page-title">
-                Intermittent Fasting Timer
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight">
+                Smart Fasting
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                  Timer
+                </span>
               </h1>
-              <p className="text-xl text-blue-100 max-w-2xl mx-auto">
-                Track your fasting and eating windows with precision for optimal health and weight management
+              <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                Track your intermittent fasting journey with precision timing and progress analytics
               </p>
             </div>
-          </section>
+          </div>
+        </section>
 
-          {/* Fasting Stats Section */}
-          <section className="py-8">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                {/* Fasting Streak */}
-                <Card className="bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg">
-                  <CardContent className="p-6 text-center">
-                    <Trophy className="w-8 h-8 mx-auto mb-2" />
-                    <div className="text-3xl font-bold" data-testid="fasting-streak">{fastingStreak}</div>
-                    <div className="text-sm opacity-90">Day Streak</div>
-                  </CardContent>
-                </Card>
-
-                {/* Total Fasts */}
-                <Card className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-lg">
-                  <CardContent className="p-6 text-center">
-                    <Target className="w-8 h-8 mx-auto mb-2" />
-                    <div className="text-3xl font-bold" data-testid="total-fasts">{totalFasts}</div>
-                    <div className="text-sm opacity-90">Total Fasts</div>
-                  </CardContent>
-                </Card>
-
-                {/* Water Intake */}
-                <Card className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white shadow-lg">
-                  <CardContent className="p-6 text-center">
-                    <Droplets className="w-8 h-8 mx-auto mb-2" />
-                    <div className="text-3xl font-bold" data-testid="water-intake">{waterIntake}</div>
-                    <div className="text-sm opacity-90">Glasses Today</div>
-                    <Button 
-                      onClick={addWaterIntake}
-                      variant="ghost"
-                      size="sm"
-                      className="text-white hover:bg-white hover:bg-opacity-20 mt-2"
-                      data-testid="button-add-water"
-                    >
-                      +1 Glass
-                    </Button>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-          </section>
-
-          {/* Timer Section */}
-          <section className="py-8">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <Card className="bg-white shadow-sm border-0">
-                <CardContent className="p-8">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    {/* Control Section */}
-                    <div className="space-y-6">
-                      <h2 className="text-2xl font-semibold text-gray-900 mb-8">Fasting Schedule</h2>
-                      
-                      {/* Fasting Schedule Selection */}
-                      <div className="space-y-3">
-                        <Label className="text-sm font-medium text-gray-700">
-                          Choose Fasting Method
-                        </Label>
-                        <Select value={selectedSchedule} onValueChange={setSelectedSchedule}>
-                          <SelectTrigger className="h-12 border-gray-200 rounded-lg" data-testid="select-schedule">
-                            <SelectValue placeholder="Select fasting schedule" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {fastingSchedules.map(schedule => (
-                              <SelectItem key={schedule.id} value={schedule.id}>
-                                {schedule.name} - {schedule.description}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
-
-                      {/* Custom Schedule Options */}
-                      {selectedSchedule === 'custom' && (
-                        <div className="space-y-4 p-4 bg-gray-50 rounded-lg">
-                          <h3 className="font-semibold text-gray-900">Custom Schedule</h3>
-                          <div className="grid grid-cols-2 gap-4">
-                            <div>
-                              <Label htmlFor="custom-fasting" className="text-sm font-medium text-gray-700">
-                                Fasting Hours
-                              </Label>
-                              <Input
-                                id="custom-fasting"
-                                type="number"
-                                value={customFastingHours}
-                                onChange={(e) => setCustomFastingHours(e.target.value)}
-                                className="h-12 text-base border-gray-200 rounded-lg"
-                                placeholder="16"
-                                min="1"
-                                max="48"
-                                data-testid="input-custom-fasting"
-                              />
-                            </div>
-                            <div>
-                              <Label htmlFor="custom-eating" className="text-sm font-medium text-gray-700">
-                                Eating Hours
-                              </Label>
-                              <Input
-                                id="custom-eating"
-                                type="number"
-                                value={customEatingHours}
-                                onChange={(e) => setCustomEatingHours(e.target.value)}
-                                className="h-12 text-base border-gray-200 rounded-lg"
-                                placeholder="8"
-                                min="0"
-                                max="24"
-                                data-testid="input-custom-eating"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Schedule Details */}
-                      {selectedSchedule && selectedSchedule !== 'custom' && (
-                        <div className="bg-blue-50 rounded-lg p-4">
-                          <div className="flex items-center justify-between mb-2">
-                            <h3 className="font-semibold text-gray-900">Selected Schedule</h3>
-                            <span className={`px-2 py-1 rounded text-xs font-medium ${
-                              getDifficultyColor(fastingSchedules.find(s => s.id === selectedSchedule)?.difficulty || 'Beginner')
-                            }`}>
-                              {fastingSchedules.find(s => s.id === selectedSchedule)?.difficulty}
-                            </span>
-                          </div>
-                          <p className="text-sm text-gray-600 mb-3">
-                            {fastingSchedules.find(s => s.id === selectedSchedule)?.description}
-                          </p>
-                          <div className="space-y-1">
-                            <div className="text-xs font-medium text-gray-700">Key Benefits:</div>
-                            {fastingSchedules.find(s => s.id === selectedSchedule)?.benefits.map((benefit, index) => (
-                              <div key={index} className="text-xs text-gray-600">• {benefit}</div>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Advanced Options Toggle */}
-                      <div className="flex items-center justify-between">
-                        <Label htmlFor="advanced-options" className="text-sm font-medium text-gray-700">
-                          Advanced Options
-                        </Label>
-                        <Switch
-                          id="advanced-options"
-                          checked={showAdvancedOptions}
-                          onCheckedChange={setShowAdvancedOptions}
-                          data-testid="switch-advanced-options"
-                        />
-                      </div>
-
-                      {/* Advanced Options */}
-                      {showAdvancedOptions && (
-                        <div className="space-y-4 p-4 bg-gray-50 rounded-lg">
-                          <div className="flex items-center justify-between">
-                            <Label htmlFor="enable-notifications" className="text-sm font-medium text-gray-700">
-                              <Bell className="w-4 h-4 inline mr-2" />
-                              Enable Notifications
-                            </Label>
-                            <Switch
-                              id="enable-notifications"
-                              checked={enableNotifications}
-                              onCheckedChange={setEnableNotifications}
-                              data-testid="switch-notifications"
-                            />
-                          </div>
-                          
-                          <div className="flex items-center justify-between">
-                            <Label htmlFor="water-reminders" className="text-sm font-medium text-gray-700">
-                              <Droplets className="w-4 h-4 inline mr-2" />
-                              Water Reminders
-                            </Label>
-                            <Switch
-                              id="water-reminders"
-                              checked={enableWaterReminders}
-                              onCheckedChange={setEnableWaterReminders}
-                              data-testid="switch-water-reminders"
-                            />
-                          </div>
-
-                          <div className="space-y-2">
-                            <Label htmlFor="fasting-notes" className="text-sm font-medium text-gray-700">
-                              <BookOpen className="w-4 h-4 inline mr-2" />
-                              Fasting Notes
-                            </Label>
-                            <Textarea
-                              id="fasting-notes"
-                              value={fastingNotes}
-                              onChange={(e) => setFastingNotes(e.target.value)}
-                              className="min-h-20 border-gray-200 rounded-lg"
-                              placeholder="How are you feeling? What's motivating you today?"
-                              data-testid="textarea-notes"
-                            />
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Timer Controls */}
-                      <div className="flex gap-4 pt-6">
-                        <Button
-                          onClick={startFasting}
-                          disabled={!selectedSchedule || currentPhase !== 'idle' || 
-                            (selectedSchedule === 'custom' && (!customFastingHours || !customEatingHours))}
-                          className="flex-1 h-12 text-white font-medium rounded-lg"
-                          style={{ backgroundColor: '#f43f5e' }}
-                          onMouseEnter={(e) => !e.currentTarget.disabled && (e.currentTarget.style.backgroundColor = '#e11d48')}
-                          onMouseLeave={(e) => !e.currentTarget.disabled && (e.currentTarget.style.backgroundColor = '#f43f5e')}
-                          data-testid="button-start-fasting"
-                        >
-                          <Play className="w-4 h-4 mr-2" />
-                          Start Fasting
-                        </Button>
-                        
-                        <Button
-                          onClick={pauseTimer}
-                          disabled={currentPhase === 'idle'}
-                          variant="outline"
-                          className="h-12 px-8 border-gray-200 text-gray-600 hover:bg-gray-50 font-medium rounded-lg"
-                          data-testid="button-pause"
-                        >
-                          {isRunning ? <Pause className="w-4 h-4 mr-2" /> : <Play className="w-4 h-4 mr-2" />}
-                          {isRunning ? 'Pause' : 'Resume'}
-                        </Button>
-                        
-                        <Button
-                          onClick={resetTimer}
-                          disabled={currentPhase === 'idle'}
-                          variant="outline"
-                          className="h-12 px-8 border-gray-200 text-gray-600 hover:bg-gray-50 font-medium rounded-lg"
-                          data-testid="button-reset"
-                        >
-                          <RotateCcw className="w-4 h-4 mr-2" />
-                          Reset
-                        </Button>
-                      </div>
+        <div className="max-w-7xl mx-auto px-4 py-16">
+          {/* Main Timer Card */}
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+            <CardContent className="p-0">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+                {/* Input Section */}
+                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
+                  <div>
+                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Fasting Configuration</h2>
+                    <p className="text-gray-600">Select your fasting schedule and track your progress</p>
+                  </div>
+                  
+                  <div className="space-y-6">
+                    {/* Fasting Schedule Selection */}
+                    <div className="space-y-3">
+                      <Label htmlFor="fasting-schedule" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Fasting Method
+                      </Label>
+                      <Select value={selectedSchedule} onValueChange={setSelectedSchedule}>
+                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-schedule">
+                          <SelectValue placeholder="Choose your fasting schedule" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {fastingSchedules.map(schedule => (
+                            <SelectItem key={schedule.id} value={schedule.id}>
+                              {schedule.name} - {schedule.description}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                     </div>
 
-                    {/* Timer Display Section */}
-                    <div className="bg-gray-50 rounded-xl p-8">
-                      <div className="flex items-center justify-between mb-8">
-                        <h2 className="text-2xl font-semibold text-gray-900">Timer Status</h2>
-                        <div className="flex gap-2">
-                          <Button
-                            onClick={shareProgress}
-                            variant="outline"
-                            size="sm"
-                            className="border-gray-200"
-                            data-testid="button-share"
-                          >
-                            <Share2 className="w-4 h-4 mr-2" />
-                            Share
-                          </Button>
-                          <Button
-                            onClick={exportFastingData}
-                            variant="outline"
-                            size="sm"
-                            className="border-gray-200"
-                            data-testid="button-export"
-                          >
-                            <Download className="w-4 h-4 mr-2" />
-                            Export
-                          </Button>
+                    {/* Custom Schedule Options */}
+                    {selectedSchedule === 'custom' && (
+                      <div className="space-y-4 bg-gray-50 rounded-xl p-6">
+                        <h3 className="text-lg font-semibold text-gray-900">Custom Schedule</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div className="space-y-2">
+                            <Label htmlFor="custom-fasting" className="text-sm font-medium text-gray-700">
+                              Fasting Hours
+                            </Label>
+                            <Input
+                              id="custom-fasting"
+                              type="number"
+                              value={customFastingHours}
+                              onChange={(e) => setCustomFastingHours(e.target.value)}
+                              className="h-12 text-base border-2 border-gray-200 rounded-lg"
+                              placeholder="16"
+                              min="1"
+                              max="48"
+                              data-testid="input-custom-fasting"
+                            />
+                          </div>
+                          <div className="space-y-2">
+                            <Label htmlFor="custom-eating" className="text-sm font-medium text-gray-700">
+                              Eating Hours
+                            </Label>
+                            <Input
+                              id="custom-eating"
+                              type="number"
+                              value={customEatingHours}
+                              onChange={(e) => setCustomEatingHours(e.target.value)}
+                              className="h-12 text-base border-2 border-gray-200 rounded-lg"
+                              placeholder="8"
+                              min="0"
+                              max="24"
+                              data-testid="input-custom-eating"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Schedule Details */}
+                    {selectedSchedule && selectedSchedule !== 'custom' && (
+                      <div className="bg-blue-50 rounded-xl p-6">
+                        <div className="flex items-center justify-between mb-4">
+                          <h3 className="text-lg font-semibold text-gray-900">Selected Schedule</h3>
+                          <span className={`px-3 py-1 rounded-full text-sm font-medium ${
+                            getDifficultyColor(fastingSchedules.find(s => s.id === selectedSchedule)?.difficulty || 'Beginner')
+                          }`}>
+                            {fastingSchedules.find(s => s.id === selectedSchedule)?.difficulty}
+                          </span>
+                        </div>
+                        <p className="text-gray-600 mb-4">
+                          {fastingSchedules.find(s => s.id === selectedSchedule)?.description}
+                        </p>
+                        <div className="space-y-2">
+                          <div className="text-sm font-semibold text-gray-700">Key Benefits:</div>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                            {fastingSchedules.find(s => s.id === selectedSchedule)?.benefits.map((benefit, index) => (
+                              <div key={index} className="text-sm text-gray-600 bg-white rounded-lg px-3 py-2">
+                                {benefit}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Water Intake Tracker */}
+                    <div className="bg-cyan-50 rounded-xl p-6">
+                      <div className="flex items-center justify-between mb-4">
+                        <h3 className="text-lg font-semibold text-gray-900">Water Intake Today</h3>
+                        <span className="text-2xl font-bold text-cyan-600">{waterIntake}</span>
+                      </div>
+                      <p className="text-gray-600 mb-4">Stay hydrated during your fast</p>
+                      <Button 
+                        onClick={addWaterIntake}
+                        variant="outline"
+                        className="w-full h-12 border-2 border-cyan-200 text-cyan-700 hover:bg-cyan-50 font-medium rounded-lg"
+                        data-testid="button-add-water"
+                      >
+                        Add Glass of Water
+                      </Button>
+                    </div>
+
+                    {/* Fasting Notes */}
+                    <div className="space-y-3">
+                      <Label htmlFor="fasting-notes" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Fasting Notes
+                      </Label>
+                      <Textarea
+                        id="fasting-notes"
+                        value={fastingNotes}
+                        onChange={(e) => setFastingNotes(e.target.value)}
+                        className="min-h-20 border-2 border-gray-200 rounded-lg text-base"
+                        placeholder="How are you feeling? What's motivating you today?"
+                        data-testid="textarea-notes"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                    <Button
+                      onClick={startFasting}
+                      disabled={!selectedSchedule || currentPhase !== 'idle' || 
+                        (selectedSchedule === 'custom' && (!customFastingHours || !customEatingHours))}
+                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      data-testid="button-start-fasting"
+                    >
+                      Start Fasting
+                    </Button>
+                    <Button
+                      onClick={pauseTimer}
+                      disabled={currentPhase === 'idle'}
+                      variant="outline"
+                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      data-testid="button-pause"
+                    >
+                      {isRunning ? 'Pause' : 'Resume'}
+                    </Button>
+                    <Button
+                      onClick={resetTimer}
+                      disabled={currentPhase === 'idle'}
+                      variant="outline"
+                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      data-testid="button-reset"
+                    >
+                      Reset
+                    </Button>
+                  </div>
+
+                  {/* Additional Actions */}
+                  {(fastingStreak > 0 || totalFasts > 0) && (
+                    <div className="flex flex-wrap gap-3 pt-4">
+                      <Button
+                        onClick={shareProgress}
+                        variant="outline"
+                        size="sm"
+                        className="rounded-full"
+                        data-testid="button-share"
+                      >
+                        Share Progress
+                      </Button>
+                      <Button
+                        onClick={exportFastingData}
+                        variant="outline"
+                        size="sm"
+                        className="rounded-full"
+                        data-testid="button-export"
+                      >
+                        Export Data
+                      </Button>
+                    </div>
+                  )}
+                </div>
+
+                {/* Timer Display Section */}
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Timer Status</h2>
+                  
+                  {currentPhase === 'idle' ? (
+                    <div className="space-y-6" data-testid="timer-idle">
+                      {/* Stats Display */}
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="bg-white rounded-xl p-4 text-center shadow-sm">
+                          <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600" data-testid="fasting-streak">
+                            {fastingStreak}
+                          </div>
+                          <div className="text-sm text-gray-600">Day Streak</div>
+                        </div>
+                        <div className="bg-white rounded-xl p-4 text-center shadow-sm">
+                          <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" data-testid="total-fasts">
+                            {totalFasts}
+                          </div>
+                          <div className="text-sm text-gray-600">Total Fasts</div>
                         </div>
                       </div>
                       
-                      {currentPhase === 'idle' ? (
-                        <div className="text-center py-8" data-testid="timer-idle">
-                          <Clock className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                          <p className="text-gray-500 mb-4">Select a schedule and start your fasting journey</p>
-                          {currentMotivation && (
-                            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-4">
-                              <p className="text-sm text-blue-800 font-medium">{currentMotivation}</p>
-                            </div>
-                          )}
+                      <div className="text-center py-8">
+                        <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
+                          <div className="text-3xl font-bold text-gray-400">⏰</div>
                         </div>
-                      ) : (
-                        <div className="space-y-6" data-testid="timer-active">
-                          {/* Current Phase */}
-                          <div className="text-center">
-                            <div className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-medium ${
-                              currentPhase === 'fasting' 
-                                ? 'bg-red-100 text-red-800' 
-                                : 'bg-green-100 text-green-800'
-                            }`} data-testid="current-phase">
-                              {currentPhase === 'fasting' ? 'Fasting Period' : 'Eating Window'}
-                            </div>
+                        <p className="text-gray-500 text-lg mb-4">Select a schedule and start your fasting journey</p>
+                        {currentMotivation && (
+                          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-4">
+                            <p className="text-sm text-blue-800 font-medium">{currentMotivation}</p>
                           </div>
+                        )}
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="space-y-6" data-testid="timer-active">
+                      {/* Current Phase */}
+                      <div className="text-center">
+                        <div className={`inline-flex items-center px-6 py-3 rounded-xl text-base font-semibold ${
+                          currentPhase === 'fasting' 
+                            ? 'bg-red-100 text-red-800' 
+                            : 'bg-green-100 text-green-800'
+                        }`} data-testid="current-phase">
+                          {currentPhase === 'fasting' ? 'Fasting Period' : 'Eating Window'}
+                        </div>
+                      </div>
 
-                          {/* Timer Display */}
-                          <div className="text-center">
-                            <div className="text-6xl font-mono font-bold text-gray-900 mb-2" data-testid="timer-display">
-                              {formatTime(timeRemaining)}
-                            </div>
-                            <p className="text-gray-500 mb-4">
-                              {currentPhase === 'fasting' ? 'Time remaining in fast' : 'Time remaining in eating window'}
-                            </p>
-                          </div>
+                      {/* Timer Display */}
+                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
+                        <div className="text-5xl font-mono font-bold text-gray-900 text-center mb-2" data-testid="timer-display">
+                          {formatTime(timeRemaining)}
+                        </div>
+                        <p className="text-gray-500 text-center mb-4">
+                          {currentPhase === 'fasting' ? 'Time remaining in fast' : 'Time remaining in eating window'}
+                        </p>
+                        
+                        {/* Progress Bar */}
+                        <div className="w-full bg-gray-200 rounded-full h-4">
+                          <div 
+                            className={`h-4 rounded-full transition-all duration-1000 ${
+                              currentPhase === 'fasting' ? 'bg-gradient-to-r from-red-500 to-orange-500' : 'bg-gradient-to-r from-green-500 to-emerald-500'
+                            }`}
+                            style={{ width: `${getProgress()}%` }}
+                            data-testid="progress-bar"
+                          ></div>
+                        </div>
+                      </div>
 
-                          {/* Progress Bar */}
-                          <div className="w-full bg-gray-200 rounded-full h-4">
-                            <div 
-                              className={`h-4 rounded-full transition-all duration-1000 ${
-                                currentPhase === 'fasting' ? 'bg-gradient-to-r from-red-500 to-orange-500' : 'bg-gradient-to-r from-green-500 to-emerald-500'
-                              }`}
-                              style={{ width: `${getProgress()}%` }}
-                              data-testid="progress-bar"
-                            ></div>
-                          </div>
-
-                          {/* Motivational Message */}
-                          {currentMotivation && (
-                            <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg p-4">
-                              <p className="text-sm text-purple-800 font-medium text-center">{currentMotivation}</p>
-                            </div>
-                          )}
-
-                          {/* Session Info */}
-                          {startTime && (
-                            <div className="bg-white rounded-lg p-4">
-                              <h3 className="font-semibold text-gray-900 mb-2">Session Started</h3>
-                              <p className="text-sm text-gray-600 mb-2" data-testid="start-time">
-                                {startTime.toLocaleString()}
-                              </p>
-                              {currentPhase === 'eating' && (
-                                <div className="mt-3">
-                                  <h4 className="text-sm font-medium text-gray-900 mb-2">Breaking Fast Suggestions:</h4>
-                                  <div className="text-xs text-gray-600">
-                                    {breakingFastMeals[Math.floor(Math.random() * breakingFastMeals.length)]}
-                                  </div>
-                                </div>
-                              )}
-                            </div>
-                          )}
+                      {/* Motivational Message */}
+                      {currentMotivation && (
+                        <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg p-4">
+                          <p className="text-sm text-purple-800 font-medium text-center">{currentMotivation}</p>
                         </div>
                       )}
+
+                      {/* Session Info */}
+                      {startTime && (
+                        <div className="bg-white rounded-lg p-4">
+                          <h3 className="font-semibold text-gray-900 mb-2">Session Started</h3>
+                          <p className="text-sm text-gray-600" data-testid="start-time">
+                            {startTime.toLocaleString()}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Fasting History */}
+          {fastingHistory.length > 0 && (
+            <Card className="mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Recent Fasting History</h3>
+                <div className="space-y-3">
+                  {fastingHistory.slice(0, 5).map((session, index) => (
+                    <div key={index} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                      <div>
+                        <div className="font-medium text-gray-900">
+                          {session.schedule === 'custom' ? `${session.duration}h Custom` : session.schedule}
+                        </div>
+                        <div className="text-sm text-gray-500">
+                          {new Date(session.date).toLocaleDateString()}
+                        </div>
+                      </div>
+                      <div className={`px-3 py-1 rounded-full text-xs font-medium ${
+                        session.completed ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                      }`}>
+                        {session.completed ? 'Completed' : 'Incomplete'}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* SEO Content Section */}
+          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">What is Intermittent Fasting?</h3>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    Intermittent fasting (IF) is an eating pattern that cycles between periods of fasting and eating. 
+                    Unlike traditional diets that focus on what to eat, intermittent fasting focuses on when to eat. 
+                    This approach has gained popularity for its potential health benefits and simplicity.
+                  </p>
+                  <p>
+                    Our intermittent fasting timer helps you track your fasting windows with precision, offering support 
+                    for popular methods like the 16:8 method, 18:6 approach, 20:4 warrior diet, and OMAD (One Meal A Day). 
+                    The timer provides notifications, progress tracking, and motivational support throughout your fasting journey.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Benefits of Intermittent Fasting</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Weight loss and improved metabolism</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Enhanced cellular repair through autophagy</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Improved insulin sensitivity and blood sugar control</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Increased mental clarity and focus</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Reduced inflammation and oxidative stress</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Popular Fasting Methods</h3>
+                <div className="space-y-4 text-gray-600">
+                  <div className="border-l-4 border-green-500 pl-4">
+                    <h4 className="font-semibold text-gray-800 mb-2">16:8 Method (Beginner-Friendly)</h4>
+                    <p className="text-sm">Fast for 16 hours and eat within an 8-hour window. Perfect for beginners and sustainable long-term.</p>
+                  </div>
+                  <div className="border-l-4 border-blue-500 pl-4">
+                    <h4 className="font-semibold text-gray-800 mb-2">18:6 Method (Intermediate)</h4>
+                    <p className="text-sm">Extended fasting period of 18 hours with a 6-hour eating window for enhanced benefits.</p>
+                  </div>
+                  <div className="border-l-4 border-orange-500 pl-4">
+                    <h4 className="font-semibold text-gray-800 mb-2">20:4 Warrior Diet (Advanced)</h4>
+                    <p className="text-sm">A 20-hour fast with a 4-hour eating window, following ancient warrior eating patterns.</p>
+                  </div>
+                  <div className="border-l-4 border-red-500 pl-4">
+                    <h4 className="font-semibold text-gray-800 mb-2">OMAD - One Meal A Day (Expert)</h4>
+                    <p className="text-sm">The ultimate fasting challenge with a 24-hour fast and one meal per day.</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">How to Use Our Fasting Timer</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Choose from preset schedules or create custom fasting windows</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Track your progress with streak counters and statistics</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Receive motivational messages and completion notifications</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Monitor water intake to stay hydrated during fasts</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-cyan-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Export your fasting data for personal records</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Additional SEO Content Sections */}
+          <div className="mt-12 space-y-8">
+            {/* Science Behind Intermittent Fasting */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-8">The Science Behind Intermittent Fasting</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Metabolic Changes During Fasting</h4>
+                    <p className="text-gray-600">
+                      During the fasting state, your body undergoes several metabolic shifts. After 12-16 hours of fasting, 
+                      glycogen stores become depleted, and your body begins to burn stored fat for energy through a process 
+                      called ketosis. This metabolic flexibility is one of the key benefits of intermittent fasting.
+                    </p>
+                    <div className="bg-blue-50 rounded-lg p-4">
+                      <h5 className="font-semibold text-blue-800 mb-2">Autophagy Process</h5>
+                      <p className="text-sm text-blue-700">
+                        Extended fasting periods trigger autophagy, a cellular cleanup process where damaged proteins and 
+                        organelles are broken down and recycled, promoting cellular health and longevity.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Hormonal Benefits</h4>
+                    <p className="text-gray-600">
+                      Intermittent fasting positively affects several key hormones including insulin, growth hormone, 
+                      and norepinephrine. These changes contribute to improved fat burning, muscle preservation, 
+                      and overall metabolic health.
+                    </p>
+                    <div className="space-y-3">
+                      <div className="flex items-center p-3 bg-green-50 rounded-lg">
+                        <div className="w-4 h-4 bg-green-500 rounded-full mr-3"></div>
+                        <div>
+                          <div className="font-medium text-green-800">Insulin Sensitivity</div>
+                          <div className="text-sm text-green-600">Improved glucose metabolism</div>
+                        </div>
+                      </div>
+                      <div className="flex items-center p-3 bg-purple-50 rounded-lg">
+                        <div className="w-4 h-4 bg-purple-500 rounded-full mr-3"></div>
+                        <div>
+                          <div className="font-medium text-purple-800">Growth Hormone</div>
+                          <div className="text-sm text-purple-600">Enhanced muscle preservation</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Getting Started Guide */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Getting Started with Intermittent Fasting</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <div className="bg-yellow-50 rounded-lg p-4 border-l-4 border-yellow-500">
+                      <h4 className="font-semibold text-yellow-800 mb-2">Start Gradually</h4>
+                      <p className="text-sm text-yellow-700">
+                        Begin with a 12:12 schedule and gradually extend your fasting window as your body adapts. 
+                        This approach helps minimize side effects and builds sustainable habits.
+                      </p>
+                    </div>
+                    <div className="bg-blue-50 rounded-lg p-4 border-l-4 border-blue-500">
+                      <h4 className="font-semibold text-blue-800 mb-2">Stay Hydrated</h4>
+                      <p className="text-sm text-blue-700">
+                        Drink plenty of water during fasting periods. Black coffee, plain tea, and sparkling water 
+                        are also acceptable and can help manage hunger.
+                      </p>
+                    </div>
+                    <div className="bg-green-50 rounded-lg p-4 border-l-4 border-green-500">
+                      <h4 className="font-semibold text-green-800 mb-2">Listen to Your Body</h4>
+                      <p className="text-sm text-green-700">
+                        Pay attention to how you feel during fasts. Some initial hunger and fatigue are normal, 
+                        but persistent discomfort may indicate the need to adjust your approach.
+                      </p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              {/* Fasting History */}
-              {fastingHistory.length > 0 && (
-                <Card className="mt-8 bg-white shadow-sm border-0">
-                  <CardContent className="p-8">
-                    <div className="flex items-center justify-between mb-6">
-                      <h2 className="text-2xl font-semibold text-gray-900">Recent Fasting History</h2>
-                      <Calendar className="w-6 h-6 text-gray-400" />
-                    </div>
-                    <div className="space-y-3">
-                      {fastingHistory.slice(0, 5).map((session, index) => (
-                        <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                          <div>
-                            <div className="font-medium text-gray-900">
-                              {session.schedule === 'custom' ? `${session.duration}h Custom` : session.schedule}
-                            </div>
-                            <div className="text-sm text-gray-500">
-                              {new Date(session.date).toLocaleDateString()}
-                            </div>
-                          </div>
-                          <div className={`px-3 py-1 rounded-full text-xs font-medium ${
-                            session.completed ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-                          }`}>
-                            {session.completed ? 'Completed' : 'Incomplete'}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              )}
-            </div>
-          </section>
-
-          {/* Educational Content */}
-          <section className="py-16 bg-neutral-50">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="space-y-8">
-                {/* What is Intermittent Fasting */}
-                <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Understanding Intermittent Fasting</h2>
-                  
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">What is Intermittent Fasting?</h3>
-                      <p className="text-gray-600 mb-6 leading-relaxed">
-                        Intermittent fasting (IF) is an eating pattern that cycles between periods of fasting and eating. 
-                        It doesn't specify which foods to eat, but rather when you should eat them. 
-                        During fasting periods, you eat either very little or nothing at all.
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Common Fasting Mistakes to Avoid</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <div className="bg-red-50 rounded-lg p-4 border-l-4 border-red-500">
+                      <h4 className="font-semibold text-red-800 mb-2">Overeating During Eating Windows</h4>
+                      <p className="text-sm text-red-700">
+                        Don't compensate for fasting by overeating. Focus on nutritious, balanced meals 
+                        within your eating window for optimal results.
                       </p>
-                      
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Popular Fasting Methods</h3>
-                      <div className="space-y-3 text-sm">
-                        <div className="flex justify-between">
-                          <span>16:8 Method</span>
-                          <span className="text-blue-600 font-medium">Most popular for beginners</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span>18:6 Method</span>
-                          <span className="text-orange-600 font-medium">Intermediate level</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span>20:4 Method</span>
-                          <span className="text-red-600 font-medium">Advanced fasters</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span>OMAD (24:0)</span>
-                          <span className="text-purple-600 font-medium">Expert level</span>
-                        </div>
-                      </div>
                     </div>
-                    
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Health Benefits</h3>
-                      <div className="space-y-3">
-                        <div className="flex items-center p-3 bg-green-50 rounded-lg">
-                          <div className="w-4 h-4 bg-green-500 rounded-full mr-3"></div>
-                          <div>
-                            <div className="font-medium">Weight Loss</div>
-                            <div className="text-sm text-gray-600">Burns stored body fat effectively</div>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-center p-3 bg-blue-50 rounded-lg">
-                          <div className="w-4 h-4 bg-blue-500 rounded-full mr-3"></div>
-                          <div>
-                            <div className="font-medium">Improved Metabolism</div>
-                            <div className="text-sm text-gray-600">Increases metabolic rate and insulin sensitivity</div>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-center p-3 bg-purple-50 rounded-lg">
-                          <div className="w-4 h-4 bg-purple-500 rounded-full mr-3"></div>
-                          <div>
-                            <div className="font-medium">Mental Clarity</div>
-                            <div className="text-sm text-gray-600">Enhanced focus and cognitive function</div>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-center p-3 bg-orange-50 rounded-lg">
-                          <div className="w-4 h-4 bg-orange-500 rounded-full mr-3"></div>
-                          <div>
-                            <div className="font-medium">Cellular Repair</div>
-                            <div className="text-sm text-gray-600">Activates autophagy for cellular cleanup</div>
-                          </div>
-                        </div>
-                      </div>
+                    <div className="bg-orange-50 rounded-lg p-4 border-l-4 border-orange-500">
+                      <h4 className="font-semibold text-orange-800 mb-2">Ignoring Sleep Quality</h4>
+                      <p className="text-sm text-orange-700">
+                        Poor sleep can negatively impact fasting benefits. Maintain consistent sleep schedules 
+                        and aim for 7-9 hours of quality sleep nightly.
+                      </p>
+                    </div>
+                    <div className="bg-purple-50 rounded-lg p-4 border-l-4 border-purple-500">
+                      <h4 className="font-semibold text-purple-800 mb-2">Rushing the Process</h4>
+                      <p className="text-sm text-purple-700">
+                        Don't jump into extended fasting periods too quickly. Allow 2-4 weeks for adaptation 
+                        before increasing fasting duration.
+                      </p>
                     </div>
                   </div>
-                </div>
-
-                {/* Tips and Guidelines */}
-                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Fasting Tips & Guidelines</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Getting Started</h3>
-                      <ul className="text-gray-600 space-y-2 text-sm">
-                        <li>• Start with shorter fasting periods (12:12 or 14:10)</li>
-                        <li>• Gradually increase fasting duration as you adapt</li>
-                        <li>• Stay hydrated with water, herbal tea, and black coffee</li>
-                        <li>• Listen to your body and adjust as needed</li>
-                        <li>• Plan your eating window around your lifestyle</li>
-                      </ul>
-                    </div>
-                    
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">During Fasting</h3>
-                      <ul className="text-gray-600 space-y-2 text-sm">
-                        <li>• Drink plenty of water throughout the day</li>
-                        <li>• Keep busy to distract from hunger pangs</li>
-                        <li>• Black coffee and plain tea are usually allowed</li>
-                        <li>• Avoid artificial sweeteners during fasting</li>
-                        <li>• Get adequate sleep for better results</li>
-                      </ul>
-                    </div>
-                  </div>
-                  
-                  <div className="mt-6 p-4 bg-yellow-100 rounded-lg border-l-4 border-yellow-500">
-                    <p className="text-sm text-yellow-800">
-                      <strong>Medical Disclaimer:</strong> Consult with a healthcare provider before starting intermittent fasting, 
-                      especially if you have medical conditions, are pregnant, breastfeeding, or taking medications.
-                    </p>
-                  </div>
-                </div>
-              </div>
+                </CardContent>
+              </Card>
             </div>
-          </section>
-        </main>
 
-        <Footer />
-      </div>
-    </>
+            {/* FAQ Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">What can I drink during fasting?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Water, black coffee, plain tea, and sparkling water are allowed during fasting periods. 
+                        Avoid adding sugar, cream, or artificial sweeteners as they can break your fast.
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Will I lose muscle mass while fasting?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Short-term intermittent fasting typically preserves muscle mass, especially when combined 
+                        with adequate protein intake and resistance training during eating windows.
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Can I exercise while fasting?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Light to moderate exercise is generally safe during fasting. Many people find fasted cardio 
+                        particularly effective, but listen to your body and adjust intensity as needed.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How long does it take to see results?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Initial benefits like improved energy may be noticed within 1-2 weeks. Weight loss and 
+                        metabolic improvements typically become apparent after 4-8 weeks of consistent practice.
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Is intermittent fasting safe for everyone?</h4>
+                      <p className="text-gray-600 text-sm">
+                        While generally safe for healthy adults, pregnant women, people with diabetes, eating disorders, 
+                        or certain medical conditions should consult healthcare providers before starting.
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">What if I break my fast early?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Don't worry about occasional early breaks. Consistency over perfection is key. Simply resume 
+                        your normal fasting schedule with your next planned fast.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Research and Studies */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Research-Backed Benefits of Intermittent Fasting</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="text-center p-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl">
+                    <div className="text-3xl font-bold text-blue-600 mb-2">3-8%</div>
+                    <div className="text-sm text-blue-800 font-medium mb-2">Weight Loss</div>
+                    <div className="text-xs text-blue-600">Typical weight reduction over 3-24 weeks</div>
+                  </div>
+                  <div className="text-center p-6 bg-gradient-to-br from-green-50 to-green-100 rounded-xl">
+                    <div className="text-3xl font-bold text-green-600 mb-2">4-7%</div>
+                    <div className="text-sm text-green-800 font-medium mb-2">Belly Fat</div>
+                    <div className="text-xs text-green-600">Reduction in harmful visceral fat</div>
+                  </div>
+                  <div className="text-center p-6 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl">
+                    <div className="text-3xl font-bold text-purple-600 mb-2">20-31%</div>
+                    <div className="text-sm text-purple-800 font-medium mb-2">Insulin Levels</div>
+                    <div className="text-xs text-purple-600">Improvement in insulin sensitivity</div>
+                  </div>
+                </div>
+                <div className="mt-6 p-4 bg-gray-50 rounded-lg">
+                  <p className="text-sm text-gray-600">
+                    <strong>Research Note:</strong> Studies from the New England Journal of Medicine, Nature Reviews, 
+                    and other peer-reviewed journals have documented significant health benefits of intermittent fasting 
+                    including improved cardiovascular health, brain function, and longevity markers.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </main>
+      
+      <Footer />
+    </div>
   );
 };
 
