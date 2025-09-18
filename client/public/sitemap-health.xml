@@ -61,12 +61,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://dapsiwow.com/tools/daily-step-calorie-converter</loc>
-    <lastmod>2025-09-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://dapsiwow.com/tools/heart-rate-calculator</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>weekly</changefreq>
@@ -140,6 +134,12 @@
   </url>
   <url>
     <loc>https://dapsiwow.com/tools/smoking-cost-calculator</loc>
+    <lastmod>2025-09-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dapsiwow.com/tools/daily-step-calorie-converter</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
