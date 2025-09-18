@@ -5,19 +5,27 @@ import PopularToolsSection from '@/components/PopularToolsSection';
 import CategorySection from '@/components/CategorySection';
 import Footer from '@/components/Footer';
 import FavoritesSection from '@/components/FavoritesSection';
-import { Calculator, PenTool, HeartPulse, Zap, Shield, Smartphone, Globe } from 'lucide-react';
+import { Calculator, PenTool, HeartPulse, Zap, Shield, Smartphone, Globe, TrendingUp, Users, Award } from 'lucide-react';
+import { tools } from '@/data/tools';
+import { Link } from 'wouter';
 
 const Home = () => {
   return (
     <>
       <Helmet>
-        <title>DapsiWow: Free Finance, Text, Health and other Online Tools</title>
+        <title>DapsiWow: Free Finance, Text & Health Online Tools - 79 Professional Calculators</title>
         <meta name="description" content="Access 79 professional-grade online tools completely free. No registration required. Finance calculators, text processors, health trackers, and more - all designed to boost your productivity." />
+        <link rel="canonical" href="https://dapsiwow.com/" />
         <meta name="keywords" content="DapsiWow, dapsiwow, free online tools, loan calculator, mortgage calculator, business loan calculator, lease calculator, productivity tools, finance calculators, text tools, health calculators, online utilities, web tools, no registration tools" />
-        <meta property="og:title" content="DapsiWow: Free Finance, Text, Health and other Online Tools" />
+        <meta property="og:title" content="DapsiWow: Free Finance, Text & Health Online Tools - 79 Professional Calculators" />
         <meta property="og:description" content="Access 79 professional-grade online tools completely free. No registration required. Finance calculators, text processors, health trackers, and more." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dapsiwow.com/" />
+        <meta property="og:image" content="https://dapsiwow.com/logo.svg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="DapsiWow: Free Finance, Text & Health Online Tools" />
+        <meta name="twitter:description" content="Access 79 professional-grade online tools completely free. No registration required." />
+        <meta name="twitter:image" content="https://dapsiwow.com/logo.svg" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -32,41 +40,152 @@ const Home = () => {
             },
             "mainEntity": {
               "@type": "ItemList",
-              "name": "DapsiWow Tool Categories",
-              "description": "Complete collection of professional online tools organized by category",
-              "numberOfItems": 3,
+              "name": "DapsiWow Popular Tools",
+              "description": "Top 12 most popular professional online tools used by millions",
+              "numberOfItems": 12,
               "itemListElement": [
                 {
                   "@type": "ListItem",
                   "position": 1,
                   "item": {
-                    "@type": "CollectionPage",
-                    "@id": "https://dapsiwow.com/finance-tools",
-                    "name": "Finance Tools",
-                    "description": "Professional financial calculators including loan, mortgage, EMI, and investment calculators",
-                    "url": "https://dapsiwow.com/finance-tools"
+                    "@type": "WebApplication",
+                    "@id": "https://dapsiwow.com/tools/loan-calculator",
+                    "name": "Loan Calculator",
+                    "description": "Calculate monthly loan payments with interest, terms, and fees",
+                    "url": "https://dapsiwow.com/tools/loan-calculator",
+                    "applicationCategory": "FinanceApplication"
                   }
                 },
                 {
                   "@type": "ListItem",
                   "position": 2,
                   "item": {
-                    "@type": "CollectionPage",
-                    "@id": "https://dapsiwow.com/text-tools",
-                    "name": "Text Tools",
-                    "description": "Text processing and analysis tools including word counters, case converters, and generators",
-                    "url": "https://dapsiwow.com/text-tools"
+                    "@type": "WebApplication",
+                    "@id": "https://dapsiwow.com/tools/bmi-calculator",
+                    "name": "BMI Calculator",
+                    "description": "Calculate Body Mass Index with health recommendations",
+                    "url": "https://dapsiwow.com/tools/bmi-calculator",
+                    "applicationCategory": "HealthApplication"
                   }
                 },
                 {
                   "@type": "ListItem",
                   "position": 3,
                   "item": {
-                    "@type": "CollectionPage",
-                    "@id": "https://dapsiwow.com/health-tools",
-                    "name": "Health Tools",
-                    "description": "Health and fitness calculators including BMI, calorie, and body composition tools",
-                    "url": "https://dapsiwow.com/health-tools"
+                    "@type": "WebApplication",
+                    "@id": "https://dapsiwow.com/tools/word-counter",
+                    "name": "Word Counter",
+                    "description": "Count words, characters, and sentences in text",
+                    "url": "https://dapsiwow.com/tools/word-counter",
+                    "applicationCategory": "UtilitiesApplication"
+                  }
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 4,
+                  "item": {
+                    "@type": "WebApplication",
+                    "@id": "https://dapsiwow.com/tools/mortgage-calculator",
+                    "name": "Mortgage Calculator",
+                    "description": "Calculate home mortgage payments and amortization",
+                    "url": "https://dapsiwow.com/tools/mortgage-calculator",
+                    "applicationCategory": "FinanceApplication"
+                  }
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 5,
+                  "item": {
+                    "@type": "WebApplication",
+                    "@id": "https://dapsiwow.com/tools/password-generator",
+                    "name": "Password Generator",
+                    "description": "Generate secure passwords with custom criteria",
+                    "url": "https://dapsiwow.com/tools/password-generator",
+                    "applicationCategory": "UtilitiesApplication"
+                  }
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 6,
+                  "item": {
+                    "@type": "WebApplication",
+                    "@id": "https://dapsiwow.com/tools/calorie-calculator",
+                    "name": "Calorie Calculator",
+                    "description": "Calculate daily calorie needs for weight goals",
+                    "url": "https://dapsiwow.com/tools/calorie-calculator",
+                    "applicationCategory": "HealthApplication"
+                  }
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 7,
+                  "item": {
+                    "@type": "WebApplication",
+                    "@id": "https://dapsiwow.com/tools/percentage-calculator",
+                    "name": "Percentage Calculator",
+                    "description": "Calculate percentages, increases, and decreases",
+                    "url": "https://dapsiwow.com/tools/percentage-calculator",
+                    "applicationCategory": "FinanceApplication"
+                  }
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 8,
+                  "item": {
+                    "@type": "WebApplication",
+                    "@id": "https://dapsiwow.com/tools/case-converter",
+                    "name": "Case Converter",
+                    "description": "Convert text to uppercase, lowercase, title case",
+                    "url": "https://dapsiwow.com/tools/case-converter",
+                    "applicationCategory": "UtilitiesApplication"
+                  }
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 9,
+                  "item": {
+                    "@type": "WebApplication",
+                    "@id": "https://dapsiwow.com/tools/compound-interest-calculator",
+                    "name": "Compound Interest Calculator",
+                    "description": "Calculate compound interest and investment growth",
+                    "url": "https://dapsiwow.com/tools/compound-interest-calculator",
+                    "applicationCategory": "FinanceApplication"
+                  }
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 10,
+                  "item": {
+                    "@type": "WebApplication",
+                    "@id": "https://dapsiwow.com/tools/bmr-calculator",
+                    "name": "BMR Calculator",
+                    "description": "Calculate Basal Metabolic Rate and energy needs",
+                    "url": "https://dapsiwow.com/tools/bmr-calculator",
+                    "applicationCategory": "HealthApplication"
+                  }
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 11,
+                  "item": {
+                    "@type": "WebApplication",
+                    "@id": "https://dapsiwow.com/tools/text-to-qr-code",
+                    "name": "QR Code Generator",
+                    "description": "Generate QR codes for text, URLs, and data",
+                    "url": "https://dapsiwow.com/tools/text-to-qr-code",
+                    "applicationCategory": "UtilitiesApplication"
+                  }
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 12,
+                  "item": {
+                    "@type": "WebApplication",
+                    "@id": "https://dapsiwow.com/tools/tip-calculator",
+                    "name": "Tip Calculator",
+                    "description": "Calculate tips and split bills easily",
+                    "url": "https://dapsiwow.com/tools/tip-calculator",
+                    "applicationCategory": "FinanceApplication"
                   }
                 }
               ]
@@ -89,10 +208,62 @@ const Home = () => {
               "Health Calculators",
               "Online Utilities",
               "Productivity Tools"
-            ],
-            "sameAs": [
-              "https://dapsiwow.com/about",
-              "https://dapsiwow.com/contact"
+            ]
+          })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is DapsiWow?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "DapsiWow is a comprehensive platform offering 79 professional-grade online tools completely free. We provide finance calculators, text processing tools, health trackers, and more - all designed to boost productivity without requiring registration or payments."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How much does DapsiWow cost?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "DapsiWow is completely free to use. All 79 tools are available without any cost, registration, or hidden fees. We believe professional-grade tools should be accessible to everyone."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do I need to register to use the tools?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No registration required! You can use all our tools immediately without creating an account. Simply visit any tool page and start using it right away. Your privacy and convenience are our priorities."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What categories of tools are available?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We offer three main categories: Finance Tools (30 tools including loan, mortgage, and investment calculators), Text Tools (19 tools for word counting, case conversion, and text processing), and Health Tools (30 tools for BMI, calorie, and fitness calculations)."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Are my data and calculations secure?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Absolutely. Your data stays private and secure. We don't store your personal information or calculations. Most processing happens directly in your browser, ensuring your sensitive information never leaves your device."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I use DapsiWow tools on mobile devices?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes! All our tools are designed to work perfectly on desktop, laptop, tablet, and smartphone. The responsive design ensures optimal functionality across all screen sizes and browsers."
+                }
+              }
             ]
           })}
         </script>
@@ -103,9 +274,204 @@ const Home = () => {
         <main className="flex-1">
           <HeroSection />
           
-          {/* User-specific sections - shown if user has favorites */}
+          {/* Enhanced Category Gateways */}
+          <section className="py-16 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl lg:text-4xl font-bold text-neutral-800 mb-4" data-testid="text-categories-title">Choose Your Category</h2>
+                <p className="text-xl text-neutral-600 max-w-3xl mx-auto">Explore our comprehensive collection of professional tools organized by category</p>
+              </div>
+              
+              <div className="grid md:grid-cols-3 gap-8">
+                {/* Finance Tools Gateway */}
+                <Link href="/finance" className="block group">
+                  <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-3xl p-8 border-2 border-transparent hover:border-blue-200 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl cursor-pointer"
+                       data-testid="gateway-finance">
+                  <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Calculator className="text-white" size={24} />
+                  </div>
+                  <h3 className="text-2xl font-bold text-neutral-800 mb-4">Finance Tools</h3>
+                  <p className="text-neutral-600 mb-6 leading-relaxed">30 professional financial calculators for loans, mortgages, investments, and business planning</p>
+                  <div className="space-y-2 mb-6">
+                    <div className="flex items-center text-sm text-neutral-600">
+                      <TrendingUp size={14} className="mr-2 text-blue-500" />
+                      <span>Loan & Mortgage Calculators</span>
+                    </div>
+                    <div className="flex items-center text-sm text-neutral-600">
+                      <TrendingUp size={14} className="mr-2 text-blue-500" />
+                      <span>Investment & ROI Tools</span>
+                    </div>
+                    <div className="flex items-center text-sm text-neutral-600">
+                      <TrendingUp size={14} className="mr-2 text-blue-500" />
+                      <span>Tax & Business Calculators</span>
+                    </div>
+                  </div>
+                    <div className="text-blue-600 font-semibold group-hover:text-blue-700 transition-colors">Explore Finance Tools →</div>
+                  </div>
+                </Link>
+
+                {/* Text Tools Gateway */}
+                <Link href="/text" className="block group">
+                  <div className="bg-gradient-to-br from-orange-50 to-yellow-100 rounded-3xl p-8 border-2 border-transparent hover:border-orange-200 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl cursor-pointer"
+                       data-testid="gateway-text">
+                  <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-yellow-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <PenTool className="text-white" size={24} />
+                  </div>
+                  <h3 className="text-2xl font-bold text-neutral-800 mb-4">Text Tools</h3>
+                  <p className="text-neutral-600 mb-6 leading-relaxed">19 powerful text processing tools for counting, converting, and generating content</p>
+                  <div className="space-y-2 mb-6">
+                    <div className="flex items-center text-sm text-neutral-600">
+                      <PenTool size={14} className="mr-2 text-orange-500" />
+                      <span>Word & Character Counters</span>
+                    </div>
+                    <div className="flex items-center text-sm text-neutral-600">
+                      <PenTool size={14} className="mr-2 text-orange-500" />
+                      <span>Case & Format Converters</span>
+                    </div>
+                    <div className="flex items-center text-sm text-neutral-600">
+                      <PenTool size={14} className="mr-2 text-orange-500" />
+                      <span>QR Codes & Generators</span>
+                    </div>
+                  </div>
+                    <div className="text-orange-600 font-semibold group-hover:text-orange-700 transition-colors">Explore Text Tools →</div>
+                  </div>
+                </Link>
+
+                {/* Health Tools Gateway */}
+                <Link href="/health" className="block group">
+                  <div className="bg-gradient-to-br from-pink-50 to-rose-100 rounded-3xl p-8 border-2 border-transparent hover:border-pink-200 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl cursor-pointer"
+                       data-testid="gateway-health">
+                  <div className="w-16 h-16 bg-gradient-to-r from-pink-500 to-rose-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <HeartPulse className="text-white" size={24} />
+                  </div>
+                  <h3 className="text-2xl font-bold text-neutral-800 mb-4">Health Tools</h3>
+                  <p className="text-neutral-600 mb-6 leading-relaxed">30 comprehensive health calculators for fitness, nutrition, and wellness tracking</p>
+                  <div className="space-y-2 mb-6">
+                    <div className="flex items-center text-sm text-neutral-600">
+                      <HeartPulse size={14} className="mr-2 text-pink-500" />
+                      <span>BMI & Body Composition</span>
+                    </div>
+                    <div className="flex items-center text-sm text-neutral-600">
+                      <HeartPulse size={14} className="mr-2 text-pink-500" />
+                      <span>Calorie & Nutrition Tools</span>
+                    </div>
+                    <div className="flex items-center text-sm text-neutral-600">
+                      <HeartPulse size={14} className="mr-2 text-pink-500" />
+                      <span>Fitness & Wellness Trackers</span>
+                    </div>
+                  </div>
+                    <div className="text-pink-600 font-semibold group-hover:text-pink-700 transition-colors">Explore Health Tools →</div>
+                  </div>
+                </Link>
+              </div>
+            </div>
+          </section>
+          
+          {/* User-specific sections */}
           <FavoritesSection />
           
+          {/* Trust Indicators & Quick Access */}
+          <section className="py-16 bg-gradient-to-br from-slate-50 to-blue-50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              {/* Trust Bullets */}
+              <div className="text-center mb-16">
+                <div className="flex flex-wrap justify-center items-center gap-8 mb-12">
+                  <div className="flex items-center bg-white rounded-full px-6 py-3 shadow-md" data-testid="trust-bullet-free">
+                    <Award className="text-green-500 mr-3" size={20} />
+                    <span className="font-semibold text-neutral-700">100% Free Forever</span>
+                  </div>
+                  <div className="flex items-center bg-white rounded-full px-6 py-3 shadow-md" data-testid="trust-bullet-no-signup">
+                    <Users className="text-blue-500 mr-3" size={20} />
+                    <span className="font-semibold text-neutral-700">No Sign-up Required</span>
+                  </div>
+                  <div className="flex items-center bg-white rounded-full px-6 py-3 shadow-md" data-testid="trust-bullet-tools-count">
+                    <Calculator className="text-purple-500 mr-3" size={20} />
+                    <span className="font-semibold text-neutral-700">79 Professional Tools</span>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Quick Access Use Cases */}
+              <div className="text-center mb-12">
+                <h2 className="text-3xl lg:text-4xl font-bold text-neutral-800 mb-6" data-testid="text-quick-access-title">Popular Use Cases</h2>
+                <p className="text-xl text-neutral-600 max-w-3xl mx-auto mb-12">Get started with these commonly used tools and calculations</p>
+                
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 max-w-6xl mx-auto">
+                  <a href="/tools/loan-calculator" 
+                     className="group bg-white rounded-xl p-4 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-neutral-100 hover:border-blue-200"
+                     data-testid="use-case-loan">
+                    <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                      <Calculator className="text-white" size={16} />
+                    </div>
+                    <div className="font-semibold text-neutral-800 text-sm mb-1">Calculate Loan</div>
+                    <div className="text-xs text-neutral-500">Monthly payments</div>
+                  </a>
+                  
+                  <a href="/tools/word-counter" 
+                     className="group bg-white rounded-xl p-4 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-neutral-100 hover:border-orange-200"
+                     data-testid="use-case-word-count">
+                    <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-yellow-600 rounded-lg flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                      <PenTool className="text-white" size={16} />
+                    </div>
+                    <div className="font-semibold text-neutral-800 text-sm mb-1">Count Words</div>
+                    <div className="text-xs text-neutral-500">Text analysis</div>
+                  </a>
+                  
+                  <a href="/tools/bmi-calculator" 
+                     className="group bg-white rounded-xl p-4 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-neutral-100 hover:border-pink-200"
+                     data-testid="use-case-bmi">
+                    <div className="w-12 h-12 bg-gradient-to-r from-pink-500 to-rose-600 rounded-lg flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                      <HeartPulse className="text-white" size={16} />
+                    </div>
+                    <div className="font-semibold text-neutral-800 text-sm mb-1">Check BMI</div>
+                    <div className="text-xs text-neutral-500">Health status</div>
+                  </a>
+                  
+                  <a href="/tools/mortgage-calculator" 
+                     className="group bg-white rounded-xl p-4 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-neutral-100 hover:border-blue-200"
+                     data-testid="use-case-mortgage">
+                    <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                      <Calculator className="text-white" size={16} />
+                    </div>
+                    <div className="font-semibold text-neutral-800 text-sm mb-1">Home Mortgage</div>
+                    <div className="text-xs text-neutral-500">Monthly payment</div>
+                  </a>
+                  
+                  <a href="/tools/password-generator" 
+                     className="group bg-white rounded-xl p-4 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-neutral-100 hover:border-orange-200"
+                     data-testid="use-case-password">
+                    <div className="w-12 h-12 bg-gradient-to-r from-orange-500 to-yellow-600 rounded-lg flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                      <Shield className="text-white" size={16} />
+                    </div>
+                    <div className="font-semibold text-neutral-800 text-sm mb-1">Generate Password</div>
+                    <div className="text-xs text-neutral-500">Secure & random</div>
+                  </a>
+                  
+                  <a href="/tools/calorie-calculator" 
+                     className="group bg-white rounded-xl p-4 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-neutral-100 hover:border-pink-200"
+                     data-testid="use-case-calories">
+                    <div className="w-12 h-12 bg-gradient-to-r from-pink-500 to-rose-600 rounded-lg flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                      <HeartPulse className="text-white" size={16} />
+                    </div>
+                    <div className="font-semibold text-neutral-800 text-sm mb-1">Daily Calories</div>
+                    <div className="text-xs text-neutral-500">Nutrition planning</div>
+                  </a>
+                </div>
+                
+                <div className="mt-12">
+                  <a href="/tools" 
+                     className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-neutral-800 to-neutral-900 text-white font-semibold rounded-xl hover:from-neutral-900 hover:to-black transition-all duration-200 shadow-lg hover:shadow-xl"
+                     data-testid="link-all-tools">
+                    <span>View All 79 Tools</span>
+                    <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {/* What is DapsiWow Section */}
           <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
