@@ -7,6 +7,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
+import { Separator } from '@/components/ui/separator';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { useToast } from '@/hooks/use-toast';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -31,6 +33,7 @@ interface ScrambleResult {
 export default function TextScrambler() {
   const [inputText, setInputText] = useState('');
   const [result, setResult] = useState<ScrambleResult | null>(null);
+  const [showAdvanced, setShowAdvanced] = useState(false);
   const [options, setOptions] = useState<ScrambleOptions>({
     mode: 'characters',
     preserveSpaces: true,
@@ -375,54 +378,69 @@ Perfect for creating puzzles, testing readability, or just having fun with text 
                     </div>
 
                     {/* Advanced Options */}
-                    <div className="space-y-4 bg-gray-50 rounded-xl p-6">
-                      <h3 className="font-semibold text-gray-800 mb-2">Advanced Options</h3>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div className="flex items-center justify-between space-x-3">
-                          <div>
-                            <label htmlFor="preserve-spaces" className="text-sm font-medium text-gray-700">
-                              Preserve Spaces
-                            </label>
-                            <p className="text-xs text-gray-500">Keep spaces in original positions</p>
-                          </div>
-                          <Switch
-                            id="preserve-spaces"
-                            checked={options.preserveSpaces}
-                            onCheckedChange={(checked) => setOptions(prev => ({ ...prev, preserveSpaces: checked }))}
-                            data-testid="switch-preserve-spaces"
-                          />
-                        </div>
+                    <div className="space-y-4 sm:space-y-6 border-t pt-6 sm:pt-8">
+                      <h3 className="text-lg sm:text-xl font-bold text-gray-900">Advanced Options</h3>
+                      
+                      <Collapsible open={showAdvanced} onOpenChange={setShowAdvanced}>
+                        <CollapsibleTrigger asChild>
+                          <Button 
+                            variant="ghost" 
+                            className="w-full justify-between text-sm sm:text-base py-3 sm:py-4 h-auto"
+                            data-testid="button-toggle-advanced"
+                          >
+                            <span className="flex items-center">
+                              Advanced Customization
+                            </span>
+                            <span className={`transform transition-transform ${showAdvanced ? 'rotate-180' : ''}`}>▼</span>
+                          </Button>
+                        </CollapsibleTrigger>
+                        <CollapsibleContent className="space-y-4 sm:space-y-6 mt-4">
+                          <Separator />
+                          
+                          {/* Scrambling Options */}
+                          <div className="space-y-4 bg-gray-50 rounded-xl p-4 sm:p-6">
+                            <h4 className="text-sm sm:text-base font-semibold text-gray-900">Scrambling Preservation</h4>
+                            
+                            <div className="flex items-center justify-between gap-2">
+                              <div className="space-y-1 flex-1 min-w-0">
+                                <Label className="text-xs sm:text-sm font-medium">Preserve Spaces</Label>
+                                <p className="text-xs text-gray-500">Keep spaces in original positions</p>
+                              </div>
+                              <Switch
+                                checked={options.preserveSpaces}
+                                onCheckedChange={(checked) => setOptions(prev => ({ ...prev, preserveSpaces: checked }))}
+                                data-testid="switch-preserve-spaces"
+                              />
+                            </div>
 
-                        <div className="flex items-center justify-between space-x-3">
-                          <div>
-                            <label htmlFor="preserve-punctuation" className="text-sm font-medium text-gray-700">
-                              Preserve Punctuation
-                            </label>
-                            <p className="text-xs text-gray-500">Keep punctuation marks</p>
-                          </div>
-                          <Switch
-                            id="preserve-punctuation"
-                            checked={options.preservePunctuation}
-                            onCheckedChange={(checked) => setOptions(prev => ({ ...prev, preservePunctuation: checked }))}
-                            data-testid="switch-preserve-punctuation"
-                          />
-                        </div>
+                            <div className="flex items-center justify-between gap-2">
+                              <div className="space-y-1 flex-1 min-w-0">
+                                <Label className="text-xs sm:text-sm font-medium">Preserve Punctuation</Label>
+                                <p className="text-xs text-gray-500">Keep punctuation marks intact</p>
+                              </div>
+                              <Switch
+                                checked={options.preservePunctuation}
+                                onCheckedChange={(checked) => setOptions(prev => ({ ...prev, preservePunctuation: checked }))}
+                                data-testid="switch-preserve-punctuation"
+                              />
+                            </div>
 
-                        <div className="flex items-center justify-between space-x-3 sm:col-span-2">
-                          <div>
-                            <label htmlFor="preserve-case" className="text-sm font-medium text-gray-700">
-                              Preserve Case Patterns
-                            </label>
-                            <p className="text-xs text-gray-500">Maintain uppercase/lowercase structure</p>
+                            <div className="flex items-center justify-between gap-2">
+                              <div className="space-y-1 flex-1 min-w-0">
+                                <Label className="text-xs sm:text-sm font-medium">Preserve Case Patterns</Label>
+                                <p className="text-xs text-gray-500">Maintain uppercase/lowercase structure</p>
+                              </div>
+                              <Switch
+                                checked={options.preserveCase}
+                                onCheckedChange={(checked) => setOptions(prev => ({ ...prev, preserveCase: checked }))}
+                                data-testid="switch-preserve-case"
+                              />
+                            </div>
                           </div>
-                          <Switch
-                            id="preserve-case"
-                            checked={options.preserveCase}
-                            onCheckedChange={(checked) => setOptions(prev => ({ ...prev, preserveCase: checked }))}
-                            data-testid="switch-preserve-case"
-                          />
-                        </div>
-                      </div>
+                          
+                          <Separator />
+                        </CollapsibleContent>
+                      </Collapsible>
                     </div>
 
                     {/* Action Buttons */}
