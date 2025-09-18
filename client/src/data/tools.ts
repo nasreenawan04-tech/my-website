@@ -67,6 +67,8 @@ const toolsData = [
   { id: 'reverse-text-tool', name: 'Reverse Text Tool', description: 'Reverse the order of text characters, words, or lines', category: 'text' as const, icon: 'fas fa-backward', href: '/tools/reverse-text-tool' },
   { id: 'text-to-qr-code', name: 'Text to QR Code', description: 'Extract URLs, emails, and text content and convert to QR codes', category: 'text' as const, icon: 'fas fa-arrow-right', href: '/tools/text-to-qr-code' },
   { id: 'qr-code-scanner', name: 'QR Code Scanner', description: 'Scan QR codes from images to extract text content', category: 'text' as const, icon: 'fas fa-camera', href: '/tools/qr-code-scanner' },
+  { id: 'duplicate-line-remover', name: 'Duplicate Line Remover', description: 'Remove duplicate lines from text while preserving order', category: 'text' as const, icon: 'fas fa-copy', href: '/tools/duplicate-line-remover' },
+  { id: 'text-scrambler', name: 'Text Scrambler', description: 'Scramble text in various ways - characters, words, or lines', category: 'text' as const, icon: 'fas fa-random', href: '/tools/text-scrambler' },
 
 
   // Health Tools (30)
