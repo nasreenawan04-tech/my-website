@@ -32,10 +32,10 @@ export default defineConfig({
     emptyOutDir: true,
     target: "esnext",
     minify: "esbuild",
-    cssMinify: true,
+    cssMinify: "lightningcss",
     sourcemap: false,
     cssCodeSplit: true,
-    assetsInlineLimit: 4096,
+    assetsInlineLimit: 8192, // Increased for better caching
     rollupOptions: {
       output: {
         manualChunks: {

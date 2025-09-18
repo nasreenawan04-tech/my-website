@@ -1,22 +1,22 @@
 # Robots.txt for DapsiWow - Free Online Tools Platform
-# Generated for optimal SEO and crawler management
+# Optimized for Google Search Console indexing issues
 
 # Allow all legitimate search engines to crawl the site
 User-agent: *
 Allow: /
 
-# Explicitly allow important content sections
+# Explicitly prioritize important content sections
 Allow: /tools/
-Allow: /finance/
-Allow: /health/
-Allow: /text/
-Allow: /about-us/
-Allow: /contact-us/
-Allow: /privacy-policy/
-Allow: /terms-of-service/
-Allow: /help-center/
+Allow: /finance-tools
+Allow: /health-tools  
+Allow: /text-tools
+Allow: /about-us
+Allow: /contact-us
+Allow: /privacy-policy
+Allow: /terms-of-service
+Allow: /help-center
 
-# Block sensitive and administrative areas
+# Block crawl-budget wasting resources
 Disallow: /admin/
 Disallow: /api/
 Disallow: /private/
@@ -29,8 +29,11 @@ Disallow: /search?*
 Disallow: /filter/*
 Disallow: /*ajax*
 Disallow: /*json*
+Disallow: /assets/
+Disallow: /_next/static/
+Disallow: /node_modules/
 
-# Block AI training bots (2024 best practice)
+# Block AI training bots (preserve crawl budget)
 User-agent: GPTBot
 Disallow: /
 
@@ -73,7 +76,7 @@ Disallow: /
 User-agent: PiplBot
 Disallow: /
 
-# Block spam and malicious crawlers
+# Block spam and SEO crawlers (preserve crawl budget)
 User-agent: AhrefsBot
 Disallow: /
 
@@ -101,12 +104,14 @@ Disallow: /
 User-agent: serpstatbot
 Disallow: /
 
-# Allow major search engines explicitly
+# Explicitly allow major search engines
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Slurp
 Allow: /
@@ -125,3 +130,6 @@ Allow: /
 
 # Sitemap location
 Sitemap: https://dapsiwow.com/sitemap.xml
+
+# Crawl optimization directives
+Host: dapsiwow.com
