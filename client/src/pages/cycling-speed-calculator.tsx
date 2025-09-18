@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -7,8 +8,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Bike, Calculator, Clock, Gauge } from 'lucide-react';
 
 interface CyclingResult {
   speed: number;
@@ -22,7 +21,7 @@ interface CyclingResult {
   caloriesBurned?: number;
 }
 
-const CyclingSpeedCalculator = () => {
+export default function CyclingSpeedCalculator() {
   const [distance, setDistance] = useState('');
   const [distanceUnit, setDistanceUnit] = useState('miles');
   const [hours, setHours] = useState('');
@@ -114,7 +113,6 @@ const CyclingSpeedCalculator = () => {
       const timeInHours = totalSeconds / 3600;
 
       let calculatedDistance: number;
-      let finalDistanceUnit = distanceUnit;
 
       if (speedUnit === 'mph') {
         calculatedDistance = speedValue * timeInHours;
@@ -190,6 +188,17 @@ const CyclingSpeedCalculator = () => {
     setResult(null);
   };
 
+  const handleCopy = () => {
+    if (result) {
+      const resultText = `Cycling Results:\nDistance: ${result.distance} ${result.distanceUnit}\nTime: ${formatTime(result.totalSeconds)}\nSpeed: ${result.speedMph} mph (${result.speedKmh} km/h)\n${result.caloriesBurned ? `Calories Burned: ${result.caloriesBurned}` : ''}`;
+      navigator.clipboard.writeText(resultText);
+    }
+  };
+
+  const handleClear = () => {
+    setResult(null);
+  };
+
   const distanceUnits = [
     { value: 'miles', label: 'Miles' },
     { value: 'km', label: 'Kilometers' },
@@ -203,417 +212,706 @@ const CyclingSpeedCalculator = () => {
   ];
 
   return (
-    <>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>Cycling Speed Calculator - Calculate Cycling Speed, Distance & Time | DapsiWow</title>
-        <meta name="description" content="Free cycling speed calculator to calculate your cycling speed, distance, and ride time. Perfect for training, commuting, and fitness tracking." />
-        <meta name="keywords" content="cycling speed calculator, bike speed calculator, cycling distance calculator, cycling time calculator, cycling pace, bike pace" />
-        <meta property="og:title" content="Cycling Speed Calculator - Calculate Cycling Speed, Distance & Time | DapsiWow" />
-        <meta property="og:description" content="Calculate your cycling speed, distance, and ride time with our free cycling calculator." />
+        <title>Cycling Speed Calculator - Calculate Speed, Distance & Time | DapsiWow</title>
+        <meta name="description" content="Professional cycling speed calculator for calculating cycling speed, distance, and ride time. Perfect for training, commuting, fitness tracking, and performance analysis with detailed results." />
+        <meta name="keywords" content="cycling speed calculator, bike speed calculator, cycling distance calculator, cycling time calculator, cycling pace calculator, bike pace calculator, cycling performance tracker, cycling training calculator" />
+        <meta property="og:title" content="Cycling Speed Calculator - Calculate Speed, Distance & Time | DapsiWow" />
+        <meta property="og:description" content="Free cycling speed calculator to calculate your cycling speed, distance, and ride time. Professional tool for cyclists with comprehensive performance analytics." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="/tools/cycling-speed-calculator" />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="DapsiWow" />
+        <link rel="canonical" href="https://dapsiwow.com/tools/cycling-speed-calculator" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Cycling Speed Calculator",
+            "description": "Professional cycling speed calculator for calculating cycling speed, distance, and ride time with comprehensive performance analytics and calorie burn estimation.",
+            "url": "https://dapsiwow.com/tools/cycling-speed-calculator",
+            "applicationCategory": "SportsApplication",
+            "operatingSystem": "Any",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "featureList": [
+              "Calculate cycling speed from distance and time",
+              "Calculate distance from speed and time",
+              "Calculate time from speed and distance",
+              "Multiple unit conversions",
+              "Calorie burn estimation",
+              "Performance analytics"
+            ]
+          })}
+        </script>
       </Helmet>
 
-      <div className="min-h-screen flex flex-col" data-testid="page-cycling-speed">
-        <Header />
-        
-        <main className="flex-1 bg-neutral-50">
-          {/* Hero Section */}
-          <section className="bg-gradient-to-r from-blue-600 via-cyan-500 to-teal-700 text-white py-16">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <Bike className="w-8 h-8" />
+      <Header />
+
+      <main>
+        {/* Hero Section */}
+        <section className="relative py-20 sm:py-28 lg:py-32 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
+          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="space-y-8">
+              <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+                <span className="text-sm font-medium text-blue-700">Professional Speed Calculator</span>
               </div>
-              <h1 className="text-4xl sm:text-5xl font-bold mb-6" data-testid="text-page-title">
-                Cycling Speed Calculator
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight">
+                Cycling Speed
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                  Calculator
+                </span>
               </h1>
-              <p className="text-xl text-blue-100 max-w-2xl mx-auto">
-                Calculate your cycling speed, distance, and ride time. Perfect for training, commuting, and fitness tracking.
+              <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                Calculate cycling speed, distance, and ride time with precision for training and performance analysis
               </p>
             </div>
-          </section>
+          </div>
+        </section>
 
-          {/* Calculator Section */}
-          <section className="py-16">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <Card className="bg-white shadow-lg border-0">
-                <CardContent className="p-8">
-                  <div className="text-center mb-8">
-                    <Calculator className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-                    <h2 className="text-2xl font-semibold text-gray-900 mb-2">Cycling Speed Calculator</h2>
-                    <p className="text-gray-600">Calculate speed, distance, or time for your cycling activities</p>
+        <div className="max-w-7xl mx-auto px-4 py-16">
+          {/* Main Calculator Card */}
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+            <CardContent className="p-0">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+                {/* Input Section */}
+                <div className="p-8 lg:p-12 space-y-8">
+                  <div>
+                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Calculation Settings</h2>
+                    <p className="text-gray-600">Configure your cycling calculation parameters</p>
                   </div>
 
-                  {/* Calculation Type Selection */}
-                  <div className="mb-8">
-                    <Label htmlFor="calculation-type" className="text-base font-medium text-gray-700 mb-3 block">
-                      What would you like to calculate?
-                    </Label>
-                    <RadioGroup
-                      value={calculationType}
-                      onValueChange={setCalculationType}
-                      className="grid grid-cols-1 md:grid-cols-3 gap-4"
-                    >
-                      <div className="flex items-center space-x-2 p-4 border rounded-lg">
-                        <RadioGroupItem value="speed" id="speed" data-testid="radio-speed" />
-                        <Label htmlFor="speed" className="font-medium">Calculate Speed</Label>
-                      </div>
-                      <div className="flex items-center space-x-2 p-4 border rounded-lg">
-                        <RadioGroupItem value="distance" id="distance" data-testid="radio-distance" />
-                        <Label htmlFor="distance" className="font-medium">Calculate Distance</Label>
-                      </div>
-                      <div className="flex items-center space-x-2 p-4 border rounded-lg">
-                        <RadioGroupItem value="time" id="time" data-testid="radio-time" />
-                        <Label htmlFor="time" className="font-medium">Calculate Time</Label>
-                      </div>
-                    </RadioGroup>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {/* Input Section */}
-                    <div className="space-y-4">
-                      {/* Distance Input */}
-                      {calculationType !== 'distance' && (
-                        <div>
-                          <Label htmlFor="distance-input" className="text-base font-medium text-gray-700 mb-2 block">
-                            Distance
-                          </Label>
-                          <div className="flex gap-2">
-                            <Input
-                              id="distance-input"
-                              type="number"
-                              value={distance}
-                              onChange={(e) => setDistance(e.target.value)}
-                              placeholder="Enter distance"
-                              step="0.01"
-                              min="0"
-                              className="flex-1"
-                              data-testid="input-distance"
-                            />
-                            <Select value={distanceUnit} onValueChange={setDistanceUnit}>
-                              <SelectTrigger className="w-32" data-testid="select-distance-unit">
-                                <SelectValue />
-                              </SelectTrigger>
-                              <SelectContent>
-                                {distanceUnits.map((unit) => (
-                                  <SelectItem key={unit.value} value={unit.value}>
-                                    {unit.label}
-                                  </SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
+                  <div className="space-y-6">
+                    {/* Calculation Type Selection */}
+                    <div className="space-y-3">
+                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        What would you like to calculate?
+                      </Label>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div 
+                          className={`p-4 border-2 rounded-xl cursor-pointer transition-all ${calculationType === 'speed' ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-gray-300'}`}
+                          onClick={() => setCalculationType('speed')}
+                        >
+                          <div className="text-center">
+                            <div className="font-medium text-gray-900">Calculate Speed</div>
+                            <div className="text-sm text-gray-600 mt-1">From distance & time</div>
                           </div>
                         </div>
-                      )}
-
-                      {/* Speed Input */}
-                      {calculationType !== 'speed' && (
-                        <div>
-                          <Label htmlFor="speed-input" className="text-base font-medium text-gray-700 mb-2 block">
-                            Speed
-                          </Label>
-                          <div className="flex gap-2">
-                            <Input
-                              id="speed-input"
-                              type="number"
-                              value={speed}
-                              onChange={(e) => setSpeed(e.target.value)}
-                              placeholder="Enter speed"
-                              step="0.1"
-                              min="0"
-                              className="flex-1"
-                              data-testid="input-speed"
-                            />
-                            <Select value={speedUnit} onValueChange={setSpeedUnit}>
-                              <SelectTrigger className="w-24" data-testid="select-speed-unit">
-                                <SelectValue />
-                              </SelectTrigger>
-                              <SelectContent>
-                                {speedUnits.map((unit) => (
-                                  <SelectItem key={unit.value} value={unit.value}>
-                                    {unit.label}
-                                  </SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
+                        <div 
+                          className={`p-4 border-2 rounded-xl cursor-pointer transition-all ${calculationType === 'distance' ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-gray-300'}`}
+                          onClick={() => setCalculationType('distance')}
+                        >
+                          <div className="text-center">
+                            <div className="font-medium text-gray-900">Calculate Distance</div>
+                            <div className="text-sm text-gray-600 mt-1">From speed & time</div>
                           </div>
                         </div>
-                      )}
-
-                      {/* Time Input */}
-                      {calculationType !== 'time' && (
-                        <div>
-                          <Label className="text-base font-medium text-gray-700 mb-2 block">
-                            Time
-                          </Label>
-                          <div className="flex gap-2">
-                            <div className="flex-1">
-                              <Input
-                                type="number"
-                                value={hours}
-                                onChange={(e) => setHours(e.target.value)}
-                                placeholder="Hours"
-                                min="0"
-                                data-testid="input-hours"
-                              />
-                              <Label className="text-xs text-gray-500 mt-1 block">Hours</Label>
-                            </div>
-                            <div className="flex-1">
-                              <Input
-                                type="number"
-                                value={minutes}
-                                onChange={(e) => setMinutes(e.target.value)}
-                                placeholder="Minutes"
-                                min="0"
-                                max="59"
-                                data-testid="input-minutes"
-                              />
-                              <Label className="text-xs text-gray-500 mt-1 block">Minutes</Label>
-                            </div>
-                            <div className="flex-1">
-                              <Input
-                                type="number"
-                                value={seconds}
-                                onChange={(e) => setSeconds(e.target.value)}
-                                placeholder="Seconds"
-                                min="0"
-                                max="59"
-                                data-testid="input-seconds"
-                              />
-                              <Label className="text-xs text-gray-500 mt-1 block">Seconds</Label>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Weight Input (optional) */}
-                      <div>
-                        <Label htmlFor="weight" className="text-base font-medium text-gray-700 mb-2 block">
-                          Weight (optional, for calorie calculation)
-                        </Label>
-                        <div className="flex gap-2">
-                          <Input
-                            id="weight"
-                            type="number"
-                            value={weight}
-                            onChange={(e) => setWeight(e.target.value)}
-                            placeholder="Enter weight"
-                            step="0.1"
-                            min="0"
-                            className="flex-1"
-                            data-testid="input-weight"
-                          />
-                          <div className="w-20 flex items-center justify-center text-sm text-gray-500 border rounded-md">
-                            {distanceUnit === 'miles' ? 'lbs' : 'kg'}
+                        <div 
+                          className={`p-4 border-2 rounded-xl cursor-pointer transition-all ${calculationType === 'time' ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-gray-300'}`}
+                          onClick={() => setCalculationType('time')}
+                        >
+                          <div className="text-center">
+                            <div className="font-medium text-gray-900">Calculate Time</div>
+                            <div className="text-sm text-gray-600 mt-1">From speed & distance</div>
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    {/* Actions */}
-                    <div className="flex flex-col justify-end space-y-4">
+                    {/* Distance Input */}
+                    {calculationType !== 'distance' && (
+                      <div className="space-y-3">
+                        <Label htmlFor="distance-input" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                          Distance
+                        </Label>
+                        <div className="flex gap-3">
+                          <Input
+                            id="distance-input"
+                            type="number"
+                            value={distance}
+                            onChange={(e) => setDistance(e.target.value)}
+                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                            placeholder="Enter distance"
+                            step="0.01"
+                            min="0"
+                            data-testid="input-distance"
+                          />
+                          <Select value={distanceUnit} onValueChange={setDistanceUnit}>
+                            <SelectTrigger className="h-14 w-32 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-distance-unit">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {distanceUnits.map((unit) => (
+                                <SelectItem key={unit.value} value={unit.value}>
+                                  {unit.label}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Speed Input */}
+                    {calculationType !== 'speed' && (
+                      <div className="space-y-3">
+                        <Label htmlFor="speed-input" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                          Speed
+                        </Label>
+                        <div className="flex gap-3">
+                          <Input
+                            id="speed-input"
+                            type="number"
+                            value={speed}
+                            onChange={(e) => setSpeed(e.target.value)}
+                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                            placeholder="Enter speed"
+                            step="0.1"
+                            min="0"
+                            data-testid="input-speed"
+                          />
+                          <Select value={speedUnit} onValueChange={setSpeedUnit}>
+                            <SelectTrigger className="h-14 w-24 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-speed-unit">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {speedUnits.map((unit) => (
+                                <SelectItem key={unit.value} value={unit.value}>
+                                  {unit.label}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Time Input */}
+                    {calculationType !== 'time' && (
+                      <div className="space-y-3">
+                        <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                          Time
+                        </Label>
+                        <div className="grid grid-cols-3 gap-3">
+                          <div>
+                            <Input
+                              type="number"
+                              value={hours}
+                              onChange={(e) => setHours(e.target.value)}
+                              className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              placeholder="0"
+                              min="0"
+                              data-testid="input-hours"
+                            />
+                            <Label className="text-xs text-gray-500 mt-1 block text-center">Hours</Label>
+                          </div>
+                          <div>
+                            <Input
+                              type="number"
+                              value={minutes}
+                              onChange={(e) => setMinutes(e.target.value)}
+                              className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              placeholder="0"
+                              min="0"
+                              max="59"
+                              data-testid="input-minutes"
+                            />
+                            <Label className="text-xs text-gray-500 mt-1 block text-center">Minutes</Label>
+                          </div>
+                          <div>
+                            <Input
+                              type="number"
+                              value={seconds}
+                              onChange={(e) => setSeconds(e.target.value)}
+                              className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              placeholder="0"
+                              min="0"
+                              max="59"
+                              data-testid="input-seconds"
+                            />
+                            <Label className="text-xs text-gray-500 mt-1 block text-center">Seconds</Label>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Weight Input (optional) */}
+                    <div className="space-y-4 bg-gray-50 rounded-xl p-6">
+                      <Label htmlFor="weight" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Weight (optional, for calorie calculation)
+                      </Label>
+                      <div className="flex gap-3">
+                        <Input
+                          id="weight"
+                          type="number"
+                          value={weight}
+                          onChange={(e) => setWeight(e.target.value)}
+                          className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          placeholder="Enter weight"
+                          step="0.1"
+                          min="0"
+                          data-testid="input-weight"
+                        />
+                        <div className="h-14 w-20 flex items-center justify-center text-sm text-gray-500 border-2 border-gray-200 rounded-xl">
+                          {distanceUnit === 'miles' ? 'lbs' : 'kg'}
+                        </div>
+                      </div>
+                      <p className="text-sm text-gray-600">
+                        Enter your weight to calculate estimated calories burned during your ride
+                      </p>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex flex-col sm:flex-row gap-4 pt-6">
                       <Button
                         onClick={calculationType === 'speed' ? calculateSpeed : calculationType === 'distance' ? calculateDistance : calculateTime}
-                        className="bg-blue-600 hover:bg-blue-700 text-white"
+                        className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                         data-testid="button-calculate"
                       >
-                        <Calculator className="w-4 h-4 mr-2" />
                         Calculate {calculationType === 'speed' ? 'Speed' : calculationType === 'distance' ? 'Distance' : 'Time'}
                       </Button>
                       <Button
                         onClick={resetCalculator}
                         variant="outline"
-                        className="text-gray-600 border-gray-300 hover:bg-gray-50"
+                        className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
                         data-testid="button-reset"
                       >
-                        Reset Calculator
+                        Reset
                       </Button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Results Section */}
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Calculation Results</h2>
+
+                  {result ? (
+                    <div className="space-y-6" data-testid="results-section">
+                      {/* Generated Results Display */}
+                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
+                        <div className="text-center mb-6">
+                          <h3 className="text-xl font-semibold text-gray-900 mb-2">Your Cycling Results</h3>
+                          <p className="text-gray-600">
+                            For {result.distance} {result.distanceUnit} in {formatTime(result.totalSeconds)}
+                          </p>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-4 mb-6">
+                          <div className="text-center p-4 bg-blue-50 rounded-lg">
+                            <div className="text-2xl font-bold text-blue-600" data-testid="result-speed-mph">
+                              {result.speedMph}
+                            </div>
+                            <div className="text-sm text-blue-700 font-medium">mph</div>
+                          </div>
+
+                          <div className="text-center p-4 bg-green-50 rounded-lg">
+                            <div className="text-2xl font-bold text-green-600" data-testid="result-speed-kmh">
+                              {result.speedKmh}
+                            </div>
+                            <div className="text-sm text-green-700 font-medium">km/h</div>
+                          </div>
+                        </div>
+
+                        {result.caloriesBurned && (
+                          <div className="text-center p-4 bg-purple-50 rounded-lg">
+                            <div className="text-2xl font-bold text-purple-600" data-testid="result-calories">
+                              {result.caloriesBurned}
+                            </div>
+                            <div className="text-sm text-purple-700 font-medium">calories burned</div>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Action Buttons */}
+                      <div className="flex flex-col sm:flex-row gap-4">
+                        <Button
+                          onClick={handleCopy}
+                          className="flex-1 h-12 bg-green-600 hover:bg-green-700 text-white font-medium rounded-xl"
+                          data-testid="button-copy-results"
+                        >
+                          Copy Results
+                        </Button>
+                        <Button
+                          onClick={handleClear}
+                          variant="outline"
+                          className="flex-1 h-12 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-medium rounded-xl"
+                          data-testid="button-clear-results"
+                        >
+                          Clear
+                        </Button>
+                      </div>
+
+                      {/* Performance Insights */}
+                      <div className="bg-white rounded-xl p-6 shadow-sm" data-testid="performance-insights">
+                        <h3 className="font-bold text-gray-900 mb-4 text-lg">Performance Insights</h3>
+                        <div className="space-y-3">
+                          <div className="flex justify-between items-center">
+                            <span className="text-gray-600">Distance:</span>
+                            <span className="font-medium">{result.distance} {result.distanceUnit}</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-gray-600">Total Time:</span>
+                            <span className="font-medium">{formatTime(result.totalSeconds)}</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-gray-600">Average Speed:</span>
+                            <span className="font-medium">{result.speedMph} mph ({result.speedKmh} km/h)</span>
+                          </div>
+                          {result.caloriesBurned && (
+                            <div className="flex justify-between items-center">
+                              <span className="text-gray-600">Calories Burned:</span>
+                              <span className="font-medium">{result.caloriesBurned} cal</span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="text-center py-16" data-testid="no-results">
+                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <div className="text-3xl font-bold text-gray-400">🚴</div>
+                      </div>
+                      <p className="text-gray-500 text-lg">Configure settings and calculate to see your cycling results</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* SEO Content Section */}
+          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">What is a Cycling Speed Calculator?</h3>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    A cycling speed calculator is a specialized tool that helps cyclists calculate their average speed, 
+                    distance traveled, or ride time based on two known variables. Our professional cycling calculator 
+                    provides accurate calculations for training, performance analysis, and ride planning.
+                  </p>
+                  <p>
+                    Whether you're a recreational cyclist, competitive athlete, or fitness enthusiast, this calculator 
+                    helps you track performance metrics, plan training sessions, and analyze ride data with precision. 
+                    The tool supports multiple units and provides additional insights like calorie burn estimation.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Why Use a Cycling Speed Calculator?</h3>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    Cycling speed calculations are essential for training optimization, performance tracking, and goal 
+                    setting. Understanding your cycling metrics helps improve training efficiency and provides valuable 
+                    data for progress monitoring.
+                  </p>
+                  <ul className="space-y-2 list-disc list-inside">
+                    <li>Track and analyze cycling performance over time</li>
+                    <li>Plan training sessions with specific speed targets</li>
+                    <li>Calculate calories burned during cycling activities</li>
+                    <li>Compare performance across different routes and conditions</li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Calculator Features</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Calculate speed from distance and time inputs</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Calculate distance from speed and time values</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Calculate ride time from speed and distance</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Multiple unit support (miles, kilometers, meters)</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Calorie burn estimation based on weight and intensity</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Professional Applications</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Training session planning and optimization</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Performance analysis and progress tracking</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Event preparation and pacing strategies</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Fitness goal setting and achievement tracking</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Commuting time and route planning</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Additional SEO Content Sections */}
+          <div className="mt-12 space-y-8">
+            {/* Cycling Speed Ranges */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Average Cycling Speeds by Category</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Recreational Cycling</h4>
+                    <p className="text-gray-600">
+                      <span className="font-medium">8-12 mph (13-19 km/h)</span><br />
+                      Leisurely rides on bike paths, park cycling, and casual neighborhood tours. 
+                      Perfect for beginners and relaxed family outings.
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Commuting Cycling</h4>
+                    <p className="text-gray-600">
+                      <span className="font-medium">12-16 mph (19-26 km/h)</span><br />
+                      Urban cycling with traffic considerations, mixed terrain, and stop-and-go 
+                      conditions. Typical for daily commuters.
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Fitness Cycling</h4>
+                    <p className="text-gray-600">
+                      <span className="font-medium">16-20 mph (26-32 km/h)</span><br />
+                      Training rides focused on fitness improvement, road cycling for exercise, 
+                      and structured workout sessions.
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Competitive Cycling</h4>
+                    <p className="text-gray-600">
+                      <span className="font-medium">20-25 mph (32-40 km/h)</span><br />
+                      Racing pace, group rides, and competitive training. Requires significant 
+                      fitness and cycling experience.
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Professional Racing</h4>
+                    <p className="text-gray-600">
+                      <span className="font-medium">25+ mph (40+ km/h)</span><br />
+                      Elite-level racing speeds achieved by professional cyclists in optimal 
+                      conditions with aerodynamic equipment.
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Mountain Biking</h4>
+                    <p className="text-gray-600">
+                      <span className="font-medium">6-12 mph (10-19 km/h)</span><br />
+                      Off-road cycling on technical terrain, trails, and varying elevation. 
+                      Speed varies significantly with trail difficulty.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* How to Use Guide */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">Calculate Speed</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <p className="text-sm">
+                      Enter your distance traveled and time taken to calculate your average cycling speed. 
+                      This is most useful for analyzing completed rides.
+                    </p>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-green-800 text-sm">Steps:</h4>
+                      <ol className="text-xs space-y-1 list-decimal list-inside text-green-700">
+                        <li>Select "Calculate Speed"</li>
+                        <li>Enter distance and unit</li>
+                        <li>Enter time (hours, minutes, seconds)</li>
+                        <li>Add weight for calorie calculation</li>
+                        <li>Click calculate for results</li>
+                      </ol>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              {/* Results Section */}
-              {result && (
-                <Card className="mt-8 bg-blue-50 border-blue-200" data-testid="results-section">
-                  <CardContent className="p-8">
-                    <div className="text-center mb-6">
-                      <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <Bike className="w-8 h-8 text-blue-600" />
-                      </div>
-                      <h3 className="text-2xl font-semibold text-gray-900 mb-2">Your Cycling Results</h3>
-                      <p className="text-gray-600">
-                        For {result.distance} {result.distanceUnit} in {formatTime(result.totalSeconds)}
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">Calculate Distance</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <p className="text-sm">
+                      Enter your target speed and available time to calculate how far you can travel. 
+                      Perfect for planning rides and setting distance goals.
+                    </p>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-blue-800 text-sm">Steps:</h4>
+                      <ol className="text-xs space-y-1 list-decimal list-inside text-blue-700">
+                        <li>Select "Calculate Distance"</li>
+                        <li>Enter target speed and unit</li>
+                        <li>Enter available time</li>
+                        <li>Choose distance unit</li>
+                        <li>Calculate to see distance</li>
+                      </ol>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">Calculate Time</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <p className="text-sm">
+                      Enter your target distance and planned speed to calculate required ride time. 
+                      Essential for schedule planning and event preparation.
+                    </p>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-purple-800 text-sm">Steps:</h4>
+                      <ol className="text-xs space-y-1 list-decimal list-inside text-purple-700">
+                        <li>Select "Calculate Time"</li>
+                        <li>Enter distance and unit</li>
+                        <li>Enter planned speed</li>
+                        <li>Calculate for time estimate</li>
+                        <li>Use for ride planning</li>
+                      </ol>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Performance Factors */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Factors Affecting Cycling Speed</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-4 text-gray-600">
+                    <h4 className="font-semibold text-gray-800 mb-2">Environmental Factors</h4>
+                    <ul className="space-y-2 text-sm">
+                      <li><span className="font-medium">Wind Conditions:</span> Headwinds can reduce speed by 20-30%, while tailwinds can increase it significantly</li>
+                      <li><span className="font-medium">Terrain:</span> Hills, mountains, and elevation changes dramatically impact average speed</li>
+                      <li><span className="font-medium">Road Surface:</span> Smooth pavement vs. rough roads, gravel, or off-road conditions</li>
+                      <li><span className="font-medium">Weather:</span> Temperature, humidity, and precipitation affect performance and comfort</li>
+                    </ul>
+                    <h4 className="font-semibold text-gray-800 mb-2 mt-4">Equipment Factors</h4>
+                    <ul className="space-y-2 text-sm">
+                      <li><span className="font-medium">Bike Type:</span> Road bikes are fastest, followed by hybrid, mountain, and electric bikes</li>
+                      <li><span className="font-medium">Tire Pressure:</span> Properly inflated tires reduce rolling resistance and improve speed</li>
+                      <li><span className="font-medium">Aerodynamics:</span> Riding position, clothing, and bike design affect wind resistance</li>
+                    </ul>
+                  </div>
+                  <div className="space-y-4 text-gray-600">
+                    <h4 className="font-semibold text-gray-800 mb-2">Rider Factors</h4>
+                    <ul className="space-y-2 text-sm">
+                      <li><span className="font-medium">Fitness Level:</span> Cardiovascular fitness and muscle strength directly impact sustainable speed</li>
+                      <li><span className="font-medium">Experience:</span> Cycling technique, pacing, and efficiency improve with practice</li>
+                      <li><span className="font-medium">Body Weight:</span> Lighter riders typically climb faster, while heavier riders may have more power on flats</li>
+                      <li><span className="font-medium">Nutrition:</span> Proper fueling before and during long rides maintains performance</li>
+                    </ul>
+                    <h4 className="font-semibold text-gray-800 mb-2 mt-4">Training Factors</h4>
+                    <ul className="space-y-2 text-sm">
+                      <li><span className="font-medium">Endurance Training:</span> Long rides at moderate intensity build aerobic capacity</li>
+                      <li><span className="font-medium">Interval Training:</span> High-intensity intervals improve power and speed</li>
+                      <li><span className="font-medium">Recovery:</span> Adequate rest allows for adaptation and performance improvement</li>
+                    </ul>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* FAQ Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">What's a good average cycling speed for beginners?</h4>
+                      <p className="text-gray-600 text-sm">
+                        For beginners, 8-12 mph (13-19 km/h) is a reasonable starting point. Focus on building 
+                        endurance and comfort on the bike before worrying about speed. Gradually increase pace 
+                        as fitness and confidence improve.
                       </p>
                     </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                      <div className="text-center p-4 bg-white rounded-lg border border-blue-200">
-                        <Gauge className="w-8 h-8 text-blue-600 mx-auto mb-2" />
-                        <div className="text-2xl font-bold text-gray-900" data-testid="result-speed-mph">
-                          {result.speedMph}
-                        </div>
-                        <div className="text-sm text-gray-600">mph</div>
-                      </div>
-
-                      <div className="text-center p-4 bg-white rounded-lg border border-blue-200">
-                        <Gauge className="w-8 h-8 text-blue-600 mx-auto mb-2" />
-                        <div className="text-2xl font-bold text-gray-900" data-testid="result-speed-kmh">
-                          {result.speedKmh}
-                        </div>
-                        <div className="text-sm text-gray-600">km/h</div>
-                      </div>
-
-                      <div className="text-center p-4 bg-white rounded-lg border border-blue-200">
-                        <Clock className="w-8 h-8 text-blue-600 mx-auto mb-2" />
-                        <div className="text-2xl font-bold text-gray-900" data-testid="result-time">
-                          {formatTime(result.totalSeconds)}
-                        </div>
-                        <div className="text-sm text-gray-600">total time</div>
-                      </div>
-
-                      {result.caloriesBurned && (
-                        <div className="text-center p-4 bg-white rounded-lg border border-blue-200">
-                          <Calculator className="w-8 h-8 text-blue-600 mx-auto mb-2" />
-                          <div className="text-2xl font-bold text-gray-900" data-testid="result-calories">
-                            {result.caloriesBurned}
-                          </div>
-                          <div className="text-sm text-gray-600">calories burned</div>
-                        </div>
-                      )}
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How do I improve my cycling speed?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Improve speed through consistent training, interval workouts, proper bike fit, 
+                        maintaining optimal tire pressure, improving aerodynamics, and building both 
+                        cardiovascular fitness and leg strength.
+                      </p>
                     </div>
-                  </CardContent>
-                </Card>
-              )}
-
-              {/* Educational Content */}
-              <div className="mt-12 space-y-8">
-                {/* How to Use */}
-                <Card className="bg-white shadow-lg">
-                  <CardContent className="p-8">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-6">How to Use the Cycling Speed Calculator</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      <div className="text-center">
-                        <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                          <Gauge className="w-8 h-8 text-blue-600" />
-                        </div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">Calculate Speed</h3>
-                        <p className="text-gray-600">
-                          Enter your distance and time to calculate your average cycling speed.
-                        </p>
-                      </div>
-                      
-                      <div className="text-center">
-                        <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                          <Calculator className="w-8 h-8 text-blue-600" />
-                        </div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">Calculate Distance</h3>
-                        <p className="text-gray-600">
-                          Enter your speed and time to calculate the distance you'll travel.
-                        </p>
-                      </div>
-                      
-                      <div className="text-center">
-                        <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                          <Clock className="w-8 h-8 text-blue-600" />
-                        </div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">Calculate Time</h3>
-                        <p className="text-gray-600">
-                          Enter your speed and distance to calculate how long your ride will take.
-                        </p>
-                      </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Does bike type affect speed calculations?</h4>
+                      <p className="text-gray-600 text-sm">
+                        While our calculator provides accurate speed calculations regardless of bike type, 
+                        different bikes (road, mountain, hybrid) will naturally achieve different speeds 
+                        under similar conditions due to design differences.
+                      </p>
                     </div>
-                  </CardContent>
-                </Card>
-
-                {/* Average Speeds */}
-                <Card className="bg-white shadow-lg">
-                  <CardContent className="p-8">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Average Cycling Speeds</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                      <div className="p-4 border border-gray-200 rounded-lg">
-                        <h3 className="font-semibold text-gray-900 mb-2">Recreational Cycling</h3>
-                        <p className="text-sm text-gray-600 mb-2">8-12 mph (13-19 km/h)</p>
-                        <p className="text-xs text-gray-500">Leisurely rides, bike paths</p>
-                      </div>
-                      
-                      <div className="p-4 border border-gray-200 rounded-lg">
-                        <h3 className="font-semibold text-gray-900 mb-2">Commuting</h3>
-                        <p className="text-sm text-gray-600 mb-2">12-16 mph (19-26 km/h)</p>
-                        <p className="text-xs text-gray-500">Urban cycling, mixed terrain</p>
-                      </div>
-                      
-                      <div className="p-4 border border-gray-200 rounded-lg">
-                        <h3 className="font-semibold text-gray-900 mb-2">Fitness Cycling</h3>
-                        <p className="text-sm text-gray-600 mb-2">16-20 mph (26-32 km/h)</p>
-                        <p className="text-xs text-gray-500">Training rides, road cycling</p>
-                      </div>
-                      
-                      <div className="p-4 border border-gray-200 rounded-lg">
-                        <h3 className="font-semibold text-gray-900 mb-2">Competitive Cycling</h3>
-                        <p className="text-sm text-gray-600 mb-2">20-25 mph (32-40 km/h)</p>
-                        <p className="text-xs text-gray-500">Racing, group rides</p>
-                      </div>
-                      
-                      <div className="p-4 border border-gray-200 rounded-lg">
-                        <h3 className="font-semibold text-gray-900 mb-2">Professional Racing</h3>
-                        <p className="text-sm text-gray-600 mb-2">25+ mph (40+ km/h)</p>
-                        <p className="text-xs text-gray-500">Tour de France average</p>
-                      </div>
-                      
-                      <div className="p-4 border border-gray-200 rounded-lg">
-                        <h3 className="font-semibold text-gray-900 mb-2">Mountain Biking</h3>
-                        <p className="text-sm text-gray-600 mb-2">6-12 mph (10-19 km/h)</p>
-                        <p className="text-xs text-gray-500">Off-road, technical terrain</p>
-                      </div>
+                  </div>
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How accurate is the calorie calculation?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Our calorie calculation provides a reasonable estimate based on weight, speed, and 
+                        duration. Actual calories burned vary based on individual metabolism, effort level, 
+                        terrain, and environmental conditions.
+                      </p>
                     </div>
-                  </CardContent>
-                </Card>
-
-                {/* FAQ */}
-                <Card className="bg-white shadow-lg">
-                  <CardContent className="p-8">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
-                    <div className="space-y-4">
-                      <div>
-                        <h3 className="font-semibold text-gray-900 mb-2">What factors affect cycling speed?</h3>
-                        <p className="text-gray-600 text-sm">
-                          Wind conditions, terrain (hills vs flat), bike type, rider fitness, tire pressure, and weather conditions all significantly impact cycling speed.
-                        </p>
-                      </div>
-                      
-                      <div>
-                        <h3 className="font-semibold text-gray-900 mb-2">How can I improve my cycling speed?</h3>
-                        <p className="text-gray-600 text-sm">
-                          Improve through interval training, maintaining proper bike fit, reducing weight, improving aerodynamics, and consistent training.
-                        </p>
-                      </div>
-                      
-                      <div>
-                        <h3 className="font-semibold text-gray-900 mb-2">What's a good average speed for beginners?</h3>
-                        <p className="text-gray-600 text-sm">
-                          For beginners, 8-12 mph (13-19 km/h) is a good starting point. Focus on building endurance before worrying about speed.
-                        </p>
-                      </div>
-                      
-                      <div>
-                        <h3 className="font-semibold text-gray-900 mb-2">How accurate is the calorie calculation?</h3>
-                        <p className="text-gray-600 text-sm">
-                          The calorie calculation is an estimate based on average values. Actual calories burned vary based on individual factors like metabolism, effort level, and terrain.
-                        </p>
-                      </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Should I use average or maximum speed for training?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Average speed is more useful for training analysis and goal setting. It provides 
+                        a realistic measure of sustained performance over the entire ride, accounting for 
+                        stops, hills, and varying conditions.
+                      </p>
                     </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-          </section>
-        </main>
-        
-        <Footer />
-      </div>
-    </>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Can I use this calculator for indoor cycling?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Yes, the calculator works for indoor cycling when you have distance and time data. 
+                        However, indoor speeds may differ from outdoor riding due to lack of wind resistance 
+                        and terrain variations.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </main>
+
+      <Footer />
+    </div>
   );
-};
-
-export default CyclingSpeedCalculator;
+}
