@@ -130,46 +130,46 @@ export default function CurrencyPercentageChangeCalculator() {
       
       <main>
         {/* Hero Section */}
-        <section className="relative py-20 sm:py-28 lg:py-32 overflow-hidden">
+        <section className="relative py-12 sm:py-16 md:py-20 lg:py-28 xl:py-32 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
           <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="space-y-8">
-              <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
-                <span className="text-sm font-medium text-blue-700">Professional Percentage Calculator</span>
+            <div className="space-y-4 sm:space-y-6 lg:space-y-8">
+              <div className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+                <span className="text-xs sm:text-sm font-medium text-blue-700">Professional Percentage Calculator</span>
               </div>
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-slate-900 leading-tight">
                 Currency Percentage
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
                   Change Calculator
                 </span>
               </h1>
-              <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed px-2">
                 Calculate percentage changes in currency values, investments, and prices with detailed analysis and multi-currency support
               </p>
             </div>
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 py-8 sm:py-12 lg:py-16">
           {/* Main Calculator Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-2xl sm:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                 {/* Input Section */}
-                <div className="p-8 lg:p-12 space-y-8">
+                <div className="p-4 sm:p-6 md:p-8 lg:p-12 space-y-6 sm:space-y-8">
                   <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Percentage Change Configuration</h2>
-                    <p className="text-gray-600">Enter the original and new values to calculate the percentage change</p>
+                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Percentage Change Configuration</h2>
+                    <p className="text-sm sm:text-base text-gray-600">Enter the original and new values to calculate the percentage change</p>
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                     {/* Currency Selection */}
-                    <div className="space-y-3">
-                      <Label htmlFor="currency" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3 sm:col-span-2">
+                      <Label htmlFor="currency" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Currency
                       </Label>
                       <Select value={currency} onValueChange={setCurrency}>
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-currency">
+                        <SelectTrigger className="h-12 sm:h-14 border-2 border-gray-200 rounded-xl text-base sm:text-lg" data-testid="select-currency">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -187,22 +187,19 @@ export default function CurrencyPercentageChangeCalculator() {
                       </Select>
                     </div>
 
-                    {/* Empty cell for grid alignment */}
-                    <div></div>
-
                     {/* Original Value */}
-                    <div className="space-y-3">
-                      <Label htmlFor="old-value" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="old-value" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Original Value
                       </Label>
                       <div className="relative">
-                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">$</span>
                         <Input
                           id="old-value"
                           type="number"
                           value={oldValue}
                           onChange={(e) => setOldValue(e.target.value)}
-                          className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-12 sm:h-14 pl-7 sm:pl-8 text-base sm:text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
                           placeholder="1,000"
                           step="0.01"
                           data-testid="input-old-value"
@@ -211,18 +208,18 @@ export default function CurrencyPercentageChangeCalculator() {
                     </div>
 
                     {/* New Value */}
-                    <div className="space-y-3">
-                      <Label htmlFor="new-value" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="new-value" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         New Value
                       </Label>
                       <div className="relative">
-                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">$</span>
                         <Input
                           id="new-value"
                           type="number"
                           value={newValue}
                           onChange={(e) => setNewValue(e.target.value)}
-                          className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-12 sm:h-14 pl-7 sm:pl-8 text-base sm:text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
                           placeholder="1,200"
                           step="0.01"
                           data-testid="input-new-value"
@@ -232,10 +229,10 @@ export default function CurrencyPercentageChangeCalculator() {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 sm:pt-6">
                     <Button
                       onClick={calculatePercentageChange}
-                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="flex-1 h-12 sm:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-base sm:text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                       data-testid="button-calculate"
                     >
                       Calculate Change
@@ -243,7 +240,7 @@ export default function CurrencyPercentageChangeCalculator() {
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      className="h-12 sm:h-14 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-base sm:text-lg rounded-xl"
                       data-testid="button-reset"
                     >
                       Reset
@@ -252,15 +249,15 @@ export default function CurrencyPercentageChangeCalculator() {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Results</h2>
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 md:p-8 lg:p-12">
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">Results</h2>
                   
                   {result ? (
-                    <div className="space-y-6" data-testid="percentage-results">
+                    <div className="space-y-4 sm:space-y-6" data-testid="percentage-results">
                       {/* Percentage Change Highlight */}
-                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
-                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Percentage Change</div>
-                        <div className={`text-4xl font-bold ${
+                      <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border border-blue-100">
+                        <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Percentage Change</div>
+                        <div className={`text-2xl sm:text-3xl lg:text-4xl font-bold ${
                           result.changeType === 'increase' ? 'text-green-600' : 
                           result.changeType === 'decrease' ? 'text-red-600' : 'text-gray-600'
                         }`} data-testid="text-percentage-change">
@@ -269,35 +266,35 @@ export default function CurrencyPercentageChangeCalculator() {
                       </div>
 
                       {/* Change Breakdown */}
-                      <div className="space-y-4">
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Original Value</span>
-                            <span className="font-bold text-gray-900" data-testid="text-original-value">
+                      <div className="space-y-3 sm:space-y-4">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Original Value</span>
+                            <span className="font-bold text-gray-900 text-sm sm:text-base break-all" data-testid="text-original-value">
                               {formatCurrency(result.oldValue)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">New Value</span>
-                            <span className="font-bold text-gray-900" data-testid="text-new-value">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">New Value</span>
+                            <span className="font-bold text-gray-900 text-sm sm:text-base break-all" data-testid="text-new-value">
                               {formatCurrency(result.newValue)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Absolute Change</span>
-                            <span className={`font-bold ${result.absoluteChange >= 0 ? 'text-green-600' : 'text-red-600'}`} data-testid="text-absolute-change">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Absolute Change</span>
+                            <span className={`font-bold text-sm sm:text-base break-all ${result.absoluteChange >= 0 ? 'text-green-600' : 'text-red-600'}`} data-testid="text-absolute-change">
                               {result.absoluteChange >= 0 ? '+' : ''}{formatCurrency(result.absoluteChange)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Change Type</span>
-                            <span className={`font-bold capitalize ${
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Change Type</span>
+                            <span className={`font-bold capitalize text-sm sm:text-base ${
                               result.changeType === 'increase' ? 'text-green-600' : 
                               result.changeType === 'decrease' ? 'text-red-600' : 'text-gray-600'
                             }`} data-testid="text-change-type">
@@ -308,11 +305,11 @@ export default function CurrencyPercentageChangeCalculator() {
                       </div>
                     </div>
                   ) : (
-                    <div className="text-center py-16" data-testid="no-results">
-                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <div className="text-3xl font-bold text-gray-400">%</div>
+                    <div className="text-center py-12 sm:py-16" data-testid="no-results">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
+                        <div className="text-2xl sm:text-3xl font-bold text-gray-400">%</div>
                       </div>
-                      <p className="text-gray-500 text-lg">Enter values and calculate to see percentage change results</p>
+                      <p className="text-gray-500 text-base sm:text-lg px-4">Enter values and calculate to see percentage change results</p>
                     </div>
                   )}
                 </div>
@@ -321,11 +318,11 @@ export default function CurrencyPercentageChangeCalculator() {
           </Card>
 
           {/* SEO Content Section */}
-          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">What is Percentage Change?</h3>
-                <div className="space-y-4 text-gray-600">
+          <div className="mt-8 sm:mt-12 lg:mt-16 grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 lg:p-8">
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">What is Percentage Change?</h3>
+                <div className="space-y-3 sm:space-y-4 text-gray-600 text-sm sm:text-base">
                   <p>
                     Percentage change is a mathematical concept that measures the degree of change in a value over time, 
                     expressed as a percentage of the original value. This metric is fundamental in finance, business analysis, 
@@ -340,10 +337,10 @@ export default function CurrencyPercentageChangeCalculator() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">How to Calculate Percentage Change?</h3>
-                <div className="space-y-4 text-gray-600">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 lg:p-8">
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">How to Calculate Percentage Change?</h3>
+                <div className="space-y-3 sm:space-y-4 text-gray-600 text-sm sm:text-base">
                   <p>
                     The percentage change formula is: Percentage Change = ((New Value - Old Value) / Old Value) × 100
                   </p>
