@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useLocation } from 'wouter';
 import { searchTools } from '@/lib/search';
 import { tools } from '@/data/tools';
-import { Search, Shield, Zap, Users } from 'lucide-react';
+import { Search } from 'lucide-react';
 
 const HeroSection = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -55,28 +55,11 @@ const HeroSection = () => {
     <section className="gradient-hero text-white py-20 lg:py-28" data-testid="hero-section">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight" data-testid="text-hero-title">
-          79 Professional Online Tools
-          <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-100 to-white">Completely Free</span>
+          Free Tools to Make Everything Simple
         </h1>
-        <p className="text-xl lg:text-2xl text-blue-100 mb-8 max-w-4xl mx-auto leading-relaxed" data-testid="text-hero-subtitle">
-          Finance calculators, text processors, and health trackers - all designed to boost your productivity
+        <p className="text-xl lg:text-2xl text-blue-100 mb-12 max-w-4xl mx-auto leading-relaxed" data-testid="text-hero-subtitle">
+          We offer finance, text, and health online tools to make your life easier. No sign-up required.
         </p>
-        
-        {/* Trust Bullets */}
-        <div className="flex flex-wrap justify-center items-center gap-6 mb-12 max-w-4xl mx-auto">
-          <div className="flex items-center bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 border border-white/30" data-testid="hero-trust-free">
-            <Shield className="text-green-300 mr-2" size={18} />
-            <span className="text-white font-medium text-sm">100% Free</span>
-          </div>
-          <div className="flex items-center bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 border border-white/30" data-testid="hero-trust-no-signup">
-            <Users className="text-blue-300 mr-2" size={18} />
-            <span className="text-white font-medium text-sm">No Sign-up</span>
-          </div>
-          <div className="flex items-center bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 border border-white/30" data-testid="hero-trust-instant">
-            <Zap className="text-yellow-300 mr-2" size={18} />
-            <span className="text-white font-medium text-sm">Instant Results</span>
-          </div>
-        </div>
         
         {/* Search Bar */}
         <div className="max-w-2xl mx-auto mb-16 relative">
@@ -165,7 +148,7 @@ const HeroSection = () => {
             <div className="text-blue-100 text-sm lg:text-base">Files Converted</div>
           </div>
           <div className="text-center" data-testid="stat-online-tools">
-            <div className="text-3xl lg:text-4xl font-bold mb-2">79</div>
+            <div className="text-3xl lg:text-4xl font-bold mb-2">150+</div>
             <div className="text-blue-100 text-sm lg:text-base">Online Tools</div>
           </div>
           <div className="text-center" data-testid="stat-calculations-done">
