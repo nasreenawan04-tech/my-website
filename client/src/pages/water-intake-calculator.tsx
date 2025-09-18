@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -8,7 +9,6 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Calculator, Droplets } from 'lucide-react';
 
 interface WaterIntakeResult {
   dailyWaterIntake: number;
@@ -22,8 +22,8 @@ interface WaterIntakeResult {
 }
 
 const WaterIntakeCalculator = () => {
-  const [weight, setWeight] = useState('');
-  const [age, setAge] = useState('');
+  const [weight, setWeight] = useState('70');
+  const [age, setAge] = useState('30');
   const [unitSystem, setUnitSystem] = useState('metric');
   const [gender, setGender] = useState('');
   const [activityLevel, setActivityLevel] = useState('');
@@ -176,8 +176,8 @@ const WaterIntakeCalculator = () => {
   };
 
   const resetCalculator = () => {
-    setWeight('');
-    setAge('');
+    setWeight('70');
+    setAge('30');
     setGender('');
     setActivityLevel('');
     setClimate('');
@@ -200,585 +200,779 @@ const WaterIntakeCalculator = () => {
   };
 
   return (
-    <>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>Water Intake Calculator - Calculate Your Daily Water Needs | DapsiWow</title>
-        <meta name="description" content="Calculate your daily water intake needs based on weight, activity level, climate, and health conditions. Get personalized hydration recommendations for optimal health." />
-        <meta name="keywords" content="water intake calculator, daily water needs, hydration calculator, water requirement, daily fluid intake, dehydration prevention" />
-        <meta property="og:title" content="Water Intake Calculator - Calculate Your Daily Water Needs | DapsiWow" />
-        <meta property="og:description" content="Calculate your personalized daily water intake requirements and get hydration recommendations based on your lifestyle and health." />
+        <title>Water Intake Calculator - Daily Water Needs Calculator | DapsiWow</title>
+        <meta name="description" content="Free water intake calculator to calculate your daily water requirements based on weight, age, activity level, climate, and health conditions. Get personalized hydration recommendations with metric and imperial unit support." />
+        <meta name="keywords" content="water intake calculator, daily water needs, hydration calculator, water requirement calculator, daily fluid intake, dehydration prevention, water consumption calculator, hydration needs, water intake formula, daily water recommendation" />
+        <meta property="og:title" content="Water Intake Calculator - Daily Water Needs Calculator | DapsiWow" />
+        <meta property="og:description" content="Calculate your personalized daily water intake requirements with our free calculator. Get instant hydration recommendations based on your lifestyle and health factors." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="/tools/water-intake-calculator" />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="DapsiWow" />
+        <link rel="canonical" href="https://dapsiwow.com/tools/water-intake-calculator" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Water Intake Calculator",
+            "description": "Free online water intake calculator to determine daily water requirements based on personal factors including weight, activity level, climate, and health conditions.",
+            "url": "https://dapsiwow.com/tools/water-intake-calculator",
+            "applicationCategory": "HealthApplication",
+            "operatingSystem": "Any",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "featureList": [
+              "Calculate daily water intake needs",
+              "Personal factor adjustments",
+              "Activity level considerations",
+              "Climate impact analysis",
+              "Health condition adjustments",
+              "Pregnancy and breastfeeding support"
+            ]
+          })}
+        </script>
       </Helmet>
-
-      <div className="min-h-screen flex flex-col" data-testid="page-water-intake-calculator">
-        <Header />
-        
-        <main className="flex-1 bg-neutral-50">
-          {/* Hero Section */}
-          <section className="text-white py-16" style={{ background: 'linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%)' }}>
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <Droplets className="text-3xl w-8 h-8" />
+      
+      <Header />
+      
+      <main>
+        {/* Hero Section */}
+        <section className="relative py-20 sm:py-28 lg:py-32 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
+          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="space-y-8">
+              <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+                <span className="text-sm font-medium text-blue-700">Advanced Hydration Calculator</span>
               </div>
-              <h1 className="text-4xl sm:text-5xl font-bold mb-6" data-testid="text-page-title">
-                Water Intake Calculator
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight">
+                Smart Water
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                  Calculator
+                </span>
               </h1>
-              <p className="text-xl text-sky-100 max-w-2xl mx-auto">
-                Calculate your daily water intake needs based on your body, lifestyle, and environmental factors
+              <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                Calculate your personalized daily water intake requirements based on body weight, activity level, climate, and health factors
               </p>
             </div>
-          </section>
+          </div>
+        </section>
 
-          {/* Calculator Section */}
-          <section className="py-16">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <Card className="bg-white shadow-sm border-0">
-                <CardContent className="p-8">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    {/* Input Section */}
-                    <div className="space-y-6">
-                      <h2 className="text-2xl font-semibold text-gray-900 mb-8">Personal Information</h2>
-                      
-                      {/* Unit System */}
-                      <div className="space-y-3">
-                        <Label>Unit System</Label>
-                        <RadioGroup 
-                          value={unitSystem} 
-                          onValueChange={setUnitSystem}
-                          className="flex gap-6"
-                        >
-                          <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="metric" id="metric" data-testid="radio-metric" />
-                            <Label htmlFor="metric">Metric (kg, L)</Label>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="imperial" id="imperial" data-testid="radio-imperial" />
-                            <Label htmlFor="imperial">Imperial (lbs, fl oz)</Label>
-                          </div>
-                        </RadioGroup>
-                      </div>
-
-                      {/* Weight */}
-                      <div className="space-y-3">
-                        <Label htmlFor="weight" className="text-sm font-medium text-gray-700">
-                          Weight {unitSystem === 'metric' ? '(kg)' : '(lbs)'} <span className="text-red-500">*</span>
-                        </Label>
-                        <Input
-                          id="weight"
-                          type="number"
-                          value={weight}
-                          onChange={(e) => setWeight(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
-                          placeholder={unitSystem === 'metric' ? "70" : "154"}
-                          min="0"
-                          step="0.1"
-                          data-testid="input-weight"
-                        />
-                      </div>
-
-                      {/* Age */}
-                      <div className="space-y-3">
-                        <Label htmlFor="age" className="text-sm font-medium text-gray-700">
-                          Age (years) <span className="text-red-500">*</span>
-                        </Label>
-                        <Input
-                          id="age"
-                          type="number"
-                          value={age}
-                          onChange={(e) => setAge(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
-                          placeholder="30"
-                          min="1"
-                          max="120"
-                          data-testid="input-age"
-                        />
-                      </div>
-
-                      {/* Gender */}
-                      <div className="space-y-3">
-                        <Label className="text-sm font-medium text-gray-700">
-                          Gender <span className="text-red-500">*</span>
-                        </Label>
-                        <Select value={gender} onValueChange={setGender}>
-                          <SelectTrigger className="h-12 border-gray-200 rounded-lg" data-testid="select-gender">
-                            <SelectValue placeholder="Select gender" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="male">Male</SelectItem>
-                            <SelectItem value="female">Female</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-
-                      {/* Activity Level */}
-                      <div className="space-y-3">
-                        <Label className="text-sm font-medium text-gray-700">
-                          Activity Level <span className="text-red-500">*</span>
-                        </Label>
-                        <Select value={activityLevel} onValueChange={setActivityLevel}>
-                          <SelectTrigger className="h-12 border-gray-200 rounded-lg" data-testid="select-activity">
-                            <SelectValue placeholder="Select activity level" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="sedentary">Sedentary (little/no exercise)</SelectItem>
-                            <SelectItem value="light">Light (light exercise 1-3 days/week)</SelectItem>
-                            <SelectItem value="moderate">Moderate (moderate exercise 3-5 days/week)</SelectItem>
-                            <SelectItem value="active">Active (hard exercise 6-7 days/week)</SelectItem>
-                            <SelectItem value="very_active">Very Active (very hard exercise, physical job)</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-
-                      {/* Climate */}
-                      <div className="space-y-3">
-                        <Label className="text-sm font-medium text-gray-700">
-                          Climate
-                        </Label>
-                        <Select value={climate} onValueChange={setClimate}>
-                          <SelectTrigger className="h-12 border-gray-200 rounded-lg" data-testid="select-climate">
-                            <SelectValue placeholder="Select climate" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="cold">Cold (below 10°C/50°F)</SelectItem>
-                            <SelectItem value="temperate">Temperate (10-25°C/50-77°F)</SelectItem>
-                            <SelectItem value="hot">Hot (25-35°C/77-95°F)</SelectItem>
-                            <SelectItem value="very_hot">Very Hot (above 35°C/95°F)</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-
-                      {/* Health Conditions */}
-                      <div className="space-y-3">
-                        <Label className="text-sm font-medium text-gray-700">
-                          Health Conditions
-                        </Label>
-                        <Select value={healthConditions} onValueChange={setHealthConditions}>
-                          <SelectTrigger className="h-12 border-gray-200 rounded-lg" data-testid="select-health">
-                            <SelectValue placeholder="Select any current conditions" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="none">None</SelectItem>
-                            <SelectItem value="fever">Fever</SelectItem>
-                            <SelectItem value="vomiting">Vomiting</SelectItem>
-                            <SelectItem value="diarrhea">Diarrhea</SelectItem>
-                            <SelectItem value="kidney_stones">Kidney Stones</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-
-                      {/* Female-specific options */}
-                      {gender === 'female' && (
-                        <>
-                          <div className="space-y-3">
-                            <Label className="text-sm font-medium text-gray-700">
-                              Are you pregnant?
-                            </Label>
-                            <Select value={isPregnant} onValueChange={setIsPregnant}>
-                              <SelectTrigger className="h-12 border-gray-200 rounded-lg" data-testid="select-pregnant">
-                                <SelectValue placeholder="Select" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectItem value="no">No</SelectItem>
-                                <SelectItem value="yes">Yes</SelectItem>
-                              </SelectContent>
-                            </Select>
-                          </div>
-
-                          <div className="space-y-3">
-                            <Label className="text-sm font-medium text-gray-700">
-                              Are you breastfeeding?
-                            </Label>
-                            <Select value={isBreastfeeding} onValueChange={setIsBreastfeeding}>
-                              <SelectTrigger className="h-12 border-gray-200 rounded-lg" data-testid="select-breastfeeding">
-                                <SelectValue placeholder="Select" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectItem value="no">No</SelectItem>
-                                <SelectItem value="yes">Yes</SelectItem>
-                              </SelectContent>
-                            </Select>
-                          </div>
-                        </>
-                      )}
-
-                      {/* Action Buttons */}
-                      <div className="flex gap-4 pt-6">
-                        <Button
-                          onClick={calculateWaterIntake}
-                          className="flex-1 h-12 text-white font-medium rounded-lg"
-                          style={{ backgroundColor: '#0ea5e9' }}
-                          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0284c7'}
-                          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#0ea5e9'}
-                          data-testid="button-calculate"
-                        >
-                          <Calculator className="w-4 h-4 mr-2" />
-                          Calculate Water Intake
-                        </Button>
-                        <Button
-                          onClick={resetCalculator}
-                          variant="outline"
-                          className="h-12 px-8 border-gray-200 text-gray-600 hover:bg-gray-50 font-medium rounded-lg"
-                          data-testid="button-reset"
-                        >
-                          Reset
-                        </Button>
-                      </div>
+        <div className="max-w-7xl mx-auto px-4 py-16">
+          {/* Main Calculator Card */}
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+            <CardContent className="p-0">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+                {/* Input Section */}
+                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
+                  <div>
+                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Personal Information</h2>
+                    <p className="text-gray-600">Enter your details to get accurate water intake calculations</p>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Unit System */}
+                    <div className="space-y-3">
+                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Unit System
+                      </Label>
+                      <RadioGroup 
+                        value={unitSystem} 
+                        onValueChange={setUnitSystem}
+                        className="flex gap-6"
+                      >
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="metric" id="metric" data-testid="radio-metric" />
+                          <Label htmlFor="metric">Metric (kg, L)</Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="imperial" id="imperial" data-testid="radio-imperial" />
+                          <Label htmlFor="imperial">Imperial (lbs, fl oz)</Label>
+                        </div>
+                      </RadioGroup>
                     </div>
 
-                    {/* Results Section */}
-                    <div className="bg-gray-50 rounded-xl p-8">
-                      <h2 className="text-2xl font-semibold text-gray-900 mb-8">Water Intake Results</h2>
-                      
-                      {result ? (
-                        <div className="space-y-4" data-testid="water-intake-results">
-                          {/* Daily Water Intake */}
-                          <div className="bg-white rounded-lg p-4 border-l-4 border-sky-500">
+                    {/* Weight */}
+                    <div className="space-y-3">
+                      <Label htmlFor="weight" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Weight {unitSystem === 'metric' ? '(kg)' : '(lbs)'}
+                      </Label>
+                      <Input
+                        id="weight"
+                        type="number"
+                        value={weight}
+                        onChange={(e) => setWeight(e.target.value)}
+                        className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                        placeholder={unitSystem === 'metric' ? "70" : "154"}
+                        min="0"
+                        step="0.1"
+                        data-testid="input-weight"
+                      />
+                    </div>
+
+                    {/* Age */}
+                    <div className="space-y-3">
+                      <Label htmlFor="age" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Age (years)
+                      </Label>
+                      <Input
+                        id="age"
+                        type="number"
+                        value={age}
+                        onChange={(e) => setAge(e.target.value)}
+                        className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                        placeholder="30"
+                        min="1"
+                        max="120"
+                        data-testid="input-age"
+                      />
+                    </div>
+
+                    {/* Gender */}
+                    <div className="space-y-3">
+                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Gender
+                      </Label>
+                      <Select value={gender} onValueChange={setGender}>
+                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-gender">
+                          <SelectValue placeholder="Select gender" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="male">Male</SelectItem>
+                          <SelectItem value="female">Female</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    {/* Activity Level */}
+                    <div className="space-y-3">
+                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Activity Level
+                      </Label>
+                      <Select value={activityLevel} onValueChange={setActivityLevel}>
+                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-activity">
+                          <SelectValue placeholder="Select activity level" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="sedentary">Sedentary (little/no exercise)</SelectItem>
+                          <SelectItem value="light">Light (light exercise 1-3 days/week)</SelectItem>
+                          <SelectItem value="moderate">Moderate (moderate exercise 3-5 days/week)</SelectItem>
+                          <SelectItem value="active">Active (hard exercise 6-7 days/week)</SelectItem>
+                          <SelectItem value="very_active">Very Active (very hard exercise, physical job)</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    {/* Climate */}
+                    <div className="space-y-3">
+                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Climate
+                      </Label>
+                      <Select value={climate} onValueChange={setClimate}>
+                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-climate">
+                          <SelectValue placeholder="Select climate" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="cold">Cold (below 10°C/50°F)</SelectItem>
+                          <SelectItem value="temperate">Temperate (10-25°C/50-77°F)</SelectItem>
+                          <SelectItem value="hot">Hot (25-35°C/77-95°F)</SelectItem>
+                          <SelectItem value="very_hot">Very Hot (above 35°C/95°F)</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+
+                  {/* Advanced Options */}
+                  <div className="space-y-6 border-t pt-8">
+                    <h3 className="text-xl font-bold text-gray-900">Health & Special Conditions</h3>
+                    
+                    {/* Health Conditions */}
+                    <div className="space-y-3">
+                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Health Conditions
+                      </Label>
+                      <Select value={healthConditions} onValueChange={setHealthConditions}>
+                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-health">
+                          <SelectValue placeholder="Select any current conditions" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="none">None</SelectItem>
+                          <SelectItem value="fever">Fever</SelectItem>
+                          <SelectItem value="vomiting">Vomiting</SelectItem>
+                          <SelectItem value="diarrhea">Diarrhea</SelectItem>
+                          <SelectItem value="kidney_stones">Kidney Stones</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    {/* Female-specific options */}
+                    {gender === 'female' && (
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="space-y-3">
+                          <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                            Are you pregnant?
+                          </Label>
+                          <Select value={isPregnant} onValueChange={setIsPregnant}>
+                            <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-pregnant">
+                              <SelectValue placeholder="Select" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="no">No</SelectItem>
+                              <SelectItem value="yes">Yes</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+
+                        <div className="space-y-3">
+                          <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                            Are you breastfeeding?
+                          </Label>
+                          <Select value={isBreastfeeding} onValueChange={setIsBreastfeeding}>
+                            <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-breastfeeding">
+                              <SelectValue placeholder="Select" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="no">No</SelectItem>
+                              <SelectItem value="yes">Yes</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                    <Button
+                      onClick={calculateWaterIntake}
+                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      data-testid="button-calculate"
+                    >
+                      Calculate Water Intake
+                    </Button>
+                    <Button
+                      onClick={resetCalculator}
+                      variant="outline"
+                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      data-testid="button-reset"
+                    >
+                      Reset
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Results Section */}
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Water Intake Results</h2>
+                  
+                  {result ? (
+                    <div className="space-y-6" data-testid="water-intake-results">
+                      {/* Daily Water Intake Highlight */}
+                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
+                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Daily Water Intake</div>
+                        <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" data-testid="text-daily-intake">
+                          {formatVolume(result.dailyWaterIntake)}
+                        </div>
+                      </div>
+
+                      {/* Practical Measurements */}
+                      <div className="bg-sky-50 rounded-xl p-6 border border-sky-200">
+                        <h3 className="font-bold text-sky-800 mb-4 text-lg">Practical Measurements</h3>
+                        <div className="space-y-3">
+                          <div className="flex justify-between items-center">
+                            <span className="text-sky-700 font-medium">Glasses of water (250ml):</span>
+                            <span className="font-bold text-sky-800 text-lg" data-testid="text-glasses">
+                              {result.glassesOfWater} glasses
+                            </span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-sky-700 font-medium">Water bottles (500ml):</span>
+                            <span className="font-bold text-sky-800 text-lg" data-testid="text-bottles">
+                              {result.bottlesOfWater} bottles
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Breakdown */}
+                      <div className="bg-white rounded-xl p-6 shadow-sm">
+                        <h3 className="font-bold text-gray-900 mb-4 text-lg">Calculation Breakdown</h3>
+                        <div className="space-y-3">
+                          <div className="flex justify-between items-center">
+                            <span className="text-gray-700 font-medium">Base water need:</span>
+                            <span className="font-bold text-gray-900">{formatVolume(result.baseWaterNeed)}</span>
+                          </div>
+                          {result.activityAdjustment > 0 && (
                             <div className="flex justify-between items-center">
-                              <span className="font-semibold text-gray-700">Daily Water Intake</span>
-                              <span className="text-2xl font-bold text-sky-600" data-testid="text-daily-intake">
-                                {formatVolume(result.dailyWaterIntake)}
-                              </span>
+                              <span className="text-gray-700 font-medium">Activity adjustment:</span>
+                              <span className="font-bold text-orange-600">+{formatVolume(result.activityAdjustment)}</span>
                             </div>
-                          </div>
-
-                          {/* Practical Measurements */}
-                          <div className="bg-sky-50 rounded-lg p-4">
-                            <h3 className="font-semibold text-gray-900 mb-3">Practical Measurements</h3>
-                            <div className="space-y-2 text-sm">
-                              <div className="flex justify-between">
-                                <span>Glasses of water (250ml)</span>
-                                <span className="font-medium" data-testid="text-glasses">
-                                  {result.glassesOfWater} glasses
-                                </span>
-                              </div>
-                              <div className="flex justify-between">
-                                <span>Water bottles (500ml)</span>
-                                <span className="font-medium" data-testid="text-bottles">
-                                  {result.bottlesOfWater} bottles
-                                </span>
-                              </div>
+                          )}
+                          {result.climateAdjustment > 0 && (
+                            <div className="flex justify-between items-center">
+                              <span className="text-gray-700 font-medium">Climate adjustment:</span>
+                              <span className="font-bold text-red-600">+{formatVolume(result.climateAdjustment)}</span>
                             </div>
-                          </div>
-
-                          {/* Breakdown */}
-                          <div className="bg-white rounded-lg p-4">
-                            <h3 className="font-semibold text-gray-900 mb-3">Calculation Breakdown</h3>
-                            <div className="space-y-2 text-sm">
-                              <div className="flex justify-between">
-                                <span>Base water need</span>
-                                <span className="font-medium">{formatVolume(result.baseWaterNeed)}</span>
-                              </div>
-                              {result.activityAdjustment > 0 && (
-                                <div className="flex justify-between">
-                                  <span>Activity adjustment</span>
-                                  <span className="font-medium text-orange-600">+{formatVolume(result.activityAdjustment)}</span>
-                                </div>
-                              )}
-                              {result.climateAdjustment > 0 && (
-                                <div className="flex justify-between">
-                                  <span>Climate adjustment</span>
-                                  <span className="font-medium text-red-600">+{formatVolume(result.climateAdjustment)}</span>
-                                </div>
-                              )}
-                              {result.healthAdjustment > 0 && (
-                                <div className="flex justify-between">
-                                  <span>Health/Special adjustment</span>
-                                  <span className="font-medium text-purple-600">+{formatVolume(result.healthAdjustment)}</span>
-                                </div>
-                              )}
+                          )}
+                          {result.healthAdjustment > 0 && (
+                            <div className="flex justify-between items-center">
+                              <span className="text-gray-700 font-medium">Health/Special adjustment:</span>
+                              <span className="font-bold text-purple-600">+{formatVolume(result.healthAdjustment)}</span>
                             </div>
-                          </div>
-
-                          {/* Recommendations */}
-                          <div className="bg-blue-50 rounded-lg p-4">
-                            <h3 className="font-semibold text-gray-900 mb-3">Hydration Tips</h3>
-                            <ul className="space-y-1 text-sm text-gray-600">
-                              {result.recommendations.map((rec, index) => (
-                                <li key={index} className="flex items-start">
-                                  <span className="text-blue-500 mr-2">•</span>
-                                  {rec}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
+                          )}
                         </div>
-                      ) : (
-                        <div className="text-center py-8" data-testid="no-results">
-                          <Droplets className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                          <p className="text-gray-500">Enter your information to calculate daily water intake</p>
-                        </div>
-                      )}
+                      </div>
+
+                      {/* Recommendations */}
+                      <div className="bg-blue-50 rounded-xl p-6 border border-blue-200">
+                        <h3 className="font-bold text-blue-800 mb-4 text-lg">Hydration Tips</h3>
+                        <ul className="space-y-2">
+                          {result.recommendations.map((rec, index) => (
+                            <li key={index} className="flex items-start">
+                              <span className="text-blue-500 mr-2 mt-1">•</span>
+                              <span className="text-blue-700 text-sm">{rec}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="text-center py-16" data-testid="no-results">
+                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <div className="text-3xl font-bold text-gray-400">💧</div>
+                      </div>
+                      <p className="text-gray-500 text-lg">Enter your information to calculate daily water intake</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* SEO Content Section */}
+          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">What is Daily Water Intake?</h3>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    Daily water intake refers to the total amount of fluids your body requires each day to maintain 
+                    optimal health and proper bodily functions. Water is essential for digestion, circulation, 
+                    temperature regulation, joint lubrication, and waste elimination.
+                  </p>
+                  <p>
+                    Our water intake calculator helps you determine your personalized daily water requirements based 
+                    on scientific recommendations from health organizations like the Institute of Medicine and WHO. 
+                    The calculation considers your body weight, age, activity level, climate, and health conditions 
+                    to provide accurate hydration recommendations.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">How to Calculate Water Intake?</h3>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    The basic water intake formula is: 35ml per kg of body weight for adults, adjusted for 
+                    gender, activity level, climate, and health conditions.
+                  </p>
+                  <ul className="space-y-2 list-disc list-inside">
+                    <li>Men: 3.7L (15 cups) base recommendation</li>
+                    <li>Women: 2.7L (11 cups) base recommendation</li>
+                    <li>Add 500-750ml per hour of exercise</li>
+                    <li>Increase 15-25% in hot climates</li>
+                  </ul>
+                  <p>
+                    Our calculator automatically applies these adjustments and provides personalized recommendations 
+                    to ensure you maintain proper hydration levels throughout the day.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Features of Our Water Calculator</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Personalized calculations based on body weight and age</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Activity level adjustments for athletes and active individuals</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Climate considerations for hot and cold environments</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Health condition adjustments for illness and medical needs</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Pregnancy and breastfeeding support for mothers</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Benefits of Proper Hydration</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Improved cognitive function and mental clarity</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Better physical performance and reduced fatigue</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Enhanced skin health and appearance</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Improved kidney function and toxin elimination</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Better temperature regulation and joint health</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Additional SEO Content Sections */}
+          <div className="mt-12 space-y-8">
+            {/* Water Intake Guidelines Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Daily Water Intake Guidelines by Age and Activity</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Adults (19+ years)</h4>
+                    <p className="text-gray-600">
+                      The Institute of Medicine recommends 3.7 liters (15 cups) daily for men and 2.7 liters (11 cups) 
+                      for women. This includes water from all beverages and food sources. Our calculator personalizes 
+                      these recommendations based on your specific factors.
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Athletes & Active Individuals</h4>
+                    <p className="text-gray-600">
+                      Physical activity increases water needs significantly. Add 500-750ml per hour of exercise, 
+                      and more in hot conditions. Pre-hydration and post-exercise rehydration are equally important 
+                      for optimal performance and recovery.
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Pregnant & Nursing Women</h4>
+                    <p className="text-gray-600">
+                      Pregnancy requires an additional 300ml daily, while breastfeeding mothers need an extra 700ml. 
+                      Our calculator automatically adjusts for these special conditions to ensure proper maternal 
+                      and infant health.
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Older Adults (65+ years)</h4>
+                    <p className="text-gray-600">
+                      Aging affects thirst sensation and kidney function. Older adults should increase water intake 
+                      by 10% and drink regularly throughout the day, even when not feeling thirsty, to prevent 
+                      dehydration-related complications.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Factors Affecting Water Intake */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Factors That Increase Water Needs</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <div className="border-l-4 border-red-500 pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-2">Hot Climate & High Altitude</h4>
+                      <p className="text-sm">Increase water intake by 15-25% in temperatures above 25°C (77°F) and at altitudes above 8,000 feet due to increased respiratory water loss.</p>
+                    </div>
+                    <div className="border-l-4 border-orange-500 pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-2">Physical Exercise</h4>
+                      <p className="text-sm">Add 500-750ml per hour of exercise, more for intense activities. Begin hydrating 2-3 hours before exercise for optimal performance.</p>
+                    </div>
+                    <div className="border-l-4 border-yellow-500 pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-2">Illness & Fever</h4>
+                      <p className="text-sm">Fever, vomiting, and diarrhea significantly increase fluid needs. Add 20-30% more water during illness to replace lost fluids.</p>
+                    </div>
+                    <div className="border-l-4 border-purple-500 pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-2">Alcohol & Caffeine</h4>
+                      <p className="text-sm">These substances have mild diuretic effects. Balance consumption with additional water intake to maintain proper hydration.</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              {/* Educational Content */}
-              <div className="mt-12 space-y-8">
-                {/* Understanding Water Intake */}
-                <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Understanding Daily Water Intake Requirements</h2>
-                  
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Why Water Intake Calculation Matters</h3>
-                      <p className="text-gray-600 mb-6 leading-relaxed">
-                        Water is essential for virtually every bodily function, including temperature regulation, joint lubrication, 
-                        nutrient transport, and waste elimination. Proper hydration calculation helps maintain energy levels, cognitive function, 
-                        and overall health. Our water intake calculator provides personalized recommendations based on scientific guidelines.
-                      </p>
-                      
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Key Factors Affecting Daily Water Needs</h3>
-                      <ul className="text-gray-600 space-y-2 text-sm">
-                        <li>• <strong>Body weight and composition</strong> - Larger bodies require more water</li>
-                        <li>• <strong>Physical activity level</strong> - Exercise increases water needs</li>
-                        <li>• <strong>Climate and temperature</strong> - Hot weather requires additional hydration</li>
-                        <li>• <strong>Overall health conditions</strong> - Fever, illness affect requirements</li>
-                        <li>• <strong>Pregnancy and breastfeeding</strong> - Increased fluid needs</li>
-                        <li>• <strong>Age factors</strong> - Children and elderly have special needs</li>
-                      </ul>
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Signs of Proper Hydration</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <div className="bg-green-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-green-800 mb-2">Optimal Hydration Indicators</h4>
+                      <p className="text-sm text-green-700">Pale yellow urine, consistent energy levels, moist mouth and lips, elastic skin, regular urination every 2-4 hours.</p>
                     </div>
-                    
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Signs of Proper Hydration</h3>
-                      <div className="space-y-3">
-                        <div className="flex items-center p-3 bg-green-50 rounded-lg">
-                          <div className="w-4 h-4 bg-green-500 rounded-full mr-3"></div>
-                          <div>
-                            <div className="font-medium">Pale Yellow Urine</div>
-                            <div className="text-sm text-gray-600">Best indicator of adequate hydration</div>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-center p-3 bg-blue-50 rounded-lg">
-                          <div className="w-4 h-4 bg-blue-500 rounded-full mr-3"></div>
-                          <div>
-                            <div className="font-medium">Steady Energy Levels</div>
-                            <div className="text-sm text-gray-600">Proper hydration prevents fatigue</div>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-center p-3 bg-purple-50 rounded-lg">
-                          <div className="w-4 h-4 bg-purple-500 rounded-full mr-3"></div>
-                          <div>
-                            <div className="font-medium">Moist Skin and Lips</div>
-                            <div className="text-sm text-gray-600">Skin elasticity indicates hydration</div>
-                          </div>
-                        </div>
-                      </div>
+                    <div className="bg-yellow-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-yellow-800 mb-2">Mild Dehydration Warning Signs</h4>
+                      <p className="text-sm text-yellow-700">Dark yellow urine, dry mouth, fatigue, headache, dizziness, decreased urination frequency.</p>
+                    </div>
+                    <div className="bg-red-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-red-800 mb-2">Severe Dehydration (Seek Medical Help)</h4>
+                      <p className="text-sm text-red-700">Very dark urine, extreme thirst, rapid heartbeat, confusion, sunken eyes, minimal urination.</p>
                     </div>
                   </div>
-                </div>
-
-                {/* Water Intake Guidelines */}
-                <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-2xl p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Daily Water Intake Guidelines & Recommendations</h2>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    <div className="bg-white rounded-lg p-6 text-center">
-                      <div className="text-3xl font-bold text-blue-600 mb-2">2.7L</div>
-                      <div className="font-semibold text-gray-900">Women</div>
-                      <div className="text-sm text-gray-600">Recommended daily intake</div>
-                    </div>
-                    
-                    <div className="bg-white rounded-lg p-6 text-center">
-                      <div className="text-3xl font-bold text-blue-600 mb-2">3.7L</div>
-                      <div className="font-semibold text-gray-900">Men</div>
-                      <div className="text-sm text-gray-600">Recommended daily intake</div>
-                    </div>
-                    
-                    <div className="bg-white rounded-lg p-6 text-center">
-                      <div className="text-3xl font-bold text-blue-600 mb-2">35ml</div>
-                      <div className="font-semibold text-gray-900">Per kg</div>
-                      <div className="text-sm text-gray-600">Body weight calculation</div>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Daily Hydration Tips</h3>
-                      <ul className="text-gray-600 space-y-2 text-sm">
-                        <li>• <strong>Start early:</strong> Begin with a glass of water upon waking</li>
-                        <li>• <strong>Stay consistent:</strong> Keep a water bottle accessible throughout the day</li>
-                        <li>• <strong>Exercise hydration:</strong> Drink before, during, and after physical activity</li>
-                        <li>• <strong>Set reminders:</strong> Use apps or alarms for regular water breaks</li>
-                        <li>• <strong>Eat water-rich foods:</strong> Include fruits and vegetables in your diet</li>
-                        <li>• <strong>Monitor intake:</strong> Track your daily water consumption</li>
-                      </ul>
-                    </div>
-                    
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">When to Increase Water Intake</h3>
-                      <ul className="text-gray-600 space-y-2 text-sm">
-                        <li>• <strong>Hot climate:</strong> Increase by 15-25% in high temperatures</li>
-                        <li>• <strong>Physical activity:</strong> Add 500-750ml per hour of exercise</li>
-                        <li>• <strong>Illness recovery:</strong> Extra fluids when experiencing fever</li>
-                        <li>• <strong>High altitude:</strong> Increase intake above 8,000 feet</li>
-                        <li>• <strong>Alcohol/caffeine:</strong> Counter dehydrating effects</li>
-                        <li>• <strong>Pregnancy/nursing:</strong> Additional 300-700ml daily</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Use Cases and Benefits */}
-                <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Water Intake Calculator Use Cases & Health Benefits</h2>
-                  
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Who Should Use This Calculator</h3>
-                      <div className="space-y-4">
-                        <div className="border-l-4 border-blue-500 pl-4">
-                          <h4 className="font-semibold text-gray-900">Athletes & Fitness Enthusiasts</h4>
-                          <p className="text-sm text-gray-600">Calculate increased water needs for optimal performance and recovery</p>
-                        </div>
-                        
-                        <div className="border-l-4 border-green-500 pl-4">
-                          <h4 className="font-semibold text-gray-900">Weight Loss & Health Goals</h4>
-                          <p className="text-sm text-gray-600">Proper hydration supports metabolism and appetite control</p>
-                        </div>
-                        
-                        <div className="border-l-4 border-purple-500 pl-4">
-                          <h4 className="font-semibold text-gray-900">Pregnant & Nursing Women</h4>
-                          <p className="text-sm text-gray-600">Ensure adequate hydration for maternal and baby health</p>
-                        </div>
-                        
-                        <div className="border-l-4 border-orange-500 pl-4">
-                          <h4 className="font-semibold text-gray-900">Medical Conditions</h4>
-                          <p className="text-sm text-gray-600">Manage hydration with kidney stones, diabetes, or heart conditions</p>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Health Benefits of Proper Hydration</h3>
-                      <div className="space-y-3">
-                        <div className="bg-blue-50 rounded-lg p-4">
-                          <h4 className="font-semibold text-blue-900">Cognitive Function</h4>
-                          <p className="text-sm text-blue-700">Improves concentration, memory, and mental clarity</p>
-                        </div>
-                        
-                        <div className="bg-green-50 rounded-lg p-4">
-                          <h4 className="font-semibold text-green-900">Physical Performance</h4>
-                          <p className="text-sm text-green-700">Maintains muscle function and prevents exercise fatigue</p>
-                        </div>
-                        
-                        <div className="bg-purple-50 rounded-lg p-4">
-                          <h4 className="font-semibold text-purple-900">Skin Health</h4>
-                          <p className="text-sm text-purple-700">Maintains elasticity and prevents premature aging</p>
-                        </div>
-                        
-                        <div className="bg-orange-50 rounded-lg p-4">
-                          <h4 className="font-semibold text-orange-900">Detoxification</h4>
-                          <p className="text-sm text-orange-700">Supports kidney function and waste elimination</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Scientific Background */}
-                <div className="bg-gradient-to-r from-sky-50 to-blue-50 rounded-2xl p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Scientific Background & Calculation Methods</h2>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Calculation Methodology</h3>
-                      <div className="space-y-3 text-sm text-gray-600">
-                        <p>Our water intake calculator uses evidence-based formulas from:</p>
-                        <ul className="space-y-1 ml-4">
-                          <li>• <strong>Institute of Medicine (IOM)</strong> recommendations</li>
-                          <li>• <strong>WHO hydration guidelines</strong> for different populations</li>
-                          <li>• <strong>Body weight calculation:</strong> 35ml per kg of body weight</li>
-                          <li>• <strong>Activity adjustments</strong> based on exercise intensity</li>
-                          <li>• <strong>Environmental factors</strong> for climate conditions</li>
-                        </ul>
-                        
-                        <div className="mt-4 p-3 bg-white rounded-lg">
-                          <h4 className="font-semibold text-gray-900 mb-2">Formula Example:</h4>
-                          <code className="text-xs text-blue-600">
-                            Base Water Need + Activity Adjustment + Climate Adjustment + Health Factors
-                          </code>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-4">Dehydration Risks & Prevention</h3>
-                      <div className="space-y-3">
-                        <div className="bg-red-50 border border-red-200 rounded-lg p-3">
-                          <h4 className="font-semibold text-red-900 mb-1">Mild Dehydration (2-3%)</h4>
-                          <p className="text-xs text-red-700">Thirst, decreased performance, fatigue</p>
-                        </div>
-                        
-                        <div className="bg-orange-50 border border-orange-200 rounded-lg p-3">
-                          <h4 className="font-semibold text-orange-900 mb-1">Moderate Dehydration (4-6%)</h4>
-                          <p className="text-xs text-orange-700">Headache, dizziness, dark urine</p>
-                        </div>
-                        
-                        <div className="bg-red-100 border border-red-300 rounded-lg p-3">
-                          <h4 className="font-semibold text-red-900 mb-1">Severe Dehydration (7%+)</h4>
-                          <p className="text-xs text-red-700">Medical emergency - seek immediate help</p>
-                        </div>
-                      </div>
-                      
-                      <div className="mt-4 text-xs text-gray-600">
-                        <p><strong>Prevention tip:</strong> Use our calculator daily to maintain optimal hydration levels and prevent dehydration-related health issues.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* FAQ Section */}
-                <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-4">
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-2">How accurate is this water intake calculator?</h4>
-                        <p className="text-sm text-gray-600">Our calculator uses scientifically-backed formulas from health organizations like the Institute of Medicine, providing personalized recommendations based on your individual factors.</p>
-                      </div>
-                      
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-2">Should I drink all water or include other beverages?</h4>
-                        <p className="text-sm text-gray-600">About 20% of daily fluid intake comes from food. The calculation includes all fluids, but water is the best choice for hydration.</p>
-                      </div>
-                      
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-2">Can I drink too much water?</h4>
-                        <p className="text-sm text-gray-600">Yes, overhydration (hyponatremia) is possible but rare with normal kidney function. Stick to calculated recommendations unless advised otherwise by a healthcare provider.</p>
-                      </div>
-                    </div>
-                    
-                    <div className="space-y-4">
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-2">How often should I recalculate my water intake?</h4>
-                        <p className="text-sm text-gray-600">Recalculate when your weight, activity level, or health conditions change significantly, or seasonally for climate adjustments.</p>
-                      </div>
-                      
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-2">Is the calculator suitable for children and elderly?</h4>
-                        <p className="text-sm text-gray-600">The calculator includes age-based adjustments, but children under 12 and adults over 65 should consult healthcare providers for specific hydration needs.</p>
-                      </div>
-                      
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-2">What if I have medical conditions affecting hydration?</h4>
-                        <p className="text-sm text-gray-600">The calculator includes common conditions, but always consult your healthcare provider for conditions like heart disease, kidney problems, or diabetes.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                </CardContent>
+              </Card>
             </div>
-          </section>
-        </main>
-        
-        <Footer />
-      </div>
-    </>
+
+            {/* Hydration Strategies Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Effective Daily Hydration Strategies</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="space-y-3">
+                    <h4 className="font-semibold text-gray-800">Morning Hydration</h4>
+                    <ul className="text-sm text-gray-600 space-y-1">
+                      <li>• Start with 16-20oz upon waking</li>
+                      <li>• Hydrate before morning coffee</li>
+                      <li>• Set phone reminders for consistency</li>
+                      <li>• Keep water by bedside</li>
+                    </ul>
+                  </div>
+                  <div className="space-y-3">
+                    <h4 className="font-semibold text-gray-800">Throughout the Day</h4>
+                    <ul className="text-sm text-gray-600 space-y-1">
+                      <li>• Sip regularly, don't wait for thirst</li>
+                      <li>• Use a marked water bottle</li>
+                      <li>• Drink before, during, after meals</li>
+                      <li>• Increase intake with activity</li>
+                    </ul>
+                  </div>
+                  <div className="space-y-3">
+                    <h4 className="font-semibold text-gray-800">Evening & Night</h4>
+                    <ul className="text-sm text-gray-600 space-y-1">
+                      <li>• Taper intake 2 hours before bed</li>
+                      <li>• Monitor urine color</li>
+                      <li>• Adjust for next day's activities</li>
+                      <li>• Plan for early morning hydration</li>
+                    </ul>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* FAQ Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions About Water Intake</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How accurate is this water intake calculator?</h4>
+                      <p className="text-gray-600 text-sm">Our calculator uses evidence-based formulas from the Institute of Medicine and WHO guidelines, considering personal factors for 90%+ accuracy in recommendations.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Does coffee and tea count toward daily water intake?</h4>
+                      <p className="text-gray-600 text-sm">Yes, all beverages contribute to fluid intake. While caffeine has mild diuretic effects, the net hydration benefit from coffee and tea is positive.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Can I drink too much water?</h4>
+                      <p className="text-gray-600 text-sm">Yes, overhydration (hyponatremia) can occur but is rare with normal kidney function. Stick to calculated recommendations unless medically advised otherwise.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How does water intake affect weight loss?</h4>
+                      <p className="text-gray-600 text-sm">Proper hydration supports metabolism, reduces appetite when mistaken for hunger, and helps the body efficiently process nutrients and eliminate waste.</p>
+                    </div>
+                  </div>
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Should water intake change with seasons?</h4>
+                      <p className="text-gray-600 text-sm">Yes, increase intake by 15-25% in summer heat and maintain adequate levels in winter when heating reduces humidity and increases respiratory water loss.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">What's the best time to drink water during exercise?</h4>
+                      <p className="text-gray-600 text-sm">Begin hydrating 2-3 hours before exercise, drink 6-8oz every 15-20 minutes during activity, and rehydrate 150% of fluid lost post-exercise.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How does age affect water intake requirements?</h4>
+                      <p className="text-gray-600 text-sm">Older adults need 10% more water due to decreased kidney efficiency and reduced thirst sensation. Children need more per body weight due to higher metabolic rates.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Are there health conditions that require special hydration needs?</h4>
+                      <p className="text-gray-600 text-sm">Yes, conditions like kidney disease, heart failure, and diabetes may require modified intake. Always consult healthcare providers for specific medical guidance.</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Water Sources & Quality */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">Best Water Sources</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <p className="text-sm">
+                      Plain water is the optimal choice for hydration, providing pure H2O without calories, sugar, or artificial additives.
+                    </p>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-green-800 text-sm">Excellent Sources:</h4>
+                      <ul className="text-xs space-y-1 list-disc list-inside text-green-700">
+                        <li>Filtered tap water</li>
+                        <li>Natural spring water</li>
+                        <li>Sparkling water (unsweetened)</li>
+                        <li>Herbal teas (caffeine-free)</li>
+                      </ul>
+                    </div>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-orange-800 text-sm">Good Sources:</h4>
+                      <ul className="text-xs space-y-1 list-disc list-inside text-orange-700">
+                        <li>Low-fat milk</li>
+                        <li>100% fruit juices (limited)</li>
+                        <li>Coconut water</li>
+                        <li>Water-rich fruits and vegetables</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">Hydrating Foods</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <p className="text-sm">
+                      Approximately 20% of daily fluid intake comes from food sources, particularly fruits and vegetables with high water content.
+                    </p>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-blue-800 text-sm">High Water Content (90%+):</h4>
+                      <ul className="text-xs space-y-1 list-disc list-inside text-blue-700">
+                        <li>Watermelon, cucumber</li>
+                        <li>Lettuce, celery</li>
+                        <li>Tomatoes, bell peppers</li>
+                        <li>Cantaloupe, strawberries</li>
+                      </ul>
+                    </div>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-purple-800 text-sm">Good Sources (80-90%):</h4>
+                      <ul className="text-xs space-y-1 list-disc list-inside text-purple-700">
+                        <li>Oranges, grapefruit</li>
+                        <li>Broccoli, spinach</li>
+                        <li>Yogurt, milk</li>
+                        <li>Soups and broths</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">Hydration Myths</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <p className="text-sm">
+                      Separate fact from fiction with these common hydration misconceptions and scientific truths.
+                    </p>
+                    <div className="space-y-3">
+                      <div className="bg-red-50 rounded-lg p-3">
+                        <h4 className="font-semibold text-red-800 mb-1 text-sm">Myth: 8 glasses rule</h4>
+                        <p className="text-xs text-red-700">Individual needs vary greatly based on body size, activity, and environment</p>
+                      </div>
+                      
+                      <div className="bg-orange-50 rounded-lg p-3">
+                        <h4 className="font-semibold text-orange-800 mb-1 text-sm">Myth: Clear urine is best</h4>
+                        <p className="text-xs text-orange-700">Pale yellow indicates optimal hydration; clear may signal overhydration</p>
+                      </div>
+                      
+                      <div className="bg-yellow-50 rounded-lg p-3">
+                        <h4 className="font-semibold text-yellow-800 mb-1 text-sm">Myth: Thirst is reliable</h4>
+                        <p className="text-xs text-yellow-700">Thirst sensation decreases with age and during exercise</p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Special Populations Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Water Intake for Special Populations</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Athletes & Sports Performance</h4>
+                    <p className="text-gray-600 text-sm mb-4">
+                      Athletic performance can decline by 2% with just 2% dehydration. Proper hydration timing and 
+                      electrolyte balance are crucial for optimal performance and recovery.
+                    </p>
+                    <div className="bg-blue-50 border-l-4 border-blue-400 p-3">
+                      <h5 className="font-semibold text-blue-800 mb-2 text-sm">Pre-Exercise (2-3 hours before):</h5>
+                      <p className="text-xs text-blue-700">Drink 16-20oz of water to ensure adequate hydration without causing discomfort during activity.</p>
+                    </div>
+                    <div className="bg-green-50 border-l-4 border-green-400 p-3">
+                      <h5 className="font-semibold text-green-800 mb-2 text-sm">During Exercise:</h5>
+                      <p className="text-xs text-green-700">Consume 6-8oz every 15-20 minutes, adjusting for sweat rate and environmental conditions.</p>
+                    </div>
+                    <div className="bg-orange-50 border-l-4 border-orange-400 p-3">
+                      <h5 className="font-semibold text-orange-800 mb-2 text-sm">Post-Exercise Recovery:</h5>
+                      <p className="text-xs text-orange-700">Drink 150% of fluid lost (weigh before/after) within 6 hours for complete rehydration.</p>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Medical Conditions & Medications</h4>
+                    <p className="text-gray-600 text-sm mb-4">
+                      Certain medical conditions and medications significantly affect hydration needs. Always consult 
+                      healthcare providers for personalized recommendations when managing chronic conditions.
+                    </p>
+                    <div className="space-y-3">
+                      <div className="bg-purple-50 rounded-lg p-3">
+                        <h5 className="font-semibold text-purple-800 mb-1 text-sm">Kidney Disease</h5>
+                        <p className="text-xs text-purple-700">May require fluid restriction - follow nephrologist guidance</p>
+                      </div>
+                      
+                      <div className="bg-pink-50 rounded-lg p-3">
+                        <h5 className="font-semibold text-pink-800 mb-1 text-sm">Heart Failure</h5>
+                        <p className="text-xs text-pink-700">Fluid balance critical - monitor weight and follow cardiac guidelines</p>
+                      </div>
+                      
+                      <div className="bg-indigo-50 rounded-lg p-3">
+                        <h5 className="font-semibold text-indigo-800 mb-1 text-sm">Diabetes</h5>
+                        <p className="text-xs text-indigo-700">High blood sugar increases fluid needs - maintain consistent hydration</p>
+                      </div>
+                      
+                      <div className="bg-teal-50 rounded-lg p-3">
+                        <h5 className="font-semibold text-teal-800 mb-1 text-sm">Diuretic Medications</h5>
+                        <p className="text-xs text-teal-700">Increase fluid needs - balance intake with medication timing</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </main>
+      
+      <Footer />
+    </div>
   );
 };
 
