@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -7,8 +8,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Calculator } from 'lucide-react';
 
 interface WaistHeightResult {
   ratio: number;
@@ -21,12 +20,12 @@ interface WaistHeightResult {
   };
 }
 
-const WaistToHeightRatioCalculator = () => {
-  const [waist, setWaist] = useState('');
-  const [height, setHeight] = useState('');
-  const [feet, setFeet] = useState('');
-  const [inches, setInches] = useState('');
-  const [age, setAge] = useState('');
+export default function WaistToHeightRatioCalculator() {
+  const [waist, setWaist] = useState('80');
+  const [height, setHeight] = useState('170');
+  const [feet, setFeet] = useState('5');
+  const [inches, setInches] = useState('7');
+  const [age, setAge] = useState('30');
   const [gender, setGender] = useState('');
   const [unitSystem, setUnitSystem] = useState('metric');
   const [result, setResult] = useState<WaistHeightResult | null>(null);
@@ -106,11 +105,11 @@ const WaistToHeightRatioCalculator = () => {
   };
 
   const resetCalculator = () => {
-    setWaist('');
-    setHeight('');
-    setFeet('');
-    setInches('');
-    setAge('');
+    setWaist('80');
+    setHeight('170');
+    setFeet('5');
+    setInches('7');
+    setAge('30');
     setGender('');
     setUnitSystem('metric');
     setResult(null);
@@ -136,387 +135,660 @@ const WaistToHeightRatioCalculator = () => {
   };
 
   return (
-    <>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
         <title>Waist-to-Height Ratio Calculator - Health Risk Assessment Tool | DapsiWow</title>
-        <meta name="description" content="Calculate your waist-to-height ratio and assess health risks. Get personalized recommendations for cardiovascular and metabolic health improvement." />
-        <meta name="keywords" content="waist to height ratio calculator, health risk assessment, abdominal obesity, cardiovascular health, metabolic syndrome" />
+        <meta name="description" content="Free waist-to-height ratio calculator to assess cardiovascular health risks and metabolic syndrome. Get instant WHtR calculations with personalized health recommendations and ideal waist measurements." />
+        <meta name="keywords" content="waist to height ratio calculator, WHtR calculator, waist height ratio, cardiovascular health calculator, metabolic syndrome assessment, abdominal obesity calculator, health risk calculator, waist circumference calculator" />
         <meta property="og:title" content="Waist-to-Height Ratio Calculator - Health Risk Assessment Tool | DapsiWow" />
-        <meta property="og:description" content="Calculate your waist-to-height ratio and assess health risks with personalized recommendations." />
+        <meta property="og:description" content="Calculate your waist-to-height ratio and assess health risks with personalized recommendations for better cardiovascular health." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="/tools/waist-to-height-ratio-calculator" />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="DapsiWow" />
+        <link rel="canonical" href="https://dapsiwow.com/tools/waist-to-height-ratio-calculator" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Waist-to-Height Ratio Calculator",
+            "description": "Free online waist-to-height ratio calculator for health risk assessment. Calculate WHtR to evaluate cardiovascular health and metabolic syndrome risks with personalized recommendations.",
+            "url": "https://dapsiwow.com/tools/waist-to-height-ratio-calculator",
+            "applicationCategory": "HealthApplication",
+            "operatingSystem": "Any",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "featureList": [
+              "Calculate waist-to-height ratio",
+              "Health risk assessment",
+              "Personalized recommendations",
+              "Metric and imperial units",
+              "Ideal waist range calculation",
+              "Cardiovascular health insights"
+            ]
+          })}
+        </script>
       </Helmet>
-
-      <div className="min-h-screen flex flex-col" data-testid="page-waist-height-calculator">
-        <Header />
-        
-        <main className="flex-1 bg-neutral-50">
-          {/* Hero Section */}
-          <section className="text-white py-16" style={{ background: 'linear-gradient(135deg, #f43f5e 0%, #e11d48 100%)' }}>
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <div className="w-20 h-20 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <i className="fas fa-ruler text-3xl"></i>
+      
+      <Header />
+      
+      <main>
+        {/* Hero Section */}
+        <section className="relative py-20 sm:py-28 lg:py-32 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
+          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="space-y-8">
+              <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+                <span className="text-sm font-medium text-blue-700">Professional Health Assessment</span>
               </div>
-              <h1 className="text-4xl sm:text-5xl font-bold mb-6" data-testid="text-page-title">
-                Waist-to-Height Ratio Calculator
+              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 leading-tight">
+                Waist-to-Height
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                  Ratio Calculator
+                </span>
               </h1>
-              <p className="text-xl text-blue-100 max-w-2xl mx-auto">
-                Assess your health risks with the waist-to-height ratio - a simple yet powerful indicator of cardiovascular health
+              <p className="text-xl sm:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                Assess cardiovascular health risks and metabolic syndrome with the scientifically proven waist-to-height ratio
               </p>
             </div>
-          </section>
+          </div>
+        </section>
 
-          {/* Calculator Section */}
-          <section className="py-16">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <Card className="bg-white shadow-sm border-0">
-                <CardContent className="p-8">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    {/* Input Section */}
-                    <div className="space-y-6">
-                      <h2 className="text-2xl font-semibold text-gray-900 mb-8">Body Measurements</h2>
-                      
-                      {/* Unit System */}
-                      <div className="space-y-3">
-                        <Label>Unit System</Label>
-                        <RadioGroup 
-                          value={unitSystem} 
-                          onValueChange={setUnitSystem}
-                          className="flex gap-6"
-                        >
-                          <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="metric" id="metric" data-testid="radio-metric" />
-                            <Label htmlFor="metric">Metric (cm)</Label>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="imperial" id="imperial" data-testid="radio-imperial" />
-                            <Label htmlFor="imperial">Imperial (inches, ft/in)</Label>
-                          </div>
-                        </RadioGroup>
-                      </div>
-
-                      {/* Waist Circumference */}
-                      <div className="space-y-3">
-                        <Label htmlFor="waist" className="text-sm font-medium text-gray-700">
-                          Waist Circumference {unitSystem === 'metric' ? '(cm)' : '(inches)'} *
-                        </Label>
-                        <Input
-                          id="waist"
-                          type="number"
-                          value={waist}
-                          onChange={(e) => setWaist(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
-                          placeholder={unitSystem === 'metric' ? "80" : "32"}
-                          min="0"
-                          step="0.1"
-                          data-testid="input-waist"
-                        />
-                        <p className="text-xs text-gray-500">
-                          Measure at the narrowest point, usually just above the navel
-                        </p>
-                      </div>
-
-                      {/* Height */}
-                      <div className="space-y-3">
-                        <Label className="text-sm font-medium text-gray-700">
-                          Height {unitSystem === 'metric' ? '(cm)' : '(ft/in)'} *
-                        </Label>
-                        {unitSystem === 'metric' ? (
-                          <Input
-                            type="number"
-                            value={height}
-                            onChange={(e) => setHeight(e.target.value)}
-                            className="h-12 text-base border-gray-200 rounded-lg"
-                            placeholder="175"
-                            min="0"
-                            step="0.1"
-                            data-testid="input-height"
-                          />
-                        ) : (
-                          <div className="grid grid-cols-2 gap-3">
-                            <div>
-                              <Label htmlFor="feet" className="text-xs text-gray-500">Feet</Label>
-                              <Input
-                                id="feet"
-                                type="number"
-                                value={feet}
-                                onChange={(e) => setFeet(e.target.value)}
-                                className="h-12 text-base border-gray-200 rounded-lg"
-                                placeholder="5"
-                                min="0"
-                                max="8"
-                                data-testid="input-feet"
-                              />
-                            </div>
-                            <div>
-                              <Label htmlFor="inches" className="text-xs text-gray-500">Inches</Label>
-                              <Input
-                                id="inches"
-                                type="number"
-                                value={inches}
-                                onChange={(e) => setInches(e.target.value)}
-                                className="h-12 text-base border-gray-200 rounded-lg"
-                                placeholder="9"
-                                min="0"
-                                max="11"
-                                data-testid="input-inches"
-                              />
-                            </div>
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Age (Optional) */}
-                      <div className="space-y-3">
-                        <Label htmlFor="age" className="text-sm font-medium text-gray-700">
-                          Age (years) <span className="text-gray-400 font-normal">- Optional</span>
-                        </Label>
-                        <Input
-                          id="age"
-                          type="number"
-                          value={age}
-                          onChange={(e) => setAge(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
-                          placeholder="30"
-                          min="1"
-                          max="120"
-                          data-testid="input-age"
-                        />
-                      </div>
-
-                      {/* Gender (Optional) */}
-                      <div className="space-y-3">
-                        <Label className="text-sm font-medium text-gray-700">
-                          Gender <span className="text-gray-400 font-normal">- Optional</span>
-                        </Label>
-                        <Select value={gender} onValueChange={setGender}>
-                          <SelectTrigger className="h-12 border-gray-200 rounded-lg" data-testid="select-gender">
-                            <SelectValue placeholder="Select gender" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="male">Male</SelectItem>
-                            <SelectItem value="female">Female</SelectItem>
-                            <SelectItem value="other">Other</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-
-                      {/* Action Buttons */}
-                      <div className="flex gap-4 pt-6">
-                        <Button
-                          onClick={calculateWaistHeightRatio}
-                          className="flex-1 h-12 text-white font-medium rounded-lg"
-                          style={{ backgroundColor: '#f43f5e' }}
-                          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#e11d48'}
-                          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#f43f5e'}
-                          data-testid="button-calculate"
-                        >
-                          <Calculator className="w-4 h-4 mr-2" />
-                          Calculate Ratio
-                        </Button>
-                        <Button
-                          onClick={resetCalculator}
-                          variant="outline"
-                          className="h-12 px-8 border-gray-200 text-gray-600 hover:bg-gray-50 font-medium rounded-lg"
-                          data-testid="button-reset"
-                        >
-                          Reset
-                        </Button>
-                      </div>
+        <div className="max-w-7xl mx-auto px-4 py-16">
+          {/* Main Calculator Card */}
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+            <CardContent className="p-0">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+                {/* Input Section */}
+                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
+                  <div>
+                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Health Assessment Configuration</h2>
+                    <p className="text-gray-600">Enter your body measurements to calculate waist-to-height ratio</p>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Unit System Selection */}
+                    <div className="space-y-3">
+                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Unit System
+                      </Label>
+                      <Select value={unitSystem} onValueChange={setUnitSystem}>
+                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-unit-system">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="metric">Metric (cm)</SelectItem>
+                          <SelectItem value="imperial">Imperial (inches, ft/in)</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </div>
 
-                    {/* Results Section */}
-                    <div className="bg-gray-50 rounded-xl p-8">
-                      <h2 className="text-2xl font-semibold text-gray-900 mb-8">Assessment Results</h2>
-                      
-                      {result ? (
-                        <div className="space-y-4" data-testid="waist-height-results">
-                          {/* Ratio Value */}
-                          <div className="bg-white rounded-lg p-4 border-l-4 border-blue-500">
-                            <div className="flex justify-between items-center">
-                              <span className="font-semibold text-gray-700">Waist-to-Height Ratio</span>
-                              <span className="text-2xl font-bold text-blue-600" data-testid="text-ratio-value">
-                                {result.ratio}
-                              </span>
-                            </div>
-                          </div>
+                    {/* Waist Circumference */}
+                    <div className="space-y-3">
+                      <Label htmlFor="waist" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Waist Circumference {unitSystem === 'metric' ? '(cm)' : '(inches)'}
+                      </Label>
+                      <Input
+                        id="waist"
+                        type="number"
+                        value={waist}
+                        onChange={(e) => setWaist(e.target.value)}
+                        className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                        placeholder={unitSystem === 'metric' ? "80" : "32"}
+                        min="0"
+                        step="0.1"
+                        data-testid="input-waist"
+                      />
+                      <p className="text-xs text-gray-500">
+                        Measure at the narrowest point, usually just above the navel
+                      </p>
+                    </div>
 
-                          {/* Category */}
-                          <div className="bg-white rounded-lg p-4">
-                            <div className="flex justify-between items-center">
-                              <span className="text-gray-600">Category</span>
-                              <span className="font-semibold text-gray-900" data-testid="text-category">
-                                {result.category}
-                              </span>
-                            </div>
-                          </div>
-
-                          {/* Health Risk */}
-                          <div className="bg-white rounded-lg p-4">
-                            <div className="flex justify-between items-center">
-                              <span className="text-gray-600">Health Risk</span>
-                              <span className={`font-semibold ${getRiskColor(result.healthRisk)}`} data-testid="text-health-risk">
-                                {result.healthRisk}
-                              </span>
-                            </div>
-                          </div>
-
-                          {/* Ideal Waist Range */}
-                          <div className="bg-green-50 rounded-lg p-4">
-                            <h3 className="font-semibold text-gray-900 mb-2">Healthy Waist Range</h3>
-                            <div className="text-sm text-gray-600">
-                              <span className="font-medium" data-testid="text-ideal-waist-range">
-                                {formatMeasurement(result.idealWaistRange.min)} - {formatMeasurement(result.idealWaistRange.max)}
-                              </span>
-                            </div>
-                            <p className="text-xs text-gray-500 mt-1">Based on 0.4-0.5 ratio range</p>
-                          </div>
-
-                          {/* Recommendations */}
-                          <div className="bg-blue-50 rounded-lg p-4">
-                            <h3 className="font-semibold text-gray-900 mb-3">Recommendations</h3>
-                            <div className="space-y-2" data-testid="recommendations">
-                              {result.recommendations.map((recommendation, index) => (
-                                <div key={index} className="flex items-start">
-                                  <span className="text-blue-600 mr-2 mt-1">•</span>
-                                  <span className="text-sm text-gray-600">{recommendation}</span>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-
-                          {/* Reference Chart */}
-                          <div className="mt-6">
-                            <h3 className="text-lg font-semibold text-gray-900 mb-3">Ratio Categories</h3>
-                            <div className="space-y-2 text-sm">
-                              <div className="flex justify-between">
-                                <span>Underweight</span>
-                                <span className="text-blue-600 font-medium">&lt; 0.40</span>
-                              </div>
-                              <div className="flex justify-between">
-                                <span>Healthy</span>
-                                <span className="text-green-600 font-medium">0.40 - 0.49</span>
-                              </div>
-                              <div className="flex justify-between">
-                                <span>Increased Risk</span>
-                                <span className="text-orange-600 font-medium">0.50 - 0.59</span>
-                              </div>
-                              <div className="flex justify-between">
-                                <span>High Risk</span>
-                                <span className="text-red-600 font-medium">≥ 0.60</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                    {/* Height */}
+                    <div className="space-y-3">
+                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Height {unitSystem === 'metric' ? '(cm)' : '(ft/in)'}
+                      </Label>
+                      {unitSystem === 'metric' ? (
+                        <Input
+                          type="number"
+                          value={height}
+                          onChange={(e) => setHeight(e.target.value)}
+                          className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          placeholder="170"
+                          min="0"
+                          step="0.1"
+                          data-testid="input-height"
+                        />
                       ) : (
-                        <div className="text-center py-8" data-testid="no-results">
-                          <i className="fas fa-ruler text-4xl text-gray-400 mb-4"></i>
-                          <p className="text-gray-500">Enter your waist and height measurements to calculate the ratio</p>
+                        <div className="grid grid-cols-2 gap-3">
+                          <div>
+                            <Label htmlFor="feet" className="text-xs text-gray-500">Feet</Label>
+                            <Input
+                              id="feet"
+                              type="number"
+                              value={feet}
+                              onChange={(e) => setFeet(e.target.value)}
+                              className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              placeholder="5"
+                              min="0"
+                              max="8"
+                              data-testid="input-feet"
+                            />
+                          </div>
+                          <div>
+                            <Label htmlFor="inches" className="text-xs text-gray-500">Inches</Label>
+                            <Input
+                              id="inches"
+                              type="number"
+                              value={inches}
+                              onChange={(e) => setInches(e.target.value)}
+                              className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              placeholder="7"
+                              min="0"
+                              max="11"
+                              data-testid="input-inches"
+                            />
+                          </div>
                         </div>
                       )}
+                    </div>
+
+                    {/* Age (Optional) */}
+                    <div className="space-y-3">
+                      <Label htmlFor="age" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Age (years) <span className="text-gray-400 font-normal">- Optional</span>
+                      </Label>
+                      <Input
+                        id="age"
+                        type="number"
+                        value={age}
+                        onChange={(e) => setAge(e.target.value)}
+                        className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                        placeholder="30"
+                        min="1"
+                        max="120"
+                        data-testid="input-age"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Gender Selection */}
+                  <div className="space-y-3">
+                    <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                      Gender <span className="text-gray-400 font-normal">- Optional</span>
+                    </Label>
+                    <Select value={gender} onValueChange={setGender}>
+                      <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-gender">
+                        <SelectValue placeholder="Select gender" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="male">Male</SelectItem>
+                        <SelectItem value="female">Female</SelectItem>
+                        <SelectItem value="other">Other</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                    <Button
+                      onClick={calculateWaistHeightRatio}
+                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      data-testid="button-calculate"
+                    >
+                      Calculate Ratio
+                    </Button>
+                    <Button
+                      onClick={resetCalculator}
+                      variant="outline"
+                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      data-testid="button-reset"
+                    >
+                      Reset
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Results Section */}
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Health Assessment Results</h2>
+                  
+                  {result ? (
+                    <div className="space-y-6" data-testid="waist-height-results">
+                      {/* Ratio Value Highlight */}
+                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
+                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Waist-to-Height Ratio</div>
+                        <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" data-testid="text-ratio-value">
+                          {result.ratio}
+                        </div>
+                      </div>
+
+                      {/* Health Assessment */}
+                      <div className="space-y-4">
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Category</span>
+                            <span className="font-bold text-gray-900" data-testid="text-category">
+                              {result.category}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Health Risk Level</span>
+                            <span className={`font-bold ${getRiskColor(result.healthRisk)}`} data-testid="text-health-risk">
+                              {result.healthRisk}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Ideal Waist Range */}
+                      <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-6 border border-green-200">
+                        <h4 className="font-bold text-green-800 mb-4 text-lg">Healthy Waist Range</h4>
+                        <div className="text-sm text-green-700 mb-2">
+                          <span className="font-medium" data-testid="text-ideal-waist-range">
+                            {formatMeasurement(result.idealWaistRange.min)} - {formatMeasurement(result.idealWaistRange.max)}
+                          </span>
+                        </div>
+                        <p className="text-xs text-green-600">Based on 0.4-0.5 ratio range for optimal health</p>
+                      </div>
+
+                      {/* Recommendations */}
+                      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-200">
+                        <h4 className="font-bold text-blue-800 mb-4 text-lg">Health Recommendations</h4>
+                        <div className="space-y-2" data-testid="recommendations">
+                          {result.recommendations.map((recommendation, index) => (
+                            <div key={index} className="flex items-start">
+                              <span className="text-blue-600 mr-2 mt-1">•</span>
+                              <span className="text-sm text-blue-700">{recommendation}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="text-center py-16" data-testid="no-results">
+                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <div className="text-3xl font-bold text-gray-400">⚖</div>
+                      </div>
+                      <p className="text-gray-500 text-lg">Enter your measurements to calculate waist-to-height ratio and assess health risks</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* SEO Content Section */}
+          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Understanding Waist-to-Height Ratio</h3>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    The waist-to-height ratio (WHtR) is a simple but powerful health indicator that measures abdominal 
+                    obesity by dividing waist circumference by height. Unlike BMI, which doesn't distinguish between 
+                    muscle and fat, WHtR specifically targets central adiposity - the dangerous fat around your organs.
+                  </p>
+                  <p>
+                    Research shows that WHtR is a superior predictor of cardiovascular disease, type 2 diabetes, and 
+                    metabolic syndrome compared to BMI alone. A ratio of 0.5 or higher indicates increased health risks, 
+                    while maintaining a ratio below 0.5 is associated with better long-term health outcomes.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Why Waist-to-Height Ratio Matters</h3>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    Central obesity, measured by waist-to-height ratio, is strongly linked to metabolic dysfunction. 
+                    Visceral fat around the abdomen produces inflammatory substances and hormones that interfere with 
+                    insulin sensitivity, blood pressure regulation, and cholesterol metabolism.
+                  </p>
+                  <p>
+                    Our calculator provides instant assessment using evidence-based thresholds: ratios under 0.4 may 
+                    indicate underweight, 0.4-0.5 represents healthy range, 0.5-0.6 shows increased risk, and above 
+                    0.6 indicates high risk for cardiovascular complications.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Scientific Foundation of WHtR</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span className="text-sm">Validated across diverse populations and age groups</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span className="text-sm">Better predictor than BMI for cardiometabolic risks</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span className="text-sm">Simple measurement requiring only waist and height</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span className="text-sm">Consistent cut-off values across ethnic groups</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span className="text-sm">Endorsed by health organizations worldwide</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">How to Measure Waist Correctly</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span className="text-sm">Stand upright with feet together and arms at sides</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span className="text-sm">Locate natural waist at narrowest point above hips</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span className="text-sm">Place tape measure horizontal and snug but not tight</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span className="text-sm">Breathe normally and measure at end of gentle exhale</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span className="text-sm">Take measurement to nearest 0.1 cm or 0.5 inch</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Health Risk Categories */}
+          <div className="mt-12 space-y-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-8">Waist-to-Height Ratio Categories and Health Implications</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <div className="border-l-4 border-blue-500 pl-6">
+                      <h4 className="text-lg font-semibold text-blue-800 mb-2">Underweight (< 0.40)</h4>
+                      <p className="text-sm text-gray-600 mb-3">
+                        May indicate insufficient body weight or muscle mass. While cardiovascular risk is low, 
+                        nutritional deficiencies and osteoporosis risks should be considered.
+                      </p>
+                      <ul className="text-xs text-gray-500 space-y-1">
+                        <li>• Consider medical evaluation for underlying conditions</li>
+                        <li>• Focus on healthy weight gain through proper nutrition</li>
+                        <li>• Include resistance training to build muscle mass</li>
+                      </ul>
+                    </div>
+                    
+                    <div className="border-l-4 border-green-500 pl-6">
+                      <h4 className="text-lg font-semibold text-green-800 mb-2">Healthy (0.40 - 0.49)</h4>
+                      <p className="text-sm text-gray-600 mb-3">
+                        Optimal range associated with lowest risk of cardiovascular disease, diabetes, and metabolic 
+                        syndrome. Maintain this ratio for long-term health benefits.
+                      </p>
+                      <ul className="text-xs text-gray-500 space-y-1">
+                        <li>• Continue current healthy lifestyle practices</li>
+                        <li>• Regular physical activity and balanced nutrition</li>
+                        <li>• Annual health check-ups for monitoring</li>
+                      </ul>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-6">
+                    <div className="border-l-4 border-orange-500 pl-6">
+                      <h4 className="text-lg font-semibold text-orange-800 mb-2">Increased Risk (0.50 - 0.59)</h4>
+                      <p className="text-sm text-gray-600 mb-3">
+                        Moderate elevation in cardiometabolic risk. Early intervention through lifestyle 
+                        modifications can prevent progression to higher risk categories.
+                      </p>
+                      <ul className="text-xs text-gray-500 space-y-1">
+                        <li>• Implement structured exercise program</li>
+                        <li>• Consider nutritional counseling</li>
+                        <li>• Monitor blood pressure and glucose levels</li>
+                      </ul>
+                    </div>
+                    
+                    <div className="border-l-4 border-red-500 pl-6">
+                      <h4 className="text-lg font-semibold text-red-800 mb-2">High Risk (≥ 0.60)</h4>
+                      <p className="text-sm text-gray-600 mb-3">
+                        Significantly increased risk for cardiovascular disease, type 2 diabetes, and metabolic 
+                        syndrome. Medical consultation and comprehensive intervention recommended.
+                      </p>
+                      <ul className="text-xs text-gray-500 space-y-1">
+                        <li>• Seek medical evaluation and personalized treatment plan</li>
+                        <li>• Consider supervised weight management programs</li>
+                        <li>• Regular monitoring of cardiovascular risk factors</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Improvement Strategies */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">Nutrition Strategies</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <div className="bg-green-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-green-800 mb-2 text-sm">Reduce Refined Carbohydrates</h4>
+                      <p className="text-xs text-green-700">Limit sugar, white bread, and processed foods that promote abdominal fat storage.</p>
+                    </div>
+                    <div className="bg-blue-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-blue-800 mb-2 text-sm">Increase Fiber Intake</h4>
+                      <p className="text-xs text-blue-700">Soluble fiber helps reduce visceral fat and improves metabolic health.</p>
+                    </div>
+                    <div className="bg-purple-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-purple-800 mb-2 text-sm">Choose Lean Proteins</h4>
+                      <p className="text-xs text-purple-700">High-quality proteins support muscle maintenance during weight loss.</p>
+                    </div>
+                    <div className="bg-orange-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-orange-800 mb-2 text-sm">Healthy Fats</h4>
+                      <p className="text-xs text-orange-700">Omega-3 fatty acids and monounsaturated fats reduce inflammation.</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              {/* Educational Content */}
-              <div className="mt-12 space-y-8">
-                <div className="bg-white rounded-2xl shadow-lg p-8">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-8">Understanding Waist-to-Height Ratio</h2>
-                  
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">Exercise Recommendations</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <div className="bg-red-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-red-800 mb-2 text-sm">Cardiovascular Exercise</h4>
+                      <p className="text-xs text-red-700">150+ minutes moderate intensity or 75+ minutes vigorous activity weekly.</p>
+                    </div>
+                    <div className="bg-indigo-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-indigo-800 mb-2 text-sm">Strength Training</h4>
+                      <p className="text-xs text-indigo-700">2-3 sessions per week targeting all major muscle groups.</p>
+                    </div>
+                    <div className="bg-teal-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-teal-800 mb-2 text-sm">Core Strengthening</h4>
+                      <p className="text-xs text-teal-700">Specific exercises to target abdominal and back muscles.</p>
+                    </div>
+                    <div className="bg-yellow-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-yellow-800 mb-2 text-sm">HIIT Training</h4>
+                      <p className="text-xs text-yellow-700">High-intensity intervals effectively reduce visceral adipose tissue.</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">Lifestyle Modifications</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <div className="bg-violet-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-violet-800 mb-2 text-sm">Sleep Quality</h4>
+                      <p className="text-xs text-violet-700">7-9 hours of quality sleep supports healthy metabolism and weight management.</p>
+                    </div>
+                    <div className="bg-rose-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-rose-800 mb-2 text-sm">Stress Management</h4>
+                      <p className="text-xs text-rose-700">Chronic stress increases cortisol levels, promoting abdominal fat storage.</p>
+                    </div>
+                    <div className="bg-cyan-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-cyan-800 mb-2 text-sm">Hydration</h4>
+                      <p className="text-xs text-cyan-700">Adequate water intake supports metabolism and may reduce appetite.</p>
+                    </div>
+                    <div className="bg-lime-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-lime-800 mb-2 text-sm">Regular Monitoring</h4>
+                      <p className="text-xs text-lime-700">Track progress monthly to maintain motivation and adjust strategies.</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Medical Considerations */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-8">Medical Considerations and Associated Conditions</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">What is Waist-to-Height Ratio?</h3>
-                      <p className="text-gray-600 mb-6 leading-relaxed">
-                        The waist-to-height ratio (WHtR) is calculated by dividing your waist circumference by your height. 
-                        Research shows it may be a better predictor of cardiovascular disease and metabolic syndrome than BMI, 
-                        as it specifically measures abdominal fat distribution.
-                      </p>
-                      
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">How to Measure</h3>
-                      <ul className="text-gray-600 space-y-2 text-sm">
-                        <li>• Stand up straight and breathe normally</li>
-                        <li>• Locate your natural waist (narrowest point)</li>
-                        <li>• Usually just above the navel</li>
-                        <li>• Wrap tape measure snugly but not tight</li>
-                        <li>• Keep tape parallel to the floor</li>
-                        <li>• Take measurement at the end of normal exhale</li>
-                      </ul>
+                      <h4 className="text-lg font-semibold text-gray-800 mb-4">Metabolic Syndrome Components</h4>
+                      <div className="space-y-3">
+                        <div className="flex items-center gap-3">
+                          <div className="w-3 h-3 bg-red-500 rounded-full flex-shrink-0"></div>
+                          <span className="text-sm text-gray-600">Central obesity (waist-to-height ratio ≥ 0.5)</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="w-3 h-3 bg-orange-500 rounded-full flex-shrink-0"></div>
+                          <span className="text-sm text-gray-600">Elevated blood pressure (≥ 130/85 mmHg)</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="w-3 h-3 bg-yellow-500 rounded-full flex-shrink-0"></div>
+                          <span className="text-sm text-gray-600">High fasting glucose (≥ 100 mg/dL)</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="w-3 h-3 bg-blue-500 rounded-full flex-shrink-0"></div>
+                          <span className="text-sm text-gray-600">Low HDL cholesterol</span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <div className="w-3 h-3 bg-purple-500 rounded-full flex-shrink-0"></div>
+                          <span className="text-sm text-gray-600">Elevated triglycerides (≥ 150 mg/dL)</span>
+                        </div>
+                      </div>
                     </div>
                     
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-4">Why It Matters</h3>
-                      <div className="space-y-3">
-                        <div className="p-3 bg-red-50 rounded-lg">
-                          <div className="font-medium text-gray-900">Cardiovascular Health</div>
-                          <div className="text-sm text-gray-600">Predicts heart disease risk better than BMI</div>
+                      <h4 className="text-lg font-semibold text-gray-800 mb-4">When to Seek Medical Advice</h4>
+                      <div className="space-y-2 text-sm text-gray-600">
+                        <p>• Waist-to-height ratio ≥ 0.6 with family history of diabetes or heart disease</p>
+                        <p>• Rapid increase in waist circumference over short periods</p>
+                        <p>• Presence of additional metabolic syndrome criteria</p>
+                        <p>• Difficulty losing weight despite lifestyle modifications</p>
+                        <p>• Development of symptoms like frequent urination or excessive thirst</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="text-lg font-semibold text-gray-800 mb-4">Associated Health Conditions</h4>
+                      <div className="grid grid-cols-1 gap-3">
+                        <div className="bg-red-50 rounded-lg p-3 border-l-4 border-red-400">
+                          <div className="font-medium text-red-800 text-sm">Cardiovascular Disease</div>
+                          <div className="text-xs text-red-600">Increased risk of heart attack, stroke, and hypertension</div>
                         </div>
-                        
-                        <div className="p-3 bg-orange-50 rounded-lg">
-                          <div className="font-medium text-gray-900">Metabolic Syndrome</div>
-                          <div className="text-sm text-gray-600">Early indicator of diabetes and insulin resistance</div>
+                        <div className="bg-orange-50 rounded-lg p-3 border-l-4 border-orange-400">
+                          <div className="font-medium text-orange-800 text-sm">Type 2 Diabetes</div>
+                          <div className="text-xs text-orange-600">Insulin resistance and glucose metabolism dysfunction</div>
                         </div>
-                        
-                        <div className="p-3 bg-yellow-50 rounded-lg">
-                          <div className="font-medium text-gray-900">Simple Screening</div>
-                          <div className="text-sm text-gray-600">Easy to measure and universally applicable</div>
+                        <div className="bg-yellow-50 rounded-lg p-3 border-l-4 border-yellow-400">
+                          <div className="font-medium text-yellow-800 text-sm">Sleep Apnea</div>
+                          <div className="text-xs text-yellow-600">Breathing disruptions during sleep affecting quality of rest</div>
                         </div>
-                        
-                        <div className="p-3 bg-blue-50 rounded-lg">
-                          <div className="font-medium text-gray-900">Age Independent</div>
-                          <div className="text-sm text-gray-600">Consistent thresholds across age groups</div>
+                        <div className="bg-green-50 rounded-lg p-3 border-l-4 border-green-400">
+                          <div className="font-medium text-green-800 text-sm">Fatty Liver Disease</div>
+                          <div className="text-xs text-green-600">Non-alcoholic steatohepatitis and liver dysfunction</div>
                         </div>
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <h4 className="text-lg font-semibold text-gray-800 mb-4">Monitoring Recommendations</h4>
+                      <div className="space-y-2 text-sm text-gray-600">
+                        <p>• Monthly waist measurements for progress tracking</p>
+                        <p>• Annual lipid profile and glucose screening</p>
+                        <p>• Regular blood pressure monitoring</p>
+                        <p>• Comprehensive metabolic panel as recommended by physician</p>
+                        <p>• Consider cardiac risk assessment if ratio remains elevated</p>
                       </div>
                     </div>
                   </div>
                 </div>
+              </CardContent>
+            </Card>
 
-                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Improving Your Waist-to-Height Ratio</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* FAQ Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Diet Strategies</h3>
-                      <ul className="text-gray-600 space-y-2 text-sm">
-                        <li>• Reduce refined carbohydrates and added sugars</li>
-                        <li>• Increase fiber intake from vegetables and fruits</li>
-                        <li>• Choose lean proteins and healthy fats</li>
-                        <li>• Control portion sizes</li>
-                        <li>• Stay hydrated with water</li>
-                      </ul>
+                      <h4 className="font-semibold text-gray-800 mb-2">How often should I measure my waist-to-height ratio?</h4>
+                      <p className="text-gray-600 text-sm">Monthly measurements are recommended for tracking progress. Significant changes in body composition typically occur over weeks to months, making frequent daily measurements unnecessary and potentially misleading.</p>
                     </div>
-                    
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Exercise</h3>
-                      <ul className="text-gray-600 space-y-2 text-sm">
-                        <li>• Combine cardio and strength training</li>
-                        <li>• Include core-strengthening exercises</li>
-                        <li>• Aim for 150+ minutes moderate activity weekly</li>
-                        <li>• Add high-intensity interval training (HIIT)</li>
-                        <li>• Stay consistent with daily movement</li>
-                      </ul>
+                      <h4 className="font-semibold text-gray-800 mb-2">Is waist-to-height ratio better than BMI?</h4>
+                      <p className="text-gray-600 text-sm">WHtR is generally considered superior for assessing cardiometabolic risk because it specifically measures central obesity. Unlike BMI, it distinguishes between muscle and fat distribution, providing better insight into health risks.</p>
                     </div>
-                    
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Lifestyle</h3>
-                      <ul className="text-gray-600 space-y-2 text-sm">
-                        <li>• Get 7-9 hours of quality sleep</li>
-                        <li>• Manage stress through relaxation techniques</li>
-                        <li>• Avoid smoking and limit alcohol</li>
-                        <li>• Monitor progress regularly</li>
-                        <li>• Seek professional guidance when needed</li>
-                      </ul>
+                      <h4 className="font-semibold text-gray-800 mb-2">Can genetics affect my waist-to-height ratio?</h4>
+                      <p className="text-gray-600 text-sm">Genetic factors influence fat distribution patterns, but lifestyle factors like diet, exercise, and stress management have the greatest impact on waist circumference and overall health outcomes.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">What if my ratio is in the healthy range but I feel overweight?</h4>
+                      <p className="text-gray-600 text-sm">A healthy WHtR indicates low cardiometabolic risk regardless of how you feel about your appearance. Focus on overall health markers rather than aesthetic concerns, and consult healthcare providers for personalized advice.</p>
+                    </div>
+                  </div>
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Does age affect waist-to-height ratio interpretation?</h4>
+                      <p className="text-gray-600 text-sm">The 0.5 threshold remains consistent across age groups, but older adults may have slightly different risk profiles. Age-related muscle loss and metabolic changes should be considered in overall health assessment.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Can medications affect waist circumference?</h4>
+                      <p className="text-gray-600 text-sm">Certain medications, including some antidepressants, corticosteroids, and diabetes medications, can influence weight distribution. Discuss concerns with your healthcare provider rather than discontinuing prescribed medications.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How quickly can I improve my waist-to-height ratio?</h4>
+                      <p className="text-gray-600 text-sm">Healthy weight loss of 1-2 pounds per week can lead to noticeable improvements in 8-12 weeks. Sustainable lifestyle changes produce better long-term results than rapid weight loss approaches.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Is the calculator accurate for pregnant women?</h4>
+                      <p className="text-gray-600 text-sm">Pregnancy significantly alters body composition and waist measurements. Pregnant women should use pregnancy-specific health assessments and consult their healthcare providers for appropriate monitoring.</p>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </section>
-        </main>
-        
-        <Footer />
-      </div>
-    </>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </main>
+      
+      <Footer />
+    </div>
   );
-};
-
-export default WaistToHeightRatioCalculator;
+}
