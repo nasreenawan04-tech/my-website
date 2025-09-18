@@ -69,7 +69,6 @@ const toolsData = [
   { id: 'qr-code-scanner', name: 'QR Code Scanner', description: 'Scan QR codes from images to extract text content', category: 'text' as const, icon: 'fas fa-camera', href: '/tools/qr-code-scanner' },
   { id: 'duplicate-line-remover', name: 'Duplicate Line Remover', description: 'Remove duplicate lines from text while preserving order', category: 'text' as const, icon: 'fas fa-copy', href: '/tools/duplicate-line-remover' },
   { id: 'text-scrambler', name: 'Text Scrambler', description: 'Scramble text in various ways - characters, words, or lines', category: 'text' as const, icon: 'fas fa-random', href: '/tools/text-scrambler' },
-  { id: 'text-unscrambler', name: 'Text Unscrambler', description: 'Unscramble text and solve anagrams with intelligent algorithms', category: 'text' as const, icon: 'fas fa-search', href: '/tools/text-unscrambler' },
 
 
   // Health Tools (30)

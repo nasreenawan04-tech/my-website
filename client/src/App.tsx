@@ -111,7 +111,6 @@ const HexToTextConverter = lazy(() => import("@/pages/hex-to-text-converter"));
 const TextToHexConverter = lazy(() => import("@/pages/text-to-hex-converter"));
 const DuplicateLineRemover = lazy(() => import("@/pages/duplicate-line-remover"));
 const TextScrambler = lazy(() => import("@/pages/text-scrambler"));
-const TextUnscrambler = lazy(() => import("@/pages/text-unscrambler"));
 
 
 function ScrollToTop() {
@@ -213,7 +212,6 @@ function Router() {
         <Route path="/tools/text-to-hex-converter" component={TextToHexConverter} />
         <Route path="/tools/duplicate-line-remover" component={DuplicateLineRemover} />
         <Route path="/tools/text-scrambler" component={TextScrambler} />
-        <Route path="/tools/text-unscrambler" component={TextUnscrambler} />
       <Route path="/tools/:toolId" component={ToolPage} />
       <Route path="/finance" component={FinanceTools} />
       <Route path="/text" component={TextTools} />
