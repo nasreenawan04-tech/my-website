@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -29,7 +28,7 @@ interface StyledText {
 }
 
 interface StyleOptions {
-  selectedCategory: 'all' | 'mathematical' | 'decorative' | 'special';
+  selectedCategory: 'all' | 'mathematical' | 'decorative' | 'special' | 'formatting';
   showCategories: boolean;
   addPrefix: string;
   addSuffix: string;
@@ -109,7 +108,7 @@ const FontStyleChanger = () => {
     {
       name: 'Monospace',
       description: 'Mathematical monospace characters',
-      example: '𝙷𝚎𝚕𝚕𝚘 𝚆𝚘𝚛𝚕𝚍',
+      example: '𝙼𝚘𝚗𝚘𝚜𝚙𝚊𝚌𝚎',
       category: 'mathematical',
       transform: (text: string) => {
         const monoMap: { [key: string]: string } = {
@@ -127,7 +126,7 @@ const FontStyleChanger = () => {
     {
       name: 'Double-Struck',
       description: 'Mathematical double-struck characters',
-      example: 'ℍ𝕖𝕝𝕝𝕠 𝕎𝕠𝕣𝕝𝕕',
+      example: '𝔻𝕠𝕦𝔹𝕝𝔼',
       category: 'mathematical',
       transform: (text: string) => {
         const doubleMap: { [key: string]: string } = {
@@ -145,14 +144,14 @@ const FontStyleChanger = () => {
     {
       name: 'Script',
       description: 'Mathematical script characters',
-      example: '𝒽ℯ𝓁𝓁ℴ 𝓌ℴ𝓇𝓁𝒹',
+      example: '𝒮𝒸𝓇𝒾𝓅𝓉',
       category: 'mathematical',
       transform: (text: string) => {
         const scriptMap: { [key: string]: string } = {
           'a': '𝒶', 'b': '𝒷', 'c': '𝒸', 'd': '𝒹', 'e': 'ℯ', 'f': '𝒻', 'g': 'ℊ', 'h': '𝒽', 'i': '𝒾',
           'j': '𝒿', 'k': '𝓀', 'l': '𝓁', 'm': '𝓂', 'n': '𝓃', 'o': 'ℴ', 'p': '𝓅', 'q': '𝓆', 'r': '𝓇',
           's': '𝓈', 't': '𝓉', 'u': '𝓊', 'v': '𝓋', 'w': '𝓌', 'x': '𝓍', 'y': '𝓎', 'z': '𝓏',
-          'A': '𝒜', 'B': 'ℬ', 'C': '𝒞', 'D': '𝒟', 'E': 'ℰ', 'F': 'ℱ', 'G': '𝒢', 'H': 'ℋ', 'I': 'ℐ',
+          'A': '𝒜', 'B': 'B', 'C': '𝒞', 'D': '𝒟', 'E': 'ℰ', 'F': 'ℱ', 'G': '𝒢', 'H': 'ℋ', 'I': 'ℐ',
           'J': '𝒥', 'K': '𝒦', 'L': 'ℒ', 'M': 'ℳ', 'N': '𝒩', 'O': '𝒪', 'P': '𝒫', 'Q': '𝒬', 'R': 'ℛ',
           'S': '𝒮', 'T': '𝒯', 'U': '𝒰', 'V': '𝒱', 'W': '𝒲', 'X': '𝒳', 'Y': '𝒴', 'Z': '𝒵'
         };
@@ -162,7 +161,7 @@ const FontStyleChanger = () => {
     {
       name: 'Fraktur',
       description: 'Mathematical fraktur characters',
-      example: 'ℌ𝔢𝔩𝔩𝔬 𝔚𝔬𝔯𝔩𝔡',
+      example: '𝔉𝔯𝔞𝔨𝔱𝔲𝔯',
       category: 'mathematical',
       transform: (text: string) => {
         const frakturMap: { [key: string]: string } = {
@@ -177,9 +176,26 @@ const FontStyleChanger = () => {
       }
     },
     {
+      name: 'Gothic',
+      description: 'Gothic style characters',
+      example: '𝕲𝖔𝖙𝖍𝖎𝖈',
+      category: 'mathematical',
+      transform: (text: string) => {
+        const gothicMap: { [key: string]: string } = {
+          'a': '𝔞', 'b': '𝔟', 'c': '𝔠', 'd': '𝔡', 'e': '𝔢', 'f': '𝔣', 'g': '𝔤', 'h': '𝔥', 'i': '𝔦',
+          'j': '𝔧', 'k': '𝔨', 'l': '𝔩', 'm': '𝔪', 'n': '𝔫', 'o': '𝔬', 'p': '𝔭', 'q': '𝔮', 'r': '𝔯',
+          's': '𝔰', 't': '𝔱', 'u': '𝔲', 'v': '𝔳', 'w': '𝔴', 'x': '𝔵', 'y': '𝔶', 'z': '𝔷',
+          'A': '𝔄', 'B': '𝔅', 'C': 'ℭ', 'D': '𝔇', 'E': '𝔈', 'F': '𝔉', 'G': '𝔊', 'H': 'ℌ', 'I': 'ℑ',
+          'J': '𝔍', 'K': '𝔎', 'L': '𝔏', 'M': '𝔐', 'N': '𝔑', 'O': '𝔒', 'P': '𝔓', 'Q': '𝔔', 'R': 'ℜ',
+          'S': '𝔖', 'T': '𝔗', 'U': '𝔘', 'V': '𝔙', 'W': '𝔚', 'X': '𝔛', 'Y': '𝔜', 'Z': 'ℨ'
+        };
+        return text.split('').map(char => gothicMap[char] || char).join('');
+      }
+    },
+    {
       name: 'Circled',
       description: 'Characters enclosed in circles',
-      example: 'Ⓗⓔⓛⓛⓞ Ⓦⓞⓡⓛⓓ',
+      example: 'Ⓒⓘⓡⓒⓛⓔⓓ',
       category: 'decorative',
       transform: (text: string) => {
         const circledMap: { [key: string]: string } = {
@@ -197,7 +213,7 @@ const FontStyleChanger = () => {
     {
       name: 'Squared',
       description: 'Characters enclosed in squares',
-      example: '🅷🅴🅻🅻🅾 🆆🅾🆁🅻🅳',
+      example: '🅂🅀🅄🄰🅁🄴🄳',
       category: 'decorative',
       transform: (text: string) => {
         const squaredMap: { [key: string]: string } = {
@@ -206,9 +222,26 @@ const FontStyleChanger = () => {
           's': '🅂', 't': '🅃', 'u': '🅄', 'v': '🅅', 'w': '🅆', 'x': '🅇', 'y': '🅈', 'z': '🅉',
           'A': '🅰', 'B': '🅱', 'C': '🅲', 'D': '🅳', 'E': '🅴', 'F': '🅵', 'G': '🅶', 'H': '🅷', 'I': '🅸',
           'J': '🅹', 'K': '🅺', 'L': '🅻', 'M': '🅼', 'N': '🅽', 'O': '🅾', 'P': '🅿', 'Q': '🆀', 'R': '🆁',
-          'S': '🆂', 'T': '🆃', 'U': '🆄', 'V': '🆅', 'W': '🆆', 'X': '🆇', 'Y': '🆈', 'Z': '🆉'
+          'S': '🆂', 'T': '🆃', 'U': '🆄', 'V': '🆅', 'W': '🆆', 'X': '🅇', 'Y': '🆈', 'Z': '🆉'
         };
         return text.split('').map(char => squaredMap[char] || char).join('');
+      }
+    },
+    {
+      name: 'Bubble Text',
+      description: 'Text enclosed in bubbles',
+      example: 'Ⓗⓔⓛⓛⓞ',
+      category: 'decorative',
+      transform: (text: string) => {
+        const bubbleMap: { [key: string]: string } = {
+          'a': 'ⓐ', 'b': 'ⓑ', 'c': 'ⓒ', 'd': 'ⓓ', 'e': 'ⓔ', 'f': 'ⓕ', 'g': 'ⓖ', 'h': 'ⓗ', 'i': 'ⓘ',
+          'j': 'ⓙ', 'k': 'ⓚ', 'l': 'ⓛ', 'm': 'ⓜ', 'n': 'ⓝ', 'o': 'ⓞ', 'p': 'ⓟ', 'q': 'ⓠ', 'r': 'ⓡ',
+          's': 'ⓢ', 't': 'ⓣ', 'u': 'ⓤ', 'v': 'ⓥ', 'w': 'ⓦ', 'x': 'ⓧ', 'y': 'ⓨ', 'z': 'ⓩ',
+          'A': 'Ⓐ', 'B': 'Ⓑ', 'C': 'Ⓒ', 'D': 'Ⓓ', 'E': 'Ⓔ', 'F': 'Ⓕ', 'G': 'Ⓖ', 'H': 'Ⓗ', 'I': 'Ⓘ',
+          'J': 'Ⓙ', 'K': 'Ⓚ', 'L': 'Ⓛ', 'M': 'Ⓜ', 'N': 'Ⓝ', 'O': 'Ⓞ', 'P': 'Ⓟ', 'Q': 'Ⓠ', 'R': 'Ⓡ',
+          'S': 'Ⓢ', 'T': 'Ⓣ', 'U': 'Ⓤ', 'V': 'Ⓥ', 'W': 'Ⓦ', 'X': 'Ⓧ', 'Y': 'Ⓨ', 'Z': 'Ⓩ'
+        };
+        return text.split('').map(char => bubbleMap[char] || char).join('');
       }
     },
     {
@@ -231,7 +264,7 @@ const FontStyleChanger = () => {
     {
       name: 'Upside Down',
       description: 'Upside-down text characters',
-      example: 'pɹoM oʃʃǝH',
+      example: 'uʍoᗡ ǝpᴉsdU',
       category: 'special',
       transform: (text: string) => {
         const upsideMap: { [key: string]: string } = {
@@ -250,7 +283,7 @@ const FontStyleChanger = () => {
     {
       name: 'Small Caps',
       description: 'Small capital letters',
-      example: 'ʜᴇʟʟᴏ ᴡᴏʀʟᴅ',
+      example: 'sᴍᴀʟʟ ᴄᴀᴘs',
       category: 'special',
       transform: (text: string) => {
         const smallCapsMap: { [key: string]: string } = {
@@ -262,6 +295,99 @@ const FontStyleChanger = () => {
           'S': 's', 'T': 'ᴛ', 'U': 'ᴜ', 'V': 'ᴠ', 'W': 'ᴡ', 'X': 'x', 'Y': 'ʏ', 'Z': 'ᴢ'
         };
         return text.split('').map(char => smallCapsMap[char] || char).join('');
+      }
+    },
+    {
+      name: 'Mirror Text',
+      description: 'Mirrored text characters',
+      example: 'oƚƚɘH',
+      category: 'special',
+      transform: (text: string) => {
+        const mirrorMap: { [key: string]: string } = {
+          'a': 'ɐ', 'b': 'q', 'c': 'ɔ', 'd': 'p', 'e': 'ǝ', 'f': 'ɟ', 'g': 'ƃ', 'h': 'ɥ', 'i': 'ᴉ',
+          'j': 'ɾ', 'k': 'ʞ', 'l': 'ʃ', 'm': 'ɯ', 'n': 'u', 'o': 'o', 'p': 'd', 'q': 'b', 'r': 'ɹ',
+          's': 's', 't': 'ʇ', 'u': 'n', 'v': 'ʌ', 'w': 'ʍ', 'x': 'x', 'y': 'ʎ', 'z': 'z',
+          'A': '∀', 'B': 'ᗺ', 'C': 'Ɔ', 'D': 'ᗡ', 'E': 'Ǝ', 'F': 'ᖴ', 'G': 'פ', 'H': 'H', 'I': 'I',
+          'J': 'ſ', 'K': 'ʞ', 'L': '˥', 'M': 'W', 'N': 'N', 'O': 'O', 'P': 'Ԁ', 'Q': 'Q', 'R': 'ᴿ',
+          'S': 'S', 'T': '┴', 'U': '∩', 'V': 'Λ', 'W': 'M', 'X': 'X', 'Y': '⅄', 'Z': 'Z',
+          '0': '0', '1': 'Ɩ', '2': 'ᄅ', '3': 'Ɛ', '4': 'ㄣ', '5': 'ϛ', '6': '9', '7': 'ㄥ', '8': '8', '9': '6'
+        };
+        return text.split('').map(char => mirrorMap[char] || char).reverse().join('');
+      }
+    },
+    {
+      name: 'Wide Text',
+      description: 'Wide spacing between characters',
+      example: 'W i d e',
+      category: 'special',
+      transform: (text: string) => {
+        return text.split('').join(' ');
+      }
+    },
+    {
+      name: 'Superscript',
+      description: 'Superscript text characters',
+      example: 'ᴴᵉˡˡᵒ',
+      category: 'formatting',
+      transform: (text: string) => {
+        const superscriptMap: { [key: string]: string } = {
+          'a': 'ᵃ', 'b': 'ᵇ', 'c': 'ᶜ', 'd': 'ᵈ', 'e': 'ᵉ', 'f': 'ᶠ', 'g': 'ᵍ', 'h': 'ʰ', 'i': 'ⁱ',
+          'j': 'ʲ', 'k': 'ᵏ', 'l': 'ˡ', 'm': 'ᵐ', 'n': 'ⁿ', 'o': 'ᵒ', 'p': 'ᵖ', 'q': ' q', 'r': 'ʳ',
+          's': 'ˢ', 't': 'ᵗ', 'u': 'ᵘ', 'v': 'ᵛ', 'w': 'ʷ', 'x': 'ˣ', 'y': 'ʸ', 'z': 'ᶻ',
+          'A': 'ᴬ', 'B': 'ᴮ', 'C': 'ᶜ', 'D': 'ᴰ', 'E': 'ᴱ', 'F': 'ᶠ', 'G': 'ᴳ', 'H': 'ᴴ', 'I': 'ᴵ',
+          'J': 'ᴶ', 'K': 'ᴷ', 'L': 'ᴸ', 'M': 'ᴹ', 'N': 'ᴺ', 'O': 'ᴼ', 'P': 'ᴾ', 'Q': 'Q', 'R': 'ᴿ',
+          'S': 'ˢ', 'T': 'ᵀ', 'U': 'ᵁ', 'V': 'ᵛ', 'W': 'ᵂ', 'X': 'ˣ', 'Y': 'ʸ', 'Z': 'ᶻ',
+          '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹',
+          '+': '⁺', '=': '⁼', '-': '⁻'
+        };
+        return text.split('').map(char => superscriptMap[char] || char).join('');
+      }
+    },
+    {
+      name: 'Subscript',
+      description: 'Subscript text characters',
+      example: 'ₕₑₗₗₒ',
+      category: 'formatting',
+      transform: (text: string) => {
+        const subscriptMap: { [key: string]: string } = {
+          'a': 'ₐ', 'b': '♭', 'c': '푐', 'd': 'ᑯ', 'e': 'ₑ', 'f': '₣', 'g': 'ℊ', 'h': 'ℌ', 'i': 'ᵢ',
+          'j': 'ⱼ', 'k': 'ₖ', 'l': 'ₗ', 'm': 'ₘ', 'n': 'ₙ', 'o': 'ₒ', 'p': 'ₚ', 'q': '𝓆', 'r': 'ᵣ',
+          's': 'ₛ', 't': 'ₜ', 'u': 'ᵤ', 'v': 'ᵥ', 'w': 'w', 'x': 'ₓ', 'y': 'y', 'z': 'Z',
+          'A': 'A', 'B': 'B', 'C': 'C', 'D': 'D', 'E': 'E', 'F': 'F', 'G': 'G', 'H': 'H', 'I': 'I',
+          'J': 'J', 'K': 'K', 'L': 'L', 'M': 'M', 'N': 'N', 'O': 'O', 'P': 'P', 'Q': 'Q', 'R': 'R',
+          'S': 'S', 'T': 'T', 'U': 'U', 'V': 'V', 'W': 'W', 'X': 'X', 'Y': 'Y', 'Z': 'Z',
+          '0': '₀', '1': '₁', '2': '₂', '3': '₃', '4': '₄', '5': '₅', '6': '₆', '7': '₇', '8': '₈', '9': '₉',
+          '+': '₊', '=': '₌', '-': '₋'
+        };
+        return text.split('').map(char => subscriptMap[char] || char).join('');
+      }
+    },
+    {
+      name: 'Strikethrough',
+      description: 'Text with a line through it',
+      example: 'H̶e̶l̶l̶o̶',
+      category: 'formatting',
+      transform: (text: string) => {
+        return text.split('').map(char => {
+          if (char.match(/[a-z]/i)) {
+            return `<s>${char}</s>`;
+          }
+          return char;
+        }).join('');
+      }
+    },
+    {
+      name: 'Underline',
+      description: 'Text with an underline',
+      example: 'H̲e̲l̲l̲o̲',
+      category: 'formatting',
+      transform: (text: string) => {
+        return text.split('').map(char => {
+          if (char.match(/[a-z]/i)) {
+            return `<u>${char}</u>`;
+          }
+          return char;
+        }).join('');
       }
     }
   ];
@@ -279,7 +405,7 @@ const FontStyleChanger = () => {
 
     const results: StyledText[] = filteredStyles.map(style => {
       let styledText = style.transform(inputText);
-      
+
       // Apply prefix and suffix if provided
       if (options.addPrefix || options.addSuffix) {
         styledText = `${options.addPrefix}${styledText}${options.addSuffix}`;
@@ -340,7 +466,7 @@ const FontStyleChanger = () => {
       const timeoutId = setTimeout(() => {
         generateStyledTexts();
       }, 300);
-      
+
       return () => clearTimeout(timeoutId);
     } else if (!inputText.trim()) {
       setStyledTexts([]);
@@ -435,7 +561,7 @@ const FontStyleChanger = () => {
                       </Label>
                       <Select
                         value={options.selectedCategory}
-                        onValueChange={(value: 'all' | 'mathematical' | 'decorative' | 'special') => 
+                        onValueChange={(value: 'all' | 'mathematical' | 'decorative' | 'special' | 'formatting') => 
                           updateOption('selectedCategory', value)
                         }
                       >
@@ -447,6 +573,7 @@ const FontStyleChanger = () => {
                           <SelectItem value="mathematical">Mathematical</SelectItem>
                           <SelectItem value="decorative">Decorative</SelectItem>
                           <SelectItem value="special">Special Effects</SelectItem>
+                          <SelectItem value="formatting">Text Formatting</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -470,7 +597,7 @@ const FontStyleChanger = () => {
                   {/* Advanced Options */}
                   <div className="space-y-4 sm:space-y-6 border-t pt-6 sm:pt-8">
                     <h3 className="text-lg sm:text-xl font-bold text-gray-900">Advanced Options</h3>
-                    
+
                     <Collapsible open={showAdvanced} onOpenChange={setShowAdvanced}>
                       <CollapsibleTrigger asChild>
                         <Button 
@@ -486,12 +613,12 @@ const FontStyleChanger = () => {
                       </CollapsibleTrigger>
                       <CollapsibleContent className="space-y-4 sm:space-y-6 mt-4">
                         <Separator />
-                        
+
                         {/* Display and Processing Options */}
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                           <div className="space-y-4 bg-gray-50 rounded-xl p-4 sm:p-6">
                             <h4 className="text-sm sm:text-base font-semibold text-gray-900">Generation Options</h4>
-                            
+
                             <div className="flex items-center justify-between gap-2">
                               <div className="space-y-1 flex-1 min-w-0">
                                 <Label className="text-xs sm:text-sm font-medium">Auto Generate</Label>
@@ -520,7 +647,7 @@ const FontStyleChanger = () => {
                           {/* Text Customization Options */}
                           <div className="space-y-4 bg-gray-50 rounded-xl p-4 sm:p-6">
                             <h4 className="text-sm sm:text-base font-semibold text-gray-900">Text Customization</h4>
-                            
+
                             <div className="space-y-2">
                               <Label className="text-xs sm:text-sm font-medium">Add Prefix</Label>
                               <Input
@@ -546,7 +673,7 @@ const FontStyleChanger = () => {
                             </div>
                           </div>
                         </div>
-                        
+
                         <Separator />
                       </CollapsibleContent>
                     </Collapsible>
@@ -594,12 +721,13 @@ const FontStyleChanger = () => {
                   <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">Styled Font Results</h2>
 
                   {styledTexts.length > 0 ? (
-                    <div className="space-y-3 sm:space-y-4" data-testid="styled-results">
+                    <div className="space-y-3 sm:space-4" data-testid="styled-results">
                       {styledTexts.map((styledText, index) => {
                         const categoryColors = {
                           mathematical: { bg: 'bg-blue-50', border: 'border-blue-200' },
                           decorative: { bg: 'bg-purple-50', border: 'border-purple-200' },
-                          special: { bg: 'bg-green-50', border: 'border-green-200' }
+                          special: { bg: 'bg-green-50', border: 'border-green-200' },
+                          formatting: { bg: 'bg-orange-50', border: 'border-orange-200' }
                         };
                         const colors = categoryColors[styledText.category as keyof typeof categoryColors] || { bg: 'bg-gray-50', border: 'border-gray-200' };
 
@@ -637,8 +765,8 @@ const FontStyleChanger = () => {
                                 addToHistory(styledText);
                               }}
                               data-testid={`styled-text-${index}`}
+                              dangerouslySetInnerHTML={{ __html: styledText.text }}
                             >
-                              {styledText.text}
                             </div>
                           </div>
                         );
@@ -680,8 +808,8 @@ const FontStyleChanger = () => {
                                 className="text-base text-gray-900 break-words cursor-pointer hover:text-blue-600"
                                 onClick={() => handleCopyToClipboard(item.text)}
                                 data-testid={`history-text-${index}`}
+                                dangerouslySetInnerHTML={{ __html: item.text }}
                               >
-                                {item.text}
                               </div>
                             </div>
                           ))}
@@ -719,7 +847,7 @@ const FontStyleChanger = () => {
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Font Style Categories & Applications</h2>
                 <p className="text-gray-600 mb-8">Understanding different font categories helps you choose the right style for your specific content needs and target audience.</p>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div className="space-y-4">
                     <h3 className="text-lg font-semibold text-gray-800">Mathematical Fonts</h3>
@@ -736,6 +864,9 @@ const FontStyleChanger = () => {
                         <li>• Double-Struck: 𝔻𝕠𝕦𝔹𝕝𝔼</li>
                         <li>• Script: 𝒮𝒸𝓇𝒾𝓅𝓉</li>
                         <li>• Fraktur: 𝔉𝔯𝔞𝔨𝔱𝔲𝔯</li>
+                        <li>• Gothic: 𝔊𝔬𝔱𝔥𝔦𝔠</li>
+                        <li>• Superscript: ᴴᵉˡˡᵒ</li>
+                        <li>• Subscript: ₕₑₗₗₒ</li>
                       </ul>
                     </div>
                     <div className="bg-blue-50 p-3 rounded-lg">
@@ -758,7 +889,10 @@ const FontStyleChanger = () => {
                       <h4 className="font-medium text-purple-900 mb-2">Available Styles:</h4>
                       <ul className="text-xs text-purple-800 space-y-1">
                         <li>• Circled: Ⓒⓘⓡⓒⓛⓔⓓ</li>
-                        <li>• Squared: 🅂🅀🅄🄰🅁🄴🄳</li>
+                        <li>• Squared: 🅂🅀🅄🄰🅁E🄳</li>
+                        <li>• Bubble Text: Ⓗⓔⓛⓛⓞ</li>
+                        <li>• Strikethrough: H̶e̶l̶l̶o̶</li>
+                        <li>• Underline: H̲e̲l̲l̲o̲</li>
                       </ul>
                     </div>
                     <div className="bg-purple-50 p-3 rounded-lg">
@@ -783,6 +917,8 @@ const FontStyleChanger = () => {
                         <li>• Fullwidth: Ｆｕｌｌｗｉｄｔｈ</li>
                         <li>• Upside Down: uʍoᗡ ǝpᴉsdU</li>
                         <li>• Small Caps: sᴍᴀʟʟ ᴄᴀᴘs</li>
+                        <li>• Mirror Text: oƚƚɘH</li>
+                        <li>• Wide Text: W i d e</li>
                       </ul>
                     </div>
                     <div className="bg-green-50 p-3 rounded-lg">
@@ -799,13 +935,46 @@ const FontStyleChanger = () => {
               </CardContent>
             </Card>
 
+            {/* Text Formatting Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-semibold text-gray-800">Text Formatting</h3>
+                    <p className="text-gray-600 text-sm">
+                      Advanced text formatting options for enhanced readability and visual impact. Perfect for emphasis, scientific notation, and creative text presentation.
+                    </p>
+                    <div className="bg-orange-50 p-4 rounded-lg">
+                      <h4 className="font-medium text-orange-900 mb-2">Available Styles:</h4>
+                      <ul className="text-xs text-orange-800 space-y-1">
+                        <li>• Superscript: ᴴᵉˡˡᵒ</li>
+                        <li>• Subscript: ₕₑₗₗₒ</li>
+                        <li>• Strikethrough: H̶e̶l̶l̶o̶</li>
+                        <li>• Underline: H̲e̲l̲l̲o̲</li>
+                      </ul>
+                    </div>
+                    <div className="bg-orange-50 p-3 rounded-lg">
+                      <h5 className="font-medium text-orange-900 mb-1 text-sm">Best for:</h5>
+                      <ul className="text-xs text-orange-800 space-y-1">
+                        <li>• Mathematical expressions</li>
+                        <li>• Chemical formulas</li>
+                        <li>• Academic writing</li>
+                        <li>• Text emphasis</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+
             {/* Professional Applications and Use Cases */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-gray-900 mb-6">Professional Applications</h2>
                   <p className="text-gray-600 mb-6">Font style changers serve diverse professionals across multiple industries, helping create distinctive and engaging content that stands out in competitive digital environments.</p>
-                  
+
                   <div className="space-y-6">
                     <div className="bg-blue-50 rounded-lg p-4">
                       <h3 className="font-semibold text-blue-900 mb-3">Social Media & Marketing</h3>
@@ -865,23 +1034,23 @@ const FontStyleChanger = () => {
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-gray-900 mb-6">User Demographics & Benefits</h2>
                   <p className="text-gray-600 mb-6">Understanding who uses font style changers and why helps demonstrate the versatility and value of Unicode text transformation across different user groups.</p>
-                  
+
                   <div className="space-y-4">
                     <div className="bg-blue-50 rounded-lg p-4">
                       <h3 className="font-semibold text-blue-900 mb-2">Content Creators (35%)</h3>
                       <p className="text-blue-800 text-sm">YouTubers, influencers, and digital artists use styled fonts to create distinctive brand identities and increase audience engagement across social platforms.</p>
                     </div>
-                    
+
                     <div className="bg-purple-50 rounded-lg p-4">
                       <h3 className="font-semibold text-purple-900 mb-2">Business Professionals (25%)</h3>
                       <p className="text-purple-800 text-sm">Marketing managers, entrepreneurs, and business owners leverage font styling for presentations, marketing materials, and professional communications.</p>
                     </div>
-                    
+
                     <div className="bg-green-50 rounded-lg p-4">
                       <h3 className="font-semibold text-green-900 mb-2">Students & Educators (20%)</h3>
                       <p className="text-green-800 text-sm">Teachers, professors, and students use styled fonts to make educational content more engaging and visually appealing for better learning outcomes.</p>
                     </div>
-                    
+
                     <div className="bg-orange-50 rounded-lg p-4">
                       <h3 className="font-semibold text-orange-900 mb-2">Writers & Bloggers (15%)</h3>
                       <p className="text-orange-800 text-sm">Authors, journalists, and bloggers utilize font styling for article headlines, book promotions, and creative writing projects that need visual distinction.</p>
@@ -913,7 +1082,7 @@ const FontStyleChanger = () => {
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Advanced Features & Best Practices</h2>
                 <p className="text-gray-600 mb-8">Maximize the effectiveness of font styling with our advanced features and follow industry best practices for professional results that enhance rather than distract from your content.</p>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-4">Advanced Features</h3>
@@ -977,7 +1146,7 @@ const FontStyleChanger = () => {
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Platform Compatibility & Unicode Standards</h2>
                 <p className="text-gray-600 mb-8">Our font style changer utilizes official Unicode standards to ensure maximum compatibility across all devices, operating systems, and applications worldwide.</p>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-4">Universal Compatibility</h3>
@@ -1060,14 +1229,14 @@ const FontStyleChanger = () => {
                         Yes! Our font styles use Unicode characters that are universally supported across all platforms, operating systems, and applications. Whether you're using iOS, Android, Windows, Mac, or any web browser, the styled text will display correctly on social media, messaging apps, and websites.
                       </p>
                     </div>
-                    
+
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">How do I copy and use the styled text?</h3>
                       <p className="text-gray-600 text-sm">
                         Simply click on any styled text variation to automatically copy it to your clipboard. Then paste it anywhere you want to use it - in social media posts, messages, documents, or websites. The styling will be preserved because these are special Unicode characters, not regular fonts.
                       </p>
                     </div>
-                    
+
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">Are there limitations with certain characters?</h3>
                       <p className="text-gray-600 text-sm">
@@ -1089,14 +1258,14 @@ const FontStyleChanger = () => {
                         Absolutely! You can copy different portions of your text in various styles and manually combine them to create unique, mixed-style content. Each character is independent, giving you complete creative control over how you style different parts of your text.
                       </p>
                     </div>
-                    
+
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">Will these fonts affect SEO or website performance?</h3>
                       <p className="text-gray-600 text-sm">
                         Unicode characters are treated as regular text by search engines and don't negatively impact SEO or website performance. However, use styled fonts strategically for headings and emphasis rather than entire paragraphs for optimal user experience and accessibility.
                       </p>
                     </div>
-                    
+
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">How do I add custom prefixes and suffixes?</h3>
                       <p className="text-gray-600 text-sm">
@@ -1120,7 +1289,7 @@ const FontStyleChanger = () => {
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Related Text Enhancement Tools</h2>
                 <p className="text-gray-600 mb-8">Enhance your text processing workflow with our comprehensive suite of formatting, analysis, and conversion tools designed for content creators and professionals.</p>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   <a href="/tools/case-converter" className="block bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-200">
                     <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
@@ -1131,7 +1300,7 @@ const FontStyleChanger = () => {
                       Transform text between uppercase, lowercase, title case, and sentence case for consistent formatting across all your content.
                     </p>
                   </a>
-                  
+
                   <a href="/tools/character-counter" className="block bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-200">
                     <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
                       <span className="text-green-600 text-xl font-bold">123</span>
@@ -1141,7 +1310,7 @@ const FontStyleChanger = () => {
                       Count characters, words, and sentences with detailed statistics for content optimization and platform compliance.
                     </p>
                   </a>
-                  
+
                   <a href="/tools/word-counter" className="block bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-200">
                     <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
                       <span className="text-purple-600 text-xl font-bold">W</span>
@@ -1151,7 +1320,7 @@ const FontStyleChanger = () => {
                       Analyze text length, reading time, and keyword density for content optimization and SEO improvement.
                     </p>
                   </a>
-                  
+
                   <a href="/tools/reverse-text-tool" className="block bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-200">
                     <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
                       <span className="text-orange-600 text-xl font-bold">↺</span>
@@ -1161,7 +1330,7 @@ const FontStyleChanger = () => {
                       Reverse text character by character or word by word for creative content, puzzles, and special effects.
                     </p>
                   </a>
-                  
+
                   <a href="/tools/lorem-ipsum-generator" className="block bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-200">
                     <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
                       <span className="text-red-600 text-xl font-bold">Lorem</span>
@@ -1171,7 +1340,7 @@ const FontStyleChanger = () => {
                       Generate placeholder text for design mockups, content templates, and development projects with various options.
                     </p>
                   </a>
-                  
+
                   <a href="/tools/text-to-binary-converter" className="block bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-200">
                     <div className="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4">
                       <span className="text-teal-600 text-xl font-bold">01</span>
@@ -1182,7 +1351,7 @@ const FontStyleChanger = () => {
                     </p>
                   </a>
                 </div>
-                
+
                 <div className="text-center mt-12">
                   <a href="/text" className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors">
                     View All Text Tools
