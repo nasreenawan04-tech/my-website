@@ -265,7 +265,7 @@ export default function PasswordStrengthChecker() {
           <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="space-y-4 sm:space-y-6 lg:space-y-8">
               <div className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
-                <span className="text-xs sm:text-sm font-medium text-blue-700">Real-time Security Analysis</span>
+                <span className="text-xs sm:text-sm font-medium text-blue-700">Advanced Security Analysis</span>
               </div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-slate-900 leading-tight">
                 Password Strength
@@ -314,16 +314,16 @@ export default function PasswordStrengthChecker() {
                           onClick={() => setShowPassword(!showPassword)}
                           className="h-10 px-3"
                         >
-                          {showPassword ? '👁️' : '👁️‍🗨️'}
+                          {showPassword ? 'Hide' : 'Show'}
                         </Button>
                       </div>
                     </div>
                   </div>
 
-                  {/* Quick Tips */}
-                  <div className="bg-blue-50 rounded-xl p-6">
-                    <h3 className="text-lg font-semibold text-blue-900 mb-4">Password Best Practices</h3>
-                    <ul className="space-y-2 text-sm text-blue-800">
+                  {/* Security Tips */}
+                  <div className="bg-gray-50 rounded-xl p-6">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Password Security Tips</h3>
+                    <ul className="space-y-2 text-sm text-gray-700">
                       <li>• Use at least 12 characters (16+ recommended)</li>
                       <li>• Mix uppercase, lowercase, numbers, and symbols</li>
                       <li>• Avoid common words and personal information</li>
@@ -333,14 +333,15 @@ export default function PasswordStrengthChecker() {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4">
+                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
                     <Button
                       onClick={clearPassword}
                       variant="outline"
-                      className="h-12 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold rounded-xl"
+                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
                       disabled={!password}
+                      data-testid="button-clear"
                     >
-                      Clear
+                      Clear Password
                     </Button>
                   </div>
                 </div>
@@ -350,7 +351,7 @@ export default function PasswordStrengthChecker() {
                   <h2 className="text-2xl font-bold text-gray-900 mb-8">Security Analysis</h2>
 
                   {analysis ? (
-                    <div className="space-y-6">
+                    <div className="space-y-6" data-testid="analysis-results">
                       {/* Strength Score */}
                       <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
                         <div className="flex justify-between items-center mb-4">
@@ -373,27 +374,27 @@ export default function PasswordStrengthChecker() {
                         <h3 className="font-bold text-gray-900 mb-4">Security Requirements</h3>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                           <div className={`flex items-center space-x-2 ${analysis.requirements.length ? 'text-green-600' : 'text-red-600'}`}>
-                            <span>{analysis.requirements.length ? '✅' : '❌'}</span>
+                            <span>{analysis.requirements.length ? '✓' : '✗'}</span>
                             <span className="text-sm">8+ characters</span>
                           </div>
                           <div className={`flex items-center space-x-2 ${analysis.requirements.uppercase ? 'text-green-600' : 'text-red-600'}`}>
-                            <span>{analysis.requirements.uppercase ? '✅' : '❌'}</span>
+                            <span>{analysis.requirements.uppercase ? '✓' : '✗'}</span>
                             <span className="text-sm">Uppercase letters</span>
                           </div>
                           <div className={`flex items-center space-x-2 ${analysis.requirements.lowercase ? 'text-green-600' : 'text-red-600'}`}>
-                            <span>{analysis.requirements.lowercase ? '✅' : '❌'}</span>
+                            <span>{analysis.requirements.lowercase ? '✓' : '✗'}</span>
                             <span className="text-sm">Lowercase letters</span>
                           </div>
                           <div className={`flex items-center space-x-2 ${analysis.requirements.numbers ? 'text-green-600' : 'text-red-600'}`}>
-                            <span>{analysis.requirements.numbers ? '✅' : '❌'}</span>
+                            <span>{analysis.requirements.numbers ? '✓' : '✗'}</span>
                             <span className="text-sm">Numbers</span>
                           </div>
                           <div className={`flex items-center space-x-2 ${analysis.requirements.symbols ? 'text-green-600' : 'text-red-600'}`}>
-                            <span>{analysis.requirements.symbols ? '✅' : '❌'}</span>
+                            <span>{analysis.requirements.symbols ? '✓' : '✗'}</span>
                             <span className="text-sm">Special characters</span>
                           </div>
                           <div className={`flex items-center space-x-2 ${analysis.requirements.noCommon ? 'text-green-600' : 'text-red-600'}`}>
-                            <span>{analysis.requirements.noCommon ? '✅' : '❌'}</span>
+                            <span>{analysis.requirements.noCommon ? '✓' : '✗'}</span>
                             <span className="text-sm">No common patterns</span>
                           </div>
                         </div>
@@ -414,9 +415,9 @@ export default function PasswordStrengthChecker() {
                       )}
                     </div>
                   ) : (
-                    <div className="text-center py-16">
+                    <div className="text-center py-16" data-testid="no-results">
                       <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <div className="text-3xl font-bold text-gray-400">🔍</div>
+                        <div className="text-3xl font-bold text-gray-400">🔐</div>
                       </div>
                       <p className="text-gray-500 text-lg">Enter a password to analyze its strength</p>
                     </div>
@@ -430,17 +431,17 @@ export default function PasswordStrengthChecker() {
           <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
             <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">How Password Strength is Measured</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">What is Password Strength?</h3>
                 <div className="space-y-4 text-gray-600">
                   <p>
-                    Our password strength checker analyzes multiple factors to determine password security:
-                    <strong> length, character variety, entropy, and pattern detection</strong>. The analysis
-                    helps identify vulnerabilities and provides actionable recommendations.
+                    Password strength refers to the effectiveness of a password against guessing or brute-force attacks. 
+                    Our password strength checker evaluates multiple factors including <strong>length, character variety, 
+                    entropy, and pattern detection</strong> to determine how secure your password is against modern attack methods.
                   </p>
                   <p>
-                    <strong>Entropy</strong> measures the randomness of your password in bits. Higher entropy
-                    means more possible combinations, making passwords exponentially harder to crack. A
-                    password with 60+ bits of entropy is considered secure for most purposes.
+                    Strong passwords are essential for protecting your digital identity, financial accounts, and personal data. 
+                    A well-constructed password acts as the first line of defense against cybercriminals who use sophisticated 
+                    tools capable of attempting billions of password combinations per second.
                   </p>
                 </div>
               </CardContent>
@@ -448,61 +449,263 @@ export default function PasswordStrengthChecker() {
 
             <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Time-to-Crack Estimates</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">How We Analyze Password Security</h3>
                 <div className="space-y-4 text-gray-600">
                   <p>
-                    Our calculator estimates how long it would take to crack your password using modern
-                    hardware capable of 1 billion guesses per second. Real-world attacks may vary
-                    based on the attack method and available resources.
+                    Our advanced password analyzer uses industry-standard algorithms to evaluate password security. 
+                    We calculate <strong>entropy</strong> (randomness measure), estimate time-to-crack scenarios, and 
+                    identify common vulnerabilities like dictionary words, keyboard patterns, and sequential characters.
                   </p>
                   <p>
-                    These estimates assume a brute-force attack trying all possible combinations.
-                    Passwords using common words or patterns can be cracked much faster using
-                    dictionary attacks and advanced techniques.
+                    The analysis includes checking for character diversity, length adequacy, and common attack patterns. 
+                    All analysis happens locally in your browser - your password is never transmitted to our servers, 
+                    ensuring complete privacy and security during the evaluation process.
                   </p>
                 </div>
               </CardContent>
             </Card>
           </div>
 
-          {/* Password Security Guide */}
+          {/* Password Strength Levels Guide */}
           <div className="mt-12">
             <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Password Strength Levels</h3>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Password Strength Levels Explained</h3>
                 <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
                   <div className="bg-red-50 rounded-lg p-4 border border-red-200 text-center">
                     <div className="w-8 h-8 bg-red-500 rounded-full mx-auto mb-2"></div>
                     <h4 className="font-semibold text-red-900 mb-1">Very Weak</h4>
-                    <p className="text-red-800 text-xs">Easily cracked in seconds</p>
+                    <p className="text-red-800 text-xs">Crackable in seconds or minutes</p>
                   </div>
                   <div className="bg-orange-50 rounded-lg p-4 border border-orange-200 text-center">
                     <div className="w-8 h-8 bg-orange-500 rounded-full mx-auto mb-2"></div>
                     <h4 className="font-semibold text-orange-900 mb-1">Weak</h4>
-                    <p className="text-orange-800 text-xs">Vulnerable to attacks</p>
+                    <p className="text-orange-800 text-xs">Vulnerable to basic attacks</p>
                   </div>
                   <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-200 text-center">
                     <div className="w-8 h-8 bg-yellow-500 rounded-full mx-auto mb-2"></div>
                     <h4 className="font-semibold text-yellow-900 mb-1">Fair</h4>
-                    <p className="text-yellow-800 text-xs">Basic protection</p>
+                    <p className="text-yellow-800 text-xs">Minimal security protection</p>
                   </div>
                   <div className="bg-blue-50 rounded-lg p-4 border border-blue-200 text-center">
                     <div className="w-8 h-8 bg-blue-500 rounded-full mx-auto mb-2"></div>
                     <h4 className="font-semibold text-blue-900 mb-1">Good</h4>
-                    <p className="text-blue-800 text-xs">Secure for most uses</p>
+                    <p className="text-blue-800 text-xs">Adequate for most accounts</p>
                   </div>
                   <div className="bg-green-50 rounded-lg p-4 border border-green-200 text-center">
                     <div className="w-8 h-8 bg-green-500 rounded-full mx-auto mb-2"></div>
                     <h4 className="font-semibold text-green-900 mb-1">Strong</h4>
-                    <p className="text-green-800 text-xs">Highly secure</p>
+                    <p className="text-green-800 text-xs">Highly secure protection</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
           </div>
 
-          {/* FAQ Section */}
-          <div className="mt-12">
+          {/* Comprehensive SEO Content Sections */}
+          <div className="mt-12 space-y-8">
+            {/* Password Security Best Practices */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Password Security Best Practices</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Creating Strong Passwords</h4>
+                    <div className="space-y-3 text-gray-600">
+                      <p className="text-sm">
+                        Strong passwords should be at least 12 characters long, preferably 16 or more. They must include 
+                        a combination of uppercase letters, lowercase letters, numbers, and special characters. Avoid 
+                        using dictionary words, personal information, or predictable patterns.
+                      </p>
+                      <ul className="text-sm space-y-1 list-disc list-inside">
+                        <li>Use passphrases with random words</li>
+                        <li>Include numbers and special characters</li>
+                        <li>Avoid keyboard patterns (qwerty, 123456)</li>
+                        <li>Don't use personal information</li>
+                        <li>Make each password unique</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Password Management</h4>
+                    <div className="space-y-3 text-gray-600">
+                      <p className="text-sm">
+                        Use a reputable password manager to generate, store, and manage unique passwords for all your 
+                        accounts. Enable two-factor authentication wherever possible. Regularly update passwords, 
+                        especially for high-value accounts like banking and email.
+                      </p>
+                      <ul className="text-sm space-y-1 list-disc list-inside">
+                        <li>Use a password manager</li>
+                        <li>Enable two-factor authentication</li>
+                        <li>Regular password updates</li>
+                        <li>Monitor for data breaches</li>
+                        <li>Secure password recovery options</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Common Password Vulnerabilities */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Common Password Vulnerabilities</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <div className="bg-red-50 rounded-lg p-4 border border-red-200">
+                      <h4 className="font-semibold text-red-900 mb-2">Dictionary Attacks</h4>
+                      <p className="text-red-800 text-sm">
+                        Attackers use lists of common passwords and dictionary words. Our checker identifies if your 
+                        password contains common words or appears in known breach databases.
+                      </p>
+                    </div>
+                    <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+                      <h4 className="font-semibold text-orange-900 mb-2">Brute Force Attacks</h4>
+                      <p className="text-orange-800 text-sm">
+                        Systematic attempts to crack passwords by trying all possible combinations. Longer passwords 
+                        with diverse characters exponentially increase the time required for successful attacks.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
+                      <h4 className="font-semibold text-yellow-900 mb-2">Pattern Recognition</h4>
+                      <p className="text-yellow-800 text-sm">
+                        Keyboard patterns, sequential characters, and repeated elements make passwords predictable. 
+                        Our analyzer detects these patterns and recommends more random alternatives.
+                      </p>
+                    </div>
+                    <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                      <h4 className="font-semibold text-blue-900 mb-2">Social Engineering</h4>
+                      <p className="text-blue-800 text-sm">
+                        Passwords based on personal information are vulnerable to social engineering attacks. 
+                        Avoid using names, dates, addresses, or other personally identifiable information.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Password Entropy and Cryptography */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Understanding Password Entropy</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-4 text-gray-600">
+                    <h4 className="font-semibold text-gray-800 mb-2">What is Password Entropy?</h4>
+                    <p className="text-sm">
+                      Password entropy measures the randomness and unpredictability of a password, expressed in bits. 
+                      Higher entropy means more possible combinations, making passwords exponentially harder to crack. 
+                      A password with 60+ bits of entropy is considered secure against current attack methods.
+                    </p>
+                    <p className="text-sm">
+                      Entropy calculation considers the character set size and password length. For example, an 8-character 
+                      password using only lowercase letters has 37.6 bits of entropy, while the same length password 
+                      with mixed characters has approximately 52.6 bits.
+                    </p>
+                  </div>
+                  <div className="space-y-4 text-gray-600">
+                    <h4 className="font-semibold text-gray-800 mb-2">Entropy Examples</h4>
+                    <div className="space-y-2 bg-gray-50 rounded-lg p-4">
+                      <div className="flex justify-between text-sm">
+                        <span>8-char lowercase:</span>
+                        <span className="font-mono">37.6 bits</span>
+                      </div>
+                      <div className="flex justify-between text-sm">
+                        <span>8-char mixed case:</span>
+                        <span className="font-mono">47.6 bits</span>
+                      </div>
+                      <div className="flex justify-between text-sm">
+                        <span>8-char full charset:</span>
+                        <span className="font-mono">52.6 bits</span>
+                      </div>
+                      <div className="flex justify-between text-sm">
+                        <span>12-char full charset:</span>
+                        <span className="font-mono">78.9 bits</span>
+                      </div>
+                      <div className="flex justify-between text-sm font-semibold text-green-700">
+                        <span>16-char full charset:</span>
+                        <span className="font-mono">105.2 bits</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Industry Standards and Compliance */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">NIST Guidelines</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <p className="text-sm">
+                      The National Institute of Standards and Technology (NIST) recommends passwords be at least 8 
+                      characters long, with longer passwords preferred. They discourage complex character requirements 
+                      in favor of length and uniqueness.
+                    </p>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-green-800 text-sm">NIST Best Practices:</h4>
+                      <ul className="text-xs space-y-1 list-disc list-inside text-green-700">
+                        <li>Minimum 8 characters, prefer longer</li>
+                        <li>Check against breach databases</li>
+                        <li>Allow all printable characters</li>
+                        <li>No periodic password changes</li>
+                        <li>Use multi-factor authentication</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">Enterprise Security</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <p className="text-sm">
+                      Enterprise password policies often require additional security measures including regular updates, 
+                      complexity requirements, and integration with identity management systems.
+                    </p>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-blue-800 text-sm">Enterprise Features:</h4>
+                      <ul className="text-xs space-y-1 list-disc list-inside text-blue-700">
+                        <li>Password policy enforcement</li>
+                        <li>Active Directory integration</li>
+                        <li>Single sign-on (SSO) support</li>
+                        <li>Compliance reporting</li>
+                        <li>Audit trail maintenance</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">Regulatory Compliance</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <p className="text-sm">
+                      Various regulations require specific password security measures. GDPR, HIPAA, PCI-DSS, and other 
+                      standards mandate strong authentication and data protection practices.
+                    </p>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-purple-800 text-sm">Compliance Standards:</h4>
+                      <ul className="text-xs space-y-1 list-disc list-inside text-purple-700">
+                        <li>GDPR data protection</li>
+                        <li>HIPAA healthcare security</li>
+                        <li>PCI-DSS payment processing</li>
+                        <li>SOX financial reporting</li>
+                        <li>ISO 27001 information security</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* FAQ Section */}
             <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
               <CardContent className="p-8">
                 <h3 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h3>
@@ -510,33 +713,126 @@ export default function PasswordStrengthChecker() {
                   <div className="space-y-6">
                     <div>
                       <h4 className="text-lg font-semibold text-gray-900 mb-2">Is my password safe when I check it here?</h4>
-                      <p className="text-gray-600 text-sm">Yes, absolutely. All password analysis happens locally in your browser. Your password is never sent to our servers or stored anywhere. The analysis is completely private and secure.</p>
+                      <p className="text-gray-600 text-sm">
+                        Yes, absolutely secure. All password analysis happens locally in your browser using JavaScript. 
+                        Your password is never transmitted to our servers, stored in databases, or logged anywhere. 
+                        The analysis is completely private and confidential.
+                      </p>
                     </div>
 
                     <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-2">What makes a password strong?</h4>
-                      <p className="text-gray-600 text-sm">A strong password combines length (12+ characters), character variety (uppercase, lowercase, numbers, symbols), and unpredictability (no common words or patterns). Our checker evaluates all these factors.</p>
+                      <h4 className="text-lg font-semibold text-gray-900 mb-2">What makes a password truly strong?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Strong passwords combine adequate length (12+ characters), character diversity (uppercase, 
+                        lowercase, numbers, symbols), and unpredictability (no patterns, dictionary words, or personal 
+                        information). Our analyzer evaluates all these factors comprehensively.
+                      </p>
                     </div>
 
                     <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-2">How accurate are the time-to-crack estimates?</h4>
-                      <p className="text-gray-600 text-sm">Our estimates are based on brute-force attacks using modern hardware. Real attacks may be faster using dictionary methods or slower depending on the target system's security measures.</p>
+                      <h4 className="text-lg font-semibold text-gray-900 mb-2">How accurate are time-to-crack estimates?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Our estimates assume brute-force attacks using modern hardware capable of 1 billion attempts 
+                        per second. Real-world attacks may be faster using dictionary methods or slower depending on 
+                        target system security measures and rate limiting.
+                      </p>
+                    </div>
+
+                    <div>
+                      <h4 className="text-lg font-semibold text-gray-900 mb-2">Should I use this for business passwords?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Yes, our password strength checker follows industry security standards and meets enterprise 
+                        requirements. It's suitable for evaluating business passwords, but always follow your 
+                        organization's specific security policies and compliance requirements.
+                      </p>
                     </div>
                   </div>
                   <div className="space-y-6">
                     <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-2">Should I use this for business passwords?</h4>
-                      <p className="text-gray-600 text-sm">Yes, our checker follows industry security standards and can help evaluate passwords for business use. However, always follow your organization's specific password policies and security requirements.</p>
+                      <h4 className="text-lg font-semibold text-gray-900 mb-2">What is password entropy and why does it matter?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Password entropy measures randomness in bits. Higher entropy means exponentially more possible 
+                        combinations, making brute-force attacks impractical. A password with 60+ bits of entropy is 
+                        considered secure against current attack capabilities.
+                      </p>
                     </div>
 
                     <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-2">What is password entropy?</h4>
-                      <p className="text-gray-600 text-sm">Entropy measures the randomness and unpredictability of your password in bits. Higher entropy means more possible combinations, making passwords exponentially harder to crack through brute force.</p>
+                      <h4 className="text-lg font-semibold text-gray-900 mb-2">How often should I check and update passwords?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Check passwords when creating new accounts, if you suspect compromise, or during security 
+                        audits. Update passwords immediately if accounts are breached. For high-value accounts, 
+                        consider periodic updates every 6-12 months.
+                      </p>
                     </div>
 
                     <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-2">How often should I check my passwords?</h4>
-                      <p className="text-gray-600 text-sm">Check passwords when creating new accounts, updating existing passwords, or if you suspect a security breach. Regular password audits help maintain good security hygiene.</p>
+                      <h4 className="text-lg font-semibold text-gray-900 mb-2">Does this tool work offline?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Once the page loads, all password analysis functions work offline since processing happens 
+                        locally in your browser. This ensures maximum privacy and allows you to check passwords 
+                        even without an internet connection.
+                      </p>
+                    </div>
+
+                    <div>
+                      <h4 className="text-lg font-semibold text-gray-900 mb-2">Can I integrate this checker into my application?</h4>
+                      <p className="text-gray-600 text-sm">
+                        While this web tool is designed for individual use, you can implement similar password 
+                        strength algorithms in your applications. Consider using established libraries that follow 
+                        industry standards for consistent security analysis.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Password Security in Different Contexts */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Password Security by Account Type</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-red-800">High-Risk Accounts</h4>
+                    <div className="bg-red-50 rounded-lg p-4 border border-red-200">
+                      <p className="text-red-900 text-sm mb-3 font-medium">Banking, Email, Cloud Storage</p>
+                      <ul className="text-red-800 text-xs space-y-1 list-disc list-inside">
+                        <li>16+ character passwords</li>
+                        <li>Full character set diversity</li>
+                        <li>Unique passwords per account</li>
+                        <li>Two-factor authentication required</li>
+                        <li>Regular security monitoring</li>
+                        <li>Password manager recommended</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-yellow-800">Medium-Risk Accounts</h4>
+                    <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
+                      <p className="text-yellow-900 text-sm mb-3 font-medium">Social Media, Shopping, Work Apps</p>
+                      <ul className="text-yellow-800 text-xs space-y-1 list-disc list-inside">
+                        <li>12+ character passwords</li>
+                        <li>Mixed character types</li>
+                        <li>Avoid personal information</li>
+                        <li>Enable 2FA when available</li>
+                        <li>Regular password updates</li>
+                        <li>Monitor for breaches</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-green-800">Lower-Risk Accounts</h4>
+                    <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                      <p className="text-green-900 text-sm mb-3 font-medium">Forums, News Sites, Casual Apps</p>
+                      <ul className="text-green-800 text-xs space-y-1 list-disc list-inside">
+                        <li>10+ character passwords</li>
+                        <li>Basic character diversity</li>
+                        <li>Avoid password reuse</li>
+                        <li>Consider throwaway emails</li>
+                        <li>Minimal personal data</li>
+                        <li>Regular account cleanup</li>
+                      </ul>
                     </div>
                   </div>
                 </div>
