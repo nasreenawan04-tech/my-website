@@ -466,104 +466,166 @@ const Home = () => {
           </section>
 
           {/* Trust & Reliability Section */}
-          <section className="py-20 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+          <section className="py-20 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50" data-testid="section-trust">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-16">
                 <h2 className="text-4xl lg:text-5xl font-bold text-neutral-800 mb-6">
-                  Trusted by Users Worldwide
+                  Trusted by Professionals Worldwide
                 </h2>
-                <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
-                  Join thousands of professionals, students, and individuals who rely on DapsiWow for their daily tasks
+                <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed">
+                  From financial advisors calculating loan payments to students analyzing text documents, 
+                  DapsiWow serves professionals and individuals across industries who need reliable, 
+                  accurate tools they can depend on every day.
                 </p>
               </div>
               
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center mb-16">
-                <div className="bg-white rounded-lg p-6 shadow-md">
-                  <div className="text-3xl lg:text-4xl font-bold text-blue-600 mb-2">1M+</div>
-                  <div className="text-neutral-700 font-medium">Monthly Users</div>
-                  <div className="text-xs text-neutral-500 mt-1">Growing daily</div>
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-blue-100" data-testid="stat-calculations">
+                  <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <Calculator className="text-white" size={24} />
+                  </div>
+                  <div className="text-3xl lg:text-4xl font-bold text-blue-600 mb-2">50M+</div>
+                  <div className="text-neutral-700 font-semibold">Calculations Made</div>
+                  <div className="text-xs text-neutral-500 mt-1">Helping users daily</div>
                 </div>
-                <div className="bg-white rounded-lg p-6 shadow-md">
+                
+                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-green-100" data-testid="stat-tools">
+                  <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <PenTool className="text-white" size={24} />
+                  </div>
                   <div className="text-3xl lg:text-4xl font-bold text-green-600 mb-2">180+</div>
-                  <div className="text-neutral-700 font-medium">Free Tools</div>
+                  <div className="text-neutral-700 font-semibold">Professional Tools</div>
                   <div className="text-xs text-neutral-500 mt-1">Always expanding</div>
                 </div>
-                <div className="bg-white rounded-lg p-6 shadow-md">
+                
+                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100" data-testid="stat-uptime">
+                  <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <Shield className="text-white" size={24} />
+                  </div>
                   <div className="text-3xl lg:text-4xl font-bold text-purple-600 mb-2">99.9%</div>
-                  <div className="text-neutral-700 font-medium">Uptime</div>
-                  <div className="text-xs text-neutral-500 mt-1">Reliable service</div>
+                  <div className="text-neutral-700 font-semibold">Service Uptime</div>
+                  <div className="text-xs text-neutral-500 mt-1">Always available</div>
                 </div>
-                <div className="bg-white rounded-lg p-6 shadow-md">
-                  <div className="text-3xl lg:text-4xl font-bold text-orange-600 mb-2">0</div>
-                  <div className="text-neutral-700 font-medium">Registration</div>
-                  <div className="text-xs text-neutral-500 mt-1">Start immediately</div>
+                
+                <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-100" data-testid="stat-security">
+                  <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-orange-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <Globe className="text-white" size={24} />
+                  </div>
+                  <div className="text-3xl lg:text-4xl font-bold text-orange-600 mb-2">100%</div>
+                  <div className="text-neutral-700 font-semibold">Free Access</div>
+                  <div className="text-xs text-neutral-500 mt-1">No hidden costs</div>
                 </div>
               </div>
               
-              <div className="bg-white rounded-2xl p-8 lg:p-12 shadow-xl">
+              <div className="bg-white rounded-2xl p-8 lg:p-12 shadow-xl border border-gray-100">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                   <div>
                     <h3 className="text-3xl font-bold text-neutral-800 mb-6">
-                      Built for Everyone
+                      Professionals Choose DapsiWow
                     </h3>
-                    <div className="space-y-4">
-                      <div className="flex items-start space-x-4">
-                        <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                          <i className="fas fa-briefcase text-blue-600 text-sm"></i>
+                    <p className="text-neutral-600 mb-8 leading-relaxed">
+                      Our tools are designed for real-world applications, serving professionals across industries 
+                      who need accurate, reliable calculations and analysis.
+                    </p>
+                    <div className="space-y-6">
+                      <div className="flex items-start space-x-4" data-testid="use-case-financial">
+                        <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                          <Calculator className="text-white" size={20} />
                         </div>
                         <div>
-                          <h4 className="font-semibold text-neutral-800 mb-1">Business Professionals</h4>
-                          <p className="text-neutral-600 text-sm">Financial calculations, document processing, and business analysis tools</p>
+                          <h4 className="font-semibold text-neutral-800 mb-2">Financial Advisors & Real Estate Agents</h4>
+                          <p className="text-neutral-600 text-sm leading-relaxed">
+                            Use our mortgage calculators, loan analyzers, and investment tools to provide accurate 
+                            financial projections and help clients make informed decisions.
+                          </p>
                         </div>
                       </div>
                       
-                      <div className="flex items-start space-x-4">
-                        <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                          <i className="fas fa-graduation-cap text-green-600 text-sm"></i>
+                      <div className="flex items-start space-x-4" data-testid="use-case-health">
+                        <div className="w-12 h-12 bg-gradient-to-r from-pink-500 to-pink-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                          <HeartPulse className="text-white" size={20} />
                         </div>
                         <div>
-                          <h4 className="font-semibold text-neutral-800 mb-1">Students & Educators</h4>
-                          <p className="text-neutral-600 text-sm">Academic calculations, document editing, and research assistance tools</p>
+                          <h4 className="font-semibold text-neutral-800 mb-2">Health & Fitness Professionals</h4>
+                          <p className="text-neutral-600 text-sm leading-relaxed">
+                            Trainers and nutritionists rely on our BMI calculators, calorie counters, and body 
+                            composition tools to track client progress and plan personalized programs.
+                          </p>
                         </div>
                       </div>
                       
-                      <div className="flex items-start space-x-4">
-                        <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                          <i className="fas fa-users text-purple-600 text-sm"></i>
+                      <div className="flex items-start space-x-4" data-testid="use-case-content">
+                        <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                          <PenTool className="text-white" size={20} />
                         </div>
                         <div>
-                          <h4 className="font-semibold text-neutral-800 mb-1">Personal Use</h4>
-                          <p className="text-neutral-600 text-sm">Everyday calculations, file conversions, and productivity enhancements</p>
+                          <h4 className="font-semibold text-neutral-800 mb-2">Content Creators & Marketers</h4>
+                          <p className="text-neutral-600 text-sm leading-relaxed">
+                            Writers, bloggers, and marketing professionals use our text analysis tools for content 
+                            optimization, word counting, and document formatting.
+                          </p>
                         </div>
                       </div>
                       
-                      <div className="flex items-start space-x-4">
-                        <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                          <i className="fas fa-code text-orange-600 text-sm"></i>
+                      <div className="flex items-start space-x-4" data-testid="use-case-students">
+                        <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                          <Zap className="text-white" size={20} />
                         </div>
                         <div>
-                          <h4 className="font-semibold text-neutral-800 mb-1">Developers & Designers</h4>
-                          <p className="text-neutral-600 text-sm">Image optimization, text processing, and content analysis utilities</p>
+                          <h4 className="font-semibold text-neutral-800 mb-2">Students & Researchers</h4>
+                          <p className="text-neutral-600 text-sm leading-relaxed">
+                            Academic professionals use our comprehensive toolkit for research calculations, 
+                            document analysis, and project planning across various disciplines.
+                          </p>
                         </div>
                       </div>
                     </div>
                   </div>
                   
-                  <div className="text-center">
-                    <div className="bg-[#eff3ff] rounded-2xl p-8 text-gray-800 shadow-inner">
-                      <h4 className="text-2xl font-bold mb-4">Ready to Get Started?</h4>
-                      <p className="text-gray-600 mb-6 leading-relaxed">
-                        Join over 1 million users who trust DapsiWow for their daily productivity needs. 
-                        Start exploring our comprehensive toolkit today - completely free, no registration required, 
-                        and works on all your devices!
+                  <div className="space-y-8">
+                    <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 border border-blue-200">
+                      <h4 className="text-2xl font-bold text-neutral-800 mb-4 text-center">
+                        Start Using Professional Tools Today
+                      </h4>
+                      <p className="text-neutral-600 mb-6 leading-relaxed text-center">
+                        Join professionals worldwide who save time and improve accuracy with DapsiWow's 
+                        comprehensive toolkit. No registration, no downloads, no learning curve.
                       </p>
-                      <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                      <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
                         <a 
-                          href="/tools" 
-                          className="inline-block bg-white text-blue-600 px-8 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-colors duration-200 shadow-lg"
+                          href="/finance-tools" 
+                          className="inline-block bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 transition-colors duration-200 shadow-lg text-center"
+                          data-testid="link-finance-tools"
                         >
-                          Explore All 180+ Tools
+                          Explore Finance Tools
                         </a>
+                        <a 
+                          href="/health-tools" 
+                          className="inline-block bg-white text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-colors duration-200 text-center"
+                          data-testid="link-health-tools"
+                        >
+                          Try Health Calculators
+                        </a>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-sm text-neutral-500">
+                          Or browse all <a href="/tools" className="text-blue-600 hover:text-blue-800 underline">180+ tools</a>
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                      <div className="flex items-center justify-center space-x-2" data-testid="trust-indicator-security">
+                        <Shield className="text-green-600" size={20} />
+                        <span className="text-sm font-medium text-neutral-700">Secure & Private</span>
+                      </div>
+                      <div className="flex items-center justify-center space-x-2" data-testid="trust-indicator-speed">
+                        <Zap className="text-yellow-600" size={20} />
+                        <span className="text-sm font-medium text-neutral-700">Instant Results</span>
+                      </div>
+                      <div className="flex items-center justify-center space-x-2" data-testid="trust-indicator-devices">
+                        <Smartphone className="text-purple-600" size={20} />
+                        <span className="text-sm font-medium text-neutral-700">All Devices</span>
                       </div>
                     </div>
                   </div>
