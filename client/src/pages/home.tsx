@@ -349,65 +349,162 @@ const Home = () => {
               </div>
               
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                  <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center mb-6">
-                    <i className="fas fa-calculator text-white text-xl"></i>
+                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100">
+                  <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform">
+                    <Calculator className="text-white" size={24} />
                   </div>
-                  <h3 className="text-xl font-bold text-neutral-800 mb-4">Business Loan Calculator</h3>
+                  <h3 className="text-xl font-bold text-neutral-800 mb-4">Loan Calculator</h3>
                   <p className="text-neutral-600 mb-4 leading-relaxed">
-                    Calculate business loan payments with origination fees, processing costs, and effective APR. 
-                    Compare SBA loans, term loans, and equipment financing options.
+                    Calculate monthly payments and total interest for any loan. Features advanced 
+                    amortization schedules, payment frequency options, and detailed cost breakdowns.
                   </p>
                   <ul className="text-sm text-neutral-500 space-y-1 mb-6">
+                    <li>• Complete amortization schedule</li>
                     <li>• Multiple payment frequencies</li>
-                    <li>• Fee calculations included</li>
-                    <li>• 10+ currency support</li>
-                    <li>• Detailed cost breakdown</li>
+                    <li>• Extra payment calculations</li>
+                    <li>• Interest vs principal breakdown</li>
                   </ul>
-                  <a href="/tools/business-loan-calculator" className="text-blue-600 font-semibold hover:text-blue-700 transition-colors">
-                    Try Business Loan Calculator →
+                  <a 
+                    href="/tools/loan-calculator" 
+                    className="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700 transition-colors group-hover:gap-2 gap-1"
+                  >
+                    Try Loan Calculator
+                    <span className="transition-transform group-hover:translate-x-1">→</span>
                   </a>
                 </div>
                 
-                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                  <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl flex items-center justify-center mb-6">
-                    <i className="fas fa-file-contract text-white text-xl"></i>
+                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100">
+                  <div className="w-16 h-16 bg-gradient-to-r from-pink-500 to-rose-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform">
+                    <HeartPulse className="text-white" size={24} />
                   </div>
-                  <h3 className="text-xl font-bold text-neutral-800 mb-4">Vehicle Lease Calculator</h3>
+                  <h3 className="text-xl font-bold text-neutral-800 mb-4">BMI Calculator</h3>
                   <p className="text-neutral-600 mb-4 leading-relaxed">
-                    Calculate monthly lease payments for cars, trucks, and SUVs. Compare lease vs buy options with 
-                    residual value estimation and money factor calculations.
+                    Calculate your Body Mass Index and get comprehensive health insights with 
+                    WHO standards, health category classifications, and personalized recommendations.
                   </p>
                   <ul className="text-sm text-neutral-500 space-y-1 mb-6">
-                    <li>• Residual value calculator</li>
-                    <li>• Lease vs buy comparison</li>
-                    <li>• Multiple lease terms</li>
-                    <li>• Total cost analysis</li>
+                    <li>• WHO standard classifications</li>
+                    <li>• Health risk assessments</li>
+                    <li>• Ideal weight ranges</li>
+                    <li>• Personalized insights</li>
                   </ul>
-                  <a href="/tools/lease-calculator" className="text-green-600 font-semibold hover:text-green-700 transition-colors">
-                    Try Lease Calculator →
+                  <a 
+                    href="/tools/bmi-calculator" 
+                    className="inline-flex items-center text-pink-600 font-semibold hover:text-pink-700 transition-colors group-hover:gap-2 gap-1"
+                  >
+                    Try BMI Calculator
+                    <span className="transition-transform group-hover:translate-x-1">→</span>
                   </a>
                 </div>
                 
-                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                  <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-6">
+                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100">
+                  <div className="w-16 h-16 bg-gradient-to-r from-yellow-500 to-orange-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform">
+                    <PenTool className="text-white" size={24} />
+                  </div>
+                  <h3 className="text-xl font-bold text-neutral-800 mb-4">Username Generator</h3>
+                  <p className="text-neutral-600 mb-4 leading-relaxed">
+                    Generate unique, creative usernames for social media, gaming, and online platforms. 
+                    Customize length, style, and add numbers or symbols as needed.
+                  </p>
+                  <ul className="text-sm text-neutral-500 space-y-1 mb-6">
+                    <li>• Multiple generation styles</li>
+                    <li>• Customizable length options</li>
+                    <li>• Special character support</li>
+                    <li>• Availability checking tips</li>
+                  </ul>
+                  <a 
+                    href="/tools/username-generator" 
+                    className="inline-flex items-center text-yellow-600 font-semibold hover:text-yellow-700 transition-colors group-hover:gap-2 gap-1"
+                  >
+                    Try Username Generator
+                    <span className="transition-transform group-hover:translate-x-1">→</span>
+                  </a>
+                </div>
+                
+                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100">
+                  <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform">
                     <i className="fas fa-home text-white text-xl"></i>
                   </div>
                   <h3 className="text-xl font-bold text-neutral-800 mb-4">Mortgage Calculator</h3>
                   <p className="text-neutral-600 mb-4 leading-relaxed">
-                    Calculate mortgage payments including principal, interest, taxes, insurance, and PMI. 
-                    Get accurate estimates for home buying decisions.
+                    Calculate comprehensive mortgage payments including principal, interest, taxes, 
+                    insurance, and PMI. Perfect for home buying decisions and loan comparisons.
                   </p>
                   <ul className="text-sm text-neutral-500 space-y-1 mb-6">
-                    <li>• Complete payment breakdown</li>
-                    <li>• PMI calculations</li>
-                    <li>• Tax and insurance included</li>
-                    <li>• Multiple loan terms</li>
+                    <li>• Complete PITI calculations</li>
+                    <li>• PMI estimation included</li>
+                    <li>• Property tax calculations</li>
+                    <li>• Insurance cost estimates</li>
                   </ul>
-                  <a href="/tools/mortgage-calculator" className="text-purple-600 font-semibold hover:text-purple-700 transition-colors">
-                    Try Mortgage Calculator →
+                  <a 
+                    href="/tools/mortgage-calculator" 
+                    className="inline-flex items-center text-green-600 font-semibold hover:text-green-700 transition-colors group-hover:gap-2 gap-1"
+                  >
+                    Try Mortgage Calculator
+                    <span className="transition-transform group-hover:translate-x-1">→</span>
                   </a>
                 </div>
+                
+                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100">
+                  <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-violet-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform">
+                    <i className="fas fa-building text-white text-xl"></i>
+                  </div>
+                  <h3 className="text-xl font-bold text-neutral-800 mb-4">Business Loan Calculator</h3>
+                  <p className="text-neutral-600 mb-4 leading-relaxed">
+                    Calculate business loan payments with origination fees, processing costs, and 
+                    effective APR. Compare SBA loans, term loans, and equipment financing options.
+                  </p>
+                  <ul className="text-sm text-neutral-500 space-y-1 mb-6">
+                    <li>• SBA loan calculations</li>
+                    <li>• Fee structure analysis</li>
+                    <li>• Payment schedule options</li>
+                    <li>• Total cost comparisons</li>
+                  </ul>
+                  <a 
+                    href="/tools/business-loan-calculator" 
+                    className="inline-flex items-center text-purple-600 font-semibold hover:text-purple-700 transition-colors group-hover:gap-2 gap-1"
+                  >
+                    Try Business Loan Calculator
+                    <span className="transition-transform group-hover:translate-x-1">→</span>
+                  </a>
+                </div>
+                
+                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100">
+                  <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-pink-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform">
+                    <i className="fas fa-vial text-white text-xl"></i>
+                  </div>
+                  <h3 className="text-xl font-bold text-neutral-800 mb-4">Cholesterol Risk Calculator</h3>
+                  <p className="text-neutral-600 mb-4 leading-relaxed">
+                    Assess cardiovascular health risks based on cholesterol levels, age, and lifestyle 
+                    factors. Get personalized recommendations for heart health improvement.
+                  </p>
+                  <ul className="text-sm text-neutral-500 space-y-1 mb-6">
+                    <li>• Comprehensive risk assessment</li>
+                    <li>• Lifestyle factor analysis</li>
+                    <li>• Personalized recommendations</li>
+                    <li>• Heart health insights</li>
+                  </ul>
+                  <a 
+                    href="/tools/cholesterol-risk-calculator" 
+                    className="inline-flex items-center text-red-600 font-semibold hover:text-red-700 transition-colors group-hover:gap-2 gap-1"
+                  >
+                    Try Cholesterol Calculator
+                    <span className="transition-transform group-hover:translate-x-1">→</span>
+                  </a>
+                </div>
+              </div>
+              
+              <div className="text-center mt-12">
+                <p className="text-neutral-600 mb-6">
+                  Discover more powerful tools in our complete collection
+                </p>
+                <a 
+                  href="/all-tools" 
+                  className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1 gap-2"
+                >
+                  View All 180+ Tools
+                  <Zap size={20} />
+                </a>
               </div>
             </div>
           </section>
