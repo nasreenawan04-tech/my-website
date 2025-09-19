@@ -341,9 +341,6 @@ const Home = () => {
               
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100">
-                  <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform">
-                    <Calculator className="text-white" size={24} />
-                  </div>
                   <h3 className="text-xl font-bold text-neutral-800 mb-4">Loan Calculator</h3>
                   <p className="text-neutral-600 mb-4 leading-relaxed">
                     Calculate monthly payments and total interest for any loan. Features advanced 
@@ -365,9 +362,6 @@ const Home = () => {
                 </div>
                 
                 <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100">
-                  <div className="w-16 h-16 bg-gradient-to-r from-pink-500 to-rose-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform">
-                    <HeartPulse className="text-white" size={24} />
-                  </div>
                   <h3 className="text-xl font-bold text-neutral-800 mb-4">BMI Calculator</h3>
                   <p className="text-neutral-600 mb-4 leading-relaxed">
                     Calculate your Body Mass Index and get comprehensive health insights with 
@@ -389,9 +383,6 @@ const Home = () => {
                 </div>
                 
                 <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100">
-                  <div className="w-16 h-16 bg-gradient-to-r from-yellow-500 to-orange-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform">
-                    <PenTool className="text-white" size={24} />
-                  </div>
                   <h3 className="text-xl font-bold text-neutral-800 mb-4">Username Generator</h3>
                   <p className="text-neutral-600 mb-4 leading-relaxed">
                     Generate unique, creative usernames for social media, gaming, and online platforms. 
@@ -413,9 +404,6 @@ const Home = () => {
                 </div>
                 
                 <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100">
-                  <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform">
-                    <Calculator className="text-white" size={24} />
-                  </div>
                   <h3 className="text-xl font-bold text-neutral-800 mb-4">Mortgage Calculator</h3>
                   <p className="text-neutral-600 mb-4 leading-relaxed">
                     Calculate comprehensive mortgage payments including principal, interest, taxes, 
@@ -437,9 +425,6 @@ const Home = () => {
                 </div>
                 
                 <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100">
-                  <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-violet-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform">
-                    <Calculator className="text-white" size={24} />
-                  </div>
                   <h3 className="text-xl font-bold text-neutral-800 mb-4">Business Loan Calculator</h3>
                   <p className="text-neutral-600 mb-4 leading-relaxed">
                     Calculate business loan payments with origination fees, processing costs, and 
@@ -461,9 +446,6 @@ const Home = () => {
                 </div>
                 
                 <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100">
-                  <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-pink-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform">
-                    <HeartPulse className="text-white" size={24} />
-                  </div>
                   <h3 className="text-xl font-bold text-neutral-800 mb-4">Cholesterol Risk Calculator</h3>
                   <p className="text-neutral-600 mb-4 leading-relaxed">
                     Assess cardiovascular health risks based on cholesterol levels, age, and lifestyle 
