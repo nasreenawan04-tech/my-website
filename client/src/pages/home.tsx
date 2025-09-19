@@ -525,16 +525,19 @@ const Home = () => {
                 </div>
               </div>
               
+              <div className="text-center mb-12">
+                <h3 className="text-3xl lg:text-4xl font-bold text-neutral-800 mb-6">
+                  Why Professionals Choose DapsiWow
+                </h3>
+                <p className="text-lg text-neutral-600 max-w-4xl mx-auto leading-relaxed">
+                  Our platform serves professionals across industries who demand accuracy, reliability, 
+                  and efficiency in their daily work. Here's how different professionals use DapsiWow:
+                </p>
+              </div>
+              
               <div className="bg-white rounded-2xl p-8 lg:p-12 shadow-xl border border-gray-100">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                   <div>
-                    <h3 className="text-3xl font-bold text-neutral-800 mb-6">
-                      Why Professionals Choose DapsiWow
-                    </h3>
-                    <p className="text-lg text-neutral-600 mb-8 leading-relaxed">
-                      Our platform serves professionals across industries who demand accuracy, reliability, 
-                      and efficiency in their daily work. Here's how different professionals use DapsiWow:
-                    </p>
                     <div className="space-y-6">
                       <div className="flex items-start space-x-4 p-4 rounded-xl bg-gradient-to-r from-blue-50 to-blue-100 border border-blue-200" data-testid="use-case-financial">
                         <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
