@@ -60,9 +60,7 @@ const CategorySection = () => {
               onClick={() => handleCategoryClick(category.href)}
               data-testid={`card-category-${category.key}`}
             >
-              <div className="w-16 h-16 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mb-6">
-                <category.icon size={32} />
-              </div>
+              
               <h3 className="text-2xl font-bold mb-4" data-testid={`text-category-title-${category.key}`}>
                 {category.title}
               </h3>
