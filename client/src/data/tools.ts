@@ -54,6 +54,7 @@ const toolsData = [
   { id: 'paragraph-counter', name: 'Paragraph Counter', description: 'Count paragraphs in documents', category: 'text' as const, icon: 'fas fa-paragraph', href: '/tools/paragraph-counter' },
   { id: 'case-converter', name: 'Case Converter (UPPER ⇄ lower)', description: 'Convert text between different cases', category: 'text' as const, icon: 'fas fa-text-height', href: '/tools/case-converter' },
   { id: 'password-generator', name: 'Random Password Generator', description: 'Generate secure random passwords', category: 'text' as const, icon: 'fas fa-key', href: '/tools/password-generator' },
+  { id: 'password-strength-checker', name: 'Password Strength Checker', description: 'Analyze password security and get strength recommendations', category: 'text' as const, icon: 'fas fa-shield-alt', href: '/tools/password-strength-checker' },
   { id: 'username-generator', name: 'Random Username Generator', description: 'Generate unique usernames', category: 'text' as const, icon: 'fas fa-user', isPopular: true, href: '/tools/username-generator' },
   { id: 'lorem-ipsum-generator', name: 'Lorem Ipsum Generator', description: 'Generate placeholder text for designs', category: 'text' as const, icon: 'fas fa-paragraph', href: '/tools/lorem-ipsum-generator' },
   { id: 'fake-address-generator', name: 'Fake Address Generator', description: 'Generate fake addresses for testing', category: 'text' as const, icon: 'fas fa-map-marker-alt', href: '/tools/fake-address-generator' },
