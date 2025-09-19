@@ -423,7 +423,7 @@ const Home = () => {
                 
                 <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100">
                   <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform">
-                    <i className="fas fa-home text-white text-xl"></i>
+                    <Calculator className="text-white" size={24} />
                   </div>
                   <h3 className="text-xl font-bold text-neutral-800 mb-4">Mortgage Calculator</h3>
                   <p className="text-neutral-600 mb-4 leading-relaxed">
@@ -447,7 +447,7 @@ const Home = () => {
                 
                 <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100">
                   <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-violet-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform">
-                    <i className="fas fa-building text-white text-xl"></i>
+                    <Calculator className="text-white" size={24} />
                   </div>
                   <h3 className="text-xl font-bold text-neutral-800 mb-4">Business Loan Calculator</h3>
                   <p className="text-neutral-600 mb-4 leading-relaxed">
@@ -471,7 +471,7 @@ const Home = () => {
                 
                 <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100">
                   <div className="w-16 h-16 bg-gradient-to-r from-red-500 to-pink-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-105 transition-transform">
-                    <i className="fas fa-vial text-white text-xl"></i>
+                    <HeartPulse className="text-white" size={24} />
                   </div>
                   <h3 className="text-xl font-bold text-neutral-800 mb-4">Cholesterol Risk Calculator</h3>
                   <p className="text-neutral-600 mb-4 leading-relaxed">
