@@ -702,18 +702,16 @@ const Home = () => {
                       <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
                         <a 
                           href="/finance" 
-                          className="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 transition-all duration-200 shadow-lg text-center hover:shadow-xl transform hover:-translate-y-0.5"
+                          className="inline-block bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 transition-all duration-200 shadow-lg text-center hover:shadow-xl transform hover:-translate-y-0.5"
                           data-testid="link-finance-tools"
                         >
-                          <Calculator size={20} />
                           Explore Finance Tools
                         </a>
                         <a 
                           href="/health" 
-                          className="inline-flex items-center justify-center gap-2 bg-white text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-200 text-center hover:shadow-lg transform hover:-translate-y-0.5"
+                          className="inline-block bg-white text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-200 text-center hover:shadow-lg transform hover:-translate-y-0.5"
                           data-testid="link-health-tools"
                         >
-                          <HeartPulse size={20} />
                           Try Health Tools
                         </a>
                       </div>
