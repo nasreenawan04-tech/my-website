@@ -96,6 +96,94 @@ const Home = () => {
             ]
           })}
         </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Are all 180+ tools really free to use?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes! Every single tool on DapsiWow is completely free with no hidden costs, subscriptions, or premium upgrades. This includes our advanced loan calculators, mortgage tools, BMI calculators, text converters, and all other utilities. We believe professional-grade tools should be accessible to everyone."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do I use the loan calculator for my business?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Our business loan calculator lets you input your loan amount, interest rate, and term to calculate monthly payments. It includes origination fees, processing costs, and shows your total interest paid. Perfect for comparing SBA loans, equipment financing, and traditional business loans."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What makes your mortgage calculator different?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Our mortgage calculator includes principal, interest, taxes, insurance (PITI), and PMI calculations all in one tool. It supports multiple loan terms, down payment scenarios, and shows detailed breakdowns including total interest paid over the life of the loan."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Which health tools do you offer for fitness tracking?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "We provide BMI calculators, calorie counters, body fat percentage tools, protein intake calculators, TDEE calculators, and water intake trackers. All health tools use scientifically-backed formulas for informational purposes only. Note: Results are not medical advice. Consult healthcare professionals for medical decisions."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What text processing tools are available?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Our text tools include word counters, character counters, case converters (uppercase, lowercase, title case), text generators, binary converters, markdown tools, and duplicate line removers. Perfect for content creators, students, and professionals who need quick text analysis and formatting."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do I need to sign up or download anything?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No registration, downloads, or installations required! Simply visit any tool page and start using it immediately. All tools work directly in your web browser on any device. Your privacy is protected since we don't collect personal information or require accounts."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Do the calculators work on mobile phones and tablets?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Absolutely! All our tools are mobile-optimized and work seamlessly on smartphones, tablets, laptops, and desktops. The responsive design ensures buttons are easy to tap, forms are simple to fill out, and results display perfectly on any screen size."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is my financial and personal data secure?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes! All calculations happen locally in your browser - we don't store your data on our servers. Your loan amounts, income details, health metrics, and text content remain completely private. No data is transmitted, stored, or shared with third parties."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I use these tools for my business or commercial projects?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes! All DapsiWow tools can be used for both personal and commercial purposes without restrictions. Financial advisors, real estate agents, fitness trainers, content creators, and businesses regularly use our calculators and tools for client presentations and professional work."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How can I get support or request new tools?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Contact us through our support page for help, feature requests, or to report issues. We actively listen to user feedback and regularly add new tools based on demand. Our goal is to continuously improve and expand our collection to meet your needs."
+                }
+              }
+            ]
+          })}
+        </script>
       </Helmet>
       
       <div className="min-h-screen flex flex-col" data-testid="page-home">
@@ -114,7 +202,7 @@ const Home = () => {
                   What is DapsiWow?
                 </h2>
                 <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed mb-8">
-                  DapsiWow is your ultimate online toolkit featuring 150+ professional-grade tools completely free to use. 
+                  DapsiWow is your ultimate online toolkit featuring 180+ professional-grade tools completely free to use. 
                   No registration required, no hidden fees, no software downloads - just powerful tools that work instantly 
                   in your browser across all devices.
                 </p>
@@ -181,7 +269,7 @@ const Home = () => {
                 <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 shadow-inner">
                   <div className="grid grid-cols-2 gap-6 text-center">
                     <div>
-                      <div className="text-4xl font-bold text-blue-600 mb-2">150+</div>
+                      <div className="text-4xl font-bold text-blue-600 mb-2">180+</div>
                       <div className="text-neutral-700 font-medium">Free Tools</div>
                     </div>
                     <div>
@@ -218,8 +306,8 @@ const Home = () => {
                   </div>
                   <h4 className="text-xl font-bold text-neutral-800 mb-4">Secure & Private</h4>
                   <p className="text-neutral-600 leading-relaxed">
-                    Your data stays private. We don't store your files or personal information. All processing happens securely 
-                    in your browser or on protected servers with enterprise-grade security measures.
+                    Your data stays private. We don't store your files or personal information. All processing happens locally 
+                    in your browser, ensuring your data never leaves your device.
                   </p>
                 </div>
                 
@@ -396,7 +484,7 @@ const Home = () => {
                   <div className="text-xs text-neutral-500 mt-1">Growing daily</div>
                 </div>
                 <div className="bg-white rounded-lg p-6 shadow-md">
-                  <div className="text-3xl lg:text-4xl font-bold text-green-600 mb-2">150+</div>
+                  <div className="text-3xl lg:text-4xl font-bold text-green-600 mb-2">180+</div>
                   <div className="text-neutral-700 font-medium">Free Tools</div>
                   <div className="text-xs text-neutral-500 mt-1">Always expanding</div>
                 </div>
@@ -492,99 +580,121 @@ const Home = () => {
                   Frequently Asked Questions
                 </h2>
                 <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
-                  Everything you need to know about DapsiWow and our free online tools
+                  Everything you need to know about DapsiWow's free finance, text, and health tools
                 </p>
               </div>
               
               <div className="grid lg:grid-cols-2 gap-8">
                 <div className="space-y-8">
-                  <div className="bg-white rounded-lg p-6 shadow-md">
+                  <div className="bg-white rounded-lg p-6 shadow-md" data-testid="faq-free-tools">
                     <h3 className="text-lg font-semibold text-neutral-800 mb-3">
-                      Is DapsiWow really completely free?
+                      Are all 180+ tools really free to use?
                     </h3>
                     <p className="text-neutral-600 leading-relaxed">
-                      Yes! All 180+ tools on DapsiWow are completely free to use. There are no hidden fees, 
-                      premium tiers, subscription plans, or usage limits. We believe everyone should have access 
-                      to professional-grade tools without financial barriers.
+                      Yes! Every single tool on DapsiWow is completely free with no hidden costs, subscriptions, or premium upgrades. 
+                      This includes our advanced loan calculators, mortgage tools, BMI calculators, text converters, and all other utilities. 
+                      We believe professional-grade tools should be accessible to everyone.
                     </p>
                   </div>
                   
-                  <div className="bg-white rounded-lg p-6 shadow-md">
+                  <div className="bg-white rounded-lg p-6 shadow-md" data-testid="faq-loan-calculator">
                     <h3 className="text-lg font-semibold text-neutral-800 mb-3">
-                      Do I need to create an account or register?
+                      How do I use the loan calculator for my business?
                     </h3>
                     <p className="text-neutral-600 leading-relaxed">
-                      No registration required! Simply visit our website and start using any tool immediately. 
-                      We respect your privacy and don't require personal information to access our services. 
-                      Just bookmark our site and return whenever you need our tools.
+                      Our <a href="/tools/business-loan-calculator" className="text-blue-600 hover:text-blue-800 underline">business loan calculator</a> lets you input your loan amount, interest rate, and term to calculate monthly payments. 
+                      It includes origination fees, processing costs, and shows your total interest paid. Perfect for comparing SBA loans, 
+                      equipment financing, and traditional business loans. Explore all <a href="/finance-tools" className="text-blue-600 hover:text-blue-800 underline">finance tools</a>.
                     </p>
                   </div>
                   
-                  <div className="bg-white rounded-lg p-6 shadow-md">
+                  <div className="bg-white rounded-lg p-6 shadow-md" data-testid="faq-mortgage-calculator">
                     <h3 className="text-lg font-semibold text-neutral-800 mb-3">
-                      Are my files and data secure?
+                      What makes your mortgage calculator different?
                     </h3>
                     <p className="text-neutral-600 leading-relaxed">
-                      Absolutely. We prioritize your privacy and security. Most processing happens directly in your 
-                      browser, and we don't store your files or personal data. For tools that require server processing, 
-                      files are processed securely and deleted immediately after use.
+                      Our <a href="/tools/mortgage-calculator" className="text-blue-600 hover:text-blue-800 underline">mortgage calculator</a> includes principal, interest, taxes, insurance (PITI), and PMI calculations all in one tool. 
+                      It supports multiple loan terms, down payment scenarios, and shows detailed breakdowns including total interest 
+                      paid over the life of the loan. Find more <a href="/finance-tools" className="text-blue-600 hover:text-blue-800 underline">financial calculators</a>.
                     </p>
                   </div>
                   
-                  <div className="bg-white rounded-lg p-6 shadow-md">
+                  <div className="bg-white rounded-lg p-6 shadow-md" data-testid="faq-bmi-health-tools">
                     <h3 className="text-lg font-semibold text-neutral-800 mb-3">
-                      Can I use these tools on my mobile device?
+                      Which health tools do you offer for fitness tracking?
                     </h3>
                     <p className="text-neutral-600 leading-relaxed">
-                      Yes! All our tools are designed with a mobile-first approach and work perfectly on smartphones, 
-                      tablets, laptops, and desktops. The responsive design ensures optimal functionality across all 
-                      screen sizes and devices.
+                      We provide <a href="/tools/bmi-calculator" className="text-blue-600 hover:text-blue-800 underline">BMI calculators</a>, calorie counters, body fat percentage tools, protein intake calculators, 
+                      TDEE calculators, and water intake trackers. All <a href="/health-tools" className="text-blue-600 hover:text-blue-800 underline">health tools</a> use scientifically-backed formulas for informational purposes only. 
+                      <strong>Note:</strong> Results are not medical advice. Consult healthcare professionals for medical decisions.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-white rounded-lg p-6 shadow-md" data-testid="faq-text-tools">
+                    <h3 className="text-lg font-semibold text-neutral-800 mb-3">
+                      What text processing tools are available?
+                    </h3>
+                    <p className="text-neutral-600 leading-relaxed">
+                      Our <a href="/text-tools" className="text-blue-600 hover:text-blue-800 underline">text tools</a> include <a href="/tools/word-counter" className="text-blue-600 hover:text-blue-800 underline">word counters</a>, character counters, <a href="/tools/case-converter" className="text-blue-600 hover:text-blue-800 underline">case converters</a> (uppercase, lowercase, title case), 
+                      text generators, binary converters, markdown tools, and duplicate line removers. Perfect for content creators, 
+                      students, and professionals who need quick text analysis and formatting.
                     </p>
                   </div>
                 </div>
                 
                 <div className="space-y-8">
-                  <div className="bg-white rounded-lg p-6 shadow-md">
+                  <div className="bg-white rounded-lg p-6 shadow-md" data-testid="faq-no-registration">
                     <h3 className="text-lg font-semibold text-neutral-800 mb-3">
-                      What types of tools do you offer?
+                      Do I need to sign up or download anything?
                     </h3>
                     <p className="text-neutral-600 leading-relaxed">
-                      We offer 180+ tools across 3 main categories: Finance (loan calculators, tax calculators), 
-                      Image (resize, compress, edit), Text (word counters, generators), 
-                      content analysis and optimization, and Health (BMI, calorie calculators). New tools are added regularly.
+                      No registration, downloads, or installations required! Simply visit any tool page and start using it immediately. 
+                      All tools work directly in your web browser on any device. Your privacy is protected since we don't collect 
+                      personal information or require accounts.
                     </p>
                   </div>
                   
-                  <div className="bg-white rounded-lg p-6 shadow-md">
+                  <div className="bg-white rounded-lg p-6 shadow-md" data-testid="faq-mobile-compatibility">
                     <h3 className="text-lg font-semibold text-neutral-800 mb-3">
-                      How accurate are the financial calculators?
+                      Do the calculators work on mobile phones and tablets?
                     </h3>
                     <p className="text-neutral-600 leading-relaxed">
-                      Our financial calculators use industry-standard formulas and are designed to provide accurate 
-                      estimates for planning purposes. However, for official financial decisions, we recommend 
-                      consulting with qualified financial professionals who can consider your specific circumstances.
+                      Absolutely! All our tools are mobile-optimized and work seamlessly on smartphones, tablets, laptops, and desktops. 
+                      The responsive design ensures buttons are easy to tap, forms are simple to fill out, and results display perfectly 
+                      on any screen size.
                     </p>
                   </div>
                   
-                  <div className="bg-white rounded-lg p-6 shadow-md">
+                  <div className="bg-white rounded-lg p-6 shadow-md" data-testid="faq-data-security">
                     <h3 className="text-lg font-semibold text-neutral-800 mb-3">
-                      Do you support multiple currencies and formats?
+                      Is my financial and personal data secure?
                     </h3>
                     <p className="text-neutral-600 leading-relaxed">
-                      Yes! Many of our tools support multiple currencies, date formats, and international standards. 
-                      Our financial tools include comprehensive loan and tax calculators with detailed breakdowns, and our 
-                      calculators support various regional formats.
+                      Yes! All calculations happen locally in your browser - we don't store your data on our servers. 
+                      Your loan amounts, income details, health metrics, and text content remain completely private. 
+                      No data is transmitted, stored, or shared with third parties. Read our <a href="/privacy-policy" className="text-blue-600 hover:text-blue-800 underline">Privacy Policy</a> for details.
                     </p>
                   </div>
                   
-                  <div className="bg-white rounded-lg p-6 shadow-md">
+                  <div className="bg-white rounded-lg p-6 shadow-md" data-testid="faq-commercial-use">
                     <h3 className="text-lg font-semibold text-neutral-800 mb-3">
-                      How can I get help or report issues?
+                      Can I use these tools for my business or commercial projects?
                     </h3>
                     <p className="text-neutral-600 leading-relaxed">
-                      We're here to help! You can reach out through our contact page for support, feature requests, 
-                      or to report any issues. We actively maintain and improve our tools based on user feedback and 
-                      strive to respond to inquiries promptly.
+                      Yes! All DapsiWow tools can be used for both personal and commercial purposes without restrictions. 
+                      Financial advisors, real estate agents, fitness trainers, content creators, and businesses regularly use 
+                      our calculators and tools for client presentations and professional work.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-white rounded-lg p-6 shadow-md" data-testid="faq-support">
+                    <h3 className="text-lg font-semibold text-neutral-800 mb-3">
+                      How can I get support or request new tools?
+                    </h3>
+                    <p className="text-neutral-600 leading-relaxed">
+                      Contact us through our support page for help, feature requests, or to report issues. We actively listen 
+                      to user feedback and regularly add new tools based on demand. Our goal is to continuously improve and 
+                      expand our collection to meet your needs.
                     </p>
                   </div>
                 </div>
