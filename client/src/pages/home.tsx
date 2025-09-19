@@ -604,14 +604,14 @@ const Home = () => {
                       </p>
                       <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
                         <a 
-                          href="/finance-tools" 
+                          href="/finance" 
                           className="inline-block bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 transition-all duration-200 shadow-lg text-center hover:shadow-xl transform hover:-translate-y-0.5"
                           data-testid="link-finance-tools"
                         >
                           Explore Finance Tools
                         </a>
                         <a 
-                          href="/health-tools" 
+                          href="/health" 
                           className="inline-block bg-white text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-200 text-center hover:shadow-lg transform hover:-translate-y-0.5"
                           data-testid="link-health-tools"
                         >
@@ -620,7 +620,7 @@ const Home = () => {
                       </div>
                       <div className="text-center">
                         <p className="text-sm text-neutral-600">
-                          Or explore all <a href="/tools" className="text-blue-600 hover:text-blue-800 underline font-semibold">180+ professional tools</a>
+                          Or explore all <a href="/all-tools" className="text-blue-600 hover:text-blue-800 underline font-semibold">180+ professional tools</a>
                         </p>
                       </div>
                     </div>
