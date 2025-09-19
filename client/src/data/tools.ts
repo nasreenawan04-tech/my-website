@@ -27,18 +27,18 @@ const toolsData = [
   { id: 'salary-to-hourly-calculator', name: 'Salary to Hourly Calculator', description: 'Convert annual salary to hourly wage', category: 'finance' as const, icon: 'fas fa-clock', href: '/tools/salary-to-hourly-calculator' },
   { id: 'tip-calculator', name: 'Tip Calculator', description: 'Calculate tip amount and split bills', category: 'finance' as const, icon: 'fas fa-hand-holding-usd', href: '/tools/tip-calculator' },
   { id: 'inflation-calculator', name: 'Inflation Calculator', description: 'Calculate inflation impact over time', category: 'finance' as const, icon: 'fas fa-arrow-up', href: '/tools/inflation-calculator' },
-  { id: 'savings-goal', name: 'Savings Goal Calculator', description: 'Plan and track your savings goals', category: 'finance' as const, icon: 'fas fa-piggy-bank', href: '/tools/savings-goal-calculator' },
-  { id: 'debt-payoff', name: 'Debt Payoff Calculator', description: 'Calculate time to pay off debts', category: 'finance' as const, icon: 'fas fa-credit-card', href: '/tools/debt-payoff-calculator' },
-  { id: 'net-worth', name: 'Net Worth Calculator', description: 'Calculate your total net worth', category: 'finance' as const, icon: 'fas fa-balance-scale', href: '/tools/net-worth-calculator' },
-  { id: 'stock-profit', name: 'Stock Profit Calculator', description: 'Calculate profit/loss on stock investments', category: 'finance' as const, icon: 'fas fa-chart-bar', href: '/tools/stock-profit-calculator' },
+  { id: 'savings-goal-calculator', name: 'Savings Goal Calculator', description: 'Plan and track your savings goals', category: 'finance' as const, icon: 'fas fa-piggy-bank', href: '/tools/savings-goal-calculator' },
+  { id: 'debt-payoff-calculator', name: 'Debt Payoff Calculator', description: 'Calculate time to pay off debts', category: 'finance' as const, icon: 'fas fa-credit-card', href: '/tools/debt-payoff-calculator' },
+  { id: 'net-worth-calculator', name: 'Net Worth Calculator', description: 'Calculate your total net worth', category: 'finance' as const, icon: 'fas fa-balance-scale', href: '/tools/net-worth-calculator' },
+  { id: 'stock-profit-calculator', name: 'Stock Profit Calculator', description: 'Calculate profit/loss on stock investments', category: 'finance' as const, icon: 'fas fa-chart-bar', href: '/tools/stock-profit-calculator' },
   { id: 'retirement-calculator', name: 'Retirement Calculator', description: 'Plan your retirement savings', category: 'finance' as const, icon: 'fas fa-user-clock', href: '/tools/retirement-calculator' },
   { id: 'sip-calculator', name: 'SIP Calculator', description: 'Calculate Systematic Investment Plan returns', category: 'finance' as const, icon: 'fas fa-coins', href: '/tools/sip-calculator' },
-  { id: 'investment-return', name: 'Investment Return Calculator', description: 'Calculate returns on various investments', category: 'finance' as const, icon: 'fas fa-money-bill-wave', href: '/tools/investment-return-calculator' },
-  { id: 'break-even', name: 'Break-Even Calculator', description: 'Calculate business break-even point', category: 'finance' as const, icon: 'fas fa-equals', href: '/tools/break-even-calculator' },
-  { id: 'car-loan', name: 'Car Loan Calculator', description: 'Calculate car loan payments and interest', category: 'finance' as const, icon: 'fas fa-car', href: '/tools/car-loan-calculator' },
-  { id: 'home-loan', name: 'Home Loan Calculator', description: 'Calculate home loan EMI and interest', category: 'finance' as const, icon: 'fas fa-house-user', href: '/tools/home-loan-calculator' },
-  { id: 'education-loan', name: 'Education Loan Calculator', description: 'Calculate education loan payments with moratorium period support', category: 'finance' as const, icon: 'fas fa-graduation-cap', href: '/tools/education-loan-calculator' },
-  { id: 'credit-card-interest', name: 'Credit Card Interest Calculator', description: 'Calculate credit card interest and payment schedules', category: 'finance' as const, icon: 'fas fa-credit-card', href: '/tools/credit-card-interest-calculator' },
+  { id: 'investment-return-calculator', name: 'Investment Return Calculator', description: 'Calculate returns on various investments', category: 'finance' as const, icon: 'fas fa-money-bill-wave', href: '/tools/investment-return-calculator' },
+  { id: 'break-even-calculator', name: 'Break-Even Calculator', description: 'Calculate business break-even point', category: 'finance' as const, icon: 'fas fa-equals', href: '/tools/break-even-calculator' },
+  { id: 'car-loan-calculator', name: 'Car Loan Calculator', description: 'Calculate car loan payments and interest', category: 'finance' as const, icon: 'fas fa-car', href: '/tools/car-loan-calculator' },
+  { id: 'home-loan-calculator', name: 'Home Loan Calculator', description: 'Calculate home loan EMI and interest', category: 'finance' as const, icon: 'fas fa-house-user', href: '/tools/home-loan-calculator' },
+  { id: 'education-loan-calculator', name: 'Education Loan Calculator', description: 'Calculate education loan payments with moratorium period support', category: 'finance' as const, icon: 'fas fa-graduation-cap', href: '/tools/education-loan-calculator' },
+  { id: 'credit-card-interest-calculator', name: 'Credit Card Interest Calculator', description: 'Calculate credit card interest and payment schedules', category: 'finance' as const, icon: 'fas fa-credit-card', href: '/tools/credit-card-interest-calculator' },
   { id: 'lease-calculator', name: 'Lease Calculator', description: 'Calculate lease payments for vehicles and assets', category: 'finance' as const, icon: 'fas fa-file-contract', href: '/tools/lease-calculator' },
   { id: 'percentage-calculator', name: 'Percentage Calculator', description: 'Calculate percentages and percentage changes', category: 'finance' as const, icon: 'fas fa-percentage', href: '/tools/percentage-calculator' },
   { id: 'discount-calculator', name: 'Discount Calculator', description: 'Calculate discounts and final prices', category: 'finance' as const, icon: 'fas fa-tags', href: '/tools/discount-calculator' },
@@ -109,79 +109,8 @@ const toolsData = [
   { id: 'smoking-cost-calculator', name: 'Smoking Cost Calculator', description: 'Calculate the cost of smoking habits', category: 'health' as const, icon: 'fas fa-smoking-ban', href: '/tools/smoking-cost-calculator' }
 ];
 
-// Generate href for each tool
-const generateHref = (tool: Omit<Tool, 'href'>): string => {
-  // Special cases for calculators that have their own pages
-  if (tool.id === 'loan-calculator') {
-    return '/tools/loan-calculator';
-  }
-  if (tool.id === 'compound-interest') {
-    return '/tools/compound-interest';
-  }
-  if (tool.id === 'simple-interest') {
-    return '/tools/simple-interest';
-  }
-  if (tool.id === 'roi-calculator') {
-    return '/tools/roi-calculator';
-  }
-  if (tool.id === 'tax-calculator') {
-    return '/tools/tax-calculator';
-  }
-  if (tool.id === 'salary-hourly') {
-    return '/tools/salary-to-hourly';
-  }
-  if (tool.id === 'tip-calculator') {
-    return '/tools/tip-calculator';
-  }
-  if (tool.id === 'inflation-calculator') {
-    return '/tools/inflation-calculator';
-  }
-  if (tool.id === 'savings-goal') {
-    return '/tools/savings-goal-calculator';
-  }
-  if (tool.id === 'debt-payoff') {
-    return '/tools/debt-payoff-calculator';
-  }
-  if (tool.id === 'net-worth') {
-    return '/tools/net-worth-calculator';
-  }
-  if (tool.id === 'stock-profit') {
-    return '/tools/stock-profit-calculator';
-  }
-  if (tool.id === 'investment-return') {
-    return '/tools/investment-return-calculator';
-  }
-  if (tool.id === 'break-even') {
-    return '/tools/break-even-calculator';
-  }
-  if (tool.id === 'business-loan') {
-    return '/tools/business-loan-calculator';
-  }
-  if (tool.id === 'lease-calculator') {
-    return '/tools/lease-calculator';
-  }
-  if (tool.id === 'car-loan') {
-    return '/tools/car-loan-calculator';
-  }
-  if (tool.id === 'home-loan') {
-    return '/tools/home-loan-calculator';
-  }
-  if (tool.id === 'education-loan') {
-    return '/tools/education-loan-calculator';
-  }
-  if (tool.id === 'credit-card-interest') {
-    return '/tools/credit-card-interest-calculator';
-  }
-
-  // Generate individual tool page URL
-  return `/tools/${tool.id}`;
-};
-
-// Export tools with generated hrefs
-export const tools: Tool[] = toolsData.map(tool => ({
-  ...tool,
-  href: generateHref(tool)
-}));
+// Export tools directly since hrefs are now correctly set in the data
+export const tools: Tool[] = toolsData;
 
 export const popularTools = tools.filter(tool => tool.isPopular);
 
