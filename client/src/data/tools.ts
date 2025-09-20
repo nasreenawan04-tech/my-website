@@ -84,6 +84,7 @@ const toolsData = [
   { id: 'text-formatter-beautifier', name: 'Text Formatter & Beautifier', description: 'Format and beautify code, JSON, XML, and text with proper indentation and structure', category: 'text' as const, icon: 'fas fa-code', href: '/tools/text-formatter-beautifier' },
   { id: 'base64-encoder-decoder', name: 'Base64 Encoder/Decoder', description: 'Convert text to Base64 and decode Base64 to text with advanced encoding options', category: 'text' as const, icon: 'fas fa-code', href: '/tools/base64-encoder-decoder' },
   { id: 'text-statistics-analyzer', name: 'Text Statistics Analyzer', description: 'Comprehensive text analysis with readability scores, keyword density, and detailed writing metrics', category: 'text' as const, icon: 'fas fa-chart-bar', href: '/tools/text-statistics-analyzer' },
+  { id: 'url-extractor', name: 'URL Extractor', description: 'Extract and analyze all URLs from text content with filtering and export options', category: 'text' as const, icon: 'fas fa-link', href: '/tools/url-extractor' },
 
 
 
