@@ -279,9 +279,9 @@ Remember that writing is a process, not a product. The first draft is rarely per
               <div className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 md:px-5 md:py-2.5 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200 text-xs sm:text-sm md:text-base">
                 <span className="font-medium text-blue-700">Advanced Text Analysis</span>
               </div>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight" data-testid="text-page-title">
-                <span className="block">Text Statistics</span>
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-normal tracking-tight overflow-visible" data-testid="text-page-title">
+                <span className="block leading-normal">Text Statistics</span>
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 leading-normal pb-2">
                   Analyzer
                 </span>
               </h1>
