@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Moon, Clock, Heart, Brain, Star, AlertCircle, CheckCircle, Info } from 'lucide-react';
@@ -55,8 +54,8 @@ const SleepQualityCalculator = () => {
     // Calculate sleep duration
     const bedtimeMinutes = timeToMinutes(sleepData.bedtime);
     const wakeTimeMinutes = timeToMinutes(sleepData.wakeTime);
-    const sleepDurationMinutes = wakeTimeMinutes > bedtimeMinutes 
-      ? wakeTimeMinutes - bedtimeMinutes 
+    const sleepDurationMinutes = wakeTimeMinutes > bedtimeMinutes
+      ? wakeTimeMinutes - bedtimeMinutes
       : (24 * 60) - bedtimeMinutes + wakeTimeMinutes;
     const sleepDuration = sleepDurationMinutes / 60;
 
@@ -68,7 +67,7 @@ const SleepQualityCalculator = () => {
 
     // Calculate quality score (0-100)
     let qualityScore = 0;
-    
+
     // Sleep duration score (30% weight)
     const optimalSleep = getOptimalSleep(sleepData.age);
     const durationScore = Math.max(0, 100 - Math.abs(sleepDuration - optimalSleep) * 10);
@@ -214,15 +213,15 @@ const SleepQualityCalculator = () => {
 
       <div className="min-h-screen flex flex-col" data-testid="page-sleep-quality-calculator">
         <Header />
-        
+
         <ToolHeroSection
           title="Sleep Quality Calculator"
           description="Assess your sleep quality, efficiency, and get personalized recommendations for better rest and optimal sleep health"
         />
-        
+
         <main className="flex-1 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 py-12">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            
+
             {/* Calculator Section */}
             <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 sm:p-8 mb-8">
               <div className="mb-8">
@@ -244,7 +243,7 @@ const SleepQualityCalculator = () => {
                     <Clock className="w-5 h-5 text-blue-600" />
                     Sleep Schedule
                   </h3>
-                  
+
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
@@ -475,7 +474,7 @@ const SleepQualityCalculator = () => {
                     </div>
                     <div className="text-sm text-slate-600 dark:text-slate-300">Sleep Duration</div>
                   </div>
-                  
+
                   <div className="text-center p-4 bg-green-50 dark:bg-green-900/20 rounded-xl">
                     <Heart className="w-8 h-8 text-green-600 mx-auto mb-2" />
                     <div className="text-2xl font-bold text-slate-900 dark:text-white">
@@ -483,7 +482,7 @@ const SleepQualityCalculator = () => {
                     </div>
                     <div className="text-sm text-slate-600 dark:text-slate-300">Sleep Efficiency</div>
                   </div>
-                  
+
                   <div className="text-center p-4 bg-purple-50 dark:bg-purple-900/20 rounded-xl">
                     <Brain className="w-8 h-8 text-purple-600 mx-auto mb-2" />
                     <div className="text-2xl font-bold text-slate-900 dark:text-white">
@@ -491,7 +490,7 @@ const SleepQualityCalculator = () => {
                     </div>
                     <div className="text-sm text-slate-600 dark:text-slate-300">Sleep Debt</div>
                   </div>
-                  
+
                   <div className="text-center p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-xl">
                     <Star className="w-8 h-8 text-yellow-600 mx-auto mb-2" />
                     <div className="text-2xl font-bold text-slate-900 dark:text-white">
@@ -531,16 +530,13 @@ const SleepQualityCalculator = () => {
                       <div className="bg-slate-50 dark:bg-slate-700 rounded-lg p-4">
                         <h4 className="font-semibold text-slate-900 dark:text-white mb-2">Sleep Efficiency Analysis</h4>
                         <p className="text-sm text-slate-600 dark:text-slate-300 mb-2">
-                          Sleep efficiency of {result.sleepEfficiency.toFixed(1)}% 
-                          {result.sleepEfficiency >= 90 ? ' is excellent.' :
-                           result.sleepEfficiency >= 85 ? ' is good.' :
-                           result.sleepEfficiency >= 80 ? ' is fair.' : ' needs improvement.'}
+                          Percentage of time actually asleep while in bed. &gt;85% is considered good.
                         </p>
                         <div className="text-xs text-slate-500 dark:text-slate-400">
-                          Normal range: 85-95% • Target: >90%
+                          Normal range: 85-95% • Target: &gt;90%
                         </div>
                       </div>
-                      
+
                       <div className="bg-slate-50 dark:bg-slate-700 rounded-lg p-4">
                         <h4 className="font-semibold text-slate-900 dark:text-white mb-2">Sleep Duration Analysis</h4>
                         <p className="text-sm text-slate-600 dark:text-slate-300 mb-2">
@@ -560,7 +556,7 @@ const SleepQualityCalculator = () => {
             {/* Educational Content */}
             <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 sm:p-8">
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Understanding Sleep Quality</h2>
-              
+
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
                   <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Key Sleep Metrics</h3>
@@ -574,7 +570,7 @@ const SleepQualityCalculator = () => {
                     <div className="border-l-4 border-green-500 pl-4">
                       <h4 className="font-semibold text-slate-900 dark:text-white">Sleep Efficiency</h4>
                       <p className="text-sm text-slate-600 dark:text-slate-300">
-                        Percentage of time actually asleep while in bed. >85% is considered good.
+                        Percentage of time actually asleep while in bed. &gt;85% is considered good.
                       </p>
                     </div>
                     <div className="border-l-4 border-purple-500 pl-4">
@@ -585,7 +581,7 @@ const SleepQualityCalculator = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 <div>
                   <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Sleep Hygiene Tips</h3>
                   <div className="space-y-3">
@@ -630,7 +626,7 @@ const SleepQualityCalculator = () => {
                   <div>
                     <h4 className="font-semibold text-yellow-800 dark:text-yellow-200">Important Note</h4>
                     <p className="text-sm text-yellow-700 dark:text-yellow-300 mt-1">
-                      This calculator provides general guidance only. If you consistently experience sleep problems, 
+                      This calculator provides general guidance only. If you consistently experience sleep problems,
                       consult with a healthcare provider or sleep specialist for proper evaluation and treatment.
                     </p>
                   </div>
@@ -667,7 +663,7 @@ const SleepQualityCalculator = () => {
 
           </div>
         </main>
-        
+
         <Footer />
       </div>
     </>
