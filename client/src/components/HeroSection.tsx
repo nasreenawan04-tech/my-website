@@ -143,13 +143,13 @@ const HeroSection = () => {
             <div className="text-3xl lg:text-4xl font-bold mb-2">1M+</div>
             <div className="text-blue-100 text-sm lg:text-base">Active Users</div>
           </div>
-          <div className="text-center" data-testid="stat-files-converted">
-            <div className="text-3xl lg:text-4xl font-bold mb-2">10M+</div>
-            <div className="text-blue-100 text-sm lg:text-base">Files Converted</div>
+          <div className="text-center" data-testid="stat-tools-available">
+            <div className="text-3xl lg:text-4xl font-bold mb-2">180+</div>
+            <div className="text-blue-100 text-sm lg:text-base">Tools Available</div>
           </div>
-          <div className="text-center" data-testid="stat-online-tools">
-            <div className="text-3xl lg:text-4xl font-bold mb-2">150+</div>
-            <div className="text-blue-100 text-sm lg:text-base">Online Tools</div>
+          <div className="text-center" data-testid="stat-categories">
+            <div className="text-3xl lg:text-4xl font-bold mb-2">3</div>
+            <div className="text-blue-100 text-sm lg:text-base">Categories</div>
           </div>
           <div className="text-center" data-testid="stat-calculations-done">
             <div className="text-3xl lg:text-4xl font-bold mb-2">500K+</div>
