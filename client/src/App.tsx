@@ -73,6 +73,7 @@ const HeartRateCalculator = lazy(() => import("@/pages/heart-rate-calculator"));
 const MaxHeartRateCalculator = lazy(() => import("@/pages/max-heart-rate-calculator"));
 const BloodPressureTracker = lazy(() => import("@/pages/blood-pressure-tracker"));
 const SleepCalculator = lazy(() => import("@/pages/sleep-calculator"));
+const SleepQualityCalculator = lazy(() => import("@/pages/sleep-quality-calculator"));
 const OvulationCalculator = lazy(() => import("@/pages/ovulation-calculator"));
 const BabyGrowthChart = lazy(() => import("@/pages/baby-growth-chart"));
 const TDEECalculator = lazy(() => import("@/pages/tdee-calculator"));
@@ -186,6 +187,7 @@ function Router() {
       <Route path="/tools/max-heart-rate-calculator" component={MaxHeartRateCalculator} />
       <Route path="/tools/blood-pressure-tracker" component={BloodPressureTracker} />
       <Route path="/tools/sleep-calculator" component={SleepCalculator} />
+      <Route path="/tools/sleep-quality-calculator" component={SleepQualityCalculator} />
       <Route path="/tools/ovulation-calculator" component={OvulationCalculator} />
       <Route path="/tools/baby-growth-chart" component={BabyGrowthChart} />
       <Route path="/tools/tdee-calculator" component={TDEECalculator} />
