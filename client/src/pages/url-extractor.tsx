@@ -36,6 +36,31 @@ const URLExtractor = () => {
   const [selectedType, setSelectedType] = useState<'all' | 'http' | 'https' | 'ftp' | 'mailto'>('all');
   const { toast } = useToast();
 
+  const extractDomain = (url: string): string => {
+    try {
+      if (url.startsWith('mailto:')) {
+        return url.replace('mailto:', '').split('@')[1] || '';
+      }
+      const urlObj = new URL(url);
+      return urlObj.hostname.replace('www.', '');
+    } catch {
+      return '';
+    }
+  };
+
+  const isValidURL = (url: string): boolean => {
+    try {
+      if (url.startsWith('mailto:')) {
+        const email = url.replace('mailto:', '');
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      }
+      new URL(url);
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
   const extractedData = useMemo(() => {
     if (!inputText.trim()) return { urls: [], statistics: null };
 
@@ -95,31 +120,6 @@ const URLExtractor = () => {
 
     return { urls: uniqueUrls, statistics };
   }, [inputText, selectedType]);
-
-  const extractDomain = (url: string): string => {
-    try {
-      if (url.startsWith('mailto:')) {
-        return url.replace('mailto:', '').split('@')[1] || '';
-      }
-      const urlObj = new URL(url);
-      return urlObj.hostname.replace('www.', '');
-    } catch {
-      return '';
-    }
-  };
-
-  const isValidURL = (url: string): boolean => {
-    try {
-      if (url.startsWith('mailto:')) {
-        const email = url.replace('mailto:', '');
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-      }
-      new URL(url);
-      return true;
-    } catch {
-      return false;
-    }
-  };
 
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text);
