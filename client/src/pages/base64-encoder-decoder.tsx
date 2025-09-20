@@ -901,7 +901,7 @@ const Base64EncoderDecoder = () => {
                       </div>
                       <div className="bg-white p-3 rounded border">
                         <h4 className="font-medium text-blue-900 mb-1">JSON Data</h4>
-                        <code className="text-xs font-mono text-blue-800 break-all">{"user":"admin"} → eyJ1c2VyIjoiYWRtaW4ifQ==</code>
+                        <code className="text-xs font-mono text-blue-800 break-all">{`{"user":"admin"} → eyJ1c2VyIjoiYWRtaW4ifQ==`}</code>
                       </div>
                     </div>
                   </div>
