@@ -82,6 +82,7 @@ const toolsData = [
   { id: 'text-diff-checker', name: 'Text Diff Checker', description: 'Compare two texts and highlight differences with side-by-side comparison', category: 'text' as const, icon: 'fas fa-exchange-alt', href: '/tools/text-diff-checker' },
   { id: 'text-pattern-generator', name: 'Text Pattern Generator', description: 'Generate repeating text patterns with customizable sequences and formats', category: 'text' as const, icon: 'fas fa-sync-alt', href: '/tools/text-pattern-generator' },
   { id: 'text-formatter-beautifier', name: 'Text Formatter & Beautifier', description: 'Format and beautify code, JSON, XML, and text with proper indentation and structure', category: 'text' as const, icon: 'fas fa-code', href: '/tools/text-formatter-beautifier' },
+  { id: 'base64-encoder-decoder', name: 'Base64 Encoder/Decoder', description: 'Convert text to Base64 and decode Base64 to text with advanced encoding options', category: 'text' as const, icon: 'fas fa-code', href: '/tools/base64-encoder-decoder' },
 
 
 

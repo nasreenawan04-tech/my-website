@@ -117,6 +117,7 @@ const TextDiffChecker = lazy(() => import("@/pages/text-diff-checker"));
 const TextPatternGenerator = lazy(() => import("@/pages/text-pattern-generator"));
 const TextFormatterBeautifier = lazy(() => import("@/pages/text-formatter-beautifier"));
 const PasswordStrengthChecker = lazy(() => import("@/pages/password-strength-checker"));
+const Base64EncoderDecoder = lazy(() => import("@/pages/base64-encoder-decoder"));
 
 
 function ScrollToTop() {
@@ -224,6 +225,7 @@ function Router() {
         <Route path="/tools/text-pattern-generator" component={TextPatternGenerator} />
         <Route path="/tools/text-formatter-beautifier" component={TextFormatterBeautifier} />
         <Route path="/tools/password-strength-checker" component={PasswordStrengthChecker} />
+        <Route path="/tools/base64-encoder-decoder" component={Base64EncoderDecoder} />
       <Route path="/tools/:toolId" component={ToolPage} />
       <Route path="/finance" component={FinanceTools} />
       <Route path="/text" component={TextTools} />
