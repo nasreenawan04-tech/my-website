@@ -147,22 +147,22 @@ function Router() {
           <Route path="/" component={Home} />
           <Route path="/all-tools" component={AllTools} />
           <Route path="/tools" component={AllTools} />
-          
+
           {/* Category pages - standardized */}
           <Route path="/finance-tools" component={FinanceTools} />
           <Route path="/text-tools" component={TextTools} />
           <Route path="/health-tools" component={HealthTools} />
-          
+
           {/* Static pages - standardized */}
           <Route path="/contact-us" component={ContactUs} />
           <Route path="/privacy-policy" component={PrivacyPolicy} />
           <Route path="/terms-of-service" component={TermsOfService} />
           <Route path="/help-center" component={HelpCenter} />
           <Route path="/about-us" component={AboutUs} />
-          
+
           {/* Legacy route redirects to standardized URLs */}
           <Route path="/about" component={() => { window.location.replace('/about-us'); return null; }} />
-          
+
           {/* Legacy route redirects to standardized /tools/ URLs */}
           <Route path="/loan-calculator" component={() => { window.location.replace('/tools/loan-calculator'); return null; }} />
           <Route path="/mortgage-calculator" component={() => { window.location.replace('/tools/mortgage-calculator'); return null; }} />
@@ -171,7 +171,7 @@ function Router() {
           <Route path="/tax-calculator" component={() => { window.location.replace('/tools/tax-calculator'); return null; }} />
           <Route path="/word-counter" component={() => { window.location.replace('/tools/word-counter'); return null; }} />
           <Route path="/character-counter" component={() => { window.location.replace('/tools/character-counter'); return null; }} />
-          
+
           {/* All tool routes standardized to /tools/ prefix only */}
           <Route path="/tools/loan-calculator" component={LoanCalculator} />
           <Route path="/tools/mortgage-calculator" component={MortgageCalculator} />
@@ -269,10 +269,10 @@ function Router() {
           <Route path="/tools/text-statistics-analyzer" component={TextStatisticsAnalyzer} />
           <Route path="/tools/url-extractor" component={URLExtractor} />
           <Route path="/tools/text-cleaner-formatter" component={TextCleanerFormatter} />
-          
+
           {/* Fallback for any unknown /tools/ routes to prevent soft 404s */}
           <Route path="/tools/:toolId" component={ToolPage} />
-          
+
           {/* 404 fallback for all unknown routes */}
           <Route component={NotFound} />
         </Switch>

@@ -39,7 +39,7 @@ const HealthTools = () => {
         <meta property="og:title" content="Health Tools - 30+ Free Health & Fitness Calculators | DapsiWow" />
         <meta property="og:description" content="Free health tools including BMI calculator, calorie calculator, pregnancy calculator, and 25+ more health and fitness calculators." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://dapsiwow.com/health" />
+        <link rel="canonical" href="https://dapsiwow.com/health-tools" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col" data-testid="page-health-tools">
