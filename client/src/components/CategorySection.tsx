@@ -51,7 +51,7 @@ const CategorySection = () => {
             Explore our comprehensive suite of productivity tools
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {categories.map((category) => (
             <div
@@ -60,7 +60,7 @@ const CategorySection = () => {
               onClick={() => handleCategoryClick(category.href)}
               data-testid={`card-category-${category.key}`}
             >
-              
+
               <h3 className="text-2xl font-bold mb-4" data-testid={`text-category-title-${category.key}`}>
                 {category.title}
               </h3>
