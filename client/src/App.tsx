@@ -28,7 +28,6 @@ const AboutUs = lazy(() => import("@/pages/about-us"));
 const TextStatisticsAnalyzer = lazy(() => import("@/pages/text-statistics-analyzer"));
 const UrlExtractor = lazy(() => import("@/pages/url-extractor"));
 const TextCleanerFormatter = lazy(() => import("@/pages/text-cleaner-formatter"));
-const TextSimilarityChecker = lazy(() => import("@/pages/text-similarity-checker"));
 const DTIRatioCalculator = lazy(() => import("@/pages/dti-ratio-calculator"));
 
 // Individual tool components are now loaded dynamically via ToolPage for better maintainability
@@ -86,7 +85,6 @@ function Router() {
           <Route path="/tools/text-statistics-analyzer" component={TextStatisticsAnalyzer} />
           <Route path="/tools/url-extractor" component={UrlExtractor} />
           <Route path="/tools/text-cleaner-formatter" component={TextCleanerFormatter} />
-          <Route path="/tools/text-similarity-checker" component={TextSimilarityChecker} />
           <Route path="/tools/dti-ratio-calculator" component={DTIRatioCalculator} />
 
           {/* 404 fallback for all unknown routes */}

@@ -546,16 +546,6 @@ const toolsData: Tool[] = [
     icon: "fas fa-broom",
     href: "/tools/text-cleaner-formatter",
   },
-  {
-    id: "text-similarity-checker",
-    name: "Text Similarity Checker",
-    description:
-      "Compare two texts using advanced algorithms to detect similarity, overlap, and potential plagiarism with detailed analysis",
-    category: "text" as const,
-    icon: "fas fa-balance-scale",
-    href: "/tools/text-similarity-checker",
-    isPopular: true,
-  },
 
   // Health Tools (30)
   {
