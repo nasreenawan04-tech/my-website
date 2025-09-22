@@ -143,128 +143,135 @@ function Router() {
       <ScrollToTop />
       <Suspense fallback={<PageLoadingSpinner />}>
         <Switch>
-      <Route path="/" component={Home} />
-      {/* Fix URL mismatches to match sitemap URLs */}
-      <Route path="/all-tools" component={AllTools} />
-      <Route path="/tools" component={AllTools} />
-      <Route path="/tools/loan-calculator" component={LoanCalculator} />
-      <Route path="/tools/mortgage-calculator" component={MortgageCalculator} />
-      <Route path="/tools/emi-calculator" component={EMICalculator} />
-      <Route path="/tools/compound-interest-calculator" component={CompoundInterestCalculator} />
-      <Route path="/tools/simple-interest-calculator" component={SimpleInterestCalculator} />
-      <Route path="/tools/roi-calculator" component={ROICalculator} />
-      <Route path="/tools/tax-calculator" component={TaxCalculator} />
-      <Route path="/tools/salary-to-hourly-calculator" component={SalaryToHourlyCalculator} />
-      <Route path="/tools/tip-calculator" component={TipCalculator} />
-      <Route path="/tools/inflation-calculator" component={InflationCalculator} />
-      <Route path="/tools/savings-goal-calculator" component={SavingsGoalCalculator} />
-      <Route path="/tools/debt-payoff-calculator" component={DebtPayoffCalculator} />
-      <Route path="/tools/net-worth-calculator" component={NetWorthCalculator} />
-      <Route path="/tools/stock-profit-calculator" component={StockProfitCalculator} />
-      <Route path="/tools/retirement-calculator" component={RetirementCalculator} />
-      <Route path="/tools/sip-calculator" component={SIPCalculator} />
-      <Route path="/tools/investment-return-calculator" component={InvestmentReturnCalculator} />
-      <Route path="/tools/break-even-calculator" component={BreakEvenCalculator} />
-      <Route path="/tools/business-loan-calculator" component={BusinessLoanCalculator} />
-      <Route path="/tools/lease-calculator" component={LeaseCalculator} />
-      <Route path="/tools/car-loan-calculator" component={CarLoanCalculator} />
-      <Route path="/tools/home-loan-calculator" component={HomeLoanCalculator} />
-      <Route path="/tools/education-loan-calculator" component={EducationLoanCalculator} />
-      <Route path="/tools/credit-card-interest-calculator" component={CreditCardInterestCalculator} />
-      <Route path="/tools/percentage-calculator" component={PercentageCalculator} />
-      <Route path="/tools/discount-calculator" component={DiscountCalculator} />
-      <Route path="/tools/vat-gst-calculator" component={VATGSTCalculator} />
-      <Route path="/tools/paypal-fee-calculator" component={PayPalFeeCalculator} />
-      <Route path="/tools/currency-percentage-change-calculator" component={CurrencyPercentageChangeCalculator} />
-      <Route path="/tools/future-value-investment-calculator" component={FutureValueInvestmentCalculator} />
-      <Route path="/tools/budget-calculator" component={BudgetCalculator} />
-      <Route path="/tools/loan-comparison-calculator" component={LoanComparisonCalculator} />
-      <Route path="/tools/bmi-calculator" component={BMICalculator} />
-      <Route path="/tools/bmr-calculator" component={BMRCalculator} />
-      <Route path="/tools/calorie-calculator" component={CalorieCalculator} />
-      <Route path="/tools/body-fat-calculator" component={BodyFatCalculator} />
-      <Route path="/tools/ideal-weight-calculator" component={IdealWeightCalculator} />
-      <Route path="/tools/pregnancy-due-date-calculator" component={PregnancyDueDateCalculator} />
-      <Route path="/tools/water-intake-calculator" component={WaterIntakeCalculator} />
-      <Route path="/tools/protein-intake-calculator" component={ProteinIntakeCalculator} />
-      <Route path="/tools/carb-calculator" component={CarbCalculator} />
-      <Route path="/tools/keto-macro-calculator" component={KetoMacroCalculator} />
-      <Route path="/tools/intermittent-fasting-timer" component={IntermittentFastingTimer} />
-      <Route path="/tools/daily-step-calorie-converter" component={DailyStepCalorieConverter} />
-      <Route path="/tools/heart-rate-calculator" component={HeartRateCalculator} />
-      <Route path="/tools/max-heart-rate-calculator" component={MaxHeartRateCalculator} />
-      <Route path="/tools/blood-pressure-tracker" component={BloodPressureTracker} />
-      <Route path="/tools/sleep-calculator" component={SleepCalculator} />
-      <Route path="/tools/sleep-quality-calculator" component={SleepQualityCalculator} />
-      <Route path="/tools/ovulation-calculator" component={OvulationCalculator} />
-      <Route path="/tools/baby-growth-chart" component={BabyGrowthChart} />
-      <Route path="/tools/tdee-calculator" component={TDEECalculator} />
-      <Route path="/tools/lean-body-mass-calculator" component={LeanBodyMassCalculator} />
-      <Route path="/tools/waist-to-height-ratio-calculator" component={WaistToHeightRatioCalculator} />
-      <Route path="/tools/whr-calculator" component={WHRCalculator} />
-      <Route path="/tools/life-expectancy-calculator" component={LifeExpectancyCalculator} />
-      <Route path="/tools/cholesterol-risk-calculator" component={CholesterolRiskCalculator} />
-      <Route path="/tools/running-pace-calculator" component={RunningPaceCalculator} />
-      <Route path="/tools/cycling-speed-calculator" component={CyclingSpeedCalculator} />
-      <Route path="/tools/swimming-calorie-calculator" component={SwimmingCalorieCalculator} />
-      <Route path="/tools/alcohol-calorie-calculator" component={AlcoholCalorieCalculator} />
-      <Route path="/tools/smoking-cost-calculator" component={SmokingCostCalculator} />
-      <Route path="/tools/body-water-percentage-calculator" component={BodyWaterPercentageCalculator} />
-      <Route path="/tools/hydration-calculator" component={HydrationCalculator} />
-      <Route path="/tools/word-counter" component={WordCounter} />
-      <Route path="/tools/character-counter" component={CharacterCounter} />
-        <Route path="/tools/sentence-counter" component={SentenceCounter} />
-        <Route path="/tools/paragraph-counter" component={ParagraphCounter} />
-        <Route path="/tools/case-converter" component={CaseConverter} />
-        <Route path="/tools/password-generator" component={PasswordGenerator} />
-        <Route path="/tools/fake-name-generator" component={FakeNameGenerator} />
-        <Route path="/tools/username-generator" component={UsernameGenerator} />
-        <Route path="/tools/fake-address-generator" component={FakeAddressGenerator} />
-        <Route path="/tools/qr-text-generator" component={QRTextGenerator} />
-        <Route path="/tools/font-style-changer" component={FontStyleChanger} />
-        <Route path="/tools/reverse-text-tool" component={ReverseTextTool} />
-        <Route path="/tools/text-to-qr-code" component={TextToQRCode} />
-        <Route path="/tools/text-to-binary-converter" component={TextToBinaryConverter} />
-        <Route path="/tools/binary-to-text-converter" component={BinaryToTextConverter} />
-        <Route path="/tools/decimal-to-text-converter" component={DecimalToTextConverter} />
-        <Route path="/tools/text-to-decimal-converter" component={TextToDecimalConverter} />
-        <Route path="/tools/qr-code-scanner" component={QRCodeScanner} />
-        <Route path="/tools/markdown-to-html" component={MarkdownToHTMLConverter} />
-        <Route path="/tools/lorem-ipsum-generator" component={LoremIpsumGenerator} />
-        <Route path="/tools/hex-to-text-converter" component={HexToTextConverter} />
-        <Route path="/tools/text-to-hex-converter" component={TextToHexConverter} />
-        <Route path="/tools/duplicate-line-remover" component={DuplicateLineRemover} />
-        <Route path="/tools/text-scrambler" component={TextScrambler} />
-        <Route path="/tools/text-diff-checker" component={TextDiffChecker} />
-        <Route path="/tools/text-pattern-generator" component={TextPatternGenerator} />
-        <Route path="/tools/text-formatter-beautifier" component={TextFormatterBeautifier} />
-        <Route path="/tools/password-strength-checker" component={PasswordStrengthChecker} />
-        <Route path="/tools/base64-encoder-decoder" component={Base64EncoderDecoder} />
-        <Route path="/tools/text-statistics-analyzer" component={TextStatisticsAnalyzer} />
-        <Route path="/tools/url-extractor" component={URLExtractor} />
-        <Route path="/tools/text-cleaner-formatter" component={TextCleanerFormatter} />
-      <Route path="/tools/:toolId" component={ToolPage} />
-
-      {/* Fix URL mismatches for category pages to match sitemap */}
-      <Route path="/finance-tools" component={FinanceTools} />
-      <Route path="/text-tools" component={TextTools} />
-      <Route path="/health-tools" component={HealthTools} />
-      <Route path="/finance" component={FinanceTools} />
-      <Route path="/text" component={TextTools} />
-      <Route path="/health" component={HealthTools} />
-
-      {/* Fix URL mismatches for other pages to match sitemap */}
-      <Route path="/contact-us" component={ContactUs} />
-      <Route path="/privacy-policy" component={PrivacyPolicy} />
-      <Route path="/terms-of-service" component={TermsOfService} />
-      <Route path="/help-center" component={HelpCenter} />
-      <Route path="/about-us" component={AboutUs} />
-      <Route path="/contact" component={ContactUs} />
-      <Route path="/privacy" component={PrivacyPolicy} />
-      <Route path="/terms" component={TermsOfService} />
-      <Route path="/help" component={HelpCenter} />
-      <Route path="/about" component={AboutUs} />
-      <Route component={NotFound} />
+          {/* Core pages */}
+          <Route path="/" component={Home} />
+          <Route path="/all-tools" component={AllTools} />
+          <Route path="/tools" component={AllTools} />
+          
+          {/* Category pages - standardized */}
+          <Route path="/finance-tools" component={FinanceTools} />
+          <Route path="/text-tools" component={TextTools} />
+          <Route path="/health-tools" component={HealthTools} />
+          
+          {/* Static pages - standardized */}
+          <Route path="/contact-us" component={ContactUs} />
+          <Route path="/privacy-policy" component={PrivacyPolicy} />
+          <Route path="/terms-of-service" component={TermsOfService} />
+          <Route path="/help-center" component={HelpCenter} />
+          <Route path="/about-us" component={AboutUs} />
+          
+          {/* Legacy route redirects to standardized /tools/ URLs */}
+          <Route path="/loan-calculator" component={() => { window.location.replace('/tools/loan-calculator'); return null; }} />
+          <Route path="/mortgage-calculator" component={() => { window.location.replace('/tools/mortgage-calculator'); return null; }} />
+          <Route path="/emi-calculator" component={() => { window.location.replace('/tools/emi-calculator'); return null; }} />
+          <Route path="/bmi-calculator" component={() => { window.location.replace('/tools/bmi-calculator'); return null; }} />
+          <Route path="/tax-calculator" component={() => { window.location.replace('/tools/tax-calculator'); return null; }} />
+          <Route path="/word-counter" component={() => { window.location.replace('/tools/word-counter'); return null; }} />
+          <Route path="/character-counter" component={() => { window.location.replace('/tools/character-counter'); return null; }} />
+          
+          {/* All tool routes standardized to /tools/ prefix only */}
+          <Route path="/tools/loan-calculator" component={LoanCalculator} />
+          <Route path="/tools/mortgage-calculator" component={MortgageCalculator} />
+          <Route path="/tools/emi-calculator" component={EMICalculator} />
+          <Route path="/tools/compound-interest-calculator" component={CompoundInterestCalculator} />
+          <Route path="/tools/simple-interest-calculator" component={SimpleInterestCalculator} />
+          <Route path="/tools/roi-calculator" component={ROICalculator} />
+          <Route path="/tools/tax-calculator" component={TaxCalculator} />
+          <Route path="/tools/salary-to-hourly-calculator" component={SalaryToHourlyCalculator} />
+          <Route path="/tools/tip-calculator" component={TipCalculator} />
+          <Route path="/tools/inflation-calculator" component={InflationCalculator} />
+          <Route path="/tools/savings-goal-calculator" component={SavingsGoalCalculator} />
+          <Route path="/tools/debt-payoff-calculator" component={DebtPayoffCalculator} />
+          <Route path="/tools/net-worth-calculator" component={NetWorthCalculator} />
+          <Route path="/tools/stock-profit-calculator" component={StockProfitCalculator} />
+          <Route path="/tools/retirement-calculator" component={RetirementCalculator} />
+          <Route path="/tools/sip-calculator" component={SIPCalculator} />
+          <Route path="/tools/investment-return-calculator" component={InvestmentReturnCalculator} />
+          <Route path="/tools/break-even-calculator" component={BreakEvenCalculator} />
+          <Route path="/tools/business-loan-calculator" component={BusinessLoanCalculator} />
+          <Route path="/tools/lease-calculator" component={LeaseCalculator} />
+          <Route path="/tools/car-loan-calculator" component={CarLoanCalculator} />
+          <Route path="/tools/home-loan-calculator" component={HomeLoanCalculator} />
+          <Route path="/tools/education-loan-calculator" component={EducationLoanCalculator} />
+          <Route path="/tools/credit-card-interest-calculator" component={CreditCardInterestCalculator} />
+          <Route path="/tools/percentage-calculator" component={PercentageCalculator} />
+          <Route path="/tools/discount-calculator" component={DiscountCalculator} />
+          <Route path="/tools/vat-gst-calculator" component={VATGSTCalculator} />
+          <Route path="/tools/paypal-fee-calculator" component={PayPalFeeCalculator} />
+          <Route path="/tools/currency-percentage-change-calculator" component={CurrencyPercentageChangeCalculator} />
+          <Route path="/tools/future-value-investment-calculator" component={FutureValueInvestmentCalculator} />
+          <Route path="/tools/budget-calculator" component={BudgetCalculator} />
+          <Route path="/tools/loan-comparison-calculator" component={LoanComparisonCalculator} />
+          <Route path="/tools/bmi-calculator" component={BMICalculator} />
+          <Route path="/tools/bmr-calculator" component={BMRCalculator} />
+          <Route path="/tools/calorie-calculator" component={CalorieCalculator} />
+          <Route path="/tools/body-fat-calculator" component={BodyFatCalculator} />
+          <Route path="/tools/ideal-weight-calculator" component={IdealWeightCalculator} />
+          <Route path="/tools/pregnancy-due-date-calculator" component={PregnancyDueDateCalculator} />
+          <Route path="/tools/water-intake-calculator" component={WaterIntakeCalculator} />
+          <Route path="/tools/protein-intake-calculator" component={ProteinIntakeCalculator} />
+          <Route path="/tools/carb-calculator" component={CarbCalculator} />
+          <Route path="/tools/keto-macro-calculator" component={KetoMacroCalculator} />
+          <Route path="/tools/intermittent-fasting-timer" component={IntermittentFastingTimer} />
+          <Route path="/tools/daily-step-calorie-converter" component={DailyStepCalorieConverter} />
+          <Route path="/tools/heart-rate-calculator" component={HeartRateCalculator} />
+          <Route path="/tools/max-heart-rate-calculator" component={MaxHeartRateCalculator} />
+          <Route path="/tools/blood-pressure-tracker" component={BloodPressureTracker} />
+          <Route path="/tools/sleep-calculator" component={SleepCalculator} />
+          <Route path="/tools/sleep-quality-calculator" component={SleepQualityCalculator} />
+          <Route path="/tools/ovulation-calculator" component={OvulationCalculator} />
+          <Route path="/tools/baby-growth-chart" component={BabyGrowthChart} />
+          <Route path="/tools/tdee-calculator" component={TDEECalculator} />
+          <Route path="/tools/lean-body-mass-calculator" component={LeanBodyMassCalculator} />
+          <Route path="/tools/waist-to-height-ratio-calculator" component={WaistToHeightRatioCalculator} />
+          <Route path="/tools/whr-calculator" component={WHRCalculator} />
+          <Route path="/tools/life-expectancy-calculator" component={LifeExpectancyCalculator} />
+          <Route path="/tools/cholesterol-risk-calculator" component={CholesterolRiskCalculator} />
+          <Route path="/tools/running-pace-calculator" component={RunningPaceCalculator} />
+          <Route path="/tools/cycling-speed-calculator" component={CyclingSpeedCalculator} />
+          <Route path="/tools/swimming-calorie-calculator" component={SwimmingCalorieCalculator} />
+          <Route path="/tools/alcohol-calorie-calculator" component={AlcoholCalorieCalculator} />
+          <Route path="/tools/smoking-cost-calculator" component={SmokingCostCalculator} />
+          <Route path="/tools/body-water-percentage-calculator" component={BodyWaterPercentageCalculator} />
+          <Route path="/tools/hydration-calculator" component={HydrationCalculator} />
+          <Route path="/tools/word-counter" component={WordCounter} />
+          <Route path="/tools/character-counter" component={CharacterCounter} />
+          <Route path="/tools/sentence-counter" component={SentenceCounter} />
+          <Route path="/tools/paragraph-counter" component={ParagraphCounter} />
+          <Route path="/tools/case-converter" component={CaseConverter} />
+          <Route path="/tools/password-generator" component={PasswordGenerator} />
+          <Route path="/tools/fake-name-generator" component={FakeNameGenerator} />
+          <Route path="/tools/username-generator" component={UsernameGenerator} />
+          <Route path="/tools/fake-address-generator" component={FakeAddressGenerator} />
+          <Route path="/tools/qr-text-generator" component={QRTextGenerator} />
+          <Route path="/tools/font-style-changer" component={FontStyleChanger} />
+          <Route path="/tools/reverse-text-tool" component={ReverseTextTool} />
+          <Route path="/tools/text-to-qr-code" component={TextToQRCode} />
+          <Route path="/tools/text-to-binary-converter" component={TextToBinaryConverter} />
+          <Route path="/tools/binary-to-text-converter" component={BinaryToTextConverter} />
+          <Route path="/tools/decimal-to-text-converter" component={DecimalToTextConverter} />
+          <Route path="/tools/text-to-decimal-converter" component={TextToDecimalConverter} />
+          <Route path="/tools/qr-code-scanner" component={QRCodeScanner} />
+          <Route path="/tools/markdown-to-html" component={MarkdownToHTMLConverter} />
+          <Route path="/tools/lorem-ipsum-generator" component={LoremIpsumGenerator} />
+          <Route path="/tools/hex-to-text-converter" component={HexToTextConverter} />
+          <Route path="/tools/text-to-hex-converter" component={TextToHexConverter} />
+          <Route path="/tools/duplicate-line-remover" component={DuplicateLineRemover} />
+          <Route path="/tools/text-scrambler" component={TextScrambler} />
+          <Route path="/tools/text-diff-checker" component={TextDiffChecker} />
+          <Route path="/tools/text-pattern-generator" component={TextPatternGenerator} />
+          <Route path="/tools/text-formatter-beautifier" component={TextFormatterBeautifier} />
+          <Route path="/tools/password-strength-checker" component={PasswordStrengthChecker} />
+          <Route path="/tools/base64-encoder-decoder" component={Base64EncoderDecoder} />
+          <Route path="/tools/text-statistics-analyzer" component={TextStatisticsAnalyzer} />
+          <Route path="/tools/url-extractor" component={URLExtractor} />
+          <Route path="/tools/text-cleaner-formatter" component={TextCleanerFormatter} />
+          
+          {/* Fallback for any unknown /tools/ routes to prevent soft 404s */}
+          <Route path="/tools/:toolId" component={ToolPage} />
+          
+          {/* 404 fallback for all unknown routes */}
+          <Route component={NotFound} />
         </Switch>
       </Suspense>
     </>

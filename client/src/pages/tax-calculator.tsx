@@ -292,6 +292,8 @@ export default function TaxCalculator() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Free Tax Calculator - Calculate Income Tax Worldwide" />
         <meta name="twitter:description" content="Calculate income tax for multiple countries with detailed breakdowns and tax planning insights. Free online tool supporting 10+ countries." />
+        <meta property="og:url" content="https://dapsiwow.com/tools/tax-calculator" />
+        <link rel="canonical" href="https://dapsiwow.com/tools/tax-calculator" />
       </Helmet>
       
       <Header />
