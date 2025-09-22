@@ -34,7 +34,7 @@ const TextTools = () => {
     <>
       <Helmet>
         <title>Text Tools - 30+ Free Writing & Text Utilities | DapsiWow</title>
-        <meta name="description" content="Free text tools including word counter, grammar checker, plagiarism checker, text summarizer, and 25+ more writing utilities. No sign-up required." />
+        <meta name="description" content="Comprehensive collection of free text processing tools including word counters, case converters, text generators, similarity checkers, binary converters, and content analysis utilities. No registration required." />
         <meta name="keywords" content="text tools, word counter, grammar checker, plagiarism checker, text summarizer, writing tools" />
         <meta property="og:title" content="Text Tools - 30+ Free Writing & Text Utilities | DapsiWow" />
         <meta property="og:description" content="Free text tools including word counter, grammar checker, plagiarism checker, and 25+ more writing utilities." />
@@ -44,7 +44,7 @@ const TextTools = () => {
 
       <div className="min-h-screen flex flex-col" data-testid="page-text-tools">
         <Header />
-        
+
         <main className="flex-1 bg-neutral-50">
           {/* Hero Section */}
           <section className="bg-gradient-to-r from-yellow-600 via-orange-500 to-red-600 text-white py-16">
@@ -58,7 +58,7 @@ const TextTools = () => {
               <p className="text-xl text-yellow-100 mb-8 max-w-3xl mx-auto">
                 30+ free text and writing tools to analyze, improve, and transform your content
               </p>
-              
+
               {/* Search Bar */}
               <div className="max-w-2xl mx-auto">
                 <div className="relative">
@@ -135,7 +135,7 @@ const TextTools = () => {
             </div>
           </section>
         </main>
-        
+
         <Footer />
       </div>
     </>
