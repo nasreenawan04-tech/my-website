@@ -140,6 +140,8 @@ function Router() {
       <Suspense fallback={<PageLoadingSpinner />}>
         <Switch>
       <Route path="/" component={Home} />
+      {/* Fix URL mismatches to match sitemap URLs */}
+      <Route path="/all-tools" component={AllTools} />
       <Route path="/tools" component={AllTools} />
       <Route path="/tools/loan-calculator" component={LoanCalculator} />
       <Route path="/tools/mortgage-calculator" component={MortgageCalculator} />
@@ -233,9 +235,21 @@ function Router() {
         <Route path="/tools/text-statistics-analyzer" component={TextStatisticsAnalyzer} />
         <Route path="/tools/url-extractor" component={URLExtractor} />
       <Route path="/tools/:toolId" component={ToolPage} />
+      
+      {/* Fix URL mismatches for category pages to match sitemap */}
+      <Route path="/finance-tools" component={FinanceTools} />
+      <Route path="/text-tools" component={TextTools} />
+      <Route path="/health-tools" component={HealthTools} />
       <Route path="/finance" component={FinanceTools} />
       <Route path="/text" component={TextTools} />
       <Route path="/health" component={HealthTools} />
+      
+      {/* Fix URL mismatches for other pages to match sitemap */}
+      <Route path="/contact-us" component={ContactUs} />
+      <Route path="/privacy-policy" component={PrivacyPolicy} />
+      <Route path="/terms-of-service" component={TermsOfService} />
+      <Route path="/help-center" component={HelpCenter} />
+      <Route path="/about-us" component={AboutUs} />
       <Route path="/contact" component={ContactUs} />
       <Route path="/privacy" component={PrivacyPolicy} />
       <Route path="/terms" component={TermsOfService} />

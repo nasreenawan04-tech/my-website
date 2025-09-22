@@ -1,12 +1,13 @@
 # Robots.txt for DapsiWow - Free Online Tools Platform
-# Optimized for Google Search Console indexing issues
+# Optimized for Google Search Console indexing issues - Fixed blocking issues
 
 # Allow all legitimate search engines to crawl the site
 User-agent: *
 Allow: /
 
-# Explicitly prioritize important content sections
+# Explicitly prioritize important content sections (matching updated routing)
 Allow: /tools/
+Allow: /all-tools
 Allow: /finance-tools
 Allow: /health-tools  
 Allow: /text-tools
@@ -16,11 +17,10 @@ Allow: /privacy-policy
 Allow: /terms-of-service
 Allow: /help-center
 
-# Block crawl-budget wasting resources
+# Block crawl-budget wasting resources (but don't block essential static assets)
 Disallow: /admin/
 Disallow: /api/
 Disallow: /private/
-Disallow: /uploads/
 Disallow: /encrypted/
 Disallow: /compressed/
 Disallow: /*.pdf$
@@ -29,9 +29,6 @@ Disallow: /search?*
 Disallow: /filter/*
 Disallow: /*ajax*
 Disallow: /*json*
-Disallow: /assets/
-Disallow: /_next/static/
-Disallow: /node_modules/
 
 # Block AI training bots (preserve crawl budget)
 User-agent: GPTBot
