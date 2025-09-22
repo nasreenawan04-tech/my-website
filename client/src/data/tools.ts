@@ -48,6 +48,7 @@ const toolsData: Tool[] = [
   { id: 'future-value-investment-calculator', name: 'Future Value Investment Calculator', description: 'Project investment growth over time with compound interest', category: 'finance' as const, icon: 'fas fa-chart-line', href: '/tools/future-value-investment-calculator' },
   { id: 'budget-calculator', name: 'Budget Calculator', description: 'Track income, expenses, and savings goals with interactive charts and analysis', category: 'finance' as const, icon: 'fas fa-chart-pie', href: '/tools/budget-calculator' },
   { id: 'loan-comparison-calculator', name: 'Loan Comparison Calculator', description: 'Compare different loan offers side-by-side with EMI, interest rates, and total cost analysis', category: 'finance' as const, icon: 'fas fa-balance-scale-left', href: '/tools/loan-comparison-calculator' },
+  { id: 'dti-ratio-calculator', name: 'DTI Ratio Calculator', description: 'Calculate your debt-to-income ratio for loan qualification and financial health assessment', category: 'finance' as const, icon: 'fas fa-percentage', href: '/tools/dti-ratio-calculator', isPopular: true },
 
   // Text Tools (19)
   { id: 'word-counter', name: 'Word Counter', description: 'Count words, characters, and paragraphs', category: 'text' as const, icon: 'fas fa-calculator', href: '/tools/word-counter' },
