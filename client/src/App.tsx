@@ -24,10 +24,11 @@ const PrivacyPolicy = lazy(() => import("@/pages/privacy-policy"));
 const TermsOfService = lazy(() => import("@/pages/terms-of-service"));
 const ToolPage = lazy(() => import("@/pages/tool-page"));
 const AboutUs = lazy(() => import("@/pages/about-us"));
-import TextStatisticsAnalyzer from '@/pages/text-statistics-analyzer';
-import UrlExtractor from '@/pages/url-extractor';
-import TextCleanerFormatter from '@/pages/text-cleaner-formatter';
-import TextSimilarityChecker from '@/pages/text-similarity-checker';
+const TextStatisticsAnalyzer = lazy(() => import("@/pages/text-statistics-analyzer"));
+const UrlExtractor = lazy(() => import("@/pages/url-extractor"));
+const TextCleanerFormatter = lazy(() => import("@/pages/text-cleaner-formatter"));
+const TextSimilarityChecker = lazy(() => import("@/pages/text-similarity-checker"));
+const DTIRatioCalculator = lazy(() => import("@/pages/dti-ratio-calculator"));
 
 // Individual tool components are now loaded dynamically via ToolPage for better maintainability
 
@@ -82,8 +83,7 @@ function Router() {
           <Route path="/tools/url-extractor" component={UrlExtractor} />
           <Route path="/tools/text-cleaner-formatter" component={TextCleanerFormatter} />
           <Route path="/tools/text-similarity-checker" component={TextSimilarityChecker} />
-          
-          {/* BMR Calorie Calculator - lazy loaded via ToolPage */}
+          <Route path="/tools/dti-ratio-calculator" component={DTIRatioCalculator} />
 
           {/* 404 fallback for all unknown routes */}
           <Route component={NotFound} />
