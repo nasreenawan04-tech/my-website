@@ -236,7 +236,7 @@ const ContactUs = () => {
                         <div>
                           <h3 className="font-semibold text-neutral-800">Quick Help</h3>
                           <p className="text-neutral-600">
-                            <a href="/help" className="text-purple-600 hover:underline">
+                            <a href="/help-center" className="text-purple-600 hover:underline">
                               Check our Help Center
                             </a>
                           </p>

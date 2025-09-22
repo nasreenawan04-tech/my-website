@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -152,7 +151,7 @@ const HelpCenter = () => {
 
       <div className="min-h-screen flex flex-col" data-testid="page-help-center">
         <Header />
-        
+
         <main className="flex-1">
           {/* Hero Section */}
           <section className="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-20">
@@ -164,7 +163,7 @@ const HelpCenter = () => {
                 <p className="text-xl lg:text-2xl text-neutral-600 mb-10 max-w-4xl mx-auto leading-relaxed">
                   Get instant support for all 150+ tools, find detailed guides, and discover tips to make the most of DapsiWow
                 </p>
-                
+
                 {/* Search Bar */}
                 <div className="max-w-2xl mx-auto mb-12">
                   <div className="relative">
@@ -317,20 +316,20 @@ const HelpCenter = () => {
                 <p className="text-xl text-gray-700 mb-10">
                   Can't find what you're looking for? Our dedicated support team is here to help you succeed with DapsiWow.
                 </p>
-                
+
                 <div className="mb-12">
                   <div className="bg-white bg-opacity-80 backdrop-blur-sm rounded-2xl p-8 shadow-md max-w-2xl mx-auto">
                     <Mail className="text-blue-600 mb-4 mx-auto" size={48} aria-hidden="true" style={{ pointerEvents: 'none' }} />
                     <h3 className="text-xl font-bold mb-3 text-gray-800">Email Support</h3>
                     <p className="text-gray-600 mb-6">Get detailed help via email within 24 hours</p>
                     <a 
-                      href="/contact" 
-                      className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors"
-                      data-testid="button-email-support"
-                    >
-                      <Mail className="mr-2" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
-                      Send Message
-                    </a>
+                        href="/contact-us" 
+                        className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors"
+                        data-testid="button-email-support"
+                      >
+                        <Mail className="mr-2" size={16} aria-hidden="true" style={{ pointerEvents: 'none' }} />
+                        Send Message
+                      </a>
                   </div>
                 </div>
 
@@ -364,7 +363,7 @@ const HelpCenter = () => {
             </div>
           </section>
         </main>
-        
+
         <Footer />
       </div>
     </>

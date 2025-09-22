@@ -280,7 +280,7 @@ const AboutUs = () => {
                   Start Using Tools
                 </a>
                 <a 
-                  href="/contact" 
+                  href="/contact-us" 
                   className="inline-block bg-white text-blue-600 border-2 border-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-colors duration-200 text-center"
                 >
                   Get in Touch

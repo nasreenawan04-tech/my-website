@@ -693,13 +693,13 @@ export default function TermsOfService() {
               </div>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a 
-                  href="/contact" 
+                  href="/contact-us" 
                   className="inline-block bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-blue-700 transition-colors duration-200 text-center"
                 >
                   Contact Legal Team
                 </a>
                 <a 
-                  href="/help" 
+                  href="/help-center" 
                   className="inline-block bg-white text-blue-600 border-2 border-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-colors duration-200 text-center"
                 >
                   Visit Help Center
