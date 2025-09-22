@@ -47,6 +47,7 @@ const toolsData = [
   { id: 'currency-percentage-change-calculator', name: 'Currency Percentage Change Calculator', description: 'Calculate how much a value increased or decreased in percentage', category: 'finance' as const, icon: 'fas fa-percentage', href: '/tools/currency-percentage-change-calculator' },
   { id: 'future-value-investment-calculator', name: 'Future Value Investment Calculator', description: 'Project investment growth over time with compound interest', category: 'finance' as const, icon: 'fas fa-chart-line', href: '/tools/future-value-investment-calculator' },
   { id: 'budget-calculator', name: 'Budget Calculator', description: 'Track income, expenses, and savings goals with interactive charts and analysis', category: 'finance' as const, icon: 'fas fa-chart-pie', href: '/tools/budget-calculator' },
+  { id: 'loan-comparison-calculator', name: 'Loan Comparison Calculator', description: 'Compare different loan offers side-by-side with EMI, interest rates, and total cost analysis', category: 'finance' as const, icon: 'fas fa-balance-scale-left', href: '/tools/loan-comparison-calculator' },
 
   // Text Tools (19)
   { id: 'word-counter', name: 'Word Counter', description: 'Count words, characters, and paragraphs', category: 'text' as const, icon: 'fas fa-calculator', href: '/tools/word-counter' },
@@ -87,7 +88,6 @@ const toolsData = [
   { id: 'text-statistics-analyzer', name: 'Text Statistics Analyzer', description: 'Comprehensive text analysis with readability scores, keyword density, and detailed writing metrics', category: 'text' as const, icon: 'fas fa-chart-bar', href: '/tools/text-statistics-analyzer' },
   { id: 'url-extractor', name: 'URL Extractor', description: 'Extract and analyze all URLs from text content with filtering and export options', category: 'text' as const, icon: 'fas fa-link', href: '/tools/url-extractor' },
   { id: 'text-cleaner-formatter', name: 'Text Cleaner & Formatter', description: 'Clean up messy text by removing extra spaces, line breaks, and formatting issues', category: 'text' as const, icon: 'fas fa-broom', href: '/tools/text-cleaner-formatter' },
-  { id: 'text-summarizer', name: 'Text Summarizer', description: 'Generate concise summaries from long articles, documents, and texts using AI-powered algorithms', category: 'text' as const, icon: 'fas fa-compress-alt', isPopular: true, href: '/tools/text-summarizer' },
 
 
 

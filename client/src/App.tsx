@@ -56,6 +56,7 @@ const PayPalFeeCalculator = lazy(() => import("@/pages/paypal-fee-calculator"));
 const CurrencyPercentageChangeCalculator = lazy(() => import("@/pages/currency-percentage-change-calculator"));
 const FutureValueInvestmentCalculator = lazy(() => import("@/pages/future-value-investment-calculator"));
 const BudgetCalculator = lazy(() => import("@/pages/budget-calculator"));
+const LoanComparisonCalculator = lazy(() => import("@/pages/loan-comparison-calculator"));
 
 // Lazy load health calculators
 const BMICalculator = lazy(() => import("@/pages/bmi-calculator"));
@@ -89,6 +90,7 @@ const SwimmingCalorieCalculator = lazy(() => import("@/pages/swimming-calorie-ca
 const AlcoholCalorieCalculator = lazy(() => import("@/pages/alcohol-calorie-calculator"));
 const SmokingCostCalculator = lazy(() => import("@/pages/smoking-cost-calculator"));
 const BodyWaterPercentageCalculator = lazy(() => import("@/pages/body-water-percentage-calculator"));
+const HydrationCalculator = lazy(() => import("@/pages/hydration-calculator"));
 
 
 // Lazy load text tools
@@ -124,7 +126,6 @@ const Base64EncoderDecoder = lazy(() => import("@/pages/base64-encoder-decoder")
 const TextStatisticsAnalyzer = lazy(() => import("@/pages/text-statistics-analyzer"));
 const URLExtractor = lazy(() => import("@/pages/url-extractor"));
 const TextCleanerFormatter = lazy(() => import("@/pages/text-cleaner-formatter"));
-const TextSummarizer = lazy(() => import("@/pages/text-summarizer"));
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -177,6 +178,7 @@ function Router() {
       <Route path="/tools/currency-percentage-change-calculator" component={CurrencyPercentageChangeCalculator} />
       <Route path="/tools/future-value-investment-calculator" component={FutureValueInvestmentCalculator} />
       <Route path="/tools/budget-calculator" component={BudgetCalculator} />
+      <Route path="/tools/loan-comparison-calculator" component={LoanComparisonCalculator} />
       <Route path="/tools/bmi-calculator" component={BMICalculator} />
       <Route path="/tools/bmr-calculator" component={BMRCalculator} />
       <Route path="/tools/calorie-calculator" component={CalorieCalculator} />
@@ -208,6 +210,7 @@ function Router() {
       <Route path="/tools/alcohol-calorie-calculator" component={AlcoholCalorieCalculator} />
       <Route path="/tools/smoking-cost-calculator" component={SmokingCostCalculator} />
       <Route path="/tools/body-water-percentage-calculator" component={BodyWaterPercentageCalculator} />
+      <Route path="/tools/hydration-calculator" component={HydrationCalculator} />
       <Route path="/tools/word-counter" component={WordCounter} />
       <Route path="/tools/character-counter" component={CharacterCounter} />
         <Route path="/tools/sentence-counter" component={SentenceCounter} />
@@ -240,7 +243,6 @@ function Router() {
         <Route path="/tools/text-statistics-analyzer" component={TextStatisticsAnalyzer} />
         <Route path="/tools/url-extractor" component={URLExtractor} />
         <Route path="/tools/text-cleaner-formatter" component={TextCleanerFormatter} />
-        <Route path="/tools/text-summarizer" component={TextSummarizer} />
       <Route path="/tools/:toolId" component={ToolPage} />
 
       {/* Fix URL mismatches for category pages to match sitemap */}
