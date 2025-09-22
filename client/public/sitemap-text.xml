@@ -43,6 +43,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dapsiwow.com/tools/hex-to-text-converter</loc>
+    <lastmod>2025-09-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dapsiwow.com/tools/lorem-ipsum-generator</loc>
     <lastmod>2025-09-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -79,6 +85,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dapsiwow.com/tools/password-strength-checker</loc>
+    <lastmod>2025-09-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dapsiwow.com/tools/username-generator</loc>
     <lastmod>2025-09-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -104,6 +116,24 @@
   </url>
   <url>
     <loc>https://dapsiwow.com/tools/text-to-decimal-converter</loc>
+    <lastmod>2025-09-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dapsiwow.com/tools/text-diff-checker</loc>
+    <lastmod>2025-09-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dapsiwow.com/tools/text-pattern-generator</loc>
+    <lastmod>2025-09-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dapsiwow.com/tools/text-to-hex-converter</loc>
     <lastmod>2025-09-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

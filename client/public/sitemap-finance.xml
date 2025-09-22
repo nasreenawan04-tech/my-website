@@ -7,6 +7,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dapsiwow.com/tools/budget-calculator</loc>
+    <lastmod>2025-09-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dapsiwow.com/tools/business-loan-calculator</loc>
     <lastmod>2025-09-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -31,6 +37,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dapsiwow.com/tools/currency-percentage-change-calculator</loc>
+    <lastmod>2025-09-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dapsiwow.com/tools/debt-payoff-calculator</loc>
     <lastmod>2025-09-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -50,6 +62,12 @@
   </url>
   <url>
     <loc>https://dapsiwow.com/tools/education-loan-calculator</loc>
+    <lastmod>2025-09-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dapsiwow.com/tools/future-value-investment-calculator</loc>
     <lastmod>2025-09-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

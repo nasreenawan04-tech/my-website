@@ -37,6 +37,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dapsiwow.com/tools/body-water-percentage-calculator</loc>
+    <lastmod>2025-09-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dapsiwow.com/tools/calorie-calculator</loc>
     <lastmod>2025-09-22</lastmod>
     <changefreq>weekly</changefreq>
@@ -128,6 +134,12 @@
   </url>
   <url>
     <loc>https://dapsiwow.com/tools/sleep-calculator</loc>
+    <lastmod>2025-09-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dapsiwow.com/tools/sleep-quality-calculator</loc>
     <lastmod>2025-09-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
