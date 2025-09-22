@@ -1,4 +1,3 @@
-
 import { useEffect, useState, lazy, Suspense, createContext } from 'react';
 import { useLocation } from 'wouter';
 import { Helmet } from 'react-helmet-async';
@@ -127,11 +126,11 @@ const ToolPage = () => {
     // Extract tool ID from URL path like /tools/loan-calculator
     const pathParts = location.split('/');
     const toolId = pathParts[2]; // tools/[toolId]
-    
+
     if (toolId) {
       const foundTool = tools.find(t => t.id === toolId);
       setTool(foundTool || null);
-      
+
       // Check if this tool has a dedicated rich component
       if (foundTool && toolComponents[toolId as keyof typeof toolComponents]) {
         setIsLoading(true);
@@ -205,7 +204,7 @@ const ToolPage = () => {
         <meta name="robots" content="index, follow" />
       </Helmet>
       <Header />
-      
+
       <main className="flex-1 bg-neutral-50">
         {/* Hero Section */}
         <section className="bg-gradient-to-r from-blue-600 via-blue-500 to-purple-600 text-white py-16">
@@ -239,7 +238,7 @@ const ToolPage = () => {
                 <p className="text-neutral-600 mb-6">
                   We're working hard to bring you this amazing tool. It will be available soon!
                 </p>
-                
+
                 {/* Placeholder content */}
                 <div className="bg-neutral-100 rounded-xl p-12 mb-8">
                   <i className={`${tool.icon} text-6xl text-neutral-400 mb-4`}></i>
@@ -293,7 +292,7 @@ const ToolPage = () => {
           </div>
         </section>
       </main>
-      
+
       <Footer />
     </div>
   );
