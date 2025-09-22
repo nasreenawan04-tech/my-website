@@ -58,13 +58,32 @@ Disallow: /
 User-agent: PiplBot
 Disallow: /
 
-# Block spam and SEO crawlers (preserve crawl budget)
+# Allow legitimate SEO analysis tools (for competitive research and SEO monitoring)
 User-agent: AhrefsBot
-Disallow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+Disallow: /encrypted/
+Disallow: /compressed/
+Disallow: /dist/
+Disallow: /node_modules/
+Disallow: /.git/
+Allow: /
+Crawl-delay: 10
 
 User-agent: SemrushBot
-Disallow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+Disallow: /encrypted/
+Disallow: /compressed/
+Disallow: /dist/
+Disallow: /node_modules/
+Disallow: /.git/
+Allow: /
+Crawl-delay: 10
 
+# Block aggressive and unwanted crawlers (preserve crawl budget)
 User-agent: MJ12bot
 Disallow: /
 
@@ -86,29 +105,8 @@ Disallow: /
 User-agent: serpstatbot
 Disallow: /
 
-# Explicitly allow major search engines
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 1
-
-User-agent: Bingbot
-Allow: /
-Crawl-delay: 1
-
-User-agent: Slurp
-Allow: /
-
-User-agent: DuckDuckBot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: LinkedInBot
-Allow: /
+# Major search engines and social crawlers use the wildcard group above
+# No specific overrides needed - they inherit proper Allow/Disallow rules
 
 # Sitemap location
 Sitemap: https://dapsiwow.com/sitemap.xml
