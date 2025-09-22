@@ -27,9 +27,9 @@ const Header = () => {
   };
 
   const navLinks = [
-    { href: '/finance', label: 'Finance Tools' },
-    { href: '/text', label: 'Text Tools' },
-    { href: '/health', label: 'Health Tools' }
+    { href: '/finance-tools', label: 'Finance Tools' },
+    { href: '/text-tools', label: 'Text Tools' },
+    { href: '/health-tools', label: 'Health Tools' }
   ];
 
   return (
