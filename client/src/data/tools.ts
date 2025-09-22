@@ -120,6 +120,7 @@ const toolsData = [
   { id: 'swimming-calorie-calculator', name: 'Swimming Calorie Calculator', description: 'Calculate calories burned while swimming', category: 'health' as const, icon: 'fas fa-swimmer', href: '/tools/swimming-calorie-calculator' },
   { id: 'alcohol-calorie-calculator', name: 'Alcohol Calorie Calculator', description: 'Calculate calories in alcoholic drinks', category: 'health' as const, icon: 'fas fa-wine-glass', href: '/tools/alcohol-calorie-calculator' },
   { id: 'smoking-cost-calculator', name: 'Smoking Cost Calculator', description: 'Calculate the cost of smoking habits', category: 'health' as const, icon: 'fas fa-smoking-ban', href: '/tools/smoking-cost-calculator' },
+  { id: 'body-water-percentage-calculator', name: 'Body Water Percentage Calculator', description: 'Calculate your total body water percentage and get personalized hydration recommendations', category: 'health' as const, icon: 'fas fa-tint', href: '/tools/body-water-percentage-calculator' },
   { id: 'sleep-quality-calculator', name: 'Sleep Quality Calculator', description: 'Assess your sleep quality and get personalized recommendations for better rest', category: 'health' as const, icon: 'fas fa-moon', href: '/tools/sleep-quality-calculator' }
 ];
 
