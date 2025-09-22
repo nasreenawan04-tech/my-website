@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
+import { visualizer } from "rollup-plugin-visualizer";
 
 export default defineConfig({
   plugins: [
@@ -9,6 +10,15 @@ export default defineConfig({
     ...(process.env.NODE_ENV !== "production" &&
     process.env.REPL_ID !== undefined
       ? [runtimeErrorOverlay()]
+      : []),
+    // Bundle analyzer for production builds
+    ...(process.env.ANALYZE 
+      ? [visualizer({
+          filename: 'dist/bundle-report.html',
+          open: false,
+          gzipSize: true,
+          brotliSize: true
+        })]
       : []),
     // Temporarily disable cartographer plugin due to Babel traverse compatibility issue
     // ...(process.env.NODE_ENV !== "production" &&

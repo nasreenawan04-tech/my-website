@@ -1,13 +1,22 @@
-const CACHE_NAME = 'dapsiwow-v1';
-const STATIC_CACHE = 'dapsiwow-static-v1';
-const API_CACHE = 'dapsiwow-api-v1';
+// Dynamic cache versioning based on build timestamp
+const CACHE_VERSION = '2025.09.22.001';
+const CACHE_NAME = `dapsiwow-v${CACHE_VERSION}`;
+const STATIC_CACHE = `dapsiwow-static-v${CACHE_VERSION}`;
+const API_CACHE = `dapsiwow-api-v${CACHE_VERSION}`;
+const FONT_CACHE = `dapsiwow-fonts-v${CACHE_VERSION}`;
 
 // Assets to cache on install
 const STATIC_ASSETS = [
   '/',
+  '/favicon.svg',
+  '/logo.svg', 
   '/site.webmanifest',
   '/robots.txt',
-  '/sitemap.xml'
+  '/sitemap.xml',
+  '/sitemap-main.xml',
+  '/sitemap-finance.xml',
+  '/sitemap-health.xml',
+  '/sitemap-text.xml'
 ];
 
 // Cache strategies
@@ -35,7 +44,8 @@ self.addEventListener('activate', (event) => {
           cacheNames.map((cacheName) => {
             if (cacheName !== CACHE_NAME && 
                 cacheName !== STATIC_CACHE && 
-                cacheName !== API_CACHE) {
+                cacheName !== API_CACHE &&
+                cacheName !== FONT_CACHE) {
               return caches.delete(cacheName);
             }
           })
@@ -77,10 +87,10 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Static assets - cache first
-  if (url.pathname.match(/\.(js|css|woff2?|png|jpg|jpeg|gif|svg|ico)$/)) {
+  // Font assets - long-term cache first (fonts rarely change)
+  if (url.pathname.match(/\.(woff2?|otf|ttf)$/)) {
     event.respondWith(
-      caches.open(STATIC_CACHE)
+      caches.open(FONT_CACHE)
         .then((cache) => {
           return cache.match(request)
             .then((cachedResponse) => {
@@ -89,12 +99,34 @@ self.addEventListener('fetch', (event) => {
               }
               return fetch(request)
                 .then((response) => {
-                  // Cache successful responses
                   if (response.status === 200) {
                     cache.put(request, response.clone());
                   }
                   return response;
                 });
+            });
+        })
+    );
+    return;
+  }
+
+  // Static assets - stale-while-revalidate for better performance
+  if (url.pathname.match(/\.(js|css|png|jpg|jpeg|gif|svg|ico)$/)) {
+    event.respondWith(
+      caches.open(STATIC_CACHE)
+        .then((cache) => {
+          return cache.match(request)
+            .then((cachedResponse) => {
+              const fetchPromise = fetch(request)
+                .then((response) => {
+                  if (response.status === 200) {
+                    cache.put(request, response.clone());
+                  }
+                  return response;
+                });
+
+              // Return cached version immediately, but update cache in background
+              return cachedResponse || fetchPromise;
             });
         })
     );
