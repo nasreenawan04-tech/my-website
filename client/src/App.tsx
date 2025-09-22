@@ -160,6 +160,9 @@ function Router() {
           <Route path="/help-center" component={HelpCenter} />
           <Route path="/about-us" component={AboutUs} />
           
+          {/* Legacy route redirects to standardized URLs */}
+          <Route path="/about" component={() => { window.location.replace('/about-us'); return null; }} />
+          
           {/* Legacy route redirects to standardized /tools/ URLs */}
           <Route path="/loan-calculator" component={() => { window.location.replace('/tools/loan-calculator'); return null; }} />
           <Route path="/mortgage-calculator" component={() => { window.location.replace('/tools/mortgage-calculator'); return null; }} />
