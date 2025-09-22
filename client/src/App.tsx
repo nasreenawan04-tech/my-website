@@ -55,6 +55,7 @@ const VATGSTCalculator = lazy(() => import("@/pages/vat-gst-calculator"));
 const PayPalFeeCalculator = lazy(() => import("@/pages/paypal-fee-calculator"));
 const CurrencyPercentageChangeCalculator = lazy(() => import("@/pages/currency-percentage-change-calculator"));
 const FutureValueInvestmentCalculator = lazy(() => import("@/pages/future-value-investment-calculator"));
+const BudgetCalculator = lazy(() => import("@/pages/budget-calculator"));
 
 // Lazy load health calculators
 const BMICalculator = lazy(() => import("@/pages/bmi-calculator"));
@@ -173,6 +174,7 @@ function Router() {
       <Route path="/tools/paypal-fee-calculator" component={PayPalFeeCalculator} />
       <Route path="/tools/currency-percentage-change-calculator" component={CurrencyPercentageChangeCalculator} />
       <Route path="/tools/future-value-investment-calculator" component={FutureValueInvestmentCalculator} />
+      <Route path="/tools/budget-calculator" component={BudgetCalculator} />
       <Route path="/tools/bmi-calculator" component={BMICalculator} />
       <Route path="/tools/bmr-calculator" component={BMRCalculator} />
       <Route path="/tools/calorie-calculator" component={CalorieCalculator} />

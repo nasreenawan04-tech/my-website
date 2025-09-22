@@ -46,6 +46,7 @@ const toolsData = [
   { id: 'paypal-fee-calculator', name: 'PayPal Fee Calculator', description: 'Calculate PayPal transaction fees', category: 'finance' as const, icon: 'fab fa-paypal', href: '/tools/paypal-fee-calculator' },
   { id: 'currency-percentage-change-calculator', name: 'Currency Percentage Change Calculator', description: 'Calculate how much a value increased or decreased in percentage', category: 'finance' as const, icon: 'fas fa-percentage', href: '/tools/currency-percentage-change-calculator' },
   { id: 'future-value-investment-calculator', name: 'Future Value Investment Calculator', description: 'Project investment growth over time with compound interest', category: 'finance' as const, icon: 'fas fa-chart-line', href: '/tools/future-value-investment-calculator' },
+  { id: 'budget-calculator', name: 'Budget Calculator', description: 'Track income, expenses, and savings goals with interactive charts and analysis', category: 'finance' as const, icon: 'fas fa-chart-pie', href: '/tools/budget-calculator' },
 
   // Text Tools (19)
   { id: 'word-counter', name: 'Word Counter', description: 'Count words, characters, and paragraphs', category: 'text' as const, icon: 'fas fa-calculator', href: '/tools/word-counter' },
