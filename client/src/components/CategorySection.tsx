@@ -14,7 +14,7 @@ const CategorySection = () => {
       gradient: 'from-blue-500 via-blue-600 to-indigo-700',
       icon: Calculator,
       buttonColor: 'text-blue-600 hover:bg-blue-50',
-      href: '/finance'
+      href: '/finance-tools'
     },
     {
       key: 'text',
@@ -23,7 +23,7 @@ const CategorySection = () => {
       gradient: 'from-yellow-500 via-orange-500 to-red-600',
       icon: PenTool,
       buttonColor: 'text-orange-600 hover:bg-orange-50',
-      href: '/text'
+      href: '/text-tools'
     },
     {
       key: 'health',
@@ -32,7 +32,7 @@ const CategorySection = () => {
       gradient: 'from-pink-500 via-rose-600 to-red-700',
       icon: HeartPulse,
       buttonColor: 'text-pink-600 hover:bg-pink-50',
-      href: '/health'
+      href: '/health-tools'
     }
   ];
 
