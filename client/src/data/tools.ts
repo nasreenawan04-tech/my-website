@@ -48,6 +48,7 @@ const toolsData: Tool[] = [
   { id: 'future-value-investment-calculator', name: 'Future Value Investment Calculator', description: 'Project investment growth over time with compound interest', category: 'finance' as const, icon: 'fas fa-chart-line', href: '/tools/future-value-investment-calculator' },
   { id: 'budget-calculator', name: 'Budget Calculator', description: 'Track income, expenses, and savings goals with interactive charts and analysis', category: 'finance' as const, icon: 'fas fa-chart-pie', href: '/tools/budget-calculator' },
   { id: 'loan-comparison-calculator', name: 'Loan Comparison Calculator', description: 'Compare different loan offers side-by-side with EMI, interest rates, and total cost analysis', category: 'finance' as const, icon: 'fas fa-balance-scale-left', href: '/tools/loan-comparison-calculator' },
+  { id: 'dti-ratio-calculator', name: 'Debt-to-Income Ratio Calculator', description: 'Calculate your DTI ratio to assess financial health and loan eligibility with detailed analysis', category: 'finance' as const, icon: 'fas fa-chart-pie', isPopular: true, href: '/tools/dti-ratio-calculator' },
 
   // Text Tools (19)
   { id: 'word-counter', name: 'Word Counter', description: 'Count words, characters, and paragraphs', category: 'text' as const, icon: 'fas fa-calculator', href: '/tools/word-counter' },
@@ -94,7 +95,6 @@ const toolsData: Tool[] = [
   // Health Tools (30)
   { id: 'bmi-calculator', name: 'BMI Calculator', description: 'Calculate your Body Mass Index and get health insights', category: 'health' as const, icon: 'fas fa-weight', isPopular: true, href: '/tools/bmi-calculator' },
   { id: 'bmr-calculator', name: 'BMR Calculator', description: 'Calculate Basal Metabolic Rate and daily calorie needs', category: 'health' as const, icon: 'fas fa-fire', href: '/tools/bmr-calculator' },
-  { id: 'bmr-calorie-calculator', name: 'BMR & Calorie Needs Calculator', description: 'Comprehensive BMR calculator with activity-based calorie recommendations and macro breakdown', category: 'health' as const, icon: 'fas fa-calculator', isPopular: true, href: '/tools/bmr-calorie-calculator' },
   { id: 'calorie-calculator', name: 'Calorie Calculator', description: 'Calculate daily calorie needs and macronutrient breakdown', category: 'health' as const, icon: 'fas fa-utensils', href: '/tools/calorie-calculator' },
   { id: 'body-fat-calculator', name: 'Body Fat Calculator', description: 'Calculate body fat percentage using US Navy method', category: 'health' as const, icon: 'fas fa-percentage', href: '/tools/body-fat-calculator' },
   { id: 'pregnancy-due-date-calculator', name: 'Pregnancy Due Date Calculator', description: 'Calculate expected delivery date and pregnancy milestones', category: 'health' as const, icon: 'fas fa-baby', href: '/tools/pregnancy-due-date-calculator' },
