@@ -24,6 +24,10 @@ const PrivacyPolicy = lazy(() => import("@/pages/privacy-policy"));
 const TermsOfService = lazy(() => import("@/pages/terms-of-service"));
 const ToolPage = lazy(() => import("@/pages/tool-page"));
 const AboutUs = lazy(() => import("@/pages/about-us"));
+import TextStatisticsAnalyzer from '@/pages/text-statistics-analyzer';
+import UrlExtractor from '@/pages/url-extractor';
+import TextCleanerFormatter from '@/pages/text-cleaner-formatter';
+import TextSimilarityChecker from '@/pages/text-similarity-checker';
 
 // Individual tool components are now loaded dynamically via ToolPage for better maintainability
 
@@ -74,6 +78,10 @@ function Router() {
 
           {/* All tool routes now handled dynamically by ToolPage */}
           <Route path="/tools/:toolId" component={ToolPage} />
+          <Route path="/tools/text-statistics-analyzer" component={TextStatisticsAnalyzer} />
+          <Route path="/tools/url-extractor" component={UrlExtractor} />
+          <Route path="/tools/text-cleaner-formatter" component={TextCleanerFormatter} />
+          <Route path="/tools/text-similarity-checker" component={TextSimilarityChecker} />
 
           {/* 404 fallback for all unknown routes */}
           <Route component={NotFound} />
