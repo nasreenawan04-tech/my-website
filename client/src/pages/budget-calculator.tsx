@@ -49,8 +49,15 @@ const BudgetCalculator = () => {
   const [result, setResult] = useState<BudgetResult | null>(null);
 
   const calculateBudget = () => {
-    const totalIncome = monthlyIncome.reduce((sum, income) => sum + income.amount, 0);
-    const totalExpenses = expenses.reduce((sum, expense) => sum + expense.amount, 0);
+    // Validate inputs
+    const totalIncome = monthlyIncome.reduce((sum, income) => sum + (isNaN(income.amount) ? 0 : income.amount), 0);
+    const totalExpenses = expenses.reduce((sum, expense) => sum + (isNaN(expense.amount) ? 0 : expense.amount), 0);
+    
+    if (totalIncome <= 0) {
+      alert('Please enter a valid income amount');
+      return;
+    }
+
     const remainingAmount = totalIncome - totalExpenses;
     const suggestedSavings = totalIncome * (savingsGoal / 100);
     const actualSavingsRate = totalIncome > 0 ? ((remainingAmount / totalIncome) * 100) : 0;
@@ -58,15 +65,15 @@ const BudgetCalculator = () => {
     let status: 'excellent' | 'good' | 'warning';
     let message: string;
 
-    if (remainingAmount > suggestedSavings) {
+    if (remainingAmount >= suggestedSavings) {
       status = 'excellent';
-      message = 'Excellent! You\'re exceeding your savings goal.';
+      message = 'Excellent! You\'re meeting or exceeding your savings goal.';
     } else if (remainingAmount > 0) {
       status = 'good';
       message = 'Good budget balance with some savings potential.';
     } else {
       status = 'warning';
-      message = 'Warning: Expenses exceed income.';
+      message = 'Warning: Expenses exceed income. Consider reducing expenses.';
     }
 
     setResult({
@@ -275,9 +282,14 @@ const BudgetCalculator = () => {
                               id={`income-amount-${income.id}`}
                               type="number"
                               value={income.amount || ''}
-                              onChange={(e) => updateIncomeSource(income.id, 'amount', parseFloat(e.target.value) || 0)}
+                              onChange={(e) => {
+                                const value = parseFloat(e.target.value);
+                                updateIncomeSource(income.id, 'amount', isNaN(value) ? 0 : Math.max(0, value));
+                              }}
                               className="h-12 pl-8 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500"
                               placeholder="0.00"
+                              min="0"
+                              step="0.01"
                               data-testid={`input-income-amount-${income.id}`}
                             />
                           </div>
@@ -344,9 +356,14 @@ const BudgetCalculator = () => {
                               id={`expense-amount-${expense.id}`}
                               type="number"
                               value={expense.amount || ''}
-                              onChange={(e) => updateExpenseCategory(expense.id, 'amount', parseFloat(e.target.value) || 0)}
+                              onChange={(e) => {
+                                const value = parseFloat(e.target.value);
+                                updateExpenseCategory(expense.id, 'amount', isNaN(value) ? 0 : Math.max(0, value));
+                              }}
                               className="h-12 pl-8 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500"
                               placeholder="0.00"
+                              min="0"
+                              step="0.01"
                               data-testid={`input-expense-amount-${expense.id}`}
                             />
                           </div>

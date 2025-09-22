@@ -58,7 +58,12 @@ const TextCleanerFormatter = () => {
     
     let cleaned = text;
 
-    // Remove extra spaces
+    // Normalize line breaks first
+    if (cleaningOptions.normalizeLineBreaks) {
+      cleaned = cleaned.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+    }
+
+    // Remove extra spaces (but preserve single spaces)
     if (cleaningOptions.removeExtraSpaces) {
       cleaned = cleaned.replace(/[ \t]+/g, ' ');
     }
@@ -73,19 +78,21 @@ const TextCleanerFormatter = () => {
       cleaned = cleaned.split('\n').filter(line => line.trim() !== '').join('\n');
     }
 
-    // Remove extra line breaks
+    // Remove extra line breaks (limit to double line breaks)
     if (cleaningOptions.removeExtraLineBreaks) {
       cleaned = cleaned.replace(/\n{3,}/g, '\n\n');
     }
 
-    // Normalize line breaks
-    if (cleaningOptions.normalizeLineBreaks) {
-      cleaned = cleaned.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+    // Remove special characters (exclude punctuation if not removing punctuation)
+    if (cleaningOptions.removeSpecialChars && !cleaningOptions.removePunctuation) {
+      cleaned = cleaned.replace(/[^\w\s\n\r.,!?;:"'-]/g, '');
+    } else if (cleaningOptions.removeSpecialChars) {
+      cleaned = cleaned.replace(/[^\w\s\n\r]/g, '');
     }
 
-    // Remove special characters
-    if (cleaningOptions.removeSpecialChars) {
-      cleaned = cleaned.replace(/[^\w\s\n\r]/g, '');
+    // Remove punctuation (separate from special characters)
+    if (cleaningOptions.removePunctuation && !cleaningOptions.removeSpecialChars) {
+      cleaned = cleaned.replace(/[.,!?;:"'-]/g, '');
     }
 
     // Remove numbers
@@ -93,16 +100,16 @@ const TextCleanerFormatter = () => {
       cleaned = cleaned.replace(/\d/g, '');
     }
 
-    // Remove punctuation
-    if (cleaningOptions.removePunctuation) {
-      cleaned = cleaned.replace(/[^\w\s\n\r]/g, '');
-    }
-
     // Convert case
     if (cleaningOptions.convertToLowercase) {
       cleaned = cleaned.toLowerCase();
     } else if (cleaningOptions.convertToUppercase) {
       cleaned = cleaned.toUpperCase();
+    }
+
+    // Final cleanup - remove any remaining excessive spaces
+    if (cleaningOptions.removeExtraSpaces) {
+      cleaned = cleaned.replace(/[ ]+/g, ' ');
     }
 
     return cleaned;
@@ -157,8 +164,19 @@ const TextCleanerFormatter = () => {
     });
   };
 
-  const handleCopyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text);
+  const handleCopyToClipboard = async (text: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      // You could add a toast notification here if needed
+    } catch (err) {
+      // Fallback for older browsers
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textArea);
+    }
   };
 
   const handleClear = () => {
