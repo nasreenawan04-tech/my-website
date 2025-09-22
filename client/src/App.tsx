@@ -1,4 +1,4 @@
-import { Switch, Route, useLocation } from "wouter";
+import { Switch, Route, useLocation, Redirect } from "wouter";
 import { useEffect, lazy, Suspense } from "react";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -7,6 +7,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { PageLoadingSpinner } from "@/components/ui/loading-spinner";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { BackToTop } from "@/components/ui/back-to-top";
+import PerformanceMetrics from "@/components/ui/performance-metrics";
 
 // Core pages (loaded immediately for performance)
 import Home from "@/pages/home";
@@ -161,16 +162,16 @@ function Router() {
           <Route path="/about-us" component={AboutUs} />
 
           {/* Legacy route redirects to standardized URLs */}
-          <Route path="/about" component={() => { window.location.replace('/about-us'); return null; }} />
+          <Route path="/about" component={() => <Redirect to="/about-us" />} />
 
           {/* Legacy route redirects to standardized /tools/ URLs */}
-          <Route path="/loan-calculator" component={() => { window.location.replace('/tools/loan-calculator'); return null; }} />
-          <Route path="/mortgage-calculator" component={() => { window.location.replace('/tools/mortgage-calculator'); return null; }} />
-          <Route path="/emi-calculator" component={() => { window.location.replace('/tools/emi-calculator'); return null; }} />
-          <Route path="/bmi-calculator" component={() => { window.location.replace('/tools/bmi-calculator'); return null; }} />
-          <Route path="/tax-calculator" component={() => { window.location.replace('/tools/tax-calculator'); return null; }} />
-          <Route path="/word-counter" component={() => { window.location.replace('/tools/word-counter'); return null; }} />
-          <Route path="/character-counter" component={() => { window.location.replace('/tools/character-counter'); return null; }} />
+          <Route path="/loan-calculator" component={() => <Redirect to="/tools/loan-calculator" />} />
+          <Route path="/mortgage-calculator" component={() => <Redirect to="/tools/mortgage-calculator" />} />
+          <Route path="/emi-calculator" component={() => <Redirect to="/tools/emi-calculator" />} />
+          <Route path="/bmi-calculator" component={() => <Redirect to="/tools/bmi-calculator" />} />
+          <Route path="/tax-calculator" component={() => <Redirect to="/tools/tax-calculator" />} />
+          <Route path="/word-counter" component={() => <Redirect to="/tools/word-counter" />} />
+          <Route path="/character-counter" component={() => <Redirect to="/tools/character-counter" />} />
 
           {/* All tool routes standardized to /tools/ prefix only */}
           <Route path="/tools/loan-calculator" component={LoanCalculator} />
@@ -289,6 +290,7 @@ function App() {
           <Toaster />
           <Router />
           <BackToTop />
+          <PerformanceMetrics />
         </TooltipProvider>
       </ThemeProvider>
     </QueryClientProvider>

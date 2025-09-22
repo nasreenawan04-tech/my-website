@@ -104,6 +104,11 @@
     
     <!-- Performance Hints -->
     <link rel="dns-prefetch" href="//dapsiwow.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="prefetch" href="/tools" />
+    <link rel="preload" href="/logo.svg" as="image" />
+    
     
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7737906044797602"
@@ -112,15 +117,7 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <!-- Service Worker Registration -->
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js')
-            .then(registration => console.log('SW registered'))
-            .catch(error => console.log('SW registration failed'));
-        });
-      }
-    </script>
+    <!-- Service Worker Registration moved to module script -->
+    <script type="module" src="/sw-register.js"></script>
   </body>
 </html>

@@ -57,6 +57,8 @@ const LazyImage = ({
       height={height}
       loading="lazy"
       decoding="async"
+      role={alt ? "img" : "presentation"}
+      aria-label={!isInView ? `Loading image: ${alt}` : undefined}
     />
   );
 };

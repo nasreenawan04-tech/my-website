@@ -31,10 +31,21 @@ const ToolCard = ({ tool, onClick }: ToolCardProps) => {
     onClick?.();
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      handleClick();
+    }
+  };
+
   return (
     <div 
-      className="bg-white dark:bg-neutral-800 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 p-6 border border-neutral-100 dark:border-neutral-700 cursor-pointer relative group"
+      className="bg-white dark:bg-neutral-800 rounded-2xl shadow-md hover:shadow-xl focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 transition-all duration-300 transform hover:-translate-y-1 focus-within:-translate-y-1 p-6 border border-neutral-100 dark:border-neutral-700 cursor-pointer relative group"
       onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+      role="button"
+      aria-label={`Open ${tool.name} - ${tool.description}`}
       data-testid={`card-tool-${tool.id}`}
     >
       {/* Favorite button in top-right corner */}
