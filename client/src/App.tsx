@@ -82,6 +82,8 @@ function Router() {
           <Route path="/tools/url-extractor" component={UrlExtractor} />
           <Route path="/tools/text-cleaner-formatter" component={TextCleanerFormatter} />
           <Route path="/tools/text-similarity-checker" component={TextSimilarityChecker} />
+          
+          {/* BMR Calorie Calculator - lazy loaded via ToolPage */}
 
           {/* 404 fallback for all unknown routes */}
           <Route component={NotFound} />
