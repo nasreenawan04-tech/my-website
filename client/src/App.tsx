@@ -8,6 +8,7 @@ import { PageLoadingSpinner } from "@/components/ui/loading-spinner";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { BackToTop } from "@/components/ui/back-to-top";
 import PerformanceMetrics from "@/components/ui/performance-metrics";
+import ErrorBoundary from "@/components/ErrorBoundary";
 
 // Core pages (loaded immediately for performance)
 import Home from "@/pages/home";
@@ -44,7 +45,10 @@ function ScrollToTop() {
 
 function Router() {
   return (
-    <>
+    <ErrorBoundary onError={(error, errorInfo) => {
+      console.error('Router Error:', error, errorInfo);
+      // Log critical navigation errors
+    }}>
       <ScrollToTop />
       <Suspense fallback={<PageLoadingSpinner />}>
         <Switch>
@@ -89,7 +93,7 @@ function Router() {
           <Route component={NotFound} />
         </Switch>
       </Suspense>
-    </>
+    </ErrorBoundary>
   );
 }
 
