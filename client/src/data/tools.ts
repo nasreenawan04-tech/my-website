@@ -14,7 +14,7 @@ export const categories = {
   health: 'Health'
 };
 
-const toolsData = [
+const toolsData: Tool[] = [
   // Finance Tools (32)
   { id: 'loan-calculator', name: 'Loan Calculator', description: 'Calculate monthly payments and total interest for any loan', category: 'finance' as const, icon: 'fas fa-calculator', isPopular: true, href: '/tools/loan-calculator' },
   { id: 'mortgage-calculator', name: 'Mortgage Calculator', description: 'Calculate mortgage payments and compare rates', category: 'finance' as const, icon: 'fas fa-home', href: '/tools/mortgage-calculator' },

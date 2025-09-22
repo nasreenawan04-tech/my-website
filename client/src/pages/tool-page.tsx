@@ -12,17 +12,108 @@ export const ToolPageContext = createContext<{ canonicalOverride?: string }>({})
 
 // Map of tool IDs to their corresponding rich components
 const toolComponents = {
+  // Finance Tools
   'loan-calculator': lazy(() => import('@/pages/loan-calculator')),
   'mortgage-calculator': lazy(() => import('@/pages/mortgage-calculator')),
   'emi-calculator': lazy(() => import('@/pages/emi-calculator')),
-  'bmi-calculator': lazy(() => import('@/pages/bmi-calculator')),
-  'tax-calculator': lazy(() => import('@/pages/tax-calculator')),
+  'business-loan-calculator': lazy(() => import('@/pages/business-loan-calculator')),
   'compound-interest-calculator': lazy(() => import('@/pages/compound-interest-calculator')),
   'simple-interest-calculator': lazy(() => import('@/pages/simple-interest-calculator')),
   'roi-calculator': lazy(() => import('@/pages/roi-calculator')),
+  'tax-calculator': lazy(() => import('@/pages/tax-calculator')),
+  'salary-to-hourly-calculator': lazy(() => import('@/pages/salary-to-hourly-calculator')),
+  'tip-calculator': lazy(() => import('@/pages/tip-calculator')),
+  'inflation-calculator': lazy(() => import('@/pages/inflation-calculator')),
+  'savings-goal-calculator': lazy(() => import('@/pages/savings-goal-calculator')),
+  'debt-payoff-calculator': lazy(() => import('@/pages/debt-payoff-calculator')),
+  'net-worth-calculator': lazy(() => import('@/pages/net-worth-calculator')),
+  'stock-profit-calculator': lazy(() => import('@/pages/stock-profit-calculator')),
+  'retirement-calculator': lazy(() => import('@/pages/retirement-calculator')),
+  'sip-calculator': lazy(() => import('@/pages/sip-calculator')),
+  'investment-return-calculator': lazy(() => import('@/pages/investment-return-calculator')),
+  'break-even-calculator': lazy(() => import('@/pages/break-even-calculator')),
+  'car-loan-calculator': lazy(() => import('@/pages/car-loan-calculator')),
+  'home-loan-calculator': lazy(() => import('@/pages/home-loan-calculator')),
+  'education-loan-calculator': lazy(() => import('@/pages/education-loan-calculator')),
+  'credit-card-interest-calculator': lazy(() => import('@/pages/credit-card-interest-calculator')),
+  'lease-calculator': lazy(() => import('@/pages/lease-calculator')),
+  'percentage-calculator': lazy(() => import('@/pages/percentage-calculator')),
+  'discount-calculator': lazy(() => import('@/pages/discount-calculator')),
+  'vat-gst-calculator': lazy(() => import('@/pages/vat-gst-calculator')),
+  'paypal-fee-calculator': lazy(() => import('@/pages/paypal-fee-calculator')),
+  'currency-percentage-change-calculator': lazy(() => import('@/pages/currency-percentage-change-calculator')),
+  'future-value-investment-calculator': lazy(() => import('@/pages/future-value-investment-calculator')),
+  'budget-calculator': lazy(() => import('@/pages/budget-calculator')),
+  'loan-comparison-calculator': lazy(() => import('@/pages/loan-comparison-calculator')),
+
+  // Health Tools
+  'bmi-calculator': lazy(() => import('@/pages/bmi-calculator')),
+  'bmr-calculator': lazy(() => import('@/pages/bmr-calculator')),
+  'calorie-calculator': lazy(() => import('@/pages/calorie-calculator')),
+  'body-fat-calculator': lazy(() => import('@/pages/body-fat-calculator')),
+  'ideal-weight-calculator': lazy(() => import('@/pages/ideal-weight-calculator')),
+  'pregnancy-due-date-calculator': lazy(() => import('@/pages/pregnancy-due-date-calculator')),
+  'water-intake-calculator': lazy(() => import('@/pages/water-intake-calculator')),
+  'protein-intake-calculator': lazy(() => import('@/pages/protein-intake-calculator')),
+  'carb-calculator': lazy(() => import('@/pages/carb-calculator')),
+  'keto-macro-calculator': lazy(() => import('@/pages/keto-macro-calculator')),
+  'intermittent-fasting-timer': lazy(() => import('@/pages/intermittent-fasting-timer')),
+  'daily-step-calorie-converter': lazy(() => import('@/pages/daily-step-calorie-converter')),
+  'heart-rate-calculator': lazy(() => import('@/pages/heart-rate-calculator')),
+  'max-heart-rate-calculator': lazy(() => import('@/pages/max-heart-rate-calculator')),
+  'blood-pressure-tracker': lazy(() => import('@/pages/blood-pressure-tracker')),
+  'sleep-calculator': lazy(() => import('@/pages/sleep-calculator')),
+  'sleep-quality-calculator': lazy(() => import('@/pages/sleep-quality-calculator')),
+  'ovulation-calculator': lazy(() => import('@/pages/ovulation-calculator')),
+  'baby-growth-chart': lazy(() => import('@/pages/baby-growth-chart')),
+  'tdee-calculator': lazy(() => import('@/pages/tdee-calculator')),
+  'lean-body-mass-calculator': lazy(() => import('@/pages/lean-body-mass-calculator')),
+  'waist-to-height-ratio-calculator': lazy(() => import('@/pages/waist-to-height-ratio-calculator')),
+  'whr-calculator': lazy(() => import('@/pages/whr-calculator')),
+  'life-expectancy-calculator': lazy(() => import('@/pages/life-expectancy-calculator')),
+  'cholesterol-risk-calculator': lazy(() => import('@/pages/cholesterol-risk-calculator')),
+  'running-pace-calculator': lazy(() => import('@/pages/running-pace-calculator')),
+  'cycling-speed-calculator': lazy(() => import('@/pages/cycling-speed-calculator')),
+  'swimming-calorie-calculator': lazy(() => import('@/pages/swimming-calorie-calculator')),
+  'alcohol-calorie-calculator': lazy(() => import('@/pages/alcohol-calorie-calculator')),
+  'smoking-cost-calculator': lazy(() => import('@/pages/smoking-cost-calculator')),
+  'body-water-percentage-calculator': lazy(() => import('@/pages/body-water-percentage-calculator')),
+  'hydration-calculator': lazy(() => import('@/pages/hydration-calculator')),
+
+  // Text Tools
   'word-counter': lazy(() => import('@/pages/word-counter')),
   'character-counter': lazy(() => import('@/pages/character-counter')),
-  // Add more existing components as needed
+  'sentence-counter': lazy(() => import('@/pages/sentence-counter')),
+  'paragraph-counter': lazy(() => import('@/pages/paragraph-counter')),
+  'case-converter': lazy(() => import('@/pages/case-converter')),
+  'password-generator': lazy(() => import('@/pages/password-generator')),
+  'fake-name-generator': lazy(() => import('@/pages/fake-name-generator')),
+  'username-generator': lazy(() => import('@/pages/username-generator')),
+  'fake-address-generator': lazy(() => import('@/pages/fake-address-generator')),
+  'qr-text-generator': lazy(() => import('@/pages/qr-text-generator')),
+  'font-style-changer': lazy(() => import('@/pages/font-style-changer')),
+  'reverse-text-tool': lazy(() => import('@/pages/reverse-text-tool')),
+  'text-to-qr-code': lazy(() => import('@/pages/text-to-qr-code')),
+  'text-to-binary-converter': lazy(() => import('@/pages/text-to-binary-converter')),
+  'binary-to-text-converter': lazy(() => import('@/pages/binary-to-text-converter')),
+  'decimal-to-text-converter': lazy(() => import('@/pages/decimal-to-text-converter')),
+  'text-to-decimal-converter': lazy(() => import('@/pages/text-to-decimal-converter')),
+  'qr-code-scanner': lazy(() => import('@/pages/qr-code-scanner')),
+  'markdown-to-html': lazy(() => import('@/pages/markdown-to-html')),
+  'lorem-ipsum-generator': lazy(() => import('@/pages/lorem-ipsum-generator')),
+  'hex-to-text-converter': lazy(() => import('@/pages/hex-to-text-converter')),
+  'text-to-hex-converter': lazy(() => import('@/pages/text-to-hex-converter')),
+  'duplicate-line-remover': lazy(() => import('@/pages/duplicate-line-remover')),
+  'text-scrambler': lazy(() => import('@/pages/text-scrambler')),
+  'text-diff-checker': lazy(() => import('@/pages/text-diff-checker')),
+  'text-pattern-generator': lazy(() => import('@/pages/text-pattern-generator')),
+  'text-formatter-beautifier': lazy(() => import('@/pages/text-formatter-beautifier')),
+  'password-strength-checker': lazy(() => import('@/pages/password-strength-checker')),
+  'base64-encoder-decoder': lazy(() => import('@/pages/base64-encoder-decoder')),
+  'text-statistics-analyzer': lazy(() => import('@/pages/text-statistics-analyzer')),
+  'url-extractor': lazy(() => import('@/pages/url-extractor')),
+  'text-cleaner-formatter': lazy(() => import('@/pages/text-cleaner-formatter')),
+  'text-summarizer': lazy(() => import('@/pages/text-summarizer')),
 };
 
 const ToolPage = () => {
@@ -43,15 +134,10 @@ const ToolPage = () => {
       // Check if this tool has a dedicated rich component
       if (foundTool && toolComponents[toolId as keyof typeof toolComponents]) {
         setIsLoading(true);
-        toolComponents[toolId as keyof typeof toolComponents]()
-          .then((module) => {
-            setToolComponent(() => module.default);
-            setIsLoading(false);
-          })
-          .catch(() => {
-            setToolComponent(null);
-            setIsLoading(false);
-          });
+        const LazyComponent = toolComponents[toolId as keyof typeof toolComponents];
+        // React.lazy components are directly usable, no need to call them
+        setToolComponent(() => LazyComponent);
+        setIsLoading(false);
       } else {
         setToolComponent(null);
         setIsLoading(false);
@@ -115,7 +201,7 @@ const ToolPage = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`https://dapsiwow.com/tools/${tool.id}`} />
         <link rel="canonical" href={`https://dapsiwow.com/tools/${tool.id}`} />
-        <meta name="robots" content="noindex, follow" />
+        <meta name="robots" content="index, follow" />
       </Helmet>
       <Header />
       
