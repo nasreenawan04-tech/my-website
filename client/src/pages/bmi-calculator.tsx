@@ -121,6 +121,7 @@ const BMICalculator = () => {
         <meta property="og:title" content="BMI Calculator - Free Body Mass Index Calculator | DapsiWow" />
         <meta property="og:description" content="Calculate your BMI (Body Mass Index) with our free calculator. Get instant results, health category classification, and weight recommendations." />
         <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://dapsiwow.com/tools/bmi-calculator" />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="DapsiWow" />
         <link rel="canonical" href="https://dapsiwow.com/tools/bmi-calculator" />
@@ -129,23 +130,28 @@ const BMICalculator = () => {
             "@context": "https://schema.org",
             "@type": "WebApplication",
             "name": "BMI Calculator",
-            "description": "Free online BMI calculator to calculate Body Mass Index for health assessment and weight management. Features metric and imperial units with personalized recommendations.",
+            "description": "Free online BMI calculator to calculate Body Mass Index and determine health category classification with weight recommendations.",
             "url": "https://dapsiwow.com/tools/bmi-calculator",
             "applicationCategory": "HealthApplication",
             "operatingSystem": "Any",
+            "permissions": "browser",
             "offers": {
               "@type": "Offer",
               "price": "0",
               "priceCurrency": "USD"
             },
             "featureList": [
-              "Calculate BMI instantly",
-              "Metric and imperial units",
+              "Calculate BMI using metric or imperial units",
               "Health category classification",
-              "Weight recommendations",
-              "Age and gender consideration",
-              "Healthy weight range calculation"
-            ]
+              "Healthy weight range calculation",
+              "Weight loss/gain recommendations",
+              "Age and gender considerations"
+            ],
+            "provider": {
+              "@type": "Organization",
+              "name": "DapsiWow",
+              "url": "https://dapsiwow.com"
+            }
           })}
         </script>
       </Helmet>

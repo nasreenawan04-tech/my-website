@@ -162,7 +162,39 @@ export default function LoanCalculator() {
         <meta property="og:title" content="Loan Calculator - Calculate Monthly Payments | DapsiWow" />
         <meta property="og:description" content="Free loan calculator to calculate monthly payments, total interest, and amortization schedules for personal loans, auto loans, and mortgages." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://dapsiwow.com/loan-calculator" />
+        <meta property="og:url" content="https://dapsiwow.com/tools/loan-calculator" />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="DapsiWow" />
+        <link rel="canonical" href="https://dapsiwow.com/tools/loan-calculator" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Loan Calculator",
+            "description": "Free online loan calculator to calculate monthly payments, total interest, and create amortization schedules for any type of loan.",
+            "url": "https://dapsiwow.com/tools/loan-calculator",
+            "applicationCategory": "FinanceApplication",
+            "operatingSystem": "Any",
+            "permissions": "browser",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "featureList": [
+              "Calculate monthly loan payments",
+              "Generate amortization schedules",
+              "Compare different loan options",
+              "Calculate extra payment benefits",
+              "Support for various payment frequencies"
+            ],
+            "provider": {
+              "@type": "Organization",
+              "name": "DapsiWow",
+              "url": "https://dapsiwow.com"
+            }
+          })}
+        </script>
       </Helmet>
       
       <Header />

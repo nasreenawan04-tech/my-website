@@ -5,30 +5,15 @@
 User-agent: *
 Allow: /
 
-# Explicitly prioritize important content sections (matching updated routing)
-Allow: /tools/
-Allow: /all-tools
-Allow: /finance-tools
-Allow: /health-tools  
-Allow: /text-tools
-Allow: /about-us
-Allow: /contact-us
-Allow: /privacy-policy
-Allow: /terms-of-service
-Allow: /help-center
-
-# Block crawl-budget wasting resources (but don't block essential static assets)
+# Block crawl-budget wasting resources and non-public directories
 Disallow: /admin/
 Disallow: /api/
 Disallow: /private/
 Disallow: /encrypted/
 Disallow: /compressed/
-Disallow: /*.pdf$
-Disallow: /*?s=*
-Disallow: /search?*
-Disallow: /filter/*
-Disallow: /*ajax*
-Disallow: /*json*
+Disallow: /dist/
+Disallow: /node_modules/
+Disallow: /.git/
 
 # Block AI training bots (preserve crawl budget)
 User-agent: GPTBot

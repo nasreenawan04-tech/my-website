@@ -95,7 +95,10 @@ Speaking time: ${result.speakingTime} minute(s)`;
         <meta property="og:title" content="Word Counter - Count Words, Characters & Text Statistics" />
         <meta property="og:description" content="Free online word counter with real-time text analysis. Count words, characters, sentences and calculate reading time instantly." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="/tools/word-counter" />
+        <meta property="og:url" content="https://dapsiwow.com/tools/word-counter" />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="DapsiWow" />
+        <link rel="canonical" href="https://dapsiwow.com/tools/word-counter" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
