@@ -49,6 +49,7 @@ const toolComponents = {
   // Health Tools
   'bmi-calculator': lazy(() => import('@/pages/bmi-calculator')),
   'bmr-calculator': lazy(() => import('@/pages/bmr-calculator')),
+  'bmr-calorie-calculator': lazy(() => import('@/pages/bmr-calorie-calculator')),
   'calorie-calculator': lazy(() => import('@/pages/calorie-calculator')),
   'body-fat-calculator': lazy(() => import('@/pages/body-fat-calculator')),
   'ideal-weight-calculator': lazy(() => import('@/pages/ideal-weight-calculator')),

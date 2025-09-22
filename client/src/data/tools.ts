@@ -94,6 +94,7 @@ const toolsData: Tool[] = [
   // Health Tools (30)
   { id: 'bmi-calculator', name: 'BMI Calculator', description: 'Calculate your Body Mass Index and get health insights', category: 'health' as const, icon: 'fas fa-weight', isPopular: true, href: '/tools/bmi-calculator' },
   { id: 'bmr-calculator', name: 'BMR Calculator', description: 'Calculate Basal Metabolic Rate and daily calorie needs', category: 'health' as const, icon: 'fas fa-fire', href: '/tools/bmr-calculator' },
+  { id: 'bmr-calorie-calculator', name: 'BMR & Calorie Needs Calculator', description: 'Comprehensive BMR calculator with activity-based calorie recommendations and macro breakdown', category: 'health' as const, icon: 'fas fa-calculator', isPopular: true, href: '/tools/bmr-calorie-calculator' },
   { id: 'calorie-calculator', name: 'Calorie Calculator', description: 'Calculate daily calorie needs and macronutrient breakdown', category: 'health' as const, icon: 'fas fa-utensils', href: '/tools/calorie-calculator' },
   { id: 'body-fat-calculator', name: 'Body Fat Calculator', description: 'Calculate body fat percentage using US Navy method', category: 'health' as const, icon: 'fas fa-percentage', href: '/tools/body-fat-calculator' },
   { id: 'pregnancy-due-date-calculator', name: 'Pregnancy Due Date Calculator', description: 'Calculate expected delivery date and pregnancy milestones', category: 'health' as const, icon: 'fas fa-baby', href: '/tools/pregnancy-due-date-calculator' },
