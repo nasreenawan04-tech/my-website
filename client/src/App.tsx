@@ -121,7 +121,7 @@ const PasswordStrengthChecker = lazy(() => import("@/pages/password-strength-che
 const Base64EncoderDecoder = lazy(() => import("@/pages/base64-encoder-decoder"));
 const TextStatisticsAnalyzer = lazy(() => import("@/pages/text-statistics-analyzer"));
 const URLExtractor = lazy(() => import("@/pages/url-extractor"));
-
+const TextCleanerFormatter = lazy(() => import("@/pages/text-cleaner-formatter"));
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -234,8 +234,9 @@ function Router() {
         <Route path="/tools/base64-encoder-decoder" component={Base64EncoderDecoder} />
         <Route path="/tools/text-statistics-analyzer" component={TextStatisticsAnalyzer} />
         <Route path="/tools/url-extractor" component={URLExtractor} />
+        <Route path="/tools/text-cleaner-formatter" component={TextCleanerFormatter} />
       <Route path="/tools/:toolId" component={ToolPage} />
-      
+
       {/* Fix URL mismatches for category pages to match sitemap */}
       <Route path="/finance-tools" component={FinanceTools} />
       <Route path="/text-tools" component={TextTools} />
@@ -243,7 +244,7 @@ function Router() {
       <Route path="/finance" component={FinanceTools} />
       <Route path="/text" component={TextTools} />
       <Route path="/health" component={HealthTools} />
-      
+
       {/* Fix URL mismatches for other pages to match sitemap */}
       <Route path="/contact-us" component={ContactUs} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />

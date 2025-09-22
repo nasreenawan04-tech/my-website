@@ -85,6 +85,7 @@ const toolsData = [
   { id: 'base64-encoder-decoder', name: 'Base64 Encoder/Decoder', description: 'Convert text to Base64 and decode Base64 to text with advanced encoding options', category: 'text' as const, icon: 'fas fa-code', href: '/tools/base64-encoder-decoder' },
   { id: 'text-statistics-analyzer', name: 'Text Statistics Analyzer', description: 'Comprehensive text analysis with readability scores, keyword density, and detailed writing metrics', category: 'text' as const, icon: 'fas fa-chart-bar', href: '/tools/text-statistics-analyzer' },
   { id: 'url-extractor', name: 'URL Extractor', description: 'Extract and analyze all URLs from text content with filtering and export options', category: 'text' as const, icon: 'fas fa-link', href: '/tools/url-extractor' },
+  { id: 'text-cleaner-formatter', name: 'Text Cleaner & Formatter', description: 'Clean up messy text by removing extra spaces, line breaks, and formatting issues', category: 'text' as const, icon: 'fas fa-broom', href: '/tools/text-cleaner-formatter' },
 
 
 
@@ -118,8 +119,7 @@ const toolsData = [
   { id: 'swimming-calorie-calculator', name: 'Swimming Calorie Calculator', description: 'Calculate calories burned while swimming', category: 'health' as const, icon: 'fas fa-swimmer', href: '/tools/swimming-calorie-calculator' },
   { id: 'alcohol-calorie-calculator', name: 'Alcohol Calorie Calculator', description: 'Calculate calories in alcoholic drinks', category: 'health' as const, icon: 'fas fa-wine-glass', href: '/tools/alcohol-calorie-calculator' },
   { id: 'smoking-cost-calculator', name: 'Smoking Cost Calculator', description: 'Calculate the cost of smoking habits', category: 'health' as const, icon: 'fas fa-smoking-ban', href: '/tools/smoking-cost-calculator' },
-  { id: 'sleep-quality-calculator', name: 'Sleep Quality Calculator', description: 'Assess your sleep quality and get personalized recommendations for better rest', category: 'health' as const, icon: 'fas fa-moon', href: '/tools/sleep-quality-calculator' },
-  { id: 'body-water-percentage-calculator', name: 'Body Water Percentage Calculator', description: 'Calculate your total body water percentage for optimal hydration and health monitoring', category: 'health' as const, icon: 'fas fa-tint', href: '/tools/body-water-percentage-calculator' }
+  { id: 'sleep-quality-calculator', name: 'Sleep Quality Calculator', description: 'Assess your sleep quality and get personalized recommendations for better rest', category: 'health' as const, icon: 'fas fa-moon', href: '/tools/sleep-quality-calculator' }
 ];
 
 // Export tools directly since hrefs are now correctly set in the data
