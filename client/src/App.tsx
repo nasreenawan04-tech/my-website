@@ -88,6 +88,7 @@ const CyclingSpeedCalculator = lazy(() => import("@/pages/cycling-speed-calculat
 const SwimmingCalorieCalculator = lazy(() => import("@/pages/swimming-calorie-calculator"));
 const AlcoholCalorieCalculator = lazy(() => import("@/pages/alcohol-calorie-calculator"));
 const SmokingCostCalculator = lazy(() => import("@/pages/smoking-cost-calculator"));
+const BodyWaterPercentageCalculator = lazy(() => import("@/pages/body-water-percentage-calculator"));
 
 
 // Lazy load text tools
@@ -205,6 +206,7 @@ function Router() {
       <Route path="/tools/swimming-calorie-calculator" component={SwimmingCalorieCalculator} />
       <Route path="/tools/alcohol-calorie-calculator" component={AlcoholCalorieCalculator} />
       <Route path="/tools/smoking-cost-calculator" component={SmokingCostCalculator} />
+      <Route path="/tools/body-water-percentage-calculator" component={BodyWaterPercentageCalculator} />
       <Route path="/tools/word-counter" component={WordCounter} />
       <Route path="/tools/character-counter" component={CharacterCounter} />
         <Route path="/tools/sentence-counter" component={SentenceCounter} />
