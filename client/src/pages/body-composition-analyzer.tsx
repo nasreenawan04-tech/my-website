@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -9,7 +10,6 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Progress } from '@/components/ui/progress';
 
 interface BodyCompositionResult {
   bodyFatPercentage: number;
@@ -46,7 +46,6 @@ const BodyCompositionAnalyzer = () => {
   const [hip, setHip] = useState('');
   const [activityLevel, setActivityLevel] = useState('');
   const [fitnessGoal, setFitnessGoal] = useState('');
-  const [bodyType, setBodyType] = useState('');
   const [result, setResult] = useState<BodyCompositionResult | null>(null);
 
   const calculateBodyComposition = () => {
@@ -73,7 +72,7 @@ const BodyCompositionAnalyzer = () => {
       // Imperial system
       weightKg = parseFloat(weight) * 0.453592;
       const feetValue = parseFloat(feet) || 0;
-      const inchesValue = parseFloat(inches) || 0; // Default to 0 if not provided
+      const inchesValue = parseFloat(inches) || 0;
       const totalInches = (feetValue * 12) + inchesValue;
       heightCm = totalInches * 2.54;
       neckCm = parseFloat(neck) * 2.54;
@@ -100,20 +99,18 @@ const BodyCompositionAnalyzer = () => {
       bodyFatPercentage = 495 / (1.0324 - 0.19077 * Math.log10(waistCm - neckCm) + 0.15456 * Math.log10(heightCm)) - 450;
     } else {
       if (hipCm === 0) {
-        // Estimate hip if not provided (hip ≈ waist × 1.3 for women)
         hipCm = waistCm * 1.3;
       }
       bodyFatPercentage = 495 / (1.29579 - 0.35004 * Math.log10(waistCm + hipCm - neckCm) + 0.22100 * Math.log10(heightCm)) - 450;
     }
 
-    // Ensure body fat percentage is within reasonable bounds
     bodyFatPercentage = Math.max(3, Math.min(bodyFatPercentage, 50));
 
     // Calculate body composition
     const fatMass = (bodyFatPercentage / 100) * weightKg;
     const leanBodyMass = weightKg - fatMass;
-    const muscleMass = leanBodyMass * 0.45; // Approximate muscle mass from LBM
-    const boneMass = weightKg * 0.15; // Approximate bone mass
+    const muscleMass = leanBodyMass * 0.45;
+    const boneMass = weightKg * 0.15;
 
     // Determine body fat category and healthy ranges
     let bodyFatCategory: string;
@@ -165,7 +162,7 @@ const BodyCompositionAnalyzer = () => {
 
     // Calculate macro targets
     const protein = weightKg * (fitnessGoal === 'muscle_gain' || fitnessGoal === 'bulking' ? 2.2 : 1.8);
-    const fat = targetCalories * 0.25 / 9; // 25% of calories from fat
+    const fat = targetCalories * 0.25 / 9;
     const carbs = (targetCalories - (protein * 4) - (fat * 9)) / 4;
 
     // Generate recommendations
@@ -262,578 +259,765 @@ const BodyCompositionAnalyzer = () => {
     setHip('');
     setActivityLevel('');
     setFitnessGoal('');
-    setBodyType('');
     setResult(null);
   };
 
+  const formatMeasurement = (value: number, type: 'weight' | 'percentage'): string => {
+    if (type === 'percentage') {
+      return `${value.toFixed(1)}%`;
+    }
+    return unitSystem === 'metric' ? `${value.toFixed(1)} kg` : `${(value * 2.20462).toFixed(1)} lbs`;
+  };
+
   return (
-    <>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-emerald-50 to-teal-50">
       <Helmet>
         <title>Body Composition Analyzer - Free Body Fat & Muscle Mass Calculator | DapsiWow</title>
-        <meta name="description" content="Analyze your body composition with our free calculator. Get accurate body fat percentage, muscle mass, and personalized fitness recommendations. Includes macro targets and workout plans." />
-        <meta name="keywords" content="body composition analyzer, body fat calculator, muscle mass calculator, lean body mass, fitness assessment, body fat percentage" />
-        <meta property="og:title" content="Body Composition Analyzer - Free Body Fat & Muscle Mass Calculator" />
-        <meta property="og:description" content="Analyze your body composition with our free calculator. Get accurate body fat percentage, muscle mass, and personalized fitness recommendations." />
+        <meta name="description" content="Free body composition analyzer to calculate body fat percentage, muscle mass, and lean body mass. Get personalized fitness recommendations with our comprehensive body composition calculator." />
+        <meta name="keywords" content="body composition analyzer, body fat calculator, muscle mass calculator, lean body mass, fitness assessment, body fat percentage, health calculator, nutrition planning" />
+        <meta property="og:title" content="Body Composition Analyzer - Free Body Fat & Muscle Mass Calculator | DapsiWow" />
+        <meta property="og:description" content="Calculate your body composition with our free analyzer. Get accurate body fat percentage, muscle mass, and personalized fitness recommendations." />
         <meta property="og:type" content="website" />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="DapsiWow" />
         <link rel="canonical" href="https://dapsiwow.com/tools/body-composition-analyzer" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Body Composition Analyzer",
+            "description": "Professional body composition analyzer for calculating body fat percentage, muscle mass, and lean body mass with personalized fitness recommendations.",
+            "url": "https://dapsiwow.com/tools/body-composition-analyzer",
+            "applicationCategory": "HealthApplication",
+            "operatingSystem": "Any",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "featureList": [
+              "Calculate body fat percentage using US Navy method",
+              "Determine lean body mass and muscle mass",
+              "Generate personalized macro targets",
+              "Create custom workout plans",
+              "Multiple unit system support"
+            ]
+          })}
+        </script>
       </Helmet>
 
-      <div className="min-h-screen flex flex-col" data-testid="page-body-composition-analyzer">
-        <Header />
-        
-        <main className="flex-1 bg-neutral-50">
-          {/* Hero Section */}
-          <section className="bg-gradient-to-r from-emerald-600 via-teal-500 to-cyan-700 text-white py-16">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <h1 className="text-4xl sm:text-5xl font-bold mb-6" data-testid="page-title">
-                Body Composition Analyzer
+      <Header />
+
+      <main>
+        {/* Hero Section */}
+        <section className="relative py-12 sm:py-16 md:py-20 lg:py-28 xl:py-32 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-emerald-600/10 to-teal-600/20"></div>
+          <div className="relative max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
+            <div className="space-y-4 sm:space-y-6 md:space-y-8">
+              <div className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-emerald-200">
+                <span className="text-xs sm:text-sm font-medium text-emerald-700">Body Composition Analysis</span>
+              </div>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-slate-900 leading-tight tracking-tight">
+                <span className="block">Body Composition</span>
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600 mt-1 sm:mt-2">
+                  Analyzer
+                </span>
               </h1>
-              <p className="text-xl mb-8 text-emerald-100">
-                Get a comprehensive analysis of your body composition including body fat percentage, 
-                muscle mass, and personalized fitness recommendations.
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-slate-600 max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto leading-relaxed px-2 sm:px-0">
+                Get a comprehensive analysis of your body composition including body fat percentage, muscle mass, and personalized fitness recommendations
               </p>
             </div>
-          </section>
+          </div>
+        </section>
 
-          {/* Calculator Section */}
-          <section className="py-16">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-              <Card className="shadow-lg">
-                <CardContent className="p-8">
-                  <div className="grid md:grid-cols-2 gap-8">
-                    {/* Input Form */}
-                    <div className="space-y-6">
-                      <h2 className="text-2xl font-bold text-gray-900 mb-6">Body Measurements</h2>
-                      
-                      {/* Unit System */}
+        <div className="max-w-7xl mx-auto px-4 py-16">
+          {/* Main Calculator Card */}
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+            <CardContent className="p-0">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+                {/* Input Section */}
+                <div className="p-8 lg:p-12 space-y-8">
+                  <div>
+                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Body Measurements</h2>
+                    <p className="text-gray-600">Enter your physical measurements and details</p>
+                  </div>
+
+                  <div className="space-y-6">
+                    {/* Unit System */}
+                    <div className="space-y-3">
+                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Unit System
+                      </Label>
+                      <RadioGroup value={unitSystem} onValueChange={setUnitSystem} className="flex gap-6">
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="metric" id="metric" data-testid="radio-metric" />
+                          <Label htmlFor="metric">Metric (kg, cm)</Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="imperial" id="imperial" data-testid="radio-imperial" />
+                          <Label htmlFor="imperial">Imperial (lbs, ft/in)</Label>
+                        </div>
+                      </RadioGroup>
+                    </div>
+
+                    {/* Basic Information */}
+                    <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-3">
-                        <Label className="text-base font-medium">Unit System</Label>
-                        <RadioGroup value={unitSystem} onValueChange={setUnitSystem} className="flex gap-6">
-                          <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="metric" id="metric" data-testid="radio-metric" />
-                            <Label htmlFor="metric">Metric (kg, cm)</Label>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="imperial" id="imperial" data-testid="radio-imperial" />
-                            <Label htmlFor="imperial">Imperial (lbs, ft/in)</Label>
-                          </div>
-                        </RadioGroup>
+                        <Label htmlFor="age" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Age</Label>
+                        <Input
+                          id="age"
+                          type="number"
+                          placeholder="30"
+                          value={age}
+                          onChange={(e) => setAge(e.target.value)}
+                          className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-emerald-500"
+                          data-testid="input-age"
+                        />
                       </div>
-
-                      {/* Basic Information */}
-                      <div className="grid grid-cols-2 gap-4">
-                        <div className="space-y-2">
-                          <Label htmlFor="age" className="text-sm font-medium">Age</Label>
-                          <Input
-                            id="age"
-                            type="number"
-                            placeholder="30"
-                            value={age}
-                            onChange={(e) => setAge(e.target.value)}
-                            data-testid="input-age"
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="gender" className="text-sm font-medium">Gender</Label>
-                          <Select value={gender} onValueChange={setGender}>
-                            <SelectTrigger data-testid="select-gender">
-                              <SelectValue placeholder="Select gender" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="male">Male</SelectItem>
-                              <SelectItem value="female">Female</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                      </div>
-
-                      {/* Weight and Height */}
-                      {unitSystem === 'metric' ? (
-                        <div className="grid grid-cols-2 gap-4">
-                          <div className="space-y-2">
-                            <Label htmlFor="weight" className="text-sm font-medium">Weight (kg)</Label>
-                            <Input
-                              id="weight"
-                              type="number"
-                              placeholder="70"
-                              value={weight}
-                              onChange={(e) => setWeight(e.target.value)}
-                              data-testid="input-weight"
-                            />
-                          </div>
-                          <div className="space-y-2">
-                            <Label htmlFor="height" className="text-sm font-medium">Height (cm)</Label>
-                            <Input
-                              id="height"
-                              type="number"
-                              placeholder="175"
-                              value={height}
-                              onChange={(e) => setHeight(e.target.value)}
-                              data-testid="input-height"
-                            />
-                          </div>
-                        </div>
-                      ) : (
-                        <div className="grid grid-cols-3 gap-4">
-                          <div className="space-y-2">
-                            <Label htmlFor="weight-lbs" className="text-sm font-medium">Weight (lbs)</Label>
-                            <Input
-                              id="weight-lbs"
-                              type="number"
-                              placeholder="154"
-                              value={weight}
-                              onChange={(e) => setWeight(e.target.value)}
-                              data-testid="input-weight-imperial"
-                            />
-                          </div>
-                          <div className="space-y-2">
-                            <Label htmlFor="feet" className="text-sm font-medium">Height (ft)</Label>
-                            <Input
-                              id="feet"
-                              type="number"
-                              placeholder="5"
-                              value={feet}
-                              onChange={(e) => setFeet(e.target.value)}
-                              data-testid="input-feet"
-                            />
-                          </div>
-                          <div className="space-y-2">
-                            <Label htmlFor="inches" className="text-sm font-medium">Height (in)</Label>
-                            <Input
-                              id="inches"
-                              type="number"
-                              placeholder="9"
-                              value={inches}
-                              onChange={(e) => setInches(e.target.value)}
-                              data-testid="input-inches"
-                            />
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Body Measurements */}
-                      <div className="grid grid-cols-2 gap-4">
-                        <div className="space-y-2">
-                          <Label htmlFor="neck" className="text-sm font-medium">
-                            Neck {unitSystem === 'metric' ? '(cm)' : '(inches)'}
-                          </Label>
-                          <Input
-                            id="neck"
-                            type="number"
-                            placeholder={unitSystem === 'metric' ? '38' : '15'}
-                            value={neck}
-                            onChange={(e) => setNeck(e.target.value)}
-                            data-testid="input-neck"
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="waist" className="text-sm font-medium">
-                            Waist {unitSystem === 'metric' ? '(cm)' : '(inches)'}
-                          </Label>
-                          <Input
-                            id="waist"
-                            type="number"
-                            placeholder={unitSystem === 'metric' ? '85' : '33'}
-                            value={waist}
-                            onChange={(e) => setWaist(e.target.value)}
-                            data-testid="input-waist"
-                          />
-                        </div>
-                      </div>
-
-                      {gender === 'female' && (
-                        <div className="space-y-2">
-                          <Label htmlFor="hip" className="text-sm font-medium">
-                            Hip {unitSystem === 'metric' ? '(cm)' : '(inches)'} (Optional but recommended)
-                          </Label>
-                          <Input
-                            id="hip"
-                            type="number"
-                            placeholder={unitSystem === 'metric' ? '95' : '37'}
-                            value={hip}
-                            onChange={(e) => setHip(e.target.value)}
-                            data-testid="input-hip"
-                          />
-                        </div>
-                      )}
-
-                      {/* Activity Level */}
-                      <div className="space-y-2">
-                        <Label htmlFor="activity-level" className="text-sm font-medium">Activity Level</Label>
-                        <Select value={activityLevel} onValueChange={setActivityLevel}>
-                          <SelectTrigger data-testid="select-activity-level">
-                            <SelectValue placeholder="Select activity level" />
+                      <div className="space-y-3">
+                        <Label htmlFor="gender" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Gender</Label>
+                        <Select value={gender} onValueChange={setGender}>
+                          <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-gender">
+                            <SelectValue placeholder="Select gender" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="sedentary">Sedentary (little/no exercise)</SelectItem>
-                            <SelectItem value="light">Light (light exercise 1-3 days/week)</SelectItem>
-                            <SelectItem value="moderate">Moderate (moderate exercise 3-5 days/week)</SelectItem>
-                            <SelectItem value="active">Active (hard exercise 6-7 days/week)</SelectItem>
-                            <SelectItem value="very_active">Very Active (very hard exercise & physical job)</SelectItem>
+                            <SelectItem value="male">Male</SelectItem>
+                            <SelectItem value="female">Female</SelectItem>
                           </SelectContent>
                         </Select>
-                      </div>
-
-                      {/* Fitness Goal */}
-                      <div className="space-y-2">
-                        <Label htmlFor="fitness-goal" className="text-sm font-medium">Fitness Goal</Label>
-                        <Select value={fitnessGoal} onValueChange={setFitnessGoal}>
-                          <SelectTrigger data-testid="select-fitness-goal">
-                            <SelectValue placeholder="Select fitness goal" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="maintain">Maintain current weight</SelectItem>
-                            <SelectItem value="weight_loss">Weight loss</SelectItem>
-                            <SelectItem value="muscle_gain">Muscle gain</SelectItem>
-                            <SelectItem value="cutting">Cutting (lose fat, maintain muscle)</SelectItem>
-                            <SelectItem value="bulking">Bulking (gain muscle and weight)</SelectItem>
-                            <SelectItem value="recomposition">Body recomposition</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-
-                      {/* Action Buttons */}
-                      <div className="flex gap-4 pt-6">
-                        <Button 
-                          onClick={calculateBodyComposition}
-                          className="flex-1 bg-emerald-600 hover:bg-emerald-700"
-                          data-testid="button-calculate"
-                        >
-                          Analyze Body Composition
-                        </Button>
-                        <Button 
-                          onClick={resetForm}
-                          variant="outline"
-                          className="flex-1"
-                          data-testid="button-reset"
-                        >
-                          Reset
-                        </Button>
                       </div>
                     </div>
 
-                    {/* Results */}
-                    {result && (
-                      <div className="space-y-6">
-                        <h2 className="text-2xl font-bold text-gray-900 mb-6" data-testid="results-title">
-                          Your Body Composition Analysis
-                        </h2>
-                        
-                        <Tabs defaultValue="overview" className="w-full">
-                          <TabsList className="grid w-full grid-cols-3">
-                            <TabsTrigger value="overview">Overview</TabsTrigger>
-                            <TabsTrigger value="nutrition">Nutrition</TabsTrigger>
-                            <TabsTrigger value="fitness">Fitness</TabsTrigger>
-                          </TabsList>
-                          
-                          <TabsContent value="overview" className="space-y-4">
-                            {/* Body Fat Percentage */}
-                            <div className="bg-emerald-50 p-4 rounded-lg">
-                              <h3 className="font-semibold text-emerald-900 mb-2">Body Fat Percentage</h3>
-                              <div className="flex items-center justify-between">
-                                <span className="text-2xl font-bold text-emerald-700" data-testid="result-body-fat">
-                                  {result.bodyFatPercentage.toFixed(1)}%
-                                </span>
-                                <span className="text-sm text-emerald-600">
-                                  {result.bodyFatCategory}
-                                </span>
-                              </div>
-                              <Progress 
-                                value={(result.bodyFatPercentage / 40) * 100} 
-                                className="mt-2"
-                              />
-                              <p className="text-xs text-emerald-600 mt-1">
-                                Healthy range: {result.healthyBodyFatMin}% - {result.healthyBodyFatMax}%
-                              </p>
-                            </div>
-
-                            {/* Body Composition Breakdown */}
-                            <div className="grid grid-cols-2 gap-4">
-                              <div className="bg-blue-50 p-4 rounded-lg">
-                                <h4 className="font-semibold text-blue-900">Lean Body Mass</h4>
-                                <p className="text-xl font-bold text-blue-700" data-testid="result-lean-mass">
-                                  {result.leanBodyMass.toFixed(1)} kg
-                                </p>
-                              </div>
-                              <div className="bg-purple-50 p-4 rounded-lg">
-                                <h4 className="font-semibold text-purple-900">Muscle Mass</h4>
-                                <p className="text-xl font-bold text-purple-700" data-testid="result-muscle-mass">
-                                  {result.muscleMass.toFixed(1)} kg
-                                </p>
-                              </div>
-                              <div className="bg-red-50 p-4 rounded-lg">
-                                <h4 className="font-semibold text-red-900">Fat Mass</h4>
-                                <p className="text-xl font-bold text-red-700" data-testid="result-fat-mass">
-                                  {result.fatMass.toFixed(1)} kg
-                                </p>
-                              </div>
-                              <div className="bg-gray-50 p-4 rounded-lg">
-                                <h4 className="font-semibold text-gray-900">BMI</h4>
-                                <p className="text-xl font-bold text-gray-700" data-testid="result-bmi">
-                                  {result.bmi.toFixed(1)}
-                                </p>
-                                <p className="text-xs text-gray-600">{result.bmiCategory}</p>
-                              </div>
-                            </div>
-
-                            {/* Body Composition Goals */}
-                            <div className="bg-yellow-50 p-4 rounded-lg">
-                              <h3 className="font-semibold text-yellow-900 mb-2">Body Composition Goals</h3>
-                              <ul className="space-y-1">
-                                {result.bodyCompositionGoals.map((goal, index) => (
-                                  <li key={index} className="text-sm text-yellow-800 flex items-start">
-                                    <span className="w-2 h-2 bg-yellow-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                                    {goal}
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          </TabsContent>
-                          
-                          <TabsContent value="nutrition" className="space-y-4">
-                            {/* Macro Targets */}
-                            <div className="bg-orange-50 p-4 rounded-lg">
-                              <h3 className="font-semibold text-orange-900 mb-3">Daily Macro Targets</h3>
-                              <div className="grid grid-cols-2 gap-4">
-                                <div>
-                                  <span className="text-sm text-orange-700">Calories</span>
-                                  <p className="text-xl font-bold text-orange-800" data-testid="result-calories">
-                                    {result.macroTargets.calories}
-                                  </p>
-                                </div>
-                                <div>
-                                  <span className="text-sm text-orange-700">Protein</span>
-                                  <p className="text-xl font-bold text-orange-800" data-testid="result-protein">
-                                    {result.macroTargets.protein}g
-                                  </p>
-                                </div>
-                                <div>
-                                  <span className="text-sm text-orange-700">Carbs</span>
-                                  <p className="text-xl font-bold text-orange-800" data-testid="result-carbs">
-                                    {result.macroTargets.carbs}g
-                                  </p>
-                                </div>
-                                <div>
-                                  <span className="text-sm text-orange-700">Fat</span>
-                                  <p className="text-xl font-bold text-orange-800" data-testid="result-fat">
-                                    {result.macroTargets.fat}g
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          </TabsContent>
-                          
-                          <TabsContent value="fitness" className="space-y-4">
-                            {/* Workout Plan */}
-                            <div className="bg-indigo-50 p-4 rounded-lg">
-                              <h3 className="font-semibold text-indigo-900 mb-2">Recommended Workout Plan</h3>
-                              <ul className="space-y-1">
-                                {result.workoutPlan.map((item, index) => (
-                                  <li key={index} className="text-sm text-indigo-800 flex items-start">
-                                    <span className="w-2 h-2 bg-indigo-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                                    {item}
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          </TabsContent>
-                        </Tabs>
-
-                        {/* Recommendations */}
-                        <div className="bg-teal-50 p-4 rounded-lg">
-                          <h3 className="font-semibold text-teal-900 mb-2">Personalized Recommendations</h3>
-                          <ul className="space-y-1">
-                            {result.recommendations.map((recommendation, index) => (
-                              <li key={index} className="text-sm text-teal-800 flex items-start">
-                                <span className="w-2 h-2 bg-teal-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                                {recommendation}
-                              </li>
-                            ))}
-                          </ul>
+                    {/* Weight and Height */}
+                    {unitSystem === 'metric' ? (
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="space-y-3">
+                          <Label htmlFor="weight" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Weight (kg)</Label>
+                          <Input
+                            id="weight"
+                            type="number"
+                            placeholder="70"
+                            value={weight}
+                            onChange={(e) => setWeight(e.target.value)}
+                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-emerald-500"
+                            data-testid="input-weight"
+                          />
+                        </div>
+                        <div className="space-y-3">
+                          <Label htmlFor="height" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Height (cm)</Label>
+                          <Input
+                            id="height"
+                            type="number"
+                            placeholder="175"
+                            value={height}
+                            onChange={(e) => setHeight(e.target.value)}
+                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-emerald-500"
+                            data-testid="input-height"
+                          />
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="grid grid-cols-3 gap-4">
+                        <div className="space-y-3">
+                          <Label htmlFor="weight-lbs" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Weight (lbs)</Label>
+                          <Input
+                            id="weight-lbs"
+                            type="number"
+                            placeholder="154"
+                            value={weight}
+                            onChange={(e) => setWeight(e.target.value)}
+                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-emerald-500"
+                            data-testid="input-weight-imperial"
+                          />
+                        </div>
+                        <div className="space-y-3">
+                          <Label htmlFor="feet" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Height (ft)</Label>
+                          <Input
+                            id="feet"
+                            type="number"
+                            placeholder="5"
+                            value={feet}
+                            onChange={(e) => setFeet(e.target.value)}
+                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-emerald-500"
+                            data-testid="input-feet"
+                          />
+                        </div>
+                        <div className="space-y-3">
+                          <Label htmlFor="inches" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Height (in)</Label>
+                          <Input
+                            id="inches"
+                            type="number"
+                            placeholder="9"
+                            value={inches}
+                            onChange={(e) => setInches(e.target.value)}
+                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-emerald-500"
+                            data-testid="input-inches"
+                          />
                         </div>
                       </div>
                     )}
+
+                    {/* Body Measurements */}
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-3">
+                        <Label htmlFor="neck" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                          Neck {unitSystem === 'metric' ? '(cm)' : '(inches)'}
+                        </Label>
+                        <Input
+                          id="neck"
+                          type="number"
+                          placeholder={unitSystem === 'metric' ? '38' : '15'}
+                          value={neck}
+                          onChange={(e) => setNeck(e.target.value)}
+                          className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-emerald-500"
+                          data-testid="input-neck"
+                        />
+                      </div>
+                      <div className="space-y-3">
+                        <Label htmlFor="waist" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                          Waist {unitSystem === 'metric' ? '(cm)' : '(inches)'}
+                        </Label>
+                        <Input
+                          id="waist"
+                          type="number"
+                          placeholder={unitSystem === 'metric' ? '85' : '33'}
+                          value={waist}
+                          onChange={(e) => setWaist(e.target.value)}
+                          className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-emerald-500"
+                          data-testid="input-waist"
+                        />
+                      </div>
+                    </div>
+
+                    {gender === 'female' && (
+                      <div className="space-y-3">
+                        <Label htmlFor="hip" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                          Hip {unitSystem === 'metric' ? '(cm)' : '(inches)'} (Optional but recommended)
+                        </Label>
+                        <Input
+                          id="hip"
+                          type="number"
+                          placeholder={unitSystem === 'metric' ? '95' : '37'}
+                          value={hip}
+                          onChange={(e) => setHip(e.target.value)}
+                          className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-emerald-500"
+                          data-testid="input-hip"
+                        />
+                      </div>
+                    )}
+
+                    {/* Activity Level */}
+                    <div className="space-y-3">
+                      <Label htmlFor="activity-level" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Activity Level</Label>
+                      <Select value={activityLevel} onValueChange={setActivityLevel}>
+                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-activity-level">
+                          <SelectValue placeholder="Select activity level" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="sedentary">Sedentary (little/no exercise)</SelectItem>
+                          <SelectItem value="light">Light (light exercise 1-3 days/week)</SelectItem>
+                          <SelectItem value="moderate">Moderate (moderate exercise 3-5 days/week)</SelectItem>
+                          <SelectItem value="active">Active (hard exercise 6-7 days/week)</SelectItem>
+                          <SelectItem value="very_active">Very Active (very hard exercise & physical job)</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    {/* Fitness Goal */}
+                    <div className="space-y-3">
+                      <Label htmlFor="fitness-goal" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Fitness Goal</Label>
+                      <Select value={fitnessGoal} onValueChange={setFitnessGoal}>
+                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-fitness-goal">
+                          <SelectValue placeholder="Select fitness goal" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="maintain">Maintain current weight</SelectItem>
+                          <SelectItem value="weight_loss">Weight loss</SelectItem>
+                          <SelectItem value="muscle_gain">Muscle gain</SelectItem>
+                          <SelectItem value="cutting">Cutting (lose fat, maintain muscle)</SelectItem>
+                          <SelectItem value="bulking">Bulking (gain muscle and weight)</SelectItem>
+                          <SelectItem value="recomposition">Body recomposition</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                      <Button
+                        onClick={calculateBodyComposition}
+                        className="flex-1 h-14 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                        data-testid="button-calculate"
+                      >
+                        Analyze Body Composition
+                      </Button>
+                      <Button
+                        onClick={resetForm}
+                        variant="outline"
+                        className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                        data-testid="button-reset"
+                      >
+                        Reset
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Results Section */}
+                <div className="bg-gradient-to-br from-gray-50 to-emerald-50 p-8 lg:p-12">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Body Composition Analysis</h2>
+
+                  {result ? (
+                    <div className="space-y-6" data-testid="results-section">
+                      {/* Body Fat Percentage */}
+                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-emerald-100">
+                        <h3 className="text-lg font-bold text-gray-900 mb-4">Body Fat Percentage</h3>
+                        <div className="text-center p-4 bg-emerald-50 rounded-lg">
+                          <div className="text-3xl font-bold text-emerald-600" data-testid="result-body-fat">
+                            {formatMeasurement(result.bodyFatPercentage, 'percentage')}
+                          </div>
+                          <div className="text-sm text-emerald-700 mt-1">{result.bodyFatCategory}</div>
+                          <div className="text-xs text-emerald-600 mt-2">
+                            Healthy range: {result.healthyBodyFatMin}% - {result.healthyBodyFatMax}%
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Body Composition Breakdown */}
+                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                        <h3 className="text-lg font-bold text-gray-900 mb-4">Body Composition Breakdown</h3>
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="text-center p-3 bg-blue-50 rounded-lg">
+                            <div className="text-lg font-bold text-blue-600" data-testid="result-lean-mass">
+                              {formatMeasurement(result.leanBodyMass, 'weight')}
+                            </div>
+                            <div className="text-xs text-gray-600">Lean Body Mass</div>
+                          </div>
+                          <div className="text-center p-3 bg-purple-50 rounded-lg">
+                            <div className="text-lg font-bold text-purple-600" data-testid="result-muscle-mass">
+                              {formatMeasurement(result.muscleMass, 'weight')}
+                            </div>
+                            <div className="text-xs text-gray-600">Muscle Mass</div>
+                          </div>
+                          <div className="text-center p-3 bg-red-50 rounded-lg">
+                            <div className="text-lg font-bold text-red-600" data-testid="result-fat-mass">
+                              {formatMeasurement(result.fatMass, 'weight')}
+                            </div>
+                            <div className="text-xs text-gray-600">Fat Mass</div>
+                          </div>
+                          <div className="text-center p-3 bg-gray-50 rounded-lg">
+                            <div className="text-lg font-bold text-gray-700" data-testid="result-bmi">
+                              {result.bmi.toFixed(1)}
+                            </div>
+                            <div className="text-xs text-gray-600">BMI - {result.bmiCategory}</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Detailed Results Tabs */}
+                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                        <Tabs defaultValue="nutrition" className="w-full">
+                          <TabsList className="grid w-full grid-cols-3">
+                            <TabsTrigger value="nutrition">Nutrition</TabsTrigger>
+                            <TabsTrigger value="fitness">Fitness</TabsTrigger>
+                            <TabsTrigger value="goals">Goals</TabsTrigger>
+                          </TabsList>
+                          
+                          <TabsContent value="nutrition" className="space-y-4 mt-4">
+                            <h4 className="font-semibold text-gray-900 mb-3">Daily Macro Targets</h4>
+                            <div className="grid grid-cols-2 gap-4">
+                              <div className="text-center p-3 bg-orange-50 rounded-lg">
+                                <div className="text-lg font-bold text-orange-600" data-testid="result-calories">
+                                  {result.macroTargets.calories}
+                                </div>
+                                <div className="text-xs text-gray-600">Calories</div>
+                              </div>
+                              <div className="text-center p-3 bg-orange-50 rounded-lg">
+                                <div className="text-lg font-bold text-orange-600" data-testid="result-protein">
+                                  {result.macroTargets.protein}g
+                                </div>
+                                <div className="text-xs text-gray-600">Protein</div>
+                              </div>
+                              <div className="text-center p-3 bg-orange-50 rounded-lg">
+                                <div className="text-lg font-bold text-orange-600" data-testid="result-carbs">
+                                  {result.macroTargets.carbs}g
+                                </div>
+                                <div className="text-xs text-gray-600">Carbs</div>
+                              </div>
+                              <div className="text-center p-3 bg-orange-50 rounded-lg">
+                                <div className="text-lg font-bold text-orange-600" data-testid="result-fat">
+                                  {result.macroTargets.fat}g
+                                </div>
+                                <div className="text-xs text-gray-600">Fat</div>
+                              </div>
+                            </div>
+                          </TabsContent>
+                          
+                          <TabsContent value="fitness" className="space-y-4 mt-4">
+                            <h4 className="font-semibold text-gray-900 mb-3">Recommended Workout Plan</h4>
+                            <div className="space-y-2">
+                              {result.workoutPlan.map((item, index) => (
+                                <div key={index} className="flex items-start gap-2 text-sm text-gray-700">
+                                  <span className="w-2 h-2 bg-emerald-500 rounded-full mt-2 flex-shrink-0"></span>
+                                  {item}
+                                </div>
+                              ))}
+                            </div>
+                          </TabsContent>
+                          
+                          <TabsContent value="goals" className="space-y-4 mt-4">
+                            <h4 className="font-semibold text-gray-900 mb-3">Body Composition Goals</h4>
+                            <div className="space-y-2">
+                              {result.bodyCompositionGoals.map((goal, index) => (
+                                <div key={index} className="flex items-start gap-2 text-sm text-gray-700">
+                                  <span className="w-2 h-2 bg-yellow-500 rounded-full mt-2 flex-shrink-0"></span>
+                                  {goal}
+                                </div>
+                              ))}
+                            </div>
+                          </TabsContent>
+                        </Tabs>
+                      </div>
+
+                      {/* Recommendations */}
+                      <div className="bg-teal-50 rounded-2xl p-6 shadow-lg border border-teal-200">
+                        <h3 className="text-lg font-bold text-teal-900 mb-4">Personalized Recommendations</h3>
+                        <div className="space-y-2">
+                          {result.recommendations.map((recommendation, index) => (
+                            <div key={index} className="flex items-start gap-2 text-sm text-teal-800">
+                              <span className="w-2 h-2 bg-teal-500 rounded-full mt-2 flex-shrink-0"></span>
+                              {recommendation}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="text-center py-16" data-testid="no-results">
+                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <div className="text-3xl font-bold text-gray-400">%</div>
+                      </div>
+                      <p className="text-gray-500 text-lg">Enter your measurements to see body composition analysis</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* SEO Content Section */}
+          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">What is Body Composition Analysis?</h3>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    Body composition analysis is a comprehensive assessment that breaks down your total body weight into 
+                    its primary components: fat mass, lean body mass, muscle mass, and bone mass. Unlike simple weight 
+                    measurements or BMI calculations, body composition analysis provides a detailed picture of your 
+                    physical health and fitness level.
+                  </p>
+                  <p>
+                    Our body composition analyzer uses the scientifically validated US Navy method to calculate body fat 
+                    percentage through circumference measurements. This method is widely trusted by fitness professionals, 
+                    military personnel, and healthcare providers because it's accurate, non-invasive, and accessible to everyone.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Why Use Our Body Composition Calculator?</h3>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    Understanding your body composition is crucial for setting realistic fitness goals, tracking progress, 
+                    and optimizing your health. Our calculator goes beyond basic measurements to provide personalized 
+                    recommendations for nutrition, exercise, and lifestyle modifications.
+                  </p>
+                  <ul className="space-y-2 list-disc list-inside">
+                    <li>Accurate body fat percentage using proven US Navy method</li>
+                    <li>Comprehensive muscle mass and lean body mass calculations</li>
+                    <li>Personalized macro nutrition targets</li>
+                    <li>Custom workout plan recommendations</li>
+                    <li>Support for both metric and imperial units</li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Key Body Composition Components</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-emerald-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span><strong>Body Fat Percentage:</strong> The proportion of fat tissue relative to total body weight</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-emerald-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span><strong>Lean Body Mass:</strong> All body weight excluding fat (muscle, bone, organs, water)</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-emerald-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span><strong>Muscle Mass:</strong> The total weight of skeletal muscle tissue</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-emerald-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span><strong>BMI Integration:</strong> Body Mass Index for additional health assessment</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Understanding Body Fat Categories</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span><strong>Essential Fat:</strong> Minimum fat required for basic physical and physiological health</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span><strong>Athletes:</strong> Typical range for competitive athletes and very fit individuals</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-yellow-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span><strong>Fitness:</strong> Acceptable range for people who exercise regularly</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span><strong>Average:</strong> Typical range for the general population</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Additional SEO Content Sections */}
+          <div className="mt-12 space-y-8">
+            {/* Measurement Guidelines */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Accurate Measurement Guidelines for Body Composition Analysis</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Measurement Techniques</h4>
+                    <p className="text-gray-600 text-sm">
+                      Accurate measurements are crucial for reliable body composition analysis. Use a flexible tape measure 
+                      and maintain consistent positioning for all measurements. Take measurements at the same time of day, 
+                      preferably in the morning before eating or drinking.
+                    </p>
+                    <div className="space-y-2">
+                      <p className="font-semibold text-sm">Key Measurement Points:</p>
+                      <ul className="space-y-1 text-xs text-gray-600">
+                        <li>• Neck: Just below the Adam's apple, straight across</li>
+                        <li>• Waist: At the narrowest point, usually just above the navel</li>
+                        <li>• Hip (women): At the widest part of the hips</li>
+                        <li>• Ensure tape is snug but not compressing the skin</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Factors Affecting Accuracy</h4>
+                    <p className="text-gray-600 text-sm">
+                      Several factors can influence the accuracy of body composition calculations. Understanding these 
+                      variables helps ensure more reliable results and better progress tracking over time.
+                    </p>
+                    <div className="space-y-2">
+                      <p className="font-semibold text-sm">Accuracy Considerations:</p>
+                      <ul className="space-y-1 text-xs text-gray-600">
+                        <li>• Hydration levels can affect measurements</li>
+                        <li>• Time of day impacts body measurements</li>
+                        <li>• Recent meals can influence waist measurements</li>
+                        <li>• Consistent measurement technique is essential</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Body Composition vs Other Methods */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">Body Composition vs BMI</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <p className="text-sm">
+                      While BMI only considers height and weight, body composition analysis provides a complete picture 
+                      of your physical makeup, distinguishing between fat and lean mass.
+                    </p>
+                    <div className="text-sm">
+                      <h4 className="font-semibold text-gray-800 mb-2">Advantages over BMI:</h4>
+                      <ul className="space-y-1 text-xs">
+                        <li>• Differentiates between muscle and fat</li>
+                        <li>• More accurate for athletes and active individuals</li>
+                        <li>• Provides actionable fitness insights</li>
+                        <li>• Better indicator of health risks</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">US Navy Method Accuracy</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <p className="text-sm">
+                      The US Navy method is one of the most accurate field methods for estimating body fat percentage, 
+                      with research showing strong correlation to more expensive laboratory methods.
+                    </p>
+                    <div className="text-sm">
+                      <h4 className="font-semibold text-gray-800 mb-2">Method Benefits:</h4>
+                      <ul className="space-y-1 text-xs">
+                        <li>• Validated by extensive research</li>
+                        <li>• No expensive equipment required</li>
+                        <li>• Accounts for gender differences</li>
+                        <li>• Widely accepted by fitness professionals</li>
+                      </ul>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">Body Composition for Athletes</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <p className="text-sm">
+                      Athletes and highly active individuals often have unique body composition characteristics that 
+                      require specialized analysis and interpretation.
+                    </p>
+                    <div className="text-sm">
+                      <h4 className="font-semibold text-gray-800 mb-2">Athletic Considerations:</h4>
+                      <ul className="space-y-1 text-xs">
+                        <li>• Higher muscle mass affects calculations</li>
+                        <li>• Sport-specific body fat ranges</li>
+                        <li>• Performance vs health optimization</li>
+                        <li>• Seasonal body composition changes</li>
+                      </ul>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
             </div>
-          </section>
 
-          {/* Educational Content */}
-          <section className="py-16 bg-white">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                  Understanding Body Composition
-                </h2>
-                <p className="text-xl text-gray-600">
-                  Learn about the science behind body composition analysis and how to optimize your results
-                </p>
-              </div>
-
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {/* Body Fat Percentage */}
-                <Card className="h-full">
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">Body Fat Percentage</h3>
-                    <div className="space-y-3 text-gray-600 text-sm">
-                      <p>
-                        Body fat percentage is the proportion of fat tissue in your body compared to 
-                        total body weight. It's a more accurate indicator of health than BMI alone.
+            {/* Fitness and Nutrition Integration */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Integrating Body Composition with Fitness and Nutrition Goals</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <h4 className="font-semibold text-gray-800 mb-3">Nutrition Optimization</h4>
+                    <div className="space-y-4">
+                      <p className="text-gray-600 text-sm">
+                        Body composition analysis provides the foundation for creating personalized nutrition plans. 
+                        Understanding your lean body mass helps determine accurate protein requirements, while body fat 
+                        percentage guides caloric intake for specific goals.
                       </p>
                       <div className="space-y-2">
-                        <p className="font-semibold">Healthy Ranges:</p>
-                        <ul className="space-y-1 text-xs">
-                          <li>• Men: 10-20% (optimal), 6-13% (athletes)</li>
-                          <li>• Women: 16-25% (optimal), 10-20% (athletes)</li>
+                        <p className="font-semibold text-sm">Macro Calculation Benefits:</p>
+                        <ul className="space-y-1 text-xs text-gray-600">
+                          <li>• Protein needs based on lean mass</li>
+                          <li>• Caloric targets for body composition goals</li>
+                          <li>• Carbohydrate timing for muscle preservation</li>
+                          <li>• Fat intake for hormonal health</li>
                         </ul>
                       </div>
-                      <p>
-                        Our calculator uses the US Navy method, which is considered one of the most 
-                        accurate field methods for estimating body fat percentage.
-                      </p>
                     </div>
-                  </CardContent>
-                </Card>
-
-                {/* Lean Body Mass */}
-                <Card className="h-full">
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">Lean Body Mass</h3>
-                    <div className="space-y-3 text-gray-600 text-sm">
-                      <p>
-                        Lean body mass includes all weight that is not fat - muscles, bones, organs, 
-                        and water. It's crucial for metabolism and overall health.
+                  </div>
+                  <div className="space-y-6">
+                    <h4 className="font-semibold text-gray-800 mb-3">Exercise Programming</h4>
+                    <div className="space-y-4">
+                      <p className="text-gray-600 text-sm">
+                        Your body composition results inform optimal exercise selection and programming. Different body 
+                        fat percentages and muscle mass levels require tailored approaches to resistance training, 
+                        cardiovascular exercise, and recovery protocols.
                       </p>
                       <div className="space-y-2">
-                        <p className="font-semibold">Benefits of Higher LBM:</p>
-                        <ul className="space-y-1 text-xs">
-                          <li>• Higher resting metabolic rate</li>
-                          <li>• Better insulin sensitivity</li>
-                          <li>• Improved bone density</li>
-                          <li>• Enhanced physical performance</li>
+                        <p className="font-semibold text-sm">Training Adaptations:</p>
+                        <ul className="space-y-1 text-xs text-gray-600">
+                          <li>• Resistance training volume and intensity</li>
+                          <li>• Cardio type and duration recommendations</li>
+                          <li>• Recovery time between sessions</li>
+                          <li>• Progressive overload strategies</li>
                         </ul>
                       </div>
-                      <p>
-                        Resistance training and adequate protein intake are key to maintaining 
-                        and building lean body mass.
-                      </p>
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
 
-                {/* Body Recomposition */}
-                <Card className="h-full">
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">Body Recomposition</h3>
-                    <div className="space-y-3 text-gray-600 text-sm">
-                      <p>
-                        Body recomposition involves simultaneously losing fat and gaining muscle, 
-                        improving your body composition without necessarily changing weight.
-                      </p>
-                      <div className="space-y-2">
-                        <p className="font-semibold">Key Strategies:</p>
-                        <ul className="space-y-1 text-xs">
-                          <li>• Progressive resistance training</li>
-                          <li>• Adequate protein intake (1.6-2.2g/kg)</li>
-                          <li>• Moderate caloric deficit or maintenance</li>
-                          <li>• Consistent sleep and recovery</li>
-                        </ul>
-                      </div>
-                      <p>
-                        This approach is ideal for individuals who want to improve their physique 
-                        and health without dramatic weight changes.
+            {/* FAQ Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How accurate is this body composition calculator?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Our calculator uses the US Navy method, which has been validated in multiple research studies and 
+                        shows strong correlation (r = 0.85-0.95) with DEXA scans and hydrostatic weighing. While not as 
+                        precise as laboratory methods, it provides reliable estimates for tracking body composition changes over time.
                       </p>
                     </div>
-                  </CardContent>
-                </Card>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How often should I measure my body composition?</h4>
+                      <p className="text-gray-600 text-sm">
+                        For most people, measuring body composition every 2-4 weeks is optimal. This frequency allows 
+                        enough time for meaningful changes to occur while providing regular feedback for program adjustments. 
+                        Athletes or those undergoing intensive training may benefit from weekly measurements.
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">What's a healthy body fat percentage for my age and gender?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Healthy body fat ranges vary by age and gender. Generally, men should aim for 10-20% and women 
+                        16-25%. However, these ranges can vary based on individual goals, health status, and athletic 
+                        requirements. Our calculator provides personalized ranges based on your specific profile.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Can body composition analysis help with weight loss goals?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Absolutely! Body composition analysis is superior to weight alone for tracking progress. It helps 
+                        distinguish between fat loss and muscle loss, ensuring your weight loss efforts are targeting 
+                        the right tissue. This prevents metabolic slowdown and maintains healthy body composition during 
+                        caloric restriction.
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How does muscle mass affect my metabolism?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Muscle tissue is metabolically active, burning calories even at rest. Each pound of muscle burns 
+                        approximately 6-7 calories per day compared to 2-3 calories for fat tissue. Higher muscle mass 
+                        increases your basal metabolic rate, making weight management easier and improving overall health markers.
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">What factors can affect my body composition measurements?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Several factors can influence measurements including hydration status, time of day, recent meals, 
+                        menstrual cycle (for women), and measurement technique. For most consistent results, measure at 
+                        the same time of day, preferably morning after using the bathroom but before eating or drinking.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </main>
 
-                {/* Measurement Tips */}
-                <Card className="h-full">
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">Accurate Measurements</h3>
-                    <div className="space-y-3 text-gray-600 text-sm">
-                      <p>
-                        Accurate measurements are crucial for reliable body composition analysis. 
-                        Follow these guidelines for best results.
-                      </p>
-                      <div className="space-y-2">
-                        <p className="font-semibold">Measurement Guidelines:</p>
-                        <ul className="space-y-1 text-xs">
-                          <li>• Measure at the same time of day</li>
-                          <li>• Use a flexible tape measure</li>
-                          <li>• Neck: just below the Adam's apple</li>
-                          <li>• Waist: at the narrowest point</li>
-                          <li>• Hip (women): at the widest point</li>
-                        </ul>
-                      </div>
-                      <p>
-                        Consistency in measurement technique and timing will provide the most 
-                        accurate tracking of your progress over time.
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* Nutrition for Body Composition */}
-                <Card className="h-full">
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">Nutrition Optimization</h3>
-                    <div className="space-y-3 text-gray-600 text-sm">
-                      <p>
-                        Proper nutrition is fundamental to achieving your body composition goals. 
-                        The right balance of macronutrients supports both fat loss and muscle gain.
-                      </p>
-                      <div className="space-y-2">
-                        <p className="font-semibold">Macro Distribution:</p>
-                        <ul className="space-y-1 text-xs">
-                          <li>• Protein: 25-30% of calories</li>
-                          <li>• Fat: 20-30% of calories</li>
-                          <li>• Carbs: 40-55% of calories</li>
-                          <li>• Adjust based on activity and goals</li>
-                        </ul>
-                      </div>
-                      <p>
-                        Focus on whole foods, adequate hydration, and consistent meal timing 
-                        to optimize your body composition results.
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                {/* Training Considerations */}
-                <Card className="h-full">
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">Training Principles</h3>
-                    <div className="space-y-3 text-gray-600 text-sm">
-                      <p>
-                        Effective training combines resistance exercise for muscle preservation/growth 
-                        with cardiovascular exercise for heart health and calorie burn.
-                      </p>
-                      <div className="space-y-2">
-                        <p className="font-semibold">Training Guidelines:</p>
-                        <ul className="space-y-1 text-xs">
-                          <li>• Resistance training: 3-5x per week</li>
-                          <li>• Progressive overload is essential</li>
-                          <li>• Compound movements for efficiency</li>
-                          <li>• Cardio: 150-300 min moderate/week</li>
-                        </ul>
-                      </div>
-                      <p>
-                        Consistency and progressive overload in your training program are more 
-                        important than perfect program design.
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-          </section>
-        </main>
-        
-        <Footer />
-      </div>
-    </>
+      <Footer />
+    </div>
   );
 };
 
