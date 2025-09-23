@@ -60,10 +60,31 @@ const LoanComparisonCalculator = () => {
 
   const calculateLoan = (loan: LoanOption): LoanResult => {
     const { amount, rate, tenure } = loan;
+    
+    // Validate inputs
+    if (amount <= 0 || tenure <= 0 || rate < 0) {
+      return {
+        loanAmount: amount,
+        interestRate: rate,
+        tenure: tenure * 12,
+        emi: 0,
+        totalInterest: 0,
+        totalAmount: 0
+      };
+    }
+    
     const monthlyRate = rate / 100 / 12;
     const totalMonths = tenure * 12;
-    const emi = (amount * monthlyRate * Math.pow(1 + monthlyRate, totalMonths)) / 
-                 (Math.pow(1 + monthlyRate, totalMonths) - 1);
+    
+    let emi: number;
+    if (monthlyRate === 0) {
+      // If interest rate is 0%, simple division
+      emi = amount / totalMonths;
+    } else {
+      emi = (amount * monthlyRate * Math.pow(1 + monthlyRate, totalMonths)) / 
+            (Math.pow(1 + monthlyRate, totalMonths) - 1);
+    }
+    
     const totalAmount = emi * totalMonths;
     const totalInterest = totalAmount - amount;
 

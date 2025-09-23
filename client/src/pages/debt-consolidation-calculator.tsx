@@ -50,12 +50,21 @@ export default function DebtConsolidationCalculator() {
   // Add new debt
   const addDebt = () => {
     if (newDebt.name && newDebt.balance && newDebt.interestRate && newDebt.minPayment) {
+      const balance = parseFloat(newDebt.balance);
+      const interestRate = parseFloat(newDebt.interestRate);
+      const minPayment = parseFloat(newDebt.minPayment);
+      
+      // Validate numeric inputs
+      if (balance <= 0 || interestRate < 0 || minPayment <= 0) {
+        return; // Don't add invalid debt
+      }
+      
       const debt: Debt = {
         id: Date.now().toString(),
         name: newDebt.name,
-        balance: parseFloat(newDebt.balance),
-        interestRate: parseFloat(newDebt.interestRate),
-        minPayment: parseFloat(newDebt.minPayment)
+        balance,
+        interestRate,
+        minPayment
       };
       setDebts([...debts, debt]);
       setNewDebt({ name: '', balance: '', interestRate: '', minPayment: '' });
@@ -69,6 +78,8 @@ export default function DebtConsolidationCalculator() {
 
   // Calculate loan payment
   const calculateMonthlyPayment = (principal: number, annualRate: number, years: number): number => {
+    if (years <= 0 || principal <= 0) return 0; // Guard against invalid inputs
+    
     const monthlyRate = annualRate / 100 / 12;
     const numberOfPayments = years * 12;
     
@@ -82,18 +93,19 @@ export default function DebtConsolidationCalculator() {
 
   // Calculate time to pay off existing debts
   const calculatePayoffTime = (balance: number, payment: number, rate: number): number => {
-    if (payment <= 0 || rate < 0) return 0;
+    if (payment <= 0 || rate < 0 || balance <= 0) return 360; // Default to 30 years for invalid inputs
     
     const monthlyRate = rate / 100 / 12;
     if (monthlyRate === 0) {
-      return balance / payment;
+      return Math.min(Math.ceil(balance / payment), 360);
     }
     
     if (payment <= balance * monthlyRate) {
-      return 999; // Will never pay off
+      return 360; // Cap at 30 years for realistic calculations
     }
     
-    return Math.log(1 + (balance * monthlyRate) / (payment - balance * monthlyRate)) / Math.log(1 + monthlyRate);
+    const calculatedMonths = Math.log(1 + (balance * monthlyRate) / (payment - balance * monthlyRate)) / Math.log(1 + monthlyRate);
+    return Math.min(Math.ceil(calculatedMonths), 360); // Cap at 30 years maximum, round up to full months
   };
 
   // Calculate consolidation results
@@ -102,10 +114,16 @@ export default function DebtConsolidationCalculator() {
 
     const totalBalance = debts.reduce((sum, debt) => sum + debt.balance, 0);
     const totalMinPayment = debts.reduce((sum, debt) => sum + debt.minPayment, 0);
+    
+    if (totalBalance <= 0) return; // Can't consolidate if no debt balance
+    
     const weightedAvgRate = debts.reduce((sum, debt) => sum + (debt.interestRate * debt.balance), 0) / totalBalance;
     
     const rate = parseFloat(consolidationRate);
     const term = parseFloat(consolidationTerm);
+    
+    // Validate consolidation inputs
+    if (isNaN(rate) || isNaN(term) || rate < 0 || term <= 0) return;
     
     const monthlyPayment = calculateMonthlyPayment(totalBalance, rate, term);
     const totalCost = monthlyPayment * term * 12;
@@ -118,10 +136,13 @@ export default function DebtConsolidationCalculator() {
     debts.forEach(debt => {
       const payoffMonths = calculatePayoffTime(debt.balance, debt.minPayment, debt.interestRate);
       const totalPaid = debt.minPayment * payoffMonths;
-      const interestPaid = totalPaid - debt.balance;
+      
+      // For debts that can't fully amortize, ensure cost covers at least the principal
+      const effectiveTotalCost = Math.max(totalPaid, debt.balance);
+      const interestPaid = Math.max(0, effectiveTotalCost - debt.balance);
       
       currentTotalInterest += interestPaid;
-      currentTotalCost += totalPaid;
+      currentTotalCost += effectiveTotalCost;
     });
     
     const monthlySavings = totalMinPayment - monthlyPayment;
