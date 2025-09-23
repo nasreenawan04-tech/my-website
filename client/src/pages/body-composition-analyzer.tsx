@@ -319,7 +319,7 @@ const BodyCompositionAnalyzer = () => {
               </div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-slate-900 leading-tight tracking-tight">
                 <span className="block">Body Composition</span>
-                <span className="block gradient-text bg-gradient-to-r from-emerald-600 to-teal-600 mt-1 sm:mt-2">
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600 mt-1 sm:mt-2">
                   Analyzer
                 </span>
               </h1>
