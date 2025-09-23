@@ -199,6 +199,14 @@ export default function DebtConsolidationCalculator() {
     }).format(amount);
   };
 
+  const getCurrencySymbol = () => {
+    const currencySymbols: { [key: string]: string } = {
+      USD: '$', EUR: '€', GBP: '£', INR: '₹', JPY: '¥',
+      CAD: '$', AUD: '$', CNY: '¥', BRL: 'R$', MXN: '$'
+    };
+    return currencySymbols[currency] || '$';
+  };
+
   const totalBalance = debts.reduce((sum, debt) => sum + debt.balance, 0);
 
   return (
@@ -282,7 +290,7 @@ export default function DebtConsolidationCalculator() {
                         Currency
                       </Label>
                       <Select value={currency} onValueChange={setCurrency}>
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg">
+                        <SelectTrigger id="currency" className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-currency">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -314,6 +322,10 @@ export default function DebtConsolidationCalculator() {
                           className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
                           placeholder="12.99"
                           step="0.01"
+                          min="0"
+                          max="50"
+                          data-testid="input-consolidation-rate"
+                          aria-label="Consolidation interest rate percentage"
                         />
                         <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
                       </div>
@@ -333,6 +345,8 @@ export default function DebtConsolidationCalculator() {
                         placeholder="5"
                         min="1"
                         max="30"
+                        data-testid="input-consolidation-term"
+                        aria-label="Loan term in years"
                       />
                     </div>
                   </div>
@@ -353,6 +367,8 @@ export default function DebtConsolidationCalculator() {
                             value={newDebt.name}
                             onChange={(e) => setNewDebt({...newDebt, name: e.target.value})}
                             className="h-12 border-2 border-gray-200 rounded-lg"
+                            data-testid="input-debt-name"
+                            aria-label="Debt name or description"
                           />
                         </div>
                         
@@ -361,7 +377,7 @@ export default function DebtConsolidationCalculator() {
                             Balance
                           </Label>
                           <div className="relative">
-                            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">{getCurrencySymbol()}</span>
                             <Input
                               id="debt-balance"
                               type="number"
@@ -369,6 +385,10 @@ export default function DebtConsolidationCalculator() {
                               value={newDebt.balance}
                               onChange={(e) => setNewDebt({...newDebt, balance: e.target.value})}
                               className="h-12 pl-8 border-2 border-gray-200 rounded-lg"
+                              min="0"
+                              step="0.01"
+                              data-testid="input-debt-balance"
+                              aria-label="Debt balance amount"
                             />
                           </div>
                         </div>
@@ -386,6 +406,10 @@ export default function DebtConsolidationCalculator() {
                               value={newDebt.interestRate}
                               onChange={(e) => setNewDebt({...newDebt, interestRate: e.target.value})}
                               className="h-12 pr-8 border-2 border-gray-200 rounded-lg"
+                              min="0"
+                              max="50"
+                              data-testid="input-debt-rate"
+                              aria-label="Debt interest rate percentage"
                             />
                             <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">%</span>
                           </div>
@@ -396,7 +420,7 @@ export default function DebtConsolidationCalculator() {
                             Minimum Payment
                           </Label>
                           <div className="relative">
-                            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">{getCurrencySymbol()}</span>
                             <Input
                               id="debt-payment"
                               type="number"
@@ -404,12 +428,22 @@ export default function DebtConsolidationCalculator() {
                               value={newDebt.minPayment}
                               onChange={(e) => setNewDebt({...newDebt, minPayment: e.target.value})}
                               className="h-12 pl-8 border-2 border-gray-200 rounded-lg"
+                              min="0"
+                              step="0.01"
+                              data-testid="input-debt-payment"
+                              aria-label="Minimum monthly payment amount"
                             />
                           </div>
                         </div>
                       </div>
                       
-                      <Button onClick={addDebt} className="w-full md:w-auto h-12 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold rounded-xl">
+                      <Button 
+                        onClick={addDebt} 
+                        className="w-full md:w-auto h-12 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold rounded-xl"
+                        data-testid="button-add-debt"
+                        disabled={!newDebt.name || !newDebt.balance || !newDebt.interestRate || !newDebt.minPayment}
+                        aria-label="Add debt to list"
+                      >
                         Add Debt
                       </Button>
                     </div>
@@ -428,7 +462,14 @@ export default function DebtConsolidationCalculator() {
                                 <span>Min Payment: {formatCurrency(debt.minPayment)}</span>
                               </div>
                             </div>
-                            <Button variant="outline" size="sm" onClick={() => removeDebt(debt.id)} className="text-red-600 hover:text-red-700">
+                            <Button 
+                              variant="outline" 
+                              size="sm" 
+                              onClick={() => removeDebt(debt.id)} 
+                              className="text-red-600 hover:text-red-700"
+                              data-testid={`button-remove-debt-${debt.id}`}
+                              aria-label={`Remove ${debt.name} debt`}
+                            >
                               Remove
                             </Button>
                           </div>
@@ -451,6 +492,8 @@ export default function DebtConsolidationCalculator() {
                       onClick={calculateConsolidation}
                       disabled={debts.length === 0}
                       className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                      data-testid="button-calculate-savings"
+                      aria-label="Calculate debt consolidation savings"
                     >
                       Calculate Savings
                     </Button>
@@ -458,6 +501,8 @@ export default function DebtConsolidationCalculator() {
                       onClick={resetCalculator}
                       variant="outline"
                       className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      data-testid="button-reset"
+                      aria-label="Reset calculator"
                     >
                       Reset
                     </Button>
@@ -471,6 +516,8 @@ export default function DebtConsolidationCalculator() {
                         variant="outline"
                         size="sm"
                         className="rounded-full"
+                        data-testid="button-toggle-breakdown"
+                        aria-label={`${showBreakdown ? 'Hide' : 'Show'} detailed breakdown`}
                       >
                         {showBreakdown ? 'Hide' : 'Show'} Detailed Breakdown
                       </Button>
@@ -483,11 +530,11 @@ export default function DebtConsolidationCalculator() {
                   <h2 className="text-2xl font-bold text-gray-900 mb-8">Consolidation Analysis</h2>
                   
                   {result ? (
-                    <div className="space-y-6">
+                    <div className="space-y-6" data-testid="consolidation-results">
                       {/* Monthly Payment Highlight */}
                       <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
                         <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">New Monthly Payment</div>
-                        <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                        <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" data-testid="text-monthly-payment">
                           {formatCurrency(result.monthlyPayment)}
                         </div>
                         <div className="text-sm text-gray-500 mt-2">
@@ -500,7 +547,7 @@ export default function DebtConsolidationCalculator() {
                         <div className="bg-white rounded-xl p-4 shadow-sm">
                           <div className="flex justify-between items-center">
                             <span className="font-medium text-gray-700">Monthly Savings</span>
-                            <span className={`font-bold text-lg ${result.monthlySavings > 0 ? 'text-green-600' : 'text-red-600'}`}>
+                            <span className={`font-bold text-lg ${result.monthlySavings > 0 ? 'text-green-600' : 'text-red-600'}`} data-testid="text-monthly-savings">
                               {result.monthlySavings > 0 ? '+' : ''}{formatCurrency(result.monthlySavings)}
                             </span>
                           </div>
@@ -508,15 +555,15 @@ export default function DebtConsolidationCalculator() {
                         <div className="bg-white rounded-xl p-4 shadow-sm">
                           <div className="flex justify-between items-center">
                             <span className="font-medium text-gray-700">Total Interest Savings</span>
-                            <span className={`font-bold text-lg ${result.totalSavings > 0 ? 'text-green-600' : 'text-red-600'}`}>
-                              {result.totalSavings > 0 ? '+' : ''}{formatCurrency(result.totalSavings)}
+                            <span className={`font-bold text-lg ${(result.currentTotalInterest - result.totalInterest) > 0 ? 'text-green-600' : 'text-red-600'}`} data-testid="text-interest-savings">
+                              {(result.currentTotalInterest - result.totalInterest) > 0 ? '+' : ''}{formatCurrency(result.currentTotalInterest - result.totalInterest)}
                             </span>
                           </div>
                         </div>
                         <div className="bg-white rounded-xl p-4 shadow-sm">
                           <div className="flex justify-between items-center">
                             <span className="font-medium text-gray-700">Payoff Time</span>
-                            <span className="font-bold text-gray-900">
+                            <span className="font-bold text-gray-900" data-testid="text-payoff-time">
                               {result.termYears} years
                             </span>
                           </div>
