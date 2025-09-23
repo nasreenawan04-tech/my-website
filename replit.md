@@ -92,5 +92,27 @@ Preferred communication style: Simple, everyday language.
 
 ### Hosting Platform Integration
 - **Vercel**: Optimized configuration for serverless deployment
+- **Replit**: Configured for development and deployment with proper host settings
 - **Static Assets**: Image and asset optimization for web delivery
 - **Environment Variables**: Secure configuration management
+
+## Replit Environment Setup
+
+### Development Configuration
+- **Port**: 5000 (configured for Replit proxy compatibility)
+- **Host**: 0.0.0.0 with allowedHosts: true for iframe compatibility
+- **Workflow**: "Start application" runs `npm run dev` for development server
+- **Build Process**: `npm run build` creates production-ready static assets
+- **Production**: `npm start` serves built assets via Express.js server
+
+### Project Structure
+- **Frontend**: `client/` directory contains React application
+- **Build Output**: `dist/` directory for compiled assets
+- **Assets**: `attached_assets/` for user-provided assets
+- **Configuration**: Vite config optimized for Replit environment
+
+### Deployment
+- **Target**: Autoscale deployment for static hosting
+- **Build Command**: `npm run build`
+- **Start Command**: `npm start`
+- **Security**: Express server includes comprehensive security headers
