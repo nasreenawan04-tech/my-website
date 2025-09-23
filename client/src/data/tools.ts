@@ -834,6 +834,23 @@ const toolsData: Tool[] = [
     isPopular: true,
     href: "/tools/stress-level-calculator",
   },
+  {
+    id: "body-composition-analyzer",
+    name: "Body Composition Analyzer",
+    description: "Analyze your body composition with accurate body fat percentage, muscle mass, and personalized fitness recommendations",
+    category: "health" as const,
+    icon: "fas fa-user-check",
+    isPopular: true,
+    href: "/tools/body-composition-analyzer",
+  },
+  {
+    id: "metabolic-age-calculator",
+    name: "Metabolic Age Calculator",
+    description: "Calculate your metabolic age based on lifestyle factors and health metrics with personalized longevity recommendations",
+    category: "health" as const,
+    icon: "fas fa-clock",
+    href: "/tools/metabolic-age-calculator",
+  },
 ];
 
 // Export tools directly since hrefs are now correctly set in the data
