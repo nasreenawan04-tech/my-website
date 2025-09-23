@@ -825,6 +825,15 @@ const toolsData: Tool[] = [
     icon: "fas fa-moon",
     href: "/tools/sleep-quality-calculator",
   },
+  {
+    id: "stress-level-calculator",
+    name: "Stress Level Calculator",
+    description: "Comprehensive stress assessment with personalized recommendations based on lifestyle factors",
+    category: "health" as const,
+    icon: "fas fa-brain",
+    isPopular: true,
+    href: "/tools/stress-level-calculator",
+  },
 ];
 
 // Export tools directly since hrefs are now correctly set in the data

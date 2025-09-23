@@ -29,6 +29,7 @@ const TextStatisticsAnalyzer = lazy(() => import("@/pages/text-statistics-analyz
 const UrlExtractor = lazy(() => import("@/pages/url-extractor"));
 const TextCleanerFormatter = lazy(() => import("@/pages/text-cleaner-formatter"));
 const DTIRatioCalculator = lazy(() => import("@/pages/dti-ratio-calculator"));
+const StressLevelCalculator = lazy(() => import("@/pages/stress-level-calculator"));
 
 // Individual tool components are now loaded dynamically via ToolPage for better maintainability
 
@@ -86,6 +87,7 @@ function Router() {
           <Route path="/tools/url-extractor" component={UrlExtractor} />
           <Route path="/tools/text-cleaner-formatter" component={TextCleanerFormatter} />
           <Route path="/tools/dti-ratio-calculator" component={DTIRatioCalculator} />
+          <Route path="/tools/stress-level-calculator" component={StressLevelCalculator} />
 
           {/* 404 fallback for all unknown routes */}
           <Route component={NotFound} />
