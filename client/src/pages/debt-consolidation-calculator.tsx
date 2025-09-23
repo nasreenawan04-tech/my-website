@@ -1,16 +1,13 @@
 
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Calculator, DollarSign, TrendingDown, AlertCircle, CheckCircle, Info, Plus, Trash2 } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import ToolHeroSection from '@/components/ToolHeroSection';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Separator } from '@/components/ui/separator';
-import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Card, CardContent } from '@/components/ui/card';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 interface Debt {
   id: string;
@@ -20,7 +17,7 @@ interface Debt {
   minPayment: number;
 }
 
-interface ConsolidationOption {
+interface ConsolidationResult {
   loanAmount: number;
   interestRate: number;
   termYears: number;
@@ -30,9 +27,13 @@ interface ConsolidationOption {
   monthlySavings: number;
   totalSavings: number;
   payoffTime: number;
+  currentTotalInterest: number;
+  currentTotalCost: number;
+  currentTotalPayment: number;
+  weightedAvgRate: number;
 }
 
-const DebtConsolidationCalculator = () => {
+export default function DebtConsolidationCalculator() {
   const [debts, setDebts] = useState<Debt[]>([]);
   const [newDebt, setNewDebt] = useState({
     name: '',
@@ -40,12 +41,11 @@ const DebtConsolidationCalculator = () => {
     interestRate: '',
     minPayment: ''
   });
-
-  // Consolidation loan parameters
-  const [consolidationRate, setConsolidationRate] = useState('');
-  const [consolidationTerm, setConsolidationTerm] = useState('');
-
-  const [results, setResults] = useState<ConsolidationOption | null>(null);
+  const [consolidationRate, setConsolidationRate] = useState('12.99');
+  const [consolidationTerm, setConsolidationTerm] = useState('5');
+  const [currency, setCurrency] = useState('USD');
+  const [showBreakdown, setShowBreakdown] = useState(false);
+  const [result, setResult] = useState<ConsolidationResult | null>(null);
 
   // Add new debt
   const addDebt = () => {
@@ -97,65 +97,97 @@ const DebtConsolidationCalculator = () => {
   };
 
   // Calculate consolidation results
-  useEffect(() => {
-    if (debts.length > 0 && consolidationRate && consolidationTerm) {
-      const totalBalance = debts.reduce((sum, debt) => sum + debt.balance, 0);
-      const totalMinPayment = debts.reduce((sum, debt) => sum + debt.minPayment, 0);
+  const calculateConsolidation = () => {
+    if (debts.length === 0) return;
+
+    const totalBalance = debts.reduce((sum, debt) => sum + debt.balance, 0);
+    const totalMinPayment = debts.reduce((sum, debt) => sum + debt.minPayment, 0);
+    const weightedAvgRate = debts.reduce((sum, debt) => sum + (debt.interestRate * debt.balance), 0) / totalBalance;
+    
+    const rate = parseFloat(consolidationRate);
+    const term = parseFloat(consolidationTerm);
+    
+    const monthlyPayment = calculateMonthlyPayment(totalBalance, rate, term);
+    const totalCost = monthlyPayment * term * 12;
+    const totalInterest = totalCost - totalBalance;
+    
+    // Calculate current debt totals
+    let currentTotalInterest = 0;
+    let currentTotalCost = 0;
+    
+    debts.forEach(debt => {
+      const payoffMonths = calculatePayoffTime(debt.balance, debt.minPayment, debt.interestRate);
+      const totalPaid = debt.minPayment * payoffMonths;
+      const interestPaid = totalPaid - debt.balance;
       
-      const rate = parseFloat(consolidationRate);
-      const term = parseFloat(consolidationTerm);
-      
-      const monthlyPayment = calculateMonthlyPayment(totalBalance, rate, term);
-      const totalCost = monthlyPayment * term * 12;
-      const totalInterest = totalCost - totalBalance;
-      
-      // Calculate current debt totals
-      let currentTotalInterest = 0;
-      let currentTotalCost = 0;
-      let averagePayoffTime = 0;
-      
-      debts.forEach(debt => {
-        const payoffMonths = calculatePayoffTime(debt.balance, debt.minPayment, debt.interestRate);
-        const totalPaid = debt.minPayment * payoffMonths;
-        const interestPaid = totalPaid - debt.balance;
-        
-        currentTotalInterest += interestPaid;
-        currentTotalCost += totalPaid;
-        averagePayoffTime += payoffMonths * (debt.balance / totalBalance); // Weighted average
-      });
-      
-      const monthlySavings = totalMinPayment - monthlyPayment;
-      const totalSavings = currentTotalCost - totalCost;
-      
-      setResults({
-        loanAmount: totalBalance,
-        interestRate: rate,
-        termYears: term,
-        monthlyPayment,
-        totalInterest,
-        totalCost,
-        monthlySavings,
-        totalSavings,
-        payoffTime: term * 12
-      });
-    } else {
-      setResults(null);
-    }
-  }, [debts, consolidationRate, consolidationTerm]);
+      currentTotalInterest += interestPaid;
+      currentTotalCost += totalPaid;
+    });
+    
+    const monthlySavings = totalMinPayment - monthlyPayment;
+    const totalSavings = currentTotalCost - totalCost;
+    
+    setResult({
+      loanAmount: totalBalance,
+      interestRate: rate,
+      termYears: term,
+      monthlyPayment,
+      totalInterest,
+      totalCost,
+      monthlySavings,
+      totalSavings,
+      payoffTime: term * 12,
+      currentTotalInterest,
+      currentTotalCost,
+      currentTotalPayment: totalMinPayment,
+      weightedAvgRate
+    });
+  };
+
+  const resetCalculator = () => {
+    setDebts([]);
+    setNewDebt({ name: '', balance: '', interestRate: '', minPayment: '' });
+    setConsolidationRate('12.99');
+    setConsolidationTerm('5');
+    setCurrency('USD');
+    setShowBreakdown(false);
+    setResult(null);
+  };
+
+  const formatCurrency = (amount: number) => {
+    const currencyMap: { [key: string]: { locale: string; currency: string } } = {
+      USD: { locale: 'en-US', currency: 'USD' },
+      EUR: { locale: 'de-DE', currency: 'EUR' },
+      GBP: { locale: 'en-GB', currency: 'GBP' },
+      INR: { locale: 'en-IN', currency: 'INR' },
+      JPY: { locale: 'ja-JP', currency: 'JPY' },
+      CAD: { locale: 'en-CA', currency: 'CAD' },
+      AUD: { locale: 'en-AU', currency: 'AUD' },
+      CNY: { locale: 'zh-CN', currency: 'CNY' },
+      BRL: { locale: 'pt-BR', currency: 'BRL' },
+      MXN: { locale: 'es-MX', currency: 'MXN' }
+    };
+
+    const config = currencyMap[currency] || currencyMap.USD;
+    
+    return new Intl.NumberFormat(config.locale, {
+      style: 'currency',
+      currency: config.currency,
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }).format(amount);
+  };
 
   const totalBalance = debts.reduce((sum, debt) => sum + debt.balance, 0);
-  const totalMinPayment = debts.reduce((sum, debt) => sum + debt.minPayment, 0);
-  const weightedAvgRate = debts.length > 0 ? 
-    debts.reduce((sum, debt) => sum + (debt.interestRate * debt.balance), 0) / totalBalance : 0;
 
   return (
-    <>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
         <title>Debt Consolidation Calculator - Calculate Loan Savings | DapsiWow</title>
-        <meta name="description" content="Free debt consolidation calculator to compare multiple debts vs. a single consolidated loan. Calculate potential monthly savings, total interest savings, and payoff timelines." />
-        <meta name="keywords" content="debt consolidation calculator, loan consolidation, debt payoff calculator, credit card consolidation, personal loan calculator, debt management, financial planning, loan comparison" />
+        <meta name="description" content="Free debt consolidation calculator to compare multiple debts vs. a single consolidated loan. Calculate potential monthly savings, total interest savings, and payoff timelines with multiple currency support." />
+        <meta name="keywords" content="debt consolidation calculator, loan consolidation, debt payoff calculator, credit card consolidation, personal loan calculator, debt management, financial planning, loan comparison, debt consolidation loan, debt relief calculator" />
         <meta property="og:title" content="Debt Consolidation Calculator - Calculate Loan Savings | DapsiWow" />
-        <meta property="og:description" content="Calculate potential savings from consolidating multiple debts into a single loan. Compare payments, interest rates, and payoff timelines." />
+        <meta property="og:description" content="Calculate potential savings from consolidating multiple debts into a single loan. Compare payments, interest rates, and payoff timelines with our free debt consolidation calculator." />
         <meta property="og:type" content="website" />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="DapsiWow" />
@@ -165,453 +197,687 @@ const DebtConsolidationCalculator = () => {
             "@context": "https://schema.org",
             "@type": "WebApplication",
             "name": "Debt Consolidation Calculator",
-            "description": "Calculate potential savings and benefits of consolidating multiple debts into a single loan",
+            "description": "Free online debt consolidation calculator to analyze potential savings from consolidating multiple debts into a single loan. Compare monthly payments, interest costs, and payoff timelines.",
             "url": "https://dapsiwow.com/tools/debt-consolidation-calculator",
             "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Web Browser",
+            "operatingSystem": "Any",
             "offers": {
               "@type": "Offer",
               "price": "0",
               "priceCurrency": "USD"
-            }
+            },
+            "featureList": [
+              "Calculate debt consolidation savings",
+              "Compare multiple debt scenarios",
+              "Support for multiple currencies",
+              "Monthly payment analysis",
+              "Interest savings calculator",
+              "Payoff timeline comparison"
+            ]
           })}
         </script>
       </Helmet>
+      
+      <Header />
+      
+      <main>
+        {/* Hero Section */}
+        <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
+          <div className="relative max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12 text-center">
+            <div className="space-y-4 sm:space-y-6 md:space-y-8 lg:space-y-10">
+              <div className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 md:px-5 md:py-2.5 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200 text-xs sm:text-sm md:text-base">
+                <span className="font-medium text-blue-700">Professional Debt Consolidation Calculator</span>
+              </div>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight">
+                <span className="block">Smart Debt</span>
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                  Consolidation
+                </span>
+              </h1>
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-slate-600 max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl xl:max-w-5xl mx-auto leading-relaxed px-2 sm:px-4 md:px-6">
+                Calculate potential savings from consolidating multiple debts into a single loan with lower interest rates and simplified payments
+              </p>
+            </div>
+          </div>
+        </section>
 
-      <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
-        <Header />
-        
-        <ToolHeroSection
-          title="Debt Consolidation Calculator"
-          description="Calculate potential savings from consolidating multiple debts into a single loan. Compare monthly payments, interest costs, and payoff timelines to make informed decisions."
-        />
+        <div className="max-w-7xl mx-auto px-4 py-16">
+          {/* Main Calculator Card */}
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+            <CardContent className="p-0">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+                {/* Input Section */}
+                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
+                  <div>
+                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Debt Consolidation Analysis</h2>
+                    <p className="text-gray-600">Enter your current debts and consolidation loan terms to see potential savings</p>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Currency Selection */}
+                    <div className="space-y-3">
+                      <Label htmlFor="currency" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Currency
+                      </Label>
+                      <Select value={currency} onValueChange={setCurrency}>
+                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="USD">USD - US Dollar</SelectItem>
+                          <SelectItem value="EUR">EUR - Euro</SelectItem>
+                          <SelectItem value="GBP">GBP - British Pound</SelectItem>
+                          <SelectItem value="INR">INR - Indian Rupee</SelectItem>
+                          <SelectItem value="JPY">JPY - Japanese Yen</SelectItem>
+                          <SelectItem value="CAD">CAD - Canadian Dollar</SelectItem>
+                          <SelectItem value="AUD">AUD - Australian Dollar</SelectItem>
+                          <SelectItem value="CNY">CNY - Chinese Yuan</SelectItem>
+                          <SelectItem value="BRL">BRL - Brazilian Real</SelectItem>
+                          <SelectItem value="MXN">MXN - Mexican Peso</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
 
-        <main className="flex-1 py-12">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              
-              {/* Input Section */}
-              <div className="space-y-6">
-                
-                {/* Current Debts */}
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <DollarSign className="h-5 w-5" />
-                      Current Debts
-                    </CardTitle>
-                    <CardDescription>Add your existing debts to analyze consolidation benefits</CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    
-                    {/* Add New Debt Form */}
-                    <div className="grid grid-cols-1 gap-3 p-4 bg-gray-50 rounded-lg">
-                      <div>
-                        <Label htmlFor="debt-name">Debt Name</Label>
+                    {/* Consolidation Interest Rate */}
+                    <div className="space-y-3">
+                      <Label htmlFor="consolidation-rate" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Consolidation Interest Rate
+                      </Label>
+                      <div className="relative">
                         <Input
-                          id="debt-name"
-                          placeholder="e.g., Credit Card 1, Personal Loan"
-                          value={newDebt.name}
-                          onChange={(e) => setNewDebt({...newDebt, name: e.target.value})}
-                        />
-                      </div>
-                      
-                      <div className="grid grid-cols-2 gap-2">
-                        <div>
-                          <Label htmlFor="debt-balance">Balance ($)</Label>
-                          <Input
-                            id="debt-balance"
-                            type="number"
-                            placeholder="10000"
-                            value={newDebt.balance}
-                            onChange={(e) => setNewDebt({...newDebt, balance: e.target.value})}
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor="debt-rate">Interest Rate (%)</Label>
-                          <Input
-                            id="debt-rate"
-                            type="number"
-                            step="0.01"
-                            placeholder="18.99"
-                            value={newDebt.interestRate}
-                            onChange={(e) => setNewDebt({...newDebt, interestRate: e.target.value})}
-                          />
-                        </div>
-                      </div>
-                      
-                      <div>
-                        <Label htmlFor="debt-payment">Minimum Payment ($)</Label>
-                        <Input
-                          id="debt-payment"
+                          id="consolidation-rate"
                           type="number"
-                          placeholder="250"
-                          value={newDebt.minPayment}
-                          onChange={(e) => setNewDebt({...newDebt, minPayment: e.target.value})}
+                          value={consolidationRate}
+                          onChange={(e) => setConsolidationRate(e.target.value)}
+                          className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          placeholder="12.99"
+                          step="0.01"
                         />
+                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
+                      </div>
+                    </div>
+
+                    {/* Consolidation Term */}
+                    <div className="space-y-3 md:col-span-2">
+                      <Label htmlFor="consolidation-term" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Loan Term (Years)
+                      </Label>
+                      <Input
+                        id="consolidation-term"
+                        type="number"
+                        value={consolidationTerm}
+                        onChange={(e) => setConsolidationTerm(e.target.value)}
+                        className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full md:w-48"
+                        placeholder="5"
+                        min="1"
+                        max="30"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Add Debt Section */}
+                  <div className="space-y-6 border-t pt-8">
+                    <h3 className="text-xl font-bold text-gray-900">Add Your Current Debts</h3>
+                    
+                    <div className="space-y-4 bg-gray-50 rounded-xl p-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                          <Label htmlFor="debt-name" className="text-sm font-medium text-gray-700">
+                            Debt Name
+                          </Label>
+                          <Input
+                            id="debt-name"
+                            placeholder="e.g., Credit Card 1"
+                            value={newDebt.name}
+                            onChange={(e) => setNewDebt({...newDebt, name: e.target.value})}
+                            className="h-12 border-2 border-gray-200 rounded-lg"
+                          />
+                        </div>
+                        
+                        <div className="space-y-2">
+                          <Label htmlFor="debt-balance" className="text-sm font-medium text-gray-700">
+                            Balance
+                          </Label>
+                          <div className="relative">
+                            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                            <Input
+                              id="debt-balance"
+                              type="number"
+                              placeholder="10000"
+                              value={newDebt.balance}
+                              onChange={(e) => setNewDebt({...newDebt, balance: e.target.value})}
+                              className="h-12 pl-8 border-2 border-gray-200 rounded-lg"
+                            />
+                          </div>
+                        </div>
+                        
+                        <div className="space-y-2">
+                          <Label htmlFor="debt-rate" className="text-sm font-medium text-gray-700">
+                            Interest Rate (%)
+                          </Label>
+                          <div className="relative">
+                            <Input
+                              id="debt-rate"
+                              type="number"
+                              step="0.01"
+                              placeholder="18.99"
+                              value={newDebt.interestRate}
+                              onChange={(e) => setNewDebt({...newDebt, interestRate: e.target.value})}
+                              className="h-12 pr-8 border-2 border-gray-200 rounded-lg"
+                            />
+                            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">%</span>
+                          </div>
+                        </div>
+                        
+                        <div className="space-y-2">
+                          <Label htmlFor="debt-payment" className="text-sm font-medium text-gray-700">
+                            Minimum Payment
+                          </Label>
+                          <div className="relative">
+                            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                            <Input
+                              id="debt-payment"
+                              type="number"
+                              placeholder="250"
+                              value={newDebt.minPayment}
+                              onChange={(e) => setNewDebt({...newDebt, minPayment: e.target.value})}
+                              className="h-12 pl-8 border-2 border-gray-200 rounded-lg"
+                            />
+                          </div>
+                        </div>
                       </div>
                       
-                      <Button onClick={addDebt} className="w-full">
-                        <Plus className="h-4 w-4 mr-2" />
+                      <Button onClick={addDebt} className="w-full md:w-auto h-12 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold rounded-xl">
                         Add Debt
                       </Button>
                     </div>
 
-                    <Separator />
-
                     {/* Current Debts List */}
-                    <div className="space-y-3">
-                      {debts.length === 0 ? (
-                        <p className="text-gray-500 text-center py-4">No debts added yet. Add your first debt above.</p>
-                      ) : (
-                        debts.map((debt) => (
+                    {debts.length > 0 && (
+                      <div className="space-y-3">
+                        <h4 className="font-semibold text-gray-800">Current Debts ({debts.length})</h4>
+                        {debts.map((debt) => (
                           <div key={debt.id} className="flex items-center justify-between p-4 bg-red-50 rounded-lg border">
                             <div className="flex-1">
                               <div className="font-semibold text-gray-900">{debt.name}</div>
                               <div className="text-sm text-gray-600 grid grid-cols-2 gap-2 mt-1">
-                                <span>Balance: ${debt.balance.toLocaleString()}</span>
+                                <span>Balance: {formatCurrency(debt.balance)}</span>
                                 <span>Rate: {debt.interestRate}%</span>
-                                <span>Min Payment: ${debt.minPayment.toLocaleString()}</span>
+                                <span>Min Payment: {formatCurrency(debt.minPayment)}</span>
                               </div>
                             </div>
-                            <Button variant="ghost" size="sm" onClick={() => removeDebt(debt.id)}>
-                              <Trash2 className="h-4 w-4" />
+                            <Button variant="outline" size="sm" onClick={() => removeDebt(debt.id)} className="text-red-600 hover:text-red-700">
+                              Remove
                             </Button>
                           </div>
-                        ))
-                      )}
-                    </div>
-
-                    {/* Current Totals */}
-                    {debts.length > 0 && (
-                      <div className="bg-blue-50 p-4 rounded-lg">
-                        <h4 className="font-semibold text-blue-900 mb-2">Current Debt Summary</h4>
-                        <div className="grid grid-cols-2 gap-2 text-sm text-blue-800">
-                          <span>Total Balance: ${totalBalance.toLocaleString()}</span>
-                          <span>Total Min Payment: ${totalMinPayment.toLocaleString()}</span>
-                          <span>Weighted Avg Rate: {weightedAvgRate.toFixed(2)}%</span>
+                        ))}
+                        
+                        <div className="bg-blue-50 p-4 rounded-lg">
+                          <h4 className="font-semibold text-blue-900 mb-2">Total Summary</h4>
+                          <div className="grid grid-cols-2 gap-2 text-sm text-blue-800">
+                            <span>Total Balance: {formatCurrency(totalBalance)}</span>
+                            <span>Total Min Payment: {formatCurrency(debts.reduce((sum, debt) => sum + debt.minPayment, 0))}</span>
+                          </div>
                         </div>
                       </div>
                     )}
-                  </CardContent>
-                </Card>
+                  </div>
 
-                {/* Consolidation Loan Parameters */}
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <Calculator className="h-5 w-5" />
-                      Consolidation Loan Terms
-                    </CardTitle>
-                    <CardDescription>Enter the terms for your potential consolidation loan</CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div className="grid grid-cols-1 gap-4">
-                      <div>
-                        <Label htmlFor="consolidation-rate">Interest Rate (%)</Label>
-                        <Input
-                          id="consolidation-rate"
-                          type="number"
-                          step="0.01"
-                          placeholder="12.99"
-                          value={consolidationRate}
-                          onChange={(e) => setConsolidationRate(e.target.value)}
-                        />
+                  {/* Action Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                    <Button
+                      onClick={calculateConsolidation}
+                      disabled={debts.length === 0}
+                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      Calculate Savings
+                    </Button>
+                    <Button
+                      onClick={resetCalculator}
+                      variant="outline"
+                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                    >
+                      Reset
+                    </Button>
+                  </div>
+
+                  {/* Advanced Options */}
+                  {result && (
+                    <div className="flex flex-wrap gap-3 pt-4">
+                      <Button
+                        onClick={() => setShowBreakdown(!showBreakdown)}
+                        variant="outline"
+                        size="sm"
+                        className="rounded-full"
+                      >
+                        {showBreakdown ? 'Hide' : 'Show'} Detailed Breakdown
+                      </Button>
+                    </div>
+                  )}
+                </div>
+
+                {/* Results Section */}
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Consolidation Analysis</h2>
+                  
+                  {result ? (
+                    <div className="space-y-6">
+                      {/* Monthly Payment Highlight */}
+                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
+                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">New Monthly Payment</div>
+                        <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                          {formatCurrency(result.monthlyPayment)}
+                        </div>
+                        <div className="text-sm text-gray-500 mt-2">
+                          vs. {formatCurrency(result.currentTotalPayment)} currently
+                        </div>
                       </div>
-                      
-                      <div>
-                        <Label htmlFor="consolidation-term">Loan Term (years)</Label>
-                        <Input
-                          id="consolidation-term"
-                          type="number"
-                          placeholder="5"
-                          value={consolidationTerm}
-                          onChange={(e) => setConsolidationTerm(e.target.value)}
-                        />
+
+                      {/* Savings Summary */}
+                      <div className="space-y-4">
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Monthly Savings</span>
+                            <span className={`font-bold text-lg ${result.monthlySavings > 0 ? 'text-green-600' : 'text-red-600'}`}>
+                              {result.monthlySavings > 0 ? '+' : ''}{formatCurrency(result.monthlySavings)}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Total Interest Savings</span>
+                            <span className={`font-bold text-lg ${result.totalSavings > 0 ? 'text-green-600' : 'text-red-600'}`}>
+                              {result.totalSavings > 0 ? '+' : ''}{formatCurrency(result.totalSavings)}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Payoff Time</span>
+                            <span className="font-bold text-gray-900">
+                              {result.termYears} years
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Recommendation */}
+                      <div className={`rounded-xl p-6 border ${result.monthlySavings > 0 && result.totalSavings > 0 ? 'bg-gradient-to-r from-green-50 to-emerald-50 border-green-200' : 'bg-gradient-to-r from-red-50 to-orange-50 border-red-200'}`}>
+                        <h4 className={`font-bold mb-3 ${result.monthlySavings > 0 && result.totalSavings > 0 ? 'text-green-800' : 'text-red-800'}`}>
+                          {result.monthlySavings > 0 && result.totalSavings > 0 ? 'Consolidation Recommended!' : 'Consider Other Options'}
+                        </h4>
+                        <p className={`text-sm ${result.monthlySavings > 0 && result.totalSavings > 0 ? 'text-green-700' : 'text-red-700'}`}>
+                          {result.monthlySavings > 0 && result.totalSavings > 0 
+                            ? `You could save ${formatCurrency(result.monthlySavings)} per month and ${formatCurrency(result.totalSavings)} in total interest costs.`
+                            : 'This consolidation loan may not provide significant savings. Look for better interest rates or consider alternative debt repayment strategies.'
+                          }
+                        </p>
                       </div>
                     </div>
-
-                    {totalBalance > 0 && (
-                      <Alert>
-                        <Info className="h-4 w-4" />
-                        <AlertDescription>
-                          Loan Amount: ${totalBalance.toLocaleString()} (total of all debts above)
-                        </AlertDescription>
-                      </Alert>
-                    )}
-                  </CardContent>
-                </Card>
+                  ) : (
+                    <div className="text-center py-16">
+                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <div className="text-3xl font-bold text-gray-400">$</div>
+                      </div>
+                      <p className="text-gray-500 text-lg">Add your debts and calculate to see consolidation analysis</p>
+                    </div>
+                  )}
+                </div>
               </div>
+            </CardContent>
+          </Card>
 
-              {/* Results Section */}
-              <div className="space-y-6">
-                
-                {results ? (
-                  <>
-                    {/* Comparison Overview */}
-                    <Card>
-                      <CardHeader>
-                        <CardTitle className="flex items-center gap-2">
-                          <TrendingDown className="h-5 w-5" />
-                          Consolidation Analysis
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="grid grid-cols-1 gap-4">
-                          
-                          {/* Monthly Payment Comparison */}
-                          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-lg">
-                            <h4 className="font-semibold text-gray-900 mb-3">Monthly Payment</h4>
-                            <div className="grid grid-cols-2 gap-4">
-                              <div>
-                                <div className="text-sm text-gray-600">Current Total</div>
-                                <div className="text-xl font-bold text-red-600">${totalMinPayment.toLocaleString()}</div>
-                              </div>
-                              <div>
-                                <div className="text-sm text-gray-600">Consolidated</div>
-                                <div className="text-xl font-bold text-green-600">${results.monthlyPayment.toLocaleString()}</div>
-                              </div>
-                            </div>
-                            <div className="mt-3 pt-3 border-t border-gray-200">
-                              <div className="flex items-center justify-between">
-                                <span className="text-sm text-gray-600">Monthly Savings</span>
-                                <div className="flex items-center">
-                                  {results.monthlySavings > 0 ? (
-                                    <CheckCircle className="h-4 w-4 text-green-500 mr-1" />
-                                  ) : (
-                                    <AlertCircle className="h-4 w-4 text-red-500 mr-1" />
-                                  )}
-                                  <span className={`font-semibold ${results.monthlySavings > 0 ? 'text-green-600' : 'text-red-600'}`}>
-                                    ${Math.abs(results.monthlySavings).toLocaleString()}
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Total Interest Comparison */}
-                          <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-lg">
-                            <h4 className="font-semibold text-gray-900 mb-3">Total Interest Cost</h4>
-                            <div className="grid grid-cols-1 gap-2">
-                              <div className="flex justify-between">
-                                <span className="text-sm text-gray-600">Consolidated Loan</span>
-                                <span className="font-semibold">${results.totalInterest.toLocaleString()}</span>
-                              </div>
-                              {results.totalSavings !== 0 && (
-                                <div className="flex justify-between pt-2 border-t border-gray-200">
-                                  <span className="text-sm text-gray-600">Total Savings</span>
-                                  <div className="flex items-center">
-                                    {results.totalSavings > 0 ? (
-                                      <CheckCircle className="h-4 w-4 text-green-500 mr-1" />
-                                    ) : (
-                                      <AlertCircle className="h-4 w-4 text-red-500 mr-1" />
-                                    )}
-                                    <span className={`font-semibold ${results.totalSavings > 0 ? 'text-green-600' : 'text-red-600'}`}>
-                                      ${Math.abs(results.totalSavings).toLocaleString()}
-                                    </span>
-                                  </div>
-                                </div>
-                              )}
-                            </div>
-                          </div>
-
-                          {/* Payoff Timeline */}
-                          <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-4 rounded-lg">
-                            <h4 className="font-semibold text-gray-900 mb-3">Payoff Timeline</h4>
-                            <div className="text-center">
-                              <div className="text-sm text-gray-600">Consolidated Loan</div>
-                              <div className="text-2xl font-bold text-purple-600">
-                                {results.termYears} years
-                              </div>
-                              <div className="text-sm text-gray-500 mt-1">
-                                ({(results.payoffTime).toFixed(0)} months)
-                              </div>
-                            </div>
-                          </div>
-
-                        </div>
-                      </CardContent>
-                    </Card>
-
-                    {/* Recommendations */}
-                    <Card>
-                      <CardHeader>
-                        <CardTitle>Recommendation</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        {results.monthlySavings > 0 && results.totalSavings > 0 ? (
-                          <Alert className="border-green-200 bg-green-50">
-                            <CheckCircle className="h-4 w-4 text-green-600" />
-                            <AlertDescription className="text-green-800">
-                              <strong>Debt consolidation looks beneficial!</strong> You could save ${results.monthlySavings.toLocaleString()} per month and ${results.totalSavings.toLocaleString()} in total interest costs.
-                            </AlertDescription>
-                          </Alert>
-                        ) : (
-                          <Alert className="border-red-200 bg-red-50">
-                            <AlertCircle className="h-4 w-4 text-red-600" />
-                            <AlertDescription className="text-red-800">
-                              <strong>Consider other options.</strong> This consolidation loan may not provide significant savings. Look for better interest rates or consider alternative debt repayment strategies.
-                            </AlertDescription>
-                          </Alert>
-                        )}
-                      </CardContent>
-                    </Card>
-                  </>
-                ) : (
-                  <Card>
-                    <CardContent className="pt-6">
-                      <div className="text-center text-gray-500">
-                        <Calculator className="h-12 w-12 mx-auto mb-4 text-gray-300" />
-                        <p>Add your debts and consolidation loan terms to see the analysis.</p>
+          {/* Detailed Breakdown */}
+          {result && showBreakdown && (
+            <Card className="mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Detailed Financial Breakdown</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-800 mb-4">Current Debt Situation</h4>
+                    <div className="space-y-3">
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Total Balance:</span>
+                        <span className="font-semibold">{formatCurrency(result.loanAmount)}</span>
                       </div>
-                    </CardContent>
-                  </Card>
-                )}
-
-              </div>
-            </div>
-
-            {/* Educational Content */}
-            <div className="mt-16 space-y-12">
-              <div className="bg-white rounded-2xl shadow-lg p-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">Understanding Debt Consolidation</h2>
-                
-                <div className="prose max-w-none">
-                  <p className="text-lg text-gray-700 mb-6">
-                    Debt consolidation involves combining multiple debts into a single loan, typically with a lower interest rate. This strategy can simplify your finances and potentially save money on interest costs.
-                  </p>
-
-                  <h3 className="text-2xl font-semibold text-gray-900 mb-4">When Debt Consolidation Makes Sense</h3>
-                  
-                  <div className="grid md:grid-cols-2 gap-8 mb-8">
-                    <div className="bg-green-50 p-6 rounded-lg">
-                      <h4 className="text-xl font-semibold text-green-900 mb-3">✓ Good Candidates</h4>
-                      <ul className="space-y-2 text-green-800">
-                        <li>• Multiple high-interest debts (credit cards, personal loans)</li>
-                        <li>• Good credit score to qualify for lower rates</li>
-                        <li>• Stable income to support new payment schedule</li>
-                        <li>• Discipline to avoid accumulating new debt</li>
-                        <li>• Lower consolidation rate than current weighted average</li>
-                      </ul>
-                    </div>
-
-                    <div className="bg-red-50 p-6 rounded-lg">
-                      <h4 className="text-xl font-semibold text-red-900 mb-3">✗ Poor Candidates</h4>
-                      <ul className="space-y-2 text-red-800">
-                        <li>• History of accumulating debt after consolidation</li>
-                        <li>• Consolidation rate higher than current average</li>
-                        <li>• Unstable income or employment</li>
-                        <li>• Only small amounts of debt that can be paid off quickly</li>
-                        <li>• Already close to paying off existing debts</li>
-                      </ul>
-                    </div>
-                  </div>
-
-                  <h3 className="text-2xl font-semibold text-gray-900 mb-4">Types of Debt Consolidation</h3>
-                  
-                  <div className="space-y-6 mb-8">
-                    <div className="border-l-4 border-blue-500 pl-6">
-                      <h4 className="text-xl font-semibold text-gray-900 mb-2">Personal Loans</h4>
-                      <p className="text-gray-700 mb-3">
-                        Unsecured loans with fixed rates and terms, typically ranging from 2-7 years. Best for those with good credit scores.
-                      </p>
-                      <div className="text-sm text-gray-600">
-                        <strong>Pros:</strong> Fixed payments, no collateral required, fast funding<br/>
-                        <strong>Cons:</strong> Higher rates for poor credit, origination fees possible
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Monthly Payments:</span>
+                        <span className="font-semibold">{formatCurrency(result.currentTotalPayment)}</span>
                       </div>
-                    </div>
-
-                    <div className="border-l-4 border-green-500 pl-6">
-                      <h4 className="text-xl font-semibold text-gray-900 mb-2">Balance Transfer Credit Cards</h4>
-                      <p className="text-gray-700 mb-3">
-                        Transfer existing credit card balances to a new card with a promotional 0% APR period.
-                      </p>
-                      <div className="text-sm text-gray-600">
-                        <strong>Pros:</strong> 0% introductory rates, no monthly payments during promo<br/>
-                        <strong>Cons:</strong> High rates after promo period, balance transfer fees, credit limit restrictions
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Weighted Avg Rate:</span>
+                        <span className="font-semibold">{result.weightedAvgRate.toFixed(2)}%</span>
                       </div>
-                    </div>
-
-                    <div className="border-l-4 border-purple-500 pl-6">
-                      <h4 className="text-xl font-semibold text-gray-900 mb-2">Home Equity Loans/HELOC</h4>
-                      <p className="text-gray-700 mb-3">
-                        Use your home's equity as collateral for lower interest rates on larger loan amounts.
-                      </p>
-                      <div className="text-sm text-gray-600">
-                        <strong>Pros:</strong> Lower rates, tax-deductible interest, larger loan amounts<br/>
-                        <strong>Cons:</strong> Home at risk, closing costs, longer approval process
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Total Interest Cost:</span>
+                        <span className="font-semibold text-red-600">{formatCurrency(result.currentTotalInterest)}</span>
                       </div>
                     </div>
                   </div>
-
-                  <h3 className="text-2xl font-semibold text-gray-900 mb-4">Best Practices for Successful Debt Consolidation</h3>
-                  
-                  <div className="bg-blue-50 rounded-lg p-6 mb-8">
-                    <div className="space-y-4">
-                      <div className="flex items-start">
-                        <div className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-4 mt-1">1</div>
-                        <div>
-                          <h4 className="font-semibold text-blue-900">Shop Around for Rates</h4>
-                          <p className="text-blue-800">Compare offers from multiple lenders including banks, credit unions, and online lenders to find the best terms.</p>
-                        </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-gray-800 mb-4">Consolidated Loan</h4>
+                    <div className="space-y-3">
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Loan Amount:</span>
+                        <span className="font-semibold">{formatCurrency(result.loanAmount)}</span>
                       </div>
-                      
-                      <div className="flex items-start">
-                        <div className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-4 mt-1">2</div>
-                        <div>
-                          <h4 className="font-semibold text-blue-900">Avoid New Debt</h4>
-                          <p className="text-blue-800">Close credit card accounts or remove them from your wallet to avoid the temptation of accumulating new debt.</p>
-                        </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Monthly Payment:</span>
+                        <span className="font-semibold">{formatCurrency(result.monthlyPayment)}</span>
                       </div>
-                      
-                      <div className="flex items-start">
-                        <div className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-4 mt-1">3</div>
-                        <div>
-                          <h4 className="font-semibold text-blue-900">Create a Budget</h4>
-                          <p className="text-blue-800">Develop a comprehensive budget that ensures you can afford the new payment and prevents future debt accumulation.</p>
-                        </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Interest Rate:</span>
+                        <span className="font-semibold">{result.interestRate}%</span>
                       </div>
-                      
-                      <div className="flex items-start">
-                        <div className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-4 mt-1">4</div>
-                        <div>
-                          <h4 className="font-semibold text-blue-900">Consider Professional Help</h4>
-                          <p className="text-blue-800">If debt feels overwhelming, consider credit counseling services that can provide personalized guidance and debt management plans.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <h3 className="text-2xl font-semibold text-gray-900 mb-4">Alternative Debt Repayment Strategies</h3>
-                  
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="bg-yellow-50 p-6 rounded-lg">
-                      <h4 className="font-semibold text-yellow-900 mb-3">Debt Snowball Method</h4>
-                      <p className="text-yellow-800 mb-3">Pay minimum on all debts, then focus extra payments on the smallest balance first.</p>
-                      <div className="text-sm text-yellow-700">
-                        <strong>Best for:</strong> Psychological motivation and quick wins
-                      </div>
-                    </div>
-
-                    <div className="bg-orange-50 p-6 rounded-lg">
-                      <h4 className="font-semibold text-orange-900 mb-3">Debt Avalanche Method</h4>
-                      <p className="text-orange-800 mb-3">Pay minimum on all debts, then focus extra payments on the highest interest rate debt first.</p>
-                      <div className="text-sm text-orange-700">
-                        <strong>Best for:</strong> Minimizing total interest paid over time
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Total Interest Cost:</span>
+                        <span className="font-semibold text-blue-600">{formatCurrency(result.totalInterest)}</span>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* SEO Content Section */}
+          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">What is Debt Consolidation?</h3>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    Debt consolidation is a financial strategy that involves combining multiple debts into a single loan, 
+                    typically with a lower interest rate and more favorable terms. This approach can simplify your finances 
+                    by reducing multiple monthly payments to just one, potentially saving money on interest costs.
+                  </p>
+                  <p>
+                    Our debt consolidation calculator helps you analyze whether consolidating your debts would be beneficial 
+                    by comparing your current debt situation with a potential consolidation loan. The calculator takes into 
+                    account your existing balances, interest rates, and minimum payments to provide accurate savings projections.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">How Does Our Calculator Work?</h3>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    Our calculator uses advanced algorithms to analyze your debt consolidation potential by comparing 
+                    your current debt payments with a consolidated loan scenario. Simply enter your existing debts 
+                    and the terms of your potential consolidation loan.
+                  </p>
+                  <ul className="space-y-2 list-disc list-inside">
+                    <li>Add multiple debts with their balances, rates, and payments</li>
+                    <li>Enter consolidation loan terms (rate and duration)</li>
+                    <li>Get instant analysis of potential savings</li>
+                    <li>Compare monthly payments and total interest costs</li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Benefits of Debt Consolidation</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Lower monthly payments through reduced interest rates</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Simplified finances with one monthly payment</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Potential for significant interest savings over time</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Fixed payment schedule for better budgeting</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Faster debt payoff with structured repayment</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Features of Our Calculator</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Support for multiple debts and currencies</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Accurate monthly payment calculations</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Total interest savings analysis</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Side-by-side comparison of current vs. consolidated</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Detailed financial breakdown and recommendations</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
-        </main>
 
-        <Footer />
-      </div>
-    </>
+          {/* Additional SEO Content Sections */}
+          <div className="mt-12 space-y-8">
+            {/* Types of Debt Consolidation */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Types of Debt Consolidation Options</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Personal Loans</h4>
+                    <p className="text-gray-600">
+                      Unsecured personal loans are the most common form of debt consolidation. They typically offer 
+                      fixed interest rates and terms ranging from 2-7 years. Best for those with good credit scores 
+                      who want predictable monthly payments.
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Balance Transfer Cards</h4>
+                    <p className="text-gray-600">
+                      Credit cards with promotional 0% APR periods allow you to transfer existing balances and pay 
+                      no interest during the promotional period. Ideal for those who can pay off debt quickly.
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Home Equity Loans</h4>
+                    <p className="text-gray-600">
+                      Using your home's equity as collateral can provide access to larger loan amounts at lower 
+                      interest rates. However, your home is at risk if you cannot make payments.
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Debt Management Plans</h4>
+                    <p className="text-gray-600">
+                      Working with credit counseling agencies to negotiate with creditors for reduced interest rates 
+                      and consolidated payments. No new loan is involved, but creditors agree to modified terms.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* When to Consider Debt Consolidation */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">When Debt Consolidation Makes Sense</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <div className="border-l-4 border-green-500 pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-2">High Interest Debt</h4>
+                      <p className="text-sm">Multiple credit cards or loans with rates above 15% that could be consolidated at a lower rate.</p>
+                    </div>
+                    <div className="border-l-4 border-blue-500 pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-2">Good Credit Score</h4>
+                      <p className="text-sm">Credit score of 650+ that qualifies you for competitive consolidation loan rates.</p>
+                    </div>
+                    <div className="border-l-4 border-purple-500 pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-2">Stable Income</h4>
+                      <p className="text-sm">Consistent income that can support the new consolidated payment amount reliably.</p>
+                    </div>
+                    <div className="border-l-4 border-orange-500 pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-2">Discipline to Avoid New Debt</h4>
+                      <p className="text-sm">Commitment to not accumulate new debt after consolidation to avoid worsening your situation.</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Steps to Successful Debt Consolidation</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <div className="bg-blue-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-blue-800 mb-2">1. Assess Your Debt</h4>
+                      <p className="text-sm text-blue-700">List all debts with balances, interest rates, and minimum payments to understand your total obligations.</p>
+                    </div>
+                    <div className="bg-green-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-green-800 mb-2">2. Shop for Better Rates</h4>
+                      <p className="text-sm text-green-700">Compare offers from multiple lenders including banks, credit unions, and online lenders.</p>
+                    </div>
+                    <div className="bg-orange-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-orange-800 mb-2">3. Calculate True Savings</h4>
+                      <p className="text-sm text-orange-700">Use our calculator to ensure the consolidation actually saves money over time.</p>
+                    </div>
+                    <div className="bg-purple-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-purple-800 mb-2">4. Apply and Close Old Accounts</h4>
+                      <p className="text-sm text-purple-700">Apply for the consolidation loan and close old credit accounts to prevent future debt accumulation.</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Common Mistakes and Tips */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-8">Common Debt Consolidation Mistakes to Avoid</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <div className="bg-red-50 border-l-4 border-red-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-red-800 mb-2">Not Addressing Root Causes</h4>
+                      <p className="text-red-700 text-sm">Consolidating without changing spending habits often leads to accumulating new debt on top of the consolidation loan.</p>
+                    </div>
+                    <div className="bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-orange-800 mb-2">Focusing Only on Monthly Payment</h4>
+                      <p className="text-orange-700 text-sm">Lower monthly payments might mean paying more interest over time if the loan term is significantly extended.</p>
+                    </div>
+                    <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-yellow-800 mb-2">Ignoring Fees and Costs</h4>
+                      <p className="text-yellow-700 text-sm">Origination fees, balance transfer fees, and closing costs can offset potential savings from consolidation.</p>
+                    </div>
+                  </div>
+                  <div className="space-y-6">
+                    <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-blue-800 mb-2">Not Shopping Around</h4>
+                      <p className="text-blue-700 text-sm">Accepting the first offer without comparing rates and terms from multiple lenders can cost thousands in unnecessary interest.</p>
+                    </div>
+                    <div className="bg-purple-50 border-l-4 border-purple-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-purple-800 mb-2">Consolidating Secured with Unsecured Debt</h4>
+                      <p className="text-purple-700 text-sm">Using home equity to pay off credit cards puts your home at risk for unsecured debt that wouldn't otherwise threaten it.</p>
+                    </div>
+                    <div className="bg-green-50 border-l-4 border-green-400 p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-green-800 mb-2">Closing All Credit Cards</h4>
+                      <p className="text-green-700 text-sm">Closing all credit accounts can hurt your credit score. Keep oldest accounts open with zero balances to maintain credit history.</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Alternatives to Debt Consolidation */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Alternatives to Debt Consolidation</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="bg-yellow-50 p-6 rounded-lg">
+                    <h4 className="font-semibold text-yellow-900 mb-3">Debt Snowball Method</h4>
+                    <p className="text-yellow-800 mb-3">Pay minimum on all debts, then focus extra payments on the smallest balance first for psychological wins.</p>
+                    <div className="text-sm text-yellow-700">
+                      <strong>Best for:</strong> Those needing motivation through quick victories
+                    </div>
+                  </div>
+
+                  <div className="bg-orange-50 p-6 rounded-lg">
+                    <h4 className="font-semibold text-orange-900 mb-3">Debt Avalanche Method</h4>
+                    <p className="text-orange-800 mb-3">Pay minimum on all debts, then focus extra payments on the highest interest rate debt first.</p>
+                    <div className="text-sm text-orange-700">
+                      <strong>Best for:</strong> Minimizing total interest paid over time
+                    </div>
+                  </div>
+
+                  <div className="bg-green-50 p-6 rounded-lg">
+                    <h4 className="font-semibold text-green-900 mb-3">Credit Counseling</h4>
+                    <p className="text-green-800 mb-3">Work with non-profit agencies to create debt management plans and negotiate with creditors.</p>
+                    <div className="text-sm text-green-700">
+                      <strong>Best for:</strong> Those needing professional guidance and creditor negotiation
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* FAQ Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Will debt consolidation hurt my credit score?</h4>
+                      <p className="text-gray-600 text-sm">Initially, applying for a new loan may cause a small, temporary dip in your credit score. However, consolidation can improve your score long-term by reducing credit utilization and establishing a positive payment history.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How much can I save with debt consolidation?</h4>
+                      <p className="text-gray-600 text-sm">Savings depend on your current interest rates, the consolidation loan rate, and loan terms. Our calculator shows you exactly how much you could save based on your specific situation.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Can I consolidate federal student loans with other debts?</h4>
+                      <p className="text-gray-600 text-sm">While possible, it's generally not recommended as federal student loans offer protections and benefits that would be lost when consolidated with private debt through a personal loan.</p>
+                    </div>
+                  </div>
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">What credit score do I need for debt consolidation?</h4>
+                      <p className="text-gray-600 text-sm">While lenders may approve consolidation loans for scores as low as 580, the best rates typically require a credit score of 650 or higher. Higher scores unlock significantly better interest rates.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Should I close credit cards after consolidation?</h4>
+                      <p className="text-gray-600 text-sm">Keep your oldest credit cards open with zero balances to maintain credit history length. You can close newer cards to remove temptation, but avoid closing accounts that would hurt your credit age.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How long does the debt consolidation process take?</h4>
+                      <p className="text-gray-600 text-sm">The application and approval process typically takes 2-7 business days for personal loans. Funds are usually disbursed within 1-3 business days after approval, making the entire process about one week.</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </main>
+      
+      <Footer />
+    </div>
   );
-};
-
-export default DebtConsolidationCalculator;
+}
