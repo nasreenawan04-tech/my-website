@@ -317,9 +317,9 @@ const BodyCompositionAnalyzer = () => {
               <div className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-emerald-200">
                 <span className="text-xs sm:text-sm font-medium text-emerald-700">Body Composition Analysis</span>
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-slate-900 leading-tight tracking-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-slate-900 leading-relaxed tracking-tight">
                 <span className="block">Body Composition</span>
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600 mt-1 sm:mt-2">
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-600 mt-1 sm:mt-2 pb-2">
                   Analyzer
                 </span>
               </h1>

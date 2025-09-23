@@ -140,6 +140,28 @@
       @apply text-foreground;
     }
   }
+
+  /* Fix text rendering issues with descenders */
+  .bg-clip-text {
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent;
+    paint-order: stroke fill;
+    line-height: 1.2;
+    padding-bottom: 0.125rem;
+  }
+
+  /* Ensure proper text selection rendering */
+  ::selection {
+    background-color: rgba(59, 130, 246, 0.3);
+    -webkit-text-fill-color: initial;
+    color: initial;
+  }
+
+  ::-moz-selection {
+    background-color: rgba(59, 130, 246, 0.3);
+    color: initial;
+  }
 }
 
 .gradient-blue-purple {
