@@ -32,6 +32,8 @@ const DTIRatioCalculator = lazy(() => import("@/pages/dti-ratio-calculator"));
 const StressLevelCalculator = lazy(() => import("@/pages/stress-level-calculator"));
 const BodyCompositionAnalyzer = lazy(() => import("@/pages/body-composition-analyzer"));
 const MetabolicAgeCalculator = lazy(() => import("@/pages/metabolic-age-calculator"));
+const PersonalFinanceDashboard = lazy(() => import("@/pages/personal-finance-dashboard"));
+const DebtConsolidationCalculator = lazy(() => import("@/pages/debt-consolidation-calculator"));
 
 // Individual tool components are now loaded dynamically via ToolPage for better maintainability
 
@@ -91,6 +93,8 @@ function Router() {
           <Route path="/tools/stress-level-calculator" component={StressLevelCalculator} />
           <Route path="/tools/body-composition-analyzer" component={BodyCompositionAnalyzer} />
           <Route path="/tools/metabolic-age-calculator" component={MetabolicAgeCalculator} />
+          <Route path="/tools/personal-finance-dashboard" component={PersonalFinanceDashboard} />
+          <Route path="/tools/debt-consolidation-calculator" component={DebtConsolidationCalculator} />
           
           {/* Generic tool route - must come last to avoid conflicts */}
           <Route path="/tools/:toolId" component={ToolPage} />

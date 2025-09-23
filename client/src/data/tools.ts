@@ -287,6 +287,24 @@ const toolsData: Tool[] = [
     href: "/tools/dti-ratio-calculator",
     isPopular: true,
   },
+  {
+    id: "personal-finance-dashboard",
+    name: "Personal Finance Dashboard",
+    description: "Comprehensive financial overview with income, expenses, savings, and investment tracking",
+    category: "finance" as const,
+    icon: "fas fa-chart-pie",
+    href: "/tools/personal-finance-dashboard",
+    isPopular: true,
+  },
+  {
+    id: "debt-consolidation-calculator",
+    name: "Debt Consolidation Calculator",
+    description: "Calculate potential savings from consolidating multiple debts into a single loan",
+    category: "finance" as const,
+    icon: "fas fa-compress-arrows-alt",
+    href: "/tools/debt-consolidation-calculator",
+    isPopular: true,
+  },
 
   // Text Tools (19)
   {
