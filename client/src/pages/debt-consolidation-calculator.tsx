@@ -8,6 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { AlertCircle, Download, Share2 } from 'lucide-react';
 
 interface Debt {
   id: string;
@@ -46,20 +48,46 @@ export default function DebtConsolidationCalculator() {
   const [currency, setCurrency] = useState('USD');
   const [showBreakdown, setShowBreakdown] = useState(false);
   const [result, setResult] = useState<ConsolidationResult | null>(null);
+  const [errors, setErrors] = useState<string[]>([]);
 
   // Add new debt
   const addDebt = () => {
-    if (newDebt.name && newDebt.balance && newDebt.interestRate && newDebt.minPayment) {
-      const debt: Debt = {
-        id: Date.now().toString(),
-        name: newDebt.name,
-        balance: parseFloat(newDebt.balance),
-        interestRate: parseFloat(newDebt.interestRate),
-        minPayment: parseFloat(newDebt.minPayment)
-      };
-      setDebts([...debts, debt]);
-      setNewDebt({ name: '', balance: '', interestRate: '', minPayment: '' });
+    const validationErrors: string[] = [];
+    
+    if (!newDebt.name.trim()) {
+      validationErrors.push('Debt name is required');
     }
+    
+    const balance = parseFloat(newDebt.balance);
+    if (!newDebt.balance || isNaN(balance) || balance <= 0) {
+      validationErrors.push('Valid balance amount is required');
+    }
+    
+    const interestRate = parseFloat(newDebt.interestRate);
+    if (!newDebt.interestRate || isNaN(interestRate) || interestRate < 0 || interestRate > 100) {
+      validationErrors.push('Interest rate must be between 0% and 100%');
+    }
+    
+    const minPayment = parseFloat(newDebt.minPayment);
+    if (!newDebt.minPayment || isNaN(minPayment) || minPayment <= 0) {
+      validationErrors.push('Valid minimum payment is required');
+    }
+    
+    if (validationErrors.length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+    
+    setErrors([]);
+    const debt: Debt = {
+      id: Date.now().toString(),
+      name: newDebt.name.trim(),
+      balance,
+      interestRate,
+      minPayment
+    };
+    setDebts([...debts, debt]);
+    setNewDebt({ name: '', balance: '', interestRate: '', minPayment: '' });
   };
 
   // Remove debt
@@ -98,8 +126,28 @@ export default function DebtConsolidationCalculator() {
 
   // Calculate consolidation results
   const calculateConsolidation = () => {
-    if (debts.length === 0) return;
-
+    const validationErrors: string[] = [];
+    
+    if (debts.length === 0) {
+      validationErrors.push('Please add at least one debt to analyze');
+    }
+    
+    const rate = parseFloat(consolidationRate);
+    if (isNaN(rate) || rate < 0 || rate > 50) {
+      validationErrors.push('Consolidation interest rate must be between 0% and 50%');
+    }
+    
+    const term = parseFloat(consolidationTerm);
+    if (isNaN(term) || term < 1 || term > 30) {
+      validationErrors.push('Loan term must be between 1 and 30 years');
+    }
+    
+    if (validationErrors.length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+    
+    setErrors([]);
     const totalBalance = debts.reduce((sum, debt) => sum + debt.balance, 0);
     const totalMinPayment = debts.reduce((sum, debt) => sum + debt.minPayment, 0);
     const weightedAvgRate = debts.reduce((sum, debt) => sum + (debt.interestRate * debt.balance), 0) / totalBalance;
@@ -152,6 +200,81 @@ export default function DebtConsolidationCalculator() {
     setCurrency('USD');
     setShowBreakdown(false);
     setResult(null);
+    setErrors([]);
+  };
+
+  const exportResults = () => {
+    if (!result) return;
+    
+    const exportData = {
+      calculator: 'Debt Consolidation Calculator',
+      timestamp: new Date().toISOString(),
+      currency,
+      debts: debts.map(debt => ({
+        name: debt.name,
+        balance: debt.balance,
+        interestRate: debt.interestRate,
+        minPayment: debt.minPayment
+      })),
+      consolidationLoan: {
+        interestRate: result.interestRate,
+        termYears: result.termYears,
+        loanAmount: result.loanAmount
+      },
+      results: {
+        monthlyPayment: result.monthlyPayment,
+        monthlySavings: result.monthlySavings,
+        totalSavings: result.totalSavings,
+        totalInterest: result.totalInterest,
+        currentTotalInterest: result.currentTotalInterest
+      }
+    };
+    
+    const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `debt-consolidation-analysis-${new Date().toISOString().split('T')[0]}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const shareResults = async () => {
+    if (!result) return;
+    
+    const shareText = `Debt Consolidation Analysis Results:
+• Current total monthly payments: ${formatCurrency(result.currentTotalPayment)}
+• New monthly payment: ${formatCurrency(result.monthlyPayment)}
+• Monthly savings: ${formatCurrency(result.monthlySavings)}
+• Total interest savings: ${formatCurrency(result.totalSavings)}
+• Payoff time: ${result.termYears} years
+
+Calculate your debt consolidation savings at DapsiWow.com`;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'Debt Consolidation Calculator Results',
+          text: shareText,
+          url: window.location.href
+        });
+      } catch (err) {
+        console.log('Error sharing:', err);
+        fallbackShare(shareText);
+      }
+    } else {
+      fallbackShare(shareText);
+    }
+  };
+
+  const fallbackShare = (text: string) => {
+    navigator.clipboard.writeText(text).then(() => {
+      alert('Results copied to clipboard!');
+    }).catch(() => {
+      alert('Unable to copy to clipboard. Please copy manually.');
+    });
   };
 
   const formatCurrency = (amount: number) => {
@@ -317,6 +440,20 @@ export default function DebtConsolidationCalculator() {
                   </div>
 
                   {/* Add Debt Section */}
+                  {/* Error Display */}
+                  {errors.length > 0 && (
+                    <Alert className="border-red-200 bg-red-50">
+                      <AlertCircle className="h-4 w-4 text-red-600" />
+                      <AlertDescription className="text-red-800">
+                        <ul className="list-disc list-inside space-y-1">
+                          {errors.map((error, index) => (
+                            <li key={index}>{error}</li>
+                          ))}
+                        </ul>
+                      </AlertDescription>
+                    </Alert>
+                  )}
+
                   <div className="space-y-6 border-t pt-8">
                     <h3 className="text-xl font-bold text-gray-900">Add Your Current Debts</h3>
                     
@@ -418,6 +555,8 @@ export default function DebtConsolidationCalculator() {
                           <div className="grid grid-cols-2 gap-2 text-sm text-blue-800">
                             <span>Total Balance: {formatCurrency(totalBalance)}</span>
                             <span>Total Min Payment: {formatCurrency(debts.reduce((sum, debt) => sum + debt.minPayment, 0))}</span>
+                            <span>Average Rate: {debts.length > 0 ? (debts.reduce((sum, debt) => sum + (debt.interestRate * debt.balance), 0) / totalBalance).toFixed(2) : '0.00'}%</span>
+                            <span>Number of Debts: {debts.length}</span>
                           </div>
                         </div>
                       </div>
@@ -452,6 +591,24 @@ export default function DebtConsolidationCalculator() {
                         className="rounded-full"
                       >
                         {showBreakdown ? 'Hide' : 'Show'} Detailed Breakdown
+                      </Button>
+                      <Button
+                        onClick={exportResults}
+                        variant="outline"
+                        size="sm"
+                        className="rounded-full"
+                      >
+                        <Download className="h-4 w-4 mr-1" />
+                        Export Results
+                      </Button>
+                      <Button
+                        onClick={shareResults}
+                        variant="outline"
+                        size="sm"
+                        className="rounded-full"
+                      >
+                        <Share2 className="h-4 w-4 mr-1" />
+                        Share Results
                       </Button>
                     </div>
                   )}

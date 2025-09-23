@@ -472,10 +472,10 @@ const toolsData: Tool[] = [
     id: "text-to-qr-code",
     name: "Text to QR Code",
     description:
-      "Extract URLs, emails, and text content and convert to QR codes",
+      "Convert text, URLs, and other content into QR codes",
     category: "text" as const,
-    icon: "fas fa-arrow-right",
-    href: "/tools/text-to-qr-code",
+    icon: "fas fa-qrcode",
+    href: "/tools/qr-text-generator",
   },
   {
     id: "qr-code-scanner",
