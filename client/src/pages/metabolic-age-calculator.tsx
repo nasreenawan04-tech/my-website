@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -8,10 +9,6 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Progress } from '@/components/ui/progress';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { ChevronDown, ChevronUp } from 'lucide-react';
 
 interface MetabolicAgeResult {
   metabolicAge: number;
@@ -56,7 +53,6 @@ const MetabolicAgeCalculator = () => {
   const [muscleBuilding, setMuscleBuilding] = useState('');
   const [restingHeartRate, setRestingHeartRate] = useState('');
   const [bloodPressure, setBloodPressure] = useState('');
-  const [showAdvanced, setShowAdvanced] = useState(false);
   const [result, setResult] = useState<MetabolicAgeResult | null>(null);
 
   const calculateMetabolicAge = () => {
@@ -76,7 +72,7 @@ const MetabolicAgeCalculator = () => {
     } else {
       weightKg = parseFloat(weight) * 0.453592;
       const feetValue = parseFloat(feet) || 0;
-      const inchesValue = parseFloat(inches) || 0; // Default to 0 if not provided
+      const inchesValue = parseFloat(inches) || 0;
       const totalInches = (feetValue * 12) + inchesValue;
       heightCm = totalInches * 2.54;
     }
@@ -97,7 +93,7 @@ const MetabolicAgeCalculator = () => {
 
     // Start with chronological age
     let metabolicAge = chronologicalAge;
-    let healthScore = 50; // Start neutral
+    let healthScore = 50;
     const improvementAreas: string[] = [];
     const positiveFactors: string[] = [];
     const riskFactors: string[] = [];
@@ -249,7 +245,7 @@ const MetabolicAgeCalculator = () => {
       positiveFactors.push('Excellent nutrition habits');
     }
 
-    // Smoking impact
+    // Additional lifestyle factors
     if (smokingStatus) {
       const smokingImpact: { [key: string]: number } = {
         never: -1,
@@ -270,7 +266,6 @@ const MetabolicAgeCalculator = () => {
       }
     }
 
-    // Alcohol consumption impact
     if (alcoholConsumption) {
       const alcoholImpact: { [key: string]: number } = {
         none: 0,
@@ -291,7 +286,6 @@ const MetabolicAgeCalculator = () => {
       }
     }
 
-    // Water intake impact
     if (waterIntake) {
       const waterImpact: { [key: string]: number } = {
         very_low: 2,
@@ -310,7 +304,6 @@ const MetabolicAgeCalculator = () => {
       }
     }
 
-    // Muscle building activities
     if (muscleBuilding) {
       const muscleImpact: { [key: string]: number } = {
         never: 2,
@@ -329,7 +322,6 @@ const MetabolicAgeCalculator = () => {
       }
     }
 
-    // Resting heart rate impact
     if (restingHeartRate) {
       const rhr = parseFloat(restingHeartRate);
       if (rhr < 60) {
@@ -348,7 +340,6 @@ const MetabolicAgeCalculator = () => {
       }
     }
 
-    // Blood pressure impact
     if (bloodPressure) {
       const bpImpact: { [key: string]: number } = {
         low: 1,
@@ -462,7 +453,7 @@ const MetabolicAgeCalculator = () => {
     setResult(calculatedResult);
   };
 
-  const resetForm = () => {
+  const resetCalculator = () => {
     setAge('');
     setGender('');
     setWeight('');
@@ -486,751 +477,738 @@ const MetabolicAgeCalculator = () => {
   };
 
   return (
-    <>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-indigo-50">
       <Helmet>
         <title>Metabolic Age Calculator - Free Health & Longevity Assessment Tool | DapsiWow</title>
-        <meta name="description" content="Calculate your metabolic age based on lifestyle factors, fitness level, and health metrics. Get personalized recommendations to improve your metabolic health and longevity." />
-        <meta name="keywords" content="metabolic age calculator, biological age, health assessment, longevity calculator, metabolic health, fitness age, wellness assessment" />
-        <meta property="og:title" content="Metabolic Age Calculator - Free Health & Longevity Assessment Tool" />
-        <meta property="og:description" content="Calculate your metabolic age based on lifestyle factors, fitness level, and health metrics. Get personalized recommendations to improve your metabolic health." />
+        <meta name="description" content="Calculate your metabolic age based on lifestyle factors, fitness level, and health metrics. Get personalized recommendations to improve your metabolic health and longevity with our comprehensive analysis tool." />
+        <meta name="keywords" content="metabolic age calculator, biological age calculator, health assessment, longevity calculator, metabolic health, fitness age, wellness assessment, anti-aging tool, health metrics, lifestyle assessment" />
+        <meta property="og:title" content="Metabolic Age Calculator - Free Health & Longevity Assessment Tool | DapsiWow" />
+        <meta property="og:description" content="Calculate your metabolic age based on lifestyle factors, fitness level, and health metrics. Get personalized recommendations to improve your metabolic health and longevity." />
         <meta property="og:type" content="website" />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="DapsiWow" />
         <link rel="canonical" href="https://dapsiwow.com/tools/metabolic-age-calculator" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Metabolic Age Calculator",
+            "description": "Professional metabolic age calculator for assessing biological age based on lifestyle factors, health metrics, and fitness level with personalized improvement recommendations.",
+            "url": "https://dapsiwow.com/tools/metabolic-age-calculator",
+            "applicationCategory": "HealthApplication",
+            "operatingSystem": "Any",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "featureList": [
+              "Calculate metabolic age vs chronological age",
+              "Comprehensive lifestyle assessment",
+              "Health score analysis",
+              "Personalized improvement recommendations",
+              "Multiple health metric inputs"
+            ]
+          })}
+        </script>
       </Helmet>
 
-      <div className="min-h-screen flex flex-col" data-testid="page-metabolic-age-calculator">
-        <Header />
-        
-        <main className="flex-1 bg-neutral-50">
-          {/* Hero Section */}
-          <section className="bg-gradient-to-r from-purple-600 via-indigo-500 to-blue-700 text-white py-16">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <h1 className="text-4xl sm:text-5xl font-bold mb-6" data-testid="page-title">
-                Metabolic Age Calculator
+      <Header />
+
+      <main>
+        {/* Hero Section */}
+        <section className="relative py-12 sm:py-16 md:py-20 lg:py-28 xl:py-32 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-600/10 to-indigo-600/20"></div>
+          <div className="relative max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
+            <div className="space-y-4 sm:space-y-6 md:space-y-8">
+              <div className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-purple-200">
+                <span className="text-xs sm:text-sm font-medium text-purple-700">Health Assessment Tool</span>
+              </div>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-slate-900 leading-tight tracking-tight">
+                <span className="block">Metabolic Age</span>
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600 mt-1 sm:mt-2">
+                  Calculator
+                </span>
               </h1>
-              <p className="text-xl mb-8 text-purple-100">
-                Discover your metabolic age based on lifestyle factors and health metrics. 
-                Get personalized insights to optimize your health and longevity.
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-slate-600 max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto leading-relaxed px-2 sm:px-0">
+                Discover your metabolic age based on lifestyle factors and health metrics. Get personalized insights to optimize your health and longevity.
               </p>
             </div>
-          </section>
+          </div>
+        </section>
 
-          {/* Calculator Section */}
-          <section className="py-16">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <Card className="shadow-lg">
-                <CardContent className="p-8">
-                  <div className="grid lg:grid-cols-2 gap-8">
-                    {/* Input Form */}
-                    <div className="space-y-6">
-                      <h2 className="text-2xl font-bold text-gray-900 mb-6">Health & Lifestyle Assessment</h2>
-                      
-                      {/* Unit System */}
+        <div className="max-w-7xl mx-auto px-4 py-16">
+          {/* Main Calculator Card */}
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+            <CardContent className="p-0">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+                {/* Input Section */}
+                <div className="p-8 lg:p-12 space-y-8">
+                  <div>
+                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Health Assessment</h2>
+                    <p className="text-gray-600">Enter your lifestyle and health information</p>
+                  </div>
+
+                  <div className="space-y-6">
+                    {/* Unit System */}
+                    <div className="space-y-3">
+                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Unit System</Label>
+                      <RadioGroup value={unitSystem} onValueChange={setUnitSystem} className="flex gap-6">
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="metric" id="metric" data-testid="radio-metric" />
+                          <Label htmlFor="metric">Metric (kg, cm)</Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="imperial" id="imperial" data-testid="radio-imperial" />
+                          <Label htmlFor="imperial">Imperial (lbs, ft/in)</Label>
+                        </div>
+                      </RadioGroup>
+                    </div>
+
+                    {/* Basic Information */}
+                    <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-3">
-                        <Label className="text-base font-medium">Unit System</Label>
-                        <RadioGroup value={unitSystem} onValueChange={setUnitSystem} className="flex gap-6">
-                          <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="metric" id="metric" data-testid="radio-metric" />
-                            <Label htmlFor="metric">Metric (kg, cm)</Label>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="imperial" id="imperial" data-testid="radio-imperial" />
-                            <Label htmlFor="imperial">Imperial (lbs, ft/in)</Label>
-                          </div>
-                        </RadioGroup>
+                        <Label htmlFor="age" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Age</Label>
+                        <Input
+                          id="age"
+                          type="number"
+                          placeholder="30"
+                          value={age}
+                          onChange={(e) => setAge(e.target.value)}
+                          className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:ring-purple-500"
+                          data-testid="input-age"
+                        />
                       </div>
+                      <div className="space-y-3">
+                        <Label htmlFor="gender" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Gender</Label>
+                        <Select value={gender} onValueChange={setGender}>
+                          <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-gender">
+                            <SelectValue placeholder="Select gender" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="male">Male</SelectItem>
+                            <SelectItem value="female">Female</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
 
-                      {/* Basic Information */}
+                    {/* Weight and Height */}
+                    {unitSystem === 'metric' ? (
                       <div className="grid grid-cols-2 gap-4">
-                        <div className="space-y-2">
-                          <Label htmlFor="age" className="text-sm font-medium">Age</Label>
+                        <div className="space-y-3">
+                          <Label htmlFor="weight" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Weight (kg)</Label>
                           <Input
-                            id="age"
+                            id="weight"
                             type="number"
-                            placeholder="30"
-                            value={age}
-                            onChange={(e) => setAge(e.target.value)}
-                            data-testid="input-age"
+                            placeholder="70"
+                            value={weight}
+                            onChange={(e) => setWeight(e.target.value)}
+                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:ring-purple-500"
+                            data-testid="input-weight"
                           />
                         </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="gender" className="text-sm font-medium">Gender</Label>
-                          <Select value={gender} onValueChange={setGender}>
-                            <SelectTrigger data-testid="select-gender">
-                              <SelectValue placeholder="Select gender" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="male">Male</SelectItem>
-                              <SelectItem value="female">Female</SelectItem>
-                            </SelectContent>
-                          </Select>
+                        <div className="space-y-3">
+                          <Label htmlFor="height" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Height (cm)</Label>
+                          <Input
+                            id="height"
+                            type="number"
+                            placeholder="175"
+                            value={height}
+                            onChange={(e) => setHeight(e.target.value)}
+                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:ring-purple-500"
+                            data-testid="input-height"
+                          />
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="grid grid-cols-3 gap-4">
+                        <div className="space-y-3">
+                          <Label htmlFor="weight-lbs" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Weight (lbs)</Label>
+                          <Input
+                            id="weight-lbs"
+                            type="number"
+                            placeholder="154"
+                            value={weight}
+                            onChange={(e) => setWeight(e.target.value)}
+                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:ring-purple-500"
+                            data-testid="input-weight-imperial"
+                          />
+                        </div>
+                        <div className="space-y-3">
+                          <Label htmlFor="feet" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Height (ft)</Label>
+                          <Input
+                            id="feet"
+                            type="number"
+                            placeholder="5"
+                            value={feet}
+                            onChange={(e) => setFeet(e.target.value)}
+                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:ring-purple-500"
+                            data-testid="input-feet"
+                          />
+                        </div>
+                        <div className="space-y-3">
+                          <Label htmlFor="inches" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Height (in)</Label>
+                          <Input
+                            id="inches"
+                            type="number"
+                            placeholder="9"
+                            value={inches}
+                            onChange={(e) => setInches(e.target.value)}
+                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:ring-purple-500"
+                            data-testid="input-inches"
+                          />
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Activity Level */}
+                    <div className="space-y-3">
+                      <Label htmlFor="activity-level" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Activity Level</Label>
+                      <Select value={activityLevel} onValueChange={setActivityLevel}>
+                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-activity-level">
+                          <SelectValue placeholder="Select activity level" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="sedentary">Sedentary (desk job, little exercise)</SelectItem>
+                          <SelectItem value="light">Light (light exercise 1-3 days/week)</SelectItem>
+                          <SelectItem value="moderate">Moderate (moderate exercise 3-5 days/week)</SelectItem>
+                          <SelectItem value="active">Active (hard exercise 6-7 days/week)</SelectItem>
+                          <SelectItem value="very_active">Very Active (physical job + exercise)</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    {/* Sleep */}
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-3">
+                        <Label htmlFor="sleep-hours" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Sleep Hours/Night</Label>
+                        <Input
+                          id="sleep-hours"
+                          type="number"
+                          placeholder="8"
+                          step="0.5"
+                          value={sleepHours}
+                          onChange={(e) => setSleepHours(e.target.value)}
+                          className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:ring-purple-500"
+                          data-testid="input-sleep-hours"
+                        />
+                      </div>
+                      <div className="space-y-3">
+                        <Label htmlFor="sleep-quality" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Sleep Quality</Label>
+                        <Select value={sleepQuality} onValueChange={setSleepQuality}>
+                          <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-sleep-quality">
+                            <SelectValue placeholder="Select quality" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="poor">Poor</SelectItem>
+                            <SelectItem value="fair">Fair</SelectItem>
+                            <SelectItem value="good">Good</SelectItem>
+                            <SelectItem value="excellent">Excellent</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+
+                    {/* Stress and Diet */}
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-3">
+                        <Label htmlFor="stress-level" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Stress Level</Label>
+                        <Select value={stressLevel} onValueChange={setStressLevel}>
+                          <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-stress-level">
+                            <SelectValue placeholder="Select stress level" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="very_low">Very Low</SelectItem>
+                            <SelectItem value="low">Low</SelectItem>
+                            <SelectItem value="moderate">Moderate</SelectItem>
+                            <SelectItem value="high">High</SelectItem>
+                            <SelectItem value="very_high">Very High</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="space-y-3">
+                        <Label htmlFor="diet-quality" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Diet Quality</Label>
+                        <Select value={dietQuality} onValueChange={setDietQuality}>
+                          <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-diet-quality">
+                            <SelectValue placeholder="Select diet quality" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="poor">Poor (fast food, processed)</SelectItem>
+                            <SelectItem value="fair">Fair (mixed diet)</SelectItem>
+                            <SelectItem value="good">Good (mostly whole foods)</SelectItem>
+                            <SelectItem value="excellent">Excellent (optimal nutrition)</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                      <Button
+                        onClick={calculateMetabolicAge}
+                        className="flex-1 h-14 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                        data-testid="button-calculate"
+                      >
+                        Calculate Metabolic Age
+                      </Button>
+                      <Button
+                        onClick={resetCalculator}
+                        variant="outline"
+                        className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                        data-testid="button-reset"
+                      >
+                        Reset
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Results Section */}
+                <div className="bg-gradient-to-br from-gray-50 to-purple-50 p-8 lg:p-12">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Metabolic Age Analysis</h2>
+
+                  {result ? (
+                    <div className="space-y-6" data-testid="results-section">
+                      {/* Metabolic Age Result */}
+                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-purple-100">
+                        <h3 className="text-lg font-bold text-gray-900 mb-4">Your Metabolic Age</h3>
+                        <div className="text-center">
+                          <div className="flex items-center justify-center gap-4">
+                            <div>
+                              <span className="text-4xl font-bold text-purple-700" data-testid="result-metabolic-age">
+                                {result.metabolicAge}
+                              </span>
+                              <span className="text-lg text-purple-600 ml-1">years</span>
+                            </div>
+                            <div className="text-2xl text-purple-400">vs</div>
+                            <div>
+                              <span className="text-2xl font-semibold text-gray-600" data-testid="result-chronological-age">
+                                {result.chronologicalAge}
+                              </span>
+                              <span className="text-sm text-gray-500 ml-1">actual</span>
+                            </div>
+                          </div>
+                          <div className="mt-4">
+                            <span className={`text-lg font-semibold ${
+                              result.ageDifference <= 0 ? 'text-green-600' : 'text-orange-600'
+                            }`} data-testid="result-age-difference">
+                              {result.ageDifference > 0 ? '+' : ''}{result.ageDifference} years
+                            </span>
+                            <p className="text-sm text-purple-600 mt-1">
+                              {result.metabolicCategory}
+                            </p>
+                          </div>
                         </div>
                       </div>
 
-                      {/* Weight and Height */}
-                      {unitSystem === 'metric' ? (
-                        <div className="grid grid-cols-2 gap-4">
-                          <div className="space-y-2">
-                            <Label htmlFor="weight" className="text-sm font-medium">Weight (kg)</Label>
-                            <Input
-                              id="weight"
-                              type="number"
-                              placeholder="70"
-                              value={weight}
-                              onChange={(e) => setWeight(e.target.value)}
-                              data-testid="input-weight"
-                            />
+                      {/* Health Score */}
+                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-indigo-100">
+                        <h3 className="text-lg font-bold text-gray-900 mb-4">Health Score</h3>
+                        <div className="text-center">
+                          <div className="text-3xl font-bold text-indigo-600" data-testid="result-health-score">
+                            {result.healthScore}/100
                           </div>
-                          <div className="space-y-2">
-                            <Label htmlFor="height" className="text-sm font-medium">Height (cm)</Label>
-                            <Input
-                              id="height"
-                              type="number"
-                              placeholder="175"
-                              value={height}
-                              onChange={(e) => setHeight(e.target.value)}
-                              data-testid="input-height"
-                            />
+                          <div className="w-full bg-gray-200 rounded-full h-3 mt-3">
+                            <div 
+                              className="bg-gradient-to-r from-indigo-500 to-purple-500 h-3 rounded-full transition-all duration-500"
+                              style={{ width: `${result.healthScore}%` }}
+                            ></div>
                           </div>
                         </div>
-                      ) : (
-                        <div className="grid grid-cols-3 gap-4">
-                          <div className="space-y-2">
-                            <Label htmlFor="weight-lbs" className="text-sm font-medium">Weight (lbs)</Label>
-                            <Input
-                              id="weight-lbs"
-                              type="number"
-                              placeholder="154"
-                              value={weight}
-                              onChange={(e) => setWeight(e.target.value)}
-                              data-testid="input-weight-imperial"
-                            />
+                      </div>
+
+                      {/* Metabolic Metrics */}
+                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                        <h3 className="text-lg font-bold text-gray-900 mb-4">Metabolic Metrics</h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div className="text-center p-3 bg-orange-50 rounded-lg">
+                            <div className="text-lg font-bold text-orange-600" data-testid="result-bmr">
+                              {result.bmr}
+                            </div>
+                            <div className="text-xs text-gray-600">BMR (cal/day)</div>
                           </div>
-                          <div className="space-y-2">
-                            <Label htmlFor="feet" className="text-sm font-medium">Height (ft)</Label>
-                            <Input
-                              id="feet"
-                              type="number"
-                              placeholder="5"
-                              value={feet}
-                              onChange={(e) => setFeet(e.target.value)}
-                              data-testid="input-feet"
-                            />
+                          <div className="text-center p-3 bg-green-50 rounded-lg">
+                            <div className="text-lg font-bold text-green-600" data-testid="result-recommended-calories">
+                              {result.recommendedCalories}
+                            </div>
+                            <div className="text-xs text-gray-600">Daily Calories</div>
                           </div>
+                        </div>
+                      </div>
+
+                      {/* Positive Factors */}
+                      {result.positiveFactors.length > 0 && (
+                        <div className="bg-green-50 rounded-2xl p-6 shadow-lg border border-green-200">
+                          <h3 className="text-lg font-bold text-green-900 mb-4">Positive Health Factors</h3>
                           <div className="space-y-2">
-                            <Label htmlFor="inches" className="text-sm font-medium">Height (in)</Label>
-                            <Input
-                              id="inches"
-                              type="number"
-                              placeholder="9"
-                              value={inches}
-                              onChange={(e) => setInches(e.target.value)}
-                              data-testid="input-inches"
-                            />
+                            {result.positiveFactors.map((factor, index) => (
+                              <div key={index} className="flex items-center text-green-800">
+                                <span className="text-green-600 mr-2">✓</span>
+                                {factor}
+                              </div>
+                            ))}
                           </div>
                         </div>
                       )}
 
-                      {/* Activity Level */}
-                      <div className="space-y-2">
-                        <Label htmlFor="activity-level" className="text-sm font-medium">Overall Activity Level</Label>
-                        <Select value={activityLevel} onValueChange={setActivityLevel}>
-                          <SelectTrigger data-testid="select-activity-level">
-                            <SelectValue placeholder="Select activity level" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="sedentary">Sedentary (desk job, little exercise)</SelectItem>
-                            <SelectItem value="light">Light (light exercise 1-3 days/week)</SelectItem>
-                            <SelectItem value="moderate">Moderate (moderate exercise 3-5 days/week)</SelectItem>
-                            <SelectItem value="active">Active (hard exercise 6-7 days/week)</SelectItem>
-                            <SelectItem value="very_active">Very Active (physical job + exercise)</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-
-                      {/* Sleep */}
-                      <div className="grid grid-cols-2 gap-4">
-                        <div className="space-y-2">
-                          <Label htmlFor="sleep-hours" className="text-sm font-medium">Sleep Hours/Night</Label>
-                          <Input
-                            id="sleep-hours"
-                            type="number"
-                            placeholder="8"
-                            step="0.5"
-                            value={sleepHours}
-                            onChange={(e) => setSleepHours(e.target.value)}
-                            data-testid="input-sleep-hours"
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="sleep-quality" className="text-sm font-medium">Sleep Quality</Label>
-                          <Select value={sleepQuality} onValueChange={setSleepQuality}>
-                            <SelectTrigger data-testid="select-sleep-quality">
-                              <SelectValue placeholder="Select quality" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="poor">Poor</SelectItem>
-                              <SelectItem value="fair">Fair</SelectItem>
-                              <SelectItem value="good">Good</SelectItem>
-                              <SelectItem value="excellent">Excellent</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                      </div>
-
-                      {/* Stress and Diet */}
-                      <div className="grid grid-cols-2 gap-4">
-                        <div className="space-y-2">
-                          <Label htmlFor="stress-level" className="text-sm font-medium">Stress Level</Label>
-                          <Select value={stressLevel} onValueChange={setStressLevel}>
-                            <SelectTrigger data-testid="select-stress-level">
-                              <SelectValue placeholder="Select stress level" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="very_low">Very Low</SelectItem>
-                              <SelectItem value="low">Low</SelectItem>
-                              <SelectItem value="moderate">Moderate</SelectItem>
-                              <SelectItem value="high">High</SelectItem>
-                              <SelectItem value="very_high">Very High</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="diet-quality" className="text-sm font-medium">Diet Quality</Label>
-                          <Select value={dietQuality} onValueChange={setDietQuality}>
-                            <SelectTrigger data-testid="select-diet-quality">
-                              <SelectValue placeholder="Select diet quality" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="poor">Poor (fast food, processed)</SelectItem>
-                              <SelectItem value="fair">Fair (mixed diet)</SelectItem>
-                              <SelectItem value="good">Good (mostly whole foods)</SelectItem>
-                              <SelectItem value="excellent">Excellent (optimal nutrition)</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                      </div>
-
-                      {/* Advanced Options */}
-                      <Collapsible open={showAdvanced} onOpenChange={setShowAdvanced}>
-                        <CollapsibleTrigger asChild>
-                          <Button variant="outline" className="w-full justify-between" data-testid="toggle-advanced">
-                            Advanced Options
-                            {showAdvanced ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
-                          </Button>
-                        </CollapsibleTrigger>
-                        <CollapsibleContent className="space-y-4 mt-4">
-                          {/* Exercise Details */}
-                          <div className="grid grid-cols-2 gap-4">
-                            <div className="space-y-2">
-                              <Label htmlFor="exercise-frequency" className="text-sm font-medium">Exercise Frequency</Label>
-                              <Select value={exerciseFrequency} onValueChange={setExerciseFrequency}>
-                                <SelectTrigger data-testid="select-exercise-frequency">
-                                  <SelectValue placeholder="Select frequency" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                  <SelectItem value="never">Never</SelectItem>
-                                  <SelectItem value="rarely">Rarely (&lt; 1x/week)</SelectItem>
-                                  <SelectItem value="sometimes">Sometimes (1-2x/week)</SelectItem>
-                                  <SelectItem value="regularly">Regularly (3-4x/week)</SelectItem>
-                                  <SelectItem value="daily">Daily (5+ times/week)</SelectItem>
-                                </SelectContent>
-                              </Select>
-                            </div>
-                            <div className="space-y-2">
-                              <Label htmlFor="exercise-intensity" className="text-sm font-medium">Exercise Intensity</Label>
-                              <Select value={exerciseIntensity} onValueChange={setExerciseIntensity}>
-                                <SelectTrigger data-testid="select-exercise-intensity">
-                                  <SelectValue placeholder="Select intensity" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                  <SelectItem value="low">Low (walking, light yoga)</SelectItem>
-                                  <SelectItem value="moderate">Moderate (jogging, cycling)</SelectItem>
-                                  <SelectItem value="high">High (running, HIIT)</SelectItem>
-                                  <SelectItem value="very_high">Very High (competitive sports)</SelectItem>
-                                </SelectContent>
-                              </Select>
-                            </div>
+                      {/* Improvement Areas */}
+                      {result.improvementAreas.length > 0 && (
+                        <div className="bg-yellow-50 rounded-2xl p-6 shadow-lg border border-yellow-200">
+                          <h3 className="text-lg font-bold text-yellow-900 mb-4">Areas for Improvement</h3>
+                          <div className="space-y-2">
+                            {result.improvementAreas.map((area, index) => (
+                              <div key={index} className="flex items-center text-yellow-800">
+                                <span className="text-yellow-600 mr-2">•</span>
+                                {area}
+                              </div>
+                            ))}
                           </div>
-
-                          {/* Lifestyle Factors */}
-                          <div className="grid grid-cols-2 gap-4">
-                            <div className="space-y-2">
-                              <Label htmlFor="smoking-status" className="text-sm font-medium">Smoking Status</Label>
-                              <Select value={smokingStatus} onValueChange={setSmokingStatus}>
-                                <SelectTrigger data-testid="select-smoking-status">
-                                  <SelectValue placeholder="Select status" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                  <SelectItem value="never">Never smoked</SelectItem>
-                                  <SelectItem value="former">Former smoker</SelectItem>
-                                  <SelectItem value="light">Light smoker (&lt; 10/day)</SelectItem>
-                                  <SelectItem value="moderate">Moderate smoker (10-20/day)</SelectItem>
-                                  <SelectItem value="heavy">Heavy smoker (&gt; 20/day)</SelectItem>
-                                </SelectContent>
-                              </Select>
-                            </div>
-                            <div className="space-y-2">
-                              <Label htmlFor="alcohol-consumption" className="text-sm font-medium">Alcohol Consumption</Label>
-                              <Select value={alcoholConsumption} onValueChange={setAlcoholConsumption}>
-                                <SelectTrigger data-testid="select-alcohol-consumption">
-                                  <SelectValue placeholder="Select consumption" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                  <SelectItem value="none">None</SelectItem>
-                                  <SelectItem value="light">Light (1-3 drinks/week)</SelectItem>
-                                  <SelectItem value="moderate">Moderate (4-7 drinks/week)</SelectItem>
-                                  <SelectItem value="heavy">Heavy (8-14 drinks/week)</SelectItem>
-                                  <SelectItem value="excessive">Excessive (&gt; 14 drinks/week)</SelectItem>
-                                </SelectContent>
-                              </Select>
-                            </div>
-                          </div>
-
-                          {/* Health Metrics */}
-                          <div className="grid grid-cols-2 gap-4">
-                            <div className="space-y-2">
-                              <Label htmlFor="water-intake" className="text-sm font-medium">Daily Water Intake</Label>
-                              <Select value={waterIntake} onValueChange={setWaterIntake}>
-                                <SelectTrigger data-testid="select-water-intake">
-                                  <SelectValue placeholder="Select intake" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                  <SelectItem value="very_low">Very Low (&lt; 1L/day)</SelectItem>
-                                  <SelectItem value="low">Low (1-1.5L/day)</SelectItem>
-                                  <SelectItem value="adequate">Adequate (2-3L/day)</SelectItem>
-                                  <SelectItem value="high">High (&gt; 3L/day)</SelectItem>
-                                </SelectContent>
-                              </Select>
-                            </div>
-                            <div className="space-y-2">
-                              <Label htmlFor="muscle-building" className="text-sm font-medium">Strength Training</Label>
-                              <Select value={muscleBuilding} onValueChange={setMuscleBuilding}>
-                                <SelectTrigger data-testid="select-muscle-building">
-                                  <SelectValue placeholder="Select frequency" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                  <SelectItem value="never">Never</SelectItem>
-                                  <SelectItem value="rarely">Rarely</SelectItem>
-                                  <SelectItem value="sometimes">Sometimes</SelectItem>
-                                  <SelectItem value="regularly">Regularly</SelectItem>
-                                  <SelectItem value="very_regularly">Very Regularly</SelectItem>
-                                </SelectContent>
-                              </Select>
-                            </div>
-                          </div>
-
-                          {/* Optional Health Metrics */}
-                          <div className="grid grid-cols-2 gap-4">
-                            <div className="space-y-2">
-                              <Label htmlFor="resting-heart-rate" className="text-sm font-medium">Resting Heart Rate (optional)</Label>
-                              <Input
-                                id="resting-heart-rate"
-                                type="number"
-                                placeholder="70"
-                                value={restingHeartRate}
-                                onChange={(e) => setRestingHeartRate(e.target.value)}
-                                data-testid="input-resting-heart-rate"
-                              />
-                            </div>
-                            <div className="space-y-2">
-                              <Label htmlFor="blood-pressure" className="text-sm font-medium">Blood Pressure (optional)</Label>
-                              <Select value={bloodPressure} onValueChange={setBloodPressure}>
-                                <SelectTrigger data-testid="select-blood-pressure">
-                                  <SelectValue placeholder="Select range" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                  <SelectItem value="low">Low (&lt; 90/60)</SelectItem>
-                                  <SelectItem value="normal">Normal (90/60 - 120/80)</SelectItem>
-                                  <SelectItem value="elevated">Elevated (120-129 / &lt; 80)</SelectItem>
-                                  <SelectItem value="high_stage1">High Stage 1 (130-139 / 80-89)</SelectItem>
-                                  <SelectItem value="high_stage2">High Stage 2 (≥ 140/90)</SelectItem>
-                                  <SelectItem value="crisis">Crisis (&gt; 180/120)</SelectItem>
-                                </SelectContent>
-                              </Select>
-                            </div>
-                          </div>
-                        </CollapsibleContent>
-                      </Collapsible>
-
-                      {/* Action Buttons */}
-                      <div className="flex gap-4 pt-6">
-                        <Button 
-                          onClick={calculateMetabolicAge}
-                          className="flex-1 bg-purple-600 hover:bg-purple-700"
-                          data-testid="button-calculate"
-                        >
-                          Calculate Metabolic Age
-                        </Button>
-                        <Button 
-                          onClick={resetForm}
-                          variant="outline"
-                          className="flex-1"
-                          data-testid="button-reset"
-                        >
-                          Reset
-                        </Button>
-                      </div>
+                        </div>
+                      )}
                     </div>
-
-                    {/* Results */}
-                    {result && (
-                      <div className="space-y-6">
-                        <h2 className="text-2xl font-bold text-gray-900 mb-6" data-testid="results-title">
-                          Your Metabolic Age Analysis
-                        </h2>
-                        
-                        {/* Metabolic Age Result */}
-                        <div className="bg-gradient-to-r from-purple-50 to-indigo-50 p-6 rounded-lg">
-                          <div className="text-center">
-                            <h3 className="text-sm font-medium text-purple-600 mb-2">Your Metabolic Age</h3>
-                            <div className="flex items-center justify-center gap-4">
-                              <div>
-                                <span className="text-4xl font-bold text-purple-700" data-testid="result-metabolic-age">
-                                  {result.metabolicAge}
-                                </span>
-                                <span className="text-lg text-purple-600 ml-1">years</span>
-                              </div>
-                              <div className="text-2xl text-purple-400">vs</div>
-                              <div>
-                                <span className="text-2xl font-semibold text-gray-600" data-testid="result-chronological-age">
-                                  {result.chronologicalAge}
-                                </span>
-                                <span className="text-sm text-gray-500 ml-1">actual</span>
-                              </div>
-                            </div>
-                            <div className="mt-4">
-                              <span className={`text-lg font-semibold ${
-                                result.ageDifference <= 0 ? 'text-green-600' : 'text-orange-600'
-                              }`} data-testid="result-age-difference">
-                                {result.ageDifference > 0 ? '+' : ''}{result.ageDifference} years
-                              </span>
-                              <p className="text-sm text-purple-600 mt-1">
-                                {result.metabolicCategory}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Health Score */}
-                        <div className="bg-blue-50 p-4 rounded-lg">
-                          <h3 className="font-semibold text-blue-900 mb-3">Overall Health Score</h3>
-                          <div className="flex items-center gap-4">
-                            <Progress value={result.healthScore} className="flex-1" />
-                            <span className="text-2xl font-bold text-blue-700" data-testid="result-health-score">
-                              {result.healthScore}/100
-                            </span>
-                          </div>
-                        </div>
-
-                        <Tabs defaultValue="overview" className="w-full">
-                          <TabsList className="grid w-full grid-cols-4">
-                            <TabsTrigger value="overview">Overview</TabsTrigger>
-                            <TabsTrigger value="lifestyle">Lifestyle</TabsTrigger>
-                            <TabsTrigger value="action">Action Plan</TabsTrigger>
-                            <TabsTrigger value="tips">Tips</TabsTrigger>
-                          </TabsList>
-                          
-                          <TabsContent value="overview" className="space-y-4">
-                            {/* Metabolic Metrics */}
-                            <div className="grid grid-cols-2 gap-4">
-                              <div className="bg-orange-50 p-4 rounded-lg">
-                                <h4 className="font-semibold text-orange-900">BMR</h4>
-                                <p className="text-xl font-bold text-orange-700" data-testid="result-bmr">
-                                  {result.bmr} cal/day
-                                </p>
-                              </div>
-                              <div className="bg-green-50 p-4 rounded-lg">
-                                <h4 className="font-semibold text-green-900">Daily Calories</h4>
-                                <p className="text-xl font-bold text-green-700" data-testid="result-recommended-calories">
-                                  {result.recommendedCalories} cal/day
-                                </p>
-                              </div>
-                            </div>
-
-                            {/* Positive Factors */}
-                            {result.positiveFactors.length > 0 && (
-                              <div className="bg-green-50 p-4 rounded-lg">
-                                <h3 className="font-semibold text-green-900 mb-2">Positive Health Factors</h3>
-                                <ul className="space-y-1">
-                                  {result.positiveFactors.map((factor, index) => (
-                                    <li key={index} className="text-sm text-green-800 flex items-start">
-                                      <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                                      {factor}
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            )}
-
-                            {/* Risk Factors */}
-                            {result.riskFactors.length > 0 && (
-                              <div className="bg-red-50 p-4 rounded-lg">
-                                <h3 className="font-semibold text-red-900 mb-2">Risk Factors to Address</h3>
-                                <ul className="space-y-1">
-                                  {result.riskFactors.map((factor, index) => (
-                                    <li key={index} className="text-sm text-red-800 flex items-start">
-                                      <span className="w-2 h-2 bg-red-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                                      {factor}
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            )}
-                          </TabsContent>
-                          
-                          <TabsContent value="lifestyle" className="space-y-4">
-                            {/* Lifestyle Impact Scores */}
-                            <div className="space-y-4">
-                              <h3 className="font-semibold text-gray-900">Lifestyle Impact Scores</h3>
-                              {Object.entries(result.lifeStyleImpact).map(([category, score]) => (
-                                <div key={category} className="space-y-2">
-                                  <div className="flex justify-between">
-                                    <span className="capitalize text-sm font-medium">{category.replace('_', ' ')}</span>
-                                    <span className="text-sm font-semibold">{score}/100</span>
-                                  </div>
-                                  <Progress value={score} className="h-2" />
-                                </div>
-                              ))}
-                            </div>
-                          </TabsContent>
-                          
-                          <TabsContent value="action" className="space-y-4">
-                            {/* Improvement Areas */}
-                            {result.improvementAreas.length > 0 && (
-                              <div className="bg-yellow-50 p-4 rounded-lg">
-                                <h3 className="font-semibold text-yellow-900 mb-2">Areas for Improvement</h3>
-                                <ul className="space-y-1">
-                                  {result.improvementAreas.map((area, index) => (
-                                    <li key={index} className="text-sm text-yellow-800 flex items-start">
-                                      <span className="w-2 h-2 bg-yellow-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                                      {area}
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            )}
-
-                            {/* Action Plan */}
-                            <div className="bg-indigo-50 p-4 rounded-lg">
-                              <h3 className="font-semibold text-indigo-900 mb-2">Personalized Action Plan</h3>
-                              <ul className="space-y-1">
-                                {result.actionPlan.map((action, index) => (
-                                  <li key={index} className="text-sm text-indigo-800 flex items-start">
-                                    <span className="w-2 h-2 bg-indigo-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                                    {action}
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          </TabsContent>
-                          
-                          <TabsContent value="tips" className="space-y-4">
-                            {/* Metabolic Health Tips */}
-                            <div className="bg-teal-50 p-4 rounded-lg">
-                              <h3 className="font-semibold text-teal-900 mb-2">Metabolic Health Tips</h3>
-                              <ul className="space-y-1">
-                                {result.metabolicHealthTips.slice(0, 6).map((tip, index) => (
-                                  <li key={index} className="text-sm text-teal-800 flex items-start">
-                                    <span className="w-2 h-2 bg-teal-500 rounded-full mt-2 mr-2 flex-shrink-0"></span>
-                                    {tip}
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          </TabsContent>
-                        </Tabs>
+                  ) : (
+                    <div className="text-center py-16" data-testid="no-results">
+                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <div className="text-3xl font-bold text-gray-400">⚡</div>
                       </div>
-                    )}
+                      <p className="text-gray-500 text-lg">Enter your health details to see metabolic age analysis</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* SEO Content Section */}
+          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">What is a Metabolic Age Calculator?</h3>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    A metabolic age calculator is an advanced health assessment tool that determines your biological age 
+                    based on metabolic factors and lifestyle choices. Unlike chronological age, metabolic age reflects 
+                    how efficiently your body functions and burns calories compared to others your age.
+                  </p>
+                  <p>
+                    Our comprehensive metabolic age calculator analyzes multiple health metrics including physical activity, 
+                    sleep quality, stress levels, nutrition habits, and body composition to provide an accurate assessment 
+                    of your metabolic health and biological aging process.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Why Use Our Metabolic Age Calculator?</h3>
+                <div className="space-y-4 text-gray-600">
+                  <p>
+                    Understanding your metabolic age provides valuable insights into your overall health status and 
+                    longevity potential. This information helps identify areas for improvement and track the effectiveness 
+                    of lifestyle changes over time.
+                  </p>
+                  <ul className="space-y-2 list-disc list-inside">
+                    <li>Comprehensive health and lifestyle assessment</li>
+                    <li>Personalized improvement recommendations</li>
+                    <li>BMR and calorie requirement calculations</li>
+                    <li>Risk factor identification and mitigation</li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Calculator Features</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Multi-factor metabolic age assessment</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>BMR and daily calorie calculations</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Lifestyle impact analysis</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Personalized action plans</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-purple-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Health risk factor identification</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Understanding Metabolic Age</h3>
+                <div className="space-y-3 text-gray-600">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-indigo-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Based on metabolic rate and efficiency</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-indigo-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Influenced by lifestyle and genetics</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-indigo-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Can be improved through healthy habits</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-indigo-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Reflects biological vs chronological aging</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-indigo-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <span>Indicates longevity and health potential</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Additional SEO Content Sections */}
+          <div className="mt-12 space-y-8">
+            {/* Factors Affecting Metabolic Age */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Factors That Influence Your Metabolic Age</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Physical Activity</h4>
+                    <p className="text-gray-600 text-sm">
+                      Regular exercise, especially strength training, significantly impacts metabolic age by maintaining 
+                      muscle mass and improving cardiovascular efficiency. Both aerobic exercise and resistance training 
+                      contribute to a younger metabolic age by increasing daily energy expenditure and improving insulin sensitivity.
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Sleep Quality</h4>
+                    <p className="text-gray-600 text-sm">
+                      Quality sleep is essential for metabolic health and cellular repair processes. Poor sleep disrupts 
+                      hormone production, increases cortisol levels, and negatively affects metabolism. Consistently getting 
+                      7-9 hours of quality sleep helps maintain a younger metabolic age.
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Nutrition Quality</h4>
+                    <p className="text-gray-600 text-sm">
+                      Diet quality directly impacts metabolic efficiency and cellular aging. A diet rich in whole foods, 
+                      lean proteins, healthy fats, and antioxidants supports optimal metabolism, while processed foods 
+                      and excessive sugar can accelerate metabolic aging.
+                    </p>
+                  </div>
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-gray-800">Stress Management</h4>
+                    <p className="text-gray-600 text-sm">
+                      Chronic stress elevates cortisol levels, leading to metabolic dysfunction and accelerated aging. 
+                      Effective stress management through meditation, yoga, or other relaxation techniques helps maintain 
+                      hormonal balance and supports a younger metabolic age.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Metabolic Age by Demographics */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">Metabolic Age by Age Group</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <div className="text-sm">
+                      <h4 className="font-semibold text-gray-800 mb-2">Ages 20-30</h4>
+                      <p>Peak metabolic efficiency</p>
+                      <p>Focus: Building healthy habits</p>
+                    </div>
+                    <div className="text-sm">
+                      <h4 className="font-semibold text-gray-800 mb-2">Ages 30-50</h4>
+                      <p>Gradual metabolic decline</p>
+                      <p>Focus: Maintaining muscle mass</p>
+                    </div>
+                    <div className="text-sm">
+                      <h4 className="font-semibold text-gray-800 mb-2">Ages 50+</h4>
+                      <p>Accelerated metabolic changes</p>
+                      <p>Focus: Active lifestyle maintenance</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">Gender Differences</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <div className="text-sm">
+                      <h4 className="font-semibold text-gray-800 mb-2">Men</h4>
+                      <p>Higher baseline BMR</p>
+                      <p>More muscle mass naturally</p>
+                      <p>Different hormonal influences</p>
+                    </div>
+                    <div className="text-sm">
+                      <h4 className="font-semibold text-gray-800 mb-2">Women</h4>
+                      <p>Hormonal cycle impacts</p>
+                      <p>Menopause affects metabolism</p>
+                      <p>Different fat distribution patterns</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+                <CardContent className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-6">Improvement Potential</h3>
+                  <div className="space-y-4 text-gray-600">
+                    <p className="text-sm">
+                      Metabolic age can be improved at any chronological age through targeted lifestyle interventions.
+                    </p>
+                    <div className="text-sm">
+                      <h4 className="font-semibold text-gray-800 mb-2">Expected Changes:</h4>
+                      <p>3-6 months: Initial improvements</p>
+                      <p>6-12 months: Significant changes</p>
+                      <p>12+ months: Sustained benefits</p>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
             </div>
-          </section>
 
-          {/* Educational Content */}
-          <section className="py-16 bg-white">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                  Understanding Metabolic Age
-                </h2>
-                <p className="text-xl text-gray-600">
-                  Learn about the factors that influence your metabolic age and how to optimize your health
-                </p>
-              </div>
-
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {/* What is Metabolic Age */}
-                <Card className="h-full">
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">What is Metabolic Age?</h3>
-                    <div className="space-y-3 text-gray-600 text-sm">
-                      <p>
-                        Metabolic age compares your metabolic health and fitness to others in your 
-                        age group. It reflects how efficiently your body burns calories and processes nutrients.
-                      </p>
-                      <div className="space-y-2">
-                        <p className="font-semibold">Key Factors:</p>
-                        <ul className="space-y-1 text-xs">
-                          <li>• Basal metabolic rate (BMR)</li>
-                          <li>• Body composition and muscle mass</li>
-                          <li>• Physical activity and fitness level</li>
-                          <li>• Sleep quality and stress management</li>
-                          <li>• Nutrition and lifestyle habits</li>
-                        </ul>
+            {/* Benefits of Knowing Your Metabolic Age */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Benefits of Monitoring Your Metabolic Age</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <h4 className="font-semibold text-gray-800 mb-3">Health Insights</h4>
+                    <div className="space-y-4">
+                      <div className="flex items-start gap-3">
+                        <div className="w-3 h-3 bg-green-500 rounded-full mt-1 flex-shrink-0"></div>
+                        <div>
+                          <h5 className="font-medium text-gray-800">Early Detection</h5>
+                          <p className="text-gray-600 text-sm">Identify potential health issues before they become serious</p>
+                        </div>
                       </div>
-                      <p>
-                        A lower metabolic age indicates better health and longevity prospects 
-                        compared to your chronological age.
+                      <div className="flex items-start gap-3">
+                        <div className="w-3 h-3 bg-green-500 rounded-full mt-1 flex-shrink-0"></div>
+                        <div>
+                          <h5 className="font-medium text-gray-800">Personalized Approach</h5>
+                          <p className="text-gray-600 text-sm">Tailored recommendations based on your specific metrics</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-3 h-3 bg-green-500 rounded-full mt-1 flex-shrink-0"></div>
+                        <div>
+                          <h5 className="font-medium text-gray-800">Progress Tracking</h5>
+                          <p className="text-gray-600 text-sm">Monitor improvements over time with regular assessments</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="space-y-6">
+                    <h4 className="font-semibold text-gray-800 mb-3">Lifestyle Optimization</h4>
+                    <div className="space-y-4">
+                      <div className="flex items-start gap-3">
+                        <div className="w-3 h-3 bg-blue-500 rounded-full mt-1 flex-shrink-0"></div>
+                        <div>
+                          <h5 className="font-medium text-gray-800">Motivation</h5>
+                          <p className="text-gray-600 text-sm">Clear metrics to motivate healthy lifestyle changes</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-3 h-3 bg-blue-500 rounded-full mt-1 flex-shrink-0"></div>
+                        <div>
+                          <h5 className="font-medium text-gray-800">Goal Setting</h5>
+                          <p className="text-gray-600 text-sm">Set realistic health and fitness goals based on current status</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="w-3 h-3 bg-blue-500 rounded-full mt-1 flex-shrink-0"></div>
+                        <div>
+                          <h5 className="font-medium text-gray-800">Prevention Focus</h5>
+                          <p className="text-gray-600 text-sm">Proactive approach to health and aging</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* FAQ Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How accurate is this metabolic age calculator?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Our calculator uses scientifically validated formulas and considers multiple lifestyle factors 
+                        to provide a comprehensive assessment. While individual results may vary, the tool provides 
+                        reliable insights into your metabolic health status and areas for improvement.
                       </p>
                     </div>
-                  </CardContent>
-                </Card>
-
-                {/* Improving Metabolic Age */}
-                <Card className="h-full">
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">Improving Your Metabolic Age</h3>
-                    <div className="space-y-3 text-gray-600 text-sm">
-                      <p>
-                        Your metabolic age can be improved through lifestyle modifications 
-                        that enhance your body's efficiency and overall health.
-                      </p>
-                      <div className="space-y-2">
-                        <p className="font-semibold">Effective Strategies:</p>
-                        <ul className="space-y-1 text-xs">
-                          <li>• Build and maintain lean muscle mass</li>
-                          <li>• Engage in regular cardio and strength training</li>
-                          <li>• Optimize nutrition with whole foods</li>
-                          <li>• Prioritize quality sleep (7-9 hours)</li>
-                          <li>• Manage stress through relaxation techniques</li>
-                          <li>• Stay hydrated and limit processed foods</li>
-                        </ul>
-                      </div>
-                      <p>
-                        Consistency in healthy habits leads to gradual but sustainable 
-                        improvements in metabolic age over time.
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Can metabolic age be improved?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Yes, metabolic age can be improved through lifestyle changes including regular exercise, 
+                        better nutrition, adequate sleep, stress management, and avoiding harmful habits. Improvements 
+                        can be seen within 3-6 months of consistent healthy lifestyle changes.
                       </p>
                     </div>
-                  </CardContent>
-                </Card>
-
-                {/* Exercise and Metabolism */}
-                <Card className="h-full">
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">Exercise & Metabolism</h3>
-                    <div className="space-y-3 text-gray-600 text-sm">
-                      <p>
-                        Regular exercise is one of the most powerful tools for improving 
-                        metabolic age by increasing muscle mass and metabolic efficiency.
-                      </p>
-                      <div className="space-y-2">
-                        <p className="font-semibold">Exercise Benefits:</p>
-                        <ul className="space-y-1 text-xs">
-                          <li>• Increases muscle mass and BMR</li>
-                          <li>• Improves insulin sensitivity</li>
-                          <li>• Enhances cardiovascular health</li>
-                          <li>• Reduces inflammation markers</li>
-                          <li>• Supports healthy hormone levels</li>
-                        </ul>
-                      </div>
-                      <p>
-                        Combining resistance training with cardiovascular exercise provides 
-                        the most comprehensive metabolic benefits.
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">What's the difference between chronological and metabolic age?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Chronological age is simply how many years you've been alive, while metabolic age reflects 
+                        how efficiently your body functions compared to others your age. A lower metabolic age indicates 
+                        better health and metabolic efficiency.
                       </p>
                     </div>
-                  </CardContent>
-                </Card>
-
-                {/* Nutrition Impact */}
-                <Card className="h-full">
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">Nutrition & Metabolic Health</h3>
-                    <div className="space-y-3 text-gray-600 text-sm">
-                      <p>
-                        Proper nutrition supports optimal metabolic function by providing 
-                        essential nutrients while maintaining healthy body composition.
-                      </p>
-                      <div className="space-y-2">
-                        <p className="font-semibold">Metabolic-Friendly Foods:</p>
-                        <ul className="space-y-1 text-xs">
-                          <li>• Lean proteins (fish, poultry, legumes)</li>
-                          <li>• Complex carbohydrates (whole grains, vegetables)</li>
-                          <li>• Healthy fats (nuts, olive oil, avocado)</li>
-                          <li>• Fiber-rich foods for gut health</li>
-                          <li>• Antioxidant-rich fruits and vegetables</li>
-                        </ul>
-                      </div>
-                      <p>
-                        Avoid processed foods, excessive sugar, and trans fats which can 
-                        negatively impact metabolic efficiency and accelerate aging.
+                  </div>
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">How often should I check my metabolic age?</h4>
+                      <p className="text-gray-600 text-sm">
+                        We recommend checking your metabolic age every 3-6 months to track progress and adjust your 
+                        health strategies. This allows enough time to see meaningful changes from lifestyle modifications 
+                        while maintaining motivation for continued improvement.
                       </p>
                     </div>
-                  </CardContent>
-                </Card>
-
-                {/* Sleep and Recovery */}
-                <Card className="h-full">
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">Sleep & Recovery</h3>
-                    <div className="space-y-3 text-gray-600 text-sm">
-                      <p>
-                        Quality sleep is essential for metabolic health, affecting hormone 
-                        regulation, cellular repair, and energy metabolism.
-                      </p>
-                      <div className="space-y-2">
-                        <p className="font-semibold">Sleep Optimization:</p>
-                        <ul className="space-y-1 text-xs">
-                          <li>• Maintain consistent sleep schedule</li>
-                          <li>• Create a cool, dark sleep environment</li>
-                          <li>• Limit screens before bedtime</li>
-                          <li>• Avoid caffeine late in the day</li>
-                          <li>• Practice relaxation techniques</li>
-                        </ul>
-                      </div>
-                      <p>
-                        Poor sleep quality can accelerate metabolic aging by disrupting 
-                        hormone balance and increasing inflammation.
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">What factors have the biggest impact on metabolic age?</h4>
+                      <p className="text-gray-600 text-sm">
+                        Physical activity level, body composition, sleep quality, and stress management typically have 
+                        the largest impact on metabolic age. Regular exercise and maintaining muscle mass are particularly 
+                        important for keeping metabolic age low.
                       </p>
                     </div>
-                  </CardContent>
-                </Card>
-
-                {/* Stress Management */}
-                <Card className="h-full">
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">Stress & Metabolism</h3>
-                    <div className="space-y-3 text-gray-600 text-sm">
-                      <p>
-                        Chronic stress accelerates metabolic aging through elevated cortisol 
-                        levels, inflammation, and disrupted cellular function.
-                      </p>
-                      <div className="space-y-2">
-                        <p className="font-semibold">Stress Reduction Techniques:</p>
-                        <ul className="space-y-1 text-xs">
-                          <li>• Regular meditation or mindfulness</li>
-                          <li>• Deep breathing exercises</li>
-                          <li>• Yoga or tai chi practice</li>
-                          <li>• Time in nature and sunlight</li>
-                          <li>• Social connections and support</li>
-                          <li>• Hobbies and enjoyable activities</li>
-                        </ul>
-                      </div>
-                      <p>
-                        Effective stress management can significantly improve metabolic 
-                        markers and slow the aging process.
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Should I consult a healthcare provider about my results?</h4>
+                      <p className="text-gray-600 text-sm">
+                        While our calculator provides valuable insights, it's always recommended to discuss your health 
+                        status and any concerns with a healthcare professional, especially if your metabolic age is 
+                        significantly higher than your chronological age.
                       </p>
                     </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-          </section>
-        </main>
-        
-        <Footer />
-      </div>
-    </>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </main>
+
+      <Footer />
+    </div>
   );
 };
 
