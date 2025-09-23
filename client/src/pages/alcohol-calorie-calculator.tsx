@@ -179,7 +179,7 @@ const AlcoholCalorieCalculator = () => {
         <meta property="og:type" content="website" />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/alcohol-calorie-calculator" />
+        <link rel="canonical" href="https://dapsiwow.com/tools/alcohol-calorie-calculator" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",

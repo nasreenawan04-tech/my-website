@@ -62,12 +62,31 @@ export default function ROICalculator() {
     { code: 'NZD', name: 'New Zealand Dollar' }
   ];
 
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const validateInputs = (initial: number, final: number, time: number): boolean => {
+    const newErrors: Record<string, string> = {};
+    
+    if (isNaN(initial) || initial <= 0) {
+      newErrors.initialInvestment = 'Please enter a valid initial investment amount greater than 0';
+    }
+    if (isNaN(final) || final < 0) {
+      newErrors.finalValue = 'Please enter a valid final value (can be 0 or higher)';
+    }
+    if (isNaN(time) || time <= 0) {
+      newErrors.timePeriod = 'Please enter a valid time period greater than 0';
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const calculateBasicROI = () => {
     const initial = parseFloat(initialInvestment);
     const final = parseFloat(finalValue);
     const time = timeUnit === 'years' ? parseFloat(timePeriod) : parseFloat(timePeriod) / 12;
 
-    if (initial <= 0 || final <= 0 || time <= 0) return;
+    if (!validateInputs(initial, final, time)) return;
 
     const totalGain = final - initial;
     const roi = (totalGain / initial) * 100;
@@ -85,13 +104,33 @@ export default function ROICalculator() {
     });
   };
 
+  const validateInvestmentInputs = (initial: number, monthly: number, rate: number, years: number): boolean => {
+    const newErrors: Record<string, string> = {};
+    
+    if (isNaN(initial) || initial <= 0) {
+      newErrors.investmentAmount = 'Please enter a valid investment amount greater than 0';
+    }
+    if (isNaN(monthly) || monthly < 0) {
+      newErrors.monthlyContribution = 'Please enter a valid monthly contribution (0 or higher)';
+    }
+    if (isNaN(rate) || rate <= 0) {
+      newErrors.annualReturn = 'Please enter a valid annual return greater than 0';
+    }
+    if (isNaN(years) || years <= 0) {
+      newErrors.investmentYears = 'Please enter a valid investment period greater than 0';
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const calculateInvestmentROI = () => {
     const initial = parseFloat(investmentAmount);
     const monthly = parseFloat(monthlyContribution);
     const rate = parseFloat(annualReturn) / 100;
     const years = parseFloat(investmentYears);
 
-    if (initial <= 0 || rate <= 0 || years <= 0) return;
+    if (!validateInvestmentInputs(initial, monthly, rate, years)) return;
 
     const monthlyRate = rate / 12;
     const months = years * 12;
@@ -119,20 +158,40 @@ export default function ROICalculator() {
     });
   };
 
+  const validateBusinessInputs = (cost: number, revenue: number, costs: number, duration: number): boolean => {
+    const newErrors: Record<string, string> = {};
+    
+    if (isNaN(cost) || cost <= 0) {
+      newErrors.projectCost = 'Please enter a valid project cost greater than 0';
+    }
+    if (isNaN(revenue) || revenue < 0) {
+      newErrors.annualRevenue = 'Please enter a valid annual revenue (0 or higher)';
+    }
+    if (isNaN(costs) || costs < 0) {
+      newErrors.annualCosts = 'Please enter valid annual costs (0 or higher)';
+    }
+    if (isNaN(duration) || duration <= 0) {
+      newErrors.projectDuration = 'Please enter a valid project duration greater than 0';
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const calculateBusinessROI = () => {
     const cost = parseFloat(projectCost);
     const revenue = parseFloat(annualRevenue);
     const costs = parseFloat(annualCosts);
     const duration = parseFloat(projectDuration);
 
-    if (cost <= 0 || revenue <= 0 || duration <= 0) return;
+    if (!validateBusinessInputs(cost, revenue, costs, duration)) return;
 
     const annualProfit = revenue - costs;
     const totalProfit = annualProfit * duration;
     const totalGain = totalProfit - cost;
     const roi = (totalGain / cost) * 100;
     const annualizedROI = roi / duration;
-    const breakEvenTime = cost / annualProfit;
+    const breakEvenTime = annualProfit > 0 ? cost / annualProfit : -1; // -1 indicates no break-even
 
     setResult({
       roi,
@@ -204,7 +263,7 @@ export default function ROICalculator() {
         <meta property="og:title" content="ROI Calculator - Calculate Return on Investment | DapsiWow" />
         <meta property="og:description" content="Free ROI Calculator to calculate return on investment for stocks, business projects, real estate, and financial decisions." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://dapsiwow.com/roi-calculator" />
+        <link rel="canonical" href="https://dapsiwow.com/tools/roi-calculator" />
       </Helmet>
       
       <Header />
@@ -279,10 +338,20 @@ export default function ROICalculator() {
                           id="initial-investment"
                           type="number"
                           value={initialInvestment}
-                          onChange={(e) => setInitialInvestment(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
+                          onChange={(e) => {
+                            setInitialInvestment(e.target.value);
+                            if (errors.initialInvestment) {
+                              const newErrors = { ...errors };
+                              delete newErrors.initialInvestment;
+                              setErrors(newErrors);
+                            }
+                          }}
+                          className={`h-12 text-base border-gray-200 rounded-lg ${errors.initialInvestment ? 'border-red-500' : ''}`}
                           placeholder="10,000"
                         />
+                        {errors.initialInvestment && (
+                          <p className="text-red-500 text-sm mt-1">{errors.initialInvestment}</p>
+                        )}
                       </div>
 
                       <div className="space-y-3">

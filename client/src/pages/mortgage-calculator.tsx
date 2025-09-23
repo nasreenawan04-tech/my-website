@@ -51,6 +51,28 @@ const MortgageCalculator = () => {
   const [showAffordability, setShowAffordability] = useState(false);
   const [result, setResult] = useState<MortgageResult | null>(null);
 
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const validateMortgageInputs = (price: number, principal: number, rate: number, term: number): boolean => {
+    const newErrors: Record<string, string> = {};
+    
+    if (isNaN(price) || price <= 0) {
+      newErrors.homePrice = 'Please enter a valid home price greater than 0';
+    }
+    if (isNaN(principal) || principal <= 0) {
+      newErrors.principal = 'Loan amount must be greater than 0';
+    }
+    if (isNaN(rate) || rate < 0) {
+      newErrors.interestRate = 'Please enter a valid interest rate (0% or higher)';
+    }
+    if (isNaN(term) || term <= 0) {
+      newErrors.loanTerm = 'Please enter a valid loan term greater than 0';
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const calculateMortgage = () => {
     const price = parseFloat(homePrice);
     const down = usePercentage 
@@ -65,7 +87,9 @@ const MortgageCalculator = () => {
     const hoa = parseFloat(hoaFees) || 0;
     const income = parseFloat(monthlyIncome) || 0;
 
-    if (principal && rate && term) {
+    if (!validateMortgageInputs(price, principal, rate, term)) return;
+
+    if (principal > 0 && rate >= 0 && term > 0) {
       // Adjust interest rate based on loan type
       let adjustedRate = rate;
       if (loanType === 'fha') {
@@ -75,7 +99,9 @@ const MortgageCalculator = () => {
       }
 
       // Monthly Principal & Interest calculation
-      const monthlyPI = (principal * adjustedRate * Math.pow(1 + adjustedRate, term)) / (Math.pow(1 + adjustedRate, term) - 1);
+      const monthlyPI = adjustedRate === 0 
+        ? principal / term  // Handle 0% interest case
+        : (principal * adjustedRate * Math.pow(1 + adjustedRate, term)) / (Math.pow(1 + adjustedRate, term) - 1);
       
       // Monthly property taxes
       const monthlyTaxes = taxes / 12;
@@ -112,7 +138,16 @@ const MortgageCalculator = () => {
       
       // Affordability analysis
       const maxPaymentBasedOnIncome = income * 0.28; // 28% rule
-      const maxAffordablePrice = income > 0 ? (maxPaymentBasedOnIncome - monthlyTaxes - monthlyInsurance - monthlyHOA) / (adjustedRate * Math.pow(1 + adjustedRate, term) / (Math.pow(1 + adjustedRate, term) - 1)) + down : 0;
+      let maxAffordablePrice = 0;
+      if (income > 0) {
+        const maxPrincipalAndInterest = maxPaymentBasedOnIncome - monthlyTaxes - monthlyInsurance - monthlyHOA;
+        if (maxPrincipalAndInterest > 0) {
+          const maxPrincipal = adjustedRate === 0 
+            ? maxPrincipalAndInterest * term  // Handle 0% interest case
+            : maxPrincipalAndInterest / (adjustedRate * Math.pow(1 + adjustedRate, term) / (Math.pow(1 + adjustedRate, term) - 1));
+          maxAffordablePrice = maxPrincipal + down;
+        }
+      }
       const recommendedPrice = maxAffordablePrice * 0.85; // More conservative recommendation
       const isAffordable = monthlyPayment <= maxPaymentBasedOnIncome;
       
@@ -198,7 +233,7 @@ const MortgageCalculator = () => {
         <meta property="og:title" content="Mortgage Calculator - Calculate Monthly Mortgage Payments | DapsiWow" />
         <meta property="og:description" content="Free mortgage calculator to calculate monthly payments, total interest, and loan costs. Include taxes, insurance, and PMI for accurate estimates." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://dapsiwow.com/mortgage-calculator" />
+        <link rel="canonical" href="https://dapsiwow.com/tools/mortgage-calculator" />
       </Helmet>
 
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50" data-testid="page-mortgage-calculator">
