@@ -90,7 +90,6 @@ text-formatter-beautifier
 text-pattern-generator
 text-scrambler
 text-statistics-analyzer
-text-summarizer
 text-to-binary-converter
 text-to-decimal-converter
 text-to-hex-converter

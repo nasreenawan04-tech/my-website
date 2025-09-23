@@ -584,16 +584,6 @@ const toolsData: Tool[] = [
     href: "/tools/bmr-calculator",
   },
   {
-    id: "bmr-calorie-calculator",
-    name: "BMR & Calorie Needs Calculator",
-    description:
-      "Comprehensive BMR calculator with activity-based calorie recommendations and macro breakdown",
-    category: "health" as const,
-    icon: "fas fa-calculator",
-    isPopular: true,
-    href: "/tools/bmr-calorie-calculator",
-  },
-  {
     id: "calorie-calculator",
     name: "Calorie Calculator",
     description: "Calculate daily calorie needs and macronutrient breakdown",

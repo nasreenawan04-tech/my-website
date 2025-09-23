@@ -50,7 +50,6 @@ const toolComponents = {
   // Health Tools
   'bmi-calculator': lazy(() => import('@/pages/bmi-calculator')),
   'bmr-calculator': lazy(() => import('@/pages/bmr-calculator')),
-  'bmr-calorie-calculator': lazy(() => import('@/pages/bmr-calorie-calculator')),
   'calorie-calculator': lazy(() => import('@/pages/calorie-calculator')),
   'body-fat-calculator': lazy(() => import('@/pages/body-fat-calculator')),
   'ideal-weight-calculator': lazy(() => import('@/pages/ideal-weight-calculator')),
@@ -115,7 +114,6 @@ const toolComponents = {
   'text-statistics-analyzer': lazy(() => import('@/pages/text-statistics-analyzer')),
   'url-extractor': lazy(() => import('@/pages/url-extractor')),
   'text-cleaner-formatter': lazy(() => import('@/pages/text-cleaner-formatter')),
-  'text-summarizer': lazy(() => import('@/pages/text-summarizer')),
 };
 
 const ToolPage = () => {
