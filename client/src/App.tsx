@@ -81,13 +81,15 @@ function Router() {
           <Route path="/word-counter" component={() => <Redirect to="/tools/word-counter" />} />
           <Route path="/character-counter" component={() => <Redirect to="/tools/character-counter" />} />
 
-          {/* All tool routes now handled dynamically by ToolPage */}
-          <Route path="/tools/:toolId" component={ToolPage} />
+          {/* Specific tool routes - must come before the generic route */}
           <Route path="/tools/text-statistics-analyzer" component={TextStatisticsAnalyzer} />
           <Route path="/tools/url-extractor" component={UrlExtractor} />
           <Route path="/tools/text-cleaner-formatter" component={TextCleanerFormatter} />
           <Route path="/tools/dti-ratio-calculator" component={DTIRatioCalculator} />
           <Route path="/tools/stress-level-calculator" component={StressLevelCalculator} />
+          
+          {/* Generic tool route - must come last to avoid conflicts */}
+          <Route path="/tools/:toolId" component={ToolPage} />
 
           {/* 404 fallback for all unknown routes */}
           <Route component={NotFound} />
