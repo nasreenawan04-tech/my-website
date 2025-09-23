@@ -6,28 +6,30 @@ import puppeteer from 'puppeteer';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Routes to prerender for better SEO and performance
+// Import tools data to automatically generate all tool routes
+import { readFileSync } from 'fs';
+
+// Read and parse tools data
+const toolsContent = readFileSync(path.join(__dirname, '../client/src/data/tools.ts'), 'utf8');
+const toolIdMatches = toolsContent.match(/id:\s*["']([^"']+)["']/g) || [];
+const toolIds = toolIdMatches.map(match => match.match(/["']([^"']+)["']/)[1]);
+
+// Generate routes for all tools automatically
+const toolRoutes = toolIds.map(id => `/tools/${id}`);
+
+// Core routes + all tool routes
 const routes = [
   '/',
   '/finance-tools',
   '/text-tools', 
   '/health-tools',
   '/all-tools',
-  '/tools/loan-calculator',
-  '/tools/bmi-calculator',
-  '/tools/mortgage-calculator',
-  '/tools/word-counter',
-  '/tools/character-counter',
-  '/tools/emi-calculator',
-  '/tools/tax-calculator',
-  '/tools/compound-interest-calculator',
-  '/tools/simple-interest-calculator',
-  '/tools/roi-calculator',
-  '/tools/bmi-calculator',
-  '/tools/bmr-calculator',
-  '/tools/calorie-calculator',
-  '/tools/password-generator',
-  '/tools/qr-code-generator'
+  '/about-us',
+  '/contact-us',
+  '/privacy-policy',
+  '/terms-of-service',
+  '/help-center',
+  ...toolRoutes
 ];
 
 async function prerenderRoute(browser, route, baseURL) {

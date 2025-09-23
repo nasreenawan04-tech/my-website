@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     
     <!-- Primary Meta Tags -->
-    <title>DapsiWow: Free AI Writing, PDF, Image, and other Online Tools</title>
-    <meta name="title" content="DapsiWow: Free AI Writing, PDF, Image, and other Online Tools" />
+    <title>DapsiWow: Free AI Writing, Text, and other Online Tools</title>
+    <meta name="title" content="DapsiWow: Free AI Writing, Text, and other Online Tools" />
     <meta name="description" content="Support your productivity with premium tools that stay out of your way and work smarter. Create without limits, ads, or roadblocks. Get instant access to 180+ free online tools including finance calculators, text converters, and health trackers." />
-    <meta name="keywords" content="free online tools, calculator, PDF editor, text tools, health calculators, finance tools, productivity tools, DapsiWow, online utilities, no registration" />
+    <meta name="keywords" content="free online tools, calculator, text tools, health calculators, finance tools, productivity tools, DapsiWow, online utilities, no registration" />
     <meta name="author" content="DapsiWow" />
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <link rel="canonical" href="https://dapsiwow.com/" />
@@ -30,7 +30,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="DapsiWow" />
     <meta property="og:url" content="https://dapsiwow.com/" />
-    <meta property="og:title" content="DapsiWow: Free AI Writing, PDF, Image, and other Online Tools" />
+    <meta property="og:title" content="DapsiWow: Free AI Writing, Text, and other Online Tools" />
     <meta property="og:description" content="Support your productivity with premium tools that stay out of your way and work smarter. Create without limits, ads, or roadblocks. Get instant access to 180+ free online tools." />
     <meta property="og:image" content="https://dapsiwow.com/og-image.png" />
     <meta property="og:image:width" content="1200" />
@@ -42,7 +42,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@dapsiwow" />
     <meta name="twitter:creator" content="@dapsiwow" />
-    <meta name="twitter:title" content="DapsiWow: Free AI Writing, PDF, Image, and other Online Tools" />
+    <meta name="twitter:title" content="DapsiWow: Free AI Writing, Text, and other Online Tools" />
     <meta name="twitter:description" content="Support your productivity with premium tools that stay out of your way and work smarter. Create without limits, ads, or roadblocks." />
     <meta name="twitter:image" content="https://dapsiwow.com/twitter-image.png" />
     <meta name="twitter:image:alt" content="DapsiWow - Free Online Tools Platform" />
@@ -85,7 +85,7 @@
       },
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://dapsiwow.com/all-tools?search={search_term_string}",
+        "target": "https://dapsiwow.com/tools?search={search_term_string}",
         "query-input": "required name=search_term_string"
       },
       "mainEntity": {
@@ -104,27 +104,34 @@
     
     <!-- Performance Hints -->
     <link rel="dns-prefetch" href="//dapsiwow.com" />
-    <script type="module" crossorigin src="/assets/index-e_g7aRQ6.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/vendor-uxvhak9P.js">
-    <link rel="modulepreload" crossorigin href="/assets/query-CXkrf8nE.js">
-    <link rel="modulepreload" crossorigin href="/assets/helmet-ByhWhSn8.js">
-    <link rel="modulepreload" crossorigin href="/assets/router-DwX5yU2i.js">
-    <link rel="modulepreload" crossorigin href="/assets/ui-DoPqJqN3.js">
-    <link rel="modulepreload" crossorigin href="/assets/utils-DUgVYIyR.js">
-    <link rel="modulepreload" crossorigin href="/assets/icons-CduB_NMJ.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-wYMIEGI1.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Load Inter font optimized -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Prefetch important pages -->
+    <link rel="prefetch" href="/tools" />
+    <link rel="prefetch" href="/finance-tools" />
+    <link rel="prefetch" href="/health-tools" />
+    <link rel="prefetch" href="/text-tools" />
+    <link rel="preload" href="/logo.svg" as="image" />
+    
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7737906044797602"
+     crossorigin="anonymous"></script>
+    <script type="module" crossorigin src="/assets/index-4a21bu9j.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/vendor-MeZR0Ovd.js">
+    <link rel="modulepreload" crossorigin href="/assets/query-B0HdB8sw.js">
+    <link rel="modulepreload" crossorigin href="/assets/helmet-CX5q7vyR.js">
+    <link rel="modulepreload" crossorigin href="/assets/router-rybvizWA.js">
+    <link rel="modulepreload" crossorigin href="/assets/ui-D4vG2pMF.js">
+    <link rel="modulepreload" crossorigin href="/assets/utils-y4uQbHuo.js">
+    <link rel="modulepreload" crossorigin href="/assets/icons-BT_DhVfa.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-CqybCEX2.css">
   </head>
   <body>
     <div id="root"></div>
-    <!-- Service Worker Registration -->
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js')
-            .then(registration => console.log('SW registered'))
-            .catch(error => console.log('SW registration failed'));
-        });
-      }
-    </script>
+    <!-- Service Worker Registration moved to module script -->
+    <script type="module" src="/sw-register.js"></script>
   </body>
 </html>
