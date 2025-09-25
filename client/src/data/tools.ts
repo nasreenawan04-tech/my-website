@@ -734,7 +734,7 @@ const toolsData: Tool[] = [
     href: "/tools/lean-body-mass-calculator",
   },
   {
-    id: "waist-height-ratio-calculator",
+    id: "waist-to-height-ratio-calculator",
     name: "Waist-to-Height Ratio Calculator",
     description: "Calculate waist-to-height ratio",
     category: "health" as const,

@@ -46,6 +46,8 @@ const toolComponents = {
   'future-value-investment-calculator': lazy(() => import('@/pages/future-value-investment-calculator')),
   'budget-calculator': lazy(() => import('@/pages/budget-calculator')),
   'loan-comparison-calculator': lazy(() => import('@/pages/loan-comparison-calculator')),
+  'personal-finance-dashboard': lazy(() => import('@/pages/personal-finance-dashboard')),
+  'debt-consolidation-calculator': lazy(() => import('@/pages/debt-consolidation-calculator')),
 
   // Health Tools
   'bmi-calculator': lazy(() => import('@/pages/bmi-calculator')),
@@ -80,6 +82,9 @@ const toolComponents = {
   'smoking-cost-calculator': lazy(() => import('@/pages/smoking-cost-calculator')),
   'body-water-percentage-calculator': lazy(() => import('@/pages/body-water-percentage-calculator')),
   'hydration-calculator': lazy(() => import('@/pages/hydration-calculator')),
+  'body-composition-analyzer': lazy(() => import('@/pages/body-composition-analyzer')),
+  'metabolic-age-calculator': lazy(() => import('@/pages/metabolic-age-calculator')),
+  'stress-level-calculator': lazy(() => import('@/pages/stress-level-calculator')),
 
   // Text Tools
   'word-counter': lazy(() => import('@/pages/word-counter')),
