@@ -101,7 +101,7 @@ Preferred communication style: Simple, everyday language.
 ### Development Configuration
 - **Port**: 5000 (configured for Replit proxy compatibility)
 - **Host**: 0.0.0.0 with allowedHosts: true for iframe compatibility
-- **Workflow**: "Start application" runs `npm run dev` for development server
+- **Workflow**: "Start application" runs `npm run dev` for development server with webview output
 - **Build Process**: `npm run build` creates production-ready static assets
 - **Production**: `npm start` serves built assets via Express.js server
 
@@ -110,9 +110,17 @@ Preferred communication style: Simple, everyday language.
 - **Build Output**: `dist/` directory for compiled assets
 - **Assets**: `attached_assets/` for user-provided assets
 - **Configuration**: Vite config optimized for Replit environment
+- **Server**: Express.js production server with security headers and SEO optimization
 
 ### Deployment
 - **Target**: Autoscale deployment for static hosting
 - **Build Command**: `npm run build`
 - **Start Command**: `npm start`
-- **Security**: Express server includes comprehensive security headers
+- **Security**: Express server includes comprehensive security headers and SEO optimizations
+
+### Import Setup Completed
+- **Date**: September 25, 2025
+- **Status**: Successfully imported and configured for Replit environment
+- **Dependencies**: All npm packages installed and working
+- **Development Server**: Running successfully on port 5000 with webview output
+- **Configuration**: Vite configuration already optimized for Replit proxy with allowedHosts: true
