@@ -122,6 +122,7 @@ const knownRoutes = [
   '/terms-of-service',
   '/help-center',
   '/all-tools',
+  '/tools',
   '/finance-tools',
   '/health-tools', 
   '/text-tools'
@@ -240,6 +241,133 @@ const isValidToolRoute = (path) => {
   return validToolRoutes.has(path);
 };
 
+// Legacy redirect routes that exist in client-side router - extracted from App.tsx
+const legacyRedirectRoutes = new Set([
+  '/about',
+  '/alcohol-calorie-calculator',
+  '/ascii-to-text-converter',
+  '/baby-growth-chart',
+  '/base64-encoder-decoder',
+  '/binary-to-text-converter',
+  '/blood-pressure-tracker',
+  '/bmi-calculator',
+  '/bmr-calculator',
+  '/body-composition-analyzer',
+  '/body-fat-calculator',
+  '/body-water-percentage-calculator',
+  '/break-even-calculator',
+  '/budget-calculator',
+  '/calorie-calculator',
+  '/carb-calculator',
+  '/car-loan-calculator',
+  '/case-converter',
+  '/character-counter',
+  '/cholesterol-risk-calculator',
+  '/compound-interest-calculator',
+  '/credit-card-interest-calculator',
+  '/css-formatter',
+  '/css-minifier',
+  '/currency-percentage-change-calculator',
+  '/cycling-speed-calculator',
+  '/daily-step-calorie-converter',
+  '/debt-consolidation-calculator',
+  '/debt-payoff-calculator',
+  '/discount-calculator',
+  '/dti-ratio-calculator',
+  '/duplicate-line-remover',
+  '/education-loan-calculator',
+  '/email-extractor',
+  '/emi-calculator',
+  '/empty-line-remover',
+  '/future-value-investment-calculator',
+  '/heart-rate-calculator',
+  '/hex-to-text-converter',
+  '/home-loan-calculator',
+  '/html-encoder-decoder',
+  '/html-formatter',
+  '/html-minifier',
+  '/html-tag-remover',
+  '/html-to-markdown-converter',
+  '/hydration-calculator',
+  '/ideal-weight-calculator',
+  '/inflation-calculator',
+  '/intermittent-fasting-timer',
+  '/investment-return-calculator',
+  '/js-formatter',
+  '/js-minifier',
+  '/json-formatter',
+  '/json-validator',
+  '/keto-macro-calculator',
+  '/lean-body-mass-calculator',
+  '/lease-calculator',
+  '/life-expectancy-calculator',
+  '/line-break-removal-tool',
+  '/loan-calculator',
+  '/loan-comparison-calculator',
+  '/lorem-ipsum-generator',
+  '/markdown-to-html-converter',
+  '/max-heart-rate-calculator',
+  '/md5-hash-generator',
+  '/metabolic-age-calculator',
+  '/mortgage-calculator',
+  '/net-worth-calculator',
+  '/ovulation-calculator',
+  '/paragraph-counter',
+  '/password-generator',
+  '/password-strength-checker',
+  '/paypal-fee-calculator',
+  '/percentage-calculator',
+  '/personal-finance-dashboard',
+  '/pregnancy-due-date-calculator',
+  '/protein-intake-calculator',
+  '/qr-code-generator',
+  '/qr-code-scanner',
+  '/retirement-calculator',
+  '/roi-calculator',
+  '/running-pace-calculator',
+  '/salary-to-hourly-calculator',
+  '/savings-goal-calculator',
+  '/sentence-counter',
+  '/sha256-hash-generator',
+  '/simple-interest-calculator',
+  '/sip-calculator',
+  '/sleep-calculator',
+  '/sleep-quality-calculator',
+  '/slug-generator',
+  '/smoking-cost-calculator',
+  '/sql-formatter',
+  '/stock-profit-calculator',
+  '/stress-level-calculator',
+  '/swimming-calorie-calculator',
+  '/tax-calculator',
+  '/tdee-calculator',
+  '/text-cleaner-formatter',
+  '/text-diff-comparison',
+  '/text-randomizer',
+  '/text-repeater',
+  '/text-replacer',
+  '/text-reverser',
+  '/text-sorter',
+  '/text-statistics-analyzer',
+  '/tip-calculator',
+  '/unicode-text-converter',
+  '/url-encoder-decoder',
+  '/url-extractor',
+  '/username-generator',
+  '/vat-gst-calculator',
+  '/waist-to-height-ratio-calculator',
+  '/water-intake-calculator',
+  '/whitespace-remover',
+  '/whr-calculator',
+  '/word-counter',
+  '/xml-formatter'
+]);
+
+// Check if this is a legacy route that should be redirected by client-side router
+const isLegacyRedirectRoute = (path) => {
+  return legacyRedirectRoutes.has(path);
+};
+
 // Serve prerendered files with proper HTTP status codes
 app.get('*', async (req, res) => {
   try {
@@ -260,9 +388,11 @@ app.get('*', async (req, res) => {
       isPrerendered = true;
       console.log(`📄 Serving prerendered: ${requestPath} -> ${sanitizedPath}`);
     } catch {
-      // Check if this is a known route or valid tool route
-      if (knownRoutes.includes(requestPath) || isValidToolRoute(requestPath)) {
-        // Fallback to SPA for known routes
+      // Check if this is a known route, valid tool route, or legacy redirect route
+      if (knownRoutes.includes(requestPath) || 
+          isValidToolRoute(requestPath) || 
+          isLegacyRedirectRoute(requestPath)) {
+        // Fallback to SPA for legitimate routes only
         filePath = path.join(__dirname, 'dist', 'index.html');
         fileStats = await fs.stat(filePath);
         console.log(`🔄 SPA fallback: ${requestPath}`);
