@@ -1,6 +1,7 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { ToolPageContext } from '@/pages/tool-page';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
@@ -33,6 +34,7 @@ interface GeneratedAddress {
 }
 
 const FakeAddressGenerator = () => {
+  const { canonicalOverride } = useContext(ToolPageContext);
   const [generatedAddress, setGeneratedAddress] = useState<GeneratedAddress | null>(null);
   const [addressHistory, setAddressHistory] = useState<GeneratedAddress[]>([]);
   const [options, setOptions] = useState<AddressOptions>({
@@ -276,7 +278,7 @@ const FakeAddressGenerator = () => {
         <meta property="og:type" content="website" />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/fake-address-generator" />
+        <link rel="canonical" href={canonicalOverride || "https://dapsiwow.com/tools/fake-address-generator"} />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",

@@ -1,6 +1,7 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { ToolPageContext } from '@/pages/tool-page';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
@@ -34,6 +35,7 @@ interface ConversionResult {
 }
 
 const BinaryToTextConverter = () => {
+  const { canonicalOverride } = useContext(ToolPageContext);
   const [inputCode, setInputCode] = useState('');
   const [conversionResult, setConversionResult] = useState<ConversionResult | null>(null);
   const [conversionHistory, setConversionHistory] = useState<ConversionResult[]>([]);
@@ -275,7 +277,7 @@ const BinaryToTextConverter = () => {
         <meta property="og:type" content="website" />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/binary-to-text-converter" />
+        <link rel="canonical" href={canonicalOverride || "https://dapsiwow.com/tools/binary-to-text-converter"} />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
