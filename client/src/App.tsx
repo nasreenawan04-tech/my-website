@@ -121,45 +121,14 @@ function Router() {
           <Route path="/password-strength-checker" component={() => <Redirect to="/tools/password-strength-checker" />} />
           <Route path="/username-generator" component={() => <Redirect to="/tools/username-generator" />} />
           <Route path="/lorem-ipsum-generator" component={() => <Redirect to="/tools/lorem-ipsum-generator" />} />
-          <Route path="/text-repeater" component={() => <Redirect to="/tools/text-repeater" />} />
-          <Route path="/line-break-removal-tool" component={() => <Redirect to="/tools/line-break-removal-tool" />} />
-          <Route path="/text-replacer" component={() => <Redirect to="/tools/text-replacer" />} />
-          <Route path="/slug-generator" component={() => <Redirect to="/tools/slug-generator" />} />
-          <Route path="/text-reverser" component={() => <Redirect to="/tools/text-reverser" />} />
-          <Route path="/text-randomizer" component={() => <Redirect to="/tools/text-randomizer" />} />
           <Route path="/duplicate-line-remover" component={() => <Redirect to="/tools/duplicate-line-remover" />} />
-          <Route path="/email-extractor" component={() => <Redirect to="/tools/email-extractor" />} />
           <Route path="/url-extractor" component={() => <Redirect to="/tools/url-extractor" />} />
-          <Route path="/text-sorter" component={() => <Redirect to="/tools/text-sorter" />} />
           <Route path="/text-statistics-analyzer" component={() => <Redirect to="/tools/text-statistics-analyzer" />} />
           <Route path="/text-cleaner-formatter" component={() => <Redirect to="/tools/text-cleaner-formatter" />} />
-          <Route path="/qr-code-generator" component={() => <Redirect to="/tools/qr-code-generator" />} />
           <Route path="/qr-code-scanner" component={() => <Redirect to="/tools/qr-code-scanner" />} />
-          <Route path="/json-formatter" component={() => <Redirect to="/tools/json-formatter" />} />
-          <Route path="/json-validator" component={() => <Redirect to="/tools/json-validator" />} />
-          <Route path="/html-encoder-decoder" component={() => <Redirect to="/tools/html-encoder-decoder" />} />
-          <Route path="/url-encoder-decoder" component={() => <Redirect to="/tools/url-encoder-decoder" />} />
           <Route path="/base64-encoder-decoder" component={() => <Redirect to="/tools/base64-encoder-decoder" />} />
-          <Route path="/md5-hash-generator" component={() => <Redirect to="/tools/md5-hash-generator" />} />
-          <Route path="/sha256-hash-generator" component={() => <Redirect to="/tools/sha256-hash-generator" />} />
           <Route path="/hex-to-text-converter" component={() => <Redirect to="/tools/hex-to-text-converter" />} />
           <Route path="/binary-to-text-converter" component={() => <Redirect to="/tools/binary-to-text-converter" />} />
-          <Route path="/ascii-to-text-converter" component={() => <Redirect to="/tools/ascii-to-text-converter" />} />
-          <Route path="/unicode-text-converter" component={() => <Redirect to="/tools/unicode-text-converter" />} />
-          <Route path="/html-tag-remover" component={() => <Redirect to="/tools/html-tag-remover" />} />
-          <Route path="/whitespace-remover" component={() => <Redirect to="/tools/whitespace-remover" />} />
-          <Route path="/empty-line-remover" component={() => <Redirect to="/tools/empty-line-remover" />} />
-          <Route path="/text-diff-comparison" component={() => <Redirect to="/tools/text-diff-comparison" />} />
-          <Route path="/markdown-to-html-converter" component={() => <Redirect to="/tools/markdown-to-html-converter" />} />
-          <Route path="/html-to-markdown-converter" component={() => <Redirect to="/tools/html-to-markdown-converter" />} />
-          <Route path="/css-minifier" component={() => <Redirect to="/tools/css-minifier" />} />
-          <Route path="/js-minifier" component={() => <Redirect to="/tools/js-minifier" />} />
-          <Route path="/html-minifier" component={() => <Redirect to="/tools/html-minifier" />} />
-          <Route path="/css-formatter" component={() => <Redirect to="/tools/css-formatter" />} />
-          <Route path="/js-formatter" component={() => <Redirect to="/tools/js-formatter" />} />
-          <Route path="/html-formatter" component={() => <Redirect to="/tools/html-formatter" />} />
-          <Route path="/xml-formatter" component={() => <Redirect to="/tools/xml-formatter" />} />
-          <Route path="/sql-formatter" component={() => <Redirect to="/tools/sql-formatter" />} />
           <Route path="/bmr-calculator" component={() => <Redirect to="/tools/bmr-calculator" />} />
           <Route path="/calorie-calculator" component={() => <Redirect to="/tools/calorie-calculator" />} />
           <Route path="/body-fat-calculator" component={() => <Redirect to="/tools/body-fat-calculator" />} />
