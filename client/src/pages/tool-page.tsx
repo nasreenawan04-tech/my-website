@@ -97,7 +97,6 @@ const toolComponents = {
   'fake-name-generator': lazy(() => import('@/pages/fake-name-generator')),
   'username-generator': lazy(() => import('@/pages/username-generator')),
   'fake-address-generator': lazy(() => import('@/pages/fake-address-generator')),
-  'qr-text-generator': lazy(() => import('@/pages/qr-text-generator')),
   'font-style-changer': lazy(() => import('@/pages/font-style-changer')),
   'reverse-text-tool': lazy(() => import('@/pages/reverse-text-tool')),
   'text-to-qr-code': lazy(() => import('@/pages/text-to-qr-code')),

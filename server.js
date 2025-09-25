@@ -143,7 +143,6 @@ const validToolRoutes = new Set([
   '/tools/markdown-to-html',
   '/tools/paragraph-counter',
   '/tools/qr-code-scanner',
-  '/tools/qr-text-generator',
   '/tools/password-generator',
   '/tools/password-strength-checker',
   '/tools/username-generator',

@@ -67,7 +67,6 @@ pregnancy-due-date-calculator
 privacy-policy
 protein-intake-calculator
 qr-code-scanner
-qr-text-generator
 retirement-calculator
 reverse-text-tool
 roi-calculator

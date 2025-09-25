@@ -397,14 +397,6 @@ const toolsData: Tool[] = [
     href: "/tools/fake-name-generator",
   },
   {
-    id: "qr-text-generator",
-    name: "QR Text Generator",
-    description: "Generate QR codes from text with customizable options",
-    category: "text" as const,
-    icon: "fas fa-qrcode",
-    href: "/tools/qr-text-generator",
-  },
-  {
     id: "binary-to-text-converter",
     name: "Binary to Text Converter",
     description: "Convert binary code to readable text",
