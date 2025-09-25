@@ -39,6 +39,7 @@ const TextTools = () => {
         <meta property="og:title" content="Text Tools - 30+ Free Writing & Text Utilities | DapsiWow" />
         <meta property="og:description" content="Free text tools including word counter, grammar checker, plagiarism checker, and 25+ more writing utilities." />
         <meta property="og:type" content="website" />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://dapsiwow.com/text-tools" />
       </Helmet>
 

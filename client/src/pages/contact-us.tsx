@@ -85,6 +85,7 @@ const ContactUs = () => {
         <meta property="og:title" content="Contact Us - Get in Touch with DapsiWow" />
         <meta property="og:description" content="Contact DapsiWow for support, feedback, or suggestions. We're here to help you make the most of our free online tools." />
         <meta property="og:type" content="website" />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href="/contact" />
       </Helmet>
 

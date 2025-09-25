@@ -39,6 +39,7 @@ const FinanceTools = () => {
         <meta property="og:title" content="Finance Tools - 30+ Free Financial Calculators | DapsiWow" />
         <meta property="og:description" content="Free finance tools including loan calculator, mortgage calculator, tax calculator, and 25+ more financial calculators." />
         <meta property="og:type" content="website" />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://dapsiwow.com/finance-tools" />
       </Helmet>
 

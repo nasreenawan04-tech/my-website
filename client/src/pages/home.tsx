@@ -18,6 +18,7 @@ const Home = () => {
         <meta property="og:description" content="Support your productivity with premium tools that stay out of your way and work smarter. Create without limits, ads, or roadblocks. Get instant access to 180+ free online tools." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dapsiwow.com/" />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://dapsiwow.com/" />
         <script type="application/ld+json">
           {JSON.stringify({

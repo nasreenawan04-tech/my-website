@@ -39,6 +39,7 @@ const HealthTools = () => {
         <meta property="og:title" content="Health Tools - 30+ Free Health & Fitness Calculators | DapsiWow" />
         <meta property="og:description" content="Free health tools including BMI calculator, calorie calculator, pregnancy calculator, and 25+ more health and fitness calculators." />
         <meta property="og:type" content="website" />
+        <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://dapsiwow.com/health-tools" />
       </Helmet>
 
