@@ -113,20 +113,100 @@ app.use((req, res, next) => {
   next();
 });
 
-// Define known routes that should be served (prevent soft-404s)
-const knownRoutes = [
-  '/',
-  '/about-us',
-  '/contact-us', 
-  '/privacy-policy',
-  '/terms-of-service',
-  '/help-center',
-  '/all-tools',
-  '/tools',
-  '/finance-tools',
-  '/health-tools', 
-  '/text-tools'
-];
+// Define route metadata for unique SEO content (prevents soft-404s)
+function getRouteMetadata(route, req) {
+  const templates = {
+    '/': {
+      title: 'DapsiWow: Free AI Writing, Text, and other Online Tools',
+      description: 'Support your productivity with premium tools that stay out of your way and work smarter. Create without limits, ads, or roadblocks. Get instant access to 180+ free online tools including finance calculators, text converters, and health trackers.'
+    },
+    '/all-tools': {
+      title: 'All Tools - 180+ Free Online Calculators & Utilities | DapsiWow',
+      description: 'Browse our complete collection of 180+ free online tools including finance calculators, text converters, health trackers, and productivity utilities. No registration required.'
+    },
+    '/finance-tools': {
+      title: 'Free Finance Calculators & Tools | DapsiWow',
+      description: 'Professional finance calculators for loans, mortgages, investments, taxes, and retirement planning. Free online tools for personal and business financial planning.'
+    },
+    '/text-tools': {
+      title: 'Free Text Tools & Converters | DapsiWow',
+      description: 'Powerful text processing tools including word counters, case converters, text formatters, and encoding/decoding utilities. Free online text manipulation tools.'
+    },
+    '/health-tools': {
+      title: 'Free Health Calculators & Trackers | DapsiWow',
+      description: 'Health and fitness calculators for BMI, calorie needs, heart rate, body composition, and wellness tracking. Free online health assessment tools.'
+    },
+    '/about-us': {
+      title: 'About DapsiWow - Free Online Tools Platform',
+      description: 'Learn about DapsiWow, the leading platform for free online tools and calculators. Our mission to provide accessible, professional-grade utilities for everyone.'
+    },
+    '/contact-us': {
+      title: 'Contact DapsiWow - Get Support & Feedback',
+      description: 'Contact DapsiWow for support, feedback, or suggestions. We value your input and are here to help with any questions about our free online tools.'
+    },
+    '/privacy-policy': {
+      title: 'Privacy Policy - DapsiWow',
+      description: 'Read DapsiWow privacy policy to understand how we protect your data and privacy when using our free online tools and calculators.'
+    },
+    '/terms-of-service': {
+      title: 'Terms of Service - DapsiWow',
+      description: 'Review DapsiWow terms of service for using our free online tools and calculators. Learn about usage policies and user responsibilities.'
+    },
+    '/help-center': {
+      title: 'Help Center - DapsiWow Support & FAQs',
+      description: 'Get help using DapsiWow tools and calculators. Find answers to frequently asked questions and tutorials for our free online utilities.'
+    }
+  };
+  
+  const template = templates[route] || templates['/'];
+  return {
+    ...template,
+    canonical: getCanonicalUrl(route, req)
+  };
+}
+
+// Function to generate tool metadata dynamically
+function generateToolMetadata(toolSlug, req) {
+  const toolName = toolSlug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+  const baseUrl = `${req.protocol}://${req.get('host')}`;
+  
+  return {
+    title: `${toolName} - Free Online Tool | DapsiWow`,
+    description: `Use our free ${toolName.toLowerCase()} online. Fast, accurate, and secure calculator with no registration required. Professional-grade tool for instant results.`,
+    canonical: `${baseUrl}${req.path}` // Use path instead of originalUrl to avoid query string fragmentation
+  };
+}
+
+// Legacy route mapping table
+const legacyRedirectMap = {
+  '/about': '/about-us',
+  // All other legacy routes redirect to /tools/ + slug
+};
+
+function getLegacyRedirectPath(legacyPath) {
+  // Check explicit mapping first
+  if (legacyRedirectMap[legacyPath]) {
+    return legacyRedirectMap[legacyPath];
+  }
+  
+  // For tool routes, redirect to /tools/ + slug only if target exists
+  const toolPath = `/tools${legacyPath}`;
+  if (isValidToolRoute(toolPath)) {
+    return toolPath;
+  }
+  
+  // No valid redirect found
+  return null;
+}
+
+// Function to get dynamic canonical URL
+function getCanonicalUrl(route, req) {
+  const baseUrl = `${req.protocol}://${req.get('host')}`;
+  return `${baseUrl}${route}`;
+}
+
+// Get known routes  
+const knownRoutes = ['/', '/all-tools', '/finance-tools', '/text-tools', '/health-tools', '/about-us', '/contact-us', '/privacy-policy', '/terms-of-service', '/help-center'];
 
 // Valid tool routes from sitemaps (prevent soft-404s for invalid tools)
 const validToolRoutes = new Set([
@@ -351,8 +431,8 @@ const isLegacyRedirectRoute = (path) => {
   return legacyRedirectRoutes.has(path);
 };
 
-// Serve prerendered files with proper HTTP status codes
-app.get('*', async (req, res) => {
+// Serve prerendered files with proper HTTP status codes  
+app.use(async (req, res) => {
   try {
     const requestPath = req.path;
     
@@ -371,37 +451,81 @@ app.get('*', async (req, res) => {
       isPrerendered = true;
       console.log(`📄 Serving prerendered: ${requestPath} -> ${sanitizedPath}`);
     } catch {
-      // Check if this is a known route, valid tool route, or legacy redirect route
-      if (knownRoutes.includes(requestPath) || 
-          isValidToolRoute(requestPath) || 
-          isLegacyRedirectRoute(requestPath)) {
-        // Fallback to SPA for legitimate routes only
+      // Handle legacy redirects first (301 redirect to canonical URLs)
+      if (isLegacyRedirectRoute(requestPath)) {
+        const canonicalPath = getLegacyRedirectPath(requestPath);
+        if (canonicalPath) {
+          const canonicalUrl = getCanonicalUrl(canonicalPath, req);
+          console.log(`🔀 301 redirect: ${requestPath} -> ${canonicalPath}`);
+          res.setHeader('Cache-Control', 'public, max-age=86400'); // Cache redirects
+          return res.redirect(301, canonicalUrl);
+        } else {
+          // Legacy route exists but no valid target - return 404
+          console.log(`❌ 404 for invalid legacy route: ${requestPath}`);
+          return res.status(404)
+            .setHeader('Cache-Control', 'public, max-age=300')
+            .setHeader('X-Robots-Tag', 'noindex')
+            .send('<!DOCTYPE html><html><head><title>Page Not Found</title></head><body><h1>404 - Page Not Found</h1><p>The requested page could not be found.</p></body></html>');
+        }
+      }
+      
+      // Check if this is a known route or valid tool route
+      if (knownRoutes.includes(requestPath) || isValidToolRoute(requestPath)) {
+        // Generate appropriate metadata for the route
+        let metadata;
+        if (requestPath.startsWith('/tools/')) {
+          const toolSlug = requestPath.replace('/tools/', '');
+          metadata = generateToolMetadata(toolSlug, req);
+        } else {
+          metadata = getRouteMetadata(requestPath, req);
+        }
+        
+        // Read and modify HTML with route-specific metadata
         filePath = path.join(__dirname, 'dist', 'index.html');
         fileStats = await fs.stat(filePath);
-        console.log(`🔄 SPA fallback: ${requestPath}`);
+        const htmlContent = await fs.readFile(filePath, 'utf8');
+        
+        // Inject unique metadata for this route
+        const modifiedHtml = htmlContent
+          .replace(/<title>.*?<\/title>/, `<title>${metadata.title}</title>`)
+          .replace(/name="title" content=".*?"/, `name="title" content="${metadata.title}"`)
+          .replace(/name="description" content=".*?"/, `name="description" content="${metadata.description}"`)
+          .replace(/rel="canonical" href=".*?"/, `rel="canonical" href="${metadata.canonical}"`)
+          .replace(/property="og:url" content=".*?"/, `property="og:url" content="${metadata.canonical}"`)
+          .replace(/property="og:title" content=".*?"/, `property="og:title" content="${metadata.title}"`)
+          .replace(/property="og:description" content=".*?"/, `property="og:description" content="${metadata.description}"`)
+          .replace(/name="twitter:title" content=".*?"/, `name="twitter:title" content="${metadata.title}"`)
+          .replace(/name="twitter:description" content=".*?"/, `name="twitter:description" content="${metadata.description}"`);
+        
+        console.log(`🔄 SPA with unique metadata: ${requestPath}`);
+        
+        // Set HTML-specific SEO headers
+        res.setHeader('Content-Type', 'text/html; charset=utf-8');
+        res.setHeader('X-Robots-Tag', 'index, follow');
+        res.setHeader('Cache-Control', 'public, max-age=300, must-revalidate');
+        
+        if (fileStats) {
+          res.setHeader('Last-Modified', fileStats.mtime.toUTCString());
+        }
+        
+        return res.send(modifiedHtml);
       } else {
         // Return 404 for unknown routes to prevent soft-404s
         console.log(`❌ 404 for unknown route: ${requestPath}`);
-        return res.status(404).setHeader('Cache-Control', 'public, max-age=300').send('<!DOCTYPE html><html><head><title>Page Not Found</title></head><body><h1>404 - Page Not Found</h1><p>The requested page could not be found.</p></body></html>');
+        return res.status(404)
+          .setHeader('Cache-Control', 'public, max-age=300')
+          .setHeader('X-Robots-Tag', 'noindex')
+          .send('<!DOCTYPE html><html><head><title>Page Not Found</title></head><body><h1>404 - Page Not Found</h1><p>The requested page could not be found.</p></body></html>');
       }
     }
     
-    // Set HTML-specific SEO headers
+    // Handle prerendered content
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     res.setHeader('X-Robots-Tag', 'index, follow');
+    res.setHeader('Cache-Control', 'public, max-age=3600, must-revalidate');
     
-    // Set Last-Modified based on actual file modification time
     if (fileStats) {
       res.setHeader('Last-Modified', fileStats.mtime.toUTCString());
-    }
-    
-    // Set appropriate caching headers based on content type
-    if (isPrerendered) {
-      // Cache prerendered pages with moderate duration
-      res.setHeader('Cache-Control', 'public, max-age=3600, must-revalidate');
-    } else {
-      // SPA fallback - shorter cache duration
-      res.setHeader('Cache-Control', 'public, max-age=300, must-revalidate');
     }
     
     res.sendFile(filePath);
