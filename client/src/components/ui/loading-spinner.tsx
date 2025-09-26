@@ -1,10 +1,18 @@
+import { useLocation } from 'wouter';
+import { 
+  HomePageSkeleton, 
+  CategoryPageSkeleton, 
+  ToolPageSkeleton, 
+  EnhancedLoadingSpinner 
+} from '@/components/ui/skeletons';
+
 interface LoadingSpinnerProps {
   size?: "sm" | "md" | "lg";
   className?: string;
   label?: string;
 }
 
-export function LoadingSpinner({ size = "md", className, label = "Loading content" }: LoadingSpinnerProps) {
+export function LoadingSpinner({ size = "md", className, label = "Loading" }: LoadingSpinnerProps) {
   const sizeClasses = {
     sm: "w-4 h-4",
     md: "w-8 h-8",
@@ -22,13 +30,27 @@ export function LoadingSpinner({ size = "md", className, label = "Loading conten
   );
 }
 
+// Smart page loading component that shows appropriate skeleton based on route
 export function PageLoadingSpinner() {
+  const [location] = useLocation();
+  
+  // Determine which skeleton to show based on the current route
+  if (location === '/') {
+    return <HomePageSkeleton />;
+  }
+  
+  if (location.includes('/finance-tools') || location.includes('/text-tools') || location.includes('/health-tools') || location === '/all-tools') {
+    return <CategoryPageSkeleton />;
+  }
+  
+  if (location.startsWith('/tools/')) {
+    return <ToolPageSkeleton />;
+  }
+  
+  // Fallback for other pages - show enhanced spinner
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-neutral-900" data-testid="page-loading">
-      <div className="text-center">
-        <LoadingSpinner size="lg" label="Loading page content" />
-        <p className="mt-4 text-gray-600 dark:text-gray-300" aria-live="polite">Loading page content...</p>
-      </div>
+      <EnhancedLoadingSpinner size="lg" message="Loading..." />
     </div>
   );
 }

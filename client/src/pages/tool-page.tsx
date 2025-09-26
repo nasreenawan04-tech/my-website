@@ -6,6 +6,8 @@ import { tools, type Tool } from '@/data/tools';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { PageLoadingSpinner } from '@/components/ui/loading-spinner';
+import ToolErrorBoundary from '@/components/ToolErrorBoundary';
+import ProgressiveLoader from '@/components/ProgressiveLoader';
 import NotFound from '@/pages/not-found';
 
 // Context to override canonical URLs when rendered through ToolPage

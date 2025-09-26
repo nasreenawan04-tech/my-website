@@ -38,20 +38,41 @@ async function prerenderRoute(browser, route, baseURL) {
   const page = await browser.newPage();
   
   try {
+    // Set viewport for consistent rendering
+    await page.setViewport({ width: 1280, height: 720 });
+    
     await page.goto(`${baseURL}${route}`, {
       waitUntil: 'networkidle0',
       timeout: 30000
     });
 
-    // Wait for React to fully render
-    await page.waitForSelector('[data-testid]', { timeout: 10000 });
+    // Wait for React to fully render - try multiple selectors
+    try {
+      await page.waitForSelector('[data-testid]', { timeout: 10000 });
+    } catch {
+      // Fallback to waiting for main content
+      await page.waitForSelector('main, #root > *', { timeout: 5000 });
+    }
     
     // Get the fully rendered HTML
-    const html = await page.content();
+    let html = await page.content();
     
-    // Create directory structure - save to dist for production serving
-    const sanitizedRoute = route === '/' ? 'index.html' : `${route.replace(/^\/+/, '')}.html`;
-    const filePath = path.join(__dirname, '../dist/prerendered', sanitizedRoute);
+    // Optimize the HTML for static serving
+    html = html.replace(/data-reactroot=""/g, '');
+    html = html.replace(/data-testid="[^"]*"/g, '');
+    
+    // Create directory structure for proper static serving
+    // For SEO-friendly URLs: /tools/foo -> /tools/foo/index.html
+    let filePath;
+    if (route === '/') {
+      filePath = path.join(__dirname, '../dist', 'index.html');
+    } else if (route.startsWith('/tools/')) {
+      const toolId = route.replace('/tools/', '');
+      filePath = path.join(__dirname, '../dist', 'tools', toolId, 'index.html');
+    } else {
+      const routePath = route.replace(/^\/+/, '');
+      filePath = path.join(__dirname, '../dist', routePath, 'index.html');
+    }
     const dir = path.dirname(filePath);
     
     await fs.mkdir(dir, { recursive: true });
@@ -77,16 +98,28 @@ async function prerender() {
   });
 
   try {
-    // Create prerendered directory in dist for production
-    await fs.mkdir(path.join(__dirname, '../dist/prerendered'), { recursive: true });
+    // Ensure dist directory exists
+    await fs.mkdir(path.join(__dirname, '../dist'), { recursive: true });
     
     // Prerender all routes concurrently (in batches to avoid overwhelming)
-    const batchSize = 5;
+    const batchSize = 3; // Reduced batch size for better stability
+    let completed = 0;
+    
     for (let i = 0; i < routes.length; i += batchSize) {
       const batch = routes.slice(i, i + batchSize);
       await Promise.all(
         batch.map(route => prerenderRoute(browser, route, baseURL))
       );
+      completed += batch.length;
+      console.log(`Progress: ${completed}/${routes.length} pages completed`);
+    }
+    
+    // Copy original index.html as fallback
+    try {
+      const originalIndex = await fs.readFile(path.join(__dirname, '../client/index.html'), 'utf8');
+      await fs.writeFile(path.join(__dirname, '../dist/404.html'), originalIndex, 'utf8');
+    } catch (err) {
+      console.warn('Could not create 404.html fallback:', err.message);
     }
     
     console.log(`✅ Prerendering complete! Generated ${routes.length} static pages`);
