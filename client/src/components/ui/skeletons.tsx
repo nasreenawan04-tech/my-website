@@ -44,19 +44,19 @@ export function ToolPageSkeleton() {
       </div>
 
       {/* Hero section skeleton */}
-      <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 py-16">
+      <div className="py-16" style={{backgroundColor: "#f0f0f0"}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           {/* Breadcrumb skeleton */}
           <div className="mb-6">
-            <Skeleton className="h-8 w-48 mx-auto rounded-full bg-white/20" />
+            <Skeleton className="h-8 w-48 mx-auto rounded-full" />
           </div>
           {/* Tool title skeleton */}
           <div className="mb-4">
-            <Skeleton className="h-8 w-32 mx-auto mb-2 bg-white/20" /> {/* Smart BMI */}
-            <Skeleton className="h-16 w-64 mx-auto bg-white/20" /> {/* Calculator */}
+            <Skeleton className="h-8 w-32 mx-auto mb-2" /> {/* Smart BMI */}
+            <Skeleton className="h-16 w-64 mx-auto" /> {/* Calculator */}
           </div>
           {/* Description skeleton */}
-          <Skeleton className="h-6 w-full max-w-2xl mx-auto bg-white/20" />
+          <Skeleton className="h-6 w-full max-w-2xl mx-auto" />
         </div>
       </div>
 
