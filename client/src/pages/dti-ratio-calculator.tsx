@@ -55,10 +55,9 @@ export default function DTIRatioCalculator() {
     const totalDebt = debtItems.reduce((sum, item) => sum + (item.payment || 0), 0);
     const housingDebt = debtItems.find(item => item.name.includes('Mortgage') || item.name.includes('Rent'))?.payment || 0;
     
-    if (totalIncome <= 0) return;
-    
-    const dtiRatio = (totalDebt / totalIncome) * 100;
-    const frontEndRatio = (housingDebt / totalIncome) * 100;
+    // Always calculate and show results, even if income is 0
+    const dtiRatio = totalIncome > 0 ? (totalDebt / totalIncome) * 100 : 0;
+    const frontEndRatio = totalIncome > 0 ? (housingDebt / totalIncome) * 100 : 0;
     const backEndRatio = dtiRatio;
     const availableIncome = totalIncome - totalDebt;
     
@@ -68,7 +67,10 @@ export default function DTIRatioCalculator() {
     let status = '';
     let recommendation = '';
     
-    if (dtiRatio <= 20) {
+    if (totalIncome <= 0) {
+      status = 'Enter Income';
+      recommendation = 'Please enter your monthly income sources to calculate your DTI ratio and get personalized recommendations.';
+    } else if (dtiRatio <= 20) {
       status = 'Excellent';
       recommendation = 'You have a very healthy DTI ratio. You should easily qualify for most loans with favorable terms.';
     } else if (dtiRatio <= 36) {
@@ -190,6 +192,7 @@ export default function DTIRatioCalculator() {
       case 'Excellent': return 'text-green-600';
       case 'Good': return 'text-blue-600';
       case 'Fair': return 'text-yellow-600';
+      case 'Enter Income': return 'text-gray-600';
       default: return 'text-red-600';
     }
   };
@@ -199,6 +202,7 @@ export default function DTIRatioCalculator() {
       case 'Excellent': return 'from-green-50 to-emerald-50 border-green-200';
       case 'Good': return 'from-blue-50 to-indigo-50 border-blue-200';
       case 'Fair': return 'from-yellow-50 to-amber-50 border-yellow-200';
+      case 'Enter Income': return 'from-gray-50 to-slate-50 border-gray-200';
       default: return 'from-red-50 to-rose-50 border-red-200';
     }
   };
