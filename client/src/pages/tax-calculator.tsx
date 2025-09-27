@@ -323,9 +323,9 @@ export default function TaxCalculator() {
         <div className="max-w-7xl mx-auto px-4 py-16">
           <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
-                {/* Input Section */}
-                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
+              <div className="space-y-8">
+                {/* Tax Configuration Section */}
+                <div className="p-8 lg:p-12 space-y-8">
                   <div>
                     <h2 className="text-3xl font-bold text-gray-900 mb-2">Tax Configuration</h2>
                     <p className="text-gray-600">Enter your income details to get accurate tax calculations</p>
@@ -429,7 +429,7 @@ export default function TaxCalculator() {
                   </div>
                 </div>
 
-                {/* Results Section */}
+                {/* Tax Analysis Section */}
                 <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
                   <div className="space-y-8">
                     <div>
