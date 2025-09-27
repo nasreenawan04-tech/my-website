@@ -1,4 +1,5 @@
 import { Skeleton } from "@/components/ui/skeleton";
+import logoImage from '@assets/logo.svg';
 
 // Skeleton for individual tool cards in grids
 export function ToolCardSkeleton() {
@@ -311,16 +312,22 @@ export function HomePageSkeleton() {
   );
 }
 
-// Enhanced loading spinner with better animations
+// Enhanced loading spinner with better animations and logo
 export function EnhancedLoadingSpinner({ size = "md", className, message }: {
   size?: "sm" | "md" | "lg";
   className?: string;
   message?: string;
 }) {
   const sizeClasses = {
+    sm: "w-12 h-12",
+    md: "w-16 h-16", 
+    lg: "w-24 h-24"
+  };
+
+  const logoSizeClasses = {
     sm: "w-6 h-6",
-    md: "w-10 h-10", 
-    lg: "w-16 h-16"
+    md: "w-8 h-8", 
+    lg: "w-12 h-12"
   };
 
   return (
@@ -330,8 +337,15 @@ export function EnhancedLoadingSpinner({ size = "md", className, message }: {
         <div className="absolute inset-0 rounded-full border-4 border-gray-200 dark:border-gray-700"></div>
         {/* Spinning ring */}
         <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-blue-600 border-r-blue-600 animate-spin"></div>
-        {/* Inner pulse */}
-        <div className="absolute inset-2 rounded-full bg-blue-100 dark:bg-blue-900 animate-pulse"></div>
+        {/* Logo in center */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <img 
+            src={logoImage}
+            alt=""
+            aria-hidden="true"
+            className={`${logoSizeClasses[size]} object-contain animate-pulse`}
+          />
+        </div>
       </div>
       {message && (
         <p className="mt-4 text-gray-600 dark:text-gray-300 text-sm animate-pulse">
@@ -362,18 +376,26 @@ export function InlineSpinner({ size = "sm", className }: {
   );
 }
 
-// Tool calculation spinner with progress indication
+// Tool calculation spinner with progress indication and logo
 export function CalculationSpinner({ message = "Calculating..." }: {
   message?: string;
 }) {
   return (
     <div className="flex flex-col items-center justify-center p-6" data-testid="calculation-spinner">
-      <div className="relative w-12 h-12 mb-4" data-testid="calculation-spinner-rings">
+      <div className="relative w-16 h-16 mb-4" data-testid="calculation-spinner-rings">
         {/* Multiple rotating rings for calculation effect */}
         <div className="absolute inset-0 rounded-full border-4 border-blue-200 dark:border-blue-800"></div>
         <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-blue-600 animate-spin"></div>
         <div className="absolute inset-1 rounded-full border-[3px] border-transparent border-r-purple-600 animate-spin" style={{animationDirection: 'reverse', animationDuration: '1.5s'}}></div>
-        <div className="absolute inset-3 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 animate-pulse"></div>
+        {/* Logo in center */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <img 
+            src={logoImage}
+            alt=""
+            aria-hidden="true"
+            className="w-6 h-6 object-contain animate-pulse"
+          />
+        </div>
       </div>
       <p className="text-sm text-gray-600 dark:text-gray-300 animate-pulse font-medium">
         {message}

@@ -1,4 +1,5 @@
 import { useLocation } from 'wouter';
+import logoImage from '@assets/logo.svg';
 import { 
   HomePageSkeleton, 
   CategoryPageSkeleton, 
@@ -16,17 +17,34 @@ interface LoadingSpinnerProps {
 
 export function LoadingSpinner({ size = "md", className, label = "Loading" }: LoadingSpinnerProps) {
   const sizeClasses = {
-    sm: "w-4 h-4",
-    md: "w-8 h-8",
-    lg: "w-12 h-12"
+    sm: "w-8 h-8",
+    md: "w-12 h-12",
+    lg: "w-16 h-16"
+  };
+
+  const logoSizeClasses = {
+    sm: "w-3 h-3",
+    md: "w-5 h-5",
+    lg: "w-7 h-7"
   };
 
   return (
     <div className="flex items-center justify-center p-8" data-testid="loading-spinner" role="status" aria-live="polite">
-      <div
-        className={`animate-spin rounded-full border-2 border-gray-300 border-t-blue-600 ${sizeClasses[size]} ${className || ''}`}
-        aria-hidden="true"
-      />
+      <div className={`relative ${sizeClasses[size]} ${className || ''}`}>
+        <div
+          className="absolute inset-0 animate-spin rounded-full border-2 border-gray-300 dark:border-neutral-700 border-t-blue-600 dark:border-t-blue-500"
+          aria-hidden="true"
+        />
+        {/* Logo in center */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <img 
+            src={logoImage}
+            alt=""
+            aria-hidden="true"
+            className={`${logoSizeClasses[size]} object-contain animate-pulse`}
+          />
+        </div>
+      </div>
       <span className="sr-only">{label}</span>
     </div>
   );
