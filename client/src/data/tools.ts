@@ -859,6 +859,15 @@ const toolsData: Tool[] = [
     icon: "fas fa-clock",
     href: "/tools/metabolic-age-calculator",
   },
+  {
+    id: "meal-calorie-tracker",
+    name: "Meal Calorie Tracker",
+    description: "Track your daily calorie intake by adding meals with detailed nutritional information and progress monitoring",
+    category: "health" as const,
+    icon: "fas fa-utensils",
+    href: "/tools/meal-calorie-tracker",
+    isPopular: true,
+  },
 ];
 
 // Export tools directly since hrefs are now correctly set in the data

@@ -34,6 +34,7 @@ const BodyCompositionAnalyzer = lazy(() => import("@/pages/body-composition-anal
 const MetabolicAgeCalculator = lazy(() => import("@/pages/metabolic-age-calculator"));
 const PersonalFinanceDashboard = lazy(() => import("@/pages/personal-finance-dashboard"));
 const DebtConsolidationCalculator = lazy(() => import("@/pages/debt-consolidation-calculator"));
+const MealCalorieTracker = lazy(() => import("@/pages/meal-calorie-tracker"));
 
 // Individual tool components are now loaded dynamically via ToolPage for better maintainability
 
@@ -163,6 +164,7 @@ function Router() {
           <Route path="/stress-level-calculator" component={() => <Redirect to="/tools/stress-level-calculator" />} />
           <Route path="/body-composition-analyzer" component={() => <Redirect to="/tools/body-composition-analyzer" />} />
           <Route path="/metabolic-age-calculator" component={() => <Redirect to="/tools/metabolic-age-calculator" />} />
+          <Route path="/meal-calorie-tracker" component={() => <Redirect to="/tools/meal-calorie-tracker" />} />
 
           {/* Specific tool routes - must come before the generic route */}
           <Route path="/tools/text-statistics-analyzer" component={TextStatisticsAnalyzer} />
@@ -174,6 +176,7 @@ function Router() {
           <Route path="/tools/metabolic-age-calculator" component={MetabolicAgeCalculator} />
           <Route path="/tools/personal-finance-dashboard" component={PersonalFinanceDashboard} />
           <Route path="/tools/debt-consolidation-calculator" component={DebtConsolidationCalculator} />
+          <Route path="/tools/meal-calorie-tracker" component={MealCalorieTracker} />
           
           {/* Generic tool route - must come last to avoid conflicts */}
           <Route path="/tools/:toolId" component={ToolPage} />
