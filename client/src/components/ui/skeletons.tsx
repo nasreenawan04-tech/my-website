@@ -143,16 +143,16 @@ export function CategoryPageSkeleton() {
       </div>
 
       {/* Hero section with search */}
-      <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 py-16">
+      <div className="py-16" style={{backgroundColor: "#f0f0f0"}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <Skeleton className="h-16 w-16 rounded-2xl mx-auto mb-6 bg-white/20" />
-          <Skeleton className="h-12 w-64 mx-auto mb-4 bg-white/20" />
-          <Skeleton className="h-6 w-96 mx-auto mb-8 bg-white/20" />
+          <Skeleton className="h-16 w-16 rounded-2xl mx-auto mb-6" />
+          <Skeleton className="h-12 w-64 mx-auto mb-4" />
+          <Skeleton className="h-6 w-96 mx-auto mb-8" />
           {/* Search bar skeleton */}
           <div className="max-w-2xl mx-auto relative">
-            <Skeleton className="h-16 w-full rounded-2xl bg-white/20" />
+            <Skeleton className="h-16 w-full rounded-2xl" />
             <div className="absolute right-2 top-2">
-              <Skeleton className="h-12 w-12 rounded-xl bg-blue-500/30" />
+              <Skeleton className="h-12 w-12 rounded-xl" />
             </div>
           </div>
         </div>
