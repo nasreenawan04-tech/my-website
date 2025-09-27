@@ -564,6 +564,8 @@ const TextToQRCode = () => {
                                 alt={`QR Code ${index + 1}`}
                                 className="max-w-full max-h-full"
                                 data-testid={`qr-image-${index}`}
+                                loading="lazy"
+                                decoding="async"
                               />
                             </div>
                             

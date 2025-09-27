@@ -66,7 +66,7 @@ const MarkdownToHTMLConverter = () => {
     html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
 
     // Images
-    html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1">');
+    html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" loading="lazy" decoding="async">');
 
     // Lists
     html = html.replace(/^\* (.*$)/gm, '<li>$1</li>');
