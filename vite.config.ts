@@ -40,12 +40,12 @@ export default defineConfig({
   build: {
     outDir: path.resolve(__dirname, "dist"),
     emptyOutDir: true,
-    target: "esnext",
+    target: ["es2022", "chrome89", "firefox89", "safari15"],
     minify: "esbuild",
     cssMinify: "lightningcss",
     sourcemap: false,
     cssCodeSplit: true,
-    assetsInlineLimit: 8192, // Increased for better caching
+    assetsInlineLimit: 4096, // Optimized for performance
     rollupOptions: {
       output: {
         manualChunks: {
@@ -62,10 +62,15 @@ export default defineConfig({
         chunkFileNames: "assets/[name]-[hash].js",
         entryFileNames: "assets/[name]-[hash].js",
         assetFileNames: "assets/[name]-[hash].[ext]"
+      },
+      treeshake: {
+        moduleSideEffects: false,
+        propertyReadSideEffects: false,
+        unknownGlobalSideEffects: false
       }
     },
     reportCompressedSize: false,
-    chunkSizeWarningLimit: 1000
+    chunkSizeWarningLimit: 500
   },
   server: {
     host: "0.0.0.0",

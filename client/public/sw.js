@@ -140,8 +140,9 @@ self.addEventListener('fetch', (event) => {
         .then((response) => {
           // Cache successful HTML responses
           if (response.status === 200) {
+            const responseClone = response.clone();
             caches.open(CACHE_NAME)
-              .then((cache) => cache.put(request, response.clone()));
+              .then((cache) => cache.put(request, responseClone));
           }
           return response;
         })
