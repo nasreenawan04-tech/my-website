@@ -99,8 +99,10 @@ self.addEventListener('fetch', (event) => {
               }
               return fetch(request)
                 .then((response) => {
+                  // Clone response immediately to prevent "body already used" error
+                  const responseClone = response.clone();
                   if (response.status === 200) {
-                    cache.put(request, response.clone());
+                    cache.put(request, responseClone);
                   }
                   return response;
                 });
@@ -119,8 +121,10 @@ self.addEventListener('fetch', (event) => {
             .then((cachedResponse) => {
               const fetchPromise = fetch(request)
                 .then((response) => {
+                  // Clone response immediately to prevent "body already used" error
+                  const responseClone = response.clone();
                   if (response.status === 200) {
-                    cache.put(request, response.clone());
+                    cache.put(request, responseClone);
                   }
                   return response;
                 });
@@ -138,9 +142,10 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       fetch(request)
         .then((response) => {
+          // Clone response before using it to avoid "Response body is already used" error
+          const responseClone = response.clone();
           // Cache successful HTML responses
           if (response.status === 200) {
-            const responseClone = response.clone();
             caches.open(CACHE_NAME)
               .then((cache) => cache.put(request, responseClone));
           }

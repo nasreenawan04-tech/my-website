@@ -45,7 +45,7 @@ export default defineConfig({
     cssMinify: "lightningcss",
     sourcemap: false,
     cssCodeSplit: true,
-    assetsInlineLimit: 4096, // Optimized for performance
+    assetsInlineLimit: 8192, // Increased for better performance (8KB threshold)
     rollupOptions: {
       output: {
         manualChunks: {
@@ -70,7 +70,11 @@ export default defineConfig({
       }
     },
     reportCompressedSize: false,
-    chunkSizeWarningLimit: 500
+    chunkSizeWarningLimit: 500,
+    // Additional optimizations
+    modulePreload: {
+      polyfill: false // Reduce bundle size for modern browsers
+    }
   },
   server: {
     host: "0.0.0.0",
@@ -84,6 +88,13 @@ export default defineConfig({
       deny: ["**/.*"],
     },
   },
+  esbuild: {
+    drop: process.env.NODE_ENV === "production" ? ["console", "debugger"] : [],
+    legalComments: "none", // Remove license comments in production
+    minifyIdentifiers: true,
+    minifySyntax: true,
+    minifyWhitespace: true,
+  },
   optimizeDeps: {
     include: [
       "react", 
@@ -93,11 +104,11 @@ export default defineConfig({
       "lucide-react",
       "react-helmet-async",
       "clsx",
-      "tailwind-merge"
+      "tailwind-merge",
+      "framer-motion",
+      "date-fns"
     ],
-    exclude: ["@vite/client", "@vite/env"]
+    exclude: ["@vite/client", "@vite/env"],
+    force: true // Pre-bundle heavy dependencies for better performance
   },
-  esbuild: {
-    drop: process.env.NODE_ENV === "production" ? ["console", "debugger"] : [],
-  }
 });
