@@ -48,16 +48,34 @@ export default defineConfig({
     assetsInlineLimit: 8192, // Increased for better performance (8KB threshold)
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ["react", "react-dom"],
-          router: ["wouter"],
-          query: ["@tanstack/react-query"],
-          ui: ["@radix-ui/react-dialog", "@radix-ui/react-dropdown-menu", "@radix-ui/react-tabs", "@radix-ui/react-select", "@radix-ui/react-slider"],
-          form: ["react-hook-form", "@hookform/resolvers", "zod"],
-          charts: ["recharts"],
-          icons: ["lucide-react"],
-          utils: ["clsx", "tailwind-merge", "framer-motion", "date-fns"],
-          helmet: ["react-helmet-async"]
+        manualChunks(id) {
+          // Vendor chunk for React core
+          if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) {
+            return 'vendor';
+          }
+          // UI libraries chunk
+          if (id.includes('@radix-ui') || id.includes('framer-motion')) {
+            return 'ui-libs';
+          }
+          // Form handling chunk
+          if (id.includes('react-hook-form') || id.includes('zod') || id.includes('@hookform')) {
+            return 'forms';
+          }
+          // Utilities chunk
+          if (id.includes('lucide-react') || id.includes('clsx') || id.includes('tailwind-merge') || id.includes('date-fns')) {
+            return 'utils';
+          }
+          // Large individual libraries
+          if (id.includes('recharts')) {
+            return 'charts';
+          }
+          if (id.includes('@tanstack/react-query')) {
+            return 'query';
+          }
+          // Default chunk for other node_modules
+          if (id.includes('node_modules')) {
+            return 'vendor-misc';
+          }
         },
         chunkFileNames: "assets/[name]-[hash].js",
         entryFileNames: "assets/[name]-[hash].js",
