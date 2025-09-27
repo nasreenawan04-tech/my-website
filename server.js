@@ -25,14 +25,14 @@ app.use((req, res, next) => {
   // HSTS (HTTP Strict Transport Security)
   res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
   
-  // Content Security Policy - balanced security and functionality
+  // Content Security Policy - optimized for Google Fonts & Ads
   res.setHeader('Content-Security-Policy', 
     "default-src 'self'; " +
-    "script-src 'self' 'unsafe-inline' 'unsafe-hashes' https://www.googletagmanager.com https://www.google-analytics.com https://pagead2.googlesyndication.com https://tpc.googlesyndication.com; " +
+    "script-src 'self' 'unsafe-inline' 'unsafe-hashes' https://pagead2.googlesyndication.com https://www.googletagmanager.com https://www.google-analytics.com https://tpc.googlesyndication.com; " +
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
     "font-src 'self' https://fonts.gstatic.com data:; " +
     "img-src 'self' data: blob: https:; " +
-    "connect-src 'self' https://www.google-analytics.com https://fonts.googleapis.com https://fonts.gstatic.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net; " +
+    "connect-src 'self' https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://www.google-analytics.com https://fonts.googleapis.com https://fonts.gstatic.com; " +
     "frame-src https://pagead2.googlesyndication.com https://tpc.googlesyndication.com https://googleads.g.doubleclick.net; " +
     "worker-src 'self'; " +
     "frame-ancestors 'none'; " +

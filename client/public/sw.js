@@ -68,20 +68,23 @@ self.addEventListener('fetch', (event) => {
   // API requests - network first with cache fallback
   if (url.pathname.startsWith('/api/')) {
     event.respondWith(
-      caches.open(API_CACHE)
-        .then((cache) => {
-          return fetch(request)
-            .then((response) => {
-              // Only cache successful responses
-              if (response.status === 200) {
-                cache.put(request, response.clone());
-              }
-              return response;
-            })
-            .catch(() => {
-              // Fallback to cache if network fails
-              return cache.match(request);
+      fetch(request)
+        .then((response) => {
+          // Clone response before any use to prevent "body already used" error
+          const clonedResponse = response.clone();
+          // Only cache successful responses
+          if (response.ok && response.status === 200) {
+            caches.open(API_CACHE).then((cache) => {
+              cache.put(request, clonedResponse);
             });
+          }
+          return response;
+        })
+        .catch(() => {
+          // Fallback to cache if network fails
+          return caches.open(API_CACHE).then((cache) => {
+            return cache.match(request);
+          });
         })
     );
     return;
@@ -99,8 +102,10 @@ self.addEventListener('fetch', (event) => {
               }
               return fetch(request)
                 .then((response) => {
-                  if (response.status === 200) {
-                    cache.put(request, response.clone());
+                  // Clone response before any use
+                  const clonedResponse = response.clone();
+                  if (response.ok && response.status === 200) {
+                    cache.put(request, clonedResponse);
                   }
                   return response;
                 });
@@ -119,8 +124,10 @@ self.addEventListener('fetch', (event) => {
             .then((cachedResponse) => {
               const fetchPromise = fetch(request)
                 .then((response) => {
-                  if (response.status === 200) {
-                    cache.put(request, response.clone());
+                  // Clone response before any use
+                  const clonedResponse = response.clone();
+                  if (response.ok && response.status === 200) {
+                    cache.put(request, clonedResponse);
                   }
                   return response;
                 });
@@ -138,10 +145,12 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       fetch(request)
         .then((response) => {
+          // Clone response before any use to prevent "body already used" error
+          const clonedResponse = response.clone();
           // Cache successful HTML responses
-          if (response.status === 200) {
+          if (response.ok && response.status === 200) {
             caches.open(CACHE_NAME)
-              .then((cache) => cache.put(request, response.clone()));
+              .then((cache) => cache.put(request, clonedResponse));
           }
           return response;
         })
