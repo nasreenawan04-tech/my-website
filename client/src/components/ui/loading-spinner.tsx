@@ -3,7 +3,9 @@ import {
   HomePageSkeleton, 
   CategoryPageSkeleton, 
   ToolPageSkeleton, 
-  EnhancedLoadingSpinner 
+  EnhancedLoadingSpinner,
+  InlineSpinner,
+  CalculationSpinner
 } from '@/components/ui/skeletons';
 
 interface LoadingSpinnerProps {
@@ -54,3 +56,6 @@ export function PageLoadingSpinner() {
     </div>
   );
 }
+
+// Export additional spinners for use throughout the app
+export { InlineSpinner, CalculationSpinner };

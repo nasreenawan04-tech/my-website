@@ -29,21 +29,34 @@ export function ToolPageSkeleton() {
       <div className="border-b bg-white dark:bg-neutral-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Skeleton className="h-8 w-32" /> {/* Logo */}
-            <div className="flex items-center space-x-4">
-              <Skeleton className="h-8 w-8 rounded-full" /> {/* Theme toggle */}
-              <Skeleton className="h-8 w-20" /> {/* Menu button */}
+            <div className="flex items-center space-x-2">
+              <Skeleton className="h-8 w-8 rounded-full" /> {/* Logo icon */}
+              <Skeleton className="h-6 w-24" /> {/* Logo text */}
             </div>
+            <div className="hidden md:flex items-center space-x-8">
+              <Skeleton className="h-6 w-20" /> {/* Finance Tools */}
+              <Skeleton className="h-6 w-16" /> {/* Text Tools */}
+              <Skeleton className="h-6 w-20" /> {/* Health Tools */}
+            </div>
+            <Skeleton className="h-8 w-8 rounded-full" /> {/* Search icon */}
           </div>
         </div>
       </div>
 
       {/* Hero section skeleton */}
-      <div className="bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-700 py-16">
+      <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <Skeleton className="h-16 w-16 rounded-2xl mx-auto mb-6 bg-white/20" />
-          <Skeleton className="h-10 w-80 mx-auto mb-4 bg-white/20" />
-          <Skeleton className="h-6 w-96 mx-auto bg-white/20" />
+          {/* Breadcrumb skeleton */}
+          <div className="mb-6">
+            <Skeleton className="h-8 w-48 mx-auto rounded-full bg-white/20" />
+          </div>
+          {/* Tool title skeleton */}
+          <div className="mb-4">
+            <Skeleton className="h-8 w-32 mx-auto mb-2 bg-white/20" /> {/* Smart BMI */}
+            <Skeleton className="h-16 w-64 mx-auto bg-white/20" /> {/* Calculator */}
+          </div>
+          {/* Description skeleton */}
+          <Skeleton className="h-6 w-full max-w-2xl mx-auto bg-white/20" />
         </div>
       </div>
 
@@ -115,24 +128,32 @@ export function CategoryPageSkeleton() {
       <div className="border-b bg-white dark:bg-neutral-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Skeleton className="h-8 w-32" />
-            <div className="flex items-center space-x-4">
-              <Skeleton className="h-8 w-8 rounded-full" />
-              <Skeleton className="h-8 w-20" />
+            <div className="flex items-center space-x-2">
+              <Skeleton className="h-8 w-8 rounded-full" /> {/* Logo icon */}
+              <Skeleton className="h-6 w-24" /> {/* Logo text */}
             </div>
+            <div className="hidden md:flex items-center space-x-8">
+              <Skeleton className="h-6 w-20" /> {/* Finance Tools */}
+              <Skeleton className="h-6 w-16" /> {/* Text Tools */}
+              <Skeleton className="h-6 w-20" /> {/* Health Tools */}
+            </div>
+            <Skeleton className="h-8 w-8 rounded-full" /> {/* Search icon */}
           </div>
         </div>
       </div>
 
       {/* Hero section with search */}
-      <div className="bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-700 py-16">
+      <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Skeleton className="h-16 w-16 rounded-2xl mx-auto mb-6 bg-white/20" />
           <Skeleton className="h-12 w-64 mx-auto mb-4 bg-white/20" />
           <Skeleton className="h-6 w-96 mx-auto mb-8 bg-white/20" />
           {/* Search bar skeleton */}
-          <div className="max-w-2xl mx-auto">
+          <div className="max-w-2xl mx-auto relative">
             <Skeleton className="h-16 w-full rounded-2xl bg-white/20" />
+            <div className="absolute right-2 top-2">
+              <Skeleton className="h-12 w-12 rounded-xl bg-blue-500/30" />
+            </div>
           </div>
         </div>
       </div>
@@ -180,23 +201,55 @@ export function HomePageSkeleton() {
       <div className="border-b bg-white dark:bg-neutral-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Skeleton className="h-8 w-32" />
-            <div className="flex items-center space-x-4">
-              <Skeleton className="h-8 w-8 rounded-full" />
-              <Skeleton className="h-8 w-20" />
+            <div className="flex items-center space-x-2">
+              <Skeleton className="h-8 w-8 rounded-full" /> {/* Logo icon */}
+              <Skeleton className="h-6 w-24" /> {/* Logo text */}
             </div>
+            <div className="hidden md:flex items-center space-x-8">
+              <Skeleton className="h-6 w-20" /> {/* Finance Tools */}
+              <Skeleton className="h-6 w-16" /> {/* Text Tools */}
+              <Skeleton className="h-6 w-20" /> {/* Health Tools */}
+            </div>
+            <Skeleton className="h-8 w-8 rounded-full" /> {/* Search icon */}
           </div>
         </div>
       </div>
 
-      {/* Hero section skeleton */}
+      {/* Hero section skeleton with statistics */}
       <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-800 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <Skeleton className="h-16 w-96 mx-auto mb-6 bg-white/20" />
-          <Skeleton className="h-6 w-128 mx-auto mb-8 bg-white/20" />
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Skeleton className="h-12 w-40 bg-white/20" />
-            <Skeleton className="h-12 w-32 bg-white/20" />
+          {/* Main hero content */}
+          <div className="mb-12">
+            <Skeleton className="h-16 w-full max-w-4xl mx-auto mb-6 bg-white/20" />
+            <Skeleton className="h-6 w-full max-w-2xl mx-auto mb-8 bg-white/20" />
+            
+            {/* Search bar skeleton */}
+            <div className="max-w-2xl mx-auto relative">
+              <Skeleton className="h-16 w-full rounded-2xl bg-white/20" />
+              <div className="absolute right-2 top-2">
+                <Skeleton className="h-12 w-12 rounded-xl bg-blue-500/30" />
+              </div>
+            </div>
+          </div>
+          
+          {/* Statistics section skeleton */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+            <div className="text-center">
+              <Skeleton className="h-12 w-20 mx-auto mb-2 bg-white/20" /> {/* 1M+ */}
+              <Skeleton className="h-5 w-24 mx-auto bg-white/20" /> {/* Active Users */}
+            </div>
+            <div className="text-center">
+              <Skeleton className="h-12 w-20 mx-auto mb-2 bg-white/20" /> {/* 180+ */}
+              <Skeleton className="h-5 w-28 mx-auto bg-white/20" /> {/* Tools Available */}
+            </div>
+            <div className="text-center">
+              <Skeleton className="h-12 w-8 mx-auto mb-2 bg-white/20" /> {/* 3 */}
+              <Skeleton className="h-5 w-20 mx-auto bg-white/20" /> {/* Categories */}
+            </div>
+            <div className="text-center">
+              <Skeleton className="h-12 w-24 mx-auto mb-2 bg-white/20" /> {/* 500K+ */}
+              <Skeleton className="h-5 w-32 mx-auto bg-white/20" /> {/* Calculations Done */}
+            </div>
           </div>
         </div>
       </div>
@@ -285,6 +338,46 @@ export function EnhancedLoadingSpinner({ size = "md", className, message }: {
           {message}
         </p>
       )}
+    </div>
+  );
+}
+
+// Compact inline spinner for buttons and small spaces
+export function InlineSpinner({ size = "sm", className }: {
+  size?: "xs" | "sm" | "md";
+  className?: string;
+}) {
+  const sizeClasses = {
+    xs: "w-3 h-3",
+    sm: "w-4 h-4",
+    md: "w-6 h-6"
+  };
+
+  return (
+    <div 
+      className={`animate-spin rounded-full border-2 border-current border-t-transparent ${sizeClasses[size]} ${className || ''}`}
+      data-testid="inline-spinner"
+      aria-hidden="true"
+    />
+  );
+}
+
+// Tool calculation spinner with progress indication
+export function CalculationSpinner({ message = "Calculating..." }: {
+  message?: string;
+}) {
+  return (
+    <div className="flex flex-col items-center justify-center p-6" data-testid="calculation-spinner">
+      <div className="relative w-12 h-12 mb-4" data-testid="calculation-spinner-rings">
+        {/* Multiple rotating rings for calculation effect */}
+        <div className="absolute inset-0 rounded-full border-4 border-blue-200 dark:border-blue-800"></div>
+        <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-blue-600 animate-spin"></div>
+        <div className="absolute inset-1 rounded-full border-[3px] border-transparent border-r-purple-600 animate-spin" style={{animationDirection: 'reverse', animationDuration: '1.5s'}}></div>
+        <div className="absolute inset-3 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 animate-pulse"></div>
+      </div>
+      <p className="text-sm text-gray-600 dark:text-gray-300 animate-pulse font-medium">
+        {message}
+      </p>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import { LoadingSpinner } from './loading-spinner';
+import { InlineSpinner } from './loading-spinner';
 import { cn } from '@/lib/utils';
 
 interface EnhancedButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -56,10 +56,9 @@ const EnhancedButton = forwardRef<HTMLButtonElement, EnhancedButtonProps>(
         {...props}
       >
         {isLoading && (
-          <LoadingSpinner 
+          <InlineSpinner 
             size="sm" 
-            className="mr-2 w-4 h-4" 
-            label={`Loading: ${loadingText || 'Processing'}`}
+            className="mr-2" 
           />
         )}
         <span className={isLoading ? 'opacity-75' : ''}>
