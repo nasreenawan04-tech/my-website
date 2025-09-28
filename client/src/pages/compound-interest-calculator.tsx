@@ -262,46 +262,46 @@ export default function CompoundInterestCalculator() {
       
       <main>
         {/* Hero Section */}
-        <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32 overflow-hidden">
+        <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="space-y-4 sm:space-y-6 md:space-y-7 lg:space-y-8">
-              <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+          <div className="relative max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
+            <div className="space-y-4 sm:space-y-6 md:space-y-8">
+              <div className="inline-flex items-center px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
                 <span className="text-xs sm:text-sm font-medium text-blue-700">Advanced Investment Calculator</span>
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-slate-900 leading-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0">
                 <span className="block">Compound Interest</span>
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
                   Calculator
                 </span>
               </h1>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-slate-600 max-w-sm sm:max-w-2xl md:max-w-3xl lg:max-w-4xl mx-auto leading-relaxed">
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
                 Calculate how your investments grow with compound interest, SIP planning, and goal-based analysis
               </p>
             </div>
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
           {/* Main Calculator Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+              <div className="flex flex-col">
                 {/* Input Section */}
-                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
-                  <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Investment Configuration</h2>
-                    <p className="text-gray-600">Enter your investment details to see how compound interest accelerates your wealth growth</p>
+                <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
+                  <div className="text-center sm:text-left">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Investment Configuration</h2>
+                    <p className="text-sm sm:text-base text-gray-600">Enter your investment details to see how compound interest accelerates your wealth growth</p>
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                     {/* Currency Selection */}
-                    <div className="space-y-3">
-                      <Label htmlFor="currency" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="currency" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Currency
                       </Label>
                       <Select value={currency} onValueChange={setCurrency}>
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-currency">
+                        <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-currency">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -320,10 +320,10 @@ export default function CompoundInterestCalculator() {
                     </div>
 
                     {/* Compound Frequency */}
-                    <div className="space-y-3">
-                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Compound Frequency</Label>
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">Compound Frequency</Label>
                       <Select value={compoundFrequency} onValueChange={setCompoundFrequency}>
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-compound-frequency">
+                        <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-compound-frequency">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -337,18 +337,18 @@ export default function CompoundInterestCalculator() {
                     </div>
 
                     {/* Principal Amount */}
-                    <div className="space-y-3">
-                      <Label htmlFor="principal" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="principal" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Principal Amount
                       </Label>
                       <div className="relative">
-                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
                         <Input
                           id="principal"
                           type="number"
                           value={principal}
                           onChange={(e) => setPrincipal(e.target.value)}
-                          className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="10,000"
                           data-testid="input-principal"
                         />
@@ -356,8 +356,8 @@ export default function CompoundInterestCalculator() {
                     </div>
 
                     {/* Interest Rate */}
-                    <div className="space-y-3">
-                      <Label htmlFor="interest-rate" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="interest-rate" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Annual Interest Rate
                       </Label>
                       <div className="relative">
@@ -366,30 +366,30 @@ export default function CompoundInterestCalculator() {
                           type="number"
                           value={interestRate}
                           onChange={(e) => setInterestRate(e.target.value)}
-                          className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="8.00"
                           step="0.01"
                           data-testid="input-interest-rate"
                         />
-                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
+                        <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
                       </div>
                     </div>
 
                     {/* Time Period */}
-                    <div className="md:col-span-2 space-y-3">
-                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Investment Period</Label>
-                      <div className="grid grid-cols-2 gap-3">
+                    <div className="md:col-span-2 space-y-2 sm:space-y-3">
+                      <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">Investment Period</Label>
+                      <div className="grid grid-cols-2 gap-2 sm:gap-3">
                         <Input
                           type="number"
                           value={timePeriod}
                           onChange={(e) => setTimePeriod(e.target.value)}
-                          className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="10"
                           min="1"
                           data-testid="input-time-period"
                         />
                         <Select value={timeUnit} onValueChange={setTimeUnit}>
-                          <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-time-unit">
+                          <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-time-unit">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -402,47 +402,47 @@ export default function CompoundInterestCalculator() {
                   </div>
 
                   {/* Advanced Options */}
-                  <div className="space-y-6 border-t pt-8">
-                    <h3 className="text-xl font-bold text-gray-900">Advanced Options</h3>
+                  <div className="space-y-4 sm:space-y-6 border-t pt-4 sm:pt-6 md:pt-8">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900">Advanced Options</h3>
                     
                     {/* SIP Investment Toggle */}
-                    <div className="flex items-center space-x-3">
+                    <div className="flex items-center space-x-2 sm:space-x-3">
                       <input
                         type="checkbox"
                         checked={enableSIP}
                         onChange={(e) => setEnableSIP(e.target.checked)}
-                        className="w-5 h-5 text-blue-600 border-2 border-gray-300 rounded focus:ring-blue-500"
+                        className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 border-2 border-gray-300 rounded focus:ring-blue-500"
                         data-testid="checkbox-enable-sip"
                       />
-                      <label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                      <label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Enable SIP (Systematic Investment Plan)
                       </label>
                     </div>
                     
                     {enableSIP && (
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pl-8 border-l-4 border-blue-200 bg-blue-50 p-6 rounded-xl">
-                        <div className="space-y-3">
-                          <Label htmlFor="sip-amount" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 pl-4 sm:pl-6 md:pl-8 border-l-4 border-blue-200 bg-blue-50 p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="sip-amount" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             SIP Amount
                           </Label>
                           <div className="relative">
-                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                            <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
                             <Input
                               id="sip-amount"
                               type="number"
                               value={sipAmount}
                               onChange={(e) => setSipAmount(e.target.value)}
-                              className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                               placeholder="1,000"
                               data-testid="input-sip-amount"
                             />
                           </div>
                         </div>
 
-                        <div className="space-y-3">
-                          <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">SIP Frequency</Label>
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">SIP Frequency</Label>
                           <Select value={sipFrequency} onValueChange={setSipFrequency}>
-                            <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-sip-frequency">
+                            <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-sip-frequency">
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent>
@@ -454,8 +454,8 @@ export default function CompoundInterestCalculator() {
                           </Select>
                         </div>
 
-                        <div className="space-y-3">
-                          <Label htmlFor="step-up" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="step-up" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Annual Step-Up (%)
                           </Label>
                           <div className="relative">
@@ -464,17 +464,17 @@ export default function CompoundInterestCalculator() {
                               type="number"
                               value={stepUpPercentage}
                               onChange={(e) => setStepUpPercentage(e.target.value)}
-                              className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                               placeholder="5"
                               step="0.01"
                               data-testid="input-step-up"
                             />
-                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
+                            <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
                           </div>
                         </div>
 
-                        <div className="space-y-3">
-                          <Label htmlFor="inflation-rate" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="inflation-rate" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Inflation Rate (%)
                           </Label>
                           <div className="relative">
@@ -483,45 +483,45 @@ export default function CompoundInterestCalculator() {
                               type="number"
                               value={inflationRate}
                               onChange={(e) => setInflationRate(e.target.value)}
-                              className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                               placeholder="3"
                               step="0.01"
                               data-testid="input-inflation-rate"
                             />
-                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
+                            <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
                           </div>
                         </div>
                       </div>
                     )}
 
                     {/* Goal Planning Toggle */}
-                    <div className="flex items-center space-x-3">
+                    <div className="flex items-center space-x-2 sm:space-x-3">
                       <input
                         type="checkbox"
                         checked={enableGoalPlanning}
                         onChange={(e) => setEnableGoalPlanning(e.target.checked)}
-                        className="w-5 h-5 text-blue-600 border-2 border-gray-300 rounded focus:ring-blue-500"
+                        className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 border-2 border-gray-300 rounded focus:ring-blue-500"
                         data-testid="checkbox-enable-goal"
                       />
-                      <label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                      <label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Enable Goal Planning
                       </label>
                     </div>
 
                     {enableGoalPlanning && (
-                      <div className="pl-8 border-l-4 border-green-200 bg-green-50 p-6 rounded-xl">
-                        <div className="space-y-3">
-                          <Label htmlFor="goal-amount" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                      <div className="pl-4 sm:pl-6 md:pl-8 border-l-4 border-green-200 bg-green-50 p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="goal-amount" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Target Goal Amount
                           </Label>
                           <div className="relative">
-                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                            <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
                             <Input
                               id="goal-amount"
                               type="number"
                               value={goalAmount}
                               onChange={(e) => setGoalAmount(e.target.value)}
-                              className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                               placeholder="100,000"
                               data-testid="input-goal-amount"
                             />
@@ -532,10 +532,10 @@ export default function CompoundInterestCalculator() {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       onClick={calculateCompoundInterest}
-                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="flex-1 h-10 sm:h-12 md:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                       data-testid="button-calculate"
                     >
                       Calculate Compound Interest
@@ -543,7 +543,7 @@ export default function CompoundInterestCalculator() {
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      className="h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                       data-testid="button-reset"
                     >
                       Reset
@@ -552,12 +552,12 @@ export default function CompoundInterestCalculator() {
 
                   {/* Advanced Display Options */}
                   {result && (
-                    <div className="flex flex-wrap gap-3 pt-4">
+                    <div className="flex flex-wrap gap-2 sm:gap-3 pt-2 sm:pt-3 md:pt-4">
                       <Button
                         onClick={() => setShowBreakdown(!showBreakdown)}
                         variant="outline"
                         size="sm"
-                        className="rounded-full"
+                        className="rounded-full text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2"
                         data-testid="button-show-breakdown"
                       >
                         {showBreakdown ? 'Hide' : 'Show'} Yearly Breakdown
@@ -566,7 +566,7 @@ export default function CompoundInterestCalculator() {
                         onClick={() => setShowRealValue(!showRealValue)}
                         variant="outline"
                         size="sm"
-                        className="rounded-full"
+                        className="rounded-full text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2"
                         data-testid="button-show-real-value"
                       >
                         {showRealValue ? 'Hide' : 'Show'} Inflation Adjusted
@@ -576,61 +576,61 @@ export default function CompoundInterestCalculator() {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Growth Analysis</h2>
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t lg:border-t-0 lg:border-l">
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center lg:text-left">Growth Analysis</h2>
                   
                   {result ? (
-                    <div className="space-y-6" data-testid="compound-interest-results">
+                    <div className="space-y-4 sm:space-y-6" data-testid="compound-interest-results">
                       {/* Final Amount Highlight */}
-                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-green-100">
-                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">
+                      <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 shadow-lg border border-green-100">
+                        <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-1 sm:mb-2 text-center lg:text-left">
                           Final Amount
                         </div>
-                        <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600" data-testid="text-final-amount">
+                        <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600 text-center lg:text-left break-all" data-testid="text-final-amount">
                           {formatCurrency(result.finalAmount)}
                         </div>
                         {showRealValue && (
-                          <div className="text-sm text-gray-600 mt-2">
+                          <div className="text-xs sm:text-sm text-gray-600 mt-1 sm:mt-2 text-center lg:text-left">
                             Real Value: {formatCurrency(result.realValue)}
                           </div>
                         )}
                       </div>
 
                       {/* Growth Breakdown */}
-                      <div className="space-y-4">
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                      <div className="space-y-2 sm:space-y-3 md:space-y-4">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Principal Amount</span>
-                            <span className="font-bold text-gray-900" data-testid="text-principal-amount">
+                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Principal Amount</span>
+                            <span className="font-bold text-gray-900 text-xs sm:text-sm md:text-base" data-testid="text-principal-amount">
                               {formatCurrency(result.principalAmount)}
                             </span>
                           </div>
                         </div>
                         
                         {enableSIP && result.sipAnalysis && (
-                          <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                             <div className="flex justify-between items-center">
-                              <span className="font-medium text-gray-700">Total SIP Contributions</span>
-                              <span className="font-bold text-blue-600" data-testid="text-sip-contributions">
+                              <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Total SIP Contributions</span>
+                              <span className="font-bold text-blue-600 text-xs sm:text-sm md:text-base" data-testid="text-sip-contributions">
                                 {formatCurrency(result.sipAnalysis.totalSIPContributions)}
                               </span>
                             </div>
                           </div>
                         )}
                         
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Total Interest Earned</span>
-                            <span className="font-bold text-green-600" data-testid="text-total-interest">
+                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Total Interest Earned</span>
+                            <span className="font-bold text-green-600 text-xs sm:text-sm md:text-base" data-testid="text-total-interest">
                               {formatCurrency(result.totalInterest)}
                             </span>
                           </div>
                         </div>
                         
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Total Contributions</span>
-                            <span className="font-bold text-gray-900" data-testid="text-total-contributions">
+                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Total Contributions</span>
+                            <span className="font-bold text-gray-900 text-xs sm:text-sm md:text-base" data-testid="text-total-contributions">
                               {formatCurrency(result.totalContributions)}
                             </span>
                           </div>
@@ -688,11 +688,11 @@ export default function CompoundInterestCalculator() {
                       </div>
                     </div>
                   ) : (
-                    <div className="text-center py-16" data-testid="no-results">
-                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <div className="text-3xl font-bold text-gray-400">%</div>
+                    <div className="text-center py-8 sm:py-12 md:py-16" data-testid="no-results">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-gray-200 rounded-full mx-auto mb-3 sm:mb-4 md:mb-6 flex items-center justify-center">
+                        <div className="text-lg sm:text-2xl md:text-3xl font-bold text-gray-400">%</div>
                       </div>
-                      <p className="text-gray-500 text-lg">Enter investment details to see compound interest growth</p>
+                      <p className="text-gray-500 text-sm sm:text-base md:text-lg">Enter investment details to see compound interest growth</p>
                     </div>
                   )}
                 </div>
@@ -702,40 +702,40 @@ export default function CompoundInterestCalculator() {
 
           {/* Yearly Breakdown */}
           {result && showBreakdown && (
-            <Card className="mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Yearly Investment Breakdown</h3>
+            <Card className="mt-4 sm:mt-6 md:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-lg sm:rounded-xl md:rounded-2xl">
+              <CardContent className="p-3 sm:p-4 md:p-6 lg:p-8">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 md:mb-6">Yearly Investment Breakdown</h3>
                 <div className="overflow-x-auto">
-                  <table className="w-full">
+                  <table className="w-full min-w-[600px]">
                     <thead>
                       <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
-                        <th className="px-6 py-4 text-left font-bold text-gray-900 rounded-l-lg">Year</th>
-                        <th className="px-6 py-4 text-right font-bold text-gray-900">Amount</th>
-                        <th className="px-6 py-4 text-right font-bold text-gray-900">Interest Earned</th>
-                        <th className="px-6 py-4 text-right font-bold text-gray-900">SIP Contribution</th>
-                        {showRealValue && <th className="px-6 py-4 text-right font-bold text-gray-900">Real Value</th>}
-                        <th className="px-6 py-4 text-right font-bold text-gray-900 rounded-r-lg">Total Interest</th>
+                        <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-left font-bold text-gray-900 rounded-l-lg text-xs sm:text-sm md:text-base">Year</th>
+                        <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm md:text-base">Amount</th>
+                        <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm md:text-base">Interest Earned</th>
+                        <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm md:text-base">SIP Contribution</th>
+                        {showRealValue && <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm md:text-base">Real Value</th>}
+                        <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right font-bold text-gray-900 rounded-r-lg text-xs sm:text-sm md:text-base">Total Interest</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100">
                       {result.yearlyBreakdown.slice(0, 10).map((year, index) => (
                         <tr key={index} className="hover:bg-blue-50 transition-colors">
-                          <td className="px-6 py-4 font-medium text-gray-900">{year.year}</td>
-                          <td className="px-6 py-4 text-right text-gray-900 font-bold">
+                          <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 font-medium text-gray-900 text-xs sm:text-sm md:text-base">{year.year}</td>
+                          <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-gray-900 font-bold text-xs sm:text-sm md:text-base">
                             {formatCurrency(year.amount)}
                           </td>
-                          <td className="px-6 py-4 text-right text-green-600 font-medium">
+                          <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-green-600 font-medium text-xs sm:text-sm md:text-base">
                             {formatCurrency(year.interestEarned)}
                           </td>
-                          <td className="px-6 py-4 text-right text-blue-600 font-medium">
+                          <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-blue-600 font-medium text-xs sm:text-sm md:text-base">
                             {formatCurrency(year.sipContribution)}
                           </td>
                           {showRealValue && (
-                            <td className="px-6 py-4 text-right text-purple-600 font-medium">
+                            <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-purple-600 font-medium text-xs sm:text-sm md:text-base">
                               {formatCurrency(year.realValue)}
                             </td>
                           )}
-                          <td className="px-6 py-4 text-right text-orange-600 font-bold">
+                          <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-orange-600 font-bold text-xs sm:text-sm md:text-base">
                             {formatCurrency(year.totalInterest)}
                           </td>
                         </tr>
@@ -748,7 +748,7 @@ export default function CompoundInterestCalculator() {
           )}
 
           {/* SEO Content Sections */}
-          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="mt-8 sm:mt-12 md:mt-16 grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
             <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
               <CardContent className="p-8">
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">What is Compound Interest?</h3>
