@@ -329,10 +329,22 @@ export default function InflationCalculator() {
 
                     {/* Calculation Type Tabs */}
                     <Tabs value={calculationType} onValueChange={setCalculationType} className="w-full">
-                      <TabsList className="grid w-full grid-cols-3 h-auto">
-                        <TabsTrigger value="future-value" className="text-xs sm:text-sm md:text-base py-2 sm:py-3">Future Value</TabsTrigger>
-                        <TabsTrigger value="past-value" className="text-xs sm:text-sm md:text-base py-2 sm:py-3">Past Value</TabsTrigger>
-                        <TabsTrigger value="purchasing-power" className="text-xs sm:text-sm md:text-base py-2 sm:py-3">Purchasing Power</TabsTrigger>
+                      <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 h-auto gap-1 sm:gap-0 p-1">
+                        <TabsTrigger value="future-value" className="text-xs sm:text-sm md:text-base lg:text-lg py-2 sm:py-3 md:py-4 px-2 sm:px-3 md:px-4 whitespace-nowrap overflow-hidden text-ellipsis min-w-0 flex-1">
+                          <span className="block sm:hidden">Future</span>
+                          <span className="hidden sm:block md:hidden">Future Val.</span>
+                          <span className="hidden md:block">Future Value</span>
+                        </TabsTrigger>
+                        <TabsTrigger value="past-value" className="text-xs sm:text-sm md:text-base lg:text-lg py-2 sm:py-3 md:py-4 px-2 sm:px-3 md:px-4 whitespace-nowrap overflow-hidden text-ellipsis min-w-0 flex-1">
+                          <span className="block sm:hidden">Past</span>
+                          <span className="hidden sm:block md:hidden">Past Val.</span>
+                          <span className="hidden md:block">Past Value</span>
+                        </TabsTrigger>
+                        <TabsTrigger value="purchasing-power" className="text-xs sm:text-sm md:text-base lg:text-lg py-2 sm:py-3 md:py-4 px-2 sm:px-3 md:px-4 whitespace-nowrap overflow-hidden text-ellipsis min-w-0 flex-1">
+                          <span className="block sm:hidden">Power</span>
+                          <span className="hidden sm:block md:hidden">Purch. Power</span>
+                          <span className="hidden md:block">Purchasing Power</span>
+                        </TabsTrigger>
                       </TabsList>
 
                       <TabsContent value="future-value" className="space-y-3 sm:space-y-4 md:space-y-6 mt-3 sm:mt-4 md:mt-6">
@@ -560,7 +572,7 @@ export default function InflationCalculator() {
                           <p className="text-xs sm:text-sm text-gray-500">Compare purchasing power between different years</p>
                         </div>
                       </TabsContent>
-                      </Tabs>
+                    </Tabs>
 
                     {/* Action Buttons */}
                     <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
@@ -580,7 +592,7 @@ export default function InflationCalculator() {
                         Reset
                       </Button>
                     </div>
-                    </div>
+                  </div>
 
                 {/* Results Section */}
                 <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t lg:border-t-0 lg:border-l">
