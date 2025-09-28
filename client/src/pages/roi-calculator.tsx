@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -22,25 +21,25 @@ interface ROIResult {
 
 export default function ROICalculator() {
   const [calculationType, setCalculationType] = useState('basic');
-  
+
   // Basic ROI
   const [initialInvestment, setInitialInvestment] = useState('10000');
   const [finalValue, setFinalValue] = useState('12000');
   const [timePeriod, setTimePeriod] = useState('1');
   const [timeUnit, setTimeUnit] = useState('years');
-  
+
   // Investment ROI
   const [investmentAmount, setInvestmentAmount] = useState('10000');
   const [monthlyContribution, setMonthlyContribution] = useState('500');
   const [annualReturn, setAnnualReturn] = useState('8');
   const [investmentYears, setInvestmentYears] = useState('5');
-  
+
   // Business ROI
   const [projectCost, setProjectCost] = useState('50000');
   const [annualRevenue, setAnnualRevenue] = useState('20000');
   const [annualCosts, setAnnualCosts] = useState('5000');
   const [projectDuration, setProjectDuration] = useState('3');
-  
+
   const [currency, setCurrency] = useState('USD');
   const [result, setResult] = useState<ROIResult | null>(null);
 
@@ -66,7 +65,7 @@ export default function ROICalculator() {
 
   const validateInputs = (initial: number, final: number, time: number): boolean => {
     const newErrors: Record<string, string> = {};
-    
+
     if (isNaN(initial) || initial <= 0) {
       newErrors.initialInvestment = 'Please enter a valid initial investment amount greater than 0';
     }
@@ -76,7 +75,7 @@ export default function ROICalculator() {
     if (isNaN(time) || time <= 0) {
       newErrors.timePeriod = 'Please enter a valid time period greater than 0';
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -106,7 +105,7 @@ export default function ROICalculator() {
 
   const validateInvestmentInputs = (initial: number, monthly: number, rate: number, years: number): boolean => {
     const newErrors: Record<string, string> = {};
-    
+
     if (isNaN(initial) || initial <= 0) {
       newErrors.investmentAmount = 'Please enter a valid investment amount greater than 0';
     }
@@ -119,7 +118,7 @@ export default function ROICalculator() {
     if (isNaN(years) || years <= 0) {
       newErrors.investmentYears = 'Please enter a valid investment period greater than 0';
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -134,13 +133,13 @@ export default function ROICalculator() {
 
     const monthlyRate = rate / 12;
     const months = years * 12;
-    
+
     // Future value of initial investment
     const futureValueInitial = initial * Math.pow(1 + rate, years);
-    
+
     // Future value of monthly contributions (annuity)
     const futureValueMonthly = monthly * (Math.pow(1 + monthlyRate, months) - 1) / monthlyRate;
-    
+
     const finalValue = futureValueInitial + futureValueMonthly;
     const totalInvested = initial + (monthly * months);
     const totalGain = finalValue - totalInvested;
@@ -160,7 +159,7 @@ export default function ROICalculator() {
 
   const validateBusinessInputs = (cost: number, revenue: number, costs: number, duration: number): boolean => {
     const newErrors: Record<string, string> = {};
-    
+
     if (isNaN(cost) || cost <= 0) {
       newErrors.projectCost = 'Please enter a valid project cost greater than 0';
     }
@@ -173,7 +172,7 @@ export default function ROICalculator() {
     if (isNaN(duration) || duration <= 0) {
       newErrors.projectDuration = 'Please enter a valid project duration greater than 0';
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -241,7 +240,7 @@ export default function ROICalculator() {
     };
 
     const config = currencyMap[currency] || currencyMap.USD;
-    
+
     return new Intl.NumberFormat(config.locale, {
       style: 'currency',
       currency: config.currency,
@@ -265,9 +264,9 @@ export default function ROICalculator() {
         <meta property="og:type" content="website" />
         <link rel="canonical" href="https://dapsiwow.com/tools/roi-calculator" />
       </Helmet>
-      
+
       <Header />
-      
+
       <main>
         {/* Hero Section */}
         <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32 overflow-hidden">
@@ -290,18 +289,18 @@ export default function ROICalculator() {
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 py-16">
-          {/* Main Calculator Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
+          {/* Main Tool Card */}
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+              <div className="flex flex-col">
                 {/* Input Section */}
-                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
+                <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
                   <div>
                     <h2 className="text-3xl font-bold text-gray-900 mb-2">ROI Configuration</h2>
                     <p className="text-gray-600">Enter your investment details to calculate return on investment</p>
                   </div>
-                  
+
                   {/* Currency Selection */}
                   <div className="space-y-3">
                     <Label htmlFor="currency" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
@@ -532,9 +531,9 @@ export default function ROICalculator() {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 lg:p-12">
+                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12">
                   <h2 className="text-3xl font-bold text-gray-900 mb-8">ROI Analysis</h2>
-                  
+
                   {result ? (
                     <div className="space-y-6">
                       {/* ROI Display */}
@@ -627,11 +626,11 @@ export default function ROICalculator() {
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">What is ROI (Return on Investment)?</h2>
                 <div className="prose prose-lg max-w-none text-gray-600">
                   <p className="text-lg leading-relaxed mb-6">
-                    <strong>Return on Investment (ROI)</strong> is a fundamental financial metric used to evaluate the efficiency and profitability of an investment. 
-                    ROI measures how much profit or loss an investment generates relative to its cost, expressed as a percentage. 
+                    <strong>Return on Investment (ROI)</strong> is a fundamental financial metric used to evaluate the efficiency and profitability of an investment.
+                    ROI measures how much profit or loss an investment generates relative to its cost, expressed as a percentage.
                     This powerful calculation helps investors, businesses, and individuals make informed financial decisions by comparing the potential returns of different investment opportunities.
                   </p>
-                  
+
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
                     <h3 className="text-xl font-semibold text-blue-900 mb-3">ROI Formula</h3>
                     <div className="text-center">
@@ -643,9 +642,9 @@ export default function ROICalculator() {
                   </div>
 
                   <p className="text-lg leading-relaxed">
-                    Our free ROI calculator simplifies this process by automatically computing returns for various investment types, 
-                    including basic investments, compound investment strategies, and business projects. Whether you're evaluating 
-                    stock market investments, real estate opportunities, business ventures, or educational investments, 
+                    Our free ROI calculator simplifies this process by automatically computing returns for various investment types,
+                    including basic investments, compound investment strategies, and business projects. Whether you're evaluating
+                    stock market investments, real estate opportunities, business ventures, or educational investments,
                     understanding ROI is crucial for maximizing your financial success.
                   </p>
                 </div>
@@ -663,29 +662,29 @@ export default function ROICalculator() {
                     </div>
                     <h3 className="text-xl font-semibold text-gray-900">Basic ROI Calculation</h3>
                     <p className="text-gray-600">
-                      Enter your initial investment amount and final value to calculate simple ROI. 
+                      Enter your initial investment amount and final value to calculate simple ROI.
                       Perfect for evaluating stock trades, bond investments, or any straightforward investment scenario.
                     </p>
                   </div>
-                  
+
                   <div className="space-y-4">
                     <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
                       <span className="text-xl font-bold text-green-600">2</span>
                     </div>
                     <h3 className="text-xl font-semibold text-gray-900">Investment ROI</h3>
                     <p className="text-gray-600">
-                      Calculate returns for investments with regular contributions, such as 401(k) plans, 
+                      Calculate returns for investments with regular contributions, such as 401(k) plans,
                       monthly savings, or systematic investment plans (SIP) with compound growth.
                     </p>
                   </div>
-                  
+
                   <div className="space-y-4">
                     <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
                       <span className="text-xl font-bold text-purple-600">3</span>
                     </div>
                     <h3 className="text-xl font-semibold text-gray-900">Business ROI</h3>
                     <p className="text-gray-600">
-                      Evaluate business projects by entering project costs, expected revenue, and operating expenses. 
+                      Evaluate business projects by entering project costs, expected revenue, and operating expenses.
                       Essential for capital allocation decisions and project prioritization.
                     </p>
                   </div>
@@ -848,7 +847,7 @@ export default function ROICalculator() {
                         </div>
                         <p className="text-green-700 text-sm">Outstanding investment performance, significantly above market averages</p>
                       </div>
-                      
+
                       <div className="border rounded-lg p-4 bg-blue-50 border-blue-200">
                         <div className="flex items-center mb-2">
                           <div className="w-4 h-4 bg-blue-500 rounded-full mr-3"></div>
@@ -856,7 +855,7 @@ export default function ROICalculator() {
                         </div>
                         <p className="text-blue-700 text-sm">Solid returns that beat inflation and many traditional investments</p>
                       </div>
-                      
+
                       <div className="border rounded-lg p-4 bg-yellow-50 border-yellow-200">
                         <div className="flex items-center mb-2">
                           <div className="w-4 h-4 bg-yellow-500 rounded-full mr-3"></div>
@@ -864,7 +863,7 @@ export default function ROICalculator() {
                         </div>
                         <p className="text-yellow-700 text-sm">Modest returns, comparable to market indices and savings accounts</p>
                       </div>
-                      
+
                       <div className="border rounded-lg p-4 bg-red-50 border-red-200">
                         <div className="flex items-center mb-2">
                           <div className="w-4 h-4 bg-red-500 rounded-full mr-3"></div>
@@ -884,21 +883,21 @@ export default function ROICalculator() {
                           Shows the equivalent yearly return rate, essential for comparing investments over different time periods.
                         </p>
                       </div>
-                      
+
                       <div className="space-y-2">
                         <strong className="text-gray-900">Total Gain/Loss:</strong>
                         <p className="text-gray-600 text-sm">
                           The absolute dollar amount gained or lost, helping you understand the actual financial impact.
                         </p>
                       </div>
-                      
+
                       <div className="space-y-2">
                         <strong className="text-gray-900">Break-even Time:</strong>
                         <p className="text-gray-600 text-sm">
                           For business investments, this shows how long it takes to recover your initial investment.
                         </p>
                       </div>
-                      
+
                       <div className="space-y-2">
                         <strong className="text-gray-900">Final Value:</strong>
                         <p className="text-gray-600 text-sm">
@@ -1007,7 +1006,7 @@ export default function ROICalculator() {
             {/* Types of ROI Calculations */}
             <section className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 lg:p-12 shadow-xl border border-gray-100">
               <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">Types of ROI Calculations and Investment Strategies</h2>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
                 {/* Simple ROI */}
                 <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8">
@@ -1086,7 +1085,7 @@ export default function ROICalculator() {
                         <p className="text-sm text-gray-600"><strong>Formula:</strong> Risk-Adjusted ROI = (ROI - Risk-Free Rate) / Standard Deviation</p>
                       </div>
                     </div>
-                    
+
                     <div>
                       <h4 className="text-xl font-semibold text-gray-900 mb-3">Tax-Adjusted ROI</h4>
                       <p className="text-gray-700 mb-3">
@@ -1097,7 +1096,7 @@ export default function ROICalculator() {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="space-y-6">
                     <div>
                       <h4 className="text-xl font-semibold text-gray-900 mb-3">Inflation-Adjusted ROI</h4>
@@ -1108,7 +1107,7 @@ export default function ROICalculator() {
                         <p className="text-sm text-gray-600"><strong>Formula:</strong> Real ROI = [(1 + Nominal ROI) / (1 + Inflation Rate)] - 1</p>
                       </div>
                     </div>
-                    
+
                     <div>
                       <h4 className="text-xl font-semibold text-gray-900 mb-3">Opportunity Cost ROI</h4>
                       <p className="text-gray-700 mb-3">
@@ -1126,7 +1125,7 @@ export default function ROICalculator() {
             {/* Industry-Specific ROI Applications */}
             <section className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 lg:p-12 shadow-xl border border-gray-100">
               <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">Industry-Specific ROI Applications and Benchmarks</h2>
-              
+
               <div className="space-y-8">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                   {/* Technology Sector */}
@@ -1263,7 +1262,7 @@ export default function ROICalculator() {
             {/* ROI vs Other Financial Metrics */}
             <section className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 lg:p-12 shadow-xl border border-gray-100">
               <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">ROI vs Other Financial Metrics: Complete Comparison Guide</h2>
-              
+
               <div className="overflow-x-auto mb-8">
                 <table className="w-full border-collapse bg-white rounded-2xl shadow-lg overflow-hidden">
                   <thead>
@@ -1407,12 +1406,12 @@ export default function ROICalculator() {
                       <h4 className="text-lg font-semibold text-gray-900 mb-2">What is a good ROI percentage?</h4>
                       <p className="text-gray-600">A good ROI depends on the investment type and risk level. Stock market investments averaging 10-15% annually are excellent, while business projects often target 20%+ ROI. Real estate typically yields 8-12%, which can help you understand long-term growth potential.</p>
                     </div>
-                    
+
                     <div>
                       <h4 className="text-lg font-semibold text-gray-900 mb-2">How do I calculate ROI for multiple investments?</h4>
                       <p className="text-gray-600">Calculate ROI for each investment separately, then determine your portfolio's weighted average ROI based on investment amounts and individual returns for comprehensive portfolio analysis.</p>
                     </div>
-                    
+
                     <div>
                       <h4 className="text-lg font-semibold text-gray-900 mb-2">Should I include dividends in ROI calculations?</h4>
                       <p className="text-gray-600">Yes, always include dividends, interest payments, rental income, and other cash flows generated by your investment to get the total return on investment. This provides a complete picture of your investment performance.</p>
@@ -1428,18 +1427,18 @@ export default function ROICalculator() {
                       <p className="text-gray-600">Our business ROI feature handles project costs, revenues, and operating expenses for comprehensive business analysis including break-even calculations.</p>
                     </div>
                   </div>
-                  
+
                   <div className="space-y-6">
                     <div>
                       <h4 className="text-lg font-semibold text-gray-900 mb-2">What's the difference between ROI and annualized ROI?</h4>
                       <p className="text-gray-600">ROI shows total return over the entire period, while annualized ROI converts this to an equivalent yearly rate, making it easier to compare investments with different time horizons. Annualized ROI is crucial for comparing short-term vs. long-term investments.</p>
                     </div>
-                    
+
                     <div>
                       <h4 className="text-lg font-semibold text-gray-900 mb-2">Can ROI be negative?</h4>
                       <p className="text-gray-600">Yes, negative ROI indicates a loss on your investment. This occurs when the final value is less than the initial investment amount. Compare paying down debt vs. investing to make optimal financial decisions.</p>
                     </div>
-                    
+
                     <div>
                       <h4 className="text-lg font-semibold text-gray-900 mb-2">How often should I calculate ROI?</h4>
                       <p className="text-gray-600">Review ROI quarterly for active investments and annually for long-term investments. However, avoid making frequent changes based on short-term fluctuations for long-term planning.</p>
@@ -1475,7 +1474,7 @@ export default function ROICalculator() {
           </div>
         </div>
       </main>
-      
+
       <Footer />
     </div>
   );
