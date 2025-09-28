@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -372,25 +371,25 @@ export default function DebtPayoffCalculator() {
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
           {/* Main Calculator Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+              <div className="flex flex-col lg:grid lg:grid-cols-3 gap-0">
                 {/* Input Section */}
-                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
+                <div className="lg:col-span-2 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
                   <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Debt Payoff Configuration</h2>
-                    <p className="text-gray-600">Enter your debt details to create an optimized payoff strategy</p>
+                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Debt Payoff Configuration</h2>
+                    <p className="text-sm sm:text-base text-gray-600">Enter your debt details to create an optimized payoff strategy</p>
                   </div>
 
                   {/* Country Selection */}
-                  <div className="space-y-3">
-                    <Label htmlFor="country" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                  <div className="space-y-2 sm:space-y-3">
+                    <Label htmlFor="country" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                       Country
                     </Label>
                     <Select value={country} onValueChange={handleCountryChange}>
-                      <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg">
+                      <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-base sm:text-lg">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -407,12 +406,12 @@ export default function DebtPayoffCalculator() {
                   </div>
 
                   {/* Currency Selection */}
-                  <div className="space-y-3">
-                    <Label htmlFor="currency" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                  <div className="space-y-2 sm:space-y-3">
+                    <Label htmlFor="currency" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                       Currency
                     </Label>
                     <Select value={currency} onValueChange={setCurrency}>
-                      <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg">
+                      <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-base sm:text-lg">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -434,26 +433,26 @@ export default function DebtPayoffCalculator() {
 
                   {/* Calculation Type Tabs */}
                   <Tabs value={calculationType} onValueChange={setCalculationType} className="w-full">
-                    <TabsList className="grid w-full grid-cols-3 h-14 bg-gray-100 rounded-xl p-1">
-                      <TabsTrigger value="single-debt" className="h-12 text-sm font-medium rounded-lg">Single Debt</TabsTrigger>
-                      <TabsTrigger value="multiple-debts" className="h-12 text-sm font-medium rounded-lg">Multiple Debts</TabsTrigger>
-                      <TabsTrigger value="target-payment" className="h-12 text-sm font-medium rounded-lg">Target Payment</TabsTrigger>
+                    <TabsList className="grid w-full grid-cols-3 h-10 sm:h-12 md:h-14 bg-gray-100 rounded-lg sm:rounded-xl p-1">
+                      <TabsTrigger value="single-debt" className="h-full text-xs sm:text-sm font-medium rounded-md sm:rounded-lg">Single Debt</TabsTrigger>
+                      <TabsTrigger value="multiple-debts" className="h-full text-xs sm:text-sm font-medium rounded-md sm:rounded-lg">Multiple Debts</TabsTrigger>
+                      <TabsTrigger value="target-payment" className="h-full text-xs sm:text-sm font-medium rounded-md sm:rounded-lg">Target Payment</TabsTrigger>
                     </TabsList>
 
-                    <TabsContent value="single-debt" className="space-y-6 mt-8">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="space-y-3">
-                          <Label htmlFor="current-balance" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <TabsContent value="single-debt" className="space-y-4 sm:space-y-6 mt-4 sm:mt-6 md:mt-8">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="current-balance" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Current Balance
                           </Label>
                           <div className="relative">
-                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                            <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">$</span>
                             <Input
                               id="current-balance"
                               type="number"
                               value={currentBalance}
                               onChange={(e) => setCurrentBalance(e.target.value)}
-                              className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-base sm:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500"
                               placeholder="5,000"
                               min="0"
                               step="0.01"
@@ -461,8 +460,8 @@ export default function DebtPayoffCalculator() {
                           </div>
                         </div>
 
-                        <div className="space-y-3">
-                          <Label htmlFor="interest-rate" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="interest-rate" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Annual Interest Rate
                           </Label>
                           <div className="relative">
@@ -471,28 +470,28 @@ export default function DebtPayoffCalculator() {
                               type="number"
                               value={interestRate}
                               onChange={(e) => setInterestRate(e.target.value)}
-                              className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pr-7 sm:pr-8 text-base sm:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500"
                               placeholder="18.5"
                               min="0"
                               max="50"
                               step="0.1"
                             />
-                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
+                            <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">%</span>
                           </div>
                         </div>
 
-                        <div className="space-y-3">
-                          <Label htmlFor="monthly-payment" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="monthly-payment" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Monthly Payment
                           </Label>
                           <div className="relative">
-                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                            <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">$</span>
                             <Input
                               id="monthly-payment"
                               type="number"
                               value={monthlyPayment}
                               onChange={(e) => setMonthlyPayment(e.target.value)}
-                              className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-base sm:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500"
                               placeholder="150"
                               min="0"
                               step="0.01"
@@ -500,18 +499,18 @@ export default function DebtPayoffCalculator() {
                           </div>
                         </div>
 
-                        <div className="space-y-3">
-                          <Label htmlFor="extra-payment" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="extra-payment" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Extra Payment (Optional)
                           </Label>
                           <div className="relative">
-                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                            <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">$</span>
                             <Input
                               id="extra-payment"
                               type="number"
                               value={extraPayment}
                               onChange={(e) => setExtraPayment(e.target.value)}
-                              className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-base sm:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500"
                               placeholder="0"
                               min="0"
                               step="0.01"
@@ -521,14 +520,14 @@ export default function DebtPayoffCalculator() {
                       </div>
                     </TabsContent>
 
-                    <TabsContent value="multiple-debts" className="space-y-6 mt-8">
-                      <div className="space-y-6">
-                        <div className="space-y-3">
-                          <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <TabsContent value="multiple-debts" className="space-y-4 sm:space-y-6 mt-4 sm:mt-6 md:mt-8">
+                      <div className="space-y-4 sm:space-y-6">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Payoff Strategy
                           </Label>
                           <Select value={payoffStrategy} onValueChange={setPayoffStrategy}>
-                            <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg">
+                            <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-base sm:text-lg">
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent>
@@ -538,37 +537,37 @@ export default function DebtPayoffCalculator() {
                           </Select>
                         </div>
 
-                        <div className="space-y-3">
-                          <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Your Debts
                           </Label>
-                          <div className="space-y-4 max-h-80 overflow-y-auto bg-gray-50 rounded-xl p-4">
+                          <div className="space-y-3 sm:space-y-4 max-h-60 sm:max-h-80 overflow-y-auto bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-4">
                             {debts.map((debt) => (
-                              <div key={debt.id} className="bg-white p-4 rounded-xl border border-gray-200">
-                                <div className="grid grid-cols-2 gap-3 mb-3">
+                              <div key={debt.id} className="bg-white p-3 sm:p-4 rounded-lg sm:rounded-xl border border-gray-200">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 mb-2 sm:mb-3">
                                   <Input
                                     placeholder="Debt name"
                                     value={debt.name}
                                     onChange={(e) => updateDebt(debt.id, 'name', e.target.value)}
-                                    className="h-12 text-sm border-2 border-gray-200 rounded-lg"
+                                    className="h-10 sm:h-12 text-xs sm:text-sm border-2 border-gray-200 rounded-md sm:rounded-lg w-full"
                                   />
                                   <Button
                                     onClick={() => removeDebt(debt.id)}
                                     variant="outline"
-                                    className="h-12 text-red-600 hover:text-red-700 hover:bg-red-50 border-2 border-gray-200 rounded-lg"
+                                    className="h-10 sm:h-12 text-xs sm:text-sm text-red-600 hover:text-red-700 hover:bg-red-50 border-2 border-gray-200 rounded-md sm:rounded-lg"
                                   >
                                     Remove
                                   </Button>
                                 </div>
-                                <div className="grid grid-cols-3 gap-3">
+                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
                                   <div className="relative">
-                                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm">$</span>
+                                    <span className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm">$</span>
                                     <Input
                                       type="number"
                                       placeholder="Balance"
                                       value={debt.balance}
                                       onChange={(e) => updateDebt(debt.id, 'balance', parseFloat(e.target.value) || 0)}
-                                      className="h-12 pl-7 text-sm border-2 border-gray-200 rounded-lg"
+                                      className="h-10 sm:h-12 text-xs sm:text-sm border-2 border-gray-200 rounded-md sm:rounded-lg pl-6 sm:pl-7"
                                     />
                                   </div>
                                   <div className="relative">
@@ -577,41 +576,41 @@ export default function DebtPayoffCalculator() {
                                       placeholder="Rate %"
                                       value={debt.interestRate}
                                       onChange={(e) => updateDebt(debt.id, 'interestRate', parseFloat(e.target.value) || 0)}
-                                      className="h-12 pr-7 text-sm border-2 border-gray-200 rounded-lg"
+                                      className="h-10 sm:h-12 text-xs sm:text-sm border-2 border-gray-200 rounded-md sm:rounded-lg pr-7"
                                     />
-                                    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm">%</span>
+                                    <span className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm">%</span>
                                   </div>
                                   <div className="relative">
-                                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm">$</span>
+                                    <span className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm">$</span>
                                     <Input
                                       type="number"
                                       placeholder="Min Payment"
                                       value={debt.minimumPayment}
                                       onChange={(e) => updateDebt(debt.id, 'minimumPayment', parseFloat(e.target.value) || 0)}
-                                      className="h-12 pl-7 text-sm border-2 border-gray-200 rounded-lg"
+                                      className="h-10 sm:h-12 text-xs sm:text-sm border-2 border-gray-200 rounded-md sm:rounded-lg pl-6 sm:pl-7"
                                     />
                                   </div>
                                 </div>
                               </div>
                             ))}
                           </div>
-                          <Button onClick={addDebt} variant="outline" className="w-full h-12 border-2 border-gray-200 rounded-xl text-gray-700 hover:bg-gray-50">
+                          <Button onClick={addDebt} variant="outline" className="w-full h-10 sm:h-12 border-2 border-gray-200 rounded-lg sm:rounded-xl text-gray-700 hover:bg-gray-50">
                             Add Another Debt
                           </Button>
                         </div>
 
-                        <div className="space-y-3">
-                          <Label htmlFor="total-extra" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="total-extra" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Total Extra Payment
                           </Label>
                           <div className="relative">
-                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                            <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">$</span>
                             <Input
                               id="total-extra"
                               type="number"
                               value={totalExtraPayment}
                               onChange={(e) => setTotalExtraPayment(e.target.value)}
-                              className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-base sm:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500"
                               placeholder="100"
                               min="0"
                               step="0.01"
@@ -621,20 +620,20 @@ export default function DebtPayoffCalculator() {
                       </div>
                     </TabsContent>
 
-                    <TabsContent value="target-payment" className="space-y-6 mt-8">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="space-y-3">
-                          <Label htmlFor="target-balance" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <TabsContent value="target-payment" className="space-y-4 sm:space-y-6 mt-4 sm:mt-6 md:mt-8">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="target-balance" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Current Balance
                           </Label>
                           <div className="relative">
-                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                            <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">$</span>
                             <Input
                               id="target-balance"
                               type="number"
                               value={targetBalance}
                               onChange={(e) => setTargetBalance(e.target.value)}
-                              className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-base sm:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500"
                               placeholder="10,000"
                               min="0"
                               step="0.01"
@@ -642,8 +641,8 @@ export default function DebtPayoffCalculator() {
                           </div>
                         </div>
 
-                        <div className="space-y-3">
-                          <Label htmlFor="target-rate" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="target-rate" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Annual Interest Rate
                           </Label>
                           <div className="relative">
@@ -652,18 +651,18 @@ export default function DebtPayoffCalculator() {
                               type="number"
                               value={targetRate}
                               onChange={(e) => setTargetRate(e.target.value)}
-                              className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pr-7 sm:pr-8 text-base sm:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500"
                               placeholder="16.0"
                               min="0"
                               max="50"
                               step="0.1"
                             />
-                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
+                            <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">%</span>
                           </div>
                         </div>
 
-                        <div className="space-y-3 md:col-span-2">
-                          <Label htmlFor="target-months" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        <div className="space-y-2 sm:space-y-3 md:col-span-2">
+                          <Label htmlFor="target-months" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Target Payoff Time (Months)
                           </Label>
                           <Input
@@ -671,7 +670,7 @@ export default function DebtPayoffCalculator() {
                             type="number"
                             value={targetMonths}
                             onChange={(e) => setTargetMonths(e.target.value)}
-                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full md:w-64"
+                            className="h-10 sm:h-12 md:h-14 text-base sm:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full md:w-64"
                             placeholder="24"
                             min="1"
                             max="600"
@@ -682,17 +681,17 @@ export default function DebtPayoffCalculator() {
                   </Tabs>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 sm:pt-6">
                     <Button
                       onClick={calculateDebtPayoff}
-                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="flex-1 h-10 sm:h-12 md:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-base sm:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                     >
                       Calculate Payoff Plan
                     </Button>
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      className="h-10 sm:h-12 md:h-14 px-4 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-base sm:text-lg rounded-lg sm:rounded-xl"
                     >
                       Reset
                     </Button>
@@ -700,7 +699,7 @@ export default function DebtPayoffCalculator() {
 
                   {/* Show Schedule Button */}
                   {(result || multipleDebtsResult) && (
-                    <div className="pt-4">
+                    <div className="pt-3 sm:pt-4">
                       <Button
                         onClick={() => setShowSchedule(!showSchedule)}
                         variant="outline"
@@ -714,74 +713,66 @@ export default function DebtPayoffCalculator() {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Payoff Results</h2>
-                  
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 2xl:p-14">
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-8">Payoff Results</h2>
+
                   {(result || multipleDebtsResult) ? (
-                    <div className="space-y-6">
+                    <div className="space-y-4 sm:space-y-6">
                       {/* Main Results */}
                       {result && (
                         <>
-                          <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
-                            <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">
+                          <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 shadow-lg border border-blue-100">
+                            <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-1 sm:mb-2 text-center sm:text-left">
                               {calculationType === 'target-payment' ? 'Required Payment' : 'Payoff Time'}
                             </div>
-                            <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                            <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 text-center sm:text-left break-all">
                               {calculationType === 'target-payment' 
                                 ? formatCurrency(result.monthlyPayment)
                                 : formatTime(result.payoffTime)}
                             </div>
                           </div>
 
-                          <div className="space-y-4">
-                            <div className="bg-white rounded-xl p-4 shadow-sm">
-                              <div className="flex justify-between items-center">
-                                <span className="font-medium text-gray-700">Current Balance</span>
-                                <span className="font-bold text-gray-900">
-                                  {formatCurrency(result.currentBalance)}
-                                </span>
-                              </div>
+                          <div className="space-y-3 sm:space-y-4">
+                            <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm flex justify-between items-center">
+                              <span className="font-medium text-gray-700 text-sm sm:text-base">Current Balance</span>
+                              <span className="font-bold text-gray-900 text-base sm:text-lg">
+                                {formatCurrency(result.currentBalance)}
+                              </span>
                             </div>
-                            <div className="bg-white rounded-xl p-4 shadow-sm">
-                              <div className="flex justify-between items-center">
-                                <span className="font-medium text-gray-700">Monthly Payment</span>
-                                <span className="font-bold text-blue-600">
-                                  {formatCurrency(result.monthlyPayment)}
-                                </span>
-                              </div>
+                            <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm flex justify-between items-center">
+                              <span className="font-medium text-gray-700 text-sm sm:text-base">Monthly Payment</span>
+                              <span className="font-bold text-blue-600 text-base sm:text-lg">
+                                {formatCurrency(result.monthlyPayment)}
+                              </span>
                             </div>
-                            <div className="bg-white rounded-xl p-4 shadow-sm">
-                              <div className="flex justify-between items-center">
-                                <span className="font-medium text-gray-700">Total Interest</span>
-                                <span className="font-bold text-orange-600">
-                                  {formatCurrency(result.totalInterest)}
-                                </span>
-                              </div>
+                            <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm flex justify-between items-center">
+                              <span className="font-medium text-gray-700 text-sm sm:text-base">Total Interest</span>
+                              <span className="font-bold text-orange-600 text-base sm:text-lg">
+                                {formatCurrency(result.totalInterest)}
+                              </span>
                             </div>
-                            <div className="bg-white rounded-xl p-4 shadow-sm">
-                              <div className="flex justify-between items-center">
-                                <span className="font-medium text-gray-700">Total Paid</span>
-                                <span className="font-bold text-gray-900">
-                                  {formatCurrency(result.totalPaid)}
-                                </span>
-                              </div>
+                            <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm flex justify-between items-center">
+                              <span className="font-medium text-gray-700 text-sm sm:text-base">Total Paid</span>
+                              <span className="font-bold text-gray-900 text-base sm:text-lg">
+                                {formatCurrency(result.totalPaid)}
+                              </span>
                             </div>
                           </div>
 
                           {/* Extra Payment Benefits */}
                           {result.extraPayment && result.savingsWithExtra && (
-                            <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-6 border border-green-200">
-                              <h4 className="font-bold text-green-800 mb-4 text-lg">Extra Payment Benefits</h4>
+                            <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-green-200">
+                              <h4 className="font-bold text-green-800 mb-3 text-base sm:text-lg">Extra Payment Benefits</h4>
                               <div className="space-y-3">
                                 <div className="flex justify-between items-center">
-                                  <span className="text-green-700 font-medium">Interest Saved:</span>
-                                  <span className="font-bold text-green-800 text-lg">
+                                  <span className="text-green-700 font-medium text-sm sm:text-base">Interest Saved:</span>
+                                  <span className="font-bold text-green-800 text-lg sm:text-xl">
                                     {formatCurrency(result.savingsWithExtra)}
                                   </span>
                                 </div>
                                 <div className="flex justify-between items-center">
-                                  <span className="text-green-700 font-medium">Time Saved:</span>
-                                  <span className="font-bold text-green-800 text-lg">
+                                  <span className="text-green-700 font-medium text-sm sm:text-base">Time Saved:</span>
+                                  <span className="font-bold text-green-800 text-lg sm:text-xl">
                                     {formatTime(result.timeSavedWithExtra!)}
                                   </span>
                                 </div>
@@ -794,56 +785,48 @@ export default function DebtPayoffCalculator() {
                       {/* Multiple Debts Results */}
                       {multipleDebtsResult && (
                         <>
-                          <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
-                            <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Debt-Free In</div>
-                            <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                          <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 shadow-lg border border-blue-100">
+                            <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-1 sm:mb-2 text-center sm:text-left">Debt-Free In</div>
+                            <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 text-center sm:text-left break-all">
                               {formatTime(multipleDebtsResult.payoffTime)}
                             </div>
                           </div>
 
-                          <div className="space-y-4">
-                            <div className="bg-white rounded-xl p-4 shadow-sm">
-                              <div className="flex justify-between items-center">
-                                <span className="font-medium text-gray-700">Strategy</span>
-                                <span className="font-bold text-purple-600">
-                                  {multipleDebtsResult.strategy === 'avalanche' ? 'Debt Avalanche' : 'Debt Snowball'}
-                                </span>
-                              </div>
+                          <div className="space-y-3 sm:space-y-4">
+                            <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm flex justify-between items-center">
+                              <span className="font-medium text-gray-700 text-sm sm:text-base">Strategy</span>
+                              <span className="font-bold text-purple-600 text-base sm:text-lg">
+                                {multipleDebtsResult.strategy === 'avalanche' ? 'Debt Avalanche' : 'Debt Snowball'}
+                              </span>
                             </div>
-                            <div className="bg-white rounded-xl p-4 shadow-sm">
-                              <div className="flex justify-between items-center">
-                                <span className="font-medium text-gray-700">Total Debt</span>
-                                <span className="font-bold text-gray-900">
-                                  {formatCurrency(multipleDebtsResult.totalBalance)}
-                                </span>
-                              </div>
+                            <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm flex justify-between items-center">
+                              <span className="font-medium text-gray-700 text-sm sm:text-base">Total Debt</span>
+                              <span className="font-bold text-gray-900 text-base sm:text-lg">
+                                {formatCurrency(multipleDebtsResult.totalBalance)}
+                              </span>
                             </div>
-                            <div className="bg-white rounded-xl p-4 shadow-sm">
-                              <div className="flex justify-between items-center">
-                                <span className="font-medium text-gray-700">Monthly Payments</span>
-                                <span className="font-bold text-blue-600">
-                                  {formatCurrency(multipleDebtsResult.totalMinimum + multipleDebtsResult.extraPayment)}
-                                </span>
-                              </div>
+                            <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm flex justify-between items-center">
+                              <span className="font-medium text-gray-700 text-sm sm:text-base">Monthly Payments</span>
+                              <span className="font-bold text-blue-600 text-base sm:text-lg">
+                                {formatCurrency(multipleDebtsResult.totalMinimum + multipleDebtsResult.extraPayment)}
+                              </span>
                             </div>
-                            <div className="bg-white rounded-xl p-4 shadow-sm">
-                              <div className="flex justify-between items-center">
-                                <span className="font-medium text-gray-700">Total Interest</span>
-                                <span className="font-bold text-orange-600">
-                                  {formatCurrency(multipleDebtsResult.totalInterest)}
-                                </span>
-                              </div>
+                            <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm flex justify-between items-center">
+                              <span className="font-medium text-gray-700 text-sm sm:text-base">Total Interest</span>
+                              <span className="font-bold text-orange-600 text-base sm:text-lg">
+                                {formatCurrency(multipleDebtsResult.totalInterest)}
+                              </span>
                             </div>
                           </div>
                         </>
                       )}
                     </div>
                   ) : (
-                    <div className="text-center py-16">
-                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <div className="text-3xl font-bold text-gray-400">$</div>
+                    <div className="text-center py-8 sm:py-12 md:py-16">
+                      <div className="w-16 sm:w-20 h-16 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
+                        <div className="text-2xl sm:text-3xl font-bold text-gray-400">$</div>
                       </div>
-                      <p className="text-gray-500 text-lg">Enter your debt details and calculate to see payoff results</p>
+                      <p className="text-gray-500 text-base sm:text-lg">Enter your debt details and calculate to see payoff results</p>
                     </div>
                   )}
                 </div>
@@ -853,14 +836,14 @@ export default function DebtPayoffCalculator() {
 
           {/* Detailed Analysis */}
           {(result || multipleDebtsResult) && showSchedule && (
-            <Card className="mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Detailed Analysis</h3>
-                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6">
-                  <h4 className="text-lg font-semibold text-gray-900 mb-4">
+            <Card className="mt-4 sm:mt-6 md:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Detailed Analysis</h3>
+                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg sm:rounded-xl p-4 sm:p-6">
+                  <h4 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">
                     {multipleDebtsResult ? 'Debt Elimination Strategy' : 'Single Debt Analysis'}
                   </h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-gray-700">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 text-xs sm:text-sm text-gray-700">
                     <div>
                       <p className="mb-2">
                         <strong>Strategy:</strong> {multipleDebtsResult ? 
@@ -886,11 +869,11 @@ export default function DebtPayoffCalculator() {
           )}
 
           {/* SEO Content Section */}
-          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">What is a Debt Payoff Calculator?</h3>
-                <div className="space-y-4 text-gray-600">
+          <div className="mt-8 sm:mt-12 lg:mt-16 grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-6 sm:p-8">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">What is a Debt Payoff Calculator?</h3>
+                <div className="space-y-3 sm:space-y-4 text-gray-600 text-sm sm:text-base">
                   <p>
                     A debt payoff calculator is a powerful financial tool that helps you create a strategic plan to eliminate 
                     your debts faster and save money on interest payments. Our comprehensive calculator analyzes your current 
@@ -906,26 +889,26 @@ export default function DebtPayoffCalculator() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Debt Snowball vs Debt Avalanche</h3>
-                <div className="space-y-4 text-gray-600">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-6 sm:p-8">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Debt Snowball vs Debt Avalanche</h3>
+                <div className="space-y-4 text-gray-600 text-sm sm:text-base">
                   <div className="border-l-4 border-blue-500 pl-4">
                     <h4 className="font-semibold text-blue-800 mb-2">Debt Avalanche Method</h4>
-                    <p className="text-sm">Pay minimum payments on all debts, then put extra money toward the debt with the highest interest rate. This method saves the most money on interest over time.</p>
+                    <p>Pay minimum payments on all debts, then put extra money toward the debt with the highest interest rate. This method saves the most money on interest over time.</p>
                   </div>
                   <div className="border-l-4 border-green-500 pl-4">
                     <h4 className="font-semibold text-green-800 mb-2">Debt Snowball Method</h4>
-                    <p className="text-sm">Pay minimum payments on all debts, then put extra money toward the debt with the lowest balance. This method provides psychological wins and motivation.</p>
+                    <p>Pay minimum payments on all debts, then put extra money toward the debt with the lowest balance. This method provides psychological wins and motivation.</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Benefits of Using Our Calculator</h3>
-                <div className="space-y-3 text-gray-600">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-6 sm:p-8">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Benefits of Using Our Calculator</h3>
+                <div className="space-y-3 text-gray-600 text-sm sm:text-base">
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
                     <span>Compare debt elimination strategies side-by-side</span>
@@ -950,21 +933,21 @@ export default function DebtPayoffCalculator() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">How to Create Your Debt Payoff Plan</h3>
-                <div className="space-y-4 text-gray-600">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-6 sm:p-8">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">How to Create Your Debt Payoff Plan</h3>
+                <div className="space-y-4 text-gray-600 text-sm sm:text-base">
                   <div className="bg-blue-50 rounded-lg p-4">
                     <h4 className="font-semibold text-blue-800 mb-2">Step 1: List All Debts</h4>
-                    <p className="text-sm text-blue-700">Gather information on all your debts including balances, interest rates, and minimum payments.</p>
+                    <p className="text-blue-700">Gather information on all your debts including balances, interest rates, and minimum payments.</p>
                   </div>
                   <div className="bg-green-50 rounded-lg p-4">
                     <h4 className="font-semibold text-green-800 mb-2">Step 2: Choose Strategy</h4>
-                    <p className="text-sm text-green-700">Select between debt avalanche (highest interest first) or debt snowball (lowest balance first) based on your preference.</p>
+                    <p className="text-green-700">Select between debt avalanche (highest interest first) or debt snowball (lowest balance first) based on your preference.</p>
                   </div>
                   <div className="bg-orange-50 rounded-lg p-4">
                     <h4 className="font-semibold text-orange-800 mb-2">Step 3: Add Extra Payments</h4>
-                    <p className="text-sm text-orange-700">Determine how much extra you can pay monthly to accelerate your debt payoff timeline.</p>
+                    <p className="text-orange-700">Determine how much extra you can pay monthly to accelerate your debt payoff timeline.</p>
                   </div>
                 </div>
               </CardContent>
@@ -972,48 +955,48 @@ export default function DebtPayoffCalculator() {
           </div>
 
           {/* Types of Debt Section */}
-          <Card className="mt-12 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-            <CardContent className="p-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-8">Types of Debt for Payoff Planning</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div className="space-y-4">
+          <Card className="mt-8 sm:mt-12 lg:mt-16 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+            <CardContent className="p-6 sm:p-8">
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">Types of Debt for Payoff Planning</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-sm sm:text-base">
+                <div className="space-y-3 sm:space-y-4">
                   <h4 className="text-lg font-semibold text-gray-800">Credit Card Debt</h4>
-                  <p className="text-gray-600 text-sm">
+                  <p className="text-gray-600">
                     High-interest revolving debt that should be prioritized in most payoff strategies. Credit cards typically 
                     carry the highest interest rates, making them prime targets for the debt avalanche method.
                   </p>
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   <h4 className="text-lg font-semibold text-gray-800">Personal Loans</h4>
-                  <p className="text-gray-600 text-sm">
+                  <p className="text-gray-600">
                     Fixed-rate installment loans with set payment schedules. These often have moderate interest rates and 
                     can be effectively managed using either debt elimination strategy.
                   </p>
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   <h4 className="text-lg font-semibold text-gray-800">Student Loans</h4>
-                  <p className="text-gray-600 text-sm">
+                  <p className="text-gray-600">
                     Educational debt with varying interest rates and repayment options. Federal student loans often have 
                     lower rates and flexible repayment terms, affecting payoff priority decisions.
                   </p>
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   <h4 className="text-lg font-semibold text-gray-800">Medical Debt</h4>
-                  <p className="text-gray-600 text-sm">
+                  <p className="text-gray-600">
                     Healthcare-related debt that often carries no interest initially but may have payment plan options. 
                     Consider negotiating payment terms before including in aggressive payoff strategies.
                   </p>
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   <h4 className="text-lg font-semibold text-gray-800">Store Credit Cards</h4>
-                  <p className="text-gray-600 text-sm">
+                  <p className="text-gray-600">
                     Retail-specific credit accounts that often carry higher interest rates than general credit cards. 
                     These should typically be prioritized for payoff due to their high cost.
                   </p>
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   <h4 className="text-lg font-semibold text-gray-800">Payday Loans</h4>
-                  <p className="text-gray-600 text-sm">
+                  <p className="text-gray-600">
                     Short-term, high-cost loans with extremely high effective interest rates. These should be the absolute 
                     first priority for elimination due to their devastating impact on finances.
                   </p>
@@ -1023,35 +1006,35 @@ export default function DebtPayoffCalculator() {
           </Card>
 
           {/* Advanced Strategies Section */}
-          <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Advanced Debt Payoff Strategies</h3>
-                <div className="space-y-4 text-gray-600">
+          <div className="mt-8 sm:mt-12 lg:mt-16 grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-6 sm:p-8">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Advanced Debt Payoff Strategies</h3>
+                <div className="space-y-4 text-gray-600 text-sm sm:text-base">
                   <div className="border-l-4 border-purple-500 pl-4">
                     <h4 className="font-semibold text-purple-800 mb-2">Debt Consolidation</h4>
-                    <p className="text-sm">Combine multiple high-interest debts into a single loan with a lower interest rate, simplifying payments and potentially reducing costs.</p>
+                    <p>Combine multiple high-interest debts into a single loan with a lower interest rate, simplifying payments and potentially reducing costs.</p>
                   </div>
                   <div className="border-l-4 border-blue-500 pl-4">
                     <h4 className="font-semibold text-blue-800 mb-2">Balance Transfer</h4>
-                    <p className="text-sm">Transfer high-interest credit card balances to a card with a lower or promotional 0% interest rate to save on interest charges.</p>
+                    <p>Transfer high-interest credit card balances to a card with a lower or promotional 0% interest rate to save on interest charges.</p>
                   </div>
                   <div className="border-l-4 border-green-500 pl-4">
                     <h4 className="font-semibold text-green-800 mb-2">Debt Settlement</h4>
-                    <p className="text-sm">Negotiate with creditors to pay less than the full amount owed, though this can negatively impact credit scores.</p>
+                    <p>Negotiate with creditors to pay less than the full amount owed, though this can negatively impact credit scores.</p>
                   </div>
                   <div className="border-l-4 border-orange-500 pl-4">
                     <h4 className="font-semibold text-orange-800 mb-2">Windfall Application</h4>
-                    <p className="text-sm">Use tax refunds, bonuses, or unexpected income to make large debt payments and significantly reduce payoff time.</p>
+                    <p>Use tax refunds, bonuses, or unexpected income to make large debt payments and significantly reduce payoff time.</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Tips for Successful Debt Elimination</h3>
-                <div className="space-y-3 text-gray-600">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-6 sm:p-8">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Tips for Successful Debt Elimination</h3>
+                <div className="space-y-3 text-gray-600 text-sm sm:text-base">
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
                     <span className="text-sm">Create a detailed budget to identify extra money for debt payments</span>
@@ -1082,44 +1065,44 @@ export default function DebtPayoffCalculator() {
           </div>
 
           {/* FAQ Section */}
-          <Card className="mt-12 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-            <CardContent className="p-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h3>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div className="space-y-6">
+          <Card className="mt-8 sm:mt-12 lg:mt-16 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+            <CardContent className="p-6 sm:p-8">
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">Frequently Asked Questions</h3>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+                <div className="space-y-6 text-sm sm:text-base">
                   <div>
                     <h4 className="font-semibold text-gray-800 mb-2">Which debt payoff method saves more money?</h4>
-                    <p className="text-gray-600 text-sm">The debt avalanche method (paying highest interest rates first) typically saves more money overall by minimizing total interest paid. However, the debt snowball method (paying smallest balances first) can provide better psychological motivation.</p>
+                    <p className="text-gray-600">The debt avalanche method (paying highest interest rates first) typically saves more money overall by minimizing total interest paid. However, the debt snowball method (paying smallest balances first) can provide better psychological motivation.</p>
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-800 mb-2">Should I pay off debt or save money first?</h4>
-                    <p className="text-gray-600 text-sm">Generally, you should build a small emergency fund ($500-$1,000) first, then focus aggressively on high-interest debt payoff. After eliminating debt, return to building a full 3-6 month emergency fund.</p>
+                    <p className="text-gray-600">Generally, you should build a small emergency fund ($500-$1,000) first, then focus aggressively on high-interest debt payoff. After eliminating debt, return to building a full 3-6 month emergency fund.</p>
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-800 mb-2">How do I stay motivated during debt payoff?</h4>
-                    <p className="text-gray-600 text-sm">Track your progress visually, celebrate small wins, and consider the debt snowball method if you need more frequent psychological victories. Setting up automatic payments can also help maintain consistency.</p>
+                    <p className="text-gray-600">Track your progress visually, celebrate small wins, and consider the debt snowball method if you need more frequent psychological victories. Setting up automatic payments can also help maintain consistency.</p>
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-800 mb-2">Can I negotiate with creditors to reduce my debt?</h4>
-                    <p className="text-gray-600 text-sm">Yes, many creditors will negotiate payment plans, interest rate reductions, or even debt settlements. Contact them directly to discuss options, especially if you're experiencing financial hardship.</p>
+                    <p className="text-gray-600">Yes, many creditors will negotiate payment plans, interest rate reductions, or even debt settlements. Contact them directly to discuss options, especially if you're experiencing financial hardship.</p>
                   </div>
                 </div>
-                <div className="space-y-6">
+                <div className="space-y-6 text-sm sm:text-base">
                   <div>
                     <h4 className="font-semibold text-gray-800 mb-2">What if I can only make minimum payments?</h4>
-                    <p className="text-gray-600 text-sm">Making only minimum payments will result in very long payoff times and high interest costs. Look for ways to cut expenses, increase income, or consider debt consolidation to reduce your overall payment burden.</p>
+                    <p className="text-gray-600">Making only minimum payments will result in very long payoff times and high interest costs. Look for ways to cut expenses, increase income, or consider debt consolidation to reduce your overall payment burden.</p>
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-800 mb-2">Should I include my mortgage in debt payoff planning?</h4>
-                    <p className="text-gray-600 text-sm">Mortgages typically have lower interest rates and tax benefits, so they're usually not prioritized in debt payoff strategies. Focus on high-interest consumer debt first before considering extra mortgage payments.</p>
+                    <p className="text-gray-600">Mortgages typically have lower interest rates and tax benefits, so they're usually not prioritized in debt payoff strategies. Focus on high-interest consumer debt first before considering extra mortgage payments.</p>
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-800 mb-2">How accurate is this debt payoff calculator?</h4>
-                    <p className="text-gray-600 text-sm">Our calculator provides highly accurate estimates based on the information you provide. Results assume consistent payments and no additional debt. Actual results may vary based on payment timing and any changes to your debts.</p>
+                    <p className="text-gray-600">Our calculator provides highly accurate estimates based on the information you provide. Results assume consistent payments and no additional debt. Actual results may vary based on payment timing and any changes to your debts.</p>
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-800 mb-2">What happens after I pay off all my debt?</h4>
-                    <p className="text-gray-600 text-sm">After debt freedom, redirect your debt payments toward building an emergency fund, increasing retirement contributions, and working toward other financial goals. Maintain good credit habits to avoid future debt problems.</p>
+                    <p className="text-gray-600">After debt freedom, redirect your debt payments toward building an emergency fund, increasing retirement contributions, and working toward other financial goals. Maintain good credit habits to avoid future debt problems.</p>
                   </div>
                 </div>
               </div>
