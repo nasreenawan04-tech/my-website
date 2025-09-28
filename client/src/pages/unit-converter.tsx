@@ -507,14 +507,6 @@ const UnitConverter = () => {
                       Swap
                     </Button>
                     <Button
-                      onClick={handleSampleData}
-                      variant="outline"
-                      className="h-12 sm:h-14 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-base sm:text-lg rounded-xl"
-                      data-testid="button-sample-data"
-                    >
-                      Sample
-                    </Button>
-                    <Button
                       onClick={resetTool}
                       variant="outline"
                       className="h-12 sm:h-14 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-base sm:text-lg rounded-xl"
