@@ -278,9 +278,9 @@ export default function NetWorthCalculator() {
           {/* Main Calculator Card */}
           <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="flex flex-col">
+              <div className="flex flex-col lg:grid lg:grid-cols-3 lg:gap-0">
                 {/* Input Section */}
-                <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
+                <div className="lg:col-span-2 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
                   <div className="text-center sm:text-left">
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Net Worth Configuration</h2>
                     <p className="text-sm sm:text-base text-gray-600">Enter your assets and liabilities to calculate your financial net worth</p>
@@ -295,9 +295,9 @@ export default function NetWorthCalculator() {
                       <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full">
                         <SelectValue />
                       </SelectTrigger>
-                      <SelectContent className="max-h-60 overflow-y-auto">
+                      <SelectContent>
                         {countries.map((country) => (
-                          <SelectItem key={country.code} value={country.code} className="text-sm sm:text-base">
+                          <SelectItem key={country.code} value={country.code}>
                             {country.name} ({country.currency})
                           </SelectItem>
                         ))}
@@ -342,9 +342,9 @@ export default function NetWorthCalculator() {
                                   <SelectTrigger className="h-10 sm:h-12 bg-white border-2 border-gray-200 rounded-lg w-full">
                                     <SelectValue />
                                   </SelectTrigger>
-                                  <SelectContent className="max-h-60 overflow-y-auto">
+                                  <SelectContent>
                                     {assetCategories.map(category => (
-                                      <SelectItem key={category} value={category} className="text-sm sm:text-base">{category}</SelectItem>
+                                      <SelectItem key={category} value={category}>{category}</SelectItem>
                                     ))}
                                   </SelectContent>
                                 </Select>
@@ -398,9 +398,9 @@ export default function NetWorthCalculator() {
                                   <SelectTrigger className="h-10 sm:h-12 bg-white border-2 border-gray-200 rounded-lg w-full">
                                     <SelectValue />
                                   </SelectTrigger>
-                                  <SelectContent className="max-h-60 overflow-y-auto">
+                                  <SelectContent>
                                     {liabilityCategories.map(category => (
-                                      <SelectItem key={category} value={category} className="text-sm sm:text-base">{category}</SelectItem>
+                                      <SelectItem key={category} value={category}>{category}</SelectItem>
                                     ))}
                                   </SelectContent>
                                 </Select>
@@ -448,40 +448,33 @@ export default function NetWorthCalculator() {
                 </div>
 
                 {/* Results Section */}
-                {result && (
-                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
-                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Net Worth Summary</h2>
-                    
-                    <div className="space-y-4 sm:space-y-6 md:space-y-8">
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t lg:border-t-0 lg:border-l">
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center lg:text-left">Net Worth Summary</h2>
+                  
+                  {result ? (
+                    <div className="space-y-6">
                       {/* Net Worth Highlight */}
-                      <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border-2 border-blue-200 shadow-sm">
-                        <div className="text-center space-y-3 sm:space-y-4">
-                          <h3 className="text-sm sm:text-base md:text-lg font-bold text-blue-900">
-                            Your Net Worth
-                          </h3>
-                          <div className={`text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold break-all ${result.netWorth >= 0 ? 'text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600' : 'text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-rose-600'}`}>
-                            {formatCurrency(result.netWorth)}
-                          </div>
-                          <div className="text-xs sm:text-sm text-gray-600">
-                            Total Assets - Total Liabilities
-                          </div>
+                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
+                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Your Net Worth</div>
+                        <div className={`text-4xl font-bold ${result.netWorth >= 0 ? 'text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600' : 'text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-rose-600'}`}>
+                          {formatCurrency(result.netWorth)}
                         </div>
                       </div>
 
                       {/* Assets vs Liabilities */}
-                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-                        <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border border-green-200">
-                          <div className="text-center space-y-2 sm:space-y-3">
-                            <div className="text-xs sm:text-sm font-semibold text-green-700 uppercase tracking-wide">Total Assets</div>
-                            <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-green-600">
+                      <div className="grid grid-cols-1 gap-4">
+                        <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-6 border border-green-200">
+                          <div className="text-center space-y-2">
+                            <div className="text-sm font-semibold text-green-700 uppercase tracking-wide">Total Assets</div>
+                            <div className="text-3xl font-bold text-green-600">
                               {formatCurrency(result.totalAssets)}
                             </div>
                           </div>
                         </div>
-                        <div className="bg-gradient-to-r from-red-50 to-rose-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border border-red-200">
-                          <div className="text-center space-y-2 sm:space-y-3">
-                            <div className="text-xs sm:text-sm font-semibold text-red-700 uppercase tracking-wide">Total Liabilities</div>
-                            <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-red-600">
+                        <div className="bg-gradient-to-r from-red-50 to-rose-50 rounded-xl p-6 border border-red-200">
+                          <div className="text-center space-y-2">
+                            <div className="text-sm font-semibold text-red-700 uppercase tracking-wide">Total Liabilities</div>
+                            <div className="text-3xl font-bold text-red-600">
                               {formatCurrency(result.totalLiabilities)}
                             </div>
                           </div>
@@ -489,35 +482,35 @@ export default function NetWorthCalculator() {
                       </div>
 
                       {/* Asset Breakdown */}
-                      <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm border border-gray-200">
-                        <h3 className="text-sm sm:text-base md:text-lg font-bold text-gray-900 mb-3 sm:mb-4">Asset Categories</h3>
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-1 sm:gap-2">
+                      <div className="space-y-4">
+                        <h3 className="text-lg font-bold text-gray-900">Asset Categories</h3>
+                        <div className="space-y-3">
                           {Object.entries(result.assetBreakdown).map(([category, value]) => (
-                            <div key={category} className="flex justify-between items-center py-2 sm:py-3 px-3 sm:px-4 bg-gray-50 rounded-lg border border-gray-100">
-                              <span className="font-medium text-gray-700 text-xs sm:text-sm truncate">{category}</span>
-                              <span className="font-bold text-green-600 text-xs sm:text-sm">{formatCurrency(value)}</span>
+                            <div key={category} className="flex justify-between items-center py-3 px-4 bg-white rounded-lg border border-gray-100">
+                              <span className="font-medium text-gray-700">{category}</span>
+                              <span className="font-bold text-green-600">{formatCurrency(value)}</span>
                             </div>
                           ))}
                         </div>
                       </div>
 
                       {/* Liability Breakdown */}
-                      <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm border border-gray-200">
-                        <h3 className="text-sm sm:text-base md:text-lg font-bold text-gray-900 mb-3 sm:mb-4">Liability Categories</h3>
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-1 sm:gap-2">
+                      <div className="space-y-4">
+                        <h3 className="text-lg font-bold text-gray-900">Liability Categories</h3>
+                        <div className="space-y-3">
                           {Object.entries(result.liabilityBreakdown).map(([category, value]) => (
-                            <div key={category} className="flex justify-between items-center py-2 sm:py-3 px-3 sm:px-4 bg-gray-50 rounded-lg border border-gray-100">
-                              <span className="font-medium text-gray-700 text-xs sm:text-sm truncate">{category}</span>
-                              <span className="font-bold text-red-600 text-xs sm:text-sm">{formatCurrency(value)}</span>
+                            <div key={category} className="flex justify-between items-center py-3 px-4 bg-white rounded-lg border border-gray-100">
+                              <span className="font-medium text-gray-700">{category}</span>
+                              <span className="font-bold text-red-600">{formatCurrency(value)}</span>
                             </div>
                           ))}
                         </div>
                       </div>
 
                       {/* Financial Health Summary */}
-                      <div className="bg-blue-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border border-blue-200">
-                        <h4 className="text-xs sm:text-sm font-bold text-blue-900 uppercase tracking-wide mb-2 sm:mb-3">Financial Health Analysis</h4>
-                        <p className="text-xs sm:text-sm text-blue-800 leading-relaxed">
+                      <div className="mt-8 bg-blue-50 rounded-xl p-6 border border-blue-200">
+                        <h4 className="text-sm font-bold text-blue-900 uppercase tracking-wide mb-3">Financial Health Analysis</h4>
+                        <p className="text-sm text-blue-800 leading-relaxed">
                           {result.netWorth >= 0 
                             ? `Excellent! You have a positive net worth of ${formatCurrency(result.netWorth)}. Your assets exceed your liabilities by this amount, indicating a strong financial position. Continue building wealth through strategic investments and debt reduction.`
                             : `Your net worth is ${formatCurrency(Math.abs(result.netWorth))} in the negative. Focus on reducing high-interest debt and increasing assets to improve your financial position. Consider creating a debt payoff plan and emergency fund.`
@@ -525,8 +518,15 @@ export default function NetWorthCalculator() {
                         </p>
                       </div>
                     </div>
-                  </div>
-                )}
+                  ) : (
+                    <div className="text-center py-16">
+                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <div className="text-3xl font-bold text-gray-400">$</div>
+                      </div>
+                      <p className="text-gray-500 text-lg">Enter your assets and liabilities to calculate your net worth</p>
+                    </div>
+                  )}
+                </div>
               </div>
             </CardContent>
           </Card>
