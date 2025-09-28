@@ -57,15 +57,15 @@ export default function LoanCalculator() {
     if (principal <= 0 || annualRate <= 0 || termMonths <= 0) return;
 
     // Adjust for payment frequency
-    const paymentsPerYear = paymentFrequency === 'weekly' ? 52 : 
+    const paymentsPerYear = paymentFrequency === 'weekly' ? 52 :
                            paymentFrequency === 'biweekly' ? 26 : 12;
     const periodicRate = annualRate / paymentsPerYear;
     const totalPayments = termMonths * (paymentsPerYear / 12);
 
     // Calculate regular payment
-    const regularPayment = (principal * periodicRate * Math.pow(1 + periodicRate, totalPayments)) / 
+    const regularPayment = (principal * periodicRate * Math.pow(1 + periodicRate, totalPayments)) /
                           (Math.pow(1 + periodicRate, totalPayments) - 1);
-    
+
     // Calculate amortization schedule
     const amortizationSchedule = [];
     let currentBalance = principal;
@@ -96,7 +96,7 @@ export default function LoanCalculator() {
       // Calculate without extra payments for comparison
       const regularTotalAmount = regularPayment * totalPayments;
       const regularTotalInterest = regularTotalAmount - principal;
-      
+
       extraPaymentSavings = {
         timeSaved: Math.max(0, totalPayments - actualPayments),
         interestSaved: Math.max(0, regularTotalInterest - totalInterestPaid),
@@ -196,9 +196,9 @@ export default function LoanCalculator() {
           })}
         </script>
       </Helmet>
-      
+
       <Header />
-      
+
       <main>
         {/* Hero Section */}
         <section className="relative py-12 sm:py-16 md:py-20 lg:py-28 xl:py-32 overflow-hidden">
@@ -221,19 +221,19 @@ export default function LoanCalculator() {
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="max-w-7xl mx-auto px-2 sm:px-4 py-8 sm:py-12 lg:py-16">
           {/* Main Calculator Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-2xl sm:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
                 {/* Input Section */}
-                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
+                <div className="lg:col-span-2 p-4 sm:p-6 md:p-8 lg:p-12 space-y-6 sm:space-y-8">
                   <div>
                     <h2 className="text-3xl font-bold text-gray-900 mb-2">Loan Configuration</h2>
                     <p className="text-gray-600">Enter your loan details to get accurate payment calculations</p>
                   </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                     {/* Loan Amount */}
                     <div className="space-y-3">
                       <Label htmlFor="loan-amount" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
@@ -380,9 +380,9 @@ export default function LoanCalculator() {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Results</h2>
-                  
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 lg:p-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Results</h2>
+
                   {result ? (
                     <div className="space-y-6" data-testid="loan-results">
                       {/* Monthly Payment Highlight */}
@@ -457,11 +457,11 @@ export default function LoanCalculator() {
 
           {/* Amortization Schedule */}
           {result && showAmortization && (
-            <Card className="mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Payment Schedule (First 5 Years)</h3>
-                <div className="overflow-x-auto">
-                  <table className="w-full">
+            <Card className="mt-6 sm:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 lg:p-8">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Payment Schedule (First 5 Years)</h3>
+                <div className="overflow-x-auto -mx-4 sm:mx-0">
+                  <table className="w-full min-w-[600px]">
                     <thead>
                       <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
                         <th className="px-6 py-4 text-left font-bold text-gray-900 rounded-l-lg">Payment #</th>
@@ -498,11 +498,11 @@ export default function LoanCalculator() {
 
           {/* Loan Comparison */}
           {showComparison && comparisonLoans.length > 0 && (
-            <Card className="mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Loan Comparison</h3>
-                <div className="overflow-x-auto">
-                  <table className="w-full">
+            <Card className="mt-6 sm:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 lg:p-8">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Loan Comparison</h3>
+                <div className="overflow-x-auto -mx-4 sm:mx-0">
+                  <table className="w-full min-w-[600px]">
                     <thead>
                       <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
                         <th className="px-6 py-4 text-left font-bold text-gray-900 rounded-l-lg">Loan</th>
@@ -559,15 +559,15 @@ export default function LoanCalculator() {
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">What is a Loan Calculator?</h2>
                 <div className="prose max-w-none text-gray-700 space-y-4 text-lg leading-relaxed">
                   <p>
-                    A loan calculator is an essential financial tool that helps borrowers estimate their monthly loan payments, 
-                    total interest costs, and overall loan expenses before applying for financing. Our free online loan calculator 
-                    uses sophisticated algorithms to provide accurate calculations for personal loans, auto loans, home loans, 
+                    A loan calculator is an essential financial tool that helps borrowers estimate their monthly loan payments,
+                    total interest costs, and overall loan expenses before applying for financing. Our free online loan calculator
+                    uses sophisticated algorithms to provide accurate calculations for personal loans, auto loans, home loans,
                     and business financing options.
                   </p>
                   <p>
-                    Whether you're planning to finance a new car, consolidate debt, fund home improvements, or start a business, 
-                    our loan payment calculator gives you the insights needed to make informed financial decisions. The calculator 
-                    instantly computes your monthly payment amount, total interest over the loan term, and provides a detailed 
+                    Whether you're planning to finance a new car, consolidate debt, fund home improvements, or start a business,
+                    our loan payment calculator gives you the insights needed to make informed financial decisions. The calculator
+                    instantly computes your monthly payment amount, total interest over the loan term, and provides a detailed
                     amortization schedule showing how your payments are allocated between principal and interest.
                   </p>
                 </div>
@@ -584,17 +584,17 @@ export default function LoanCalculator() {
                       <h3 className="font-bold text-gray-900 mb-2">Free and Accurate</h3>
                       <p className="text-gray-600">Get precise calculations without any cost or registration required.</p>
                     </div>
-                    
+
                     <div className="border-l-4 border-green-500 pl-6">
                       <h3 className="font-bold text-gray-900 mb-2">Instant Results</h3>
                       <p className="text-gray-600">Calculate loan payments in real-time as you adjust parameters.</p>
                     </div>
-                    
+
                     <div className="border-l-4 border-purple-500 pl-6">
                       <h3 className="font-bold text-gray-900 mb-2">Compare Options</h3>
                       <p className="text-gray-600">Test different scenarios to find the best loan terms for your situation.</p>
                     </div>
-                    
+
                     <div className="border-l-4 border-orange-500 pl-6">
                       <h3 className="font-bold text-gray-900 mb-2">Budget Planning</h3>
                       <p className="text-gray-600">Plan your budget with accurate monthly payment estimates.</p>
@@ -611,17 +611,17 @@ export default function LoanCalculator() {
                       <h3 className="font-bold text-gray-900 mb-2">Loan Shopping</h3>
                       <p className="text-gray-600 text-sm">Compare offers from different lenders to find the best rates and terms.</p>
                     </div>
-                    
+
                     <div className="bg-green-50 rounded-xl p-4">
                       <h3 className="font-bold text-gray-900 mb-2">Budget Planning</h3>
                       <p className="text-gray-600 text-sm">Determine if loan payments fit within your monthly budget before applying.</p>
                     </div>
-                    
+
                     <div className="bg-purple-50 rounded-xl p-4">
                       <h3 className="font-bold text-gray-900 mb-2">Refinancing Analysis</h3>
                       <p className="text-gray-600 text-sm">Calculate potential savings from refinancing existing loans.</p>
                     </div>
-                    
+
                     <div className="bg-orange-50 rounded-xl p-4">
                       <h3 className="font-bold text-gray-900 mb-2">Early Payoff Planning</h3>
                       <p className="text-gray-600 text-sm">See how extra payments can reduce total interest and loan term.</p>
@@ -644,7 +644,7 @@ export default function LoanCalculator() {
                       <p className="text-sm">Post-graduation financial planning</p>
                     </div>
                   </div>
-                  
+
                   <div className="bg-white rounded-xl p-6 shadow-sm">
                     <h3 className="text-xl font-bold text-gray-900 mb-4">Working Professionals</h3>
                     <div className="space-y-2 text-gray-600">
@@ -653,7 +653,7 @@ export default function LoanCalculator() {
                       <p className="text-sm">Professional development loan calculations</p>
                     </div>
                   </div>
-                  
+
                   <div className="bg-white rounded-xl p-6 shadow-sm">
                     <h3 className="text-xl font-bold text-gray-900 mb-4">Business Owners</h3>
                     <div className="space-y-2 text-gray-600">
@@ -662,7 +662,7 @@ export default function LoanCalculator() {
                       <p className="text-sm">Working capital loan analysis</p>
                     </div>
                   </div>
-                  
+
                   <div className="bg-white rounded-xl p-6 shadow-sm">
                     <h3 className="text-xl font-bold text-gray-900 mb-4">Homeowners & Buyers</h3>
                     <div className="space-y-2 text-gray-600">
@@ -671,7 +671,7 @@ export default function LoanCalculator() {
                       <p className="text-sm">Refinancing opportunity analysis</p>
                     </div>
                   </div>
-                  
+
                   <div className="bg-white rounded-xl p-6 shadow-sm">
                     <h3 className="text-xl font-bold text-gray-900 mb-4">Investors & Planners</h3>
                     <div className="space-y-2 text-gray-600">
@@ -680,7 +680,7 @@ export default function LoanCalculator() {
                       <p className="text-sm">Long-term financial planning</p>
                     </div>
                   </div>
-                  
+
                   <div className="bg-white rounded-xl p-6 shadow-sm">
                     <h3 className="text-xl font-bold text-gray-900 mb-4">Families & Couples</h3>
                     <div className="space-y-2 text-gray-600">
@@ -701,25 +701,25 @@ export default function LoanCalculator() {
                   <div>
                     <h3 className="text-lg font-bold text-gray-900 mb-3">How accurate is this loan calculator?</h3>
                     <p className="text-gray-600 leading-relaxed">
-                      Our loan calculator provides highly accurate estimates using industry-standard amortization formulas. 
-                      However, actual loan terms may vary based on creditworthiness, lender policies, and additional fees 
+                      Our loan calculator provides highly accurate estimates using industry-standard amortization formulas.
+                      However, actual loan terms may vary based on creditworthiness, lender policies, and additional fees
                       not included in basic calculations.
                     </p>
                   </div>
-                  
+
                   <div>
                     <h3 className="text-lg font-bold text-gray-900 mb-3">What's the difference between APR and interest rate?</h3>
                     <p className="text-gray-600 leading-relaxed">
-                      The interest rate is the annual cost of borrowing expressed as a percentage. APR includes the interest 
+                      The interest rate is the annual cost of borrowing expressed as a percentage. APR includes the interest
                       rate plus additional fees and costs, giving you a more complete picture of the loan's total annual cost.
                     </p>
                   </div>
-                  
+
                   <div>
                     <h3 className="text-lg font-bold text-gray-900 mb-3">Should I choose a shorter or longer loan term?</h3>
                     <p className="text-gray-600 leading-relaxed">
-                      Shorter terms mean higher monthly payments but significantly less total interest. Longer terms offer 
-                      lower monthly payments but more total interest over the loan's lifetime. Choose based on your budget 
+                      Shorter terms mean higher monthly payments but significantly less total interest. Longer terms offer
+                      lower monthly payments but more total interest over the loan's lifetime. Choose based on your budget
                       and financial goals.
                     </p>
                   </div>
@@ -729,7 +729,7 @@ export default function LoanCalculator() {
           </div>
         </div>
       </main>
-      
+
       <Footer />
     </div>
   );
