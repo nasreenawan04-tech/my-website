@@ -211,29 +211,29 @@ export default function TipCalculator() {
           </section>
 
           {/* Calculator Section */}
-          <section className="py-16">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+          <section className="py-8 sm:py-12 md:py-16">
+            <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
                 <CardContent className="p-0">
-                  <div className="grid grid-cols-1 xl:grid-cols-5 gap-0">
+                  <div className="flex flex-col">
                     {/* Input Section */}
-                    <div className="xl:col-span-3 p-8 lg:p-12 space-y-8">
-                      <div>
-                        <h2 className="text-3xl font-bold text-gray-900 mb-2">Tip Configuration</h2>
-                        <p className="text-gray-600">Enter your bill details and preferences for accurate tip calculations</p>
+                    <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
+                      <div className="text-center sm:text-left">
+                        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Tip Configuration</h2>
+                        <p className="text-sm sm:text-base text-gray-600">Enter your bill details and preferences for accurate tip calculations</p>
                       </div>
 
-                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
                         {/* Country Selection */}
-                        <div className="space-y-3">
-                          <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Country</Label>
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">Country</Label>
                           <Select value={country} onValueChange={handleCountryChange}>
-                            <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg focus:border-purple-500 focus:ring-purple-500" data-testid="select-country">
+                            <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg focus:border-purple-500 focus:ring-purple-500 w-full" data-testid="select-country">
                               <SelectValue />
                             </SelectTrigger>
-                            <SelectContent>
+                            <SelectContent className="max-h-60 overflow-y-auto">
                               {countries.map((country) => (
-                                <SelectItem key={country.code} value={country.code}>
+                                <SelectItem key={country.code} value={country.code} className="text-sm sm:text-base">
                                   {country.name} ({country.tipRange})
                                 </SelectItem>
                               ))}
@@ -245,12 +245,12 @@ export default function TipCalculator() {
                         </div>
 
                         {/* Bill Amount */}
-                        <div className="space-y-3">
-                          <Label htmlFor="bill-amount" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="bill-amount" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Bill Amount
                           </Label>
                           <div className="relative">
-                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">
+                            <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">
                               {currency === 'USD' ? '$' : 
                                currency === 'CAD' ? 'C$' :
                                currency === 'EUR' ? '€' : 
@@ -269,7 +269,7 @@ export default function TipCalculator() {
                               type="number"
                               value={billAmount}
                               onChange={(e) => setBillAmount(e.target.value)}
-                              className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:ring-purple-500"
+                              className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-purple-500 focus:ring-purple-500 w-full"
                               placeholder="50.00"
                               min="0"
                               step="0.01"
@@ -279,8 +279,8 @@ export default function TipCalculator() {
                         </div>
 
                         {/* Number of People */}
-                        <div className="space-y-3">
-                          <Label htmlFor="people" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="people" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Number of People
                           </Label>
                           <Input
@@ -288,7 +288,7 @@ export default function TipCalculator() {
                             type="number"
                             value={numberOfPeople}
                             onChange={(e) => setNumberOfPeople(e.target.value)}
-                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:ring-purple-500"
+                            className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-purple-500 focus:ring-purple-500 w-full"
                             placeholder="1"
                             min="1"
                             max="50"
@@ -297,35 +297,35 @@ export default function TipCalculator() {
                         </div>
 
                         {/* Calculation Method */}
-                        <div className="space-y-3">
-                          <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Calculation Method</Label>
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">Calculation Method</Label>
                           <Select value={calculationType} onValueChange={setCalculationType}>
-                            <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg focus:border-purple-500 focus:ring-purple-500" data-testid="select-calculation-type">
+                            <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg focus:border-purple-500 focus:ring-purple-500 w-full" data-testid="select-calculation-type">
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent>
-                              <SelectItem value="percentage">Percentage</SelectItem>
-                              <SelectItem value="quality">Service Quality</SelectItem>
-                              <SelectItem value="custom">Custom Amount</SelectItem>
+                              <SelectItem value="percentage" className="text-sm sm:text-base">Percentage</SelectItem>
+                              <SelectItem value="quality" className="text-sm sm:text-base">Service Quality</SelectItem>
+                              <SelectItem value="custom" className="text-sm sm:text-base">Custom Amount</SelectItem>
                             </SelectContent>
                           </Select>
                         </div>
                       </div>
 
                       {/* Dynamic Input Based on Calculation Type */}
-                      <div className="border-t border-gray-200 pt-8 space-y-6">
-                        <h3 className="text-xl font-bold text-gray-900">Tip Details</h3>
+                      <div className="border-t border-gray-200 pt-4 sm:pt-6 md:pt-8 space-y-3 sm:space-y-4 md:space-y-6">
+                        <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900">Tip Details</h3>
                         
                         {calculationType === 'percentage' && (
-                          <div className="space-y-4">
-                            <Label className="text-sm font-medium text-gray-700">Quick Tip Percentages</Label>
-                            <div className="grid grid-cols-5 gap-2">
+                          <div className="space-y-3 sm:space-y-4">
+                            <Label className="text-xs sm:text-sm font-medium text-gray-700">Quick Tip Percentages</Label>
+                            <div className="grid grid-cols-3 sm:grid-cols-5 gap-1 sm:gap-2">
                               {currentCountryData.customTips.map((tip) => (
                                 <Button
                                   key={tip}
                                   type="button"
                                   variant={tipPercentage === tip ? "default" : "outline"}
-                                  className="h-12 text-sm font-medium"
+                                  className="h-8 sm:h-10 md:h-12 text-xs sm:text-sm font-medium px-2 sm:px-3"
                                   onClick={() => setTipPercentage(tip)}
                                   data-testid={`button-tip-${tip}`}
                                 >
@@ -334,21 +334,21 @@ export default function TipCalculator() {
                               ))}
                             </div>
                             <div className="space-y-2">
-                              <Label htmlFor="tip-percentage" className="text-sm font-medium text-gray-700">Custom Percentage</Label>
+                              <Label htmlFor="tip-percentage" className="text-xs sm:text-sm font-medium text-gray-700">Custom Percentage</Label>
                               <div className="relative">
                                 <Input
                                   id="tip-percentage"
                                   type="number"
                                   value={tipPercentage}
                                   onChange={(e) => setTipPercentage(e.target.value)}
-                                  className="h-12 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:ring-purple-500"
+                                  className="h-10 sm:h-12 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-purple-500 focus:ring-purple-500 w-full"
                                   placeholder="18"
                                   min="0"
                                   max="100"
                                   step="0.1"
                                   data-testid="input-tip-percentage"
                                 />
-                                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
+                                <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
                               </div>
                             </div>
                           </div>
@@ -356,14 +356,14 @@ export default function TipCalculator() {
 
                         {calculationType === 'quality' && (
                           <div className="space-y-2">
-                            <Label className="text-sm font-medium text-gray-700">Service Quality</Label>
+                            <Label className="text-xs sm:text-sm font-medium text-gray-700">Service Quality</Label>
                             <Select value={serviceQuality} onValueChange={setServiceQuality}>
-                              <SelectTrigger className="h-12 border-2 border-gray-200 rounded-xl text-lg focus:border-purple-500 focus:ring-purple-500" data-testid="select-service-quality">
+                              <SelectTrigger className="h-10 sm:h-12 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg focus:border-purple-500 focus:ring-purple-500 w-full" data-testid="select-service-quality">
                                 <SelectValue />
                               </SelectTrigger>
                               <SelectContent>
                                 {Object.entries(serviceQualities).map(([key, value]) => (
-                                  <SelectItem key={key} value={key}>
+                                  <SelectItem key={key} value={key} className="text-sm sm:text-base">
                                     {value.label}
                                   </SelectItem>
                                 ))}
@@ -374,31 +374,31 @@ export default function TipCalculator() {
 
                         {calculationType === 'custom' && (
                           <div className="space-y-2">
-                            <Label htmlFor="custom-tip" className="text-sm font-medium text-gray-700">Custom Tip Percentage</Label>
+                            <Label htmlFor="custom-tip" className="text-xs sm:text-sm font-medium text-gray-700">Custom Tip Percentage</Label>
                             <div className="relative">
                               <Input
                                 id="custom-tip"
                                 type="number"
                                 value={customTip}
                                 onChange={(e) => setCustomTip(e.target.value)}
-                                className="h-12 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:ring-purple-500"
+                                className="h-10 sm:h-12 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-purple-500 focus:ring-purple-500 w-full"
                                 placeholder="15.5"
                                 min="0"
                                 max="100"
                                 step="0.1"
                                 data-testid="input-custom-tip"
                               />
-                              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
+                              <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
                             </div>
                           </div>
                         )}
                       </div>
 
                       {/* Action Buttons */}
-                      <div className="flex gap-4 pt-6">
+                      <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                         <Button
                           onClick={calculateTip}
-                          className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold text-lg rounded-xl shadow-lg"
+                          className="w-full sm:flex-1 h-10 sm:h-12 md:h-14 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg"
                           data-testid="button-calculate"
                         >
                           Calculate Tip
@@ -406,7 +406,7 @@ export default function TipCalculator() {
                         <Button
                           onClick={resetCalculator}
                           variant="outline"
-                          className="h-14 px-8 border-2 border-gray-200 text-gray-600 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                          className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-200 text-gray-600 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                           data-testid="button-reset"
                         >
                           Reset
@@ -415,97 +415,97 @@ export default function TipCalculator() {
                     </div>
 
                     {/* Results Section */}
-                    <div className="xl:col-span-2 bg-gradient-to-br from-blue-50 to-purple-50 p-8 lg:p-12">
-                      <div className="sticky top-8">
-                        <h2 className="text-3xl font-bold text-gray-900 mb-8">Tip Breakdown</h2>
+                    {result && (
+                      <div className="bg-gradient-to-br from-blue-50 to-purple-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                        <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Tip Breakdown</h2>
                         
-                        {result ? (
-                          <div className="space-y-6">
-                            {/* Main Results */}
-                            <div className="grid grid-cols-1 gap-4">
-                              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-                                <div className="text-center space-y-2">
-                                  <div className="text-sm text-gray-600 uppercase tracking-wide font-medium">Tip Amount</div>
-                                  <div className="text-3xl font-bold text-green-600">
-                                    {formatCurrency(result.tipAmount)}
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-                                <div className="text-center space-y-2">
-                                  <div className="text-sm text-gray-600 uppercase tracking-wide font-medium">Total Amount</div>
-                                  <div className="text-3xl font-bold text-blue-600">
-                                    {formatCurrency(result.totalAmount)}
-                                  </div>
+                        <div className="space-y-4 sm:space-y-6 md:space-y-8" data-testid="conversion-results">
+                          {/* Main Results */}
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+                            <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100">
+                              <div className="text-center space-y-2">
+                                <div className="text-xs sm:text-sm text-gray-600 uppercase tracking-wide font-medium">Tip Amount</div>
+                                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-green-600">
+                                  {formatCurrency(result.tipAmount)}
                                 </div>
                               </div>
                             </div>
-
-                            {/* Bill Summary */}
-                            <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 space-y-4">
-                              <h3 className="text-lg font-bold text-gray-900">Summary</h3>
-                              
-                              <div className="space-y-3">
-                                <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                                  <span className="text-gray-600">Original Bill</span>
-                                  <span className="font-semibold text-gray-900">
-                                    {formatCurrency(result.billAmount)}
-                                  </span>
-                                </div>
-                                <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                                  <span className="text-gray-600">Tip ({result.tipPercentage}%)</span>
-                                  <span className="font-semibold text-green-600">
-                                    +{formatCurrency(result.tipAmount)}
-                                  </span>
-                                </div>
-                                <div className="flex justify-between items-center py-2">
-                                  <span className="text-gray-900 font-bold">Total</span>
-                                  <span className="font-bold text-blue-600 text-lg">
-                                    {formatCurrency(result.totalAmount)}
-                                  </span>
+                            <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100">
+                              <div className="text-center space-y-2">
+                                <div className="text-xs sm:text-sm text-gray-600 uppercase tracking-wide font-medium">Total Amount</div>
+                                <div className="text-xl sm:text-2xl md:text-3xl font-bold text-blue-600">
+                                  {formatCurrency(result.totalAmount)}
                                 </div>
                               </div>
                             </div>
-
-                            {/* Per Person Breakdown */}
-                            {result.numberOfPeople > 1 && (
-                              <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 space-y-4">
-                                <h3 className="text-lg font-bold text-gray-900">
-                                  Per Person ({result.numberOfPeople} people)
-                                </h3>
-                                <div className="space-y-3">
-                                  <div className="flex justify-between items-center text-sm">
-                                    <span className="text-gray-600">Bill per person</span>
-                                    <span className="font-medium text-gray-900">
-                                      {formatCurrency(result.perPersonBill)}
-                                    </span>
-                                  </div>
-                                  <div className="flex justify-between items-center text-sm">
-                                    <span className="text-gray-600">Tip per person</span>
-                                    <span className="font-medium text-green-600">
-                                      {formatCurrency(result.perPersonTip)}
-                                    </span>
-                                  </div>
-                                  <div className="flex justify-between items-center py-2 border-t border-gray-100">
-                                    <span className="text-gray-900 font-bold">Total per person</span>
-                                    <span className="font-bold text-blue-600">
-                                      {formatCurrency(result.perPersonTotal)}
-                                    </span>
-                                  </div>
-                                </div>
-                              </div>
-                            )}
                           </div>
-                        ) : (
-                          <div className="text-center py-12">
-                            <div className="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                              <span className="text-3xl text-gray-400">$</span>
+
+                          {/* Bill Summary */}
+                          <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100 space-y-3 sm:space-y-4">
+                            <h3 className="text-base sm:text-lg font-bold text-gray-900">Summary</h3>
+                            
+                            <div className="space-y-2 sm:space-y-3">
+                              <div className="flex justify-between items-center py-1 sm:py-2 border-b border-gray-100">
+                                <span className="text-sm sm:text-base text-gray-600">Original Bill</span>
+                                <span className="font-semibold text-sm sm:text-base text-gray-900">
+                                  {formatCurrency(result.billAmount)}
+                                </span>
+                              </div>
+                              <div className="flex justify-between items-center py-1 sm:py-2 border-b border-gray-100">
+                                <span className="text-sm sm:text-base text-gray-600">Tip ({result.tipPercentage}%)</span>
+                                <span className="font-semibold text-sm sm:text-base text-green-600">
+                                  +{formatCurrency(result.tipAmount)}
+                                </span>
+                              </div>
+                              <div className="flex justify-between items-center py-1 sm:py-2">
+                                <span className="text-sm sm:text-base text-gray-900 font-bold">Total</span>
+                                <span className="font-bold text-base sm:text-lg text-blue-600">
+                                  {formatCurrency(result.totalAmount)}
+                                </span>
+                              </div>
                             </div>
-                            <p className="text-gray-500 text-lg">Enter bill details to calculate your tip</p>
                           </div>
-                        )}
+
+                          {/* Per Person Breakdown */}
+                          {result.numberOfPeople > 1 && (
+                            <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm border border-gray-100 space-y-3 sm:space-y-4">
+                              <h3 className="text-base sm:text-lg font-bold text-gray-900">
+                                Per Person ({result.numberOfPeople} people)
+                              </h3>
+                              <div className="space-y-2 sm:space-y-3">
+                                <div className="flex justify-between items-center text-xs sm:text-sm">
+                                  <span className="text-gray-600">Bill per person</span>
+                                  <span className="font-medium text-gray-900">
+                                    {formatCurrency(result.perPersonBill)}
+                                  </span>
+                                </div>
+                                <div className="flex justify-between items-center text-xs sm:text-sm">
+                                  <span className="text-gray-600">Tip per person</span>
+                                  <span className="font-medium text-green-600">
+                                    {formatCurrency(result.perPersonTip)}
+                                  </span>
+                                </div>
+                                <div className="flex justify-between items-center py-1 sm:py-2 border-t border-gray-100">
+                                  <span className="text-sm sm:text-base text-gray-900 font-bold">Total per person</span>
+                                  <span className="font-bold text-sm sm:text-base text-blue-600">
+                                    {formatCurrency(result.perPersonTotal)}
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          )}
+                        </div>
                       </div>
-                    </div>
+                    )}
+                    
+                    {!result && (
+                      <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 border-t text-center">
+                        <div className="w-16 sm:w-20 md:w-24 h-16 sm:h-20 md:h-24 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
+                          <span className="text-xl sm:text-2xl md:text-3xl text-gray-400">$</span>
+                        </div>
+                        <p className="text-gray-500 text-sm sm:text-base md:text-lg">Enter bill details to calculate your tip</p>
+                      </div>
+                    )}
                   </div>
                 </CardContent>
               </Card>
