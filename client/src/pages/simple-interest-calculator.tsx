@@ -155,25 +155,25 @@ export default function SimpleInterestCalculator() {
         </section>
 
         <div className="max-w-7xl mx-auto px-4 py-16">
-          {/* Main Calculator Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+          {/* Main Calculator Card - Fully Responsive */}
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-2xl lg:rounded-3xl overflow-hidden mx-2 sm:mx-0">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
-                {/* Input Section */}
-                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
-                  <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Interest Configuration</h2>
-                    <p className="text-gray-600">Enter your investment details to calculate simple interest earnings</p>
+              <div className="flex flex-col xl:grid xl:grid-cols-3 gap-0">
+                {/* Input Section - Responsive */}
+                <div className="xl:col-span-2 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 space-y-6 md:space-y-8">
+                  <div className="text-center sm:text-left">
+                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Interest Configuration</h2>
+                    <p className="text-sm sm:text-base text-gray-600">Enter your investment details to calculate simple interest earnings</p>
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* Currency Selection */}
-                    <div className="space-y-3">
-                      <Label htmlFor="currency" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+                    {/* Currency Selection - Mobile Optimized */}
+                    <div className="space-y-2 sm:space-y-3 sm:col-span-2 md:col-span-1">
+                      <Label htmlFor="currency" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Currency
                       </Label>
                       <Select value={currency} onValueChange={setCurrency}>
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-currency">
+                        <SelectTrigger className="h-12 sm:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-base sm:text-lg" data-testid="select-currency">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -191,28 +191,28 @@ export default function SimpleInterestCalculator() {
                       </Select>
                     </div>
 
-                    {/* Principal Amount */}
-                    <div className="space-y-3">
-                      <Label htmlFor="principal" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    {/* Principal Amount - Mobile Optimized */}
+                    <div className="space-y-2 sm:space-y-3 sm:col-span-2 md:col-span-1">
+                      <Label htmlFor="principal" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Principal Amount
                       </Label>
                       <div className="relative">
-                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">$</span>
                         <Input
                           id="principal"
                           type="number"
                           value={principal}
                           onChange={(e) => setPrincipal(e.target.value)}
-                          className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-12 sm:h-14 pl-7 sm:pl-8 text-base sm:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500"
                           placeholder="10,000"
                           data-testid="input-principal"
                         />
                       </div>
                     </div>
 
-                    {/* Interest Rate */}
-                    <div className="space-y-3">
-                      <Label htmlFor="interest-rate" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    {/* Interest Rate - Mobile Optimized */}
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="interest-rate" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Annual Interest Rate
                       </Label>
                       <div className="relative">
@@ -221,30 +221,30 @@ export default function SimpleInterestCalculator() {
                           type="number"
                           value={interestRate}
                           onChange={(e) => setInterestRate(e.target.value)}
-                          className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-12 sm:h-14 pr-7 sm:pr-8 text-base sm:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500"
                           placeholder="8.00"
                           step="0.01"
                           data-testid="input-interest-rate"
                         />
-                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
+                        <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">%</span>
                       </div>
                     </div>
 
-                    {/* Time Period */}
-                    <div className="space-y-3">
-                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Time Period</Label>
-                      <div className="grid grid-cols-2 gap-3">
+                    {/* Time Period - Mobile Optimized */}
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">Time Period</Label>
+                      <div className="grid grid-cols-2 gap-2 sm:gap-3">
                         <Input
                           type="number"
                           value={timePeriod}
                           onChange={(e) => setTimePeriod(e.target.value)}
-                          className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-12 sm:h-14 text-base sm:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500"
                           placeholder="5"
                           min="1"
                           data-testid="input-time-period"
                         />
                         <Select value={timeUnit} onValueChange={setTimeUnit}>
-                          <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-time-unit">
+                          <SelectTrigger className="h-12 sm:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-base sm:text-lg" data-testid="select-time-unit">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -256,11 +256,11 @@ export default function SimpleInterestCalculator() {
                     </div>
                   </div>
 
-                  {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                  {/* Action Buttons - Mobile Optimized */}
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 sm:pt-6">
                     <Button
                       onClick={calculateSimpleInterest}
-                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="flex-1 h-12 sm:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-base sm:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105 active:scale-95"
                       data-testid="button-calculate"
                     >
                       Calculate Interest
@@ -268,7 +268,7 @@ export default function SimpleInterestCalculator() {
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      className="h-12 sm:h-14 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-base sm:text-lg rounded-lg sm:rounded-xl transition-all duration-200"
                       data-testid="button-reset"
                     >
                       Reset
@@ -276,71 +276,71 @@ export default function SimpleInterestCalculator() {
                   </div>
                 </div>
 
-                {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Results</h2>
+                {/* Results Section - Mobile Optimized */}
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 border-t xl:border-t-0 xl:border-l border-gray-200">
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8 text-center xl:text-left">Results</h2>
                   
                   {result ? (
-                    <div className="space-y-6" data-testid="interest-results">
-                      {/* Simple Interest Highlight */}
-                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
-                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Simple Interest Earned</div>
-                        <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" data-testid="text-simple-interest">
+                    <div className="space-y-4 sm:space-y-6" data-testid="interest-results">
+                      {/* Simple Interest Highlight - Mobile Optimized */}
+                      <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border border-blue-100">
+                        <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2 text-center xl:text-left">Simple Interest Earned</div>
+                        <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 text-center xl:text-left break-all" data-testid="text-simple-interest">
                           {formatCurrency(result.simpleInterest)}
                         </div>
                       </div>
 
-                      {/* Interest Breakdown */}
-                      <div className="space-y-4">
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Principal Amount</span>
-                            <span className="font-bold text-gray-900" data-testid="text-principal-amount">
+                      {/* Interest Breakdown - Mobile Optimized */}
+                      <div className="space-y-3 sm:space-y-4">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Principal Amount</span>
+                            <span className="font-bold text-gray-900 text-sm sm:text-base break-all" data-testid="text-principal-amount">
                               {formatCurrency(result.principalAmount)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Total Amount</span>
-                            <span className="font-bold text-green-600" data-testid="text-total-amount">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Total Amount</span>
+                            <span className="font-bold text-green-600 text-sm sm:text-base break-all" data-testid="text-total-amount">
                               {formatCurrency(result.totalAmount)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Monthly Interest</span>
-                            <span className="font-bold text-blue-600" data-testid="text-monthly-interest">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Monthly Interest</span>
+                            <span className="font-bold text-blue-600 text-sm sm:text-base break-all" data-testid="text-monthly-interest">
                               {formatCurrency(result.monthlyInterest)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Interest Rate</span>
-                            <span className="font-bold text-gray-900">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Interest Rate</span>
+                            <span className="font-bold text-gray-900 text-sm sm:text-base">
                               {interestRate}% per year
                             </span>
                           </div>
                         </div>
                       </div>
 
-                      {/* Yearly Breakdown */}
+                      {/* Yearly Breakdown - Mobile Optimized */}
                       {result.yearlyBreakdown.length > 0 && (
-                        <div className="mt-8">
-                          <h3 className="text-lg font-bold text-gray-900 mb-4">Yearly Breakdown</h3>
+                        <div className="mt-6 sm:mt-8">
+                          <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4 text-center xl:text-left">Yearly Breakdown</h3>
                           <div className="max-h-60 overflow-y-auto space-y-2">
                             {result.yearlyBreakdown.slice(0, 5).map((year) => (
-                              <div key={year.year} className="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
-                                <div className="flex justify-between items-center mb-2">
-                                  <span className="font-medium text-gray-900">Year {year.year}</span>
-                                  <span className="font-bold text-green-600">
+                              <div key={year.year} className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm border border-gray-100">
+                                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-2 gap-1 sm:gap-0">
+                                  <span className="font-medium text-gray-900 text-sm sm:text-base">Year {year.year}</span>
+                                  <span className="font-bold text-green-600 text-sm sm:text-base break-all">
                                     {formatCurrency(year.totalAmount)}
                                   </span>
                                 </div>
-                                <div className="text-sm text-gray-600">
-                                  Interest earned: {formatCurrency(year.interestEarned)}
+                                <div className="text-xs sm:text-sm text-gray-600">
+                                  Interest earned: <span className="break-all">{formatCurrency(year.interestEarned)}</span>
                                 </div>
                               </div>
                             ))}
@@ -349,11 +349,11 @@ export default function SimpleInterestCalculator() {
                       )}
                     </div>
                   ) : (
-                    <div className="text-center py-16" data-testid="no-results">
-                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <div className="text-3xl font-bold text-gray-400">%</div>
+                    <div className="text-center py-12 sm:py-16" data-testid="no-results">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
+                        <div className="text-2xl sm:text-3xl font-bold text-gray-400">%</div>
                       </div>
-                      <p className="text-gray-500 text-lg">Enter investment details and calculate to see results</p>
+                      <p className="text-gray-500 text-base sm:text-lg px-4">Enter investment details and calculate to see results</p>
                     </div>
                   )}
                 </div>
