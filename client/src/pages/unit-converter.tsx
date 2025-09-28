@@ -325,9 +325,9 @@ const UnitConverter = () => {
                 <span className="text-xs sm:text-sm font-medium text-blue-700">Measurement Conversion Tool</span>
               </div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-slate-900 leading-tight tracking-tight" data-testid="page-title">
-                <span className="block">Unit Converter</span>
+                <span className="block">Smart Unit</span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
-                  Calculator
+                  Converter
                 </span>
               </h1>
               <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-slate-600 max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto leading-relaxed px-2 sm:px-0">
