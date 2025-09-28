@@ -201,52 +201,52 @@ export default function LoanCalculator() {
 
       <main>
         {/* Hero Section */}
-        <section className="relative py-12 sm:py-16 md:py-20 lg:py-28 xl:py-32 overflow-hidden">
+        <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
-          <div className="relative max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
+          <div className="relative max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
             <div className="space-y-4 sm:space-y-6 md:space-y-8">
-              <div className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+              <div className="inline-flex items-center px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
                 <span className="text-xs sm:text-sm font-medium text-blue-700">Professional Loan Calculator</span>
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-slate-900 leading-tight tracking-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0">
                 <span className="block">Smart Loan</span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
                   Calculator
                 </span>
               </h1>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-slate-600 max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto leading-relaxed px-2 sm:px-0">
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
                 Calculate monthly payments, interest costs, and payment schedules for any loan with precision and clarity
               </p>
             </div>
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-2 sm:px-4 py-8 sm:py-12 lg:py-16">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
           {/* Main Calculator Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-2xl sm:rounded-3xl overflow-hidden">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+              <div className="flex flex-col">
                 {/* Input Section */}
-                <div className="lg:col-span-2 p-4 sm:p-6 md:p-8 lg:p-12 space-y-6 sm:space-y-8">
-                  <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Loan Configuration</h2>
-                    <p className="text-gray-600">Enter your loan details to get accurate payment calculations</p>
+                <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
+                  <div className="text-center sm:text-left">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Loan Configuration</h2>
+                    <p className="text-sm sm:text-base text-gray-600">Enter your loan details to get accurate payment calculations</p>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                     {/* Loan Amount */}
-                    <div className="space-y-3">
-                      <Label htmlFor="loan-amount" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="loan-amount" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Loan Amount
                       </Label>
                       <div className="relative">
-                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-lg">$</span>
                         <Input
                           id="loan-amount"
                           type="number"
                           value={loanAmount}
                           onChange={(e) => setLoanAmount(e.target.value)}
-                          className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="100,000"
                           data-testid="input-loan-amount"
                         />
@@ -254,8 +254,8 @@ export default function LoanCalculator() {
                     </div>
 
                     {/* Interest Rate */}
-                    <div className="space-y-3">
-                      <Label htmlFor="interest-rate" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="interest-rate" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Annual Interest Rate
                       </Label>
                       <div className="relative">
@@ -264,30 +264,30 @@ export default function LoanCalculator() {
                           type="number"
                           value={interestRate}
                           onChange={(e) => setInterestRate(e.target.value)}
-                          className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="5.50"
                           step="0.01"
                           data-testid="input-interest-rate"
                         />
-                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
+                        <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-lg">%</span>
                       </div>
                     </div>
 
                     {/* Loan Term */}
-                    <div className="space-y-3">
-                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Loan Term</Label>
-                      <div className="grid grid-cols-2 gap-3">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">Loan Term</Label>
+                      <div className="grid grid-cols-2 gap-2 sm:gap-3">
                         <Input
                           type="number"
                           value={loanTerm}
                           onChange={(e) => setLoanTerm(e.target.value)}
-                          className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="30"
                           min="1"
                           data-testid="input-loan-term"
                         />
                         <Select value={termUnit} onValueChange={setTermUnit}>
-                          <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-term-unit">
+                          <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-term-unit">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -299,10 +299,10 @@ export default function LoanCalculator() {
                     </div>
 
                     {/* Payment Frequency */}
-                    <div className="space-y-3">
-                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Payment Frequency</Label>
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">Payment Frequency</Label>
                       <Select value={paymentFrequency} onValueChange={setPaymentFrequency}>
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-payment-frequency">
+                        <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-payment-frequency">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -314,32 +314,32 @@ export default function LoanCalculator() {
                     </div>
 
                     {/* Extra Payment */}
-                    <div className="md:col-span-2 space-y-3">
-                      <Label htmlFor="extra-payment" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="md:col-span-2 space-y-2 sm:space-y-3">
+                      <Label htmlFor="extra-payment" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Extra Payment (Optional)
                       </Label>
                       <div className="relative">
-                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-lg">$</span>
                         <Input
                           id="extra-payment"
                           type="number"
                           value={extraPayment}
                           onChange={(e) => setExtraPayment(e.target.value)}
-                          className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="0"
                           min="0"
                           data-testid="input-extra-payment"
                         />
                       </div>
-                      <p className="text-sm text-gray-500">Additional amount to pay each period to reduce interest and loan term</p>
+                      <p className="text-xs sm:text-sm text-gray-500">Additional amount to pay each period to reduce interest and loan term</p>
                     </div>
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                  <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       onClick={calculateLoan}
-                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                       data-testid="button-calculate"
                     >
                       Calculate Loan
@@ -347,7 +347,7 @@ export default function LoanCalculator() {
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                       data-testid="button-reset"
                     >
                       Reset
@@ -356,12 +356,12 @@ export default function LoanCalculator() {
 
                   {/* Advanced Options */}
                   {result && (
-                    <div className="flex flex-wrap gap-3 pt-4">
+                    <div className="flex flex-wrap justify-center gap-2 sm:gap-3 pt-3 sm:pt-4">
                       <Button
                         onClick={() => setShowAmortization(!showAmortization)}
                         variant="outline"
                         size="sm"
-                        className="rounded-full"
+                        className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
                         data-testid="button-amortization"
                       >
                         {showAmortization ? 'Hide' : 'Show'} Payment Schedule
@@ -370,7 +370,7 @@ export default function LoanCalculator() {
                         onClick={addToComparison}
                         variant="outline"
                         size="sm"
-                        className="rounded-full"
+                        className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
                         data-testid="button-add-comparison"
                       >
                         Add to Comparison
@@ -380,41 +380,43 @@ export default function LoanCalculator() {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 lg:p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Results</h2>
+                {result ? (
+                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Loan Calculation Results</h2>
 
-                  {result ? (
-                    <div className="space-y-6" data-testid="loan-results">
+                    <div className="space-y-4 sm:space-y-6 md:space-y-8" data-testid="loan-results">
                       {/* Monthly Payment Highlight */}
-                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
-                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Monthly Payment</div>
-                        <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" data-testid="text-monthly-payment">
-                          {formatCurrency(result.monthlyPayment)}
+                      <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border-2 border-blue-200 shadow-sm">
+                        <div className="text-center space-y-2 sm:space-y-3">
+                          <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide">Monthly Payment</div>
+                          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 break-all" data-testid="text-monthly-payment">
+                            {formatCurrency(result.monthlyPayment)}
+                          </div>
                         </div>
                       </div>
 
                       {/* Payment Breakdown */}
-                      <div className="space-y-4">
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                      <div className="space-y-3 sm:space-y-4">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Principal Amount</span>
-                            <span className="font-bold text-gray-900" data-testid="text-principal-amount">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Principal Amount</span>
+                            <span className="font-bold text-gray-900 text-sm sm:text-base break-all" data-testid="text-principal-amount">
                               {formatCurrency(parseFloat(loanAmount))}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Total Interest</span>
-                            <span className="font-bold text-orange-600" data-testid="text-total-interest">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Total Interest</span>
+                            <span className="font-bold text-orange-600 text-sm sm:text-base break-all" data-testid="text-total-interest">
                               {formatCurrency(result.totalInterest)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Total Amount</span>
-                            <span className="font-bold text-gray-900" data-testid="text-total-amount">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Total Amount</span>
+                            <span className="font-bold text-gray-900 text-sm sm:text-base break-all" data-testid="text-total-amount">
                               {formatCurrency(result.totalAmount)}
                             </span>
                           </div>
@@ -423,18 +425,18 @@ export default function LoanCalculator() {
 
                       {/* Extra Payment Benefits */}
                       {result.extraPaymentSavings && (
-                        <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-6 border border-green-200">
-                          <h4 className="font-bold text-green-800 mb-4 text-lg">Extra Payment Benefits</h4>
-                          <div className="space-y-3">
+                        <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-green-200">
+                          <h4 className="font-bold text-green-800 mb-3 sm:mb-4 text-base sm:text-lg">Extra Payment Benefits</h4>
+                          <div className="space-y-2 sm:space-y-3">
                             <div className="flex justify-between items-center">
-                              <span className="text-green-700 font-medium">Interest Saved:</span>
-                              <span className="font-bold text-green-800 text-lg">
+                              <span className="text-green-700 font-medium text-sm sm:text-base">Interest Saved:</span>
+                              <span className="font-bold text-green-800 text-sm sm:text-base md:text-lg break-all">
                                 {formatCurrency(result.extraPaymentSavings.interestSaved)}
                               </span>
                             </div>
                             <div className="flex justify-between items-center">
-                              <span className="text-green-700 font-medium">Time Saved:</span>
-                              <span className="font-bold text-green-800 text-lg">
+                              <span className="text-green-700 font-medium text-sm sm:text-base">Time Saved:</span>
+                              <span className="font-bold text-green-800 text-sm sm:text-base md:text-lg">
                                 {Math.round(result.extraPaymentSavings.timeSaved / (paymentFrequency === 'weekly' ? 52 : paymentFrequency === 'biweekly' ? 26 : 12))} years
                               </span>
                             </div>
@@ -442,15 +444,18 @@ export default function LoanCalculator() {
                         </div>
                       )}
                     </div>
-                  ) : (
-                    <div className="text-center py-16" data-testid="no-results">
-                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <div className="text-3xl font-bold text-gray-400">%</div>
+                  </div>
+                ) : (
+                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Results</h2>
+                    <div className="text-center py-8 sm:py-12 md:py-16" data-testid="no-results">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
+                        <div className="text-2xl sm:text-3xl font-bold text-gray-400">%</div>
                       </div>
-                      <p className="text-gray-500 text-lg">Enter loan details and calculate to see results</p>
+                      <p className="text-gray-500 text-sm sm:text-base md:text-lg px-4">Enter loan details and calculate to see results</p>
                     </div>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             </CardContent>
           </Card>
@@ -464,27 +469,27 @@ export default function LoanCalculator() {
                   <table className="w-full min-w-[600px]">
                     <thead>
                       <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
-                        <th className="px-6 py-4 text-left font-bold text-gray-900 rounded-l-lg">Payment #</th>
-                        <th className="px-6 py-4 text-right font-bold text-gray-900">Payment</th>
-                        <th className="px-6 py-4 text-right font-bold text-gray-900">Principal</th>
-                        <th className="px-6 py-4 text-right font-bold text-gray-900">Interest</th>
-                        <th className="px-6 py-4 text-right font-bold text-gray-900 rounded-r-lg">Balance</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-gray-900 text-xs sm:text-sm rounded-l-lg">Payment #</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Payment</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Principal</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Interest</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm rounded-r-lg">Balance</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100">
                       {result.amortizationSchedule.map((payment, index) => (
                         <tr key={index} className="hover:bg-blue-50 transition-colors">
-                          <td className="px-6 py-4 font-medium text-gray-900">{payment.month}</td>
-                          <td className="px-6 py-4 text-right text-gray-900 font-medium">
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 font-medium text-gray-900 text-xs sm:text-sm">{payment.month}</td>
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
                             {formatCurrency(payment.payment)}
                           </td>
-                          <td className="px-6 py-4 text-right text-green-600 font-bold">
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-green-600 font-bold text-xs sm:text-sm">
                             {formatCurrency(payment.principal)}
                           </td>
-                          <td className="px-6 py-4 text-right text-orange-600 font-medium">
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-orange-600 font-medium text-xs sm:text-sm">
                             {formatCurrency(payment.interest)}
                           </td>
-                          <td className="px-6 py-4 text-right text-gray-900 font-bold">
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-bold text-xs sm:text-sm">
                             {formatCurrency(payment.balance)}
                           </td>
                         </tr>
@@ -505,31 +510,31 @@ export default function LoanCalculator() {
                   <table className="w-full min-w-[600px]">
                     <thead>
                       <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
-                        <th className="px-6 py-4 text-left font-bold text-gray-900 rounded-l-lg">Loan</th>
-                        <th className="px-6 py-4 text-right font-bold text-gray-900">Amount</th>
-                        <th className="px-6 py-4 text-right font-bold text-gray-900">Rate</th>
-                        <th className="px-6 py-4 text-right font-bold text-gray-900">Term</th>
-                        <th className="px-6 py-4 text-right font-bold text-gray-900">Monthly Payment</th>
-                        <th className="px-6 py-4 text-right font-bold text-gray-900 rounded-r-lg">Total Interest</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-gray-900 text-xs sm:text-sm rounded-l-lg">Loan</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Amount</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Rate</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Term</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Monthly Payment</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm rounded-r-lg">Total Interest</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100">
                       {comparisonLoans.map((loan, index) => (
                         <tr key={index} className="hover:bg-blue-50 transition-colors">
-                          <td className="px-6 py-4 text-gray-900 font-bold">{loan.name}</td>
-                          <td className="px-6 py-4 text-right text-gray-900 font-medium">
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-gray-900 font-bold text-xs sm:text-sm">{loan.name}</td>
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
                             {formatCurrency(loan.amount)}
                           </td>
-                          <td className="px-6 py-4 text-right text-gray-900 font-medium">
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
                             {loan.rate}%
                           </td>
-                          <td className="px-6 py-4 text-right text-gray-900 font-medium">
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
                             {loan.term} years
                           </td>
-                          <td className="px-6 py-4 text-right text-blue-600 font-bold">
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-blue-600 font-bold text-xs sm:text-sm">
                             {formatCurrency(loan.monthlyPayment)}
                           </td>
-                          <td className="px-6 py-4 text-right text-orange-600 font-bold">
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-orange-600 font-bold text-xs sm:text-sm">
                             {formatCurrency(loan.totalInterest)}
                           </td>
                         </tr>
@@ -537,12 +542,12 @@ export default function LoanCalculator() {
                     </tbody>
                   </table>
                 </div>
-                <div className="mt-6">
+                <div className="mt-4 sm:mt-6">
                   <Button
                     onClick={() => setComparisonLoans([])}
                     variant="outline"
                     size="sm"
-                    className="rounded-full"
+                    className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
                   >
                     Clear Comparison
                   </Button>
