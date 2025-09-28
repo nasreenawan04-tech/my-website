@@ -274,25 +274,25 @@ export default function NetWorthCalculator() {
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
           {/* Main Calculator Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+              <div className="flex flex-col lg:grid lg:grid-cols-3 lg:gap-0">
                 {/* Input Section */}
-                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
-                  <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Net Worth Configuration</h2>
-                    <p className="text-gray-600">Enter your assets and liabilities to calculate your financial net worth</p>
+                <div className="lg:col-span-2 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
+                  <div className="text-center sm:text-left">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Net Worth Configuration</h2>
+                    <p className="text-sm sm:text-base text-gray-600">Enter your assets and liabilities to calculate your financial net worth</p>
                   </div>
                   
                   {/* Currency Selection */}
-                  <div className="space-y-3">
-                    <Label htmlFor="currency" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                  <div className="space-y-2 sm:space-y-3">
+                    <Label htmlFor="currency" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                       Currency & Country
                     </Label>
                     <Select value={country} onValueChange={handleCountryChange}>
-                      <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg">
+                      <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
@@ -307,39 +307,39 @@ export default function NetWorthCalculator() {
 
                   {/* Assets and Liabilities Tabs */}
                   <Tabs defaultValue="assets" className="w-full">
-                    <TabsList className="grid w-full grid-cols-2 h-14 bg-gray-100 rounded-xl p-1">
-                      <TabsTrigger value="assets" className="h-12 text-lg font-semibold rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-sm">
+                    <TabsList className="grid w-full grid-cols-2 h-10 sm:h-12 md:h-14 bg-gray-100 rounded-lg sm:rounded-xl p-1">
+                      <TabsTrigger value="assets" className="h-full text-sm sm:text-base md:text-lg font-semibold rounded-md sm:rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-sm">
                         Assets
                       </TabsTrigger>
-                      <TabsTrigger value="liabilities" className="h-12 text-lg font-semibold rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-sm">
+                      <TabsTrigger value="liabilities" className="h-full text-sm sm:text-base md:text-lg font-semibold rounded-md sm:rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-sm">
                         Liabilities
                       </TabsTrigger>
                     </TabsList>
 
-                    <TabsContent value="assets" className="space-y-6 mt-8">
-                      <div className="space-y-4">
-                        <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Your Assets</Label>
-                        <div className="space-y-4 max-h-80 overflow-y-auto">
+                    <TabsContent value="assets" className="space-y-4 sm:space-y-6 mt-4 sm:mt-6 md:mt-8">
+                      <div className="space-y-3 sm:space-y-4">
+                        <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">Your Assets</Label>
+                        <div className="space-y-3 sm:space-y-4 max-h-60 sm:max-h-80 overflow-y-auto">
                           {assets.map((asset) => (
-                            <div key={asset.id} className="bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-xl border border-green-200">
-                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div key={asset.id} className="bg-gradient-to-r from-green-50 to-emerald-50 p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl border border-green-200">
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-3 sm:mb-4">
                                 <Input
                                   placeholder="Asset name"
                                   value={asset.name}
                                   onChange={(e) => updateAsset(asset.id, 'name', e.target.value)}
-                                  className="h-12 text-base bg-white border-2 border-gray-200 rounded-lg"
+                                  className="h-10 sm:h-12 text-sm sm:text-base bg-white border-2 border-gray-200 rounded-lg w-full"
                                 />
                                 <Button
                                   onClick={() => removeAsset(asset.id)}
                                   variant="outline"
-                                  className="h-12 border-2 border-red-200 text-red-600 bg-white hover:bg-red-50"
+                                  className="h-10 sm:h-12 border-2 border-red-200 text-red-600 bg-white hover:bg-red-50 text-sm sm:text-base"
                                 >
                                   Remove Asset
                                 </Button>
                               </div>
-                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                                 <Select value={asset.category} onValueChange={(value) => updateAsset(asset.id, 'category', value)}>
-                                  <SelectTrigger className="h-12 bg-white border-2 border-gray-200 rounded-lg">
+                                  <SelectTrigger className="h-10 sm:h-12 bg-white border-2 border-gray-200 rounded-lg w-full">
                                     <SelectValue />
                                   </SelectTrigger>
                                   <SelectContent>
@@ -349,13 +349,13 @@ export default function NetWorthCalculator() {
                                   </SelectContent>
                                 </Select>
                                 <div className="relative">
-                                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                                  <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-lg">$</span>
                                   <Input
                                     type="number"
                                     placeholder={`Value (${currency})`}
                                     value={asset.value}
                                     onChange={(e) => updateAsset(asset.id, 'value', parseFloat(e.target.value) || 0)}
-                                    className="h-12 pl-8 text-base bg-white border-2 border-gray-200 rounded-lg"
+                                    className="h-10 sm:h-12 pl-6 sm:pl-8 text-sm sm:text-base bg-white border-2 border-gray-200 rounded-lg w-full"
                                   />
                                 </div>
                               </div>
@@ -365,37 +365,37 @@ export default function NetWorthCalculator() {
                         <Button 
                           onClick={addAsset} 
                           variant="outline" 
-                          className="w-full h-14 bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 text-green-700 hover:bg-green-100 font-semibold text-lg rounded-xl"
+                          className="w-full h-10 sm:h-12 md:h-14 bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 text-green-700 hover:bg-green-100 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                         >
                           Add New Asset
                         </Button>
                       </div>
                     </TabsContent>
 
-                    <TabsContent value="liabilities" className="space-y-6 mt-8">
-                      <div className="space-y-4">
-                        <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Your Liabilities</Label>
-                        <div className="space-y-4 max-h-80 overflow-y-auto">
+                    <TabsContent value="liabilities" className="space-y-4 sm:space-y-6 mt-4 sm:mt-6 md:mt-8">
+                      <div className="space-y-3 sm:space-y-4">
+                        <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">Your Liabilities</Label>
+                        <div className="space-y-3 sm:space-y-4 max-h-60 sm:max-h-80 overflow-y-auto">
                           {liabilities.map((liability) => (
-                            <div key={liability.id} className="bg-gradient-to-r from-red-50 to-rose-50 p-6 rounded-xl border border-red-200">
-                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div key={liability.id} className="bg-gradient-to-r from-red-50 to-rose-50 p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl border border-red-200">
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-3 sm:mb-4">
                                 <Input
                                   placeholder="Liability name"
                                   value={liability.name}
                                   onChange={(e) => updateLiability(liability.id, 'name', e.target.value)}
-                                  className="h-12 text-base bg-white border-2 border-gray-200 rounded-lg"
+                                  className="h-10 sm:h-12 text-sm sm:text-base bg-white border-2 border-gray-200 rounded-lg w-full"
                                 />
                                 <Button
                                   onClick={() => removeLiability(liability.id)}
                                   variant="outline"
-                                  className="h-12 border-2 border-red-200 text-red-600 bg-white hover:bg-red-50"
+                                  className="h-10 sm:h-12 border-2 border-red-200 text-red-600 bg-white hover:bg-red-50 text-sm sm:text-base"
                                 >
                                   Remove Liability
                                 </Button>
                               </div>
-                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                                 <Select value={liability.category} onValueChange={(value) => updateLiability(liability.id, 'category', value)}>
-                                  <SelectTrigger className="h-12 bg-white border-2 border-gray-200 rounded-lg">
+                                  <SelectTrigger className="h-10 sm:h-12 bg-white border-2 border-gray-200 rounded-lg w-full">
                                     <SelectValue />
                                   </SelectTrigger>
                                   <SelectContent>
@@ -405,13 +405,13 @@ export default function NetWorthCalculator() {
                                   </SelectContent>
                                 </Select>
                                 <div className="relative">
-                                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                                  <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-lg">$</span>
                                   <Input
                                     type="number"
                                     placeholder={`Value (${currency})`}
                                     value={liability.value}
                                     onChange={(e) => updateLiability(liability.id, 'value', parseFloat(e.target.value) || 0)}
-                                    className="h-12 pl-8 text-base bg-white border-2 border-gray-200 rounded-lg"
+                                    className="h-10 sm:h-12 pl-6 sm:pl-8 text-sm sm:text-base bg-white border-2 border-gray-200 rounded-lg w-full"
                                   />
                                 </div>
                               </div>
@@ -421,7 +421,7 @@ export default function NetWorthCalculator() {
                         <Button 
                           onClick={addLiability} 
                           variant="outline" 
-                          className="w-full h-14 bg-gradient-to-r from-red-50 to-rose-50 border-2 border-red-200 text-red-700 hover:bg-red-100 font-semibold text-lg rounded-xl"
+                          className="w-full h-10 sm:h-12 md:h-14 bg-gradient-to-r from-red-50 to-rose-50 border-2 border-red-200 text-red-700 hover:bg-red-100 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                         >
                           Add New Liability
                         </Button>
@@ -430,17 +430,17 @@ export default function NetWorthCalculator() {
                   </Tabs>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 sm:pt-6">
                     <Button
                       onClick={calculateNetWorth}
-                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="flex-1 h-10 sm:h-12 md:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                     >
                       Calculate Net Worth
                     </Button>
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      className="h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                     >
                       Reset
                     </Button>
@@ -448,8 +448,8 @@ export default function NetWorthCalculator() {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Net Worth Summary</h2>
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t lg:border-t-0 lg:border-l">
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center lg:text-left">Net Worth Summary</h2>
                   
                   {result ? (
                     <div className="space-y-6">
