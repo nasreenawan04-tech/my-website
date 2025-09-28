@@ -488,7 +488,7 @@ const UnitConverter = () => {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 sm:pt-6">
+                  <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4 pt-4 sm:pt-6">
                     <Button
                       onClick={swapUnits}
                       disabled={!fromUnit || !toUnit}
