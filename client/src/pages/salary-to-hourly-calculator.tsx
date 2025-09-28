@@ -213,14 +213,14 @@ export default function SalaryToHourlyCalculator() {
 
         <div className="max-w-7xl mx-auto px-4 py-16">
           {/* Main Calculator Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+          <Card className="w-full bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 min-h-[600px]">
                 {/* Input Section */}
-                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
+                <div className="lg:col-span-2 p-4 sm:p-6 lg:p-8 xl:p-12 space-y-6 lg:space-y-8">
                   <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Salary Configuration</h2>
-                    <p className="text-gray-600">Convert between annual salary and hourly wage with accurate calculations</p>
+                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Salary Configuration</h2>
+                    <p className="text-sm sm:text-base text-gray-600">Convert between annual salary and hourly wage with accurate calculations</p>
                   </div>
                   
                   {/* Country Selection */}
@@ -249,20 +249,20 @@ export default function SalaryToHourlyCalculator() {
                       <TabsTrigger value="hourly-to-salary">Hourly → Salary</TabsTrigger>
                     </TabsList>
 
-                    <TabsContent value="salary-to-hourly" className="space-y-6 mt-6">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="md:col-span-2 space-y-3">
-                          <Label htmlFor="annual-salary" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <TabsContent value="salary-to-hourly" className="space-y-4 sm:space-y-6 mt-4 sm:mt-6">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                        <div className="sm:col-span-2 space-y-3">
+                          <Label htmlFor="annual-salary" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Annual Salary ({currency})
                           </Label>
                           <div className="relative">
-                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">$</span>
                             <Input
                               id="annual-salary"
                               type="number"
                               value={annualSalary}
                               onChange={(e) => setAnnualSalary(e.target.value)}
-                              className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-12 sm:h-14 pl-7 sm:pl-8 text-base sm:text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
                               placeholder="50,000"
                               min="0"
                               data-testid="input-annual-salary"
@@ -271,7 +271,7 @@ export default function SalaryToHourlyCalculator() {
                         </div>
 
                         <div className="space-y-3">
-                          <Label htmlFor="hours-per-week" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                          <Label htmlFor="hours-per-week" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Hours per Week
                           </Label>
                           <Input
@@ -279,7 +279,7 @@ export default function SalaryToHourlyCalculator() {
                             type="number"
                             value={hoursPerWeek}
                             onChange={(e) => setHoursPerWeek(e.target.value)}
-                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                            className="h-12 sm:h-14 text-base sm:text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
                             placeholder="40"
                             min="1"
                             max="168"
@@ -288,7 +288,7 @@ export default function SalaryToHourlyCalculator() {
                         </div>
 
                         <div className="space-y-3">
-                          <Label htmlFor="weeks-per-year" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                          <Label htmlFor="weeks-per-year" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Working Weeks per Year
                           </Label>
                           <Input
@@ -296,31 +296,31 @@ export default function SalaryToHourlyCalculator() {
                             type="number"
                             value={weeksPerYear}
                             onChange={(e) => setWeeksPerYear(e.target.value)}
-                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                            className="h-12 sm:h-14 text-base sm:text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
                             placeholder="52"
                             min="1"
                             max="52"
                             data-testid="input-weeks-per-year"
                           />
-                          <p className="text-sm text-gray-500">Accounts for vacation, holidays, and unpaid leave</p>
+                          <p className="text-xs sm:text-sm text-gray-500">Accounts for vacation, holidays, and unpaid leave</p>
                         </div>
                       </div>
                     </TabsContent>
 
-                    <TabsContent value="hourly-to-salary" className="space-y-6 mt-6">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="md:col-span-2 space-y-3">
-                          <Label htmlFor="hourly-wage" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <TabsContent value="hourly-to-salary" className="space-y-4 sm:space-y-6 mt-4 sm:mt-6">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                        <div className="sm:col-span-2 space-y-3">
+                          <Label htmlFor="hourly-wage" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Hourly Wage ({currency})
                           </Label>
                           <div className="relative">
-                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">$</span>
                             <Input
                               id="hourly-wage"
                               type="number"
                               value={hourlyWage}
                               onChange={(e) => setHourlyWage(e.target.value)}
-                              className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-12 sm:h-14 pl-7 sm:pl-8 text-base sm:text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
                               placeholder="25.00"
                               min="0"
                               step="0.01"
@@ -330,7 +330,7 @@ export default function SalaryToHourlyCalculator() {
                         </div>
 
                         <div className="space-y-3">
-                          <Label htmlFor="work-hours-per-week" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                          <Label htmlFor="work-hours-per-week" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Hours per Week
                           </Label>
                           <Input
@@ -338,7 +338,7 @@ export default function SalaryToHourlyCalculator() {
                             type="number"
                             value={workHoursPerWeek}
                             onChange={(e) => setWorkHoursPerWeek(e.target.value)}
-                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                            className="h-12 sm:h-14 text-base sm:text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
                             placeholder="40"
                             min="1"
                             max="168"
@@ -347,7 +347,7 @@ export default function SalaryToHourlyCalculator() {
                         </div>
 
                         <div className="space-y-3">
-                          <Label htmlFor="work-weeks-per-year" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                          <Label htmlFor="work-weeks-per-year" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Working Weeks per Year
                           </Label>
                           <Input
@@ -355,23 +355,23 @@ export default function SalaryToHourlyCalculator() {
                             type="number"
                             value={workWeeksPerYear}
                             onChange={(e) => setWorkWeeksPerYear(e.target.value)}
-                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                            className="h-12 sm:h-14 text-base sm:text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
                             placeholder="52"
                             min="1"
                             max="52"
                             data-testid="input-work-weeks-per-year"
                           />
-                          <p className="text-sm text-gray-500">Accounts for vacation, holidays, and unpaid leave</p>
+                          <p className="text-xs sm:text-sm text-gray-500">Accounts for vacation, holidays, and unpaid leave</p>
                         </div>
                       </div>
                     </TabsContent>
                   </Tabs>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 sm:pt-6">
                     <Button
                       onClick={calculationType === 'salary-to-hourly' ? calculateSalaryToHourly : calculateHourlyToSalary}
-                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="flex-1 h-12 sm:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-base sm:text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                       data-testid="button-convert"
                     >
                       Convert Salary
@@ -379,7 +379,7 @@ export default function SalaryToHourlyCalculator() {
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      className="h-12 sm:h-14 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-base sm:text-lg rounded-xl"
                       data-testid="button-reset"
                     >
                       Reset
@@ -388,30 +388,30 @@ export default function SalaryToHourlyCalculator() {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Results</h2>
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 lg:p-8 xl:p-12">
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">Results</h2>
                   
                   {result ? (
                     <div className="space-y-6" data-testid="salary-results">
                       {/* Main Result Highlights */}
-                      <div className="space-y-4">
-                        <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
-                          <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Hourly Rate</div>
-                          <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" data-testid="text-hourly-rate">
+                      <div className="space-y-3 sm:space-y-4">
+                        <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border border-blue-100">
+                          <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Hourly Rate</div>
+                          <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" data-testid="text-hourly-rate">
                             {formatCurrency(result.hourlyWage)}
                           </div>
                         </div>
-                        <div className="bg-white rounded-2xl p-6 shadow-lg border border-green-100">
-                          <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Annual Salary</div>
-                          <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600" data-testid="text-annual-salary">
+                        <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border border-green-100">
+                          <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Annual Salary</div>
+                          <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600" data-testid="text-annual-salary">
                             {formatCurrency(result.annualSalary)}
                           </div>
                         </div>
                       </div>
 
                       {/* Detailed Breakdown */}
-                      <div className="space-y-4">
-                        <h3 className="text-lg font-bold text-gray-900">Pay Period Breakdown</h3>
+                      <div className="space-y-3 sm:space-y-4">
+                        <h3 className="text-base sm:text-lg font-bold text-gray-900">Pay Period Breakdown</h3>
                         
                         <div className="bg-white rounded-xl p-4 shadow-sm">
                           <div className="flex justify-between items-center">
@@ -448,8 +448,8 @@ export default function SalaryToHourlyCalculator() {
                       </div>
 
                       {/* Work Schedule Info */}
-                      <div className="mt-8">
-                        <h3 className="text-lg font-bold text-gray-900 mb-4">Work Schedule</h3>
+                      <div className="mt-6 sm:mt-8">
+                        <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">Work Schedule</h3>
                         <div className="space-y-3">
                           <div className="bg-white rounded-xl p-4 shadow-sm">
                             <div className="flex justify-between items-center">
@@ -479,11 +479,11 @@ export default function SalaryToHourlyCalculator() {
                       </div>
                     </div>
                   ) : (
-                    <div className="text-center py-16" data-testid="no-results">
-                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <div className="text-3xl font-bold text-gray-400">$</div>
+                    <div className="text-center py-12 sm:py-16" data-testid="no-results">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
+                        <div className="text-2xl sm:text-3xl font-bold text-gray-400">$</div>
                       </div>
-                      <p className="text-gray-500 text-lg">Enter salary or hourly wage details and calculate to see results</p>
+                      <p className="text-gray-500 text-base sm:text-lg px-4">Enter salary or hourly wage details and calculate to see results</p>
                     </div>
                   )}
                 </div>
