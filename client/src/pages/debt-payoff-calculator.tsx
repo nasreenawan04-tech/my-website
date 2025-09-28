@@ -375,11 +375,11 @@ export default function DebtPayoffCalculator() {
           {/* Main Calculator Card */}
           <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="flex flex-col lg:grid lg:grid-cols-3 gap-0">
+              <div className="flex flex-col">
                 {/* Input Section */}
-                <div className="lg:col-span-2 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
-                  <div>
-                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Debt Payoff Configuration</h2>
+                <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
+                  <div className="text-center sm:text-left">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Debt Payoff Configuration</h2>
                     <p className="text-sm sm:text-base text-gray-600">Enter your debt details to create an optimized payoff strategy</p>
                   </div>
 
@@ -389,12 +389,12 @@ export default function DebtPayoffCalculator() {
                       Country
                     </Label>
                     <Select value={country} onValueChange={handleCountryChange}>
-                      <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-base sm:text-lg">
+                      <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full">
                         <SelectValue />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="max-h-60 overflow-y-auto">
                         {countries.map((country) => (
-                          <SelectItem key={country.code} value={country.code}>
+                          <SelectItem key={country.code} value={country.code} className="text-sm sm:text-base">
                             {country.name} ({country.avgCreditRate}%)
                           </SelectItem>
                         ))}
@@ -411,22 +411,22 @@ export default function DebtPayoffCalculator() {
                       Currency
                     </Label>
                     <Select value={currency} onValueChange={setCurrency}>
-                      <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-base sm:text-lg">
+                      <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full">
                         <SelectValue />
                       </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="USD">USD - US Dollar</SelectItem>
-                        <SelectItem value="EUR">EUR - Euro</SelectItem>
-                        <SelectItem value="GBP">GBP - British Pound</SelectItem>
-                        <SelectItem value="CAD">CAD - Canadian Dollar</SelectItem>
-                        <SelectItem value="AUD">AUD - Australian Dollar</SelectItem>
-                        <SelectItem value="JPY">JPY - Japanese Yen</SelectItem>
-                        <SelectItem value="KRW">KRW - Korean Won</SelectItem>
-                        <SelectItem value="INR">INR - Indian Rupee</SelectItem>
-                        <SelectItem value="BRL">BRL - Brazilian Real</SelectItem>
-                        <SelectItem value="MXN">MXN - Mexican Peso</SelectItem>
-                        <SelectItem value="SGD">SGD - Singapore Dollar</SelectItem>
-                        <SelectItem value="NZD">NZD - New Zealand Dollar</SelectItem>
+                      <SelectContent className="max-h-60 overflow-y-auto">
+                        <SelectItem value="USD" className="text-sm sm:text-base">USD - US Dollar</SelectItem>
+                        <SelectItem value="EUR" className="text-sm sm:text-base">EUR - Euro</SelectItem>
+                        <SelectItem value="GBP" className="text-sm sm:text-base">GBP - British Pound</SelectItem>
+                        <SelectItem value="CAD" className="text-sm sm:text-base">CAD - Canadian Dollar</SelectItem>
+                        <SelectItem value="AUD" className="text-sm sm:text-base">AUD - Australian Dollar</SelectItem>
+                        <SelectItem value="JPY" className="text-sm sm:text-base">JPY - Japanese Yen</SelectItem>
+                        <SelectItem value="KRW" className="text-sm sm:text-base">KRW - Korean Won</SelectItem>
+                        <SelectItem value="INR" className="text-sm sm:text-base">INR - Indian Rupee</SelectItem>
+                        <SelectItem value="BRL" className="text-sm sm:text-base">BRL - Brazilian Real</SelectItem>
+                        <SelectItem value="MXN" className="text-sm sm:text-base">MXN - Mexican Peso</SelectItem>
+                        <SelectItem value="SGD" className="text-sm sm:text-base">SGD - Singapore Dollar</SelectItem>
+                        <SelectItem value="NZD" className="text-sm sm:text-base">NZD - New Zealand Dollar</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -446,13 +446,13 @@ export default function DebtPayoffCalculator() {
                             Current Balance
                           </Label>
                           <div className="relative">
-                            <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">$</span>
+                            <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
                             <Input
                               id="current-balance"
                               type="number"
                               value={currentBalance}
                               onChange={(e) => setCurrentBalance(e.target.value)}
-                              className="h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-base sm:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                               placeholder="5,000"
                               min="0"
                               step="0.01"
@@ -470,13 +470,13 @@ export default function DebtPayoffCalculator() {
                               type="number"
                               value={interestRate}
                               onChange={(e) => setInterestRate(e.target.value)}
-                              className="h-10 sm:h-12 md:h-14 pr-7 sm:pr-8 text-base sm:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pr-7 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                               placeholder="18.5"
                               min="0"
                               max="50"
                               step="0.1"
                             />
-                            <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">%</span>
+                            <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
                           </div>
                         </div>
 
@@ -485,13 +485,13 @@ export default function DebtPayoffCalculator() {
                             Monthly Payment
                           </Label>
                           <div className="relative">
-                            <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">$</span>
+                            <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
                             <Input
                               id="monthly-payment"
                               type="number"
                               value={monthlyPayment}
                               onChange={(e) => setMonthlyPayment(e.target.value)}
-                              className="h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-base sm:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                               placeholder="150"
                               min="0"
                               step="0.01"
@@ -504,13 +504,13 @@ export default function DebtPayoffCalculator() {
                             Extra Payment (Optional)
                           </Label>
                           <div className="relative">
-                            <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">$</span>
+                            <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
                             <Input
                               id="extra-payment"
                               type="number"
                               value={extraPayment}
                               onChange={(e) => setExtraPayment(e.target.value)}
-                              className="h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-base sm:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                               placeholder="0"
                               min="0"
                               step="0.01"
@@ -527,12 +527,12 @@ export default function DebtPayoffCalculator() {
                             Payoff Strategy
                           </Label>
                           <Select value={payoffStrategy} onValueChange={setPayoffStrategy}>
-                            <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-base sm:text-lg">
+                            <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full">
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent>
-                              <SelectItem value="avalanche">Debt Avalanche (Highest Interest First)</SelectItem>
-                              <SelectItem value="snowball">Debt Snowball (Lowest Balance First)</SelectItem>
+                              <SelectItem value="avalanche" className="text-sm sm:text-base">Debt Avalanche (Highest Interest First)</SelectItem>
+                              <SelectItem value="snowball" className="text-sm sm:text-base">Debt Snowball (Lowest Balance First)</SelectItem>
                             </SelectContent>
                           </Select>
                         </div>
@@ -627,13 +627,13 @@ export default function DebtPayoffCalculator() {
                             Current Balance
                           </Label>
                           <div className="relative">
-                            <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">$</span>
+                            <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
                             <Input
                               id="target-balance"
                               type="number"
                               value={targetBalance}
                               onChange={(e) => setTargetBalance(e.target.value)}
-                              className="h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-base sm:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                               placeholder="10,000"
                               min="0"
                               step="0.01"
@@ -651,13 +651,13 @@ export default function DebtPayoffCalculator() {
                               type="number"
                               value={targetRate}
                               onChange={(e) => setTargetRate(e.target.value)}
-                              className="h-10 sm:h-12 md:h-14 pr-7 sm:pr-8 text-base sm:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pr-7 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                               placeholder="16.0"
                               min="0"
                               max="50"
                               step="0.1"
                             />
-                            <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">%</span>
+                            <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
                           </div>
                         </div>
 
@@ -670,7 +670,7 @@ export default function DebtPayoffCalculator() {
                             type="number"
                             value={targetMonths}
                             onChange={(e) => setTargetMonths(e.target.value)}
-                            className="h-10 sm:h-12 md:h-14 text-base sm:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full md:w-64"
+                            className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                             placeholder="24"
                             min="1"
                             max="600"
@@ -681,17 +681,17 @@ export default function DebtPayoffCalculator() {
                   </Tabs>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 sm:pt-6">
+                  <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       onClick={calculateDebtPayoff}
-                      className="flex-1 h-10 sm:h-12 md:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-base sm:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105 px-4 sm:px-6 md:px-8"
                     >
                       Calculate Payoff Plan
                     </Button>
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-10 sm:h-12 md:h-14 px-4 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-base sm:text-lg rounded-lg sm:rounded-xl"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                     >
                       Reset
                     </Button>
@@ -713,22 +713,24 @@ export default function DebtPayoffCalculator() {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 2xl:p-14">
-                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-8">Payoff Results</h2>
+                {(result || multipleDebtsResult) && (
+                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Payoff Results</h2>
 
-                  {(result || multipleDebtsResult) ? (
-                    <div className="space-y-4 sm:space-y-6">
+                  <div className="space-y-4 sm:space-y-6 md:space-y-8">
                       {/* Main Results */}
                       {result && (
                         <>
-                          <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 shadow-lg border border-blue-100">
-                            <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-1 sm:mb-2 text-center sm:text-left">
-                              {calculationType === 'target-payment' ? 'Required Payment' : 'Payoff Time'}
-                            </div>
-                            <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 text-center sm:text-left break-all">
-                              {calculationType === 'target-payment' 
-                                ? formatCurrency(result.monthlyPayment)
-                                : formatTime(result.payoffTime)}
+                          <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border-2 border-blue-200 shadow-sm">
+                            <div className="text-center space-y-3 sm:space-y-4">
+                              <h3 className="text-xs sm:text-sm md:text-base font-bold text-blue-900">
+                                {calculationType === 'target-payment' ? 'Required Payment' : 'Payoff Time'}
+                              </h3>
+                              <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-blue-600 break-all">
+                                {calculationType === 'target-payment' 
+                                  ? formatCurrency(result.monthlyPayment)
+                                  : formatTime(result.payoffTime)}
+                              </div>
                             </div>
                           </div>
 
@@ -821,15 +823,20 @@ export default function DebtPayoffCalculator() {
                         </>
                       )}
                     </div>
-                  ) : (
+                  </div>
+                )}
+                
+                {/* Default State */}
+                {!result && !multipleDebtsResult && (
+                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
                     <div className="text-center py-8 sm:py-12 md:py-16">
                       <div className="w-16 sm:w-20 h-16 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
                         <div className="text-2xl sm:text-3xl font-bold text-gray-400">$</div>
                       </div>
                       <p className="text-gray-500 text-base sm:text-lg">Enter your debt details and calculate to see payoff results</p>
                     </div>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             </CardContent>
           </Card>
