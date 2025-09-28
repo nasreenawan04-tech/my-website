@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -172,31 +171,31 @@ const UnitConverter = () => {
 
   const swapUnits = () => {
     if (!fromUnit || !toUnit || !currentCategory) return;
-    
+
     // Swap the units
     const tempFrom = fromUnit;
     const newFromUnit = toUnit;
     const newToUnit = tempFrom;
-    
+
     // If we have a current result, use it as the new input and calculate conversion
     if (result !== null && inputValue) {
       const newInputValue = result.toString();
-      
+
       // Calculate the new result with swapped units
       const fromUnitData = currentCategory.units.find(u => u.name === newFromUnit);
       const toUnitData = currentCategory.units.find(u => u.name === newToUnit);
-      
+
       if (fromUnitData && toUnitData) {
         const value = parseFloat(newInputValue);
         let newResult: number;
-        
+
         if (activeCategory === 'Temperature') {
           newResult = convertTemperature(value, newFromUnit, newToUnit);
         } else {
           const baseValue = value * fromUnitData.factor;
           newResult = baseValue / toUnitData.factor;
         }
-        
+
         // Update all state together
         setFromUnit(newFromUnit);
         setToUnit(newToUnit);
@@ -385,8 +384,7 @@ const UnitConverter = () => {
                             <SelectContent className="max-h-60 overflow-y-auto">
                               {currentCategory?.units.map((unit) => (
                                 <SelectItem key={unit.name} value={unit.name} className="text-sm sm:text-base">
-                                  <span className="block sm:hidden">{unit.symbol}</span>
-                                  <span className="hidden sm:block">{unit.name} ({unit.symbol})</span>
+                                  <span className="block">{unit.name} ({unit.symbol})</span>
                                 </SelectItem>
                               ))}
                             </SelectContent>
@@ -425,8 +423,7 @@ const UnitConverter = () => {
                             <SelectContent className="max-h-60 overflow-y-auto">
                               {currentCategory?.units.map((unit) => (
                                 <SelectItem key={unit.name} value={unit.name} className="text-sm sm:text-base">
-                                  <span className="block sm:hidden">{unit.symbol}</span>
-                                  <span className="hidden sm:block">{unit.name} ({unit.symbol})</span>
+                                  <span className="block">{unit.name} ({unit.symbol})</span>
                                 </SelectItem>
                               ))}
                             </SelectContent>
@@ -455,11 +452,11 @@ const UnitConverter = () => {
                   {/* Advanced Options */}
                   <div className="space-y-3 sm:space-y-4 md:space-y-6 border-t pt-4 sm:pt-6 md:pt-8">
                     <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900">Conversion Features</h3>
-                    
+
                     <Collapsible open={showAdvanced} onOpenChange={setShowAdvanced}>
                       <CollapsibleTrigger asChild>
-                        <Button 
-                          variant="ghost" 
+                        <Button
+                          variant="ghost"
                           className="w-full justify-between text-xs sm:text-sm md:text-base py-2 sm:py-3 md:py-4 h-auto px-3 sm:px-4"
                           data-testid="button-toggle-advanced"
                         >
@@ -471,7 +468,7 @@ const UnitConverter = () => {
                       </CollapsibleTrigger>
                       <CollapsibleContent className="space-y-3 sm:space-y-4 md:space-y-6 mt-3 sm:mt-4">
                         <Separator />
-                        
+
                         <div className="bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6">
                           <h4 className="text-xs sm:text-sm md:text-base font-semibold text-gray-900 mb-3 sm:mb-4">Conversion Capabilities</h4>
                           <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-gray-600">
@@ -483,7 +480,7 @@ const UnitConverter = () => {
                             <div>• Instant updates as you modify input values</div>
                           </div>
                         </div>
-                        
+
                         <Separator />
                       </CollapsibleContent>
                     </Collapsible>
@@ -629,7 +626,7 @@ const UnitConverter = () => {
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">How Unit Conversion Analysis Works</h2>
                 <p className="text-gray-600 mb-8">Understanding the scientific principles and mathematical foundations behind unit conversion ensures accurate results and helps users make informed decisions about measurement precision and appropriate unit selection for specific applications.</p>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-6">
                     <div className="bg-blue-50 rounded-lg p-6">
@@ -708,23 +705,23 @@ const UnitConverter = () => {
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-gray-900 mb-6">Who Benefits from Unit Conversion Tools?</h2>
                   <p className="text-gray-600 mb-6">Unit converters serve diverse professional and personal applications across industries requiring accurate measurement conversions, international standardization, and multi-system compatibility for various technical and everyday scenarios.</p>
-                  
+
                   <div className="space-y-4">
                     <div className="bg-blue-50 rounded-lg p-4">
                       <h3 className="font-semibold text-blue-900 mb-2">Engineers & Technical Professionals</h3>
                       <p className="text-blue-800 text-sm">Convert between metric and imperial systems for international projects, equipment specifications, material calculations, and technical documentation requiring precise measurement accuracy and standardization.</p>
                     </div>
-                    
+
                     <div className="bg-green-50 rounded-lg p-4">
                       <h3 className="font-semibold text-green-900 mb-2">Scientists & Researchers</h3>
                       <p className="text-green-800 text-sm">Perform accurate conversions for laboratory measurements, experimental data analysis, scientific publications, and international research collaboration requiring standardized measurement units.</p>
                     </div>
-                    
+
                     <div className="bg-purple-50 rounded-lg p-4">
                       <h3 className="font-semibold text-purple-900 mb-2">International Trade & Commerce</h3>
                       <p className="text-purple-800 text-sm">Convert measurements for product specifications, shipping calculations, customs documentation, and international business transactions requiring accurate cross-system conversions.</p>
                     </div>
-                    
+
                     <div className="bg-orange-50 rounded-lg p-4">
                       <h3 className="font-semibold text-orange-900 mb-2">Culinary & Food Industry</h3>
                       <p className="text-orange-800 text-sm">Convert recipe measurements, ingredient quantities, nutritional information, and portion sizes for international cuisine, professional cooking, and food service standardization.</p>
@@ -742,7 +739,7 @@ const UnitConverter = () => {
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-gray-900 mb-6">Key Features & Conversion Capabilities</h2>
                   <p className="text-gray-600 mb-6">Our comprehensive unit converter offers professional-grade conversion capabilities designed for accuracy, efficiency, and user-friendly operation across multiple measurement categories and unit systems.</p>
-                  
+
                   <div className="space-y-4">
                     <div className="flex items-start gap-3">
                       <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
@@ -803,7 +800,7 @@ const UnitConverter = () => {
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Strategic Unit Conversion & Best Practices</h2>
                 <p className="text-gray-600 mb-8">Implementing effective unit conversion strategies ensures accuracy, consistency, and reliability in measurements across different applications, industries, and international contexts requiring standardized measurement protocols.</p>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div className="space-y-4">
                     <h3 className="text-lg font-semibold text-gray-900">Accuracy & Precision Management</h3>
@@ -889,7 +886,7 @@ const UnitConverter = () => {
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Industry Applications & Advanced Unit Conversion Scenarios</h2>
                 <p className="text-gray-600 mb-8">Unit conversion tools serve specialized applications across various industries and professional contexts, enabling sophisticated measurement analysis for complex conversion scenarios and strategic technical planning initiatives.</p>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   <div className="bg-blue-50 rounded-lg p-6">
                     <h3 className="font-semibold text-blue-900 mb-4">Engineering & Manufacturing</h3>
@@ -1026,14 +1023,14 @@ const UnitConverter = () => {
                         Our converter uses internationally standardized conversion factors and high-precision floating-point arithmetic to ensure maximum accuracy. Results are calculated using official definitions from international standards organizations and display up to 6 decimal places for precision applications.
                       </p>
                     </div>
-                    
+
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I convert between different measurement categories?</h3>
                       <p className="text-gray-600 text-sm">
                         No, conversions are only possible within the same physical quantity category (length to length, weight to weight, etc.). This prevents invalid conversions between incompatible measurement types and ensures mathematical validity of all conversion results.
                       </p>
                     </div>
-                    
+
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">Why are temperature conversions different from other units?</h3>
                       <p className="text-gray-600 text-sm">
@@ -1055,14 +1052,14 @@ const UnitConverter = () => {
                         Yes, our conversion factors are based on the latest international standards and definitions. We monitor updates from standards organizations and implement any changes to ensure continued accuracy and compliance with global measurement standards.
                       </p>
                     </div>
-                    
+
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I use this tool for professional or scientific work?</h3>
                       <p className="text-gray-600 text-sm">
                         Absolutely. The converter is designed with professional-grade accuracy using internationally recognized conversion factors and scientific formulas. However, for critical applications, we recommend verifying results with additional sources as appropriate for your specific requirements.
                       </p>
                     </div>
-                    
+
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">How does the unit swapping feature work?</h3>
                       <p className="text-gray-600 text-sm">
@@ -1086,7 +1083,7 @@ const UnitConverter = () => {
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Technical Specifications & Conversion Methodology</h2>
                 <p className="text-gray-600 mb-8">Our unit converter employs industry-standard conversion factors and modern calculation technologies to ensure accurate conversions, reliable performance, and seamless user experience across all devices and measurement categories.</p>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-4">Conversion Engine Specifications</h3>
