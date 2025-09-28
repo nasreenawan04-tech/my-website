@@ -267,46 +267,46 @@ export default function SavingsGoalCalculator() {
       
       <main>
         {/* Hero Section */}
-        <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32 overflow-hidden">
+        <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="space-y-4 sm:space-y-6 md:space-y-7 lg:space-y-8">
-              <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+          <div className="relative max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
+            <div className="space-y-4 sm:space-y-6 md:space-y-8">
+              <div className="inline-flex items-center px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
                 <span className="text-xs sm:text-sm font-medium text-blue-700">Advanced Savings Goal Calculator</span>
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-slate-900 leading-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0" data-testid="page-title">
                 <span className="block">Smart Savings</span>
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
                   Goal Calculator
                 </span>
               </h1>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-slate-600 max-w-sm sm:max-w-2xl md:max-w-3xl lg:max-w-4xl mx-auto leading-relaxed">
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
                 Plan and achieve your financial goals with compound interest calculations and strategic savings planning
               </p>
             </div>
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
           {/* Main Calculator Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+              <div className="flex flex-col">
                 {/* Input Section */}
-                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
-                  <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Savings Configuration</h2>
-                    <p className="text-gray-600">Enter your financial details to create your personalized savings plan</p>
+                <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
+                  <div className="text-center sm:text-left">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Savings Configuration</h2>
+                    <p className="text-sm sm:text-base text-gray-600">Enter your financial details to create your personalized savings plan</p>
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                     {/* Currency Selection */}
-                    <div className="space-y-3">
-                      <Label htmlFor="currency" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="currency" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Currency
                       </Label>
                       <Select value={currency} onValueChange={setCurrency}>
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-currency">
+                        <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-currency">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -325,10 +325,10 @@ export default function SavingsGoalCalculator() {
                     </div>
 
                     {/* Calculation Type */}
-                    <div className="space-y-3">
-                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Calculation Type</Label>
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">Calculation Type</Label>
                       <Select value={calculationType} onValueChange={setCalculationType}>
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-calculation-type">
+                        <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-calculation-type">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -343,18 +343,18 @@ export default function SavingsGoalCalculator() {
                     {calculationType === 'time-to-save' && (
                       <>
                         {/* Savings Goal */}
-                        <div className="space-y-3">
-                          <Label htmlFor="goal-amount" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="goal-amount" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Savings Goal
                           </Label>
                           <div className="relative">
-                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                            <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
                             <Input
                               id="goal-amount"
                               type="number"
                               value={goalAmount}
                               onChange={(e) => setGoalAmount(e.target.value)}
-                              className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                               placeholder="50,000"
                               data-testid="input-goal-amount"
                             />
@@ -362,18 +362,18 @@ export default function SavingsGoalCalculator() {
                         </div>
 
                         {/* Current Savings */}
-                        <div className="space-y-3">
-                          <Label htmlFor="current-savings" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="current-savings" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Current Savings
                           </Label>
                           <div className="relative">
-                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                            <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
                             <Input
                               id="current-savings"
                               type="number"
                               value={currentSavings}
                               onChange={(e) => setCurrentSavings(e.target.value)}
-                              className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                               placeholder="5,000"
                               data-testid="input-current-savings"
                             />
@@ -381,18 +381,18 @@ export default function SavingsGoalCalculator() {
                         </div>
 
                         {/* Monthly Contribution */}
-                        <div className="space-y-3">
-                          <Label htmlFor="monthly-contribution" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="monthly-contribution" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Monthly Contribution
                           </Label>
                           <div className="relative">
-                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                            <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
                             <Input
                               id="monthly-contribution"
                               type="number"
                               value={monthlyContribution}
                               onChange={(e) => setMonthlyContribution(e.target.value)}
-                              className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                               placeholder="500"
                               data-testid="input-monthly-contribution"
                             />
@@ -400,8 +400,8 @@ export default function SavingsGoalCalculator() {
                         </div>
 
                         {/* Annual Interest Rate */}
-                        <div className="space-y-3">
-                          <Label htmlFor="interest-rate" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="interest-rate" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Annual Interest Rate
                           </Label>
                           <div className="relative">
@@ -410,12 +410,12 @@ export default function SavingsGoalCalculator() {
                               type="number"
                               value={annualInterestRate}
                               onChange={(e) => setAnnualInterestRate(e.target.value)}
-                              className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                               placeholder="4.5"
                               step="0.01"
                               data-testid="input-interest-rate"
                             />
-                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
+                            <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
                           </div>
                         </div>
                       </>
@@ -424,18 +424,18 @@ export default function SavingsGoalCalculator() {
                     {calculationType === 'monthly-payment' && (
                       <>
                         {/* Savings Goal */}
-                        <div className="space-y-3">
-                          <Label htmlFor="payment-goal" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="payment-goal" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Savings Goal
                           </Label>
                           <div className="relative">
-                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                            <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
                             <Input
                               id="payment-goal"
                               type="number"
                               value={paymentGoalAmount}
                               onChange={(e) => setPaymentGoalAmount(e.target.value)}
-                              className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                               placeholder="25,000"
                               data-testid="input-payment-goal"
                             />
@@ -443,18 +443,18 @@ export default function SavingsGoalCalculator() {
                         </div>
 
                         {/* Current Savings */}
-                        <div className="space-y-3">
-                          <Label htmlFor="payment-current" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="payment-current" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Current Savings
                           </Label>
                           <div className="relative">
-                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                            <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
                             <Input
                               id="payment-current"
                               type="number"
                               value={paymentCurrentSavings}
                               onChange={(e) => setPaymentCurrentSavings(e.target.value)}
-                              className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                               placeholder="2,000"
                               data-testid="input-payment-current"
                             />
@@ -462,8 +462,8 @@ export default function SavingsGoalCalculator() {
                         </div>
 
                         {/* Timeframe */}
-                        <div className="space-y-3">
-                          <Label htmlFor="timeframe" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="timeframe" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Timeframe (Months)
                           </Label>
                           <Input
@@ -471,7 +471,7 @@ export default function SavingsGoalCalculator() {
                             type="number"
                             value={timeframe}
                             onChange={(e) => setTimeframe(e.target.value)}
-                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                            className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                             placeholder="60"
                             min="1"
                             data-testid="input-timeframe"
@@ -479,8 +479,8 @@ export default function SavingsGoalCalculator() {
                         </div>
 
                         {/* Annual Interest Rate */}
-                        <div className="space-y-3">
-                          <Label htmlFor="payment-rate" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="payment-rate" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Annual Interest Rate
                           </Label>
                           <div className="relative">
@@ -489,12 +489,12 @@ export default function SavingsGoalCalculator() {
                               type="number"
                               value={paymentInterestRate}
                               onChange={(e) => setPaymentInterestRate(e.target.value)}
-                              className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                               placeholder="3.5"
                               step="0.01"
                               data-testid="input-payment-rate"
                             />
-                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
+                            <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
                           </div>
                         </div>
                       </>
@@ -503,18 +503,18 @@ export default function SavingsGoalCalculator() {
                     {calculationType === 'target-amount' && (
                       <>
                         {/* Current Savings */}
-                        <div className="space-y-3">
-                          <Label htmlFor="target-current" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="target-current" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Current Savings
                           </Label>
                           <div className="relative">
-                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                            <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
                             <Input
                               id="target-current"
                               type="number"
                               value={targetCurrentSavings}
                               onChange={(e) => setTargetCurrentSavings(e.target.value)}
-                              className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                               placeholder="10,000"
                               data-testid="input-target-current"
                             />
@@ -522,18 +522,18 @@ export default function SavingsGoalCalculator() {
                         </div>
 
                         {/* Monthly Contribution */}
-                        <div className="space-y-3">
-                          <Label htmlFor="target-monthly" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="target-monthly" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Monthly Contribution
                           </Label>
                           <div className="relative">
-                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                            <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
                             <Input
                               id="target-monthly"
                               type="number"
                               value={targetMonthlyContribution}
                               onChange={(e) => setTargetMonthlyContribution(e.target.value)}
-                              className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                               placeholder="800"
                               data-testid="input-target-monthly"
                             />
@@ -541,8 +541,8 @@ export default function SavingsGoalCalculator() {
                         </div>
 
                         {/* Timeframe */}
-                        <div className="space-y-3">
-                          <Label htmlFor="target-timeframe" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="target-timeframe" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Timeframe (Months)
                           </Label>
                           <Input
@@ -550,7 +550,7 @@ export default function SavingsGoalCalculator() {
                             type="number"
                             value={targetTimeframe}
                             onChange={(e) => setTargetTimeframe(e.target.value)}
-                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                            className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                             placeholder="36"
                             min="1"
                             data-testid="input-target-timeframe"
@@ -558,8 +558,8 @@ export default function SavingsGoalCalculator() {
                         </div>
 
                         {/* Annual Interest Rate */}
-                        <div className="space-y-3">
-                          <Label htmlFor="target-rate" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="target-rate" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Annual Interest Rate
                           </Label>
                           <div className="relative">
@@ -568,12 +568,12 @@ export default function SavingsGoalCalculator() {
                               type="number"
                               value={targetInterestRate}
                               onChange={(e) => setTargetInterestRate(e.target.value)}
-                              className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                               placeholder="5.0"
                               step="0.01"
                               data-testid="input-target-rate"
                             />
-                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
+                            <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
                           </div>
                         </div>
                       </>
@@ -581,10 +581,10 @@ export default function SavingsGoalCalculator() {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                  <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       onClick={calculateSavings}
-                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                       data-testid="button-calculate"
                     >
                       Calculate Savings Goal
@@ -592,7 +592,7 @@ export default function SavingsGoalCalculator() {
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                       data-testid="button-reset"
                     >
                       Reset
@@ -601,54 +601,56 @@ export default function SavingsGoalCalculator() {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Savings Analysis</h2>
+                {result ? (
+                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Savings Analysis</h2>
                   
-                  {result ? (
-                    <div className="space-y-6" data-testid="savings-results">
+                  <div className="space-y-4 sm:space-y-6 md:space-y-8" data-testid="savings-results">
                       {/* Primary Result Highlight */}
-                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
-                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">
-                          {result.calculationType === 'time-to-save' ? 'Time to Reach Goal' : 
-                           result.calculationType === 'monthly-payment' ? 'Monthly Payment Required' : 'Target Amount'}
-                        </div>
-                        <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" data-testid="text-primary-result">
-                          {result.calculationType === 'time-to-save' ? formatTime(result.timeToReach) :
-                           result.calculationType === 'monthly-payment' ? formatCurrency(result.monthlyContribution) :
-                           formatCurrency(result.goalAmount)}
+                      <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 shadow-lg border border-blue-100">
+                        <div className="text-center space-y-3 sm:space-y-4">
+                          <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide">
+                            {result.calculationType === 'time-to-save' ? 'Time to Reach Goal' : 
+                             result.calculationType === 'monthly-payment' ? 'Monthly Payment Required' : 'Target Amount'}
+                          </div>
+                          <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 break-all" data-testid="text-primary-result">
+                            {result.calculationType === 'time-to-save' ? formatTime(result.timeToReach) :
+                             result.calculationType === 'monthly-payment' ? formatCurrency(result.monthlyContribution) :
+                             formatCurrency(result.goalAmount)}
+                          </div>
                         </div>
                       </div>
 
                       {/* Financial Breakdown */}
-                      <div className="space-y-4">
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                      <div className="space-y-2 sm:space-y-3 md:space-y-4">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Goal Amount</span>
-                            <span className="font-bold text-gray-900" data-testid="text-goal-amount">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Goal Amount</span>
+                            <span className="font-bold text-gray-900 text-sm sm:text-base break-all" data-testid="text-goal-amount">
                               {formatCurrency(result.goalAmount)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Total Contributions</span>
-                            <span className="font-bold text-blue-600" data-testid="text-total-contributions">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Total Contributions</span>
+                            <span className="font-bold text-blue-600 text-sm sm:text-base break-all" data-testid="text-total-contributions">
                               {formatCurrency(result.totalContributions)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Interest Earned</span>
-                            <span className="font-bold text-green-600" data-testid="text-interest-earned">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Interest Earned</span>
+                            <span className="font-bold text-green-600 text-sm sm:text-base break-all" data-testid="text-interest-earned">
                               {formatCurrency(result.interestEarned)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Annual Interest Rate</span>
-                            <span className="font-bold text-gray-900" data-testid="text-annual-rate">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Annual Interest Rate</span>
+                            <span className="font-bold text-gray-900 text-sm sm:text-base" data-testid="text-annual-rate">
                               {result.annualInterestRate.toFixed(2)}%
                             </span>
                           </div>
@@ -656,31 +658,31 @@ export default function SavingsGoalCalculator() {
                       </div>
 
                       {/* Enhanced Savings Summary */}
-                      <div className="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 rounded-2xl p-6 border border-blue-200 shadow-lg">
-                        <div className="flex items-center gap-3 mb-6">
-                          <div className="p-2 bg-blue-100 rounded-lg">
-                            <PiggyBank className="w-6 h-6 text-blue-600" />
+                      <div className="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 rounded-lg sm:rounded-xl md:rounded-2xl p-4 sm:p-5 md:p-6 border border-blue-200 shadow-lg">
+                        <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-5 md:mb-6">
+                          <div className="p-1.5 sm:p-2 bg-blue-100 rounded-lg">
+                            <PiggyBank className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-blue-600" />
                           </div>
-                          <h4 className="font-bold text-blue-900 text-xl">Savings Summary</h4>
+                          <h4 className="font-bold text-blue-900 text-lg sm:text-xl">Savings Summary</h4>
                         </div>
                         
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                          <div className="bg-white/70 backdrop-blur-sm rounded-xl p-4 border border-blue-100">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-5 md:mb-6">
+                          <div className="bg-white/70 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-blue-100">
                             <div className="flex items-center gap-2 mb-2">
-                              <Target className="w-4 h-4 text-blue-600" />
-                              <span className="text-blue-700 font-medium text-sm">Monthly Contribution</span>
+                              <Target className="w-3 h-3 sm:w-4 sm:h-4 text-blue-600 flex-shrink-0" />
+                              <span className="text-blue-700 font-medium text-xs sm:text-sm">Monthly Contribution</span>
                             </div>
-                            <div className="font-bold text-blue-900 text-xl">
+                            <div className="font-bold text-blue-900 text-lg sm:text-xl break-all">
                               {formatCurrency(result.monthlyContribution)}
                             </div>
                           </div>
                           
-                          <div className="bg-white/70 backdrop-blur-sm rounded-xl p-4 border border-blue-100">
+                          <div className="bg-white/70 backdrop-blur-sm rounded-lg sm:rounded-xl p-3 sm:p-4 border border-blue-100">
                             <div className="flex items-center gap-2 mb-2">
-                              <Clock className="w-4 h-4 text-indigo-600" />
-                              <span className="text-indigo-700 font-medium text-sm">Time Period</span>
+                              <Clock className="w-3 h-3 sm:w-4 sm:h-4 text-indigo-600 flex-shrink-0" />
+                              <span className="text-indigo-700 font-medium text-xs sm:text-sm">Time Period</span>
                             </div>
-                            <div className="font-bold text-indigo-900 text-xl">
+                            <div className="font-bold text-indigo-900 text-lg sm:text-xl break-words">
                               {formatTime(result.timeToReach)}
                             </div>
                           </div>
@@ -748,15 +750,17 @@ export default function SavingsGoalCalculator() {
                         </div>
                       </div>
                     </div>
-                  ) : (
-                    <div className="text-center py-16" data-testid="no-results">
-                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <div className="text-3xl font-bold text-gray-400">$</div>
+                  </div>
+                ) : (
+                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                    <div className="text-center py-8 sm:py-12 md:py-16" data-testid="no-results">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
+                        <div className="text-2xl sm:text-3xl font-bold text-gray-400">$</div>
                       </div>
-                      <p className="text-gray-500 text-lg">Enter savings details and calculate to see your financial plan</p>
+                      <p className="text-gray-500 text-base sm:text-lg px-4">Enter savings details and calculate to see your financial plan</p>
                     </div>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             </CardContent>
           </Card>
