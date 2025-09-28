@@ -434,9 +434,18 @@ export default function DebtPayoffCalculator() {
                   {/* Calculation Type Tabs */}
                   <Tabs value={calculationType} onValueChange={setCalculationType} className="w-full">
                     <TabsList className="grid w-full grid-cols-3 h-10 sm:h-12 md:h-14 bg-gray-100 rounded-lg sm:rounded-xl p-1">
-                      <TabsTrigger value="single-debt" className="h-full text-xs sm:text-sm font-medium rounded-md sm:rounded-lg">Single Debt</TabsTrigger>
-                      <TabsTrigger value="multiple-debts" className="h-full text-xs sm:text-sm font-medium rounded-md sm:rounded-lg">Multiple Debts</TabsTrigger>
-                      <TabsTrigger value="target-payment" className="h-full text-xs sm:text-sm font-medium rounded-md sm:rounded-lg">Target Payment</TabsTrigger>
+                      <TabsTrigger value="single-debt" className="h-full text-xs sm:text-sm md:text-base font-medium rounded-md sm:rounded-lg px-1 sm:px-2 md:px-3">
+                        <span className="block sm:hidden">Single</span>
+                        <span className="hidden sm:block">Single Debt</span>
+                      </TabsTrigger>
+                      <TabsTrigger value="multiple-debts" className="h-full text-xs sm:text-sm md:text-base font-medium rounded-md sm:rounded-lg px-1 sm:px-2 md:px-3">
+                        <span className="block sm:hidden">Multiple</span>
+                        <span className="hidden sm:block">Multiple Debts</span>
+                      </TabsTrigger>
+                      <TabsTrigger value="target-payment" className="h-full text-xs sm:text-sm md:text-base font-medium rounded-md sm:rounded-lg px-1 sm:px-2 md:px-3">
+                        <span className="block sm:hidden">Target</span>
+                        <span className="hidden sm:block">Target Payment</span>
+                      </TabsTrigger>
                     </TabsList>
 
                     <TabsContent value="single-debt" className="space-y-4 sm:space-y-6 mt-4 sm:mt-6 md:mt-8">
