@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -225,7 +226,7 @@ const MortgageCalculator = () => {
   };
 
   return (
-    <>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
       <Helmet>
         <title>Mortgage Calculator - Calculate Monthly Mortgage Payments | DapsiWow</title>
         <meta name="description" content="Free mortgage calculator to calculate monthly payments, total interest, and loan costs. Include taxes, insurance, and PMI for accurate estimates." />
@@ -236,513 +237,514 @@ const MortgageCalculator = () => {
         <link rel="canonical" href="https://dapsiwow.com/tools/mortgage-calculator" />
       </Helmet>
 
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50" data-testid="page-mortgage-calculator">
-        <Header />
-        
-        <main>
-          {/* Hero Section */}
-          <section className="relative py-12 sm:py-16 md:py-20 lg:py-28 xl:py-32 overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-purple-600/20"></div>
-            <div className="relative max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
-              <div className="space-y-4 sm:space-y-6 md:space-y-8">
-                <div className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-purple-200">
-                  <span className="text-xs sm:text-sm font-medium text-purple-700">Advanced Mortgage Calculator</span>
-                </div>
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-slate-900 leading-tight tracking-tight">
-                  <span className="block">Smart Mortgage</span>
-                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mt-1 sm:mt-2">
-                    Calculator
-                  </span>
-                </h1>
-                <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-slate-600 max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto leading-relaxed px-2 sm:px-0">
-                  Calculate comprehensive mortgage payments including taxes, insurance, and PMI for complete home affordability analysis
-                </p>
+      <Header />
+      
+      <main>
+        {/* Hero Section */}
+        <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-purple-600/20"></div>
+          <div className="relative max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
+            <div className="space-y-4 sm:space-y-6 md:space-y-8">
+              <div className="inline-flex items-center px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-purple-200">
+                <span className="text-xs sm:text-sm font-medium text-purple-700">Advanced Mortgage Calculator</span>
               </div>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0" data-testid="page-mortgage-calculator">
+                <span className="block">Smart Mortgage</span>
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mt-1 sm:mt-2">
+                  Calculator
+                </span>
+              </h1>
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
+                Calculate comprehensive mortgage payments including taxes, insurance, and PMI for complete home affordability analysis
+              </p>
             </div>
-          </section>
+          </div>
+        </section>
 
-          {/* Calculator Section */}
-          <section className="py-16">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
-                <CardContent className="p-0">
-                  <div className="grid grid-cols-1 xl:grid-cols-5 gap-0">
-                    {/* Input Section */}
-                    <div className="xl:col-span-3 p-8 lg:p-12 space-y-8">
-                      <div>
-                        <h2 className="text-3xl font-bold text-gray-900 mb-2">Mortgage Configuration</h2>
-                        <p className="text-gray-600">Enter your home and loan details for accurate payment calculations</p>
-                      </div>
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
+          {/* Main Calculator Card */}
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
+            <CardContent className="p-0">
+              <div className="flex flex-col">
+                {/* Input Section */}
+                <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
+                  <div className="text-center sm:text-left">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Mortgage Configuration</h2>
+                    <p className="text-sm sm:text-base text-gray-600">Enter your home and loan details for accurate payment calculations</p>
+                  </div>
 
-                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                        {/* Home Price */}
-                        <div className="space-y-3">
-                          <Label htmlFor="home-price" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
-                            Home Price
-                          </Label>
-                          <div className="relative">
-                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
-                            <Input
-                              id="home-price"
-                              type="number"
-                              value={homePrice}
-                              onChange={(e) => setHomePrice(e.target.value)}
-                              className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:ring-purple-500"
-                              placeholder="500,000"
-                              data-testid="input-home-price"
-                            />
-                          </div>
-                        </div>
-
-                        {/* Down Payment */}
-                        <div className="space-y-3">
-                          <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Down Payment Type</Label>
-                          <RadioGroup 
-                            value={usePercentage ? "percentage" : "amount"} 
-                            onValueChange={(value) => setUsePercentage(value === "percentage")}
-                            className="flex gap-6"
-                          >
-                            <div className="flex items-center space-x-2">
-                              <RadioGroupItem value="percentage" id="percentage" data-testid="radio-percentage" />
-                              <Label htmlFor="percentage" className="text-sm font-medium">Percentage</Label>
-                            </div>
-                            <div className="flex items-center space-x-2">
-                              <RadioGroupItem value="amount" id="amount" data-testid="radio-amount" />
-                              <Label htmlFor="amount" className="text-sm font-medium">Dollar Amount</Label>
-                            </div>
-                          </RadioGroup>
-                          
-                          {usePercentage ? (
-                            <div className="relative">
-                              <Input
-                                type="number"
-                                value={downPaymentPercent}
-                                onChange={(e) => setDownPaymentPercent(e.target.value)}
-                                className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:ring-purple-500"
-                                placeholder="20"
-                                min="0"
-                                max="100"
-                                step="0.1"
-                                data-testid="input-down-payment-percent"
-                              />
-                              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
-                            </div>
-                          ) : (
-                            <div className="relative">
-                              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
-                              <Input
-                                type="number"
-                                value={downPayment}
-                                onChange={(e) => setDownPayment(e.target.value)}
-                                className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:ring-purple-500"
-                                placeholder="100,000"
-                                data-testid="input-down-payment-amount"
-                              />
-                            </div>
-                          )}
-                        </div>
-
-                        {/* Loan Term */}
-                        <div className="space-y-3">
-                          <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Loan Term</Label>
-                          <div className="grid grid-cols-2 gap-3">
-                            <Input
-                              type="number"
-                              value={loanTerm}
-                              onChange={(e) => setLoanTerm(e.target.value)}
-                              className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:ring-purple-500"
-                              placeholder="30"
-                              min="1"
-                              data-testid="input-loan-term"
-                            />
-                            <Select value="years">
-                              <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-loan-term">
-                                <SelectValue />
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectItem value="years">Years</SelectItem>
-                              </SelectContent>
-                            </Select>
-                          </div>
-                        </div>
-
-                        {/* Interest Rate */}
-                        <div className="space-y-3">
-                          <Label htmlFor="interest-rate" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
-                            Annual Interest Rate
-                          </Label>
-                          <div className="relative">
-                            <Input
-                              id="interest-rate"
-                              type="number"
-                              value={interestRate}
-                              onChange={(e) => setInterestRate(e.target.value)}
-                              className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:ring-purple-500"
-                              placeholder="6.5"
-                              step="0.01"
-                              min="0"
-                              max="100"
-                              data-testid="input-interest-rate"
-                            />
-                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
-                          </div>
-                        </div>
-
-                        {/* Loan Type */}
-                        <div className="lg:col-span-2 space-y-3">
-                          <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Loan Type</Label>
-                          <Select value={loanType} onValueChange={setLoanType}>
-                            <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-loan-type">
-                              <SelectValue />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="conventional">Conventional Loan</SelectItem>
-                              <SelectItem value="fha">FHA (Federal Housing Administration)</SelectItem>
-                              <SelectItem value="va">VA (Veterans Affairs)</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                      </div>
-
-                      {/* Additional Costs */}
-                      <div className="border-t border-gray-200 pt-8 space-y-6">
-                        <h3 className="text-xl font-bold text-gray-900">Additional Monthly Costs</h3>
-                        
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                          {/* Property Tax */}
-                          <div className="space-y-2">
-                            <Label htmlFor="property-tax" className="text-sm font-medium text-gray-700">Annual Property Tax</Label>
-                            <div className="relative">
-                              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
-                              <Input
-                                id="property-tax"
-                                type="number"
-                                value={propertyTax}
-                                onChange={(e) => setPropertyTax(e.target.value)}
-                                className="pl-8 h-12 rounded-lg border-gray-200"
-                                placeholder="6,000"
-                                data-testid="input-property-tax"
-                              />
-                            </div>
-                          </div>
-
-                          {/* Home Insurance */}
-                          <div className="space-y-2">
-                            <Label htmlFor="home-insurance" className="text-sm font-medium text-gray-700">Annual Home Insurance</Label>
-                            <div className="relative">
-                              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
-                              <Input
-                                id="home-insurance"
-                                type="number"
-                                value={homeInsurance}
-                                onChange={(e) => setHomeInsurance(e.target.value)}
-                                className="pl-8 h-12 rounded-lg border-gray-200"
-                                placeholder="1,200"
-                                data-testid="input-home-insurance"
-                              />
-                            </div>
-                          </div>
-
-                          {/* PMI Rate */}
-                          <div className="space-y-2">
-                            <Label htmlFor="pmi-rate" className="text-sm font-medium text-gray-700">PMI Rate (Annual %)</Label>
-                            <div className="relative">
-                              <Input
-                                id="pmi-rate"
-                                type="number"
-                                value={pmiRate}
-                                onChange={(e) => setPmiRate(e.target.value)}
-                                className="pr-8 h-12 rounded-lg border-gray-200"
-                                placeholder="0.5"
-                                step="0.1"
-                                min="0"
-                                max="10"
-                                data-testid="input-pmi-rate"
-                                disabled={loanType !== 'conventional'}
-                              />
-                              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">%</span>
-                            </div>
-                            <p className="text-xs text-gray-500">
-                              {loanType === 'conventional' 
-                                ? 'Applied if down payment is less than 20%' 
-                                : loanType === 'fha' 
-                                  ? 'FHA loans have mandatory mortgage insurance premium (MIP)' 
-                                  : 'VA loans do not require PMI'}
-                            </p>
-                          </div>
-
-                          {/* HOA Fees */}
-                          <div className="space-y-2">
-                            <Label htmlFor="hoa-fees" className="text-sm font-medium text-gray-700">Monthly HOA Fees</Label>
-                            <div className="relative">
-                              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
-                              <Input
-                                id="hoa-fees"
-                                type="number"
-                                value={hoaFees}
-                                onChange={(e) => setHoaFees(e.target.value)}
-                                className="pl-8 h-12 rounded-lg border-gray-200"
-                                placeholder="0"
-                                data-testid="input-hoa-fees"
-                              />
-                            </div>
-                          </div>
-
-                          {/* Closing Costs */}
-                          <div className="space-y-2">
-                            <Label htmlFor="closing-costs" className="text-sm font-medium text-gray-700">Closing Costs (%)</Label>
-                            <div className="relative">
-                              <Input
-                                id="closing-costs"
-                                type="number"
-                                value={closingCostPercent}
-                                onChange={(e) => setClosingCostPercent(e.target.value)}
-                                className="pr-8 h-12 rounded-lg border-gray-200"
-                                placeholder="3"
-                                step="0.1"
-                                min="0"
-                                max="10"
-                                data-testid="input-closing-costs"
-                              />
-                              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">%</span>
-                            </div>
-                            <p className="text-xs text-gray-500">Typically 2-5% of home price</p>
-                          </div>
-
-                          {/* Monthly Income for Affordability */}
-                          <div className="space-y-2">
-                            <Label htmlFor="monthly-income" className="text-sm font-medium text-gray-700">Monthly Income (Optional)</Label>
-                            <div className="relative">
-                              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
-                              <Input
-                                id="monthly-income"
-                                type="number"
-                                value={monthlyIncome}
-                                onChange={(e) => setMonthlyIncome(e.target.value)}
-                                className="pl-8 h-12 rounded-lg border-gray-200"
-                                placeholder="8,000"
-                                data-testid="input-monthly-income"
-                              />
-                            </div>
-                            <p className="text-xs text-gray-500">For affordability analysis</p>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Action Buttons */}
-                      <div className="flex flex-col sm:flex-row gap-4 pt-6">
-                        <Button
-                          onClick={calculateMortgage}
-                          className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
-                          data-testid="button-calculate"
-                        >
-                          Calculate Mortgage
-                        </Button>
-                        <Button
-                          onClick={resetCalculator}
-                          variant="outline"
-                          className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
-                          data-testid="button-reset"
-                        >
-                          Reset
-                        </Button>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+                    {/* Home Price */}
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="home-price" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Home Price
+                      </Label>
+                      <div className="relative">
+                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-lg">$</span>
+                        <Input
+                          id="home-price"
+                          type="number"
+                          value={homePrice}
+                          onChange={(e) => setHomePrice(e.target.value)}
+                          className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-purple-500 focus:ring-purple-500 w-full"
+                          placeholder="500,000"
+                          data-testid="input-home-price"
+                        />
                       </div>
                     </div>
 
-                    {/* Results Section */}
-                    <div className="xl:col-span-2 bg-gradient-to-br from-gray-50 to-purple-50 p-8 lg:p-12">
-                      <h2 className="text-2xl font-bold text-gray-900 mb-8">Payment Breakdown</h2>
-
-                      {result ? (
-                        <div className="space-y-6" data-testid="mortgage-results">
-                          {/* Total Monthly Payment Highlight */}
-                          <div className="bg-white rounded-2xl p-6 shadow-lg border border-purple-100">
-                            <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Total Monthly Payment</div>
-                            <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600" data-testid="text-monthly-payment">
-                              {formatCurrency(result.monthlyPayment)}
-                            </div>
-                          </div>
-
-                          {/* Payment Components */}
-                          <div className="space-y-3">
-                            <div className="bg-white rounded-xl p-4 shadow-sm">
-                              <div className="flex justify-between items-center">
-                                <span className="font-medium text-gray-700">Principal & Interest</span>
-                                <span className="font-bold text-blue-600" data-testid="text-principal-interest">
-                                  {formatCurrency(result.monthlyPrincipalAndInterest)}
-                                </span>
-                              </div>
-                            </div>
-                            
-                            {result.monthlyTaxes > 0 && (
-                              <div className="bg-white rounded-xl p-4 shadow-sm">
-                                <div className="flex justify-between items-center">
-                                  <span className="font-medium text-gray-700">Property Taxes</span>
-                                  <span className="font-bold text-orange-600" data-testid="text-property-taxes">
-                                    {formatCurrency(result.monthlyTaxes)}
-                                  </span>
-                                </div>
-                              </div>
-                            )}
-
-                            {result.monthlyInsurance > 0 && (
-                              <div className="bg-white rounded-xl p-4 shadow-sm">
-                                <div className="flex justify-between items-center">
-                                  <span className="font-medium text-gray-700">Home Insurance</span>
-                                  <span className="font-bold text-green-600" data-testid="text-home-insurance">
-                                    {formatCurrency(result.monthlyInsurance)}
-                                  </span>
-                                </div>
-                              </div>
-                            )}
-
-                            {result.monthlyPMI > 0 && (
-                              <div className="bg-white rounded-xl p-4 shadow-sm">
-                                <div className="flex justify-between items-center">
-                                  <span className="font-medium text-gray-700">PMI/MIP</span>
-                                  <span className="font-bold text-red-600" data-testid="text-pmi">
-                                    {formatCurrency(result.monthlyPMI)}
-                                  </span>
-                                </div>
-                              </div>
-                            )}
-
-                            {result.monthlyHOA > 0 && (
-                              <div className="bg-white rounded-xl p-4 shadow-sm">
-                                <div className="flex justify-between items-center">
-                                  <span className="font-medium text-gray-700">HOA Fees</span>
-                                  <span className="font-bold text-purple-600" data-testid="text-hoa">
-                                    {formatCurrency(result.monthlyHOA)}
-                                  </span>
-                                </div>
-                              </div>
-                            )}
-                          </div>
-
-                          {/* Cash Required */}
-                          <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6 border border-blue-200">
-                            <h4 className="font-bold text-blue-800 mb-4 text-lg">Cash Required at Closing</h4>
-                            <div className="space-y-2">
-                              <div className="flex justify-between">
-                                <span className="text-blue-700 font-medium">Down Payment:</span>
-                                <span className="font-bold text-blue-800">
-                                  {formatCurrency(usePercentage ? (parseFloat(homePrice) * parseFloat(downPaymentPercent)) / 100 : parseFloat(downPayment || '0'))}
-                                </span>
-                              </div>
-                              <div className="flex justify-between">
-                                <span className="text-blue-700 font-medium">Closing Costs:</span>
-                                <span className="font-bold text-blue-800">
-                                  {formatCurrency(result.closingCosts)}
-                                </span>
-                              </div>
-                              <div className="border-t border-blue-200 pt-2 mt-2">
-                                <div className="flex justify-between">
-                                  <span className="text-blue-700 font-bold">Total Cash Needed:</span>
-                                  <span className="font-bold text-blue-800 text-lg">
-                                    {formatCurrency(result.totalCashNeeded)}
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Affordability Analysis */}
-                          {result.debtToIncomeRatio && result.debtToIncomeRatio > 0 && (
-                            <div className={`rounded-xl p-6 border ${
-                              result.affordabilityAnalysis.isAffordable 
-                                ? 'bg-gradient-to-r from-green-50 to-emerald-50 border-green-200' 
-                                : 'bg-gradient-to-r from-red-50 to-pink-50 border-red-200'
-                            }`}>
-                              <h4 className={`font-bold mb-4 text-lg ${
-                                result.affordabilityAnalysis.isAffordable ? 'text-green-800' : 'text-red-800'
-                              }`}>
-                                Affordability Analysis
-                              </h4>
-                              <div className="space-y-2">
-                                <div className="flex justify-between">
-                                  <span className={`font-medium ${
-                                    result.affordabilityAnalysis.isAffordable ? 'text-green-700' : 'text-red-700'
-                                  }`}>
-                                    Debt-to-Income Ratio:
-                                  </span>
-                                  <span className={`font-bold ${
-                                    result.affordabilityAnalysis.isAffordable ? 'text-green-800' : 'text-red-800'
-                                  }`}>
-                                    {result.debtToIncomeRatio.toFixed(1)}%
-                                  </span>
-                                </div>
-                                <p className={`text-sm ${
-                                  result.affordabilityAnalysis.isAffordable ? 'text-green-600' : 'text-red-600'
-                                }`}>
-                                  {result.affordabilityAnalysis.isAffordable 
-                                    ? 'This mortgage payment is within recommended affordability guidelines (≤28%)' 
-                                    : 'This mortgage payment exceeds recommended affordability guidelines (>28%)'}
-                                </p>
-                              </div>
-                            </div>
-                          )}
-
-                          {/* PMI Removal Date */}
-                          {result.pmiRemovalDate && (
-                            <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl p-6 border border-yellow-200">
-                              <h4 className="font-bold text-yellow-800 mb-4 text-lg">PMI Removal Projection</h4>
-                              <p className="text-yellow-700 font-medium">
-                                PMI can be removed approximately in{' '}
-                                <span className="font-bold">
-                                  {result.pmiRemovalDate.month}/{result.pmiRemovalDate.year}
-                                </span>{' '}
-                                when you reach 78% loan-to-value ratio.
-                              </p>
-                            </div>
-                          )}
-
-                          {/* Loan Summary */}
-                          <div className="bg-white rounded-xl p-6 shadow-sm">
-                            <h4 className="font-bold text-gray-900 mb-4">Loan Summary</h4>
-                            <div className="space-y-2">
-                              <div className="flex justify-between">
-                                <span className="text-gray-600">Loan Amount:</span>
-                                <span className="font-semibold">{formatCurrency(parseFloat(homePrice || '0') - (usePercentage ? (parseFloat(homePrice || '0') * parseFloat(downPaymentPercent)) / 100 : parseFloat(downPayment || '0')))}</span>
-                              </div>
-                              <div className="flex justify-between">
-                                <span className="text-gray-600">Total Interest:</span>
-                                <span className="font-semibold text-orange-600" data-testid="text-total-interest">
-                                  {formatCurrency(result.totalInterest)}
-                                </span>
-                              </div>
-                              <div className="flex justify-between">
-                                <span className="text-gray-600">Total Amount Paid:</span>
-                                <span className="font-semibold">{formatCurrency(result.totalAmount)}</span>
-                              </div>
-                              <div className="flex justify-between">
-                                <span className="text-gray-600">Loan-to-Value Ratio:</span>
-                                <span className="font-semibold">{result.loanToValue.toFixed(1)}%</span>
-                              </div>
-                            </div>
-                          </div>
+                    {/* Down Payment */}
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">Down Payment Type</Label>
+                      <RadioGroup 
+                        value={usePercentage ? "percentage" : "amount"} 
+                        onValueChange={(value) => setUsePercentage(value === "percentage")}
+                        className="flex gap-4 sm:gap-6"
+                      >
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="percentage" id="percentage" data-testid="radio-percentage" />
+                          <Label htmlFor="percentage" className="text-xs sm:text-sm font-medium">Percentage</Label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="amount" id="amount" data-testid="radio-amount" />
+                          <Label htmlFor="amount" className="text-xs sm:text-sm font-medium">Dollar Amount</Label>
+                        </div>
+                      </RadioGroup>
+                      
+                      {usePercentage ? (
+                        <div className="relative">
+                          <Input
+                            type="number"
+                            value={downPaymentPercent}
+                            onChange={(e) => setDownPaymentPercent(e.target.value)}
+                            className="h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-purple-500 focus:ring-purple-500 w-full"
+                            placeholder="20"
+                            min="0"
+                            max="100"
+                            step="0.1"
+                            data-testid="input-down-payment-percent"
+                          />
+                          <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-lg">%</span>
                         </div>
                       ) : (
-                        <div className="text-center py-16" data-testid="no-results">
-                          <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                            <div className="text-3xl font-bold text-gray-400">$</div>
-                          </div>
-                          <p className="text-gray-500 text-lg">Enter mortgage details to see complete payment breakdown</p>
+                        <div className="relative">
+                          <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-lg">$</span>
+                          <Input
+                            type="number"
+                            value={downPayment}
+                            onChange={(e) => setDownPayment(e.target.value)}
+                            className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-purple-500 focus:ring-purple-500 w-full"
+                            placeholder="100,000"
+                            data-testid="input-down-payment-amount"
+                          />
                         </div>
                       )}
                     </div>
+
+                    {/* Loan Term */}
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">Loan Term</Label>
+                      <div className="grid grid-cols-2 gap-2 sm:gap-3">
+                        <Input
+                          type="number"
+                          value={loanTerm}
+                          onChange={(e) => setLoanTerm(e.target.value)}
+                          className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-purple-500 focus:ring-purple-500 w-full"
+                          placeholder="30"
+                          min="1"
+                          data-testid="input-loan-term"
+                        />
+                        <Select value="years">
+                          <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-loan-term">
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="years">Years</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+
+                    {/* Interest Rate */}
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="interest-rate" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        Annual Interest Rate
+                      </Label>
+                      <div className="relative">
+                        <Input
+                          id="interest-rate"
+                          type="number"
+                          value={interestRate}
+                          onChange={(e) => setInterestRate(e.target.value)}
+                          className="h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-purple-500 focus:ring-purple-500 w-full"
+                          placeholder="6.5"
+                          step="0.01"
+                          min="0"
+                          max="100"
+                          data-testid="input-interest-rate"
+                        />
+                        <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-lg">%</span>
+                      </div>
+                    </div>
+
+                    {/* Loan Type */}
+                    <div className="md:col-span-2 space-y-2 sm:space-y-3">
+                      <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">Loan Type</Label>
+                      <Select value={loanType} onValueChange={setLoanType}>
+                        <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-loan-type">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="conventional">Conventional Loan</SelectItem>
+                          <SelectItem value="fha">FHA (Federal Housing Administration)</SelectItem>
+                          <SelectItem value="va">VA (Veterans Affairs)</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
                   </div>
-                </CardContent>
-              </Card>
-            </div>
-          </section>
+
+                  {/* Additional Costs */}
+                  <div className="border-t border-gray-200 pt-4 sm:pt-6 md:pt-8 space-y-4 sm:space-y-6">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900">Additional Monthly Costs</h3>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+                      {/* Property Tax */}
+                      <div className="space-y-1 sm:space-y-2">
+                        <Label htmlFor="property-tax" className="text-xs sm:text-sm font-medium text-gray-700">Annual Property Tax</Label>
+                        <div className="relative">
+                          <span className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm">$</span>
+                          <Input
+                            id="property-tax"
+                            type="number"
+                            value={propertyTax}
+                            onChange={(e) => setPropertyTax(e.target.value)}
+                            className="pl-6 sm:pl-8 h-10 sm:h-12 rounded-lg border-gray-200 text-sm sm:text-base w-full"
+                            placeholder="6,000"
+                            data-testid="input-property-tax"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Home Insurance */}
+                      <div className="space-y-1 sm:space-y-2">
+                        <Label htmlFor="home-insurance" className="text-xs sm:text-sm font-medium text-gray-700">Annual Home Insurance</Label>
+                        <div className="relative">
+                          <span className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm">$</span>
+                          <Input
+                            id="home-insurance"
+                            type="number"
+                            value={homeInsurance}
+                            onChange={(e) => setHomeInsurance(e.target.value)}
+                            className="pl-6 sm:pl-8 h-10 sm:h-12 rounded-lg border-gray-200 text-sm sm:text-base w-full"
+                            placeholder="1,200"
+                            data-testid="input-home-insurance"
+                          />
+                        </div>
+                      </div>
+
+                      {/* PMI Rate */}
+                      <div className="space-y-1 sm:space-y-2">
+                        <Label htmlFor="pmi-rate" className="text-xs sm:text-sm font-medium text-gray-700">PMI Rate (Annual %)</Label>
+                        <div className="relative">
+                          <Input
+                            id="pmi-rate"
+                            type="number"
+                            value={pmiRate}
+                            onChange={(e) => setPmiRate(e.target.value)}
+                            className="pr-6 sm:pr-8 h-10 sm:h-12 rounded-lg border-gray-200 text-sm sm:text-base w-full"
+                            placeholder="0.5"
+                            step="0.1"
+                            min="0"
+                            max="10"
+                            data-testid="input-pmi-rate"
+                            disabled={loanType !== 'conventional'}
+                          />
+                          <span className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm">%</span>
+                        </div>
+                        <p className="text-xs text-gray-500">
+                          {loanType === 'conventional' 
+                            ? 'Applied if down payment is less than 20%' 
+                            : loanType === 'fha' 
+                              ? 'FHA loans have mandatory mortgage insurance premium (MIP)' 
+                              : 'VA loans do not require PMI'}
+                        </p>
+                      </div>
+
+                      {/* HOA Fees */}
+                      <div className="space-y-1 sm:space-y-2">
+                        <Label htmlFor="hoa-fees" className="text-xs sm:text-sm font-medium text-gray-700">Monthly HOA Fees</Label>
+                        <div className="relative">
+                          <span className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm">$</span>
+                          <Input
+                            id="hoa-fees"
+                            type="number"
+                            value={hoaFees}
+                            onChange={(e) => setHoaFees(e.target.value)}
+                            className="pl-6 sm:pl-8 h-10 sm:h-12 rounded-lg border-gray-200 text-sm sm:text-base w-full"
+                            placeholder="0"
+                            data-testid="input-hoa-fees"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Closing Costs */}
+                      <div className="space-y-1 sm:space-y-2">
+                        <Label htmlFor="closing-costs" className="text-xs sm:text-sm font-medium text-gray-700">Closing Costs (%)</Label>
+                        <div className="relative">
+                          <Input
+                            id="closing-costs"
+                            type="number"
+                            value={closingCostPercent}
+                            onChange={(e) => setClosingCostPercent(e.target.value)}
+                            className="pr-6 sm:pr-8 h-10 sm:h-12 rounded-lg border-gray-200 text-sm sm:text-base w-full"
+                            placeholder="3"
+                            step="0.1"
+                            min="0"
+                            max="10"
+                            data-testid="input-closing-costs"
+                          />
+                          <span className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm">%</span>
+                        </div>
+                        <p className="text-xs text-gray-500">Typically 2-5% of home price</p>
+                      </div>
+
+                      {/* Monthly Income for Affordability */}
+                      <div className="space-y-1 sm:space-y-2">
+                        <Label htmlFor="monthly-income" className="text-xs sm:text-sm font-medium text-gray-700">Monthly Income (Optional)</Label>
+                        <div className="relative">
+                          <span className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm">$</span>
+                          <Input
+                            id="monthly-income"
+                            type="number"
+                            value={monthlyIncome}
+                            onChange={(e) => setMonthlyIncome(e.target.value)}
+                            className="pl-6 sm:pl-8 h-10 sm:h-12 rounded-lg border-gray-200 text-sm sm:text-base w-full"
+                            placeholder="8,000"
+                            data-testid="input-monthly-income"
+                          />
+                        </div>
+                        <p className="text-xs text-gray-500">For affordability analysis</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
+                    <Button
+                      onClick={calculateMortgage}
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      data-testid="button-calculate"
+                    >
+                      Calculate Mortgage
+                    </Button>
+                    <Button
+                      onClick={resetCalculator}
+                      variant="outline"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
+                      data-testid="button-reset"
+                    >
+                      Reset
+                    </Button>
+                  </div>
+                </div>
+
+                {/* Results Section */}
+                {result ? (
+                  <div className="bg-gradient-to-br from-gray-50 to-purple-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Payment Breakdown</h2>
+
+                    <div className="space-y-4 sm:space-y-6 md:space-y-8" data-testid="mortgage-results">
+                      {/* Total Monthly Payment Highlight */}
+                      <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border-2 border-purple-200 shadow-sm">
+                        <div className="text-center space-y-2 sm:space-y-3">
+                          <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide">Total Monthly Payment</div>
+                          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 break-all" data-testid="text-monthly-payment">
+                            {formatCurrency(result.monthlyPayment)}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Payment Components */}
+                      <div className="space-y-2 sm:space-y-3">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Principal & Interest</span>
+                            <span className="font-bold text-blue-600 text-sm sm:text-base break-all" data-testid="text-principal-interest">
+                              {formatCurrency(result.monthlyPrincipalAndInterest)}
+                            </span>
+                          </div>
+                        </div>
+                        
+                        {result.monthlyTaxes > 0 && (
+                          <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                            <div className="flex justify-between items-center">
+                              <span className="font-medium text-gray-700 text-sm sm:text-base">Property Taxes</span>
+                              <span className="font-bold text-orange-600 text-sm sm:text-base break-all" data-testid="text-property-taxes">
+                                {formatCurrency(result.monthlyTaxes)}
+                              </span>
+                            </div>
+                          </div>
+                        )}
+
+                        {result.monthlyInsurance > 0 && (
+                          <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                            <div className="flex justify-between items-center">
+                              <span className="font-medium text-gray-700 text-sm sm:text-base">Home Insurance</span>
+                              <span className="font-bold text-green-600 text-sm sm:text-base break-all" data-testid="text-home-insurance">
+                                {formatCurrency(result.monthlyInsurance)}
+                              </span>
+                            </div>
+                          </div>
+                        )}
+
+                        {result.monthlyPMI > 0 && (
+                          <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                            <div className="flex justify-between items-center">
+                              <span className="font-medium text-gray-700 text-sm sm:text-base">PMI/MIP</span>
+                              <span className="font-bold text-red-600 text-sm sm:text-base break-all" data-testid="text-pmi">
+                                {formatCurrency(result.monthlyPMI)}
+                              </span>
+                            </div>
+                          </div>
+                        )}
+
+                        {result.monthlyHOA > 0 && (
+                          <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                            <div className="flex justify-between items-center">
+                              <span className="font-medium text-gray-700 text-sm sm:text-base">HOA Fees</span>
+                              <span className="font-bold text-purple-600 text-sm sm:text-base break-all" data-testid="text-hoa">
+                                {formatCurrency(result.monthlyHOA)}
+                              </span>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Cash Required */}
+                      <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-blue-200">
+                        <h4 className="font-bold text-blue-800 mb-3 sm:mb-4 text-sm sm:text-base md:text-lg">Cash Required at Closing</h4>
+                        <div className="space-y-2">
+                          <div className="flex justify-between">
+                            <span className="text-blue-700 font-medium text-sm sm:text-base">Down Payment:</span>
+                            <span className="font-bold text-blue-800 text-sm sm:text-base break-all">
+                              {formatCurrency(usePercentage ? (parseFloat(homePrice) * parseFloat(downPaymentPercent)) / 100 : parseFloat(downPayment || '0'))}
+                            </span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-blue-700 font-medium text-sm sm:text-base">Closing Costs:</span>
+                            <span className="font-bold text-blue-800 text-sm sm:text-base break-all">
+                              {formatCurrency(result.closingCosts)}
+                            </span>
+                          </div>
+                          <div className="border-t border-blue-200 pt-2 mt-2">
+                            <div className="flex justify-between">
+                              <span className="text-blue-700 font-bold text-sm sm:text-base">Total Cash Needed:</span>
+                              <span className="font-bold text-blue-800 text-sm sm:text-base md:text-lg break-all">
+                                {formatCurrency(result.totalCashNeeded)}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Affordability Analysis */}
+                      {result.debtToIncomeRatio && result.debtToIncomeRatio > 0 && (
+                        <div className={`rounded-lg sm:rounded-xl p-4 sm:p-6 border ${
+                          result.affordabilityAnalysis.isAffordable 
+                            ? 'bg-gradient-to-r from-green-50 to-emerald-50 border-green-200' 
+                            : 'bg-gradient-to-r from-red-50 to-pink-50 border-red-200'
+                        }`}>
+                          <h4 className={`font-bold mb-3 sm:mb-4 text-sm sm:text-base md:text-lg ${
+                            result.affordabilityAnalysis.isAffordable ? 'text-green-800' : 'text-red-800'
+                          }`}>
+                            Affordability Analysis
+                          </h4>
+                          <div className="space-y-2">
+                            <div className="flex justify-between">
+                              <span className={`font-medium text-sm sm:text-base ${
+                                result.affordabilityAnalysis.isAffordable ? 'text-green-700' : 'text-red-700'
+                              }`}>
+                                Debt-to-Income Ratio:
+                              </span>
+                              <span className={`font-bold text-sm sm:text-base ${
+                                result.affordabilityAnalysis.isAffordable ? 'text-green-800' : 'text-red-800'
+                              }`}>
+                                {result.debtToIncomeRatio.toFixed(1)}%
+                              </span>
+                            </div>
+                            <p className={`text-xs sm:text-sm ${
+                              result.affordabilityAnalysis.isAffordable ? 'text-green-600' : 'text-red-600'
+                            }`}>
+                              {result.affordabilityAnalysis.isAffordable 
+                                ? 'This mortgage payment is within recommended affordability guidelines (≤28%)' 
+                                : 'This mortgage payment exceeds recommended affordability guidelines (>28%)'}
+                            </p>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* PMI Removal Date */}
+                      {result.pmiRemovalDate && (
+                        <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-yellow-200">
+                          <h4 className="font-bold text-yellow-800 mb-3 sm:mb-4 text-sm sm:text-base md:text-lg">PMI Removal Projection</h4>
+                          <p className="text-yellow-700 font-medium text-xs sm:text-sm">
+                            PMI can be removed approximately in{' '}
+                            <span className="font-bold">
+                              {result.pmiRemovalDate.month}/{result.pmiRemovalDate.year}
+                            </span>{' '}
+                            when you reach 78% loan-to-value ratio.
+                          </p>
+                        </div>
+                      )}
+
+                      {/* Loan Summary */}
+                      <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm">
+                        <h4 className="font-bold text-gray-900 mb-3 sm:mb-4 text-sm sm:text-base md:text-lg">Loan Summary</h4>
+                        <div className="space-y-2">
+                          <div className="flex justify-between">
+                            <span className="text-gray-600 text-sm sm:text-base">Loan Amount:</span>
+                            <span className="font-semibold text-sm sm:text-base break-all">{formatCurrency(parseFloat(homePrice || '0') - (usePercentage ? (parseFloat(homePrice || '0') * parseFloat(downPaymentPercent)) / 100 : parseFloat(downPayment || '0')))}</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-gray-600 text-sm sm:text-base">Total Interest:</span>
+                            <span className="font-semibold text-orange-600 text-sm sm:text-base break-all" data-testid="text-total-interest">
+                              {formatCurrency(result.totalInterest)}
+                            </span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-gray-600 text-sm sm:text-base">Total Amount Paid:</span>
+                            <span className="font-semibold text-sm sm:text-base break-all">{formatCurrency(result.totalAmount)}</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-gray-600 text-sm sm:text-base">Loan-to-Value Ratio:</span>
+                            <span className="font-semibold text-sm sm:text-base">{result.loanToValue.toFixed(1)}%</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="bg-gradient-to-br from-gray-50 to-purple-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Payment Breakdown</h2>
+                    <div className="text-center py-8 sm:py-12 md:py-16" data-testid="no-results">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
+                        <div className="text-2xl sm:text-3xl font-bold text-gray-400">$</div>
+                      </div>
+                      <p className="text-gray-500 text-sm sm:text-base md:text-lg px-4">Enter mortgage details to see complete payment breakdown</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </CardContent>
+          </Card>
 
           {/* Educational Content */}
-          <div className="max-w-7xl mx-auto px-4 py-16 space-y-16">
+          <div className="mt-8 sm:mt-12 md:mt-16 space-y-8 sm:space-y-12 md:space-y-16">
             {/* What is a Mortgage Calculator */}
-            <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">What is a Mortgage Calculator?</h2>
-                <div className="prose max-w-none text-gray-700 space-y-4 text-lg leading-relaxed">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">What is a Mortgage Calculator?</h2>
+                <div className="prose max-w-none text-gray-700 space-y-3 sm:space-y-4 text-sm sm:text-base md:text-lg leading-relaxed">
                   <p>
                     A <strong>mortgage calculator</strong> is an essential financial tool that helps prospective homebuyers estimate their monthly mortgage payments based on various loan parameters. This comprehensive calculator considers not just the principal and interest, but also additional costs like property taxes, homeowners insurance, and PMI (Private Mortgage Insurance) to provide you with an accurate picture of your total monthly housing payment.
                   </p>
@@ -757,56 +759,56 @@ const MortgageCalculator = () => {
             </Card>
 
             {/* Benefits and Features */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-2xl">
-                <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Key Benefits</h2>
-                  <div className="space-y-6">
-                    <div className="border-l-4 border-blue-500 pl-6">
-                      <h3 className="font-bold text-gray-900 mb-2">Comprehensive Analysis</h3>
-                      <p className="text-gray-600">Includes taxes, insurance, and PMI for complete cost assessment and accurate budgeting.</p>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-xl sm:rounded-2xl">
+                <CardContent className="p-4 sm:p-6 md:p-8">
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Key Benefits</h2>
+                  <div className="space-y-4 sm:space-y-6">
+                    <div className="border-l-4 border-blue-500 pl-4 sm:pl-6">
+                      <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base">Comprehensive Analysis</h3>
+                      <p className="text-gray-600 text-xs sm:text-sm">Includes taxes, insurance, and PMI for complete cost assessment and accurate budgeting.</p>
                     </div>
                     
-                    <div className="border-l-4 border-green-500 pl-6">
-                      <h3 className="font-bold text-gray-900 mb-2">Multiple Loan Types</h3>
-                      <p className="text-gray-600">Supports Conventional, FHA, and VA loans with specific calculations for each type.</p>
+                    <div className="border-l-4 border-green-500 pl-4 sm:pl-6">
+                      <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base">Multiple Loan Types</h3>
+                      <p className="text-gray-600 text-xs sm:text-sm">Supports Conventional, FHA, and VA loans with specific calculations for each type.</p>
                     </div>
                     
-                    <div className="border-l-4 border-purple-500 pl-6">
-                      <h3 className="font-bold text-gray-900 mb-2">Affordability Insights</h3>
-                      <p className="text-gray-600">Debt-to-income analysis and affordability recommendations based on the 28% rule.</p>
+                    <div className="border-l-4 border-purple-500 pl-4 sm:pl-6">
+                      <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base">Affordability Insights</h3>
+                      <p className="text-gray-600 text-xs sm:text-sm">Debt-to-income analysis and affordability recommendations based on the 28% rule.</p>
                     </div>
                     
-                    <div className="border-l-4 border-orange-500 pl-6">
-                      <h3 className="font-bold text-gray-900 mb-2">PMI Projections</h3>
-                      <p className="text-gray-600">Estimates when PMI can be removed based on equity buildup over time.</p>
+                    <div className="border-l-4 border-orange-500 pl-4 sm:pl-6">
+                      <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base">PMI Projections</h3>
+                      <p className="text-gray-600 text-xs sm:text-sm">Estimates when PMI can be removed based on equity buildup over time.</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-2xl">
-                <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Who Should Use This Tool</h2>
-                  <div className="space-y-6">
-                    <div className="bg-blue-50 rounded-xl p-4">
-                      <h3 className="font-bold text-gray-900 mb-2">First-Time Homebuyers</h3>
-                      <p className="text-gray-600 text-sm">Determine affordability and understand the true cost of homeownership including all monthly expenses.</p>
+              <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-xl sm:rounded-2xl">
+                <CardContent className="p-4 sm:p-6 md:p-8">
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Who Should Use This Tool</h2>
+                  <div className="space-y-4 sm:space-y-6">
+                    <div className="bg-blue-50 rounded-lg sm:rounded-xl p-3 sm:p-4">
+                      <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base">First-Time Homebuyers</h3>
+                      <p className="text-gray-600 text-xs sm:text-sm">Determine affordability and understand the true cost of homeownership including all monthly expenses.</p>
                     </div>
                     
-                    <div className="bg-green-50 rounded-xl p-4">
-                      <h3 className="font-bold text-gray-900 mb-2">Current Homeowners</h3>
-                      <p className="text-gray-600 text-sm">Compare current mortgage payments with potential refinancing options to determine savings.</p>
+                    <div className="bg-green-50 rounded-lg sm:rounded-xl p-3 sm:p-4">
+                      <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base">Current Homeowners</h3>
+                      <p className="text-gray-600 text-xs sm:text-sm">Compare current mortgage payments with potential refinancing options to determine savings.</p>
                     </div>
                     
-                    <div className="bg-purple-50 rounded-xl p-4">
-                      <h3 className="font-bold text-gray-900 mb-2">Real Estate Investors</h3>
-                      <p className="text-gray-600 text-sm">Calculate mortgage costs for rental properties and analyze potential cash flow scenarios.</p>
+                    <div className="bg-purple-50 rounded-lg sm:rounded-xl p-3 sm:p-4">
+                      <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base">Real Estate Investors</h3>
+                      <p className="text-gray-600 text-xs sm:text-sm">Calculate mortgage costs for rental properties and analyze potential cash flow scenarios.</p>
                     </div>
                     
-                    <div className="bg-orange-50 rounded-xl p-4">
-                      <h3 className="font-bold text-gray-900 mb-2">Financial Planners</h3>
-                      <p className="text-gray-600 text-sm">Ensure housing costs align with the 28% rule and overall financial goals for clients.</p>
+                    <div className="bg-orange-50 rounded-lg sm:rounded-xl p-3 sm:p-4">
+                      <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base">Financial Planners</h3>
+                      <p className="text-gray-600 text-xs sm:text-sm">Ensure housing costs align with the 28% rule and overall financial goals for clients.</p>
                     </div>
                   </div>
                 </CardContent>
@@ -814,13 +816,13 @@ const MortgageCalculator = () => {
             </div>
 
             {/* Loan Type Comparison */}
-            <Card className="bg-gradient-to-r from-purple-50 to-blue-50 border-0 shadow-lg rounded-2xl">
-              <CardContent className="p-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8">Loan Type Comparison</h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div className="bg-white rounded-xl p-6 shadow-sm">
-                    <h3 className="text-xl font-bold text-purple-900 mb-4">Conventional Loans</h3>
-                    <div className="space-y-3 text-sm text-purple-800">
+            <Card className="bg-gradient-to-r from-purple-50 to-blue-50 border-0 shadow-lg rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-6 sm:mb-8">Loan Type Comparison</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+                  <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-purple-900 mb-3 sm:mb-4">Conventional Loans</h3>
+                    <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-purple-800">
                       <p><strong>Credit Score:</strong> 620+ typically required</p>
                       <p><strong>Down Payment:</strong> 5-20% recommended</p>
                       <p><strong>PMI:</strong> Required if less than 20% down</p>
@@ -828,9 +830,9 @@ const MortgageCalculator = () => {
                     </div>
                   </div>
                   
-                  <div className="bg-white rounded-xl p-6 shadow-sm">
-                    <h3 className="text-xl font-bold text-blue-900 mb-4">FHA Loans</h3>
-                    <div className="space-y-3 text-sm text-blue-800">
+                  <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-blue-900 mb-3 sm:mb-4">FHA Loans</h3>
+                    <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-blue-800">
                       <p><strong>Credit Score:</strong> 580+ with 3.5% down</p>
                       <p><strong>Down Payment:</strong> As low as 3.5%</p>
                       <p><strong>MIP:</strong> Required regardless of down payment</p>
@@ -838,9 +840,9 @@ const MortgageCalculator = () => {
                     </div>
                   </div>
                   
-                  <div className="bg-white rounded-xl p-6 shadow-sm">
-                    <h3 className="text-xl font-bold text-green-900 mb-4">VA Loans</h3>
-                    <div className="space-y-3 text-sm text-green-800">
+                  <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-green-900 mb-3 sm:mb-4">VA Loans</h3>
+                    <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-green-800">
                       <p><strong>Credit Score:</strong> Varies by lender</p>
                       <p><strong>Down Payment:</strong> $0 down payment option</p>
                       <p><strong>PMI:</strong> No PMI required</p>
@@ -852,42 +854,42 @@ const MortgageCalculator = () => {
             </Card>
 
             {/* Tips and Best Practices */}
-            <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8">Mortgage Calculator Tips & Best Practices</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-6 sm:mb-8">Mortgage Calculator Tips & Best Practices</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
                   <div>
-                    <h3 className="text-xl font-bold text-blue-900 mb-4">Smart Tips</h3>
-                    <div className="space-y-4">
-                      <div className="border-l-4 border-blue-500 pl-4">
-                        <p className="text-gray-700">Include all costs (taxes, insurance, PMI) for accurate budgeting</p>
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-blue-900 mb-3 sm:mb-4">Smart Tips</h3>
+                    <div className="space-y-3 sm:space-y-4">
+                      <div className="border-l-4 border-blue-500 pl-3 sm:pl-4">
+                        <p className="text-gray-700 text-xs sm:text-sm">Include all costs (taxes, insurance, PMI) for accurate budgeting</p>
                       </div>
-                      <div className="border-l-4 border-blue-500 pl-4">
-                        <p className="text-gray-700">Consider different down payment scenarios to find the best option</p>
+                      <div className="border-l-4 border-blue-500 pl-3 sm:pl-4">
+                        <p className="text-gray-700 text-xs sm:text-sm">Consider different down payment scenarios to find the best option</p>
                       </div>
-                      <div className="border-l-4 border-blue-500 pl-4">
-                        <p className="text-gray-700">Factor in potential interest rate changes for ARM loans</p>
+                      <div className="border-l-4 border-blue-500 pl-3 sm:pl-4">
+                        <p className="text-gray-700 text-xs sm:text-sm">Factor in potential interest rate changes for ARM loans</p>
                       </div>
-                      <div className="border-l-4 border-blue-500 pl-4">
-                        <p className="text-gray-700">Use current market rates for the most accurate estimates</p>
+                      <div className="border-l-4 border-blue-500 pl-3 sm:pl-4">
+                        <p className="text-gray-700 text-xs sm:text-sm">Use current market rates for the most accurate estimates</p>
                       </div>
                     </div>
                   </div>
                   
                   <div>
-                    <h3 className="text-xl font-bold text-orange-900 mb-4">Important Considerations</h3>
-                    <div className="space-y-4">
-                      <div className="border-l-4 border-orange-500 pl-4">
-                        <p className="text-gray-700">Remember additional costs like HOA fees and maintenance</p>
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-orange-900 mb-3 sm:mb-4">Important Considerations</h3>
+                    <div className="space-y-3 sm:space-y-4">
+                      <div className="border-l-4 border-orange-500 pl-3 sm:pl-4">
+                        <p className="text-gray-700 text-xs sm:text-sm">Remember additional costs like HOA fees and maintenance</p>
                       </div>
-                      <div className="border-l-4 border-orange-500 pl-4">
-                        <p className="text-gray-700">Property taxes and insurance rates vary by location</p>
+                      <div className="border-l-4 border-orange-500 pl-3 sm:pl-4">
+                        <p className="text-gray-700 text-xs sm:text-sm">Property taxes and insurance rates vary by location</p>
                       </div>
-                      <div className="border-l-4 border-orange-500 pl-4">
-                        <p className="text-gray-700">PMI can be removed once you reach 20% equity</p>
+                      <div className="border-l-4 border-orange-500 pl-3 sm:pl-4">
+                        <p className="text-gray-700 text-xs sm:text-sm">PMI can be removed once you reach 20% equity</p>
                       </div>
-                      <div className="border-l-4 border-orange-500 pl-4">
-                        <p className="text-gray-700">Consider your job stability and future income prospects</p>
+                      <div className="border-l-4 border-orange-500 pl-3 sm:pl-4">
+                        <p className="text-gray-700 text-xs sm:text-sm">Consider your job stability and future income prospects</p>
                       </div>
                     </div>
                   </div>
@@ -896,51 +898,51 @@ const MortgageCalculator = () => {
             </Card>
 
             {/* FAQ Section */}
-            <Card className="bg-gradient-to-r from-gray-50 to-blue-50 border-0 shadow-lg rounded-2xl">
-              <CardContent className="p-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="space-y-6">
+            <Card className="bg-gradient-to-r from-gray-50 to-blue-50 border-0 shadow-lg rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-6 sm:mb-8">Frequently Asked Questions</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                  <div className="space-y-4 sm:space-y-6">
                     <div>
-                      <h3 className="text-lg font-bold text-gray-900 mb-3">How accurate are mortgage calculator results?</h3>
-                      <p className="text-gray-600 leading-relaxed">
+                      <h3 className="text-sm sm:text-base md:text-lg font-bold text-gray-900 mb-2 sm:mb-3">How accurate are mortgage calculator results?</h3>
+                      <p className="text-gray-600 leading-relaxed text-xs sm:text-sm">
                         Mortgage calculators provide very accurate estimates when you input correct information. However, actual rates and terms may vary based on your credit score, debt-to-income ratio, and lender requirements.
                       </p>
                     </div>
                     
                     <div>
-                      <h3 className="text-lg font-bold text-gray-900 mb-3">What's the difference between principal and interest?</h3>
-                      <p className="text-gray-600 leading-relaxed">
+                      <h3 className="text-sm sm:text-base md:text-lg font-bold text-gray-900 mb-2 sm:mb-3">What's the difference between principal and interest?</h3>
+                      <p className="text-gray-600 leading-relaxed text-xs sm:text-sm">
                         Principal is the amount you borrowed that goes toward paying down your loan balance. Interest is the cost of borrowing money, charged by the lender as a percentage of the outstanding principal.
                       </p>
                     </div>
                     
                     <div>
-                      <h3 className="text-lg font-bold text-gray-900 mb-3">Should I put 20% down to avoid PMI?</h3>
-                      <p className="text-gray-600 leading-relaxed">
+                      <h3 className="text-sm sm:text-base md:text-lg font-bold text-gray-900 mb-2 sm:mb-3">Should I put 20% down to avoid PMI?</h3>
+                      <p className="text-gray-600 leading-relaxed text-xs sm:text-sm">
                         While 20% down eliminates PMI, it's not always the best choice. Consider your cash flow, emergency fund, and investment opportunities. Sometimes putting less down and investing the difference might yield better returns.
                       </p>
                     </div>
                   </div>
                   
-                  <div className="space-y-6">
+                  <div className="space-y-4 sm:space-y-6">
                     <div>
-                      <h3 className="text-lg font-bold text-gray-900 mb-3">How do property taxes affect my payment?</h3>
-                      <p className="text-gray-600 leading-relaxed">
+                      <h3 className="text-sm sm:text-base md:text-lg font-bold text-gray-900 mb-2 sm:mb-3">How do property taxes affect my payment?</h3>
+                      <p className="text-gray-600 leading-relaxed text-xs sm:text-sm">
                         Property taxes are typically collected monthly by your lender and held in escrow until the annual tax bill is due. Higher property tax rates increase your total monthly payment.
                       </p>
                     </div>
                     
                     <div>
-                      <h3 className="text-lg font-bold text-gray-900 mb-3">Can I remove PMI later?</h3>
-                      <p className="text-gray-600 leading-relaxed">
+                      <h3 className="text-sm sm:text-base md:text-lg font-bold text-gray-900 mb-2 sm:mb-3">Can I remove PMI later?</h3>
+                      <p className="text-gray-600 leading-relaxed text-xs sm:text-sm">
                         Yes, PMI can typically be removed once you reach 20% equity in your home through payments or appreciation. Some loans automatically cancel PMI at 22% equity.
                       </p>
                     </div>
                     
                     <div>
-                      <h3 className="text-lg font-bold text-gray-900 mb-3">What's better: 15-year or 30-year mortgage?</h3>
-                      <p className="text-gray-600 leading-relaxed">
+                      <h3 className="text-sm sm:text-base md:text-lg font-bold text-gray-900 mb-2 sm:mb-3">What's better: 15-year or 30-year mortgage?</h3>
+                      <p className="text-gray-600 leading-relaxed text-xs sm:text-sm">
                         15-year mortgages have higher monthly payments but lower total interest costs. 30-year mortgages offer lower monthly payments but cost more over time. Choose based on your budget and financial goals.
                       </p>
                     </div>
@@ -949,11 +951,11 @@ const MortgageCalculator = () => {
               </CardContent>
             </Card>
           </div>
-        </main>
-        
-        <Footer />
-      </div>
-    </>
+        </div>
+      </main>
+      
+      <Footer />
+    </div>
   );
 };
 
