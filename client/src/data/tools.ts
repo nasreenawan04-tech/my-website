@@ -564,6 +564,15 @@ const toolsData: Tool[] = [
     icon: "fas fa-broom",
     href: "/tools/text-cleaner-formatter",
   },
+  {
+    id: "unit-converter",
+    name: "Unit Converter",
+    description: "Convert between different units of measurement including length, weight, temperature, volume, area, and speed",
+    category: "text" as const,
+    icon: "fas fa-exchange-alt",
+    isPopular: true,
+    href: "/tools/unit-converter",
+  },
 
   // Health Tools (30)
   {
