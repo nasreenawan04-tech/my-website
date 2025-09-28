@@ -102,6 +102,10 @@ export default function SimpleInterestCalculator() {
     }).format(amount);
   };
 
+  const handleCopyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
@@ -134,49 +138,49 @@ export default function SimpleInterestCalculator() {
       
       <main>
         {/* Hero Section */}
-        <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32 overflow-hidden">
+        <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="space-y-4 sm:space-y-6 md:space-y-7 lg:space-y-8">
-              <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+          <div className="relative max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
+            <div className="space-y-4 sm:space-y-6 md:space-y-8">
+              <div className="inline-flex items-center px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
                 <span className="text-xs sm:text-sm font-medium text-blue-700">Professional Interest Calculator</span>
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-slate-900 leading-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0" data-testid="page-title">
                 <span className="block">Simple Interest</span>
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
                   Calculator
                 </span>
               </h1>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-slate-600 max-w-sm sm:max-w-2xl md:max-w-3xl lg:max-w-4xl mx-auto leading-relaxed">
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
                 Calculate interest earnings on loans, savings, and investments with precision using the SI = P × R × T formula
               </p>
             </div>
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 py-16">
-          {/* Main Calculator Card - Fully Responsive */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-2xl lg:rounded-3xl overflow-hidden mx-2 sm:mx-0">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
+          {/* Main Tool Card */}
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="flex flex-col xl:grid xl:grid-cols-3 gap-0">
-                {/* Input Section - Responsive */}
-                <div className="xl:col-span-2 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 space-y-6 md:space-y-8">
+              <div className="flex flex-col">
+                {/* Input Section */}
+                <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
                   <div className="text-center sm:text-left">
-                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Interest Configuration</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Interest Configuration</h2>
                     <p className="text-sm sm:text-base text-gray-600">Enter your investment details to calculate simple interest earnings</p>
                   </div>
                   
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
-                    {/* Currency Selection - Mobile Optimized */}
-                    <div className="space-y-2 sm:space-y-3 sm:col-span-2 md:col-span-1">
+                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+                    {/* Currency Selection */}
+                    <div className="space-y-2 sm:space-y-3">
                       <Label htmlFor="currency" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Currency
                       </Label>
                       <Select value={currency} onValueChange={setCurrency}>
-                        <SelectTrigger className="h-12 sm:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-base sm:text-lg" data-testid="select-currency">
+                        <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-currency">
                           <SelectValue />
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="max-h-60 overflow-y-auto">
                           <SelectItem value="USD">USD - US Dollar</SelectItem>
                           <SelectItem value="EUR">EUR - Euro</SelectItem>
                           <SelectItem value="GBP">GBP - British Pound</SelectItem>
@@ -191,26 +195,26 @@ export default function SimpleInterestCalculator() {
                       </Select>
                     </div>
 
-                    {/* Principal Amount - Mobile Optimized */}
-                    <div className="space-y-2 sm:space-y-3 sm:col-span-2 md:col-span-1">
+                    {/* Principal Amount */}
+                    <div className="space-y-2 sm:space-y-3">
                       <Label htmlFor="principal" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Principal Amount
                       </Label>
                       <div className="relative">
-                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">$</span>
+                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
                         <Input
                           id="principal"
                           type="number"
                           value={principal}
                           onChange={(e) => setPrincipal(e.target.value)}
-                          className="h-12 sm:h-14 pl-7 sm:pl-8 text-base sm:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="10,000"
                           data-testid="input-principal"
                         />
                       </div>
                     </div>
 
-                    {/* Interest Rate - Mobile Optimized */}
+                    {/* Interest Rate */}
                     <div className="space-y-2 sm:space-y-3">
                       <Label htmlFor="interest-rate" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Annual Interest Rate
@@ -221,16 +225,16 @@ export default function SimpleInterestCalculator() {
                           type="number"
                           value={interestRate}
                           onChange={(e) => setInterestRate(e.target.value)}
-                          className="h-12 sm:h-14 pr-7 sm:pr-8 text-base sm:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 pr-7 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="8.00"
                           step="0.01"
                           data-testid="input-interest-rate"
                         />
-                        <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">%</span>
+                        <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
                       </div>
                     </div>
 
-                    {/* Time Period - Mobile Optimized */}
+                    {/* Time Period */}
                     <div className="space-y-2 sm:space-y-3">
                       <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">Time Period</Label>
                       <div className="grid grid-cols-2 gap-2 sm:gap-3">
@@ -238,13 +242,13 @@ export default function SimpleInterestCalculator() {
                           type="number"
                           value={timePeriod}
                           onChange={(e) => setTimePeriod(e.target.value)}
-                          className="h-12 sm:h-14 text-base sm:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="5"
                           min="1"
                           data-testid="input-time-period"
                         />
                         <Select value={timeUnit} onValueChange={setTimeUnit}>
-                          <SelectTrigger className="h-12 sm:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-base sm:text-lg" data-testid="select-time-unit">
+                          <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-time-unit">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -256,11 +260,11 @@ export default function SimpleInterestCalculator() {
                     </div>
                   </div>
 
-                  {/* Action Buttons - Mobile Optimized */}
-                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 sm:pt-6">
+                  {/* Action Buttons */}
+                  <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       onClick={calculateSimpleInterest}
-                      className="flex-1 h-12 sm:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-base sm:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105 active:scale-95"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105 active:scale-95"
                       data-testid="button-calculate"
                     >
                       Calculate Interest
@@ -268,7 +272,7 @@ export default function SimpleInterestCalculator() {
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-12 sm:h-14 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-base sm:text-lg rounded-lg sm:rounded-xl transition-all duration-200"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                       data-testid="button-reset"
                     >
                       Reset
@@ -276,70 +280,115 @@ export default function SimpleInterestCalculator() {
                   </div>
                 </div>
 
-                {/* Results Section - Mobile Optimized */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 border-t xl:border-t-0 xl:border-l border-gray-200">
-                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8 text-center xl:text-left">Results</h2>
-                  
-                  {result ? (
-                    <div className="space-y-4 sm:space-y-6" data-testid="interest-results">
-                      {/* Simple Interest Highlight - Mobile Optimized */}
-                      <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border border-blue-100">
-                        <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2 text-center xl:text-left">Simple Interest Earned</div>
-                        <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 text-center xl:text-left break-all" data-testid="text-simple-interest">
-                          {formatCurrency(result.simpleInterest)}
+                {/* Results Section */}
+                {result ? (
+                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Interest Calculation Results</h2>
+                    
+                    <div className="space-y-4 sm:space-y-6 md:space-y-8" data-testid="interest-results">
+                      {/* Summary Card */}
+                      <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border-2 border-blue-200 shadow-sm">
+                        <div className="text-center space-y-3 sm:space-y-4">
+                          <h3 className="text-sm sm:text-base md:text-lg font-bold text-blue-900">
+                            Simple Interest Calculation Result
+                          </h3>
+                          <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-blue-600 break-all" data-testid="text-simple-interest">
+                            {formatCurrency(result.simpleInterest)}
+                          </div>
+                          <div className="text-xs sm:text-sm text-gray-600">
+                            Interest earned over {timePeriod} {timeUnit}
+                          </div>
+                          <Button
+                            onClick={() => {
+                              const resultText = `Simple Interest: ${formatCurrency(result.simpleInterest)} | Total Amount: ${formatCurrency(result.totalAmount)} | Principal: ${formatCurrency(result.principalAmount)}`;
+                              handleCopyToClipboard(resultText);
+                            }}
+                            variant="outline"
+                            size="sm"
+                            className="mt-2 sm:mt-3 rounded-lg text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2"
+                          >
+                            Copy Result
+                          </Button>
                         </div>
                       </div>
 
-                      {/* Interest Breakdown - Mobile Optimized */}
-                      <div className="space-y-3 sm:space-y-4">
-                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
-                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
-                            <span className="font-medium text-gray-700 text-sm sm:text-base">Principal Amount</span>
-                            <span className="font-bold text-gray-900 text-sm sm:text-base break-all" data-testid="text-principal-amount">
-                              {formatCurrency(result.principalAmount)}
-                            </span>
+                      {/* Detailed Breakdown */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm border border-gray-200">
+                          <h3 className="text-sm sm:text-base md:text-lg font-bold text-gray-900 mb-3 sm:mb-4">Investment Summary</h3>
+                          <div className="space-y-2 sm:space-y-3">
+                            <div className="flex justify-between items-center">
+                              <span className="text-xs sm:text-sm text-gray-600">Principal Amount</span>
+                              <span className="font-bold text-xs sm:text-sm break-all" data-testid="text-principal-amount">
+                                {formatCurrency(result.principalAmount)}
+                              </span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                              <span className="text-xs sm:text-sm text-gray-600">Interest Earned</span>
+                              <span className="font-bold text-xs sm:text-sm text-green-600 break-all">
+                                {formatCurrency(result.simpleInterest)}
+                              </span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                              <span className="text-xs sm:text-sm text-gray-600">Total Amount</span>
+                              <span className="font-bold text-xs sm:text-sm text-blue-600 break-all" data-testid="text-total-amount">
+                                {formatCurrency(result.totalAmount)}
+                              </span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                              <span className="text-xs sm:text-sm text-gray-600">Monthly Interest</span>
+                              <span className="font-bold text-xs sm:text-sm text-purple-600 break-all" data-testid="text-monthly-interest">
+                                {formatCurrency(result.monthlyInterest)}
+                              </span>
+                            </div>
                           </div>
                         </div>
-                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
-                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
-                            <span className="font-medium text-gray-700 text-sm sm:text-base">Total Amount</span>
-                            <span className="font-bold text-green-600 text-sm sm:text-base break-all" data-testid="text-total-amount">
-                              {formatCurrency(result.totalAmount)}
-                            </span>
-                          </div>
-                        </div>
-                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
-                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
-                            <span className="font-medium text-gray-700 text-sm sm:text-base">Monthly Interest</span>
-                            <span className="font-bold text-blue-600 text-sm sm:text-base break-all" data-testid="text-monthly-interest">
-                              {formatCurrency(result.monthlyInterest)}
-                            </span>
-                          </div>
-                        </div>
-                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
-                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
-                            <span className="font-medium text-gray-700 text-sm sm:text-base">Interest Rate</span>
-                            <span className="font-bold text-gray-900 text-sm sm:text-base">
-                              {interestRate}% per year
-                            </span>
+
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm border border-gray-200">
+                          <h3 className="text-sm sm:text-base md:text-lg font-bold text-gray-900 mb-3 sm:mb-4">Interest Breakdown</h3>
+                          <div className="space-y-2 sm:space-y-3">
+                            <div className="flex justify-between items-center">
+                              <span className="text-xs sm:text-sm text-gray-600">Interest Rate</span>
+                              <span className="font-bold text-xs sm:text-sm">
+                                {interestRate}% per year
+                              </span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                              <span className="text-xs sm:text-sm text-gray-600">Time Period</span>
+                              <span className="font-bold text-xs sm:text-sm">
+                                {timePeriod} {timeUnit}
+                              </span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                              <span className="text-xs sm:text-sm text-gray-600">Formula Used</span>
+                              <span className="font-bold text-xs sm:text-sm font-mono">
+                                SI = P × R × T
+                              </span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                              <span className="text-xs sm:text-sm text-gray-600">Return Percentage</span>
+                              <span className="font-bold text-xs sm:text-sm text-green-600">
+                                {((result.simpleInterest / result.principalAmount) * 100).toFixed(2)}%
+                              </span>
+                            </div>
                           </div>
                         </div>
                       </div>
 
-                      {/* Yearly Breakdown - Mobile Optimized */}
+                      {/* Yearly Breakdown */}
                       {result.yearlyBreakdown.length > 0 && (
-                        <div className="mt-6 sm:mt-8">
-                          <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4 text-center xl:text-left">Yearly Breakdown</h3>
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm border border-gray-200">
+                          <h3 className="text-sm sm:text-base md:text-lg font-bold text-gray-900 mb-3 sm:mb-4">Yearly Breakdown</h3>
                           <div className="max-h-60 overflow-y-auto space-y-2">
                             {result.yearlyBreakdown.slice(0, 5).map((year) => (
-                              <div key={year.year} className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm border border-gray-100">
-                                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-2 gap-1 sm:gap-0">
-                                  <span className="font-medium text-gray-900 text-sm sm:text-base">Year {year.year}</span>
-                                  <span className="font-bold text-green-600 text-sm sm:text-base break-all">
+                              <div key={year.year} className="bg-gray-50 rounded-lg p-2 sm:p-3 border border-gray-100">
+                                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-1 sm:mb-2">
+                                  <span className="font-medium text-gray-900 text-xs sm:text-sm">Year {year.year}</span>
+                                  <span className="font-bold text-green-600 text-xs sm:text-sm break-all">
                                     {formatCurrency(year.totalAmount)}
                                   </span>
                                 </div>
-                                <div className="text-xs sm:text-sm text-gray-600">
+                                <div className="text-xs text-gray-600">
                                   Interest earned: <span className="break-all">{formatCurrency(year.interestEarned)}</span>
                                 </div>
                               </div>
@@ -348,15 +397,18 @@ export default function SimpleInterestCalculator() {
                         </div>
                       )}
                     </div>
-                  ) : (
+                  </div>
+                ) : (
+                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Results</h2>
                     <div className="text-center py-12 sm:py-16" data-testid="no-results">
                       <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
                         <div className="text-2xl sm:text-3xl font-bold text-gray-400">%</div>
                       </div>
                       <p className="text-gray-500 text-base sm:text-lg px-4">Enter investment details and calculate to see results</p>
                     </div>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             </CardContent>
           </Card>
