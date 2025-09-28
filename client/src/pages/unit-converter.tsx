@@ -317,50 +317,50 @@ const UnitConverter = () => {
 
       <main>
         {/* Hero Section */}
-        <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 overflow-hidden">
+        <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
-          <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="space-y-6 sm:space-y-8">
-              <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+          <div className="relative max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
+            <div className="space-y-4 sm:space-y-6 md:space-y-8">
+              <div className="inline-flex items-center px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
                 <span className="text-xs sm:text-sm font-medium text-blue-700">Measurement Conversion Tool</span>
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-slate-900 leading-tight tracking-tight" data-testid="page-title">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0" data-testid="page-title">
                 <span className="block">Smart Unit</span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
                   Converter
                 </span>
               </h1>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-slate-600 max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto leading-relaxed px-2 sm:px-0">
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
                 Convert between different units of measurement with instant precision across length, weight, temperature, volume, area, and speed
               </p>
             </div>
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
           {/* Main Tool Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-2xl sm:rounded-3xl overflow-hidden">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
               <div className="flex flex-col">
                 {/* Input Section */}
-                <div className="p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 space-y-6 sm:space-y-8">
-                  <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Unit Conversion Tool</h2>
-                    <p className="text-gray-600">Select conversion category and enter values to get instant accurate conversions</p>
+                <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
+                  <div className="text-center sm:text-left">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Unit Conversion Tool</h2>
+                    <p className="text-sm sm:text-base text-gray-600">Select conversion category and enter values to get instant accurate conversions</p>
                   </div>
 
                   {/* Category Selection */}
-                  <div className="space-y-3">
-                    <Label htmlFor="category-select" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                  <div className="space-y-2 sm:space-y-3">
+                    <Label htmlFor="category-select" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                       Conversion Category
                     </Label>
                     <Select value={activeCategory} onValueChange={handleCategoryChange}>
-                      <SelectTrigger className="h-12 sm:h-14 border-2 border-gray-200 rounded-xl text-base sm:text-lg" data-testid="select-category">
+                      <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-category">
                         <SelectValue placeholder="Select conversion type" />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="max-h-60 overflow-y-auto">
                         {conversions.map((category) => (
-                          <SelectItem key={category.name} value={category.name}>
+                          <SelectItem key={category.name} value={category.name} className="text-sm sm:text-base">
                             {category.name}
                           </SelectItem>
                         ))}
@@ -369,30 +369,31 @@ const UnitConverter = () => {
                   </div>
 
                   {/* Conversion Input/Output */}
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                     {/* From Unit */}
-                    <div className="space-y-4 bg-blue-50 rounded-xl p-4 sm:p-6">
-                      <h3 className="text-lg sm:text-xl font-bold text-blue-900">Convert From</h3>
-                      <div className="space-y-3">
+                    <div className="space-y-3 sm:space-y-4 bg-blue-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6">
+                      <h3 className="text-base sm:text-lg md:text-xl font-bold text-blue-900">Convert From</h3>
+                      <div className="space-y-2 sm:space-y-3">
                         <div>
-                          <Label htmlFor="from-unit" className="text-sm font-semibold text-blue-800 uppercase tracking-wide">
+                          <Label htmlFor="from-unit" className="text-xs sm:text-sm font-semibold text-blue-800 uppercase tracking-wide">
                             Unit Type
                           </Label>
                           <Select value={fromUnit} onValueChange={setFromUnit}>
-                            <SelectTrigger className="mt-1 h-12 border-2 border-blue-200 rounded-xl text-base focus:border-blue-500 focus:ring-blue-500" data-testid="select-from-unit">
+                            <SelectTrigger className="mt-1 h-10 sm:h-12 border-2 border-blue-200 rounded-lg sm:rounded-xl text-sm sm:text-base focus:border-blue-500 focus:ring-blue-500 w-full" data-testid="select-from-unit">
                               <SelectValue placeholder="Select unit" />
                             </SelectTrigger>
-                            <SelectContent>
+                            <SelectContent className="max-h-60 overflow-y-auto">
                               {currentCategory?.units.map((unit) => (
-                                <SelectItem key={unit.name} value={unit.name}>
-                                  {unit.name} ({unit.symbol})
+                                <SelectItem key={unit.name} value={unit.name} className="text-sm sm:text-base">
+                                  <span className="block sm:hidden">{unit.symbol}</span>
+                                  <span className="hidden sm:block">{unit.name} ({unit.symbol})</span>
                                 </SelectItem>
                               ))}
                             </SelectContent>
                           </Select>
                         </div>
                         <div>
-                          <Label htmlFor="input-value" className="text-sm font-semibold text-blue-800 uppercase tracking-wide">
+                          <Label htmlFor="input-value" className="text-xs sm:text-sm font-semibold text-blue-800 uppercase tracking-wide">
                             Value
                           </Label>
                           <Input
@@ -401,8 +402,8 @@ const UnitConverter = () => {
                             step="any"
                             value={inputValue}
                             onChange={(e) => setInputValue(e.target.value)}
-                            className="mt-1 h-12 border-2 border-blue-200 rounded-xl text-base focus:border-blue-500 focus:ring-blue-500"
-                            placeholder="Enter value to convert"
+                            className="mt-1 h-10 sm:h-12 border-2 border-blue-200 rounded-lg sm:rounded-xl text-sm sm:text-base focus:border-blue-500 focus:ring-blue-500 w-full"
+                            placeholder="Enter value"
                             data-testid="input-value"
                           />
                         </div>
@@ -410,38 +411,39 @@ const UnitConverter = () => {
                     </div>
 
                     {/* To Unit */}
-                    <div className="space-y-4 bg-green-50 rounded-xl p-4 sm:p-6">
-                      <h3 className="text-lg sm:text-xl font-bold text-green-900">Convert To</h3>
-                      <div className="space-y-3">
+                    <div className="space-y-3 sm:space-y-4 bg-green-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6">
+                      <h3 className="text-base sm:text-lg md:text-xl font-bold text-green-900">Convert To</h3>
+                      <div className="space-y-2 sm:space-y-3">
                         <div>
-                          <Label htmlFor="to-unit" className="text-sm font-semibold text-green-800 uppercase tracking-wide">
+                          <Label htmlFor="to-unit" className="text-xs sm:text-sm font-semibold text-green-800 uppercase tracking-wide">
                             Unit Type
                           </Label>
                           <Select value={toUnit} onValueChange={setToUnit}>
-                            <SelectTrigger className="mt-1 h-12 border-2 border-green-200 rounded-xl text-base focus:border-green-500 focus:ring-green-500" data-testid="select-to-unit">
+                            <SelectTrigger className="mt-1 h-10 sm:h-12 border-2 border-green-200 rounded-lg sm:rounded-xl text-sm sm:text-base focus:border-green-500 focus:ring-green-500 w-full" data-testid="select-to-unit">
                               <SelectValue placeholder="Select unit" />
                             </SelectTrigger>
-                            <SelectContent>
+                            <SelectContent className="max-h-60 overflow-y-auto">
                               {currentCategory?.units.map((unit) => (
-                                <SelectItem key={unit.name} value={unit.name}>
-                                  {unit.name} ({unit.symbol})
+                                <SelectItem key={unit.name} value={unit.name} className="text-sm sm:text-base">
+                                  <span className="block sm:hidden">{unit.symbol}</span>
+                                  <span className="hidden sm:block">{unit.name} ({unit.symbol})</span>
                                 </SelectItem>
                               ))}
                             </SelectContent>
                           </Select>
                         </div>
                         <div>
-                          <Label className="text-sm font-semibold text-green-800 uppercase tracking-wide">
+                          <Label className="text-xs sm:text-sm font-semibold text-green-800 uppercase tracking-wide">
                             Converted Value
                           </Label>
                           {result !== null ? (
-                            <div className="mt-1 h-12 border-2 border-green-200 rounded-xl bg-green-100 flex items-center px-4">
-                              <div className="text-2xl font-bold text-green-800" data-testid="conversion-result">
+                            <div className="mt-1 h-10 sm:h-12 border-2 border-green-200 rounded-lg sm:rounded-xl bg-green-100 flex items-center px-3 sm:px-4 w-full">
+                              <div className="text-lg sm:text-xl md:text-2xl font-bold text-green-800 truncate" data-testid="conversion-result">
                                 {formatResult(result)}
                               </div>
                             </div>
                           ) : (
-                            <div className="mt-1 h-12 border-2 border-green-200 rounded-xl bg-gray-50 flex items-center px-4 text-gray-500">
+                            <div className="mt-1 h-10 sm:h-12 border-2 border-green-200 rounded-lg sm:rounded-xl bg-gray-50 flex items-center px-3 sm:px-4 text-gray-500 text-sm sm:text-base w-full">
                               Result will appear here
                             </div>
                           )}
@@ -451,14 +453,14 @@ const UnitConverter = () => {
                   </div>
 
                   {/* Advanced Options */}
-                  <div className="space-y-4 sm:space-y-6 border-t pt-6 sm:pt-8">
-                    <h3 className="text-lg sm:text-xl font-bold text-gray-900">Conversion Features</h3>
+                  <div className="space-y-3 sm:space-y-4 md:space-y-6 border-t pt-4 sm:pt-6 md:pt-8">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900">Conversion Features</h3>
                     
                     <Collapsible open={showAdvanced} onOpenChange={setShowAdvanced}>
                       <CollapsibleTrigger asChild>
                         <Button 
                           variant="ghost" 
-                          className="w-full justify-between text-sm sm:text-base py-3 sm:py-4 h-auto"
+                          className="w-full justify-between text-xs sm:text-sm md:text-base py-2 sm:py-3 md:py-4 h-auto px-3 sm:px-4"
                           data-testid="button-toggle-advanced"
                         >
                           <span className="flex items-center">
@@ -467,12 +469,12 @@ const UnitConverter = () => {
                           <span className={`transform transition-transform ${showAdvanced ? 'rotate-180' : ''}`}>▼</span>
                         </Button>
                       </CollapsibleTrigger>
-                      <CollapsibleContent className="space-y-4 sm:space-y-6 mt-4">
+                      <CollapsibleContent className="space-y-3 sm:space-y-4 md:space-y-6 mt-3 sm:mt-4">
                         <Separator />
                         
-                        <div className="bg-gray-50 rounded-xl p-4 sm:p-6">
-                          <h4 className="text-sm sm:text-base font-semibold text-gray-900 mb-4">Conversion Capabilities</h4>
-                          <div className="space-y-3 text-sm text-gray-600">
+                        <div className="bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6">
+                          <h4 className="text-xs sm:text-sm md:text-base font-semibold text-gray-900 mb-3 sm:mb-4">Conversion Capabilities</h4>
+                          <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-gray-600">
                             <div>• Real-time conversion calculations with high precision accuracy</div>
                             <div>• Support for metric and imperial measurement systems</div>
                             <div>• Temperature conversion using exact scientific formulas</div>
@@ -488,12 +490,12 @@ const UnitConverter = () => {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4 pt-4 sm:pt-6">
+                  <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       onClick={swapUnits}
                       disabled={!fromUnit || !toUnit}
                       variant="outline"
-                      className="h-12 sm:h-14 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-base sm:text-lg rounded-xl"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                       data-testid="button-swap"
                     >
                       Swap
@@ -501,7 +503,7 @@ const UnitConverter = () => {
                     <Button
                       onClick={resetTool}
                       variant="outline"
-                      className="h-12 sm:h-14 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-base sm:text-lg rounded-xl"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                       data-testid="button-reset"
                     >
                       Reset
@@ -511,20 +513,20 @@ const UnitConverter = () => {
 
                 {/* Results Section */}
                 {result !== null && currentCategory && (
-                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 border-t">
-                    <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">Conversion Results</h2>
+                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Conversion Results</h2>
 
-                    <div className="space-y-6 sm:space-y-8" data-testid="conversion-results">
+                    <div className="space-y-4 sm:space-y-6 md:space-y-8" data-testid="conversion-results">
                       {/* Summary Card */}
-                      <div className="bg-white rounded-xl p-4 sm:p-6 border-2 border-blue-200 shadow-sm">
-                        <div className="text-center space-y-4">
-                          <h3 className="text-lg font-bold text-blue-900">
+                      <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border-2 border-blue-200 shadow-sm">
+                        <div className="text-center space-y-3 sm:space-y-4">
+                          <h3 className="text-sm sm:text-base md:text-lg font-bold text-blue-900">
                             {activeCategory} Conversion Result
                           </h3>
-                          <div className="text-3xl sm:text-4xl font-bold text-blue-600">
+                          <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-blue-600 break-all">
                             {inputValue} {currentCategory.units.find(u => u.name === fromUnit)?.symbol} = {formatResult(result)} {currentCategory.units.find(u => u.name === toUnit)?.symbol}
                           </div>
-                          <div className="text-sm text-gray-600">
+                          <div className="text-xs sm:text-sm text-gray-600">
                             {fromUnit} to {toUnit}
                           </div>
                           <Button
@@ -534,7 +536,7 @@ const UnitConverter = () => {
                             }}
                             variant="outline"
                             size="sm"
-                            className="mt-3 rounded-lg"
+                            className="mt-2 sm:mt-3 rounded-lg text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2"
                           >
                             Copy Result
                           </Button>
@@ -542,9 +544,9 @@ const UnitConverter = () => {
                       </div>
 
                       {/* Common Conversions */}
-                      <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-200">
-                        <h3 className="text-lg font-bold text-gray-900 mb-4">Common {activeCategory} Conversions</h3>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-gray-600">
+                      <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm border border-gray-200">
+                        <h3 className="text-sm sm:text-base md:text-lg font-bold text-gray-900 mb-3 sm:mb-4">Common {activeCategory} Conversions</h3>
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-1 sm:gap-2 text-xs sm:text-sm text-gray-600">
                           {activeCategory === 'Length' && (
                             <>
                               <div>1 meter = 3.28084 feet</div>
