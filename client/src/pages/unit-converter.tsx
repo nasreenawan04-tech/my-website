@@ -2,10 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { Label } from '@/components/ui/label';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 interface ConversionUnit {
   name: string;
@@ -110,37 +106,15 @@ const UnitConverter = () => {
   };
 
   const swapUnits = () => {
-    if (!fromUnit || !toUnit || !currentCategory) return;
+    if (!fromUnit || !toUnit) return;
     
     const tempFrom = fromUnit;
-    const newFromUnit = toUnit;
-    const newToUnit = tempFrom;
+    setFromUnit(toUnit);
+    setToUnit(tempFrom);
     
     if (result !== null && inputValue) {
-      const newInputValue = result.toString();
-      
-      const fromUnitData = currentCategory.units.find(u => u.name === newFromUnit);
-      const toUnitData = currentCategory.units.find(u => u.name === newToUnit);
-      
-      if (fromUnitData && toUnitData) {
-        const value = parseFloat(newInputValue);
-        let newResult: number;
-        
-        if (activeCategory === 'Temperature') {
-          newResult = convertTemperature(value, newFromUnit, newToUnit);
-        } else {
-          const baseValue = value * fromUnitData.factor;
-          newResult = baseValue / toUnitData.factor;
-        }
-        
-        setFromUnit(newFromUnit);
-        setToUnit(newToUnit);
-        setInputValue(newInputValue);
-        setResult(newResult);
-      }
-    } else {
-      setFromUnit(newFromUnit);
-      setToUnit(newToUnit);
+      setInputValue(result.toString());
+      performConversion();
     }
   };
 
@@ -148,14 +122,6 @@ const UnitConverter = () => {
     setInputValue('');
     setFromUnit('');
     setToUnit('');
-    setResult(null);
-  };
-
-  const handleCategoryChange = (category: string) => {
-    setActiveCategory(category);
-    setFromUnit('');
-    setToUnit('');
-    setInputValue('');
     setResult(null);
   };
 
@@ -173,205 +139,191 @@ const UnitConverter = () => {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
         <title>Unit Converter - Convert Length, Weight, Temperature & More | DapsiWow</title>
-        <meta name="description" content="Free professional unit converter for length, weight, temperature, volume, area, and speed. Convert between metric and imperial units instantly." />
+        <meta name="description" content="Free professional unit converter for length, weight, temperature. Convert between metric and imperial units instantly." />
       </Helmet>
 
       <Header />
 
       <main>
         {/* Hero Section */}
-        <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 overflow-hidden">
+        <section className="relative py-16 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
-          <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="space-y-6 sm:space-y-8">
-              <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
-                <span className="text-xs sm:text-sm font-medium text-blue-700">Measurement Conversion Tool</span>
+          <div className="relative max-w-5xl mx-auto px-4 text-center">
+            <div className="space-y-8">
+              <div className="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+                <span className="text-sm font-medium text-blue-700">Measurement Conversion Tool</span>
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-slate-900 leading-tight tracking-tight" data-testid="page-title">
+              <h1 className="text-6xl font-bold text-slate-900 leading-tight tracking-tight" data-testid="page-title">
                 <span className="block">Unit Converter</span>
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-2">
                   Calculator
                 </span>
               </h1>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-slate-600 max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto leading-relaxed px-2 sm:px-0">
-                Convert between different units of measurement with instant precision across length, weight, temperature, volume, area, and speed
+              <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                Convert between different units of measurement with instant precision across length, weight, and temperature
               </p>
             </div>
           </div>
         </section>
 
-        {/* Test Section */}
-        <div className="bg-yellow-300 p-8 text-center">
-          <h2 className="text-2xl font-bold">TEST SECTION - If you see this, the component is working</h2>
-        </div>
-
         {/* Main Tool Section */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
-          <div className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-2xl sm:rounded-3xl overflow-hidden p-8">
-            <div className="mb-6">
-              <h2 className="text-2xl text-center font-bold">
-                Select Conversion Type
-              </h2>
+        <div className="max-w-5xl mx-auto px-4 py-16">
+          <div className="bg-white/90 backdrop-blur-sm shadow-2xl border border-gray-200 rounded-3xl p-8">
+            
+            {/* Category Selection */}
+            <div className="mb-8">
+              <h2 className="text-3xl font-bold text-center mb-6">Unit Converter Tool</h2>
+              <div className="mb-6">
+                <label className="block text-sm font-semibold text-gray-800 mb-2">
+                  CONVERSION CATEGORY
+                </label>
+                <select 
+                  value={activeCategory} 
+                  onChange={(e) => setActiveCategory(e.target.value)}
+                  className="w-full h-12 border-2 border-gray-200 rounded-xl text-lg px-4 focus:border-blue-500 focus:ring-blue-500"
+                  data-testid="select-category"
+                >
+                  {conversions.map((category) => (
+                    <option key={category.name} value={category.name}>
+                      {category.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
-            <div>
-              {/* Category Selection */}
-              <div className="space-y-6">
-                <div>
-                  <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
-                    Conversion Category
-                  </Label>
-                  <Select value={activeCategory} onValueChange={handleCategoryChange}>
-                    <SelectTrigger className="h-12 sm:h-14 border-2 border-gray-200 rounded-xl text-base sm:text-lg" data-testid="select-category">
-                      <SelectValue placeholder="Select conversion type" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {conversions.map((category) => (
-                        <SelectItem key={category.name} value={category.name}>
-                          {category.name}
-                        </SelectItem>
+
+            {/* Conversion Interface */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+              {/* From Unit */}
+              <div className="bg-blue-50 rounded-xl p-6">
+                <h3 className="text-xl font-bold text-blue-900 mb-4">From</h3>
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-semibold text-blue-800 mb-2">Unit</label>
+                    <select 
+                      value={fromUnit} 
+                      onChange={(e) => setFromUnit(e.target.value)}
+                      className="w-full h-12 border-2 border-blue-200 rounded-xl px-4 focus:border-blue-500"
+                      data-testid="select-from-unit"
+                    >
+                      <option value="">Select unit</option>
+                      {currentCategory?.units.map((unit) => (
+                        <option key={unit.name} value={unit.name}>
+                          {unit.name} ({unit.symbol})
+                        </option>
                       ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                {/* Conversion Interface */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  {/* From Unit */}
-                  <div className="space-y-4 bg-blue-50 rounded-xl p-6">
-                    <h3 className="text-lg font-bold text-blue-900">From</h3>
-                    <div className="space-y-3">
-                      <div>
-                        <Label className="text-sm font-semibold text-blue-800">Unit</Label>
-                        <Select value={fromUnit} onValueChange={setFromUnit}>
-                          <SelectTrigger className="mt-1 h-12 border-2 border-blue-200 rounded-xl" data-testid="select-from-unit">
-                            <SelectValue placeholder="Select unit" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {currentCategory?.units.map((unit) => (
-                              <SelectItem key={unit.name} value={unit.name}>
-                                {unit.name} ({unit.symbol})
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <div>
-                        <Label className="text-sm font-semibold text-blue-800">Value</Label>
-                        <Input
-                          type="number"
-                          step="any"
-                          value={inputValue}
-                          onChange={(e) => setInputValue(e.target.value)}
-                          className="mt-1 h-12 border-2 border-blue-200 rounded-xl"
-                          placeholder="Enter value"
-                          data-testid="input-value"
-                        />
-                      </div>
-                    </div>
+                    </select>
                   </div>
-
-                  {/* To Unit */}
-                  <div className="space-y-4 bg-green-50 rounded-xl p-6">
-                    <h3 className="text-lg font-bold text-green-900">To</h3>
-                    <div className="space-y-3">
-                      <div>
-                        <Label className="text-sm font-semibold text-green-800">Unit</Label>
-                        <Select value={toUnit} onValueChange={setToUnit}>
-                          <SelectTrigger className="mt-1 h-12 border-2 border-green-200 rounded-xl" data-testid="select-to-unit">
-                            <SelectValue placeholder="Select unit" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {currentCategory?.units.map((unit) => (
-                              <SelectItem key={unit.name} value={unit.name}>
-                                {unit.name} ({unit.symbol})
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <div>
-                        <Label className="text-sm font-semibold text-green-800">Result</Label>
-                        {result !== null ? (
-                          <div className="mt-1 h-12 border-2 border-green-200 rounded-xl bg-green-100 flex items-center px-4">
-                            <div className="text-xl font-bold text-green-800" data-testid="conversion-result">
-                              {formatResult(result)}
-                            </div>
-                          </div>
-                        ) : (
-                          <div className="mt-1 h-12 border-2 border-green-200 rounded-xl bg-gray-50 flex items-center px-4 text-gray-500">
-                            Result will appear here
-                          </div>
-                        )}
-                      </div>
-                    </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-blue-800 mb-2">Value</label>
+                    <input
+                      type="number"
+                      step="any"
+                      value={inputValue}
+                      onChange={(e) => setInputValue(e.target.value)}
+                      className="w-full h-12 border-2 border-blue-200 rounded-xl px-4 text-lg focus:border-blue-500"
+                      placeholder="Enter value"
+                      data-testid="input-value"
+                    />
                   </div>
-                </div>
-
-                {/* Action Buttons */}
-                <div className="flex flex-col sm:flex-row gap-3 pt-6">
-                  <Button
-                    onClick={performConversion}
-                    disabled={!inputValue || !fromUnit || !toUnit}
-                    className="flex-1 h-12 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-xl"
-                    data-testid="button-convert"
-                  >
-                    Convert
-                  </Button>
-                  <Button
-                    onClick={swapUnits}
-                    disabled={!fromUnit || !toUnit}
-                    variant="outline"
-                    className="h-12 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold rounded-xl"
-                    data-testid="button-swap"
-                  >
-                    ⇄ Swap
-                  </Button>
-                  <Button
-                    onClick={resetCalculator}
-                    variant="outline"
-                    className="h-12 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold rounded-xl"
-                    data-testid="button-reset"
-                  >
-                    Reset
-                  </Button>
                 </div>
               </div>
+
+              {/* To Unit */}
+              <div className="bg-green-50 rounded-xl p-6">
+                <h3 className="text-xl font-bold text-green-900 mb-4">To</h3>
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-semibold text-green-800 mb-2">Unit</label>
+                    <select 
+                      value={toUnit} 
+                      onChange={(e) => setToUnit(e.target.value)}
+                      className="w-full h-12 border-2 border-green-200 rounded-xl px-4 focus:border-green-500"
+                      data-testid="select-to-unit"
+                    >
+                      <option value="">Select unit</option>
+                      {currentCategory?.units.map((unit) => (
+                        <option key={unit.name} value={unit.name}>
+                          {unit.name} ({unit.symbol})
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-green-800 mb-2">Result</label>
+                    {result !== null ? (
+                      <div className="h-12 border-2 border-green-200 rounded-xl bg-green-100 flex items-center px-4">
+                        <div className="text-2xl font-bold text-green-800" data-testid="conversion-result">
+                          {formatResult(result)}
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="h-12 border-2 border-green-200 rounded-xl bg-gray-50 flex items-center px-4 text-gray-500">
+                        Result will appear here
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-wrap gap-4 justify-center">
+              <button
+                onClick={performConversion}
+                disabled={!inputValue || !fromUnit || !toUnit}
+                className="px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 disabled:from-gray-400 disabled:to-gray-400 text-white font-semibold rounded-xl shadow-lg transition-all"
+                data-testid="button-convert"
+              >
+                Convert
+              </button>
+              <button
+                onClick={swapUnits}
+                disabled={!fromUnit || !toUnit}
+                className="px-8 py-3 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 disabled:text-gray-400 disabled:border-gray-200 font-semibold rounded-xl transition-all"
+                data-testid="button-swap"
+              >
+                ⇄ Swap
+              </button>
+              <button
+                onClick={resetCalculator}
+                className="px-8 py-3 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold rounded-xl transition-all"
+                data-testid="button-reset"
+              >
+                Reset
+              </button>
             </div>
           </div>
 
           {/* Common Conversions */}
           {currentCategory && (
-            <div className="mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl p-6">
-              <div className="mb-4">
-                <h3 className="text-xl font-bold">Common {currentCategory.name} Conversions</h3>
-              </div>
-              <div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                  {currentCategory.name === 'Length' && (
-                    <>
-                      <div>1 meter = 3.28084 feet</div>
-                      <div>1 kilometer = 0.621371 miles</div>
-                      <div>1 inch = 2.54 centimeters</div>
-                      <div>1 yard = 0.9144 meters</div>
-                    </>
-                  )}
-                  {currentCategory.name === 'Weight' && (
-                    <>
-                      <div>1 kilogram = 2.20462 pounds</div>
-                      <div>1 pound = 16 ounces</div>
-                      <div>1 ounce = 28.3495 grams</div>
-                      <div>1 ton = 1000 kilograms</div>
-                    </>
-                  )}
-                  {currentCategory.name === 'Temperature' && (
-                    <>
-                      <div>0°C = 32°F = 273.15K</div>
-                      <div>100°C = 212°F = 373.15K</div>
-                      <div>37°C = 98.6°F (body temperature)</div>
-                      <div>-40°C = -40°F</div>
-                    </>
-                  )}
-                </div>
+            <div className="mt-8 bg-white/90 backdrop-blur-sm shadow-xl border border-gray-200 rounded-2xl p-6">
+              <h3 className="text-xl font-bold mb-4">Common {currentCategory.name} Conversions</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                {currentCategory.name === 'Length' && (
+                  <>
+                    <div>1 meter = 3.28084 feet</div>
+                    <div>1 kilometer = 0.621371 miles</div>
+                    <div>1 inch = 2.54 centimeters</div>
+                    <div>1 yard = 0.9144 meters</div>
+                  </>
+                )}
+                {currentCategory.name === 'Weight' && (
+                  <>
+                    <div>1 kilogram = 2.20462 pounds</div>
+                    <div>1 pound = 16 ounces</div>
+                    <div>1 ounce = 28.3495 grams</div>
+                    <div>1 ton = 1000 kilograms</div>
+                  </>
+                )}
+                {currentCategory.name === 'Temperature' && (
+                  <>
+                    <div>0°C = 32°F = 273.15K</div>
+                    <div>100°C = 212°F = 373.15K</div>
+                    <div>37°C = 98.6°F (body temperature)</div>
+                    <div>-40°C = -40°F</div>
+                  </>
+                )}
               </div>
             </div>
           )}
