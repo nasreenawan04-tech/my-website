@@ -191,50 +191,50 @@ export default function SalaryToHourlyCalculator() {
       
       <main>
         {/* Hero Section */}
-        <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32 overflow-hidden">
+        <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="space-y-4 sm:space-y-6 md:space-y-7 lg:space-y-8">
-              <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+          <div className="relative max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
+            <div className="space-y-4 sm:space-y-6 md:space-y-8">
+              <div className="inline-flex items-center px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
                 <span className="text-xs sm:text-sm font-medium text-blue-700">Professional Salary Calculator</span>
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-slate-900 leading-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0">
                 <span className="block">Salary to Hourly</span>
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
                   Calculator
                 </span>
               </h1>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-slate-600 max-w-sm sm:max-w-2xl md:max-w-3xl lg:max-w-4xl mx-auto leading-relaxed">
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
                 Convert annual salary to hourly wage or hourly rate to yearly salary with precision and country-specific calculations
               </p>
             </div>
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
           {/* Main Calculator Card */}
-          <Card className="w-full bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0 min-h-[600px]">
+              <div className="flex flex-col lg:grid lg:grid-cols-3 gap-0">
                 {/* Input Section */}
-                <div className="lg:col-span-2 p-4 sm:p-6 lg:p-8 xl:p-12 space-y-6 lg:space-y-8">
-                  <div>
-                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Salary Configuration</h2>
+                <div className="lg:col-span-2 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
+                  <div className="text-center sm:text-left">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Salary Configuration</h2>
                     <p className="text-sm sm:text-base text-gray-600">Convert between annual salary and hourly wage with accurate calculations</p>
                   </div>
                   
                   {/* Country Selection */}
-                  <div className="space-y-3">
-                    <Label htmlFor="country" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                  <div className="space-y-2 sm:space-y-3">
+                    <Label htmlFor="country" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                       Country (Auto-fills standard working hours)
                     </Label>
                     <Select value={country} onValueChange={handleCountryChange}>
-                      <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-country">
+                      <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-country">
                         <SelectValue />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="max-h-60 overflow-y-auto">
                         {countries.map((country) => (
-                          <SelectItem key={country.code} value={country.code}>
+                          <SelectItem key={country.code} value={country.code} className="text-sm sm:text-base">
                             {country.name}
                           </SelectItem>
                         ))}
@@ -244,25 +244,25 @@ export default function SalaryToHourlyCalculator() {
 
                   {/* Calculation Type Tabs */}
                   <Tabs value={calculationType} onValueChange={setCalculationType} className="w-full">
-                    <TabsList className="grid w-full grid-cols-2">
-                      <TabsTrigger value="salary-to-hourly">Salary → Hourly</TabsTrigger>
-                      <TabsTrigger value="hourly-to-salary">Hourly → Salary</TabsTrigger>
+                    <TabsList className="grid w-full grid-cols-2 h-auto">
+                      <TabsTrigger value="salary-to-hourly" className="text-xs sm:text-sm md:text-base py-2 sm:py-3">Salary → Hourly</TabsTrigger>
+                      <TabsTrigger value="hourly-to-salary" className="text-xs sm:text-sm md:text-base py-2 sm:py-3">Hourly → Salary</TabsTrigger>
                     </TabsList>
 
-                    <TabsContent value="salary-to-hourly" className="space-y-4 sm:space-y-6 mt-4 sm:mt-6">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                        <div className="sm:col-span-2 space-y-3">
+                    <TabsContent value="salary-to-hourly" className="space-y-3 sm:space-y-4 md:space-y-6 mt-3 sm:mt-4 md:mt-6">
+                      <div className="grid grid-cols-1 gap-3 sm:gap-4 md:gap-6">
+                        <div className="space-y-2 sm:space-y-3">
                           <Label htmlFor="annual-salary" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Annual Salary ({currency})
                           </Label>
                           <div className="relative">
-                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">$</span>
+                            <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
                             <Input
                               id="annual-salary"
                               type="number"
                               value={annualSalary}
                               onChange={(e) => setAnnualSalary(e.target.value)}
-                              className="h-12 sm:h-14 pl-7 sm:pl-8 text-base sm:text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-7 md:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                               placeholder="50,000"
                               min="0"
                               data-testid="input-annual-salary"
@@ -270,57 +270,59 @@ export default function SalaryToHourlyCalculator() {
                           </div>
                         </div>
 
-                        <div className="space-y-3">
-                          <Label htmlFor="hours-per-week" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
-                            Hours per Week
-                          </Label>
-                          <Input
-                            id="hours-per-week"
-                            type="number"
-                            value={hoursPerWeek}
-                            onChange={(e) => setHoursPerWeek(e.target.value)}
-                            className="h-12 sm:h-14 text-base sm:text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
-                            placeholder="40"
-                            min="1"
-                            max="168"
-                            data-testid="input-hours-per-week"
-                          />
-                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+                          <div className="space-y-2 sm:space-y-3">
+                            <Label htmlFor="hours-per-week" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                              Hours per Week
+                            </Label>
+                            <Input
+                              id="hours-per-week"
+                              type="number"
+                              value={hoursPerWeek}
+                              onChange={(e) => setHoursPerWeek(e.target.value)}
+                              className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                              placeholder="40"
+                              min="1"
+                              max="168"
+                              data-testid="input-hours-per-week"
+                            />
+                          </div>
 
-                        <div className="space-y-3">
-                          <Label htmlFor="weeks-per-year" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
-                            Working Weeks per Year
-                          </Label>
-                          <Input
-                            id="weeks-per-year"
-                            type="number"
-                            value={weeksPerYear}
-                            onChange={(e) => setWeeksPerYear(e.target.value)}
-                            className="h-12 sm:h-14 text-base sm:text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
-                            placeholder="52"
-                            min="1"
-                            max="52"
-                            data-testid="input-weeks-per-year"
-                          />
-                          <p className="text-xs sm:text-sm text-gray-500">Accounts for vacation, holidays, and unpaid leave</p>
+                          <div className="space-y-2 sm:space-y-3">
+                            <Label htmlFor="weeks-per-year" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                              Working Weeks per Year
+                            </Label>
+                            <Input
+                              id="weeks-per-year"
+                              type="number"
+                              value={weeksPerYear}
+                              onChange={(e) => setWeeksPerYear(e.target.value)}
+                              className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                              placeholder="52"
+                              min="1"
+                              max="52"
+                              data-testid="input-weeks-per-year"
+                            />
+                          </div>
                         </div>
+                        <p className="text-xs sm:text-sm text-gray-500">Accounts for vacation, holidays, and unpaid leave</p>
                       </div>
                     </TabsContent>
 
-                    <TabsContent value="hourly-to-salary" className="space-y-4 sm:space-y-6 mt-4 sm:mt-6">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                        <div className="sm:col-span-2 space-y-3">
+                    <TabsContent value="hourly-to-salary" className="space-y-3 sm:space-y-4 md:space-y-6 mt-3 sm:mt-4 md:mt-6">
+                      <div className="grid grid-cols-1 gap-3 sm:gap-4 md:gap-6">
+                        <div className="space-y-2 sm:space-y-3">
                           <Label htmlFor="hourly-wage" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Hourly Wage ({currency})
                           </Label>
                           <div className="relative">
-                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">$</span>
+                            <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
                             <Input
                               id="hourly-wage"
                               type="number"
                               value={hourlyWage}
                               onChange={(e) => setHourlyWage(e.target.value)}
-                              className="h-12 sm:h-14 pl-7 sm:pl-8 text-base sm:text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-7 md:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                               placeholder="25.00"
                               min="0"
                               step="0.01"
@@ -329,49 +331,51 @@ export default function SalaryToHourlyCalculator() {
                           </div>
                         </div>
 
-                        <div className="space-y-3">
-                          <Label htmlFor="work-hours-per-week" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
-                            Hours per Week
-                          </Label>
-                          <Input
-                            id="work-hours-per-week"
-                            type="number"
-                            value={workHoursPerWeek}
-                            onChange={(e) => setWorkHoursPerWeek(e.target.value)}
-                            className="h-12 sm:h-14 text-base sm:text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
-                            placeholder="40"
-                            min="1"
-                            max="168"
-                            data-testid="input-work-hours-per-week"
-                          />
-                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+                          <div className="space-y-2 sm:space-y-3">
+                            <Label htmlFor="work-hours-per-week" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                              Hours per Week
+                            </Label>
+                            <Input
+                              id="work-hours-per-week"
+                              type="number"
+                              value={workHoursPerWeek}
+                              onChange={(e) => setWorkHoursPerWeek(e.target.value)}
+                              className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                              placeholder="40"
+                              min="1"
+                              max="168"
+                              data-testid="input-work-hours-per-week"
+                            />
+                          </div>
 
-                        <div className="space-y-3">
-                          <Label htmlFor="work-weeks-per-year" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
-                            Working Weeks per Year
-                          </Label>
-                          <Input
-                            id="work-weeks-per-year"
-                            type="number"
-                            value={workWeeksPerYear}
-                            onChange={(e) => setWorkWeeksPerYear(e.target.value)}
-                            className="h-12 sm:h-14 text-base sm:text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
-                            placeholder="52"
-                            min="1"
-                            max="52"
-                            data-testid="input-work-weeks-per-year"
-                          />
-                          <p className="text-xs sm:text-sm text-gray-500">Accounts for vacation, holidays, and unpaid leave</p>
+                          <div className="space-y-2 sm:space-y-3">
+                            <Label htmlFor="work-weeks-per-year" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                              Working Weeks per Year
+                            </Label>
+                            <Input
+                              id="work-weeks-per-year"
+                              type="number"
+                              value={workWeeksPerYear}
+                              onChange={(e) => setWorkWeeksPerYear(e.target.value)}
+                              className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                              placeholder="52"
+                              min="1"
+                              max="52"
+                              data-testid="input-work-weeks-per-year"
+                            />
+                          </div>
                         </div>
+                        <p className="text-xs sm:text-sm text-gray-500">Accounts for vacation, holidays, and unpaid leave</p>
                       </div>
                     </TabsContent>
                   </Tabs>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 sm:pt-6">
+                  <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       onClick={calculationType === 'salary-to-hourly' ? calculateSalaryToHourly : calculateHourlyToSalary}
-                      className="flex-1 h-12 sm:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-base sm:text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="w-full sm:flex-1 h-10 sm:h-12 md:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                       data-testid="button-convert"
                     >
                       Convert Salary
@@ -379,7 +383,7 @@ export default function SalaryToHourlyCalculator() {
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-12 sm:h-14 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-base sm:text-lg rounded-xl"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                       data-testid="button-reset"
                     >
                       Reset
@@ -388,22 +392,22 @@ export default function SalaryToHourlyCalculator() {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 lg:p-8 xl:p-12">
-                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">Results</h2>
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t lg:border-t-0 lg:border-l">
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Results</h2>
                   
                   {result ? (
-                    <div className="space-y-6" data-testid="salary-results">
+                    <div className="space-y-4 sm:space-y-6 md:space-y-8" data-testid="salary-results">
                       {/* Main Result Highlights */}
                       <div className="space-y-3 sm:space-y-4">
-                        <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border border-blue-100">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-lg border border-blue-100">
                           <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Hourly Rate</div>
-                          <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" data-testid="text-hourly-rate">
+                          <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 break-all" data-testid="text-hourly-rate">
                             {formatCurrency(result.hourlyWage)}
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border border-green-100">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-lg border border-green-100">
                           <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Annual Salary</div>
-                          <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600" data-testid="text-annual-salary">
+                          <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600 break-all" data-testid="text-annual-salary">
                             {formatCurrency(result.annualSalary)}
                           </div>
                         </div>
@@ -411,36 +415,36 @@ export default function SalaryToHourlyCalculator() {
 
                       {/* Detailed Breakdown */}
                       <div className="space-y-3 sm:space-y-4">
-                        <h3 className="text-base sm:text-lg font-bold text-gray-900">Pay Period Breakdown</h3>
+                        <h3 className="text-sm sm:text-base md:text-lg font-bold text-gray-900">Pay Period Breakdown</h3>
                         
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Daily Rate</span>
-                            <span className="font-bold text-gray-900" data-testid="text-daily-rate">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Daily Rate</span>
+                            <span className="font-bold text-gray-900 text-sm sm:text-base break-all" data-testid="text-daily-rate">
                               {formatCurrency(result.dailyWage)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Weekly Rate</span>
-                            <span className="font-bold text-gray-900" data-testid="text-weekly-rate">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Weekly Rate</span>
+                            <span className="font-bold text-gray-900 text-sm sm:text-base break-all" data-testid="text-weekly-rate">
                               {formatCurrency(result.weeklyWage)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Monthly Rate</span>
-                            <span className="font-bold text-gray-900" data-testid="text-monthly-rate">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Monthly Rate</span>
+                            <span className="font-bold text-gray-900 text-sm sm:text-base break-all" data-testid="text-monthly-rate">
                               {formatCurrency(result.monthlyWage)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Annual Rate</span>
-                            <span className="font-bold text-green-600" data-testid="text-annual-rate">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Annual Rate</span>
+                            <span className="font-bold text-green-600 text-sm sm:text-base break-all" data-testid="text-annual-rate">
                               {formatCurrency(result.annualSalary)}
                             </span>
                           </div>
@@ -448,29 +452,29 @@ export default function SalaryToHourlyCalculator() {
                       </div>
 
                       {/* Work Schedule Info */}
-                      <div className="mt-6 sm:mt-8">
-                        <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">Work Schedule</h3>
+                      <div className="mt-4 sm:mt-6 md:mt-8">
+                        <h3 className="text-sm sm:text-base md:text-lg font-bold text-gray-900 mb-3 sm:mb-4">Work Schedule</h3>
                         <div className="space-y-3">
-                          <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                             <div className="flex justify-between items-center">
-                              <span className="font-medium text-gray-700">Working Hours per Year</span>
-                              <span className="font-bold text-gray-900" data-testid="text-working-hours-year">
+                              <span className="font-medium text-gray-700 text-sm sm:text-base">Working Hours per Year</span>
+                              <span className="font-bold text-gray-900 text-sm sm:text-base" data-testid="text-working-hours-year">
                                 {result.workingHoursPerYear.toLocaleString()} hours
                               </span>
                             </div>
                           </div>
-                          <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                             <div className="flex justify-between items-center">
-                              <span className="font-medium text-gray-700">Working Days per Year</span>
-                              <span className="font-bold text-gray-900" data-testid="text-working-days-year">
+                              <span className="font-medium text-gray-700 text-sm sm:text-base">Working Days per Year</span>
+                              <span className="font-bold text-gray-900 text-sm sm:text-base" data-testid="text-working-days-year">
                                 {result.workingDaysPerYear} days
                               </span>
                             </div>
                           </div>
-                          <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                             <div className="flex justify-between items-center">
-                              <span className="font-medium text-gray-700">Working Weeks per Year</span>
-                              <span className="font-bold text-gray-900" data-testid="text-working-weeks-year">
+                              <span className="font-medium text-gray-700 text-sm sm:text-base">Working Weeks per Year</span>
+                              <span className="font-bold text-gray-900 text-sm sm:text-base" data-testid="text-working-weeks-year">
                                 {result.workingWeeksPerYear} weeks
                               </span>
                             </div>
@@ -479,11 +483,11 @@ export default function SalaryToHourlyCalculator() {
                       </div>
                     </div>
                   ) : (
-                    <div className="text-center py-12 sm:py-16" data-testid="no-results">
-                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
-                        <div className="text-2xl sm:text-3xl font-bold text-gray-400">$</div>
+                    <div className="text-center py-8 sm:py-12 md:py-16" data-testid="no-results">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-gray-200 rounded-full mx-auto mb-3 sm:mb-4 md:mb-6 flex items-center justify-center">
+                        <div className="text-lg sm:text-2xl md:text-3xl font-bold text-gray-400">$</div>
                       </div>
-                      <p className="text-gray-500 text-base sm:text-lg px-4">Enter salary or hourly wage details and calculate to see results</p>
+                      <p className="text-gray-500 text-sm sm:text-base md:text-lg px-3 sm:px-4">Enter salary or hourly wage details and calculate to see results</p>
                     </div>
                   )}
                 </div>
@@ -492,7 +496,7 @@ export default function SalaryToHourlyCalculator() {
           </Card>
 
           {/* Comprehensive SEO Content */}
-          <div className="mt-16 space-y-12">
+          <div className="mt-8 sm:mt-12 md:mt-16 space-y-6 sm:space-y-8 md:space-y-12">
             {/* Introduction Section with SEO Content */}
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-gray-900 mb-6">
