@@ -296,23 +296,23 @@ export default function ROICalculator() {
               <div className="flex flex-col">
                 {/* Input Section */}
                 <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
-                  <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">ROI Configuration</h2>
-                    <p className="text-gray-600">Enter your investment details to calculate return on investment</p>
+                  <div className="text-center sm:text-left">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">ROI Configuration</h2>
+                    <p className="text-sm sm:text-base text-gray-600">Enter your investment details to calculate return on investment</p>
                   </div>
 
                   {/* Currency Selection */}
-                  <div className="space-y-3">
-                    <Label htmlFor="currency" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                  <div className="space-y-2 sm:space-y-3">
+                    <Label htmlFor="currency" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                       Currency
                     </Label>
                     <Select value={currency} onValueChange={setCurrency}>
-                      <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500" data-testid="select-currency">
+                      <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg focus:border-blue-500 focus:ring-blue-500 w-full" data-testid="select-currency">
                         <SelectValue />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="max-h-60 overflow-y-auto">
                         {currencies.map((curr) => (
-                          <SelectItem key={curr.code} value={curr.code}>
+                          <SelectItem key={curr.code} value={curr.code} className="text-sm sm:text-base">
                             {curr.code} - {curr.name}
                           </SelectItem>
                         ))}
@@ -322,15 +322,15 @@ export default function ROICalculator() {
 
                   {/* Calculation Type Tabs */}
                   <Tabs value={calculationType} onValueChange={setCalculationType} className="w-full">
-                    <TabsList className="grid w-full grid-cols-3">
-                      <TabsTrigger value="basic">Basic ROI</TabsTrigger>
-                      <TabsTrigger value="investment">Investment</TabsTrigger>
-                      <TabsTrigger value="business">Business</TabsTrigger>
+                    <TabsList className="grid w-full grid-cols-3 h-auto">
+                      <TabsTrigger value="basic" className="text-xs sm:text-sm md:text-base py-2 sm:py-3">Basic ROI</TabsTrigger>
+                      <TabsTrigger value="investment" className="text-xs sm:text-sm md:text-base py-2 sm:py-3">Investment</TabsTrigger>
+                      <TabsTrigger value="business" className="text-xs sm:text-sm md:text-base py-2 sm:py-3">Business</TabsTrigger>
                     </TabsList>
 
-                    <TabsContent value="basic" className="space-y-6 mt-6">
-                      <div className="space-y-3">
-                        <Label htmlFor="initial-investment" className="text-sm font-medium text-gray-700">
+                    <TabsContent value="basic" className="space-y-4 sm:space-y-6 mt-4 sm:mt-6">
+                      <div className="space-y-2 sm:space-y-3">
+                        <Label htmlFor="initial-investment" className="text-xs sm:text-sm font-medium text-gray-700">
                           Initial Investment
                         </Label>
                         <Input
@@ -345,16 +345,16 @@ export default function ROICalculator() {
                               setErrors(newErrors);
                             }
                           }}
-                          className={`h-12 text-base border-gray-200 rounded-lg ${errors.initialInvestment ? 'border-red-500' : ''}`}
+                          className={`h-10 sm:h-12 text-sm sm:text-base border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500 w-full ${errors.initialInvestment ? 'border-red-500' : ''}`}
                           placeholder="10,000"
                         />
                         {errors.initialInvestment && (
-                          <p className="text-red-500 text-sm mt-1">{errors.initialInvestment}</p>
+                          <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.initialInvestment}</p>
                         )}
                       </div>
 
-                      <div className="space-y-3">
-                        <Label htmlFor="final-value" className="text-sm font-medium text-gray-700">
+                      <div className="space-y-2 sm:space-y-3">
+                        <Label htmlFor="final-value" className="text-xs sm:text-sm font-medium text-gray-700">
                           Final Value
                         </Label>
                         <Input
@@ -362,38 +362,38 @@ export default function ROICalculator() {
                           type="number"
                           value={finalValue}
                           onChange={(e) => setFinalValue(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
+                          className="h-10 sm:h-12 text-sm sm:text-base border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="12,000"
                         />
                       </div>
 
-                      <div className="space-y-3">
-                        <Label className="text-sm font-medium text-gray-700">Time Period</Label>
-                        <div className="grid grid-cols-2 gap-3">
+                      <div className="space-y-2 sm:space-y-3">
+                        <Label className="text-xs sm:text-sm font-medium text-gray-700">Time Period</Label>
+                        <div className="grid grid-cols-2 gap-2 sm:gap-3">
                           <Input
                             type="number"
                             value={timePeriod}
                             onChange={(e) => setTimePeriod(e.target.value)}
-                            className="h-12 text-base border-gray-200 rounded-lg"
+                            className="h-10 sm:h-12 text-sm sm:text-base border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500 w-full"
                             placeholder="1"
                             min="1"
                           />
                           <Select value={timeUnit} onValueChange={setTimeUnit}>
-                            <SelectTrigger className="h-12 border-gray-200 rounded-lg">
+                            <SelectTrigger className="h-10 sm:h-12 border-gray-200 rounded-lg text-sm sm:text-base focus:border-blue-500 focus:ring-blue-500 w-full">
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent>
-                              <SelectItem value="years">Years</SelectItem>
-                              <SelectItem value="months">Months</SelectItem>
+                              <SelectItem value="years" className="text-sm sm:text-base">Years</SelectItem>
+                              <SelectItem value="months" className="text-sm sm:text-base">Months</SelectItem>
                             </SelectContent>
                           </Select>
                         </div>
                       </div>
                     </TabsContent>
 
-                    <TabsContent value="investment" className="space-y-6 mt-6">
-                      <div className="space-y-3">
-                        <Label htmlFor="investment-amount" className="text-sm font-medium text-gray-700">
+                    <TabsContent value="investment" className="space-y-4 sm:space-y-6 mt-4 sm:mt-6">
+                      <div className="space-y-2 sm:space-y-3">
+                        <Label htmlFor="investment-amount" className="text-xs sm:text-sm font-medium text-gray-700">
                           Initial Investment
                         </Label>
                         <Input
@@ -401,13 +401,13 @@ export default function ROICalculator() {
                           type="number"
                           value={investmentAmount}
                           onChange={(e) => setInvestmentAmount(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
+                          className="h-10 sm:h-12 text-sm sm:text-base border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="10,000"
                         />
                       </div>
 
-                      <div className="space-y-3">
-                        <Label htmlFor="monthly-contribution" className="text-sm font-medium text-gray-700">
+                      <div className="space-y-2 sm:space-y-3">
+                        <Label htmlFor="monthly-contribution" className="text-xs sm:text-sm font-medium text-gray-700">
                           Monthly Contribution
                         </Label>
                         <Input
@@ -415,13 +415,13 @@ export default function ROICalculator() {
                           type="number"
                           value={monthlyContribution}
                           onChange={(e) => setMonthlyContribution(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
+                          className="h-10 sm:h-12 text-sm sm:text-base border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="500"
                         />
                       </div>
 
-                      <div className="space-y-3">
-                        <Label htmlFor="annual-return" className="text-sm font-medium text-gray-700">
+                      <div className="space-y-2 sm:space-y-3">
+                        <Label htmlFor="annual-return" className="text-xs sm:text-sm font-medium text-gray-700">
                           Expected Annual Return (%)
                         </Label>
                         <Input
@@ -429,14 +429,14 @@ export default function ROICalculator() {
                           type="number"
                           value={annualReturn}
                           onChange={(e) => setAnnualReturn(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
+                          className="h-10 sm:h-12 text-sm sm:text-base border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="8"
                           step="0.01"
                         />
                       </div>
 
-                      <div className="space-y-3">
-                        <Label htmlFor="investment-years" className="text-sm font-medium text-gray-700">
+                      <div className="space-y-2 sm:space-y-3">
+                        <Label htmlFor="investment-years" className="text-xs sm:text-sm font-medium text-gray-700">
                           Investment Period (Years)
                         </Label>
                         <Input
@@ -444,16 +444,16 @@ export default function ROICalculator() {
                           type="number"
                           value={investmentYears}
                           onChange={(e) => setInvestmentYears(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
+                          className="h-10 sm:h-12 text-sm sm:text-base border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="5"
                           min="1"
                         />
                       </div>
                     </TabsContent>
 
-                    <TabsContent value="business" className="space-y-6 mt-6">
-                      <div className="space-y-3">
-                        <Label htmlFor="project-cost" className="text-sm font-medium text-gray-700">
+                    <TabsContent value="business" className="space-y-4 sm:space-y-6 mt-4 sm:mt-6">
+                      <div className="space-y-2 sm:space-y-3">
+                        <Label htmlFor="project-cost" className="text-xs sm:text-sm font-medium text-gray-700">
                           Project Cost
                         </Label>
                         <Input
@@ -461,13 +461,13 @@ export default function ROICalculator() {
                           type="number"
                           value={projectCost}
                           onChange={(e) => setProjectCost(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
+                          className="h-10 sm:h-12 text-sm sm:text-base border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="50,000"
                         />
                       </div>
 
-                      <div className="space-y-3">
-                        <Label htmlFor="annual-revenue" className="text-sm font-medium text-gray-700">
+                      <div className="space-y-2 sm:space-y-3">
+                        <Label htmlFor="annual-revenue" className="text-xs sm:text-sm font-medium text-gray-700">
                           Annual Revenue
                         </Label>
                         <Input
@@ -475,13 +475,13 @@ export default function ROICalculator() {
                           type="number"
                           value={annualRevenue}
                           onChange={(e) => setAnnualRevenue(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
+                          className="h-10 sm:h-12 text-sm sm:text-base border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="20,000"
                         />
                       </div>
 
-                      <div className="space-y-3">
-                        <Label htmlFor="annual-costs" className="text-sm font-medium text-gray-700">
+                      <div className="space-y-2 sm:space-y-3">
+                        <Label htmlFor="annual-costs" className="text-xs sm:text-sm font-medium text-gray-700">
                           Annual Operating Costs
                         </Label>
                         <Input
@@ -489,13 +489,13 @@ export default function ROICalculator() {
                           type="number"
                           value={annualCosts}
                           onChange={(e) => setAnnualCosts(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
+                          className="h-10 sm:h-12 text-sm sm:text-base border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="5,000"
                         />
                       </div>
 
-                      <div className="space-y-3">
-                        <Label htmlFor="project-duration" className="text-sm font-medium text-gray-700">
+                      <div className="space-y-2 sm:space-y-3">
+                        <Label htmlFor="project-duration" className="text-xs sm:text-sm font-medium text-gray-700">
                           Project Duration (Years)
                         </Label>
                         <Input
@@ -503,7 +503,7 @@ export default function ROICalculator() {
                           type="number"
                           value={projectDuration}
                           onChange={(e) => setProjectDuration(e.target.value)}
-                          className="h-12 text-base border-gray-200 rounded-lg"
+                          className="h-10 sm:h-12 text-sm sm:text-base border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="3"
                           min="1"
                         />
@@ -512,10 +512,10 @@ export default function ROICalculator() {
                   </Tabs>
 
                   {/* Action Buttons */}
-                  <div className="flex gap-4 pt-6">
+                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 pt-4 sm:pt-6">
                     <Button
                       onClick={calculationType === 'basic' ? calculateBasicROI : calculationType === 'investment' ? calculateInvestmentROI : calculateBusinessROI}
-                      className="flex-1 h-14 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl text-lg"
+                      className="flex-1 h-10 sm:h-12 md:h-14 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg"
                       data-testid="button-calculate-roi"
                     >
                       Calculate ROI
@@ -523,7 +523,7 @@ export default function ROICalculator() {
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-12 px-8 border-gray-200 text-gray-600 hover:bg-gray-50 font-medium rounded-lg"
+                      className="h-10 sm:h-12 px-4 sm:px-8 border-gray-200 text-gray-600 hover:bg-gray-50 font-medium rounded-lg text-sm sm:text-base"
                     >
                       Reset
                     </Button>
@@ -532,50 +532,50 @@ export default function ROICalculator() {
 
                 {/* Results Section */}
                 <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-8">ROI Analysis</h2>
+                  <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">ROI Analysis</h2>
 
                   {result ? (
-                    <div className="space-y-6">
+                    <div className="space-y-4 sm:space-y-6">
                       {/* ROI Display */}
-                      <div className="bg-white rounded-lg p-6 border border-gray-100">
+                      <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 border border-gray-100">
                         <div className="text-center space-y-2">
-                          <div className="text-sm text-gray-600">Return on Investment</div>
-                          <div className={`text-4xl font-bold ${result.roi >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                          <div className="text-xs sm:text-sm text-gray-600">Return on Investment</div>
+                          <div className={`text-2xl sm:text-3xl md:text-4xl font-bold ${result.roi >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                             {formatPercentage(result.roi)}
                           </div>
                         </div>
                       </div>
 
                       {/* Summary */}
-                      <div className="space-y-4">
-                        <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                          <span className="text-gray-600">Initial Investment</span>
-                          <span className="font-semibold text-gray-900">
+                      <div className="space-y-3 sm:space-y-4">
+                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 sm:py-3 border-b border-gray-200 space-y-1 sm:space-y-0">
+                          <span className="text-xs sm:text-sm text-gray-600">Initial Investment</span>
+                          <span className="font-semibold text-sm sm:text-base text-gray-900 break-all">
                             {formatCurrency(result.initialInvestment)}
                           </span>
                         </div>
-                        <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                          <span className="text-gray-600">Final Value</span>
-                          <span className="font-semibold text-green-600">
+                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 sm:py-3 border-b border-gray-200 space-y-1 sm:space-y-0">
+                          <span className="text-xs sm:text-sm text-gray-600">Final Value</span>
+                          <span className="font-semibold text-sm sm:text-base text-green-600 break-all">
                             {formatCurrency(result.finalValue)}
                           </span>
                         </div>
-                        <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                          <span className="text-gray-600">Total Gain/Loss</span>
-                          <span className={`font-semibold ${result.totalGain >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 sm:py-3 border-b border-gray-200 space-y-1 sm:space-y-0">
+                          <span className="text-xs sm:text-sm text-gray-600">Total Gain/Loss</span>
+                          <span className={`font-semibold text-sm sm:text-base break-all ${result.totalGain >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                             {result.totalGain >= 0 ? '+' : ''}{formatCurrency(result.totalGain)}
                           </span>
                         </div>
-                        <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                          <span className="text-gray-600">Annualized ROI</span>
-                          <span className={`font-semibold ${result.annualizedROI >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 sm:py-3 border-b border-gray-200 space-y-1 sm:space-y-0">
+                          <span className="text-xs sm:text-sm text-gray-600">Annualized ROI</span>
+                          <span className={`font-semibold text-sm sm:text-base ${result.annualizedROI >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                             {formatPercentage(result.annualizedROI)}
                           </span>
                         </div>
                         {calculationType === 'business' && result.breakEvenTime > 0 && (
-                          <div className="flex justify-between items-center py-3">
-                            <span className="text-gray-600">Break-even Time</span>
-                            <span className="font-semibold text-gray-900">
+                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 sm:py-3 space-y-1 sm:space-y-0">
+                            <span className="text-xs sm:text-sm text-gray-600">Break-even Time</span>
+                            <span className="font-semibold text-sm sm:text-base text-gray-900">
                               {result.breakEvenTime.toFixed(1)} years
                             </span>
                           </div>
@@ -583,15 +583,15 @@ export default function ROICalculator() {
                       </div>
 
                       {/* ROI Interpretation */}
-                      <div className="mt-8">
-                        <h3 className="text-lg font-semibold text-gray-900 mb-4">Interpretation</h3>
-                        <div className={`p-4 rounded-lg border ${
+                      <div className="mt-6 sm:mt-8">
+                        <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">Interpretation</h3>
+                        <div className={`p-3 sm:p-4 rounded-lg border ${
                           result.roi >= 20 ? 'bg-green-50 border-green-200' :
                           result.roi >= 10 ? 'bg-yellow-50 border-yellow-200' :
                           result.roi >= 0 ? 'bg-blue-50 border-blue-200' :
                           'bg-red-50 border-red-200'
                         }`}>
-                          <div className={`text-sm ${
+                          <div className={`text-xs sm:text-sm ${
                             result.roi >= 20 ? 'text-green-700' :
                             result.roi >= 10 ? 'text-yellow-700' :
                             result.roi >= 0 ? 'text-blue-700' :
@@ -606,11 +606,11 @@ export default function ROICalculator() {
                       </div>
                     </div>
                   ) : (
-                    <div className="text-center py-12">
-                      <div className="w-16 h-16 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                        <span className="text-2xl font-bold text-blue-600">%</span>
+                    <div className="text-center py-8 sm:py-12">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                        <span className="text-lg sm:text-2xl font-bold text-blue-600">%</span>
                       </div>
-                      <p className="text-gray-500 text-lg">Enter investment details and click calculate to see ROI analysis</p>
+                      <p className="text-gray-500 text-sm sm:text-base lg:text-lg px-4">Enter investment details and click calculate to see ROI analysis</p>
                     </div>
                   )}
                 </div>
