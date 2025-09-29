@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -75,11 +74,11 @@ export default function RetirementCalculator() {
     const projectionSchedule = [];
     for (let year = 0; year <= yearsToRetirement; year += 5) {
       if (year > yearsToRetirement) year = yearsToRetirement;
-      
+
       const yearsElapsed = year;
       const currentSavingsAtYear = currentSavingsNum * Math.pow(1 + annualReturn, yearsElapsed);
       const monthsElapsed = yearsElapsed * 12;
-      
+
       let contributionsAtYear = 0;
       if (monthlyContrib > 0 && monthlyReturn > 0 && monthsElapsed > 0) {
         contributionsAtYear = monthlyContrib * 
@@ -87,11 +86,11 @@ export default function RetirementCalculator() {
       } else if (monthlyContrib > 0) {
         contributionsAtYear = monthlyContrib * monthsElapsed;
       }
-      
+
       const totalAtYear = currentSavingsAtYear + contributionsAtYear;
       const contributionsThisYear = monthlyContrib * 12;
       const interestThisYear = totalAtYear - (currentSavingsNum + (monthlyContrib * monthsElapsed));
-      
+
       projectionSchedule.push({
         year: yearsElapsed,
         age: currentAgeNum + yearsElapsed,
@@ -99,7 +98,7 @@ export default function RetirementCalculator() {
         yearlyContribution: contributionsThisYear,
         interestEarned: Math.max(0, Math.round(interestThisYear * 100) / 100)
       });
-      
+
       if (year === yearsToRetirement) break;
     }
 
@@ -144,7 +143,7 @@ export default function RetirementCalculator() {
     };
 
     const config = currencyMap[currency] || currencyMap.USD;
-    
+
     return new Intl.NumberFormat(config.locale, {
       style: 'currency',
       currency: config.currency,
@@ -190,9 +189,9 @@ export default function RetirementCalculator() {
           })}
         </script>
       </Helmet>
-      
+
       <Header />
-      
+
       <main>
         {/* Hero Section */}
         <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 overflow-hidden">
@@ -226,7 +225,7 @@ export default function RetirementCalculator() {
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Retirement Configuration</h2>
                     <p className="text-sm sm:text-base text-gray-600">Enter your retirement planning details for accurate projections</p>
                   </div>
-                  
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
                     {/* Currency Selection */}
                     <div className="space-y-2 sm:space-y-3">
@@ -415,13 +414,13 @@ export default function RetirementCalculator() {
                 {/* Results Section */}
                 <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12">
                   <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">Retirement Projection</h2>
-                  
+
                   {result ? (
                     <div className="space-y-3 sm:space-y-4 md:space-y-6" data-testid="retirement-results">
                       {/* Total Savings Highlight */}
                       <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 shadow-lg border border-blue-100">
                         <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-1 sm:mb-2">Total Retirement Savings</div>
-                        <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" data-testid="text-total-savings">
+                        <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 break-all" data-testid="text-total-savings">
                           {formatCurrency(result.totalSavings)}
                         </div>
                       </div>
@@ -429,7 +428,7 @@ export default function RetirementCalculator() {
                       {/* Monthly Income Highlight */}
                       <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 shadow-lg border border-green-100">
                         <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-1 sm:mb-2">Monthly Retirement Income</div>
-                        <div className="text-xl sm:text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600" data-testid="text-monthly-income">
+                        <div className="text-xl sm:text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600 break-all" data-testid="text-monthly-income">
                           {formatCurrency(result.monthlyIncomeAtRetirement)}
                         </div>
                         <p className="text-xs sm:text-sm text-gray-500 mt-1">Based on {withdrawalRate}% withdrawal rate</p>
@@ -438,23 +437,23 @@ export default function RetirementCalculator() {
                       {/* Savings Breakdown */}
                       <div className="space-y-2 sm:space-y-3 md:space-y-4">
                         <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
+                          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1 sm:gap-0">
                             <span className="font-medium text-gray-700 text-sm sm:text-base">Your Contributions</span>
-                            <span className="font-bold text-gray-900 text-sm sm:text-base" data-testid="text-total-contributions">
+                            <span className="font-bold text-gray-900 text-sm sm:text-base break-all" data-testid="text-total-contributions">
                               {formatCurrency(result.totalContributions)}
                             </span>
                           </div>
                         </div>
                         <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
+                          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1 sm:gap-0">
                             <span className="font-medium text-gray-700 text-sm sm:text-base">Investment Growth</span>
-                            <span className="font-bold text-green-600 text-sm sm:text-base" data-testid="text-investment-growth">
+                            <span className="font-bold text-green-600 text-sm sm:text-base break-all" data-testid="text-investment-growth">
                               {formatCurrency(result.interestEarned)}
                             </span>
                           </div>
                         </div>
                         <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
+                          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1 sm:gap-0">
                             <span className="font-medium text-gray-700 text-sm sm:text-base">Years of Savings</span>
                             <span className="font-bold text-gray-900 text-sm sm:text-base" data-testid="text-years-contributing">
                               {result.yearsOfContributions} years
@@ -528,13 +527,13 @@ export default function RetirementCalculator() {
                         <tr key={index} className="hover:bg-blue-50 transition-colors">
                           <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 font-medium text-gray-900 text-xs sm:text-sm md:text-base">{projection.year}</td>
                           <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 font-medium text-gray-900 text-xs sm:text-sm md:text-base">{Math.round(projection.age)}</td>
-                          <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-right text-gray-900 font-bold text-xs sm:text-sm md:text-base">
+                          <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-right text-gray-900 font-bold text-xs sm:text-sm md:text-base break-all">
                             {formatCurrency(projection.totalSavings)}
                           </td>
-                          <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-right text-blue-600 font-medium text-xs sm:text-sm md:text-base">
+                          <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-right text-blue-600 font-medium text-xs sm:text-sm md:text-base break-all">
                             {formatCurrency(projection.yearlyContribution)}
                           </td>
-                          <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-right text-green-600 font-bold text-xs sm:text-sm md:text-base">
+                          <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-right text-green-600 font-bold text-xs sm:text-sm md:text-base break-all">
                             {formatCurrency(projection.interestEarned)}
                           </td>
                         </tr>
@@ -946,7 +945,7 @@ export default function RetirementCalculator() {
           </div>
         </div>
       </main>
-      
+
       <Footer />
     </div>
   );
