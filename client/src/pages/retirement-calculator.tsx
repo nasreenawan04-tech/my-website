@@ -195,46 +195,46 @@ export default function RetirementCalculator() {
       
       <main>
         {/* Hero Section */}
-        <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32 overflow-hidden">
+        <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
-          <div className="relative max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12 text-center">
-            <div className="space-y-4 sm:space-y-6 md:space-y-8 lg:space-y-10">
-              <div className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 md:px-5 md:py-2.5 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200 text-xs sm:text-sm md:text-base">
-                <span className="font-medium text-blue-700">Professional Retirement Calculator</span>
+          <div className="relative max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
+            <div className="space-y-4 sm:space-y-6 md:space-y-8">
+              <div className="inline-flex items-center px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+                <span className="text-xs sm:text-sm font-medium text-blue-700">Professional Retirement Calculator</span>
               </div>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0" data-testid="page-title">
                 <span className="block">Smart Retirement</span>
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
                   Calculator
                 </span>
               </h1>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-slate-600 max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl xl:max-w-5xl mx-auto leading-relaxed px-2 sm:px-4 md:px-6">
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
                 Plan your retirement savings with advanced compound interest calculations and the proven 4% withdrawal rule
               </p>
             </div>
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
           {/* Main Calculator Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+              <div className="flex flex-col">
                 {/* Input Section */}
-                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
-                  <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Retirement Configuration</h2>
-                    <p className="text-gray-600">Enter your retirement planning details for accurate projections</p>
+                <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
+                  <div className="text-center sm:text-left">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Retirement Configuration</h2>
+                    <p className="text-sm sm:text-base text-gray-600">Enter your retirement planning details for accurate projections</p>
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
                     {/* Currency Selection */}
-                    <div className="space-y-3">
-                      <Label htmlFor="currency" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="currency" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Currency
                       </Label>
                       <Select value={currency} onValueChange={setCurrency}>
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-currency">
+                        <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-currency">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -253,8 +253,8 @@ export default function RetirementCalculator() {
                     </div>
 
                     {/* Current Age */}
-                    <div className="space-y-3">
-                      <Label htmlFor="current-age" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="current-age" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Current Age
                       </Label>
                       <Input
@@ -262,7 +262,7 @@ export default function RetirementCalculator() {
                         type="number"
                         value={currentAge}
                         onChange={(e) => setCurrentAge(e.target.value)}
-                        className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                        className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                         placeholder="30"
                         min="18"
                         max="100"
@@ -271,8 +271,8 @@ export default function RetirementCalculator() {
                     </div>
 
                     {/* Retirement Age */}
-                    <div className="space-y-3">
-                      <Label htmlFor="retirement-age" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="retirement-age" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Planned Retirement Age
                       </Label>
                       <Input
@@ -280,7 +280,7 @@ export default function RetirementCalculator() {
                         type="number"
                         value={retirementAge}
                         onChange={(e) => setRetirementAge(e.target.value)}
-                        className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                        className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                         placeholder="65"
                         min="50"
                         max="100"
@@ -289,18 +289,18 @@ export default function RetirementCalculator() {
                     </div>
 
                     {/* Current Savings */}
-                    <div className="space-y-3">
-                      <Label htmlFor="current-savings" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="current-savings" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Current Retirement Savings
                       </Label>
                       <div className="relative">
-                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
                         <Input
                           id="current-savings"
                           type="number"
                           value={currentSavings}
                           onChange={(e) => setCurrentSavings(e.target.value)}
-                          className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="50,000"
                           min="0"
                           step="100"
@@ -310,18 +310,18 @@ export default function RetirementCalculator() {
                     </div>
 
                     {/* Monthly Contribution */}
-                    <div className="space-y-3">
-                      <Label htmlFor="monthly-contribution" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="monthly-contribution" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Monthly Contribution
                       </Label>
                       <div className="relative">
-                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
                         <Input
                           id="monthly-contribution"
                           type="number"
                           value={monthlyContribution}
                           onChange={(e) => setMonthlyContribution(e.target.value)}
-                          className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="500"
                           min="0"
                           step="10"
@@ -331,8 +331,8 @@ export default function RetirementCalculator() {
                     </div>
 
                     {/* Expected Annual Return */}
-                    <div className="space-y-3">
-                      <Label htmlFor="expected-return" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="expected-return" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Expected Annual Return
                       </Label>
                       <div className="relative">
@@ -341,20 +341,20 @@ export default function RetirementCalculator() {
                           type="number"
                           value={expectedReturn}
                           onChange={(e) => setExpectedReturn(e.target.value)}
-                          className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="7"
                           min="0"
                           max="20"
                           step="0.1"
                           data-testid="input-expected-return"
                         />
-                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
+                        <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
                       </div>
                     </div>
 
                     {/* Withdrawal Rate */}
-                    <div className="space-y-3">
-                      <Label htmlFor="withdrawal-rate" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="withdrawal-rate" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Safe Withdrawal Rate
                       </Label>
                       <div className="relative">
@@ -363,26 +363,26 @@ export default function RetirementCalculator() {
                           type="number"
                           value={withdrawalRate}
                           onChange={(e) => setWithdrawalRate(e.target.value)}
-                          className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="4"
                           min="1"
                           max="10"
                           step="0.1"
                           data-testid="input-withdrawal-rate"
                         />
-                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
+                        <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
                       </div>
-                      <p className="text-sm text-gray-500">
+                      <p className="text-xs sm:text-sm text-gray-500">
                         The 4% rule is commonly used for sustainable retirement withdrawals
                       </p>
                     </div>
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                  <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       onClick={calculateRetirement}
-                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                       data-testid="button-calculate"
                     >
                       Calculate Retirement
@@ -390,7 +390,7 @@ export default function RetirementCalculator() {
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                       data-testid="button-reset"
                     >
                       Reset
@@ -399,12 +399,11 @@ export default function RetirementCalculator() {
 
                   {/* Advanced Options */}
                   {result && (
-                    <div className="flex flex-wrap gap-3 pt-4">
+                    <div className="flex flex-wrap gap-2 sm:gap-3 pt-3 sm:pt-4">
                       <Button
                         onClick={() => setShowProjection(!showProjection)}
                         variant="outline"
-                        size="sm"
-                        className="rounded-full"
+                        className="h-8 sm:h-10 px-3 sm:px-4 text-xs sm:text-sm rounded-full"
                         data-testid="button-show-projection"
                       >
                         {showProjection ? 'Hide' : 'Show'} Retirement Projection
@@ -414,50 +413,50 @@ export default function RetirementCalculator() {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Retirement Projection</h2>
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12">
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">Retirement Projection</h2>
                   
                   {result ? (
-                    <div className="space-y-6" data-testid="retirement-results">
+                    <div className="space-y-3 sm:space-y-4 md:space-y-6" data-testid="retirement-results">
                       {/* Total Savings Highlight */}
-                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
-                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Total Retirement Savings</div>
-                        <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" data-testid="text-total-savings">
+                      <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 shadow-lg border border-blue-100">
+                        <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-1 sm:mb-2">Total Retirement Savings</div>
+                        <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" data-testid="text-total-savings">
                           {formatCurrency(result.totalSavings)}
                         </div>
                       </div>
 
                       {/* Monthly Income Highlight */}
-                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-green-100">
-                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Monthly Retirement Income</div>
-                        <div className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600" data-testid="text-monthly-income">
+                      <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 shadow-lg border border-green-100">
+                        <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-1 sm:mb-2">Monthly Retirement Income</div>
+                        <div className="text-xl sm:text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600" data-testid="text-monthly-income">
                           {formatCurrency(result.monthlyIncomeAtRetirement)}
                         </div>
-                        <p className="text-sm text-gray-500 mt-1">Based on {withdrawalRate}% withdrawal rate</p>
+                        <p className="text-xs sm:text-sm text-gray-500 mt-1">Based on {withdrawalRate}% withdrawal rate</p>
                       </div>
 
                       {/* Savings Breakdown */}
-                      <div className="space-y-4">
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                      <div className="space-y-2 sm:space-y-3 md:space-y-4">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Your Contributions</span>
-                            <span className="font-bold text-gray-900" data-testid="text-total-contributions">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Your Contributions</span>
+                            <span className="font-bold text-gray-900 text-sm sm:text-base" data-testid="text-total-contributions">
                               {formatCurrency(result.totalContributions)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Investment Growth</span>
-                            <span className="font-bold text-green-600" data-testid="text-investment-growth">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Investment Growth</span>
+                            <span className="font-bold text-green-600 text-sm sm:text-base" data-testid="text-investment-growth">
                               {formatCurrency(result.interestEarned)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Years of Savings</span>
-                            <span className="font-bold text-gray-900" data-testid="text-years-contributing">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Years of Savings</span>
+                            <span className="font-bold text-gray-900 text-sm sm:text-base" data-testid="text-years-contributing">
                               {result.yearsOfContributions} years
                             </span>
                           </div>
@@ -465,12 +464,12 @@ export default function RetirementCalculator() {
                       </div>
 
                       {/* Visual Breakdown */}
-                      <div className="bg-white rounded-xl p-6 shadow-sm">
-                        <h4 className="font-bold text-gray-900 mb-4 text-lg">Savings Composition</h4>
-                        <div className="space-y-3">
+                      <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm">
+                        <h4 className="font-bold text-gray-900 mb-3 sm:mb-4 text-base sm:text-lg">Savings Composition</h4>
+                        <div className="space-y-2 sm:space-y-3">
                           <div className="flex items-center">
-                            <div className="w-full bg-gray-200 rounded-full h-6 mr-4">
-                              <div className="flex h-6 rounded-full overflow-hidden">
+                            <div className="w-full bg-gray-200 rounded-full h-4 sm:h-6 mr-3 sm:mr-4">
+                              <div className="flex h-4 sm:h-6 rounded-full overflow-hidden">
                                 <div 
                                   className="bg-blue-500"
                                   style={{ width: `${(result.totalContributions / result.totalSavings) * 100}%` }}
@@ -482,13 +481,13 @@ export default function RetirementCalculator() {
                               </div>
                             </div>
                           </div>
-                          <div className="flex justify-between text-sm">
+                          <div className="flex flex-col sm:flex-row justify-between gap-2 sm:gap-0 text-xs sm:text-sm">
                             <span className="flex items-center">
-                              <div className="w-3 h-3 bg-blue-500 rounded-full mr-2"></div>
+                              <div className="w-2 sm:w-3 h-2 sm:h-3 bg-blue-500 rounded-full mr-1 sm:mr-2"></div>
                               Contributions ({Math.round((result.totalContributions / result.totalSavings) * 100)}%)
                             </span>
                             <span className="flex items-center">
-                              <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                              <div className="w-2 sm:w-3 h-2 sm:h-3 bg-green-500 rounded-full mr-1 sm:mr-2"></div>
                               Growth ({Math.round((result.interestEarned / result.totalSavings) * 100)}%)
                             </span>
                           </div>
@@ -496,11 +495,11 @@ export default function RetirementCalculator() {
                       </div>
                     </div>
                   ) : (
-                    <div className="text-center py-16" data-testid="no-results">
-                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <div className="text-3xl font-bold text-gray-400">$</div>
+                    <div className="text-center py-8 sm:py-12 md:py-16" data-testid="no-results">
+                      <div className="w-16 sm:w-20 h-16 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
+                        <div className="text-2xl sm:text-3xl font-bold text-gray-400">$</div>
                       </div>
-                      <p className="text-gray-500 text-lg">Enter retirement details to see your financial projections</p>
+                      <p className="text-gray-500 text-base sm:text-lg px-4">Enter retirement details to see your financial projections</p>
                     </div>
                   )}
                 </div>
@@ -510,32 +509,32 @@ export default function RetirementCalculator() {
 
           {/* Retirement Projection Table */}
           {result && showProjection && (
-            <Card className="mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Retirement Savings Projection</h3>
+            <Card className="mt-4 sm:mt-6 md:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-3 sm:p-4 md:p-6 lg:p-8">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Retirement Savings Projection</h3>
                 <div className="overflow-x-auto">
-                  <table className="w-full">
+                  <table className="w-full min-w-[600px]">
                     <thead>
                       <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
-                        <th className="px-6 py-4 text-left font-bold text-gray-900 rounded-l-lg">Year</th>
-                        <th className="px-6 py-4 text-left font-bold text-gray-900">Age</th>
-                        <th className="px-6 py-4 text-right font-bold text-gray-900">Total Savings</th>
-                        <th className="px-6 py-4 text-right font-bold text-gray-900">Annual Contribution</th>
-                        <th className="px-6 py-4 text-right font-bold text-gray-900 rounded-r-lg">Interest Earned</th>
+                        <th className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-left font-bold text-gray-900 rounded-l-lg text-xs sm:text-sm md:text-base">Year</th>
+                        <th className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-left font-bold text-gray-900 text-xs sm:text-sm md:text-base">Age</th>
+                        <th className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm md:text-base">Total Savings</th>
+                        <th className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm md:text-base">Annual Contribution</th>
+                        <th className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 rounded-r-lg text-xs sm:text-sm md:text-base">Interest Earned</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100">
                       {result.projectionSchedule.map((projection, index) => (
                         <tr key={index} className="hover:bg-blue-50 transition-colors">
-                          <td className="px-6 py-4 font-medium text-gray-900">{projection.year}</td>
-                          <td className="px-6 py-4 font-medium text-gray-900">{Math.round(projection.age)}</td>
-                          <td className="px-6 py-4 text-right text-gray-900 font-bold">
+                          <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 font-medium text-gray-900 text-xs sm:text-sm md:text-base">{projection.year}</td>
+                          <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 font-medium text-gray-900 text-xs sm:text-sm md:text-base">{Math.round(projection.age)}</td>
+                          <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-right text-gray-900 font-bold text-xs sm:text-sm md:text-base">
                             {formatCurrency(projection.totalSavings)}
                           </td>
-                          <td className="px-6 py-4 text-right text-blue-600 font-medium">
+                          <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-right text-blue-600 font-medium text-xs sm:text-sm md:text-base">
                             {formatCurrency(projection.yearlyContribution)}
                           </td>
-                          <td className="px-6 py-4 text-right text-green-600 font-bold">
+                          <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-right text-green-600 font-bold text-xs sm:text-sm md:text-base">
                             {formatCurrency(projection.interestEarned)}
                           </td>
                         </tr>
@@ -548,11 +547,11 @@ export default function RetirementCalculator() {
           )}
 
           {/* SEO Content Section */}
-          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">What is Retirement Planning?</h3>
-                <div className="space-y-4 text-gray-600">
+          <div className="mt-8 sm:mt-12 md:mt-16 grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">What is Retirement Planning?</h3>
+                <div className="space-y-3 sm:space-y-4 text-gray-600 text-sm sm:text-base">
                   <p>
                     Retirement planning is the process of determining retirement income goals and making financial 
                     decisions to achieve those objectives. Our retirement calculator helps you understand how much 
@@ -567,10 +566,10 @@ export default function RetirementCalculator() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">The 4% Withdrawal Rule</h3>
-                <div className="space-y-4 text-gray-600">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">The 4% Withdrawal Rule</h3>
+                <div className="space-y-3 sm:space-y-4 text-gray-600 text-sm sm:text-base">
                   <p>
                     The 4% rule suggests that retirees can safely withdraw 4% of their retirement portfolio 
                     annually, adjusted for inflation, without running out of money during a 30-year retirement.
@@ -584,56 +583,56 @@ export default function RetirementCalculator() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Retirement Account Types</h3>
-                <div className="space-y-3 text-gray-600">
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Retirement Account Types</h3>
+                <div className="space-y-2 sm:space-y-3 text-gray-600 text-sm sm:text-base">
+                  <div className="flex items-start gap-2 sm:gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-1 sm:mt-2 flex-shrink-0"></div>
                     <span>401(k) - Employer-sponsored retirement plan with tax advantages</span>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="flex items-start gap-2 sm:gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-1 sm:mt-2 flex-shrink-0"></div>
                     <span>Traditional IRA - Individual retirement account with tax-deferred growth</span>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="flex items-start gap-2 sm:gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-1 sm:mt-2 flex-shrink-0"></div>
                     <span>Roth IRA - After-tax contributions with tax-free withdrawals</span>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="flex items-start gap-2 sm:gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-1 sm:mt-2 flex-shrink-0"></div>
                     <span>SEP-IRA - Simplified employee pension for self-employed</span>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="flex items-start gap-2 sm:gap-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-1 sm:mt-2 flex-shrink-0"></div>
                     <span>Pension Plans - Defined benefit plans from employers</span>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Compound Interest Power</h3>
-                <div className="space-y-3 text-gray-600">
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Compound Interest Power</h3>
+                <div className="space-y-2 sm:space-y-3 text-gray-600 text-sm sm:text-base">
+                  <div className="flex items-start gap-2 sm:gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-1 sm:mt-2 flex-shrink-0"></div>
                     <span>Start early to maximize compound growth potential</span>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="flex items-start gap-2 sm:gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-1 sm:mt-2 flex-shrink-0"></div>
                     <span>Consistent monthly contributions accelerate growth</span>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="flex items-start gap-2 sm:gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-1 sm:mt-2 flex-shrink-0"></div>
                     <span>Long-term investing reduces market volatility impact</span>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="flex items-start gap-2 sm:gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-1 sm:mt-2 flex-shrink-0"></div>
                     <span>Reinvesting dividends increases compound returns</span>
                   </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <div className="flex items-start gap-2 sm:gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mt-1 sm:mt-2 flex-shrink-0"></div>
                     <span>Time is the most powerful factor in wealth building</span>
                   </div>
                 </div>
@@ -642,15 +641,15 @@ export default function RetirementCalculator() {
           </div>
 
           {/* Additional SEO Content Sections */}
-          <div className="mt-12 space-y-8">
+          <div className="mt-6 sm:mt-8 md:mt-12 space-y-4 sm:space-y-6 md:space-y-8">
             {/* Retirement Planning Strategies */}
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Retirement Planning Strategies by Age</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-gray-800">20s & 30s - Building Foundation</h4>
-                    <div className="space-y-2 text-gray-600 text-sm">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Retirement Planning Strategies by Age</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+                  <div className="space-y-3 sm:space-y-4">
+                    <h4 className="text-base sm:text-lg font-semibold text-gray-800">20s & 30s - Building Foundation</h4>
+                    <div className="space-y-2 text-gray-600 text-xs sm:text-sm">
                       <p>Start retirement savings as early as possible to maximize compound growth over decades.</p>
                       <ul className="space-y-1 list-disc list-inside">
                         <li>Contribute to employer 401(k) match</li>
@@ -661,9 +660,9 @@ export default function RetirementCalculator() {
                       </ul>
                     </div>
                   </div>
-                  <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-gray-800">40s & 50s - Acceleration Phase</h4>
-                    <div className="space-y-2 text-gray-600 text-sm">
+                  <div className="space-y-3 sm:space-y-4">
+                    <h4 className="text-base sm:text-lg font-semibold text-gray-800">40s & 50s - Acceleration Phase</h4>
+                    <div className="space-y-2 text-gray-600 text-xs sm:text-sm">
                       <p>Increase savings rate as income grows and utilize catch-up contributions for accelerated growth.</p>
                       <ul className="space-y-1 list-disc list-inside">
                         <li>Maximize 401(k) contributions</li>
@@ -674,9 +673,9 @@ export default function RetirementCalculator() {
                       </ul>
                     </div>
                   </div>
-                  <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-gray-800">60s+ - Pre-Retirement</h4>
-                    <div className="space-y-2 text-gray-600 text-sm">
+                  <div className="space-y-3 sm:space-y-4">
+                    <h4 className="text-base sm:text-lg font-semibold text-gray-800">60s+ - Pre-Retirement</h4>
+                    <div className="space-y-2 text-gray-600 text-xs sm:text-sm">
                       <p>Focus on preservation and prepare for retirement income distribution strategies.</p>
                       <ul className="space-y-1 list-disc list-inside">
                         <li>Shift to conservative investments</li>
@@ -692,50 +691,50 @@ export default function RetirementCalculator() {
             </Card>
 
             {/* Investment Returns and Risk */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Expected Investment Returns</h3>
-                  <div className="space-y-4 text-gray-600">
-                    <div className="border-l-4 border-blue-500 pl-4">
-                      <h4 className="font-semibold text-gray-800 mb-2">Conservative Portfolio (4-6%)</h4>
-                      <p className="text-sm">Heavy allocation to bonds and cash equivalents. Lower risk but reduced growth potential.</p>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+                <CardContent className="p-4 sm:p-6 md:p-8">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Expected Investment Returns</h3>
+                  <div className="space-y-3 sm:space-y-4 text-gray-600">
+                    <div className="border-l-4 border-blue-500 pl-3 sm:pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-1 sm:mb-2 text-sm sm:text-base">Conservative Portfolio (4-6%)</h4>
+                      <p className="text-xs sm:text-sm">Heavy allocation to bonds and cash equivalents. Lower risk but reduced growth potential.</p>
                     </div>
-                    <div className="border-l-4 border-green-500 pl-4">
-                      <h4 className="font-semibold text-gray-800 mb-2">Moderate Portfolio (6-8%)</h4>
-                      <p className="text-sm">Balanced mix of stocks and bonds. Commonly used for retirement planning calculations.</p>
+                    <div className="border-l-4 border-green-500 pl-3 sm:pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-1 sm:mb-2 text-sm sm:text-base">Moderate Portfolio (6-8%)</h4>
+                      <p className="text-xs sm:text-sm">Balanced mix of stocks and bonds. Commonly used for retirement planning calculations.</p>
                     </div>
-                    <div className="border-l-4 border-orange-500 pl-4">
-                      <h4 className="font-semibold text-gray-800 mb-2">Aggressive Portfolio (8-10%)</h4>
-                      <p className="text-sm">Stock-heavy allocation with higher growth potential but increased volatility.</p>
+                    <div className="border-l-4 border-orange-500 pl-3 sm:pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-1 sm:mb-2 text-sm sm:text-base">Aggressive Portfolio (8-10%)</h4>
+                      <p className="text-xs sm:text-sm">Stock-heavy allocation with higher growth potential but increased volatility.</p>
                     </div>
-                    <div className="border-l-4 border-purple-500 pl-4">
-                      <h4 className="font-semibold text-gray-800 mb-2">Historical Stock Market (10%)</h4>
-                      <p className="text-sm">Long-term average return of the S&P 500, including dividends and reinvestment.</p>
+                    <div className="border-l-4 border-purple-500 pl-3 sm:pl-4">
+                      <h4 className="font-semibold text-gray-800 mb-1 sm:mb-2 text-sm sm:text-base">Historical Stock Market (10%)</h4>
+                      <p className="text-xs sm:text-sm">Long-term average return of the S&P 500, including dividends and reinvestment.</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Retirement Savings Milestones</h3>
-                  <div className="space-y-4 text-gray-600">
-                    <div className="bg-blue-50 rounded-lg p-4">
-                      <h4 className="font-semibold text-blue-800 mb-2">By Age 30</h4>
-                      <p className="text-sm text-blue-700">Save 1x your annual salary in retirement accounts to stay on track.</p>
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+                <CardContent className="p-4 sm:p-6 md:p-8">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Retirement Savings Milestones</h3>
+                  <div className="space-y-3 sm:space-y-4 text-gray-600">
+                    <div className="bg-blue-50 rounded-lg p-3 sm:p-4">
+                      <h4 className="font-semibold text-blue-800 mb-1 sm:mb-2 text-sm sm:text-base">By Age 30</h4>
+                      <p className="text-xs sm:text-sm text-blue-700">Save 1x your annual salary in retirement accounts to stay on track.</p>
                     </div>
-                    <div className="bg-green-50 rounded-lg p-4">
-                      <h4 className="font-semibold text-green-800 mb-2">By Age 40</h4>
-                      <p className="text-sm text-green-700">Accumulate 3x your annual salary for comfortable retirement planning.</p>
+                    <div className="bg-green-50 rounded-lg p-3 sm:p-4">
+                      <h4 className="font-semibold text-green-800 mb-1 sm:mb-2 text-sm sm:text-base">By Age 40</h4>
+                      <p className="text-xs sm:text-sm text-green-700">Accumulate 3x your annual salary for comfortable retirement planning.</p>
                     </div>
-                    <div className="bg-orange-50 rounded-lg p-4">
-                      <h4 className="font-semibold text-orange-800 mb-2">By Age 50</h4>
-                      <p className="text-sm text-orange-700">Target 6x your annual salary and utilize catch-up contributions.</p>
+                    <div className="bg-orange-50 rounded-lg p-3 sm:p-4">
+                      <h4 className="font-semibold text-orange-800 mb-1 sm:mb-2 text-sm sm:text-base">By Age 50</h4>
+                      <p className="text-xs sm:text-sm text-orange-700">Target 6x your annual salary and utilize catch-up contributions.</p>
                     </div>
-                    <div className="bg-purple-50 rounded-lg p-4">
-                      <h4 className="font-semibold text-purple-800 mb-2">By Age 60</h4>
-                      <p className="text-sm text-purple-700">Reach 10x your annual salary for financial independence and flexibility.</p>
+                    <div className="bg-purple-50 rounded-lg p-3 sm:p-4">
+                      <h4 className="font-semibold text-purple-800 mb-1 sm:mb-2 text-sm sm:text-base">By Age 60</h4>
+                      <p className="text-xs sm:text-sm text-purple-700">Reach 10x your annual salary for financial independence and flexibility.</p>
                     </div>
                   </div>
                 </CardContent>
@@ -743,44 +742,44 @@ export default function RetirementCalculator() {
             </div>
 
             {/* Retirement Planning FAQs */}
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-8">Retirement Planning Frequently Asked Questions</h3>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  <div className="space-y-6">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">Retirement Planning Frequently Asked Questions</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+                  <div className="space-y-4 sm:space-y-6">
                     <div>
-                      <h4 className="font-semibold text-gray-800 mb-2">How much should I save for retirement?</h4>
-                      <p className="text-gray-600 text-sm">Financial experts recommend saving 10-15% of your income for retirement. This includes employer matches. The earlier you start, the less you need to save monthly due to compound interest.</p>
+                      <h4 className="font-semibold text-gray-800 mb-1 sm:mb-2 text-sm sm:text-base">How much should I save for retirement?</h4>
+                      <p className="text-gray-600 text-xs sm:text-sm">Financial experts recommend saving 10-15% of your income for retirement. This includes employer matches. The earlier you start, the less you need to save monthly due to compound interest.</p>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-800 mb-2">When should I start retirement planning?</h4>
-                      <p className="text-gray-600 text-sm">Start as early as possible, ideally in your 20s. Even small contributions in your early career can grow significantly over decades due to the power of compound interest.</p>
+                      <h4 className="font-semibold text-gray-800 mb-1 sm:mb-2 text-sm sm:text-base">When should I start retirement planning?</h4>
+                      <p className="text-gray-600 text-xs sm:text-sm">Start as early as possible, ideally in your 20s. Even small contributions in your early career can grow significantly over decades due to the power of compound interest.</p>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-800 mb-2">What is the difference between 401(k) and IRA?</h4>
-                      <p className="text-gray-600 text-sm">A 401(k) is employer-sponsored with higher contribution limits and potential employer matching. IRAs are individual accounts with more investment options but lower contribution limits.</p>
+                      <h4 className="font-semibold text-gray-800 mb-1 sm:mb-2 text-sm sm:text-base">What is the difference between 401(k) and IRA?</h4>
+                      <p className="text-gray-600 text-xs sm:text-sm">A 401(k) is employer-sponsored with higher contribution limits and potential employer matching. IRAs are individual accounts with more investment options but lower contribution limits.</p>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-800 mb-2">Should I prioritize 401(k) or IRA contributions?</h4>
-                      <p className="text-gray-600 text-sm">First, contribute enough to your 401(k) to get the full employer match, then consider maxing out an IRA for better investment options, then return to maxing out your 401(k).</p>
+                      <h4 className="font-semibold text-gray-800 mb-1 sm:mb-2 text-sm sm:text-base">Should I prioritize 401(k) or IRA contributions?</h4>
+                      <p className="text-gray-600 text-xs sm:text-sm">First, contribute enough to your 401(k) to get the full employer match, then consider maxing out an IRA for better investment options, then return to maxing out your 401(k).</p>
                     </div>
                   </div>
-                  <div className="space-y-6">
+                  <div className="space-y-4 sm:space-y-6">
                     <div>
-                      <h4 className="font-semibold text-gray-800 mb-2">How does inflation affect retirement planning?</h4>
-                      <p className="text-gray-600 text-sm">Inflation erodes purchasing power over time. Plan for 2-3% annual inflation by investing in growth assets and adjusting your retirement income projections accordingly.</p>
+                      <h4 className="font-semibold text-gray-800 mb-1 sm:mb-2 text-sm sm:text-base">How does inflation affect retirement planning?</h4>
+                      <p className="text-gray-600 text-xs sm:text-sm">Inflation erodes purchasing power over time. Plan for 2-3% annual inflation by investing in growth assets and adjusting your retirement income projections accordingly.</p>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-800 mb-2">What happens if I start retirement planning late?</h4>
-                      <p className="text-gray-600 text-sm">You'll need to save a higher percentage of your income and may need to work longer or adjust retirement lifestyle expectations. Catch-up contributions help those 50 and older.</p>
+                      <h4 className="font-semibold text-gray-800 mb-1 sm:mb-2 text-sm sm:text-base">What happens if I start retirement planning late?</h4>
+                      <p className="text-gray-600 text-xs sm:text-sm">You'll need to save a higher percentage of your income and may need to work longer or adjust retirement lifestyle expectations. Catch-up contributions help those 50 and older.</p>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-800 mb-2">How much will I need in retirement?</h4>
-                      <p className="text-gray-600 text-sm">A common rule is 70-80% of your pre-retirement income. However, this varies based on your lifestyle, health, and other income sources like Social Security.</p>
+                      <h4 className="font-semibold text-gray-800 mb-1 sm:mb-2 text-sm sm:text-base">How much will I need in retirement?</h4>
+                      <p className="text-gray-600 text-xs sm:text-sm">A common rule is 70-80% of your pre-retirement income. However, this varies based on your lifestyle, health, and other income sources like Social Security.</p>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-800 mb-2">Should I pay off debt before saving for retirement?</h4>
-                      <p className="text-gray-600 text-sm">Prioritize high-interest debt (credit cards) first, but don't skip employer 401(k) matching. For lower-interest debt like mortgages, you can often save for retirement simultaneously.</p>
+                      <h4 className="font-semibold text-gray-800 mb-1 sm:mb-2 text-sm sm:text-base">Should I pay off debt before saving for retirement?</h4>
+                      <p className="text-gray-600 text-xs sm:text-sm">Prioritize high-interest debt (credit cards) first, but don't skip employer 401(k) matching. For lower-interest debt like mortgages, you can often save for retirement simultaneously.</p>
                     </div>
                   </div>
                 </div>
@@ -788,16 +787,16 @@ export default function RetirementCalculator() {
             </Card>
 
             {/* Social Security and Medicare */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-                <CardContent className="p-8">
-                  <h3 className="text-xl font-bold text-gray-900 mb-6">Social Security Planning</h3>
-                  <div className="space-y-4 text-gray-600">
-                    <p className="text-sm">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+                <CardContent className="p-4 sm:p-6 md:p-8">
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-4 sm:mb-6">Social Security Planning</h3>
+                  <div className="space-y-3 sm:space-y-4 text-gray-600">
+                    <p className="text-xs sm:text-sm">
                       Social Security provides a foundation for retirement income but shouldn't be your only source.
                     </p>
                     <div className="space-y-2">
-                      <h4 className="font-semibold text-green-800 text-sm">Key Considerations:</h4>
+                      <h4 className="font-semibold text-green-800 text-xs sm:text-sm">Key Considerations:</h4>
                       <ul className="text-xs space-y-1 list-disc list-inside text-green-700">
                         <li>Full retirement age varies by birth year</li>
                         <li>Early claiming reduces benefits permanently</li>
@@ -809,15 +808,15 @@ export default function RetirementCalculator() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-                <CardContent className="p-8">
-                  <h3 className="text-xl font-bold text-gray-900 mb-6">Healthcare in Retirement</h3>
-                  <div className="space-y-4 text-gray-600">
-                    <p className="text-sm">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+                <CardContent className="p-4 sm:p-6 md:p-8">
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-4 sm:mb-6">Healthcare in Retirement</h3>
+                  <div className="space-y-3 sm:space-y-4 text-gray-600">
+                    <p className="text-xs sm:text-sm">
                       Healthcare costs typically increase in retirement and Medicare doesn't cover everything.
                     </p>
                     <div className="space-y-2">
-                      <h4 className="font-semibold text-blue-800 text-sm">Planning Tips:</h4>
+                      <h4 className="font-semibold text-blue-800 text-xs sm:text-sm">Planning Tips:</h4>
                       <ul className="text-xs space-y-1 list-disc list-inside text-blue-700">
                         <li>Understand Medicare parts A, B, C, and D</li>
                         <li>Consider Medigap insurance</li>
@@ -829,15 +828,15 @@ export default function RetirementCalculator() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-                <CardContent className="p-8">
-                  <h3 className="text-xl font-bold text-gray-900 mb-6">Estate Planning</h3>
-                  <div className="space-y-4 text-gray-600">
-                    <p className="text-sm">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+                <CardContent className="p-4 sm:p-6 md:p-8">
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-4 sm:mb-6">Estate Planning</h3>
+                  <div className="space-y-3 sm:space-y-4 text-gray-600">
+                    <p className="text-xs sm:text-sm">
                       Proper estate planning ensures your retirement savings benefit your intended beneficiaries.
                     </p>
                     <div className="space-y-2">
-                      <h4 className="font-semibold text-purple-800 text-sm">Essential Documents:</h4>
+                      <h4 className="font-semibold text-purple-800 text-xs sm:text-sm">Essential Documents:</h4>
                       <ul className="text-xs space-y-1 list-disc list-inside text-purple-700">
                         <li>Will and testament</li>
                         <li>Power of attorney</li>
@@ -851,36 +850,36 @@ export default function RetirementCalculator() {
             </div>
 
             {/* Common Retirement Mistakes */}
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Common Retirement Planning Mistakes to Avoid</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-4">
-                    <div className="bg-red-50 border-l-4 border-red-400 p-4 rounded-r-lg">
-                      <h4 className="font-semibold text-red-800 mb-2">Starting Too Late</h4>
-                      <p className="text-red-700 text-sm">Delaying retirement savings reduces the power of compound interest. Start immediately, even with small amounts.</p>
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Common Retirement Planning Mistakes to Avoid</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                  <div className="space-y-3 sm:space-y-4">
+                    <div className="bg-red-50 border-l-4 border-red-400 p-3 sm:p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-red-800 mb-1 sm:mb-2 text-sm sm:text-base">Starting Too Late</h4>
+                      <p className="text-red-700 text-xs sm:text-sm">Delaying retirement savings reduces the power of compound interest. Start immediately, even with small amounts.</p>
                     </div>
-                    <div className="bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r-lg">
-                      <h4 className="font-semibold text-orange-800 mb-2">Not Taking Employer Match</h4>
-                      <p className="text-orange-700 text-sm">Failing to contribute enough for full employer matching is leaving free money on the table.</p>
+                    <div className="bg-orange-50 border-l-4 border-orange-400 p-3 sm:p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-orange-800 mb-1 sm:mb-2 text-sm sm:text-base">Not Taking Employer Match</h4>
+                      <p className="text-orange-700 text-xs sm:text-sm">Failing to contribute enough for full employer matching is leaving free money on the table.</p>
                     </div>
-                    <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg">
-                      <h4 className="font-semibold text-yellow-800 mb-2">Cashing Out 401(k) Early</h4>
-                      <p className="text-yellow-700 text-sm">Early withdrawals incur penalties and taxes, plus you lose years of potential compound growth.</p>
+                    <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3 sm:p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-yellow-800 mb-1 sm:mb-2 text-sm sm:text-base">Cashing Out 401(k) Early</h4>
+                      <p className="text-yellow-700 text-xs sm:text-sm">Early withdrawals incur penalties and taxes, plus you lose years of potential compound growth.</p>
                     </div>
                   </div>
-                  <div className="space-y-4">
-                    <div className="bg-blue-50 border-l-4 border-blue-400 p-4 rounded-r-lg">
-                      <h4 className="font-semibold text-blue-800 mb-2">Underestimating Healthcare Costs</h4>
-                      <p className="text-blue-700 text-sm">Healthcare expenses typically increase with age. Plan for higher medical costs in retirement.</p>
+                  <div className="space-y-3 sm:space-y-4">
+                    <div className="bg-blue-50 border-l-4 border-blue-400 p-3 sm:p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-blue-800 mb-1 sm:mb-2 text-sm sm:text-base">Underestimating Healthcare Costs</h4>
+                      <p className="text-blue-700 text-xs sm:text-sm">Healthcare expenses typically increase with age. Plan for higher medical costs in retirement.</p>
                     </div>
-                    <div className="bg-purple-50 border-l-4 border-purple-400 p-4 rounded-r-lg">
-                      <h4 className="font-semibold text-purple-800 mb-2">Ignoring Inflation</h4>
-                      <p className="text-purple-700 text-sm">Inflation reduces purchasing power over time. Invest in growth assets to combat inflation's effects.</p>
+                    <div className="bg-purple-50 border-l-4 border-purple-400 p-3 sm:p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-purple-800 mb-1 sm:mb-2 text-sm sm:text-base">Ignoring Inflation</h4>
+                      <p className="text-purple-700 text-xs sm:text-sm">Inflation reduces purchasing power over time. Invest in growth assets to combat inflation's effects.</p>
                     </div>
-                    <div className="bg-green-50 border-l-4 border-green-400 p-4 rounded-r-lg">
-                      <h4 className="font-semibold text-green-800 mb-2">Not Diversifying Investments</h4>
-                      <p className="text-green-700 text-sm">Putting all retirement savings in one investment type increases risk. Diversify across asset classes.</p>
+                    <div className="bg-green-50 border-l-4 border-green-400 p-3 sm:p-4 rounded-r-lg">
+                      <h4 className="font-semibold text-green-800 mb-1 sm:mb-2 text-sm sm:text-base">Not Diversifying Investments</h4>
+                      <p className="text-green-700 text-xs sm:text-sm">Putting all retirement savings in one investment type increases risk. Diversify across asset classes.</p>
                     </div>
                   </div>
                 </div>
@@ -888,56 +887,56 @@ export default function RetirementCalculator() {
             </Card>
 
             {/* Retirement Income Sources */}
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Building Multiple Retirement Income Streams</h3>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-gray-800">Primary Income Sources</h4>
-                    <div className="space-y-3 text-gray-600">
-                      <div className="flex items-start gap-3">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                        <span className="text-sm">401(k), 403(b), and other employer-sponsored retirement plans</span>
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Building Multiple Retirement Income Streams</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+                  <div className="space-y-3 sm:space-y-4">
+                    <h4 className="text-base sm:text-lg font-semibold text-gray-800">Primary Income Sources</h4>
+                    <div className="space-y-2 sm:space-y-3 text-gray-600">
+                      <div className="flex items-start gap-2 sm:gap-3">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-1 sm:mt-2 flex-shrink-0"></div>
+                        <span className="text-xs sm:text-sm">401(k), 403(b), and other employer-sponsored retirement plans</span>
                       </div>
-                      <div className="flex items-start gap-3">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                        <span className="text-sm">Traditional and Roth IRAs for tax-advantaged savings</span>
+                      <div className="flex items-start gap-2 sm:gap-3">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-1 sm:mt-2 flex-shrink-0"></div>
+                        <span className="text-xs sm:text-sm">Traditional and Roth IRAs for tax-advantaged savings</span>
                       </div>
-                      <div className="flex items-start gap-3">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                        <span className="text-sm">Social Security benefits based on work history</span>
+                      <div className="flex items-start gap-2 sm:gap-3">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-1 sm:mt-2 flex-shrink-0"></div>
+                        <span className="text-xs sm:text-sm">Social Security benefits based on work history</span>
                       </div>
-                      <div className="flex items-start gap-3">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                        <span className="text-sm">Pension plans from current or former employers</span>
+                      <div className="flex items-start gap-2 sm:gap-3">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full mt-1 sm:mt-2 flex-shrink-0"></div>
+                        <span className="text-xs sm:text-sm">Pension plans from current or former employers</span>
                       </div>
                     </div>
                   </div>
-                  <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-gray-800">Supplemental Income Sources</h4>
-                    <div className="space-y-3 text-gray-600">
-                      <div className="flex items-start gap-3">
-                        <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                        <span className="text-sm">Taxable investment accounts for additional flexibility</span>
+                  <div className="space-y-3 sm:space-y-4">
+                    <h4 className="text-base sm:text-lg font-semibold text-gray-800">Supplemental Income Sources</h4>
+                    <div className="space-y-2 sm:space-y-3 text-gray-600">
+                      <div className="flex items-start gap-2 sm:gap-3">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mt-1 sm:mt-2 flex-shrink-0"></div>
+                        <span className="text-xs sm:text-sm">Taxable investment accounts for additional flexibility</span>
                       </div>
-                      <div className="flex items-start gap-3">
-                        <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                        <span className="text-sm">Real estate investments and rental income</span>
+                      <div className="flex items-start gap-2 sm:gap-3">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mt-1 sm:mt-2 flex-shrink-0"></div>
+                        <span className="text-xs sm:text-sm">Real estate investments and rental income</span>
                       </div>
-                      <div className="flex items-start gap-3">
-                        <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                        <span className="text-sm">Part-time work or consulting in retirement</span>
+                      <div className="flex items-start gap-2 sm:gap-3">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mt-1 sm:mt-2 flex-shrink-0"></div>
+                        <span className="text-xs sm:text-sm">Part-time work or consulting in retirement</span>
                       </div>
-                      <div className="flex items-start gap-3">
-                        <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                        <span className="text-sm">Annuities for guaranteed income streams</span>
+                      <div className="flex items-start gap-2 sm:gap-3">
+                        <div className="w-2 h-2 bg-green-500 rounded-full mt-1 sm:mt-2 flex-shrink-0"></div>
+                        <span className="text-xs sm:text-sm">Annuities for guaranteed income streams</span>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg">
-                  <h4 className="font-semibold text-blue-800 mb-2">Diversification Strategy</h4>
-                  <p className="text-blue-700 text-sm">
+                <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg">
+                  <h4 className="font-semibold text-blue-800 mb-1 sm:mb-2 text-sm sm:text-base">Diversification Strategy</h4>
+                  <p className="text-blue-700 text-xs sm:text-sm">
                     Create multiple income streams to reduce dependence on any single source. This approach provides 
                     financial security and flexibility to adapt to changing economic conditions during retirement.
                   </p>
