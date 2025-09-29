@@ -403,7 +403,7 @@ export default function InvestmentReturnCalculator() {
                         {showBreakdown ? 'Hide' : 'Show'} Monthly Breakdown
                       </Button>
                     </div>
-                  )}</div>
+                  )}
                 </div>
 
                 {/* Results Section */}
