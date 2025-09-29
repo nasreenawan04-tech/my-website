@@ -369,7 +369,7 @@ export default function InvestmentReturnCalculator() {
                         Adjust returns for inflation to see real purchasing power
                       </p>
                     </div>
-                  </div></div>
+                  </div>
 
                   {/* Action Buttons */}
                   <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
