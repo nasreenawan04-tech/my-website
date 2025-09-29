@@ -329,46 +329,46 @@ export default function StockProfitCalculator() {
       
       <main>
         {/* Hero Section */}
-        <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32 overflow-hidden">
+        <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="space-y-4 sm:space-y-6 md:space-y-7 lg:space-y-8">
-              <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+          <div className="relative max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
+            <div className="space-y-4 sm:space-y-6 md:space-y-8">
+              <div className="inline-flex items-center px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
                 <span className="text-xs sm:text-sm font-medium text-blue-700">Professional Stock Calculator</span>
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-slate-900 leading-tight tracking-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0">
                 <span className="block">Smart Stock</span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
                   Profit Calculator
                 </span>
               </h1>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-slate-600 max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto leading-relaxed px-2 sm:px-0">
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
                 Calculate stock profits, losses, and returns with advanced tax optimization and fee analysis
               </p>
             </div>
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
           {/* Main Calculator Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+              <div className="flex flex-col">
                 {/* Input Section */}
-                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
-                  <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Stock Investment Configuration</h2>
-                    <p className="text-gray-600">Enter your stock details to get accurate profit calculations</p>
+                <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
+                  <div className="text-center sm:text-left">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Stock Investment Configuration</h2>
+                    <p className="text-sm sm:text-base text-gray-600">Enter your stock details to get accurate profit calculations</p>
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
                     {/* Country Selection */}
-                    <div className="space-y-3">
-                      <Label htmlFor="country" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="country" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Country (Tax Rates)
                       </Label>
                       <Select value={country} onValueChange={handleCountryChange}>
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg">
+                        <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -385,12 +385,12 @@ export default function StockProfitCalculator() {
                     </div>
 
                     {/* Currency Selection */}
-                    <div className="space-y-3">
-                      <Label htmlFor="currency" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="currency" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Currency
                       </Label>
                       <Select value={currency} onValueChange={setCurrency}>
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg">
+                        <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -411,16 +411,16 @@ export default function StockProfitCalculator() {
 
                   {/* Calculation Type Tabs */}
                   <Tabs value={calculationType} onValueChange={setCalculationType} className="w-full">
-                    <TabsList className="grid w-full grid-cols-3 h-12">
-                      <TabsTrigger value="profit-loss" className="text-sm">Profit/Loss</TabsTrigger>
-                      <TabsTrigger value="target-price" className="text-sm">Target Price</TabsTrigger>
-                      <TabsTrigger value="portfolio-value" className="text-sm">Portfolio Value</TabsTrigger>
+                    <TabsList className="grid w-full grid-cols-3 h-10 sm:h-12 md:h-14 bg-gray-100 rounded-lg sm:rounded-xl p-1">
+                      <TabsTrigger value="profit-loss" className="h-full text-xs sm:text-sm md:text-base font-semibold rounded-md sm:rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-sm">Profit/Loss</TabsTrigger>
+                      <TabsTrigger value="target-price" className="h-full text-xs sm:text-sm md:text-base font-semibold rounded-md sm:rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-sm">Target Price</TabsTrigger>
+                      <TabsTrigger value="portfolio-value" className="h-full text-xs sm:text-sm md:text-base font-semibold rounded-md sm:rounded-lg data-[state=active]:bg-white data-[state=active]:shadow-sm">Portfolio Value</TabsTrigger>
                     </TabsList>
 
-                    <TabsContent value="profit-loss" className="space-y-6 mt-6">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="space-y-3">
-                          <Label htmlFor="buy-price" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <TabsContent value="profit-loss" className="space-y-4 sm:space-y-6 mt-4 sm:mt-6 md:mt-8">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="buy-price" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Buy Price
                           </Label>
                           <div className="relative">
@@ -429,15 +429,15 @@ export default function StockProfitCalculator() {
                               type="number"
                               value={buyPrice}
                               onChange={(e) => setBuyPrice(e.target.value)}
-                              className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                               placeholder="100.00"
                               min="0"
                               step="0.01"
                             />
                           </div>
                         </div>
-                        <div className="space-y-3">
-                          <Label htmlFor="sell-price" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="sell-price" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Sell Price
                           </Label>
                           <div className="relative">
@@ -446,7 +446,7 @@ export default function StockProfitCalculator() {
                               type="number"
                               value={sellPrice}
                               onChange={(e) => setSellPrice(e.target.value)}
-                              className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                               placeholder="120.00"
                               min="0"
                               step="0.01"
@@ -455,8 +455,8 @@ export default function StockProfitCalculator() {
                         </div>
                       </div>
 
-                      <div className="space-y-3">
-                        <Label htmlFor="shares" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                      <div className="space-y-2 sm:space-y-3">
+                        <Label htmlFor="shares" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                           Number of Shares
                         </Label>
                         <Input
@@ -464,16 +464,16 @@ export default function StockProfitCalculator() {
                           type="number"
                           value={shares}
                           onChange={(e) => setShares(e.target.value)}
-                          className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="100"
                           min="0"
                           step="1"
                         />
                       </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="space-y-3">
-                          <Label htmlFor="brokerage-fee" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="brokerage-fee" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Brokerage Fee (%)
                           </Label>
                           <div className="relative">
@@ -482,17 +482,17 @@ export default function StockProfitCalculator() {
                               type="number"
                               value={brokerageFeePercent}
                               onChange={(e) => setBrokerageFeePercent(e.target.value)}
-                              className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                               placeholder="0.1"
                               min="0"
                               max="10"
                               step="0.01"
                             />
-                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
+                            <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
                           </div>
                         </div>
-                        <div className="space-y-3">
-                          <Label htmlFor="tax-rate" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="tax-rate" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Tax Rate (%)
                           </Label>
                           <div className="relative">
@@ -501,19 +501,19 @@ export default function StockProfitCalculator() {
                               type="number"
                               value={taxRate}
                               onChange={(e) => setTaxRate(e.target.value)}
-                              className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                               placeholder="15"
                               min="0"
                               max="50"
                               step="0.1"
                             />
-                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
+                            <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
                           </div>
                         </div>
                       </div>
 
-                      <div className="space-y-3">
-                        <Label htmlFor="holding-period" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                      <div className="space-y-2 sm:space-y-3">
+                        <Label htmlFor="holding-period" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                           Holding Period (Days)
                         </Label>
                         <Input
@@ -521,7 +521,7 @@ export default function StockProfitCalculator() {
                           type="number"
                           value={holdingPeriod}
                           onChange={(e) => setHoldingPeriod(e.target.value)}
-                          className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="365"
                           min="1"
                           max="10000"
@@ -529,10 +529,10 @@ export default function StockProfitCalculator() {
                       </div>
                     </TabsContent>
 
-                    <TabsContent value="target-price" className="space-y-6 mt-6">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="space-y-3">
-                          <Label htmlFor="target-buy-price" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <TabsContent value="target-price" className="space-y-4 sm:space-y-6 mt-4 sm:mt-6 md:mt-8">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="target-buy-price" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Buy Price
                           </Label>
                           <Input
@@ -540,14 +540,14 @@ export default function StockProfitCalculator() {
                             type="number"
                             value={targetBuyPrice}
                             onChange={(e) => setTargetBuyPrice(e.target.value)}
-                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                            className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                             placeholder="50.00"
                             min="0"
                             step="0.01"
                           />
                         </div>
-                        <div className="space-y-3">
-                          <Label htmlFor="target-shares" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="target-shares" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Number of Shares
                           </Label>
                           <Input
@@ -555,7 +555,7 @@ export default function StockProfitCalculator() {
                             type="number"
                             value={targetShares}
                             onChange={(e) => setTargetShares(e.target.value)}
-                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                            className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                             placeholder="200"
                             min="0"
                             step="1"
@@ -563,8 +563,8 @@ export default function StockProfitCalculator() {
                         </div>
                       </div>
 
-                      <div className="space-y-3">
-                        <Label htmlFor="target-profit" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                      <div className="space-y-2 sm:space-y-3">
+                        <Label htmlFor="target-profit" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                           Desired Profit
                         </Label>
                         <Input
@@ -572,16 +572,16 @@ export default function StockProfitCalculator() {
                           type="number"
                           value={targetProfit}
                           onChange={(e) => setTargetProfit(e.target.value)}
-                          className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="2000.00"
                           min="0"
                           step="0.01"
                         />
                       </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="space-y-3">
-                          <Label htmlFor="target-brokerage" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="target-brokerage" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Brokerage Fee (%)
                           </Label>
                           <div className="relative">
@@ -590,17 +590,17 @@ export default function StockProfitCalculator() {
                               type="number"
                               value={targetBrokerageFee}
                               onChange={(e) => setTargetBrokerageFee(e.target.value)}
-                              className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                               placeholder="0.1"
                               min="0"
                               max="10"
                               step="0.01"
                             />
-                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
+                            <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
                           </div>
                         </div>
-                        <div className="space-y-3">
-                          <Label htmlFor="target-tax" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="target-tax" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Tax Rate (%)
                           </Label>
                           <div className="relative">
@@ -609,22 +609,22 @@ export default function StockProfitCalculator() {
                               type="number"
                               value={targetTaxRate}
                               onChange={(e) => setTargetTaxRate(e.target.value)}
-                              className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                               placeholder="15"
                               min="0"
                               max="50"
                               step="0.1"
                             />
-                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
+                            <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
                           </div>
                         </div>
                       </div>
                     </TabsContent>
 
-                    <TabsContent value="portfolio-value" className="space-y-6 mt-6">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="space-y-3">
-                          <Label htmlFor="portfolio-buy-price" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <TabsContent value="portfolio-value" className="space-y-4 sm:space-y-6 mt-4 sm:mt-6 md:mt-8">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="portfolio-buy-price" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Buy Price
                           </Label>
                           <Input
@@ -632,14 +632,14 @@ export default function StockProfitCalculator() {
                             type="number"
                             value={portfolioBuyPrice}
                             onChange={(e) => setPortfolioBuyPrice(e.target.value)}
-                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                            className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                             placeholder="25.00"
                             min="0"
                             step="0.01"
                           />
                         </div>
-                        <div className="space-y-3">
-                          <Label htmlFor="portfolio-current-price" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="portfolio-current-price" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Current Price
                           </Label>
                           <Input
@@ -647,7 +647,7 @@ export default function StockProfitCalculator() {
                             type="number"
                             value={portfolioCurrentPrice}
                             onChange={(e) => setPortfolioCurrentPrice(e.target.value)}
-                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                            className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                             placeholder="35.00"
                             min="0"
                             step="0.01"
@@ -655,8 +655,8 @@ export default function StockProfitCalculator() {
                         </div>
                       </div>
 
-                      <div className="space-y-3">
-                        <Label htmlFor="portfolio-shares" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                      <div className="space-y-2 sm:space-y-3">
+                        <Label htmlFor="portfolio-shares" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                           Number of Shares
                         </Label>
                         <Input
@@ -664,16 +664,16 @@ export default function StockProfitCalculator() {
                           type="number"
                           value={portfolioShares}
                           onChange={(e) => setPortfolioShares(e.target.value)}
-                          className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="500"
                           min="0"
                           step="1"
                         />
                       </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="space-y-3">
-                          <Label htmlFor="portfolio-dividends" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="portfolio-dividends" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Dividends Received
                           </Label>
                           <Input
@@ -681,14 +681,14 @@ export default function StockProfitCalculator() {
                             type="number"
                             value={portfolioDividends}
                             onChange={(e) => setPortfolioDividends(e.target.value)}
-                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                            className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                             placeholder="150.00"
                             min="0"
                             step="0.01"
                           />
                         </div>
-                        <div className="space-y-3">
-                          <Label htmlFor="portfolio-holding-period" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        <div className="space-y-2 sm:space-y-3">
+                          <Label htmlFor="portfolio-holding-period" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Holding Period (Days)
                           </Label>
                           <Input
@@ -696,7 +696,7 @@ export default function StockProfitCalculator() {
                             type="number"
                             value={portfolioHoldingPeriod}
                             onChange={(e) => setPortfolioHoldingPeriod(e.target.value)}
-                            className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                            className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                             placeholder="730"
                             min="1"
                             max="10000"
@@ -707,17 +707,17 @@ export default function StockProfitCalculator() {
                   </Tabs>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 sm:pt-6">
                     <Button
                       onClick={calculateStock}
-                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="flex-1 h-10 sm:h-12 md:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                     >
                       Calculate Stock Returns
                     </Button>
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      className="h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                     >
                       Reset
                     </Button>
@@ -725,8 +725,9 @@ export default function StockProfitCalculator() {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Investment Results</h2>
+                {result ? (
+                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Investment Results</h2>
                   
                   {result ? (
                     <div className="space-y-6">
@@ -820,15 +821,18 @@ export default function StockProfitCalculator() {
                         </p>
                       </div>
                     </div>
-                  ) : (
+                  </div>
+                ) : (
+                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Investment Results</h2>
                     <div className="text-center py-16">
                       <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
                         <div className="text-3xl font-bold text-gray-400">📈</div>
                       </div>
                       <p className="text-gray-500 text-lg">Enter stock details and calculate to see investment results</p>
                     </div>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             </CardContent>
           </Card>
