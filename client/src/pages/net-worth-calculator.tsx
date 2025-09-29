@@ -254,20 +254,20 @@ export default function NetWorthCalculator() {
       
       <main>
         {/* Hero Section */}
-        <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32 overflow-hidden">
+        <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="space-y-4 sm:space-y-6 md:space-y-7 lg:space-y-8">
-              <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+          <div className="relative max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
+            <div className="space-y-4 sm:space-y-6 md:space-y-8">
+              <div className="inline-flex items-center px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
                 <span className="text-xs sm:text-sm font-medium text-blue-700">Professional Net Worth Calculator</span>
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-slate-900 leading-tight tracking-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0">
                 <span className="block">Smart Net Worth</span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
                   Calculator
                 </span>
               </h1>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-slate-600 max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto leading-relaxed px-2 sm:px-0">
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
                 Calculate your total financial worth by tracking all assets and liabilities with comprehensive analysis
               </p>
             </div>
@@ -278,9 +278,9 @@ export default function NetWorthCalculator() {
           {/* Main Calculator Card */}
           <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="flex flex-col lg:grid lg:grid-cols-3 lg:gap-0">
+              <div className="flex flex-col">
                 {/* Input Section */}
-                <div className="lg:col-span-2 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
+                <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
                   <div className="text-center sm:text-left">
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Net Worth Configuration</h2>
                     <p className="text-sm sm:text-base text-gray-600">Enter your assets and liabilities to calculate your financial net worth</p>
@@ -448,15 +448,15 @@ export default function NetWorthCalculator() {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t lg:border-t-0 lg:border-l">
-                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center lg:text-left">Net Worth Summary</h2>
-                  
-                  {result ? (
+                {result ? (
+                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Net Worth Summary</h2>
+                    
                     <div className="space-y-6">
                       {/* Net Worth Highlight */}
                       <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
                         <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Your Net Worth</div>
-                        <div className={`text-4xl font-bold ${result.netWorth >= 0 ? 'text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600' : 'text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-rose-600'}`}>
+                        <div className={`text-2xl sm:text-3xl md:text-4xl font-bold ${result.netWorth >= 0 ? 'text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600' : 'text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-rose-600'}`}>
                           {formatCurrency(result.netWorth)}
                         </div>
                       </div>
@@ -466,7 +466,7 @@ export default function NetWorthCalculator() {
                         <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-6 border border-green-200">
                           <div className="text-center space-y-2">
                             <div className="text-sm font-semibold text-green-700 uppercase tracking-wide">Total Assets</div>
-                            <div className="text-3xl font-bold text-green-600">
+                            <div className="text-2xl sm:text-3xl font-bold text-green-600">
                               {formatCurrency(result.totalAssets)}
                             </div>
                           </div>
@@ -474,7 +474,7 @@ export default function NetWorthCalculator() {
                         <div className="bg-gradient-to-r from-red-50 to-rose-50 rounded-xl p-6 border border-red-200">
                           <div className="text-center space-y-2">
                             <div className="text-sm font-semibold text-red-700 uppercase tracking-wide">Total Liabilities</div>
-                            <div className="text-3xl font-bold text-red-600">
+                            <div className="text-2xl sm:text-3xl font-bold text-red-600">
                               {formatCurrency(result.totalLiabilities)}
                             </div>
                           </div>
@@ -487,8 +487,8 @@ export default function NetWorthCalculator() {
                         <div className="space-y-3">
                           {Object.entries(result.assetBreakdown).map(([category, value]) => (
                             <div key={category} className="flex justify-between items-center py-3 px-4 bg-white rounded-lg border border-gray-100">
-                              <span className="font-medium text-gray-700">{category}</span>
-                              <span className="font-bold text-green-600">{formatCurrency(value)}</span>
+                              <span className="font-medium text-gray-700 text-sm sm:text-base truncate pr-2">{category}</span>
+                              <span className="font-bold text-green-600 text-sm sm:text-base flex-shrink-0">{formatCurrency(value)}</span>
                             </div>
                           ))}
                         </div>
@@ -500,8 +500,8 @@ export default function NetWorthCalculator() {
                         <div className="space-y-3">
                           {Object.entries(result.liabilityBreakdown).map(([category, value]) => (
                             <div key={category} className="flex justify-between items-center py-3 px-4 bg-white rounded-lg border border-gray-100">
-                              <span className="font-medium text-gray-700">{category}</span>
-                              <span className="font-bold text-red-600">{formatCurrency(value)}</span>
+                              <span className="font-medium text-gray-700 text-sm sm:text-base truncate pr-2">{category}</span>
+                              <span className="font-bold text-red-600 text-sm sm:text-base flex-shrink-0">{formatCurrency(value)}</span>
                             </div>
                           ))}
                         </div>
@@ -518,15 +518,18 @@ export default function NetWorthCalculator() {
                         </p>
                       </div>
                     </div>
-                  ) : (
+                  </div>
+                ) : (
+                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Net Worth Summary</h2>
                     <div className="text-center py-16">
                       <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
                         <div className="text-3xl font-bold text-gray-400">$</div>
                       </div>
                       <p className="text-gray-500 text-lg">Enter your assets and liabilities to calculate your net worth</p>
                     </div>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             </CardContent>
           </Card>
