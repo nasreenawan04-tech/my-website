@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -50,13 +51,13 @@ export default function HomeLoanCalculator() {
       // Generate amortization schedule (first 5 years)
       const amortizationSchedule = [];
       let currentBalance = principal;
-
+      
       for (let month = 1; month <= Math.min(60, tenure) && currentBalance > 1; month++) {
         const interestPayment = currentBalance * rate;
         const principalPayment = Math.min(emi - interestPayment, currentBalance);
-
+        
         currentBalance -= principalPayment;
-
+        
         amortizationSchedule.push({
           month,
           emi: Math.round(emi * 100) / 100,
@@ -64,7 +65,7 @@ export default function HomeLoanCalculator() {
           interest: Math.round(interestPayment * 100) / 100,
           balance: Math.max(0, Math.round(currentBalance * 100) / 100)
         });
-
+        
         if (currentBalance <= 1) break;
       }
 
@@ -176,9 +177,9 @@ export default function HomeLoanCalculator() {
           })}
         </script>
       </Helmet>
-
+      
       <Header />
-
+      
       <main>
         {/* Hero Section */}
         <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32 overflow-hidden">
@@ -201,26 +202,26 @@ export default function HomeLoanCalculator() {
           </div>
         </section>
 
-        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
+        <div className="max-w-7xl mx-auto px-4 py-16">
           {/* Main Calculator Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="flex flex-col">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
                 {/* Input Section */}
-                <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
-                  <div className="text-center sm:text-left">
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Home Loan Configuration</h2>
-                    <p className="text-sm sm:text-base text-gray-600">Enter your home loan details to get accurate EMI calculations</p>
+                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
+                  <div>
+                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Home Loan Configuration</h2>
+                    <p className="text-gray-600">Enter your home loan details to get accurate EMI calculations</p>
                   </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {/* Currency Selection */}
-                    <div className="space-y-2 sm:space-y-3">
-                      <Label htmlFor="currency" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-3">
+                      <Label htmlFor="currency" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Currency
                       </Label>
                       <Select value={currency} onValueChange={setCurrency}>
-                        <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-currency">
+                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-currency">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -239,18 +240,18 @@ export default function HomeLoanCalculator() {
                     </div>
 
                     {/* Home Loan Amount */}
-                    <div className="space-y-2 sm:space-y-3">
-                      <Label htmlFor="loan-amount" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-3">
+                      <Label htmlFor="loan-amount" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Home Loan Amount
                       </Label>
                       <div className="relative">
-                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
+                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
                         <Input
                           id="loan-amount"
                           type="number"
                           value={loanAmount}
                           onChange={(e) => setLoanAmount(e.target.value)}
-                          className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                          className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
                           placeholder="500,000"
                           min="0"
                           step="1000"
@@ -260,18 +261,18 @@ export default function HomeLoanCalculator() {
                     </div>
 
                     {/* Down Payment */}
-                    <div className="space-y-2 sm:space-y-3">
-                      <Label htmlFor="down-payment" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-3">
+                      <Label htmlFor="down-payment" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Down Payment
                       </Label>
                       <div className="relative">
-                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
+                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
                         <Input
                           id="down-payment"
                           type="number"
                           value={downPayment}
                           onChange={(e) => setDownPayment(e.target.value)}
-                          className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                          className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
                           placeholder="100,000"
                           min="0"
                           step="1000"
@@ -281,8 +282,8 @@ export default function HomeLoanCalculator() {
                     </div>
 
                     {/* Interest Rate */}
-                    <div className="space-y-2 sm:space-y-3">
-                      <Label htmlFor="interest-rate" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-3">
+                      <Label htmlFor="interest-rate" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Annual Interest Rate
                       </Label>
                       <div className="relative">
@@ -291,32 +292,32 @@ export default function HomeLoanCalculator() {
                           type="number"
                           value={interestRate}
                           onChange={(e) => setInterestRate(e.target.value)}
-                          className="h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                          className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
                           placeholder="8.50"
                           min="0"
                           max="30"
                           step="0.01"
                           data-testid="input-interest-rate"
                         />
-                        <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
+                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
                       </div>
                     </div>
 
                     {/* Loan Tenure */}
-                    <div className="space-y-2 sm:space-y-3 md:col-span-2">
-                      <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">Loan Term</Label>
-                      <div className="grid grid-cols-2 gap-2 sm:gap-3">
+                    <div className="space-y-3 md:col-span-2">
+                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Loan Term</Label>
+                      <div className="grid grid-cols-2 gap-3">
                         <Input
                           type="number"
                           value={loanTenure}
                           onChange={(e) => setLoanTenure(e.target.value)}
-                          className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                          className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
                           placeholder="20"
                           min="1"
                           data-testid="input-loan-tenure"
                         />
                         <Select value={tenureType} onValueChange={setTenureType}>
-                          <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-tenure-type">
+                          <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-tenure-type">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -328,48 +329,48 @@ export default function HomeLoanCalculator() {
                     </div>
 
                     {/* Processing Fee */}
-                    <div className="space-y-2 sm:space-y-3">
-                      <Label htmlFor="processing-fee" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-3">
+                      <Label htmlFor="processing-fee" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Processing Fee (Optional)
                       </Label>
                       <div className="relative">
-                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
+                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
                         <Input
                           id="processing-fee"
                           type="number"
                           value={processingFee}
                           onChange={(e) => setProcessingFee(e.target.value)}
-                          className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                          className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
                           placeholder="2,500"
                           min="0"
                           step="100"
                           data-testid="input-processing-fee"
                         />
                       </div>
-                      <p className="text-xs sm:text-sm text-gray-500">
+                      <p className="text-sm text-gray-500">
                         One-time fee charged by the lender for processing your home loan
                       </p>
                     </div>
                   </div>
 
                   {/* Property Value Display */}
-                  <div className="bg-blue-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border border-blue-200">
-                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-0">
-                      <span className="text-xs sm:text-sm font-semibold text-blue-800 uppercase tracking-wide">Total Property Value</span>
-                      <span className="text-lg sm:text-xl md:text-2xl font-bold text-blue-900 break-all">
+                  <div className="bg-blue-50 rounded-xl p-6 border border-blue-200">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm font-semibold text-blue-800 uppercase tracking-wide">Total Property Value</span>
+                      <span className="text-2xl font-bold text-blue-900">
                         {formatCurrency(getPropertyValue())}
                       </span>
                     </div>
-                    <p className="text-xs sm:text-sm text-blue-700 mt-1 sm:mt-2">
+                    <p className="text-sm text-blue-700 mt-2">
                       Loan Amount + Down Payment = Total Property Cost
                     </p>
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
+                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
                     <Button
                       onClick={calculateHomeLoan}
-                      className="flex-1 h-10 sm:h-12 md:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                       data-testid="button-calculate"
                     >
                       Calculate Home Loan EMI
@@ -377,7 +378,7 @@ export default function HomeLoanCalculator() {
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
+                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
                       data-testid="button-reset"
                     >
                       Reset
@@ -386,12 +387,12 @@ export default function HomeLoanCalculator() {
 
                   {/* Advanced Options */}
                   {result && (
-                    <div className="flex flex-wrap gap-2 sm:gap-3 pt-3 sm:pt-4">
+                    <div className="flex flex-wrap gap-3 pt-4">
                       <Button
                         onClick={() => setShowSchedule(!showSchedule)}
                         variant="outline"
                         size="sm"
-                        className="rounded-lg sm:rounded-full text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2"
+                        className="rounded-full"
                         data-testid="button-show-schedule"
                       >
                         {showSchedule ? 'Hide' : 'Show'} Payment Schedule
@@ -401,84 +402,9 @@ export default function HomeLoanCalculator() {
                 </div>
 
                 {/* Results Section */}
-                {result ? (
-                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
-                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Results</h2>
-
-                    <div className="space-y-4 sm:space-y-6 md:space-y-8" data-testid="home-loan-results">
-                      {/* Monthly EMI Highlight */}
-                      <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 shadow-lg border border-blue-100">
-                        <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-1 sm:mb-2">Monthly EMI</div>
-                        <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 break-all" data-testid="text-monthly-emi">
-                          {formatCurrency(result.emi)}
-                        </div>
-                      </div>
-
-                      {/* Payment Breakdown */}
-                      <div className="space-y-3 sm:space-y-4">
-                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
-                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
-                            <span className="font-medium text-gray-700 text-sm sm:text-base">Principal Amount</span>
-                            <span className="font-bold text-gray-900 text-sm sm:text-base break-all" data-testid="text-principal-amount">
-                              {formatCurrency(result.principalAmount)}
-                            </span>
-                          </div>
-                        </div>
-                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
-                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
-                            <span className="font-medium text-gray-700 text-sm sm:text-base">Total Interest</span>
-                            <span className="font-bold text-orange-600 text-sm sm:text-base break-all" data-testid="text-total-interest">
-                              {formatCurrency(result.totalInterest)}
-                            </span>
-                          </div>
-                        </div>
-                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
-                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
-                            <span className="font-medium text-gray-700 text-sm sm:text-base">Total Amount</span>
-                            <span className="font-bold text-gray-900 text-sm sm:text-base break-all" data-testid="text-total-amount">
-                              {formatCurrency(result.totalAmount)}
-                            </span>
-                          </div>
-                        </div>
-                        {calculateProcessingFee() > 0 && (
-                          <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
-                            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
-                              <span className="font-medium text-gray-700 text-sm sm:text-base">Processing Fee</span>
-                              <span className="font-bold text-orange-600 text-sm sm:text-base break-all" data-testid="text-processing-fee">
-                                {formatCurrency(calculateProcessingFee())}
-                              </span>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Home Loan Guidelines */}
-                      <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border border-green-200">
-                        <h4 className="font-bold text-green-800 mb-3 sm:mb-4 text-sm sm:text-base md:text-lg">Home Loan Guidelines</h4>
-                        <div className="space-y-1 sm:space-2 text-xs sm:text-sm text-green-700">
-                          <p>• EMI should not exceed 40% of monthly income</p>
-                          <p>• Consider property taxes and maintenance costs</p>
-                          <p>• Factor in home insurance premiums</p>
-                          <p>• Keep emergency fund for 6-12 months of EMI</p>
-                          <p>• Property value: <span className="break-all">{formatCurrency(getPropertyValue())}</span></p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
-                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Results</h2>
-
-                    <div className="text-center py-8 sm:py-12 md:py-16" data-testid="no-results">
-                      <div className="w-16 sm:w-20 h-16 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
-                        <div className="text-2xl sm:text-3xl font-bold text-gray-400">🏠</div>
-                      </div>
-                      <p className="text-gray-500 text-sm sm:text-base md:text-lg">Enter home loan details to calculate your EMI</p>
-                    </div>
-                  </div>
-                )}
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
                   <h2 className="text-2xl font-bold text-gray-900 mb-8">Results</h2>
-
+                  
                   {result ? (
                     <div className="space-y-6" data-testid="home-loan-results">
                       {/* Monthly EMI Highlight */}
@@ -554,34 +480,34 @@ export default function HomeLoanCalculator() {
 
           {/* Payment Schedule */}
           {result && showSchedule && result.amortizationSchedule.length > 0 && (
-            <Card className="mt-4 sm:mt-6 md:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-lg sm:rounded-xl md:rounded-2xl">
-              <CardContent className="p-3 sm:p-4 md:p-6 lg:p-8">
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 text-center sm:text-left">Payment Schedule (First 5 Years)</h3>
+            <Card className="mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Payment Schedule (First 5 Years)</h3>
                 <div className="overflow-x-auto">
-                  <table className="w-full min-w-[500px]">
+                  <table className="w-full">
                     <thead>
                       <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
-                        <th className="px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-left font-bold text-gray-900 rounded-l-lg text-xs sm:text-sm md:text-base">Payment #</th>
-                        <th className="px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm md:text-base">EMI</th>
-                        <th className="px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm md:text-base">Principal</th>
-                        <th className="px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm md:text-base">Interest</th>
-                        <th className="px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right font-bold text-gray-900 rounded-r-lg text-xs sm:text-sm md:text-base">Balance</th>
+                        <th className="px-6 py-4 text-left font-bold text-gray-900 rounded-l-lg">Payment #</th>
+                        <th className="px-6 py-4 text-right font-bold text-gray-900">EMI</th>
+                        <th className="px-6 py-4 text-right font-bold text-gray-900">Principal</th>
+                        <th className="px-6 py-4 text-right font-bold text-gray-900">Interest</th>
+                        <th className="px-6 py-4 text-right font-bold text-gray-900 rounded-r-lg">Balance</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100">
                       {result.amortizationSchedule.map((payment, index) => (
                         <tr key={index} className="hover:bg-blue-50 transition-colors">
-                          <td className="px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 font-medium text-gray-900 text-xs sm:text-sm md:text-base">{payment.month}</td>
-                          <td className="px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm md:text-base">
+                          <td className="px-6 py-4 font-medium text-gray-900">{payment.month}</td>
+                          <td className="px-6 py-4 text-right text-gray-900 font-medium">
                             {formatCurrency(payment.emi)}
                           </td>
-                          <td className="px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-green-600 font-bold text-xs sm:text-sm md:text-base">
+                          <td className="px-6 py-4 text-right text-green-600 font-bold">
                             {formatCurrency(payment.principal)}
                           </td>
-                          <td className="px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-orange-600 font-medium text-xs sm:text-sm md:text-base">
+                          <td className="px-6 py-4 text-right text-orange-600 font-medium">
                             {formatCurrency(payment.interest)}
                           </td>
-                          <td className="px-2 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-gray-900 font-bold text-xs sm:text-sm md:text-base">
+                          <td className="px-6 py-4 text-right text-gray-900 font-bold">
                             {formatCurrency(payment.balance)}
                           </td>
                         </tr>
@@ -600,14 +526,14 @@ export default function HomeLoanCalculator() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">What is a Home Loan Calculator?</h3>
                 <div className="space-y-4 text-gray-600">
                   <p>
-                    A home loan calculator is an essential financial planning tool that helps you estimate your monthly
-                    mortgage payments, total interest costs, and overall loan expenses before purchasing a property. Our
-                    free online home loan EMI calculator provides accurate calculations based on your loan amount, interest rate,
+                    A home loan calculator is an essential financial planning tool that helps you estimate your monthly 
+                    mortgage payments, total interest costs, and overall loan expenses before purchasing a property. Our 
+                    free online home loan EMI calculator provides accurate calculations based on your loan amount, interest rate, 
                     and repayment tenure.
                   </p>
                   <p>
-                    Whether you're a first-time homebuyer or looking to refinance your existing mortgage, this calculator
-                    helps you understand the financial commitment involved in home ownership. With support for multiple
+                    Whether you're a first-time homebuyer or looking to refinance your existing mortgage, this calculator 
+                    helps you understand the financial commitment involved in home ownership. With support for multiple 
                     currencies and detailed payment breakdowns, you can make informed decisions about your property investment.
                   </p>
                 </div>
@@ -627,8 +553,8 @@ export default function HomeLoanCalculator() {
                     <li>N = Number of monthly installments</li>
                   </ul>
                   <p>
-                    Our calculator automatically applies this formula and includes additional factors like down payment
-                    analysis, processing fees, and total property value calculations to give you a comprehensive view
+                    Our calculator automatically applies this formula and includes additional factors like down payment 
+                    analysis, processing fees, and total property value calculations to give you a comprehensive view 
                     of your home financing costs.
                   </p>
                 </div>
@@ -702,28 +628,28 @@ export default function HomeLoanCalculator() {
                   <div className="space-y-4">
                     <h4 className="text-lg font-semibold text-gray-800">Fixed-Rate Mortgages</h4>
                     <p className="text-gray-600">
-                      Fixed-rate home loans maintain the same interest rate throughout the loan tenure, providing
+                      Fixed-rate home loans maintain the same interest rate throughout the loan tenure, providing 
                       predictable monthly payments. Use our calculator to determine exact EMI amounts for budget planning.
                     </p>
                   </div>
                   <div className="space-y-4">
                     <h4 className="text-lg font-semibold text-gray-800">Adjustable-Rate Mortgages (ARM)</h4>
                     <p className="text-gray-600">
-                      ARM loans have interest rates that fluctuate based on market conditions. Our calculator helps
+                      ARM loans have interest rates that fluctuate based on market conditions. Our calculator helps 
                       estimate initial payments and understand rate adjustment impacts on your EMI.
                     </p>
                   </div>
                   <div className="space-y-4">
                     <h4 className="text-lg font-semibold text-gray-800">FHA Loans</h4>
                     <p className="text-gray-600">
-                      Federal Housing Administration loans offer lower down payment options for qualified buyers.
+                      Federal Housing Administration loans offer lower down payment options for qualified buyers. 
                       Calculate EMI with different down payment scenarios to find the best fit for your budget.
                     </p>
                   </div>
                   <div className="space-y-4">
                     <h4 className="text-lg font-semibold text-gray-800">VA Loans</h4>
                     <p className="text-gray-600">
-                      Veterans Affairs loans provide favorable terms for eligible military personnel and veterans.
+                      Veterans Affairs loans provide favorable terms for eligible military personnel and veterans. 
                       Our calculator helps determine monthly payments with various VA loan configurations.
                     </p>
                   </div>
@@ -878,8 +804,8 @@ export default function HomeLoanCalculator() {
                 <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg">
                   <h4 className="font-semibold text-blue-800 mb-2">Smart Analysis Tip</h4>
                   <p className="text-blue-700 text-sm">
-                    Use our home loan calculator to determine monthly payments, then compare with rental costs including renter's
-                    insurance. Factor in tax benefits, appreciation potential, and the value of building equity versus investing
+                    Use our home loan calculator to determine monthly payments, then compare with rental costs including renter's 
+                    insurance. Factor in tax benefits, appreciation potential, and the value of building equity versus investing 
                     the down payment elsewhere.
                   </p>
                 </div>
@@ -955,7 +881,7 @@ export default function HomeLoanCalculator() {
           </div>
         </div>
       </main>
-
+      
       <Footer />
     </div>
   );
