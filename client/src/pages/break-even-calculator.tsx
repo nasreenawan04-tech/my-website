@@ -145,100 +145,100 @@ const BreakEvenCalculator = () => {
       
       <main>
         {/* Hero Section */}
-        <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32 overflow-hidden">
+        <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="space-y-4 sm:space-y-6 md:space-y-7 lg:space-y-8">
-              <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+          <div className="relative max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
+            <div className="space-y-4 sm:space-y-6 md:space-y-8">
+              <div className="inline-flex items-center px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
                 <span className="text-xs sm:text-sm font-medium text-blue-700">Professional Business Calculator</span>
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-slate-900 leading-tight tracking-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0">
                 <span className="block">Break-Even</span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
                   Calculator
                 </span>
               </h1>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-slate-600 max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto leading-relaxed px-2 sm:px-0">
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
                 Calculate your business break-even point with comprehensive contribution margin analysis and margin of safety calculations
               </p>
             </div>
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
           {/* Main Calculator Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+              <div className="flex flex-col xl:grid xl:grid-cols-3 xl:gap-0">
                 {/* Input Section */}
-                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
-                  <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Break-Even Configuration</h2>
-                    <p className="text-gray-600">Enter your business details to calculate break-even point</p>
+                <div className="xl:col-span-2 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
+                  <div className="text-center sm:text-left">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Break-Even Configuration</h2>
+                    <p className="text-sm sm:text-base text-gray-600">Enter your business details to calculate break-even point</p>
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                     {/* Currency Selection */}
-                    <div className="space-y-3">
-                      <Label htmlFor="currency" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="currency" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Currency
                       </Label>
                       <Select value={currency} onValueChange={setCurrency}>
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-currency">
+                        <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-currency">
                           <SelectValue />
                         </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="USD">USD - US Dollar</SelectItem>
-                          <SelectItem value="EUR">EUR - Euro</SelectItem>
-                          <SelectItem value="GBP">GBP - British Pound</SelectItem>
-                          <SelectItem value="INR">INR - Indian Rupee</SelectItem>
-                          <SelectItem value="JPY">JPY - Japanese Yen</SelectItem>
-                          <SelectItem value="CAD">CAD - Canadian Dollar</SelectItem>
-                          <SelectItem value="AUD">AUD - Australian Dollar</SelectItem>
-                          <SelectItem value="CNY">CNY - Chinese Yuan</SelectItem>
-                          <SelectItem value="BRL">BRL - Brazilian Real</SelectItem>
-                          <SelectItem value="MXN">MXN - Mexican Peso</SelectItem>
+                        <SelectContent className="max-h-60 overflow-y-auto">
+                          <SelectItem value="USD" className="text-sm sm:text-base">USD - US Dollar</SelectItem>
+                          <SelectItem value="EUR" className="text-sm sm:text-base">EUR - Euro</SelectItem>
+                          <SelectItem value="GBP" className="text-sm sm:text-base">GBP - British Pound</SelectItem>
+                          <SelectItem value="INR" className="text-sm sm:text-base">INR - Indian Rupee</SelectItem>
+                          <SelectItem value="JPY" className="text-sm sm:text-base">JPY - Japanese Yen</SelectItem>
+                          <SelectItem value="CAD" className="text-sm sm:text-base">CAD - Canadian Dollar</SelectItem>
+                          <SelectItem value="AUD" className="text-sm sm:text-base">AUD - Australian Dollar</SelectItem>
+                          <SelectItem value="CNY" className="text-sm sm:text-base">CNY - Chinese Yuan</SelectItem>
+                          <SelectItem value="BRL" className="text-sm sm:text-base">BRL - Brazilian Real</SelectItem>
+                          <SelectItem value="MXN" className="text-sm sm:text-base">MXN - Mexican Peso</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
 
                     {/* Fixed Costs */}
-                    <div className="space-y-3">
-                      <Label htmlFor="fixed-costs" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="fixed-costs" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Total Fixed Costs
                       </Label>
                       <div className="relative">
-                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
                         <Input
                           id="fixed-costs"
                           type="number"
                           value={fixedCosts}
                           onChange={(e) => setFixedCosts(e.target.value)}
-                          className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="10,000"
                           min="0"
                           step="0.01"
                           data-testid="input-fixed-costs"
                         />
                       </div>
-                      <p className="text-sm text-gray-500">
+                      <p className="text-xs sm:text-sm text-gray-500">
                         Include rent, salaries, insurance, and other fixed expenses
                       </p>
                     </div>
 
                     {/* Selling Price Per Unit */}
-                    <div className="space-y-3">
-                      <Label htmlFor="selling-price" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="selling-price" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Selling Price Per Unit
                       </Label>
                       <div className="relative">
-                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
                         <Input
                           id="selling-price"
                           type="number"
                           value={sellingPricePerUnit}
                           onChange={(e) => setSellingPricePerUnit(e.target.value)}
-                          className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="50.00"
                           min="0"
                           step="0.01"
@@ -248,32 +248,32 @@ const BreakEvenCalculator = () => {
                     </div>
 
                     {/* Variable Cost Per Unit */}
-                    <div className="space-y-3">
-                      <Label htmlFor="variable-cost" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="variable-cost" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Variable Cost Per Unit
                       </Label>
                       <div className="relative">
-                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
                         <Input
                           id="variable-cost"
                           type="number"
                           value={variableCostPerUnit}
                           onChange={(e) => setVariableCostPerUnit(e.target.value)}
-                          className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="30.00"
                           min="0"
                           step="0.01"
                           data-testid="input-variable-cost"
                         />
                       </div>
-                      <p className="text-sm text-gray-500">
+                      <p className="text-xs sm:text-sm text-gray-500">
                         Include materials, direct labor, and other variable expenses per unit
                       </p>
                     </div>
 
                     {/* Target Units */}
-                    <div className="space-y-3 md:col-span-2">
-                      <Label htmlFor="target-units" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3 md:col-span-2">
+                      <Label htmlFor="target-units" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Target Units to Sell (Optional)
                       </Label>
                       <Input
@@ -281,23 +281,23 @@ const BreakEvenCalculator = () => {
                         type="number"
                         value={targetUnits}
                         onChange={(e) => setTargetUnits(e.target.value)}
-                        className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                        className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                         placeholder="1000"
                         min="0"
                         step="1"
                         data-testid="input-target-units"
                       />
-                      <p className="text-sm text-gray-500">
+                      <p className="text-xs sm:text-sm text-gray-500">
                         Enter expected sales volume to calculate profit and margin of safety
                       </p>
                     </div>
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                  <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       onClick={calculateBreakEven}
-                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="w-full sm:w-auto sm:flex-1 h-10 sm:h-12 md:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                       data-testid="button-calculate"
                     >
                       Calculate Break-Even
@@ -305,7 +305,7 @@ const BreakEvenCalculator = () => {
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                       data-testid="button-reset"
                     >
                       Reset
@@ -314,41 +314,41 @@ const BreakEvenCalculator = () => {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Break-Even Analysis</h2>
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t xl:border-t-0 xl:border-l">
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Break-Even Analysis</h2>
                   
                   {result ? (
                     <div className="space-y-6" data-testid="break-even-results">
                       {/* Break-Even Units Highlight */}
-                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
-                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Break-Even Units</div>
-                        <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" data-testid="text-break-even-units">
+                      <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 shadow-lg border border-blue-100">
+                        <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-1 sm:mb-2">Break-Even Units</div>
+                        <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 break-words" data-testid="text-break-even-units">
                           {formatNumber(result.breakEvenUnits)}
                         </div>
                       </div>
 
                       {/* Analysis Breakdown */}
-                      <div className="space-y-4">
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Break-Even Revenue</span>
-                            <span className="font-bold text-gray-900" data-testid="text-break-even-revenue">
+                      <div className="space-y-2 sm:space-y-3 md:space-y-4">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Break-Even Revenue</span>
+                            <span className="font-bold text-gray-900 text-sm sm:text-base break-all" data-testid="text-break-even-revenue">
                               {formatCurrency(result.breakEvenRevenue)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Contribution Margin</span>
-                            <span className="font-bold text-green-600" data-testid="text-contribution-margin">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Contribution Margin</span>
+                            <span className="font-bold text-green-600 text-sm sm:text-base break-all" data-testid="text-contribution-margin">
                               {formatCurrency(result.contributionMargin)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Margin Ratio</span>
-                            <span className="font-bold text-purple-600" data-testid="text-contribution-margin-ratio">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Margin Ratio</span>
+                            <span className="font-bold text-purple-600 text-sm sm:text-base" data-testid="text-contribution-margin-ratio">
                               {result.contributionMarginRatio}%
                             </span>
                           </div>
@@ -357,24 +357,24 @@ const BreakEvenCalculator = () => {
 
                       {/* Target Analysis */}
                       {parseFloat(targetUnits) > 0 && (
-                        <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-6 border border-green-200">
-                          <h4 className="font-bold text-green-800 mb-4 text-lg">Target Analysis</h4>
-                          <div className="space-y-3">
-                            <div className="flex justify-between items-center">
-                              <span className="text-green-700 font-medium">Profit at Target Units:</span>
-                              <span className={`font-bold text-lg ${result.profitAtTargetUnits >= 0 ? 'text-green-800' : 'text-red-600'}`} data-testid="text-profit-target">
+                        <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border border-green-200">
+                          <h4 className="font-bold text-green-800 mb-2 sm:mb-3 md:mb-4 text-base sm:text-lg">Target Analysis</h4>
+                          <div className="space-y-2 sm:space-y-3">
+                            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
+                              <span className="text-green-700 font-medium text-sm sm:text-base">Profit at Target Units:</span>
+                              <span className={`font-bold text-sm sm:text-base md:text-lg break-all ${result.profitAtTargetUnits >= 0 ? 'text-green-800' : 'text-red-600'}`} data-testid="text-profit-target">
                                 {formatCurrency(result.profitAtTargetUnits)}
                               </span>
                             </div>
-                            <div className="flex justify-between items-center">
-                              <span className="text-green-700 font-medium">Margin of Safety (Units):</span>
-                              <span className="font-bold text-green-800 text-lg" data-testid="text-margin-safety">
+                            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
+                              <span className="text-green-700 font-medium text-sm sm:text-base">Margin of Safety (Units):</span>
+                              <span className="font-bold text-green-800 text-sm sm:text-base md:text-lg" data-testid="text-margin-safety">
                                 {formatNumber(result.marginOfSafety)}
                               </span>
                             </div>
-                            <div className="flex justify-between items-center">
-                              <span className="text-green-700 font-medium">Margin of Safety (%):</span>
-                              <span className="font-bold text-green-800 text-lg" data-testid="text-margin-safety-percent">
+                            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
+                              <span className="text-green-700 font-medium text-sm sm:text-base">Margin of Safety (%):</span>
+                              <span className="font-bold text-green-800 text-sm sm:text-base md:text-lg" data-testid="text-margin-safety-percent">
                                 {result.marginOfSafetyPercentage}%
                               </span>
                             </div>
@@ -384,10 +384,10 @@ const BreakEvenCalculator = () => {
 
                       {/* Visual Break-Even Chart */}
                       {parseFloat(targetUnits) > 0 && (
-                        <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-                          <h4 className="text-lg font-bold text-gray-900 mb-4">Break-Even Visualization</h4>
-                          <div className="space-y-3">
-                            <div className="w-full bg-gray-200 rounded-full h-6 overflow-hidden">
+                        <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 shadow-sm border border-gray-100">
+                          <h4 className="text-base sm:text-lg font-bold text-gray-900 mb-2 sm:mb-3 md:mb-4">Break-Even Visualization</h4>
+                          <div className="space-y-2 sm:space-y-3">
+                            <div className="w-full bg-gray-200 rounded-full h-4 sm:h-5 md:h-6 overflow-hidden">
                               <div className="flex h-full">
                                 <div 
                                   className="bg-gradient-to-r from-red-400 to-red-500"
@@ -399,13 +399,13 @@ const BreakEvenCalculator = () => {
                                 ></div>
                               </div>
                             </div>
-                            <div className="flex justify-between text-sm">
+                            <div className="flex justify-between text-xs sm:text-sm">
                               <span className="flex items-center font-medium text-gray-600">
-                                <div className="w-3 h-3 bg-red-400 rounded-full mr-2"></div>
+                                <div className="w-2 h-2 sm:w-3 sm:h-3 bg-red-400 rounded-full mr-1 sm:mr-2"></div>
                                 Loss Zone
                               </span>
                               <span className="flex items-center font-medium text-gray-600">
-                                <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                                <div className="w-2 h-2 sm:w-3 sm:h-3 bg-green-500 rounded-full mr-1 sm:mr-2"></div>
                                 Profit Zone
                               </span>
                             </div>
@@ -414,11 +414,11 @@ const BreakEvenCalculator = () => {
                       )}
                     </div>
                   ) : (
-                    <div className="text-center py-16" data-testid="no-results">
-                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <div className="text-3xl font-bold text-gray-400">$</div>
+                    <div className="text-center py-8 sm:py-12 md:py-16" data-testid="no-results">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-gray-200 rounded-full mx-auto mb-3 sm:mb-4 md:mb-6 flex items-center justify-center">
+                        <div className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-400">$</div>
                       </div>
-                      <p className="text-gray-500 text-lg">Enter business details to calculate break-even point</p>
+                      <p className="text-gray-500 text-sm sm:text-base md:text-lg px-2">Enter business details to calculate break-even point</p>
                     </div>
                   )}
                 </div>
@@ -428,7 +428,7 @@ const BreakEvenCalculator = () => {
         </div>
 
         {/* SEO Content Section */}
-        <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
           {/* Educational Content Sections */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
             <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
