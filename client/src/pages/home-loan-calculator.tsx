@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -51,13 +50,13 @@ export default function HomeLoanCalculator() {
       // Generate amortization schedule (first 5 years)
       const amortizationSchedule = [];
       let currentBalance = principal;
-      
+
       for (let month = 1; month <= Math.min(60, tenure) && currentBalance > 1; month++) {
         const interestPayment = currentBalance * rate;
         const principalPayment = Math.min(emi - interestPayment, currentBalance);
-        
+
         currentBalance -= principalPayment;
-        
+
         amortizationSchedule.push({
           month,
           emi: Math.round(emi * 100) / 100,
@@ -65,7 +64,7 @@ export default function HomeLoanCalculator() {
           interest: Math.round(interestPayment * 100) / 100,
           balance: Math.max(0, Math.round(currentBalance * 100) / 100)
         });
-        
+
         if (currentBalance <= 1) break;
       }
 
@@ -177,9 +176,9 @@ export default function HomeLoanCalculator() {
           })}
         </script>
       </Helmet>
-      
+
       <Header />
-      
+
       <main>
         {/* Hero Section */}
         <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32 overflow-hidden">
@@ -213,7 +212,7 @@ export default function HomeLoanCalculator() {
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Home Loan Configuration</h2>
                     <p className="text-sm sm:text-base text-gray-600">Enter your home loan details to get accurate EMI calculations</p>
                   </div>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
                     {/* Currency Selection */}
                     <div className="space-y-2 sm:space-y-3">
@@ -405,7 +404,7 @@ export default function HomeLoanCalculator() {
                 {result ? (
                   <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
                     <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Results</h2>
-                    
+
                     <div className="space-y-4 sm:space-y-6 md:space-y-8" data-testid="home-loan-results">
                       {/* Monthly EMI Highlight */}
                       <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 shadow-lg border border-blue-100">
@@ -456,7 +455,7 @@ export default function HomeLoanCalculator() {
                       {/* Home Loan Guidelines */}
                       <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border border-green-200">
                         <h4 className="font-bold text-green-800 mb-3 sm:mb-4 text-sm sm:text-base md:text-lg">Home Loan Guidelines</h4>
-                        <div className="space-y-1 sm:space-y-2 text-xs sm:text-sm text-green-700">
+                        <div className="space-y-1 sm:space-2 text-xs sm:text-sm text-green-700">
                           <p>• EMI should not exceed 40% of monthly income</p>
                           <p>• Consider property taxes and maintenance costs</p>
                           <p>• Factor in home insurance premiums</p>
@@ -469,7 +468,7 @@ export default function HomeLoanCalculator() {
                 ) : (
                   <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
                     <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Results</h2>
-                    
+
                     <div className="text-center py-8 sm:py-12 md:py-16" data-testid="no-results">
                       <div className="w-16 sm:w-20 h-16 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
                         <div className="text-2xl sm:text-3xl font-bold text-gray-400">🏠</div>
@@ -479,7 +478,7 @@ export default function HomeLoanCalculator() {
                   </div>
                 )}
                   <h2 className="text-2xl font-bold text-gray-900 mb-8">Results</h2>
-                  
+
                   {result ? (
                     <div className="space-y-6" data-testid="home-loan-results">
                       {/* Monthly EMI Highlight */}
@@ -601,14 +600,14 @@ export default function HomeLoanCalculator() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">What is a Home Loan Calculator?</h3>
                 <div className="space-y-4 text-gray-600">
                   <p>
-                    A home loan calculator is an essential financial planning tool that helps you estimate your monthly 
-                    mortgage payments, total interest costs, and overall loan expenses before purchasing a property. Our 
-                    free online home loan EMI calculator provides accurate calculations based on your loan amount, interest rate, 
+                    A home loan calculator is an essential financial planning tool that helps you estimate your monthly
+                    mortgage payments, total interest costs, and overall loan expenses before purchasing a property. Our
+                    free online home loan EMI calculator provides accurate calculations based on your loan amount, interest rate,
                     and repayment tenure.
                   </p>
                   <p>
-                    Whether you're a first-time homebuyer or looking to refinance your existing mortgage, this calculator 
-                    helps you understand the financial commitment involved in home ownership. With support for multiple 
+                    Whether you're a first-time homebuyer or looking to refinance your existing mortgage, this calculator
+                    helps you understand the financial commitment involved in home ownership. With support for multiple
                     currencies and detailed payment breakdowns, you can make informed decisions about your property investment.
                   </p>
                 </div>
@@ -628,8 +627,8 @@ export default function HomeLoanCalculator() {
                     <li>N = Number of monthly installments</li>
                   </ul>
                   <p>
-                    Our calculator automatically applies this formula and includes additional factors like down payment 
-                    analysis, processing fees, and total property value calculations to give you a comprehensive view 
+                    Our calculator automatically applies this formula and includes additional factors like down payment
+                    analysis, processing fees, and total property value calculations to give you a comprehensive view
                     of your home financing costs.
                   </p>
                 </div>
@@ -703,28 +702,28 @@ export default function HomeLoanCalculator() {
                   <div className="space-y-4">
                     <h4 className="text-lg font-semibold text-gray-800">Fixed-Rate Mortgages</h4>
                     <p className="text-gray-600">
-                      Fixed-rate home loans maintain the same interest rate throughout the loan tenure, providing 
+                      Fixed-rate home loans maintain the same interest rate throughout the loan tenure, providing
                       predictable monthly payments. Use our calculator to determine exact EMI amounts for budget planning.
                     </p>
                   </div>
                   <div className="space-y-4">
                     <h4 className="text-lg font-semibold text-gray-800">Adjustable-Rate Mortgages (ARM)</h4>
                     <p className="text-gray-600">
-                      ARM loans have interest rates that fluctuate based on market conditions. Our calculator helps 
+                      ARM loans have interest rates that fluctuate based on market conditions. Our calculator helps
                       estimate initial payments and understand rate adjustment impacts on your EMI.
                     </p>
                   </div>
                   <div className="space-y-4">
                     <h4 className="text-lg font-semibold text-gray-800">FHA Loans</h4>
                     <p className="text-gray-600">
-                      Federal Housing Administration loans offer lower down payment options for qualified buyers. 
+                      Federal Housing Administration loans offer lower down payment options for qualified buyers.
                       Calculate EMI with different down payment scenarios to find the best fit for your budget.
                     </p>
                   </div>
                   <div className="space-y-4">
                     <h4 className="text-lg font-semibold text-gray-800">VA Loans</h4>
                     <p className="text-gray-600">
-                      Veterans Affairs loans provide favorable terms for eligible military personnel and veterans. 
+                      Veterans Affairs loans provide favorable terms for eligible military personnel and veterans.
                       Our calculator helps determine monthly payments with various VA loan configurations.
                     </p>
                   </div>
@@ -879,8 +878,8 @@ export default function HomeLoanCalculator() {
                 <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg">
                   <h4 className="font-semibold text-blue-800 mb-2">Smart Analysis Tip</h4>
                   <p className="text-blue-700 text-sm">
-                    Use our home loan calculator to determine monthly payments, then compare with rental costs including renter's 
-                    insurance. Factor in tax benefits, appreciation potential, and the value of building equity versus investing 
+                    Use our home loan calculator to determine monthly payments, then compare with rental costs including renter's
+                    insurance. Factor in tax benefits, appreciation potential, and the value of building equity versus investing
                     the down payment elsewhere.
                   </p>
                 </div>
@@ -956,7 +955,7 @@ export default function HomeLoanCalculator() {
           </div>
         </div>
       </main>
-      
+
       <Footer />
     </div>
   );
