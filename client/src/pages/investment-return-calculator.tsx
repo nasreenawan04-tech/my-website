@@ -180,46 +180,46 @@ export default function InvestmentReturnCalculator() {
 
       <main>
         {/* Hero Section */}
-        <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32 overflow-hidden">
+        <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="space-y-4 sm:space-y-6 md:space-y-7 lg:space-y-8">
-              <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+          <div className="relative max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
+            <div className="space-y-4 sm:space-y-6 md:space-y-8">
+              <div className="inline-flex items-center px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
                 <span className="text-xs sm:text-sm font-medium text-blue-700">Professional Investment Calculator</span>
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-slate-900 leading-tight tracking-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0" data-testid="page-title">
                 <span className="block">Investment Return</span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
                   Calculator
                 </span>
               </h1>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-slate-600 max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto leading-relaxed px-2 sm:px-0">
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
                 Calculate investment growth with compound interest, monthly contributions, and inflation adjustment
               </p>
             </div>
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16"></div>
           {/* Main Calculator Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+              <div className="flex flex-col">
                 {/* Input Section */}
-                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
-                  <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Investment Configuration</h2>
-                    <p className="text-gray-600">Enter your investment details to calculate potential returns</p>
+                <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
+                  <div className="text-center sm:text-left">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Investment Configuration</h2>
+                    <p className="text-sm sm:text-base text-gray-600">Enter your investment details to calculate potential returns</p>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6"></div>
                     {/* Currency Selection */}
-                    <div className="space-y-3">
-                      <Label htmlFor="currency" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="currency" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Currency
                       </Label>
                       <Select value={currency} onValueChange={setCurrency}>
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-currency">
+                        <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-currency">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -238,18 +238,18 @@ export default function InvestmentReturnCalculator() {
                     </div>
 
                     {/* Initial Investment */}
-                    <div className="space-y-3">
-                      <Label htmlFor="initial-investment" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="initial-investment" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Initial Investment
                       </Label>
                       <div className="relative">
-                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
                         <Input
                           id="initial-investment"
                           type="number"
                           value={initialInvestment}
                           onChange={(e) => setInitialInvestment(e.target.value)}
-                          className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="10,000"
                           min="0"
                           data-testid="input-initial-investment"
@@ -258,18 +258,18 @@ export default function InvestmentReturnCalculator() {
                     </div>
 
                     {/* Monthly Contribution */}
-                    <div className="space-y-3">
-                      <Label htmlFor="monthly-contribution" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="monthly-contribution" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Monthly Contribution
                       </Label>
                       <div className="relative">
-                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
                         <Input
                           id="monthly-contribution"
                           type="number"
                           value={monthlyContribution}
                           onChange={(e) => setMonthlyContribution(e.target.value)}
-                          className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="500"
                           min="0"
                           data-testid="input-monthly-contribution"
@@ -278,8 +278,8 @@ export default function InvestmentReturnCalculator() {
                     </div>
 
                     {/* Expected Annual Return */}
-                    <div className="space-y-3">
-                      <Label htmlFor="expected-return" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="expected-return" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Expected Annual Return
                       </Label>
                       <div className="relative">
@@ -288,31 +288,31 @@ export default function InvestmentReturnCalculator() {
                           type="number"
                           value={expectedReturn}
                           onChange={(e) => setExpectedReturn(e.target.value)}
-                          className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="8.00"
                           step="0.01"
                           min="0"
                           data-testid="input-expected-return"
                         />
-                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
+                        <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
                       </div>
                     </div>
 
                     {/* Investment Period */}
-                    <div className="space-y-3">
-                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Investment Period</Label>
-                      <div className="grid grid-cols-2 gap-3">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">Investment Period</Label>
+                      <div className="grid grid-cols-2 gap-2 sm:gap-3">
                         <Input
                           type="number"
                           value={investmentPeriod}
                           onChange={(e) => setInvestmentPeriod(e.target.value)}
-                          className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="10"
                           min="1"
                           data-testid="input-investment-period"
                         />
                         <Select value={periodType} onValueChange={setPeriodType}>
-                          <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-period-type">
+                          <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-period-type">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -324,10 +324,10 @@ export default function InvestmentReturnCalculator() {
                     </div>
 
                     {/* Compounding Frequency */}
-                    <div className="space-y-3">
-                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Compounding Frequency</Label>
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">Compounding Frequency</Label>
                       <Select value={compoundingFrequency} onValueChange={setCompoundingFrequency}>
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-compounding">
+                        <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-compounding">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -338,16 +338,16 @@ export default function InvestmentReturnCalculator() {
                           <SelectItem value="annually">Annually</SelectItem>
                         </SelectContent>
                       </Select>
-                    </div>
+                    </div></div>
                   </div>
 
                   {/* Advanced Options */}
-                  <div className="space-y-6 border-t pt-8">
-                    <h3 className="text-xl font-bold text-gray-900">Advanced Options</h3>
+                  <div className="space-y-4 sm:space-y-6 border-t pt-4 sm:pt-6 md:pt-8">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900">Advanced Options</h3>
 
                     {/* Inflation Rate */}
-                    <div className="space-y-4 bg-gray-50 rounded-xl p-6">
-                      <Label htmlFor="inflation-rate" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-3 sm:space-y-4 bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6">
+                      <Label htmlFor="inflation-rate" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Annual Inflation Rate (Optional)
                       </Label>
                       <div className="relative">
@@ -356,26 +356,26 @@ export default function InvestmentReturnCalculator() {
                           type="number"
                           value={inflationRate}
                           onChange={(e) => setInflationRate(e.target.value)}
-                          className="h-12 pr-8 border-2 border-gray-200 rounded-lg w-full md:w-48"
+                          className="h-10 sm:h-12 pr-6 sm:pr-8 border-2 border-gray-200 rounded-lg text-sm sm:text-base w-full md:w-48"
                           placeholder="3.00"
                           step="0.01"
                           min="0"
                           max="50"
                           data-testid="input-inflation-rate"
                         />
-                        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">%</span>
+                        <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base">%</span>
                       </div>
-                      <p className="text-sm text-gray-500">
+                      <p className="text-xs sm:text-sm text-gray-500">
                         Adjust returns for inflation to see real purchasing power
                       </p>
                     </div>
-                  </div>
+                  </div></div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                  <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       onClick={calculateInvestmentReturn}
-                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                       data-testid="button-calculate"
                     >
                       Calculate Returns
@@ -383,7 +383,7 @@ export default function InvestmentReturnCalculator() {
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                       data-testid="button-reset"
                     >
                       Reset
@@ -392,56 +392,56 @@ export default function InvestmentReturnCalculator() {
 
                   {/* Advanced Options */}
                   {result && (
-                    <div className="flex flex-wrap gap-3 pt-4">
+                    <div className="flex flex-wrap gap-2 sm:gap-3 pt-3 sm:pt-4">
                       <Button
                         onClick={() => setShowBreakdown(!showBreakdown)}
                         variant="outline"
                         size="sm"
-                        className="rounded-full"
+                        className="rounded-full text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 h-auto"
                         data-testid="button-show-breakdown"
                       >
                         {showBreakdown ? 'Hide' : 'Show'} Monthly Breakdown
                       </Button>
                     </div>
-                  )}
+                  )}</div>
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Investment Results</h2>
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12">
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">Investment Results</h2>
 
                   {result ? (
-                    <div className="space-y-6" data-testid="investment-results">
+                    <div className="space-y-3 sm:space-y-4 md:space-y-6" data-testid="investment-results">
                       {/* Final Value Highlight */}
-                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
-                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Final Investment Value</div>
-                        <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" data-testid="text-final-value">
+                      <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 shadow-lg border border-blue-100">
+                        <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-1 sm:mb-2">Final Investment Value</div>
+                        <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 break-all" data-testid="text-final-value">
                           {formatCurrency(result.finalValue)}
                         </div>
                       </div>
 
                       {/* Investment Breakdown */}
-                      <div className="space-y-4">
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Total Invested</span>
-                            <span className="font-bold text-gray-900" data-testid="text-total-invested">
+                      <div className="space-y-2 sm:space-y-3 md:space-y-4">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1 sm:gap-0">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Total Invested</span>
+                            <span className="font-bold text-gray-900 text-sm sm:text-base break-all" data-testid="text-total-invested">
                               {formatCurrency(result.totalInvested)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Total Returns</span>
-                            <span className="font-bold text-green-600" data-testid="text-total-return">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1 sm:gap-0">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Total Returns</span>
+                            <span className="font-bold text-green-600 text-sm sm:text-base break-all" data-testid="text-total-return">
                               {formatCurrency(result.totalReturn)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Annualized Return</span>
-                            <span className="font-bold text-purple-600" data-testid="text-annualized-return">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1 sm:gap-0">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Annualized Return</span>
+                            <span className="font-bold text-purple-600 text-sm sm:text-base" data-testid="text-annualized-return">
                               {result.annualizedReturn.toFixed(2)}%
                             </span>
                           </div>
@@ -449,18 +449,18 @@ export default function InvestmentReturnCalculator() {
                       </div>
 
                       {/* Performance Metrics */}
-                      <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-6 border border-green-200">
-                        <h4 className="font-bold text-green-800 mb-4 text-lg">Performance Metrics</h4>
-                        <div className="space-y-3">
-                          <div className="flex justify-between items-center">
-                            <span className="text-green-700 font-medium">Absolute Return:</span>
-                            <span className="font-bold text-green-800 text-lg" data-testid="text-absolute-return">
+                      <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border border-green-200">
+                        <h4 className="font-bold text-green-800 mb-3 sm:mb-4 text-base sm:text-lg">Performance Metrics</h4>
+                        <div className="space-y-2 sm:space-y-3">
+                          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1 sm:gap-0">
+                            <span className="text-green-700 font-medium text-sm sm:text-base">Absolute Return:</span>
+                            <span className="font-bold text-green-800 text-base sm:text-lg" data-testid="text-absolute-return">
                               {result.absoluteReturn.toFixed(2)}%
                             </span>
                           </div>
-                          <div className="flex justify-between items-center">
-                            <span className="text-green-700 font-medium">ROI:</span>
-                            <span className="font-bold text-green-800 text-lg" data-testid="text-roi">
+                          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1 sm:gap-0">
+                            <span className="text-green-700 font-medium text-sm sm:text-base">ROI:</span>
+                            <span className="font-bold text-green-800 text-base sm:text-lg" data-testid="text-roi">
                               {result.roi.toFixed(2)}%
                             </span>
                           </div>
@@ -468,13 +468,13 @@ export default function InvestmentReturnCalculator() {
                       </div>
 
                       {/* Visual Progress */}
-                      <div className="bg-white rounded-xl p-6 shadow-sm">
-                        <h4 className="font-bold text-gray-800 mb-4">Investment Growth</h4>
-                        <div className="space-y-3">
+                      <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm">
+                        <h4 className="font-bold text-gray-800 mb-3 sm:mb-4 text-sm sm:text-base">Investment Growth</h4>
+                        <div className="space-y-2 sm:space-y-3">
                           <div className="flex items-center">
-                            <div className="flex-1 bg-gray-200 rounded-full h-6 mr-4">
+                            <div className="flex-1 bg-gray-200 rounded-full h-4 sm:h-6 mr-3 sm:mr-4">
                               <div 
-                                className="bg-gradient-to-r from-blue-500 to-green-500 h-6 rounded-full flex items-center justify-end pr-2"
+                                className="bg-gradient-to-r from-blue-500 to-green-500 h-4 sm:h-6 rounded-full flex items-center justify-end pr-1 sm:pr-2"
                                 style={{ 
                                   width: `${Math.min((result.totalReturn / result.finalValue) * 100, 100)}%` 
                                 }}
@@ -485,7 +485,7 @@ export default function InvestmentReturnCalculator() {
                               </div>
                             </div>
                           </div>
-                          <div className="flex justify-between text-sm text-gray-600">
+                          <div className="flex justify-between text-xs sm:text-sm text-gray-600">
                             <span>Principal + Contributions</span>
                             <span>Returns Earned</span>
                           </div>
@@ -493,44 +493,44 @@ export default function InvestmentReturnCalculator() {
                       </div>
                     </div>
                   ) : (
-                    <div className="text-center py-16" data-testid="no-results">
-                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <div className="text-3xl font-bold text-gray-400">$</div>
+                    <div className="text-center py-8 sm:py-12 md:py-16" data-testid="no-results">
+                      <div className="w-16 sm:w-20 h-16 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
+                        <div className="text-2xl sm:text-3xl font-bold text-gray-400">$</div>
                       </div>
-                      <p className="text-gray-500 text-lg">Enter investment details to calculate potential returns</p>
+                      <p className="text-gray-500 text-base sm:text-lg px-4">Enter investment details to calculate potential returns</p>
                     </div>
                   )}
-                </div>
+                </div></div>
               </div>
             </CardContent>
           </Card>
 
           {/* Monthly Breakdown */}
           {result && showBreakdown && result.monthlyBreakdown && (
-            <Card className="mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Monthly Investment Breakdown (First 5 Years)</h3>
+            <Card className="mt-6 sm:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Monthly Investment Breakdown (First 5 Years)</h3>
                 <div className="overflow-x-auto">
                   <table className="w-full">
                     <thead>
                       <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
-                        <th className="px-6 py-4 text-left font-bold text-gray-900 rounded-l-lg">Month</th>
-                        <th className="px-6 py-4 text-right font-bold text-gray-900">Contribution</th>
-                        <th className="px-6 py-4 text-right font-bold text-gray-900">Growth</th>
-                        <th className="px-6 py-4 text-right font-bold text-gray-900 rounded-r-lg">Balance</th>
+                        <th className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-left font-bold text-gray-900 rounded-l-lg text-sm sm:text-base">Month</th>
+                        <th className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-sm sm:text-base">Contribution</th>
+                        <th className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-sm sm:text-base">Growth</th>
+                        <th className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 rounded-r-lg text-sm sm:text-base">Balance</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100">
                       {result.monthlyBreakdown.map((month, index) => (
                         <tr key={index} className="hover:bg-blue-50 transition-colors">
-                          <td className="px-6 py-4 font-medium text-gray-900">{month.month}</td>
-                          <td className="px-6 py-4 text-right text-blue-600 font-bold">
+                          <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 font-medium text-gray-900 text-sm sm:text-base">{month.month}</td>
+                          <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-right text-blue-600 font-bold text-sm sm:text-base">
                             {formatCurrency(month.contribution)}
                           </td>
-                          <td className="px-6 py-4 text-right text-green-600 font-medium">
+                          <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-right text-green-600 font-medium text-sm sm:text-base">
                             {formatCurrency(month.growth)}
                           </td>
-                          <td className="px-6 py-4 text-right text-gray-900 font-bold">
+                          <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-right text-gray-900 font-bold text-sm sm:text-base">
                             {formatCurrency(month.balance)}
                           </td>
                         </tr>
@@ -540,10 +540,10 @@ export default function InvestmentReturnCalculator() {
                 </div>
               </CardContent>
             </Card>
-          )}
+          )}</div>
 
           {/* SEO Content Section */}
-          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="mt-8 sm:mt-12 md:mt-16 grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8"></div>
             <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
               <CardContent className="p-8">
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">What is an Investment Return Calculator?</h3>
