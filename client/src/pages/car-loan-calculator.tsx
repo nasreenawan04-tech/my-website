@@ -165,26 +165,26 @@ export default function CarLoanCalculator() {
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
           {/* Main Calculator Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+              <div className="flex flex-col lg:grid lg:grid-cols-3 gap-0">
                 {/* Input Section */}
-                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
+                <div className="lg:col-span-2 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
                   <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Loan Configuration</h2>
-                    <p className="text-gray-600">Enter your vehicle details to get accurate payment calculations</p>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Loan Configuration</h2>
+                    <p className="text-sm sm:text-base text-gray-600">Enter your vehicle details to get accurate payment calculations</p>
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
                     {/* Currency Selection */}
-                    <div className="space-y-3">
-                      <Label htmlFor="currency" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="currency" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Currency
                       </Label>
                       <Select value={currency} onValueChange={setCurrency}>
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-currency">
+                        <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-currency">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -203,18 +203,18 @@ export default function CarLoanCalculator() {
                     </div>
 
                     {/* Car Price */}
-                    <div className="space-y-3">
-                      <Label htmlFor="car-price" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="car-price" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Vehicle Price
                       </Label>
                       <div className="relative">
-                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
                         <Input
                           id="car-price"
                           type="number"
                           value={carPrice}
                           onChange={(e) => setCarPrice(e.target.value)}
-                          className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="25,000"
                           min="0"
                           step="100"
@@ -224,8 +224,8 @@ export default function CarLoanCalculator() {
                     </div>
 
                     {/* Interest Rate */}
-                    <div className="space-y-3">
-                      <Label htmlFor="interest-rate" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="interest-rate" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Annual Interest Rate
                       </Label>
                       <div className="relative">
@@ -234,33 +234,33 @@ export default function CarLoanCalculator() {
                           type="number"
                           value={interestRate}
                           onChange={(e) => setInterestRate(e.target.value)}
-                          className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="4.5"
                           step="0.01"
                           min="0"
                           max="30"
                           data-testid="input-interest-rate"
                         />
-                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
+                        <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
                       </div>
                     </div>
 
                     {/* Loan Term */}
-                    <div className="space-y-3">
-                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Loan Term</Label>
-                      <div className="grid grid-cols-2 gap-3">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">Loan Term</Label>
+                      <div className="grid grid-cols-2 gap-2 sm:gap-3">
                         <Input
                           type="number"
                           value={loanTerm}
                           onChange={(e) => setLoanTerm(e.target.value)}
-                          className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="5"
                           min="1"
                           max="10"
                           data-testid="input-loan-term"
                         />
                         <Select value="years" onValueChange={() => {}}>
-                          <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-loan-term">
+                          <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-loan-term">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -272,16 +272,16 @@ export default function CarLoanCalculator() {
                   </div>
 
                   {/* Down Payment Options */}
-                  <div className="space-y-6 border-t pt-8">
-                    <h3 className="text-xl font-bold text-gray-900">Down Payment Options</h3>
+                  <div className="space-y-4 sm:space-y-6 border-t pt-4 sm:pt-6 md:pt-8">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900">Down Payment Options</h3>
                     
-                    <div className="space-y-4 bg-gray-50 rounded-xl p-6">
-                      <div className="space-y-3">
-                        <Label>Down Payment Type</Label>
+                    <div className="space-y-3 sm:space-y-4 bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6">
+                      <div className="space-y-2 sm:space-y-3">
+                        <Label className="text-xs sm:text-sm font-semibold text-gray-800">Down Payment Type</Label>
                         <RadioGroup 
                           value={usePercentage ? "percentage" : "amount"} 
                           onValueChange={(value) => setUsePercentage(value === "percentage")}
-                          className="flex gap-6"
+                          className="flex flex-col sm:flex-row gap-3 sm:gap-6"
                         >
                           <div className="flex items-center space-x-2">
                             <RadioGroupItem value="percentage" id="percentage" data-testid="radio-percentage" />
@@ -299,23 +299,23 @@ export default function CarLoanCalculator() {
                               type="number"
                               value={downPaymentPercent}
                               onChange={(e) => setDownPaymentPercent(e.target.value)}
-                              className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                               placeholder="20"
                               min="0"
                               max="100"
                               step="0.1"
                               data-testid="input-down-payment-percent"
                             />
-                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
+                            <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
                           </div>
                         ) : (
                           <div className="relative">
-                            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                            <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
                             <Input
                               type="number"
                               value={downPayment}
                               onChange={(e) => setDownPayment(e.target.value)}
-                              className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                               placeholder="5,000"
                               min="0"
                               data-testid="input-down-payment-amount"
@@ -323,17 +323,17 @@ export default function CarLoanCalculator() {
                           </div>
                         )}
                       </div>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-xs sm:text-sm text-gray-600">
                         A larger down payment reduces your monthly payment and total interest paid over the loan term.
                       </p>
                     </div>
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       onClick={calculateCarLoan}
-                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="flex-1 h-10 sm:h-12 md:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                       data-testid="button-calculate"
                     >
                       Calculate Payment
@@ -341,7 +341,7 @@ export default function CarLoanCalculator() {
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      className="h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                       data-testid="button-reset"
                     >
                       Reset
@@ -350,57 +350,57 @@ export default function CarLoanCalculator() {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Payment Results</h2>
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t lg:border-t-0">
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center lg:text-left">Payment Results</h2>
                   
                   {result ? (
-                    <div className="space-y-6" data-testid="car-loan-results">
+                    <div className="space-y-4 sm:space-y-6" data-testid="car-loan-results">
                       {/* Monthly Payment Highlight */}
-                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
-                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Monthly Payment</div>
-                        <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" data-testid="text-monthly-payment">
+                      <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 shadow-lg border border-blue-100">
+                        <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-1 sm:mb-2 text-center lg:text-left">Monthly Payment</div>
+                        <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 text-center lg:text-left break-all" data-testid="text-monthly-payment">
                           {formatCurrency(result.monthlyPayment)}
                         </div>
                       </div>
 
                       {/* Payment Breakdown */}
-                      <div className="space-y-4">
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                      <div className="space-y-2 sm:space-y-3 md:space-y-4">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-2 sm:p-3 md:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Vehicle Price</span>
-                            <span className="font-bold text-gray-900" data-testid="text-car-price">
+                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Vehicle Price</span>
+                            <span className="font-bold text-gray-900 text-xs sm:text-sm md:text-base break-all" data-testid="text-car-price">
                               {formatCurrency(result.carPrice)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-2 sm:p-3 md:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Down Payment</span>
-                            <span className="font-bold text-green-600" data-testid="text-down-payment">
+                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Down Payment</span>
+                            <span className="font-bold text-green-600 text-xs sm:text-sm md:text-base break-all" data-testid="text-down-payment">
                               {formatCurrency(result.downPayment)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-2 sm:p-3 md:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Loan Amount</span>
-                            <span className="font-bold text-gray-900" data-testid="text-loan-amount">
+                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Loan Amount</span>
+                            <span className="font-bold text-gray-900 text-xs sm:text-sm md:text-base break-all" data-testid="text-loan-amount">
                               {formatCurrency(result.loanAmount)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-2 sm:p-3 md:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Total Interest</span>
-                            <span className="font-bold text-orange-600" data-testid="text-total-interest">
+                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Total Interest</span>
+                            <span className="font-bold text-orange-600 text-xs sm:text-sm md:text-base break-all" data-testid="text-total-interest">
                               {formatCurrency(result.totalInterest)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-2 sm:p-3 md:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Total Amount</span>
-                            <span className="font-bold text-gray-900" data-testid="text-total-amount">
+                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Total Amount</span>
+                            <span className="font-bold text-gray-900 text-xs sm:text-sm md:text-base break-all" data-testid="text-total-amount">
                               {formatCurrency(result.totalAmount)}
                             </span>
                           </div>
@@ -408,10 +408,10 @@ export default function CarLoanCalculator() {
                       </div>
 
                       {/* Visual Breakdown */}
-                      <div className="bg-white rounded-xl p-6 shadow-sm">
-                        <h4 className="font-bold text-gray-900 mb-4 text-lg">Payment Breakdown</h4>
-                        <div className="space-y-3">
-                          <div className="flex items-center h-6 bg-gray-200 rounded-full overflow-hidden">
+                      <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm">
+                        <h4 className="font-bold text-gray-900 mb-3 sm:mb-4 text-sm sm:text-base md:text-lg">Payment Breakdown</h4>
+                        <div className="space-y-2 sm:space-y-3">
+                          <div className="flex items-center h-4 sm:h-5 md:h-6 bg-gray-200 rounded-full overflow-hidden">
                             <div 
                               className="h-full bg-blue-500 transition-all duration-1000 ease-out"
                               style={{ width: `${(result.loanAmount / result.totalAmount) * 100}%` }}
@@ -421,13 +421,13 @@ export default function CarLoanCalculator() {
                               style={{ width: `${(result.totalInterest / result.totalAmount) * 100}%` }}
                             ></div>
                           </div>
-                          <div className="flex justify-between text-sm">
+                          <div className="flex flex-col sm:flex-row justify-between gap-2 sm:gap-0 text-xs sm:text-sm">
                             <span className="flex items-center">
-                              <div className="w-3 h-3 bg-blue-500 rounded-full mr-2"></div>
+                              <div className="w-2 sm:w-3 h-2 sm:h-3 bg-blue-500 rounded-full mr-1 sm:mr-2 flex-shrink-0"></div>
                               Principal ({Math.round((result.loanAmount / result.totalAmount) * 100)}%)
                             </span>
                             <span className="flex items-center">
-                              <div className="w-3 h-3 bg-orange-400 rounded-full mr-2"></div>
+                              <div className="w-2 sm:w-3 h-2 sm:h-3 bg-orange-400 rounded-full mr-1 sm:mr-2 flex-shrink-0"></div>
                               Interest ({Math.round((result.totalInterest / result.totalAmount) * 100)}%)
                             </span>
                           </div>
@@ -435,30 +435,30 @@ export default function CarLoanCalculator() {
                       </div>
 
                       {/* Affordability Tips */}
-                      <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-6 border border-green-200">
-                        <h4 className="font-bold text-green-800 mb-4 text-lg">Smart Financing Tips</h4>
-                        <div className="space-y-3 text-sm text-green-700">
-                          <div className="flex items-start gap-3">
-                            <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                      <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border border-green-200">
+                        <h4 className="font-bold text-green-800 mb-3 sm:mb-4 text-sm sm:text-base md:text-lg">Smart Financing Tips</h4>
+                        <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-green-700">
+                          <div className="flex items-start gap-2 sm:gap-3">
+                            <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-green-500 rounded-full mt-1.5 sm:mt-2 flex-shrink-0"></div>
                             <span>Keep total vehicle costs under 20% of take-home pay</span>
                           </div>
-                          <div className="flex items-start gap-3">
-                            <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                          <div className="flex items-start gap-2 sm:gap-3">
+                            <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-green-500 rounded-full mt-1.5 sm:mt-2 flex-shrink-0"></div>
                             <span>Consider insurance, maintenance, and fuel costs</span>
                           </div>
-                          <div className="flex items-start gap-3">
-                            <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                          <div className="flex items-start gap-2 sm:gap-3">
+                            <div className="w-1.5 sm:w-2 h-1.5 sm:h-2 bg-green-500 rounded-full mt-1.5 sm:mt-2 flex-shrink-0"></div>
                             <span>Larger down payment reduces monthly burden</span>
                           </div>
                         </div>
                       </div>
                     </div>
                   ) : (
-                    <div className="text-center py-16" data-testid="no-results">
-                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <div className="text-3xl font-bold text-gray-400">🚗</div>
+                    <div className="text-center py-8 sm:py-12 md:py-16" data-testid="no-results">
+                      <div className="w-12 sm:w-16 md:w-20 h-12 sm:h-16 md:h-20 bg-gray-200 rounded-full mx-auto mb-3 sm:mb-4 md:mb-6 flex items-center justify-center">
+                        <div className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-400">🚗</div>
                       </div>
-                      <p className="text-gray-500 text-lg">Enter vehicle details and calculate to see payment breakdown</p>
+                      <p className="text-gray-500 text-sm sm:text-base md:text-lg px-2">Enter vehicle details and calculate to see payment breakdown</p>
                     </div>
                   )}
                 </div>
