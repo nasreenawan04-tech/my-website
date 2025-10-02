@@ -170,26 +170,26 @@ export default function VATGSTCalculator() {
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
           {/* Main Calculator Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+              <div className="flex flex-col lg:grid lg:grid-cols-3 gap-0">
                 {/* Input Section */}
-                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
-                  <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">VAT/GST Configuration</h2>
-                    <p className="text-gray-600">Enter your tax calculation details to get accurate VAT/GST results</p>
+                <div className="lg:col-span-2 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
+                  <div className="text-center sm:text-left">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">VAT/GST Configuration</h2>
+                    <p className="text-sm sm:text-base text-gray-600">Enter your tax calculation details to get accurate VAT/GST results</p>
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
                     {/* Currency Selection */}
-                    <div className="space-y-3">
-                      <Label htmlFor="currency" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="currency" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Currency
                       </Label>
                       <Select value={currency} onValueChange={setCurrency}>
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-currency">
+                        <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-currency">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -214,12 +214,12 @@ export default function VATGSTCalculator() {
                     </div>
 
                     {/* Calculation Type */}
-                    <div className="space-y-3">
-                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Calculation Type
                       </Label>
                       <Select value={calculationType} onValueChange={setCalculationType}>
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-calculation-type">
+                        <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-calculation-type">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -230,18 +230,18 @@ export default function VATGSTCalculator() {
                     </div>
 
                     {/* Amount Input */}
-                    <div className="space-y-3">
-                      <Label htmlFor="amount" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="amount" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         {calculationType === 'add-vat' ? 'Net Amount (Excluding VAT/GST)' : 'Gross Amount (Including VAT/GST)'}
                       </Label>
                       <div className="relative">
-                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
                         <Input
                           id="amount"
                           type="number"
                           value={amount}
                           onChange={(e) => setAmount(e.target.value)}
-                          className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="10,000"
                           min="0"
                           step="0.01"
@@ -251,12 +251,12 @@ export default function VATGSTCalculator() {
                     </div>
 
                     {/* VAT Rate Selection */}
-                    <div className="space-y-3">
-                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         VAT/GST Rate
                       </Label>
                       <Select value={vatRate} onValueChange={setVatRate}>
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-vat-rate">
+                        <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-vat-rate">
                           <SelectValue placeholder="Select VAT/GST rate" />
                         </SelectTrigger>
                         <SelectContent>
@@ -272,8 +272,8 @@ export default function VATGSTCalculator() {
 
                   {/* Custom Rate Input */}
                   {!Object.keys(vatRates).includes(vatRate) && vatRate !== '' && (
-                    <div className="space-y-3">
-                      <Label htmlFor="custom-rate" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="custom-rate" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Custom VAT/GST Rate
                       </Label>
                       <div className="relative">
@@ -282,23 +282,23 @@ export default function VATGSTCalculator() {
                           type="number"
                           value={vatRate}
                           onChange={(e) => setVatRate(e.target.value)}
-                          className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 pr-7 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="Enter custom rate"
                           min="0"
                           max="100"
                           step="0.01"
                           data-testid="input-custom-rate"
                         />
-                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
+                        <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
                       </div>
                     </div>
                   )}
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       onClick={calculateVAT}
-                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="flex-1 h-10 sm:h-12 md:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                       data-testid="button-calculate"
                     >
                       Calculate VAT/GST
@@ -306,7 +306,7 @@ export default function VATGSTCalculator() {
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      className="h-10 sm:h-12 md:h-14 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                       data-testid="button-reset"
                     >
                       Reset
@@ -315,43 +315,43 @@ export default function VATGSTCalculator() {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Results</h2>
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t lg:border-t-0 lg:border-l">
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Results</h2>
                   
                   {result ? (
-                    <div className="space-y-6" data-testid="vat-results">
+                    <div className="space-y-4 sm:space-y-6" data-testid="vat-results">
                       {/* Total Amount Highlight */}
-                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
-                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">
+                      <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-4 sm:p-5 md:p-6 shadow-lg border border-blue-100">
+                        <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-1 sm:mb-2">
                           Total Amount (Gross)
                         </div>
-                        <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" data-testid="text-total-amount">
+                        <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 break-all" data-testid="text-total-amount">
                           {formatCurrency(result.totalAmount)}
                         </div>
                       </div>
 
                       {/* Tax Breakdown */}
-                      <div className="space-y-4">
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Base Amount (Net)</span>
-                            <span className="font-bold text-gray-900" data-testid="text-base-amount">
+                      <div className="space-y-3 sm:space-y-4">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex justify-between items-center gap-2">
+                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Base Amount (Net)</span>
+                            <span className="font-bold text-gray-900 text-xs sm:text-sm md:text-base" data-testid="text-base-amount">
                               {formatCurrency(result.baseAmount)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">VAT/GST Amount</span>
-                            <span className="font-bold text-orange-600" data-testid="text-vat-amount">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex justify-between items-center gap-2">
+                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">VAT/GST Amount</span>
+                            <span className="font-bold text-orange-600 text-xs sm:text-sm md:text-base" data-testid="text-vat-amount">
                               {formatCurrency(result.vatAmount)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Effective Rate</span>
-                            <span className="font-bold text-blue-600" data-testid="text-effective-rate">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex justify-between items-center gap-2">
+                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Effective Rate</span>
+                            <span className="font-bold text-blue-600 text-xs sm:text-sm md:text-base" data-testid="text-effective-rate">
                               {result.effectiveRate}%
                             </span>
                           </div>
@@ -359,29 +359,29 @@ export default function VATGSTCalculator() {
                       </div>
 
                       {/* Tax Breakdown Chart */}
-                      <div className="bg-white rounded-xl p-6 shadow-sm">
-                        <h4 className="font-bold text-gray-900 mb-4 text-lg">Tax Composition</h4>
-                        <div className="space-y-4">
-                          <div className="flex items-center justify-between">
+                      <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 shadow-sm">
+                        <h4 className="font-bold text-gray-900 mb-3 sm:mb-4 text-base sm:text-lg">Tax Composition</h4>
+                        <div className="space-y-3 sm:space-y-4">
+                          <div className="flex items-center justify-between gap-2">
                             <div className="flex items-center">
-                              <div className="w-4 h-4 bg-blue-500 rounded mr-3"></div>
-                              <span className="text-gray-700">Base Amount</span>
+                              <div className="w-3 h-3 sm:w-4 sm:h-4 bg-blue-500 rounded mr-2 sm:mr-3"></div>
+                              <span className="text-gray-700 text-xs sm:text-sm md:text-base">Base Amount</span>
                             </div>
-                            <span className="font-semibold">
+                            <span className="font-semibold text-xs sm:text-sm md:text-base">
                               {((result.baseAmount / result.totalAmount) * 100).toFixed(1)}%
                             </span>
                           </div>
-                          <div className="flex items-center justify-between">
+                          <div className="flex items-center justify-between gap-2">
                             <div className="flex items-center">
-                              <div className="w-4 h-4 bg-orange-500 rounded mr-3"></div>
-                              <span className="text-gray-700">VAT/GST</span>
+                              <div className="w-3 h-3 sm:w-4 sm:h-4 bg-orange-500 rounded mr-2 sm:mr-3"></div>
+                              <span className="text-gray-700 text-xs sm:text-sm md:text-base">VAT/GST</span>
                             </div>
-                            <span className="font-semibold">
+                            <span className="font-semibold text-xs sm:text-sm md:text-base">
                               {((result.vatAmount / result.totalAmount) * 100).toFixed(1)}%
                             </span>
                           </div>
                         </div>
-                        <div className="mt-4 h-3 bg-gray-200 rounded-full overflow-hidden">
+                        <div className="mt-3 sm:mt-4 h-2 sm:h-3 bg-gray-200 rounded-full overflow-hidden">
                           <div 
                             className="h-full bg-gradient-to-r from-blue-500 to-orange-500 rounded-full"
                             style={{
@@ -392,11 +392,11 @@ export default function VATGSTCalculator() {
                       </div>
                     </div>
                   ) : (
-                    <div className="text-center py-16" data-testid="no-results">
-                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <div className="text-3xl font-bold text-gray-400">%</div>
+                    <div className="text-center py-8 sm:py-12 md:py-16" data-testid="no-results">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
+                        <div className="text-2xl sm:text-3xl font-bold text-gray-400">%</div>
                       </div>
-                      <p className="text-gray-500 text-lg">Enter amount and tax rate to see VAT/GST calculations</p>
+                      <p className="text-gray-500 text-sm sm:text-base md:text-lg px-4">Enter amount and tax rate to see VAT/GST calculations</p>
                     </div>
                   )}
                 </div>
