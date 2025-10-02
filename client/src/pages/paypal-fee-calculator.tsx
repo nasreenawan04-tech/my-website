@@ -235,26 +235,26 @@ const PayPalFeeCalculator = () => {
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 py-8 sm:py-12 lg:py-16">
           {/* Main Calculator Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-2xl sm:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
                 {/* Input Section */}
-                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
+                <div className="lg:col-span-2 p-4 sm:p-6 md:p-8 lg:p-12 space-y-6 sm:space-y-8">
                   <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Fee Configuration</h2>
-                    <p className="text-gray-600">Enter your transaction details to calculate PayPal fees</p>
+                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Fee Configuration</h2>
+                    <p className="text-sm sm:text-base text-gray-600">Enter your transaction details to calculate PayPal fees</p>
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                     {/* Currency Selection */}
-                    <div className="space-y-3">
-                      <Label htmlFor="currency" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="currency" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Currency
                       </Label>
                       <Select value={currency} onValueChange={setCurrency}>
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-currency">
+                        <SelectTrigger className="h-12 sm:h-14 border-2 border-gray-200 rounded-xl text-base sm:text-lg" data-testid="select-currency">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -275,12 +275,12 @@ const PayPalFeeCalculator = () => {
                     </div>
 
                     {/* Account Type */}
-                    <div className="space-y-3">
-                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Account Type
                       </Label>
                       <Select value={accountType} onValueChange={setAccountType}>
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-account-type">
+                        <SelectTrigger className="h-12 sm:h-14 border-2 border-gray-200 rounded-xl text-base sm:text-lg" data-testid="select-account-type">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -291,12 +291,12 @@ const PayPalFeeCalculator = () => {
                     </div>
 
                     {/* Transaction Type */}
-                    <div className="space-y-3">
-                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Transaction Type
                       </Label>
                       <Select value={transactionType} onValueChange={setTransactionType}>
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-transaction-type">
+                        <SelectTrigger className="h-12 sm:h-14 border-2 border-gray-200 rounded-xl text-base sm:text-lg" data-testid="select-transaction-type">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -307,12 +307,12 @@ const PayPalFeeCalculator = () => {
                     </div>
 
                     {/* Calculation Type */}
-                    <div className="space-y-3">
-                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Calculation Mode
                       </Label>
                       <Select value={calculationType} onValueChange={setCalculationType}>
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-calculation-type">
+                        <SelectTrigger className="h-12 sm:h-14 border-2 border-gray-200 rounded-xl text-base sm:text-lg" data-testid="select-calculation-type">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -323,21 +323,21 @@ const PayPalFeeCalculator = () => {
                     </div>
 
                     {/* Amount Input */}
-                    <div className="space-y-3 md:col-span-2">
-                      <Label htmlFor="amount" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3 sm:col-span-2">
+                      <Label htmlFor="amount" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         {calculationType === 'receiving' 
                           ? 'Amount You Will Receive (Gross)' 
                           : 'Amount You Want to Receive (Net)'
                         }
                       </Label>
                       <div className="relative">
-                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">$</span>
                         <Input
                           id="amount"
                           type="number"
                           value={amount}
                           onChange={(e) => setAmount(e.target.value)}
-                          className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-12 sm:h-14 pl-7 sm:pl-8 text-base sm:text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
                           placeholder="Enter amount"
                           min="0"
                           step="0.01"
@@ -348,8 +348,8 @@ const PayPalFeeCalculator = () => {
                   </div>
 
                   {/* Current Fee Structure Display */}
-                  <div className="bg-gray-50 rounded-xl p-6">
-                    <h3 className="text-lg font-bold text-gray-900 mb-4">Current Fee Structure</h3>
+                  <div className="bg-gray-50 rounded-xl p-4 sm:p-6">
+                    <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">Current Fee Structure</h3>
                     {(() => {
                       const feeStructure = getCurrentFeeStructure();
                       return (
@@ -376,10 +376,10 @@ const PayPalFeeCalculator = () => {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 sm:pt-6">
                     <Button
                       onClick={calculatePayPalFee}
-                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="flex-1 h-12 sm:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-base sm:text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                       data-testid="button-calculate"
                     >
                       Calculate Fees
@@ -387,7 +387,7 @@ const PayPalFeeCalculator = () => {
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      className="h-12 sm:h-14 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-base sm:text-lg rounded-xl"
                       data-testid="button-reset"
                     >
                       Reset
@@ -396,17 +396,17 @@ const PayPalFeeCalculator = () => {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Results</h2>
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 md:p-8 lg:p-12">
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">Results</h2>
                   
                   {result ? (
-                    <div className="space-y-6" data-testid="paypal-results">
+                    <div className="space-y-4 sm:space-y-6" data-testid="paypal-results">
                       {/* Net Amount Highlight */}
-                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
-                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">
+                      <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border border-blue-100">
+                        <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">
                           {calculationType === 'receiving' ? 'Amount You Keep (Net)' : 'You Need to Request (Gross)'}
                         </div>
-                        <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" data-testid="text-main-result">
+                        <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 break-all" data-testid="text-main-result">
                           {calculationType === 'receiving' 
                             ? formatCurrency(result.netAmount)
                             : formatCurrency(result.grossAmount)
@@ -415,35 +415,35 @@ const PayPalFeeCalculator = () => {
                       </div>
 
                       {/* Fee Breakdown */}
-                      <div className="space-y-4">
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Gross Amount</span>
-                            <span className="font-bold text-gray-900" data-testid="text-gross-amount">
+                      <div className="space-y-3 sm:space-y-4">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Gross Amount</span>
+                            <span className="font-bold text-gray-900 text-sm sm:text-base break-all" data-testid="text-gross-amount">
                               {formatCurrency(result.grossAmount)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">PayPal Fee</span>
-                            <span className="font-bold text-red-600" data-testid="text-paypal-fee">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">PayPal Fee</span>
+                            <span className="font-bold text-red-600 text-sm sm:text-base break-all" data-testid="text-paypal-fee">
                               {formatCurrency(result.paypalFee)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Net Amount</span>
-                            <span className="font-bold text-green-600" data-testid="text-net-amount">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Net Amount</span>
+                            <span className="font-bold text-green-600 text-sm sm:text-base break-all" data-testid="text-net-amount">
                               {formatCurrency(result.netAmount)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Effective Fee Rate</span>
-                            <span className="font-bold text-gray-900" data-testid="text-effective-rate">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Effective Fee Rate</span>
+                            <span className="font-bold text-gray-900 text-sm sm:text-base" data-testid="text-effective-rate">
                               {result.effectiveFeeRate}%
                             </span>
                           </div>
@@ -451,18 +451,18 @@ const PayPalFeeCalculator = () => {
                       </div>
 
                       {/* Fee Impact Analysis */}
-                      <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl p-6 border border-orange-200">
-                        <h4 className="font-bold text-orange-800 mb-4 text-lg">Fee Impact</h4>
-                        <div className="space-y-3">
-                          <div className="flex justify-between items-center">
-                            <span className="text-orange-700 font-medium">Fee Amount:</span>
-                            <span className="font-bold text-orange-800 text-lg">
+                      <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl p-4 sm:p-6 border border-orange-200">
+                        <h4 className="font-bold text-orange-800 mb-3 sm:mb-4 text-base sm:text-lg">Fee Impact</h4>
+                        <div className="space-y-2 sm:space-y-3">
+                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
+                            <span className="text-orange-700 font-medium text-sm sm:text-base">Fee Amount:</span>
+                            <span className="font-bold text-orange-800 text-base sm:text-lg break-all">
                               {formatCurrency(result.paypalFee)}
                             </span>
                           </div>
-                          <div className="flex justify-between items-center">
-                            <span className="text-orange-700 font-medium">Fee Percentage:</span>
-                            <span className="font-bold text-orange-800 text-lg">
+                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
+                            <span className="text-orange-700 font-medium text-sm sm:text-base">Fee Percentage:</span>
+                            <span className="font-bold text-orange-800 text-base sm:text-lg">
                               {result.effectiveFeeRate}%
                             </span>
                           </div>
@@ -470,11 +470,11 @@ const PayPalFeeCalculator = () => {
                       </div>
                     </div>
                   ) : (
-                    <div className="text-center py-16" data-testid="no-results">
-                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <div className="text-3xl font-bold text-gray-400">$</div>
+                    <div className="text-center py-12 sm:py-16" data-testid="no-results">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
+                        <div className="text-2xl sm:text-3xl font-bold text-gray-400">$</div>
                       </div>
-                      <p className="text-gray-500 text-lg">Enter transaction details to calculate PayPal fees</p>
+                      <p className="text-gray-500 text-base sm:text-lg px-4">Enter transaction details to calculate PayPal fees</p>
                     </div>
                   )}
                 </div>
@@ -483,10 +483,10 @@ const PayPalFeeCalculator = () => {
           </Card>
 
           {/* SEO Content Section */}
-          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">What is a PayPal Fee Calculator?</h3>
+          <div className="mt-8 sm:mt-12 lg:mt-16 grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 lg:p-8">
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">What is a PayPal Fee Calculator?</h3>
                 <div className="space-y-4 text-gray-600">
                   <p>
                     A PayPal fee calculator is an essential financial tool that helps online sellers, freelancers, 
