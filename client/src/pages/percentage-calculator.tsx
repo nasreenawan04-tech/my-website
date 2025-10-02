@@ -123,8 +123,8 @@ export default function PercentageCalculator() {
       case 'basic':
         return (
           <>
-            <div className="space-y-3">
-              <Label htmlFor="percentage" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+            <div className="space-y-2 sm:space-y-3">
+              <Label htmlFor="percentage" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                 Percentage (%)
               </Label>
               <div className="relative">
@@ -133,17 +133,17 @@ export default function PercentageCalculator() {
                   type="number"
                   value={percentage}
                   onChange={(e) => setPercentage(e.target.value)}
-                  className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                  className="h-10 sm:h-12 md:h-14 pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                   placeholder="25"
                   min="0"
                   step="0.01"
                   data-testid="input-percentage"
                 />
-                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
+                <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
               </div>
             </div>
-            <div className="space-y-3">
-              <Label htmlFor="value" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+            <div className="space-y-2 sm:space-y-3">
+              <Label htmlFor="value" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                 Of Value
               </Label>
               <Input
@@ -151,7 +151,7 @@ export default function PercentageCalculator() {
                 type="number"
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
-                className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                 placeholder="200"
                 min="0"
                 step="0.01"
@@ -164,8 +164,8 @@ export default function PercentageCalculator() {
       case 'change':
         return (
           <>
-            <div className="space-y-3">
-              <Label htmlFor="original-value" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+            <div className="space-y-2 sm:space-y-3">
+              <Label htmlFor="original-value" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                 Original Value
               </Label>
               <Input
@@ -173,14 +173,14 @@ export default function PercentageCalculator() {
                 type="number"
                 value={originalValue}
                 onChange={(e) => setOriginalValue(e.target.value)}
-                className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                 placeholder="100"
                 step="0.01"
                 data-testid="input-original-value"
               />
             </div>
-            <div className="space-y-3">
-              <Label htmlFor="new-value" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+            <div className="space-y-2 sm:space-y-3">
+              <Label htmlFor="new-value" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                 New Value
               </Label>
               <Input
@@ -188,7 +188,7 @@ export default function PercentageCalculator() {
                 type="number"
                 value={newValue}
                 onChange={(e) => setNewValue(e.target.value)}
-                className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                 placeholder="120"
                 step="0.01"
                 data-testid="input-new-value"
@@ -200,8 +200,8 @@ export default function PercentageCalculator() {
       case 'ratio':
         return (
           <>
-            <div className="space-y-3">
-              <Label htmlFor="value" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+            <div className="space-y-2 sm:space-y-3">
+              <Label htmlFor="value" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                 Value
               </Label>
               <Input
@@ -209,14 +209,14 @@ export default function PercentageCalculator() {
                 type="number"
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
-                className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                 placeholder="50"
                 step="0.01"
                 data-testid="input-value"
               />
             </div>
-            <div className="space-y-3">
-              <Label htmlFor="original-value" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+            <div className="space-y-2 sm:space-y-3">
+              <Label htmlFor="original-value" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                 Is What % Of
               </Label>
               <Input
@@ -224,7 +224,7 @@ export default function PercentageCalculator() {
                 type="number"
                 value={originalValue}
                 onChange={(e) => setOriginalValue(e.target.value)}
-                className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                 placeholder="200"
                 step="0.01"
                 data-testid="input-total-value"
@@ -237,8 +237,8 @@ export default function PercentageCalculator() {
       case 'decrease':
         return (
           <>
-            <div className="space-y-3">
-              <Label htmlFor="value" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+            <div className="space-y-2 sm:space-y-3">
+              <Label htmlFor="value" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                 Base Value
               </Label>
               <Input
@@ -246,14 +246,14 @@ export default function PercentageCalculator() {
                 type="number"
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
-                className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                 placeholder="100"
                 step="0.01"
                 data-testid="input-base-value"
               />
             </div>
-            <div className="space-y-3">
-              <Label htmlFor="percentage" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+            <div className="space-y-2 sm:space-y-3">
+              <Label htmlFor="percentage" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                 {calculationType === 'increase' ? 'Increase' : 'Decrease'} By (%)
               </Label>
               <div className="relative">
@@ -262,13 +262,13 @@ export default function PercentageCalculator() {
                   type="number"
                   value={percentage}
                   onChange={(e) => setPercentage(e.target.value)}
-                  className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                  className="h-10 sm:h-12 md:h-14 pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                   placeholder="20"
                   min="0"
                   step="0.01"
                   data-testid="input-change-percentage"
                 />
-                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
+                <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
               </div>
             </div>
           </>
@@ -341,49 +341,49 @@ export default function PercentageCalculator() {
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
           {/* Main Calculator Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
                 {/* Input Section */}
-                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
-                  <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Percentage Configuration</h2>
-                    <p className="text-gray-600">Choose calculation type and enter values to get accurate percentage results</p>
+                <div className="lg:col-span-2 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
+                  <div className="text-center sm:text-left">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Percentage Configuration</h2>
+                    <p className="text-sm sm:text-base text-gray-600">Choose calculation type and enter values to get accurate percentage results</p>
                   </div>
                   
-                  <div className="space-y-6">
+                  <div className="space-y-4 sm:space-y-6">
                     {/* Calculation Type Selection */}
-                    <div className="space-y-3">
-                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Calculation Type
                       </Label>
                       <Select value={calculationType} onValueChange={setCalculationType}>
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-calculation-type">
+                        <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-calculation-type">
                           <SelectValue placeholder="Select calculation type" />
                         </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="basic">What is X% of Y?</SelectItem>
-                          <SelectItem value="ratio">X is what % of Y?</SelectItem>
-                          <SelectItem value="change">Percentage Change</SelectItem>
-                          <SelectItem value="increase">Increase by %</SelectItem>
-                          <SelectItem value="decrease">Decrease by %</SelectItem>
+                        <SelectContent className="max-h-60 overflow-y-auto">
+                          <SelectItem value="basic" className="text-sm sm:text-base">What is X% of Y?</SelectItem>
+                          <SelectItem value="ratio" className="text-sm sm:text-base">X is what % of Y?</SelectItem>
+                          <SelectItem value="change" className="text-sm sm:text-base">Percentage Change</SelectItem>
+                          <SelectItem value="increase" className="text-sm sm:text-base">Increase by %</SelectItem>
+                          <SelectItem value="decrease" className="text-sm sm:text-base">Decrease by %</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
 
                     {/* Dynamic Input Fields */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                       {getInputFields()}
                     </div>
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       onClick={calculatePercentage}
-                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="flex-1 h-10 sm:h-12 md:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                       data-testid="button-calculate"
                     >
                       Calculate Percentage
@@ -391,7 +391,7 @@ export default function PercentageCalculator() {
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      className="h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                       data-testid="button-reset"
                     >
                       Reset
@@ -400,42 +400,42 @@ export default function PercentageCalculator() {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Results</h2>
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12">
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Results</h2>
                   
                   {result ? (
-                    <div className="space-y-6" data-testid="percentage-results">
+                    <div className="space-y-4 sm:space-y-6" data-testid="percentage-results">
                       {/* Main Result */}
-                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
-                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Result</div>
-                        <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" data-testid="text-result">
+                      <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 shadow-lg border border-blue-100">
+                        <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Result</div>
+                        <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 break-all" data-testid="text-result">
                           {typeof result.result === 'number' ? result.result.toLocaleString() : result.calculation}
                         </div>
-                        <div className="text-sm text-blue-700 mt-2">
+                        <div className="text-xs sm:text-sm text-blue-700 mt-2">
                           {result.calculation}
                         </div>
                       </div>
 
                       {/* Formula */}
-                      <div className="bg-white rounded-xl p-4 shadow-sm">
-                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Formula</div>
-                        <div className="font-mono text-gray-900 bg-gray-50 p-3 rounded-lg">
+                      <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                        <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Formula</div>
+                        <div className="font-mono text-sm sm:text-base text-gray-900 bg-gray-50 p-2 sm:p-3 rounded-lg break-all">
                           {result.formula}
                         </div>
                       </div>
 
                       {/* Explanation */}
-                      <div className="bg-white rounded-xl p-4 shadow-sm">
-                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Explanation</div>
-                        <p className="text-gray-700 leading-relaxed">
+                      <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                        <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Explanation</div>
+                        <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
                           {result.explanation}
                         </p>
                       </div>
 
                       {/* Quick Reference */}
-                      <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-6 border border-indigo-200">
-                        <h4 className="font-bold text-indigo-800 mb-4 text-lg">Formula Guide</h4>
-                        <div className="space-y-2 text-sm text-indigo-700">
+                      <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-indigo-200">
+                        <h4 className="font-bold text-indigo-800 mb-3 sm:mb-4 text-base sm:text-lg">Formula Guide</h4>
+                        <div className="space-y-1 sm:space-y-2 text-xs sm:text-sm text-indigo-700">
                           <div>• Basic: (Value × Percentage) ÷ 100</div>
                           <div>• Change: ((New - Old) ÷ Old) × 100</div>
                           <div>• Ratio: (Part ÷ Whole) × 100</div>
@@ -445,11 +445,11 @@ export default function PercentageCalculator() {
                       </div>
                     </div>
                   ) : (
-                    <div className="text-center py-16" data-testid="no-results">
-                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <div className="text-3xl font-bold text-gray-400">%</div>
+                    <div className="text-center py-8 sm:py-12 md:py-16" data-testid="no-results">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
+                        <div className="text-2xl sm:text-3xl font-bold text-gray-400">%</div>
                       </div>
-                      <p className="text-gray-500 text-lg">Select calculation type and enter values to see percentage results</p>
+                      <p className="text-gray-500 text-sm sm:text-base md:text-lg px-2">Select calculation type and enter values to see percentage results</p>
                     </div>
                   )}
                 </div>
