@@ -162,26 +162,26 @@ export default function LeaseCalculator() {
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
           {/* Main Calculator Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+              <div className="flex flex-col lg:grid lg:grid-cols-3 gap-0">
                 {/* Input Section */}
-                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
-                  <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Lease Configuration</h2>
-                    <p className="text-gray-600">Enter your vehicle and lease details to get accurate payment calculations</p>
+                <div className="lg:col-span-2 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
+                  <div className="text-center sm:text-left">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Lease Configuration</h2>
+                    <p className="text-sm sm:text-base text-gray-600">Enter your vehicle and lease details to get accurate payment calculations</p>
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
                     {/* Currency Selection */}
-                    <div className="space-y-3">
-                      <Label htmlFor="currency" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="currency" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Currency
                       </Label>
                       <Select value={currency} onValueChange={setCurrency}>
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-currency">
+                        <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-currency">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -200,18 +200,18 @@ export default function LeaseCalculator() {
                     </div>
 
                     {/* Vehicle Price */}
-                    <div className="space-y-3">
-                      <Label htmlFor="vehicle-price" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="vehicle-price" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Vehicle Price (MSRP)
                       </Label>
                       <div className="relative">
-                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
                         <Input
                           id="vehicle-price"
                           type="number"
                           value={vehiclePrice}
                           onChange={(e) => setVehiclePrice(e.target.value)}
-                          className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="30,000"
                           data-testid="input-vehicle-price"
                         />
@@ -219,18 +219,18 @@ export default function LeaseCalculator() {
                     </div>
 
                     {/* Down Payment */}
-                    <div className="space-y-3">
-                      <Label htmlFor="down-payment" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="down-payment" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Down Payment
                       </Label>
                       <div className="relative">
-                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
                         <Input
                           id="down-payment"
                           type="number"
                           value={downPayment}
                           onChange={(e) => setDownPayment(e.target.value)}
-                          className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="3,000"
                           min="0"
                           data-testid="input-down-payment"
@@ -239,10 +239,10 @@ export default function LeaseCalculator() {
                     </div>
 
                     {/* Lease Term */}
-                    <div className="space-y-3">
-                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Lease Term</Label>
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">Lease Term</Label>
                       <Select value={leaseTerm} onValueChange={setLeaseTerm}>
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-lease-term">
+                        <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-lease-term">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -255,8 +255,8 @@ export default function LeaseCalculator() {
                     </div>
 
                     {/* Interest Rate */}
-                    <div className="space-y-3">
-                      <Label htmlFor="interest-rate" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="interest-rate" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Annual Interest Rate
                       </Label>
                       <div className="relative">
@@ -265,19 +265,19 @@ export default function LeaseCalculator() {
                           type="number"
                           value={interestRate}
                           onChange={(e) => setInterestRate(e.target.value)}
-                          className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 pr-7 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="4.5"
                           step="0.01"
                           min="0"
                           data-testid="input-interest-rate"
                         />
-                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
+                        <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
                       </div>
                     </div>
 
                     {/* Residual Value */}
-                    <div className="space-y-3">
-                      <Label htmlFor="residual-percent" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="residual-percent" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Residual Value (% of MSRP)
                       </Label>
                       <div className="relative">
@@ -286,34 +286,34 @@ export default function LeaseCalculator() {
                           type="number"
                           value={residualPercent}
                           onChange={(e) => setResidualPercent(e.target.value)}
-                          className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 pr-7 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="60"
                           min="1"
                           max="100"
                           data-testid="input-residual-percent"
                         />
-                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
+                        <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
                       </div>
                     </div>
                   </div>
 
                   {/* Additional Fees */}
-                  <div className="space-y-6 border-t pt-8">
-                    <h3 className="text-xl font-bold text-gray-900">Additional Fees</h3>
+                  <div className="space-y-4 sm:space-y-6 border-t pt-4 sm:pt-6 md:pt-8">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900">Additional Fees</h3>
                     
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="space-y-3">
-                        <Label htmlFor="acquisition-fee" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+                      <div className="space-y-2 sm:space-y-3">
+                        <Label htmlFor="acquisition-fee" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                           Acquisition Fee
                         </Label>
                         <div className="relative">
-                          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                          <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
                           <Input
                             id="acquisition-fee"
                             type="number"
                             value={acquisitionFee}
                             onChange={(e) => setAcquisitionFee(e.target.value)}
-                            className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                            className="h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                             placeholder="595"
                             min="0"
                             data-testid="input-acquisition-fee"
@@ -321,18 +321,18 @@ export default function LeaseCalculator() {
                         </div>
                       </div>
 
-                      <div className="space-y-3">
-                        <Label htmlFor="disposition-fee" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                      <div className="space-y-2 sm:space-y-3">
+                        <Label htmlFor="disposition-fee" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                           Disposition Fee
                         </Label>
                         <div className="relative">
-                          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
+                          <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
                           <Input
                             id="disposition-fee"
                             type="number"
                             value={dispositionFee}
                             onChange={(e) => setDispositionFee(e.target.value)}
-                            className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                            className="h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                             placeholder="395"
                             min="0"
                             data-testid="input-disposition-fee"
@@ -343,10 +343,10 @@ export default function LeaseCalculator() {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       onClick={calculateLease}
-                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="flex-1 h-10 sm:h-12 md:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                       data-testid="button-calculate"
                     >
                       Calculate Lease
@@ -354,7 +354,7 @@ export default function LeaseCalculator() {
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      className="h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                       data-testid="button-reset"
                     >
                       Reset
@@ -363,12 +363,12 @@ export default function LeaseCalculator() {
 
                   {/* Advanced Options */}
                   {result && (
-                    <div className="flex flex-wrap gap-3 pt-4">
+                    <div className="flex flex-wrap gap-2 sm:gap-3 pt-3 sm:pt-4">
                       <Button
                         onClick={() => setShowBreakdown(!showBreakdown)}
                         variant="outline"
                         size="sm"
-                        className="rounded-full"
+                        className="rounded-full text-xs sm:text-sm"
                         data-testid="button-show-breakdown"
                       >
                         {showBreakdown ? 'Hide' : 'Show'} Cost Breakdown
@@ -378,49 +378,49 @@ export default function LeaseCalculator() {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Results</h2>
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t lg:border-t-0">
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Results</h2>
                   
                   {result ? (
-                    <div className="space-y-6" data-testid="lease-results">
+                    <div className="space-y-3 sm:space-y-4 md:space-y-6" data-testid="lease-results">
                       {/* Monthly Payment Highlight */}
-                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
-                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Monthly Lease Payment</div>
-                        <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" data-testid="text-monthly-payment">
+                      <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 shadow-lg border border-blue-100">
+                        <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-1 sm:mb-2">Monthly Lease Payment</div>
+                        <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 break-all" data-testid="text-monthly-payment">
                           {formatCurrency(result.monthlyPayment)}
                         </div>
                       </div>
 
                       {/* Payment Breakdown */}
-                      <div className="space-y-4">
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Total Lease Cost</span>
-                            <span className="font-bold text-gray-900" data-testid="text-total-amount">
+                      <div className="space-y-2 sm:space-y-3 md:space-y-4">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex justify-between items-center gap-2">
+                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Total Lease Cost</span>
+                            <span className="font-bold text-gray-900 text-sm sm:text-base md:text-lg break-all" data-testid="text-total-amount">
                               {formatCurrency(result.totalAmount)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Total Interest</span>
-                            <span className="font-bold text-orange-600" data-testid="text-total-interest">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex justify-between items-center gap-2">
+                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Total Interest</span>
+                            <span className="font-bold text-orange-600 text-sm sm:text-base md:text-lg break-all" data-testid="text-total-interest">
                               {formatCurrency(result.totalInterest)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Depreciation Cost</span>
-                            <span className="font-bold text-red-600" data-testid="text-depreciation">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex justify-between items-center gap-2">
+                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Depreciation Cost</span>
+                            <span className="font-bold text-red-600 text-sm sm:text-base md:text-lg break-all" data-testid="text-depreciation">
                               {formatCurrency(result.depreciation)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Residual Value</span>
-                            <span className="font-bold text-green-600" data-testid="text-residual-value">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex justify-between items-center gap-2">
+                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Residual Value</span>
+                            <span className="font-bold text-green-600 text-sm sm:text-base md:text-lg break-all" data-testid="text-residual-value">
                               {formatCurrency(result.residualValue)}
                             </span>
                           </div>
@@ -428,18 +428,18 @@ export default function LeaseCalculator() {
                       </div>
 
                       {/* Fees Breakdown */}
-                      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-200">
-                        <h4 className="font-bold text-blue-800 mb-4 text-lg">Fees Summary</h4>
-                        <div className="space-y-3">
-                          <div className="flex justify-between items-center">
-                            <span className="text-blue-700 font-medium">Acquisition Fee:</span>
-                            <span className="font-bold text-blue-800">
+                      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border border-blue-200">
+                        <h4 className="font-bold text-blue-800 mb-2 sm:mb-3 md:mb-4 text-sm sm:text-base md:text-lg">Fees Summary</h4>
+                        <div className="space-y-2 sm:space-y-3">
+                          <div className="flex justify-between items-center gap-2">
+                            <span className="text-blue-700 font-medium text-xs sm:text-sm md:text-base">Acquisition Fee:</span>
+                            <span className="font-bold text-blue-800 text-sm sm:text-base break-all">
                               {formatCurrency(result.acquisitionFee)}
                             </span>
                           </div>
-                          <div className="flex justify-between items-center">
-                            <span className="text-blue-700 font-medium">Disposition Fee:</span>
-                            <span className="font-bold text-blue-800">
+                          <div className="flex justify-between items-center gap-2">
+                            <span className="text-blue-700 font-medium text-xs sm:text-sm md:text-base">Disposition Fee:</span>
+                            <span className="font-bold text-blue-800 text-sm sm:text-base break-all">
                               {formatCurrency(result.dispositionFee)}
                             </span>
                           </div>
@@ -447,11 +447,11 @@ export default function LeaseCalculator() {
                       </div>
                     </div>
                   ) : (
-                    <div className="text-center py-16" data-testid="no-results">
-                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <div className="text-3xl font-bold text-gray-400">🚗</div>
+                    <div className="text-center py-8 sm:py-12 md:py-16" data-testid="no-results">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
+                        <div className="text-2xl sm:text-3xl font-bold text-gray-400">🚗</div>
                       </div>
-                      <p className="text-gray-500 text-lg">Enter lease details and calculate to see payment results</p>
+                      <p className="text-gray-500 text-sm sm:text-base md:text-lg px-4">Enter lease details and calculate to see payment results</p>
                     </div>
                   )}
                 </div>
