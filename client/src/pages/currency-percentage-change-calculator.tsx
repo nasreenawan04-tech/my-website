@@ -161,13 +161,13 @@ export default function CurrencyPercentageChangeCalculator() {
             <CardContent className="p-0">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                 {/* Input Section */}
-                <div className="p-4 sm:p-6 md:p-8 lg:p-12 space-y-6 sm:space-y-8">
+                <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
                   <div>
-                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Percentage Change Configuration</h2>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Percentage Change Configuration</h2>
                     <p className="text-sm sm:text-base text-gray-600">Enter the original and new values to calculate the percentage change</p>
                   </div>
                   
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
                     {/* Currency Selection */}
                     <div className="space-y-2 sm:space-y-3 sm:col-span-2">
                       <Label htmlFor="currency" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
@@ -254,8 +254,8 @@ export default function CurrencyPercentageChangeCalculator() {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 md:p-8 lg:p-12">
-                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">Results</h2>
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12">
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">Results</h2>
                   
                   {result ? (
                     <div className="space-y-4 sm:space-y-6" data-testid="percentage-results">
@@ -323,7 +323,7 @@ export default function CurrencyPercentageChangeCalculator() {
           </Card>
 
           {/* SEO Content Section */}
-          <div className="mt-8 sm:mt-12 lg:mt-16 grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+          <div className="mt-6 sm:mt-8 md:mt-12 lg:mt-16 grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
             <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
               <CardContent className="p-4 sm:p-6 lg:p-8">
                 <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">What is Percentage Change?</h3>
