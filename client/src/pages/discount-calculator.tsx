@@ -167,26 +167,26 @@ export default function DiscountCalculator() {
           </div>
         </section>
 
-        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
+        <div className="max-w-7xl mx-auto px-4 py-16">
           {/* Main Calculator Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="flex flex-col lg:grid lg:grid-cols-3 gap-0">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
                 {/* Input Section */}
-                <div className="lg:col-span-2 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
-                  <div className="text-center sm:text-left">
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Discount Configuration</h2>
-                    <p className="text-sm sm:text-base text-gray-600">Enter price and discount details to calculate savings and final price</p>
+                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
+                  <div>
+                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Discount Configuration</h2>
+                    <p className="text-gray-600">Enter price and discount details to calculate savings and final price</p>
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {/* Currency Selection */}
-                    <div className="space-y-2 sm:space-y-3">
-                      <Label htmlFor="currency" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-3">
+                      <Label htmlFor="currency" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Currency
                       </Label>
                       <Select value={currency} onValueChange={setCurrency}>
-                        <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-currency">
+                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-currency">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -205,18 +205,18 @@ export default function DiscountCalculator() {
                     </div>
 
                     {/* Original Price */}
-                    <div className="space-y-2 sm:space-y-3">
-                      <Label htmlFor="original-price" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-3">
+                      <Label htmlFor="original-price" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Original Price
                       </Label>
                       <div className="relative">
-                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
+                        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
                         <Input
                           id="original-price"
                           type="number"
                           value={originalPrice}
                           onChange={(e) => setOriginalPrice(e.target.value)}
-                          className="h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                          className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
                           placeholder="100.00"
                           min="0"
                           step="0.01"
@@ -226,12 +226,12 @@ export default function DiscountCalculator() {
                     </div>
 
                     {/* Discount Type */}
-                    <div className="space-y-2 sm:space-y-3">
-                      <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-3">
+                      <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Discount Type
                       </Label>
                       <Select value={calculationType} onValueChange={setCalculationType}>
-                        <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-discount-type">
+                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-discount-type">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -243,8 +243,8 @@ export default function DiscountCalculator() {
 
                     {/* Discount Value */}
                     {calculationType === 'percentage' ? (
-                      <div className="space-y-2 sm:space-y-3">
-                        <Label htmlFor="discount-percent" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                      <div className="space-y-3">
+                        <Label htmlFor="discount-percent" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
                           Discount Percentage
                         </Label>
                         <div className="relative">
@@ -253,29 +253,29 @@ export default function DiscountCalculator() {
                             type="number"
                             value={discountPercent}
                             onChange={(e) => setDiscountPercent(e.target.value)}
-                            className="h-10 sm:h-12 md:h-14 pr-7 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                            className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
                             placeholder="20"
                             min="0"
                             max="100"
                             step="0.01"
                             data-testid="input-discount-percent"
                           />
-                          <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
+                          <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
                         </div>
                       </div>
                     ) : (
-                      <div className="space-y-2 sm:space-y-3">
-                        <Label htmlFor="discount-amount" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                      <div className="space-y-3">
+                        <Label htmlFor="discount-amount" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
                           Discount Amount
                         </Label>
                         <div className="relative">
-                          <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">$</span>
+                          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">$</span>
                           <Input
                             id="discount-amount"
                             type="number"
                             value={discountAmount}
                             onChange={(e) => setDiscountAmount(e.target.value)}
-                            className="h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                            className="h-14 pl-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
                             placeholder="20.00"
                             min="0"
                             step="0.01"
@@ -287,10 +287,10 @@ export default function DiscountCalculator() {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-3 sm:pt-4 md:pt-6">
+                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
                     <Button
                       onClick={calculateDiscount}
-                      className="flex-1 h-10 sm:h-12 md:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                       data-testid="button-calculate"
                     >
                       Calculate Discount
@@ -298,7 +298,7 @@ export default function DiscountCalculator() {
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-10 sm:h-12 md:h-14 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
+                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
                       data-testid="button-reset"
                     >
                       Reset
@@ -323,44 +323,44 @@ export default function DiscountCalculator() {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t lg:border-t-0 lg:border-l">
-                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Results</h2>
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Results</h2>
                   
                   {result ? (
-                    <div className="space-y-4 sm:space-y-6" data-testid="discount-results">
+                    <div className="space-y-6" data-testid="discount-results">
                       {/* Final Price Highlight */}
-                      <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-4 sm:p-5 md:p-6 shadow-lg border border-blue-100">
-                        <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-1 sm:mb-2">Final Price</div>
-                        <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 break-all" data-testid="text-final-price">
+                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
+                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Final Price</div>
+                        <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" data-testid="text-final-price">
                           {formatCurrency(result.finalPrice)}
                         </div>
-                        <div className="text-xs sm:text-sm text-green-700 mt-1 sm:mt-2">
+                        <div className="text-sm text-green-700 mt-2">
                           {result.discountType} applied
                         </div>
                       </div>
 
                       {/* Savings Breakdown */}
-                      <div className="space-y-3 sm:space-y-4">
-                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
-                          <div className="flex justify-between items-center gap-2">
-                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Original Price</span>
-                            <span className="font-bold text-gray-900 text-xs sm:text-sm md:text-base" data-testid="text-original-price">
+                      <div className="space-y-4">
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Original Price</span>
+                            <span className="font-bold text-gray-900" data-testid="text-original-price">
                               {formatCurrency(result.originalPrice)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
-                          <div className="flex justify-between items-center gap-2">
-                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Discount Amount</span>
-                            <span className="font-bold text-red-600 text-xs sm:text-sm md:text-base" data-testid="text-discount-amount">
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">Discount Amount</span>
+                            <span className="font-bold text-red-600" data-testid="text-discount-amount">
                               -{formatCurrency(result.discountAmount)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
-                          <div className="flex justify-between items-center gap-2">
-                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">You Save</span>
-                            <span className="font-bold text-green-600 text-xs sm:text-sm md:text-base" data-testid="text-savings-percentage">
+                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700">You Save</span>
+                            <span className="font-bold text-green-600" data-testid="text-savings-percentage">
                               {result.savingsPercentage}%
                             </span>
                           </div>
@@ -368,18 +368,18 @@ export default function DiscountCalculator() {
                       </div>
 
                       {/* Savings Summary */}
-                      <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 border border-green-200">
-                        <h4 className="font-bold text-green-800 mb-3 sm:mb-4 text-base sm:text-lg">Your Savings Summary</h4>
-                        <div className="space-y-2 sm:space-y-3">
-                          <div className="flex justify-between items-center gap-2">
-                            <span className="text-green-700 font-medium text-xs sm:text-sm md:text-base">Amount Saved:</span>
-                            <span className="font-bold text-green-800 text-sm sm:text-base md:text-lg">
+                      <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-6 border border-green-200">
+                        <h4 className="font-bold text-green-800 mb-4 text-lg">Your Savings Summary</h4>
+                        <div className="space-y-3">
+                          <div className="flex justify-between items-center">
+                            <span className="text-green-700 font-medium">Amount Saved:</span>
+                            <span className="font-bold text-green-800 text-lg">
                               {formatCurrency(result.savingsAmount)}
                             </span>
                           </div>
-                          <div className="flex justify-between items-center gap-2">
-                            <span className="text-green-700 font-medium text-xs sm:text-sm md:text-base">Percentage Saved:</span>
-                            <span className="font-bold text-green-800 text-sm sm:text-base md:text-lg">
+                          <div className="flex justify-between items-center">
+                            <span className="text-green-700 font-medium">Percentage Saved:</span>
+                            <span className="font-bold text-green-800 text-lg">
                               {result.savingsPercentage}%
                             </span>
                           </div>
@@ -387,11 +387,11 @@ export default function DiscountCalculator() {
                       </div>
                     </div>
                   ) : (
-                    <div className="text-center py-8 sm:py-12 md:py-16" data-testid="no-results">
-                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
-                        <div className="text-2xl sm:text-3xl font-bold text-gray-400">%</div>
+                    <div className="text-center py-16" data-testid="no-results">
+                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <div className="text-3xl font-bold text-gray-400">%</div>
                       </div>
-                      <p className="text-gray-500 text-sm sm:text-base md:text-lg px-4">Enter price and discount details to see savings results</p>
+                      <p className="text-gray-500 text-lg">Enter price and discount details to see savings results</p>
                     </div>
                   )}
                 </div>
