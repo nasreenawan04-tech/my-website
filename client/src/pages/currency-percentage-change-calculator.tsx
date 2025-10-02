@@ -198,7 +198,9 @@ export default function CurrencyPercentageChangeCalculator() {
                         Original Value
                       </Label>
                       <div className="relative">
-                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">$</span>
+                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">
+                          {currency === 'USD' ? '$' : currency === 'EUR' ? '€' : currency === 'GBP' ? '£' : currency === 'INR' ? '₹' : currency === 'JPY' ? '¥' : currency === 'CAD' ? 'C$' : currency === 'AUD' ? 'A$' : currency === 'CNY' ? '¥' : currency === 'BRL' ? 'R$' : currency === 'MXN' ? '$' : '$'}
+                        </span>
                         <Input
                           id="old-value"
                           type="number"
@@ -218,7 +220,9 @@ export default function CurrencyPercentageChangeCalculator() {
                         New Value
                       </Label>
                       <div className="relative">
-                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">$</span>
+                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">
+                          {currency === 'USD' ? '$' : currency === 'EUR' ? '€' : currency === 'GBP' ? '£' : currency === 'INR' ? '₹' : currency === 'JPY' ? '¥' : currency === 'CAD' ? 'C$' : currency === 'AUD' ? 'A$' : currency === 'CNY' ? '¥' : currency === 'BRL' ? 'R$' : currency === 'MXN' ? '$' : '$'}
+                        </span>
                         <Input
                           id="new-value"
                           type="number"

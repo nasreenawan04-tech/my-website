@@ -296,7 +296,9 @@ export default function FutureValueInvestmentCalculator() {
                         Initial Investment
                       </Label>
                       <div className="relative">
-                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">$</span>
+                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">
+                          {currency === 'USD' ? '$' : currency === 'EUR' ? '€' : currency === 'GBP' ? '£' : currency === 'INR' ? '₹' : currency === 'JPY' ? '¥' : currency === 'CAD' ? 'C$' : currency === 'AUD' ? 'A$' : currency === 'CNY' ? '¥' : currency === 'BRL' ? 'R$' : currency === 'MXN' ? '$' : '$'}
+                        </span>
                         <Input
                           id="initial-investment"
                           type="number"
@@ -400,7 +402,9 @@ export default function FutureValueInvestmentCalculator() {
                               <div className="space-y-2 ml-4 pl-4 border-l-2 border-blue-200">
                                 <Label className="text-xs sm:text-sm font-medium">Monthly Contribution Amount</Label>
                                 <div className="relative">
-                                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">
+                                    {currency === 'USD' ? '$' : currency === 'EUR' ? '€' : currency === 'GBP' ? '£' : currency === 'INR' ? '₹' : currency === 'JPY' ? '¥' : currency === 'CAD' ? 'C$' : currency === 'AUD' ? 'A$' : currency === 'CNY' ? '¥' : currency === 'BRL' ? 'R$' : currency === 'MXN' ? '$' : '$'}
+                                  </span>
                                   <Input
                                     value={monthlyContribution}
                                     onChange={(e) => setMonthlyContribution(e.target.value)}
