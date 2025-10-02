@@ -155,14 +155,14 @@ export default function CurrencyPercentageChangeCalculator() {
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-3 sm:px-4 py-8 sm:py-12 lg:py-16">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
           {/* Main Calculator Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-2xl sm:rounded-3xl overflow-hidden">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                 {/* Input Section */}
                 <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
-                  <div>
+                  <div className="text-center sm:text-left">
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Percentage Change Configuration</h2>
                     <p className="text-sm sm:text-base text-gray-600">Enter the original and new values to calculate the percentage change</p>
                   </div>
@@ -174,20 +174,20 @@ export default function CurrencyPercentageChangeCalculator() {
                         Currency
                       </Label>
                       <Select value={currency} onValueChange={setCurrency}>
-                        <SelectTrigger className="h-12 sm:h-14 border-2 border-gray-200 rounded-xl text-base sm:text-lg" data-testid="select-currency">
+                        <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-currency">
                           <SelectValue />
                         </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="USD">USD - US Dollar</SelectItem>
-                          <SelectItem value="EUR">EUR - Euro</SelectItem>
-                          <SelectItem value="GBP">GBP - British Pound</SelectItem>
-                          <SelectItem value="INR">INR - Indian Rupee</SelectItem>
-                          <SelectItem value="JPY">JPY - Japanese Yen</SelectItem>
-                          <SelectItem value="CAD">CAD - Canadian Dollar</SelectItem>
-                          <SelectItem value="AUD">AUD - Australian Dollar</SelectItem>
-                          <SelectItem value="CNY">CNY - Chinese Yuan</SelectItem>
-                          <SelectItem value="BRL">BRL - Brazilian Real</SelectItem>
-                          <SelectItem value="MXN">MXN - Mexican Peso</SelectItem>
+                        <SelectContent className="max-h-60 overflow-y-auto">
+                          <SelectItem value="USD" className="text-sm sm:text-base">USD - US Dollar</SelectItem>
+                          <SelectItem value="EUR" className="text-sm sm:text-base">EUR - Euro</SelectItem>
+                          <SelectItem value="GBP" className="text-sm sm:text-base">GBP - British Pound</SelectItem>
+                          <SelectItem value="INR" className="text-sm sm:text-base">INR - Indian Rupee</SelectItem>
+                          <SelectItem value="JPY" className="text-sm sm:text-base">JPY - Japanese Yen</SelectItem>
+                          <SelectItem value="CAD" className="text-sm sm:text-base">CAD - Canadian Dollar</SelectItem>
+                          <SelectItem value="AUD" className="text-sm sm:text-base">AUD - Australian Dollar</SelectItem>
+                          <SelectItem value="CNY" className="text-sm sm:text-base">CNY - Chinese Yuan</SelectItem>
+                          <SelectItem value="BRL" className="text-sm sm:text-base">BRL - Brazilian Real</SelectItem>
+                          <SelectItem value="MXN" className="text-sm sm:text-base">MXN - Mexican Peso</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -198,7 +198,7 @@ export default function CurrencyPercentageChangeCalculator() {
                         Original Value
                       </Label>
                       <div className="relative">
-                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">
+                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">
                           {currency === 'USD' ? '$' : currency === 'EUR' ? '€' : currency === 'GBP' ? '£' : currency === 'INR' ? '₹' : currency === 'JPY' ? '¥' : currency === 'CAD' ? 'C$' : currency === 'AUD' ? 'A$' : currency === 'CNY' ? '¥' : currency === 'BRL' ? 'R$' : currency === 'MXN' ? '$' : '$'}
                         </span>
                         <Input
@@ -206,7 +206,7 @@ export default function CurrencyPercentageChangeCalculator() {
                           type="number"
                           value={oldValue}
                           onChange={(e) => setOldValue(e.target.value)}
-                          className="h-12 sm:h-14 pl-7 sm:pl-8 text-base sm:text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="1,000"
                           step="0.01"
                           data-testid="input-old-value"
@@ -220,7 +220,7 @@ export default function CurrencyPercentageChangeCalculator() {
                         New Value
                       </Label>
                       <div className="relative">
-                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">
+                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">
                           {currency === 'USD' ? '$' : currency === 'EUR' ? '€' : currency === 'GBP' ? '£' : currency === 'INR' ? '₹' : currency === 'JPY' ? '¥' : currency === 'CAD' ? 'C$' : currency === 'AUD' ? 'A$' : currency === 'CNY' ? '¥' : currency === 'BRL' ? 'R$' : currency === 'MXN' ? '$' : '$'}
                         </span>
                         <Input
@@ -228,7 +228,7 @@ export default function CurrencyPercentageChangeCalculator() {
                           type="number"
                           value={newValue}
                           onChange={(e) => setNewValue(e.target.value)}
-                          className="h-12 sm:h-14 pl-7 sm:pl-8 text-base sm:text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="1,200"
                           step="0.01"
                           data-testid="input-new-value"
@@ -238,10 +238,10 @@ export default function CurrencyPercentageChangeCalculator() {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 sm:pt-6">
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       onClick={calculatePercentageChange}
-                      className="flex-1 h-12 sm:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-base sm:text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="flex-1 h-10 sm:h-12 md:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                       data-testid="button-calculate"
                     >
                       Calculate Change
@@ -249,7 +249,7 @@ export default function CurrencyPercentageChangeCalculator() {
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-12 sm:h-14 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-base sm:text-lg rounded-xl"
+                      className="h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                       data-testid="button-reset"
                     >
                       Reset
@@ -259,14 +259,14 @@ export default function CurrencyPercentageChangeCalculator() {
 
                 {/* Results Section */}
                 <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12">
-                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">Results</h2>
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Results</h2>
                   
                   {result ? (
                     <div className="space-y-4 sm:space-y-6" data-testid="percentage-results">
                       {/* Percentage Change Highlight */}
-                      <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border border-blue-100">
+                      <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-4 sm:p-6 shadow-lg border border-blue-100">
                         <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Percentage Change</div>
-                        <div className={`text-2xl sm:text-3xl lg:text-4xl font-bold ${
+                        <div className={`text-2xl sm:text-3xl lg:text-4xl font-bold break-all ${
                           result.changeType === 'increase' ? 'text-green-600' : 
                           result.changeType === 'decrease' ? 'text-red-600' : 'text-gray-600'
                         }`} data-testid="text-percentage-change">
@@ -318,7 +318,7 @@ export default function CurrencyPercentageChangeCalculator() {
                       <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
                         <div className="text-2xl sm:text-3xl font-bold text-gray-400">%</div>
                       </div>
-                      <p className="text-gray-500 text-base sm:text-lg px-4">Enter values and calculate to see percentage change results</p>
+                      <p className="text-gray-500 text-sm sm:text-base md:text-lg px-4">Enter values and calculate to see percentage change results</p>
                     </div>
                   )}
                 </div>
@@ -353,7 +353,7 @@ export default function CurrencyPercentageChangeCalculator() {
                   <p>
                     The percentage change formula is: Percentage Change = ((New Value - Old Value) / Old Value) × 100
                   </p>
-                  <ul className="space-y-2 list-disc list-inside">
+                  <ul className="space-y-2 list-disc list-inside text-sm sm:text-base">
                     <li>New Value = Current or final amount</li>
                     <li>Old Value = Original or starting amount</li>
                     <li>Positive result = Increase in value</li>
@@ -367,10 +367,10 @@ export default function CurrencyPercentageChangeCalculator() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Common Use Cases</h3>
-                <div className="space-y-3 text-gray-600">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 lg:p-8">
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Common Use Cases</h3>
+                <div className="space-y-3 text-gray-600 text-sm sm:text-base">
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
                     <span>Investment portfolio performance tracking</span>
@@ -399,10 +399,10 @@ export default function CurrencyPercentageChangeCalculator() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Benefits of Our Calculator</h3>
-                <div className="space-y-3 text-gray-600">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 lg:p-8">
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Benefits of Our Calculator</h3>
+                <div className="space-y-3 text-gray-600 text-sm sm:text-base">
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
                     <span>Instant percentage change calculations</span>
@@ -429,39 +429,39 @@ export default function CurrencyPercentageChangeCalculator() {
           </div>
 
           {/* Additional SEO Content Sections */}
-          <div className="mt-12 space-y-8">
+          <div className="mt-8 sm:mt-12 space-y-6 sm:space-y-8">
             {/* Investment Analysis Section */}
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Investment Performance Analysis</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-gray-800">Portfolio Tracking</h4>
-                    <p className="text-gray-600">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 lg:p-8">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Investment Performance Analysis</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                  <div className="space-y-3 sm:space-y-4">
+                    <h4 className="text-base sm:text-lg font-semibold text-gray-800">Portfolio Tracking</h4>
+                    <p className="text-gray-600 text-sm sm:text-base">
                       Use percentage change calculations to monitor your investment portfolio's performance over different 
                       time periods. Track individual stocks, mutual funds, ETFs, and other securities to make informed 
                       investment decisions based on historical performance data.
                     </p>
                   </div>
-                  <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-gray-800">Risk Assessment</h4>
-                    <p className="text-gray-600">
+                  <div className="space-y-3 sm:space-y-4">
+                    <h4 className="text-base sm:text-lg font-semibold text-gray-800">Risk Assessment</h4>
+                    <p className="text-gray-600 text-sm sm:text-base">
                       Percentage changes help quantify investment volatility and risk. Large percentage swings indicate 
                       higher volatility, while smaller, consistent changes suggest more stable investments. This information 
                       is crucial for portfolio diversification and risk management.
                     </p>
                   </div>
-                  <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-gray-800">Benchmark Comparison</h4>
-                    <p className="text-gray-600">
+                  <div className="space-y-3 sm:space-y-4">
+                    <h4 className="text-base sm:text-lg font-semibold text-gray-800">Benchmark Comparison</h4>
+                    <p className="text-gray-600 text-sm sm:text-base">
                       Compare your investment returns against market benchmarks like the S&P 500, NASDAQ, or sector-specific 
                       indices. Percentage change calculations make it easy to determine if your investments are outperforming 
                       or underperforming the broader market.
                     </p>
                   </div>
-                  <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-gray-800">Goal Tracking</h4>
-                    <p className="text-gray-600">
+                  <div className="space-y-3 sm:space-y-4">
+                    <h4 className="text-base sm:text-lg font-semibold text-gray-800">Goal Tracking</h4>
+                    <p className="text-gray-600 text-sm sm:text-base">
                       Monitor progress toward financial goals by calculating percentage changes in your savings, retirement 
                       accounts, or investment portfolios. Set target percentage gains and track your progress over time to 
                       stay on course with your financial planning objectives.
