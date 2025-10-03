@@ -965,170 +965,108 @@ export default function LoanCalculator() {
                         </Button>
                       </div>
 
-                      {/* Print-only Comprehensive Summary */}
-                      <div className="hidden print:block print-summary-section mt-8" data-testid="print-summary">
-                        <div className="mb-8 pb-6 border-b-2 border-gray-300">
-                          <h1 className="text-3xl font-bold text-gray-900 mb-2">Loan Payment Analysis Report</h1>
-                          <p className="text-sm text-gray-600">Generated on {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</p>
+                      {/* Print-only Concise Summary (Single Page) */}
+                      <div className="hidden print:block print-summary-section" data-testid="print-summary">
+                        <div className="mb-4 pb-3 border-b-2 border-gray-300">
+                          <h1 className="text-2xl font-bold text-gray-900 mb-1">Loan Payment Analysis</h1>
+                          <p className="text-xs text-gray-600">Generated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</p>
                         </div>
 
-                        {/* Loan Parameters */}
-                        <div className="mb-8">
-                          <h2 className="text-xl font-bold text-gray-900 mb-4 pb-2 border-b border-gray-300">Loan Parameters</h2>
-                          <div className="grid grid-cols-2 gap-4">
-                            <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                              <div className="text-sm text-gray-600 mb-1">Loan Amount (Principal)</div>
-                              <div className="text-2xl font-bold text-gray-900">{formatCurrency(parseFloat(loanAmount))}</div>
+                        {/* Loan Parameters - Compact */}
+                        <div className="mb-4">
+                          <h2 className="text-base font-bold text-gray-900 mb-2 pb-1 border-b border-gray-300">Loan Details</h2>
+                          <div className="grid grid-cols-4 gap-2 text-xs">
+                            <div className="bg-gray-50 p-2 rounded border border-gray-200">
+                              <div className="text-gray-600 mb-0.5">Amount</div>
+                              <div className="font-bold text-gray-900">{formatCurrency(parseFloat(loanAmount))}</div>
                             </div>
-                            <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                              <div className="text-sm text-gray-600 mb-1">Interest Rate (APR)</div>
-                              <div className="text-2xl font-bold text-gray-900">{interestRate}% per year</div>
+                            <div className="bg-gray-50 p-2 rounded border border-gray-200">
+                              <div className="text-gray-600 mb-0.5">Rate</div>
+                              <div className="font-bold text-gray-900">{interestRate}%</div>
                             </div>
-                            <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                              <div className="text-sm text-gray-600 mb-1">Loan Term</div>
-                              <div className="text-2xl font-bold text-gray-900">
-                                {loanTerm} {termUnit === 'years' ? 'Years' : 'Months'}
-                              </div>
+                            <div className="bg-gray-50 p-2 rounded border border-gray-200">
+                              <div className="text-gray-600 mb-0.5">Term</div>
+                              <div className="font-bold text-gray-900">{loanTerm} {termUnit === 'years' ? 'yrs' : 'mos'}</div>
                             </div>
-                            <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                              <div className="text-sm text-gray-600 mb-1">Payment Frequency</div>
-                              <div className="text-2xl font-bold text-gray-900 capitalize">{paymentFrequency}</div>
-                            </div>
-                            {parseFloat(extraPayment) > 0 && (
-                              <div className="bg-green-50 p-4 rounded-lg col-span-2 border-2 border-green-200">
-                                <div className="text-sm text-green-700 mb-1">Extra Payment Per Period</div>
-                                <div className="text-2xl font-bold text-green-800">{formatCurrency(parseFloat(extraPayment))}</div>
-                              </div>
-                            )}
-                          </div>
-                        </div>
-
-                        {/* Payment Summary */}
-                        <div className="mb-8">
-                          <h2 className="text-xl font-bold text-gray-900 mb-4 pb-2 border-b border-gray-300">Payment Summary</h2>
-                          <div className="space-y-4">
-                            <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                              <span className="text-base font-medium text-gray-700">Monthly Payment (Equivalent):</span>
-                              <span className="text-2xl font-bold text-blue-600">{formatCurrency(result.monthlyPayment)}</span>
-                            </div>
-                            {paymentFrequency !== 'monthly' && (
-                              <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                                <span className="text-base font-medium text-gray-700">Actual {paymentFrequency === 'weekly' ? 'Weekly' : 'Bi-weekly'} Payment:</span>
-                                <span className="text-xl font-bold text-gray-900">
-                                  {formatCurrency(result.monthlyPayment * (12 / (paymentFrequency === 'weekly' ? 52 : 26)))}
-                                </span>
-                              </div>
-                            )}
-                            <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                              <span className="text-base font-medium text-gray-700">Total Principal Amount:</span>
-                              <span className="text-xl font-bold text-gray-900">{formatCurrency(parseFloat(loanAmount))}</span>
-                            </div>
-                            <div className="flex justify-between items-center py-3 border-b border-gray-200">
-                              <span className="text-base font-medium text-gray-700">Total Interest Paid:</span>
-                              <span className="text-xl font-bold text-orange-600">{formatCurrency(result.totalInterest)}</span>
-                            </div>
-                            <div className="flex justify-between items-center py-4 bg-blue-50 px-4 rounded-lg mt-4 border-2 border-blue-200">
-                              <span className="text-lg font-bold text-gray-900">Total Amount to Repay:</span>
-                              <span className="text-3xl font-bold text-blue-600">{formatCurrency(result.totalAmount)}</span>
+                            <div className="bg-gray-50 p-2 rounded border border-gray-200">
+                              <div className="text-gray-600 mb-0.5">Frequency</div>
+                              <div className="font-bold text-gray-900 capitalize">{paymentFrequency}</div>
                             </div>
                           </div>
                         </div>
 
-                        {/* Cost Analysis */}
-                        <div className="mb-8">
-                          <h2 className="text-xl font-bold text-gray-900 mb-4 pb-2 border-b border-gray-300">Cost Analysis & Breakdown</h2>
-                          <div className="grid grid-cols-2 gap-4 mb-4">
-                            <div className="bg-green-50 p-4 rounded-lg border-2 border-green-200">
-                              <div className="text-sm text-green-700 mb-1 font-medium">Principal Portion</div>
-                              <div className="text-xl font-bold text-green-800 mb-2">{formatCurrency(parseFloat(loanAmount))}</div>
-                              <div className="text-2xl font-bold text-green-600">{principalPercentage.toFixed(1)}%</div>
+                        {/* Payment Summary - Compact */}
+                        <div className="mb-4">
+                          <h2 className="text-base font-bold text-gray-900 mb-2 pb-1 border-b border-gray-300">Payment Summary</h2>
+                          <div className="space-y-1.5 text-sm">
+                            <div className="flex justify-between items-center py-1.5 border-b border-gray-200">
+                              <span className="text-gray-700">Monthly Payment:</span>
+                              <span className="font-bold text-blue-600">{formatCurrency(result.monthlyPayment)}</span>
                             </div>
-                            <div className="bg-orange-50 p-4 rounded-lg border-2 border-orange-200">
-                              <div className="text-sm text-orange-700 mb-1 font-medium">Interest Portion</div>
-                              <div className="text-xl font-bold text-orange-800 mb-2">{formatCurrency(result.totalInterest)}</div>
-                              <div className="text-2xl font-bold text-orange-600">{interestPercentage.toFixed(1)}%</div>
+                            <div className="flex justify-between items-center py-1.5 border-b border-gray-200">
+                              <span className="text-gray-700">Total Principal:</span>
+                              <span className="font-bold text-gray-900">{formatCurrency(parseFloat(loanAmount))}</span>
                             </div>
-                          </div>
-                          <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                            <p className="text-sm text-gray-700 mb-2">
-                              <strong className="text-gray-900">Cost Per Dollar Borrowed:</strong> For every $1.00 you borrow, you will repay ${(result.totalAmount / parseFloat(loanAmount)).toFixed(2)}
-                            </p>
-                            <p className="text-sm text-gray-700">
-                              <strong className="text-gray-900">Interest Rate Impact:</strong> At {interestRate}% APR over {termUnit === 'years' ? loanTerm + ' years' : loanTerm + ' months'}, 
-                              you'll pay {formatCurrency(result.totalInterest)} in interest, which is {interestPercentage.toFixed(1)}% of your total repayment.
-                            </p>
+                            <div className="flex justify-between items-center py-1.5 border-b border-gray-200">
+                              <span className="text-gray-700">Total Interest:</span>
+                              <span className="font-bold text-orange-600">{formatCurrency(result.totalInterest)}</span>
+                            </div>
+                            <div className="flex justify-between items-center py-2 bg-blue-50 px-3 rounded border border-blue-200">
+                              <span className="font-bold text-gray-900">Total to Repay:</span>
+                              <span className="text-xl font-bold text-blue-600">{formatCurrency(result.totalAmount)}</span>
+                            </div>
                           </div>
                         </div>
 
-                        {/* Extra Payment Savings */}
+                        {/* Cost Breakdown - Compact */}
+                        <div className="mb-4">
+                          <h2 className="text-base font-bold text-gray-900 mb-2 pb-1 border-b border-gray-300">Cost Breakdown</h2>
+                          <div className="grid grid-cols-2 gap-2">
+                            <div className="bg-green-50 p-2 rounded border border-green-200 text-xs">
+                              <div className="text-green-700 mb-0.5">Principal</div>
+                              <div className="font-bold text-green-800">{formatCurrency(parseFloat(loanAmount))} ({principalPercentage.toFixed(1)}%)</div>
+                            </div>
+                            <div className="bg-orange-50 p-2 rounded border border-orange-200 text-xs">
+                              <div className="text-orange-700 mb-0.5">Interest</div>
+                              <div className="font-bold text-orange-800">{formatCurrency(result.totalInterest)} ({interestPercentage.toFixed(1)}%)</div>
+                            </div>
+                          </div>
+                          <p className="text-xs text-gray-700 mt-2 bg-gray-50 p-2 rounded">
+                            <strong>Cost per $1 borrowed:</strong> ${(result.totalAmount / parseFloat(loanAmount)).toFixed(2)}
+                          </p>
+                        </div>
+
+                        {/* Extra Payment Benefits - Compact */}
                         {result.extraPaymentSavings && (
-                          <div className="mb-8">
-                            <h2 className="text-xl font-bold text-gray-900 mb-4 pb-2 border-b border-gray-300">Extra Payment Benefits</h2>
-                            <div className="bg-green-50 p-6 rounded-lg border-2 border-green-200">
-                              <div className="grid grid-cols-2 gap-6 mb-4">
+                          <div className="mb-4">
+                            <h2 className="text-base font-bold text-gray-900 mb-2 pb-1 border-b border-gray-300">Extra Payment Benefits</h2>
+                            <div className="bg-green-50 p-3 rounded border border-green-200">
+                              <div className="grid grid-cols-2 gap-3 text-xs">
                                 <div>
-                                  <div className="text-sm text-green-700 mb-1 font-medium">Interest Saved</div>
-                                  <div className="text-3xl font-bold text-green-800">{formatCurrency(result.extraPaymentSavings.interestSaved)}</div>
+                                  <div className="text-green-700 mb-0.5">Interest Saved</div>
+                                  <div className="text-lg font-bold text-green-800">{formatCurrency(result.extraPaymentSavings.interestSaved)}</div>
                                 </div>
                                 <div>
-                                  <div className="text-sm text-green-700 mb-1 font-medium">Time Saved</div>
-                                  <div className="text-3xl font-bold text-green-800">
-                                    {Math.round(result.extraPaymentSavings.timeSaved / (paymentFrequency === 'weekly' ? 52 : paymentFrequency === 'biweekly' ? 26 : 12))} Years
-                                  </div>
+                                  <div className="text-green-700 mb-0.5">Time Saved</div>
+                                  <div className="text-lg font-bold text-green-800">{Math.round(result.extraPaymentSavings.timeSaved / (paymentFrequency === 'weekly' ? 52 : paymentFrequency === 'biweekly' ? 26 : 12))} Years</div>
                                 </div>
                               </div>
-                              <div className="bg-white p-4 rounded border border-green-300">
-                                <p className="text-sm text-green-900 font-medium mb-2">
-                                  <strong>Extra Payment Strategy:</strong> By making extra payments of {formatCurrency(parseFloat(extraPayment))} per {paymentFrequency} period:
-                                </p>
-                                <ul className="text-sm text-green-800 space-y-1 ml-4">
-                                  <li>• You'll save {formatCurrency(result.extraPaymentSavings.interestSaved)} in interest charges</li>
-                                  <li>• You'll pay off your loan {Math.round(result.extraPaymentSavings.timeSaved / (paymentFrequency === 'weekly' ? 52 : paymentFrequency === 'biweekly' ? 26 : 12))} years earlier</li>
-                                  <li>• Your total interest will be reduced from ${((parseFloat(loanAmount) * (parseFloat(interestRate) / 100) * (termUnit === 'years' ? parseFloat(loanTerm) : parseFloat(loanTerm) / 12))).toFixed(2)} to {formatCurrency(result.extraPaymentSavings.newTotalInterest)}</li>
-                                </ul>
-                              </div>
+                              <p className="text-xs text-green-800 mt-2">
+                                Extra payment of {formatCurrency(parseFloat(extraPayment))} per {paymentFrequency} period saves you {formatCurrency(result.extraPaymentSavings.interestSaved)} and shortens your loan by {Math.round(result.extraPaymentSavings.timeSaved / (paymentFrequency === 'weekly' ? 52 : paymentFrequency === 'biweekly' ? 26 : 12))} years.
+                              </p>
                             </div>
                           </div>
                         )}
 
-                        {/* Key Insights */}
-                        <div className="mb-8 bg-blue-50 p-6 rounded-lg border border-blue-200">
-                          <h2 className="text-xl font-bold text-gray-900 mb-4">Understanding Your Loan</h2>
-                          <ul className="space-y-3 text-sm text-gray-700">
-                            <li className="flex items-start gap-2">
-                              <span className="font-bold text-blue-600 mt-0.5 text-base">•</span>
-                              <span><strong>Payment Structure:</strong> Each {paymentFrequency} payment includes both principal (paying down the loan balance) and interest (the cost of borrowing money).</span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                              <span className="font-bold text-blue-600 mt-0.5 text-base">•</span>
-                              <span><strong>Amortization:</strong> Early in the loan term, a larger portion of each payment goes toward interest. Over time, more of each payment goes toward reducing the principal balance.</span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                              <span className="font-bold text-blue-600 mt-0.5 text-base">•</span>
-                              <span><strong>Total Interest Cost:</strong> You will pay {formatCurrency(result.totalInterest)} in interest, which represents {interestPercentage.toFixed(1)}% of your total repayment amount of {formatCurrency(result.totalAmount)}.</span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                              <span className="font-bold text-blue-600 mt-0.5 text-base">•</span>
-                              <span><strong>Payment Schedule:</strong> You'll make {Math.round((termUnit === 'years' ? parseFloat(loanTerm) * 12 : parseFloat(loanTerm)) * (paymentFrequency === 'weekly' ? 52 : paymentFrequency === 'biweekly' ? 26 : 12) / 12)} total payments over the life of the loan.</span>
-                            </li>
-                            {result.extraPaymentSavings && (
-                              <li className="flex items-start gap-2">
-                                <span className="font-bold text-green-600 mt-0.5 text-base">•</span>
-                                <span className="font-medium text-green-800"><strong>Accelerated Payoff:</strong> Making extra payments significantly reduces both the total interest paid and the time to become debt-free. Even small extra payments can result in substantial savings over the life of the loan.</span>
-                              </li>
-                            )}
-                          </ul>
-                        </div>
-
-                        {/* Important Notes */}
-                        <div className="bg-gray-50 p-6 rounded-lg border border-gray-300">
-                          <h3 className="text-base font-bold text-gray-900 mb-3">Important Notes</h3>
-                          <ul className="text-xs text-gray-600 space-y-2">
-                            <li>• These calculations are estimates based on the parameters provided and assume a fixed interest rate.</li>
-                            <li>• Actual loan terms may vary based on your lender, creditworthiness, and market conditions.</li>
-                            <li>• Additional fees such as origination fees, processing charges, or insurance may apply and are not included in these calculations.</li>
-                            <li>• For mortgages, property taxes, homeowners insurance, and PMI (if applicable) are typically separate from the principal and interest payment.</li>
-                            <li>• Consult with a financial advisor or lender for personalized advice and complete loan details.</li>
+                        {/* Key Points - Compact */}
+                        <div className="bg-blue-50 p-3 rounded border border-blue-200">
+                          <h3 className="text-sm font-bold text-gray-900 mb-2">Key Points</h3>
+                          <ul className="text-xs text-gray-700 space-y-1">
+                            <li>• Each payment includes principal and interest</li>
+                            <li>• Early payments have more interest; later payments have more principal</li>
+                            <li>• Total interest: {formatCurrency(result.totalInterest)} ({interestPercentage.toFixed(1)}% of repayment)</li>
+                            {result.extraPaymentSavings && <li>• Extra payments significantly reduce total interest cost</li>}
+                            <li className="text-gray-600 italic pt-1">* Estimates only. Actual terms may vary. Consult lender for details.</li>
                           </ul>
                         </div>
                       </div>
