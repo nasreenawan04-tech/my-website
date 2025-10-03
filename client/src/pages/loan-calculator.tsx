@@ -984,108 +984,144 @@ export default function LoanCalculator() {
                         <div className="mb-8 pb-4 border-b-2 border-gray-300">
                           <div className="flex items-center gap-3 mb-2">
                             <Calculator className="w-8 h-8 text-blue-600" />
-                            <h1 className="text-3xl font-bold text-gray-900">DapsiWow</h1>
+                            <h1 className="text-3xl font-bold text-gray-900">DapsiWow Loan Calculator</h1>
                           </div>
                           <h2 className="text-xl font-semibold text-gray-800 mb-1">Loan Calculation Report</h2>
                           <p className="text-sm text-gray-600">
-                            Print Date: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+                            Generated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
                           </p>
                         </div>
 
                         {/* User Input Summary */}
-                        <div className="mb-8">
-                          <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
-                            <span className="text-blue-600">◆</span> User Input Summary
+                        <div className="mb-8 bg-blue-50 p-6 rounded-lg">
+                          <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <span className="text-blue-600">📋</span> Loan Details
                           </h3>
-                          <ul className="space-y-2 ml-4">
-                            <li className="text-gray-800">
-                              <strong>Loan Amount:</strong> {formatCurrency(parseFloat(loanAmount))}
-                            </li>
-                            <li className="text-gray-800">
-                              <strong>Interest Rate:</strong> {interestRate}% per year
-                            </li>
-                            <li className="text-gray-800">
-                              <strong>Loan Term:</strong> {loanTerm} {termUnit === 'years' ? 'Years' : 'Months'}
-                            </li>
-                            <li className="text-gray-800">
-                              <strong>Payment Type:</strong> {paymentFrequency === 'monthly' ? 'Monthly' : paymentFrequency === 'weekly' ? 'Weekly' : 'Bi-weekly'}
-                            </li>
+                          <div className="grid grid-cols-2 gap-4 ml-4">
+                            <div>
+                              <p className="text-gray-600 text-sm mb-1">Loan Amount</p>
+                              <p className="text-gray-900 font-bold text-lg">{formatCurrency(parseFloat(loanAmount))}</p>
+                            </div>
+                            <div>
+                              <p className="text-gray-600 text-sm mb-1">Interest Rate</p>
+                              <p className="text-gray-900 font-bold text-lg">{interestRate}% per year</p>
+                            </div>
+                            <div>
+                              <p className="text-gray-600 text-sm mb-1">Loan Term</p>
+                              <p className="text-gray-900 font-bold text-lg">{loanTerm} {termUnit === 'years' ? 'Years' : 'Months'}</p>
+                            </div>
+                            <div>
+                              <p className="text-gray-600 text-sm mb-1">Payment Frequency</p>
+                              <p className="text-gray-900 font-bold text-lg">{paymentFrequency === 'monthly' ? 'Monthly' : paymentFrequency === 'weekly' ? 'Weekly' : 'Bi-weekly'}</p>
+                            </div>
                             {parseFloat(extraPayment) > 0 && (
-                              <li className="text-gray-800">
-                                <strong>Extra Payment:</strong> {formatCurrency(parseFloat(extraPayment))} per {paymentFrequency} period
-                              </li>
+                              <div className="col-span-2">
+                                <p className="text-gray-600 text-sm mb-1">Extra Payment</p>
+                                <p className="text-gray-900 font-bold text-lg">{formatCurrency(parseFloat(extraPayment))} per payment</p>
+                              </div>
                             )}
-                          </ul>
+                          </div>
                         </div>
 
-                        {/* Calculation Results */}
-                        <div className="mb-8">
-                          <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
-                            <span className="text-blue-600">◆</span> Calculation Results
+                        {/* Calculation Results - Highlighted */}
+                        <div className="mb-8 bg-green-50 p-6 rounded-lg border-2 border-green-200">
+                          <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <span className="text-green-600">💰</span> Payment Summary
                           </h3>
-                          <div className="ml-4 space-y-2">
-                            <p className="text-gray-800">
-                              <strong>Monthly EMI (Equal Monthly Installment):</strong> <span className="text-blue-600 font-bold text-lg">{formatCurrency(result.monthlyPayment)}</span>
-                            </p>
-                            <p className="text-gray-800">
-                              <strong>Total Payable Amount:</strong> <span className="text-gray-900 font-bold text-lg">{formatCurrency(result.totalAmount)}</span>
-                            </p>
-                            <p className="text-gray-800">
-                              <strong>Total Interest Payable:</strong> <span className="text-orange-600 font-bold text-lg">{formatCurrency(result.totalInterest)}</span>
-                            </p>
+                          <div className="ml-4 space-y-4">
+                            <div className="bg-white p-4 rounded-lg shadow-sm">
+                              <p className="text-gray-600 text-sm mb-1">Monthly Payment</p>
+                              <p className="text-blue-600 font-bold text-3xl">{formatCurrency(result.monthlyPayment)}</p>
+                            </div>
+                            <div className="grid grid-cols-2 gap-4">
+                              <div className="bg-white p-4 rounded-lg shadow-sm">
+                                <p className="text-gray-600 text-sm mb-1">Principal Amount</p>
+                                <p className="text-gray-900 font-bold text-xl">{formatCurrency(parseFloat(loanAmount))}</p>
+                              </div>
+                              <div className="bg-white p-4 rounded-lg shadow-sm">
+                                <p className="text-gray-600 text-sm mb-1">Total Interest</p>
+                                <p className="text-orange-600 font-bold text-xl">{formatCurrency(result.totalInterest)}</p>
+                              </div>
+                            </div>
+                            <div className="bg-white p-4 rounded-lg shadow-sm">
+                              <p className="text-gray-600 text-sm mb-1">Total Amount Payable</p>
+                              <p className="text-gray-900 font-bold text-2xl">{formatCurrency(result.totalAmount)}</p>
+                            </div>
+                            {result.extraPaymentSavings && (
+                              <div className="bg-white p-4 rounded-lg shadow-sm border-l-4 border-green-500">
+                                <p className="text-gray-600 text-sm mb-2">Extra Payment Savings</p>
+                                <p className="text-green-700 font-semibold">Interest Saved: {formatCurrency(result.extraPaymentSavings.interestSaved)}</p>
+                                <p className="text-green-700 font-semibold">Time Saved: {Math.round(result.extraPaymentSavings.timeSaved / 12)} years</p>
+                              </div>
+                            )}
                           </div>
                         </div>
 
                         {/* Amortization Table */}
                         <div className="mb-8">
-                          <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
-                            <span className="text-blue-600">◆</span> Amortization Table (Optional but Professional)
+                          <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <span className="text-blue-600">📊</span> Payment Schedule (First 12 Months)
                           </h3>
-                          <div className="overflow-x-auto">
-                            <table className="w-full border-collapse border border-gray-300 text-sm">
-                              <thead>
-                                <tr className="bg-gray-100">
-                                  <th className="border border-gray-300 px-3 py-2 text-left font-semibold">Month</th>
-                                  <th className="border border-gray-300 px-3 py-2 text-right font-semibold">EMI</th>
-                                  <th className="border border-gray-300 px-3 py-2 text-right font-semibold">Principal Paid</th>
-                                  <th className="border border-gray-300 px-3 py-2 text-right font-semibold">Interest Paid</th>
-                                  <th className="border border-gray-300 px-3 py-2 text-right font-semibold">Balance</th>
+                          <table className="w-full border-collapse border border-gray-300 text-sm">
+                            <thead>
+                              <tr className="bg-gray-800 text-white">
+                                <th className="border border-gray-300 px-3 py-3 text-left font-semibold">Month</th>
+                                <th className="border border-gray-300 px-3 py-3 text-right font-semibold">Payment</th>
+                                <th className="border border-gray-300 px-3 py-3 text-right font-semibold">Principal</th>
+                                <th className="border border-gray-300 px-3 py-3 text-right font-semibold">Interest</th>
+                                <th className="border border-gray-300 px-3 py-3 text-right font-semibold">Balance</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {result.amortizationSchedule.slice(0, 12).map((entry: any, index: number) => (
+                                <tr key={index} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                                  <td className="border border-gray-300 px-3 py-2 font-semibold">{entry.month}</td>
+                                  <td className="border border-gray-300 px-3 py-2 text-right">{formatCurrency(entry.payment)}</td>
+                                  <td className="border border-gray-300 px-3 py-2 text-right text-green-700 font-semibold">{formatCurrency(entry.principal)}</td>
+                                  <td className="border border-gray-300 px-3 py-2 text-right text-orange-700 font-semibold">{formatCurrency(entry.interest)}</td>
+                                  <td className="border border-gray-300 px-3 py-2 text-right font-semibold">{formatCurrency(entry.balance)}</td>
                                 </tr>
-                              </thead>
-                              <tbody>
-                                {result.amortizationSchedule.slice(0, 12).map((entry: any, index: number) => (
-                                  <tr key={index} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                                    <td className="border border-gray-300 px-3 py-2">{entry.month}</td>
-                                    <td className="border border-gray-300 px-3 py-2 text-right">{formatCurrency(entry.payment)}</td>
-                                    <td className="border border-gray-300 px-3 py-2 text-right">{formatCurrency(entry.principal)}</td>
-                                    <td className="border border-gray-300 px-3 py-2 text-right">{formatCurrency(entry.interest)}</td>
-                                    <td className="border border-gray-300 px-3 py-2 text-right">{formatCurrency(entry.balance)}</td>
-                                  </tr>
-                                ))}
-                                {result.amortizationSchedule.length > 12 && (
-                                  <tr>
-                                    <td className="border border-gray-300 px-3 py-2 text-center" colSpan={5}>
-                                      <span className="text-gray-500">... (showing first 12 months of {result.amortizationSchedule.length} total payments)</span>
-                                    </td>
-                                  </tr>
-                                )}
-                              </tbody>
-                            </table>
+                              ))}
+                            </tbody>
+                          </table>
+                          {result.amortizationSchedule.length > 12 && (
+                            <p className="text-gray-500 text-sm mt-2 text-center">
+                              Showing first 12 months of {result.amortizationSchedule.length} total payments
+                            </p>
+                          )}
+                        </div>
+
+                        {/* Cost Breakdown */}
+                        <div className="mb-8 bg-orange-50 p-6 rounded-lg">
+                          <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <span className="text-orange-600">📈</span> Cost Analysis
+                          </h3>
+                          <div className="ml-4 space-y-2">
+                            <div className="flex justify-between items-center">
+                              <span className="text-gray-700">Principal Amount:</span>
+                              <span className="font-bold text-gray-900">{formatCurrency(parseFloat(loanAmount))}</span>
+                            </div>
+                            <div className="flex justify-between items-center">
+                              <span className="text-gray-700">Interest Percentage:</span>
+                              <span className="font-bold text-orange-600">{((result.totalInterest / result.totalAmount) * 100).toFixed(1)}% of total</span>
+                            </div>
+                            <div className="flex justify-between items-center pt-2 border-t-2 border-orange-200">
+                              <span className="text-gray-700 font-semibold">Total Cost of Loan:</span>
+                              <span className="font-bold text-gray-900 text-xl">{formatCurrency(result.totalAmount)}</span>
+                            </div>
                           </div>
                         </div>
 
-                        {/* Footer Section */}
+                        {/* Disclaimer and Footer */}
                         <div className="mt-8 pt-4 border-t-2 border-gray-300">
-                          <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
-                            <span className="text-blue-600">◆</span> Footer Section
-                          </h3>
-                          <div className="ml-4 space-y-2 text-sm text-gray-700">
-                            <p>
-                              <strong>Disclaimer:</strong> "This calculation is based on the provided data and may vary depending on bank policies."
+                          <div className="bg-yellow-50 p-4 rounded-lg mb-4 border-l-4 border-yellow-400">
+                            <p className="text-sm text-gray-700">
+                              <strong>Important Disclaimer:</strong> This calculation is an estimate based on the provided information. Actual loan terms, payments, and interest may vary depending on lender policies, fees, and other factors. Please verify all details with your lender before making any financial decisions.
                             </p>
-                            <p>
-                              <strong>Website URL:</strong> {window.location.origin}
-                            </p>
+                          </div>
+                          <div className="text-center text-sm text-gray-600">
+                            <p className="font-semibold">Generated by DapsiWow.com - Free Loan Calculator</p>
+                            <p className="mt-1">{window.location.origin}/tools/loan-calculator</p>
                           </div>
                         </div>
                       </div>
