@@ -73,19 +73,23 @@ export default function LoanCalculator() {
     const amortizationSchedule = [];
     let currentBalance = principal;
     let totalInterestPaid = 0;
+    let totalAmountPaid = 0;
     let actualPayments = 0;
 
     for (let payment = 1; payment <= totalPayments && currentBalance > 0.01; payment++) {
       const interestPayment = currentBalance * periodicRate;
       const principalPayment = Math.min(regularPayment - interestPayment + extraPmt, currentBalance);
+      const actualPaymentAmount = principalPayment + interestPayment;
+      
       currentBalance -= principalPayment;
       totalInterestPaid += interestPayment;
+      totalAmountPaid += actualPaymentAmount;
       actualPayments = payment;
 
       if (payment <= 60) {
         amortizationSchedule.push({
           month: payment,
-          payment: regularPayment + (extraPmt > 0 ? extraPmt : 0),
+          payment: actualPaymentAmount,
           principal: principalPayment,
           interest: interestPayment,
           balance: currentBalance
@@ -110,7 +114,7 @@ export default function LoanCalculator() {
 
     setResult({
       monthlyPayment: monthlyEquivalent,
-      totalAmount: (regularPayment + extraPmt) * actualPayments,
+      totalAmount: totalAmountPaid,
       totalInterest: totalInterestPaid,
       amortizationSchedule,
       extraPaymentSavings
