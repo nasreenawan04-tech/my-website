@@ -965,28 +965,114 @@ export default function LoanCalculator() {
                         </Button>
                       </div>
 
-                      {/* Print-only Results */}
+                      {/* Print-only Professional Report */}
                       <div className="hidden print:block print-summary-section" data-testid="print-summary">
-                        <div className="mb-6">
-                          <h1 className="text-2xl font-bold text-gray-900 mb-4 pb-3 border-b-2 border-gray-300">Loan Calculation Results</h1>
-                          
-                          <div className="space-y-3">
-                            <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                              <span className="text-gray-700 font-medium">Monthly Payment:</span>
-                              <span className="text-2xl font-bold text-blue-600">{formatCurrency(result.monthlyPayment)}</span>
-                            </div>
-                            <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                              <span className="text-gray-700 font-medium">Total Principal:</span>
-                              <span className="text-xl font-bold text-gray-900">{formatCurrency(parseFloat(loanAmount))}</span>
-                            </div>
-                            <div className="flex justify-between items-center py-2 border-b border-gray-200">
-                              <span className="text-gray-700 font-medium">Total Interest:</span>
-                              <span className="text-xl font-bold text-orange-600">{formatCurrency(result.totalInterest)}</span>
-                            </div>
-                            <div className="flex justify-between items-center py-3 bg-blue-50 px-4 rounded-lg border-2 border-blue-200 mt-4">
-                              <span className="text-lg font-bold text-gray-900">Total Amount to Repay:</span>
-                              <span className="text-3xl font-bold text-blue-600">{formatCurrency(result.totalAmount)}</span>
-                            </div>
+                        {/* Header Section */}
+                        <div className="mb-8 pb-4 border-b-2 border-gray-300">
+                          <div className="flex items-center gap-3 mb-2">
+                            <Calculator className="w-8 h-8 text-blue-600" />
+                            <h1 className="text-3xl font-bold text-gray-900">DapsiWow</h1>
+                          </div>
+                          <h2 className="text-xl font-semibold text-gray-800 mb-1">Loan Calculation Report</h2>
+                          <p className="text-sm text-gray-600">
+                            Print Date: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+                          </p>
+                        </div>
+
+                        {/* User Input Summary */}
+                        <div className="mb-8">
+                          <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
+                            <span className="text-blue-600">◆</span> User Input Summary
+                          </h3>
+                          <ul className="space-y-2 ml-4">
+                            <li className="text-gray-800">
+                              <strong>Loan Amount:</strong> {formatCurrency(parseFloat(loanAmount))}
+                            </li>
+                            <li className="text-gray-800">
+                              <strong>Interest Rate:</strong> {interestRate}% per year
+                            </li>
+                            <li className="text-gray-800">
+                              <strong>Loan Term:</strong> {loanTerm} {termUnit === 'years' ? 'Years' : 'Months'}
+                            </li>
+                            <li className="text-gray-800">
+                              <strong>Payment Type:</strong> {paymentFrequency === 'monthly' ? 'Monthly' : paymentFrequency === 'weekly' ? 'Weekly' : 'Bi-weekly'}
+                            </li>
+                            {parseFloat(extraPayment) > 0 && (
+                              <li className="text-gray-800">
+                                <strong>Extra Payment:</strong> {formatCurrency(parseFloat(extraPayment))} per {paymentFrequency} period
+                              </li>
+                            )}
+                          </ul>
+                        </div>
+
+                        {/* Calculation Results */}
+                        <div className="mb-8">
+                          <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
+                            <span className="text-blue-600">◆</span> Calculation Results
+                          </h3>
+                          <div className="ml-4 space-y-2">
+                            <p className="text-gray-800">
+                              <strong>Monthly EMI (Equal Monthly Installment):</strong> <span className="text-blue-600 font-bold text-lg">{formatCurrency(result.monthlyPayment)}</span>
+                            </p>
+                            <p className="text-gray-800">
+                              <strong>Total Payable Amount:</strong> <span className="text-gray-900 font-bold text-lg">{formatCurrency(result.totalAmount)}</span>
+                            </p>
+                            <p className="text-gray-800">
+                              <strong>Total Interest Payable:</strong> <span className="text-orange-600 font-bold text-lg">{formatCurrency(result.totalInterest)}</span>
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Amortization Table */}
+                        <div className="mb-8">
+                          <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
+                            <span className="text-blue-600">◆</span> Amortization Table (Optional but Professional)
+                          </h3>
+                          <div className="overflow-x-auto">
+                            <table className="w-full border-collapse border border-gray-300 text-sm">
+                              <thead>
+                                <tr className="bg-gray-100">
+                                  <th className="border border-gray-300 px-3 py-2 text-left font-semibold">Month</th>
+                                  <th className="border border-gray-300 px-3 py-2 text-right font-semibold">EMI</th>
+                                  <th className="border border-gray-300 px-3 py-2 text-right font-semibold">Principal Paid</th>
+                                  <th className="border border-gray-300 px-3 py-2 text-right font-semibold">Interest Paid</th>
+                                  <th className="border border-gray-300 px-3 py-2 text-right font-semibold">Balance</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {result.amortizationSchedule.slice(0, 12).map((entry: any, index: number) => (
+                                  <tr key={index} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                                    <td className="border border-gray-300 px-3 py-2">{entry.period}</td>
+                                    <td className="border border-gray-300 px-3 py-2 text-right">{formatCurrency(entry.payment)}</td>
+                                    <td className="border border-gray-300 px-3 py-2 text-right">{formatCurrency(entry.principal)}</td>
+                                    <td className="border border-gray-300 px-3 py-2 text-right">{formatCurrency(entry.interest)}</td>
+                                    <td className="border border-gray-300 px-3 py-2 text-right">{formatCurrency(entry.balance)}</td>
+                                  </tr>
+                                ))}
+                                {result.amortizationSchedule.length > 12 && (
+                                  <tr>
+                                    <td className="border border-gray-300 px-3 py-2 text-center" colSpan={5}>
+                                      <span className="text-gray-500">... (showing first 12 months of {result.amortizationSchedule.length} total payments)</span>
+                                    </td>
+                                  </tr>
+                                )}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+
+                        {/* Footer Section */}
+                        <div className="mt-8 pt-4 border-t-2 border-gray-300">
+                          <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
+                            <span className="text-blue-600">◆</span> Footer Section
+                          </h3>
+                          <div className="ml-4 space-y-2 text-sm text-gray-700">
+                            <p>
+                              <strong>Disclaimer:</strong> "This calculation is based on the provided data and may vary depending on bank policies."
+                            </p>
+                            <p>
+                              <strong>Website URL:</strong> {window.location.origin}
+                            </p>
                           </div>
                         </div>
                       </div>
