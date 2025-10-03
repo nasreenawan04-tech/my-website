@@ -180,7 +180,16 @@ export default function LoanCalculator() {
   };
 
   const handlePrint = () => {
+    // Add print-specific class to body for styling
+    document.body.classList.add('printing');
+    
+    // Trigger print
     window.print();
+    
+    // Remove print class after print dialog closes
+    setTimeout(() => {
+      document.body.classList.remove('printing');
+    }, 1000);
   };
 
   const formatCurrency = (amount: number) => {
@@ -297,6 +306,173 @@ export default function LoanCalculator() {
         <meta name="robots" content="index, follow" />
         <meta name="author" content="DapsiWow" />
         <link rel="canonical" href="https://dapsiwow.com/tools/loan-calculator" />
+        <style>{`
+          @media print {
+            /* Hide non-essential elements */
+            header, footer, nav {
+              display: none !important;
+            }
+            
+            /* Hide hero section */
+            main > section:first-child {
+              display: none !important;
+            }
+            
+            /* Hide all cards except the main calculator and results */
+            main > div > div > *:not(:has([data-testid="loan-results"])):not(:has(table)) {
+              display: none !important;
+            }
+            
+            /* Hide input form section */
+            main .space-y-4:has(button[data-testid="button-calculate"]) {
+              display: none !important;
+            }
+            
+            /* Hide all buttons */
+            button, [role="button"] {
+              display: none !important;
+            }
+            
+            /* Show only results section */
+            html, body {
+              background: white !important;
+              margin: 0 !important;
+              padding: 0 !important;
+            }
+            
+            body * {
+              visibility: hidden;
+            }
+            
+            /* Show only results and amortization */
+            [data-testid="loan-results"],
+            [data-testid="loan-results"] *,
+            .print-section,
+            .print-section *,
+            table,
+            table * {
+              visibility: visible;
+            }
+            
+            /* Position print sections properly */
+            .print-section {
+              position: relative;
+              width: 100%;
+              margin-top: 20px;
+              page-break-inside: avoid;
+            }
+            
+            /* Position results at top of page */
+            [data-testid="loan-results"] {
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 100%;
+              padding: 20px;
+              page-break-inside: avoid;
+            }
+            
+            /* Ensure tables print properly */
+            table {
+              page-break-inside: auto;
+              width: 100%;
+              margin-top: 20px;
+            }
+            
+            table tr {
+              page-break-inside: avoid;
+              page-break-after: auto;
+            }
+            
+            table thead {
+              display: table-header-group;
+            }
+            
+            /* Add print header */
+            [data-testid="loan-results"]::before {
+              content: "Loan Calculator Results";
+              display: block;
+              font-size: 24px;
+              font-weight: bold;
+              margin-bottom: 20px;
+              color: #1e293b;
+              border-bottom: 2px solid #3b82f6;
+              padding-bottom: 10px;
+            }
+            
+            /* Format colors for print */
+            * {
+              color-adjust: exact !important;
+              -webkit-print-color-adjust: exact !important;
+              print-color-adjust: exact !important;
+            }
+            
+            /* Remove gradients for better print */
+            .bg-gradient-to-br,
+            .bg-gradient-to-r,
+            .bg-gradient-to-l {
+              background: white !important;
+              border: 1px solid #e5e7eb !important;
+            }
+            
+            /* Ensure good contrast for text */
+            .text-transparent.bg-clip-text {
+              color: #2563eb !important;
+              background: none !important;
+              -webkit-text-fill-color: #2563eb !important;
+            }
+            
+            .text-blue-600,
+            .text-indigo-600 {
+              color: #2563eb !important;
+            }
+            
+            .text-green-600,
+            .text-emerald-600 {
+              color: #16a34a !important;
+            }
+            
+            .text-orange-600 {
+              color: #ea580c !important;
+            }
+            
+            .text-green-700,
+            .text-green-800 {
+              color: #15803d !important;
+            }
+            
+            /* Format amortization table */
+            thead {
+              background-color: #f3f4f6 !important;
+            }
+            
+            tbody tr:nth-child(even) {
+              background-color: #f9fafb !important;
+            }
+            
+            /* Format result cards */
+            .bg-white {
+              border: 1px solid #e5e7eb !important;
+            }
+            
+            /* Page settings */
+            @page {
+              margin: 1.5cm;
+              size: auto;
+            }
+            
+            /* Add footer with website info */
+            body::after {
+              content: "Generated by DapsiWow.com - Free Loan Calculator";
+              position: fixed;
+              bottom: 10px;
+              right: 10px;
+              font-size: 10px;
+              color: #6b7280;
+              visibility: visible;
+            }
+          }
+        `}</style>
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -688,6 +864,7 @@ export default function LoanCalculator() {
                         variant="outline"
                         size="sm"
                         className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                        data-testid="button-print"
                       >
                         <Printer className="w-4 h-4 mr-1" />
                         Print
@@ -834,12 +1011,12 @@ export default function LoanCalculator() {
           </Card>
 
           {result && showAmortization && (
-            <Card className="mt-6 sm:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+            <Card className="mt-6 sm:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl print-section">
               <CardContent className="p-4 sm:p-6 lg:p-8">
                 <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Amortization Schedule (First 5 Years)</h3>
                 <p className="text-sm text-gray-600 mb-4">See how your payments are split between principal and interest over time.</p>
                 <div className="overflow-x-auto -mx-4 sm:mx-0">
-                  <table className="w-full min-w-[600px]">
+                  <table className="w-full min-w-[600px]" data-testid="amortization-table">
                     <thead>
                       <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
                         <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-gray-900 text-xs sm:text-sm rounded-l-lg">Payment #</th>
@@ -875,12 +1052,12 @@ export default function LoanCalculator() {
           )}
 
           {showComparison && comparisonLoans.length > 0 && (
-            <Card className="mt-6 sm:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+            <Card className="mt-6 sm:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl print-section">
               <CardContent className="p-4 sm:p-6 lg:p-8">
                 <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Loan Comparison</h3>
                 <p className="text-sm text-gray-600 mb-4">Compare different loan scenarios side-by-side to find the best option.</p>
                 <div className="overflow-x-auto -mx-4 sm:mx-0">
-                  <table className="w-full min-w-[600px]">
+                  <table className="w-full min-w-[600px]" data-testid="comparison-table">
                     <thead>
                       <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
                         <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-gray-900 text-xs sm:text-sm rounded-l-lg">Loan</th>
