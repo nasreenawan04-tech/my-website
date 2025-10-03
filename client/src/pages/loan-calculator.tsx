@@ -407,11 +407,12 @@ export default function LoanCalculator() {
               display: none !important;
             }
             
-            /* Show print summary section */
+            /* Show print summary section - allow multi-page */
             .print-summary-section {
               display: block !important;
               padding: 20px !important;
               margin: 0 !important;
+              page-break-inside: auto;
             }
             
             /* Hide hero section and educational content */
@@ -426,11 +427,11 @@ export default function LoanCalculator() {
               padding: 0 !important;
             }
             
-            /* Show print sections */
+            /* Show print sections - allow multi-page */
             .print-section {
               display: block !important;
               margin-top: 20px !important;
-              page-break-inside: avoid;
+              page-break-inside: auto;
             }
             
             /* Ensure tables print properly */
@@ -542,13 +543,15 @@ export default function LoanCalculator() {
               border-color: #fed7aa !important;
             }
             
-            /* Page breaks */
+            /* Page breaks - allow content to span multiple pages */
             h2 {
               page-break-after: avoid;
+              page-break-inside: avoid;
             }
             
-            .mb-8 {
-              page-break-inside: avoid;
+            /* Allow sections to break across pages if needed */
+            .mb-8 > div {
+              page-break-inside: auto;
             }
             
             /* Add footer with website info */
