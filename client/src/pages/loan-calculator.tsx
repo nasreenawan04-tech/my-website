@@ -11,6 +11,8 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { Info, Download, Share2, Printer, Calculator, TrendingDown, Clock, DollarSign, PieChart } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Area, AreaChart } from 'recharts';
+import { RotateCcw } from 'lucide-react'; // Added for Reset button icon
+import ShareResultsButton from '@/components/ShareResultsButton'; // Assuming this component exists
 
 interface LoanResult {
   monthlyPayment: number;
@@ -51,7 +53,6 @@ export default function LoanCalculator() {
   const [showComparison, setShowComparison] = useState(false);
   const [showChart, setShowChart] = useState(false);
   const [comparisonLoans, setComparisonLoans] = useState<ComparisonLoan[]>([]);
-  const [result, setResult] = useState<LoanResult | null>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
@@ -78,8 +79,8 @@ export default function LoanCalculator() {
         const calculateButton = document.querySelector('[data-testid="button-calculate"]') as HTMLButtonElement;
         if (calculateButton) {
           calculateButton.click();
-          toast({ 
-            title: "Shared calculation loaded!", 
+          toast({
+            title: "Shared calculation loaded!",
             description: "Results from the shared link have been calculated."
           });
         }
@@ -113,13 +114,13 @@ export default function LoanCalculator() {
       const interestPayment = currentBalance * periodicRate;
       const principalPayment = Math.min(regularPayment - interestPayment + extraPmt, currentBalance);
       const actualPaymentAmount = principalPayment + interestPayment;
-      
+
       currentBalance -= principalPayment;
       totalInterestPaid += interestPayment;
       totalAmountPaid += actualPaymentAmount;
       actualPayments = payment;
 
-      if (payment <= 60) {
+      if (payment <= 60) { // Store first 60 payments for amortization schedule
         amortizationSchedule.push({
           month: payment,
           payment: actualPaymentAmount,
@@ -193,7 +194,7 @@ export default function LoanCalculator() {
 
   const handleShare = async () => {
     if (!result) return;
-    
+
     // Create shareable URL with encoded parameters
     const params = new URLSearchParams({
       amount: loanAmount,
@@ -204,17 +205,17 @@ export default function LoanCalculator() {
       extra: extraPayment
     });
     const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
-    
+
     // Create comprehensive share text
     const termDisplay = termUnit === 'years' ? `${loanTerm} years` : `${loanTerm} months`;
-    const freqDisplay = paymentFrequency === 'weekly' ? 'Weekly' : 
+    const freqDisplay = paymentFrequency === 'weekly' ? 'Weekly' :
                        paymentFrequency === 'biweekly' ? 'Bi-weekly' : 'Monthly';
-    
+
     // Calculate actual per-period payment based on frequency
     const paymentsPerYear = paymentFrequency === 'weekly' ? 52 :
                            paymentFrequency === 'biweekly' ? 26 : 12;
     const actualPeriodicPayment = result.monthlyPayment * (12 / paymentsPerYear);
-    
+
     let shareText = `💰 Loan Calculator Results\n\n`;
     shareText += `📊 Loan Details:\n`;
     shareText += `• Principal: ${formatCurrency(parseFloat(loanAmount))}\n`;
@@ -231,22 +232,22 @@ export default function LoanCalculator() {
     }
     shareText += `• Total Interest: ${formatCurrency(result.totalInterest)}\n`;
     shareText += `• Total Amount: ${formatCurrency(result.totalAmount)}\n`;
-    
+
     if (result.extraPaymentSavings) {
       const yearsSaved = Math.round(result.extraPaymentSavings.timeSaved / (paymentFrequency === 'weekly' ? 52 : paymentFrequency === 'biweekly' ? 26 : 12));
       shareText += `\n✨ Extra Payment Savings:\n`;
       shareText += `• Interest Saved: ${formatCurrency(result.extraPaymentSavings.interestSaved)}\n`;
       shareText += `• Time Saved: ${yearsSaved} years\n`;
     }
-    
+
     shareText += `\n🔗 View & Calculate: ${shareableUrl}`;
-    
+
     if (navigator.share) {
       try {
-        await navigator.share({ 
-          title: '💰 Loan Calculator Results', 
+        await navigator.share({
+          title: '💰 Loan Calculator Results',
           text: shareText,
-          url: shareableUrl 
+          url: shareableUrl
         });
         toast({ title: "Shared successfully!", description: "Results shared with all details" });
       } catch (err) {
@@ -265,10 +266,10 @@ export default function LoanCalculator() {
   const handlePrint = () => {
     // Add print-specific class to body for styling
     document.body.classList.add('printing');
-    
+
     // Trigger print
     window.print();
-    
+
     // Remove print class after print dialog closes
     setTimeout(() => {
       document.body.classList.remove('printing');
@@ -373,6 +374,17 @@ export default function LoanCalculator() {
     ]
   };
 
+  // Dummy function for PDF generation - needs actual implementation
+  const generatePDFReport = () => {
+    toast({
+      title: "PDF Report Generation",
+      description: "PDF report generation feature is not yet implemented.",
+      variant: "warning"
+    });
+    // Actual PDF generation logic would go here
+    // e.g., using jsPDF or similar libraries
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
@@ -396,17 +408,17 @@ export default function LoanCalculator() {
               margin: 1.5cm;
               size: auto;
             }
-            
+
             /* Hide non-essential elements */
             header, footer, nav, button, [role="button"] {
               display: none !important;
             }
-            
+
             /* Hide screen-only results section */
             [data-testid="loan-results"] {
               display: none !important;
             }
-            
+
             /* Show print summary section - allow multi-page */
             .print-summary-section {
               display: block !important;
@@ -414,26 +426,26 @@ export default function LoanCalculator() {
               margin: 0 !important;
               page-break-inside: auto;
             }
-            
+
             /* Hide hero section and educational content */
             main > section:not(.print-summary-section) {
               display: none !important;
             }
-            
+
             /* Set clean background */
             html, body, main {
               background: white !important;
               margin: 0 !important;
               padding: 0 !important;
             }
-            
+
             /* Show print sections - allow multi-page */
             .print-section {
               display: block !important;
               margin-top: 20px !important;
               page-break-inside: auto;
             }
-            
+
             /* Ensure tables print properly */
             table {
               page-break-inside: auto;
@@ -441,23 +453,23 @@ export default function LoanCalculator() {
               border-collapse: collapse;
               margin-top: 10px;
             }
-            
+
             table tr {
               page-break-inside: avoid;
               page-break-after: auto;
             }
-            
+
             table thead {
               display: table-header-group;
             }
-            
+
             /* Format colors for print */
             * {
               color-adjust: exact !important;
               -webkit-print-color-adjust: exact !important;
               print-color-adjust: exact !important;
             }
-            
+
             /* Preserve background colors for better readability */
             .bg-gray-50,
             .bg-blue-50,
@@ -466,7 +478,7 @@ export default function LoanCalculator() {
               background-color: #f9fafb !important;
               border: 1px solid #e5e7eb !important;
             }
-            
+
             /* Remove gradients for better print */
             .bg-gradient-to-br,
             .bg-gradient-to-r,
@@ -474,7 +486,7 @@ export default function LoanCalculator() {
               background: white !important;
               border: 1px solid #e5e7eb !important;
             }
-            
+
             /* Ensure good contrast for text */
             .text-transparent.bg-clip-text {
               color: #2563eb !important;
@@ -483,77 +495,77 @@ export default function LoanCalculator() {
               background-clip: unset !important;
               -webkit-text-fill-color: #2563eb !important;
             }
-            
+
             .text-blue-600,
             .text-indigo-600 {
               color: #2563eb !important;
             }
-            
+
             .text-green-600,
             .text-emerald-600 {
               color: #16a34a !important;
             }
-            
+
             .text-orange-600,
             .text-orange-700,
             .text-orange-800 {
               color: #ea580c !important;
             }
-            
+
             .text-green-700,
             .text-green-800,
             .text-green-900 {
               color: #15803d !important;
             }
-            
+
             .text-gray-900 {
               color: #111827 !important;
             }
-            
+
             .text-gray-700,
             .text-gray-600 {
               color: #374151 !important;
             }
-            
+
             /* Format amortization table */
             thead {
               background-color: #f3f4f6 !important;
             }
-            
+
             tbody tr:nth-child(even) {
               background-color: #f9fafb !important;
             }
-            
+
             /* Format borders */
             .border-gray-300,
             .border-gray-200 {
               border-color: #d1d5db !important;
             }
-            
+
             .border-blue-200 {
               border-color: #bfdbfe !important;
             }
-            
+
             .border-green-200,
             .border-green-300 {
               border-color: #bbf7d0 !important;
             }
-            
+
             .border-orange-200 {
               border-color: #fed7aa !important;
             }
-            
+
             /* Page breaks - allow content to span multiple pages */
             h2 {
               page-break-after: avoid;
               page-break-inside: avoid;
             }
-            
+
             /* Allow sections to break across pages if needed */
             .mb-8 > div {
               page-break-inside: auto;
             }
-            
+
             /* Add footer with website info */
             body::after {
               content: "Generated by DapsiWow.com - Free Loan Calculator";
@@ -658,7 +670,7 @@ export default function LoanCalculator() {
               <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
                 Calculate monthly loan payments, total interest costs, and amortization schedules instantly. Perfect for personal loans, auto loans, mortgages, and business financing. 100% free, no registration required.
               </p>
-              
+
               <div className="flex flex-wrap justify-center gap-4 sm:gap-6 pt-4">
                 <div className="flex items-center gap-2 text-slate-700">
                   <TrendingDown className="w-5 h-5 text-green-600" />
@@ -678,7 +690,7 @@ export default function LoanCalculator() {
         </section>
 
         <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
-          
+
           {/* Trust Signals */}
           <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-4 sm:p-6 mb-8 border border-green-200">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
@@ -1042,7 +1054,7 @@ export default function LoanCalculator() {
                               <tbody>
                                 {result.amortizationSchedule.slice(0, 12).map((entry: any, index: number) => (
                                   <tr key={index} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                                    <td className="border border-gray-300 px-3 py-2">{entry.period}</td>
+                                    <td className="border border-gray-300 px-3 py-2">{entry.month}</td>
                                     <td className="border border-gray-300 px-3 py-2 text-right">{formatCurrency(entry.payment)}</td>
                                     <td className="border border-gray-300 px-3 py-2 text-right">{formatCurrency(entry.principal)}</td>
                                     <td className="border border-gray-300 px-3 py-2 text-right">{formatCurrency(entry.interest)}</td>
@@ -1121,9 +1133,9 @@ export default function LoanCalculator() {
                                       <Cell fill="url(#principalGradient)" />
                                       <Cell fill="url(#interestGradient)" />
                                     </Pie>
-                                    <RechartsTooltip 
+                                    <RechartsTooltip
                                       formatter={(value: number) => formatCurrency(value)}
-                                      contentStyle={{ 
+                                      contentStyle={{
                                         backgroundColor: 'rgba(255, 255, 255, 0.95)',
                                         border: '1px solid #e5e7eb',
                                         borderRadius: '8px',
@@ -1179,7 +1191,7 @@ export default function LoanCalculator() {
                               <div className="w-full overflow-x-auto -mx-3 sm:mx-0 px-3 sm:px-0">
                                 <div className="min-w-[300px]">
                                   <ResponsiveContainer width="100%" height={window.innerWidth < 640 ? 250 : window.innerWidth < 1024 ? 280 : 320}>
-                                    <AreaChart 
+                                    <AreaChart
                                       data={result.amortizationSchedule.map(item => ({
                                         month: `Month ${item.month}`,
                                         Principal: item.principal,
@@ -1199,8 +1211,8 @@ export default function LoanCalculator() {
                                         </linearGradient>
                                       </defs>
                                       <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-                                      <XAxis 
-                                        dataKey="month" 
+                                      <XAxis
+                                        dataKey="month"
                                         tick={{ fontSize: window.innerWidth < 640 ? 10 : 12 }}
                                         interval="preserveStartEnd"
                                         tickFormatter={(value, index) => {
@@ -1217,15 +1229,15 @@ export default function LoanCalculator() {
                                           return '';
                                         }}
                                       />
-                                      <YAxis 
+                                      <YAxis
                                         tick={{ fontSize: window.innerWidth < 640 ? 10 : 12 }}
                                         width={window.innerWidth < 640 ? 45 : 60}
                                         tickFormatter={(value) => window.innerWidth < 640 ? `$${(value / 1000).toFixed(0)}k` : `$${(value / 1000).toFixed(0)}k`}
                                       />
-                                      <RechartsTooltip 
+                                      <RechartsTooltip
                                         formatter={(value: number) => formatCurrency(value)}
                                         labelFormatter={(label) => label}
-                                        contentStyle={{ 
+                                        contentStyle={{
                                           backgroundColor: 'rgba(255, 255, 255, 0.95)',
                                           border: '1px solid #e5e7eb',
                                           borderRadius: '8px',
@@ -1234,24 +1246,24 @@ export default function LoanCalculator() {
                                           padding: window.innerWidth < 640 ? '6px 8px' : '8px 12px'
                                         }}
                                       />
-                                      <Area 
-                                        type="monotone" 
-                                        dataKey="Principal" 
+                                      <Area
+                                        type="monotone"
+                                        dataKey="Principal"
                                         stackId="1"
-                                        stroke="#10b981" 
+                                        stroke="#10b981"
                                         fill="url(#principalAreaGradient)"
                                         strokeWidth={window.innerWidth < 640 ? 1.5 : 2}
                                       />
-                                      <Area 
-                                        type="monotone" 
-                                        dataKey="Interest" 
+                                      <Area
+                                        type="monotone"
+                                        dataKey="Interest"
                                         stackId="1"
-                                        stroke="#f59e0b" 
+                                        stroke="#f59e0b"
                                         fill="url(#interestAreaGradient)"
                                         strokeWidth={window.innerWidth < 640 ? 1.5 : 2}
                                       />
-                                      <Legend 
-                                        verticalAlign="top" 
+                                      <Legend
+                                        verticalAlign="top"
                                         height={window.innerWidth < 640 ? 30 : 36}
                                         iconType="square"
                                         wrapperStyle={{ paddingBottom: window.innerWidth < 640 ? '6px' : '10px', fontSize: window.innerWidth < 640 ? '11px' : '14px' }}
@@ -1281,14 +1293,14 @@ export default function LoanCalculator() {
                           {/* Loan Progress Indicator */}
                           <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm border border-blue-200">
                             <h3 className="font-bold text-gray-900 mb-3 sm:mb-4 text-center text-base sm:text-lg">Understanding Your Loan</h3>
-                            <div className="space-y-3 sm:space-y-4">
+                            <div className="space-y-3 sm:space-4">
                               <div>
                                 <div className="flex flex-col xs:flex-row justify-between gap-1 xs:gap-2 text-xs sm:text-sm mb-2">
                                   <span className="text-gray-700 font-medium">You're borrowing</span>
                                   <span className="text-gray-900 font-bold break-all">{formatCurrency(parseFloat(loanAmount))}</span>
                                 </div>
                                 <div className="h-2.5 sm:h-3 bg-gray-200 rounded-full overflow-hidden">
-                                  <div 
+                                  <div
                                     className="h-full bg-gradient-to-r from-green-500 to-emerald-500 transition-all duration-500"
                                     style={{ width: `${principalPercentage}%` }}
                                   ></div>
@@ -1300,7 +1312,7 @@ export default function LoanCalculator() {
                                   <span className="text-orange-600 font-bold break-all">{formatCurrency(result.totalInterest)}</span>
                                 </div>
                                 <div className="h-2.5 sm:h-3 bg-gray-200 rounded-full overflow-hidden">
-                                  <div 
+                                  <div
                                     className="h-full bg-gradient-to-r from-orange-500 to-amber-500 transition-all duration-500"
                                     style={{ width: `${interestPercentage}%` }}
                                   ></div>
@@ -1312,7 +1324,7 @@ export default function LoanCalculator() {
                                   <span className="text-xl sm:text-2xl font-bold text-gray-900 break-all">{formatCurrency(result.totalAmount)}</span>
                                 </div>
                                 <p className="text-xs sm:text-sm text-gray-600 text-center px-2">
-                                  💡 For every {formatCurrency(1)} you borrow, you'll pay back ${((result.totalAmount / parseFloat(loanAmount))).toFixed(2)}
+                                  💡 For every {formatCurrency(1)} you borrow, you'll pay back ${(result.totalAmount / parseFloat(loanAmount)).toFixed(2)}
                                 </p>
                               </div>
                             </div>
@@ -1509,22 +1521,22 @@ export default function LoanCalculator() {
                   <p>
                     When you borrow money through a loan, you're agreeing to repay the principal amount plus interest over a set period. Understanding how loan payments are calculated helps you make informed borrowing decisions and can save you thousands of dollars over the life of your loan.
                   </p>
-                  
+
                   <h3 className="text-xl font-bold text-gray-900 mt-6 mb-3">The Amortization Formula</h3>
                   <p>
                     Our loan calculator uses the standard amortization formula to determine your monthly payment. This formula considers three key factors: the loan amount (principal), the interest rate, and the loan term. The monthly payment remains constant throughout the loan term, but the allocation between principal and interest changes over time.
                   </p>
-                  
+
                   <h3 className="text-xl font-bold text-gray-900 mt-6 mb-3">How Interest Works</h3>
                   <p>
                     Interest is calculated on your remaining balance, which means you pay more interest in the early years of your loan when the balance is higher. As you pay down the principal, less interest accrues each month, and more of your payment goes toward reducing the principal. This is called amortization.
                   </p>
-                  
+
                   <h3 className="text-xl font-bold text-gray-900 mt-6 mb-3">Impact of Loan Term</h3>
                   <p>
                     The length of your loan significantly affects both your monthly payment and total interest paid. Shorter loan terms (like 3-5 years) result in higher monthly payments but substantially less total interest. Longer terms (7-10 years) offer lower monthly payments but cost more in interest over time. For example, a $20,000 loan at 7% interest costs $3,761 in interest over 5 years versus $7,576 over 10 years—more than double!
                   </p>
-                  
+
                   <h3 className="text-xl font-bold text-gray-900 mt-6 mb-3">The Power of Extra Payments</h3>
                   <p>
                     Making extra payments directly reduces your principal balance, which means less interest accrues over time. Even modest extra payments can dramatically shorten your loan term and save thousands in interest. For instance, adding just $100 per month to a $200,000 mortgage at 6% can save over $60,000 in interest and cut nearly 8 years off a 30-year term.
@@ -1549,7 +1561,7 @@ export default function LoanCalculator() {
                       Unsecured loans for debt consolidation, home improvements, medical expenses, or any personal needs. Typical amounts range from $1,000 to $100,000 with terms of 2-7 years. Interest rates vary based on creditworthiness, typically 6-36% APR. Our calculator helps you compare offers and plan your budget before applying.
                     </p>
                   </div>
-                  
+
                   <div className="space-y-4">
                     <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
                       <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
@@ -1561,7 +1573,7 @@ export default function LoanCalculator() {
                       Secured loans for purchasing new or used vehicles. Typical loan amounts range from $10,000 to $75,000 with terms of 3-7 years. Interest rates are generally lower than personal loans (3-12% APR) since the vehicle serves as collateral. Factor in down payment, trade-in value, and sales tax when calculating.
                     </p>
                   </div>
-                  
+
                   <div className="space-y-4">
                     <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
                       <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
@@ -1573,7 +1585,7 @@ export default function LoanCalculator() {
                       Large secured loans for purchasing or refinancing real estate. Amounts typically range from $100,000 to $1,000,000+ with terms of 15-30 years. Current interest rates vary by loan type (conventional, FHA, VA) and creditworthiness, typically 6-8% APR. Remember to include property taxes, insurance, and PMI in your total housing cost.
                     </p>
                   </div>
-                  
+
                   <div className="space-y-4">
                     <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
                       <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center">
