@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -54,6 +54,38 @@ export default function LoanCalculator() {
   const [result, setResult] = useState<LoanResult | null>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
+
+  // Load parameters from URL on mount (for shared links)
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const amount = params.get('amount');
+    const rate = params.get('rate');
+    const term = params.get('term');
+    const unit = params.get('unit');
+    const freq = params.get('freq');
+    const extra = params.get('extra');
+
+    if (amount || rate || term) {
+      if (amount) setLoanAmount(amount);
+      if (rate) setInterestRate(rate);
+      if (term) setLoanTerm(term);
+      if (unit) setTermUnit(unit);
+      if (freq) setPaymentFrequency(freq);
+      if (extra) setExtraPayment(extra);
+
+      // Trigger calculation after state updates
+      setTimeout(() => {
+        const calculateButton = document.querySelector('[data-testid="button-calculate"]') as HTMLButtonElement;
+        if (calculateButton) {
+          calculateButton.click();
+          toast({ 
+            title: "Shared calculation loaded!", 
+            description: "Results from the shared link have been calculated."
+          });
+        }
+      }, 200);
+    }
+  }, []);
 
   const calculateLoan = () => {
     const principal = parseFloat(loanAmount);
@@ -161,12 +193,62 @@ export default function LoanCalculator() {
 
   const handleShare = async () => {
     if (!result) return;
-    const shareText = `Loan Calculator Results:\nMonthly Payment: ${formatCurrency(result.monthlyPayment)}\nTotal Interest: ${formatCurrency(result.totalInterest)}\n\nCalculate yours at: ${window.location.href}`;
+    
+    // Create shareable URL with encoded parameters
+    const params = new URLSearchParams({
+      amount: loanAmount,
+      rate: interestRate,
+      term: loanTerm,
+      unit: termUnit,
+      freq: paymentFrequency,
+      extra: extraPayment
+    });
+    const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
+    
+    // Create comprehensive share text
+    const termDisplay = termUnit === 'years' ? `${loanTerm} years` : `${loanTerm} months`;
+    const freqDisplay = paymentFrequency === 'weekly' ? 'Weekly' : 
+                       paymentFrequency === 'biweekly' ? 'Bi-weekly' : 'Monthly';
+    
+    // Calculate actual per-period payment based on frequency
+    const paymentsPerYear = paymentFrequency === 'weekly' ? 52 :
+                           paymentFrequency === 'biweekly' ? 26 : 12;
+    const actualPeriodicPayment = result.monthlyPayment * (12 / paymentsPerYear);
+    
+    let shareText = `💰 Loan Calculator Results\n\n`;
+    shareText += `📊 Loan Details:\n`;
+    shareText += `• Principal: ${formatCurrency(parseFloat(loanAmount))}\n`;
+    shareText += `• Interest Rate: ${interestRate}%\n`;
+    shareText += `• Term: ${termDisplay}\n`;
+    shareText += `• Payment Frequency: ${freqDisplay}\n`;
+    if (parseFloat(extraPayment) > 0) {
+      shareText += `• Extra Payment: ${formatCurrency(parseFloat(extraPayment))}\n`;
+    }
+    shareText += `\n💵 Payment Breakdown:\n`;
+    shareText += `• ${freqDisplay} Payment: ${formatCurrency(actualPeriodicPayment)}\n`;
+    if (paymentFrequency !== 'monthly') {
+      shareText += `• Monthly Equivalent: ${formatCurrency(result.monthlyPayment)}\n`;
+    }
+    shareText += `• Total Interest: ${formatCurrency(result.totalInterest)}\n`;
+    shareText += `• Total Amount: ${formatCurrency(result.totalAmount)}\n`;
+    
+    if (result.extraPaymentSavings) {
+      const yearsSaved = Math.round(result.extraPaymentSavings.timeSaved / (paymentFrequency === 'weekly' ? 52 : paymentFrequency === 'biweekly' ? 26 : 12));
+      shareText += `\n✨ Extra Payment Savings:\n`;
+      shareText += `• Interest Saved: ${formatCurrency(result.extraPaymentSavings.interestSaved)}\n`;
+      shareText += `• Time Saved: ${yearsSaved} years\n`;
+    }
+    
+    shareText += `\n🔗 View & Calculate: ${shareableUrl}`;
     
     if (navigator.share) {
       try {
-        await navigator.share({ title: 'Loan Calculator Results', text: shareText });
-        toast({ title: "Shared successfully!" });
+        await navigator.share({ 
+          title: '💰 Loan Calculator Results', 
+          text: shareText,
+          url: shareableUrl 
+        });
+        toast({ title: "Shared successfully!", description: "Results shared with all details" });
       } catch (err) {
         copyToClipboard(shareText);
       }
