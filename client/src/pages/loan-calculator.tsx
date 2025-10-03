@@ -8,12 +8,11 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { Info, Download, Share2, Calculator, TrendingDown, Clock, DollarSign, PieChart, Printer } from 'lucide-react';
+import { Info, Download, Share2, Calculator, TrendingDown, Clock, DollarSign, PieChart } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Area, AreaChart } from 'recharts';
 import { RotateCcw } from 'lucide-react'; // Added for Reset button icon
 import ShareResultsButton from '@/components/ShareResultsButton'; // Assuming this component exists
-import LoanPrintReport from '@/components/LoanPrintReport';
 
 interface LoanResult {
   monthlyPayment: number;
@@ -56,21 +55,7 @@ export default function LoanCalculator() {
   const [comparisonLoans, setComparisonLoans] = useState<ComparisonLoan[]>([]);
   const [result, setResult] = useState<LoanResult | null>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
-  const printRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
-
-  const handlePrint = () => {
-    if (!result) {
-      toast({
-        title: "No Results",
-        description: "Please calculate the loan first before printing.",
-        variant: "destructive"
-      });
-      return;
-    }
-    
-    window.print();
-  };
 
   // Load parameters from URL on mount (for shared links)
   useEffect(() => {
@@ -793,16 +778,6 @@ export default function LoanCalculator() {
                         >
                           <Share2 className="w-4 h-4 mr-1" />
                           Share
-                        </Button>
-                        <Button
-                          onClick={handlePrint}
-                          variant="outline"
-                          size="sm"
-                          className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full bg-blue-50 hover:bg-blue-100 border-blue-200"
-                          data-testid="button-print"
-                        >
-                          <Printer className="w-4 h-4 mr-1" />
-                          Print Report
                         </Button>
                       </div>
 
@@ -1565,19 +1540,6 @@ export default function LoanCalculator() {
           </div>
         </div>
       </main>
-
-      {result && (
-        <LoanPrintReport
-          ref={printRef}
-          loanAmount={loanAmount}
-          interestRate={interestRate}
-          loanTerm={loanTerm}
-          termUnit={termUnit}
-          paymentFrequency={paymentFrequency}
-          extraPayment={extraPayment}
-          result={result}
-        />
-      )}
 
       <Footer />
     </div>
