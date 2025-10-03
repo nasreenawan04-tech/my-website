@@ -53,6 +53,7 @@ export default function LoanCalculator() {
   const [showComparison, setShowComparison] = useState(false);
   const [showChart, setShowChart] = useState(false);
   const [comparisonLoans, setComparisonLoans] = useState<ComparisonLoan[]>([]);
+  const [result, setResult] = useState<LoanResult | null>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
