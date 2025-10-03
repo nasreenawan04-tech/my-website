@@ -308,84 +308,40 @@ export default function LoanCalculator() {
         <link rel="canonical" href="https://dapsiwow.com/tools/loan-calculator" />
         <style>{`
           @media print {
+            /* Page settings */
+            @page {
+              margin: 1.5cm;
+              size: auto;
+            }
+            
             /* Hide non-essential elements */
-            header, footer, nav {
+            header, footer, nav, button, [role="button"] {
               display: none !important;
             }
             
-            /* Hide hero section */
-            main > section:first-child {
+            /* Hide hero section and educational content */
+            main > section,
+            main > div > div > div:not(:has([data-testid="loan-results"])):not(.print-section) {
               display: none !important;
             }
             
-            /* Hide all cards except the main calculator and results */
-            main > div > div > *:not(:has([data-testid="loan-results"])):not(:has(table)) {
-              display: none !important;
-            }
-            
-            /* Hide input form section */
-            main .space-y-4:has(button[data-testid="button-calculate"]) {
-              display: none !important;
-            }
-            
-            /* Hide all buttons */
-            button, [role="button"] {
-              display: none !important;
-            }
-            
-            /* Show only results section */
-            html, body {
+            /* Set clean background */
+            html, body, main {
               background: white !important;
               margin: 0 !important;
               padding: 0 !important;
             }
             
-            body * {
-              visibility: hidden;
+            /* Show results section */
+            main > div > div {
+              display: block !important;
             }
             
-            /* Show only results and amortization */
-            [data-testid="loan-results"],
-            [data-testid="loan-results"] *,
-            .print-section,
-            .print-section *,
-            table,
-            table * {
-              visibility: visible;
-            }
-            
-            /* Position print sections properly */
-            .print-section {
-              position: relative;
-              width: 100%;
-              margin-top: 20px;
-              page-break-inside: avoid;
-            }
-            
-            /* Position results at top of page */
+            /* Format results container */
             [data-testid="loan-results"] {
-              position: absolute;
-              left: 0;
-              top: 0;
-              width: 100%;
-              padding: 20px;
-              page-break-inside: avoid;
-            }
-            
-            /* Ensure tables print properly */
-            table {
-              page-break-inside: auto;
-              width: 100%;
-              margin-top: 20px;
-            }
-            
-            table tr {
-              page-break-inside: avoid;
-              page-break-after: auto;
-            }
-            
-            table thead {
-              display: table-header-group;
+              display: block !important;
+              padding: 20px !important;
+              margin: 0 !important;
             }
             
             /* Add print header */
@@ -398,6 +354,30 @@ export default function LoanCalculator() {
               color: #1e293b;
               border-bottom: 2px solid #3b82f6;
               padding-bottom: 10px;
+            }
+            
+            /* Show print sections */
+            .print-section {
+              display: block !important;
+              margin-top: 20px !important;
+              page-break-inside: avoid;
+            }
+            
+            /* Ensure tables print properly */
+            table {
+              page-break-inside: auto;
+              width: 100%;
+              border-collapse: collapse;
+              margin-top: 10px;
+            }
+            
+            table tr {
+              page-break-inside: avoid;
+              page-break-after: auto;
+            }
+            
+            table thead {
+              display: table-header-group;
             }
             
             /* Format colors for print */
@@ -418,7 +398,9 @@ export default function LoanCalculator() {
             /* Ensure good contrast for text */
             .text-transparent.bg-clip-text {
               color: #2563eb !important;
-              background: none !important;
+              background: transparent !important;
+              -webkit-background-clip: unset !important;
+              background-clip: unset !important;
               -webkit-text-fill-color: #2563eb !important;
             }
             
@@ -441,6 +423,14 @@ export default function LoanCalculator() {
               color: #15803d !important;
             }
             
+            .text-gray-900 {
+              color: #111827 !important;
+            }
+            
+            .text-gray-700 {
+              color: #374151 !important;
+            }
+            
             /* Format amortization table */
             thead {
               background-color: #f3f4f6 !important;
@@ -455,21 +445,15 @@ export default function LoanCalculator() {
               border: 1px solid #e5e7eb !important;
             }
             
-            /* Page settings */
-            @page {
-              margin: 1.5cm;
-              size: auto;
-            }
-            
             /* Add footer with website info */
             body::after {
               content: "Generated by DapsiWow.com - Free Loan Calculator";
+              display: block;
               position: fixed;
               bottom: 10px;
               right: 10px;
               font-size: 10px;
               color: #6b7280;
-              visibility: visible;
             }
           }
         `}</style>
