@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { Info, Download, Share2, Printer, Calculator, TrendingDown, Clock, DollarSign, PieChart } from 'lucide-react';
+import { Info, Download, Share2, Calculator, TrendingDown, Clock, DollarSign, PieChart } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Area, AreaChart } from 'recharts';
 import { RotateCcw } from 'lucide-react'; // Added for Reset button icon
@@ -264,18 +264,7 @@ export default function LoanCalculator() {
     toast({ title: "Copied to clipboard!" });
   };
 
-  const handlePrint = () => {
-    // Add print-specific class to body for styling
-    document.body.classList.add('printing');
-
-    // Trigger print
-    window.print();
-
-    // Remove print class after print dialog closes
-    setTimeout(() => {
-      document.body.classList.remove('printing');
-    }, 1000);
-  };
+  
 
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -402,183 +391,7 @@ export default function LoanCalculator() {
         <meta name="robots" content="index, follow" />
         <meta name="author" content="DapsiWow" />
         <link rel="canonical" href="https://dapsiwow.com/tools/loan-calculator" />
-        <style>{`
-          @media print {
-            /* Page settings */
-            @page {
-              margin: 1.5cm;
-              size: auto;
-            }
-
-            /* Hide non-essential elements */
-            header, footer, nav, button, [role="button"] {
-              display: none !important;
-            }
-
-            /* Hide screen-only results section */
-            [data-testid="loan-results"] {
-              display: none !important;
-            }
-
-            /* Show print summary section - allow multi-page */
-            .print-summary-section {
-              display: block !important;
-              padding: 20px !important;
-              margin: 0 !important;
-              page-break-inside: auto;
-            }
-
-            /* Hide hero section and educational content */
-            main > section:not(.print-summary-section) {
-              display: none !important;
-            }
-
-            /* Set clean background */
-            html, body, main {
-              background: white !important;
-              margin: 0 !important;
-              padding: 0 !important;
-            }
-
-            /* Show print sections - allow multi-page */
-            .print-section {
-              display: block !important;
-              margin-top: 20px !important;
-              page-break-inside: auto;
-            }
-
-            /* Ensure tables print properly */
-            table {
-              page-break-inside: auto;
-              width: 100%;
-              border-collapse: collapse;
-              margin-top: 10px;
-            }
-
-            table tr {
-              page-break-inside: avoid;
-              page-break-after: auto;
-            }
-
-            table thead {
-              display: table-header-group;
-            }
-
-            /* Format colors for print */
-            * {
-              color-adjust: exact !important;
-              -webkit-print-color-adjust: exact !important;
-              print-color-adjust: exact !important;
-            }
-
-            /* Preserve background colors for better readability */
-            .bg-gray-50,
-            .bg-blue-50,
-            .bg-green-50,
-            .bg-orange-50 {
-              background-color: #f9fafb !important;
-              border: 1px solid #e5e7eb !important;
-            }
-
-            /* Remove gradients for better print */
-            .bg-gradient-to-br,
-            .bg-gradient-to-r,
-            .bg-gradient-to-l {
-              background: white !important;
-              border: 1px solid #e5e7eb !important;
-            }
-
-            /* Ensure good contrast for text */
-            .text-transparent.bg-clip-text {
-              color: #2563eb !important;
-              background: transparent !important;
-              -webkit-background-clip: unset !important;
-              background-clip: unset !important;
-              -webkit-text-fill-color: #2563eb !important;
-            }
-
-            .text-blue-600,
-            .text-indigo-600 {
-              color: #2563eb !important;
-            }
-
-            .text-green-600,
-            .text-emerald-600 {
-              color: #16a34a !important;
-            }
-
-            .text-orange-600,
-            .text-orange-700,
-            .text-orange-800 {
-              color: #ea580c !important;
-            }
-
-            .text-green-700,
-            .text-green-800,
-            .text-green-900 {
-              color: #15803d !important;
-            }
-
-            .text-gray-900 {
-              color: #111827 !important;
-            }
-
-            .text-gray-700,
-            .text-gray-600 {
-              color: #374151 !important;
-            }
-
-            /* Format amortization table */
-            thead {
-              background-color: #f3f4f6 !important;
-            }
-
-            tbody tr:nth-child(even) {
-              background-color: #f9fafb !important;
-            }
-
-            /* Format borders */
-            .border-gray-300,
-            .border-gray-200 {
-              border-color: #d1d5db !important;
-            }
-
-            .border-blue-200 {
-              border-color: #bfdbfe !important;
-            }
-
-            .border-green-200,
-            .border-green-300 {
-              border-color: #bbf7d0 !important;
-            }
-
-            .border-orange-200 {
-              border-color: #fed7aa !important;
-            }
-
-            /* Page breaks - allow content to span multiple pages */
-            h2 {
-              page-break-after: avoid;
-              page-break-inside: avoid;
-            }
-
-            /* Allow sections to break across pages if needed */
-            .mb-8 > div {
-              page-break-inside: auto;
-            }
-
-            /* Add footer with website info */
-            body::after {
-              content: "Generated by DapsiWow.com - Free Loan Calculator";
-              display: block;
-              position: fixed;
-              bottom: 10px;
-              right: 10px;
-              font-size: 10px;
-              color: #6b7280;
-            }
-          }
-        `}</style>
+        
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -966,165 +779,9 @@ export default function LoanCalculator() {
                           <Share2 className="w-4 h-4 mr-1" />
                           Share
                         </Button>
-                        <Button
-                          onClick={handlePrint}
-                          variant="outline"
-                          size="sm"
-                          className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
-                          data-testid="button-print"
-                        >
-                          <Printer className="w-4 h-4 mr-1" />
-                          Print
-                        </Button>
                       </div>
 
-                      {/* Print-only Professional Report */}
-                      <div className="hidden print:block print-summary-section" data-testid="print-summary">
-                        {/* Header Section */}
-                        <div className="mb-8 pb-4 border-b-2 border-gray-300">
-                          <div className="flex items-center gap-3 mb-2">
-                            <Calculator className="w-8 h-8 text-blue-600" />
-                            <h1 className="text-3xl font-bold text-gray-900">DapsiWow Loan Calculator</h1>
-                          </div>
-                          <h2 className="text-xl font-semibold text-gray-800 mb-1">Loan Calculation Report</h2>
-                          <p className="text-sm text-gray-600">
-                            Generated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
-                          </p>
-                        </div>
-
-                        {/* User Input Summary */}
-                        <div className="mb-8 bg-blue-50 p-6 rounded-lg">
-                          <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                            <span className="text-blue-600">📋</span> Loan Details
-                          </h3>
-                          <div className="grid grid-cols-2 gap-4 ml-4">
-                            <div>
-                              <p className="text-gray-600 text-sm mb-1">Loan Amount</p>
-                              <p className="text-gray-900 font-bold text-lg">{formatCurrency(parseFloat(loanAmount))}</p>
-                            </div>
-                            <div>
-                              <p className="text-gray-600 text-sm mb-1">Interest Rate</p>
-                              <p className="text-gray-900 font-bold text-lg">{interestRate}% per year</p>
-                            </div>
-                            <div>
-                              <p className="text-gray-600 text-sm mb-1">Loan Term</p>
-                              <p className="text-gray-900 font-bold text-lg">{loanTerm} {termUnit === 'years' ? 'Years' : 'Months'}</p>
-                            </div>
-                            <div>
-                              <p className="text-gray-600 text-sm mb-1">Payment Frequency</p>
-                              <p className="text-gray-900 font-bold text-lg">{paymentFrequency === 'monthly' ? 'Monthly' : paymentFrequency === 'weekly' ? 'Weekly' : 'Bi-weekly'}</p>
-                            </div>
-                            {parseFloat(extraPayment) > 0 && (
-                              <div className="col-span-2">
-                                <p className="text-gray-600 text-sm mb-1">Extra Payment</p>
-                                <p className="text-gray-900 font-bold text-lg">{formatCurrency(parseFloat(extraPayment))} per payment</p>
-                              </div>
-                            )}
-                          </div>
-                        </div>
-
-                        {/* Calculation Results - Highlighted */}
-                        <div className="mb-8 bg-green-50 p-6 rounded-lg border-2 border-green-200">
-                          <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                            <span className="text-green-600">💰</span> Payment Summary
-                          </h3>
-                          <div className="ml-4 space-y-4">
-                            <div className="bg-white p-4 rounded-lg shadow-sm">
-                              <p className="text-gray-600 text-sm mb-1">Monthly Payment</p>
-                              <p className="text-blue-600 font-bold text-3xl">{formatCurrency(result.monthlyPayment)}</p>
-                            </div>
-                            <div className="grid grid-cols-2 gap-4">
-                              <div className="bg-white p-4 rounded-lg shadow-sm">
-                                <p className="text-gray-600 text-sm mb-1">Principal Amount</p>
-                                <p className="text-gray-900 font-bold text-xl">{formatCurrency(parseFloat(loanAmount))}</p>
-                              </div>
-                              <div className="bg-white p-4 rounded-lg shadow-sm">
-                                <p className="text-gray-600 text-sm mb-1">Total Interest</p>
-                                <p className="text-orange-600 font-bold text-xl">{formatCurrency(result.totalInterest)}</p>
-                              </div>
-                            </div>
-                            <div className="bg-white p-4 rounded-lg shadow-sm">
-                              <p className="text-gray-600 text-sm mb-1">Total Amount Payable</p>
-                              <p className="text-gray-900 font-bold text-2xl">{formatCurrency(result.totalAmount)}</p>
-                            </div>
-                            {result.extraPaymentSavings && (
-                              <div className="bg-white p-4 rounded-lg shadow-sm border-l-4 border-green-500">
-                                <p className="text-gray-600 text-sm mb-2">Extra Payment Savings</p>
-                                <p className="text-green-700 font-semibold">Interest Saved: {formatCurrency(result.extraPaymentSavings.interestSaved)}</p>
-                                <p className="text-green-700 font-semibold">Time Saved: {Math.round(result.extraPaymentSavings.timeSaved / 12)} years</p>
-                              </div>
-                            )}
-                          </div>
-                        </div>
-
-                        {/* Amortization Table */}
-                        <div className="mb-8">
-                          <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                            <span className="text-blue-600">📊</span> Payment Schedule (First 12 Months)
-                          </h3>
-                          <table className="w-full border-collapse border border-gray-300 text-sm">
-                            <thead>
-                              <tr className="bg-gray-800 text-white">
-                                <th className="border border-gray-300 px-3 py-3 text-left font-semibold">Month</th>
-                                <th className="border border-gray-300 px-3 py-3 text-right font-semibold">Payment</th>
-                                <th className="border border-gray-300 px-3 py-3 text-right font-semibold">Principal</th>
-                                <th className="border border-gray-300 px-3 py-3 text-right font-semibold">Interest</th>
-                                <th className="border border-gray-300 px-3 py-3 text-right font-semibold">Balance</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {result.amortizationSchedule.slice(0, 12).map((entry: any, index: number) => (
-                                <tr key={index} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                                  <td className="border border-gray-300 px-3 py-2 font-semibold">{entry.month}</td>
-                                  <td className="border border-gray-300 px-3 py-2 text-right">{formatCurrency(entry.payment)}</td>
-                                  <td className="border border-gray-300 px-3 py-2 text-right text-green-700 font-semibold">{formatCurrency(entry.principal)}</td>
-                                  <td className="border border-gray-300 px-3 py-2 text-right text-orange-700 font-semibold">{formatCurrency(entry.interest)}</td>
-                                  <td className="border border-gray-300 px-3 py-2 text-right font-semibold">{formatCurrency(entry.balance)}</td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                          {result.amortizationSchedule.length > 12 && (
-                            <p className="text-gray-500 text-sm mt-2 text-center">
-                              Showing first 12 months of {result.amortizationSchedule.length} total payments
-                            </p>
-                          )}
-                        </div>
-
-                        {/* Cost Breakdown */}
-                        <div className="mb-8 bg-orange-50 p-6 rounded-lg">
-                          <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-                            <span className="text-orange-600">📈</span> Cost Analysis
-                          </h3>
-                          <div className="ml-4 space-y-2">
-                            <div className="flex justify-between items-center">
-                              <span className="text-gray-700">Principal Amount:</span>
-                              <span className="font-bold text-gray-900">{formatCurrency(parseFloat(loanAmount))}</span>
-                            </div>
-                            <div className="flex justify-between items-center">
-                              <span className="text-gray-700">Interest Percentage:</span>
-                              <span className="font-bold text-orange-600">{((result.totalInterest / result.totalAmount) * 100).toFixed(1)}% of total</span>
-                            </div>
-                            <div className="flex justify-between items-center pt-2 border-t-2 border-orange-200">
-                              <span className="text-gray-700 font-semibold">Total Cost of Loan:</span>
-                              <span className="font-bold text-gray-900 text-xl">{formatCurrency(result.totalAmount)}</span>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Disclaimer and Footer */}
-                        <div className="mt-8 pt-4 border-t-2 border-gray-300">
-                          <div className="bg-yellow-50 p-4 rounded-lg mb-4 border-l-4 border-yellow-400">
-                            <p className="text-sm text-gray-700">
-                              <strong>Important Disclaimer:</strong> This calculation is an estimate based on the provided information. Actual loan terms, payments, and interest may vary depending on lender policies, fees, and other factors. Please verify all details with your lender before making any financial decisions.
-                            </p>
-                          </div>
-                          <div className="text-center text-sm text-gray-600">
-                            <p className="font-semibold">Generated by DapsiWow.com - Free Loan Calculator</p>
-                            <p className="mt-1">{window.location.origin}/tools/loan-calculator</p>
-                          </div>
-                        </div>
-                      </div>
+                      
                     </>
                   )}
                 </div>
@@ -1439,7 +1096,7 @@ export default function LoanCalculator() {
           </Card>
 
           {result && showAmortization && (
-            <Card className="mt-6 sm:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl print-section">
+            <Card className="mt-6 sm:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
               <CardContent className="p-4 sm:p-6 lg:p-8">
                 <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Amortization Schedule (First 5 Years)</h3>
                 <p className="text-sm text-gray-600 mb-4">See how your payments are split between principal and interest over time.</p>
@@ -1480,7 +1137,7 @@ export default function LoanCalculator() {
           )}
 
           {showComparison && comparisonLoans.length > 0 && (
-            <Card className="mt-6 sm:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl print-section">
+            <Card className="mt-6 sm:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
               <CardContent className="p-4 sm:p-6 lg:p-8">
                 <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Loan Comparison</h3>
                 <p className="text-sm text-gray-600 mb-4">Compare different loan scenarios side-by-side to find the best option.</p>
