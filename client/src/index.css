@@ -3,6 +3,43 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Print Styles */
+@media print {
+  @page {
+    size: A4;
+    margin: 15mm;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  .print\:block,
+  .print\:block * {
+    visibility: visible;
+  }
+
+  .print\:block {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+
+  .print\:hidden {
+    display: none !important;
+  }
+
+  /* Ensure proper page breaks */
+  table, figure {
+    page-break-inside: avoid;
+  }
+
+  h1, h2, h3 {
+    page-break-after: avoid;
+  }
+}
+
 :root {
   --background: hsl(248, 50%, 99%);
   --foreground: hsl(210, 25%, 7.84%);
