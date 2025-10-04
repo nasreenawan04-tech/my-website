@@ -914,8 +914,8 @@ const MortgageCalculator = () => {
                               Total Loan Breakdown
                             </h3>
                             <div className="flex flex-col lg:flex-row items-center justify-center gap-6 sm:gap-8">
-                              <div className="w-full max-w-[320px] sm:max-w-sm">
-                                <ResponsiveContainer width="100%" height={window.innerWidth < 640 ? 280 : 340}>
+                              <div className="w-full max-w-[280px] sm:max-w-[340px] md:max-w-[380px] aspect-square">
+                                <ResponsiveContainer width="100%" height="100%">
                                   <RechartsPieChart>
                                     <Pie
                                       data={[
@@ -924,8 +924,8 @@ const MortgageCalculator = () => {
                                       ]}
                                       cx="50%"
                                       cy="50%"
-                                      innerRadius={window.innerWidth < 640 ? 60 : 80}
-                                      outerRadius={window.innerWidth < 640 ? 100 : 130}
+                                      innerRadius="45%"
+                                      outerRadius="75%"
                                       paddingAngle={5}
                                       dataKey="value"
                                       label={({ percentage }) => `${percentage.toFixed(1)}%`}
@@ -941,17 +941,18 @@ const MortgageCalculator = () => {
                                         border: '2px solid #e5e7eb',
                                         borderRadius: '12px',
                                         boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.15)',
-                                        padding: '12px',
-                                        fontSize: window.innerWidth < 640 ? '13px' : '15px'
+                                        padding: '12px'
                                       }}
+                                      wrapperStyle={{ fontSize: '14px' }}
                                     />
                                     <Legend 
                                       verticalAlign="bottom" 
                                       height={36}
                                       iconType="circle"
                                       formatter={(value, entry: any) => (
-                                        <span className="text-sm font-medium text-gray-700">{value}</span>
+                                        <span className="text-xs sm:text-sm font-medium text-gray-700">{value}</span>
                                       )}
+                                      wrapperStyle={{ fontSize: '14px' }}
                                     />
                                     <defs>
                                       <linearGradient id="principalGradient" x1="0" y1="0" x2="1" y2="1">
@@ -966,31 +967,31 @@ const MortgageCalculator = () => {
                                   </RechartsPieChart>
                                 </ResponsiveContainer>
                               </div>
-                              <div className="grid grid-cols-1 gap-4 w-full max-w-xs">
-                                <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-4 border-l-4 border-green-500">
+                              <div className="grid grid-cols-1 gap-4 w-full max-w-xs lg:max-w-sm">
+                                <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-3 sm:p-4 border-l-4 border-green-500">
                                   <div className="flex items-center justify-between">
-                                    <div>
+                                    <div className="min-w-0 flex-1">
                                       <p className="text-xs font-semibold text-green-700 uppercase tracking-wide mb-1">Principal Amount</p>
-                                      <p className="text-xl sm:text-2xl font-bold text-green-900">
+                                      <p className="text-lg sm:text-xl md:text-2xl font-bold text-green-900 break-words">
                                         {formatCurrency(parseFloat(homePrice) - (usePercentage ? (parseFloat(homePrice) * parseFloat(downPaymentPercent)) / 100 : parseFloat(downPayment)))}
                                       </p>
                                     </div>
-                                    <div className="bg-green-500 rounded-full p-2">
-                                      <DollarSign className="w-5 h-5 text-white" />
+                                    <div className="bg-green-500 rounded-full p-2 flex-shrink-0 ml-2">
+                                      <DollarSign className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                                     </div>
                                   </div>
                                   <p className="text-xs text-green-600 mt-2">{principalPercentage.toFixed(1)}% of total</p>
                                 </div>
-                                <div className="bg-gradient-to-r from-orange-50 to-amber-50 rounded-lg p-4 border-l-4 border-orange-500">
+                                <div className="bg-gradient-to-r from-orange-50 to-amber-50 rounded-lg p-3 sm:p-4 border-l-4 border-orange-500">
                                   <div className="flex items-center justify-between">
-                                    <div>
+                                    <div className="min-w-0 flex-1">
                                       <p className="text-xs font-semibold text-orange-700 uppercase tracking-wide mb-1">Total Interest</p>
-                                      <p className="text-xl sm:text-2xl font-bold text-orange-900">
+                                      <p className="text-lg sm:text-xl md:text-2xl font-bold text-orange-900 break-words">
                                         {formatCurrency(result.totalInterest)}
                                       </p>
                                     </div>
-                                    <div className="bg-orange-500 rounded-full p-2">
-                                      <TrendingUp className="w-5 h-5 text-white" />
+                                    <div className="bg-orange-500 rounded-full p-2 flex-shrink-0 ml-2">
+                                      <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                                     </div>
                                   </div>
                                   <p className="text-xs text-orange-600 mt-2">{interestPercentage.toFixed(1)}% of total</p>
@@ -1006,9 +1007,9 @@ const MortgageCalculator = () => {
                                 Payment Breakdown Over Time
                               </h3>
                               <p className="text-center text-sm text-gray-600 mb-6">See how your payments shift from interest to principal</p>
-                              <div className="w-full overflow-x-auto -mx-3 sm:mx-0 px-3 sm:px-0">
-                                <div className="min-w-[300px]">
-                                  <ResponsiveContainer width="100%" height={window.innerWidth < 640 ? 280 : 360}>
+                              <div className="w-full">
+                                <div className="w-full h-[280px] sm:h-[320px] md:h-[360px] lg:h-[400px]">
+                                  <ResponsiveContainer width="100%" height="100%">
                                     <AreaChart 
                                       data={result.amortizationSchedule.map(item => ({
                                         month: `Month ${item.month}`,
@@ -1016,7 +1017,7 @@ const MortgageCalculator = () => {
                                         Interest: item.interest,
                                         Balance: item.balance
                                       }))}
-                                      margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
+                                      margin={{ top: 10, right: 5, left: -10, bottom: 0 }}
                                     >
                                       <defs>
                                         <linearGradient id="principalAreaGradient" x1="0" y1="0" x2="0" y2="1">
@@ -1031,12 +1032,18 @@ const MortgageCalculator = () => {
                                       <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" opacity={0.5} />
                                       <XAxis 
                                         dataKey="month" 
-                                        tick={{ fontSize: window.innerWidth < 640 ? 10 : 12, fill: '#6b7280' }}
+                                        tick={{ fontSize: 10, fill: '#6b7280' }}
+                                        className="text-[10px] sm:text-xs"
                                         interval="preserveStartEnd"
+                                        angle={-45}
+                                        textAnchor="end"
+                                        height={60}
                                       />
                                       <YAxis 
-                                        tick={{ fontSize: window.innerWidth < 640 ? 10 : 12, fill: '#6b7280' }}
+                                        tick={{ fontSize: 10, fill: '#6b7280' }}
+                                        className="text-[10px] sm:text-xs"
                                         tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
+                                        width={50}
                                       />
                                       <RechartsTooltip 
                                         formatter={(value: number) => formatCurrency(value)}
@@ -1045,9 +1052,10 @@ const MortgageCalculator = () => {
                                           border: '2px solid #e5e7eb',
                                           borderRadius: '12px',
                                           boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.15)',
-                                          padding: '12px'
+                                          padding: '8px 12px',
+                                          fontSize: '13px'
                                         }}
-                                        labelStyle={{ color: '#1f2937', fontWeight: 600 }}
+                                        labelStyle={{ color: '#1f2937', fontWeight: 600, fontSize: '13px' }}
                                       />
                                       <Area 
                                         type="monotone" 
@@ -1070,8 +1078,9 @@ const MortgageCalculator = () => {
                                         height={36}
                                         iconType="line"
                                         formatter={(value) => (
-                                          <span className="text-sm font-medium text-gray-700">{value}</span>
+                                          <span className="text-xs sm:text-sm font-medium text-gray-700">{value}</span>
                                         )}
+                                        wrapperStyle={{ fontSize: '13px' }}
                                       />
                                     </AreaChart>
                                   </ResponsiveContainer>
@@ -1080,20 +1089,20 @@ const MortgageCalculator = () => {
                               <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
                                 <div className="bg-white rounded-lg p-3 border border-gray-200 text-center">
                                   <p className="text-xs text-gray-500 mb-1">First Payment</p>
-                                  <p className="text-sm font-bold text-gray-900">
+                                  <p className="text-sm font-bold text-gray-900 break-words">
                                     {result.amortizationSchedule[0] && formatCurrency(result.amortizationSchedule[0].interest)} Interest
                                   </p>
                                 </div>
                                 <div className="bg-white rounded-lg p-3 border border-gray-200 text-center">
                                   <p className="text-xs text-gray-500 mb-1">Last Payment</p>
-                                  <p className="text-sm font-bold text-gray-900">
+                                  <p className="text-sm font-bold text-gray-900 break-words">
                                     {result.amortizationSchedule[result.amortizationSchedule.length - 1] && 
                                       formatCurrency(result.amortizationSchedule[result.amortizationSchedule.length - 1].principal)} Principal
                                   </p>
                                 </div>
                                 <div className="bg-white rounded-lg p-3 border border-gray-200 text-center">
                                   <p className="text-xs text-gray-500 mb-1">Remaining Balance</p>
-                                  <p className="text-sm font-bold text-gray-900">
+                                  <p className="text-sm font-bold text-gray-900 break-words">
                                     {result.amortizationSchedule[result.amortizationSchedule.length - 1] && 
                                       formatCurrency(result.amortizationSchedule[result.amortizationSchedule.length - 1].balance)}
                                   </p>
