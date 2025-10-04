@@ -11,8 +11,9 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { Info, Download, Share2, Calculator, TrendingDown, Clock, DollarSign, PieChart } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Area, AreaChart } from 'recharts';
-import { RotateCcw } from 'lucide-react'; // Added for Reset button icon
-import ShareResultsButton from '@/components/ShareResultsButton'; // Assuming this component exists
+import { RotateCcw } from 'lucide-react';
+import { jsPDF } from 'jspdf';
+import ShareResultsButton from '@/components/ShareResultsButton';
 
 interface LoanResult {
   monthlyPayment: number;
@@ -264,7 +265,135 @@ export default function LoanCalculator() {
     toast({ title: "Copied to clipboard!" });
   };
 
-  
+  const handleDownloadPDF = () => {
+    if (!result) return;
+
+    const doc = new jsPDF();
+    const pageWidth = doc.internal.pageSize.getWidth();
+    let yPos = 20;
+
+    // Title
+    doc.setFontSize(20);
+    doc.setTextColor(59, 130, 246);
+    doc.text('LOAN CALCULATION RESULTS', pageWidth / 2, yPos, { align: 'center' });
+
+    // Generated date
+    yPos += 10;
+    doc.setFontSize(10);
+    doc.setTextColor(100, 100, 100);
+    doc.text(`Generated: ${new Date().toLocaleDateString()}`, pageWidth / 2, yPos, { align: 'center' });
+
+    // Loan Details Section
+    yPos += 15;
+    doc.setFontSize(16);
+    doc.setTextColor(0, 0, 0);
+    doc.text('LOAN DETAILS', 20, yPos);
+
+    yPos += 10;
+    doc.setFontSize(12);
+    const termDisplay = termUnit === 'years' ? `${loanTerm} years` : `${loanTerm} months`;
+    const freqDisplay = paymentFrequency === 'weekly' ? 'Weekly' :
+                       paymentFrequency === 'biweekly' ? 'Bi-weekly' : 'Monthly';
+    
+    doc.text(`Principal Amount: ${formatCurrency(parseFloat(loanAmount))}`, 20, yPos);
+    yPos += 8;
+    doc.text(`Interest Rate: ${interestRate}%`, 20, yPos);
+    yPos += 8;
+    doc.text(`Loan Term: ${termDisplay}`, 20, yPos);
+    yPos += 8;
+    doc.text(`Payment Frequency: ${freqDisplay}`, 20, yPos);
+    
+    if (parseFloat(extraPayment) > 0) {
+      yPos += 8;
+      doc.text(`Extra Payment: ${formatCurrency(parseFloat(extraPayment))}`, 20, yPos);
+    }
+
+    // Payment Breakdown Section
+    yPos += 15;
+    doc.setFontSize(16);
+    doc.setTextColor(0, 0, 0);
+    doc.text('PAYMENT BREAKDOWN', 20, yPos);
+
+    yPos += 10;
+    doc.setFontSize(18);
+    doc.setTextColor(59, 130, 246);
+    doc.text(`Monthly Payment: ${formatCurrency(result.monthlyPayment)}`, 20, yPos);
+
+    // Calculate actual per-period payment
+    yPos += 12;
+    doc.setFontSize(12);
+    doc.setTextColor(0, 0, 0);
+    const paymentsPerYear = paymentFrequency === 'weekly' ? 52 :
+                           paymentFrequency === 'biweekly' ? 26 : 12;
+    const actualPeriodicPayment = result.monthlyPayment * (12 / paymentsPerYear);
+    
+    if (paymentFrequency !== 'monthly') {
+      doc.text(`${freqDisplay} Payment: ${formatCurrency(actualPeriodicPayment)}`, 20, yPos);
+      yPos += 8;
+    }
+
+    // Total Costs Section
+    yPos += 10;
+    doc.setFontSize(16);
+    doc.setTextColor(0, 0, 0);
+    doc.text('TOTAL COSTS', 20, yPos);
+
+    yPos += 10;
+    doc.setFontSize(12);
+    doc.text(`Total Amount Paid: ${formatCurrency(result.totalAmount)}`, 20, yPos);
+    yPos += 8;
+    doc.text(`Total Interest Paid: ${formatCurrency(result.totalInterest)}`, 20, yPos);
+    yPos += 8;
+    doc.text(`Principal Amount: ${formatCurrency(parseFloat(loanAmount))}`, 20, yPos);
+
+    // Extra Payment Savings Section
+    if (result.extraPaymentSavings) {
+      yPos += 15;
+      doc.setFontSize(16);
+      doc.setTextColor(34, 197, 94);
+      doc.text('EXTRA PAYMENT SAVINGS', 20, yPos);
+
+      yPos += 10;
+      doc.setFontSize(12);
+      doc.setTextColor(0, 0, 0);
+      doc.text(`Interest Saved: ${formatCurrency(result.extraPaymentSavings.interestSaved)}`, 20, yPos);
+      
+      yPos += 8;
+      const totalYearsSaved = result.extraPaymentSavings.timeSaved / paymentsPerYear;
+      let yearsSaved = Math.floor(totalYearsSaved);
+      let monthsSaved = Math.round((totalYearsSaved - yearsSaved) * 12);
+      
+      // Handle carry-over when rounded months equals 12
+      if (monthsSaved === 12) {
+        yearsSaved += 1;
+        monthsSaved = 0;
+      }
+      
+      let timeSavedText = 'Time Saved: ';
+      if (yearsSaved > 0 && monthsSaved > 0) {
+        timeSavedText += `${yearsSaved} years ${monthsSaved} months`;
+      } else if (yearsSaved > 0) {
+        timeSavedText += `${yearsSaved} years`;
+      } else if (monthsSaved > 0) {
+        timeSavedText += `${monthsSaved} months`;
+      }
+      doc.text(timeSavedText, 20, yPos);
+    }
+
+    // Footer
+    yPos += 20;
+    doc.setFontSize(8);
+    doc.setTextColor(150, 150, 150);
+    doc.text('This calculation is for informational purposes only.', pageWidth / 2, yPos, { align: 'center' });
+    yPos += 5;
+    doc.text('Consult with a financial advisor for personalized advice.', pageWidth / 2, yPos, { align: 'center' });
+
+    doc.save(`loan-calculation-${new Date().getTime()}.pdf`);
+    toast({ 
+      title: "PDF Downloaded!", 
+      description: "Your loan calculation has been exported to PDF." 
+    });
+  };
 
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -364,16 +493,6 @@ export default function LoanCalculator() {
     ]
   };
 
-  // Dummy function for PDF generation - needs actual implementation
-  const generatePDFReport = () => {
-    toast({
-      title: "PDF Report Generation",
-      description: "PDF report generation feature is not yet implemented.",
-      variant: "warning"
-    });
-    // Actual PDF generation logic would go here
-    // e.g., using jsPDF or similar libraries
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
@@ -778,6 +897,16 @@ export default function LoanCalculator() {
                         >
                           <Share2 className="w-4 h-4 mr-1" />
                           Share
+                        </Button>
+                        <Button
+                          onClick={handleDownloadPDF}
+                          variant="outline"
+                          size="sm"
+                          className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                          data-testid="button-export-pdf"
+                        >
+                          <Download className="w-4 h-4 mr-1" />
+                          Export PDF
                         </Button>
                       </div>
 
