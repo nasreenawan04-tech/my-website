@@ -585,9 +585,9 @@ Total Interest: ${formatCurrency(result.totalInterest)}
             </CardContent>
           </Card>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 gap-6">
             {/* Main Calculator */}
-            <div className="lg:col-span-2">
+            <div>
               <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
                 <CardContent className="p-0">
                   <div className="flex flex-col">
@@ -914,19 +914,7 @@ Total Interest: ${formatCurrency(result.totalInterest)}
               </Card>
             </div>
 
-            {/* Sidebar - AdSense Placeholder */}
-            <div className="lg:col-span-1">
-              <div className="sticky top-6 space-y-6">
-                <div className="bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
-                  <p className="text-sm text-gray-500">Advertisement</p>
-                  <p className="text-xs text-gray-400 mt-2">AdSense Slot - Sidebar</p>
-                  <p className="text-xs text-gray-400">(300x600 or Responsive)</p>
-                  <div className="h-[400px] flex items-center justify-center">
-                    <p className="text-gray-300">Ad Space</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            
           </div>
 
           {/* Tips Section */}
