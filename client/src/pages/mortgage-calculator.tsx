@@ -286,23 +286,23 @@ const MortgageCalculator = () => {
 
     doc.setFillColor(59, 130, 246);
     doc.rect(0, 0, pageWidth, 38, 'F');
-
+    
     doc.setFontSize(26);
     doc.setTextColor(255, 255, 255);
     doc.setFont('helvetica', 'bold');
     doc.text('DapsiWow', pageWidth / 2, yPos + 5, { align: 'center' });
-
+    
     yPos += 14;
     doc.setFontSize(11);
     doc.setFont('helvetica', 'normal');
     doc.text('Mortgage Calculation Report', pageWidth / 2, yPos, { align: 'center' });
-
+    
     yPos += 6;
     doc.setFontSize(8);
     doc.setTextColor(230, 240, 255);
-    const currentDate = new Date().toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
+    const currentDate = new Date().toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
       day: 'numeric'
     });
     doc.text(`Report Date: ${currentDate}`, pageWidth / 2, yPos, { align: 'center' });
@@ -312,23 +312,23 @@ const MortgageCalculator = () => {
     doc.setDrawColor(59, 130, 246);
     doc.setLineWidth(1);
     doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 42, 3, 3, 'FD');
-
+    
     yPos += 6;
     doc.setFontSize(9);
     doc.setTextColor(100, 100, 100);
     doc.setFont('helvetica', 'normal');
     doc.text('EXECUTIVE SUMMARY', pageWidth / 2, yPos, { align: 'center' });
-
+    
     yPos += 8;
     doc.setFontSize(20);
     doc.setTextColor(59, 130, 246);
     doc.setFont('helvetica', 'bold');
     doc.text('Monthly Payment', pageWidth / 2, yPos, { align: 'center' });
-
+    
     yPos += 10;
     doc.setFontSize(24);
     doc.text(formatCurrency(result.monthlyPayment), pageWidth / 2, yPos, { align: 'center' });
-
+    
     yPos += 8;
     doc.setFontSize(8);
     doc.setTextColor(80, 80, 80);
@@ -347,13 +347,13 @@ const MortgageCalculator = () => {
     doc.setDrawColor(230, 230, 230);
     doc.setLineWidth(0.5);
     doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 56, 3, 3, 'FD');
-
+    
     yPos += 5;
     doc.setFontSize(10);
     doc.setTextColor(59, 130, 246);
     doc.setFont('helvetica', 'bold');
     doc.text('LOAN DETAILS', margin + 4, yPos);
-
+    
     yPos += 2;
     doc.setDrawColor(59, 130, 246);
     doc.setLineWidth(0.3);
@@ -363,12 +363,12 @@ const MortgageCalculator = () => {
     doc.setFontSize(9);
     doc.setTextColor(50, 50, 50);
     doc.setFont('helvetica', 'normal');
-
+    
     const col1X = margin + 8;
     const col2X = margin + 60;
     const col3X = pageWidth / 2 + 8;
     const col4X = pageWidth / 2 + 60;
-
+    
     doc.setTextColor(100, 100, 100);
     doc.setFontSize(8);
     doc.text('Home Price', col1X, yPos);
@@ -376,7 +376,7 @@ const MortgageCalculator = () => {
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
     doc.text(formatCurrency(parseFloat(homePrice)), col2X, yPos);
-
+    
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(100, 100, 100);
     doc.setFontSize(8);
@@ -385,7 +385,7 @@ const MortgageCalculator = () => {
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
     doc.text(`${formatCurrency(downPaymentAmount)} (${actualDownPaymentPercent}%)`, col4X, yPos);
-
+    
     yPos += 8;
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(100, 100, 100);
@@ -395,7 +395,7 @@ const MortgageCalculator = () => {
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
     doc.text(formatCurrency(loanAmount), col2X, yPos);
-
+    
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(100, 100, 100);
     doc.setFontSize(8);
@@ -404,7 +404,7 @@ const MortgageCalculator = () => {
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
     doc.text(`${interestRate}%`, col4X, yPos);
-
+    
     yPos += 8;
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(100, 100, 100);
@@ -414,7 +414,7 @@ const MortgageCalculator = () => {
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
     doc.text(`${loanTerm} years`, col2X, yPos);
-
+    
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(100, 100, 100);
     doc.setFontSize(8);
@@ -424,7 +424,7 @@ const MortgageCalculator = () => {
     doc.setFont('helvetica', 'bold');
     const loanTypeDisplay = loanType === 'conventional' ? 'Conventional' : loanType === 'fha' ? 'FHA' : 'VA';
     doc.text(loanTypeDisplay, col4X, yPos);
-
+    
     yPos += 8;
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(100, 100, 100);
@@ -434,7 +434,7 @@ const MortgageCalculator = () => {
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
     doc.text(`${result.loanToValue.toFixed(1)}%`, col2X, yPos);
-
+    
     if (parseFloat(extraPayment) > 0) {
       doc.setFont('helvetica', 'normal');
       doc.setTextColor(100, 100, 100);
@@ -452,13 +452,13 @@ const MortgageCalculator = () => {
     doc.setLineWidth(0.5);
     const paymentBoxHeight = result.monthlyPMI > 0 || result.monthlyHOA > 0 ? 54 : 46;
     doc.roundedRect(margin, yPos, pageWidth - (2 * margin), paymentBoxHeight, 3, 3, 'FD');
-
+    
     yPos += 5;
     doc.setFontSize(10);
     doc.setTextColor(59, 130, 246);
     doc.setFont('helvetica', 'bold');
     doc.text('PAYMENT BREAKDOWN', margin + 4, yPos);
-
+    
     yPos += 2;
     doc.setDrawColor(59, 130, 246);
     doc.setLineWidth(0.3);
@@ -469,62 +469,62 @@ const MortgageCalculator = () => {
     doc.setDrawColor(220, 220, 220);
     doc.setLineWidth(0.2);
     doc.rect(margin + 4, yPos - 5, pageWidth - (2 * margin) - 8, 8, 'FD');
-
+    
     doc.setFontSize(8);
     doc.setTextColor(100, 100, 100);
     doc.setFont('helvetica', 'normal');
     doc.text('Total Monthly Payment', margin + 8, yPos);
-
+    
     doc.setFontSize(10);
     doc.setTextColor(59, 130, 246);
     doc.setFont('helvetica', 'bold');
     doc.text(formatCurrency(result.monthlyPayment), pageWidth - margin - 8, yPos, { align: 'right' });
-
+    
     yPos += 9;
     doc.setFontSize(8);
     doc.setTextColor(100, 100, 100);
     doc.setFont('helvetica', 'normal');
     doc.text('Principal & Interest', margin + 12, yPos);
-
+    
     doc.setFontSize(9);
     doc.setTextColor(0, 0, 0);
     doc.text(formatCurrency(result.monthlyPrincipalAndInterest), pageWidth - margin - 12, yPos, { align: 'right' });
-
+    
     yPos += 6;
     doc.setFontSize(8);
     doc.setTextColor(100, 100, 100);
     doc.text('Property Taxes', margin + 12, yPos);
-
+    
     doc.setFontSize(9);
     doc.setTextColor(0, 0, 0);
     doc.text(formatCurrency(result.monthlyTaxes), pageWidth - margin - 12, yPos, { align: 'right' });
-
+    
     yPos += 6;
     doc.setFontSize(8);
     doc.setTextColor(100, 100, 100);
     doc.text('Home Insurance', margin + 12, yPos);
-
+    
     doc.setFontSize(9);
     doc.setTextColor(0, 0, 0);
     doc.text(formatCurrency(result.monthlyInsurance), pageWidth - margin - 12, yPos, { align: 'right' });
-
+    
     if (result.monthlyPMI > 0) {
       yPos += 6;
       doc.setFontSize(8);
       doc.setTextColor(100, 100, 100);
       doc.text('PMI', margin + 12, yPos);
-
+      
       doc.setFontSize(9);
       doc.setTextColor(0, 0, 0);
       doc.text(formatCurrency(result.monthlyPMI), pageWidth - margin - 12, yPos, { align: 'right' });
     }
-
+    
     if (result.monthlyHOA > 0) {
       yPos += 6;
       doc.setFontSize(8);
       doc.setTextColor(100, 100, 100);
       doc.text('HOA Fees', margin + 12, yPos);
-
+      
       doc.setFontSize(9);
       doc.setTextColor(0, 0, 0);
       doc.text(formatCurrency(result.monthlyHOA), pageWidth - margin - 12, yPos, { align: 'right' });
@@ -535,13 +535,13 @@ const MortgageCalculator = () => {
     doc.setDrawColor(230, 230, 230);
     doc.setLineWidth(0.5);
     doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 36, 3, 3, 'FD');
-
+    
     yPos += 5;
     doc.setFontSize(10);
     doc.setTextColor(59, 130, 246);
     doc.setFont('helvetica', 'bold');
     doc.text('TOTAL COSTS', margin + 4, yPos);
-
+    
     yPos += 2;
     doc.setDrawColor(59, 130, 246);
     doc.setLineWidth(0.3);
@@ -552,32 +552,32 @@ const MortgageCalculator = () => {
     doc.setDrawColor(220, 220, 220);
     doc.setLineWidth(0.2);
     doc.rect(margin + 4, yPos - 5, pageWidth - (2 * margin) - 8, 8, 'FD');
-
+    
     doc.setFontSize(8);
     doc.setTextColor(100, 100, 100);
     doc.setFont('helvetica', 'normal');
     doc.text('Total Amount Paid', margin + 8, yPos);
-
+    
     doc.setFontSize(10);
     doc.setTextColor(0, 0, 0);
     doc.setFont('helvetica', 'bold');
     doc.text(formatCurrency(result.totalAmount), pageWidth - margin - 8, yPos, { align: 'right' });
-
+    
     yPos += 9;
     doc.setFontSize(8);
     doc.setTextColor(100, 100, 100);
     doc.setFont('helvetica', 'normal');
     doc.text('Total Interest', margin + 12, yPos);
-
+    
     doc.setFontSize(9);
     doc.setTextColor(220, 38, 38);
     doc.text(formatCurrency(result.totalInterest), pageWidth - margin - 12, yPos, { align: 'right' });
-
+    
     yPos += 6;
     doc.setFontSize(8);
     doc.setTextColor(100, 100, 100);
     doc.text('Closing Costs', margin + 12, yPos);
-
+    
     doc.setFontSize(9);
     doc.setTextColor(0, 0, 0);
     doc.text(formatCurrency(result.closingCosts), pageWidth - margin - 12, yPos, { align: 'right' });
@@ -588,13 +588,13 @@ const MortgageCalculator = () => {
       doc.setDrawColor(34, 197, 94);
       doc.setLineWidth(0.5);
       doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 28, 3, 3, 'FD');
-
+      
       yPos += 5;
       doc.setFontSize(10);
       doc.setTextColor(34, 197, 94);
       doc.setFont('helvetica', 'bold');
       doc.text('SAVINGS WITH EXTRA PAYMENTS', margin + 4, yPos);
-
+      
       yPos += 2;
       doc.setDrawColor(34, 197, 94);
       doc.setLineWidth(0.3);
@@ -606,12 +606,12 @@ const MortgageCalculator = () => {
       const totalYearsSaved = result.extraPaymentSavings.timeSaved / paymentsPerYear;
       let yearsSaved = Math.floor(totalYearsSaved);
       let monthsSaved = Math.round((totalYearsSaved - yearsSaved) * 12);
-
+      
       if (monthsSaved === 12) {
         yearsSaved += 1;
         monthsSaved = 0;
       }
-
+      
       let timeSavedText = '';
       if (yearsSaved > 0 && monthsSaved > 0) {
         timeSavedText = `${yearsSaved} years ${monthsSaved} months`;
@@ -620,13 +620,13 @@ const MortgageCalculator = () => {
       } else if (monthsSaved > 0) {
         timeSavedText = `${monthsSaved} months`;
       }
-
+      
       doc.setFontSize(8);
       doc.setTextColor(50, 50, 50);
       doc.setFont('helvetica', 'normal');
       doc.text('Interest Saved', margin + 8, yPos);
       doc.text('Time Saved', pageWidth / 2 + 8, yPos);
-
+      
       yPos += 5;
       doc.setFontSize(11);
       doc.setTextColor(34, 197, 94);
@@ -639,19 +639,19 @@ const MortgageCalculator = () => {
     doc.setDrawColor(220, 220, 220);
     doc.setLineWidth(0.2);
     doc.line(margin, yPos, pageWidth - margin, yPos);
-
+    
     yPos += 4;
     doc.setFontSize(7);
     doc.setTextColor(120, 120, 120);
     doc.setFont('helvetica', 'italic');
     doc.text('This calculation is for informational purposes only. Please consult with a qualified financial advisor for personalized advice.', pageWidth / 2, yPos, { align: 'center' });
-
+    
     yPos += 6;
     doc.setFontSize(8);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(59, 130, 246);
     doc.text('DapsiWow.com', pageWidth / 2, yPos, { align: 'center' });
-
+    
     yPos += 3;
     doc.setFontSize(7);
     doc.setFont('helvetica', 'normal');
@@ -659,9 +659,9 @@ const MortgageCalculator = () => {
     doc.text('Free Online Financial Calculators & Tools', pageWidth / 2, yPos, { align: 'center' });
 
     doc.save(`DapsiWow-Mortgage-Calculation-${new Date().getTime()}.pdf`);
-    toast({
-      title: "PDF Downloaded!",
-      description: "Your professional mortgage calculation report has been saved."
+    toast({ 
+      title: "PDF Downloaded!", 
+      description: "Your professional mortgage calculation report has been saved." 
     });
   };
 
@@ -677,96 +677,96 @@ const MortgageCalculator = () => {
     // Header
     doc.setFillColor(59, 130, 246);
     doc.rect(0, 0, pageWidth, 38, 'F');
-
+    
     doc.setFontSize(26);
     doc.setTextColor(255, 255, 255);
     doc.setFont('helvetica', 'bold');
     doc.text('DapsiWow', pageWidth / 2, yPos + 5, { align: 'center' });
-
+    
     yPos += 14;
     doc.setFontSize(11);
     doc.setFont('helvetica', 'normal');
     doc.text('Amortization Schedule Report', pageWidth / 2, yPos, { align: 'center' });
-
+    
     yPos += 6;
     doc.setFontSize(8);
     doc.setTextColor(230, 240, 255);
-    const currentDate = new Date().toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
+    const currentDate = new Date().toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
       day: 'numeric'
     });
     doc.text(`Report Date: ${currentDate}`, pageWidth / 2, yPos, { align: 'center' });
 
     yPos = 48;
-
+    
     // Table header
     doc.setFillColor(59, 130, 246);
     doc.rect(margin, yPos, pageWidth - (2 * margin), 8, 'F');
-
+    
     doc.setFontSize(8);
     doc.setTextColor(255, 255, 255);
     doc.setFont('helvetica', 'bold');
-
+    
     const colWidths = [20, 35, 35, 35, 35];
     const colX = [margin + 2, margin + 22, margin + 57, margin + 92, margin + 127];
-
+    
     doc.text('#', colX[0], yPos + 5);
     doc.text('Payment', colX[1], yPos + 5);
     doc.text('Principal', colX[2], yPos + 5);
     doc.text('Interest', colX[3], yPos + 5);
     doc.text('Balance', colX[4], yPos + 5);
-
+    
     yPos += 8;
-
+    
     // Table rows
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(7);
-
+    
     result.amortizationSchedule.forEach((payment, index) => {
       // Check if we need a new page
       if (yPos > pageHeight - 30) {
         doc.addPage();
         yPos = 20;
-
+        
         // Repeat header on new page
         doc.setFillColor(59, 130, 246);
         doc.rect(margin, yPos, pageWidth - (2 * margin), 8, 'F');
-
+        
         doc.setFontSize(8);
         doc.setTextColor(255, 255, 255);
         doc.setFont('helvetica', 'bold');
-
+        
         doc.text('#', colX[0], yPos + 5);
         doc.text('Payment', colX[1], yPos + 5);
         doc.text('Principal', colX[2], yPos + 5);
         doc.text('Interest', colX[3], yPos + 5);
         doc.text('Balance', colX[4], yPos + 5);
-
+        
         yPos += 8;
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(7);
       }
-
+      
       // Alternate row colors
       if (index % 2 === 0) {
         doc.setFillColor(248, 250, 252);
         doc.rect(margin, yPos, pageWidth - (2 * margin), 6, 'F');
       }
-
+      
       doc.setTextColor(0, 0, 0);
       doc.text(payment.month.toString(), colX[0], yPos + 4);
       doc.text(formatCurrency(payment.payment), colX[1], yPos + 4);
-
+      
       doc.setTextColor(34, 197, 94);
       doc.text(formatCurrency(payment.principal), colX[2], yPos + 4);
-
+      
       doc.setTextColor(249, 115, 22);
       doc.text(formatCurrency(payment.interest), colX[3], yPos + 4);
-
+      
       doc.setTextColor(0, 0, 0);
       doc.text(formatCurrency(payment.balance), colX[4], yPos + 4);
-
+      
       yPos += 6;
     });
 
@@ -775,19 +775,19 @@ const MortgageCalculator = () => {
     doc.setDrawColor(220, 220, 220);
     doc.setLineWidth(0.2);
     doc.line(margin, yPos, pageWidth - margin, yPos);
-
+    
     yPos += 4;
     doc.setFontSize(7);
     doc.setTextColor(120, 120, 120);
     doc.setFont('helvetica', 'italic');
     doc.text('This schedule shows how your payments are split between principal and interest over the first 5 years.', pageWidth / 2, yPos, { align: 'center' });
-
+    
     yPos += 6;
     doc.setFontSize(8);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(59, 130, 246);
     doc.text('DapsiWow.com', pageWidth / 2, yPos, { align: 'center' });
-
+    
     yPos += 3;
     doc.setFontSize(7);
     doc.setFont('helvetica', 'normal');
@@ -795,9 +795,9 @@ const MortgageCalculator = () => {
     doc.text('Free Online Financial Calculators & Tools', pageWidth / 2, yPos, { align: 'center' });
 
     doc.save(`DapsiWow-Amortization-Schedule-${new Date().getTime()}.pdf`);
-    toast({
-      title: "PDF Downloaded!",
-      description: "Your amortization schedule has been saved."
+    toast({ 
+      title: "PDF Downloaded!", 
+      description: "Your amortization schedule has been saved." 
     });
   };
 
@@ -873,13 +873,13 @@ const MortgageCalculator = () => {
       const totalYearsSaved = result.extraPaymentSavings.timeSaved / paymentsPerYear;
       let yearsSaved = Math.floor(totalYearsSaved);
       let monthsSaved = Math.round((totalYearsSaved - yearsSaved) * 12);
-
+      
       // Handle carry-over when rounded months equals 12
       if (monthsSaved === 12) {
         yearsSaved += 1;
         monthsSaved = 0;
       }
-
+      
       shareText += `\n✨ Extra Payment Savings:\n`;
       shareText += `• Interest Saved: ${formatCurrency(result.extraPaymentSavings.interestSaved)}\n`;
       if (yearsSaved > 0 && monthsSaved > 0) {
@@ -1594,8 +1594,8 @@ const MortgageCalculator = () => {
                                       }}
                                       wrapperStyle={{ fontSize: '14px' }}
                                     />
-                                    <Legend
-                                      verticalAlign="bottom"
+                                    <Legend 
+                                      verticalAlign="bottom" 
                                       height={36}
                                       iconType="circle"
                                       formatter={(value, entry: any) => (
@@ -1659,7 +1659,7 @@ const MortgageCalculator = () => {
                               <div className="w-full">
                                 <div className="w-full h-[280px] sm:h-[320px] md:h-[360px] lg:h-[400px]">
                                   <ResponsiveContainer width="100%" height="100%">
-                                    <AreaChart
+                                    <AreaChart 
                                       data={result.amortizationSchedule.map(item => ({
                                         month: `Month ${item.month}`,
                                         Principal: item.principal,
@@ -1679,8 +1679,8 @@ const MortgageCalculator = () => {
                                         </linearGradient>
                                       </defs>
                                       <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" opacity={0.5} />
-                                      <XAxis
-                                        dataKey="month"
+                                      <XAxis 
+                                        dataKey="month" 
                                         tick={{ fontSize: 10, fill: '#6b7280' }}
                                         className="text-[10px] sm:text-xs"
                                         interval="preserveStartEnd"
@@ -1688,13 +1688,13 @@ const MortgageCalculator = () => {
                                         textAnchor="end"
                                         height={60}
                                       />
-                                      <YAxis
+                                      <YAxis 
                                         tick={{ fontSize: 10, fill: '#6b7280' }}
                                         className="text-[10px] sm:text-xs"
                                         tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
                                         width={50}
                                       />
-                                      <RechartsTooltip
+                                      <RechartsTooltip 
                                         formatter={(value: number) => formatCurrency(value)}
                                         contentStyle={{
                                           backgroundColor: 'rgba(255, 255, 255, 0.98)',
@@ -1706,24 +1706,24 @@ const MortgageCalculator = () => {
                                         }}
                                         labelStyle={{ color: '#1f2937', fontWeight: 600, fontSize: '13px' }}
                                       />
-                                      <Area
-                                        type="monotone"
-                                        dataKey="Principal"
-                                        stackId="1"
-                                        stroke="#10b981"
+                                      <Area 
+                                        type="monotone" 
+                                        dataKey="Principal" 
+                                        stackId="1" 
+                                        stroke="#10b981" 
                                         strokeWidth={2}
-                                        fill="url(#principalAreaGradient)"
+                                        fill="url(#principalAreaGradient)" 
                                       />
-                                      <Area
-                                        type="monotone"
-                                        dataKey="Interest"
-                                        stackId="1"
-                                        stroke="#f59e0b"
+                                      <Area 
+                                        type="monotone" 
+                                        dataKey="Interest" 
+                                        stackId="1" 
+                                        stroke="#f59e0b" 
                                         strokeWidth={2}
-                                        fill="url(#interestAreaGradient)"
+                                        fill="url(#interestAreaGradient)" 
                                       />
-                                      <Legend
-                                        verticalAlign="top"
+                                      <Legend 
+                                        verticalAlign="top" 
                                         height={36}
                                         iconType="line"
                                         formatter={(value) => (
@@ -1745,14 +1745,14 @@ const MortgageCalculator = () => {
                                 <div className="bg-white rounded-lg p-3 border border-gray-200 text-center">
                                   <p className="text-xs text-gray-500 mb-1">Last Payment</p>
                                   <p className="text-sm font-bold text-gray-900 break-words">
-                                    {result.amortizationSchedule[result.amortizationSchedule.length - 1] &&
+                                    {result.amortizationSchedule[result.amortizationSchedule.length - 1] && 
                                       formatCurrency(result.amortizationSchedule[result.amortizationSchedule.length - 1].principal)} Principal
                                   </p>
                                 </div>
                                 <div className="bg-white rounded-lg p-3 border border-gray-200 text-center">
                                   <p className="text-xs text-gray-500 mb-1">Remaining Balance</p>
                                   <p className="text-sm font-bold text-gray-900 break-words">
-                                    {result.amortizationSchedule[result.amortizationSchedule.length - 1] &&
+                                    {result.amortizationSchedule[result.amortizationSchedule.length - 1] && 
                                       formatCurrency(result.amortizationSchedule[result.amortizationSchedule.length - 1].balance)}
                                   </p>
                                 </div>
@@ -1821,6 +1821,66 @@ const MortgageCalculator = () => {
               </div>
             </CardContent>
           </Card>
+
+          {result && showAmortization && (
+            <Card className="mt-6 sm:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 lg:p-8">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900">Amortization Schedule (First 5 Years)</h3>
+                  <Button
+                    onClick={handleDownloadAmortizationPDF}
+                    variant="outline"
+                    size="sm"
+                    className="flex items-center gap-2 w-full sm:w-auto justify-center"
+                    data-testid="button-export-amortization-pdf"
+                  >
+                    <Download className="w-4 h-4" />
+                    Export PDF
+                  </Button>
+                </div>
+                <p className="text-sm text-gray-600 mb-4">See how your payments are split between principal and interest over time.</p>
+                <div 
+                  ref={tableScrollRef}
+                  className={`overflow-x-auto -mx-4 sm:mx-0 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+                  onMouseDown={handleMouseDown}
+                  onMouseLeave={handleMouseLeave}
+                  onMouseUp={handleMouseUp}
+                  onMouseMove={handleMouseMove}
+                >
+                  <table className="w-full min-w-[600px] select-none">
+                    <thead>
+                      <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-gray-900 text-xs sm:text-sm rounded-l-lg">Payment #</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Payment</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Principal</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Interest</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm rounded-r-lg">Balance</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-100">
+                      {result.amortizationSchedule.map((payment, index) => (
+                        <tr key={index} className="hover:bg-blue-50 transition-colors">
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 font-medium text-gray-900 text-xs sm:text-sm">{payment.month}</td>
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
+                            {formatCurrency(payment.payment)}
+                          </td>
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-green-600 font-bold text-xs sm:text-sm">
+                            {formatCurrency(payment.principal)}
+                          </td>
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-orange-600 font-medium text-xs sm:text-sm">
+                            {formatCurrency(payment.interest)}
+                          </td>
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-bold text-xs sm:text-sm">
+                            {formatCurrency(payment.balance)}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </CardContent>
+            </Card>
+          )}
 
           {/* Trust Signals */}
           <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-4 sm:p-6 mb-8 mt-8 border border-green-200">
@@ -2068,7 +2128,7 @@ const MortgageCalculator = () => {
                 <div className="border-l-4 border-blue-500 pl-6">
                   <h3 className="text-lg font-bold text-gray-900 mb-3">How accurate is this mortgage calculator?</h3>
                   <p className="text-gray-600 leading-relaxed">
-                    Our mortgage calculator provides highly accurate estimates using the standard amortization formula that banks and lenders use: M = P[r(1+r)^n]/[(1+r)^n-1]. It accounts for principal, interest, property taxes, insurance, PMI, and HOA fees. However, actual payments may vary slightly based on your lender's specific terms, closing date. Always verify final numbers with your mortgage lender before making commitments.
+                    Our mortgage calculator provides highly accurate estimates using the standard amortization formula that banks and lenders use: M = P[r(1+r)^n]/[(1+r)^n-1]. It accounts for principal, interest, property taxes, insurance, PMI, and HOA fees. However, actual payments may vary slightly based on your lender's specific terms, discount points, and exact closing date. Always verify final numbers with your mortgage lender before making commitments.
                   </p>
                 </div>
 
