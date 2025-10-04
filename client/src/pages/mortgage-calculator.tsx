@@ -9,7 +9,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { Mail, Download, Share2, Info, PieChart, Calculator, Home, DollarSign, Shield, TrendingUp } from 'lucide-react';
+import { Mail, Share2, Info, PieChart, Calculator, Home, DollarSign, Shield, TrendingUp } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 interface MortgageResult {
@@ -218,10 +218,6 @@ ${result.monthlyPMI > 0 ? `PMI: ${formatCurrency(result.monthlyPMI)}\n` : ''}
 Total Interest: ${formatCurrency(result.totalInterest)}
     `);
     window.location.href = `mailto:?subject=${subject}&body=${body}`;
-  };
-
-  const handlePrint = () => {
-    window.print();
   };
 
   const handleShare = async () => {
@@ -654,17 +650,7 @@ Total Interest: ${formatCurrency(result.totalInterest)}
                           <Mail className="w-4 h-4 mr-1" />
                           <span className="hidden sm:inline">Email</span>
                         </Button>
-                        <Button
-                          onClick={handlePrint}
-                          variant="outline"
-                          size="sm"
-                          className="h-8 sm:h-9"
-                          data-testid="button-print"
-                        >
-                          <Download className="w-4 h-4 mr-1" />
-                          <span className="hidden sm:inline">Print</span>
-                        </Button>
-                        {typeof navigator !== 'undefined' && navigator.share && (
+                        {'share' in navigator && (
                           <Button
                             onClick={handleShare}
                             variant="outline"
@@ -803,7 +789,7 @@ Total Interest: ${formatCurrency(result.totalInterest)}
                         )}
                       </div>
 
-                      {result.debtToIncomeRatio && result.debtToIncomeRatio > 0 && (
+                      {result.debtToIncomeRatio !== undefined && result.debtToIncomeRatio > 0 && (
                         <div className={`rounded-lg sm:rounded-xl p-4 sm:p-6 border ${
                           result.affordabilityAnalysis.isAffordable 
                             ? 'bg-gradient-to-r from-green-50 to-emerald-50 border-green-200' 
@@ -824,7 +810,7 @@ Total Interest: ${formatCurrency(result.totalInterest)}
                               <span className={`font-bold text-sm sm:text-base ${
                                 result.affordabilityAnalysis.isAffordable ? 'text-green-800' : 'text-red-800'
                               }`}>
-                                {result.debtToIncomeRatio.toFixed(1)}%
+                                {result.debtToIncomeRatio?.toFixed(1)}%
                               </span>
                             </div>
                             <p className={`text-xs sm:text-sm ${
