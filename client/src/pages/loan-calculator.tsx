@@ -1709,7 +1709,7 @@ export default function LoanCalculator() {
                 </div>
                 <p className="text-sm text-gray-600 mb-4">See how your payments are split between principal and interest over time.</p>
                 <div className="overflow-x-auto -mx-4 sm:mx-0">
-                  <table className="w-full min-w-[600px]" data-testid="amortization-table">
+                  <table className="w-full min-w-[600px] select-none" data-testid="amortization-table">
                     <thead>
                       <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
                         <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-gray-900 text-xs sm:text-sm rounded-l-lg">Payment #</th>
