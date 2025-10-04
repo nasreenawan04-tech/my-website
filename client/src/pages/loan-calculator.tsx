@@ -1712,7 +1712,7 @@ export default function LoanCalculator() {
                 <p className="text-sm text-gray-600 mb-4">See how your payments are split between principal and interest over time.</p>
                 
                 {/* Responsive Table View */}
-                <div className="overflow-x-auto -mx-4 sm:mx-0">
+                <div className="overflow-x-auto -mx-4 sm:mx-0 scrollbar-hide">
                   <table className="w-full min-w-[600px] select-none" data-testid="amortization-table">
                     <thead>
                       <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
