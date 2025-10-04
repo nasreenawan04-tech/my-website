@@ -555,6 +555,142 @@ export default function LoanCalculator() {
     });
   };
 
+  const handleDownloadAmortizationPDF = () => {
+    if (!result || !result.amortizationSchedule) return;
+
+    const doc = new jsPDF();
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 15;
+    let yPos = 12;
+
+    // Header
+    doc.setFillColor(59, 130, 246);
+    doc.rect(0, 0, pageWidth, 38, 'F');
+    
+    doc.setFontSize(26);
+    doc.setTextColor(255, 255, 255);
+    doc.setFont('helvetica', 'bold');
+    doc.text('DapsiWow', pageWidth / 2, yPos + 5, { align: 'center' });
+    
+    yPos += 14;
+    doc.setFontSize(11);
+    doc.setFont('helvetica', 'normal');
+    doc.text('Amortization Schedule Report', pageWidth / 2, yPos, { align: 'center' });
+    
+    yPos += 6;
+    doc.setFontSize(8);
+    doc.setTextColor(230, 240, 255);
+    const currentDate = new Date().toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric'
+    });
+    doc.text(`Report Date: ${currentDate}`, pageWidth / 2, yPos, { align: 'center' });
+
+    yPos = 48;
+    
+    // Table header
+    doc.setFillColor(59, 130, 246);
+    doc.rect(margin, yPos, pageWidth - (2 * margin), 8, 'F');
+    
+    doc.setFontSize(8);
+    doc.setTextColor(255, 255, 255);
+    doc.setFont('helvetica', 'bold');
+    
+    const colWidths = [20, 35, 35, 35, 35];
+    const colX = [margin + 2, margin + 22, margin + 57, margin + 92, margin + 127];
+    
+    doc.text('#', colX[0], yPos + 5);
+    doc.text('Payment', colX[1], yPos + 5);
+    doc.text('Principal', colX[2], yPos + 5);
+    doc.text('Interest', colX[3], yPos + 5);
+    doc.text('Balance', colX[4], yPos + 5);
+    
+    yPos += 8;
+    
+    // Table rows
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7);
+    
+    result.amortizationSchedule.forEach((payment, index) => {
+      // Check if we need a new page
+      if (yPos > pageHeight - 30) {
+        doc.addPage();
+        yPos = 20;
+        
+        // Repeat header on new page
+        doc.setFillColor(59, 130, 246);
+        doc.rect(margin, yPos, pageWidth - (2 * margin), 8, 'F');
+        
+        doc.setFontSize(8);
+        doc.setTextColor(255, 255, 255);
+        doc.setFont('helvetica', 'bold');
+        
+        doc.text('#', colX[0], yPos + 5);
+        doc.text('Payment', colX[1], yPos + 5);
+        doc.text('Principal', colX[2], yPos + 5);
+        doc.text('Interest', colX[3], yPos + 5);
+        doc.text('Balance', colX[4], yPos + 5);
+        
+        yPos += 8;
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(7);
+      }
+      
+      // Alternate row colors
+      if (index % 2 === 0) {
+        doc.setFillColor(248, 250, 252);
+        doc.rect(margin, yPos, pageWidth - (2 * margin), 6, 'F');
+      }
+      
+      doc.setTextColor(0, 0, 0);
+      doc.text(payment.month.toString(), colX[0], yPos + 4);
+      doc.text(formatCurrency(payment.payment), colX[1], yPos + 4);
+      
+      doc.setTextColor(34, 197, 94);
+      doc.text(formatCurrency(payment.principal), colX[2], yPos + 4);
+      
+      doc.setTextColor(249, 115, 22);
+      doc.text(formatCurrency(payment.interest), colX[3], yPos + 4);
+      
+      doc.setTextColor(0, 0, 0);
+      doc.text(formatCurrency(payment.balance), colX[4], yPos + 4);
+      
+      yPos += 6;
+    });
+
+    // Footer
+    yPos = pageHeight - 22;
+    doc.setDrawColor(220, 220, 220);
+    doc.setLineWidth(0.2);
+    doc.line(margin, yPos, pageWidth - margin, yPos);
+    
+    yPos += 4;
+    doc.setFontSize(7);
+    doc.setTextColor(120, 120, 120);
+    doc.setFont('helvetica', 'italic');
+    doc.text('This schedule shows how your payments are split between principal and interest over the first 5 years.', pageWidth / 2, yPos, { align: 'center' });
+    
+    yPos += 6;
+    doc.setFontSize(8);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(59, 130, 246);
+    doc.text('DapsiWow.com', pageWidth / 2, yPos, { align: 'center' });
+    
+    yPos += 3;
+    doc.setFontSize(7);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(100, 100, 100);
+    doc.text('Free Online Financial Calculators & Tools', pageWidth / 2, yPos, { align: 'center' });
+
+    doc.save(`DapsiWow-Amortization-Schedule-${new Date().getTime()}.pdf`);
+    toast({ 
+      title: "PDF Downloaded!", 
+      description: "Your amortization schedule has been saved." 
+    });
+  };
+
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -1387,7 +1523,19 @@ export default function LoanCalculator() {
           {result && showAmortization && (
             <Card className="mt-6 sm:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
               <CardContent className="p-4 sm:p-6 lg:p-8">
-                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Amortization Schedule (First 5 Years)</h3>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900">Amortization Schedule (First 5 Years)</h3>
+                  <Button
+                    onClick={handleDownloadAmortizationPDF}
+                    variant="outline"
+                    size="sm"
+                    className="flex items-center gap-2 w-full sm:w-auto justify-center"
+                    data-testid="button-export-amortization-pdf"
+                  >
+                    <Download className="w-4 h-4" />
+                    Export PDF
+                  </Button>
+                </div>
                 <p className="text-sm text-gray-600 mb-4">See how your payments are split between principal and interest over time.</p>
                 <div className="overflow-x-auto -mx-4 sm:mx-0">
                   <table className="w-full min-w-[600px]" data-testid="amortization-table">
