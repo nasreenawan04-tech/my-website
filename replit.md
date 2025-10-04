@@ -54,11 +54,12 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
-### October 4, 2025 - Mortgage Calculator Drag Scrolling Enhancement
-- **UX Improvement**: Added horizontal mouse drag scrolling to amortization table for better usability
+### October 4, 2025 - Amortization Table Drag Scrolling Enhancement
+- **UX Improvement**: Added horizontal mouse drag scrolling to amortization tables for better usability
 - **Implementation**: Added drag-to-scroll functionality with visual cursor feedback (grab/grabbing)
-- **Features**: Click and drag to scroll horizontally through the payment schedule table, 2x scroll speed multiplier for smooth navigation
+- **Features**: Click and drag to scroll horizontally through the payment schedule tables, 2x scroll speed multiplier for smooth navigation
 - **User Feedback**: Cursor changes to 'grab' when hovering, 'grabbing' when dragging
+- **Affected Calculators**: Mortgage Calculator, Loan Calculator
 
 ### October 4, 2025 - Mortgage Calculator SEO & AdSense Upgrade
 - **SEO Optimization**: Enhanced meta tags with keyword-rich title and description (155 chars), added comprehensive structured data (SoftwareApplication + complete 8-question FAQPage JSON-LD)
