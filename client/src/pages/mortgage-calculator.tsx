@@ -1795,41 +1795,7 @@ const MortgageCalculator = () => {
             </Card>
           )}
 
-          {/* FAQ Section */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-xl sm:rounded-2xl mt-6 sm:mt-8">
-            <CardContent className="p-4 sm:p-6 md:p-8">
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Frequently Asked Questions</h2>
-              <Accordion type="single" collapsible className="space-y-3">
-                <AccordionItem value="item-1" className="bg-gray-50 rounded-lg px-4">
-                  <AccordionTrigger className="text-left font-semibold">
-                    How accurate is this mortgage calculator?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-gray-700">
-                    Our calculator provides highly accurate estimates using the standard amortization formula. However, actual payments may vary slightly based on your lender's specific terms, closing costs, and any discount points purchased.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-2" className="bg-gray-50 rounded-lg px-4">
-                  <AccordionTrigger className="text-left font-semibold">
-                    What is PMI and when is it required?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-gray-700">
-                    PMI (Private Mortgage Insurance) is required on conventional loans when you put down less than 20%. It typically costs 0.5-1% of the loan amount annually and can be removed once you reach 78% loan-to-value ratio.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-3" className="bg-gray-50 rounded-lg px-4">
-                  <AccordionTrigger className="text-left font-semibold">
-                    How much mortgage can I afford?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-gray-700">
-                    Lenders typically use the 28% rule: your monthly mortgage payment should not exceed 28% of your gross monthly income. Use the monthly income field for personalized analysis.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            </CardContent>
-          </Card>
-        </div>
+          </div>
       </main>
 
       <Footer />
