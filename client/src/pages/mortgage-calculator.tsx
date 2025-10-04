@@ -63,6 +63,10 @@ const MortgageCalculator = () => {
   const [showChart, setShowChart] = useState(false);
   const [result, setResult] = useState<MortgageResult | null>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
+  const tableScrollRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
   const { toast } = useToast();
 
   // Load parameters from URL on mount
@@ -95,6 +99,30 @@ const MortgageCalculator = () => {
       }, 200);
     }
   }, []);
+
+  // Drag scrolling handlers for amortization table
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!tableScrollRef.current) return;
+    setIsDragging(true);
+    setStartX(e.pageX - tableScrollRef.current.offsetLeft);
+    setScrollLeft(tableScrollRef.current.scrollLeft);
+  };
+
+  const handleMouseLeave = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging || !tableScrollRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - tableScrollRef.current.offsetLeft;
+    const walk = (x - startX) * 2; // Multiply by 2 for faster scrolling
+    tableScrollRef.current.scrollLeft = scrollLeft - walk;
+  };
 
   const calculateMortgage = () => {
     const price = parseFloat(homePrice);
@@ -1724,7 +1752,14 @@ const MortgageCalculator = () => {
                   </Button>
                 </div>
                 <p className="text-sm text-gray-600 mb-4">See how your payments are split between principal and interest over time.</p>
-                <div className="overflow-x-auto -mx-4 sm:mx-0">
+                <div 
+                  ref={tableScrollRef}
+                  className={`overflow-x-auto -mx-4 sm:mx-0 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+                  onMouseDown={handleMouseDown}
+                  onMouseLeave={handleMouseLeave}
+                  onMouseUp={handleMouseUp}
+                  onMouseMove={handleMouseMove}
+                >
                   <table className="w-full min-w-[600px] select-none">
                     <thead>
                       <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
