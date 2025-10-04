@@ -1695,7 +1695,13 @@ export default function LoanCalculator() {
             <Card className="mt-6 sm:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
               <CardContent className="p-4 sm:p-6 lg:p-8">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
-                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900">Amortization Schedule (First 5 Years)</h3>
+                  <h3 
+                    className="text-xl sm:text-2xl font-bold text-gray-900 cursor-pointer hover:text-blue-600 transition-colors select-none"
+                    onClick={() => setShowAmortization(false)}
+                    title="Click to hide schedule"
+                  >
+                    Amortization Schedule (First 5 Years)
+                  </h3>
                   <Button
                     onClick={handleDownloadAmortizationPDF}
                     variant="outline"
