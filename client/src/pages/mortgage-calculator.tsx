@@ -1027,6 +1027,93 @@ const MortgageCalculator = () => {
           })}
         </script>
 
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": "How to Calculate Your Mortgage Payment",
+            "description": "Step-by-step guide to calculate your monthly mortgage payment including principal, interest, taxes, insurance, and PMI using our free mortgage calculator.",
+            "totalTime": "PT2M",
+            "tool": [
+              {
+                "@type": "HowToTool",
+                "name": "Mortgage Calculator"
+              }
+            ],
+            "step": [
+              {
+                "@type": "HowToStep",
+                "name": "Enter Home Purchase Price",
+                "text": "Input the total purchase price of the home you're considering buying. This is the amount before your down payment.",
+                "position": 1
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Set Your Down Payment",
+                "text": "Enter your down payment as a percentage (e.g., 20%) or dollar amount. A 20% down payment on conventional loans eliminates PMI.",
+                "position": 2
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Choose Loan Term",
+                "text": "Select your mortgage term (15, 20, or 30 years). Shorter terms save on interest; longer terms lower monthly payments.",
+                "position": 3
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Enter Interest Rate",
+                "text": "Input the annual interest rate offered by your lender. Current rates vary by loan type (conventional, FHA, VA) and your credit score.",
+                "position": 4
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Add Property Taxes and Insurance",
+                "text": "Include annual property taxes and homeowners insurance amounts for a complete monthly payment calculation.",
+                "position": 5
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Select Loan Type",
+                "text": "Choose between conventional, FHA, or VA loan to account for different insurance and qualification requirements.",
+                "position": 6
+              },
+              {
+                "@type": "HowToStep",
+                "name": "Calculate and Review Results",
+                "text": "Click Calculate to see your monthly payment breakdown, total interest costs, amortization schedule, and affordability analysis.",
+                "position": 7
+              }
+            ]
+          })}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://dapsiwow.com"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Finance Tools",
+                "item": "https://dapsiwow.com/finance-tools"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Mortgage Calculator",
+                "item": "https://dapsiwow.com/tools/mortgage-calculator"
+              }
+            ]
+          })}
+        </script>
+
       </Helmet>
 
       <Header />
