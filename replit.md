@@ -54,6 +54,14 @@ Preferred communication style: Simple, everyday language.
 
 ## Recent Changes
 
+### October 4, 2025 - Mortgage Calculator SEO & AdSense Upgrade
+- **SEO Optimization**: Enhanced meta tags with keyword-rich title and description (155 chars), added comprehensive structured data (SoftwareApplication + complete 8-question FAQPage JSON-LD)
+- **AdSense Readiness**: Added responsive ad slot placeholders (top, sidebar, bottom) with clear labels, privacy policy & terms links in footer
+- **Content Enhancement**: Enhanced intro paragraph with SEO keywords, added 3 sample mortgage scenarios (starter, median, luxury) with auto-fill, 8-question comprehensive FAQ section, 6 pro tips for mortgage planning, 5-step how-to guide
+- **UI/UX Improvements**: Added slider controls for home price, interest rate, and loan term with proper ranges, PDF export using jsPDF (generates proper PDF files), print functionality, correctly handles both percentage and dollar down payment modes
+- **Technical**: All features production-ready, fully responsive design, architect-approved implementation
+- **Library Added**: jsPDF for proper PDF export functionality
+
 ### September 16, 2025 - PDF Category Removal
 - **Removed PDF category and all references**: Completely eliminated the PDF tools category from the website to streamline the platform focus
 - **Updated content**: Removed PDF mentions from all meta tags, help center, privacy policy, terms of service, and home page descriptions
