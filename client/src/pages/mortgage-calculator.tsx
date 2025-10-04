@@ -311,22 +311,78 @@ const MortgageCalculator = () => {
     const freqDisplay = paymentFrequency === 'weekly' ? 'Weekly' :
                        paymentFrequency === 'biweekly' ? 'Bi-weekly' : 'Monthly';
 
+    // Calculate down payment amount
+    const downPaymentAmount = usePercentage
+      ? (parseFloat(homePrice) * parseFloat(downPaymentPercent)) / 100
+      : parseFloat(downPayment);
+
+    // Calculate actual per-period payment based on frequency
+    const paymentsPerYear = paymentFrequency === 'weekly' ? 52 :
+                           paymentFrequency === 'biweekly' ? 26 : 12;
+    const actualPeriodicPayment = result.monthlyPayment * (12 / paymentsPerYear);
+
     let shareText = `🏠 Mortgage Calculator Results\n\n`;
     shareText += `📊 Loan Details:\n`;
     shareText += `• Home Price: ${formatCurrency(parseFloat(homePrice))}\n`;
-    shareText += `• Down Payment: ${downPaymentPercent}%\n`;
+    shareText += `• Down Payment: ${formatCurrency(downPaymentAmount)} (${downPaymentPercent}%)\n`;
+    shareText += `• Loan Amount: ${formatCurrency(parseFloat(homePrice) - downPaymentAmount)}\n`;
     shareText += `• Interest Rate: ${interestRate}%\n`;
     shareText += `• Term: ${loanTerm} years\n`;
+    shareText += `• Loan Type: ${loanType === 'conventional' ? 'Conventional' : loanType === 'fha' ? 'FHA' : 'VA'}\n`;
     shareText += `• Payment Frequency: ${freqDisplay}\n`;
     if (parseFloat(extraPayment) > 0) {
       shareText += `• Extra Payment: ${formatCurrency(parseFloat(extraPayment))}\n`;
     }
-    shareText += `\n💵 Monthly Payment: ${formatCurrency(result.monthlyPayment)}\n`;
+
+    shareText += `\n💵 Payment Breakdown:\n`;
+    shareText += `• ${freqDisplay} Payment: ${formatCurrency(actualPeriodicPayment)}\n`;
+    if (paymentFrequency !== 'monthly') {
+      shareText += `• Monthly Equivalent: ${formatCurrency(result.monthlyPayment)}\n`;
+    }
+    shareText += `• Principal & Interest: ${formatCurrency(result.monthlyPrincipalAndInterest)}\n`;
+    shareText += `• Property Taxes: ${formatCurrency(result.monthlyTaxes)}\n`;
+    shareText += `• Home Insurance: ${formatCurrency(result.monthlyInsurance)}\n`;
+    if (result.monthlyPMI > 0) {
+      shareText += `• PMI: ${formatCurrency(result.monthlyPMI)}\n`;
+    }
+    if (result.monthlyHOA > 0) {
+      shareText += `• HOA Fees: ${formatCurrency(result.monthlyHOA)}\n`;
+    }
+
+    shareText += `\n📈 Total Costs:\n`;
+    shareText += `• Total Amount: ${formatCurrency(result.totalAmount)}\n`;
     shareText += `• Total Interest: ${formatCurrency(result.totalInterest)}\n`;
+    shareText += `• Closing Costs: ${formatCurrency(result.closingCosts)}\n`;
+    shareText += `• Cash Needed: ${formatCurrency(result.totalCashNeeded)}\n`;
+
+    shareText += `\n📊 Ratios:\n`;
+    shareText += `• Loan-to-Value: ${result.loanToValue.toFixed(1)}%\n`;
+    if (result.debtToIncomeRatio && result.debtToIncomeRatio > 0) {
+      shareText += `• Debt-to-Income: ${result.debtToIncomeRatio.toFixed(1)}%\n`;
+    }
 
     if (result.extraPaymentSavings) {
+      const paymentsPerYear = paymentFrequency === 'weekly' ? 52 :
+                             paymentFrequency === 'biweekly' ? 26 : 12;
+      const totalYearsSaved = result.extraPaymentSavings.timeSaved / paymentsPerYear;
+      let yearsSaved = Math.floor(totalYearsSaved);
+      let monthsSaved = Math.round((totalYearsSaved - yearsSaved) * 12);
+      
+      // Handle carry-over when rounded months equals 12
+      if (monthsSaved === 12) {
+        yearsSaved += 1;
+        monthsSaved = 0;
+      }
+      
       shareText += `\n✨ Extra Payment Savings:\n`;
       shareText += `• Interest Saved: ${formatCurrency(result.extraPaymentSavings.interestSaved)}\n`;
+      if (yearsSaved > 0 && monthsSaved > 0) {
+        shareText += `• Time Saved: ${yearsSaved} years ${monthsSaved} months\n`;
+      } else if (yearsSaved > 0) {
+        shareText += `• Time Saved: ${yearsSaved} years\n`;
+      } else if (monthsSaved > 0) {
+        shareText += `• Time Saved: ${monthsSaved} months\n`;
+      }
     }
 
     shareText += `\n🔗 View & Calculate: ${shareableUrl}`;
