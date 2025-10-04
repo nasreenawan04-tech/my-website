@@ -1695,7 +1695,13 @@ export default function LoanCalculator() {
             <Card className="mt-6 sm:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
               <CardContent className="p-4 sm:p-6 lg:p-8">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
-                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900">Amortization Schedule (First 5 Years)</h3>
+                  <h3 
+                    className="text-xl sm:text-2xl font-bold text-gray-900 cursor-pointer hover:text-blue-600 transition-colors select-none"
+                    onClick={() => setShowAmortization(false)}
+                    title="Click to hide schedule"
+                  >
+                    Amortization Schedule (First 5 Years)
+                  </h3>
                   <Button
                     onClick={handleDownloadAmortizationPDF}
                     variant="outline"
@@ -1708,9 +1714,7 @@ export default function LoanCalculator() {
                   </Button>
                 </div>
                 <p className="text-sm text-gray-600 mb-4">See how your payments are split between principal and interest over time.</p>
-                
-                {/* Responsive Table View */}
-                <div className="overflow-x-auto -mx-4 sm:mx-0 scrollbar-hide">
+                <div className="overflow-x-auto -mx-4 sm:mx-0">
                   <table className="w-full min-w-[600px] select-none" data-testid="amortization-table">
                     <thead>
                       <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
