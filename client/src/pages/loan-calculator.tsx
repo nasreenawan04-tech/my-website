@@ -1694,23 +1694,16 @@ export default function LoanCalculator() {
           {result && showAmortization && (
             <Card className="mt-6 sm:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
               <CardContent className="p-4 sm:p-6 lg:p-8">
-                <div 
-                  className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6 cursor-pointer group"
-                  onClick={() => setShowAmortization(false)}
-                >
-                  <div className="flex items-center gap-2">
-                    <h3 className="text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors select-none">
-                      Amortization Schedule (First 5 Years)
-                    </h3>
-                    <span className="text-gray-400 group-hover:text-blue-500 transition-colors text-sm">
-                      (click to hide)
-                    </span>
-                  </div>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
+                  <h3 
+                    className="text-xl sm:text-2xl font-bold text-gray-900 cursor-pointer hover:text-blue-600 transition-colors select-none"
+                    onClick={() => setShowAmortization(false)}
+                    title="Click to hide schedule"
+                  >
+                    Amortization Schedule (First 5 Years)
+                  </h3>
                   <Button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleDownloadAmortizationPDF();
-                    }}
+                    onClick={handleDownloadAmortizationPDF}
                     variant="outline"
                     size="sm"
                     className="flex items-center gap-2 w-full sm:w-auto justify-center"
