@@ -1714,8 +1714,36 @@ export default function LoanCalculator() {
                   </Button>
                 </div>
                 <p className="text-sm text-gray-600 mb-4">See how your payments are split between principal and interest over time.</p>
-                <div className="overflow-x-auto -mx-4 sm:mx-0">
-                  <table className="w-full min-w-[600px] select-none" data-testid="amortization-table">
+                
+                {/* Mobile Card View */}
+                <div className="block sm:hidden space-y-3">
+                  {result.amortizationSchedule.map((payment, index) => (
+                    <div key={index} className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg p-4 border border-gray-200">
+                      <div className="flex justify-between items-center mb-3 pb-2 border-b border-gray-300">
+                        <span className="font-bold text-gray-900 text-sm">Payment #{payment.month}</span>
+                        <span className="font-bold text-gray-900 text-sm">{formatCurrency(payment.payment)}</span>
+                      </div>
+                      <div className="grid grid-cols-2 gap-3 text-xs">
+                        <div>
+                          <div className="text-gray-600 mb-1">Principal</div>
+                          <div className="font-bold text-green-600">{formatCurrency(payment.principal)}</div>
+                        </div>
+                        <div>
+                          <div className="text-gray-600 mb-1">Interest</div>
+                          <div className="font-bold text-orange-600">{formatCurrency(payment.interest)}</div>
+                        </div>
+                        <div className="col-span-2">
+                          <div className="text-gray-600 mb-1">Remaining Balance</div>
+                          <div className="font-bold text-gray-900">{formatCurrency(payment.balance)}</div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Desktop Table View */}
+                <div className="hidden sm:block overflow-x-auto">
+                  <table className="w-full select-none" data-testid="amortization-table">
                     <thead>
                       <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
                         <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-gray-900 text-xs sm:text-sm rounded-l-lg">Payment #</th>
