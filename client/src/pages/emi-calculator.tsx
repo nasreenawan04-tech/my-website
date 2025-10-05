@@ -1073,33 +1073,18 @@ export default function EMICalculator() {
 
                 {/* Results Section */}
                 <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
-                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Your EMI Results</h2>
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Your EMI Calculation Results</h2>
                   
                   {result ? (
                     <div className="space-y-4 sm:space-y-6 md:space-y-8" data-testid="emi-results">
                       {/* Monthly EMI Highlight */}
                       <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border-2 border-blue-200 shadow-sm">
                         <div className="text-center space-y-2 sm:space-y-3">
-                          <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide">Monthly EMI</div>
-                          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 break-all" data-testid="text-monthly-emi">
+                          <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide">Estimated Monthly EMI</div>
+                          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 break-all" data-testid="text-monthly-emi">
                             {formatCurrency(result.emi)}
                           </div>
-                        </div>
-                      </div>
-
-                      {/* Payment Breakdown */}
-                      <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
-                        <div className="bg-blue-50 rounded-lg p-3 md:p-4">
-                          <p className="text-xs md:text-sm text-blue-700 mb-1">Principal Amount</p>
-                          <p className="text-base md:text-xl lg:text-2xl font-bold text-blue-900 break-all" data-testid="text-principal-amount">{formatCurrency(result.principalAmount)}</p>
-                        </div>
-                        <div className="bg-orange-50 rounded-lg p-3 md:p-4">
-                          <p className="text-xs md:text-sm text-orange-700 mb-1">Total Interest</p>
-                          <p className="text-base md:text-xl lg:text-2xl font-bold text-orange-900 break-all" data-testid="text-total-interest">{formatCurrency(result.totalInterest)}</p>
-                        </div>
-                        <div className="bg-green-50 rounded-lg p-3 md:p-4">
-                          <p className="text-xs md:text-sm text-green-700 mb-1">Total Amount</p>
-                          <p className="text-base md:text-xl lg:text-2xl font-bold text-green-900 break-all" data-testid="text-total-amount">{formatCurrency(result.totalAmount)}</p>
+                          <p className="text-xs text-gray-500">Based on {tenureType === 'years' ? `${loanTenure} year${parseFloat(loanTenure) !== 1 ? 's' : ''}` : `${loanTenure} month${parseFloat(loanTenure) !== 1 ? 's' : ''}`} loan term</p>
                         </div>
                       </div>
 
