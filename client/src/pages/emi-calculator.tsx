@@ -796,7 +796,7 @@ export default function EMICalculator() {
 
                   {/* Advanced Options */}
                   {result && (
-                    <div className="flex flex-wrap gap-2 sm:gap-3 pt-4">
+                    <div className="flex flex-wrap justify-center gap-2 sm:gap-3 pt-4">
                       <Button
                         onClick={() => setShowSchedule(!showSchedule)}
                         variant="outline"
