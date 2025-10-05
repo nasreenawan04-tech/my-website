@@ -547,18 +547,24 @@ export default function EMICalculator() {
                 Calculate Equated Monthly Installments (EMI) for home loans, car loans, and personal loans. Get instant results with step-up EMI and prepayment analysis. 100% free, no registration required.
               </p>
 
-              <div className="flex flex-wrap justify-center gap-4 sm:gap-6 pt-4">
-                <div className="flex items-center gap-2 text-slate-700">
-                  <TrendingUp className="w-5 h-5 text-green-600" />
-                  <span className="text-sm font-medium">Step-Up EMI</span>
+              <div className="flex flex-wrap justify-center gap-3 sm:gap-4 pt-2 sm:pt-4">
+                <div className="bg-white/90 backdrop-blur-sm px-3 sm:px-4 py-2 rounded-lg shadow-sm">
+                  <div className="flex items-center gap-2">
+                    <TrendingUp className="w-4 h-4 text-green-600" />
+                    <span className="text-xs sm:text-sm text-gray-700">Step-Up EMI</span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2 text-slate-700">
-                  <Clock className="w-5 h-5 text-blue-600" />
-                  <span className="text-sm font-medium">Instant Results</span>
+                <div className="bg-white/90 backdrop-blur-sm px-3 sm:px-4 py-2 rounded-lg shadow-sm">
+                  <div className="flex items-center gap-2">
+                    <Clock className="w-4 h-4 text-blue-600" />
+                    <span className="text-xs sm:text-sm text-gray-700">Instant Results</span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2 text-slate-700">
-                  <PieChart className="w-5 h-5 text-indigo-600" />
-                  <span className="text-sm font-medium">Prepayment Analysis</span>
+                <div className="bg-white/90 backdrop-blur-sm px-3 sm:px-4 py-2 rounded-lg shadow-sm">
+                  <div className="flex items-center gap-2">
+                    <PieChart className="w-4 h-4 text-indigo-600" />
+                    <span className="text-xs sm:text-sm text-gray-700">Prepayment Analysis</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -574,7 +580,7 @@ export default function EMICalculator() {
                 <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
                   <div className="text-center sm:text-left">
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">EMI Configuration</h2>
-                    <p className="text-sm sm:text-base text-gray-600">Enter your loan details to get accurate EMI calculations</p>
+                    <p className="text-sm sm:text-base text-gray-600">Enter your loan details for accurate EMI calculations</p>
                   </div>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
@@ -1105,12 +1111,12 @@ export default function EMICalculator() {
           {/* Additional SEO Content Sections */}
           <div className="mt-12 space-y-8">
             {/* Types of Loans Section */}
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Types of Loans for EMI Calculation</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-gray-800">Home Loans</h4>
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Types of Loans for EMI Calculation</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                  <div className="space-y-3 sm:space-y-4">
+                    <h4 className="text-base sm:text-lg font-semibold text-gray-800">Home Loans</h4>
                     <p className="text-gray-600">
                       Home loans typically have the longest tenure (15-30 years) and competitive interest rates. 
                       EMI calculations help you determine affordability based on your monthly income and plan for 
@@ -1143,11 +1149,11 @@ export default function EMICalculator() {
             </Card>
 
             {/* Factors Affecting EMI */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Factors Affecting EMI Amount</h3>
-                  <div className="space-y-4 text-gray-600">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+                <CardContent className="p-4 sm:p-6 md:p-8">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Factors Affecting EMI Amount</h3>
+                  <div className="space-y-3 sm:space-y-4 text-sm sm:text-base text-gray-600">
                     <div className="border-l-4 border-blue-500 pl-4">
                       <h4 className="font-semibold text-gray-800 mb-2">Principal Amount</h4>
                       <p className="text-sm">Higher loan amounts result in higher EMIs. Borrow only what you need and can afford to repay comfortably.</p>
@@ -1168,10 +1174,10 @@ export default function EMICalculator() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">EMI Planning Strategies</h3>
-                  <div className="space-y-4 text-gray-600">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+                <CardContent className="p-4 sm:p-6 md:p-8">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">EMI Planning Strategies</h3>
+                  <div className="space-y-3 sm:space-y-4 text-sm sm:text-base text-gray-600">
                     <div className="bg-blue-50 rounded-lg p-4">
                       <h4 className="font-semibold text-blue-800 mb-2">50-30-20 Rule</h4>
                       <p className="text-sm text-blue-700">Limit total EMIs to 50% of your monthly income, keeping 30% for expenses and 20% for savings.</p>
@@ -1194,11 +1200,11 @@ export default function EMICalculator() {
             </div>
 
             {/* EMI FAQs Section */}
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions about EMI</h3>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  <div className="space-y-6">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">Frequently Asked Questions about EMI</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+                  <div className="space-y-4 sm:space-y-6">
                     <div>
                       <h4 className="font-semibold text-gray-800 mb-2">What happens if I miss an EMI payment?</h4>
                       <p className="text-gray-600 text-sm">Missing EMI payments can result in late fees, negative impact on credit score, and potential legal action. Contact your lender immediately if you anticipate payment difficulties.</p>
@@ -1239,10 +1245,10 @@ export default function EMICalculator() {
             </Card>
 
             {/* Interest Rate Types */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-                <CardContent className="p-8">
-                  <h3 className="text-xl font-bold text-gray-900 mb-6">Fixed Interest Rate</h3>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+                <CardContent className="p-4 sm:p-6 md:p-8">
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-4 sm:mb-6">Fixed Interest Rate</h3>
                   <div className="space-y-4 text-gray-600">
                     <p className="text-sm">
                       Fixed rates remain constant throughout the loan tenure, providing EMI predictability and budget certainty.
@@ -1323,10 +1329,10 @@ export default function EMICalculator() {
             </div>
 
             {/* Common Mistakes Section */}
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Common EMI Calculation Mistakes to Avoid</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Common EMI Calculation Mistakes to Avoid</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                   <div className="space-y-4">
                     <div className="bg-red-50 border-l-4 border-red-400 p-4 rounded-r-lg">
                       <h4 className="font-semibold text-red-800 mb-2">Ignoring Hidden Costs</h4>
@@ -1360,10 +1366,10 @@ export default function EMICalculator() {
             </Card>
 
             {/* Loan vs Investment Section */}
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">EMI vs Investment: Making Smart Financial Decisions</h3>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">EMI vs Investment: Making Smart Financial Decisions</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                   <div className="space-y-4">
                     <h4 className="text-lg font-semibold text-gray-800">When to Take a Loan</h4>
                     <div className="space-y-3 text-gray-600">
