@@ -841,61 +841,54 @@ export default function EMICalculator() {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t-2 border-gray-200">
-                  <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Results</h2>
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Your EMI Results</h2>
                   
                   {result ? (
-                    <div className="space-y-4 sm:space-y-6" data-testid="emi-results">
+                    <div className="space-y-4 sm:space-y-6 md:space-y-8" data-testid="emi-results">
                       {/* Monthly EMI Highlight */}
-                      <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border border-blue-100">
-                        <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-1 sm:mb-2">Monthly EMI</div>
-                        <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" data-testid="text-monthly-emi">
-                          {formatCurrency(result.emi)}
+                      <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border-2 border-blue-200 shadow-sm">
+                        <div className="text-center space-y-2 sm:space-y-3">
+                          <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide">Monthly EMI</div>
+                          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 break-all" data-testid="text-monthly-emi">
+                            {formatCurrency(result.emi)}
+                          </div>
                         </div>
                       </div>
 
                       {/* Payment Breakdown */}
-                      <div className="space-y-3 sm:space-y-4">
-                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="text-sm sm:text-base font-medium text-gray-700">Principal Amount</span>
-                            <span className="text-sm sm:text-base font-bold text-gray-900" data-testid="text-principal-amount">
-                              {formatCurrency(result.principalAmount)}
-                            </span>
-                          </div>
+                      <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
+                        <div className="bg-blue-50 rounded-lg p-3 md:p-4">
+                          <p className="text-xs md:text-sm text-blue-700 mb-1">Principal Amount</p>
+                          <p className="text-base md:text-xl lg:text-2xl font-bold text-blue-900 break-all" data-testid="text-principal-amount">{formatCurrency(result.principalAmount)}</p>
                         </div>
-                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="text-sm sm:text-base font-medium text-gray-700">Total Interest</span>
-                            <span className="text-sm sm:text-base font-bold text-orange-600" data-testid="text-total-interest">
-                              {formatCurrency(result.totalInterest)}
-                            </span>
-                          </div>
+                        <div className="bg-orange-50 rounded-lg p-3 md:p-4">
+                          <p className="text-xs md:text-sm text-orange-700 mb-1">Total Interest</p>
+                          <p className="text-base md:text-xl lg:text-2xl font-bold text-orange-900 break-all" data-testid="text-total-interest">{formatCurrency(result.totalInterest)}</p>
                         </div>
-                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="text-sm sm:text-base font-medium text-gray-700">Total Amount</span>
-                            <span className="text-sm sm:text-base font-bold text-gray-900" data-testid="text-total-amount">
-                              {formatCurrency(result.totalAmount)}
-                            </span>
-                          </div>
+                        <div className="bg-green-50 rounded-lg p-3 md:p-4">
+                          <p className="text-xs md:text-sm text-green-700 mb-1">Total Amount</p>
+                          <p className="text-base md:text-xl lg:text-2xl font-bold text-green-900 break-all" data-testid="text-total-amount">{formatCurrency(result.totalAmount)}</p>
                         </div>
                       </div>
 
                       {/* Prepayment Benefits */}
                       {result.prepaymentAnalysis && (
                         <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-green-200">
-                          <h4 className="text-base sm:text-lg font-bold text-green-800 mb-3 sm:mb-4">Prepayment Benefits</h4>
+                          <h4 className="font-bold text-green-800 mb-3 sm:mb-4 text-base sm:text-lg flex items-center gap-2">
+                            <TrendingDown className="w-5 h-5" />
+                            Prepayment Benefits
+                          </h4>
                           <div className="space-y-2 sm:space-y-3">
                             <div className="flex justify-between items-center">
-                              <span className="text-sm sm:text-base text-green-700 font-medium">Interest Saved:</span>
-                              <span className="text-sm sm:text-base md:text-lg font-bold text-green-800">
+                              <span className="text-green-700 font-medium text-sm sm:text-base">Interest Saved:</span>
+                              <span className="font-bold text-green-800 text-sm sm:text-base md:text-lg break-all">
                                 {formatCurrency(result.prepaymentAnalysis.interestSaved)}
                               </span>
                             </div>
                             <div className="flex justify-between items-center">
-                              <span className="text-sm sm:text-base text-green-700 font-medium">Time Saved:</span>
-                              <span className="text-sm sm:text-base md:text-lg font-bold text-green-800">
+                              <span className="text-green-700 font-medium text-sm sm:text-base">Time Saved:</span>
+                              <span className="font-bold text-green-800 text-sm sm:text-base md:text-lg">
                                 {Math.round(result.prepaymentAnalysis.timeReduction / 12)} years
                               </span>
                             </div>
@@ -906,17 +899,20 @@ export default function EMICalculator() {
                       {/* Step-Up Benefits */}
                       {result.stepUpAnalysis && (
                         <div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-purple-200">
-                          <h4 className="text-base sm:text-lg font-bold text-purple-800 mb-3 sm:mb-4">Step-Up EMI Benefits</h4>
+                          <h4 className="font-bold text-purple-800 mb-3 sm:mb-4 text-base sm:text-lg flex items-center gap-2">
+                            <TrendingUp className="w-5 h-5" />
+                            Step-Up EMI Benefits
+                          </h4>
                           <div className="space-y-2 sm:space-y-3">
                             <div className="flex justify-between items-center">
-                              <span className="text-sm sm:text-base text-purple-700 font-medium">Interest Saved:</span>
-                              <span className="text-sm sm:text-base md:text-lg font-bold text-purple-800">
+                              <span className="text-purple-700 font-medium text-sm sm:text-base">Interest Saved:</span>
+                              <span className="font-bold text-purple-800 text-sm sm:text-base md:text-lg break-all">
                                 {formatCurrency(result.stepUpAnalysis.totalInterestSaved)}
                               </span>
                             </div>
                             <div className="flex justify-between items-center">
-                              <span className="text-sm sm:text-base text-purple-700 font-medium">Final EMI:</span>
-                              <span className="text-sm sm:text-base md:text-lg font-bold text-purple-800">
+                              <span className="text-purple-700 font-medium text-sm sm:text-base">Final EMI:</span>
+                              <span className="font-bold text-purple-800 text-sm sm:text-base md:text-lg break-all">
                                 {formatCurrency(result.stepUpAnalysis.finalEMI)}
                               </span>
                             </div>
@@ -1153,9 +1149,9 @@ export default function EMICalculator() {
                   ) : (
                     <div className="text-center py-8 sm:py-12 md:py-16" data-testid="no-results">
                       <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
-                        <div className="text-2xl sm:text-3xl font-bold text-gray-400">₹</div>
+                        <Calculator className="w-8 h-8 text-gray-400" />
                       </div>
-                      <p className="text-sm sm:text-base md:text-lg text-gray-500">Enter loan details and calculate to see EMI results</p>
+                      <p className="text-gray-500 text-sm sm:text-base md:text-lg px-4">Enter your loan details above and click "Calculate EMI" to see your personalized results</p>
                     </div>
                   )}
                 </div>
