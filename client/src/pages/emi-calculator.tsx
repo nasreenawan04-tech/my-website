@@ -7,7 +7,10 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Calculator, TrendingUp, Clock, PieChart } from 'lucide-react';
+import { Calculator, TrendingUp, Clock, PieChart, Share2, Download, BarChart3 } from 'lucide-react';
+import { jsPDF } from 'jspdf';
+import { useToast } from '@/hooks/use-toast';
+import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
 
 interface EMIResult {
   emi: number;
@@ -49,7 +52,9 @@ export default function EMICalculator() {
   const [enableStepUp, setEnableStepUp] = useState(false);
   const [enablePrepayment, setEnablePrepayment] = useState(false);
   const [showSchedule, setShowSchedule] = useState(false);
+  const [showChart, setShowChart] = useState(false);
   const [result, setResult] = useState<EMIResult | null>(null);
+  const { toast } = useToast();
 
   const calculateEMI = () => {
     const principal = parseFloat(loanAmount);
@@ -180,7 +185,282 @@ export default function EMICalculator() {
     setEnableStepUp(false);
     setEnablePrepayment(false);
     setShowSchedule(false);
+    setShowChart(false);
     setResult(null);
+  };
+
+  const handleShare = async () => {
+    if (!result) return;
+
+    const params = new URLSearchParams({
+      amount: loanAmount,
+      rate: interestRate,
+      term: loanTenure,
+      unit: tenureType,
+      currency: currency,
+      prepayment: prepaymentAmount,
+      prepaymentAfter: prepaymentAfterMonths,
+      stepUp: stepUpPercentage
+    });
+    const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
+
+    const termDisplay = tenureType === 'years' ? `${loanTenure} years` : `${loanTenure} months`;
+
+    let shareText = `💰 EMI Loan Calculator Results\n\n`;
+    shareText += `📊 Loan Details:\n`;
+    shareText += `• Loan Amount: ${formatCurrency(parseFloat(loanAmount))}\n`;
+    shareText += `• Interest Rate: ${interestRate}%\n`;
+    shareText += `• Loan Term: ${termDisplay}\n`;
+    if (parseFloat(prepaymentAmount) > 0 && enablePrepayment) {
+      shareText += `• Prepayment: ${formatCurrency(parseFloat(prepaymentAmount))}\n`;
+    }
+    if (enableStepUp) {
+      shareText += `• Step-Up: ${stepUpPercentage}% annually\n`;
+    }
+
+    shareText += `\n💵 EMI Breakdown:\n`;
+    shareText += `• Monthly EMI: ${formatCurrency(result.emi)}\n`;
+    shareText += `• Principal Amount: ${formatCurrency(result.principalAmount)}\n`;
+    shareText += `• Total Interest: ${formatCurrency(result.totalInterest)}\n`;
+    shareText += `• Total Amount: ${formatCurrency(result.totalAmount)}\n`;
+
+    if (result.prepaymentAnalysis) {
+      const yearsSaved = Math.round(result.prepaymentAnalysis.timeReduction / 12);
+      shareText += `\n✨ Prepayment Savings:\n`;
+      shareText += `• Interest Saved: ${formatCurrency(result.prepaymentAnalysis.interestSaved)}\n`;
+      shareText += `• Time Saved: ${yearsSaved} years\n`;
+    }
+
+    if (result.stepUpAnalysis) {
+      shareText += `\n📈 Step-Up EMI Benefits:\n`;
+      shareText += `• Interest Saved: ${formatCurrency(result.stepUpAnalysis.totalInterestSaved)}\n`;
+      shareText += `• Final EMI: ${formatCurrency(result.stepUpAnalysis.finalEMI)}\n`;
+    }
+
+    shareText += `\n🔗 View & Calculate: ${shareableUrl}`;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: '💰 EMI Loan Calculator Results',
+          text: shareText,
+          url: shareableUrl
+        });
+        toast({ title: "Shared successfully!", description: "Results shared with all details" });
+      } catch (err) {
+        navigator.clipboard.writeText(shareText);
+        toast({ title: "Copied to clipboard!" });
+      }
+    } else {
+      navigator.clipboard.writeText(shareText);
+      toast({ title: "Copied to clipboard!" });
+    }
+  };
+
+  const handleDownloadPDF = () => {
+    if (!result) return;
+
+    const doc = new jsPDF();
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 15;
+    let yPos = 12;
+
+    doc.setFillColor(59, 130, 246);
+    doc.rect(0, 0, pageWidth, 38, 'F');
+    
+    doc.setFontSize(26);
+    doc.setTextColor(255, 255, 255);
+    doc.setFont('helvetica', 'bold');
+    doc.text('DapsiWow', pageWidth / 2, yPos + 5, { align: 'center' });
+    
+    yPos += 14;
+    doc.setFontSize(11);
+    doc.setFont('helvetica', 'normal');
+    doc.text('EMI Loan Calculation Report', pageWidth / 2, yPos, { align: 'center' });
+    
+    yPos += 6;
+    doc.setFontSize(8);
+    doc.setTextColor(230, 240, 255);
+    const currentDate = new Date().toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric'
+    });
+    doc.text(`Report Date: ${currentDate}`, pageWidth / 2, yPos, { align: 'center' });
+
+    yPos = 48;
+    doc.setFillColor(240, 249, 255);
+    doc.setDrawColor(59, 130, 246);
+    doc.setLineWidth(1);
+    doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 42, 3, 3, 'FD');
+    
+    yPos += 6;
+    doc.setFontSize(9);
+    doc.setTextColor(100, 100, 100);
+    doc.setFont('helvetica', 'normal');
+    doc.text('MONTHLY EMI', pageWidth / 2, yPos, { align: 'center' });
+    
+    yPos += 8;
+    doc.setFontSize(24);
+    doc.setTextColor(59, 130, 246);
+    doc.setFont('helvetica', 'bold');
+    doc.text(formatCurrency(result.emi), pageWidth / 2, yPos, { align: 'center' });
+    
+    yPos += 8;
+    doc.setFontSize(8);
+    doc.setTextColor(80, 80, 80);
+    doc.setFont('helvetica', 'normal');
+    doc.text(`Total Interest: ${formatCurrency(result.totalInterest)} (${result.interestPercentage.toFixed(1)}%)`, pageWidth / 2, yPos, { align: 'center' });
+
+    yPos += 12;
+    const termDisplay = tenureType === 'years' ? `${loanTenure} years` : `${loanTenure} months`;
+    
+    doc.setFillColor(255, 255, 255);
+    doc.setDrawColor(230, 230, 230);
+    doc.setLineWidth(0.5);
+    doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 36, 3, 3, 'FD');
+    
+    yPos += 5;
+    doc.setFontSize(10);
+    doc.setTextColor(59, 130, 246);
+    doc.setFont('helvetica', 'bold');
+    doc.text('LOAN DETAILS', margin + 4, yPos);
+    
+    yPos += 2;
+    doc.setDrawColor(59, 130, 246);
+    doc.setLineWidth(0.3);
+    doc.line(margin + 4, yPos, pageWidth - margin - 4, yPos);
+
+    yPos += 8;
+    doc.setFontSize(9);
+    doc.setTextColor(50, 50, 50);
+    doc.setFont('helvetica', 'normal');
+    
+    const col1X = margin + 8;
+    const col2X = margin + 60;
+    const col3X = pageWidth / 2 + 8;
+    const col4X = pageWidth / 2 + 60;
+    
+    doc.setTextColor(100, 100, 100);
+    doc.setFontSize(8);
+    doc.text('Loan Amount', col1X, yPos);
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'bold');
+    doc.text(formatCurrency(parseFloat(loanAmount)), col2X, yPos);
+    
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(100, 100, 100);
+    doc.setFontSize(8);
+    doc.text('Interest Rate', col3X, yPos);
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'bold');
+    doc.text(`${interestRate}%`, col4X, yPos);
+    
+    yPos += 8;
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(100, 100, 100);
+    doc.setFontSize(8);
+    doc.text('Loan Term', col1X, yPos);
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'bold');
+    doc.text(termDisplay, col2X, yPos);
+
+    yPos += 14;
+    doc.setFillColor(255, 255, 255);
+    doc.setDrawColor(230, 230, 230);
+    doc.setLineWidth(0.5);
+    doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 30, 3, 3, 'FD');
+    
+    yPos += 5;
+    doc.setFontSize(10);
+    doc.setTextColor(59, 130, 246);
+    doc.setFont('helvetica', 'bold');
+    doc.text('PAYMENT SUMMARY', margin + 4, yPos);
+    
+    yPos += 2;
+    doc.setDrawColor(59, 130, 246);
+    doc.setLineWidth(0.3);
+    doc.line(margin + 4, yPos, pageWidth - margin - 4, yPos);
+
+    yPos += 8;
+    doc.setFontSize(8);
+    doc.setTextColor(100, 100, 100);
+    doc.setFont('helvetica', 'normal');
+    doc.text('Principal Amount', margin + 8, yPos);
+    doc.setFontSize(9);
+    doc.setTextColor(34, 197, 94);
+    doc.text(formatCurrency(result.principalAmount), pageWidth - margin - 8, yPos, { align: 'right' });
+    
+    yPos += 6;
+    doc.setFontSize(8);
+    doc.setTextColor(100, 100, 100);
+    doc.text('Total Interest', margin + 8, yPos);
+    doc.setFontSize(9);
+    doc.setTextColor(220, 38, 38);
+    doc.text(formatCurrency(result.totalInterest), pageWidth - margin - 8, yPos, { align: 'right' });
+
+    if (result.prepaymentAnalysis) {
+      yPos += 12;
+      doc.setFillColor(236, 253, 245);
+      doc.setDrawColor(34, 197, 94);
+      doc.setLineWidth(0.5);
+      doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 22, 3, 3, 'FD');
+      
+      yPos += 5;
+      doc.setFontSize(10);
+      doc.setTextColor(34, 197, 94);
+      doc.setFont('helvetica', 'bold');
+      doc.text('PREPAYMENT SAVINGS', margin + 4, yPos);
+      
+      yPos += 7;
+      const yearsSaved = Math.round(result.prepaymentAnalysis.timeReduction / 12);
+      
+      doc.setFontSize(8);
+      doc.setTextColor(50, 50, 50);
+      doc.setFont('helvetica', 'normal');
+      doc.text('Interest Saved', margin + 8, yPos);
+      doc.text('Time Saved', pageWidth / 2 + 8, yPos);
+      
+      yPos += 5;
+      doc.setFontSize(11);
+      doc.setTextColor(34, 197, 94);
+      doc.setFont('helvetica', 'bold');
+      doc.text(formatCurrency(result.prepaymentAnalysis.interestSaved), margin + 8, yPos);
+      doc.text(`${yearsSaved} years`, pageWidth / 2 + 8, yPos);
+    }
+
+    yPos = pageHeight - 22;
+    doc.setDrawColor(220, 220, 220);
+    doc.setLineWidth(0.2);
+    doc.line(margin, yPos, pageWidth - margin, yPos);
+    
+    yPos += 4;
+    doc.setFontSize(7);
+    doc.setTextColor(120, 120, 120);
+    doc.setFont('helvetica', 'italic');
+    doc.text('This calculation is for informational purposes only. Please consult with a qualified financial advisor for personalized advice.', pageWidth / 2, yPos, { align: 'center' });
+    
+    yPos += 6;
+    doc.setFontSize(8);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(59, 130, 246);
+    doc.text('DapsiWow.com', pageWidth / 2, yPos, { align: 'center' });
+    
+    yPos += 3;
+    doc.setFontSize(7);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(100, 100, 100);
+    doc.text('Free Online Financial Calculators & Tools', pageWidth / 2, yPos, { align: 'center' });
+
+    doc.save(`DapsiWow-EMI-Calculation-${new Date().getTime()}.pdf`);
+    toast({ 
+      title: "PDF Downloaded!", 
+      description: "Your EMI calculation report has been saved." 
+    });
   };
 
   const formatCurrency = (amount: number) => {
@@ -510,15 +790,45 @@ export default function EMICalculator() {
 
                   {/* Advanced Options */}
                   {result && (
-                    <div className="flex flex-wrap gap-3 pt-4">
+                    <div className="flex flex-wrap gap-2 sm:gap-3 pt-4">
                       <Button
                         onClick={() => setShowSchedule(!showSchedule)}
                         variant="outline"
                         size="sm"
-                        className="rounded-full"
+                        className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
                         data-testid="button-show-schedule"
                       >
                         {showSchedule ? 'Hide' : 'Show'} Payment Schedule
+                      </Button>
+                      <Button
+                        onClick={() => setShowChart(!showChart)}
+                        variant="outline"
+                        size="sm"
+                        className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                        data-testid="button-show-chart"
+                      >
+                        <BarChart3 className="w-4 h-4 mr-1" />
+                        {showChart ? 'Hide' : 'Show'} Chart
+                      </Button>
+                      <Button
+                        onClick={handleShare}
+                        variant="outline"
+                        size="sm"
+                        className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                        data-testid="button-share"
+                      >
+                        <Share2 className="w-4 h-4 mr-1" />
+                        Share
+                      </Button>
+                      <Button
+                        onClick={handleDownloadPDF}
+                        variant="outline"
+                        size="sm"
+                        className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                        data-testid="button-export-pdf"
+                      >
+                        <Download className="w-4 h-4 mr-1" />
+                        Export PDF
                       </Button>
                     </div>
                   )}
@@ -620,6 +930,39 @@ export default function EMICalculator() {
               </div>
             </CardContent>
           </Card>
+
+          {/* Chart Visualization */}
+          {result && showChart && (
+            <Card className="mt-4 sm:mt-6 md:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-3 sm:p-4 md:p-6 lg:p-8">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Payment Breakdown</h3>
+                <div className="h-64 sm:h-80">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <RechartsPieChart>
+                      <Pie
+                        data={[
+                          { name: 'Principal', value: result.principalAmount, fill: '#22c55e' },
+                          { name: 'Interest', value: result.totalInterest, fill: '#f97316' }
+                        ]}
+                        cx="50%"
+                        cy="50%"
+                        labelLine={false}
+                        label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(1)}%`}
+                        outerRadius={80}
+                        dataKey="value"
+                      >
+                      </Pie>
+                      <Legend 
+                        verticalAlign="bottom" 
+                        height={36}
+                        formatter={(value, entry: any) => `${value}: ${formatCurrency(entry.payload.value)}`}
+                      />
+                    </RechartsPieChart>
+                  </ResponsiveContainer>
+                </div>
+              </CardContent>
+            </Card>
+          )}
 
           {/* Payment Schedule */}
           {result && showSchedule && (
