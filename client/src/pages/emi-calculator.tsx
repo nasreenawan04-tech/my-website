@@ -74,32 +74,32 @@ export default function EMICalculator() {
 
     // Standard EMI calculation
     const baseEMI = (principal * rate * Math.pow(1 + rate, tenure)) / (Math.pow(1 + rate, tenure) - 1);
-    
+
     // Generate amortization schedule
     const amortizationSchedule = [];
     let currentBalance = principal;
     let totalInterestPaid = 0;
     let currentEMI = baseEMI;
     let actualTenure = tenure;
-    
+
     for (let month = 1; month <= tenure && currentBalance > 1; month++) {
       // Handle step-up EMI
       if (enableStepUp && month > 12 && (month - 1) % 12 === 0) {
         currentEMI = currentEMI * (1 + stepUpRate);
       }
-      
+
       const interestPayment = currentBalance * rate;
       let principalPayment = Math.min(currentEMI - interestPayment, currentBalance);
-      
+
       // Handle prepayment
       if (enablePrepayment && month === prepaymentAfter) {
         principalPayment += Math.min(prepayment, currentBalance - principalPayment);
       }
-      
+
       currentBalance -= principalPayment;
       totalInterestPaid += interestPayment;
       actualTenure = month;
-      
+
       if (month <= 60) { // Store first 5 years for display
         amortizationSchedule.push({
           month,
@@ -109,14 +109,14 @@ export default function EMICalculator() {
           balance: Math.max(0, currentBalance)
         });
       }
-      
+
       if (currentBalance <= 1) break;
     }
 
     // Calculate regular scenario for comparison
     const regularTotalAmount = baseEMI * tenure;
     const regularTotalInterest = regularTotalAmount - principal;
-    
+
     // Final results
     const finalTotalAmount = totalInterestPaid + principal;
     const finalTotalInterest = totalInterestPaid;
@@ -127,7 +127,7 @@ export default function EMICalculator() {
     if (enablePrepayment && prepayment > 0) {
       const interestSaved = regularTotalInterest - finalTotalInterest;
       const timeReduction = Math.max(0, tenure - actualTenure);
-      
+
       prepaymentAnalysis = {
         timeReduction: Math.round(timeReduction),
         interestSaved: Math.round(interestSaved * 100) / 100,
@@ -143,7 +143,7 @@ export default function EMICalculator() {
       const totalInterestSaved = Math.max(0, regularTotalInterest - finalTotalInterest);
       const averageEMI = finalTotalAmount / actualTenure;
       const finalEMI = currentEMI;
-      
+
       // Create yearly EMI schedule
       const yearlyEMISchedule = [];
       let yearlyEMI = baseEMI;
@@ -156,7 +156,7 @@ export default function EMICalculator() {
           yearlyEMI = yearlyEMI * (1 + stepUpRate);
         }
       }
-      
+
       stepUpAnalysis = {
         totalInterestSaved: Math.round(totalInterestSaved * 100) / 100,
         averageEMI: Math.round(averageEMI * 100) / 100,
@@ -300,17 +300,17 @@ export default function EMICalculator() {
 
     doc.setFillColor(59, 130, 246);
     doc.rect(0, 0, pageWidth, 38, 'F');
-    
+
     doc.setFontSize(26);
     doc.setTextColor(255, 255, 255);
     doc.setFont('helvetica', 'bold');
     doc.text('DapsiWow', pageWidth / 2, yPos + 5, { align: 'center' });
-    
+
     yPos += 14;
     doc.setFontSize(11);
     doc.setFont('helvetica', 'normal');
     doc.text('Loan Calculation Report', pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 6;
     doc.setFontSize(8);
     doc.setTextColor(230, 240, 255);
@@ -326,23 +326,23 @@ export default function EMICalculator() {
     doc.setDrawColor(59, 130, 246);
     doc.setLineWidth(1);
     doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 42, 3, 3, 'FD');
-    
+
     yPos += 6;
     doc.setFontSize(9);
     doc.setTextColor(100, 100, 100);
     doc.setFont('helvetica', 'normal');
     doc.text('EXECUTIVE SUMMARY', pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 8;
     doc.setFontSize(20);
     doc.setTextColor(59, 130, 246);
     doc.setFont('helvetica', 'bold');
     doc.text('Monthly Payment', pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 10;
     doc.setFontSize(24);
     doc.text(formatCurrency(result.emi), pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 8;
     doc.setFontSize(8);
     doc.setTextColor(80, 80, 80);
@@ -352,18 +352,18 @@ export default function EMICalculator() {
 
     yPos += 12;
     const termDisplay = tenureType === 'years' ? `${loanTenure} years` : `${loanTenure} months`;
-    
+
     doc.setFillColor(255, 255, 255);
     doc.setDrawColor(230, 230, 230);
     doc.setLineWidth(0.5);
     doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 48, 3, 3, 'FD');
-    
+
     yPos += 5;
     doc.setFontSize(10);
     doc.setTextColor(59, 130, 246);
     doc.setFont('helvetica', 'bold');
     doc.text('LOAN DETAILS', margin + 4, yPos);
-    
+
     yPos += 2;
     doc.setDrawColor(59, 130, 246);
     doc.setLineWidth(0.3);
@@ -372,13 +372,12 @@ export default function EMICalculator() {
     yPos += 6;
     doc.setFontSize(9);
     doc.setTextColor(50, 50, 50);
-    doc.setFont('helvetica', 'normal');
-    
+
     const col1X = margin + 8;
     const col2X = margin + 60;
     const col3X = pageWidth / 2 + 8;
     const col4X = pageWidth / 2 + 60;
-    
+
     doc.setTextColor(100, 100, 100);
     doc.setFontSize(8);
     doc.text('Loan Amount', col1X, yPos);
@@ -386,7 +385,7 @@ export default function EMICalculator() {
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
     doc.text(formatCurrency(parseFloat(loanAmount)), col2X, yPos);
-    
+
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(100, 100, 100);
     doc.setFontSize(8);
@@ -395,7 +394,7 @@ export default function EMICalculator() {
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
     doc.text(`${interestRate}%`, col4X, yPos);
-    
+
     yPos += 8;
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(100, 100, 100);
@@ -405,7 +404,7 @@ export default function EMICalculator() {
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
     doc.text(termDisplay, col2X, yPos);
-    
+
     if (parseFloat(prepaymentAmount) > 0 && enablePrepayment) {
       doc.setFont('helvetica', 'normal');
       doc.setTextColor(100, 100, 100);
@@ -416,7 +415,7 @@ export default function EMICalculator() {
       doc.setFont('helvetica', 'bold');
       doc.text(formatCurrency(parseFloat(prepaymentAmount)), col4X, yPos);
     }
-    
+
     if (enableStepUp) {
       yPos += 8;
       doc.setFont('helvetica', 'normal');
@@ -434,13 +433,13 @@ export default function EMICalculator() {
     doc.setDrawColor(230, 230, 230);
     doc.setLineWidth(0.5);
     doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 36, 3, 3, 'FD');
-    
+
     yPos += 5;
     doc.setFontSize(10);
     doc.setTextColor(59, 130, 246);
     doc.setFont('helvetica', 'bold');
     doc.text('PAYMENT SUMMARY', margin + 4, yPos);
-    
+
     yPos += 2;
     doc.setDrawColor(59, 130, 246);
     doc.setLineWidth(0.3);
@@ -451,33 +450,33 @@ export default function EMICalculator() {
     doc.setDrawColor(220, 220, 220);
     doc.setLineWidth(0.2);
     doc.rect(margin + 4, yPos - 5, pageWidth - (2 * margin) - 8, 8, 'FD');
-    
+
     doc.setFontSize(8);
     doc.setTextColor(100, 100, 100);
     doc.setFont('helvetica', 'normal');
     doc.text('Total Amount Paid', margin + 8, yPos);
-    
+
     doc.setFontSize(10);
     doc.setTextColor(0, 0, 0);
     doc.setFont('helvetica', 'bold');
     doc.text(formatCurrency(result.totalAmount), pageWidth - margin - 8, yPos, { align: 'right' });
-    
+
     yPos += 9;
     doc.setFontSize(8);
     doc.setTextColor(100, 100, 100);
     doc.setFont('helvetica', 'normal');
     doc.text('Principal Amount', margin + 12, yPos);
-    
+
     doc.setFontSize(9);
     doc.setTextColor(34, 197, 94);
     doc.setFont('helvetica', 'normal');
     doc.text(formatCurrency(result.principalAmount), pageWidth - margin - 12, yPos, { align: 'right' });
-    
+
     yPos += 6;
     doc.setFontSize(8);
     doc.setTextColor(100, 100, 100);
     doc.text('Total Interest', margin + 12, yPos);
-    
+
     doc.setFontSize(9);
     doc.setTextColor(220, 38, 38);
     doc.text(formatCurrency(result.totalInterest), pageWidth - margin - 12, yPos, { align: 'right' });
@@ -488,13 +487,13 @@ export default function EMICalculator() {
       doc.setDrawColor(34, 197, 94);
       doc.setLineWidth(0.5);
       doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 28, 3, 3, 'FD');
-      
+
       yPos += 5;
       doc.setFontSize(10);
       doc.setTextColor(34, 197, 94);
       doc.setFont('helvetica', 'bold');
       doc.text('SAVINGS WITH EXTRA PAYMENTS', margin + 4, yPos);
-      
+
       yPos += 2;
       doc.setDrawColor(34, 197, 94);
       doc.setLineWidth(0.3);
@@ -504,12 +503,12 @@ export default function EMICalculator() {
       const totalYearsSaved = result.prepaymentAnalysis.timeReduction / 12;
       let yearsSaved = Math.floor(totalYearsSaved);
       let monthsSaved = Math.round((totalYearsSaved - yearsSaved) * 12);
-      
+
       if (monthsSaved === 12) {
         yearsSaved += 1;
         monthsSaved = 0;
       }
-      
+
       let timeSavedText = '';
       if (yearsSaved > 0 && monthsSaved > 0) {
         timeSavedText = `${yearsSaved} years ${monthsSaved} months`;
@@ -518,13 +517,13 @@ export default function EMICalculator() {
       } else if (monthsSaved > 0) {
         timeSavedText = `${monthsSaved} months`;
       }
-      
+
       doc.setFontSize(8);
       doc.setTextColor(50, 50, 50);
       doc.setFont('helvetica', 'normal');
       doc.text('Interest Saved', margin + 8, yPos);
       doc.text('Time Saved', pageWidth / 2 + 8, yPos);
-      
+
       yPos += 5;
       doc.setFontSize(11);
       doc.setTextColor(34, 197, 94);
@@ -537,19 +536,19 @@ export default function EMICalculator() {
     doc.setDrawColor(220, 220, 220);
     doc.setLineWidth(0.2);
     doc.line(margin, yPos, pageWidth - margin, yPos);
-    
+
     yPos += 4;
     doc.setFontSize(7);
     doc.setTextColor(120, 120, 120);
     doc.setFont('helvetica', 'italic');
     doc.text('This calculation is for informational purposes only. Please consult with a qualified financial advisor for personalized advice.', pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 6;
     doc.setFontSize(8);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(59, 130, 246);
     doc.text('DapsiWow.com', pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 3;
     doc.setFontSize(7);
     doc.setFont('helvetica', 'normal');
@@ -575,17 +574,17 @@ export default function EMICalculator() {
     // Header
     doc.setFillColor(59, 130, 246);
     doc.rect(0, 0, pageWidth, 38, 'F');
-    
+
     doc.setFontSize(26);
     doc.setTextColor(255, 255, 255);
     doc.setFont('helvetica', 'bold');
     doc.text('DapsiWow', pageWidth / 2, yPos + 5, { align: 'center' });
-    
+
     yPos += 14;
     doc.setFontSize(11);
     doc.setFont('helvetica', 'normal');
     doc.text('Amortization Schedule Report', pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 6;
     doc.setFontSize(8);
     doc.setTextColor(230, 240, 255);
@@ -597,74 +596,74 @@ export default function EMICalculator() {
     doc.text(`Report Date: ${currentDate}`, pageWidth / 2, yPos, { align: 'center' });
 
     yPos = 48;
-    
+
     // Table header
     doc.setFillColor(59, 130, 246);
     doc.rect(margin, yPos, pageWidth - (2 * margin), 8, 'F');
-    
+
     doc.setFontSize(8);
     doc.setTextColor(255, 255, 255);
     doc.setFont('helvetica', 'bold');
-    
+
     const colWidths = [20, 35, 35, 35, 35];
     const colX = [margin + 2, margin + 22, margin + 57, margin + 92, margin + 127];
-    
+
     doc.text('#', colX[0], yPos + 5);
     doc.text('Payment', colX[1], yPos + 5);
     doc.text('Principal', colX[2], yPos + 5);
     doc.text('Interest', colX[3], yPos + 5);
     doc.text('Balance', colX[4], yPos + 5);
-    
+
     yPos += 8;
-    
+
     // Table rows
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(7);
-    
+
     result.amortizationSchedule.forEach((payment, index) => {
       // Check if we need a new page
       if (yPos > pageHeight - 30) {
         doc.addPage();
         yPos = 20;
-        
+
         // Repeat header on new page
         doc.setFillColor(59, 130, 246);
         doc.rect(margin, yPos, pageWidth - (2 * margin), 8, 'F');
-        
+
         doc.setFontSize(8);
         doc.setTextColor(255, 255, 255);
         doc.setFont('helvetica', 'bold');
-        
+
         doc.text('#', colX[0], yPos + 5);
         doc.text('Payment', colX[1], yPos + 5);
         doc.text('Principal', colX[2], yPos + 5);
         doc.text('Interest', colX[3], yPos + 5);
         doc.text('Balance', colX[4], yPos + 5);
-        
+
         yPos += 8;
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(7);
       }
-      
+
       // Alternate row colors
       if (index % 2 === 0) {
         doc.setFillColor(248, 250, 252);
         doc.rect(margin, yPos, pageWidth - (2 * margin), 6, 'F');
       }
-      
+
       doc.setTextColor(0, 0, 0);
       doc.text(payment.month.toString(), colX[0], yPos + 4);
       doc.text(formatCurrency(payment.emi), colX[1], yPos + 4);
-      
+
       doc.setTextColor(34, 197, 94);
       doc.text(formatCurrency(payment.principal), colX[2], yPos + 4);
-      
+
       doc.setTextColor(249, 115, 22);
       doc.text(formatCurrency(payment.interest), colX[3], yPos + 4);
-      
+
       doc.setTextColor(0, 0, 0);
       doc.text(formatCurrency(payment.balance), colX[4], yPos + 4);
-      
+
       yPos += 6;
     });
 
@@ -673,19 +672,19 @@ export default function EMICalculator() {
     doc.setDrawColor(220, 220, 220);
     doc.setLineWidth(0.2);
     doc.line(margin, yPos, pageWidth - margin, yPos);
-    
+
     yPos += 4;
     doc.setFontSize(7);
     doc.setTextColor(120, 120, 120);
     doc.setFont('helvetica', 'italic');
     doc.text('This schedule shows how your payments are split between principal and interest over the first 5 years.', pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 6;
     doc.setFontSize(8);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(59, 130, 246);
     doc.text('DapsiWow.com', pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 3;
     doc.setFontSize(7);
     doc.setFont('helvetica', 'normal');
@@ -714,7 +713,7 @@ export default function EMICalculator() {
     };
 
     const config = currencyMap[currency] || currencyMap.USD;
-    
+
     return new Intl.NumberFormat(config.locale, {
       style: 'currency',
       currency: config.currency,
@@ -760,9 +759,9 @@ export default function EMICalculator() {
           })}
         </script>
       </Helmet>
-      
+
       <Header />
-      
+
       <main>
         {/* Hero Section */}
         <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 overflow-hidden">
@@ -818,7 +817,7 @@ export default function EMICalculator() {
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">EMI Configuration</h2>
                     <p className="text-sm sm:text-base text-gray-600">Enter your loan details for accurate EMI calculations</p>
                   </div>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
                     {/* Currency Selection */}
                     <div className="space-y-2 sm:space-y-3">
@@ -912,7 +911,7 @@ export default function EMICalculator() {
                   {/* Advanced Options */}
                   <div className="space-y-3 sm:space-y-4 md:space-y-6 border-t pt-4 sm:pt-6 md:pt-8">
                     <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900">Advanced Options</h3>
-                    
+
                     {/* Prepayment Option */}
                     <div className="space-y-3 sm:space-y-4 bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6">
                       <div className="flex items-center space-x-2 sm:space-x-3">
@@ -928,7 +927,7 @@ export default function EMICalculator() {
                           Enable Prepayment Analysis
                         </label>
                       </div>
-                      
+
                       {enablePrepayment && (
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 mt-3 sm:mt-4">
                           <div className="space-y-1 sm:space-y-2">
@@ -983,7 +982,7 @@ export default function EMICalculator() {
                           Enable Step-Up EMI
                         </label>
                       </div>
-                      
+
                       {enableStepUp && (
                         <div className="mt-3 sm:mt-4">
                           <Label htmlFor="stepup-percentage" className="text-xs sm:text-sm font-medium text-gray-700">
@@ -1145,6 +1144,223 @@ export default function EMICalculator() {
               </CardContent>
             </Card>
           )}
+
+          {/* Results Section */}
+          {result ? (
+            <div ref={resultsRef} className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+              <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Your EMI Calculation Results</h2>
+
+              <div className="space-y-4 sm:space-y-6 md:space-y-8" data-testid="emi-results">
+                {/* Monthly EMI */}
+                <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border-2 border-blue-200 shadow-sm">
+                  <div className="text-center space-y-2 sm:space-y-3">
+                    <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide">Estimated Monthly EMI</div>
+                    <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 break-all" data-testid="text-monthly-emi">
+                      {formatCurrency(result.emi)}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Summary Cards */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 lg:gap-8">
+                  {/* Principal Amount */}
+                  <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm">
+                    <div className="flex justify-between items-center">
+                      <span className="font-medium text-gray-700 text-sm sm:text-base">Principal Amount</span>
+                      <span className="font-bold text-gray-900 text-sm sm:text-base break-all" data-testid="text-principal-amount">
+                        {formatCurrency(result.principalAmount)}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Total Interest Paid */}
+                  <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm">
+                    <div className="flex justify-between items-center">
+                      <span className="font-medium text-gray-700 text-sm sm:text-base">Total Interest Paid</span>
+                      <span className="font-bold text-orange-600 text-sm sm:text-base break-all" data-testid="text-total-interest">
+                        {formatCurrency(result.totalInterest)}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Total Amount Paid */}
+                  <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm">
+                    <div className="flex justify-between items-center">
+                      <span className="font-medium text-gray-700 text-sm sm:text-base">Total Amount Paid</span>
+                      <span className="font-bold text-gray-900 text-sm sm:text-base break-all" data-testid="text-total-amount">
+                        {formatCurrency(result.totalAmount)}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Interest Percentage */}
+                  <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm">
+                    <div className="flex justify-between items-center">
+                      <span className="font-medium text-gray-700 text-sm sm:text-base">Interest Percentage</span>
+                      <span className="font-bold text-gray-900 text-sm sm:text-base break-all" data-testid="text-interest-percentage">
+                        {result.interestPercentage}%
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* EMI per Year (for Step-Up) */}
+                  {result.stepUpAnalysis && (
+                    <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm">
+                      <div className="flex justify-between items-center">
+                        <span className="font-medium text-gray-700 text-sm sm:text-base">Average EMI</span>
+                        <span className="font-bold text-gray-900 text-sm sm:text-base break-all" data-testid="text-average-emi">
+                          {formatCurrency(result.stepUpAnalysis.averageEMI)}
+                        </span>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Final EMI (for Step-Up) */}
+                  {result.stepUpAnalysis && (
+                    <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm">
+                      <div className="flex justify-between items-center">
+                        <span className="font-medium text-gray-700 text-sm sm:text-base">Final EMI</span>
+                        <span className="font-bold text-gray-900 text-sm sm:text-base break-all" data-testid="text-final-emi">
+                          {formatCurrency(result.stepUpAnalysis.finalEMI)}
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Prepayment Analysis */}
+                {result.prepaymentAnalysis && (
+                  <div className="bg-green-50 rounded-lg sm:rounded-xl p-4 sm:p-6 md:p-8 border-l-4 border-green-400 shadow-sm">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                      <div>
+                        <div className="flex items-center gap-2 mb-2">
+                          <TrendingDown className="w-5 h-5 text-green-600" />
+                          <h3 className="font-bold text-green-800 text-base sm:text-lg">Prepayment Savings</h3>
+                        </div>
+                        <div className="space-y-2 text-sm sm:text-base">
+                          <p className="text-green-700">
+                            <span className="font-semibold">Interest Saved:</span> {formatCurrency(result.prepaymentAnalysis.interestSaved)}
+                          </p>
+                          <p className="text-green-700">
+                            <span className="font-semibold">Time Saved:</span> {Math.round(result.prepaymentAnalysis.timeReduction / 12)} years and {Math.round(result.prepaymentAnalysis.timeReduction % 12)} months
+                          </p>
+                        </div>
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2 mb-2">
+                          <DollarSign className="w-5 h-5 text-green-600" />
+                          <h3 className="font-bold text-green-800 text-base sm:text-lg">New Loan Summary</h3>
+                        </div>
+                        <div className="space-y-2 text-sm sm:text-base">
+                          <p className="text-green-700">
+                            <span className="font-semibold">New Tenure:</span> {result.prepaymentAnalysis.newTenure} months
+                          </p>
+                          <p className="text-green-700">
+                            <span className="font-semibold">New Total Amount:</span> {formatCurrency(result.prepaymentAnalysis.newTotalAmount)}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Step-Up Analysis */}
+                {result.stepUpAnalysis && (
+                  <div className="bg-blue-50 rounded-lg sm:rounded-xl p-4 sm:p-6 md:p-8 border-l-4 border-blue-400 shadow-sm">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                      <div>
+                        <div className="flex items-center gap-2 mb-2">
+                          <TrendingUp className="w-5 h-5 text-blue-600" />
+                          <h3 className="font-bold text-blue-800 text-base sm:text-lg">Step-Up EMI Benefits</h3>
+                        </div>
+                        <div className="space-y-2 text-sm sm:text-base">
+                          <p className="text-blue-700">
+                            <span className="font-semibold">Total Interest Saved:</span> {formatCurrency(result.stepUpAnalysis.totalInterestSaved)}
+                          </p>
+                          <p className="text-blue-700">
+                            <span className="font-semibold">Average EMI:</span> {formatCurrency(result.stepUpAnalysis.averageEMI)}
+                          </p>
+                        </div>
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2 mb-2">
+                          <Clock className="w-5 h-5 text-blue-600" />
+                          <h3 className="font-bold text-blue-800 text-base sm:text-lg">EMI Progression</h3>
+                        </div>
+                        <div className="space-y-2 text-sm sm:text-base">
+                          <p className="text-blue-700">
+                            <span className="font-semibold">Final EMI:</span> {formatCurrency(result.stepUpAnalysis.finalEMI)}
+                          </p>
+                          <p className="text-blue-700">
+                            <span className="font-semibold">EMI Increase:</span> {stepUpPercentage}% annually
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Charts Section */}
+                {showChart && (
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+                    {/* Pie Chart for Principal vs Interest */}
+                    <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+                      <CardContent className="p-4 sm:p-6">
+                        <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-4 sm:mb-6">Breakdown of Total Payment</h3>
+                        <ResponsiveContainer width="100%" height={300}>
+                          <RechartsPieChart>
+                            <Pie
+                              data={[
+                                { name: 'Principal', value: result.principalAmount },
+                                { name: 'Interest', value: result.totalInterest }
+                              ]}
+                              cx="50%"
+                              cy="50%"
+                              outerRadius={100}
+                              fill="#8884d8"
+                              dataKey="value"
+                            >
+                              <Cell fill="#22c55e" /> {/* Green for Principal */}
+                              <Cell fill="#f97316" /> {/* Orange for Interest */}
+                            </Pie>
+                            <Legend />
+                            <RechartsTooltip />
+                          </RechartsPieChart>
+                        </ResponsiveContainer>
+                      </CardContent>
+                    </Card>
+
+                    {/* Area Chart for Balance Over Time */}
+                    <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+                      <CardContent className="p-4 sm:p-6">
+                        <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-4 sm:mb-6">Loan Balance Over Time</h3>
+                        <ResponsiveContainer width="100%" height={300}>
+                          <AreaChart
+                            data={result.amortizationSchedule.map(item => ({
+                              name: `Month ${item.month}`,
+                              balance: item.balance
+                            }))}
+                            margin={{
+                              top: 10,
+                              right: 30,
+                              left: 0,
+                              bottom: 0,
+                            }}
+                          >
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis />
+                            <RechartsTooltip />
+                            <Area type="monotone" dataKey="balance" stroke="#8884d8" fill="#8884d8" />
+                          </AreaChart>
+                        </ResponsiveContainer>
+                      </CardContent>
+                    </Card>
+                  </div>
+                )}
+              </div>
+            </div>
+          ) : null}
 
           {/* SEO Content Section */}
           <div className="mt-8 sm:mt-12 md:mt-16 grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
@@ -1466,7 +1682,7 @@ export default function EMICalculator() {
             {/* Common Mistakes Section */}
             <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
               <CardContent className="p-4 sm:p-6 md:p-8">
-                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Common EMI Calculation Mistakes to Avoid</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">Common EMI Calculation Mistakes to Avoid</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                   <div className="space-y-4">
                     <div className="bg-red-50 border-l-4 border-red-400 p-4 rounded-r-lg">
@@ -1561,7 +1777,7 @@ export default function EMICalculator() {
           </div>
         </div>
       </main>
-      
+
       <Footer />
     </div>
   );
