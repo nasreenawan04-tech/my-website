@@ -824,7 +824,7 @@ export default function EMICalculator() {
         <meta name="robots" content="index, follow" />
         <meta name="author" content="DapsiWow" />
         <link rel="canonical" href="https://dapsiwow.com/tools/emi-calculator" />
-        
+
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -1573,8 +1573,8 @@ export default function EMICalculator() {
           </div>
 
           {/* Educational Content Sections */}
-          <div className="mt-16 space-y-12">
-            
+          <div className="mt-12 space-y-12">
+
             {/* Understanding EMI Calculations */}
             <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-2xl">
               <CardContent className="p-8">
@@ -1868,63 +1868,6 @@ export default function EMICalculator() {
             </div>
           </div>
 
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
-              <CardContent className="p-4 sm:p-6 md:p-8">
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Features of Our EMI Calculator</h3>
-                <div className="space-y-2 sm:space-y-3 text-sm sm:text-base text-gray-600">
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Support for 10+ international currencies</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Step-up EMI calculations for increasing income</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Prepayment analysis to save on interest</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Detailed amortization schedule</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Accurate calculations for all loan types</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
-              <CardContent className="p-4 sm:p-6 md:p-8">
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Benefits of Using Our Calculator</h3>
-                <div className="space-y-2 sm:space-y-3 text-sm sm:text-base text-gray-600">
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Plan your budget with accurate EMI calculations</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Compare different loan scenarios instantly</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Understand the impact of prepayments</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Make informed decisions about loan tenure</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Free to use with no registration required</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
           {/* Additional SEO Content Sections */}
           <div className="mt-12 space-y-8">
             {/* Types of Loans Section */}
@@ -2185,7 +2128,7 @@ export default function EMICalculator() {
             {/* Loan vs Investment Section */}
             <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
               <CardContent className="p-4 sm:p-6 md:p-8">
-                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">EMI vs Investment: Making Smart Financial Decisions</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">EMI vs Investment: Making Smart Financial Decisions</h3>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                   <div className="space-y-4">
                     <h4 className="text-lg font-semibold text-gray-800">When to Take a Loan</h4>
