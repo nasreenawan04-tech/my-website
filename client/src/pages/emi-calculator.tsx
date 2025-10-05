@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Calculator, TrendingUp, Clock, PieChart, Share2, Download, BarChart3 } from 'lucide-react';
 import { jsPDF } from 'jspdf';
 import { useToast } from '@/hooks/use-toast';
-import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
+import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip as RechartsTooltip } from 'recharts';
 
 interface EMIResult {
   emi: number;
@@ -69,32 +69,32 @@ export default function EMICalculator() {
 
     // Standard EMI calculation
     const baseEMI = (principal * rate * Math.pow(1 + rate, tenure)) / (Math.pow(1 + rate, tenure) - 1);
-    
+
     // Generate amortization schedule
     const amortizationSchedule = [];
     let currentBalance = principal;
     let totalInterestPaid = 0;
     let currentEMI = baseEMI;
     let actualTenure = tenure;
-    
+
     for (let month = 1; month <= tenure && currentBalance > 1; month++) {
       // Handle step-up EMI
       if (enableStepUp && month > 12 && (month - 1) % 12 === 0) {
         currentEMI = currentEMI * (1 + stepUpRate);
       }
-      
+
       const interestPayment = currentBalance * rate;
       let principalPayment = Math.min(currentEMI - interestPayment, currentBalance);
-      
+
       // Handle prepayment
       if (enablePrepayment && month === prepaymentAfter) {
         principalPayment += Math.min(prepayment, currentBalance - principalPayment);
       }
-      
+
       currentBalance -= principalPayment;
       totalInterestPaid += interestPayment;
       actualTenure = month;
-      
+
       if (month <= 60) { // Store first 5 years for display
         amortizationSchedule.push({
           month,
@@ -104,14 +104,14 @@ export default function EMICalculator() {
           balance: Math.max(0, currentBalance)
         });
       }
-      
+
       if (currentBalance <= 1) break;
     }
 
     // Calculate regular scenario for comparison
     const regularTotalAmount = baseEMI * tenure;
     const regularTotalInterest = regularTotalAmount - principal;
-    
+
     // Final results
     const finalTotalAmount = totalInterestPaid + principal;
     const finalTotalInterest = totalInterestPaid;
@@ -122,7 +122,7 @@ export default function EMICalculator() {
     if (enablePrepayment && prepayment > 0) {
       const interestSaved = regularTotalInterest - finalTotalInterest;
       const timeReduction = Math.max(0, tenure - actualTenure);
-      
+
       prepaymentAnalysis = {
         timeReduction: Math.round(timeReduction),
         interestSaved: Math.round(interestSaved * 100) / 100,
@@ -138,7 +138,7 @@ export default function EMICalculator() {
       const totalInterestSaved = Math.max(0, regularTotalInterest - finalTotalInterest);
       const averageEMI = finalTotalAmount / actualTenure;
       const finalEMI = currentEMI;
-      
+
       // Create yearly EMI schedule
       const yearlyEMISchedule = [];
       let yearlyEMI = baseEMI;
@@ -151,7 +151,7 @@ export default function EMICalculator() {
           yearlyEMI = yearlyEMI * (1 + stepUpRate);
         }
       }
-      
+
       stepUpAnalysis = {
         totalInterestSaved: Math.round(totalInterestSaved * 100) / 100,
         averageEMI: Math.round(averageEMI * 100) / 100,
@@ -268,17 +268,17 @@ export default function EMICalculator() {
 
     doc.setFillColor(59, 130, 246);
     doc.rect(0, 0, pageWidth, 38, 'F');
-    
+
     doc.setFontSize(26);
     doc.setTextColor(255, 255, 255);
     doc.setFont('helvetica', 'bold');
     doc.text('DapsiWow', pageWidth / 2, yPos + 5, { align: 'center' });
-    
+
     yPos += 14;
     doc.setFontSize(11);
     doc.setFont('helvetica', 'normal');
     doc.text('EMI Loan Calculation Report', pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 6;
     doc.setFontSize(8);
     doc.setTextColor(230, 240, 255);
@@ -294,19 +294,19 @@ export default function EMICalculator() {
     doc.setDrawColor(59, 130, 246);
     doc.setLineWidth(1);
     doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 42, 3, 3, 'FD');
-    
+
     yPos += 6;
     doc.setFontSize(9);
     doc.setTextColor(100, 100, 100);
     doc.setFont('helvetica', 'normal');
     doc.text('MONTHLY EMI', pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 8;
     doc.setFontSize(24);
     doc.setTextColor(59, 130, 246);
     doc.setFont('helvetica', 'bold');
     doc.text(formatCurrency(result.emi), pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 8;
     doc.setFontSize(8);
     doc.setTextColor(80, 80, 80);
@@ -315,18 +315,18 @@ export default function EMICalculator() {
 
     yPos += 12;
     const termDisplay = tenureType === 'years' ? `${loanTenure} years` : `${loanTenure} months`;
-    
+
     doc.setFillColor(255, 255, 255);
     doc.setDrawColor(230, 230, 230);
     doc.setLineWidth(0.5);
     doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 36, 3, 3, 'FD');
-    
+
     yPos += 5;
     doc.setFontSize(10);
     doc.setTextColor(59, 130, 246);
     doc.setFont('helvetica', 'bold');
     doc.text('LOAN DETAILS', margin + 4, yPos);
-    
+
     yPos += 2;
     doc.setDrawColor(59, 130, 246);
     doc.setLineWidth(0.3);
@@ -336,12 +336,12 @@ export default function EMICalculator() {
     doc.setFontSize(9);
     doc.setTextColor(50, 50, 50);
     doc.setFont('helvetica', 'normal');
-    
+
     const col1X = margin + 8;
     const col2X = margin + 60;
     const col3X = pageWidth / 2 + 8;
     const col4X = pageWidth / 2 + 60;
-    
+
     doc.setTextColor(100, 100, 100);
     doc.setFontSize(8);
     doc.text('Loan Amount', col1X, yPos);
@@ -349,7 +349,7 @@ export default function EMICalculator() {
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
     doc.text(formatCurrency(parseFloat(loanAmount)), col2X, yPos);
-    
+
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(100, 100, 100);
     doc.setFontSize(8);
@@ -358,7 +358,7 @@ export default function EMICalculator() {
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
     doc.text(`${interestRate}%`, col4X, yPos);
-    
+
     yPos += 8;
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(100, 100, 100);
@@ -374,13 +374,13 @@ export default function EMICalculator() {
     doc.setDrawColor(230, 230, 230);
     doc.setLineWidth(0.5);
     doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 30, 3, 3, 'FD');
-    
+
     yPos += 5;
     doc.setFontSize(10);
     doc.setTextColor(59, 130, 246);
     doc.setFont('helvetica', 'bold');
     doc.text('PAYMENT SUMMARY', margin + 4, yPos);
-    
+
     yPos += 2;
     doc.setDrawColor(59, 130, 246);
     doc.setLineWidth(0.3);
@@ -394,7 +394,7 @@ export default function EMICalculator() {
     doc.setFontSize(9);
     doc.setTextColor(34, 197, 94);
     doc.text(formatCurrency(result.principalAmount), pageWidth - margin - 8, yPos, { align: 'right' });
-    
+
     yPos += 6;
     doc.setFontSize(8);
     doc.setTextColor(100, 100, 100);
@@ -409,22 +409,22 @@ export default function EMICalculator() {
       doc.setDrawColor(34, 197, 94);
       doc.setLineWidth(0.5);
       doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 22, 3, 3, 'FD');
-      
+
       yPos += 5;
       doc.setFontSize(10);
       doc.setTextColor(34, 197, 94);
       doc.setFont('helvetica', 'bold');
       doc.text('PREPAYMENT SAVINGS', margin + 4, yPos);
-      
+
       yPos += 7;
       const yearsSaved = Math.round(result.prepaymentAnalysis.timeReduction / 12);
-      
+
       doc.setFontSize(8);
       doc.setTextColor(50, 50, 50);
       doc.setFont('helvetica', 'normal');
       doc.text('Interest Saved', margin + 8, yPos);
       doc.text('Time Saved', pageWidth / 2 + 8, yPos);
-      
+
       yPos += 5;
       doc.setFontSize(11);
       doc.setTextColor(34, 197, 94);
@@ -437,19 +437,19 @@ export default function EMICalculator() {
     doc.setDrawColor(220, 220, 220);
     doc.setLineWidth(0.2);
     doc.line(margin, yPos, pageWidth - margin, yPos);
-    
+
     yPos += 4;
     doc.setFontSize(7);
     doc.setTextColor(120, 120, 120);
     doc.setFont('helvetica', 'italic');
     doc.text('This calculation is for informational purposes only. Please consult with a qualified financial advisor for personalized advice.', pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 6;
     doc.setFontSize(8);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(59, 130, 246);
     doc.text('DapsiWow.com', pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 3;
     doc.setFontSize(7);
     doc.setFont('helvetica', 'normal');
@@ -478,7 +478,7 @@ export default function EMICalculator() {
     };
 
     const config = currencyMap[currency] || currencyMap.USD;
-    
+
     return new Intl.NumberFormat(config.locale, {
       style: 'currency',
       currency: config.currency,
@@ -524,9 +524,9 @@ export default function EMICalculator() {
           })}
         </script>
       </Helmet>
-      
+
       <Header />
-      
+
       <main>
         {/* Hero Section */}
         <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 overflow-hidden">
@@ -582,7 +582,7 @@ export default function EMICalculator() {
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">EMI Configuration</h2>
                     <p className="text-sm sm:text-base text-gray-600">Enter your loan details for accurate EMI calculations</p>
                   </div>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
                     {/* Currency Selection */}
                     <div className="space-y-2 sm:space-y-3">
@@ -676,7 +676,7 @@ export default function EMICalculator() {
                   {/* Advanced Options */}
                   <div className="space-y-3 sm:space-y-4 md:space-y-6 border-t pt-4 sm:pt-6 md:pt-8">
                     <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900">Advanced Options</h3>
-                    
+
                     {/* Prepayment Option */}
                     <div className="space-y-3 sm:space-y-4 bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6">
                       <div className="flex items-center space-x-2 sm:space-x-3">
@@ -692,7 +692,7 @@ export default function EMICalculator() {
                           Enable Prepayment Analysis
                         </label>
                       </div>
-                      
+
                       {enablePrepayment && (
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 mt-3 sm:mt-4">
                           <div className="space-y-1 sm:space-y-2">
@@ -747,7 +747,7 @@ export default function EMICalculator() {
                           Enable Step-Up EMI
                         </label>
                       </div>
-                      
+
                       {enableStepUp && (
                         <div className="mt-3 sm:mt-4">
                           <Label htmlFor="stepup-percentage" className="text-xs sm:text-sm font-medium text-gray-700">
@@ -797,44 +797,45 @@ export default function EMICalculator() {
 
                   {/* Advanced Options */}
                   {result && (
-                    <div className="flex flex-wrap justify-center gap-2 sm:gap-3 pt-4">
+                    <div className="flex flex-wrap gap-2 sm:gap-3 pt-3 sm:pt-4">
                       <Button
                         onClick={() => setShowSchedule(!showSchedule)}
                         variant="outline"
                         size="sm"
-                        className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                        className="flex items-center gap-1 sm:gap-2 rounded-full text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 h-8 sm:h-9"
                         data-testid="button-show-schedule"
                       >
+                        <BarChart3 className="w-3 h-3 sm:w-4 sm:h-4" />
                         {showSchedule ? 'Hide' : 'Show'} Payment Schedule
                       </Button>
                       <Button
                         onClick={() => setShowChart(!showChart)}
                         variant="outline"
                         size="sm"
-                        className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                        className="flex items-center gap-1 sm:gap-2 rounded-full text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 h-8 sm:h-9"
                         data-testid="button-show-chart"
                       >
-                        <BarChart3 className="w-4 h-4 mr-1" />
+                        <PieChart className="w-3 h-3 sm:w-4 sm:h-4" />
                         {showChart ? 'Hide' : 'Show'} Chart
                       </Button>
                       <Button
                         onClick={handleShare}
                         variant="outline"
                         size="sm"
-                        className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                        className="flex items-center gap-1 sm:gap-2 rounded-full text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 h-8 sm:h-9"
                         data-testid="button-share"
                       >
-                        <Share2 className="w-4 h-4 mr-1" />
+                        <Share2 className="w-3 h-3 sm:w-4 sm:h-4" />
                         Share
                       </Button>
                       <Button
                         onClick={handleDownloadPDF}
                         variant="outline"
                         size="sm"
-                        className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
-                        data-testid="button-export-pdf"
+                        className="flex items-center gap-1 sm:gap-2 rounded-full text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 h-8 sm:h-9"
+                        data-testid="button-download-pdf"
                       >
-                        <Download className="w-4 h-4 mr-1" />
+                        <Download className="w-3 h-3 sm:w-4 sm:h-4" />
                         Export PDF
                       </Button>
                     </div>
@@ -844,7 +845,7 @@ export default function EMICalculator() {
                 {/* Results Section */}
                 <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t-2 border-gray-200">
                   <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Results</h2>
-                  
+
                   {result ? (
                     <div className="space-y-4 sm:space-y-6" data-testid="emi-results">
                       {/* Monthly EMI Highlight */}
@@ -943,30 +944,29 @@ export default function EMICalculator() {
             <Card className="mt-4 sm:mt-6 md:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
               <CardContent className="p-3 sm:p-4 md:p-6 lg:p-8">
                 <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Payment Breakdown</h3>
-                <div className="h-64 sm:h-80">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <RechartsPieChart>
-                      <Pie
-                        data={[
-                          { name: 'Principal', value: result.principalAmount, fill: '#22c55e' },
-                          { name: 'Interest', value: result.totalInterest, fill: '#f97316' }
-                        ]}
-                        cx="50%"
-                        cy="50%"
-                        labelLine={false}
-                        label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(1)}%`}
-                        outerRadius={80}
-                        dataKey="value"
-                      >
-                      </Pie>
-                      <Legend 
-                        verticalAlign="bottom" 
-                        height={36}
-                        formatter={(value, entry: any) => `${value}: ${formatCurrency(entry.payload.value)}`}
-                      />
-                    </RechartsPieChart>
-                  </ResponsiveContainer>
-                </div>
+                <ResponsiveContainer width="100%" height={300}>
+                  <RechartsPieChart>
+                    <Pie
+                      data={[
+                        { name: 'Principal', value: result.principalAmount, fill: '#22c55e' },
+                        { name: 'Interest', value: result.totalInterest, fill: '#f59e0b' }
+                      ]}
+                      cx="50%"
+                      cy="50%"
+                      labelLine={false}
+                      label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(1)}%`}
+                      outerRadius={80}
+                      dataKey="value"
+                    >
+                    </Pie>
+                    <Legend
+                      verticalAlign="bottom"
+                      height={36}
+                      formatter={(value, entry: any) => `${value}: ${formatCurrency(entry.payload.value)}`}
+                    />
+                    <RechartsTooltip formatter={(value: number) => formatCurrency(value)} />
+                  </RechartsPieChart>
+                </ResponsiveContainer>
               </CardContent>
             </Card>
           )}
@@ -1019,13 +1019,13 @@ export default function EMICalculator() {
                 <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">What is EMI?</h3>
                 <div className="space-y-3 sm:space-y-4 text-sm sm:text-base text-gray-600">
                   <p>
-                    EMI stands for Equated Monthly Installment - a fixed payment amount made by a borrower to a lender 
-                    at a specified date each month. EMIs are used to pay off both interest and principal each month, 
+                    EMI stands for Equated Monthly Installment - a fixed payment amount made by a borrower to a lender
+                    at a specified date each month. EMIs are used to pay off both interest and principal each month,
                     ensuring that the loan is paid off in full over a specified number of years.
                   </p>
                   <p>
-                    Our EMI calculator helps you determine the exact monthly payment for any loan, whether it's a 
-                    home loan, car loan, personal loan, or business loan. With support for multiple currencies and 
+                    Our EMI calculator helps you determine the exact monthly payment for any loan, whether it's a
+                    home loan, car loan, personal loan, or business loan. With support for multiple currencies and
                     advanced features like step-up EMI and prepayment analysis, you can make informed financial decisions.
                   </p>
                 </div>
@@ -1045,7 +1045,7 @@ export default function EMICalculator() {
                     <li>N = Number of monthly installments</li>
                   </ul>
                   <p>
-                    Our calculator automatically applies this formula and provides additional insights like total 
+                    Our calculator automatically applies this formula and provides additional insights like total
                     interest payable, prepayment benefits, and step-up EMI advantages to help you optimize your loan.
                   </p>
                 </div>
@@ -1119,29 +1119,29 @@ export default function EMICalculator() {
                   <div className="space-y-3 sm:space-y-4">
                     <h4 className="text-base sm:text-lg font-semibold text-gray-800">Home Loans</h4>
                     <p className="text-gray-600">
-                      Home loans typically have the longest tenure (15-30 years) and competitive interest rates. 
-                      EMI calculations help you determine affordability based on your monthly income and plan for 
+                      Home loans typically have the longest tenure (15-30 years) and competitive interest rates.
+                      EMI calculations help you determine affordability based on your monthly income and plan for
                       property purchases effectively.
                     </p>
                   </div>
                   <div className="space-y-4">
                     <h4 className="text-lg font-semibold text-gray-800">Car Loans</h4>
                     <p className="text-gray-600">
-                      Auto loans usually range from 1-7 years with moderate interest rates. Use our EMI calculator 
+                      Auto loans usually range from 1-7 years with moderate interest rates. Use our EMI calculator
                       to compare different car financing options and choose the best loan tenure for your budget.
                     </p>
                   </div>
                   <div className="space-y-4">
                     <h4 className="text-lg font-semibold text-gray-800">Personal Loans</h4>
                     <p className="text-gray-600">
-                      Personal loans offer flexibility but come with higher interest rates. Calculate EMI to ensure 
+                      Personal loans offer flexibility but come with higher interest rates. Calculate EMI to ensure
                       the monthly payment fits comfortably within your budget without affecting other financial goals.
                     </p>
                   </div>
                   <div className="space-y-4">
                     <h4 className="text-lg font-semibold text-gray-800">Business Loans</h4>
                     <p className="text-gray-600">
-                      Business loans help entrepreneurs grow their ventures. EMI calculations are crucial for 
+                      Business loans help entrepreneurs grow their ventures. EMI calculations are crucial for
                       cash flow planning and ensuring loan payments don't strain business operations.
                     </p>
                   </div>
@@ -1332,7 +1332,7 @@ export default function EMICalculator() {
             {/* Common Mistakes Section */}
             <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
               <CardContent className="p-4 sm:p-6 md:p-8">
-                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Common EMI Calculation Mistakes to Avoid</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">Common EMI Calculation Mistakes to Avoid</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                   <div className="space-y-4">
                     <div className="bg-red-50 border-l-4 border-red-400 p-4 rounded-r-lg">
@@ -1417,8 +1417,8 @@ export default function EMICalculator() {
                 <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg">
                   <h4 className="font-semibold text-blue-800 mb-2">Smart Strategy</h4>
                   <p className="text-blue-700 text-sm">
-                    Use our EMI calculator to determine monthly payments, then compare the cost of borrowing with potential 
-                    investment returns. Consider your risk tolerance, financial goals, and market conditions before deciding 
+                    Use our EMI calculator to determine monthly payments, then compare the cost of borrowing with potential
+                    investment returns. Consider your risk tolerance, financial goals, and market conditions before deciding
                     between borrowing and self-funding.
                   </p>
                 </div>
@@ -1427,7 +1427,7 @@ export default function EMICalculator() {
           </div>
         </div>
       </main>
-      
+
       <Footer />
     </div>
   );
