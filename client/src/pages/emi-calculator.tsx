@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -54,6 +54,10 @@ export default function EMICalculator() {
   const [showSchedule, setShowSchedule] = useState(false);
   const [showChart, setShowChart] = useState(false);
   const [result, setResult] = useState<EMIResult | null>(null);
+  const tableScrollRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
   const { toast } = useToast();
 
   const calculateEMI = () => {
@@ -187,6 +191,29 @@ export default function EMICalculator() {
     setShowSchedule(false);
     setShowChart(false);
     setResult(null);
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!tableScrollRef.current) return;
+    setIsDragging(true);
+    setStartX(e.pageX - tableScrollRef.current.offsetLeft);
+    setScrollLeft(tableScrollRef.current.scrollLeft);
+  };
+
+  const handleMouseLeave = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging || !tableScrollRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - tableScrollRef.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    tableScrollRef.current.scrollLeft = scrollLeft - walk;
   };
 
   const handleShare = async () => {
@@ -1229,34 +1256,60 @@ export default function EMICalculator() {
 
           {/* Payment Schedule */}
           {result && showSchedule && (
-            <Card className="mt-4 sm:mt-6 md:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
-              <CardContent className="p-3 sm:p-4 md:p-6 lg:p-8">
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Payment Schedule (First 5 Years)</h3>
-                <div className="overflow-x-auto">
-                  <table className="w-full">
+            <Card className="mt-6 sm:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 lg:p-8">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
+                  <h3 
+                    className="text-xl sm:text-2xl font-bold text-gray-900 cursor-pointer hover:text-blue-600 transition-colors select-none"
+                    onClick={() => setShowSchedule(false)}
+                    title="Click to hide schedule"
+                  >
+                    Amortization Schedule (First 5 Years)
+                  </h3>
+                  <Button
+                    onClick={handleDownloadPDF}
+                    variant="outline"
+                    size="sm"
+                    className="flex items-center gap-2 w-full sm:w-auto justify-center"
+                    data-testid="button-export-amortization-pdf"
+                  >
+                    <Download className="w-4 h-4" />
+                    Export PDF
+                  </Button>
+                </div>
+                <p className="text-sm text-gray-600 mb-4">See how your payments are split between principal and interest over time.</p>
+                <div 
+                  ref={tableScrollRef}
+                  className={`overflow-x-auto -mx-4 sm:mx-0 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+                  onMouseDown={handleMouseDown}
+                  onMouseLeave={handleMouseLeave}
+                  onMouseUp={handleMouseUp}
+                  onMouseMove={handleMouseMove}
+                >
+                  <table className="w-full min-w-[600px] select-none" data-testid="amortization-table">
                     <thead>
                       <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
-                        <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-left text-xs sm:text-sm md:text-base font-bold text-gray-900 rounded-l-lg">Payment #</th>
-                        <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-xs sm:text-sm md:text-base font-bold text-gray-900">EMI</th>
-                        <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-xs sm:text-sm md:text-base font-bold text-gray-900">Principal</th>
-                        <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-xs sm:text-sm md:text-base font-bold text-gray-900">Interest</th>
-                        <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-xs sm:text-sm md:text-base font-bold text-gray-900 rounded-r-lg">Balance</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-gray-900 text-xs sm:text-sm rounded-l-lg">Payment #</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Payment</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Principal</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Interest</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm rounded-r-lg">Balance</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100">
                       {result.amortizationSchedule.map((payment, index) => (
                         <tr key={index} className="hover:bg-blue-50 transition-colors">
-                          <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-xs sm:text-sm md:text-base font-medium text-gray-900">{payment.month}</td>
-                          <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-xs sm:text-sm md:text-base text-gray-900 font-medium">
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 font-medium text-gray-900 text-xs sm:text-sm">{payment.month}</td>
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
                             {formatCurrency(payment.emi)}
                           </td>
-                          <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-xs sm:text-sm md:text-base text-green-600 font-bold">
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-green-600 font-bold text-xs sm:text-sm">
                             {formatCurrency(payment.principal)}
                           </td>
-                          <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-xs sm:text-sm md:text-base text-orange-600 font-medium">
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-orange-600 font-medium text-xs sm:text-sm">
                             {formatCurrency(payment.interest)}
                           </td>
-                          <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-xs sm:text-sm md:text-base text-gray-900 font-bold">
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-bold text-xs sm:text-sm">
                             {formatCurrency(payment.balance)}
                           </td>
                         </tr>
