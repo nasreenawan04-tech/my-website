@@ -277,7 +277,7 @@ export default function EMICalculator() {
     yPos += 14;
     doc.setFontSize(11);
     doc.setFont('helvetica', 'normal');
-    doc.text('EMI Loan Calculation Report', pageWidth / 2, yPos, { align: 'center' });
+    doc.text('Loan Calculation Report', pageWidth / 2, yPos, { align: 'center' });
     
     yPos += 6;
     doc.setFontSize(8);
@@ -299,19 +299,24 @@ export default function EMICalculator() {
     doc.setFontSize(9);
     doc.setTextColor(100, 100, 100);
     doc.setFont('helvetica', 'normal');
-    doc.text('MONTHLY EMI', pageWidth / 2, yPos, { align: 'center' });
+    doc.text('EXECUTIVE SUMMARY', pageWidth / 2, yPos, { align: 'center' });
     
     yPos += 8;
-    doc.setFontSize(24);
+    doc.setFontSize(20);
     doc.setTextColor(59, 130, 246);
     doc.setFont('helvetica', 'bold');
+    doc.text('Monthly Payment', pageWidth / 2, yPos, { align: 'center' });
+    
+    yPos += 10;
+    doc.setFontSize(24);
     doc.text(formatCurrency(result.emi), pageWidth / 2, yPos, { align: 'center' });
     
     yPos += 8;
     doc.setFontSize(8);
     doc.setTextColor(80, 80, 80);
     doc.setFont('helvetica', 'normal');
-    doc.text(`Total Interest: ${formatCurrency(result.totalInterest)} (${result.interestPercentage.toFixed(1)}%)`, pageWidth / 2, yPos, { align: 'center' });
+    const interestPercent = ((result.totalInterest / result.totalAmount) * 100).toFixed(1);
+    doc.text(`Total Interest: ${formatCurrency(result.totalInterest)} (${interestPercent}% of total paid)`, pageWidth / 2, yPos, { align: 'center' });
 
     yPos += 12;
     const termDisplay = tenureType === 'years' ? `${loanTenure} years` : `${loanTenure} months`;
@@ -319,7 +324,7 @@ export default function EMICalculator() {
     doc.setFillColor(255, 255, 255);
     doc.setDrawColor(230, 230, 230);
     doc.setLineWidth(0.5);
-    doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 36, 3, 3, 'FD');
+    doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 48, 3, 3, 'FD');
     
     yPos += 5;
     doc.setFontSize(10);
@@ -332,7 +337,7 @@ export default function EMICalculator() {
     doc.setLineWidth(0.3);
     doc.line(margin + 4, yPos, pageWidth - margin - 4, yPos);
 
-    yPos += 8;
+    yPos += 6;
     doc.setFontSize(9);
     doc.setTextColor(50, 50, 50);
     doc.setFont('helvetica', 'normal');
@@ -368,12 +373,35 @@ export default function EMICalculator() {
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
     doc.text(termDisplay, col2X, yPos);
+    
+    if (parseFloat(prepaymentAmount) > 0 && enablePrepayment) {
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(100, 100, 100);
+      doc.setFontSize(8);
+      doc.text('Prepayment', col3X, yPos);
+      doc.setTextColor(34, 197, 94);
+      doc.setFontSize(9);
+      doc.setFont('helvetica', 'bold');
+      doc.text(formatCurrency(parseFloat(prepaymentAmount)), col4X, yPos);
+    }
+    
+    if (enableStepUp) {
+      yPos += 8;
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(100, 100, 100);
+      doc.setFontSize(8);
+      doc.text('Step-Up Rate', col1X, yPos);
+      doc.setTextColor(0, 0, 0);
+      doc.setFontSize(9);
+      doc.setFont('helvetica', 'bold');
+      doc.text(`${stepUpPercentage}% annually`, col2X, yPos);
+    }
 
     yPos += 14;
     doc.setFillColor(255, 255, 255);
     doc.setDrawColor(230, 230, 230);
     doc.setLineWidth(0.5);
-    doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 30, 3, 3, 'FD');
+    doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 36, 3, 3, 'FD');
     
     yPos += 5;
     doc.setFontSize(10);
@@ -387,37 +415,77 @@ export default function EMICalculator() {
     doc.line(margin + 4, yPos, pageWidth - margin - 4, yPos);
 
     yPos += 8;
+    doc.setFillColor(248, 250, 252);
+    doc.setDrawColor(220, 220, 220);
+    doc.setLineWidth(0.2);
+    doc.rect(margin + 4, yPos - 5, pageWidth - (2 * margin) - 8, 8, 'FD');
+    
     doc.setFontSize(8);
     doc.setTextColor(100, 100, 100);
     doc.setFont('helvetica', 'normal');
-    doc.text('Principal Amount', margin + 8, yPos);
+    doc.text('Total Amount Paid', margin + 8, yPos);
+    
+    doc.setFontSize(10);
+    doc.setTextColor(0, 0, 0);
+    doc.setFont('helvetica', 'bold');
+    doc.text(formatCurrency(result.totalAmount), pageWidth - margin - 8, yPos, { align: 'right' });
+    
+    yPos += 9;
+    doc.setFontSize(8);
+    doc.setTextColor(100, 100, 100);
+    doc.setFont('helvetica', 'normal');
+    doc.text('Principal Amount', margin + 12, yPos);
+    
     doc.setFontSize(9);
     doc.setTextColor(34, 197, 94);
-    doc.text(formatCurrency(result.principalAmount), pageWidth - margin - 8, yPos, { align: 'right' });
+    doc.setFont('helvetica', 'normal');
+    doc.text(formatCurrency(result.principalAmount), pageWidth - margin - 12, yPos, { align: 'right' });
     
     yPos += 6;
     doc.setFontSize(8);
     doc.setTextColor(100, 100, 100);
-    doc.text('Total Interest', margin + 8, yPos);
+    doc.text('Total Interest', margin + 12, yPos);
+    
     doc.setFontSize(9);
     doc.setTextColor(220, 38, 38);
-    doc.text(formatCurrency(result.totalInterest), pageWidth - margin - 8, yPos, { align: 'right' });
+    doc.text(formatCurrency(result.totalInterest), pageWidth - margin - 12, yPos, { align: 'right' });
 
     if (result.prepaymentAnalysis) {
       yPos += 12;
       doc.setFillColor(236, 253, 245);
       doc.setDrawColor(34, 197, 94);
       doc.setLineWidth(0.5);
-      doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 22, 3, 3, 'FD');
+      doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 28, 3, 3, 'FD');
       
       yPos += 5;
       doc.setFontSize(10);
       doc.setTextColor(34, 197, 94);
       doc.setFont('helvetica', 'bold');
-      doc.text('PREPAYMENT SAVINGS', margin + 4, yPos);
+      doc.text('SAVINGS WITH EXTRA PAYMENTS', margin + 4, yPos);
       
+      yPos += 2;
+      doc.setDrawColor(34, 197, 94);
+      doc.setLineWidth(0.3);
+      doc.line(margin + 4, yPos, pageWidth - margin - 4, yPos);
+
       yPos += 7;
-      const yearsSaved = Math.round(result.prepaymentAnalysis.timeReduction / 12);
+      const totalYearsSaved = result.prepaymentAnalysis.timeReduction / 12;
+      let yearsSaved = Math.floor(totalYearsSaved);
+      let monthsSaved = Math.round((totalYearsSaved - yearsSaved) * 12);
+      
+      if (monthsSaved === 12) {
+        yearsSaved += 1;
+        monthsSaved = 0;
+      }
+      
+      let timeSavedText = '';
+      if (yearsSaved > 0 && monthsSaved > 0) {
+        timeSavedText = `${yearsSaved} years ${monthsSaved} months`;
+      } else if (yearsSaved > 0) {
+        timeSavedText = `${yearsSaved} years`;
+      } else if (monthsSaved > 0) {
+        timeSavedText = `${monthsSaved} months`;
+      }
       
       doc.setFontSize(8);
       doc.setTextColor(50, 50, 50);
@@ -430,7 +498,7 @@ export default function EMICalculator() {
       doc.setTextColor(34, 197, 94);
       doc.setFont('helvetica', 'bold');
       doc.text(formatCurrency(result.prepaymentAnalysis.interestSaved), margin + 8, yPos);
-      doc.text(`${yearsSaved} years`, pageWidth / 2 + 8, yPos);
+      doc.text(timeSavedText, pageWidth / 2 + 8, yPos);
     }
 
     yPos = pageHeight - 22;
@@ -456,10 +524,10 @@ export default function EMICalculator() {
     doc.setTextColor(100, 100, 100);
     doc.text('Free Online Financial Calculators & Tools', pageWidth / 2, yPos, { align: 'center' });
 
-    doc.save(`DapsiWow-EMI-Calculation-${new Date().getTime()}.pdf`);
+    doc.save(`DapsiWow-Loan-Calculation-${new Date().getTime()}.pdf`);
     toast({ 
       title: "PDF Downloaded!", 
-      description: "Your EMI calculation report has been saved." 
+      description: "Your professional loan calculation report has been saved." 
     });
   };
 
