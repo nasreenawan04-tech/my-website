@@ -1542,16 +1542,16 @@ const MortgageCalculator = () => {
 
                 {result ? (
                   <div ref={resultsRef} className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
-                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Your Mortgage Calculation Results</h2>
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Your Mortgage Results</h2>
 
                     <div className="space-y-4 sm:space-y-6 md:space-y-8">
-                      <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-4 sm:p-6 md:p-8 border-2 border-blue-200 shadow-sm">
-                        <div className="text-center space-y-2 sm:space-y-3 md:space-y-4">
+                      <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border-2 border-blue-200 shadow-sm">
+                        <div className="text-center space-y-2 sm:space-y-3">
                           <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide">Total Monthly Payment</div>
                           <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 break-all">
                             {formatCurrency(result.monthlyPayment)}
                           </div>
-                          <p className="text-xs sm:text-sm text-gray-500">Based on {paymentFrequency} payment frequency</p>
+                          <p className="text-xs text-gray-500">Based on {paymentFrequency} payment frequency</p>
                         </div>
                       </div>
 
@@ -1762,54 +1762,25 @@ const MortgageCalculator = () => {
                         </div>
                       )}
 
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                        <div className="bg-white rounded-lg sm:rounded-xl border-l-4 border-gray-800 p-3 sm:p-4 md:p-5 shadow-sm hover:shadow-md transition-shadow">
-                          <div className="flex justify-between items-center">
-                            <span className="text-xs sm:text-sm font-medium text-gray-600">Principal & Interest</span>
-                            <span className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 break-all">{formatCurrency(result.monthlyPrincipalAndInterest)}</span>
-                          </div>
+                      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+                        <div className="bg-blue-50 rounded-lg p-3 md:p-4">
+                          <p className="text-xs md:text-sm text-blue-700 mb-1">Principal & Interest</p>
+                          <p className="text-base md:text-xl lg:text-2xl font-bold text-blue-900 break-all">{formatCurrency(result.monthlyPrincipalAndInterest)}</p>
                         </div>
-                        <div className="bg-white rounded-lg sm:rounded-xl border-l-4 border-green-600 p-3 sm:p-4 md:p-5 shadow-sm hover:shadow-md transition-shadow">
-                          <div className="flex justify-between items-center">
-                            <span className="text-xs sm:text-sm font-medium text-gray-600">Property Taxes</span>
-                            <span className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 break-all">{formatCurrency(result.monthlyTaxes)}</span>
-                          </div>
+                        <div className="bg-green-50 rounded-lg p-3 md:p-4">
+                          <p className="text-xs md:text-sm text-green-700 mb-1">Property Taxes</p>
+                          <p className="text-base md:text-xl lg:text-2xl font-bold text-green-900 break-all">{formatCurrency(result.monthlyTaxes)}</p>
                         </div>
-                        <div className="bg-white rounded-lg sm:rounded-xl border-l-4 border-purple-600 p-3 sm:p-4 md:p-5 shadow-sm hover:shadow-md transition-shadow">
-                          <div className="flex justify-between items-center">
-                            <span className="text-xs sm:text-sm font-medium text-gray-600">Home Insurance</span>
-                            <span className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 break-all">{formatCurrency(result.monthlyInsurance)}</span>
-                          </div>
+                        <div className="bg-purple-50 rounded-lg p-3 md:p-4">
+                          <p className="text-xs md:text-sm text-purple-700 mb-1">Home Insurance</p>
+                          <p className="text-base md:text-xl lg:text-2xl font-bold text-purple-900 break-all">{formatCurrency(result.monthlyInsurance)}</p>
                         </div>
                         {result.monthlyPMI > 0 && (
-                          <div className="bg-white rounded-lg sm:rounded-xl border-l-4 border-orange-600 p-3 sm:p-4 md:p-5 shadow-sm hover:shadow-md transition-shadow">
-                            <div className="flex justify-between items-center">
-                              <span className="text-xs sm:text-sm font-medium text-gray-600">PMI</span>
-                              <span className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 break-all">{formatCurrency(result.monthlyPMI)}</span>
-                            </div>
+                          <div className="bg-orange-50 rounded-lg p-3 md:p-4">
+                            <p className="text-xs md:text-sm text-orange-700 mb-1">PMI</p>
+                            <p className="text-base md:text-xl lg:text-2xl font-bold text-orange-900 break-all">{formatCurrency(result.monthlyPMI)}</p>
                           </div>
                         )}
-                        {result.monthlyHOA > 0 && (
-                          <div className="bg-white rounded-lg sm:rounded-xl border-l-4 border-indigo-600 p-3 sm:p-4 md:p-5 shadow-sm hover:shadow-md transition-shadow">
-                            <div className="flex justify-between items-center">
-                              <span className="text-xs sm:text-sm font-medium text-gray-600">HOA Fees</span>
-                              <span className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 break-all">{formatCurrency(result.monthlyHOA)}</span>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-4 sm:p-6 shadow-sm border border-gray-200">
-                        <div className="space-y-3 sm:space-y-4">
-                          <div className="flex justify-between items-center pb-3 border-b border-gray-200">
-                            <span className="text-sm sm:text-base font-semibold text-gray-700">Total Amount Paid</span>
-                            <span className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 break-all">{formatCurrency(result.totalAmount)}</span>
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className="text-sm sm:text-base font-medium text-gray-600">Total Interest Paid</span>
-                            <span className="text-lg sm:text-xl md:text-2xl font-bold text-orange-600 break-all">{formatCurrency(result.totalInterest)}</span>
-                          </div>
-                        </div>
                       </div>
 
                       {result.extraPaymentSavings && (
