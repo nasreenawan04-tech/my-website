@@ -1542,16 +1542,45 @@ const MortgageCalculator = () => {
 
                 {result ? (
                   <div ref={resultsRef} className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
-                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Your Mortgage Results</h2>
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-left">Your Mortgage Results</h2>
 
                     <div className="space-y-4 sm:space-y-6 md:space-y-8">
-                      <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border-2 border-blue-200 shadow-sm">
+                      <div className="bg-white rounded-lg sm:rounded-xl p-6 sm:p-8 border border-gray-200 shadow-sm">
                         <div className="text-center space-y-2 sm:space-y-3">
-                          <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide">Total Monthly Payment</div>
-                          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 break-all">
+                          <div className="text-xs sm:text-sm font-semibold text-gray-500 uppercase tracking-wide">Estimated Monthly Payment</div>
+                          <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-blue-600 break-all">
                             {formatCurrency(result.monthlyPayment)}
                           </div>
-                          <p className="text-xs text-gray-500">Based on {paymentFrequency} payment frequency</p>
+                          <p className="text-xs sm:text-sm text-gray-500">Based on monthly payment frequency</p>
+                        </div>
+                      </div>
+
+                      <div className="space-y-3 sm:space-y-4">
+                        <div className="bg-white rounded-lg p-4 sm:p-5 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Principal Amount</span>
+                            <span className="font-bold text-gray-900 text-sm sm:text-base break-all">
+                              {formatCurrency(parseFloat(homePrice) - (usePercentage ? (parseFloat(homePrice) * parseFloat(downPaymentPercent)) / 100 : parseFloat(downPayment)))}
+                            </span>
+                          </div>
+                        </div>
+                        
+                        <div className="bg-white rounded-lg p-4 sm:p-5 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Total Interest Paid</span>
+                            <span className="font-bold text-orange-600 text-sm sm:text-base break-all">
+                              {formatCurrency(result.totalInterest)}
+                            </span>
+                          </div>
+                        </div>
+                        
+                        <div className="bg-white rounded-lg p-4 sm:p-5 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Total Amount Paid</span>
+                            <span className="font-bold text-gray-900 text-sm sm:text-base break-all">
+                              {formatCurrency(result.totalAmount)}
+                            </span>
+                          </div>
                         </div>
                       </div>
 
