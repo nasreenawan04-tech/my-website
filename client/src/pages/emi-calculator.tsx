@@ -799,16 +799,16 @@ export default function EMICalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>Free EMI Calculator: Calculate Loan Payments & Interest 2025 | DapsiWow</title>
-        <meta name="description" content="Calculate EMI (Equated Monthly Installments) for home, car, personal & business loans instantly. Free EMI calculator with step-up, prepayment analysis & amortization schedules. Support for 10+ currencies." />
-        <meta name="keywords" content="EMI calculator, equated monthly installment calculator, home loan EMI, car loan EMI, personal loan EMI, loan EMI calculator, monthly payment calculator, loan installment calculator, EMI formula, prepayment calculator, step up EMI calculator, loan amortization calculator" />
-        <meta property="og:title" content="Free EMI Calculator: Calculate Loan Payments & Interest 2025 | DapsiWow" />
-        <meta property="og:description" content="Professional EMI calculator for accurate loan payment calculations. Features step-up EMI, prepayment analysis, and detailed amortization schedules. 100% free, no registration." />
+        <title>EMI Calculator: Calculate Home, Car & Personal Loan EMI Online Free 2025 | DapsiWow</title>
+        <meta name="description" content="Free online EMI calculator for home loan, car loan, personal loan & education loan. Calculate EMI with prepayment, step-up options & amortization schedule. Instant EMI calculation with accurate interest rates. Support for 10+ currencies including INR, USD." />
+        <meta name="keywords" content="emi calculator, loan emi calculator, home loan emi calculator, car loan emi calculator, personal loan emi calculator, emi calculator online, calculate emi, free emi calculator, emi calculator with prepayment, emi calculator india, loan calculator, education loan emi calculator, bike loan emi calculator, housing loan emi calculator, emi calculator with interest rate, emi calculator with amortization schedule, instant emi calculator, accurate emi calculator, emi calculation formula, how to calculate emi, mortgage calculator, emi calculator with chart, loan amortization calculator, equated monthly installment calculator, monthly payment calculator, loan installment calculator, emi formula, prepayment calculator, step up emi calculator, interest calculator, loan eligibility calculator, business loan emi calculator, sbi home loan emi calculator, hdfc home loan emi calculator, emi meaning, what is emi, how emi calculator works, emi vs principal payment, reduce emi payment, emi calculator app, emi calculator mobile, debt consolidation calculator, affordability calculator" />
+        <meta property="og:title" content="EMI Calculator: Calculate Home, Car & Personal Loan EMI Online Free 2025 | DapsiWow" />
+        <meta property="og:description" content="Professional EMI calculator for accurate loan payment calculations. Calculate home loan, car loan, personal loan & education loan EMI instantly. Features step-up EMI, prepayment analysis, and detailed amortization schedules. 100% free, no registration." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dapsiwow.com/tools/emi-calculator" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Free EMI Calculator: Calculate Loan Payments Instantly" />
-        <meta name="twitter:description" content="Calculate EMI for any loan with our professional calculator. Instant results with amortization schedules and interest analysis." />
+        <meta name="twitter:title" content="Free EMI Calculator: Calculate Loan Payments Instantly for Home, Car & Personal Loans" />
+        <meta name="twitter:description" content="Calculate EMI for home loan, car loan, personal loan with our professional calculator. Instant EMI calculation with amortization schedules and interest analysis. Free online tool." />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="DapsiWow" />
         <link rel="canonical" href="https://dapsiwow.com/tools/emi-calculator" />
