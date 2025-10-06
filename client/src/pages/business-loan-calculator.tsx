@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -46,6 +46,40 @@ export default function BusinessLoanCalculator() {
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const { toast } = useToast();
+
+  // Load parameters from URL on mount (for shared links)
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const amount = params.get('amount');
+    const rate = params.get('rate');
+    const term = params.get('term');
+    const unit = params.get('unit');
+    const type = params.get('type');
+    const revenue = params.get('revenue');
+    const collateral = params.get('collateral');
+
+    if (amount || rate || term) {
+      if (amount) setLoanAmount(amount);
+      if (rate) setInterestRate(rate);
+      if (term) setLoanTerm(term);
+      if (unit) setTermUnit(unit);
+      if (type) setLoanType(type);
+      if (revenue) setBusinessRevenue(revenue);
+      if (collateral) setCollateralValue(collateral);
+
+      // Trigger calculation after state updates
+      setTimeout(() => {
+        const calculateButton = document.querySelector('[data-testid="button-calculate"]') as HTMLButtonElement;
+        if (calculateButton) {
+          calculateButton.click();
+          toast({
+            title: "Shared calculation loaded!",
+            description: "Results from the shared link have been calculated."
+          });
+        }
+      }, 200);
+    }
+  }, []);
 
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!tableScrollRef.current) return;
@@ -349,8 +383,14 @@ export default function BusinessLoanCalculator() {
       amount: loanAmount,
       rate: interestRate,
       term: loanTerm,
+      unit: termUnit,
       type: loanType
     });
+    
+    // Add optional business parameters if they exist
+    if (businessRevenue) params.append('revenue', businessRevenue);
+    if (collateralValue) params.append('collateral', collateralValue);
+    
     const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
 
     let shareText = `💼 Business Loan Calculator Results\n\n`;
