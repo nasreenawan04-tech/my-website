@@ -27,12 +27,6 @@ interface BusinessLoanResult {
     interest: number;
     balance: number;
   }>;
-  extraPaymentSavings?: {
-    timeSaved: number;
-    interestSaved: number;
-    newTotalInterest: number;
-    newPayoffTime: number;
-  };
 }
 
 export default function BusinessLoanCalculator() {
@@ -40,8 +34,6 @@ export default function BusinessLoanCalculator() {
   const [interestRate, setInterestRate] = useState('7.50');
   const [loanTerm, setLoanTerm] = useState('10');
   const [termUnit, setTermUnit] = useState('years');
-  const [paymentFrequency, setPaymentFrequency] = useState('monthly');
-  const [extraPayment, setExtraPayment] = useState('0');
   const [loanType, setLoanType] = useState('term-loan');
   const [businessRevenue, setBusinessRevenue] = useState('');
   const [collateralValue, setCollateralValue] = useState('');
@@ -115,85 +107,60 @@ export default function BusinessLoanCalculator() {
   const calculateBusinessLoan = () => {
     const principal = parseFloat(loanAmount);
     const annualRate = parseFloat(interestRate) / 100;
+    const rate = annualRate / 12;
     const termMonths = termUnit === 'years' ? parseFloat(loanTerm) * 12 : parseFloat(loanTerm);
     const revenue = parseFloat(businessRevenue) || 0;
     const collateral = parseFloat(collateralValue) || 0;
-    const extraPmt = parseFloat(extraPayment) || 0;
 
     if (principal <= 0 || annualRate <= 0 || termMonths <= 0) return;
 
-    const paymentsPerYear = paymentFrequency === 'weekly' ? 52 :
-                           paymentFrequency === 'biweekly' ? 26 : 12;
-    const periodicRate = annualRate / paymentsPerYear;
-    const totalPayments = termMonths * (paymentsPerYear / 12);
-
-    let regularPayment;
+    let monthlyPayment;
     
     if (loanType === 'line-of-credit') {
-      regularPayment = principal * periodicRate;
+      monthlyPayment = principal * rate;
     } else {
-      regularPayment = (principal * periodicRate * Math.pow(1 + periodicRate, totalPayments)) / 
-                       (Math.pow(1 + periodicRate, totalPayments) - 1);
+      monthlyPayment = (principal * rate * Math.pow(1 + rate, termMonths)) / (Math.pow(1 + rate, termMonths) - 1);
     }
 
     const amortizationSchedule = [];
     let currentBalance = principal;
     let totalInterestPaid = 0;
-    let totalAmountPaid = 0;
-    let actualPayments = 0;
 
-    for (let payment = 1; payment <= totalPayments && currentBalance > 0.01; payment++) {
-      const interestPayment = currentBalance * periodicRate;
-      const principalPayment = loanType === 'line-of-credit' ? 0 : 
-                              Math.min(regularPayment - interestPayment + extraPmt, currentBalance);
-      const actualPaymentAmount = principalPayment + interestPayment;
-
+    for (let month = 1; month <= termMonths && currentBalance > 0.01; month++) {
+      const interestPayment = currentBalance * rate;
+      const principalPayment = loanType === 'line-of-credit' ? 0 : Math.min(monthlyPayment - interestPayment, currentBalance);
+      
       if (loanType !== 'line-of-credit') {
         currentBalance -= principalPayment;
       }
       totalInterestPaid += interestPayment;
-      totalAmountPaid += actualPaymentAmount;
-      actualPayments = payment;
 
-      if (payment <= 60) {
+      if (month <= 60) {
         amortizationSchedule.push({
-          month: payment,
-          payment: actualPaymentAmount,
+          month,
+          payment: monthlyPayment,
           principal: principalPayment,
           interest: interestPayment,
           balance: currentBalance
         });
       }
     }
-
-    let extraPaymentSavings;
-    if (extraPmt > 0 && loanType !== 'line-of-credit') {
-      const regularTotalAmount = regularPayment * totalPayments;
-      const regularTotalInterest = regularTotalAmount - principal;
-
-      extraPaymentSavings = {
-        timeSaved: Math.max(0, totalPayments - actualPayments),
-        interestSaved: Math.max(0, regularTotalInterest - totalInterestPaid),
-        newTotalInterest: totalInterestPaid,
-        newPayoffTime: actualPayments
-      };
-    }
-
-    const monthlyEquivalent = regularPayment * (paymentsPerYear / 12);
-    const yearlyPayment = monthlyEquivalent * 12;
+    
+    const totalAmount = loanType === 'line-of-credit' ? totalInterestPaid + principal : monthlyPayment * termMonths;
+    const totalInterest = loanType === 'line-of-credit' ? totalInterestPaid : totalAmount - principal;
+    const yearlyPayment = monthlyPayment * 12;
     
     const debtServiceCoverage = revenue > 0 ? revenue / yearlyPayment : 0;
     const loanToValue = collateral > 0 ? (principal / collateral) * 100 : 0;
 
     setResult({
-      monthlyPayment: Math.round(monthlyEquivalent * 100) / 100,
-      totalAmount: Math.round(totalAmountPaid * 100) / 100,
-      totalInterest: Math.round(totalInterestPaid * 100) / 100,
+      monthlyPayment: Math.round(monthlyPayment * 100) / 100,
+      totalAmount: Math.round(totalAmount * 100) / 100,
+      totalInterest: Math.round(totalInterest * 100) / 100,
       yearlyPayment: Math.round(yearlyPayment * 100) / 100,
       debtServiceCoverage: Math.round(debtServiceCoverage * 100) / 100,
       loanToValue: Math.round(loanToValue * 100) / 100,
-      amortizationSchedule,
-      extraPaymentSavings
+      amortizationSchedule
     });
 
     setTimeout(() => {
@@ -206,8 +173,6 @@ export default function BusinessLoanCalculator() {
     setInterestRate('7.50');
     setLoanTerm('10');
     setTermUnit('years');
-    setPaymentFrequency('monthly');
-    setExtraPayment('0');
     setLoanType('term-loan');
     setBusinessRevenue('');
     setCollateralValue('');
@@ -809,30 +774,6 @@ export default function BusinessLoanCalculator() {
 
                       <div className="space-y-2 sm:space-y-3">
                         <div className="flex items-center gap-2">
-                          <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">Payment Frequency</Label>
-                          <Tooltip>
-                            <TooltipTrigger>
-                              <Info className="w-4 h-4 text-gray-400" />
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p className="max-w-xs text-sm">How often you'll make payments</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </div>
-                        <Select value={paymentFrequency} onValueChange={setPaymentFrequency}>
-                          <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-payment-frequency">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="monthly">Monthly</SelectItem>
-                            <SelectItem value="biweekly">Bi-weekly</SelectItem>
-                            <SelectItem value="weekly">Weekly</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-
-                      <div className="space-y-2 sm:space-y-3">
-                        <div className="flex items-center gap-2">
                           <Label htmlFor="collateral-value" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                             Collateral Value (Optional)
                           </Label>
@@ -857,36 +798,6 @@ export default function BusinessLoanCalculator() {
                             data-testid="input-collateral-value"
                           />
                         </div>
-                      </div>
-
-                      <div className="md:col-span-2 space-y-2 sm:space-y-3">
-                        <div className="flex items-center gap-2">
-                          <Label htmlFor="extra-payment" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
-                            Extra Payment (Optional)
-                          </Label>
-                          <Tooltip>
-                            <TooltipTrigger>
-                              <Info className="w-4 h-4 text-gray-400" />
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p className="max-w-xs text-sm">Additional amount to pay each period to reduce interest and loan term</p>
-                            </TooltipContent>
-                          </Tooltip>
-                        </div>
-                        <div className="relative">
-                          <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-lg">$</span>
-                          <Input
-                            id="extra-payment"
-                            type="number"
-                            value={extraPayment}
-                            onChange={(e) => setExtraPayment(e.target.value)}
-                            className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
-                            placeholder="0"
-                            min="0"
-                            data-testid="input-extra-payment"
-                          />
-                        </div>
-                        <p className="text-xs sm:text-sm text-gray-500">💡 Pro Tip: Even small extra payments can save you thousands in interest!</p>
                       </div>
                     </div>
                   </TooltipProvider>
@@ -1035,32 +946,6 @@ export default function BusinessLoanCalculator() {
                         </div>
                       )}
                     </div>
-
-                    {result.extraPaymentSavings && (
-                      <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-green-200 mt-6">
-                        <h4 className="font-bold text-green-800 mb-3 sm:mb-4 text-base sm:text-lg flex items-center gap-2">
-                          <TrendingDown className="w-5 h-5" />
-                          Extra Payment Benefits
-                        </h4>
-                        <div className="space-y-2 sm:space-y-3">
-                          <div className="flex justify-between items-center">
-                            <span className="text-green-700 font-medium text-sm sm:text-base">Interest Saved:</span>
-                            <span className="font-bold text-green-800 text-sm sm:text-base md:text-lg break-all">
-                              {formatCurrency(result.extraPaymentSavings.interestSaved)}
-                            </span>
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className="text-green-700 font-medium text-sm sm:text-base">Time Saved:</span>
-                            <span className="font-bold text-green-800 text-sm sm:text-base md:text-lg">
-                              {Math.round(result.extraPaymentSavings.timeSaved / (paymentFrequency === 'weekly' ? 52 : paymentFrequency === 'biweekly' ? 26 : 12))} years
-                            </span>
-                          </div>
-                          <p className="text-sm text-green-700 mt-3 italic">
-                            💰 By making extra payments, you'll save significantly on interest and become debt-free faster!
-                          </p>
-                        </div>
-                      </div>
-                    )}
 
                     {showChart && (
                       <div className="mt-6 bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg">
