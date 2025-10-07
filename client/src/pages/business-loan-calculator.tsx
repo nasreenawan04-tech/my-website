@@ -966,18 +966,6 @@ export default function BusinessLoanCalculator() {
                         </ResponsiveContainer>
                       </div>
                     )}
-
-                    <div className="mt-6 flex flex-wrap gap-2">
-                      <Button
-                        onClick={() => setShowAmortization(!showAmortization)}
-                        variant="outline"
-                        size="sm"
-                        className="rounded-full text-xs sm:text-sm"
-                        data-testid="button-show-schedule"
-                      >
-                        {showAmortization ? 'Hide' : 'Show'} Payment Schedule
-                      </Button>
-                    </div>
                   </div>
                 )}
 
