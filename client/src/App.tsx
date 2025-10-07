@@ -36,7 +36,6 @@ const PersonalFinanceDashboard = lazy(() => import("@/pages/personal-finance-das
 const DebtConsolidationCalculator = lazy(() => import("@/pages/debt-consolidation-calculator"));
 const MealCalorieTracker = lazy(() => import("@/pages/meal-calorie-tracker"));
 const UnitConverter = lazy(() => import("@/pages/unit-converter"));
-import PDFEncryptionTool from './pages/pdf-encryption-tool';
 
 // Individual tool components are now loaded dynamically via ToolPage for better maintainability
 
@@ -180,8 +179,7 @@ function Router() {
           <Route path="/tools/debt-consolidation-calculator" component={DebtConsolidationCalculator} />
           <Route path="/tools/meal-calorie-tracker" component={MealCalorieTracker} />
           <Route path="/tools/unit-converter" component={UnitConverter} />
-          <Route path="/tools/pdf-encryption-tool" component={PDFEncryptionTool} />
-
+          
           {/* Generic tool route - must come last to avoid conflicts */}
           <Route path="/tools/:toolId" component={ToolPage} />
 

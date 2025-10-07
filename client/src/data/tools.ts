@@ -486,14 +486,6 @@ const toolsData: Tool[] = [
     href: "/tools/qr-code-scanner",
   },
   {
-    id: 'pdf-encryption-tool',
-    name: 'PDF Encryption Tool',
-    description: 'Password protect your PDF files with strong encryption or decrypt protected PDFs securely',
-    category: 'text' as const,
-    icon: 'fas fa-lock',
-    href: '/tools/pdf-encryption-tool',
-  },
-  {
     id: "duplicate-line-remover",
     name: "Duplicate Line Remover",
     description: "Remove duplicate lines from text while preserving order",
