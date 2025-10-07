@@ -802,10 +802,10 @@ export default function BusinessLoanCalculator() {
                     </div>
                   </TooltipProvider>
 
-                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4">
+                  <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       onClick={calculateBusinessLoan}
-                      className="flex-1 h-12 sm:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                       data-testid="button-calculate"
                     >
                       <Calculator className="w-5 h-5 mr-2" />
@@ -814,27 +814,30 @@ export default function BusinessLoanCalculator() {
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-12 sm:h-14 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                       data-testid="button-reset"
                     >
-                      <RotateCcw className="w-5 h-5 mr-2" />
-                      Reset
+                      Reset Calculator
                     </Button>
                   </div>
-                </div>
 
-                {/* Results Section */}
-                {result && (
-                  <div ref={resultsRef} className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
-                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
-                      <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">Your Business Loan Results</h2>
-                      <div className="flex flex-wrap gap-2">
+                  {result && (
+                    <>
+                      <div className="flex flex-wrap justify-center gap-2 sm:gap-3 pt-3 sm:pt-4 print:hidden">
+                        <Button
+                          onClick={() => setShowAmortization(!showAmortization)}
+                          variant="outline"
+                          size="sm"
+                          className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                          data-testid="button-amortization"
+                        >
+                          {showAmortization ? 'Hide' : 'Show'} Payment Schedule
+                        </Button>
                         <Button
                           onClick={() => setShowChart(!showChart)}
                           variant="outline"
                           size="sm"
                           className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
-                          data-testid="button-toggle-chart"
                         >
                           <PieChart className="w-4 h-4 mr-1" />
                           {showChart ? 'Hide' : 'Show'} Chart
@@ -854,13 +857,20 @@ export default function BusinessLoanCalculator() {
                           variant="outline"
                           size="sm"
                           className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
-                          data-testid="button-export-pdf"
+                          data-testid="button-download"
                         >
                           <Download className="w-4 h-4 mr-1" />
-                          Export PDF
+                          Download PDF
                         </Button>
                       </div>
-                    </div>
+                    </>
+                  )}
+                </div>
+
+                {/* Results Section */}
+                {result && (
+                  <div ref={resultsRef} className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-6">Your Business Loan Results</h2>
 
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                       <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg">
