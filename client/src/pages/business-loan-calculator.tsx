@@ -825,6 +825,15 @@ export default function BusinessLoanCalculator() {
                     <>
                       <div className="flex flex-wrap justify-center gap-2 sm:gap-3 pt-3 sm:pt-4 print:hidden">
                         <Button
+                          onClick={() => setShowAmortization(!showAmortization)}
+                          variant="outline"
+                          size="sm"
+                          className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                          data-testid="button-amortization"
+                        >
+                          {showAmortization ? 'Hide' : 'Show'} Payment Schedule
+                        </Button>
+                        <Button
                           onClick={() => setShowChart(!showChart)}
                           variant="outline"
                           size="sm"
@@ -851,7 +860,7 @@ export default function BusinessLoanCalculator() {
                           data-testid="button-download"
                         >
                           <Download className="w-4 h-4 mr-1" />
-                          Download PDF
+                          Export PDF
                         </Button>
                       </div>
                     </>
