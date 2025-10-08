@@ -8,7 +8,10 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { Calculator, TrendingUp, Clock, DollarSign, Info } from 'lucide-react';
+import { Calculator, TrendingUp, Clock, DollarSign, Info, Download, Share2, PieChart } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
+import { jsPDF } from 'jspdf';
+import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
 
 interface CompoundInterestResult {
   finalAmount: number;
@@ -39,6 +42,7 @@ interface CompoundInterestResult {
 }
 
 export default function CompoundInterestCalculator() {
+  const { toast } = useToast();
   const [principal, setPrincipal] = useState('10000');
   const [interestRate, setInterestRate] = useState('8');
   const [timePeriod, setTimePeriod] = useState('10');
@@ -54,6 +58,7 @@ export default function CompoundInterestCalculator() {
   const [goalAmount, setGoalAmount] = useState('100000');
   const [showRealValue, setShowRealValue] = useState(false);
   const [showBreakdown, setShowBreakdown] = useState(false);
+  const [showChart, setShowChart] = useState(false);
   const [result, setResult] = useState<CompoundInterestResult | null>(null);
 
   const calculateCompoundInterest = () => {
@@ -188,7 +193,181 @@ export default function CompoundInterestCalculator() {
     setGoalAmount('100000');
     setShowRealValue(false);
     setShowBreakdown(false);
+    setShowChart(false);
     setResult(null);
+  };
+
+  const handleShare = async () => {
+    if (!result) return;
+
+    const shareText = `💰 Compound Interest Calculator Results
+
+Principal: ${formatCurrency(parseFloat(principal))}
+Interest Rate: ${interestRate}% annually
+Time Period: ${timePeriod} ${timeUnit}
+Compound Frequency: ${compoundFrequency === '1' ? 'Annually' : compoundFrequency === '4' ? 'Quarterly' : compoundFrequency === '12' ? 'Monthly' : 'Daily'}
+${enableSIP ? `\nSIP Amount: ${formatCurrency(parseFloat(sipAmount))} per ${sipFrequency === '12' ? 'month' : 'year'}` : ''}
+
+📊 Results:
+Final Amount: ${formatCurrency(result.finalAmount)}
+Total Interest Earned: ${formatCurrency(result.totalInterest)}
+Total Contributions: ${formatCurrency(result.totalContributions)}
+${showRealValue ? `Real Value (Inflation Adjusted): ${formatCurrency(result.realValue)}` : ''}
+
+Calculate your investment growth at DapsiWow.com`;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: '💰 Compound Interest Calculator Results',
+          text: shareText,
+        });
+        toast({ title: "Shared successfully!", description: "Results shared with all details" });
+      } catch (err) {
+        copyToClipboard(shareText);
+      }
+    } else {
+      copyToClipboard(shareText);
+    }
+  };
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+    toast({
+      title: "Copied to clipboard!",
+      description: "Share these results with others",
+    });
+  };
+
+  const handleDownloadPDF = () => {
+    if (!result) return;
+
+    const doc = new jsPDF();
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const margin = 15;
+    let yPos = 12;
+
+    doc.setFillColor(59, 130, 246);
+    doc.rect(0, 0, pageWidth, 38, 'F');
+    
+    doc.setFontSize(26);
+    doc.setTextColor(255, 255, 255);
+    doc.setFont('helvetica', 'bold');
+    doc.text('DapsiWow', pageWidth / 2, yPos + 5, { align: 'center' });
+    
+    yPos += 14;
+    doc.setFontSize(11);
+    doc.setFont('helvetica', 'normal');
+    doc.text('Compound Interest Calculation Report', pageWidth / 2, yPos, { align: 'center' });
+    
+    yPos += 6;
+    doc.setFontSize(8);
+    doc.setTextColor(230, 240, 255);
+    const currentDate = new Date().toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric'
+    });
+    doc.text(`Report Date: ${currentDate}`, pageWidth / 2, yPos, { align: 'center' });
+
+    yPos = 48;
+    doc.setFillColor(240, 249, 255);
+    doc.setDrawColor(59, 130, 246);
+    doc.setLineWidth(1);
+    doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 42, 3, 3, 'FD');
+    
+    yPos += 6;
+    doc.setFontSize(9);
+    doc.setTextColor(100, 100, 100);
+    doc.setFont('helvetica', 'normal');
+    doc.text('INVESTMENT SUMMARY', pageWidth / 2, yPos, { align: 'center' });
+    
+    yPos += 8;
+    doc.setFontSize(20);
+    doc.setTextColor(59, 130, 246);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Final Amount', pageWidth / 2, yPos, { align: 'center' });
+    
+    yPos += 10;
+    doc.setFontSize(24);
+    doc.setTextColor(30, 64, 175);
+    doc.text(formatCurrency(result.finalAmount), pageWidth / 2, yPos, { align: 'center' });
+
+    yPos += 18;
+    doc.setFillColor(255, 255, 255);
+    doc.setDrawColor(226, 232, 240);
+    doc.setLineWidth(0.5);
+    doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 52, 2, 2, 'FD');
+
+    yPos += 8;
+    doc.setFontSize(11);
+    doc.setTextColor(71, 85, 105);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Investment Details', margin + 5, yPos);
+
+    yPos += 8;
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(100, 116, 139);
+
+    const details = [
+      ['Principal Amount:', formatCurrency(parseFloat(principal))],
+      ['Interest Rate:', `${interestRate}% annually`],
+      ['Time Period:', `${timePeriod} ${timeUnit}`],
+      ['Compound Frequency:', compoundFrequency === '1' ? 'Annually' : compoundFrequency === '4' ? 'Quarterly' : compoundFrequency === '12' ? 'Monthly' : 'Daily'],
+    ];
+
+    if (enableSIP) {
+      details.push(['SIP Amount:', `${formatCurrency(parseFloat(sipAmount))} per ${sipFrequency === '12' ? 'month' : 'year'}`]);
+    }
+
+    details.forEach(([label, value]) => {
+      doc.text(label, margin + 5, yPos);
+      doc.text(value, pageWidth - margin - 5, yPos, { align: 'right' });
+      yPos += 6;
+    });
+
+    yPos += 8;
+    doc.setFillColor(255, 255, 255);
+    doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 34, 2, 2, 'FD');
+
+    yPos += 8;
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(71, 85, 105);
+    doc.text('Results Summary', margin + 5, yPos);
+
+    yPos += 8;
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(100, 116, 139);
+
+    const results = [
+      ['Total Interest Earned:', formatCurrency(result.totalInterest)],
+      ['Total Contributions:', formatCurrency(result.totalContributions)],
+    ];
+
+    if (showRealValue) {
+      results.push(['Real Value (Inflation Adjusted):', formatCurrency(result.realValue)]);
+    }
+
+    results.forEach(([label, value]) => {
+      doc.text(label, margin + 5, yPos);
+      doc.text(value, pageWidth - margin - 5, yPos, { align: 'right' });
+      yPos += 6;
+    });
+
+    yPos += 12;
+    doc.setFontSize(7);
+    doc.setTextColor(148, 163, 184);
+    doc.text('This report was generated by DapsiWow Compound Interest Calculator', pageWidth / 2, yPos, { align: 'center' });
+    yPos += 4;
+    doc.text('For more financial calculators, visit DapsiWow.com', pageWidth / 2, yPos, { align: 'center' });
+
+    doc.save('compound-interest-calculation.pdf');
+    
+    toast({
+      title: "PDF Downloaded!",
+      description: "Your calculation report has been saved",
+    });
   };
 
   const formatCurrency = (amount: number) => {
@@ -695,6 +874,35 @@ export default function CompoundInterestCalculator() {
                         {showBreakdown ? 'Hide' : 'Show'} Yearly Breakdown
                       </Button>
                       <Button
+                        onClick={() => setShowChart(!showChart)}
+                        variant="outline"
+                        size="sm"
+                        className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                        data-testid="button-show-chart"
+                      >
+                        <PieChart className="w-4 h-4 mr-1" />
+                        {showChart ? 'Hide' : 'Show'} Chart
+                      </Button>
+                      <Button
+                        onClick={handleShare}
+                        variant="outline"
+                        size="sm"
+                        className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                      >
+                        <Share2 className="w-4 h-4 mr-1" />
+                        Share
+                      </Button>
+                      <Button
+                        onClick={handleDownloadPDF}
+                        variant="outline"
+                        size="sm"
+                        className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                        data-testid="button-export-pdf"
+                      >
+                        <Download className="w-4 h-4 mr-1" />
+                        Export PDF
+                      </Button>
+                      <Button
                         onClick={() => setShowRealValue(!showRealValue)}
                         variant="outline"
                         size="sm"
@@ -727,6 +935,59 @@ export default function CompoundInterestCalculator() {
                           </div>
                         )}
                       </div>
+
+                      {/* Chart Section */}
+                      {showChart && (
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm border border-gray-100">
+                          <h3 className="font-bold text-gray-900 mb-4 sm:mb-6 text-center text-base sm:text-lg">Investment Breakdown</h3>
+                          <div className="flex flex-col lg:flex-row items-center justify-center gap-4 sm:gap-6">
+                            <div className="w-full max-w-[280px] sm:max-w-xs">
+                              <ResponsiveContainer width="100%" height={window.innerWidth < 640 ? 240 : 280}>
+                                <RechartsPieChart>
+                                  <Pie
+                                    data={[
+                                      { name: 'Principal', value: result.principalAmount },
+                                      { name: 'Interest', value: result.totalInterest }
+                                    ]}
+                                    cx="50%"
+                                    cy="50%"
+                                    innerRadius={window.innerWidth < 640 ? 45 : 60}
+                                    outerRadius={window.innerWidth < 640 ? 75 : 90}
+                                    paddingAngle={3}
+                                    dataKey="value"
+                                  >
+                                    <Cell fill="#3b82f6" />
+                                    <Cell fill="#10b981" />
+                                  </Pie>
+                                  <Legend
+                                    formatter={(value, entry: any) => {
+                                      const percentage = ((entry.payload.value / result.finalAmount) * 100).toFixed(1);
+                                      return `${value}: ${percentage}%`;
+                                    }}
+                                    wrapperStyle={{ fontSize: window.innerWidth < 640 ? '12px' : '14px' }}
+                                  />
+                                </RechartsPieChart>
+                              </ResponsiveContainer>
+                            </div>
+                            <div className="space-y-3 w-full lg:w-auto">
+                              <div className="flex items-center justify-between lg:justify-start gap-4 bg-blue-50 p-3 rounded-lg">
+                                <div className="flex items-center gap-2">
+                                  <div className="w-4 h-4 bg-blue-500 rounded"></div>
+                                  <span className="text-sm font-medium text-gray-700">Principal</span>
+                                </div>
+                                <span className="text-sm font-bold text-gray-900">{formatCurrency(result.principalAmount)}</span>
+                              </div>
+                              <div className="flex items-center justify-between lg:justify-start gap-4 bg-green-50 p-3 rounded-lg">
+                                <div className="flex items-center gap-2">
+                                  <div className="w-4 h-4 bg-green-500 rounded"></div>
+                                  <span className="text-sm font-medium text-gray-700">Interest</span>
+                                </div>
+                                <span className="text-sm font-bold text-gray-900">{formatCurrency(result.totalInterest)}</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
 
                       {/* Growth Breakdown */}
                       <div className="space-y-2 sm:space-y-3 md:space-y-4">
