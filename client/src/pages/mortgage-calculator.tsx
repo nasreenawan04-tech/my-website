@@ -894,36 +894,36 @@ const MortgageCalculator = () => {
           </div>
 
           {/* How to Use Section */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-xl sm:rounded-2xl mb-6 sm:mb-8">
+          <Card className="bg-gradient-to-r from-indigo-50 to-purple-50 border-0 shadow-lg rounded-2xl mb-6 sm:mb-8">
             <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10">
               <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">How to Use This Mortgage Calculator</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
-                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-blue-50 transition-colors">
+                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-white/50 transition-colors">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-base sm:text-lg md:text-xl shadow-md">1</div>
                   <h3 className="font-bold text-gray-900 text-base sm:text-lg md:text-xl">Enter Home Price</h3>
                   <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Input the purchase price of the home you're considering. This is the total amount before your down payment.</p>
                 </div>
-                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-blue-50 transition-colors">
+                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-white/50 transition-colors">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-base sm:text-lg md:text-xl shadow-md">2</div>
                   <h3 className="font-bold text-gray-900 text-base sm:text-lg md:text-xl">Set Down Payment</h3>
                   <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Enter your down payment as a percentage or dollar amount. 20% or more avoids PMI on conventional loans.</p>
                 </div>
-                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-blue-50 transition-colors">
+                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-white/50 transition-colors">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-base sm:text-lg md:text-xl shadow-md">3</div>
                   <h3 className="font-bold text-gray-900 text-base sm:text-lg md:text-xl">Choose Loan Term</h3>
                   <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Select 15, 20, or 30 years. Shorter terms save on interest; longer terms lower monthly payments.</p>
                 </div>
-                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-green-50 transition-colors">
+                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-white/50 transition-colors">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-base sm:text-lg md:text-xl shadow-md">4</div>
                   <h3 className="font-bold text-gray-900 text-base sm:text-lg md:text-xl">Enter Interest Rate</h3>
                   <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Input the annual interest rate from your lender or current market rates.</p>
                 </div>
-                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-green-50 transition-colors">
+                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-white/50 transition-colors">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-base sm:text-lg md:text-xl shadow-md">5</div>
                   <h3 className="font-bold text-gray-900 text-base sm:text-lg md:text-xl">Add Taxes & Insurance</h3>
                   <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Include annual property taxes and homeowners insurance for accurate monthly payment calculations.</p>
                 </div>
-                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-green-50 transition-colors">
+                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-white/50 transition-colors">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-base sm:text-lg md:text-xl shadow-md">6</div>
                   <h3 className="font-bold text-gray-900 text-base sm:text-lg md:text-xl">Calculate & Analyze</h3>
                   <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Click "Calculate" to see your complete breakdown, amortization schedule, and affordability analysis.</p>
