@@ -1294,6 +1294,7 @@ export default function CompoundInterestCalculator() {
                         variant="outline"
                         size="sm"
                         className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                        data-testid="button-share"
                       >
                         <Share2 className="w-4 h-4 mr-1" />
                         Share
