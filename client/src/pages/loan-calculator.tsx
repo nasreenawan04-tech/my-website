@@ -2020,30 +2020,30 @@ export default function LoanCalculator() {
 
             {/* Understanding Loan Calculations */}
             <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">Understanding Loan Calculations: How Monthly Payments Work</h2>
-                <div className="prose max-w-none text-gray-700 space-y-4 text-base leading-relaxed">
-                  <p>
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h2 className="text-2xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6">Understanding Loan Calculations: How Monthly Payments Work</h2>
+                <div className="prose max-w-none text-gray-700 space-y-3 sm:space-y-4 text-sm sm:text-base leading-relaxed">
+                  <p className="text-sm sm:text-base">
                     When you borrow money through a loan, you're agreeing to repay the principal amount plus interest over a set period. Understanding how loan payments are calculated helps you make informed borrowing decisions and can save you thousands of dollars over the life of your loan.
                   </p>
 
-                  <h3 className="text-xl font-bold text-gray-900 mt-6 mb-3">The Amortization Formula</h3>
-                  <p>
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mt-4 sm:mt-5 md:mt-6 mb-2 sm:mb-3">The Amortization Formula</h3>
+                  <p className="text-sm sm:text-base">
                     Our loan calculator uses the standard amortization formula to determine your monthly payment. This formula considers three key factors: the loan amount (principal), the interest rate, and the loan term. The monthly payment remains constant throughout the loan term, but the allocation between principal and interest changes over time.
                   </p>
 
-                  <h3 className="text-xl font-bold text-gray-900 mt-6 mb-3">How Interest Works</h3>
-                  <p>
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mt-4 sm:mt-5 md:mt-6 mb-2 sm:mb-3">How Interest Works</h3>
+                  <p className="text-sm sm:text-base">
                     Interest is calculated on your remaining balance, which means you pay more interest in the early years of your loan when the balance is higher. As you pay down the principal, less interest accrues each month, and more of your payment goes toward reducing the principal. This is called amortization.
                   </p>
 
-                  <h3 className="text-xl font-bold text-gray-900 mt-6 mb-3">Impact of Loan Term</h3>
-                  <p>
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mt-4 sm:mt-5 md:mt-6 mb-2 sm:mb-3">Impact of Loan Term</h3>
+                  <p className="text-sm sm:text-base">
                     The length of your loan significantly affects both your monthly payment and total interest paid. Shorter loan terms (like 3-5 years) result in higher monthly payments but substantially less total interest. Longer terms (7-10 years) offer lower monthly payments but cost more in interest over time. For example, a $20,000 loan at 7% interest costs $3,761 in interest over 5 years versus $7,576 over 10 years—more than double!
                   </p>
 
-                  <h3 className="text-xl font-bold text-gray-900 mt-6 mb-3">The Power of Extra Payments</h3>
-                  <p>
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mt-4 sm:mt-5 md:mt-6 mb-2 sm:mb-3">The Power of Extra Payments</h3>
+                  <p className="text-sm sm:text-base">
                     Making extra payments directly reduces your principal balance, which means less interest accrues over time. Even modest extra payments can dramatically shorten your loan term and save thousands in interest. For instance, adding just $100 per month to a $200,000 mortgage at 6% can save over $60,000 in interest and cut nearly 8 years off a 30-year term.
                   </p>
                 </div>
