@@ -1537,10 +1537,10 @@ export default function BusinessLoanCalculator() {
           </Card>
 
           {/* What is a Business Loan Calculator - Featured Snippet */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-2xl mt-8">
-            <CardContent className="p-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">What is a Business Loan Calculator?</h2>
-              <p className="text-gray-700 text-lg leading-relaxed mb-6">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-xl sm:rounded-2xl mt-6 sm:mt-8">
+            <CardContent className="p-4 sm:p-6 md:p-8">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6">What is a Business Loan Calculator?</h2>
+              <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed">
                 A business loan calculator is a free online financial tool that instantly calculates your monthly payment, total interest, and amortization schedule based on your loan amount, interest rate, and term. It helps small business owners estimate business loan costs, compare different financing options, and determine loan affordability before applying. Our calculator includes advanced features like DSCR (Debt Service Coverage Ratio) and LTV (Loan-to-Value) analysis for comprehensive business loan planning.
               </p>
             </CardContent>
