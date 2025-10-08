@@ -1473,62 +1473,62 @@ export default function BusinessLoanCalculator() {
           )}
 
           {/* Business Loan Tips */}
-          <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 border-0 shadow-lg rounded-xl sm:rounded-2xl mt-6 sm:mt-8">
-            <CardContent className="p-4 sm:p-6 md:p-8">
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6">Tips for Getting the Best Business Loan</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 md:gap-6">
-                <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 shadow-sm hover:shadow-md transition-shadow">
-                  <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 sm:mb-3">1. Improve Your Business Credit Score</h3>
-                  <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
+          <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 border-0 shadow-lg rounded-lg sm:rounded-xl md:rounded-2xl mt-4 sm:mt-6 md:mt-8 lg:mt-10">
+            <CardContent className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10">
+              <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 md:mb-5 lg:mb-6 xl:mb-8 text-center sm:text-left">Tips for Getting the Best Business Loan</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-3 sm:gap-4 md:gap-5 lg:gap-6 xl:gap-8">
+                <div className="bg-white rounded-md sm:rounded-lg md:rounded-xl p-3 sm:p-4 md:p-5 lg:p-6 xl:p-7 shadow-sm hover:shadow-md transition-shadow">
+                  <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 mb-2 sm:mb-2 md:mb-3 lg:mb-4">1. Improve Your Business Credit Score</h3>
+                  <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-base leading-relaxed">
                     A strong business credit score (680+) qualifies you for better rates. Pay bills on time, reduce credit utilization below 30%, and fix any errors on your credit report. Consider building business credit separately from personal credit.
                   </p>
                 </div>
 
-                <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 shadow-sm hover:shadow-md transition-shadow">
-                  <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 sm:mb-3">2. Prepare Strong Financial Documentation</h3>
-                  <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
+                <div className="bg-white rounded-md sm:rounded-lg md:rounded-xl p-3 sm:p-4 md:p-5 lg:p-6 xl:p-7 shadow-sm hover:shadow-md transition-shadow">
+                  <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 mb-2 sm:mb-2 md:mb-3 lg:mb-4">2. Prepare Strong Financial Documentation</h3>
+                  <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-base leading-relaxed">
                     Lenders want to see 2-3 years of tax returns, bank statements, profit & loss statements, and balance sheets. Organized, accurate financials showing consistent revenue and profitability significantly improve approval odds and terms.
                   </p>
                 </div>
 
-                <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 shadow-sm hover:shadow-md transition-shadow">
-                  <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 sm:mb-3">3. Understand Your Debt Service Coverage Ratio</h3>
-                  <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
+                <div className="bg-white rounded-md sm:rounded-lg md:rounded-xl p-3 sm:p-4 md:p-5 lg:p-6 xl:p-7 shadow-sm hover:shadow-md transition-shadow">
+                  <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 mb-2 sm:mb-2 md:mb-3 lg:mb-4">3. Understand Your Debt Service Coverage Ratio</h3>
+                  <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-base leading-relaxed">
                     Lenders typically require a DSCR of 1.25 or higher, meaning your business generates 25% more income than needed for loan payments. Calculate your DSCR (annual revenue / annual loan payments) before applying to ensure you qualify.
                   </p>
                 </div>
 
-                <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 shadow-sm hover:shadow-md transition-shadow">
-                  <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 sm:mb-3">4. Compare SBA Loans vs Traditional Loans</h3>
-                  <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
+                <div className="bg-white rounded-md sm:rounded-lg md:rounded-xl p-3 sm:p-4 md:p-5 lg:p-6 xl:p-7 shadow-sm hover:shadow-md transition-shadow">
+                  <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 mb-2 sm:mb-2 md:mb-3 lg:mb-4">4. Compare SBA Loans vs Traditional Loans</h3>
+                  <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-base leading-relaxed">
                     SBA loans offer lower rates (6-9%) and longer terms but require extensive documentation and take 60-90 days. Traditional bank loans have faster approval (2-4 weeks) but higher rates. Online lenders approve in days but charge 10-30% APR.
                   </p>
                 </div>
 
-                <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 shadow-sm hover:shadow-md transition-shadow">
-                  <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 sm:mb-3">5. Offer Adequate Collateral</h3>
-                  <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
+                <div className="bg-white rounded-md sm:rounded-lg md:rounded-xl p-3 sm:p-4 md:p-5 lg:p-6 xl:p-7 shadow-sm hover:shadow-md transition-shadow">
+                  <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 mb-2 sm:mb-2 md:mb-3 lg:mb-4">5. Offer Adequate Collateral</h3>
+                  <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-base leading-relaxed">
                     Secured loans typically offer 2-5% lower rates than unsecured loans. Real estate, equipment, inventory, and accounts receivable can serve as collateral. Keep your loan-to-value (LTV) ratio below 80% for best terms.
                   </p>
                 </div>
 
-                <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 shadow-sm hover:shadow-md transition-shadow">
-                  <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 sm:mb-3">6. Shop Around and Negotiate</h3>
-                  <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
+                <div className="bg-white rounded-md sm:rounded-lg md:rounded-xl p-3 sm:p-4 md:p-5 lg:p-6 xl:p-7 shadow-sm hover:shadow-md transition-shadow">
+                  <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 mb-2 sm:mb-2 md:mb-3 lg:mb-4">6. Shop Around and Negotiate</h3>
+                  <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-base leading-relaxed">
                     Compare at least 3-5 lenders including banks, credit unions, SBA lenders, and online platforms. Use competing offers to negotiate better rates. Even a 0.5% rate reduction can save thousands over the loan term. Watch for hidden fees and prepayment penalties.
                   </p>
                 </div>
 
-                <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 shadow-sm hover:shadow-md transition-shadow">
-                  <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 sm:mb-3">7. Choose the Right Loan Type</h3>
-                  <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
+                <div className="bg-white rounded-md sm:rounded-lg md:rounded-xl p-3 sm:p-4 md:p-5 lg:p-6 xl:p-7 shadow-sm hover:shadow-md transition-shadow">
+                  <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 mb-2 sm:mb-2 md:mb-3 lg:mb-4">7. Choose the Right Loan Type</h3>
+                  <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-base leading-relaxed">
                     Term loans work for major purchases, lines of credit provide working capital flexibility, equipment financing offers lower rates for machinery, and SBA 504 loans excel for commercial real estate. Match the loan type to your specific need for optimal terms.
                   </p>
                 </div>
 
-                <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 shadow-sm hover:shadow-md transition-shadow">
-                  <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 sm:mb-3">8. Demonstrate Strong Cash Flow</h3>
-                  <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">
+                <div className="bg-white rounded-md sm:rounded-lg md:rounded-xl p-3 sm:p-4 md:p-5 lg:p-6 xl:p-7 shadow-sm hover:shadow-md transition-shadow">
+                  <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 mb-2 sm:mb-2 md:mb-3 lg:mb-4">8. Demonstrate Strong Cash Flow</h3>
+                  <p className="text-gray-600 text-xs sm:text-sm md:text-base lg:text-base leading-relaxed">
                     Lenders prioritize businesses with consistent, positive cash flow. Show at least 6 months of bank statements with healthy balances. Seasonal businesses should explain revenue patterns and show reserves to cover slow periods.
                   </p>
                 </div>
