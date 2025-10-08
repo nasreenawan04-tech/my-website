@@ -181,59 +181,244 @@ export default function SimpleInterestCalculator() {
     if (!result) return;
 
     const doc = new jsPDF();
-    const pageWidth = doc.internal.pageSize.width;
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 15;
+    let yPos = 12;
+
+    // Blue header bar with branding
+    doc.setFillColor(59, 130, 246);
+    doc.rect(0, 0, pageWidth, 38, 'F');
     
+    doc.setFontSize(26);
+    doc.setTextColor(255, 255, 255);
+    doc.setFont('helvetica', 'bold');
+    doc.text('DapsiWow', pageWidth / 2, yPos + 5, { align: 'center' });
+    
+    yPos += 14;
+    doc.setFontSize(11);
+    doc.setFont('helvetica', 'normal');
+    doc.text('Simple Interest Calculation Report', pageWidth / 2, yPos, { align: 'center' });
+    
+    yPos += 6;
+    doc.setFontSize(8);
+    doc.setTextColor(230, 240, 255);
+    const currentDate = new Date().toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric'
+    });
+    doc.text(`Report Date: ${currentDate}`, pageWidth / 2, yPos, { align: 'center' });
+
+    // Executive Summary Box
+    yPos = 48;
+    doc.setFillColor(240, 249, 255);
+    doc.setDrawColor(59, 130, 246);
+    doc.setLineWidth(1);
+    doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 42, 3, 3, 'FD');
+    
+    yPos += 6;
+    doc.setFontSize(9);
+    doc.setTextColor(100, 100, 100);
+    doc.setFont('helvetica', 'normal');
+    doc.text('EXECUTIVE SUMMARY', pageWidth / 2, yPos, { align: 'center' });
+    
+    yPos += 8;
     doc.setFontSize(20);
-    doc.text('Simple Interest Calculation Report', pageWidth / 2, 20, { align: 'center' });
+    doc.setTextColor(59, 130, 246);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Total Amount', pageWidth / 2, yPos, { align: 'center' });
     
-    doc.setFontSize(12);
-    let yPos = 40;
-    
-    doc.text('Input Parameters:', 20, yPos);
     yPos += 10;
-    doc.text(`Principal Amount: ${formatCurrency(result.principalAmount)}`, 30, yPos);
-    yPos += 8;
-    doc.text(`Interest Rate: ${interestRate}% per year`, 30, yPos);
-    yPos += 8;
-    doc.text(`Time Period: ${timePeriod} ${timeUnit}`, 30, yPos);
-    yPos += 15;
+    doc.setFontSize(24);
+    doc.text(formatCurrency(result.totalAmount), pageWidth / 2, yPos, { align: 'center' });
     
-    doc.text('Results:', 20, yPos);
-    yPos += 10;
-    doc.text(`Simple Interest: ${formatCurrency(result.simpleInterest)}`, 30, yPos);
     yPos += 8;
-    doc.text(`Total Amount: ${formatCurrency(result.totalAmount)}`, 30, yPos);
-    yPos += 8;
-    doc.text(`Monthly Interest: ${formatCurrency(result.monthlyInterest)}`, 30, yPos);
-    yPos += 15;
+    doc.setFontSize(8);
+    doc.setTextColor(80, 80, 80);
+    doc.setFont('helvetica', 'normal');
+    const interestPercent = ((result.simpleInterest / result.totalAmount) * 100).toFixed(1);
+    doc.text(`Total Interest: ${formatCurrency(result.simpleInterest)} (${interestPercent}% of total amount)`, pageWidth / 2, yPos, { align: 'center' });
+
+    // Input Parameters Box
+    yPos += 12;
+    doc.setFillColor(255, 255, 255);
+    doc.setDrawColor(230, 230, 230);
+    doc.setLineWidth(0.5);
+    doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 40, 3, 3, 'FD');
     
+    yPos += 5;
+    doc.setFontSize(10);
+    doc.setTextColor(59, 130, 246);
+    doc.setFont('helvetica', 'bold');
+    doc.text('INPUT PARAMETERS', margin + 4, yPos);
+    
+    yPos += 2;
+    doc.setDrawColor(59, 130, 246);
+    doc.setLineWidth(0.3);
+    doc.line(margin + 4, yPos, pageWidth - margin - 4, yPos);
+
+    yPos += 6;
+    doc.setFontSize(9);
+    doc.setTextColor(50, 50, 50);
+    doc.setFont('helvetica', 'normal');
+    
+    const col1X = margin + 8;
+    const col2X = margin + 60;
+    const col3X = pageWidth / 2 + 8;
+    const col4X = pageWidth / 2 + 60;
+    
+    doc.setTextColor(100, 100, 100);
+    doc.setFontSize(8);
+    doc.text('Principal Amount', col1X, yPos);
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'bold');
+    doc.text(formatCurrency(result.principalAmount), col2X, yPos);
+    
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(100, 100, 100);
+    doc.setFontSize(8);
+    doc.text('Interest Rate', col3X, yPos);
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'bold');
+    doc.text(`${interestRate}% per year`, col4X, yPos);
+    
+    yPos += 8;
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(100, 100, 100);
+    doc.setFontSize(8);
+    doc.text('Time Period', col1X, yPos);
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'bold');
+    doc.text(`${timePeriod} ${timeUnit}`, col2X, yPos);
+    
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(100, 100, 100);
+    doc.setFontSize(8);
+    doc.text('Monthly Interest', col3X, yPos);
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'bold');
+    doc.text(formatCurrency(result.monthlyInterest), col4X, yPos);
+
+    // Results Summary Box
+    yPos += 12;
+    doc.setFillColor(255, 255, 255);
+    doc.setDrawColor(230, 230, 230);
+    doc.setLineWidth(0.5);
+    doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 24, 3, 3, 'FD');
+    
+    yPos += 5;
+    doc.setFontSize(10);
+    doc.setTextColor(59, 130, 246);
+    doc.setFont('helvetica', 'bold');
+    doc.text('CALCULATION RESULTS', margin + 4, yPos);
+    
+    yPos += 2;
+    doc.setDrawColor(59, 130, 246);
+    doc.setLineWidth(0.3);
+    doc.line(margin + 4, yPos, pageWidth - margin - 4, yPos);
+
+    yPos += 6;
+    doc.setFontSize(9);
+    doc.setTextColor(50, 50, 50);
+    doc.setFont('helvetica', 'normal');
+    
+    doc.setTextColor(100, 100, 100);
+    doc.setFontSize(8);
+    doc.text('Simple Interest Earned', col1X, yPos);
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'bold');
+    doc.text(formatCurrency(result.simpleInterest), col2X, yPos);
+    
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(100, 100, 100);
+    doc.setFontSize(8);
+    doc.text('Final Amount', col3X, yPos);
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'bold');
+    doc.text(formatCurrency(result.totalAmount), col4X, yPos);
+    
+    // Yearly Breakdown if available
     if (result.yearlyBreakdown.length > 0) {
-      doc.text('Yearly Breakdown:', 20, yPos);
-      yPos += 10;
+      yPos += 12;
       
-      result.yearlyBreakdown.slice(0, 15).forEach((year) => {
+      // Table header with blue background
+      doc.setFillColor(59, 130, 246);
+      doc.rect(margin, yPos, pageWidth - (2 * margin), 8, 'F');
+      
+      doc.setFontSize(8);
+      doc.setTextColor(255, 255, 255);
+      doc.setFont('helvetica', 'bold');
+      
+      const yearColX = margin + 8;
+      const interestColX = margin + 60;
+      const totalColX = pageWidth / 2 + 60;
+      
+      doc.text('Year', yearColX, yPos + 5);
+      doc.text('Interest Earned', interestColX, yPos + 5);
+      doc.text('Total Amount', totalColX, yPos + 5);
+      
+      yPos += 8;
+      
+      // Table rows with alternating colors
+      result.yearlyBreakdown.forEach((year, index) => {
         if (yPos > 270) {
           doc.addPage();
           yPos = 20;
+          
+          // Repeat header on new page
+          doc.setFillColor(59, 130, 246);
+          doc.rect(margin, yPos, pageWidth - (2 * margin), 8, 'F');
+          
+          doc.setFontSize(8);
+          doc.setTextColor(255, 255, 255);
+          doc.setFont('helvetica', 'bold');
+          
+          doc.text('Year', yearColX, yPos + 5);
+          doc.text('Interest Earned', interestColX, yPos + 5);
+          doc.text('Total Amount', totalColX, yPos + 5);
+          
+          yPos += 8;
         }
-        doc.setFontSize(10);
-        doc.text(
-          `Year ${year.year}: Interest ${formatCurrency(year.interestEarned)}, Total ${formatCurrency(year.totalAmount)}`,
-          30,
-          yPos
-        );
-        yPos += 7;
+        
+        // Alternate row colors
+        if (index % 2 === 0) {
+          doc.setFillColor(248, 250, 252);
+          doc.rect(margin, yPos, pageWidth - (2 * margin), 6, 'F');
+        }
+        
+        doc.setFontSize(8);
+        doc.setTextColor(0, 0, 0);
+        doc.setFont('helvetica', 'normal');
+        doc.text(`Year ${year.year}`, yearColX, yPos + 4);
+        
+        doc.setTextColor(34, 197, 94);
+        doc.setFont('helvetica', 'bold');
+        doc.text(formatCurrency(year.interestEarned), interestColX, yPos + 4);
+        
+        doc.setTextColor(0, 0, 0);
+        doc.text(formatCurrency(year.totalAmount), totalColX, yPos + 4);
+        yPos += 6;
       });
     }
     
+    // Footer
     doc.setFontSize(8);
-    doc.text('Generated by DapsiWow Simple Interest Calculator', pageWidth / 2, doc.internal.pageSize.height - 10, { align: 'center' });
+    doc.setTextColor(150, 150, 150);
+    doc.setFont('helvetica', 'normal');
+    doc.text('Generated by DapsiWow Simple Interest Calculator', pageWidth / 2, pageHeight - 10, { align: 'center' });
     
     doc.save('simple-interest-calculation.pdf');
     
     toast({
-      title: "PDF Downloaded",
-      description: "Your calculation report has been saved",
+      title: "PDF Downloaded!", 
+      description: "Your professional calculation report has been saved." 
     });
   };
 
