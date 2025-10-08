@@ -855,9 +855,11 @@ export default function CompoundInterestCalculator() {
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
           <div className="relative max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
             <div className="space-y-4 sm:space-y-6 md:space-y-8">
-              <div className="inline-flex items-center px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
-                <Calculator className="w-3 h-3 sm:w-4 sm:h-4 mr-2 text-blue-700" />
-                <span className="text-xs sm:text-sm font-medium text-blue-700">Free Daily & Monthly Compound Interest Calculator - 100% Accurate</span>
+              <div className="inline-flex items-center px-2 sm:px-3 md:px-4 lg:px-5 py-1 sm:py-1.5 md:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200 max-w-full">
+                <Calculator className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 mr-1.5 sm:mr-2 text-blue-700 flex-shrink-0" />
+                <span className="text-[10px] xs:text-xs sm:text-sm md:text-base font-medium text-blue-700 text-center leading-tight">
+                  Free Daily & Monthly Compound Interest Calculator - 100% Accurate
+                </span>
               </div>
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0">
                 <span className="block">Compound Interest Calculator</span>
