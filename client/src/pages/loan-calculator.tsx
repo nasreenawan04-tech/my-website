@@ -2052,77 +2052,77 @@ export default function LoanCalculator() {
 
             {/* Types of Loans */}
             <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">Types of Loans You Can Calculate</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-4">
-                    <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-                      <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                        <DollarSign className="w-5 h-5 text-blue-600" />
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6">Types of Loans You Can Calculate</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 md:gap-6">
+                  <div className="space-y-3 sm:space-y-4">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 flex items-center gap-2">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                        <DollarSign className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
                       </div>
                       Personal Loans
                     </h3>
-                    <p className="text-gray-600">
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                       Unsecured loans for debt consolidation, home improvements, medical expenses, or any personal needs. Typical amounts range from $1,000 to $100,000 with terms of 2-7 years. Interest rates vary based on creditworthiness, typically 6-36% APR. Our calculator helps you compare offers and plan your budget before applying.
                     </p>
                   </div>
 
-                  <div className="space-y-4">
-                    <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-                      <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                        <DollarSign className="w-5 h-5 text-green-600" />
+                  <div className="space-y-3 sm:space-y-4">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 flex items-center gap-2">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                        <DollarSign className="w-4 h-4 sm:w-5 sm:h-5 text-green-600" />
                       </div>
                       Auto Loans
                     </h3>
-                    <p className="text-gray-600">
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                       Secured loans for purchasing new or used vehicles. Typical loan amounts range from $10,000 to $75,000 with terms of 3-7 years. Interest rates are generally lower than personal loans (3-12% APR) since the vehicle serves as collateral. Factor in down payment, trade-in value, and sales tax when calculating.
                     </p>
                   </div>
 
-                  <div className="space-y-4">
-                    <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-                      <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
-                        <DollarSign className="w-5 h-5 text-purple-600" />
+                  <div className="space-y-3 sm:space-y-4">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 flex items-center gap-2">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
+                        <DollarSign className="w-4 h-4 sm:w-5 sm:h-5 text-purple-600" />
                       </div>
                       Mortgage & Home Loans
                     </h3>
-                    <p className="text-gray-600">
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                       Large secured loans for purchasing or refinancing real estate. Amounts typically range from $100,000 to $1,000,000+ with terms of 15-30 years. Current interest rates vary by loan type (conventional, FHA, VA) and creditworthiness, typically 6-8% APR. Remember to include property taxes, insurance, and PMI in your total housing cost.
                     </p>
                   </div>
 
-                  <div className="space-y-4">
-                    <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-                      <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center">
-                        <DollarSign className="w-5 h-5 text-orange-600" />
+                  <div className="space-y-3 sm:space-y-4">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 flex items-center gap-2">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
+                        <DollarSign className="w-4 h-4 sm:w-5 sm:h-5 text-orange-600" />
                       </div>
                       Business Loans
                     </h3>
-                    <p className="text-gray-600">
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                       Financing for starting or growing a business, purchasing equipment, or managing cash flow. Loan amounts vary widely from $5,000 to $500,000+ with terms of 1-10 years. Interest rates depend on business history, revenue, and collateral, typically 7-30% APR. Use our calculator to ensure loan payments fit your business's cash flow.
                     </p>
                   </div>
 
-                  <div className="space-y-4">
-                    <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-                      <div className="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center">
-                        <DollarSign className="w-5 h-5 text-indigo-600" />
+                  <div className="space-y-3 sm:space-y-4">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 flex items-center gap-2">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 bg-indigo-100 rounded-full flex items-center justify-center flex-shrink-0">
+                        <DollarSign className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-600" />
                       </div>
                       Student Loans
                     </h3>
-                    <p className="text-gray-600">
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                       Education financing for college, graduate school, or professional training. Federal student loans offer fixed rates (4-7% typically) with flexible repayment options. Private student loans vary widely (3-14% APR) based on creditworthiness. Calculate different repayment scenarios to minimize long-term costs.
                     </p>
                   </div>
 
-                  <div className="space-y-4">
-                    <h3 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-                      <div className="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center">
-                        <DollarSign className="w-5 h-5 text-pink-600" />
+                  <div className="space-y-3 sm:space-y-4">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 flex items-center gap-2">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 bg-pink-100 rounded-full flex items-center justify-center flex-shrink-0">
+                        <DollarSign className="w-4 h-4 sm:w-5 sm:h-5 text-pink-600" />
                       </div>
                       Debt Consolidation Loans
                     </h3>
-                    <p className="text-gray-600">
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                       Combine multiple high-interest debts (credit cards, personal loans) into one lower-interest loan. This simplifies payments and can save on interest if you qualify for a better rate. Use our calculator to compare your current total monthly payments with a consolidated loan payment.
                     </p>
                   </div>
