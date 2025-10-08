@@ -1679,36 +1679,36 @@ export default function BusinessLoanCalculator() {
           </Card>
 
           {/* APR vs Interest Rate */}
-          <Card className="bg-gradient-to-br from-purple-50 to-pink-50 border-0 shadow-lg rounded-2xl mt-8">
-            <CardContent className="p-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">APR vs Interest Rate - What's the Difference?</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-white rounded-xl p-6 border-2 border-blue-300">
-                  <h3 className="text-xl font-bold text-blue-600 mb-4">Interest Rate</h3>
-                  <p className="text-gray-700 mb-4">
+          <Card className="bg-gradient-to-br from-purple-50 to-pink-50 border-0 shadow-lg rounded-lg sm:rounded-xl md:rounded-2xl mt-4 sm:mt-6 md:mt-8 lg:mt-10">
+            <CardContent className="p-4 sm:p-5 md:p-6 lg:p-8 xl:p-10">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6 lg:mb-8 text-center sm:text-left">APR vs Interest Rate - What's the Difference?</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
+                <div className="bg-white rounded-md sm:rounded-lg md:rounded-xl p-4 sm:p-5 md:p-6 lg:p-7 border-2 border-blue-300">
+                  <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-blue-600 mb-3 sm:mb-4 md:mb-5">Interest Rate</h3>
+                  <p className="text-gray-700 mb-3 sm:mb-4 md:mb-5 text-sm sm:text-base md:text-lg leading-relaxed">
                     The interest rate is the percentage charged on the principal loan amount. It represents the cost of borrowing money without including any additional fees or charges.
                   </p>
-                  <div className="bg-blue-50 p-4 rounded-lg">
-                    <p className="font-semibold text-gray-900 mb-2">Example:</p>
-                    <p className="text-gray-700">7.5% interest rate on $250,000 = $18,750 annual interest in year one</p>
+                  <div className="bg-blue-50 p-3 sm:p-4 md:p-5 rounded-md sm:rounded-lg">
+                    <p className="font-semibold text-gray-900 mb-2 text-sm sm:text-base md:text-lg">Example:</p>
+                    <p className="text-gray-700 text-xs sm:text-sm md:text-base lg:text-lg">7.5% interest rate on $250,000 = $18,750 annual interest in year one</p>
                   </div>
                 </div>
 
-                <div className="bg-white rounded-xl p-6 border-2 border-purple-300">
-                  <h3 className="text-xl font-bold text-purple-600 mb-4">APR (Annual Percentage Rate)</h3>
-                  <p className="text-gray-700 mb-4">
+                <div className="bg-white rounded-md sm:rounded-lg md:rounded-xl p-4 sm:p-5 md:p-6 lg:p-7 border-2 border-purple-300">
+                  <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-purple-600 mb-3 sm:mb-4 md:mb-5">APR (Annual Percentage Rate)</h3>
+                  <p className="text-gray-700 mb-3 sm:mb-4 md:mb-5 text-sm sm:text-base md:text-lg leading-relaxed">
                     APR includes the interest rate PLUS all fees (origination fees, closing costs, annual fees) spread over the loan term. APR gives you the true total cost of the business loan.
                   </p>
-                  <div className="bg-purple-50 p-4 rounded-lg">
-                    <p className="font-semibold text-gray-900 mb-2">Example:</p>
-                    <p className="text-gray-700">7.5% rate + 3% origination fee = 8.2% APR (true cost)</p>
+                  <div className="bg-purple-50 p-3 sm:p-4 md:p-5 rounded-md sm:rounded-lg">
+                    <p className="font-semibold text-gray-900 mb-2 text-sm sm:text-base md:text-lg">Example:</p>
+                    <p className="text-gray-700 text-xs sm:text-sm md:text-base lg:text-lg">7.5% rate + 3% origination fee = 8.2% APR (true cost)</p>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-6 bg-white rounded-xl p-6 border-2 border-green-300">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">💡 Pro Tip: Always Compare APR</h3>
-                <p className="text-gray-700">
+              <div className="mt-4 sm:mt-5 md:mt-6 lg:mt-8 bg-white rounded-md sm:rounded-lg md:rounded-xl p-4 sm:p-5 md:p-6 lg:p-7 border-2 border-green-300">
+                <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 md:mb-5">💡 Pro Tip: Always Compare APR</h3>
+                <p className="text-gray-700 text-sm sm:text-base md:text-lg leading-relaxed">
                   When comparing business loans, always use APR instead of just the interest rate. Two loans with the same interest rate can have very different APRs due to fees. A loan with 7% interest and 5% in fees costs more than a loan with 8% interest and no fees. Our business loan calculator helps you understand both to make informed decisions.
                 </p>
               </div>
