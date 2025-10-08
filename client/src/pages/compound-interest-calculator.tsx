@@ -863,7 +863,7 @@ Calculate your investment growth at DapsiWow.com`;
 
                   {/* Advanced Display Options */}
                   {result && (
-                    <div className="flex flex-wrap gap-2 sm:gap-3 pt-2 sm:pt-3 md:pt-4">
+                    <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 pt-2 sm:pt-3 md:pt-4">
                       <Button
                         onClick={() => setShowBreakdown(!showBreakdown)}
                         variant="outline"
