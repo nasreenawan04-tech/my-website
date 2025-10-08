@@ -806,19 +806,21 @@ export default function SimpleInterestCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>Simple Interest Calculator - Calculate Interest Earnings Online | DapsiWow</title>
-        <meta name="description" content="Free simple interest calculator for loans, savings, and investments. Calculate interest using the SI = P × R × T formula. Get instant results with detailed breakdowns, yearly projections, and multiple currency support. Professional-grade financial calculator." />
-        <meta name="keywords" content="simple interest calculator, interest calculator, loan calculator, savings calculator, financial calculator, simple interest formula, calculate interest, investment calculator, principal interest, annual interest rate, SI formula" />
-        <meta property="og:title" content="Simple Interest Calculator - Calculate Interest Earnings | DapsiWow" />
-        <meta property="og:description" content="Calculate simple interest on loans and investments with our free professional calculator. Get instant results with detailed breakdown and yearly projections." />
+        <title>Simple Interest Calculator - Free Online SI Calculator | Calculate Interest I = P × R × T</title>
+        <meta name="description" content="Calculate simple interest on loans, savings & investments using I = P × R × T formula. Free online calculator with instant results & detailed breakdowns." />
+        <meta name="keywords" content="simple interest calculator, calculate simple interest, simple interest formula, interest calculator, SI calculator online, simple interest rate calculator, how to calculate simple interest, simple interest loan calculator, simple interest calculator monthly, simple interest calculator with principal rate time, simple vs compound interest calculator, simple interest calculator with regular deposits, simple interest calculator for savings, online simple interest calculator" />
+        <meta property="og:title" content="Simple Interest Calculator - Calculate Interest Online Free | I = P × R × T Formula" />
+        <meta property="og:description" content="Free simple interest calculator with formula I = P × R × T. Calculate interest on loans, savings & investments instantly. Get monthly & yearly breakdowns with visual charts & PDF export." />
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="DapsiWow - Free Financial Calculators & Tools" />
+        <meta property="og:image" content="https://dapsiwow.com/og-simple-interest-calculator.jpg" />
         <link rel="canonical" href="https://dapsiwow.com/simple-interest-Calculator" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebApplication",
-            "name": "Simple Interest Calculator",
-            "description": "Professional simple interest calculator for loans, savings, and investments with detailed breakdown and multiple currency support",
+            "name": "Simple Interest Calculator - Free Online SI Calculator",
+            "description": "Free simple interest calculator using formula I = P × R × T. Calculate interest on loans, savings, and investments with monthly breakdown, yearly projections, visual charts, and PDF export.",
             "url": "https://dapsiwow.com/simple-interest-Calculator",
             "applicationCategory": "FinanceApplication",
             "operatingSystem": "Any",
@@ -826,7 +828,107 @@ export default function SimpleInterestCalculator() {
               "@type": "Offer",
               "price": "0",
               "priceCurrency": "USD"
+            },
+            "featureList": [
+              "Calculate simple interest using I = P × R × T formula",
+              "Monthly and yearly interest breakdown",
+              "Multiple currency support (USD, EUR, GBP, INR, JPY, CAD, AUD, CNY, BRL, MXN)",
+              "Visual charts and graphs",
+              "PDF export and sharing",
+              "Scenario comparison tool"
+            ],
+            "creator": {
+              "@type": "Organization",
+              "name": "DapsiWow"
             }
+          })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is simple interest?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Simple interest is a method of calculating interest on a loan or deposit where interest is calculated only on the principal amount. The formula is I = P × R × T, where I is interest, P is principal, R is rate (as decimal), and T is time in years. Unlike compound interest, simple interest does not accumulate on previously earned interest."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do you calculate simple interest?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "To calculate simple interest, use the formula: Simple Interest (I) = Principal (P) × Rate (R) × Time (T). Multiply your principal amount by the annual interest rate (as a decimal) and the time period in years. For example: $10,000 × 0.08 × 5 years = $4,000 interest."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is the difference between simple and compound interest?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Simple interest is calculated only on the principal amount and remains constant each period, while compound interest is calculated on the principal plus accumulated interest. Simple interest grows linearly while compound interest grows exponentially. For investments, compound interest typically yields higher returns; for loans, simple interest results in lower total interest paid."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do I calculate monthly simple interest?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "To calculate monthly simple interest, first calculate total annual interest using I = P × R × T, then divide by 12. Formula: Monthly Interest = (P × R × T) / 12. Example: If principal is $10,000, rate is 8%, and time is 5 years, monthly interest = ($10,000 × 0.08 × 5) / (5 × 12) = $66.67 per month."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "When is simple interest used?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Simple interest is commonly used for: short-term loans (auto loans, personal loans), certificates of deposit (CDs), bonds, treasury bills, and some savings accounts. It's preferred when you want predictable, fixed interest payments."
+                }
+              }
+            ]
+          })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            "name": "How to Calculate Simple Interest",
+            "description": "Step-by-step guide to calculate simple interest using the formula I = P × R × T",
+            "step": [
+              {
+                "@type": "HowToStep",
+                "position": 1,
+                "name": "Identify the Principal Amount (P)",
+                "text": "Determine the initial amount of money you're investing or borrowing. This is your principal amount (P)."
+              },
+              {
+                "@type": "HowToStep",
+                "position": 2,
+                "name": "Determine the Interest Rate (R)",
+                "text": "Find the annual interest rate and convert it to a decimal by dividing by 100. For example, 8% becomes 0.08."
+              },
+              {
+                "@type": "HowToStep",
+                "position": 3,
+                "name": "Calculate the Time Period (T)",
+                "text": "Determine the time period in years. If you have months, divide by 12. For example, 36 months = 3 years."
+              },
+              {
+                "@type": "HowToStep",
+                "position": 4,
+                "name": "Apply the Formula I = P × R × T",
+                "text": "Multiply the principal amount (P) by the interest rate (R) and the time period (T) to get the simple interest (I)."
+              },
+              {
+                "@type": "HowToStep",
+                "position": 5,
+                "name": "Calculate Total Amount",
+                "text": "Add the simple interest to the principal amount to get the total amount: A = P + I or A = P(1 + RT)."
+              }
+            ]
           })}
         </script>
       </Helmet>
@@ -844,13 +946,13 @@ export default function SimpleInterestCalculator() {
                 <span className="text-xs sm:text-sm font-medium text-blue-700">Professional Simple Interest Calculator - Free & Accurate</span>
               </div>
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0" data-testid="page-title">
-                <span className="block">Free Simple Interest Calculator:</span>
+                <span className="block">Simple Interest Calculator</span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
-                  Calculate Interest Instantly
+                  Calculate Interest Using I = P × R × T Formula
                 </span>
               </h1>
               <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
-                Calculate simple interest on loans, savings, and investments using the SI = P × R × T formula. Get instant results with detailed breakdowns, yearly projections, and multiple currency support. Perfect for bonds, certificates of deposit, short-term loans, and financial planning. 100% free, no registration required.
+                Free online simple interest calculator for loans, savings, and investments. Calculate interest using the formula I = P × R × T (Interest = Principal × Rate × Time). Get instant results with monthly breakdown, yearly projections, visual charts, and multiple currency support. Perfect for auto loans, personal loans, bonds, certificates of deposit, and financial planning. 100% free, no registration required.
               </p>
 
               <div className="flex flex-wrap justify-center gap-4 sm:gap-6 pt-4">
