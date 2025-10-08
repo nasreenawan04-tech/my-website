@@ -1870,21 +1870,21 @@ export default function LoanCalculator() {
           {/* Educational Content */}
           <div className="mt-16 space-y-12">
             {/* What is a Loan Calculator - Featured Snippet Target */}
-            <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 border-0 shadow-lg rounded-2xl">
-              <CardContent className="p-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">What is a Loan Calculator?</h2>
-                <div className="prose max-w-none text-gray-700 space-y-4 text-base leading-relaxed">
-                  <p className="text-lg">
+            <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 border-0 shadow-lg rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 lg:p-8">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">What is a Loan Calculator?</h2>
+                <div className="prose max-w-none text-gray-700 space-y-3 sm:space-y-4 text-sm sm:text-base leading-relaxed">
+                  <p className="text-base sm:text-lg">
                     A loan calculator is a free online financial tool that helps you estimate your monthly loan payments, total interest costs, and complete amortization schedule based on your loan amount, interest rate, and repayment term. It allows borrowers to compare different loan scenarios, understand the true cost of borrowing, and make informed financial decisions before committing to a loan.
                   </p>
                   
-                  <h3 className="text-xl font-bold text-gray-900 mt-6 mb-3">How Does a Loan Calculator Work?</h3>
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mt-4 sm:mt-6 mb-2 sm:mb-3">How Does a Loan Calculator Work?</h3>
                   <p>
                     Our loan calculator uses the standard amortization formula to calculate your monthly payment. You simply enter your loan amount (the principal you want to borrow), the annual interest rate (APR), and the loan term (how long you'll take to repay). The calculator instantly computes your monthly payment, shows how much total interest you'll pay, and provides a detailed payment schedule showing the principal and interest breakdown for each payment.
                   </p>
 
-                  <h3 className="text-xl font-bold text-gray-900 mt-6 mb-3">Benefits of Using a Loan Payment Calculator</h3>
-                  <ul className="list-disc pl-6 space-y-2">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mt-4 sm:mt-6 mb-2 sm:mb-3">Benefits of Using a Loan Payment Calculator</h3>
+                  <ul className="list-disc pl-4 sm:pl-6 space-y-1.5 sm:space-y-2">
                     <li><strong>Compare loan offers:</strong> Evaluate multiple lenders and terms side-by-side to find the best deal</li>
                     <li><strong>Budget planning:</strong> Know your exact monthly payment before applying for a loan</li>
                     <li><strong>Save money:</strong> See how different terms and extra payments affect total interest paid</li>
