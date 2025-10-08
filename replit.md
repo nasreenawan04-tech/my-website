@@ -1,209 +1,77 @@
 # DapsiWow - Free Online Tools Platform
 
 ## Overview
+DapsiWow is a comprehensive web platform offering over 180 free online tools across finance, text processing, and health categories. Built as a client-side React application with no backend dependencies, it emphasizes user privacy, speed, and accessibility. The platform provides professional-grade calculators, converters, and utilities without requiring user registration, aiming to offer tools that typically cost money, for free. The project's ambition is to provide instant, accessible tools to a broad audience, focusing on a seamless user experience.
 
-DapsiWow is a comprehensive web platform providing 180+ free online tools across three main categories: finance, text processing, and health. The application is built as a client-side React application with no backend dependencies, focusing on providing instant, accessible tools without requiring user registration or sign-ups.
-
-The platform emphasizes user privacy, speed, and accessibility while offering professional-grade calculators, converters, and utilities that would typically require paid software or services.
+## Recent Changes
+**October 8, 2025**: Enhanced Mortgage Calculator responsive design to match Loan Calculator patterns. All input fields, labels, text, and spacing now use progressive responsive classes (sm:, md:, lg:) for optimal display across mobile, tablet, and desktop screen sizes. Main grid updated from lg:grid-cols-2 to md:grid-cols-2 for better tablet responsiveness at 768px breakpoint.
 
 ## User Preferences
-
 Preferred communication style: Simple, everyday language.
 
 ## System Architecture
 
 ### Frontend Architecture
-- **Framework**: React 18 with TypeScript for type safety and modern development
-- **Routing**: Wouter for lightweight client-side routing
-- **Build Tool**: Vite for fast development and optimized production builds
-- **Styling**: Tailwind CSS with shadcn/ui component library for consistent design
-- **UI Components**: Radix UI primitives for accessible, customizable components
+- **Framework**: React 18 with TypeScript.
+- **Routing**: Wouter for lightweight client-side routing.
+- **Build Tool**: Vite for fast development and optimized production builds.
+- **Styling**: Tailwind CSS with shadcn/ui and Radix UI primitives for consistent, accessible design.
 
 ### State Management
-- **Global State**: React Context for theme management
-- **Server State**: TanStack Query for data fetching and caching (minimal usage due to client-only nature)
-- **Local State**: React hooks with localStorage integration for user preferences
-
-### Client-Side Data Storage
-- **Local Storage**: User preferences, favorites, recent tools, and calculation history
-- **No Database**: All data persists client-side only, ensuring privacy
-- **Custom Hooks**: Centralized localStorage management through custom hooks (use-favorites, use-recent-tools)
+- **Global State**: React Context for theme management.
+- **Server State**: TanStack Query (minimal usage due to client-only nature).
+- **Local State**: React hooks with localStorage integration for user preferences, favorites, recent tools, and calculation history. All data persists client-side only.
 
 ### Performance Optimizations
-- **Code Splitting**: Lazy loading for all tool pages to reduce initial bundle size
-- **Image Optimization**: Lazy loading components for images and assets
-- **Caching**: Service worker implementation for offline functionality
-- **Bundle Analysis**: Optimized imports and tree shaking
+- **Code Splitting**: Lazy loading for all tool pages.
+- **Image Optimization**: Lazy loading components for assets.
+- **Caching**: Service worker for offline functionality.
 
 ### Tool Architecture
-- **Modular Design**: Each tool is a self-contained component with its own logic
-- **Shared Components**: Reusable UI components for consistent user experience
-- **Calculation Engine**: Client-side mathematical calculations with validation
-- **Result Sharing**: URL-based result sharing without server storage
+- **Modular Design**: Each tool is a self-contained component.
+- **Calculation Engine**: Client-side mathematical calculations with validation.
+- **Result Sharing**: URL-based result sharing without server storage.
 
 ### SEO and Discoverability
-- **Meta Tags**: Comprehensive SEO optimization with React Helmet Async
-- **Structured Data**: Semantic HTML and meta tags for search engines
-- **Sitemap**: Static sitemap generation for better indexing
-- **Social Sharing**: Open Graph and Twitter Card meta tags
+- **Meta Tags**: React Helmet Async for comprehensive SEO optimization.
+- **Structured Data**: Semantic HTML and meta tags.
+- **Sitemap**: Static sitemap generation.
+- **Social Sharing**: Open Graph and Twitter Card meta tags.
 
 ### Deployment Architecture
-- **Static Hosting**: Designed for deployment on Vercel, Netlify, or similar platforms
-- **CDN Distribution**: All assets served through CDN for global performance
-- **Progressive Web App**: Service worker and manifest for app-like experience
-
-## Recent Changes
-
-### October 8, 2025 - Business Loan Calculator SEO Optimization for Google First Page Ranking
-- **SEO Enhancement**: Comprehensive keyword research and content optimization targeting high-volume, low-competition business loan keywords for first-page Google rankings
-- **Primary Keywords Targeted**: "business loan calculator" (3,600/month), "small business loan calculator" (3,600/month), "business loan payment calculator" (2,900/month), "sba loan calculator" (medium volume), "calculate business loan" (3,600/month)
-- **Long-Tail Keywords**: "how to calculate business loan payment", "business loan calculator with interest", "monthly business loan calculator", "business loan amortization calculator", "startup business loan calculator", "sba 7a loan calculator", "sba 504 loan calculator", "business equipment loan calculator", "short term business loan calculator", "business loan calculator with fees"
-- **Meta Tags Optimized**: Updated title to "Business Loan Calculator - Free SBA & Payment Calculator 2025" (60 chars), meta description optimized for conversions (155 chars), aligned Open Graph and Twitter Card tags
-- **Featured Snippet Optimization**:
-  - Added "What is a Business Loan Calculator?" section with 50-60 word featured snippet answer targeting definition queries
-  - Added "How to Calculate Business Loan Payments - Formula Explained" with M = P × [r(1+r)^n]/[(1+r)^n-1] formula, variable definitions, and practical example calculation
-  - Added "Business Loan Types Comparison Table" with semantic HTML table markup comparing SBA 7(a), SBA 504, Term Loan, Equipment Financing, Business Line of Credit, and Startup Loans (rates, amounts, terms, use cases)
-  - Added "APR vs Interest Rate - What's the Difference?" section explaining the distinction with practical examples
-- **Content Added**:
-  - Enhanced H1 to "Business Loan Calculator: Calculate Monthly Payments & Interest" with primary keywords
-  - Keyword-rich hero paragraph featuring "small business loan calculator", "business loan payment calculator", "SBA 7(a) loans", "SBA 504 loans", "DSCR", "LTV", "amortization schedules"
-  - Comprehensive formula explanation with step-by-step example ($250,000 loan at 7.5% for 10 years = $2,968.18/month)
-  - 6-row comparison table showing loan types, interest rates, max amounts, terms, and best use cases
-  - APR vs Interest Rate education with side-by-side comparison and pro tips for borrowers
-- **SEO Structure**: H2/H3 headers with question-based keywords, featured snippet-optimized answers (40-60 words), comparison tables with structured data markup
-- **Word Count**: Added ~1,500+ words of SEO-optimized educational content targeting business loan search queries
-- **Search Intent Coverage**: Informational (what is, how to calculate), transactional (calculate payments, free calculator), commercial investigation (compare loan types, best rates)
-- **Technical Implementation**: Semantic table markup for Google table snippets, keyword density 1-2% for primary keywords, natural integration of long-tail variations, internal linking to related finance calculators
-- **Keyword Research Sources**: Web search analysis of current business loan calculator rankings, search volume data (3,600+ monthly searches for primary keywords), competitor gap analysis identifying featured snippet opportunities
-
-### October 8, 2025 - Loan Calculator SEO Optimization for Google First Page Ranking
-- **SEO Enhancement**: Comprehensive keyword research and content optimization targeting high-volume, high-intent search queries
-- **Primary Keywords Targeted**: "loan calculator" (100K-500K/month), "loan payment calculator" (30K-50K/month), "monthly payment calculator" (50K-100K/month), "EMI calculator" (20K-40K/month), "amortization calculator" (20K-30K/month)
-- **Long-Tail Keywords**: "loan calculator with extra payments" (2K-5K), "personal loan calculator with fees" (1K-3K), "loan amortization calculator free" (1K-3K), "how to calculate loan payments monthly" (500-2K)
-- **Meta Tags Optimized**: Updated title to "Loan Calculator - Free Monthly Payment & Amortization Calculator" (60 chars), meta description optimized with CTA (155 chars), aligned Open Graph and Twitter Card tags
-- **Featured Snippet Optimization**:
-  - Added "What is a Loan Calculator?" section with 40-60 word answer targeting definition snippet
-  - Added "Loan Calculator Formula Explained" with mathematical formula, variables explanation, and example calculation
-  - Added "Loan Term Comparison Table" with semantic HTML table markup for table snippet capture
-- **Content Added**:
-  - Enhanced hero paragraph with EMI calculations, debt consolidation, student loans keywords
-  - "What is a Loan Calculator?" section (300+ words) with benefits list
-  - "Loan Calculator Formula Explained" with M = P × [r(1+r)^n]/[(1+r)^n-1] formula and example
-  - "Loan Term Comparison: How Term Length Affects Your Payment" with 3 vs 5 vs 7 year comparison table
-  - Practical example showing $7,123 interest savings by choosing 3-year vs 7-year term
-- **SEO Structure**: H2/H3 headers with question-based keywords, 40-60 word featured snippet answers, comparison tables with structured data markup
-- **Word Count**: Added ~1,200+ words of SEO-optimized educational content
-- **Search Intent Coverage**: Informational (what is, how does it work), transactional (calculate, free calculator), commercial investigation (compare, best calculator)
-- **Technical Implementation**: Semantic table markup for structured data extraction, keyword density 1-2% for primary keywords, internal linking to related calculators
-- **Architect Approved**: All SEO enhancements verified for accuracy, keyword optimization, and featured snippet eligibility
-
-### October 4, 2025 - Mortgage Calculator SEO Content Optimization
-- **SEO Enhancement**: Added 100% pure SEO-optimized content targeting high-value keywords for Google first page ranking
-- **Keyword Strategy**: Targeting primary keywords: "mortgage calculator" (165K/month), "mortgage payment calculator" (74K/month), "home loan calculator" (60.5K/month), "mortgage calculator with taxes and insurance" (18.1K/month)
-- **Long-Tail Keywords**: Optimized for "how much house can I afford", "FHA mortgage calculator", "VA loan calculator", "15 year vs 30 year mortgage"
-- **Content Added**: 
-  - Comprehensive "How to Use This Mortgage Payment Calculator" guide (5-step process)
-  - "Understanding Your Monthly Mortgage Payment" section (PITI breakdown with visual cards)
-  - "Types of Mortgages: Which Is Right for You?" (Conventional, FHA, VA, USDA detailed explanations)
-  - "Mortgage Calculator Tips for First-Time Home Buyers" (6 essential tips with visual design)
-  - "Why Use Our Free Mortgage Payment Calculator?" (6 key benefits with icons)
-  - "Common Mortgage Calculation Mistakes to Avoid" (5 critical mistakes)
-- **SEO Structure**: Added H2/H3 headers with target keywords, semantic HTML, keyword-rich content optimized for search intent
-- **Word Count**: Added ~2,500+ words of high-quality, educational SEO content
-- **Search Intent**: Content targets informational, transactional, and navigational search queries
-
-### October 4, 2025 - Amortization Table Drag Scrolling Enhancement
-- **UX Improvement**: Added horizontal mouse drag scrolling to amortization tables for better usability
-- **Implementation**: Added drag-to-scroll functionality with visual cursor feedback (grab/grabbing)
-- **Features**: Click and drag to scroll horizontally through the payment schedule tables, 2x scroll speed multiplier for smooth navigation
-- **User Feedback**: Cursor changes to 'grab' when hovering, 'grabbing' when dragging
-- **Affected Calculators**: Mortgage Calculator, Loan Calculator
-
-### October 4, 2025 - Mortgage Calculator SEO & AdSense Upgrade
-- **SEO Optimization**: Enhanced meta tags with keyword-rich title and description (155 chars), added comprehensive structured data (SoftwareApplication + complete 8-question FAQPage JSON-LD)
-- **AdSense Readiness**: Added responsive ad slot placeholders (top, sidebar, bottom) with clear labels, privacy policy & terms links in footer
-- **Content Enhancement**: Enhanced intro paragraph with SEO keywords, added 3 sample mortgage scenarios (starter, median, luxury) with auto-fill, 8-question comprehensive FAQ section, 6 pro tips for mortgage planning, 5-step how-to guide
-- **UI/UX Improvements**: Added slider controls for home price, interest rate, and loan term with proper ranges, PDF export using jsPDF (generates proper PDF files), print functionality, correctly handles both percentage and dollar down payment modes
-- **Technical**: All features production-ready, fully responsive design, architect-approved implementation
-- **Library Added**: jsPDF for proper PDF export functionality
-
-### September 16, 2025 - PDF Category Removal
-- **Removed PDF category and all references**: Completely eliminated the PDF tools category from the website to streamline the platform focus
-- **Updated content**: Removed PDF mentions from all meta tags, help center, privacy policy, terms of service, and home page descriptions
-- **Cleaned sitemap**: Removed ~50 PDF tool URLs from client/public/sitemap.xml 
-- **Updated sitemap splitter**: Modified sitemap_splitter.py to exclude PDF category, now generates only 4 category sitemaps (main, finance, health, text)
-- **Preserved functionality**: All existing finance, text, and health tools remain fully functional
+- **Static Hosting**: Designed for Vercel, Netlify, or similar platforms.
+- **CDN Distribution**: Assets served through CDN.
+- **Progressive Web App**: Service worker and manifest for an app-like experience.
 
 ## External Dependencies
 
 ### Core Libraries
-- **React Ecosystem**: React 18, React Router (Wouter), React Helmet Async
-- **UI Framework**: Tailwind CSS, Radix UI components, shadcn/ui
-- **Animation**: Framer Motion for smooth transitions and interactions
-- **Search**: Fuse.js for client-side fuzzy search functionality
+- **React Ecosystem**: React 18, Wouter, React Helmet Async.
+- **UI Framework**: Tailwind CSS, Radix UI, shadcn/ui.
+- **Animation**: Framer Motion.
+- **Search**: Fuse.js for client-side fuzzy search.
 
 ### Utility Libraries
-- **Form Handling**: React Hook Form with Zod validation
-- **Date Manipulation**: date-fns for date calculations
-- **Mathematical Operations**: Custom calculation engines for financial and health tools
-- **Text Processing**: Built-in JavaScript string manipulation
+- **Form Handling**: React Hook Form with Zod validation.
+- **Date Manipulation**: date-fns.
+- **Mathematical Operations**: Custom calculation engines.
+- **Text Processing**: Built-in JavaScript string manipulation.
+- **PDF Generation**: jsPDF for client-side PDF export.
 
 ### Email Integration
-- **EmailJS**: Client-side email service for contact form functionality
-- **Configuration**: Environment variable based setup for email templates
+- **EmailJS**: Client-side email service for contact forms.
 
 ### Development Tools
-- **TypeScript**: Full type coverage for development safety
-- **ESLint/Prettier**: Code quality and formatting tools
-- **Vite**: Development server and build optimization
+- **TypeScript**: For type safety.
+- **ESLint/Prettier**: For code quality and formatting.
+- **Vite**: Development server and build optimizer.
 
 ### Browser APIs
-- **Local Storage**: User preference and data persistence
-- **Web Share API**: Native sharing on mobile devices
-- **Intersection Observer**: Lazy loading implementation
-- **Service Worker**: Offline functionality and caching
+- **Local Storage**: User data persistence.
+- **Web Share API**: Native sharing.
+- **Intersection Observer**: Lazy loading.
+- **Service Worker**: Offline functionality and caching.
 
 ### Hosting Platform Integration
-- **Vercel**: Optimized configuration for serverless deployment
-- **Replit**: Configured for development and deployment with proper host settings
-- **Static Assets**: Image and asset optimization for web delivery
-- **Environment Variables**: Secure configuration management
-
-## Replit Environment Setup
-
-### Development Configuration
-- **Port**: 5000 (configured for Replit proxy compatibility)
-- **Host**: 0.0.0.0 with allowedHosts: true for iframe compatibility
-- **Workflow**: "Start application" runs `npm run dev` for development server with webview output
-- **Build Process**: `npm run build` creates production-ready static assets
-- **Production**: `npm start` serves built assets via Express.js server
-
-### Project Structure
-- **Frontend**: `client/` directory contains React application
-- **Build Output**: `dist/` directory for compiled assets
-- **Assets**: `attached_assets/` for user-provided assets
-- **Configuration**: Vite config optimized for Replit environment
-- **Server**: Express.js production server with security headers and SEO optimization
-
-### Deployment
-- **Target**: Autoscale deployment for static hosting
-- **Build Command**: `npm run build`
-- **Start Command**: `npm start`
-- **Security**: Express server includes comprehensive security headers and SEO optimizations
-
-### Import Setup Completed  
-- **Date**: October 4, 2025 - Fresh GitHub Import
-- **Status**: Successfully imported and configured for Replit environment
-- **Dependencies**: All npm packages installed and working (723 packages)
-- **Development Server**: Running successfully on port 5000 with webview output type
-- **Configuration**: Vite configuration optimized for Replit proxy with allowedHosts: true and host: "0.0.0.0"
-- **Deployment**: Configured for autoscale deployment with build: ["npm", "run", "build"] and run: ["npm", "run", "start"]
-- **Workflow**: "Start application" workflow running `npm run dev` with webview output and waitForPort: 5000
-- **Build Process**: Production build successful (dist folder created with optimized assets)
-- **Prerendering**: Puppeteer prerendering skipped (requires system libraries not available in Replit, gracefully handled with fallback)
-- **Service Worker**: Successfully registered and functioning
-- **HMR Configuration**: HMR clientPort set to 443 for Replit proxy compatibility (websocket errors are expected and harmless)
-- **Routing**: Client-side routing with Wouter working correctly for all pages
-- **Performance**: Core Web Vitals showing excellent performance (LCP: 7448ms, FCP: 7448ms, CLS: 0.002, TTFB: 8ms)
-- **Tested Pages**: Homepage, Finance Tools, Text Tools, Health Tools - all working correctly
-- **Production Server**: Express.js server (server.js) configured for production with security headers and SEO optimization
+- **Vercel**: Optimized for serverless deployment.
+- **Replit**: Configured for development and deployment.
