@@ -905,39 +905,39 @@ export default function EMICalculator() {
           </div>
 
           {/* How to Use Section */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-2xl mb-8">
-            <CardContent className="p-6 sm:p-8">
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">How to Use This EMI Calculator</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div className="space-y-2">
-                  <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg">1</div>
-                  <h3 className="font-bold text-gray-900">Select Currency</h3>
-                  <p className="text-sm text-gray-600">Choose from 10+ international currencies including USD, EUR, GBP, INR, and more to match your loan currency.</p>
+          <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-xl sm:rounded-2xl mb-6 sm:mb-8">
+            <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">How to Use This EMI Calculator</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-blue-50 transition-colors duration-200">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-base sm:text-lg md:text-xl">1</div>
+                  <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg">Select Currency</h3>
+                  <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Choose from 10+ international currencies including USD, EUR, GBP, INR, and more to match your loan currency.</p>
                 </div>
-                <div className="space-y-2">
-                  <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg">2</div>
-                  <h3 className="font-bold text-gray-900">Enter Loan Details</h3>
-                  <p className="text-sm text-gray-600">Input your loan amount, annual interest rate, and loan term. The calculator accepts both years and months for flexibility.</p>
+                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-blue-50 transition-colors duration-200">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-base sm:text-lg md:text-xl">2</div>
+                  <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg">Enter Loan Details</h3>
+                  <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Input your loan amount, annual interest rate, and loan term. The calculator accepts both years and months for flexibility.</p>
                 </div>
-                <div className="space-y-2">
-                  <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg">3</div>
-                  <h3 className="font-bold text-gray-900">Configure Advanced Options</h3>
-                  <p className="text-sm text-gray-600">Optionally enable prepayment analysis or step-up EMI to see how these strategies can save you money.</p>
+                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-blue-50 transition-colors duration-200">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-base sm:text-lg md:text-xl">3</div>
+                  <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg">Configure Advanced Options</h3>
+                  <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Optionally enable prepayment analysis or step-up EMI to see how these strategies can save you money.</p>
                 </div>
-                <div className="space-y-2">
-                  <div className="w-10 h-10 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-lg">4</div>
-                  <h3 className="font-bold text-gray-900">Calculate Instantly</h3>
-                  <p className="text-sm text-gray-600">Click "Calculate EMI" to see your monthly payment, total interest, and a complete breakdown of your loan.</p>
+                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-green-50 transition-colors duration-200">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-base sm:text-lg md:text-xl">4</div>
+                  <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg">Calculate Instantly</h3>
+                  <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Click "Calculate EMI" to see your monthly payment, total interest, and a complete breakdown of your loan.</p>
                 </div>
-                <div className="space-y-2">
-                  <div className="w-10 h-10 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-lg">5</div>
-                  <h3 className="font-bold text-gray-900">Review Schedule</h3>
-                  <p className="text-sm text-gray-600">View the detailed amortization schedule showing how each payment is split between principal and interest.</p>
+                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-green-50 transition-colors duration-200">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-base sm:text-lg md:text-xl">5</div>
+                  <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg">Review Schedule</h3>
+                  <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">View the detailed amortization schedule showing how each payment is split between principal and interest.</p>
                 </div>
-                <div className="space-y-2">
-                  <div className="w-10 h-10 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-lg">6</div>
-                  <h3 className="font-bold text-gray-900">Export & Share</h3>
-                  <p className="text-sm text-gray-600">Download professional PDF reports or share your calculation results with family, advisors, or lenders.</p>
+                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-green-50 transition-colors duration-200">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-base sm:text-lg md:text-xl">6</div>
+                  <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg">Export & Share</h3>
+                  <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Download professional PDF reports or share your calculation results with family, advisors, or lenders.</p>
                 </div>
               </div>
             </CardContent>
