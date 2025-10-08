@@ -824,29 +824,38 @@ export default function SimpleInterestCalculator() {
 
                       {/* Yearly Breakdown */}
                       {showYearlyBreakdown && result.yearlyBreakdown.length > 0 && (
-                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm border border-gray-200">
-                          <h3 className="text-sm sm:text-base md:text-lg font-bold text-gray-900 mb-3 sm:mb-4">Detailed Yearly Breakdown</h3>
-                          <div className="overflow-x-auto">
-                            <table className="w-full">
-                              <thead className="bg-gray-50">
-                                <tr>
-                                  <th className="px-3 py-2 text-left text-xs sm:text-sm font-semibold text-gray-900">Year</th>
-                                  <th className="px-3 py-2 text-left text-xs sm:text-sm font-semibold text-gray-900">Interest Earned</th>
-                                  <th className="px-3 py-2 text-left text-xs sm:text-sm font-semibold text-gray-900">Cumulative Interest</th>
-                                  <th className="px-3 py-2 text-left text-xs sm:text-sm font-semibold text-gray-900">Total Amount</th>
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm border border-gray-100">
+                          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
+                            <h3 
+                              className="text-xl sm:text-2xl font-bold text-gray-900 cursor-pointer hover:text-blue-600 transition-colors select-none"
+                              onClick={() => setShowYearlyBreakdown(false)}
+                              title="Click to hide breakdown"
+                            >
+                              Yearly Interest Breakdown
+                            </h3>
+                          </div>
+                          <p className="text-sm text-gray-600 mb-4">See how your interest accumulates year by year.</p>
+                          <div className="overflow-x-auto -mx-4 sm:mx-0">
+                            <table className="w-full min-w-[600px]" data-testid="yearly-breakdown-table">
+                              <thead>
+                                <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
+                                  <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-gray-900 text-xs sm:text-sm rounded-l-lg">Year</th>
+                                  <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Interest Earned</th>
+                                  <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Cumulative Interest</th>
+                                  <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm rounded-r-lg">Total Amount</th>
                                 </tr>
                               </thead>
-                              <tbody className="divide-y divide-gray-200">
+                              <tbody className="divide-y divide-gray-100">
                                 {result.yearlyBreakdown.map((year) => (
-                                  <tr key={year.year} className="hover:bg-gray-50">
-                                    <td className="px-3 py-2 text-xs sm:text-sm text-gray-900">{year.year}</td>
-                                    <td className="px-3 py-2 text-xs sm:text-sm text-green-600 font-medium">
+                                  <tr key={year.year} className="hover:bg-blue-50 transition-colors">
+                                    <td className="px-3 sm:px-6 py-3 sm:py-4 font-medium text-gray-900 text-xs sm:text-sm">{year.year}</td>
+                                    <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-green-600 font-bold text-xs sm:text-sm">
                                       {formatCurrency(year.interestEarned)}
                                     </td>
-                                    <td className="px-3 py-2 text-xs sm:text-sm text-blue-600 font-medium">
+                                    <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-blue-600 font-bold text-xs sm:text-sm">
                                       {formatCurrency(year.cumulativeInterest)}
                                     </td>
-                                    <td className="px-3 py-2 text-xs sm:text-sm text-purple-600 font-bold">
+                                    <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-purple-600 font-bold text-xs sm:text-sm">
                                       {formatCurrency(year.totalAmount)}
                                     </td>
                                   </tr>
