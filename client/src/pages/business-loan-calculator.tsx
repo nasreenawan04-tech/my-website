@@ -1609,69 +1609,71 @@ export default function BusinessLoanCalculator() {
           </Card>
 
           {/* Business Loan Types Comparison Table */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-2xl mt-8">
-            <CardContent className="p-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Business Loan Types Comparison - Which is Right for You?</h2>
-              <p className="text-gray-700 mb-6 leading-relaxed">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-2xl mt-6 sm:mt-8">
+            <CardContent className="p-4 sm:p-6 md:p-8">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 md:mb-6">Business Loan Types Comparison - Which is Right for You?</h2>
+              <p className="text-sm sm:text-base md:text-lg text-gray-700 mb-4 sm:mb-5 md:mb-6 leading-relaxed">
                 Compare different business loan types to find the best financing option for your small business. Each loan type has unique benefits, rates, and requirements.
               </p>
               
-              <div className="overflow-x-auto">
-                <table className="w-full border-collapse">
-                  <thead>
-                    <tr className="bg-blue-600 text-white">
-                      <th className="border border-blue-700 px-4 py-3 text-left">Loan Type</th>
-                      <th className="border border-blue-700 px-4 py-3 text-left">Interest Rate</th>
-                      <th className="border border-blue-700 px-4 py-3 text-left">Max Amount</th>
-                      <th className="border border-blue-700 px-4 py-3 text-left">Term Length</th>
-                      <th className="border border-blue-700 px-4 py-3 text-left">Best For</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="bg-white hover:bg-blue-50">
-                      <td className="border border-gray-300 px-4 py-3 font-semibold">SBA 7(a) Loan</td>
-                      <td className="border border-gray-300 px-4 py-3">6-9% APR</td>
-                      <td className="border border-gray-300 px-4 py-3">$5 million</td>
-                      <td className="border border-gray-300 px-4 py-3">Up to 25 years</td>
-                      <td className="border border-gray-300 px-4 py-3">General business purposes, working capital</td>
-                    </tr>
-                    <tr className="bg-gray-50 hover:bg-blue-50">
-                      <td className="border border-gray-300 px-4 py-3 font-semibold">SBA 504 Loan</td>
-                      <td className="border border-gray-300 px-4 py-3">5-8% APR</td>
-                      <td className="border border-gray-300 px-4 py-3">$5.5 million</td>
-                      <td className="border border-gray-300 px-4 py-3">10, 20, or 25 years</td>
-                      <td className="border border-gray-300 px-4 py-3">Commercial real estate, equipment purchases</td>
-                    </tr>
-                    <tr className="bg-white hover:bg-blue-50">
-                      <td className="border border-gray-300 px-4 py-3 font-semibold">Term Loan</td>
-                      <td className="border border-gray-300 px-4 py-3">6-10% APR</td>
-                      <td className="border border-gray-300 px-4 py-3">$50K-$5M</td>
-                      <td className="border border-gray-300 px-4 py-3">1-10 years</td>
-                      <td className="border border-gray-300 px-4 py-3">Business expansion, major purchases</td>
-                    </tr>
-                    <tr className="bg-gray-50 hover:bg-blue-50">
-                      <td className="border border-gray-300 px-4 py-3 font-semibold">Equipment Financing</td>
-                      <td className="border border-gray-300 px-4 py-3">8-20% APR</td>
-                      <td className="border border-gray-300 px-4 py-3">100% of equipment value</td>
-                      <td className="border border-gray-300 px-4 py-3">3-7 years</td>
-                      <td className="border border-gray-300 px-4 py-3">Purchasing machinery, vehicles, equipment</td>
-                    </tr>
-                    <tr className="bg-white hover:bg-blue-50">
-                      <td className="border border-gray-300 px-4 py-3 font-semibold">Business Line of Credit</td>
-                      <td className="border border-gray-300 px-4 py-3">7-25% APR</td>
-                      <td className="border border-gray-300 px-4 py-3">$10K-$500K</td>
-                      <td className="border border-gray-300 px-4 py-3">6 months-5 years</td>
-                      <td className="border border-gray-300 px-4 py-3">Cash flow management, seasonal expenses</td>
-                    </tr>
-                    <tr className="bg-gray-50 hover:bg-blue-50">
-                      <td className="border border-gray-300 px-4 py-3 font-semibold">Startup Business Loan</td>
-                      <td className="border border-gray-300 px-4 py-3">10-30% APR</td>
-                      <td className="border border-gray-300 px-4 py-3">$5K-$500K</td>
-                      <td className="border border-gray-300 px-4 py-3">1-5 years</td>
-                      <td className="border border-gray-300 px-4 py-3">New businesses, entrepreneurs</td>
-                    </tr>
-                  </tbody>
-                </table>
+              <div className="overflow-x-auto -mx-4 sm:mx-0">
+                <div className="inline-block min-w-full align-middle px-4 sm:px-0">
+                  <table className="min-w-full border-collapse">
+                    <thead>
+                      <tr className="bg-blue-600 text-white">
+                        <th className="border border-blue-700 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-left text-xs sm:text-sm md:text-base whitespace-nowrap">Loan Type</th>
+                        <th className="border border-blue-700 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-left text-xs sm:text-sm md:text-base whitespace-nowrap">Interest Rate</th>
+                        <th className="border border-blue-700 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-left text-xs sm:text-sm md:text-base whitespace-nowrap">Max Amount</th>
+                        <th className="border border-blue-700 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-left text-xs sm:text-sm md:text-base whitespace-nowrap">Term Length</th>
+                        <th className="border border-blue-700 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-left text-xs sm:text-sm md:text-base">Best For</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="bg-white hover:bg-blue-50">
+                        <td className="border border-gray-300 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 font-semibold text-xs sm:text-sm md:text-base whitespace-nowrap">SBA 7(a) Loan</td>
+                        <td className="border border-gray-300 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base whitespace-nowrap">6-9% APR</td>
+                        <td className="border border-gray-300 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base whitespace-nowrap">$5 million</td>
+                        <td className="border border-gray-300 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base whitespace-nowrap">Up to 25 years</td>
+                        <td className="border border-gray-300 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base">General business purposes, working capital</td>
+                      </tr>
+                      <tr className="bg-gray-50 hover:bg-blue-50">
+                        <td className="border border-gray-300 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 font-semibold text-xs sm:text-sm md:text-base whitespace-nowrap">SBA 504 Loan</td>
+                        <td className="border border-gray-300 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base whitespace-nowrap">5-8% APR</td>
+                        <td className="border border-gray-300 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base whitespace-nowrap">$5.5 million</td>
+                        <td className="border border-gray-300 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base whitespace-nowrap">10, 20, or 25 years</td>
+                        <td className="border border-gray-300 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base">Commercial real estate, equipment purchases</td>
+                      </tr>
+                      <tr className="bg-white hover:bg-blue-50">
+                        <td className="border border-gray-300 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 font-semibold text-xs sm:text-sm md:text-base whitespace-nowrap">Term Loan</td>
+                        <td className="border border-gray-300 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base whitespace-nowrap">6-10% APR</td>
+                        <td className="border border-gray-300 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base whitespace-nowrap">$50K-$5M</td>
+                        <td className="border border-gray-300 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base whitespace-nowrap">1-10 years</td>
+                        <td className="border border-gray-300 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base">Business expansion, major purchases</td>
+                      </tr>
+                      <tr className="bg-gray-50 hover:bg-blue-50">
+                        <td className="border border-gray-300 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 font-semibold text-xs sm:text-sm md:text-base whitespace-nowrap">Equipment Financing</td>
+                        <td className="border border-gray-300 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base whitespace-nowrap">8-20% APR</td>
+                        <td className="border border-gray-300 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base whitespace-nowrap">100% of equipment value</td>
+                        <td className="border border-gray-300 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base whitespace-nowrap">3-7 years</td>
+                        <td className="border border-gray-300 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base">Purchasing machinery, vehicles, equipment</td>
+                      </tr>
+                      <tr className="bg-white hover:bg-blue-50">
+                        <td className="border border-gray-300 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 font-semibold text-xs sm:text-sm md:text-base whitespace-nowrap">Business Line of Credit</td>
+                        <td className="border border-gray-300 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base whitespace-nowrap">7-25% APR</td>
+                        <td className="border border-gray-300 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base whitespace-nowrap">$10K-$500K</td>
+                        <td className="border border-gray-300 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base whitespace-nowrap">6 months-5 years</td>
+                        <td className="border border-gray-300 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base">Cash flow management, seasonal expenses</td>
+                      </tr>
+                      <tr className="bg-gray-50 hover:bg-blue-50">
+                        <td className="border border-gray-300 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 font-semibold text-xs sm:text-sm md:text-base whitespace-nowrap">Startup Business Loan</td>
+                        <td className="border border-gray-300 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base whitespace-nowrap">10-30% APR</td>
+                        <td className="border border-gray-300 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base whitespace-nowrap">$5K-$500K</td>
+                        <td className="border border-gray-300 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base whitespace-nowrap">1-5 years</td>
+                        <td className="border border-gray-300 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base">New businesses, entrepreneurs</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </CardContent>
           </Card>
