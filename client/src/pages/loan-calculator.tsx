@@ -1896,18 +1896,18 @@ export default function LoanCalculator() {
             </Card>
 
             {/* Loan Calculator Formula - Technical SEO */}
-            <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">Loan Calculator Formula Explained</h2>
-                <div className="prose max-w-none text-gray-700 space-y-4 text-base leading-relaxed">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 lg:p-8">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Loan Calculator Formula Explained</h2>
+                <div className="prose max-w-none text-gray-700 space-y-3 sm:space-y-4 text-sm sm:text-base leading-relaxed">
                   <p>
                     Understanding the loan payment formula helps you verify calculator results and understand exactly how your payment is determined. The monthly payment formula uses compound interest and amortization principles.
                   </p>
 
-                  <h3 className="text-xl font-bold text-gray-900 mt-6 mb-3">Monthly Loan Payment Formula</h3>
-                  <div className="bg-gray-100 p-6 rounded-xl font-mono text-sm my-4">
-                    <p className="text-center text-lg font-bold mb-4">M = P × [r(1+r)^n] / [(1+r)^n - 1]</p>
-                    <div className="space-y-2 text-gray-800">
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mt-4 sm:mt-6 mb-2 sm:mb-3">Monthly Loan Payment Formula</h3>
+                  <div className="bg-gray-100 p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl font-mono text-xs sm:text-sm my-3 sm:my-4">
+                    <p className="text-center text-sm sm:text-base md:text-lg font-bold mb-3 sm:mb-4 break-all">M = P × [r(1+r)^n] / [(1+r)^n - 1]</p>
+                    <div className="space-y-1.5 sm:space-y-2 text-gray-800 text-xs sm:text-sm">
                       <p><strong>M</strong> = Monthly payment</p>
                       <p><strong>P</strong> = Principal loan amount</p>
                       <p><strong>r</strong> = Monthly interest rate (annual rate ÷ 12)</p>
@@ -1915,10 +1915,10 @@ export default function LoanCalculator() {
                     </div>
                   </div>
 
-                  <h3 className="text-xl font-bold text-gray-900 mt-6 mb-3">Example Calculation</h3>
-                  <div className="bg-blue-50 p-6 rounded-xl">
-                    <p className="font-bold mb-3">Scenario: $20,000 loan at 7% APR for 5 years (60 months)</p>
-                    <ul className="space-y-2">
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mt-4 sm:mt-6 mb-2 sm:mb-3">Example Calculation</h3>
+                  <div className="bg-blue-50 p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl">
+                    <p className="font-bold mb-2 sm:mb-3 text-xs sm:text-sm md:text-base">Scenario: $20,000 loan at 7% APR for 5 years (60 months)</p>
+                    <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm md:text-base">
                       <li>• P = $20,000</li>
                       <li>• r = 7% ÷ 12 = 0.00583</li>
                       <li>• n = 5 years × 12 = 60 months</li>
@@ -1928,7 +1928,7 @@ export default function LoanCalculator() {
                     </ul>
                   </div>
 
-                  <p className="mt-6">
+                  <p className="mt-4 sm:mt-6">
                     While this formula works perfectly, our calculator handles all the complex math automatically and provides additional insights like amortization schedules, extra payment scenarios, and comparison tools—saving you time and reducing calculation errors.
                   </p>
                 </div>
