@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -60,6 +60,46 @@ export default function CompoundInterestCalculator() {
   const [showBreakdown, setShowBreakdown] = useState(false);
   const [showChart, setShowChart] = useState(false);
   const [result, setResult] = useState<CompoundInterestResult | null>(null);
+
+  // Load parameters from URL on mount (for shared links)
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const principalParam = params.get('principal');
+    const rateParam = params.get('rate');
+    const timeParam = params.get('time');
+    const unitParam = params.get('unit');
+    const freqParam = params.get('freq');
+    const sipParam = params.get('sip');
+    const sipAmountParam = params.get('sipAmount');
+    const sipFreqParam = params.get('sipFreq');
+    const stepUpParam = params.get('stepUp');
+    const inflationParam = params.get('inflation');
+    const goalParam = params.get('goal');
+    const goalAmountParam = params.get('goalAmount');
+
+    if (principalParam || rateParam || timeParam) {
+      if (principalParam) setPrincipal(principalParam);
+      if (rateParam) setInterestRate(rateParam);
+      if (timeParam) setTimePeriod(timeParam);
+      if (unitParam) setTimeUnit(unitParam);
+      if (freqParam) setCompoundFrequency(freqParam);
+      if (sipParam === 'true') setEnableSIP(true);
+      if (sipAmountParam) setSipAmount(sipAmountParam);
+      if (sipFreqParam) setSipFrequency(sipFreqParam);
+      if (stepUpParam) setStepUpPercentage(stepUpParam);
+      if (inflationParam) setInflationRate(inflationParam);
+      if (goalParam === 'true') setEnableGoalPlanning(true);
+      if (goalAmountParam) setGoalAmount(goalAmountParam);
+
+      // Trigger calculation after state updates
+      setTimeout(() => {
+        const calculateButton = document.querySelector('[data-testid="button-calculate"]') as HTMLButtonElement;
+        if (calculateButton) {
+          calculateButton.click();
+        }
+      }, 100);
+    }
+  }, []);
 
   const calculateCompoundInterest = () => {
     const p = parseFloat(principal);
@@ -200,27 +240,72 @@ export default function CompoundInterestCalculator() {
   const handleShare = async () => {
     if (!result) return;
 
-    const shareText = `💰 Compound Interest Calculator Results
+    // Create shareable URL with encoded parameters
+    const params = new URLSearchParams({
+      principal: principal,
+      rate: interestRate,
+      time: timePeriod,
+      unit: timeUnit,
+      freq: compoundFrequency,
+      sip: enableSIP ? 'true' : 'false',
+      sipAmount: sipAmount,
+      sipFreq: sipFrequency,
+      stepUp: stepUpPercentage,
+      inflation: inflationRate,
+      goal: enableGoalPlanning ? 'true' : 'false',
+      goalAmount: goalAmount
+    });
+    const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
 
-Principal: ${formatCurrency(parseFloat(principal))}
-Interest Rate: ${interestRate}% annually
-Time Period: ${timePeriod} ${timeUnit}
-Compound Frequency: ${compoundFrequency === '1' ? 'Annually' : compoundFrequency === '4' ? 'Quarterly' : compoundFrequency === '12' ? 'Monthly' : 'Daily'}
-${enableSIP ? `\nSIP Amount: ${formatCurrency(parseFloat(sipAmount))} per ${sipFrequency === '12' ? 'month' : 'year'}` : ''}
+    // Create comprehensive share text
+    const timeDisplay = timeUnit === 'years' ? `${timePeriod} years` : `${timePeriod} months`;
+    const compoundDisplay = compoundFrequency === '1' ? 'Annually' : 
+                            compoundFrequency === '4' ? 'Quarterly' : 
+                            compoundFrequency === '12' ? 'Monthly' : 'Daily';
+    const sipFreqDisplay = sipFrequency === '12' ? 'Monthly' : 'Annually';
 
-📊 Results:
-Final Amount: ${formatCurrency(result.finalAmount)}
-Total Interest Earned: ${formatCurrency(result.totalInterest)}
-Total Contributions: ${formatCurrency(result.totalContributions)}
-${showRealValue ? `Real Value (Inflation Adjusted): ${formatCurrency(result.realValue)}` : ''}
+    let shareText = `💰 Compound Interest Calculator Results\n\n`;
+    shareText += `📊 Investment Details:\n`;
+    shareText += `• Principal: ${formatCurrency(parseFloat(principal))}\n`;
+    shareText += `• Interest Rate: ${interestRate}% annually\n`;
+    shareText += `• Time Period: ${timeDisplay}\n`;
+    shareText += `• Compound Frequency: ${compoundDisplay}\n`;
+    
+    if (enableSIP && parseFloat(sipAmount) > 0) {
+      shareText += `• ${sipFreqDisplay} Contribution: ${formatCurrency(parseFloat(sipAmount))}\n`;
+      if (parseFloat(stepUpPercentage) > 0) {
+        shareText += `• Annual Step-up: ${stepUpPercentage}%\n`;
+      }
+    }
 
-Calculate your investment growth at DapsiWow.com`;
+    shareText += `\n💵 Results Breakdown:\n`;
+    shareText += `• Final Amount: ${formatCurrency(result.finalAmount)}\n`;
+    shareText += `• Total Interest Earned: ${formatCurrency(result.totalInterest)}\n`;
+    shareText += `• Total Contributions: ${formatCurrency(result.totalContributions)}\n`;
+    
+    if (showRealValue && parseFloat(inflationRate) > 0) {
+      shareText += `\n✨ Inflation Adjusted:\n`;
+      shareText += `• Real Value: ${formatCurrency(result.realValue)}\n`;
+      shareText += `• Inflation Rate: ${inflationRate}%\n`;
+    }
+
+    if (result.goalAnalysis && enableGoalPlanning) {
+      shareText += `\n🎯 Goal Analysis:\n`;
+      if (result.goalAnalysis.isGoalAchievable) {
+        shareText += `• Time to Reach Goal: ${result.goalAnalysis.timeToReachGoal} years\n`;
+      } else {
+        shareText += `• Required Monthly SIP: ${formatCurrency(result.goalAnalysis.requiredMonthlyContribution)}\n`;
+      }
+    }
+
+    shareText += `\n🔗 View & Calculate: ${shareableUrl}`;
 
     if (navigator.share) {
       try {
         await navigator.share({
           title: '💰 Compound Interest Calculator Results',
           text: shareText,
+          url: shareableUrl
         });
         toast({ title: "Shared successfully!", description: "Results shared with all details" });
       } catch (err) {
