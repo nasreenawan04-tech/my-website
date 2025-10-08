@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -60,6 +60,12 @@ export default function CompoundInterestCalculator() {
   const [showBreakdown, setShowBreakdown] = useState(false);
   const [showChart, setShowChart] = useState(false);
   const [result, setResult] = useState<CompoundInterestResult | null>(null);
+  
+  // Drag scrolling state for yearly breakdown table
+  const tableScrollRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
 
   // Load parameters from URL on mount (for shared links)
   useEffect(() => {
@@ -235,6 +241,30 @@ export default function CompoundInterestCalculator() {
     setShowBreakdown(false);
     setShowChart(false);
     setResult(null);
+  };
+
+  // Drag scrolling handlers for yearly breakdown table
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!tableScrollRef.current) return;
+    setIsDragging(true);
+    setStartX(e.pageX - tableScrollRef.current.offsetLeft);
+    setScrollLeft(tableScrollRef.current.scrollLeft);
+  };
+
+  const handleMouseLeave = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging || !tableScrollRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - tableScrollRef.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    tableScrollRef.current.scrollLeft = scrollLeft - walk;
   };
 
   const handleShare = async () => {
@@ -1550,7 +1580,14 @@ export default function CompoundInterestCalculator() {
                     Export PDF
                   </Button>
                 </div>
-                <div className="overflow-x-auto">
+                <div 
+                  ref={tableScrollRef}
+                  className="overflow-x-auto cursor-grab active:cursor-grabbing select-none"
+                  onMouseDown={handleMouseDown}
+                  onMouseLeave={handleMouseLeave}
+                  onMouseUp={handleMouseUp}
+                  onMouseMove={handleMouseMove}
+                >
                   <table className="w-full min-w-[600px]">
                     <thead>
                       <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
