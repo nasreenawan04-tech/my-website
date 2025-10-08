@@ -448,7 +448,7 @@ const MortgageCalculator = () => {
     doc.setFontSize(8);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(59, 130, 246);
-    doc.text('DapsiWow.com', pageWidth / 2, yPos, { align: 'center' });
+    doc.textWithLink('DapsiWow.com', pageWidth / 2, yPos, { align: 'center', url: 'https://dapsiwow.com' });
     
     yPos += 3;
     doc.setFontSize(7);
