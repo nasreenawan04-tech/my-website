@@ -799,11 +799,11 @@ export default function EMICalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>EMI Calculator: Calculate Home, Car & Personal Loan EMI Online Free 2025 | DapsiWow</title>
-        <meta name="description" content="Free online EMI calculator for home loan, car loan, personal loan & education loan. Calculate EMI with prepayment, step-up options & amortization schedule. Instant EMI calculation with accurate interest rates. Support for 10+ currencies including INR, USD." />
-        <meta name="keywords" content="emi calculator, loan emi calculator, home loan emi calculator, car loan emi calculator, personal loan emi calculator, emi calculator online, calculate emi, free emi calculator, emi calculator with prepayment, emi calculator india, loan calculator, education loan emi calculator, bike loan emi calculator, housing loan emi calculator, emi calculator with interest rate, emi calculator with amortization schedule, instant emi calculator, accurate emi calculator, emi calculation formula, how to calculate emi, mortgage calculator, emi calculator with chart, loan amortization calculator, equated monthly installment calculator, monthly payment calculator, loan installment calculator, emi formula, prepayment calculator, step up emi calculator, interest calculator, loan eligibility calculator, business loan emi calculator, sbi home loan emi calculator, hdfc home loan emi calculator, emi meaning, what is emi, how emi calculator works, emi vs principal payment, reduce emi payment, emi calculator app, emi calculator mobile, debt consolidation calculator, affordability calculator" />
-        <meta property="og:title" content="EMI Calculator: Calculate Home, Car & Personal Loan EMI Online Free 2025 | DapsiWow" />
-        <meta property="og:description" content="Professional EMI calculator for accurate loan payment calculations. Calculate home loan, car loan, personal loan & education loan EMI instantly. Features step-up EMI, prepayment analysis, and detailed amortization schedules. 100% free, no registration." />
+        <title>EMI Calculator with Prepayment & Step-Up | Calculate Loan EMI 2025</title>
+        <meta name="description" content="Free EMI calculator with prepayment analysis & step-up EMI options. Calculate home loan, car loan, personal loan EMI instantly with amortization schedule. Save on interest!" />
+        <meta name="keywords" content="emi calculator, emi calculator with prepayment, step up emi calculator, loan emi calculator, home loan emi calculator, car loan emi calculator, personal loan emi calculator, emi calculator with amortization schedule, how to calculate emi, emi calculation formula, prepayment calculator, education loan emi calculator, emi calculator online free, mortgage calculator, loan calculator with extra payments, what is emi, emi formula, reduce emi payment, calculate emi manually, floating interest rate emi calculator, home loan prepayment calculator, part prepayment calculator, progressive emi calculator, emi calculator showing principal and interest, loan amortization calculator, step up home loan calculator, emi calculator india, business loan emi calculator, bike loan emi calculator, education loan emi calculator with grace period, multiple prepayment emi calculator" />
+        <meta property="og:title" content="EMI Calculator with Prepayment & Step-Up | Calculate Loan EMI 2025" />
+        <meta property="og:description" content="Free EMI calculator with prepayment analysis & step-up EMI options. Calculate home loan, car loan, personal loan EMI instantly with amortization schedule. Save on interest!" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dapsiwow.com/tools/emi-calculator" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -848,16 +848,16 @@ export default function EMICalculator() {
             <div className="space-y-4 sm:space-y-6 md:space-y-8">
               <div className="inline-flex items-center px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
                 <Calculator className="w-3 h-3 sm:w-4 sm:h-4 mr-2 text-blue-700" />
-                <span className="text-xs sm:text-sm font-medium text-blue-700">Professional EMI Loan Calculator - Free & Accurate</span>
+                <span className="text-xs sm:text-sm font-medium text-blue-700">EMI Calculator with Prepayment & Step-Up Options</span>
               </div>
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0">
-                <span className="block">Free EMI Calculator:</span>
+                <span className="block">EMI Calculator with Prepayment:</span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
-                  Calculate Monthly Installments
+                  Calculate Loan EMI & Save on Interest
                 </span>
               </h1>
               <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
-                Calculate Equated Monthly Installments (EMI) for home loans, car loans, and personal loans. Get instant results with step-up EMI and prepayment analysis. 100% free, no registration required.
+                Calculate EMI for home loan, car loan, personal loan, and education loan with our advanced calculator. Features include prepayment analysis, step-up EMI calculator, amortization schedule with principal and interest breakdown. 100% free loan EMI calculator - no registration required.
               </p>
 
               <div className="flex flex-wrap justify-center gap-3 sm:gap-4 pt-2 sm:pt-4">
@@ -1758,6 +1758,198 @@ export default function EMICalculator() {
                     <h3 className="font-bold text-gray-900 mb-2">Budget Calculator</h3>
                     <p className="text-sm text-gray-600">Create a personalized budget plan for financial success</p>
                   </a>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Educational Content - How to Calculate EMI */}
+            <Card className="bg-white shadow-lg border-0">
+              <CardContent className="p-6 sm:p-8">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">How to Calculate EMI: Understanding the EMI Formula</h2>
+                
+                <div className="prose max-w-none space-y-6">
+                  <div className="bg-blue-50 border-l-4 border-blue-600 p-6 rounded-r-lg">
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">What is EMI?</h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      EMI (Equated Monthly Installment) is a fixed payment amount that a borrower pays to a lender at a specified date each month. 
+                      EMI consists of both principal and interest components. In the initial months, the interest component is higher, but as you continue 
+                      paying, the principal component gradually increases.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-4">EMI Calculation Formula</h3>
+                    <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                      <p className="font-mono text-lg text-center mb-4">EMI = [P × R × (1+R)^N] / [(1+R)^N - 1]</p>
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
+                        <div className="text-center">
+                          <p className="font-bold text-blue-600">P</p>
+                          <p className="text-sm text-gray-600">Principal Loan Amount</p>
+                        </div>
+                        <div className="text-center">
+                          <p className="font-bold text-blue-600">R</p>
+                          <p className="text-sm text-gray-600">Monthly Interest Rate (Annual Rate ÷ 12 ÷ 100)</p>
+                        </div>
+                        <div className="text-center">
+                          <p className="font-bold text-blue-600">N</p>
+                          <p className="text-sm text-gray-600">Loan Tenure in Months</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-4">Example: How to Calculate EMI Manually</h3>
+                    <div className="bg-green-50 border border-green-200 p-6 rounded-lg">
+                      <p className="mb-3"><strong>Loan Details:</strong></p>
+                      <ul className="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Principal Amount (P) = $100,000</li>
+                        <li>Annual Interest Rate = 8.5%</li>
+                        <li>Loan Tenure = 20 years (240 months)</li>
+                      </ul>
+                      <p className="mt-4"><strong>Calculation Steps:</strong></p>
+                      <ul className="list-disc list-inside space-y-2 text-gray-700 mt-2">
+                        <li>Monthly Interest Rate (R) = 8.5 ÷ 12 ÷ 100 = 0.00708</li>
+                        <li>Number of Months (N) = 20 × 12 = 240</li>
+                        <li>EMI = [100,000 × 0.00708 × (1+0.00708)^240] / [(1+0.00708)^240 - 1]</li>
+                        <li><strong className="text-green-600">Monthly EMI = $867.82</strong></li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-4">Understanding Prepayment Benefits</h3>
+                    <p className="text-gray-700 leading-relaxed mb-4">
+                      Making prepayments on your loan can significantly reduce your interest burden and loan tenure. When you pay extra towards your loan, 
+                      the additional amount directly reduces the principal balance. This means less interest accrues over time, potentially saving you 
+                      thousands in interest payments.
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                      <div className="bg-blue-50 p-4 rounded-lg">
+                        <h4 className="font-bold text-blue-900 mb-2">✓ Reduce Loan Tenure</h4>
+                        <p className="text-sm text-gray-700">Keep EMI same, finish loan faster</p>
+                      </div>
+                      <div className="bg-blue-50 p-4 rounded-lg">
+                        <h4 className="font-bold text-blue-900 mb-2">✓ Reduce EMI Amount</h4>
+                        <p className="text-sm text-gray-700">Keep tenure same, lower monthly payment</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-4">What is Step-Up EMI?</h3>
+                    <p className="text-gray-700 leading-relaxed mb-4">
+                      Step-up EMI is a progressive loan repayment option where your monthly installment starts low and increases annually, typically by 
+                      5-10%. This option is ideal for young professionals and first-time home buyers whose income is expected to grow over time. You can 
+                      afford a larger loan today while keeping initial EMIs manageable.
+                    </p>
+                    <div className="bg-purple-50 border border-purple-200 p-4 rounded-lg">
+                      <p className="font-bold text-purple-900 mb-2">Perfect for:</p>
+                      <ul className="list-disc list-inside space-y-1 text-gray-700">
+                        <li>Young professionals with career growth potential</li>
+                        <li>First-time home buyers</li>
+                        <li>Those expecting salary increments</li>
+                        <li>Borrowers who want to maximize loan amount while maintaining affordability</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* FAQ Section */}
+            <Card className="bg-white shadow-lg border-0">
+              <CardContent className="p-6 sm:p-8">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 text-center">Frequently Asked Questions (FAQ)</h2>
+                
+                <div className="space-y-4">
+                  <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                    <h3 className="text-lg font-bold text-gray-900 mb-3">What is EMI and how is it calculated?</h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      EMI (Equated Monthly Installment) is a fixed payment amount made by a borrower to a lender at a specified date each month. 
+                      It's calculated using the formula: EMI = [P × R × (1+R)^N]/[(1+R)^N-1], where P is the principal loan amount, R is the 
+                      monthly interest rate, and N is the number of monthly installments.
+                    </p>
+                  </div>
+
+                  <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                    <h3 className="text-lg font-bold text-gray-900 mb-3">How does prepayment affect my EMI?</h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      Prepayment reduces your outstanding principal, which means less interest accrues over time. This can significantly shorten 
+                      your loan tenure and save thousands in interest costs. Even small extra payments can make a big difference over the life of 
+                      the loan. Use our prepayment calculator feature to see exactly how much you can save.
+                    </p>
+                  </div>
+
+                  <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                    <h3 className="text-lg font-bold text-gray-900 mb-3">What is the difference between EMI and monthly payment?</h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      EMI and monthly payment are essentially the same thing. EMI is the term commonly used in India and some other countries, 
+                      while 'monthly payment' is used in the US and other regions. Both refer to the fixed amount paid each month to repay a loan.
+                    </p>
+                  </div>
+
+                  <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                    <h3 className="text-lg font-bold text-gray-900 mb-3">What is step-up EMI and who should use it?</h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      Step-up EMI allows you to start with lower monthly payments that increase annually, typically aligned with expected salary 
+                      growth. It's ideal for young professionals whose income is expected to grow, allowing them to afford loans while maintaining 
+                      their current lifestyle. Our step-up EMI calculator shows you the year-wise EMI schedule.
+                    </p>
+                  </div>
+
+                  <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                    <h3 className="text-lg font-bold text-gray-900 mb-3">Should I choose a shorter or longer loan tenure?</h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      Shorter tenures mean higher EMIs but significantly less total interest paid. Longer tenures offer lower EMIs but cost more 
+                      overall. Choose based on your monthly budget and financial goals. If you can afford higher payments, shorter tenure saves 
+                      money long-term. Our calculator lets you compare different tenure options instantly.
+                    </p>
+                  </div>
+
+                  <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                    <h3 className="text-lg font-bold text-gray-900 mb-3">How accurate is this EMI calculator?</h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      Our EMI calculator uses the standard reducing balance method, which is the same formula used by banks and financial 
+                      institutions. The calculations are 100% accurate for the inputs you provide. However, actual EMI may vary slightly based 
+                      on your lender's specific terms, processing fees, and other charges.
+                    </p>
+                  </div>
+
+                  <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                    <h3 className="text-lg font-bold text-gray-900 mb-3">Can I use this calculator for home loan, car loan, and personal loan?</h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      Yes! This EMI calculator works for all types of loans including home loans, car loans, personal loans, education loans, 
+                      and business loans. The EMI calculation formula remains the same across all loan types. Simply enter your loan amount, 
+                      interest rate, and tenure to get instant results.
+                    </p>
+                  </div>
+
+                  <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                    <h3 className="text-lg font-bold text-gray-900 mb-3">What is an amortization schedule?</h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      An amortization schedule is a complete table showing each periodic payment on a loan over time. It breaks down how much 
+                      of each payment goes toward principal and how much goes toward interest. Our calculator provides a detailed amortization 
+                      schedule for the first 60 months, helping you understand your payment structure.
+                    </p>
+                  </div>
+
+                  <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                    <h3 className="text-lg font-bold text-gray-900 mb-3">How much EMI can I afford?</h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      Financial experts recommend that your EMI should not exceed 40-50% of your monthly income. For example, if your monthly 
+                      income is $5,000, your total EMI commitments should ideally be between $2,000-$2,500. Use our calculator to find the right 
+                      loan amount and tenure that fits your budget.
+                    </p>
+                  </div>
+
+                  <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                    <h3 className="text-lg font-bold text-gray-900 mb-3">Does this calculator support multiple currencies?</h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      Yes! Our EMI calculator supports 10+ currencies including USD, EUR, GBP, INR, JPY, CAD, AUD, CNY, BRL, and MXN. Simply 
+                      select your preferred currency from the dropdown menu, and all calculations will be displayed in that currency.
+                    </p>
+                  </div>
                 </div>
               </CardContent>
             </Card>
