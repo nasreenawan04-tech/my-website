@@ -1854,12 +1854,12 @@ export default function LoanCalculator() {
           )}
 
           {/* Disclaimer */}
-          <div className="mt-8 bg-amber-50 border border-amber-200 rounded-2xl p-6">
-            <h3 className="font-bold text-amber-900 mb-3 flex items-center gap-2">
-              <Info className="w-5 h-5" />
+          <div className="mt-6 sm:mt-8 bg-amber-50 border border-amber-200 rounded-xl sm:rounded-2xl p-4 sm:p-6">
+            <h3 className="font-bold text-amber-900 mb-2 sm:mb-3 flex items-center gap-1.5 sm:gap-2 text-base sm:text-lg">
+              <Info className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
               Important Disclaimer
             </h3>
-            <div className="space-y-2 text-sm text-amber-800">
+            <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-amber-800">
               <p><strong>Estimates Only:</strong> This calculator provides estimates based on the information you enter. Actual loan terms, interest rates, and payment amounts may vary based on your creditworthiness, lender policies, and additional fees.</p>
               <p><strong>Not Financial Advice:</strong> This tool is for informational and educational purposes only and does not constitute financial, legal, or investment advice. Consult with a qualified financial professional before making any borrowing decisions.</p>
               <p><strong>Accuracy:</strong> While we strive for accuracy using standard amortization formulas, we make no warranties about the completeness or accuracy of the calculations. Always verify with your lender.</p>
