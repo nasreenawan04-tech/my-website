@@ -49,7 +49,36 @@ export default function SimpleInterestCalculator() {
   const [showChart, setShowChart] = useState(false);
   const [comparisonScenarios, setComparisonScenarios] = useState<ComparisonScenario[]>([]);
   const resultsRef = useRef<HTMLDivElement>(null);
+  const yearlyBreakdownScrollRef = useRef<HTMLDivElement>(null);
+  const comparisonScrollRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
   const { toast } = useToast();
+
+  // Drag scrolling handlers for tables
+  const handleMouseDown = (e: React.MouseEvent, ref: React.RefObject<HTMLDivElement>) => {
+    if (!ref.current) return;
+    setIsDragging(true);
+    setStartX(e.pageX - ref.current.offsetLeft);
+    setScrollLeft(ref.current.scrollLeft);
+  };
+
+  const handleMouseLeave = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent, ref: React.RefObject<HTMLDivElement>) => {
+    if (!isDragging || !ref.current) return;
+    e.preventDefault();
+    const x = e.pageX - ref.current.offsetLeft;
+    const walk = (x - startX) * 2;
+    ref.current.scrollLeft = scrollLeft - walk;
+  };
 
   const calculateSimpleInterest = () => {
     const p = parseFloat(principal);
@@ -1353,8 +1382,15 @@ export default function SimpleInterestCalculator() {
                             </Button>
                           </div>
                           <p className="text-sm text-gray-600 mb-4">See how your interest accumulates year by year.</p>
-                          <div className="overflow-x-auto -mx-4 sm:mx-0">
-                            <table className="w-full min-w-[600px]" data-testid="yearly-breakdown-table">
+                          <div 
+                            ref={yearlyBreakdownScrollRef}
+                            className={`overflow-x-auto -mx-4 sm:mx-0 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+                            onMouseDown={(e) => handleMouseDown(e, yearlyBreakdownScrollRef)}
+                            onMouseLeave={handleMouseLeave}
+                            onMouseUp={handleMouseUp}
+                            onMouseMove={(e) => handleMouseMove(e, yearlyBreakdownScrollRef)}
+                          >
+                            <table className="w-full min-w-[600px] select-none" data-testid="yearly-breakdown-table">
                               <thead>
                                 <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
                                   <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-gray-900 text-xs sm:text-sm rounded-l-lg">Year</th>
@@ -1418,8 +1454,15 @@ export default function SimpleInterestCalculator() {
                   </Button>
                 </div>
                 <p className="text-sm text-gray-600 mb-4">Compare different investment scenarios side-by-side to find the best option.</p>
-                <div className="overflow-x-auto -mx-4 sm:mx-0">
-                  <table className="w-full min-w-[600px]" data-testid="comparison-table">
+                <div 
+                  ref={comparisonScrollRef}
+                  className={`overflow-x-auto -mx-4 sm:mx-0 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+                  onMouseDown={(e) => handleMouseDown(e, comparisonScrollRef)}
+                  onMouseLeave={handleMouseLeave}
+                  onMouseUp={handleMouseUp}
+                  onMouseMove={(e) => handleMouseMove(e, comparisonScrollRef)}
+                >
+                  <table className="w-full min-w-[600px] select-none" data-testid="comparison-table">
                     <thead>
                       <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
                         <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-gray-900 text-xs sm:text-sm rounded-l-lg">Scenario</th>
