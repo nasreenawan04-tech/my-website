@@ -1870,26 +1870,42 @@ export default function LoanCalculator() {
           {/* Educational Content */}
           <div className="mt-8 sm:mt-12 md:mt-16 space-y-6 sm:space-y-8 md:space-y-12">
             {/* What is a Loan Calculator - Featured Snippet Target */}
-            <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 border-0 shadow-lg rounded-lg sm:rounded-xl md:rounded-2xl">
-              <CardContent className="p-4 sm:p-6 md:p-7 lg:p-8">
-                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 md:mb-5 lg:mb-6">What is a Loan Calculator?</h2>
-                <div className="prose max-w-none text-gray-700 space-y-3 sm:space-y-4 md:space-y-5 text-sm sm:text-base md:text-base leading-relaxed">
-                  <p className="text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed">
+            <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 border-0 shadow-md sm:shadow-lg rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden">
+              <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6 lg:mb-7 leading-tight">
+                  What is a Loan Calculator?
+                </h2>
+                <div className="prose max-w-none text-gray-700 space-y-4 sm:space-y-5 md:space-y-6">
+                  <p className="text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed sm:leading-relaxed md:leading-loose">
                     A loan calculator is a free online financial tool that helps you estimate your monthly loan payments, total interest costs, and complete amortization schedule based on your loan amount, interest rate, and repayment term. It allows borrowers to compare different loan scenarios, understand the true cost of borrowing, and make informed financial decisions before committing to a loan.
                   </p>
                   
-                  <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mt-3 sm:mt-4 md:mt-5 lg:mt-6 mb-2 sm:mb-2.5 md:mb-3">How Does a Loan Calculator Work?</h3>
-                  <p className="text-sm sm:text-base md:text-base leading-relaxed">
+                  <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mt-5 sm:mt-6 md:mt-7 lg:mt-8 mb-3 sm:mb-3.5 md:mb-4 lg:mb-5 leading-tight">
+                    How Does a Loan Calculator Work?
+                  </h3>
+                  <p className="text-sm sm:text-base md:text-lg leading-relaxed sm:leading-relaxed md:leading-loose">
                     Our loan calculator uses the standard amortization formula to calculate your monthly payment. You simply enter your loan amount (the principal you want to borrow), the annual interest rate (APR), and the loan term (how long you'll take to repay). The calculator instantly computes your monthly payment, shows how much total interest you'll pay, and provides a detailed payment schedule showing the principal and interest breakdown for each payment.
                   </p>
 
-                  <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mt-3 sm:mt-4 md:mt-5 lg:mt-6 mb-2 sm:mb-2.5 md:mb-3">Benefits of Using a Loan Payment Calculator</h3>
-                  <ul className="list-disc pl-4 sm:pl-5 md:pl-6 space-y-1.5 sm:space-y-2 md:space-y-2.5 text-sm sm:text-base md:text-base">
-                    <li className="leading-relaxed"><strong>Compare loan offers:</strong> Evaluate multiple lenders and terms side-by-side to find the best deal</li>
-                    <li className="leading-relaxed"><strong>Budget planning:</strong> Know your exact monthly payment before applying for a loan</li>
-                    <li className="leading-relaxed"><strong>Save money:</strong> See how different terms and extra payments affect total interest paid</li>
-                    <li className="leading-relaxed"><strong>Instant results:</strong> Get accurate calculations in seconds without complex math</li>
-                    <li className="leading-relaxed"><strong>Free and private:</strong> No registration required, all calculations happen in your browser</li>
+                  <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mt-5 sm:mt-6 md:mt-7 lg:mt-8 mb-3 sm:mb-3.5 md:mb-4 lg:mb-5 leading-tight">
+                    Benefits of Using a Loan Payment Calculator
+                  </h3>
+                  <ul className="list-disc pl-5 sm:pl-6 md:pl-7 lg:pl-8 space-y-2 sm:space-y-2.5 md:space-y-3 lg:space-y-3.5 text-sm sm:text-base md:text-lg">
+                    <li className="leading-relaxed sm:leading-relaxed md:leading-loose pl-1 sm:pl-2">
+                      <strong className="font-semibold text-gray-900">Compare loan offers:</strong> Evaluate multiple lenders and terms side-by-side to find the best deal
+                    </li>
+                    <li className="leading-relaxed sm:leading-relaxed md:leading-loose pl-1 sm:pl-2">
+                      <strong className="font-semibold text-gray-900">Budget planning:</strong> Know your exact monthly payment before applying for a loan
+                    </li>
+                    <li className="leading-relaxed sm:leading-relaxed md:leading-loose pl-1 sm:pl-2">
+                      <strong className="font-semibold text-gray-900">Save money:</strong> See how different terms and extra payments affect total interest paid
+                    </li>
+                    <li className="leading-relaxed sm:leading-relaxed md:leading-loose pl-1 sm:pl-2">
+                      <strong className="font-semibold text-gray-900">Instant results:</strong> Get accurate calculations in seconds without complex math
+                    </li>
+                    <li className="leading-relaxed sm:leading-relaxed md:leading-loose pl-1 sm:pl-2">
+                      <strong className="font-semibold text-gray-900">Free and private:</strong> No registration required, all calculations happen in your browser
+                    </li>
                   </ul>
                 </div>
               </CardContent>
