@@ -1138,36 +1138,36 @@ export default function LoanCalculator() {
           </div>
 
           {/* How to Use Section */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-xl sm:rounded-2xl mb-6 sm:mb-8">
+          <Card className="bg-gradient-to-r from-indigo-50 to-purple-50 border-0 shadow-lg rounded-2xl mb-6 sm:mb-8">
             <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12">
               <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">How to Use This Loan Calculator</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
-                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-blue-50 transition-colors">
+                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-white/50 transition-colors">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-base sm:text-lg md:text-xl">1</div>
                   <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg">Enter Loan Amount</h3>
                   <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Input the total amount you want to borrow. This is your principal amount before any interest is applied.</p>
                 </div>
-                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-blue-50 transition-colors">
+                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-white/50 transition-colors">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-base sm:text-lg md:text-xl">2</div>
                   <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg">Set Interest Rate</h3>
                   <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Enter the annual percentage rate (APR) offered by your lender. Check your loan offer or ask your lender for this rate.</p>
                 </div>
-                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-blue-50 transition-colors">
+                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-white/50 transition-colors">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-base sm:text-lg md:text-xl">3</div>
                   <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg">Choose Loan Term</h3>
                   <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Select how long you'll take to repay the loan. Shorter terms save on interest; longer terms lower monthly payments.</p>
                 </div>
-                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-green-50 transition-colors">
+                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-white/50 transition-colors">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-base sm:text-lg md:text-xl">4</div>
                   <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg">Select Payment Frequency</h3>
                   <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Choose monthly, bi-weekly, or weekly payments. More frequent payments can reduce total interest paid.</p>
                 </div>
-                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-green-50 transition-colors">
+                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-white/50 transition-colors">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-base sm:text-lg md:text-xl">5</div>
                   <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg">Add Extra Payments</h3>
                   <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Optional: Enter additional payments to see how much interest you'll save and how quickly you'll pay off the loan.</p>
                 </div>
-                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-green-50 transition-colors">
+                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-white/50 transition-colors">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-base sm:text-lg md:text-xl">6</div>
                   <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg">Calculate & Review</h3>
                   <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Click "Calculate Loan" to see your monthly payment, total interest, payment schedule, and comparison charts.</p>
