@@ -752,10 +752,86 @@ const MortgageCalculator = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>Free Mortgage Calculator: Calculate Home Loan Payments Instantly | DapsiWow</title>
-        <meta name="description" content="Calculate monthly mortgage payments with our free mortgage calculator. Includes taxes, insurance, PMI & amortization schedules for FHA, VA, conventional loans. Get accurate home affordability estimates instantly." />
-        <meta name="keywords" content="mortgage calculator, mortgage payment calculator, home loan calculator, monthly mortgage payment, mortgage estimator, house payment calculator, home affordability calculator" />
+        <title>Free Mortgage Calculator 2025: Calculate Monthly Payments with PMI, Taxes & Insurance</title>
+        <meta name="description" content="Free mortgage calculator with taxes, insurance & PMI. Calculate monthly payments for FHA, VA & conventional loans. Includes biweekly payments, amortization schedules & extra payment savings. Instant results!" />
+        <meta name="keywords" content="mortgage calculator, free mortgage calculator, mortgage payment calculator, monthly mortgage calculator, mortgage calculator with pmi, mortgage calculator with taxes and insurance, FHA mortgage calculator, VA mortgage calculator, biweekly mortgage calculator, home affordability calculator, mortgage amortization calculator, extra payment mortgage calculator, house payment calculator, home loan calculator, mortgage estimator" />
         <link rel="canonical" href="https://dapsiwow.com/tools/mortgage-calculator" />
+        
+        {/* Schema Markup for Calculator */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Free Mortgage Calculator",
+            "applicationCategory": "FinanceApplication",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "description": "Calculate monthly mortgage payments with taxes, insurance, PMI and amortization schedules for FHA, VA and conventional loans",
+            "operatingSystem": "Any",
+            "browserRequirements": "Requires JavaScript"
+          })}
+        </script>
+        
+        {/* FAQ Schema Markup */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "How accurate is this mortgage calculator?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Our mortgage calculator provides highly accurate estimates using the standard amortization formula that banks and lenders use. However, actual payments may vary slightly based on your lender's specific terms and exact closing date."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How much house can I afford?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Lenders typically use the 28/36 rule: your monthly housing payment (PITI) should not exceed 28% of gross monthly income, and total debt payments shouldn't exceed 36%. For example, with a $7,000 monthly income, your maximum mortgage payment should be $1,960."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is PMI and when can I remove it?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Private Mortgage Insurance (PMI) is required on conventional loans when you put down less than 20%. It typically costs 0.5-1% of the loan amount annually. You can request PMI removal once you reach 78% loan-to-value ratio."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Should I choose a 15-year or 30-year mortgage?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "A 30-year mortgage offers lower monthly payments but you'll pay significantly more interest. A 15-year mortgage has higher monthly payments but you'll pay roughly half the total interest. Choose based on your budget and financial goals."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How to calculate mortgage payment with taxes and insurance?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Calculate your principal and interest payment using the loan amount, interest rate, and term. Then add monthly property taxes (annual tax ÷ 12), homeowners insurance (annual premium ÷ 12), and PMI if your down payment is less than 20%."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is the difference between FHA and conventional mortgages?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "FHA loans require as little as 3.5% down with lower credit scores (580+) but include mortgage insurance for the life of the loan. Conventional loans typically need 5-20% down, require higher credit scores (620+), but PMI can be removed at 78% LTV."
+                }
+              }
+            ]
+          })}
+        </script>
       </Helmet>
 
       <Header />
@@ -770,13 +846,13 @@ const MortgageCalculator = () => {
                 <span className="text-xs sm:text-sm font-medium text-blue-700">Professional Mortgage Calculator - Free & Accurate</span>
               </div>
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0">
-                <span className="block">Free Mortgage Calculator:</span>
+                <span className="block">Free Mortgage Calculator 2025:</span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
-                  Calculate Home Loan Payments
+                  Calculate Monthly Payments with PMI & Taxes
                 </span>
               </h1>
               <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
-                Calculate monthly mortgage payments, home affordability, and total interest costs instantly. Includes property taxes, insurance, PMI & detailed amortization schedules for FHA, VA, and conventional loans.
+                Calculate monthly mortgage payments with our free calculator. Includes property taxes, homeowners insurance, PMI, HOA fees & detailed amortization schedules. Compare FHA, VA, and conventional loans with biweekly payment options and extra payment savings.
               </p>
 
               <div className="flex flex-wrap justify-center gap-4 sm:gap-6 pt-4">
@@ -1501,8 +1577,45 @@ const MortgageCalculator = () => {
             </Card>
           )}
 
-          {/* Understanding Mortgage Payments */}
+          {/* How to Calculate Mortgage Payment */}
           <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-2xl mb-8 mt-8">
+            <CardContent className="p-8">
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">How to Calculate Mortgage Payment: Step-by-Step Guide</h2>
+              <div className="prose max-w-none text-gray-700 space-y-4 text-base leading-relaxed">
+                <p>
+                  Understanding how to calculate your monthly mortgage payment helps you budget accurately and make informed home-buying decisions. Our free mortgage calculator automates this process, but knowing the formula and components gives you greater financial confidence.
+                </p>
+
+                <h3 className="text-xl font-bold text-gray-900 mt-6 mb-3">The Mortgage Payment Formula</h3>
+                <p>
+                  The standard mortgage payment formula is: <strong>M = P [ r(1+r)^n ] / [ (1+r)^n - 1 ]</strong>, where M is your monthly payment, P is the principal loan amount, r is your monthly interest rate (annual rate ÷ 12), and n is the number of payments (loan term in years × 12). This calculates your principal and interest payment only.
+                </p>
+
+                <h3 className="text-xl font-bold text-gray-900 mt-6 mb-3">Step 1: Calculate Principal & Interest</h3>
+                <p>
+                  First, determine your loan amount by subtracting your down payment from the home price. For a $500,000 home with 20% down ($100,000), your principal is $400,000. With a 6.5% annual interest rate, your monthly rate is 0.00542 (6.5% ÷ 12). For a 30-year loan, you'll make 360 payments. Using our mortgage payment calculator simplifies this complex math instantly.
+                </p>
+
+                <h3 className="text-xl font-bold text-gray-900 mt-6 mb-3">Step 2: Add Property Taxes & Insurance</h3>
+                <p>
+                  Calculate your monthly property taxes by dividing annual property tax by 12. If your annual property tax is $6,000, that's $500 per month. Similarly, divide your annual homeowners insurance premium by 12. For $1,800 annual insurance, that's $150 monthly. Our mortgage calculator with taxes and insurance automatically includes these costs for accurate PITI calculations.
+                </p>
+
+                <h3 className="text-xl font-bold text-gray-900 mt-6 mb-3">Step 3: Include PMI if Applicable</h3>
+                <p>
+                  If your down payment is less than 20% on a conventional loan, add PMI (typically 0.5-1% of loan amount annually). For a $400,000 loan with 0.5% PMI rate, that's $2,000 per year or $167 per month. FHA loans require mortgage insurance regardless of down payment. Use our mortgage calculator with PMI to see exact costs.
+                </p>
+
+                <h3 className="text-xl font-bold text-gray-900 mt-6 mb-3">Step 4: Factor in HOA Fees (if applicable)</h3>
+                <p>
+                  Add any monthly HOA fees to your total housing payment. While not part of your mortgage, these fees affect your budget and debt-to-income ratio. Many condos and planned communities charge $200-500+ monthly for amenities and maintenance.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Understanding Mortgage Payments */}
+          <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-2xl mb-8">
             <CardContent className="p-8">
               <h2 className="text-3xl font-bold text-gray-900 mb-6">Understanding Mortgage Payments & How They Work</h2>
               <div className="prose max-w-none text-gray-700 space-y-4 text-base leading-relaxed">
@@ -1522,7 +1635,7 @@ const MortgageCalculator = () => {
 
                 <h3 className="text-xl font-bold text-gray-900 mt-6 mb-3">Impact of Down Payment Size</h3>
                 <p>
-                  Your down payment significantly affects your monthly payment and total loan cost. A larger down payment (20% or more on conventional loans) eliminates Private Mortgage Insurance (PMI), reduces your loan amount, and often qualifies you for better interest rates. For example, on a $400,000 home, a 20% down payment ($80,000) versus 10% ($40,000) eliminates $200+ monthly in PMI and reduces your principal & interest payment significantly.
+                  Your total monthly mortgage payment consists of four main components, often abbreviated as PITI: Principal (the amount you borrowed), Interest (the cost of borrowing), property Taxes, and homeowners Insurance. A larger down payment (20% or more on conventional loans) eliminates Private Mortgage Insurance (PMI), reduces your loan amount, and often qualifies you for better interest rates. For example, on a $400,000 home, a 20% down payment ($80,000) versus 10% ($40,000) eliminates $200+ monthly in PMI and reduces your principal & interest payment significantly.
                 </p>
               </div>
             </CardContent>
@@ -1580,6 +1693,36 @@ const MortgageCalculator = () => {
                     Interest rate remains constant throughout the loan term (typically 15, 20, or 30 years). Provides payment stability and protection against rising rates. 30-year terms offer lowest monthly payments; 15-year terms save significantly on interest.
                   </p>
                 </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* First-Time Homebuyer Guide */}
+          <Card className="bg-gradient-to-br from-green-50 to-teal-50 border-0 shadow-lg rounded-2xl mb-8">
+            <CardContent className="p-8">
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">First-Time Homebuyer Mortgage Calculator Guide</h2>
+              <div className="prose max-w-none text-gray-700 space-y-4 text-base leading-relaxed">
+                <p>
+                  Buying your first home is exciting but can be overwhelming. Our mortgage calculator for first-time homebuyers helps you understand exactly what you can afford and plan your home purchase budget with confidence.
+                </p>
+
+                <h3 className="text-xl font-bold text-gray-900 mt-6 mb-3">Best Loan Options for First-Time Buyers</h3>
+                <p>
+                  <strong>FHA Loans:</strong> Ideal for first-time buyers with limited savings. Require just 3.5% down with a 580+ credit score. Use our FHA mortgage calculator to see payments with required mortgage insurance.<br/><br/>
+                  <strong>Conventional 97:</strong> Allows 3% down for first-time buyers with 620+ credit score. PMI required but can be removed at 78% LTV.<br/><br/>
+                  <strong>VA Loans:</strong> If you're a veteran or active military, VA loans offer 0% down with no PMI - the best deal available.<br/><br/>
+                  <strong>USDA Loans:</strong> For rural properties, USDA loans offer 0% down payment options for qualifying first-time buyers in eligible areas.
+                </p>
+
+                <h3 className="text-xl font-bold text-gray-900 mt-6 mb-3">How Much House Can First-Time Buyers Afford?</h3>
+                <p>
+                  Use the 28/36 rule: spend no more than 28% of gross monthly income on housing costs and 36% on total debt payments. For a $5,000 monthly income, your maximum mortgage payment should be around $1,400. Our home affordability calculator factors in your income, debts, down payment, and current interest rates to show your realistic price range.
+                </p>
+
+                <h3 className="text-xl font-bold text-gray-900 mt-6 mb-3">Down Payment Strategies for First-Time Buyers</h3>
+                <p>
+                  While 20% down is ideal to avoid PMI, many first-time buyers purchase with 3-10% down. Consider down payment assistance programs, gifts from family, or your state's first-time homebuyer programs. Even with a smaller down payment, you can still afford a home - just budget for PMI in your monthly payment using our mortgage calculator with PMI feature.
+                </p>
               </div>
             </CardContent>
           </Card>
@@ -1647,23 +1790,65 @@ const MortgageCalculator = () => {
                 </div>
 
                 <div className="border-l-4 border-green-500 pl-6">
-                  <h3 className="text-lg font-bold text-gray-900 mb-3">How much house can I afford?</h3>
+                  <h3 className="text-lg font-bold text-gray-900 mb-3">How much house can I afford with my salary?</h3>
                   <p className="text-gray-600 leading-relaxed">
-                    Lenders typically use the 28/36 rule: your monthly housing payment (PITI) should not exceed 28% of gross monthly income, and total debt payments shouldn't exceed 36%. For example, with a $7,000 monthly income, your maximum mortgage payment should be $1,960.
+                    Lenders typically use the 28/36 rule: your monthly housing payment (PITI) should not exceed 28% of gross monthly income, and total debt payments shouldn't exceed 36%. For example, with a $7,000 monthly income, your maximum mortgage payment should be $1,960. Use our calculator to determine your home affordability based on your specific income and debts.
                   </p>
                 </div>
 
                 <div className="border-l-4 border-purple-500 pl-6">
                   <h3 className="text-lg font-bold text-gray-900 mb-3">What is PMI and when can I remove it?</h3>
                   <p className="text-gray-600 leading-relaxed">
-                    Private Mortgage Insurance (PMI) is required on conventional loans when you put down less than 20%. It typically costs 0.5-1% of the loan amount annually. You can request PMI removal once you reach 78% loan-to-value ratio through payments or home appreciation.
+                    Private Mortgage Insurance (PMI) is required on conventional loans when you put down less than 20%. It typically costs 0.5-1% of the loan amount annually. You can request PMI removal once you reach 78% loan-to-value ratio through payments or home appreciation. Our mortgage calculator with PMI shows you exactly how much PMI adds to your monthly payment.
                   </p>
                 </div>
 
                 <div className="border-l-4 border-orange-500 pl-6">
                   <h3 className="text-lg font-bold text-gray-900 mb-3">Should I choose a 15-year or 30-year mortgage?</h3>
                   <p className="text-gray-600 leading-relaxed">
-                    A 30-year mortgage offers lower monthly payments but you'll pay significantly more interest over the loan's life. A 15-year mortgage has higher monthly payments but you'll pay roughly half the total interest. Choose based on your budget and financial goals.
+                    A 30-year mortgage offers lower monthly payments but you'll pay significantly more interest over the loan's life. A 15-year mortgage has higher monthly payments but you'll pay roughly half the total interest. Use our calculator to compare both options and choose based on your budget and financial goals.
+                  </p>
+                </div>
+
+                <div className="border-l-4 border-indigo-500 pl-6">
+                  <h3 className="text-lg font-bold text-gray-900 mb-3">How to calculate mortgage payment with taxes and insurance?</h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    Calculate your principal and interest payment first using the loan amount, interest rate, and loan term. Then add your monthly property taxes (annual property tax ÷ 12), monthly homeowners insurance (annual premium ÷ 12), and PMI if your down payment is less than 20%. Our calculator automatically includes all these components for accurate PITI calculations.
+                  </p>
+                </div>
+
+                <div className="border-l-4 border-pink-500 pl-6">
+                  <h3 className="text-lg font-bold text-gray-900 mb-3">What's the difference between FHA and conventional mortgages?</h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    FHA loans require as little as 3.5% down with lower credit scores (580+) but include mortgage insurance for the life of the loan. Conventional loans typically need 5-20% down, require higher credit scores (620+), but PMI can be removed at 78% LTV. Use our FHA mortgage calculator or conventional loan calculator to compare monthly payments for both loan types.
+                  </p>
+                </div>
+
+                <div className="border-l-4 border-teal-500 pl-6">
+                  <h3 className="text-lg font-bold text-gray-900 mb-3">How much will I save with biweekly mortgage payments?</h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    Biweekly payments (paying half your monthly payment every two weeks) result in 26 half-payments per year, equivalent to 13 full monthly payments instead of 12. This can save you thousands in interest and help you pay off your mortgage years earlier. Our biweekly mortgage calculator shows your exact savings with this payment strategy.
+                  </p>
+                </div>
+
+                <div className="border-l-4 border-cyan-500 pl-6">
+                  <h3 className="text-lg font-bold text-gray-900 mb-3">How do extra payments reduce my mortgage?</h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    Extra principal payments directly reduce your loan balance, which decreases the interest you'll pay over time. Even an extra $100-200 per month can save tens of thousands in interest and reduce your loan term by several years. Use our extra payment mortgage calculator to see your potential savings with additional payments.
+                  </p>
+                </div>
+
+                <div className="border-l-4 border-amber-500 pl-6">
+                  <h3 className="text-lg font-bold text-gray-900 mb-3">What's included in a mortgage amortization schedule?</h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    An amortization schedule shows how each mortgage payment is split between principal and interest over the life of your loan. In the early years, most of your payment goes toward interest. As time goes on, more goes toward principal. Our mortgage amortization calculator provides a detailed payment breakdown month by month.
+                  </p>
+                </div>
+
+                <div className="border-l-4 border-red-500 pl-6">
+                  <h3 className="text-lg font-bold text-gray-900 mb-3">Do I need to include HOA fees in my mortgage calculation?</h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    While HOA fees aren't part of your mortgage payment, lenders include them when calculating your debt-to-income ratio for loan approval. Many properties in condos, townhomes, and planned communities have HOA fees ranging from $100-500+ monthly. Our calculator lets you include HOA fees to see your true monthly housing cost.
                   </p>
                 </div>
               </div>
