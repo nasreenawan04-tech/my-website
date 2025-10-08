@@ -903,29 +903,6 @@ export default function BusinessLoanCalculator() {
                                         animationBegin={0}
                                         animationDuration={800}
                                         animationEasing="ease-out"
-                                        label={({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
-                                          const RADIAN = Math.PI / 180;
-                                          const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-                                          const x = cx + radius * Math.cos(-midAngle * RADIAN);
-                                          const y = cy + radius * Math.sin(-midAngle * RADIAN);
-                                          return (
-                                            <text 
-                                              x={x} 
-                                              y={y} 
-                                              fill="white" 
-                                              textAnchor="middle" 
-                                              dominantBaseline="central"
-                                              className="font-bold text-sm sm:text-base drop-shadow-lg"
-                                              style={{ 
-                                                textShadow: '0 2px 4px rgba(0,0,0,0.3)',
-                                                filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.5))'
-                                              }}
-                                            >
-                                              {`${(percent * 100).toFixed(1)}%`}
-                                            </text>
-                                          );
-                                        }}
-                                        labelLine={false}
                                       >
                                         <Cell fill="url(#principalGradient)" className="hover:opacity-90 transition-opacity duration-200" />
                                         <Cell fill="url(#interestGradient)" className="hover:opacity-90 transition-opacity duration-200" />
