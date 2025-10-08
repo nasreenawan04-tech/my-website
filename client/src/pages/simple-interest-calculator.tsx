@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -9,7 +9,11 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { Info, Calculator, TrendingUp, Clock, Percent } from 'lucide-react';
+import { Info, Calculator, TrendingUp, Clock, Percent, Download, Share2, PieChart as PieChartIcon, BarChart3, RotateCcw } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip } from 'recharts';
+import { jsPDF } from 'jspdf';
+import ShareResultsButton from '@/components/ShareResultsButton';
 
 interface SimpleInterestResult {
   simpleInterest: number;
@@ -24,6 +28,15 @@ interface SimpleInterestResult {
   }>;
 }
 
+interface ComparisonScenario {
+  name: string;
+  principal: number;
+  rate: number;
+  time: number;
+  simpleInterest: number;
+  totalAmount: number;
+}
+
 export default function SimpleInterestCalculator() {
   const [principal, setPrincipal] = useState('10000');
   const [interestRate, setInterestRate] = useState('8');
@@ -31,6 +44,12 @@ export default function SimpleInterestCalculator() {
   const [timeUnit, setTimeUnit] = useState('years');
   const [currency, setCurrency] = useState('USD');
   const [result, setResult] = useState<SimpleInterestResult | null>(null);
+  const [showYearlyBreakdown, setShowYearlyBreakdown] = useState(false);
+  const [showComparison, setShowComparison] = useState(false);
+  const [showChart, setShowChart] = useState(false);
+  const [comparisonScenarios, setComparisonScenarios] = useState<ComparisonScenario[]>([]);
+  const resultsRef = useRef<HTMLDivElement>(null);
+  const { toast } = useToast();
 
   const calculateSimpleInterest = () => {
     const p = parseFloat(principal);
@@ -49,14 +68,17 @@ export default function SimpleInterestCalculator() {
     const years = Math.ceil(t);
     
     for (let year = 1; year <= years; year++) {
-      const yearTime = Math.min(year, t);
-      const cumulativeInterest = p * r * yearTime;
-      const interestEarned = year === 1 ? cumulativeInterest : p * r;
+      const currentYearTime = Math.min(year, t);
+      const previousYearTime = Math.min(year - 1, t);
+      
+      const cumulativeInterest = p * r * currentYearTime;
+      const previousCumulativeInterest = p * r * previousYearTime;
+      const interestEarned = cumulativeInterest - previousCumulativeInterest;
       const totalAmountYear = p + cumulativeInterest;
       
       yearlyBreakdown.push({
         year,
-        interestEarned: year <= t ? interestEarned : 0,
+        interestEarned,
         totalAmount: totalAmountYear,
         cumulativeInterest
       });
@@ -71,6 +93,33 @@ export default function SimpleInterestCalculator() {
     });
   };
 
+  // Load parameters from URL on mount (for shared links)
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const amount = params.get('principal');
+    const rate = params.get('rate');
+    const time = params.get('time');
+    const unit = params.get('unit');
+
+    if (amount || rate || time) {
+      if (amount) setPrincipal(amount);
+      if (rate) setInterestRate(rate);
+      if (time) setTimePeriod(time);
+      if (unit) setTimeUnit(unit);
+
+      setTimeout(() => {
+        const calculateButton = document.querySelector('[data-testid="button-calculate"]') as HTMLButtonElement;
+        if (calculateButton) {
+          calculateButton.click();
+          toast({
+            title: "Shared calculation loaded!",
+            description: "Results from the shared link have been calculated."
+          });
+        }
+      }, 200);
+    }
+  }, []);
+
   const resetCalculator = () => {
     setPrincipal('10000');
     setInterestRate('8');
@@ -78,6 +127,114 @@ export default function SimpleInterestCalculator() {
     setTimeUnit('years');
     setCurrency('USD');
     setResult(null);
+    setShowYearlyBreakdown(false);
+    setShowComparison(false);
+    setShowChart(false);
+    setComparisonScenarios([]);
+  };
+
+  const addToComparison = () => {
+    if (result) {
+      const newScenario: ComparisonScenario = {
+        name: `Scenario ${comparisonScenarios.length + 1}`,
+        principal: result.principalAmount,
+        rate: parseFloat(interestRate),
+        time: timeUnit === 'years' ? parseFloat(timePeriod) : parseFloat(timePeriod) / 12,
+        simpleInterest: result.simpleInterest,
+        totalAmount: result.totalAmount
+      };
+      setComparisonScenarios([...comparisonScenarios, newScenario]);
+      setShowComparison(true);
+      toast({
+        title: "Scenario Added",
+        description: "Scenario added to comparison. Calculate another to compare.",
+      });
+    }
+  };
+
+  const handleShare = async () => {
+    const params = new URLSearchParams({
+      principal: principal,
+      rate: interestRate,
+      time: timePeriod,
+      unit: timeUnit
+    });
+    
+    const shareUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
+    
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      toast({
+        title: "Link Copied!",
+        description: "Share link copied to clipboard",
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to copy link",
+        variant: "destructive"
+      });
+    }
+  };
+
+  const exportToPDF = () => {
+    if (!result) return;
+
+    const doc = new jsPDF();
+    const pageWidth = doc.internal.pageSize.width;
+    
+    doc.setFontSize(20);
+    doc.text('Simple Interest Calculation Report', pageWidth / 2, 20, { align: 'center' });
+    
+    doc.setFontSize(12);
+    let yPos = 40;
+    
+    doc.text('Input Parameters:', 20, yPos);
+    yPos += 10;
+    doc.text(`Principal Amount: ${formatCurrency(result.principalAmount)}`, 30, yPos);
+    yPos += 8;
+    doc.text(`Interest Rate: ${interestRate}% per year`, 30, yPos);
+    yPos += 8;
+    doc.text(`Time Period: ${timePeriod} ${timeUnit}`, 30, yPos);
+    yPos += 15;
+    
+    doc.text('Results:', 20, yPos);
+    yPos += 10;
+    doc.text(`Simple Interest: ${formatCurrency(result.simpleInterest)}`, 30, yPos);
+    yPos += 8;
+    doc.text(`Total Amount: ${formatCurrency(result.totalAmount)}`, 30, yPos);
+    yPos += 8;
+    doc.text(`Monthly Interest: ${formatCurrency(result.monthlyInterest)}`, 30, yPos);
+    yPos += 15;
+    
+    if (result.yearlyBreakdown.length > 0) {
+      doc.text('Yearly Breakdown:', 20, yPos);
+      yPos += 10;
+      
+      result.yearlyBreakdown.slice(0, 15).forEach((year) => {
+        if (yPos > 270) {
+          doc.addPage();
+          yPos = 20;
+        }
+        doc.setFontSize(10);
+        doc.text(
+          `Year ${year.year}: Interest ${formatCurrency(year.interestEarned)}, Total ${formatCurrency(year.totalAmount)}`,
+          30,
+          yPos
+        );
+        yPos += 7;
+      });
+    }
+    
+    doc.setFontSize(8);
+    doc.text('Generated by DapsiWow Simple Interest Calculator', pageWidth / 2, doc.internal.pageSize.height - 10, { align: 'center' });
+    
+    doc.save('simple-interest-calculation.pdf');
+    
+    toast({
+      title: "PDF Downloaded",
+      description: "Your calculation report has been saved",
+    });
   };
 
   const formatCurrency = (amount: number) => {
@@ -484,24 +641,185 @@ export default function SimpleInterestCalculator() {
                         </div>
                       </div>
 
+                      {/* Action Buttons */}
+                      <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 pt-2 sm:pt-4">
+                        <Button
+                          onClick={() => setShowChart(!showChart)}
+                          variant="outline"
+                          className="h-9 sm:h-10 md:h-12 px-3 sm:px-4 md:px-6 text-xs sm:text-sm md:text-base border-2 border-blue-200 hover:bg-blue-50 rounded-lg sm:rounded-xl"
+                          data-testid="button-toggle-chart"
+                        >
+                          <PieChartIcon className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
+                          {showChart ? 'Hide' : 'Show'} Charts
+                        </Button>
+                        <Button
+                          onClick={() => setShowYearlyBreakdown(!showYearlyBreakdown)}
+                          variant="outline"
+                          className="h-9 sm:h-10 md:h-12 px-3 sm:px-4 md:px-6 text-xs sm:text-sm md:text-base border-2 border-green-200 hover:bg-green-50 rounded-lg sm:rounded-xl"
+                          data-testid="button-toggle-yearly"
+                        >
+                          <BarChart3 className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
+                          {showYearlyBreakdown ? 'Hide' : 'Show'} Yearly Breakdown
+                        </Button>
+                        <Button
+                          onClick={addToComparison}
+                          variant="outline"
+                          className="h-9 sm:h-10 md:h-12 px-3 sm:px-4 md:px-6 text-xs sm:text-sm md:text-base border-2 border-purple-200 hover:bg-purple-50 rounded-lg sm:rounded-xl"
+                          data-testid="button-add-comparison"
+                        >
+                          <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
+                          Add to Comparison
+                        </Button>
+                        <Button
+                          onClick={handleShare}
+                          variant="outline"
+                          className="h-9 sm:h-10 md:h-12 px-3 sm:px-4 md:px-6 text-xs sm:text-sm md:text-base border-2 border-indigo-200 hover:bg-indigo-50 rounded-lg sm:rounded-xl"
+                          data-testid="button-share"
+                        >
+                          <Share2 className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
+                          Share
+                        </Button>
+                        <Button
+                          onClick={exportToPDF}
+                          variant="outline"
+                          className="h-9 sm:h-10 md:h-12 px-3 sm:px-4 md:px-6 text-xs sm:text-sm md:text-base border-2 border-orange-200 hover:bg-orange-50 rounded-lg sm:rounded-xl"
+                          data-testid="button-export-pdf"
+                        >
+                          <Download className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
+                          Export PDF
+                        </Button>
+                      </div>
+
+                      {/* Charts Section */}
+                      {showChart && (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                          {/* Pie Chart */}
+                          <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-200">
+                            <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-4">Principal vs Interest</h3>
+                            <ResponsiveContainer width="100%" height={250}>
+                              <PieChart>
+                                <Pie
+                                  data={[
+                                    { name: 'Principal', value: result.principalAmount },
+                                    { name: 'Interest', value: result.simpleInterest }
+                                  ]}
+                                  cx="50%"
+                                  cy="50%"
+                                  labelLine={false}
+                                  label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                                  outerRadius={80}
+                                  fill="#8884d8"
+                                  dataKey="value"
+                                >
+                                  <Cell fill="#3b82f6" />
+                                  <Cell fill="#10b981" />
+                                </Pie>
+                                <RechartsTooltip 
+                                  formatter={(value: number) => formatCurrency(value)}
+                                />
+                                <Legend />
+                              </PieChart>
+                            </ResponsiveContainer>
+                          </div>
+
+                          {/* Bar Chart */}
+                          <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-200">
+                            <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-4">Yearly Growth</h3>
+                            <ResponsiveContainer width="100%" height={250}>
+                              <BarChart data={result.yearlyBreakdown.slice(0, 10)}>
+                                <CartesianGrid strokeDasharray="3 3" />
+                                <XAxis dataKey="year" tick={{ fontSize: 12 }} />
+                                <YAxis tick={{ fontSize: 12 }} />
+                                <RechartsTooltip 
+                                  formatter={(value: number) => formatCurrency(value)}
+                                />
+                                <Legend />
+                                <Bar dataKey="cumulativeInterest" fill="#10b981" name="Cumulative Interest" />
+                              </BarChart>
+                            </ResponsiveContainer>
+                          </div>
+                        </div>
+                      )}
+
                       {/* Yearly Breakdown */}
-                      {result.yearlyBreakdown.length > 0 && (
+                      {showYearlyBreakdown && result.yearlyBreakdown.length > 0 && (
                         <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm border border-gray-200">
-                          <h3 className="text-sm sm:text-base md:text-lg font-bold text-gray-900 mb-3 sm:mb-4">Yearly Breakdown</h3>
-                          <div className="max-h-60 overflow-y-auto space-y-2">
-                            {result.yearlyBreakdown.slice(0, 5).map((year) => (
-                              <div key={year.year} className="bg-gray-50 rounded-lg p-2 sm:p-3 border border-gray-100">
-                                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-1 sm:mb-2">
-                                  <span className="font-medium text-gray-900 text-xs sm:text-sm">Year {year.year}</span>
-                                  <span className="font-bold text-green-600 text-xs sm:text-sm break-all">
-                                    {formatCurrency(year.totalAmount)}
-                                  </span>
-                                </div>
-                                <div className="text-xs text-gray-600">
-                                  Interest earned: <span className="break-all">{formatCurrency(year.interestEarned)}</span>
-                                </div>
-                              </div>
-                            ))}
+                          <h3 className="text-sm sm:text-base md:text-lg font-bold text-gray-900 mb-3 sm:mb-4">Detailed Yearly Breakdown</h3>
+                          <div className="overflow-x-auto">
+                            <table className="w-full">
+                              <thead className="bg-gray-50">
+                                <tr>
+                                  <th className="px-3 py-2 text-left text-xs sm:text-sm font-semibold text-gray-900">Year</th>
+                                  <th className="px-3 py-2 text-left text-xs sm:text-sm font-semibold text-gray-900">Interest Earned</th>
+                                  <th className="px-3 py-2 text-left text-xs sm:text-sm font-semibold text-gray-900">Cumulative Interest</th>
+                                  <th className="px-3 py-2 text-left text-xs sm:text-sm font-semibold text-gray-900">Total Amount</th>
+                                </tr>
+                              </thead>
+                              <tbody className="divide-y divide-gray-200">
+                                {result.yearlyBreakdown.map((year) => (
+                                  <tr key={year.year} className="hover:bg-gray-50">
+                                    <td className="px-3 py-2 text-xs sm:text-sm text-gray-900">{year.year}</td>
+                                    <td className="px-3 py-2 text-xs sm:text-sm text-green-600 font-medium">
+                                      {formatCurrency(year.interestEarned)}
+                                    </td>
+                                    <td className="px-3 py-2 text-xs sm:text-sm text-blue-600 font-medium">
+                                      {formatCurrency(year.cumulativeInterest)}
+                                    </td>
+                                    <td className="px-3 py-2 text-xs sm:text-sm text-purple-600 font-bold">
+                                      {formatCurrency(year.totalAmount)}
+                                    </td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Comparison Table */}
+                      {showComparison && comparisonScenarios.length > 0 && (
+                        <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-200">
+                          <div className="flex justify-between items-center mb-4">
+                            <h3 className="text-base sm:text-lg font-bold text-gray-900">Scenario Comparison</h3>
+                            <Button
+                              onClick={() => {
+                                setComparisonScenarios([]);
+                                setShowComparison(false);
+                              }}
+                              variant="outline"
+                              size="sm"
+                              className="text-xs"
+                              data-testid="button-clear-comparison"
+                            >
+                              <RotateCcw className="w-3 h-3 mr-1" />
+                              Clear
+                            </Button>
+                          </div>
+                          <div className="overflow-x-auto">
+                            <table className="w-full">
+                              <thead className="bg-gray-50">
+                                <tr>
+                                  <th className="px-3 py-2 text-left text-xs sm:text-sm font-semibold text-gray-900">Scenario</th>
+                                  <th className="px-3 py-2 text-left text-xs sm:text-sm font-semibold text-gray-900">Principal</th>
+                                  <th className="px-3 py-2 text-left text-xs sm:text-sm font-semibold text-gray-900">Rate</th>
+                                  <th className="px-3 py-2 text-left text-xs sm:text-sm font-semibold text-gray-900">Time (yrs)</th>
+                                  <th className="px-3 py-2 text-left text-xs sm:text-sm font-semibold text-gray-900">Interest</th>
+                                  <th className="px-3 py-2 text-left text-xs sm:text-sm font-semibold text-gray-900">Total</th>
+                                </tr>
+                              </thead>
+                              <tbody className="divide-y divide-gray-200">
+                                {comparisonScenarios.map((scenario, index) => (
+                                  <tr key={index} className="hover:bg-gray-50">
+                                    <td className="px-3 py-2 text-xs sm:text-sm text-gray-900 font-medium">{scenario.name}</td>
+                                    <td className="px-3 py-2 text-xs sm:text-sm text-gray-700">{formatCurrency(scenario.principal)}</td>
+                                    <td className="px-3 py-2 text-xs sm:text-sm text-gray-700">{scenario.rate}%</td>
+                                    <td className="px-3 py-2 text-xs sm:text-sm text-gray-700">{scenario.time.toFixed(1)}</td>
+                                    <td className="px-3 py-2 text-xs sm:text-sm text-green-600 font-medium">{formatCurrency(scenario.simpleInterest)}</td>
+                                    <td className="px-3 py-2 text-xs sm:text-sm text-blue-600 font-bold">{formatCurrency(scenario.totalAmount)}</td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
                           </div>
                         </div>
                       )}
