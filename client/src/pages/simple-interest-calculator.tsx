@@ -699,49 +699,123 @@ export default function SimpleInterestCalculator() {
 
                       {/* Charts Section */}
                       {showChart && (
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                          {/* Pie Chart */}
-                          <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-200">
-                            <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-4">Principal vs Interest</h3>
-                            <ResponsiveContainer width="100%" height={250}>
-                              <PieChart>
-                                <Pie
-                                  data={[
-                                    { name: 'Principal', value: result.principalAmount },
-                                    { name: 'Interest', value: result.simpleInterest }
-                                  ]}
-                                  cx="50%"
-                                  cy="50%"
-                                  labelLine={false}
-                                  label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                                  outerRadius={80}
-                                  fill="#8884d8"
-                                  dataKey="value"
-                                >
-                                  <Cell fill="#3b82f6" />
-                                  <Cell fill="#10b981" />
-                                </Pie>
-                                <RechartsTooltip 
-                                  formatter={(value: number) => formatCurrency(value)}
-                                />
-                                <Legend />
-                              </PieChart>
-                            </ResponsiveContainer>
+                        <div className="space-y-4 sm:space-y-6">
+                          {/* Donut Chart - Total Breakdown */}
+                          <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm border border-gray-100">
+                            <h3 className="font-bold text-gray-900 mb-4 sm:mb-6 text-center text-base sm:text-lg">Total Investment Breakdown</h3>
+                            <div className="flex flex-col lg:flex-row items-center justify-center gap-4 sm:gap-6">
+                              <div className="w-full max-w-[280px] sm:max-w-xs">
+                                <ResponsiveContainer width="100%" height={280}>
+                                  <PieChart>
+                                    <Pie
+                                      data={[
+                                        { 
+                                          name: 'Principal', 
+                                          value: result.principalAmount,
+                                          percentage: (result.principalAmount / result.totalAmount) * 100
+                                        },
+                                        { 
+                                          name: 'Interest', 
+                                          value: result.simpleInterest,
+                                          percentage: (result.simpleInterest / result.totalAmount) * 100
+                                        }
+                                      ]}
+                                      cx="50%"
+                                      cy="50%"
+                                      innerRadius={60}
+                                      outerRadius={90}
+                                      paddingAngle={3}
+                                      dataKey="value"
+                                      label={({ percent }) => `${(percent * 100).toFixed(1)}%`}
+                                      labelLine={true}
+                                    >
+                                      <Cell fill="url(#principalGradient)" />
+                                      <Cell fill="url(#interestGradient)" />
+                                    </Pie>
+                                    <RechartsTooltip
+                                      formatter={(value: number) => formatCurrency(value)}
+                                      contentStyle={{
+                                        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                                        border: '1px solid #e5e7eb',
+                                        borderRadius: '8px',
+                                        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+                                        fontSize: '14px'
+                                      }}
+                                    />
+                                    <defs>
+                                      <linearGradient id="principalGradient" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stopColor="#10b981" stopOpacity={1} />
+                                        <stop offset="100%" stopColor="#059669" stopOpacity={1} />
+                                      </linearGradient>
+                                      <linearGradient id="interestGradient" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stopColor="#f59e0b" stopOpacity={1} />
+                                        <stop offset="100%" stopColor="#d97706" stopOpacity={1} />
+                                      </linearGradient>
+                                    </defs>
+                                  </PieChart>
+                                </ResponsiveContainer>
+                              </div>
+                              <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-1 gap-3 sm:gap-4 w-full lg:w-auto">
+                                <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-green-200">
+                                  <div className="flex items-center gap-2 mb-2">
+                                    <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full"></div>
+                                    <span className="font-semibold text-gray-700 text-xs sm:text-sm">Principal Amount</span>
+                                  </div>
+                                  <div className="text-lg sm:text-xl md:text-2xl font-bold text-green-600 break-all">{formatCurrency(result.principalAmount)}</div>
+                                  <div className="text-xs sm:text-sm text-green-700 mt-1">{((result.principalAmount / result.totalAmount) * 100).toFixed(1)}% of total</div>
+                                </div>
+                                <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-orange-200">
+                                  <div className="flex items-center gap-2 mb-2">
+                                    <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gradient-to-br from-orange-500 to-amber-600 rounded-full"></div>
+                                    <span className="font-semibold text-gray-700 text-xs sm:text-sm">Interest Earned</span>
+                                  </div>
+                                  <div className="text-lg sm:text-xl md:text-2xl font-bold text-orange-600 break-all">{formatCurrency(result.simpleInterest)}</div>
+                                  <div className="text-xs sm:text-sm text-orange-700 mt-1">{((result.simpleInterest / result.totalAmount) * 100).toFixed(1)}% of total</div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
 
-                          {/* Bar Chart */}
-                          <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-200">
-                            <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-4">Yearly Growth</h3>
-                            <ResponsiveContainer width="100%" height={250}>
+                          {/* Bar Chart - Yearly Growth */}
+                          <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm border border-gray-100">
+                            <h3 className="font-bold text-gray-900 mb-4 sm:mb-6 text-center text-base sm:text-lg">Yearly Interest Growth</h3>
+                            <ResponsiveContainer width="100%" height={280}>
                               <BarChart data={result.yearlyBreakdown.slice(0, 10)}>
-                                <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="year" tick={{ fontSize: 12 }} />
-                                <YAxis tick={{ fontSize: 12 }} />
+                                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                                <XAxis 
+                                  dataKey="year" 
+                                  tick={{ fontSize: 12, fill: '#6b7280' }}
+                                  stroke="#9ca3af"
+                                />
+                                <YAxis 
+                                  tick={{ fontSize: 12, fill: '#6b7280' }}
+                                  stroke="#9ca3af"
+                                />
                                 <RechartsTooltip 
                                   formatter={(value: number) => formatCurrency(value)}
+                                  contentStyle={{
+                                    backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                                    border: '1px solid #e5e7eb',
+                                    borderRadius: '8px',
+                                    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+                                    fontSize: '14px'
+                                  }}
                                 />
-                                <Legend />
-                                <Bar dataKey="cumulativeInterest" fill="#10b981" name="Cumulative Interest" />
+                                <Legend 
+                                  wrapperStyle={{ fontSize: '14px' }}
+                                />
+                                <Bar 
+                                  dataKey="cumulativeInterest" 
+                                  fill="url(#barGradient)" 
+                                  name="Cumulative Interest"
+                                  radius={[8, 8, 0, 0]}
+                                />
+                                <defs>
+                                  <linearGradient id="barGradient" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stopColor="#10b981" stopOpacity={0.8} />
+                                    <stop offset="100%" stopColor="#059669" stopOpacity={0.9} />
+                                  </linearGradient>
+                                </defs>
                               </BarChart>
                             </ResponsiveContainer>
                           </div>
