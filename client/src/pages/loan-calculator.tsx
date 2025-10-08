@@ -2195,111 +2195,111 @@ export default function LoanCalculator() {
             </Card>
 
             {/* FAQ Section - Comprehensive */}
-            <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8">Frequently Asked Questions About Loan Calculators</h2>
-                <div className="space-y-6">
-                  <div className="border-l-4 border-blue-500 pl-6">
-                    <h3 className="text-lg font-bold text-gray-900 mb-3">How does a loan calculator work?</h3>
-                    <p className="text-gray-600 leading-relaxed">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">Frequently Asked Questions About Loan Calculators</h2>
+                <div className="space-y-4 sm:space-y-5 md:space-y-6">
+                  <div className="border-l-2 sm:border-l-3 md:border-l-4 border-blue-500 pl-3 sm:pl-4 md:pl-6">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3">How does a loan calculator work?</h3>
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                       A loan calculator uses the loan amount (principal), interest rate, and loan term to calculate your monthly payment using the standard amortization formula. It determines how much of each payment goes toward principal and interest over the life of the loan. Our calculator provides accurate estimates based on industry-standard financial formulas used by banks and lenders worldwide.
                     </p>
                   </div>
 
-                  <div className="border-l-4 border-green-500 pl-6">
-                    <h3 className="text-lg font-bold text-gray-900 mb-3">What is a good interest rate for a personal loan?</h3>
-                    <p className="text-gray-600 leading-relaxed">
+                  <div className="border-l-2 sm:border-l-3 md:border-l-4 border-green-500 pl-3 sm:pl-4 md:pl-6">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3">What is a good interest rate for a personal loan?</h3>
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                       As of 2025, good personal loan interest rates typically range from 6% to 12% for borrowers with excellent credit (scores above 720). Rates vary significantly based on your credit score, income, debt-to-income ratio, and the lender's policies. Those with credit scores between 680-719 might see rates of 10-18%, while borrowers with scores below 680 may face rates of 18-36% or higher. Always compare offers from multiple lenders.
                     </p>
                   </div>
 
-                  <div className="border-l-4 border-purple-500 pl-6">
-                    <h3 className="text-lg font-bold text-gray-900 mb-3">How accurate is this loan calculator?</h3>
-                    <p className="text-gray-600 leading-relaxed">
+                  <div className="border-l-2 sm:border-l-3 md:border-l-4 border-purple-500 pl-3 sm:pl-4 md:pl-6">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3">How accurate is this loan calculator?</h3>
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                       Our loan calculator provides highly accurate estimates using industry-standard amortization formulas that banks and financial institutions use. However, actual loan terms may vary based on your creditworthiness, the lender's specific policies, origination fees, insurance requirements, and other factors not included in basic calculations. Always verify final numbers with your lender before making decisions.
                     </p>
                   </div>
 
-                  <div className="border-l-4 border-orange-500 pl-6">
-                    <h3 className="text-lg font-bold text-gray-900 mb-3">What's the difference between APR and interest rate?</h3>
-                    <p className="text-gray-600 leading-relaxed">
+                  <div className="border-l-2 sm:border-l-3 md:border-l-4 border-orange-500 pl-3 sm:pl-4 md:pl-6">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3">What's the difference between APR and interest rate?</h3>
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                       The interest rate is the annual cost of borrowing expressed as a percentage of the loan amount—it's what you pay on the principal. APR (Annual Percentage Rate) includes the interest rate plus additional fees and costs like origination fees, closing costs, mortgage insurance, and other charges, giving you the true annual cost of the loan. APR is always equal to or higher than the interest rate and provides a better comparison tool when shopping for loans.
                     </p>
                   </div>
 
-                  <div className="border-l-4 border-indigo-500 pl-6">
-                    <h3 className="text-lg font-bold text-gray-900 mb-3">Should I choose a shorter or longer loan term?</h3>
-                    <p className="text-gray-600 leading-relaxed">
+                  <div className="border-l-2 sm:border-l-3 md:border-l-4 border-indigo-500 pl-3 sm:pl-4 md:pl-6">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3">Should I choose a shorter or longer loan term?</h3>
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                       Shorter loan terms (3-5 years) mean higher monthly payments but significantly less total interest paid over the life of the loan. Longer terms (7-10 years) offer lower monthly payments but cost more in total interest. Choose based on your monthly budget and long-term financial goals. If you can afford higher monthly payments, a shorter term will save you thousands. Use our calculator to compare both scenarios with your actual numbers.
                     </p>
                   </div>
 
-                  <div className="border-l-4 border-pink-500 pl-6">
-                    <h3 className="text-lg font-bold text-gray-900 mb-3">How much can I afford to borrow?</h3>
-                    <p className="text-gray-600 leading-relaxed">
+                  <div className="border-l-2 sm:border-l-3 md:border-l-4 border-pink-500 pl-3 sm:pl-4 md:pl-6">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3">How much can I afford to borrow?</h3>
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                       Financial experts recommend that your total monthly debt payments (including the new loan) shouldn't exceed 36% of your gross monthly income. For example, if you earn $5,000 per month, your total debt payments should stay under $1,800. Use our calculator to work backward: enter different loan amounts and terms to find a monthly payment that fits comfortably in your budget while leaving room for savings and emergencies.
                     </p>
                   </div>
 
-                  <div className="border-l-4 border-red-500 pl-6">
-                    <h3 className="text-lg font-bold text-gray-900 mb-3">What happens if I make extra payments on my loan?</h3>
-                    <p className="text-gray-600 leading-relaxed">
+                  <div className="border-l-2 sm:border-l-3 md:border-l-4 border-red-500 pl-3 sm:pl-4 md:pl-6">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3">What happens if I make extra payments on my loan?</h3>
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                       Extra payments go directly toward reducing your principal balance, which means less interest accrues over time. This can dramatically shorten your loan term and save thousands in interest. For example, adding just $100 per month to a $30,000 loan at 7% over 5 years can save you over $1,200 in interest and pay off the loan 8 months early. Use our calculator's extra payment feature to see your potential savings. Just ensure your lender doesn't charge prepayment penalties.
                     </p>
                   </div>
 
-                  <div className="border-l-4 border-teal-500 pl-6">
-                    <h3 className="text-lg font-bold text-gray-900 mb-3">How do I calculate my monthly loan payment manually?</h3>
-                    <p className="text-gray-600 leading-relaxed">
+                  <div className="border-l-2 sm:border-l-3 md:border-l-4 border-teal-500 pl-3 sm:pl-4 md:pl-6">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3">How do I calculate my monthly loan payment manually?</h3>
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                       The formula is: M = P × [r(1+r)^n]/[(1+r)^n-1], where M is your monthly payment, P is the principal loan amount, r is your monthly interest rate (annual rate divided by 12), and n is the number of payments (loan term in months). For example, a $20,000 loan at 7% for 5 years (60 months) would be calculated with r = 0.07/12 = 0.00583. While this formula works, our calculator does this automatically and provides additional insights like amortization schedules and total interest paid.
                     </p>
                   </div>
 
-                  <div className="border-l-4 border-yellow-500 pl-6">
-                    <h3 className="text-lg font-bold text-gray-900 mb-3">Can I use this calculator for a mortgage?</h3>
-                    <p className="text-gray-600 leading-relaxed">
+                  <div className="border-l-2 sm:border-l-3 md:border-l-4 border-yellow-500 pl-3 sm:pl-4 md:pl-6">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3">Can I use this calculator for a mortgage?</h3>
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                       Yes, our loan calculator works for mortgages and home loans. Simply enter your home loan amount, interest rate, and term (typically 15 or 30 years). However, remember that your actual monthly housing payment will include property taxes, homeowners insurance, HOA fees, and possibly PMI (private mortgage insurance), which this calculator doesn't include. Add these additional costs to the calculated payment for your true monthly housing cost.
                     </p>
                   </div>
 
-                  <div className="border-l-4 border-gray-500 pl-6">
-                    <h3 className="text-lg font-bold text-gray-900 mb-3">What is an amortization schedule?</h3>
-                    <p className="text-gray-600 leading-relaxed">
+                  <div className="border-l-2 sm:border-l-3 md:border-l-4 border-gray-500 pl-3 sm:pl-4 md:pl-6">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3">What is an amortization schedule?</h3>
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                       An amortization schedule is a detailed table showing how each loan payment is split between principal and interest over the entire loan term. In the early years, most of your payment goes toward interest. As time progresses, more goes toward principal. This schedule helps you see exactly when you'll own equity in your purchase and how much interest you'll pay over time. Click "Show Payment Schedule" in our calculator to see your personalized amortization schedule.
                     </p>
                   </div>
 
-                  <div className="border-l-4 border-cyan-500 pl-6">
-                    <h3 className="text-lg font-bold text-gray-900 mb-3">Does this calculator store my personal information?</h3>
-                    <p className="text-gray-600 leading-relaxed">
+                  <div className="border-l-2 sm:border-l-3 md:border-l-4 border-cyan-500 pl-3 sm:pl-4 md:pl-6">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3">Does this calculator store my personal information?</h3>
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                       No. Your privacy is important to us. All calculations are performed in your web browser, and we don't collect, store, or transmit any financial information you enter. Your loan details, calculation results, and comparisons stay completely private on your device. We don't require registration or track your calculations.
                     </p>
                   </div>
 
-                  <div className="border-l-4 border-lime-500 pl-6">
-                    <h3 className="text-lg font-bold text-gray-900 mb-3">When should I consider refinancing my loan?</h3>
-                    <p className="text-gray-600 leading-relaxed">
+                  <div className="border-l-2 sm:border-l-3 md:border-l-4 border-lime-500 pl-3 sm:pl-4 md:pl-6">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3">When should I consider refinancing my loan?</h3>
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                       Consider refinancing when interest rates drop significantly (typically 1% or more below your current rate), when your credit score has improved substantially, or when you want to change your loan term. Refinancing can lower your monthly payment, reduce total interest paid, or help you pay off debt faster. However, factor in refinancing costs (typically 2-5% of the loan amount) to ensure the savings justify the expense. Use our calculator to compare your current loan with potential refinancing scenarios.
                     </p>
                   </div>
 
-                  <div className="border-l-4 border-amber-500 pl-6">
-                    <h3 className="text-lg font-bold text-gray-900 mb-3">What credit score do I need to get a loan?</h3>
-                    <p className="text-gray-600 leading-relaxed">
+                  <div className="border-l-2 sm:border-l-3 md:border-l-4 border-amber-500 pl-3 sm:pl-4 md:pl-6">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3">What credit score do I need to get a loan?</h3>
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                       Minimum credit score requirements vary by lender and loan type. Generally: 720+ qualifies you for the best rates, 680-719 gets good rates, 640-679 gets fair rates with higher interest, 580-639 may qualify for subprime loans with high rates, and below 580 makes approval difficult. However, some lenders specialize in bad credit loans, though at significantly higher interest rates. If your score needs improvement, work on paying bills on time, reducing credit utilization, and disputing errors before applying.
                     </p>
                   </div>
 
-                  <div className="border-l-4 border-emerald-500 pl-6">
-                    <h3 className="text-lg font-bold text-gray-900 mb-3">How do bi-weekly payments save money on loans?</h3>
-                    <p className="text-gray-600 leading-relaxed">
+                  <div className="border-l-2 sm:border-l-3 md:border-l-4 border-emerald-500 pl-3 sm:pl-4 md:pl-6">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3">How do bi-weekly payments save money on loans?</h3>
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                       Bi-weekly payments (paying half your monthly payment every two weeks) result in 26 half-payments per year, which equals 13 full monthly payments instead of 12. This extra payment per year goes directly toward principal, reducing interest and shortening the loan term. For a $200,000 mortgage at 6%, bi-weekly payments can save over $30,000 in interest and cut about 4 years off a 30-year term. Check with your lender first, as some charge fees for bi-weekly payment setups.
                     </p>
                   </div>
 
-                  <div className="border-l-4 border-rose-500 pl-6">
-                    <h3 className="text-lg font-bold text-gray-900 mb-3">What fees should I watch out for when getting a loan?</h3>
-                    <p className="text-gray-600 leading-relaxed">
+                  <div className="border-l-2 sm:border-l-3 md:border-l-4 border-rose-500 pl-3 sm:pl-4 md:pl-6">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3">What fees should I watch out for when getting a loan?</h3>
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                       Common loan fees include: origination fees (1-8% of loan amount), application fees ($25-$50), appraisal fees (for secured loans, $300-$500), credit report fees ($25-$50), prepayment penalties (can be substantial), late payment fees (typically $25-$50 or 5% of payment), and annual fees (for some credit products). Always ask for a complete fee schedule and factor these into your total cost comparison. Some online lenders have minimal fees, while traditional banks may charge more but offer better rates.
                     </p>
                   </div>
