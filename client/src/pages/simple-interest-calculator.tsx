@@ -994,26 +994,26 @@ export default function SimpleInterestCalculator() {
           </div>
 
           {/* How to Use Section */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-xl sm:rounded-2xl mb-6 sm:mb-8">
+          <Card className="bg-gradient-to-r from-indigo-50 to-purple-50 border-0 shadow-lg rounded-2xl mb-6 sm:mb-8">
             <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12">
               <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">How to Use This Simple Interest Calculator</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
-                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-blue-50 transition-colors">
+                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-white/50 transition-colors">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-base sm:text-lg md:text-xl">1</div>
                   <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg">Select Currency</h3>
                   <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Choose from 10 major currencies including USD, EUR, GBP, INR, and more for accurate calculations.</p>
                 </div>
-                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-blue-50 transition-colors">
+                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-white/50 transition-colors">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-base sm:text-lg md:text-xl">2</div>
                   <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg">Enter Principal</h3>
                   <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Input the initial amount you're investing or borrowing - this is your principal amount.</p>
                 </div>
-                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-green-50 transition-colors">
+                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-white/50 transition-colors">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-base sm:text-lg md:text-xl">3</div>
                   <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg">Set Interest Rate</h3>
                   <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Enter the annual interest rate percentage. Our calculator will handle the conversion automatically.</p>
                 </div>
-                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-green-50 transition-colors">
+                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-white/50 transition-colors">
                   <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-base sm:text-lg md:text-xl">4</div>
                   <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg">Choose Time Period</h3>
                   <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Select the duration in years or months, then click Calculate to see your interest breakdown.</p>
