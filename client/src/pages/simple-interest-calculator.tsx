@@ -544,6 +544,62 @@ export default function SimpleInterestCalculator() {
                       Reset Calculator
                     </Button>
                   </div>
+
+                  {/* Interest Configuration Action Buttons */}
+                  {result && (
+                    <div className="flex flex-wrap justify-center gap-2 sm:gap-3 pt-3 sm:pt-4 print:hidden">
+                      <Button
+                        onClick={() => setShowChart(!showChart)}
+                        variant="outline"
+                        size="sm"
+                        className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                        data-testid="button-toggle-chart"
+                      >
+                        <PieChartIcon className="w-4 h-4 mr-1" />
+                        {showChart ? 'Hide' : 'Show'} Charts
+                      </Button>
+                      <Button
+                        onClick={() => setShowYearlyBreakdown(!showYearlyBreakdown)}
+                        variant="outline"
+                        size="sm"
+                        className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                        data-testid="button-toggle-yearly"
+                      >
+                        <BarChart3 className="w-4 h-4 mr-1" />
+                        {showYearlyBreakdown ? 'Hide' : 'Show'} Yearly Breakdown
+                      </Button>
+                      <Button
+                        onClick={addToComparison}
+                        variant="outline"
+                        size="sm"
+                        className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                        data-testid="button-add-comparison"
+                      >
+                        <TrendingUp className="w-4 h-4 mr-1" />
+                        Add to Comparison
+                      </Button>
+                      <Button
+                        onClick={handleShare}
+                        variant="outline"
+                        size="sm"
+                        className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                        data-testid="button-share"
+                      >
+                        <Share2 className="w-4 h-4 mr-1" />
+                        Share
+                      </Button>
+                      <Button
+                        onClick={exportToPDF}
+                        variant="outline"
+                        size="sm"
+                        className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                        data-testid="button-export-pdf"
+                      >
+                        <Download className="w-4 h-4 mr-1" />
+                        Export PDF
+                      </Button>
+                    </div>
+                  )}
                 </div>
 
                 {/* Results Section */}
@@ -639,55 +695,6 @@ export default function SimpleInterestCalculator() {
                             </div>
                           </div>
                         </div>
-                      </div>
-
-                      {/* Action Buttons */}
-                      <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 pt-2 sm:pt-4">
-                        <Button
-                          onClick={() => setShowChart(!showChart)}
-                          variant="outline"
-                          className="h-9 sm:h-10 md:h-12 px-3 sm:px-4 md:px-6 text-xs sm:text-sm md:text-base border-2 border-blue-200 hover:bg-blue-50 rounded-lg sm:rounded-xl"
-                          data-testid="button-toggle-chart"
-                        >
-                          <PieChartIcon className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
-                          {showChart ? 'Hide' : 'Show'} Charts
-                        </Button>
-                        <Button
-                          onClick={() => setShowYearlyBreakdown(!showYearlyBreakdown)}
-                          variant="outline"
-                          className="h-9 sm:h-10 md:h-12 px-3 sm:px-4 md:px-6 text-xs sm:text-sm md:text-base border-2 border-green-200 hover:bg-green-50 rounded-lg sm:rounded-xl"
-                          data-testid="button-toggle-yearly"
-                        >
-                          <BarChart3 className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
-                          {showYearlyBreakdown ? 'Hide' : 'Show'} Yearly Breakdown
-                        </Button>
-                        <Button
-                          onClick={addToComparison}
-                          variant="outline"
-                          className="h-9 sm:h-10 md:h-12 px-3 sm:px-4 md:px-6 text-xs sm:text-sm md:text-base border-2 border-purple-200 hover:bg-purple-50 rounded-lg sm:rounded-xl"
-                          data-testid="button-add-comparison"
-                        >
-                          <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
-                          Add to Comparison
-                        </Button>
-                        <Button
-                          onClick={handleShare}
-                          variant="outline"
-                          className="h-9 sm:h-10 md:h-12 px-3 sm:px-4 md:px-6 text-xs sm:text-sm md:text-base border-2 border-indigo-200 hover:bg-indigo-50 rounded-lg sm:rounded-xl"
-                          data-testid="button-share"
-                        >
-                          <Share2 className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
-                          Share
-                        </Button>
-                        <Button
-                          onClick={exportToPDF}
-                          variant="outline"
-                          className="h-9 sm:h-10 md:h-12 px-3 sm:px-4 md:px-6 text-xs sm:text-sm md:text-base border-2 border-orange-200 hover:bg-orange-50 rounded-lg sm:rounded-xl"
-                          data-testid="button-export-pdf"
-                        >
-                          <Download className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
-                          Export PDF
-                        </Button>
                       </div>
 
                       {/* Charts Section */}
