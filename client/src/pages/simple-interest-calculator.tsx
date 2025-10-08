@@ -177,6 +177,312 @@ export default function SimpleInterestCalculator() {
     }
   };
 
+  const handleDownloadYearlyBreakdownPDF = () => {
+    if (!result || !result.yearlyBreakdown || result.yearlyBreakdown.length === 0) return;
+
+    const doc = new jsPDF();
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 15;
+    let yPos = 12;
+
+    // Header
+    doc.setFillColor(59, 130, 246);
+    doc.rect(0, 0, pageWidth, 38, 'F');
+    
+    doc.setFontSize(26);
+    doc.setTextColor(255, 255, 255);
+    doc.setFont('helvetica', 'bold');
+    doc.text('DapsiWow', pageWidth / 2, yPos + 5, { align: 'center' });
+    
+    yPos += 14;
+    doc.setFontSize(11);
+    doc.setFont('helvetica', 'normal');
+    doc.text('Yearly Interest Breakdown Report', pageWidth / 2, yPos, { align: 'center' });
+    
+    yPos += 6;
+    doc.setFontSize(8);
+    doc.setTextColor(230, 240, 255);
+    const currentDate = new Date().toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric'
+    });
+    doc.text(`Report Date: ${currentDate}`, pageWidth / 2, yPos, { align: 'center' });
+
+    yPos = 48;
+    
+    // Table header
+    doc.setFillColor(59, 130, 246);
+    doc.rect(margin, yPos, pageWidth - (2 * margin), 8, 'F');
+    
+    doc.setFontSize(8);
+    doc.setTextColor(255, 255, 255);
+    doc.setFont('helvetica', 'bold');
+    
+    const colWidths = [20, 45, 50, 45];
+    const colX = [margin + 2, margin + 25, margin + 72, margin + 125];
+    
+    doc.text('Year', colX[0], yPos + 5);
+    doc.text('Interest Earned', colX[1], yPos + 5);
+    doc.text('Cumulative Interest', colX[2], yPos + 5);
+    doc.text('Total Amount', colX[3], yPos + 5);
+    
+    yPos += 8;
+    
+    // Table rows
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7);
+    
+    result.yearlyBreakdown.forEach((year, index) => {
+      // Check if we need a new page
+      if (yPos > pageHeight - 30) {
+        doc.addPage();
+        yPos = 20;
+        
+        // Repeat header on new page
+        doc.setFillColor(59, 130, 246);
+        doc.rect(margin, yPos, pageWidth - (2 * margin), 8, 'F');
+        
+        doc.setFontSize(8);
+        doc.setTextColor(255, 255, 255);
+        doc.setFont('helvetica', 'bold');
+        
+        doc.text('Year', colX[0], yPos + 5);
+        doc.text('Interest Earned', colX[1], yPos + 5);
+        doc.text('Cumulative Interest', colX[2], yPos + 5);
+        doc.text('Total Amount', colX[3], yPos + 5);
+        
+        yPos += 8;
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(7);
+      }
+      
+      // Alternate row colors
+      if (index % 2 === 0) {
+        doc.setFillColor(248, 250, 252);
+        doc.rect(margin, yPos, pageWidth - (2 * margin), 6, 'F');
+      }
+      
+      doc.setTextColor(0, 0, 0);
+      doc.text(year.year.toString(), colX[0], yPos + 4);
+      
+      doc.setTextColor(34, 197, 94);
+      doc.setFont('helvetica', 'bold');
+      doc.text(formatCurrency(year.interestEarned), colX[1], yPos + 4);
+      
+      doc.setTextColor(59, 130, 246);
+      doc.text(formatCurrency(year.cumulativeInterest), colX[2], yPos + 4);
+      
+      doc.setTextColor(0, 0, 0);
+      doc.text(formatCurrency(year.totalAmount), colX[3], yPos + 4);
+      
+      doc.setFont('helvetica', 'normal');
+      yPos += 6;
+    });
+
+    // Footer
+    yPos = pageHeight - 22;
+    doc.setDrawColor(220, 220, 220);
+    doc.setLineWidth(0.2);
+    doc.line(margin, yPos, pageWidth - margin, yPos);
+    
+    yPos += 4;
+    doc.setFontSize(7);
+    doc.setTextColor(120, 120, 120);
+    doc.setFont('helvetica', 'italic');
+    doc.text('This breakdown shows how your interest accumulates year by year with simple interest calculation.', pageWidth / 2, yPos, { align: 'center' });
+    
+    yPos += 6;
+    doc.setFontSize(8);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(59, 130, 246);
+    doc.textWithLink('DapsiWow.com', pageWidth / 2, yPos, { align: 'center', url: 'https://dapsiwow.com' });
+    
+    yPos += 3;
+    doc.setFontSize(7);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(100, 100, 100);
+    doc.text('Free Online Financial Calculators & Tools', pageWidth / 2, yPos, { align: 'center' });
+
+    doc.save(`DapsiWow-Yearly-Breakdown-${new Date().getTime()}.pdf`);
+    toast({ 
+      title: "PDF Downloaded!", 
+      description: "Your yearly breakdown report has been saved." 
+    });
+  };
+
+  const handleDownloadComparisonPDF = () => {
+    if (comparisonScenarios.length === 0) return;
+
+    const doc = new jsPDF();
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 15;
+    let yPos = 12;
+
+    // Header
+    doc.setFillColor(59, 130, 246);
+    doc.rect(0, 0, pageWidth, 38, 'F');
+    
+    doc.setFontSize(26);
+    doc.setTextColor(255, 255, 255);
+    doc.setFont('helvetica', 'bold');
+    doc.text('DapsiWow', pageWidth / 2, yPos + 5, { align: 'center' });
+    
+    yPos += 14;
+    doc.setFontSize(11);
+    doc.setFont('helvetica', 'normal');
+    doc.text('Scenario Comparison Report', pageWidth / 2, yPos, { align: 'center' });
+    
+    yPos += 6;
+    doc.setFontSize(8);
+    doc.setTextColor(230, 240, 255);
+    const currentDate = new Date().toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric'
+    });
+    doc.text(`Report Date: ${currentDate}`, pageWidth / 2, yPos, { align: 'center' });
+
+    yPos = 48;
+    
+    // Table header
+    doc.setFillColor(59, 130, 246);
+    doc.rect(margin, yPos, pageWidth - (2 * margin), 8, 'F');
+    
+    doc.setFontSize(8);
+    doc.setTextColor(255, 255, 255);
+    doc.setFont('helvetica', 'bold');
+    
+    const colX = [margin + 2, margin + 40, margin + 70, margin + 95, margin + 125, margin + 158];
+    
+    doc.text('Scenario', colX[0], yPos + 5);
+    doc.text('Principal', colX[1], yPos + 5);
+    doc.text('Rate', colX[2], yPos + 5);
+    doc.text('Time', colX[3], yPos + 5);
+    doc.text('Interest', colX[4], yPos + 5);
+    doc.text('Total', colX[5], yPos + 5);
+    
+    yPos += 8;
+    
+    // Table rows
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7);
+    
+    comparisonScenarios.forEach((scenario, index) => {
+      // Check if we need a new page
+      if (yPos > pageHeight - 30) {
+        doc.addPage();
+        yPos = 20;
+        
+        // Repeat header on new page
+        doc.setFillColor(59, 130, 246);
+        doc.rect(margin, yPos, pageWidth - (2 * margin), 8, 'F');
+        
+        doc.setFontSize(8);
+        doc.setTextColor(255, 255, 255);
+        doc.setFont('helvetica', 'bold');
+        
+        doc.text('Scenario', colX[0], yPos + 5);
+        doc.text('Principal', colX[1], yPos + 5);
+        doc.text('Rate', colX[2], yPos + 5);
+        doc.text('Time', colX[3], yPos + 5);
+        doc.text('Interest', colX[4], yPos + 5);
+        doc.text('Total', colX[5], yPos + 5);
+        
+        yPos += 8;
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(7);
+      }
+      
+      // Alternate row colors
+      if (index % 2 === 0) {
+        doc.setFillColor(248, 250, 252);
+        doc.rect(margin, yPos, pageWidth - (2 * margin), 7, 'F');
+      }
+      
+      doc.setTextColor(0, 0, 0);
+      doc.setFont('helvetica', 'bold');
+      doc.text(scenario.name, colX[0], yPos + 4.5);
+      
+      doc.setFont('helvetica', 'normal');
+      doc.text(formatCurrency(scenario.principal), colX[1], yPos + 4.5);
+      doc.text(`${scenario.rate}%`, colX[2], yPos + 4.5);
+      doc.text(`${scenario.time.toFixed(1)} yrs`, colX[3], yPos + 4.5);
+      
+      doc.setTextColor(34, 197, 94);
+      doc.setFont('helvetica', 'bold');
+      doc.text(formatCurrency(scenario.simpleInterest), colX[4], yPos + 4.5);
+      
+      doc.setTextColor(59, 130, 246);
+      doc.text(formatCurrency(scenario.totalAmount), colX[5], yPos + 4.5);
+      
+      yPos += 7;
+    });
+
+    // Summary section
+    yPos += 5;
+    if (yPos > pageHeight - 60) {
+      doc.addPage();
+      yPos = 20;
+    }
+    
+    doc.setDrawColor(220, 220, 220);
+    doc.setLineWidth(0.3);
+    doc.line(margin, yPos, pageWidth - margin, yPos);
+    
+    yPos += 8;
+    doc.setFontSize(9);
+    doc.setTextColor(100, 100, 100);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Summary Analysis:', margin, yPos);
+    
+    yPos += 6;
+    const bestInterest = Math.max(...comparisonScenarios.map(s => s.simpleInterest));
+    const bestTotal = Math.max(...comparisonScenarios.map(s => s.totalAmount));
+    const bestInterestScenario = comparisonScenarios.find(s => s.simpleInterest === bestInterest);
+    const bestTotalScenario = comparisonScenarios.find(s => s.totalAmount === bestTotal);
+    
+    doc.setFontSize(8);
+    doc.setTextColor(0, 0, 0);
+    doc.setFont('helvetica', 'normal');
+    doc.text(`• Highest Interest Earned: ${bestInterestScenario?.name} at ${formatCurrency(bestInterest)}`, margin + 5, yPos);
+    
+    yPos += 5;
+    doc.text(`• Highest Total Amount: ${bestTotalScenario?.name} at ${formatCurrency(bestTotal)}`, margin + 5, yPos);
+
+    // Footer
+    yPos = pageHeight - 22;
+    doc.setDrawColor(220, 220, 220);
+    doc.setLineWidth(0.2);
+    doc.line(margin, yPos, pageWidth - margin, yPos);
+    
+    yPos += 4;
+    doc.setFontSize(7);
+    doc.setTextColor(120, 120, 120);
+    doc.setFont('helvetica', 'italic');
+    doc.text('This comparison is based on the scenarios you entered using simple interest calculation.', pageWidth / 2, yPos, { align: 'center' });
+    
+    yPos += 6;
+    doc.setFontSize(8);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(59, 130, 246);
+    doc.textWithLink('DapsiWow.com', pageWidth / 2, yPos, { align: 'center', url: 'https://dapsiwow.com' });
+    
+    yPos += 3;
+    doc.setFontSize(7);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(100, 100, 100);
+    doc.text('Free Online Financial Calculators & Tools', pageWidth / 2, yPos, { align: 'center' });
+
+    doc.save(`DapsiWow-Scenario-Comparison-${new Date().getTime()}.pdf`);
+    toast({ 
+      title: "PDF Downloaded!", 
+      description: "Your scenario comparison report has been saved." 
+    });
+  };
+
   const exportToPDF = () => {
     if (!result) return;
 
@@ -1017,6 +1323,16 @@ export default function SimpleInterestCalculator() {
                             >
                               Yearly Interest Breakdown
                             </h3>
+                            <Button
+                              onClick={handleDownloadYearlyBreakdownPDF}
+                              variant="outline"
+                              size="sm"
+                              className="flex items-center gap-2 w-full sm:w-auto justify-center"
+                              data-testid="button-export-breakdown-pdf"
+                            >
+                              <Download className="w-4 h-4" />
+                              Export PDF
+                            </Button>
                           </div>
                           <p className="text-sm text-gray-600 mb-4">See how your interest accumulates year by year.</p>
                           <div className="overflow-x-auto -mx-4 sm:mx-0">
@@ -1072,6 +1388,16 @@ export default function SimpleInterestCalculator() {
               <CardContent className="p-4 sm:p-6 lg:p-8">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
                   <h3 className="text-xl sm:text-2xl font-bold text-gray-900">Scenario Comparison</h3>
+                  <Button
+                    onClick={handleDownloadComparisonPDF}
+                    variant="outline"
+                    size="sm"
+                    className="flex items-center gap-2 w-full sm:w-auto justify-center"
+                    data-testid="button-export-comparison-pdf"
+                  >
+                    <Download className="w-4 h-4" />
+                    Export PDF
+                  </Button>
                 </div>
                 <p className="text-sm text-gray-600 mb-4">Compare different investment scenarios side-by-side to find the best option.</p>
                 <div className="overflow-x-auto -mx-4 sm:mx-0">
