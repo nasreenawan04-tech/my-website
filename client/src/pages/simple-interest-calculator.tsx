@@ -553,10 +553,10 @@ export default function SimpleInterestCalculator() {
                         variant="outline"
                         size="sm"
                         className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
-                        data-testid="button-toggle-chart"
+                        data-testid="button-show-chart"
                       >
                         <PieChartIcon className="w-4 h-4 mr-1" />
-                        {showChart ? 'Hide' : 'Show'} Charts
+                        {showChart ? 'Hide' : 'Show'} Chart
                       </Button>
                       <Button
                         onClick={() => setShowYearlyBreakdown(!showYearlyBreakdown)}
