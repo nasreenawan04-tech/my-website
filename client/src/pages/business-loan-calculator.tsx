@@ -1549,37 +1549,57 @@ export default function BusinessLoanCalculator() {
           </Card>
 
           {/* How to Calculate Business Loan Payments - Formula Section */}
-          <Card className="bg-gradient-to-br from-indigo-50 to-blue-50 border-0 shadow-lg rounded-lg sm:rounded-xl md:rounded-2xl mt-4 sm:mt-6 md:mt-8 lg:mt-10">
-            <CardContent className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10">
-              <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 md:mb-5 lg:mb-6 xl:mb-8 leading-tight sm:leading-tight md:leading-snug text-center sm:text-left">How to Calculate Business Loan Payments - Formula Explained</h2>
-              <p className="text-sm sm:text-base md:text-lg text-gray-700 mb-4 sm:mb-5 md:mb-6 lg:mb-7 leading-relaxed sm:leading-relaxed md:leading-loose text-center sm:text-left">
+          <Card className="bg-gradient-to-br from-indigo-50 to-blue-50 border-0 shadow-lg rounded-lg sm:rounded-xl md:rounded-2xl mt-4 sm:mt-6 md:mt-8 lg:mt-10 w-full max-w-full overflow-hidden">
+            <CardContent className="p-4 sm:p-5 md:p-6 lg:p-8 xl:p-10 w-full">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6 lg:mb-8 leading-tight text-center sm:text-left">
+                How to Calculate Business Loan Payments - Formula Explained
+              </h2>
+              <p className="text-sm sm:text-base md:text-lg text-gray-700 mb-5 sm:mb-6 md:mb-7 lg:mb-8 leading-relaxed text-center sm:text-left max-w-full">
                 Understanding how to calculate business loan payments helps you make informed financing decisions. The business loan payment formula uses standard amortization mathematics to determine your exact monthly payment amount.
               </p>
               
-              <div className="bg-white rounded-md sm:rounded-lg md:rounded-xl p-3 sm:p-4 md:p-5 lg:p-6 xl:p-7 mb-4 sm:mb-5 md:mb-6 lg:mb-7 border-2 border-blue-300">
-                <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 md:mb-5 text-center sm:text-left">Business Loan Payment Formula:</h3>
-                <div className="bg-gray-50 p-3 sm:p-4 md:p-5 lg:p-6 rounded-md sm:rounded-lg mb-3 sm:mb-4 md:mb-5 text-center">
-                  <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-mono font-bold text-blue-600 mb-2 break-all">M = P × [r(1+r)^n] / [(1+r)^n-1]</p>
+              <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 lg:p-7 mb-5 sm:mb-6 md:mb-7 border-2 border-blue-300 w-full">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-5 text-center sm:text-left">
+                  Business Loan Payment Formula:
+                </h3>
+                <div className="bg-gray-50 p-4 sm:p-5 md:p-6 rounded-lg mb-4 sm:mb-5 overflow-x-auto">
+                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-mono font-bold text-blue-600 whitespace-nowrap text-center min-w-max mx-auto">
+                    M = P × [r(1+r)^n] / [(1+r)^n-1]
+                  </p>
                 </div>
-                <div className="space-y-2 sm:space-y-3">
-                  <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-700"><strong>M</strong> = Monthly Payment</p>
-                  <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-700"><strong>P</strong> = Principal Loan Amount (total borrowed)</p>
-                  <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-700"><strong>r</strong> = Monthly Interest Rate (annual rate ÷ 12)</p>
-                  <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-700"><strong>n</strong> = Number of Payments (loan term in months)</p>
+                <div className="space-y-2 sm:space-y-3 w-full">
+                  <p className="text-sm sm:text-base md:text-lg text-gray-700"><strong>M</strong> = Monthly Payment</p>
+                  <p className="text-sm sm:text-base md:text-lg text-gray-700"><strong>P</strong> = Principal Loan Amount (total borrowed)</p>
+                  <p className="text-sm sm:text-base md:text-lg text-gray-700"><strong>r</strong> = Monthly Interest Rate (annual rate ÷ 12)</p>
+                  <p className="text-sm sm:text-base md:text-lg text-gray-700"><strong>n</strong> = Number of Payments (loan term in months)</p>
                 </div>
               </div>
 
-              <div className="bg-white rounded-md sm:rounded-lg md:rounded-xl p-3 sm:p-4 md:p-5 lg:p-6 xl:p-7 border-2 border-green-300">
-                <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 md:mb-5 text-center sm:text-left">Example Calculation:</h3>
-                <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-700 mb-2 sm:mb-3"><strong>Loan Details:</strong></p>
-                <ul className="list-disc list-inside space-y-1 sm:space-y-2 text-xs sm:text-sm md:text-base lg:text-lg text-gray-700 mb-3 sm:mb-4 md:mb-5">
-                  <li>Loan Amount (P): $250,000</li>
-                  <li>Annual Interest Rate: 7.5% (r = 0.075 ÷ 12 = 0.00625)</li>
-                  <li>Loan Term: 10 years (n = 120 months)</li>
-                </ul>
-                <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-700 mb-2 sm:mb-3"><strong>Calculation:</strong></p>
-                <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-700 mb-2 sm:mb-3 break-words">M = $250,000 × [0.00625(1.00625)^120] / [(1.00625)^120-1]</p>
-                <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-green-600 text-center sm:text-left">Monthly Payment = $2,968.18</p>
+              <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 lg:p-7 border-2 border-green-300 w-full">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-5 text-center sm:text-left">
+                  Example Calculation:
+                </h3>
+                <div className="mb-4 sm:mb-5">
+                  <p className="text-sm sm:text-base md:text-lg text-gray-700 mb-3 font-semibold">Loan Details:</p>
+                  <ul className="list-disc list-inside space-y-2 text-sm sm:text-base md:text-lg text-gray-700 pl-0 sm:pl-2">
+                    <li className="break-words">Loan Amount (P): $250,000</li>
+                    <li className="break-words">Annual Interest Rate: 7.5% (r = 0.075 ÷ 12 = 0.00625)</li>
+                    <li className="break-words">Loan Term: 10 years (n = 120 months)</li>
+                  </ul>
+                </div>
+                <div className="mb-4 sm:mb-5">
+                  <p className="text-sm sm:text-base md:text-lg text-gray-700 mb-3 font-semibold">Calculation:</p>
+                  <div className="bg-gray-50 p-3 sm:p-4 rounded-lg overflow-x-auto">
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 whitespace-nowrap min-w-max">
+                      M = $250,000 × [0.00625(1.00625)^120] / [(1.00625)^120-1]
+                    </p>
+                  </div>
+                </div>
+                <div className="bg-green-50 p-4 sm:p-5 rounded-lg">
+                  <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-green-600 text-center sm:text-left">
+                    Monthly Payment = $2,968.18
+                  </p>
+                </div>
               </div>
             </CardContent>
           </Card>
