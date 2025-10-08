@@ -884,81 +884,94 @@ export default function BusinessLoanCalculator() {
                       {showChart && (
                         <div className="space-y-4 sm:space-y-6">
                           {/* Donut Chart - Total Loan Breakdown */}
-                          <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm border border-gray-100">
+                          <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-xl border border-gray-100 transition-all duration-300 hover:shadow-2xl">
                             <h3 className="font-bold text-gray-900 mb-4 sm:mb-6 text-center text-base sm:text-lg md:text-xl">Total Loan Breakdown</h3>
                             <div className="flex flex-col md:flex-row items-center justify-center gap-4 sm:gap-6 md:gap-8">
-                              <div className="w-full max-w-[260px] sm:max-w-[300px] md:max-w-[320px]">
-                                <ResponsiveContainer width="100%" height={window.innerWidth < 640 ? 240 : window.innerWidth < 768 ? 260 : 300}>
-                                  <RechartsPieChart>
-                                    <Pie
-                                      data={pieData}
-                                      cx="50%"
-                                      cy="50%"
-                                      innerRadius={window.innerWidth < 640 ? 50 : window.innerWidth < 768 ? 55 : 65}
-                                      outerRadius={window.innerWidth < 640 ? 80 : window.innerWidth < 768 ? 90 : 100}
-                                      paddingAngle={3}
-                                      dataKey="value"
-                                      label={({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
-                                        const RADIAN = Math.PI / 180;
-                                        const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-                                        const x = cx + radius * Math.cos(-midAngle * RADIAN);
-                                        const y = cy + radius * Math.sin(-midAngle * RADIAN);
-                                        return (
-                                          <text 
-                                            x={x} 
-                                            y={y} 
-                                            fill="white" 
-                                            textAnchor="middle" 
-                                            dominantBaseline="central"
-                                            className="font-bold text-sm sm:text-base"
-                                          >
-                                            {`${(percent * 100).toFixed(1)}%`}
-                                          </text>
-                                        );
-                                      }}
-                                      labelLine={false}
-                                    >
-                                      <Cell fill="url(#principalGradient)" />
-                                      <Cell fill="url(#interestGradient)" />
-                                    </Pie>
-                                    <RechartsTooltip
-                                      formatter={(value: number) => formatCurrency(value)}
-                                      contentStyle={{
-                                        backgroundColor: 'rgba(255, 255, 255, 0.95)',
-                                        border: '1px solid #e5e7eb',
-                                        borderRadius: '8px',
-                                        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-                                        fontSize: window.innerWidth < 640 ? '12px' : '14px'
-                                      }}
-                                    />
-                                    <defs>
-                                      <linearGradient id="principalGradient" x1="0" y1="0" x2="0" y2="1">
-                                        <stop offset="0%" stopColor="#10b981" stopOpacity={1} />
-                                        <stop offset="100%" stopColor="#059669" stopOpacity={1} />
-                                      </linearGradient>
-                                      <linearGradient id="interestGradient" x1="0" y1="0" x2="0" y2="1">
-                                        <stop offset="0%" stopColor="#f59e0b" stopOpacity={1} />
-                                        <stop offset="100%" stopColor="#d97706" stopOpacity={1} />
-                                      </linearGradient>
-                                    </defs>
-                                  </RechartsPieChart>
-                                </ResponsiveContainer>
+                              <div className="w-full max-w-[260px] sm:max-w-[300px] md:max-w-[320px] relative">
+                                <div className="absolute inset-0 bg-gradient-to-br from-blue-100/30 to-purple-100/30 rounded-full blur-2xl opacity-60 animate-pulse"></div>
+                                <div className="relative">
+                                  <ResponsiveContainer width="100%" height={window.innerWidth < 640 ? 240 : window.innerWidth < 768 ? 260 : 300}>
+                                    <RechartsPieChart>
+                                      <Pie
+                                        data={pieData}
+                                        cx="50%"
+                                        cy="50%"
+                                        innerRadius={window.innerWidth < 640 ? 50 : window.innerWidth < 768 ? 55 : 65}
+                                        outerRadius={window.innerWidth < 640 ? 80 : window.innerWidth < 768 ? 90 : 100}
+                                        paddingAngle={4}
+                                        dataKey="value"
+                                        animationBegin={0}
+                                        animationDuration={800}
+                                        animationEasing="ease-out"
+                                        label={({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
+                                          const RADIAN = Math.PI / 180;
+                                          const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+                                          const x = cx + radius * Math.cos(-midAngle * RADIAN);
+                                          const y = cy + radius * Math.sin(-midAngle * RADIAN);
+                                          return (
+                                            <text 
+                                              x={x} 
+                                              y={y} 
+                                              fill="white" 
+                                              textAnchor="middle" 
+                                              dominantBaseline="central"
+                                              className="font-bold text-sm sm:text-base drop-shadow-lg"
+                                              style={{ 
+                                                textShadow: '0 2px 4px rgba(0,0,0,0.3)',
+                                                filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.5))'
+                                              }}
+                                            >
+                                              {`${(percent * 100).toFixed(1)}%`}
+                                            </text>
+                                          );
+                                        }}
+                                        labelLine={false}
+                                      >
+                                        <Cell fill="url(#principalGradient)" className="hover:opacity-90 transition-opacity duration-200" />
+                                        <Cell fill="url(#interestGradient)" className="hover:opacity-90 transition-opacity duration-200" />
+                                      </Pie>
+                                      <RechartsTooltip
+                                        formatter={(value: number) => formatCurrency(value)}
+                                        contentStyle={{
+                                          backgroundColor: 'rgba(255, 255, 255, 0.98)',
+                                          border: '1px solid #e5e7eb',
+                                          borderRadius: '12px',
+                                          boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
+                                          fontSize: window.innerWidth < 640 ? '12px' : '14px',
+                                          padding: '12px 16px'
+                                        }}
+                                      />
+                                      <defs>
+                                        <linearGradient id="principalGradient" x1="0" y1="0" x2="1" y2="1">
+                                          <stop offset="0%" stopColor="#10b981" stopOpacity={1} />
+                                          <stop offset="50%" stopColor="#059669" stopOpacity={1} />
+                                          <stop offset="100%" stopColor="#047857" stopOpacity={1} />
+                                        </linearGradient>
+                                        <linearGradient id="interestGradient" x1="0" y1="0" x2="1" y2="1">
+                                          <stop offset="0%" stopColor="#f59e0b" stopOpacity={1} />
+                                          <stop offset="50%" stopColor="#d97706" stopOpacity={1} />
+                                          <stop offset="100%" stopColor="#b45309" stopOpacity={1} />
+                                        </linearGradient>
+                                      </defs>
+                                    </RechartsPieChart>
+                                  </ResponsiveContainer>
+                                </div>
                               </div>
                               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-3 sm:gap-4 w-full md:w-auto md:min-w-[280px] lg:min-w-[320px]">
-                                <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 border border-green-200">
+                                <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 border border-green-200 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.02] hover:border-green-300">
                                   <div className="flex items-center gap-2 mb-2">
-                                    <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full"></div>
+                                    <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full animate-pulse"></div>
                                     <span className="font-semibold text-gray-700 text-xs sm:text-sm md:text-base">Principal Amount</span>
                                   </div>
-                                  <div className="text-xl sm:text-2xl md:text-3xl font-bold text-green-600 break-all">{formatCurrency(parseFloat(loanAmount))}</div>
+                                  <div className="text-xl sm:text-2xl md:text-3xl font-bold text-green-600 break-all transition-all duration-300">{formatCurrency(parseFloat(loanAmount))}</div>
                                   <div className="text-xs sm:text-sm md:text-base text-green-700 mt-1">{principalPercentage.toFixed(1)}% of total</div>
                                 </div>
-                                <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 border border-orange-200">
+                                <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 border border-orange-200 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.02] hover:border-orange-300">
                                   <div className="flex items-center gap-2 mb-2">
-                                    <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gradient-to-br from-orange-500 to-amber-600 rounded-full"></div>
+                                    <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gradient-to-br from-orange-500 to-amber-600 rounded-full animate-pulse"></div>
                                     <span className="font-semibold text-gray-700 text-xs sm:text-sm md:text-base">Total Interest</span>
                                   </div>
-                                  <div className="text-xl sm:text-2xl md:text-3xl font-bold text-orange-600 break-all">{formatCurrency(result.totalInterest)}</div>
+                                  <div className="text-xl sm:text-2xl md:text-3xl font-bold text-orange-600 break-all transition-all duration-300">{formatCurrency(result.totalInterest)}</div>
                                   <div className="text-xs sm:text-sm md:text-base text-orange-700 mt-1">{interestPercentage.toFixed(1)}% of total</div>
                                 </div>
                               </div>
