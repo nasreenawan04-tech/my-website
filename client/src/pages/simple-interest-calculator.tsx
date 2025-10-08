@@ -575,7 +575,6 @@ export default function SimpleInterestCalculator() {
                         className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
                         data-testid="button-add-comparison"
                       >
-                        <TrendingUp className="w-4 h-4 mr-1" />
                         Add to Comparison
                       </Button>
                       <Button
