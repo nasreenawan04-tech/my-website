@@ -1371,6 +1371,7 @@ export default function LoanCalculator() {
                           variant="outline"
                           size="sm"
                           className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                          data-testid="button-show-chart"
                         >
                           <PieChart className="w-4 h-4 mr-1" />
                           {showChart ? 'Hide' : 'Show'} Chart
