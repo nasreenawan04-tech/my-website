@@ -2132,61 +2132,61 @@ export default function LoanCalculator() {
 
             {/* Loan Tips */}
             <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 border-0 shadow-lg rounded-2xl">
-              <CardContent className="p-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8">Expert Loan Tips & Best Practices</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="bg-white rounded-xl p-6 shadow-sm">
-                    <h3 className="text-lg font-bold text-gray-900 mb-3">1. Check Your Credit Score First</h3>
-                    <p className="text-gray-600 text-sm">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-6 sm:mb-8">Expert Loan Tips & Best Practices</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                  <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6 shadow-sm">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3">1. Check Your Credit Score First</h3>
+                    <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
                       Your credit score significantly impacts your interest rate. Check your score before applying and work to improve it if needed. Even a 1% rate reduction can save thousands over the loan term. Aim for 720+ to qualify for the best rates.
                     </p>
                   </div>
 
-                  <div className="bg-white rounded-xl p-6 shadow-sm">
-                    <h3 className="text-lg font-bold text-gray-900 mb-3">2. Compare Multiple Lenders</h3>
-                    <p className="text-gray-600 text-sm">
+                  <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6 shadow-sm">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3">2. Compare Multiple Lenders</h3>
+                    <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
                       Don't accept the first offer. Shop around with at least 3-5 lenders, including banks, credit unions, and online lenders. Use our calculator to compare the total cost of different offers, not just the monthly payment.
                     </p>
                   </div>
 
-                  <div className="bg-white rounded-xl p-6 shadow-sm">
-                    <h3 className="text-lg font-bold text-gray-900 mb-3">3. Understand APR vs Interest Rate</h3>
-                    <p className="text-gray-600 text-sm">
+                  <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6 shadow-sm">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3">3. Understand APR vs Interest Rate</h3>
+                    <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
                       The APR includes fees and gives you the true cost of the loan, making it better for comparison. A loan with a lower interest rate but high fees might actually cost more than one with a slightly higher rate but lower fees.
                     </p>
                   </div>
 
-                  <div className="bg-white rounded-xl p-6 shadow-sm">
-                    <h3 className="text-lg font-bold text-gray-900 mb-3">4. Choose the Right Loan Term</h3>
-                    <p className="text-gray-600 text-sm">
+                  <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6 shadow-sm">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3">4. Choose the Right Loan Term</h3>
+                    <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
                       Balance monthly affordability with total cost. While longer terms mean lower monthly payments, you'll pay significantly more in interest. If possible, choose the shortest term you can comfortably afford.
                     </p>
                   </div>
 
-                  <div className="bg-white rounded-xl p-6 shadow-sm">
-                    <h3 className="text-lg font-bold text-gray-900 mb-3">5. Make Extra Payments When Possible</h3>
-                    <p className="text-gray-600 text-sm">
+                  <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6 shadow-sm">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3">5. Make Extra Payments When Possible</h3>
+                    <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
                       Even small extra payments toward principal can dramatically reduce interest costs and loan term. Use our calculator's extra payment feature to see potential savings. Ensure your lender doesn't charge prepayment penalties.
                     </p>
                   </div>
 
-                  <div className="bg-white rounded-xl p-6 shadow-sm">
-                    <h3 className="text-lg font-bold text-gray-900 mb-3">6. Read the Fine Print</h3>
-                    <p className="text-gray-600 text-sm">
+                  <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6 shadow-sm">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3">6. Read the Fine Print</h3>
+                    <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
                       Watch for origination fees, prepayment penalties, late fees, and other charges. These can significantly increase the total cost. Ask lenders to explain all fees before signing.
                     </p>
                   </div>
 
-                  <div className="bg-white rounded-xl p-6 shadow-sm">
-                    <h3 className="text-lg font-bold text-gray-900 mb-3">7. Maintain a Healthy Debt-to-Income Ratio</h3>
-                    <p className="text-gray-600 text-sm">
+                  <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6 shadow-sm">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3">7. Maintain a Healthy Debt-to-Income Ratio</h3>
+                    <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
                       Lenders prefer borrowers whose total monthly debt payments (including the new loan) don't exceed 36-43% of gross monthly income. Keep this ratio low to qualify for better rates and terms.
                     </p>
                   </div>
 
-                  <div className="bg-white rounded-xl p-6 shadow-sm">
-                    <h3 className="text-lg font-bold text-gray-900 mb-3">8. Consider Bi-weekly Payments</h3>
-                    <p className="text-gray-600 text-sm">
+                  <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6 shadow-sm">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3">8. Consider Bi-weekly Payments</h3>
+                    <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
                       Making half your monthly payment every two weeks results in 26 half-payments (13 full payments) per year instead of 12. This extra payment per year can shave years off your loan and save on interest.
                     </p>
                   </div>
