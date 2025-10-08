@@ -11,7 +11,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import { Calculator, TrendingUp, Clock, DollarSign, Info, Download, Share2, PieChart } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { jsPDF } from 'jspdf';
-import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
+import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip as RechartsTooltip } from 'recharts';
 
 interface CompoundInterestResult {
   finalAmount: number;
@@ -946,8 +946,16 @@ Calculate your investment growth at DapsiWow.com`;
                                 <RechartsPieChart>
                                   <Pie
                                     data={[
-                                      { name: 'Principal', value: result.principalAmount },
-                                      { name: 'Interest', value: result.totalInterest }
+                                      { 
+                                        name: 'Principal', 
+                                        value: result.principalAmount,
+                                        percentage: (result.principalAmount / result.finalAmount) * 100
+                                      },
+                                      { 
+                                        name: 'Interest', 
+                                        value: result.totalInterest,
+                                        percentage: (result.totalInterest / result.finalAmount) * 100
+                                      }
                                     ]}
                                     cx="50%"
                                     cy="50%"
@@ -955,35 +963,58 @@ Calculate your investment growth at DapsiWow.com`;
                                     outerRadius={window.innerWidth < 640 ? 75 : 90}
                                     paddingAngle={3}
                                     dataKey="value"
+                                    label={window.innerWidth >= 640 ? ({ percentage }) => `${percentage.toFixed(1)}%` : false}
+                                    labelLine={window.innerWidth >= 640}
                                   >
-                                    <Cell fill="#3b82f6" />
-                                    <Cell fill="#10b981" />
+                                    <Cell fill="url(#principalGradient)" />
+                                    <Cell fill="url(#interestGradient)" />
                                   </Pie>
-                                  <Legend
-                                    formatter={(value, entry: any) => {
-                                      const percentage = ((entry.payload.value / result.finalAmount) * 100).toFixed(1);
-                                      return `${value}: ${percentage}%`;
+                                  <RechartsTooltip
+                                    formatter={(value: number) => formatCurrency(value)}
+                                    contentStyle={{
+                                      backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                                      border: '1px solid #e5e7eb',
+                                      borderRadius: '8px',
+                                      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+                                      fontSize: window.innerWidth < 640 ? '12px' : '14px'
                                     }}
-                                    wrapperStyle={{ fontSize: window.innerWidth < 640 ? '12px' : '14px' }}
                                   />
+                                  <defs>
+                                    <linearGradient id="principalGradient" x1="0" y1="0" x2="0" y2="1">
+                                      <stop offset="0%" stopColor="#3b82f6" stopOpacity={1} />
+                                      <stop offset="100%" stopColor="#2563eb" stopOpacity={1} />
+                                    </linearGradient>
+                                    <linearGradient id="interestGradient" x1="0" y1="0" x2="0" y2="1">
+                                      <stop offset="0%" stopColor="#10b981" stopOpacity={1} />
+                                      <stop offset="100%" stopColor="#059669" stopOpacity={1} />
+                                    </linearGradient>
+                                  </defs>
                                 </RechartsPieChart>
                               </ResponsiveContainer>
                             </div>
-                            <div className="space-y-3 w-full lg:w-auto">
-                              <div className="flex items-center justify-between lg:justify-start gap-4 bg-blue-50 p-3 rounded-lg">
-                                <div className="flex items-center gap-2">
-                                  <div className="w-4 h-4 bg-blue-500 rounded"></div>
-                                  <span className="text-sm font-medium text-gray-700">Principal</span>
+                            <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-1 gap-3 sm:gap-4 w-full lg:w-auto">
+                              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-blue-200">
+                                <div className="flex items-center gap-2 mb-2">
+                                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full"></div>
+                                  <span className="font-semibold text-gray-700 text-xs sm:text-sm">Principal Amount</span>
                                 </div>
-                                <span className="text-sm font-bold text-gray-900">{formatCurrency(result.principalAmount)}</span>
+                                <div className="text-lg sm:text-xl md:text-2xl font-bold text-blue-600 break-all">{formatCurrency(result.principalAmount)}</div>
+                                <div className="text-xs sm:text-sm text-blue-700 mt-1">{((result.principalAmount / result.finalAmount) * 100).toFixed(1)}% of total</div>
                               </div>
-                              <div className="flex items-center justify-between lg:justify-start gap-4 bg-green-50 p-3 rounded-lg">
-                                <div className="flex items-center gap-2">
-                                  <div className="w-4 h-4 bg-green-500 rounded"></div>
-                                  <span className="text-sm font-medium text-gray-700">Interest</span>
+                              <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-green-200">
+                                <div className="flex items-center gap-2 mb-2">
+                                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full"></div>
+                                  <span className="font-semibold text-gray-700 text-xs sm:text-sm">Total Interest</span>
                                 </div>
-                                <span className="text-sm font-bold text-gray-900">{formatCurrency(result.totalInterest)}</span>
+                                <div className="text-lg sm:text-xl md:text-2xl font-bold text-green-600 break-all">{formatCurrency(result.totalInterest)}</div>
+                                <div className="text-xs sm:text-sm text-green-700 mt-1">{((result.totalInterest / result.finalAmount) * 100).toFixed(1)}% of total</div>
                               </div>
+                            </div>
+                          </div>
+                          <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-gray-200">
+                            <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-center">
+                              <span className="text-xs sm:text-sm text-gray-600">Total Final Amount:</span>
+                              <span className="text-lg sm:text-xl font-bold text-gray-900 break-all">{formatCurrency(result.finalAmount)}</span>
                             </div>
                           </div>
                         </div>
