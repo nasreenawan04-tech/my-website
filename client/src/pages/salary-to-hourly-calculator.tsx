@@ -870,95 +870,37 @@ export default function SalaryToHourlyCalculator() {
             </div>
 
             {/* Related Financial Tools */}
-            <Card className="bg-white border-0 shadow-sm">
-              <CardContent className="p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Related Financial Calculators</h2>
-                <p className="text-gray-600 mb-8">
-                  Enhance your financial planning with our comprehensive suite of calculators designed to help you make 
-                  informed decisions about your money, career, and future financial goals.
+            <Card className="bg-gradient-to-r from-indigo-50 to-purple-50 border-0 shadow-lg rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6">Related Financial Calculators</h2>
+                <p className="text-sm sm:text-base text-gray-600 mb-6 sm:mb-7 md:mb-8">
+                  Explore our other free financial calculators to make informed decisions about your money:
                 </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  <div className="bg-gray-50 rounded-lg p-6">
-                    <h3 className="font-semibold text-gray-900 mb-2">
-                      Tax Calculator
-                    </h3>
-                    <p className="text-sm text-gray-600">
-                      Calculate your income tax and take-home pay after deductions. Essential for understanding your 
-                      net hourly rate and actual earnings.
-                    </p>
-                  </div>
-                  <div className="bg-gray-50 rounded-lg p-6">
-                    <h3 className="font-semibold text-gray-900 mb-2">
-                      Loan Calculator
-                    </h3>
-                    <p className="text-sm text-gray-600">
-                      Plan your borrowing capacity based on your hourly or annual income. Calculate monthly payments 
-                      for personal loans, auto loans, and more.
-                    </p>
-                  </div>
-                  <div className="bg-gray-50 rounded-lg p-6">
-                    <h3 className="font-semibold text-gray-900 mb-2">
-                      Mortgage Calculator
-                    </h3>
-                    <p className="text-sm text-gray-600">
-                      Determine how much house you can afford based on your salary. Calculate monthly mortgage payments 
-                      and total interest costs over the loan term.
-                    </p>
-                  </div>
-                  <div className="bg-gray-50 rounded-lg p-6">
-                    <h3 className="font-semibold text-gray-900 mb-2">
-                      Retirement Calculator
-                    </h3>
-                    <p className="text-sm text-gray-600">
-                      Plan for your future with retirement savings calculations. Determine how much to save monthly 
-                      based on your current income and retirement goals.
-                    </p>
-                  </div>
-                  <div className="bg-gray-50 rounded-lg p-6">
-                    <h3 className="font-semibold text-gray-900 mb-2">
-                      Compound Interest Calculator
-                    </h3>
-                    <p className="text-sm text-gray-600">
-                      See how your money grows over time with compound interest. Perfect for planning investments 
-                      and savings goals based on your earning capacity.
-                    </p>
-                  </div>
-                  <div className="bg-gray-50 rounded-lg p-6">
-                    <h3 className="font-semibold text-gray-900 mb-2">
-                      Savings Goal Calculator
-                    </h3>
-                    <p className="text-sm text-gray-600">
-                      Calculate how much to save monthly to reach your financial goals. Use your hourly or annual 
-                      income to plan realistic savings targets.
-                    </p>
-                  </div>
-                  <div className="bg-gray-50 rounded-lg p-6">
-                    <h3 className="font-semibold text-gray-900 mb-2">
-                      ROI Calculator
-                    </h3>
-                    <p className="text-sm text-gray-600">
-                      Calculate return on investment for education, training, or career development. Determine if 
-                      investing in skills will increase your earning potential.
-                    </p>
-                  </div>
-                  <div className="bg-gray-50 rounded-lg p-6">
-                    <h3 className="font-semibold text-gray-900 mb-2">
-                      Business Loan Calculator
-                    </h3>
-                    <p className="text-sm text-gray-600">
-                      For entrepreneurs planning to start a business. Calculate loan payments and determine the 
-                      income needed to support business financing.
-                    </p>
-                  </div>
-                  <div className="bg-gray-50 rounded-lg p-6">
-                    <h3 className="font-semibold text-gray-900 mb-2">
-                      Net Worth Calculator
-                    </h3>
-                    <p className="text-sm text-gray-600">
-                      Track your overall financial health. Calculate your net worth and see how your income 
-                      contributes to building long-term wealth.
-                    </p>
-                  </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5">
+                  <a href="/tools/tax-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-xl hover:shadow-lg transition-shadow">
+                    <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base md:text-lg">Tax Calculator</h3>
+                    <p className="text-xs sm:text-sm text-gray-600">Calculate your income tax and take-home pay</p>
+                  </a>
+                  <a href="/tools/loan-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-xl hover:shadow-lg transition-shadow">
+                    <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base md:text-lg">Loan Calculator</h3>
+                    <p className="text-xs sm:text-sm text-gray-600">Calculate monthly payments and total loan costs</p>
+                  </a>
+                  <a href="/tools/mortgage-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-xl hover:shadow-lg transition-shadow">
+                    <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base md:text-lg">Mortgage Calculator</h3>
+                    <p className="text-xs sm:text-sm text-gray-600">Calculate home loan payments including taxes and insurance</p>
+                  </a>
+                  <a href="/tools/retirement-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-xl hover:shadow-lg transition-shadow">
+                    <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base md:text-lg">Retirement Calculator</h3>
+                    <p className="text-xs sm:text-sm text-gray-600">Plan for a comfortable retirement</p>
+                  </a>
+                  <a href="/tools/compound-interest-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-xl hover:shadow-lg transition-shadow">
+                    <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base md:text-lg">Compound Interest Calculator</h3>
+                    <p className="text-xs sm:text-sm text-gray-600">See how your investments grow over time</p>
+                  </a>
+                  <a href="/tools/savings-goal-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-xl hover:shadow-lg transition-shadow">
+                    <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base md:text-lg">Savings Goal Calculator</h3>
+                    <p className="text-xs sm:text-sm text-gray-600">Calculate how much to save monthly to reach your goals</p>
+                  </a>
                 </div>
               </CardContent>
             </Card>

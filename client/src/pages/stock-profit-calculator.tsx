@@ -1189,34 +1189,37 @@ export default function StockProfitCalculator() {
             </Card>
 
             {/* Related Tools Section */}
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Related Financial Calculators</h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  <a href="/tools/investment-return-calculator" className="group text-center p-4 bg-gray-50 rounded-lg hover:bg-blue-50 transition-colors border border-gray-200 hover:border-blue-300">
-                    <div className="text-sm font-medium text-gray-900 group-hover:text-blue-800">Investment Return Calculator</div>
-                    <div className="text-xs text-gray-500 mt-1">Portfolio returns</div>
+            <Card className="bg-gradient-to-r from-indigo-50 to-purple-50 border-0 shadow-lg rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6">Related Financial Calculators</h2>
+                <p className="text-sm sm:text-base text-gray-600 mb-6 sm:mb-7 md:mb-8">
+                  Explore our other free financial calculators to make informed decisions about your money:
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5">
+                  <a href="/tools/investment-return-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-xl hover:shadow-lg transition-shadow">
+                    <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base md:text-lg">Investment Return Calculator</h3>
+                    <p className="text-xs sm:text-sm text-gray-600">Calculate returns on your investments with accuracy</p>
                   </a>
-                  <a href="/tools/compound-interest-calculator" className="group text-center p-4 bg-gray-50 rounded-lg hover:bg-blue-50 transition-colors border border-gray-200 hover:border-blue-300">
-                    <div className="text-sm font-medium text-gray-900 group-hover:text-blue-800">Compound Interest Calculator</div>
-                    <div className="text-xs text-gray-500 mt-1">Growth projections</div>
+                  <a href="/tools/compound-interest-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-xl hover:shadow-lg transition-shadow">
+                    <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base md:text-lg">Compound Interest Calculator</h3>
+                    <p className="text-xs sm:text-sm text-gray-600">See how your investments grow over time</p>
                   </a>
-                  <a href="/tools/roi-calculator" className="group text-center p-4 bg-gray-50 rounded-lg hover:bg-blue-50 transition-colors border border-gray-200 hover:border-blue-300">
-                    <div className="text-sm font-medium text-gray-900 group-hover:text-blue-800">ROI Calculator</div>
-                    <div className="text-xs text-gray-500 mt-1">Return on investment</div>
+                  <a href="/tools/roi-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-xl hover:shadow-lg transition-shadow">
+                    <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base md:text-lg">ROI Calculator</h3>
+                    <p className="text-xs sm:text-sm text-gray-600">Calculate your return on investment</p>
                   </a>
-                  <a href="/tools/retirement-calculator" className="group text-center p-4 bg-gray-50 rounded-lg hover:bg-blue-50 transition-colors border border-gray-200 hover:border-blue-300">
-                    <div className="text-sm font-medium text-gray-900 group-hover:text-blue-800">Retirement Calculator</div>
-                    <div className="text-xs text-gray-500 mt-1">Retirement planning</div>
+                  <a href="/tools/retirement-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-xl hover:shadow-lg transition-shadow">
+                    <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base md:text-lg">Retirement Calculator</h3>
+                    <p className="text-xs sm:text-sm text-gray-600">Plan for a comfortable retirement</p>
                   </a>
-                </div>
-                <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
-                  <h4 className="font-semibold text-blue-900 mb-2">Complete Financial Planning</h4>
-                  <p className="text-blue-800 text-sm">
-                    Use our stock profit calculator alongside other financial tools for comprehensive investment planning. 
-                    Combine with our compound interest calculator to project long-term growth, and use the retirement calculator 
-                    to plan your investment strategy for financial independence.
-                  </p>
+                  <a href="/tools/mortgage-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-xl hover:shadow-lg transition-shadow">
+                    <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base md:text-lg">Mortgage Calculator</h3>
+                    <p className="text-xs sm:text-sm text-gray-600">Calculate home loan payments including taxes and insurance</p>
+                  </a>
+                  <a href="/tools/loan-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-xl hover:shadow-lg transition-shadow">
+                    <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base md:text-lg">Loan Calculator</h3>
+                    <p className="text-xs sm:text-sm text-gray-600">Calculate monthly payments and total loan costs</p>
+                  </a>
                 </div>
               </CardContent>
             </Card>
