@@ -2344,9 +2344,9 @@ export default function LoanCalculator() {
             </Card>
 
             {/* Last Updated */}
-            <div className="text-center text-sm text-gray-500 mt-8">
-              <p>Last Updated: January 2025 | Calculations verified by financial experts</p>
-              <p className="mt-2">✓ Trusted by 2.5M+ users worldwide | ✓ Bank-grade accuracy | ✓ 100% Free Forever</p>
+            <div className="text-center text-xs sm:text-sm text-gray-500 mt-6 sm:mt-8 px-4">
+              <p className="leading-relaxed">Last Updated: January 2025 | Calculations verified by financial experts</p>
+              <p className="mt-2 sm:mt-3 leading-relaxed">✓ Trusted by 2.5M+ users worldwide | ✓ Bank-grade accuracy | ✓ 100% Free Forever</p>
             </div>
           </div>
         </div>
