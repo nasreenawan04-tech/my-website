@@ -1952,54 +1952,65 @@ export default function LoanCalculator() {
             </Card>
 
             {/* Loan Term Comparison Table - Featured Snippet Target */}
-            <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">Loan Term Comparison: How Term Length Affects Your Payment</h2>
-                <div className="prose max-w-none text-gray-700 space-y-4 text-base leading-relaxed">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Loan Term Comparison: How Term Length Affects Your Payment</h2>
+                <div className="prose max-w-none text-gray-700 space-y-3 sm:space-y-4 text-sm sm:text-base leading-relaxed">
                   <p>
                     Choosing the right loan term is crucial for balancing monthly affordability with total cost. Here's how different loan terms affect payments and total interest on a $30,000 loan at 8% APR:
                   </p>
 
-                  <div className="overflow-x-auto mt-6">
-                    <table className="min-w-full bg-white border border-gray-200 rounded-lg">
-                      <thead className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
-                        <tr>
-                          <th className="px-6 py-3 text-left text-sm font-bold">Loan Term</th>
-                          <th className="px-6 py-3 text-right text-sm font-bold">Monthly Payment</th>
-                          <th className="px-6 py-3 text-right text-sm font-bold">Total Interest</th>
-                          <th className="px-6 py-3 text-right text-sm font-bold">Total Paid</th>
-                          <th className="px-6 py-3 text-right text-sm font-bold">Interest Savings vs 7 Years</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-gray-200">
-                        <tr className="hover:bg-gray-50">
-                          <td className="px-6 py-4 text-gray-900 font-medium">3 years (36 months)</td>
-                          <td className="px-6 py-4 text-right text-blue-700 font-bold">$940</td>
-                          <td className="px-6 py-4 text-right text-gray-700">$3,852</td>
-                          <td className="px-6 py-4 text-right text-gray-700">$33,852</td>
-                          <td className="px-6 py-4 text-right text-green-600 font-bold">Save $7,123</td>
-                        </tr>
-                        <tr className="hover:bg-gray-50 bg-blue-50">
-                          <td className="px-6 py-4 text-gray-900 font-medium">5 years (60 months)</td>
-                          <td className="px-6 py-4 text-right text-blue-700 font-bold">$608</td>
-                          <td className="px-6 py-4 text-right text-gray-700">$6,492</td>
-                          <td className="px-6 py-4 text-right text-gray-700">$36,492</td>
-                          <td className="px-6 py-4 text-right text-green-600 font-bold">Save $4,483</td>
-                        </tr>
-                        <tr className="hover:bg-gray-50">
-                          <td className="px-6 py-4 text-gray-900 font-medium">7 years (84 months)</td>
-                          <td className="px-6 py-4 text-right text-blue-700 font-bold">$461</td>
-                          <td className="px-6 py-4 text-right text-orange-600 font-bold">$10,975</td>
-                          <td className="px-6 py-4 text-right text-gray-700">$40,975</td>
-                          <td className="px-6 py-4 text-right text-gray-500">—</td>
-                        </tr>
-                      </tbody>
-                    </table>
+                  <div className="overflow-x-auto mt-4 sm:mt-6 -mx-4 sm:mx-0">
+                    <div className="inline-block min-w-full align-middle px-4 sm:px-0">
+                      <table className="min-w-full bg-white border border-gray-200 rounded-lg">
+                        <thead className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+                          <tr>
+                            <th className="px-2 sm:px-4 md:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm font-bold">Loan Term</th>
+                            <th className="px-2 sm:px-4 md:px-6 py-2 sm:py-3 text-right text-xs sm:text-sm font-bold">Monthly Payment</th>
+                            <th className="px-2 sm:px-4 md:px-6 py-2 sm:py-3 text-right text-xs sm:text-sm font-bold hidden md:table-cell">Total Interest</th>
+                            <th className="px-2 sm:px-4 md:px-6 py-2 sm:py-3 text-right text-xs sm:text-sm font-bold hidden lg:table-cell">Total Paid</th>
+                            <th className="px-2 sm:px-4 md:px-6 py-2 sm:py-3 text-right text-xs sm:text-sm font-bold hidden sm:table-cell">Savings vs 7 Years</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-gray-200">
+                          <tr className="hover:bg-gray-50">
+                            <td className="px-2 sm:px-4 md:px-6 py-3 sm:py-4 text-gray-900 font-medium text-xs sm:text-sm md:text-base">
+                              <span className="block">3 years</span>
+                              <span className="text-xs text-gray-500 hidden sm:inline">(36 months)</span>
+                            </td>
+                            <td className="px-2 sm:px-4 md:px-6 py-3 sm:py-4 text-right text-blue-700 font-bold text-xs sm:text-sm md:text-base">$940</td>
+                            <td className="px-2 sm:px-4 md:px-6 py-3 sm:py-4 text-right text-gray-700 text-xs sm:text-sm md:text-base hidden md:table-cell">$3,852</td>
+                            <td className="px-2 sm:px-4 md:px-6 py-3 sm:py-4 text-right text-gray-700 text-xs sm:text-sm md:text-base hidden lg:table-cell">$33,852</td>
+                            <td className="px-2 sm:px-4 md:px-6 py-3 sm:py-4 text-right text-green-600 font-bold text-xs sm:text-sm md:text-base hidden sm:table-cell">Save $7,123</td>
+                          </tr>
+                          <tr className="hover:bg-gray-50 bg-blue-50">
+                            <td className="px-2 sm:px-4 md:px-6 py-3 sm:py-4 text-gray-900 font-medium text-xs sm:text-sm md:text-base">
+                              <span className="block">5 years</span>
+                              <span className="text-xs text-gray-500 hidden sm:inline">(60 months)</span>
+                            </td>
+                            <td className="px-2 sm:px-4 md:px-6 py-3 sm:py-4 text-right text-blue-700 font-bold text-xs sm:text-sm md:text-base">$608</td>
+                            <td className="px-2 sm:px-4 md:px-6 py-3 sm:py-4 text-right text-gray-700 text-xs sm:text-sm md:text-base hidden md:table-cell">$6,492</td>
+                            <td className="px-2 sm:px-4 md:px-6 py-3 sm:py-4 text-right text-gray-700 text-xs sm:text-sm md:text-base hidden lg:table-cell">$36,492</td>
+                            <td className="px-2 sm:px-4 md:px-6 py-3 sm:py-4 text-right text-green-600 font-bold text-xs sm:text-sm md:text-base hidden sm:table-cell">Save $4,483</td>
+                          </tr>
+                          <tr className="hover:bg-gray-50">
+                            <td className="px-2 sm:px-4 md:px-6 py-3 sm:py-4 text-gray-900 font-medium text-xs sm:text-sm md:text-base">
+                              <span className="block">7 years</span>
+                              <span className="text-xs text-gray-500 hidden sm:inline">(84 months)</span>
+                            </td>
+                            <td className="px-2 sm:px-4 md:px-6 py-3 sm:py-4 text-right text-blue-700 font-bold text-xs sm:text-sm md:text-base">$461</td>
+                            <td className="px-2 sm:px-4 md:px-6 py-3 sm:py-4 text-right text-orange-600 font-bold text-xs sm:text-sm md:text-base hidden md:table-cell">$10,975</td>
+                            <td className="px-2 sm:px-4 md:px-6 py-3 sm:py-4 text-right text-gray-700 text-xs sm:text-sm md:text-base hidden lg:table-cell">$40,975</td>
+                            <td className="px-2 sm:px-4 md:px-6 py-3 sm:py-4 text-right text-gray-500 text-xs sm:text-sm md:text-base hidden sm:table-cell">—</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
 
-                  <div className="bg-yellow-50 border-l-4 border-yellow-500 p-6 mt-6">
-                    <h4 className="font-bold text-gray-900 mb-2">💡 Key Takeaway</h4>
-                    <p>
+                  <div className="bg-yellow-50 border-l-4 border-yellow-500 p-3 sm:p-4 md:p-6 mt-4 sm:mt-6 rounded-r-lg">
+                    <h4 className="font-bold text-gray-900 mb-2 text-sm sm:text-base">💡 Key Takeaway</h4>
+                    <p className="text-xs sm:text-sm md:text-base">
                       Choosing a 3-year term instead of 7 years saves you $7,123 in interest—enough for a nice vacation or emergency fund! However, the monthly payment is $479 higher. Use our calculator above to find the perfect balance between monthly affordability and total cost for your situation.
                     </p>
                   </div>
