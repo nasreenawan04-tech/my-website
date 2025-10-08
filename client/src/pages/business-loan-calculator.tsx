@@ -621,6 +621,7 @@ export default function BusinessLoanCalculator() {
   const handleShare = async () => {
     if (!result) return;
 
+    // Create shareable URL with encoded parameters
     const params = new URLSearchParams({
       amount: loanAmount,
       rate: interestRate,
@@ -635,12 +636,45 @@ export default function BusinessLoanCalculator() {
     
     const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
 
+    // Create comprehensive share text
+    const termDisplay = termUnit === 'years' ? `${loanTerm} years` : `${loanTerm} months`;
+    const loanTypeDisplay = loanType === 'term-loan' ? 'Term Loan' :
+                           loanType === 'sba-loan' ? 'SBA Loan' :
+                           loanType === 'equipment-financing' ? 'Equipment Financing' : 'Line of Credit';
+
     let shareText = `💼 Business Loan Calculator Results\n\n`;
     shareText += `📊 Loan Details:\n`;
     shareText += `• Loan Amount: ${formatCurrency(parseFloat(loanAmount))}\n`;
+    shareText += `• Interest Rate: ${interestRate}%\n`;
+    shareText += `• Loan Term: ${termDisplay}\n`;
+    shareText += `• Loan Type: ${loanTypeDisplay}\n`;
+    
+    if (businessRevenue && parseFloat(businessRevenue) > 0) {
+      shareText += `• Business Revenue: ${formatCurrency(parseFloat(businessRevenue))}\n`;
+    }
+    if (collateralValue && parseFloat(collateralValue) > 0) {
+      shareText += `• Collateral Value: ${formatCurrency(parseFloat(collateralValue))}\n`;
+    }
+    
+    shareText += `\n💵 Payment Breakdown:\n`;
     shareText += `• Monthly Payment: ${formatCurrency(result.monthlyPayment)}\n`;
-    shareText += `• Total Interest: ${formatCurrency(result.totalInterest)}\n\n`;
-    shareText += `🔗 View: ${shareableUrl}`;
+    shareText += `• Yearly Payment: ${formatCurrency(result.yearlyPayment)}\n`;
+    shareText += `• Total Interest: ${formatCurrency(result.totalInterest)}\n`;
+    shareText += `• Total Amount: ${formatCurrency(result.totalAmount)}\n`;
+
+    if (businessRevenue && parseFloat(businessRevenue) > 0) {
+      shareText += `\n📈 Business Metrics:\n`;
+      shareText += `• Debt Service Coverage Ratio: ${result.debtServiceCoverage.toFixed(2)}x\n`;
+    }
+    
+    if (collateralValue && parseFloat(collateralValue) > 0) {
+      if (!businessRevenue || parseFloat(businessRevenue) === 0) {
+        shareText += `\n📈 Business Metrics:\n`;
+      }
+      shareText += `• Loan-to-Value Ratio: ${result.loanToValue.toFixed(1)}%\n`;
+    }
+
+    shareText += `\n🔗 View & Calculate: ${shareableUrl}`;
 
     if (navigator.share) {
       try {
@@ -649,15 +683,18 @@ export default function BusinessLoanCalculator() {
           text: shareText,
           url: shareableUrl
         });
-        toast({ title: "Shared successfully!" });
+        toast({ title: "Shared successfully!", description: "Results shared with all details" });
       } catch (err) {
-        navigator.clipboard.writeText(shareText);
-        toast({ title: "Copied to clipboard!" });
+        copyToClipboard(shareText);
       }
     } else {
-      navigator.clipboard.writeText(shareText);
-      toast({ title: "Copied to clipboard!" });
+      copyToClipboard(shareText);
     }
+  };
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+    toast({ title: "Copied to clipboard!" });
   };
 
   const principalPercentage = result ? (parseFloat(loanAmount) / result.totalAmount) * 100 : 0;
