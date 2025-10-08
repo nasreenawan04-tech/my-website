@@ -837,6 +837,7 @@ export default function BusinessLoanCalculator() {
                           variant="outline"
                           size="sm"
                           className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                          data-testid="button-show-chart"
                         >
                           <PieChart className="w-4 h-4 mr-1" />
                           {showChart ? 'Hide' : 'Show'} Chart
@@ -884,17 +885,17 @@ export default function BusinessLoanCalculator() {
                         <div className="space-y-4 sm:space-y-6">
                           {/* Donut Chart - Total Loan Breakdown */}
                           <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm border border-gray-100">
-                            <h3 className="font-bold text-gray-900 mb-4 sm:mb-6 text-center text-base sm:text-lg">Total Loan Breakdown</h3>
-                            <div className="flex flex-col lg:flex-row items-center justify-center gap-4 sm:gap-6">
-                              <div className="w-full max-w-[280px] sm:max-w-xs">
-                                <ResponsiveContainer width="100%" height={window.innerWidth < 640 ? 240 : 280}>
+                            <h3 className="font-bold text-gray-900 mb-4 sm:mb-6 text-center text-base sm:text-lg md:text-xl">Total Loan Breakdown</h3>
+                            <div className="flex flex-col md:flex-row items-center justify-center gap-4 sm:gap-6 md:gap-8">
+                              <div className="w-full max-w-[260px] sm:max-w-[300px] md:max-w-[320px]">
+                                <ResponsiveContainer width="100%" height={window.innerWidth < 640 ? 240 : window.innerWidth < 768 ? 260 : 300}>
                                   <RechartsPieChart>
                                     <Pie
                                       data={pieData}
                                       cx="50%"
                                       cy="50%"
-                                      innerRadius={window.innerWidth < 640 ? 45 : 60}
-                                      outerRadius={window.innerWidth < 640 ? 75 : 90}
+                                      innerRadius={window.innerWidth < 640 ? 50 : window.innerWidth < 768 ? 55 : 65}
+                                      outerRadius={window.innerWidth < 640 ? 80 : window.innerWidth < 768 ? 90 : 100}
                                       paddingAngle={3}
                                       dataKey="value"
                                       label={window.innerWidth >= 640 ? ({ name, value }) => `${name}: ${formatCurrency(value)}` : false}
@@ -926,29 +927,29 @@ export default function BusinessLoanCalculator() {
                                   </RechartsPieChart>
                                 </ResponsiveContainer>
                               </div>
-                              <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-1 gap-3 sm:gap-4 w-full lg:w-auto">
-                                <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-green-200">
+                              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-3 sm:gap-4 w-full md:w-auto md:min-w-[280px] lg:min-w-[320px]">
+                                <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 border border-green-200">
                                   <div className="flex items-center gap-2 mb-2">
                                     <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full"></div>
-                                    <span className="font-semibold text-gray-700 text-xs sm:text-sm">Principal Amount</span>
+                                    <span className="font-semibold text-gray-700 text-xs sm:text-sm md:text-base">Principal Amount</span>
                                   </div>
-                                  <div className="text-lg sm:text-xl md:text-2xl font-bold text-green-600 break-all">{formatCurrency(parseFloat(loanAmount))}</div>
-                                  <div className="text-xs sm:text-sm text-green-700 mt-1">{principalPercentage.toFixed(1)}% of total</div>
+                                  <div className="text-xl sm:text-2xl md:text-3xl font-bold text-green-600 break-all">{formatCurrency(parseFloat(loanAmount))}</div>
+                                  <div className="text-xs sm:text-sm md:text-base text-green-700 mt-1">{principalPercentage.toFixed(1)}% of total</div>
                                 </div>
-                                <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-orange-200">
+                                <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 border border-orange-200">
                                   <div className="flex items-center gap-2 mb-2">
                                     <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gradient-to-br from-orange-500 to-amber-600 rounded-full"></div>
-                                    <span className="font-semibold text-gray-700 text-xs sm:text-sm">Total Interest</span>
+                                    <span className="font-semibold text-gray-700 text-xs sm:text-sm md:text-base">Total Interest</span>
                                   </div>
-                                  <div className="text-lg sm:text-xl md:text-2xl font-bold text-orange-600 break-all">{formatCurrency(result.totalInterest)}</div>
-                                  <div className="text-xs sm:text-sm text-orange-700 mt-1">{interestPercentage.toFixed(1)}% of total</div>
+                                  <div className="text-xl sm:text-2xl md:text-3xl font-bold text-orange-600 break-all">{formatCurrency(result.totalInterest)}</div>
+                                  <div className="text-xs sm:text-sm md:text-base text-orange-700 mt-1">{interestPercentage.toFixed(1)}% of total</div>
                                 </div>
                               </div>
                             </div>
                             <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-gray-200">
                               <div className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 text-center">
-                                <span className="text-xs sm:text-sm text-gray-600">Total Amount to be Repaid:</span>
-                                <span className="text-lg sm:text-xl font-bold text-gray-900 break-all">{formatCurrency(result.totalAmount)}</span>
+                                <span className="text-xs sm:text-sm md:text-base text-gray-600">Total Amount to be Repaid:</span>
+                                <span className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 break-all">{formatCurrency(result.totalAmount)}</span>
                               </div>
                             </div>
                           </div>
