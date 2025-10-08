@@ -1829,36 +1829,36 @@ export default function BusinessLoanCalculator() {
           </Card>
 
           {/* Related Tools */}
-          <Card className="bg-gradient-to-r from-indigo-50 to-purple-50 border-0 shadow-lg rounded-2xl mt-8">
-            <CardContent className="p-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Related Financial Calculators</h2>
-              <p className="text-gray-600 mb-8">
+          <Card className="bg-gradient-to-r from-indigo-50 to-purple-50 border-0 shadow-lg rounded-lg sm:rounded-xl md:rounded-2xl mt-4 sm:mt-6 md:mt-8 lg:mt-10">
+            <CardContent className="p-4 sm:p-5 md:p-6 lg:p-8 xl:p-10">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 md:mb-5 lg:mb-6 xl:mb-8 text-center sm:text-left">Related Financial Calculators</h2>
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 mb-4 sm:mb-5 md:mb-6 lg:mb-7 xl:mb-8 leading-relaxed text-center sm:text-left">
                 Explore our other free financial calculators to make informed decisions about your business finances:
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <a href="/tools/loan-calculator" className="bg-white p-4 rounded-xl hover:shadow-lg transition-shadow">
-                  <h3 className="font-bold text-gray-900 mb-2">Loan Calculator</h3>
-                  <p className="text-sm text-gray-600">Calculate personal, auto, and general loan payments</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
+                <a href="/tools/loan-calculator" className="bg-white p-3 sm:p-4 md:p-5 lg:p-6 rounded-lg sm:rounded-xl hover:shadow-lg transition-shadow">
+                  <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 mb-1 sm:mb-2 md:mb-3">Loan Calculator</h3>
+                  <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Calculate personal, auto, and general loan payments</p>
                 </a>
-                <a href="/tools/simple-interest-calculator" className="bg-white p-4 rounded-xl hover:shadow-lg transition-shadow">
-                  <h3 className="font-bold text-gray-900 mb-2">Simple Interest Calculator</h3>
-                  <p className="text-sm text-gray-600">Calculate simple interest on loans and investments</p>
+                <a href="/tools/simple-interest-calculator" className="bg-white p-3 sm:p-4 md:p-5 lg:p-6 rounded-lg sm:rounded-xl hover:shadow-lg transition-shadow">
+                  <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 mb-1 sm:mb-2 md:mb-3">Simple Interest Calculator</h3>
+                  <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Calculate simple interest on loans and investments</p>
                 </a>
-                <a href="/tools/compound-interest-calculator" className="bg-white p-4 rounded-xl hover:shadow-lg transition-shadow">
-                  <h3 className="font-bold text-gray-900 mb-2">Compound Interest Calculator</h3>
-                  <p className="text-sm text-gray-600">See how compound interest grows your investments</p>
+                <a href="/tools/compound-interest-calculator" className="bg-white p-3 sm:p-4 md:p-5 lg:p-6 rounded-lg sm:rounded-xl hover:shadow-lg transition-shadow">
+                  <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 mb-1 sm:mb-2 md:mb-3">Compound Interest Calculator</h3>
+                  <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">See how compound interest grows your investments</p>
                 </a>
-                <a href="/tools/roi-calculator" className="bg-white p-4 rounded-xl hover:shadow-lg transition-shadow">
-                  <h3 className="font-bold text-gray-900 mb-2">ROI Calculator</h3>
-                  <p className="text-sm text-gray-600">Calculate return on investment for business decisions</p>
+                <a href="/tools/roi-calculator" className="bg-white p-3 sm:p-4 md:p-5 lg:p-6 rounded-lg sm:rounded-xl hover:shadow-lg transition-shadow">
+                  <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 mb-1 sm:mb-2 md:mb-3">ROI Calculator</h3>
+                  <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Calculate return on investment for business decisions</p>
                 </a>
-                <a href="/tools/break-even-calculator" className="bg-white p-4 rounded-xl hover:shadow-lg transition-shadow">
-                  <h3 className="font-bold text-gray-900 mb-2">Break-Even Calculator</h3>
-                  <p className="text-sm text-gray-600">Determine when your business becomes profitable</p>
+                <a href="/tools/break-even-calculator" className="bg-white p-3 sm:p-4 md:p-5 lg:p-6 rounded-lg sm:rounded-xl hover:shadow-lg transition-shadow">
+                  <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 mb-1 sm:mb-2 md:mb-3">Break-Even Calculator</h3>
+                  <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Determine when your business becomes profitable</p>
                 </a>
-                <a href="/tools/budget-calculator" className="bg-white p-4 rounded-xl hover:shadow-lg transition-shadow">
-                  <h3 className="font-bold text-gray-900 mb-2">Budget Calculator</h3>
-                  <p className="text-sm text-gray-600">Create and manage your business budget</p>
+                <a href="/tools/budget-calculator" className="bg-white p-3 sm:p-4 md:p-5 lg:p-6 rounded-lg sm:rounded-xl hover:shadow-lg transition-shadow">
+                  <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 mb-1 sm:mb-2 md:mb-3">Budget Calculator</h3>
+                  <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Create and manage your business budget</p>
                 </a>
               </div>
             </CardContent>
