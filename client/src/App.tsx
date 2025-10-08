@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { PageLoadingSpinner } from "@/components/ui/loading-spinner";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { BackToTop } from "@/components/ui/back-to-top";
 import PerformanceMetrics from "@/components/ui/performance-metrics";
 import ErrorBoundary from "@/components/ErrorBoundary";
 
@@ -197,6 +198,7 @@ function App() {
         <TooltipProvider>
           <Toaster />
           <Router />
+          <BackToTop />
           <PerformanceMetrics />
         </TooltipProvider>
       </ThemeProvider>
