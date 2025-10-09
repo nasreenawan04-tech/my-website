@@ -2269,7 +2269,7 @@ const MortgageCalculator = () => {
           {/* Last Updated */}
           <div className="text-center text-xs sm:text-sm text-gray-500 mt-6 sm:mt-8 px-3">
             <p>Last Updated: January 2025 | Calculations verified by financial experts</p>
-            <p className="mt-2">✓ Trusted by 2.5M+ users worldwide | ✓ Bank-grade accuracy | ✓ 100% Free Forever</p>
+            <p className="mt-2">✓ Trusted by 3.2M+ users worldwide | ✓ Bank-grade accuracy | ✓ 100% Free Forever</p>
           </div>
         </div>
       </main>
