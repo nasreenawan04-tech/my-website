@@ -1504,78 +1504,84 @@ const MortgageCalculator = () => {
                   </div>
 
                   {result && (
-                    <div className="flex flex-wrap justify-center gap-2 sm:gap-3 pt-3 sm:pt-4 print:hidden">
-                      <Button
-                        onClick={() => setShowAmortization(!showAmortization)}
-                        variant="outline"
-                        size="sm"
-                        className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
-                      >
-                        {showAmortization ? 'Hide' : 'Show'} Payment Schedule
-                      </Button>
-                      <Button
-                        onClick={() => setShowChart(!showChart)}
-                        variant="outline"
-                        size="sm"
-                        className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
-                      >
-                        <PieChart className="w-4 h-4 mr-1" />
-                        {showChart ? 'Hide' : 'Show'} Chart
-                      </Button>
-                      <Button
-                        onClick={handleShare}
-                        variant="outline"
-                        size="sm"
-                        className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
-                      >
-                        <Share2 className="w-4 h-4 mr-1" />
-                        Share
-                      </Button>
-                      <Button
-                        onClick={shareOnFacebook}
-                        variant="outline"
-                        size="sm"
-                        className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full bg-blue-50 hover:bg-blue-100 text-blue-700"
-                        data-testid="button-share-facebook"
-                      >
-                        <FaFacebook className="w-4 h-4" />
-                      </Button>
-                      <Button
-                        onClick={shareOnTwitter}
-                        variant="outline"
-                        size="sm"
-                        className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full bg-sky-50 hover:bg-sky-100 text-sky-600"
-                        data-testid="button-share-twitter"
-                      >
-                        <FaTwitter className="w-4 h-4" />
-                      </Button>
-                      <Button
-                        onClick={shareOnLinkedIn}
-                        variant="outline"
-                        size="sm"
-                        className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full bg-blue-50 hover:bg-blue-100 text-blue-700"
-                        data-testid="button-share-linkedin"
-                      >
-                        <FaLinkedin className="w-4 h-4" />
-                      </Button>
-                      <Button
-                        onClick={shareOnWhatsApp}
-                        variant="outline"
-                        size="sm"
-                        className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full bg-green-50 hover:bg-green-100 text-green-600"
-                        data-testid="button-share-whatsapp"
-                      >
-                        <FaWhatsapp className="w-4 h-4" />
-                      </Button>
-                      <Button
-                        onClick={handleDownloadPDF}
-                        variant="outline"
-                        size="sm"
-                        className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
-                      >
-                        <Download className="w-4 h-4 mr-1" />
-                        Export PDF
-                      </Button>
+                    <div className="space-y-4 pt-3 sm:pt-4 print:hidden">
+                      {/* Primary Action Buttons */}
+                      <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+                        <Button
+                          onClick={() => setShowAmortization(!showAmortization)}
+                          variant="outline"
+                          size="sm"
+                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-all"
+                        >
+                          {showAmortization ? 'Hide' : 'Show'} Payment Schedule
+                        </Button>
+                        <Button
+                          onClick={() => setShowChart(!showChart)}
+                          variant="outline"
+                          size="sm"
+                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-all"
+                        >
+                          <PieChart className="w-4 h-4 mr-1.5" />
+                          {showChart ? 'Hide' : 'Show'} Chart
+                        </Button>
+                        <Button
+                          onClick={handleDownloadPDF}
+                          variant="outline"
+                          size="sm"
+                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-all"
+                        >
+                          <Download className="w-4 h-4 mr-1.5" />
+                          Export PDF
+                        </Button>
+                      </div>
+
+                      {/* Social Share Section */}
+                      <div className="border-t pt-4">
+                        <p className="text-center text-sm font-medium text-gray-700 mb-3">Share your results:</p>
+                        <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+                          <Button
+                            onClick={shareOnFacebook}
+                            size="sm"
+                            className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg bg-[#1877f2] hover:bg-[#166fe5] text-white transition-all"
+                          >
+                            <FaFacebook className="w-4 h-4 mr-1.5" />
+                            Facebook
+                          </Button>
+                          <Button
+                            onClick={shareOnTwitter}
+                            size="sm"
+                            className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg bg-[#1da1f2] hover:bg-[#1a8cd8] text-white transition-all"
+                          >
+                            <FaTwitter className="w-4 h-4 mr-1.5" />
+                            Twitter
+                          </Button>
+                          <Button
+                            onClick={shareOnLinkedIn}
+                            size="sm"
+                            className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg bg-[#0077b5] hover:bg-[#006399] text-white transition-all"
+                          >
+                            <FaLinkedin className="w-4 h-4 mr-1.5" />
+                            LinkedIn
+                          </Button>
+                          <Button
+                            onClick={shareOnWhatsApp}
+                            size="sm"
+                            className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg bg-[#25d366] hover:bg-[#20bd5a] text-white transition-all"
+                          >
+                            <FaWhatsapp className="w-4 h-4 mr-1.5" />
+                            WhatsApp
+                          </Button>
+                          <Button
+                            onClick={handleShare}
+                            variant="outline"
+                            size="sm"
+                            className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-gray-400 hover:bg-gray-50 transition-all"
+                          >
+                            <Share2 className="w-4 h-4 mr-1.5" />
+                            More
+                          </Button>
+                        </div>
+                      </div>
                     </div>
                   )}
                 </div>
