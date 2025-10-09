@@ -1829,9 +1829,10 @@ const MortgageCalculator = () => {
                     </div>
                   )}
                 </div>
-              </div>
+              </CardContent>
+            </Card>
 
-              {result && showAmortization && (
+            {result && showAmortization && (
                   <Card className="mt-6 sm:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
                     <CardContent className="p-4 sm:p-6 lg:p-8">
                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
