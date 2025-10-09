@@ -2266,65 +2266,6 @@ const MortgageCalculator = () => {
             </CardContent>
           </Card>
 
-          {/* What Our Users Say - Testimonials */}
-          <Card className="bg-white border-0 shadow-lg rounded-2xl mb-8">
-            <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-8 sm:mb-10 text-center">What Our Users Say</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-                {/* Testimonial 1 */}
-                <div className="bg-blue-50 rounded-xl p-6 shadow-sm">
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <span key={i} className="text-yellow-400">⭐</span>
-                    ))}
-                  </div>
-                  <p className="text-gray-700 italic mb-6 text-sm leading-relaxed">
-                    "This loan calculator saved me thousands! I compared different loan terms and found that choosing a 4-year term instead of 7 years would save me over $5,000 in interest. Super easy to use and the amortization schedule is really helpful."
-                  </p>
-                  <div className="border-t border-gray-200 pt-4">
-                    <p className="font-bold text-gray-900">Michael Chen</p>
-                    <p className="text-sm text-gray-600">Small Business Owner</p>
-                  </div>
-                </div>
-
-                {/* Testimonial 2 */}
-                <div className="bg-green-50 rounded-xl p-6 shadow-sm">
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <span key={i} className="text-yellow-400">⭐</span>
-                    ))}
-                  </div>
-                  <p className="text-gray-700 italic mb-6 text-sm leading-relaxed">
-                    "Best free loan calculator I've found. The extra payment feature showed me exactly how much I could save by adding just $100 per month to my car loan. Highly recommend for anyone shopping for loans."
-                  </p>
-                  <div className="border-t border-gray-200 pt-4">
-                    <p className="font-bold text-gray-900">Sarah Johnson</p>
-                    <p className="text-sm text-gray-600">Financial Planner</p>
-                  </div>
-                </div>
-
-                {/* Testimonial 3 */}
-                <div className="bg-purple-50 rounded-xl p-6 shadow-sm">
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <span key={i} className="text-yellow-400">⭐</span>
-                    ))}
-                  </div>
-                  <p className="text-gray-700 italic mb-6 text-sm leading-relaxed">
-                    "Accurate and professional. I used this to calculate my business loan payments and the numbers matched exactly what my bank provided. The comparison feature is excellent for evaluating multiple loan offers."
-                  </p>
-                  <div className="border-t border-gray-200 pt-4">
-                    <p className="font-bold text-gray-900">David Martinez</p>
-                    <p className="text-sm text-gray-600">Entrepreneur</p>
-                  </div>
-                </div>
-              </div>
-              <p className="text-center text-sm text-gray-600 mt-8">
-                Join 2.5+ million users who trust our calculators for accurate financial planning
-              </p>
-            </CardContent>
-          </Card>
-
           {/* Last Updated */}
           <div className="text-center text-xs sm:text-sm text-gray-500 mt-6 sm:mt-8 px-3">
             <p>Last Updated: January 2025 | Calculations verified by financial experts</p>
