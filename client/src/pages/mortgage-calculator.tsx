@@ -781,7 +781,7 @@ const MortgageCalculator = () => {
     });
     const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
     const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareableUrl)}`;
-    window.open(facebookUrl, '_blank', 'width=600,height=400');
+    window.open(facebookUrl, '_blank', 'noopener,noreferrer,width=600,height=400');
     toast({ title: "Opening Facebook share..." });
   };
 
@@ -799,7 +799,7 @@ const MortgageCalculator = () => {
     const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
     const tweetText = `🏠 My mortgage: ${formatCurrency(result.monthlyPayment)}/month on ${formatCurrency(parseFloat(homePrice))} at ${interestRate}% - Calculate yours free!`;
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}&url=${encodeURIComponent(shareableUrl)}`;
-    window.open(twitterUrl, '_blank', 'width=600,height=400');
+    window.open(twitterUrl, '_blank', 'noopener,noreferrer,width=600,height=400');
     toast({ title: "Opening Twitter share..." });
   };
 
@@ -816,7 +816,7 @@ const MortgageCalculator = () => {
     });
     const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
     const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareableUrl)}`;
-    window.open(linkedInUrl, '_blank', 'width=600,height=400');
+    window.open(linkedInUrl, '_blank', 'noopener,noreferrer,width=600,height=400');
     toast({ title: "Opening LinkedIn share..." });
   };
 
@@ -834,7 +834,7 @@ const MortgageCalculator = () => {
     const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
     const whatsappText = `🏠 Mortgage Calculator Results:\n\nHome Price: ${formatCurrency(parseFloat(homePrice))}\nRate: ${interestRate}%\nTerm: ${loanTerm} years\nMonthly Payment: ${formatCurrency(result.monthlyPayment)}\n\nCalculate yours: ${shareableUrl}`;
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(whatsappText)}`;
-    window.open(whatsappUrl, '_blank');
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
     toast({ title: "Opening WhatsApp share..." });
   };
 
