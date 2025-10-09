@@ -2498,35 +2498,75 @@ export default function LoanCalculator() {
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
                   <a href="/tools/mortgage-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-xl hover:shadow-lg transition-all hover:scale-105 border-2 border-transparent hover:border-blue-200" data-testid="link-mortgage-calculator">
-                    <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base md:text-lg">🏠 Mortgage Calculator</h3>
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span className="text-xl">🏠</span>
+                      </div>
+                      <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg">Mortgage Calculator</h3>
+                    </div>
                     <p className="text-xs sm:text-sm text-gray-600">Calculate home loan payments with taxes, insurance & PMI</p>
                   </a>
                   <a href="/tools/car-loan-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-xl hover:shadow-lg transition-all hover:scale-105 border-2 border-transparent hover:border-blue-200" data-testid="link-car-loan-calculator">
-                    <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base md:text-lg">🚗 Auto Loan Calculator</h3>
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span className="text-xl">🚗</span>
+                      </div>
+                      <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg">Auto Loan Calculator</h3>
+                    </div>
                     <p className="text-xs sm:text-sm text-gray-600">Calculate car payments with trade-in & down payment options</p>
                   </a>
                   <a href="/tools/business-loan-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-xl hover:shadow-lg transition-all hover:scale-105 border-2 border-transparent hover:border-blue-200" data-testid="link-business-loan-calculator">
-                    <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base md:text-lg">💼 Business Loan Calculator</h3>
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span className="text-xl">💼</span>
+                      </div>
+                      <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg">Business Loan Calculator</h3>
+                    </div>
                     <p className="text-xs sm:text-sm text-gray-600">Calculate business financing with cash flow analysis</p>
                   </a>
                   <a href="/tools/education-loan-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-xl hover:shadow-lg transition-all hover:scale-105 border-2 border-transparent hover:border-blue-200" data-testid="link-education-loan-calculator">
-                    <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base md:text-lg">🎓 Student Loan Calculator</h3>
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span className="text-xl">🎓</span>
+                      </div>
+                      <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg">Student Loan Calculator</h3>
+                    </div>
                     <p className="text-xs sm:text-sm text-gray-600">Calculate education loan payments & repayment plans</p>
                   </a>
                   <a href="/tools/debt-consolidation-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-xl hover:shadow-lg transition-all hover:scale-105 border-2 border-transparent hover:border-blue-200" data-testid="link-debt-consolidation-calculator">
-                    <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base md:text-lg">💳 Debt Consolidation Calculator</h3>
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span className="text-xl">💳</span>
+                      </div>
+                      <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg">Debt Consolidation Calculator</h3>
+                    </div>
                     <p className="text-xs sm:text-sm text-gray-600">Compare consolidating multiple debts into one payment</p>
                   </a>
                   <a href="/tools/emi-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-xl hover:shadow-lg transition-all hover:scale-105 border-2 border-transparent hover:border-blue-200" data-testid="link-emi-calculator">
-                    <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base md:text-lg">📊 EMI Calculator</h3>
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span className="text-xl">📊</span>
+                      </div>
+                      <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg">EMI Calculator</h3>
+                    </div>
                     <p className="text-xs sm:text-sm text-gray-600">Calculate Equated Monthly Installments for any loan</p>
                   </a>
                   <a href="/tools/loan-comparison-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-xl hover:shadow-lg transition-all hover:scale-105 border-2 border-transparent hover:border-blue-200" data-testid="link-loan-comparison-calculator">
-                    <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base md:text-lg">⚖️ Loan Comparison Calculator</h3>
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-8 h-8 bg-pink-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span className="text-xl">⚖️</span>
+                      </div>
+                      <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg">Loan Comparison Calculator</h3>
+                    </div>
                     <p className="text-xs sm:text-sm text-gray-600">Compare multiple loan offers side-by-side</p>
                   </a>
                   <a href="/tools/debt-payoff-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-xl hover:shadow-lg transition-all hover:scale-105 border-2 border-transparent hover:border-blue-200" data-testid="link-debt-payoff-calculator">
-                    <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base md:text-lg">🎯 Debt Payoff Calculator</h3>
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span className="text-xl">🎯</span>
+                      </div>
+                      <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg">Debt Payoff Calculator</h3>
+                    </div>
                     <p className="text-xs sm:text-sm text-gray-600">Plan your strategy to become debt-free faster</p>
                   </a>
                 </div>
