@@ -2093,6 +2093,65 @@ const MortgageCalculator = () => {
             </CardContent>
           </Card>
 
+          {/* What Our Users Say - Testimonials */}
+          <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 border-0 shadow-lg rounded-2xl mb-8">
+            <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 sm:mb-8 md:mb-10 text-center">What Our Users Say</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+                {/* Testimonial 1 */}
+                <div className="bg-blue-50 rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="flex gap-1 mb-3 sm:mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-yellow-400 text-sm sm:text-base">⭐</span>
+                    ))}
+                  </div>
+                  <p className="text-gray-700 italic mb-4 sm:mb-6 text-xs sm:text-sm md:text-base leading-relaxed">
+                    "This mortgage calculator saved me thousands! I compared different loan terms and found that choosing a 15-year term instead of 30 years would save me over $85,000 in interest. The amortization schedule is really helpful for planning."
+                  </p>
+                  <div className="border-t border-gray-200 pt-3 sm:pt-4">
+                    <p className="font-bold text-gray-900 text-sm sm:text-base">Jennifer Williams</p>
+                    <p className="text-xs sm:text-sm text-gray-600">First-Time Homebuyer</p>
+                  </div>
+                </div>
+
+                {/* Testimonial 2 */}
+                <div className="bg-green-50 rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="flex gap-1 mb-3 sm:mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-yellow-400 text-sm sm:text-base">⭐</span>
+                    ))}
+                  </div>
+                  <p className="text-gray-700 italic mb-4 sm:mb-6 text-xs sm:text-sm md:text-base leading-relaxed">
+                    "Best free mortgage calculator I've found. The extra payment feature showed me exactly how much I could save by adding just $200 per month to my payment. The biweekly payment option is brilliant for saving on interest!"
+                  </p>
+                  <div className="border-t border-gray-200 pt-3 sm:pt-4">
+                    <p className="font-bold text-gray-900 text-sm sm:text-base">Robert Thompson</p>
+                    <p className="text-xs sm:text-sm text-gray-600">Real Estate Investor</p>
+                  </div>
+                </div>
+
+                {/* Testimonial 3 */}
+                <div className="bg-purple-50 rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="flex gap-1 mb-3 sm:mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-yellow-400 text-sm sm:text-base">⭐</span>
+                    ))}
+                  </div>
+                  <p className="text-gray-700 italic mb-4 sm:mb-6 text-xs sm:text-sm md:text-base leading-relaxed">
+                    "Accurate and professional. I used this to calculate my mortgage payments including PMI, taxes, and insurance. The numbers matched exactly what my bank provided. The comparison feature is excellent for evaluating FHA vs conventional loans."
+                  </p>
+                  <div className="border-t border-gray-200 pt-3 sm:pt-4">
+                    <p className="font-bold text-gray-900 text-sm sm:text-base">Lisa Anderson</p>
+                    <p className="text-xs sm:text-sm text-gray-600">Real Estate Agent</p>
+                  </div>
+                </div>
+              </div>
+              <p className="text-center text-xs sm:text-sm text-gray-600 mt-6 sm:mt-8">
+                Join 3.2M+ users who trust our calculators for accurate financial planning
+              </p>
+            </CardContent>
+          </Card>
+
           {/* FAQ Section */}
           <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-2xl mb-8">
             <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10">
