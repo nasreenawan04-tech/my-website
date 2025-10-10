@@ -1302,6 +1302,7 @@ export default function BusinessLoanCalculator() {
                           variant="outline"
                           size="sm"
                           className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                          data-testid="button-amortization"
                         >
                           {showAmortization ? 'Hide' : 'Show'} Payment Schedule
                         </Button>
@@ -1329,58 +1330,62 @@ export default function BusinessLoanCalculator() {
                           variant="outline"
                           size="sm"
                           className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                          data-testid="button-export-pdf"
                         >
                           <Download className="w-4 h-4 mr-1" />
                           Export PDF
                         </Button>
                       </div>
 
-                      {/* Social Media Sharing */}
-                      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-3 sm:p-4 border border-blue-200">
-                        <h3 className="text-xs sm:text-sm font-semibold text-gray-700 mb-2 text-center">Share on Social Media</h3>
-                        <div className="flex flex-wrap justify-center gap-2">
+                      {/* Social Share Section */}
+                      <div className="border-t pt-4">
+                        <p className="text-center text-sm font-medium text-gray-700 mb-3">Share your results:</p>
+                        <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
                           <Button
                             onClick={shareOnFacebook}
-                            variant="outline"
                             size="sm"
-                            className="bg-[#1877f2] text-white hover:bg-[#166fe5] border-0 text-xs px-3 py-1.5"
-                            data-testid="button-share-facebook"
+                            className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg bg-[#1877f2] hover:bg-[#166fe5] text-white transition-all"
                           >
-                            <FaFacebook className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
-                            <span className="hidden xs:inline">Facebook</span>
+                            <FaFacebook className="w-4 h-4 mr-1.5" />
+                            Facebook
                           </Button>
                           <Button
                             onClick={shareOnTwitter}
-                            variant="outline"
                             size="sm"
-                            className="bg-[#1da1f2] text-white hover:bg-[#1a94da] border-0 text-xs px-3 py-1.5"
-                            data-testid="button-share-twitter"
+                            className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg bg-[#1da1f2] hover:bg-[#1a8cd8] text-white transition-all"
                           >
-                            <FaTwitter className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
-                            <span className="hidden xs:inline">Twitter</span>
+                            <FaTwitter className="w-4 h-4 mr-1.5" />
+                            Twitter
                           </Button>
                           <Button
                             onClick={shareOnLinkedIn}
-                            variant="outline"
                             size="sm"
-                            className="bg-[#0077b5] text-white hover:bg-[#006399] border-0 text-xs px-3 py-1.5"
-                            data-testid="button-share-linkedin"
+                            className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg bg-[#0077b5] hover:bg-[#006399] text-white transition-all"
                           >
-                            <FaLinkedin className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
-                            <span className="hidden xs:inline">LinkedIn</span>
+                            <FaLinkedin className="w-4 h-4 mr-1.5" />
+                            LinkedIn
                           </Button>
                           <Button
                             onClick={shareOnWhatsApp}
+                            size="sm"
+                            className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg bg-[#25d366] hover:bg-[#20bd5a] text-white transition-all"
+                          >
+                            <FaWhatsapp className="w-4 h-4 mr-1.5" />
+                            WhatsApp
+                          </Button>
+                          <Button
+                            onClick={handleShare}
                             variant="outline"
                             size="sm"
-                            className="bg-[#25d366] text-white hover:bg-[#20bd5a] border-0 text-xs px-3 py-1.5"
-                            data-testid="button-share-whatsapp"
+                            className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-gray-400 hover:bg-gray-50 transition-all"
                           >
-                            <FaWhatsapp className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
-                            <span className="hidden xs:inline">WhatsApp</span>
+                            <Share2 className="w-4 h-4 mr-1.5" />
+                            More
                           </Button>
                         </div>
                       </div>
+
+                      
                     </>
                   )}
                 </div>
