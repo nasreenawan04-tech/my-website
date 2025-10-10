@@ -1920,119 +1920,6 @@ export default function BusinessLoanCalculator() {
             </CardContent>
           </Card>
 
-          {/* FAQ Section */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-xl sm:rounded-2xl lg:rounded-3xl mt-4 sm:mt-6 md:mt-8 lg:mt-10">
-            <CardContent className="p-3 xs:p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12">
-              <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-3 xs:mb-4 sm:mb-6 md:mb-8 lg:mb-10 text-center sm:text-left leading-tight">Frequently Asked Questions About Business Loans</h2>
-              <div className="space-y-3 xs:space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-7 xl:space-y-8">
-                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-blue-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-blue-600 hover:bg-blue-50/30 rounded-r-md">
-                  <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">What is a business loan calculator and how does it work?</h3>
-                  <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
-                    A business loan calculator uses your loan amount, interest rate, and term to calculate monthly payments using standard amortization formulas. It also provides business-specific metrics like Debt Service Coverage Ratio (DSCR) and Loan-to-Value (LTV) ratios. Our calculator supports multiple loan types including SBA loans, term loans, equipment financing, and commercial mortgages, each using appropriate calculation methods for accurate estimates.
-                  </p>
-                </div>
-
-                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-green-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-green-600 hover:bg-green-50/30 rounded-r-md">
-                  <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">What is the difference between an SBA loan and a traditional business loan?</h3>
-                  <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
-                    SBA loans are partially guaranteed by the Small Business Administration, allowing lenders to offer lower rates (typically 6-9%) and longer terms (up to 25 years for real estate). They require extensive documentation, take 60-90 days to approve, and have strict eligibility criteria. Traditional bank loans have faster approval (2-4 weeks), higher rates (8-12%), shorter terms, and may require stronger credit or more collateral. Online lenders approve fastest (1-7 days) but charge the highest rates (10-30% APR).
-                  </p>
-                </div>
-
-                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-purple-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-purple-600 hover:bg-purple-50/30 rounded-r-md">
-                  <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">What is a good Debt Service Coverage Ratio (DSCR)?</h3>
-                  <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
-                    Lenders typically require a DSCR of 1.25 or higher, meaning your business generates at least 25% more income than needed to cover all debt payments. A DSCR of 1.0 means you break even, below 1.0 indicates insufficient cash flow, and above 2.0 is considered excellent. Calculate DSCR by dividing annual net operating income by total annual debt service (all loan payments). Our calculator automatically computes this when you enter your annual business revenue.
-                  </p>
-                </div>
-
-                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-orange-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-orange-600 hover:bg-orange-50/30 rounded-r-md">
-                  <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">How much can I borrow for my small business?</h3>
-                  <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
-                    Loan amounts vary by type and lender: SBA 7(a) loans offer up to $5 million, SBA 504 loans up to $5.5 million for real estate/equipment, traditional bank term loans $50,000-$5 million, online lenders $5,000-$500,000, and equipment financing up to 100% of equipment value. Your maximum loan depends on revenue (typically 10-50% of annual revenue), time in business (2+ years preferred), credit score (680+ for best terms), and collateral value. Use our calculator to model different loan amounts and find affordable monthly payments.
-                  </p>
-                </div>
-
-                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-indigo-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-indigo-600 hover:bg-indigo-50/30 rounded-r-md">
-                  <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">What is a Loan-to-Value (LTV) ratio and why does it matter?</h3>
-                  <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
-                    LTV ratio compares your loan amount to the value of your collateral, expressed as a percentage. For example, a $300,000 loan secured by $400,000 in assets has a 75% LTV. Lenders prefer LTV ratios of 80% or lower because it provides a safety cushion if they need to seize and sell collateral. Lower LTV ratios (60-70%) often qualify for better interest rates and terms. Commercial real estate loans typically max out at 75-80% LTV, while equipment financing may go up to 90% LTV for new equipment.
-                  </p>
-                </div>
-
-                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-pink-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-pink-600 hover:bg-pink-50/30 rounded-r-md">
-                  <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">What are typical business loan interest rates in 2025?</h3>
-                  <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
-                    Current business loan rates vary significantly: SBA 7(a) loans 6-9%, SBA 504 loans 5-8%, traditional bank term loans 6-10%, credit union loans 7-11%, online term loans 10-30%, equipment financing 8-20%, and business lines of credit 7-25%. Your actual rate depends on credit score (720+ gets best rates), time in business (2+ years preferred), annual revenue, collateral, industry risk, and loan amount. Rates change with Federal Reserve policy, so check current offers from multiple lenders.
-                  </p>
-                </div>
-
-                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-red-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-red-600 hover:bg-red-50/30 rounded-r-md">
-                  <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">Can I get a business loan with bad credit?</h3>
-                  <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
-                    Yes, but options are limited and expensive. With credit scores of 580-640, you may qualify for online lender term loans at 18-36% APR, merchant cash advances (very expensive, effective rates 40-200% APR), or invoice factoring. Below 580, consider microloans from nonprofits, business credit cards for immediate needs, or crowdfunding. To improve approval odds: offer strong collateral, provide a co-signer with good credit, show consistent revenue growth, make a larger down payment (20-30%), or work on improving credit for 6-12 months before applying.
-                  </p>
-                </div>
-
-                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-teal-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-teal-600 hover:bg-teal-50/30 rounded-r-md">
-                  <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">What documents do I need to apply for a business loan?</h3>
-                  <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
-                    Standard requirements include: business tax returns (2-3 years), personal tax returns (2 years), bank statements (6-12 months), profit & loss statements (current), balance sheet, business plan (especially for startups), business licenses and registrations, list of business debts, and personal financial statement. SBA loans additionally require personal background forms, lease agreements, franchise agreements (if applicable), and projected financials. Have these organized before applying to speed up the approval process.
-                  </p>
-                </div>
-
-                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-yellow-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-yellow-600 hover:bg-yellow-50/30 rounded-r-md">
-                  <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">Should I choose a shorter or longer loan term?</h3>
-                  <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
-                    Shorter terms (1-5 years) mean higher monthly payments but significantly less total interest. Longer terms (7-25 years) offer lower monthly payments but cost more over time. For working capital, choose 1-3 years to minimize interest. For equipment, match the loan term to the equipment's useful life (3-7 years). For commercial real estate, 10-25 year terms are standard and appropriate. Consider your cash flow stability—seasonal businesses benefit from longer terms providing payment flexibility during slow periods.
-                  </p>
-                </div>
-
-                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-gray-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-gray-600 hover:bg-gray-50/30 rounded-r-md">
-                  <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">What is the difference between a term loan and a line of credit?</h3>
-                  <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
-                    A term loan provides a lump sum upfront with fixed monthly payments over a set period (1-25 years). It's ideal for specific purchases like equipment, real estate, or business expansion with predictable repayment. A line of credit works like a credit card—borrow up to a limit as needed, pay interest only on what you use, and reuse the credit as you repay. Lines of credit are perfect for managing cash flow gaps, seasonal inventory, or emergency expenses. Term loans typically have lower rates but less flexibility than lines of credit.
-                  </p>
-                </div>
-
-                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-cyan-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-cyan-600 hover:bg-cyan-50/30 rounded-r-md">
-                  <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">How long does it take to get approved for a business loan?</h3>
-                  <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
-                    Approval times vary dramatically by lender and loan type: online lenders 1-7 days, traditional banks 2-4 weeks, credit unions 2-3 weeks, and SBA loans 60-90 days. Factors affecting speed include completeness of your application, complexity of your business structure, loan amount, and lender workload. To speed up approval: have all documents organized upfront, respond quickly to lender requests, work with lenders familiar with your industry, and consider pre-qualification to identify likely approvals before full applications.
-                  </p>
-                </div>
-
-                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-lime-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-lime-600 hover:bg-lime-50/30 rounded-r-md">
-                  <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">What fees should I watch out for with business loans?</h3>
-                  <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
-                    Common business loan fees include: origination fees (1-8% of loan amount, often 2-5%), application fees ($75-$500), underwriting fees ($500-$2,000 for larger loans), appraisal fees ($300-$5,000 for real estate), legal review fees ($500-$2,000), SBA guarantee fees (0-3.75% based on loan size and term), annual fees (for lines of credit), late payment penalties (typically 5% of payment), and prepayment penalties (especially on SBA loans). Always request a complete fee schedule and factor these into your total cost comparison. Some online lenders advertise low rates but charge high origination fees that increase effective APR significantly.
-                  </p>
-                </div>
-
-                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-amber-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-amber-600 hover:bg-amber-50/30 rounded-r-md">
-                  <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">Can startups get business loans?</h3>
-                  <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
-                    Startups face challenges getting traditional loans since most lenders require 2+ years in business and proven revenue. However, options exist: SBA microloans ($500-$50,000 for newer businesses), business credit cards for immediate needs, equipment financing (lenders secure the equipment), personal loans if you have good personal credit, startup business loans from online lenders (10-30% APR), crowdfunding or peer-to-peer lending, and investors or venture capital for high-growth startups. Strong personal credit (700+), a solid business plan, industry experience, and personal investment (20-30% of total) significantly improve approval odds.
-                  </p>
-                </div>
-
-                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-emerald-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-emerald-600 hover:bg-emerald-50/30 rounded-r-md">
-                  <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">What happens if I can't make my business loan payments?</h3>
-                  <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
-                    Missing payments triggers serious consequences: immediate late fees (5% of payment or $25-$50), damage to both business and personal credit scores, potential default after 90 days of non-payment, acceleration of the entire loan balance becoming due, seizure of collateral (equipment, real estate, inventory), personal liability if you personally guaranteed the loan, and legal action including judgments and liens. If you foresee payment difficulties, contact your lender immediately—many will work with you on temporary payment plans, loan modifications, or forbearance programs. It's always better to communicate early than to miss payments.
-                  </p>
-                </div>
-
-                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-rose-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-rose-600 hover:bg-rose-50/30 rounded-r-md">
-                  <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">Is this business loan calculator accurate?</h3>
-                  <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
-                    Our calculator provides highly accurate estimates using industry-standard amortization formulas that banks and financial institutions use. However, actual loan terms may vary based on your creditworthiness, business financials, lender-specific policies, origination fees, insurance requirements, and other factors not included in basic calculations. The DSCR and LTV calculations are simplified models—actual lender requirements vary. Always verify final numbers including all fees, exact APR, and payment schedules with your lender before making decisions. Use our calculator to compare scenarios and understand approximate costs, then get precise quotes from lenders.
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
           {/* Related Financial Calculators - Professional Section */}
           <Card className="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 border-0 shadow-xl rounded-2xl overflow-hidden mt-8">
             <CardContent className="p-6 sm:p-8 md:p-10 lg:p-12">
@@ -2168,6 +2055,119 @@ export default function BusinessLoanCalculator() {
                 <a href="/tools" className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
                   <span>Browse All 85+ Financial Tools →</span>
                 </a>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* FAQ Section */}
+          <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-xl sm:rounded-2xl lg:rounded-3xl mt-4 sm:mt-6 md:mt-8 lg:mt-10">
+            <CardContent className="p-3 xs:p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12">
+              <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-3 xs:mb-4 sm:mb-6 md:mb-8 lg:mb-10 text-center sm:text-left leading-tight">Frequently Asked Questions About Business Loans</h2>
+              <div className="space-y-3 xs:space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-7 xl:space-y-8">
+                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-blue-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-blue-600 hover:bg-blue-50/30 rounded-r-md">
+                  <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">What is a business loan calculator and how does it work?</h3>
+                  <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
+                    A business loan calculator uses your loan amount, interest rate, and term to calculate monthly payments using standard amortization formulas. It also provides business-specific metrics like Debt Service Coverage Ratio (DSCR) and Loan-to-Value (LTV) ratios. Our calculator supports multiple loan types including SBA loans, term loans, equipment financing, and commercial mortgages, each using appropriate calculation methods for accurate estimates.
+                  </p>
+                </div>
+
+                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-green-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-green-600 hover:bg-green-50/30 rounded-r-md">
+                  <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">What is the difference between an SBA loan and a traditional business loan?</h3>
+                  <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
+                    SBA loans are partially guaranteed by the Small Business Administration, allowing lenders to offer lower rates (typically 6-9%) and longer terms (up to 25 years for real estate). They require extensive documentation, take 60-90 days to approve, and have strict eligibility criteria. Traditional bank loans have faster approval (2-4 weeks), higher rates (8-12%), shorter terms, and may require stronger credit or more collateral. Online lenders approve fastest (1-7 days) but charge the highest rates (10-30% APR).
+                  </p>
+                </div>
+
+                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-purple-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-purple-600 hover:bg-purple-50/30 rounded-r-md">
+                  <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">What is a good Debt Service Coverage Ratio (DSCR)?</h3>
+                  <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
+                    Lenders typically require a DSCR of 1.25 or higher, meaning your business generates at least 25% more income than needed to cover all debt payments. A DSCR of 1.0 means you break even, below 1.0 indicates insufficient cash flow, and above 2.0 is considered excellent. Calculate DSCR by dividing annual net operating income by total annual debt service (all loan payments). Our calculator automatically computes this when you enter your annual business revenue.
+                  </p>
+                </div>
+
+                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-orange-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-orange-600 hover:bg-orange-50/30 rounded-r-md">
+                  <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">How much can I borrow for my small business?</h3>
+                  <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
+                    Loan amounts vary by type and lender: SBA 7(a) loans offer up to $5 million, SBA 504 loans up to $5.5 million for real estate/equipment, traditional bank term loans $50,000-$5 million, online lenders $5,000-$500,000, and equipment financing up to 100% of equipment value. Your maximum loan depends on revenue (typically 10-50% of annual revenue), time in business (2+ years preferred), credit score (680+ for best terms), and collateral value. Use our calculator to model different loan amounts and find affordable monthly payments.
+                  </p>
+                </div>
+
+                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-indigo-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-indigo-600 hover:bg-indigo-50/30 rounded-r-md">
+                  <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">What is a Loan-to-Value (LTV) ratio and why does it matter?</h3>
+                  <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
+                    LTV ratio compares your loan amount to the value of your collateral, expressed as a percentage. For example, a $300,000 loan secured by $400,000 in assets has a 75% LTV. Lenders prefer LTV ratios of 80% or lower because it provides a safety cushion if they need to seize and sell collateral. Lower LTV ratios (60-70%) often qualify for better interest rates and terms. Commercial real estate loans typically max out at 75-80% LTV, while equipment financing may go up to 90% LTV for new equipment.
+                  </p>
+                </div>
+
+                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-pink-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-pink-600 hover:bg-pink-50/30 rounded-r-md">
+                  <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">What are typical business loan interest rates in 2025?</h3>
+                  <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
+                    Current business loan rates vary significantly: SBA 7(a) loans 6-9%, SBA 504 loans 5-8%, traditional bank term loans 6-10%, credit union loans 7-11%, online term loans 10-30%, equipment financing 8-20%, and business lines of credit 7-25%. Your actual rate depends on credit score (720+ gets best rates), time in business (2+ years preferred), annual revenue, collateral, industry risk, and loan amount. Rates change with Federal Reserve policy, so check current offers from multiple lenders.
+                  </p>
+                </div>
+
+                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-red-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-red-600 hover:bg-red-50/30 rounded-r-md">
+                  <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">Can I get a business loan with bad credit?</h3>
+                  <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
+                    Yes, but options are limited and expensive. With credit scores of 580-640, you may qualify for online lender term loans at 18-36% APR, merchant cash advances (very expensive, effective rates 40-200% APR), or invoice factoring. Below 580, consider microloans from nonprofits, business credit cards for immediate needs, or crowdfunding. To improve approval odds: offer strong collateral, provide a co-signer with good credit, show consistent revenue growth, make a larger down payment (20-30%), or work on improving credit for 6-12 months before applying.
+                  </p>
+                </div>
+
+                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-teal-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-teal-600 hover:bg-teal-50/30 rounded-r-md">
+                  <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">What documents do I need to apply for a business loan?</h3>
+                  <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
+                    Standard requirements include: business tax returns (2-3 years), personal tax returns (2 years), bank statements (6-12 months), profit & loss statements (current), balance sheet, business plan (especially for startups), business licenses and registrations, list of business debts, and personal financial statement. SBA loans additionally require personal background forms, lease agreements, franchise agreements (if applicable), and projected financials. Have these organized before applying to speed up the approval process.
+                  </p>
+                </div>
+
+                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-yellow-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-yellow-600 hover:bg-yellow-50/30 rounded-r-md">
+                  <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">Should I choose a shorter or longer loan term?</h3>
+                  <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
+                    Shorter terms (1-5 years) mean higher monthly payments but significantly less total interest. Longer terms (7-25 years) offer lower monthly payments but cost more over time. For working capital, choose 1-3 years to minimize interest. For equipment, match the loan term to the equipment's useful life (3-7 years). For commercial real estate, 10-25 year terms are standard and appropriate. Consider your cash flow stability—seasonal businesses benefit from longer terms providing payment flexibility during slow periods.
+                  </p>
+                </div>
+
+                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-gray-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-gray-600 hover:bg-gray-50/30 rounded-r-md">
+                  <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">What is the difference between a term loan and a line of credit?</h3>
+                  <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
+                    A term loan provides a lump sum upfront with fixed monthly payments over a set period (1-25 years). It's ideal for specific purchases like equipment, real estate, or business expansion with predictable repayment. A line of credit works like a credit card—borrow up to a limit as needed, pay interest only on what you use, and reuse the credit as you repay. Lines of credit are perfect for managing cash flow gaps, seasonal inventory, or emergency expenses. Term loans typically have lower rates but less flexibility than lines of credit.
+                  </p>
+                </div>
+
+                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-cyan-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-cyan-600 hover:bg-cyan-50/30 rounded-r-md">
+                  <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">How long does it take to get approved for a business loan?</h3>
+                  <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
+                    Approval times vary dramatically by lender and loan type: online lenders 1-7 days, traditional banks 2-4 weeks, credit unions 2-3 weeks, and SBA loans 60-90 days. Factors affecting speed include completeness of your application, complexity of your business structure, loan amount, and lender workload. To speed up approval: have all documents organized upfront, respond quickly to lender requests, work with lenders familiar with your industry, and consider pre-qualification to identify likely approvals before full applications.
+                  </p>
+                </div>
+
+                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-lime-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-lime-600 hover:bg-lime-50/30 rounded-r-md">
+                  <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">What fees should I watch out for with business loans?</h3>
+                  <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
+                    Common business loan fees include: origination fees (1-8% of loan amount, often 2-5%), application fees ($75-$500), underwriting fees ($500-$2,000 for larger loans), appraisal fees ($300-$5,000 for real estate), legal review fees ($500-$2,000), SBA guarantee fees (0-3.75% based on loan size and term), annual fees (for lines of credit), late payment penalties (typically 5% of payment), and prepayment penalties (especially on SBA loans). Always request a complete fee schedule and factor these into your total cost comparison. Some online lenders advertise low rates but charge high origination fees that increase effective APR significantly.
+                  </p>
+                </div>
+
+                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-amber-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-amber-600 hover:bg-amber-50/30 rounded-r-md">
+                  <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">Can startups get business loans?</h3>
+                  <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
+                    Startups face challenges getting traditional loans since most lenders require 2+ years in business and proven revenue. However, options exist: SBA microloans ($500-$50,000 for newer businesses), business credit cards for immediate needs, equipment financing (lenders secure the equipment), personal loans if you have good personal credit, startup business loans from online lenders (10-30% APR), crowdfunding or peer-to-peer lending, and investors or venture capital for high-growth startups. Strong personal credit (700+), a solid business plan, industry experience, and personal investment (20-30% of total) significantly improve approval odds.
+                  </p>
+                </div>
+
+                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-emerald-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-emerald-600 hover:bg-emerald-50/30 rounded-r-md">
+                  <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">What happens if I can't make my business loan payments?</h3>
+                  <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
+                    Missing payments triggers serious consequences: immediate late fees (5% of payment or $25-$50), damage to both business and personal credit scores, potential default after 90 days of non-payment, acceleration of the entire loan balance becoming due, seizure of collateral (equipment, real estate, inventory), personal liability if you personally guaranteed the loan, and legal action including judgments and liens. If you foresee payment difficulties, contact your lender immediately—many will work with you on temporary payment plans, loan modifications, or forbearance programs. It's always better to communicate early than to miss payments.
+                  </p>
+                </div>
+
+                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-rose-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-rose-600 hover:bg-rose-50/30 rounded-r-md">
+                  <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">Is this business loan calculator accurate?</h3>
+                  <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
+                    Our calculator provides highly accurate estimates using industry-standard amortization formulas that banks and financial institutions use. However, actual loan terms may vary based on your creditworthiness, business financials, lender-specific policies, origination fees, insurance requirements, and other factors not included in basic calculations. The DSCR and LTV calculations are simplified models—actual lender requirements vary. Always verify final numbers including all fees, exact APR, and payment schedules with your lender before making decisions. Use our calculator to compare scenarios and understand approximate costs, then get precise quotes from lenders.
+                  </p>
+                </div>
               </div>
             </CardContent>
           </Card>
