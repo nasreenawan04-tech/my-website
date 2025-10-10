@@ -1,7 +1,9 @@
+
 import { useLocation } from 'wouter';
 import { type Tool, categories } from '@/data/tools';
 import FavoriteButton from '@/components/FavoriteButton';
 import { useRecentTools } from '@/hooks/use-recent-tools';
+import { ArrowRight, TrendingUp } from 'lucide-react';
 
 interface ToolCardProps {
   tool: Tool;
@@ -9,13 +11,13 @@ interface ToolCardProps {
 }
 
 const categoryColors = {
-  finance: 'bg-blue-100 text-blue-600',
-  text: 'bg-yellow-100 text-yellow-600',
-  health: 'bg-pink-100 text-pink-600'
+  finance: 'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300',
+  text: 'bg-yellow-50 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300',
+  health: 'bg-pink-50 text-pink-700 dark:bg-pink-900/30 dark:text-pink-300'
 };
 
-const iconColors = {
-  finance: 'from-blue-500 to-purple-600',
+const categoryGradients = {
+  finance: 'from-blue-500 to-indigo-600',
   text: 'from-yellow-500 to-orange-600',
   health: 'from-pink-500 to-rose-600'
 };
@@ -26,7 +28,7 @@ const ToolCard = ({ tool, onClick }: ToolCardProps) => {
 
   const handleClick = () => {
     const targetPath = tool.href || `/tools/${tool.id}`;
-    addRecent(tool); // Track tool usage
+    addRecent(tool);
     setLocation(targetPath);
     onClick?.();
   };
@@ -40,7 +42,7 @@ const ToolCard = ({ tool, onClick }: ToolCardProps) => {
 
   return (
     <div 
-      className="bg-white dark:bg-neutral-800 rounded-2xl shadow-md hover:shadow-xl focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 transition-all duration-300 transform hover:-translate-y-1 focus-within:-translate-y-1 p-6 border border-neutral-100 dark:border-neutral-700 cursor-pointer relative group"
+      className="group relative bg-white dark:bg-neutral-800 rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border border-neutral-200 dark:border-neutral-700 overflow-hidden cursor-pointer"
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       tabIndex={0}
@@ -48,34 +50,58 @@ const ToolCard = ({ tool, onClick }: ToolCardProps) => {
       aria-label={`Open ${tool.name} - ${tool.description}`}
       data-testid={`card-tool-${tool.id}`}
     >
-      {/* Favorite button in top-right corner */}
-      <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-        <FavoriteButton tool={tool} size="sm" />
+      {/* Gradient accent line */}
+      <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${categoryGradients[tool.category]} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+      
+      {/* Card content */}
+      <div className="relative p-4 sm:p-5 md:p-6">
+        {/* Header with favorite button */}
+        <div className="flex items-start justify-between gap-3 mb-3 sm:mb-4">
+          <div className="flex-1 min-w-0">
+            <h3 className="text-lg sm:text-xl font-bold text-neutral-900 dark:text-neutral-100 mb-2 line-clamp-2 group-hover:text-primary transition-colors duration-200" data-testid={`text-tool-name-${tool.id}`}>
+              {tool.name}
+            </h3>
+          </div>
+          
+          {/* Favorite button - always visible on mobile, hover on desktop */}
+          <div className="flex-shrink-0 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-200">
+            <FavoriteButton tool={tool} size="sm" />
+          </div>
+        </div>
+        
+        {/* Description */}
+        <p className="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 mb-4 line-clamp-2 sm:line-clamp-3" data-testid={`text-tool-description-${tool.id}`}>
+          {tool.description}
+        </p>
+        
+        {/* Footer with category and badges */}
+        <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-3">
+          <div className="flex items-center gap-2 flex-wrap">
+            <span 
+              className={`inline-flex items-center px-2.5 sm:px-3 py-1 ${categoryColors[tool.category]} text-xs sm:text-sm rounded-full font-medium whitespace-nowrap`}
+              data-testid={`text-tool-category-${tool.id}`}
+            >
+              {categories[tool.category]}
+            </span>
+            
+            {tool.isPopular && (
+              <div className="inline-flex items-center gap-1 bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs px-2 sm:px-2.5 py-1 rounded-full font-medium whitespace-nowrap">
+                <TrendingUp size={12} className="hidden xs:block" />
+                <span>Popular</span>
+              </div>
+            )}
+          </div>
+          
+          {/* Action indicator */}
+          <div className="flex items-center gap-1 text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+            <span className="text-xs sm:text-sm font-medium hidden sm:inline">Open</span>
+            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-200" />
+          </div>
+        </div>
       </div>
 
-      
-      <h3 className="text-xl font-semibold text-neutral-800 dark:text-neutral-100 mb-3 pr-8" data-testid={`text-tool-name-${tool.id}`}>
-        {tool.name}
-      </h3>
-      
-      <p className="text-neutral-600 dark:text-neutral-400 mb-4" data-testid={`text-tool-description-${tool.id}`}>
-        {tool.description}
-      </p>
-      
-      <div className="flex items-center justify-between">
-        <span 
-          className={`inline-block px-3 py-1 ${categoryColors[tool.category]} text-sm rounded-full font-medium`}
-          data-testid={`text-tool-category-${tool.id}`}
-        >
-          {categories[tool.category]}
-        </span>
-        
-        {tool.isPopular && (
-          <div className="bg-yellow-100 text-yellow-800 dark:bg-yellow-800 dark:text-yellow-100 text-xs px-2 py-1 rounded-full flex items-center">
-            Popular
-          </div>
-        )}
-      </div>
+      {/* Hover effect overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
     </div>
   );
 };
