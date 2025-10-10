@@ -70,7 +70,7 @@ const ToolCard = ({ tool, onClick }: ToolCardProps) => {
         </div>
         
         {/* Description */}
-        <p className="hidden sm:block text-sm sm:text-base text-neutral-600 dark:text-neutral-400 mb-4 line-clamp-2" data-testid={`text-tool-description-${tool.id}`}>
+        <p className="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 mb-4 line-clamp-2" data-testid={`text-tool-description-${tool.id}`}>
           {tool.description}
         </p>
         
