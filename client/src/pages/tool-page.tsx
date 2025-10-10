@@ -9,6 +9,7 @@ import { PageLoadingSpinner } from '@/components/ui/loading-spinner';
 import ToolErrorBoundary from '@/components/ToolErrorBoundary';
 import ProgressiveLoader from '@/components/ProgressiveLoader';
 import NotFound from '@/pages/not-found';
+import { useRecentTools } from '@/hooks/use-recent-tools';
 
 // Context to override canonical URLs when rendered through ToolPage
 export const ToolPageContext = createContext<{ canonicalOverride?: string }>({});
@@ -128,6 +129,7 @@ const ToolPage = () => {
   const [tool, setTool] = useState<Tool | null>(null);
   const [ToolComponent, setToolComponent] = useState<React.ComponentType | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const { addRecent } = useRecentTools();
 
   useEffect(() => {
     // Extract tool ID from URL path like /tools/loan-calculator
@@ -137,6 +139,11 @@ const ToolPage = () => {
     if (toolId) {
       const foundTool = tools.find(t => t.id === toolId);
       setTool(foundTool || null);
+      
+      // Track tool usage in recently used tools
+      if (foundTool) {
+        addRecent(foundTool);
+      }
       
       // Check if this tool has a dedicated rich component
       if (foundTool && toolComponents[toolId as keyof typeof toolComponents]) {
@@ -154,7 +161,7 @@ const ToolPage = () => {
       setToolComponent(null);
       setIsLoading(false);
     }
-  }, [location]);
+  }, [location, addRecent]);
 
   if (isLoading) {
     return <PageLoadingSpinner />;
