@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { Tooltip, TooltipProvider, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { Info, Download, Share2, Calculator, TrendingDown, Clock, DollarSign, PieChart } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Area, AreaChart } from 'recharts';
@@ -2215,7 +2215,7 @@ export default function LoanCalculator() {
 
                   <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mt-5 sm:mt-6 md:mt-7 lg:mt-8 mb-2 sm:mb-3 md:mb-4">Impact of Loan Term</h3>
                   <p className="text-sm sm:text-base md:text-lg leading-relaxed">
-                    The length of your loan significantly affects both your monthly payment and total interest paid. Shorter loan terms (like 3-5 years) result in higher monthly payments but substantially less total interest. Longer terms (7-10 years) offer lower monthly payments but cost more in interest over time. For example, a $20,000 loan at 7% interest costs $3,761 in interest over 5 years versus $7,576 over 10 years—more than double!
+                    The length of your loan significantly affects both your monthly payment and total interest paid. Shorter loan terms (like 3-5 years) result in higher monthly payments but substantially less total interest. Longer terms (7-10 years) offer lower monthly payments but cost more in interest over time. For example, a $20,000 loan at 6% interest costs $3,761 in interest over 5 years versus $7,576 over 10 years—more than double!
                   </p>
 
                   <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mt-5 sm:mt-6 md:mt-7 lg:mt-8 mb-2 sm:mb-3 md:mb-4">The Power of Extra Payments</h3>
@@ -2363,7 +2363,7 @@ export default function LoanCalculator() {
                   <div className="bg-white rounded-xl p-4 sm:p-5 md:p-6 shadow-sm">
                     <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3">8. Consider Bi-weekly Payments</h3>
                     <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-                      Making half your monthly payment every two weeks results in 26 half-payments (13 full payments) per year instead of 12. This extra payment per year can shave years off your loan and save on interest.
+                      Making half your monthly payment every two weeks results in 26 half-payments per year instead of 12. This extra payment per year can shave years off your loan and save on interest.
                     </p>
                   </div>
                 </div>
