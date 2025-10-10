@@ -2051,11 +2051,7 @@ export default function BusinessLoanCalculator() {
                 </a>
               </div>
 
-              <div className="mt-8 sm:mt-10 text-center">
-                <a href="/tools" className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
-                  <span>Browse All 85+ Financial Tools →</span>
-                </a>
-              </div>
+              
             </CardContent>
           </Card>
 
