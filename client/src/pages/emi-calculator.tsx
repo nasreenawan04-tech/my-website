@@ -1957,9 +1957,6 @@ export default function EMICalculator() {
             <Card className="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 border-0 shadow-xl rounded-2xl overflow-hidden">
               <CardContent className="p-6 sm:p-8 md:p-10 lg:p-12">
                 <div className="text-center mb-8 sm:mb-10 md:mb-12">
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full mb-4">
-                    <Calculator className="w-8 h-8 text-white" />
-                  </div>
                   <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4">
                     Explore More Financial Calculators
                   </h2>
@@ -1971,210 +1968,125 @@ export default function EMICalculator() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
                   {/* Loan Calculator */}
                   <a href="/tools/loan-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-blue-200">
-                    <div className="flex items-start gap-4 mb-3">
-                      <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                        <DollarSign className="w-6 h-6 text-white" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-blue-600 transition-colors">
-                          Loan Calculator
-                        </h3>
-                        <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                          Calculate monthly payments for any loan with customizable terms and frequencies
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-center text-blue-600 text-sm font-medium mt-3">
-                      <span>Calculate now</span>
-                      <TrendingUp className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-blue-600 transition-colors">
+                      Loan Calculator
+                    </h3>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-3">
+                      Calculate monthly payments for any loan with customizable terms and frequencies
+                    </p>
+                    <div className="flex items-center text-blue-600 text-sm font-medium">
+                      <span>Calculate now →</span>
                     </div>
                   </a>
 
                   {/* Home Loan Calculator */}
                   <a href="/tools/home-loan-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-green-200">
-                    <div className="flex items-start gap-4 mb-3">
-                      <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                        <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
-                        </svg>
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-green-600 transition-colors">
-                          Home Loan Calculator
-                        </h3>
-                        <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                          Plan your dream home purchase with detailed mortgage calculations and property cost analysis
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-center text-green-600 text-sm font-medium mt-3">
-                      <span>Get started</span>
-                      <TrendingUp className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-green-600 transition-colors">
+                      Home Loan Calculator
+                    </h3>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-3">
+                      Plan your dream home purchase with detailed mortgage calculations and property cost analysis
+                    </p>
+                    <div className="flex items-center text-green-600 text-sm font-medium">
+                      <span>Get started →</span>
                     </div>
                   </a>
 
                   {/* Car Loan Calculator */}
                   <a href="/tools/car-loan-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-orange-200">
-                    <div className="flex items-start gap-4 mb-3">
-                      <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                        <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M8 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM15 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
-                          <path d="M3 4a1 1 0 00-1 1v10a1 1 0 001 1h1.05a2.5 2.5 0 014.9 0H10a1 1 0 001-1V5a1 1 0 00-1-1H3zM14 7a1 1 0 00-1 1v6.05A2.5 2.5 0 0115.95 16H17a1 1 0 001-1v-5a1 1 0 00-.293-.707l-2-2A1 1 0 0015 7h-1z" />
-                        </svg>
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-orange-600 transition-colors">
-                          Car Loan Calculator
-                        </h3>
-                        <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                          Calculate auto financing with trade-in value, down payment, and accurate monthly payment estimates
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-center text-orange-600 text-sm font-medium mt-3">
-                      <span>Calculate payments</span>
-                      <TrendingUp className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-orange-600 transition-colors">
+                      Car Loan Calculator
+                    </h3>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-3">
+                      Calculate auto financing with trade-in value, down payment, and accurate monthly payment estimates
+                    </p>
+                    <div className="flex items-center text-orange-600 text-sm font-medium">
+                      <span>Calculate payments →</span>
                     </div>
                   </a>
 
                   {/* Debt Payoff Calculator */}
                   <a href="/tools/debt-payoff-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-red-200">
-                    <div className="flex items-start gap-4 mb-3">
-                      <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                        <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z" />
-                          <path fillRule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-red-600 transition-colors">
-                          Debt Payoff Calculator
-                        </h3>
-                        <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                          Create a strategic debt elimination plan with snowball or avalanche methods to become debt-free faster
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-center text-red-600 text-sm font-medium mt-3">
-                      <span>Plan payoff strategy</span>
-                      <TrendingUp className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-red-600 transition-colors">
+                      Debt Payoff Calculator
+                    </h3>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-3">
+                      Create a strategic debt elimination plan with snowball or avalanche methods to become debt-free faster
+                    </p>
+                    <div className="flex items-center text-red-600 text-sm font-medium">
+                      <span>Plan payoff strategy →</span>
                     </div>
                   </a>
 
                   {/* Compound Interest Calculator */}
                   <a href="/tools/compound-interest-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-purple-200">
-                    <div className="flex items-start gap-4 mb-3">
-                      <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                        <TrendingUp className="w-6 h-6 text-white" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-purple-600 transition-colors">
-                          Compound Interest Calculator
-                        </h3>
-                        <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                          Visualize exponential investment growth with detailed breakdowns and projections over time
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-center text-purple-600 text-sm font-medium mt-3">
-                      <span>See growth potential</span>
-                      <TrendingUp className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-purple-600 transition-colors">
+                      Compound Interest Calculator
+                    </h3>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-3">
+                      Visualize exponential investment growth with detailed breakdowns and projections over time
+                    </p>
+                    <div className="flex items-center text-purple-600 text-sm font-medium">
+                      <span>See growth potential →</span>
                     </div>
                   </a>
 
                   {/* Budget Calculator */}
                   <a href="/tools/budget-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-indigo-200">
-                    <div className="flex items-start gap-4 mb-3">
-                      <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                        <PieChart className="w-6 h-6 text-white" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-indigo-600 transition-colors">
-                          Budget Calculator
-                        </h3>
-                        <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                          Build a comprehensive monthly budget with income tracking, expense categorization, and savings goals
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-center text-indigo-600 text-sm font-medium mt-3">
-                      <span>Create budget plan</span>
-                      <TrendingUp className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-indigo-600 transition-colors">
+                      Budget Calculator
+                    </h3>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-3">
+                      Build a comprehensive monthly budget with income tracking, expense categorization, and savings goals
+                    </p>
+                    <div className="flex items-center text-indigo-600 text-sm font-medium">
+                      <span>Create budget plan →</span>
                     </div>
                   </a>
 
                   {/* Loan Comparison Calculator */}
                   <a href="/tools/loan-comparison-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-teal-200">
-                    <div className="flex items-start gap-4 mb-3">
-                      <div className="w-12 h-12 bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                        <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-teal-600 transition-colors">
-                          Loan Comparison Calculator
-                        </h3>
-                        <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                          Compare multiple loan offers side-by-side with EMI, total cost, and interest savings analysis
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-center text-teal-600 text-sm font-medium mt-3">
-                      <span>Compare loans</span>
-                      <TrendingUp className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-teal-600 transition-colors">
+                      Loan Comparison Calculator
+                    </h3>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-3">
+                      Compare multiple loan offers side-by-side with EMI, total cost, and interest savings analysis
+                    </p>
+                    <div className="flex items-center text-teal-600 text-sm font-medium">
+                      <span>Compare loans →</span>
                     </div>
                   </a>
 
                   {/* Retirement Calculator */}
                   <a href="/tools/retirement-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-amber-200">
-                    <div className="flex items-start gap-4 mb-3">
-                      <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-amber-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                        <Clock className="w-6 h-6 text-white" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-amber-600 transition-colors">
-                          Retirement Calculator
-                        </h3>
-                        <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                          Plan for a secure retirement with projections based on savings, investments, and lifestyle goals
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-center text-amber-600 text-sm font-medium mt-3">
-                      <span>Plan retirement</span>
-                      <TrendingUp className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-amber-600 transition-colors">
+                      Retirement Calculator
+                    </h3>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-3">
+                      Plan for a secure retirement with projections based on savings, investments, and lifestyle goals
+                    </p>
+                    <div className="flex items-center text-amber-600 text-sm font-medium">
+                      <span>Plan retirement →</span>
                     </div>
                   </a>
 
                   {/* Simple Interest Calculator */}
                   <a href="/tools/simple-interest-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-cyan-200">
-                    <div className="flex items-start gap-4 mb-3">
-                      <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                        <Calculator className="w-6 h-6 text-white" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-cyan-600 transition-colors">
-                          Simple Interest Calculator
-                        </h3>
-                        <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                          Calculate simple interest on loans and investments with straightforward, easy-to-understand results
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-center text-cyan-600 text-sm font-medium mt-3">
-                      <span>Calculate interest</span>
-                      <TrendingUp className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                    <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-cyan-600 transition-colors">
+                      Simple Interest Calculator
+                    </h3>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-3">
+                      Calculate simple interest on loans and investments with straightforward, easy-to-understand results
+                    </p>
+                    <div className="flex items-center text-cyan-600 text-sm font-medium">
+                      <span>Calculate interest →</span>
                     </div>
                   </a>
                 </div>
 
                 <div className="mt-8 sm:mt-10 text-center">
                   <a href="/tools" className="inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
-                    <span>Browse All 85+ Financial Tools</span>
-                    <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
+                    <span>Browse All 85+ Financial Tools →</span>
                   </a>
                 </div>
               </CardContent>
