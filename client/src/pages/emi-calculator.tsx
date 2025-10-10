@@ -1953,38 +1953,128 @@ export default function EMICalculator() {
               </CardContent>
             </Card>
 
-            {/* Related Tools */}
-            <Card className="bg-gradient-to-r from-indigo-50 to-purple-50 border-0 shadow-lg rounded-lg sm:rounded-xl md:rounded-2xl">
+            {/* Related Tools - People Also Use These Loan Calculators */}
+            <Card className="bg-gradient-to-br from-slate-50 to-blue-50 border-0 shadow-lg rounded-lg sm:rounded-xl md:rounded-2xl">
               <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10">
-                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6">Related Financial Calculators</h2>
-                <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-5 md:mb-6 lg:mb-8">
-                  Explore our other free financial calculators to make informed decisions about your money:
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 md:mb-5">People Also Use These Loan Calculators</h2>
+                <p className="text-sm sm:text-base text-gray-600 mb-6 sm:mb-7 md:mb-8">
+                  Maximize your financial planning with our specialized loan calculators tailored to specific needs:
                 </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-                  <a href="/tools/loan-calculator" className="bg-white p-3 sm:p-4 rounded-lg sm:rounded-xl hover:shadow-lg transition-shadow">
-                    <h3 className="font-bold text-gray-900 mb-1.5 sm:mb-2 text-sm sm:text-base">Loan Calculator</h3>
-                    <p className="text-xs sm:text-sm text-gray-600">Calculate monthly loan payments with flexible payment frequencies</p>
+                
+                {/* Main Calculators Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6 mb-8 sm:mb-10 md:mb-12">
+                  <a href="/tools/mortgage-calculator" className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200 group">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform">
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                      </svg>
+                    </div>
+                    <h3 className="font-bold text-gray-900 mb-2 text-sm sm:text-base md:text-lg">Mortgage Calculator</h3>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Calculate home loan payments with taxes, insurance & PMI</p>
                   </a>
-                  <a href="/tools/home-loan-calculator" className="bg-white p-3 sm:p-4 rounded-lg sm:rounded-xl hover:shadow-lg transition-shadow">
-                    <h3 className="font-bold text-gray-900 mb-1.5 sm:mb-2 text-sm sm:text-base">Home Loan Calculator</h3>
-                    <p className="text-xs sm:text-sm text-gray-600">Plan your home purchase with accurate mortgage calculations</p>
+
+                  <a href="/tools/car-loan-calculator" className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200 group">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform">
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                      </svg>
+                    </div>
+                    <h3 className="font-bold text-gray-900 mb-2 text-sm sm:text-base md:text-lg">Auto Loan Calculator</h3>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Calculate car payments with trade-in & down payment options</p>
                   </a>
-                  <a href="/tools/car-loan-calculator" className="bg-white p-3 sm:p-4 rounded-lg sm:rounded-xl hover:shadow-lg transition-shadow">
-                    <h3 className="font-bold text-gray-900 mb-1.5 sm:mb-2 text-sm sm:text-base">Car Loan Calculator</h3>
-                    <p className="text-xs sm:text-sm text-gray-600">Calculate auto loan payments and total costs</p>
+
+                  <a href="/tools/business-loan-calculator" className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200 group">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform">
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <h3 className="font-bold text-gray-900 mb-2 text-sm sm:text-base md:text-lg">Business Loan Calculator</h3>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Calculate business financing with cash flow analysis</p>
                   </a>
-                  <a href="/tools/debt-payoff-calculator" className="bg-white p-3 sm:p-4 rounded-lg sm:rounded-xl hover:shadow-lg transition-shadow">
-                    <h3 className="font-bold text-gray-900 mb-1.5 sm:mb-2 text-sm sm:text-base">Debt Payoff Calculator</h3>
-                    <p className="text-xs sm:text-sm text-gray-600">Create a strategy to become debt-free faster</p>
+
+                  <a href="/tools/education-loan-calculator" className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200 group">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform">
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                      </svg>
+                    </div>
+                    <h3 className="font-bold text-gray-900 mb-2 text-sm sm:text-base md:text-lg">Student Loan Calculator</h3>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Calculate education loan payments & repayment plans</p>
                   </a>
-                  <a href="/tools/compound-interest-calculator" className="bg-white p-3 sm:p-4 rounded-lg sm:rounded-xl hover:shadow-lg transition-shadow">
-                    <h3 className="font-bold text-gray-900 mb-1.5 sm:mb-2 text-sm sm:text-base">Compound Interest Calculator</h3>
-                    <p className="text-xs sm:text-sm text-gray-600">See how your investments grow over time</p>
+
+                  <a href="/tools/debt-consolidation-calculator" className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200 group">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform">
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                      </svg>
+                    </div>
+                    <h3 className="font-bold text-gray-900 mb-2 text-sm sm:text-base md:text-lg">Debt Consolidation Calculator</h3>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Compare consolidating multiple debts into one payment</p>
                   </a>
-                  <a href="/tools/budget-calculator" className="bg-white p-3 sm:p-4 rounded-lg sm:rounded-xl hover:shadow-lg transition-shadow">
-                    <h3 className="font-bold text-gray-900 mb-1.5 sm:mb-2 text-sm sm:text-base">Budget Calculator</h3>
-                    <p className="text-xs sm:text-sm text-gray-600">Create a personalized budget plan for financial success</p>
+
+                  <a href="/tools/loan-calculator" className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200 group">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform">
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <h3 className="font-bold text-gray-900 mb-2 text-sm sm:text-base md:text-lg">EMI Calculator</h3>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Calculate Equated Monthly Installments for any loan</p>
                   </a>
+
+                  <a href="/tools/loan-comparison-calculator" className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200 group">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-teal-500 to-teal-600 rounded-xl flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform">
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                      </svg>
+                    </div>
+                    <h3 className="font-bold text-gray-900 mb-2 text-sm sm:text-base md:text-lg">Loan Comparison Calculator</h3>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Compare multiple loan offers side-by-side</p>
+                  </a>
+
+                  <a href="/tools/debt-payoff-calculator" className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200 group">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform">
+                      <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                      </svg>
+                    </div>
+                    <h3 className="font-bold text-gray-900 mb-2 text-sm sm:text-base md:text-lg">Debt Payoff Calculator</h3>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Plan your strategy to become debt-free faster</p>
+                  </a>
+                </div>
+
+                {/* Other Popular Financial Tools */}
+                <div className="border-t border-gray-200 pt-6 sm:pt-8">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-4 sm:mb-6">Other Popular Financial Tools</h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+                    <a href="/tools/compound-interest-calculator" className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-white rounded-lg hover:shadow-md transition-all border border-gray-100">
+                      <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-amber-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
+                        </svg>
+                      </div>
+                      <span className="font-semibold text-gray-900 text-sm sm:text-base">Compound Interest Calculator</span>
+                    </a>
+
+                    <a href="/tools/roi-calculator" className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-white rounded-lg hover:shadow-md transition-all border border-gray-100">
+                      <div className="w-10 h-10 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <span className="font-semibold text-gray-900 text-sm sm:text-base">ROI Calculator</span>
+                    </a>
+
+                    <a href="/tools/dti-ratio-calculator" className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-white rounded-lg hover:shadow-md transition-all border border-gray-100">
+                      <div className="w-10 h-10 bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                        </svg>
+                      </div>
+                      <span className="font-semibold text-gray-900 text-sm sm:text-base">Debt-to-Income Ratio Calculator</span>
+                    </a>
+                  </div>
                 </div>
               </CardContent>
             </Card>
