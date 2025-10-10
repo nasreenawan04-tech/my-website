@@ -1958,10 +1958,10 @@ export default function EMICalculator() {
               <CardContent className="p-6 sm:p-8 md:p-10 lg:p-12">
                 <div className="text-center mb-8 sm:mb-10 md:mb-12">
                   <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4">
-                    Explore More Financial Calculators
+                    Related Financial Calculators
                   </h2>
                   <p className="text-sm sm:text-base md:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                    Make smarter financial decisions with our comprehensive suite of free calculators. From loans to investments, we've got you covered.
+                    Maximize your financial planning with our specialized calculators tailored to specific needs
                   </p>
                 </div>
 
