@@ -30,7 +30,7 @@ const Header = () => {
     { href: '/finance-tools', label: 'Finance Tools' },
     { href: '/text-tools', label: 'Text Tools' },
     { href: '/health-tools', label: 'Health Tools' },
-    { href: '/recently-used-tools', label: 'Recent Tools' }
+    { href: '/recently-used-tools', label: 'Recently Used' }
   ];
 
   return (
