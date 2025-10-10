@@ -2168,57 +2168,6 @@ export default function BusinessLoanCalculator() {
             </CardContent>
           </Card>
 
-          {/* What Our Users Say - Testimonials */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-2xl mb-8">
-            <CardContent className="p-4 sm:p-6 md:p-8">
-              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 sm:mb-8 text-center">What Our Users Say</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
-                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-4 sm:p-5 md:p-6 rounded-xl" data-testid="testimonial-1">
-                  <div className="flex items-center mb-3 sm:mb-4">
-                    <div className="flex text-yellow-400">
-                      {'★★★★★'.split('').map((star, i) => <span key={i} className="text-lg">{star}</span>)}
-                    </div>
-                  </div>
-                  <p className="text-gray-700 text-sm sm:text-base mb-3 sm:mb-4 leading-relaxed italic">
-                    "This business loan calculator is a game-changer! The DSCR analysis helped me determine exactly how much I could afford to borrow for my restaurant expansion. The SBA loan options and detailed amortization schedule made it easy to compare financing options. Highly recommended for any small business owner!"
-                  </p>
-                  <p className="font-semibold text-gray-900 text-sm">Michael Chen</p>
-                  <p className="text-xs text-gray-500">Restaurant Owner</p>
-                </div>
-
-                <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-4 sm:p-5 md:p-6 rounded-xl" data-testid="testimonial-2">
-                  <div className="flex items-center mb-3 sm:mb-4">
-                    <div className="flex text-yellow-400">
-                      {'★★★★★'.split('').map((star, i) => <span key={i} className="text-lg">{star}</span>)}
-                    </div>
-                  </div>
-                  <p className="text-gray-700 text-sm sm:text-base mb-3 sm:mb-4 leading-relaxed italic">
-                    "Perfect for equipment financing calculations! I used this to compare SBA 7(a) and traditional equipment loans for my manufacturing business. The LTV calculator and monthly payment breakdowns helped me secure the best financing terms. Very professional and accurate tool."
-                  </p>
-                  <p className="font-semibold text-gray-900 text-sm">Jennifer Martinez</p>
-                  <p className="text-xs text-gray-500">Manufacturing Business Owner</p>
-                </div>
-
-                <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-4 sm:p-5 md:p-6 rounded-xl" data-testid="testimonial-3">
-                  <div className="flex items-center mb-3 sm:mb-4">
-                    <div className="flex text-yellow-400">
-                      {'★★★★★'.split('').map((star, i) => <span key={i} className="text-lg">{star}</span>)}
-                    </div>
-                  </div>
-                  <p className="text-gray-700 text-sm sm:text-base mb-3 sm:mb-4 leading-relaxed italic">
-                    "As a startup founder, this calculator was invaluable for financial planning. The ability to calculate different loan types and see detailed payment schedules helped me present solid numbers to investors. The DSCR feature is especially useful for understanding loan affordability. Best free business loan calculator available!"
-                  </p>
-                  <p className="font-semibold text-gray-900 text-sm">David Thompson</p>
-                  <p className="text-xs text-gray-500">Tech Startup Founder</p>
-                </div>
-              </div>
-
-              <div className="mt-6 sm:mt-8 text-center">
-                <p className="text-sm text-gray-600">Join 500K+ business owners who trust our calculators for accurate financial planning</p>
-              </div>
-            </CardContent>
-          </Card>
-
           {/* Last Updated */}
           <div className="text-center text-xs sm:text-sm md:text-base text-gray-500 mt-4 sm:mt-6 md:mt-8 lg:mt-10 px-2 sm:px-4">
             <p className="leading-relaxed">Last Updated: January 2025 | Calculations verified by financial experts</p>
