@@ -54,9 +54,9 @@ const ToolCard = ({ tool, onClick }: ToolCardProps) => {
       <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${categoryGradients[tool.category]} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
       
       {/* Card content */}
-      <div className="relative p-3 sm:p-5 md:p-6">
+      <div className="relative p-4 sm:p-5 md:p-6">
         {/* Header with favorite button */}
-        <div className="flex items-start justify-between gap-2 mb-2 sm:mb-3 md:mb-4">
+        <div className="flex items-start justify-between gap-3 mb-3 sm:mb-4">
           <div className="flex-1 min-w-0">
             <h3 className="text-lg sm:text-xl font-bold text-neutral-900 dark:text-neutral-100 mb-2 line-clamp-2 group-hover:text-primary transition-colors duration-200" data-testid={`text-tool-name-${tool.id}`}>
               {tool.name}
@@ -69,13 +69,13 @@ const ToolCard = ({ tool, onClick }: ToolCardProps) => {
           </div>
         </div>
         
-        {/* Description - Hidden on mobile, 2 lines on larger screens */}
-        <p className="hidden sm:block text-sm sm:text-base text-neutral-600 dark:text-neutral-400 mb-4 line-clamp-2" data-testid={`text-tool-description-${tool.id}`}>
+        {/* Description */}
+        <p className="text-sm sm:text-base text-neutral-600 dark:text-neutral-400 mb-4 line-clamp-2 sm:line-clamp-3" data-testid={`text-tool-description-${tool.id}`}>
           {tool.description}
         </p>
         
         {/* Footer with category and badges */}
-        <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-3 mt-2 sm:mt-0">
+        <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-3">
           <div className="flex items-center gap-2 flex-wrap">
             <span 
               className={`inline-flex items-center px-2.5 sm:px-3 py-1 ${categoryColors[tool.category]} text-xs sm:text-sm rounded-full font-medium whitespace-nowrap`}
