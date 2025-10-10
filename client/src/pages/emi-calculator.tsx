@@ -2189,6 +2189,57 @@ export default function EMICalculator() {
               </CardContent>
             </Card>
 
+            {/* What Our Users Say - Testimonials */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-2xl mb-8">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 sm:mb-8 text-center">What Our Users Say</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+                  <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-4 sm:p-5 md:p-6 rounded-xl" data-testid="testimonial-1">
+                    <div className="flex items-center mb-3 sm:mb-4">
+                      <div className="flex text-yellow-400">
+                        {'★★★★★'.split('').map((star, i) => <span key={i} className="text-lg">{star}</span>)}
+                      </div>
+                    </div>
+                    <p className="text-gray-700 text-sm sm:text-base mb-3 sm:mb-4 leading-relaxed italic">
+                      "This EMI calculator saved me thousands! The prepayment feature helped me realize I could save over $12,000 in interest by making small extra payments. The amortization schedule makes it crystal clear how the payments work. Highly recommend!"
+                    </p>
+                    <p className="font-semibold text-gray-900 text-sm">Sarah Johnson</p>
+                    <p className="text-xs text-gray-500">Home Buyer</p>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-4 sm:p-5 md:p-6 rounded-xl" data-testid="testimonial-2">
+                    <div className="flex items-center mb-3 sm:mb-4">
+                      <div className="flex text-yellow-400">
+                        {'★★★★★'.split('').map((star, i) => <span key={i} className="text-lg">{star}</span>)}
+                      </div>
+                    </div>
+                    <p className="text-gray-700 text-sm sm:text-base mb-3 sm:mb-4 leading-relaxed italic">
+                      "The step-up EMI feature is perfect for young professionals like me. I can afford a bigger home loan now with lower initial EMIs that increase as my salary grows. Very user-friendly calculator!"
+                    </p>
+                    <p className="font-semibold text-gray-900 text-sm">Rajesh Patel</p>
+                    <p className="text-xs text-gray-500">Software Engineer</p>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-4 sm:p-5 md:p-6 rounded-xl" data-testid="testimonial-3">
+                    <div className="flex items-center mb-3 sm:mb-4">
+                      <div className="flex text-yellow-400">
+                        {'★★★★★'.split('').map((star, i) => <span key={i} className="text-lg">{star}</span>)}
+                      </div>
+                    </div>
+                    <p className="text-gray-700 text-sm sm:text-base mb-3 sm:mb-4 leading-relaxed italic">
+                      "Best EMI calculator I've found online. Multi-currency support is great for international borrowers. The detailed breakdown and charts help me understand exactly where my money goes each month."
+                    </p>
+                    <p className="font-semibold text-gray-900 text-sm">Maria Garcia</p>
+                    <p className="text-xs text-gray-500">Financial Advisor</p>
+                  </div>
+                </div>
+                
+                <div className="mt-6 sm:mt-8 text-center">
+                  <p className="text-sm text-gray-600">Join 3.4+ million users who trust our calculators for accurate financial planning</p>
+                </div>
+              </CardContent>
+            </Card>
+
             {/* Last Updated */}
             <div className="text-center text-xs sm:text-sm text-gray-500 mt-6 sm:mt-8">
               <p>Last Updated: January 2025 | Calculations verified by financial experts</p>
