@@ -125,6 +125,13 @@
     scroll-behavior: smooth;
   }
 
+  /* Header backdrop blur support */
+  @supports (backdrop-filter: blur(8px)) {
+    .supports-backdrop-blur {
+      backdrop-filter: blur(8px);
+    }
+  }
+
   /* Reduce motion for users who prefer it */
   @media (prefers-reduced-motion: reduce) {
     *,
