@@ -1,4 +1,3 @@
-
 import { useState, useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -387,7 +386,7 @@ export default function EMICalculator() {
 
   const shareOnFacebook = () => {
     if (!result) return;
-    
+
     const params = new URLSearchParams({
       amount: loanAmount,
       rate: interestRate,
@@ -406,7 +405,7 @@ export default function EMICalculator() {
 
   const shareOnTwitter = () => {
     if (!result) return;
-    
+
     const params = new URLSearchParams({
       amount: loanAmount,
       rate: interestRate,
@@ -426,7 +425,7 @@ export default function EMICalculator() {
 
   const shareOnLinkedIn = () => {
     if (!result) return;
-    
+
     const params = new URLSearchParams({
       amount: loanAmount,
       rate: interestRate,
@@ -445,7 +444,7 @@ export default function EMICalculator() {
 
   const shareOnWhatsApp = () => {
     if (!result) return;
-    
+
     const params = new URLSearchParams({
       amount: loanAmount,
       rate: interestRate,
@@ -1911,7 +1910,8 @@ export default function EMICalculator() {
                   <div className="border-l-4 border-blue-500 pl-4 sm:pl-5 md:pl-6">
                     <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 sm:mb-3">What is EMI and how is it calculated?</h3>
                     <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                      EMI (Equated Monthly Installment) is a fixed payment amount made by a borrower to a lender at a specified date each month. It's calculated using the formula: EMI = [P x R x (1+R)^N]/[(1+R)^N-1], where P is the principal loan amount, R is the monthly interest rate, and N is the number of monthly installments.
+                      EMI (Equated Monthly Installment) is a fixed payment amount made by a borrower to a lender at a specified date each month. 
+                      It's calculated using the formula: EMI = [P x R x (1+R)^N]/[(1+R)^N-1], where P is the principal loan amount, R is the monthly interest rate, and N is the number of monthly installments.
                     </p>
                   </div>
 
@@ -1993,7 +1993,7 @@ export default function EMICalculator() {
             <Card className="bg-white shadow-lg border-0 rounded-lg sm:rounded-xl md:rounded-2xl">
               <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10">
                 <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6 lg:mb-8">How to Calculate EMI: Understanding the EMI Formula</h2>
-                
+
                 <div className="prose max-w-none space-y-4 sm:space-y-5 md:space-y-6">
                   <div className="bg-blue-50 border-l-4 border-blue-600 p-4 sm:p-5 md:p-6 rounded-r-lg">
                     <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3">What is EMI?</h3>
@@ -2096,7 +2096,7 @@ export default function EMICalculator() {
             <Card className="bg-white shadow-lg border-0 rounded-lg sm:rounded-xl md:rounded-2xl">
               <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10">
                 <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6 text-center">Frequently Asked Questions (FAQ)</h2>
-                
+
                 <div className="space-y-3 sm:space-y-4">
                   <div className="bg-gray-50 rounded-lg p-4 sm:p-5 md:p-6 border border-gray-200">
                     <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 sm:mb-3">What is EMI and how is it calculated?</h3>
@@ -2136,7 +2136,7 @@ export default function EMICalculator() {
                   <div className="bg-gray-50 rounded-lg p-4 sm:p-5 md:p-6 border border-gray-200">
                     <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 sm:mb-3">Should I choose a shorter or longer loan tenure?</h3>
                     <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
-                      Shorter tenures mean higher EMIs but significantly less total interest paid. Longer tenures offer lower EMIs but cost more 
+                      Shorter tenures mean higher EMIs but significantly more total interest paid. Longer tenures offer lower EMIs but cost more 
                       overall. Choose based on your monthly budget and financial goals. If you can afford higher payments, shorter tenure saves 
                       money long-term. Our calculator lets you compare different tenure options instantly.
                     </p>
