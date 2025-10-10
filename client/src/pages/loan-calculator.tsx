@@ -296,7 +296,7 @@ export default function LoanCalculator() {
 
   const shareOnFacebook = () => {
     if (!result) return;
-    
+
     const params = new URLSearchParams({
       amount: loanAmount,
       rate: interestRate,
@@ -313,7 +313,7 @@ export default function LoanCalculator() {
 
   const shareOnTwitter = () => {
     if (!result) return;
-    
+
     const params = new URLSearchParams({
       amount: loanAmount,
       rate: interestRate,
@@ -331,7 +331,7 @@ export default function LoanCalculator() {
 
   const shareOnLinkedIn = () => {
     if (!result) return;
-    
+
     const params = new URLSearchParams({
       amount: loanAmount,
       rate: interestRate,
@@ -348,7 +348,7 @@ export default function LoanCalculator() {
 
   const shareOnWhatsApp = () => {
     if (!result) return;
-    
+
     const params = new URLSearchParams({
       amount: loanAmount,
       rate: interestRate,
@@ -376,23 +376,23 @@ export default function LoanCalculator() {
 
     doc.setFillColor(59, 130, 246);
     doc.rect(0, 0, pageWidth, 38, 'F');
-    
+
     doc.setFontSize(26);
     doc.setTextColor(255, 255, 255);
     doc.setFont('helvetica', 'bold');
     doc.text('DapsiWow', pageWidth / 2, yPos + 5, { align: 'center' });
-    
+
     yPos += 14;
     doc.setFontSize(11);
     doc.setFont('helvetica', 'normal');
     doc.text('Loan Calculation Report', pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 6;
     doc.setFontSize(8);
     doc.setTextColor(230, 240, 255);
-    const currentDate = new Date().toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'long', 
+    const currentDate = new Date().toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
       day: 'numeric'
     });
     doc.text(`Report Date: ${currentDate}`, pageWidth / 2, yPos, { align: 'center' });
@@ -402,23 +402,23 @@ export default function LoanCalculator() {
     doc.setDrawColor(59, 130, 246);
     doc.setLineWidth(1);
     doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 42, 3, 3, 'FD');
-    
+
     yPos += 6;
     doc.setFontSize(9);
     doc.setTextColor(100, 100, 100);
     doc.setFont('helvetica', 'normal');
     doc.text('EXECUTIVE SUMMARY', pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 8;
     doc.setFontSize(20);
     doc.setTextColor(59, 130, 246);
     doc.setFont('helvetica', 'bold');
     doc.text('Monthly Payment', pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 10;
     doc.setFontSize(24);
     doc.text(formatCurrency(result.monthlyPayment), pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 8;
     doc.setFontSize(8);
     doc.setTextColor(80, 80, 80);
@@ -431,13 +431,13 @@ export default function LoanCalculator() {
     doc.setDrawColor(230, 230, 230);
     doc.setLineWidth(0.5);
     doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 48, 3, 3, 'FD');
-    
+
     yPos += 5;
     doc.setFontSize(10);
     doc.setTextColor(59, 130, 246);
     doc.setFont('helvetica', 'bold');
     doc.text('LOAN DETAILS', margin + 4, yPos);
-    
+
     yPos += 2;
     doc.setDrawColor(59, 130, 246);
     doc.setLineWidth(0.3);
@@ -447,16 +447,16 @@ export default function LoanCalculator() {
     doc.setFontSize(9);
     doc.setTextColor(50, 50, 50);
     doc.setFont('helvetica', 'normal');
-    
+
     const termDisplay = termUnit === 'years' ? `${loanTerm} years` : `${loanTerm} months`;
     const freqDisplay = paymentFrequency === 'weekly' ? 'Weekly' :
                        paymentFrequency === 'biweekly' ? 'Bi-weekly' : 'Monthly';
-    
+
     const col1X = margin + 8;
     const col2X = margin + 60;
     const col3X = pageWidth / 2 + 8;
     const col4X = pageWidth / 2 + 60;
-    
+
     doc.setTextColor(100, 100, 100);
     doc.setFontSize(8);
     doc.text('Loan Amount', col1X, yPos);
@@ -464,7 +464,7 @@ export default function LoanCalculator() {
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
     doc.text(formatCurrency(parseFloat(loanAmount)), col2X, yPos);
-    
+
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(100, 100, 100);
     doc.setFontSize(8);
@@ -473,7 +473,7 @@ export default function LoanCalculator() {
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
     doc.text(`${interestRate}%`, col4X, yPos);
-    
+
     yPos += 8;
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(100, 100, 100);
@@ -483,7 +483,7 @@ export default function LoanCalculator() {
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
     doc.text(termDisplay, col2X, yPos);
-    
+
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(100, 100, 100);
     doc.setFontSize(8);
@@ -492,7 +492,7 @@ export default function LoanCalculator() {
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
     doc.text(freqDisplay, col4X, yPos);
-    
+
     if (parseFloat(extraPayment) > 0) {
       yPos += 8;
       doc.setFont('helvetica', 'normal');
@@ -508,7 +508,7 @@ export default function LoanCalculator() {
     const paymentsPerYear = paymentFrequency === 'weekly' ? 52 :
                            paymentFrequency === 'biweekly' ? 26 : 12;
     const actualPeriodicPayment = result.monthlyPayment * (12 / paymentsPerYear);
-    
+
     if (paymentFrequency !== 'monthly') {
       yPos += 8;
       doc.setFont('helvetica', 'normal');
@@ -526,13 +526,13 @@ export default function LoanCalculator() {
     doc.setDrawColor(230, 230, 230);
     doc.setLineWidth(0.5);
     doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 36, 3, 3, 'FD');
-    
+
     yPos += 5;
     doc.setFontSize(10);
     doc.setTextColor(59, 130, 246);
     doc.setFont('helvetica', 'bold');
     doc.text('PAYMENT SUMMARY', margin + 4, yPos);
-    
+
     yPos += 2;
     doc.setDrawColor(59, 130, 246);
     doc.setLineWidth(0.3);
@@ -543,33 +543,33 @@ export default function LoanCalculator() {
     doc.setDrawColor(220, 220, 220);
     doc.setLineWidth(0.2);
     doc.rect(margin + 4, yPos - 5, pageWidth - (2 * margin) - 8, 8, 'FD');
-    
+
     doc.setFontSize(8);
     doc.setTextColor(100, 100, 100);
     doc.setFont('helvetica', 'normal');
     doc.text('Total Amount Paid', margin + 8, yPos);
-    
+
     doc.setFontSize(10);
     doc.setTextColor(0, 0, 0);
     doc.setFont('helvetica', 'bold');
     doc.text(formatCurrency(result.totalAmount), pageWidth - margin - 8, yPos, { align: 'right' });
-    
+
     yPos += 9;
     doc.setFontSize(8);
     doc.setTextColor(100, 100, 100);
     doc.setFont('helvetica', 'normal');
     doc.text('Principal Amount', margin + 12, yPos);
-    
+
     doc.setFontSize(9);
     doc.setTextColor(34, 197, 94);
     doc.setFont('helvetica', 'normal');
     doc.text(formatCurrency(parseFloat(loanAmount)), pageWidth - margin - 12, yPos, { align: 'right' });
-    
+
     yPos += 6;
     doc.setFontSize(8);
     doc.setTextColor(100, 100, 100);
     doc.text('Total Interest', margin + 12, yPos);
-    
+
     doc.setFontSize(9);
     doc.setTextColor(220, 38, 38);
     doc.text(formatCurrency(result.totalInterest), pageWidth - margin - 12, yPos, { align: 'right' });
@@ -580,13 +580,13 @@ export default function LoanCalculator() {
       doc.setDrawColor(34, 197, 94);
       doc.setLineWidth(0.5);
       doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 28, 3, 3, 'FD');
-      
+
       yPos += 5;
       doc.setFontSize(10);
       doc.setTextColor(34, 197, 94);
       doc.setFont('helvetica', 'bold');
       doc.text('SAVINGS WITH EXTRA PAYMENTS', margin + 4, yPos);
-      
+
       yPos += 2;
       doc.setDrawColor(34, 197, 94);
       doc.setLineWidth(0.3);
@@ -596,12 +596,12 @@ export default function LoanCalculator() {
       const totalYearsSaved = result.extraPaymentSavings.timeSaved / paymentsPerYear;
       let yearsSaved = Math.floor(totalYearsSaved);
       let monthsSaved = Math.round((totalYearsSaved - yearsSaved) * 12);
-      
+
       if (monthsSaved === 12) {
         yearsSaved += 1;
         monthsSaved = 0;
       }
-      
+
       let timeSavedText = '';
       if (yearsSaved > 0 && monthsSaved > 0) {
         timeSavedText = `${yearsSaved} years ${monthsSaved} months`;
@@ -610,13 +610,13 @@ export default function LoanCalculator() {
       } else if (monthsSaved > 0) {
         timeSavedText = `${monthsSaved} months`;
       }
-      
+
       doc.setFontSize(8);
       doc.setTextColor(50, 50, 50);
       doc.setFont('helvetica', 'normal');
       doc.text('Interest Saved', margin + 8, yPos);
       doc.text('Time Saved', pageWidth / 2 + 8, yPos);
-      
+
       yPos += 5;
       doc.setFontSize(11);
       doc.setTextColor(34, 197, 94);
@@ -629,19 +629,19 @@ export default function LoanCalculator() {
     doc.setDrawColor(220, 220, 220);
     doc.setLineWidth(0.2);
     doc.line(margin, yPos, pageWidth - margin, yPos);
-    
+
     yPos += 4;
     doc.setFontSize(7);
     doc.setTextColor(120, 120, 120);
     doc.setFont('helvetica', 'italic');
     doc.text('This calculation is for informational purposes only. Please consult with a qualified financial advisor for personalized advice.', pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 6;
     doc.setFontSize(8);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(59, 130, 246);
     doc.textWithLink('DapsiWow.com', pageWidth / 2, yPos, { align: 'center', url: 'https://dapsiwow.com' });
-    
+
     yPos += 3;
     doc.setFontSize(7);
     doc.setFont('helvetica', 'normal');
@@ -649,9 +649,9 @@ export default function LoanCalculator() {
     doc.text('Free Online Financial Calculators & Tools', pageWidth / 2, yPos, { align: 'center' });
 
     doc.save(`DapsiWow-Loan-Calculation-${new Date().getTime()}.pdf`);
-    toast({ 
-      title: "PDF Downloaded!", 
-      description: "Your professional loan calculation report has been saved." 
+    toast({
+      title: "PDF Downloaded!",
+      description: "Your professional loan calculation report has been saved."
     });
   };
 
@@ -667,96 +667,96 @@ export default function LoanCalculator() {
     // Header
     doc.setFillColor(59, 130, 246);
     doc.rect(0, 0, pageWidth, 38, 'F');
-    
+
     doc.setFontSize(26);
     doc.setTextColor(255, 255, 255);
     doc.setFont('helvetica', 'bold');
     doc.text('DapsiWow', pageWidth / 2, yPos + 5, { align: 'center' });
-    
+
     yPos += 14;
     doc.setFontSize(11);
     doc.setFont('helvetica', 'normal');
     doc.text('Amortization Schedule Report', pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 6;
     doc.setFontSize(8);
     doc.setTextColor(230, 240, 255);
-    const currentDate = new Date().toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'long', 
+    const currentDate = new Date().toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
       day: 'numeric'
     });
     doc.text(`Report Date: ${currentDate}`, pageWidth / 2, yPos, { align: 'center' });
 
     yPos = 48;
-    
+
     // Table header
     doc.setFillColor(59, 130, 246);
     doc.rect(margin, yPos, pageWidth - (2 * margin), 8, 'F');
-    
+
     doc.setFontSize(8);
     doc.setTextColor(255, 255, 255);
     doc.setFont('helvetica', 'bold');
-    
+
     const colWidths = [20, 35, 35, 35, 35];
     const colX = [margin + 2, margin + 22, margin + 57, margin + 92, margin + 127];
-    
+
     doc.text('#', colX[0], yPos + 5);
     doc.text('Payment', colX[1], yPos + 5);
     doc.text('Principal', colX[2], yPos + 5);
     doc.text('Interest', colX[3], yPos + 5);
     doc.text('Balance', colX[4], yPos + 5);
-    
+
     yPos += 8;
-    
+
     // Table rows
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(7);
-    
+
     result.amortizationSchedule.forEach((payment, index) => {
       // Check if we need a new page
       if (yPos > pageHeight - 30) {
         doc.addPage();
         yPos = 20;
-        
+
         // Repeat header on new page
         doc.setFillColor(59, 130, 246);
         doc.rect(margin, yPos, pageWidth - (2 * margin), 8, 'F');
-        
+
         doc.setFontSize(8);
         doc.setTextColor(255, 255, 255);
         doc.setFont('helvetica', 'bold');
-        
+
         doc.text('#', colX[0], yPos + 5);
         doc.text('Payment', colX[1], yPos + 5);
         doc.text('Principal', colX[2], yPos + 5);
         doc.text('Interest', colX[3], yPos + 5);
         doc.text('Balance', colX[4], yPos + 5);
-        
+
         yPos += 8;
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(7);
       }
-      
+
       // Alternate row colors
       if (index % 2 === 0) {
         doc.setFillColor(248, 250, 252);
         doc.rect(margin, yPos, pageWidth - (2 * margin), 6, 'F');
       }
-      
+
       doc.setTextColor(0, 0, 0);
       doc.text(payment.month.toString(), colX[0], yPos + 4);
       doc.text(formatCurrency(payment.payment), colX[1], yPos + 4);
-      
+
       doc.setTextColor(34, 197, 94);
       doc.text(formatCurrency(payment.principal), colX[2], yPos + 4);
-      
+
       doc.setTextColor(249, 115, 22);
       doc.text(formatCurrency(payment.interest), colX[3], yPos + 4);
-      
+
       doc.setTextColor(0, 0, 0);
       doc.text(formatCurrency(payment.balance), colX[4], yPos + 4);
-      
+
       yPos += 6;
     });
 
@@ -765,19 +765,19 @@ export default function LoanCalculator() {
     doc.setDrawColor(220, 220, 220);
     doc.setLineWidth(0.2);
     doc.line(margin, yPos, pageWidth - margin, yPos);
-    
+
     yPos += 4;
     doc.setFontSize(7);
     doc.setTextColor(120, 120, 120);
     doc.setFont('helvetica', 'italic');
     doc.text('This schedule shows how your payments are split between principal and interest over the first 5 years.', pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 6;
     doc.setFontSize(8);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(59, 130, 246);
     doc.textWithLink('DapsiWow.com', pageWidth / 2, yPos, { align: 'center', url: 'https://dapsiwow.com' });
-    
+
     yPos += 3;
     doc.setFontSize(7);
     doc.setFont('helvetica', 'normal');
@@ -785,9 +785,9 @@ export default function LoanCalculator() {
     doc.text('Free Online Financial Calculators & Tools', pageWidth / 2, yPos, { align: 'center' });
 
     doc.save(`DapsiWow-Amortization-Schedule-${new Date().getTime()}.pdf`);
-    toast({ 
-      title: "PDF Downloaded!", 
-      description: "Your amortization schedule has been saved." 
+    toast({
+      title: "PDF Downloaded!",
+      description: "Your amortization schedule has been saved."
     });
   };
 
@@ -803,100 +803,100 @@ export default function LoanCalculator() {
     // Header
     doc.setFillColor(59, 130, 246);
     doc.rect(0, 0, pageWidth, 38, 'F');
-    
+
     doc.setFontSize(26);
     doc.setTextColor(255, 255, 255);
     doc.setFont('helvetica', 'bold');
     doc.text('DapsiWow', pageWidth / 2, yPos + 5, { align: 'center' });
-    
+
     yPos += 14;
     doc.setFontSize(11);
     doc.setFont('helvetica', 'normal');
     doc.text('Loan Comparison Report', pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 6;
     doc.setFontSize(8);
     doc.setTextColor(230, 240, 255);
-    const currentDate = new Date().toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'long', 
+    const currentDate = new Date().toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
       day: 'numeric'
     });
     doc.text(`Report Date: ${currentDate}`, pageWidth / 2, yPos, { align: 'center' });
 
     yPos = 48;
-    
+
     // Table header
     doc.setFillColor(59, 130, 246);
     doc.rect(margin, yPos, pageWidth - (2 * margin), 8, 'F');
-    
+
     doc.setFontSize(8);
     doc.setTextColor(255, 255, 255);
     doc.setFont('helvetica', 'bold');
-    
+
     const colX = [margin + 2, margin + 35, margin + 65, margin + 90, margin + 115, margin + 150];
-    
+
     doc.text('Loan', colX[0], yPos + 5);
     doc.text('Amount', colX[1], yPos + 5);
     doc.text('Rate', colX[2], yPos + 5);
     doc.text('Term', colX[3], yPos + 5);
     doc.text('Payment', colX[4], yPos + 5);
     doc.text('Interest', colX[5], yPos + 5);
-    
+
     yPos += 8;
-    
+
     // Table rows
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(7);
-    
+
     comparisonLoans.forEach((loan, index) => {
       // Check if we need a new page
       if (yPos > pageHeight - 30) {
         doc.addPage();
         yPos = 20;
-        
+
         // Repeat header on new page
         doc.setFillColor(59, 130, 246);
         doc.rect(margin, yPos, pageWidth - (2 * margin), 8, 'F');
-        
+
         doc.setFontSize(8);
         doc.setTextColor(255, 255, 255);
         doc.setFont('helvetica', 'bold');
-        
+
         doc.text('Loan', colX[0], yPos + 5);
         doc.text('Amount', colX[1], yPos + 5);
         doc.text('Rate', colX[2], yPos + 5);
         doc.text('Term', colX[3], yPos + 5);
         doc.text('Payment', colX[4], yPos + 5);
         doc.text('Interest', colX[5], yPos + 5);
-        
+
         yPos += 8;
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(7);
       }
-      
+
       // Alternate row colors
       if (index % 2 === 0) {
         doc.setFillColor(248, 250, 252);
         doc.rect(margin, yPos, pageWidth - (2 * margin), 7, 'F');
       }
-      
+
       doc.setTextColor(0, 0, 0);
       doc.setFont('helvetica', 'bold');
       doc.text(loan.name, colX[0], yPos + 4.5);
-      
+
       doc.setFont('helvetica', 'normal');
       doc.text(formatCurrency(loan.amount), colX[1], yPos + 4.5);
       doc.text(`${loan.rate}%`, colX[2], yPos + 4.5);
       doc.text(`${loan.term} years`, colX[3], yPos + 4.5);
-      
+
       doc.setTextColor(59, 130, 246);
       doc.setFont('helvetica', 'bold');
       doc.text(formatCurrency(loan.monthlyPayment), colX[4], yPos + 4.5);
-      
+
       doc.setTextColor(249, 115, 22);
       doc.text(formatCurrency(loan.totalInterest), colX[5], yPos + 4.5);
-      
+
       yPos += 7;
     });
 
@@ -906,28 +906,28 @@ export default function LoanCalculator() {
       doc.addPage();
       yPos = 20;
     }
-    
+
     doc.setDrawColor(220, 220, 220);
     doc.setLineWidth(0.3);
     doc.line(margin, yPos, pageWidth - margin, yPos);
-    
+
     yPos += 8;
     doc.setFontSize(9);
     doc.setTextColor(100, 100, 100);
     doc.setFont('helvetica', 'bold');
     doc.text('Summary Analysis:', margin, yPos);
-    
+
     yPos += 6;
     const bestPayment = Math.min(...comparisonLoans.map(l => l.monthlyPayment));
     const bestInterest = Math.min(...comparisonLoans.map(l => l.totalInterest));
     const bestPaymentLoan = comparisonLoans.find(l => l.monthlyPayment === bestPayment);
     const bestInterestLoan = comparisonLoans.find(l => l.totalInterest === bestInterest);
-    
+
     doc.setFontSize(8);
     doc.setTextColor(0, 0, 0);
     doc.setFont('helvetica', 'normal');
     doc.text(`• Lowest Monthly Payment: ${bestPaymentLoan?.name} at ${formatCurrency(bestPayment)}`, margin + 5, yPos);
-    
+
     yPos += 5;
     doc.text(`• Lowest Total Interest: ${bestInterestLoan?.name} at ${formatCurrency(bestInterest)}`, margin + 5, yPos);
 
@@ -936,19 +936,19 @@ export default function LoanCalculator() {
     doc.setDrawColor(220, 220, 220);
     doc.setLineWidth(0.2);
     doc.line(margin, yPos, pageWidth - margin, yPos);
-    
+
     yPos += 4;
     doc.setFontSize(7);
     doc.setTextColor(120, 120, 120);
     doc.setFont('helvetica', 'italic');
     doc.text('This comparison is based on the loan scenarios you entered. Actual terms may vary by lender.', pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 6;
     doc.setFontSize(8);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(59, 130, 246);
     doc.textWithLink('DapsiWow.com', pageWidth / 2, yPos, { align: 'center', url: 'https://dapsiwow.com' });
-    
+
     yPos += 3;
     doc.setFontSize(7);
     doc.setFont('helvetica', 'normal');
@@ -956,9 +956,9 @@ export default function LoanCalculator() {
     doc.text('Free Online Financial Calculators & Tools', pageWidth / 2, yPos, { align: 'center' });
 
     doc.save(`DapsiWow-Loan-Comparison-${new Date().getTime()}.pdf`);
-    toast({ 
-      title: "PDF Downloaded!", 
-      description: "Your loan comparison report has been saved." 
+    toast({
+      title: "PDF Downloaded!",
+      description: "Your loan comparison report has been saved."
     });
   };
 
@@ -1088,7 +1088,7 @@ export default function LoanCalculator() {
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Loan Calculator" />
-        
+
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -1233,7 +1233,7 @@ export default function LoanCalculator() {
                 </span>
               </h1>
               <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
-                Calculate monthly loan payments, total interest costs, and detailed amortization schedules instantly. Our free loan payment calculator works for personal loans, auto loans, home loans, mortgages, business financing, student loans, and debt consolidation. Get accurate EMI calculations, compare loan terms, and see how extra payments can save you thousands. 100% free, no registration required.
+                Calculate monthly loan payments, total interest costs, and detailed amortization schedules instantly. Our free loan payment calculator works for personal loans, auto loans, home loans, mortgages, business loans, student loans, and debt consolidation. Get accurate EMI calculations, compare loan terms, and see how extra payments can save you thousands. 100% free, no registration required.
               </p>
 
               <div className="flex flex-wrap justify-center gap-4 sm:gap-6 pt-4">
@@ -1582,7 +1582,7 @@ export default function LoanCalculator() {
                         </div>
                       </div>
 
-                      
+
                     </>
                   )}
                 </div>
@@ -1900,7 +1900,7 @@ export default function LoanCalculator() {
             <Card className="mt-6 sm:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
               <CardContent className="p-4 sm:p-6 lg:p-8">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
-                  <h3 
+                  <h3
                     className="text-xl sm:text-2xl font-bold text-gray-900 cursor-pointer hover:text-blue-600 transition-colors select-none"
                     onClick={() => setShowAmortization(false)}
                     title="Click to hide schedule"
@@ -1919,7 +1919,7 @@ export default function LoanCalculator() {
                   </Button>
                 </div>
                 <p className="text-sm text-gray-600 mb-4">See how your payments are split between principal and interest over time.</p>
-                <div 
+                <div
                   ref={tableScrollRef}
                   className={`overflow-x-auto -mx-4 sm:mx-0 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
                   onMouseDown={handleMouseDown}
@@ -2055,7 +2055,7 @@ export default function LoanCalculator() {
                   <p className="text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed sm:leading-relaxed md:leading-loose">
                     A loan calculator is a free online financial tool that helps you estimate your monthly loan payments, total interest costs, and complete amortization schedule based on your loan amount, interest rate, and repayment term. It allows borrowers to compare different loan scenarios, understand the true cost of borrowing, and make informed financial decisions before committing to a loan.
                   </p>
-                  
+
                   <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mt-5 sm:mt-6 md:mt-7 lg:mt-8 mb-3 sm:mb-3.5 md:mb-4 lg:mb-5 leading-tight">
                     How Does a Loan Calculator Work?
                   </h3>
@@ -2220,7 +2220,7 @@ export default function LoanCalculator() {
 
                   <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mt-5 sm:mt-6 md:mt-7 lg:mt-8 mb-2 sm:mb-3 md:mb-4">The Power of Extra Payments</h3>
                   <p className="text-sm sm:text-base md:text-lg leading-relaxed">
-                    Making extra payments directly reduces your principal balance, which means less interest accrues over time. Even modest extra payments can dramatically shorten your loan term and save thousands in interest. For instance, adding just $100 per month to a $200,000 mortgage at 6% can save over $60,000 in interest and cut nearly 8 years off a 30-year term.
+                    Making extra payments directly reduces your principal balance, which means less interest accrues over time. This can dramatically shorten your loan term and save thousands in interest. For instance, adding just $100 per month to a $200,000 mortgage at 6% can save over $60,000 in interest and cut nearly 8 years off a 30-year term.
                   </p>
                 </div>
               </CardContent>
@@ -2448,7 +2448,7 @@ export default function LoanCalculator() {
                   <div className="border-l-2 sm:border-l-3 md:border-l-4 border-cyan-500 pl-3 sm:pl-4 md:pl-6">
                     <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3">Does this calculator store my personal information?</h3>
                     <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                      No. Your privacy is important to us. All calculations are performed in your web browser, and we don't collect, store, or transmit any financial information you enter. Your loan details, calculation results, and comparisons stay completely private on your device. We don't require registration or track your calculations.
+                      No. Your privacy is important to us. All calculations are performed in your web browser, and we don't collect, store, or transmit any financial information you enter into this calculator. Your loan details, calculation results, and comparisons stay completely private on your device. We don't require registration or track your calculations.
                     </p>
                   </div>
 
@@ -2516,7 +2516,7 @@ export default function LoanCalculator() {
                       </div>
                       <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg leading-tight">Business Loan Calculator</h3>
                     </div>
-                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Calculate business financing with cash flow analysis</p>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Calculate business loan payments with DSCR and LTV analysis</p>
                   </a>
                   <a href="/tools/education-loan-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl hover:shadow-lg transition-all hover:scale-105 border-2 border-transparent hover:border-blue-200" data-testid="link-education-loan-calculator">
                     <div className="flex items-center gap-2 mb-2">
@@ -2564,7 +2564,109 @@ export default function LoanCalculator() {
                     <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Plan your strategy to become debt-free faster</p>
                   </a>
                 </div>
-                
+
+                <div className="mt-6 sm:mt-8 md:mt-10 border-t border-gray-200 pt-5 sm:pt-6 md:pt-8">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">Other Popular Financial Tools</h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+                    <a href="/tools/compound-interest-calculator" className="flex items-center gap-2 sm:gap-3 p-3 sm:p-3.5 bg-white rounded-lg hover:shadow-md transition-shadow" data-testid="link-compound-interest">
+                      <span className="text-xl sm:text-2xl flex-shrink-0">📈</span>
+                      <span className="text-xs sm:text-sm font-medium text-gray-700 leading-tight">Compound Interest Calculator</span>
+                    </a>
+                    <a href="/tools/roi-calculator" className="flex items-center gap-2 sm:gap-3 p-3 sm:p-3.5 bg-white rounded-lg hover:shadow-md transition-shadow" data-testid="link-roi-calculator">
+                      <span className="text-xl sm:text-2xl flex-shrink-0">💰</span>
+                      <span className="text-xs sm:text-sm font-medium text-gray-700 leading-tight">ROI Calculator</span>
+                    </a>
+                    <a href="/tools/dti-ratio-calculator" className="flex items-center gap-2 sm:gap-3 p-3 sm:p-3.5 bg-white rounded-lg hover:shadow-md transition-shadow" data-testid="link-dti-calculator">
+                      <span className="text-xl sm:text-2xl flex-shrink-0">📉</span>
+                      <span className="text-xs sm:text-sm font-medium text-gray-700 leading-tight">Debt-to-Income Ratio Calculator</span>
+                    </a>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* People Also Use - Enhanced Internal Linking */}
+            <Card className="bg-gradient-to-r from-indigo-50 to-purple-50 border-0 shadow-lg rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 md:mb-5 lg:mb-6 leading-tight">People Also Use These Loan Calculators</h2>
+                <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-5 md:mb-6 lg:mb-8 leading-relaxed">
+                  Maximize your financial planning with our specialized loan calculators tailored to specific needs:
+                </p>
+                <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
+                  <a href="/tools/mortgage-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl hover:shadow-lg transition-all hover:scale-105 border-2 border-transparent hover:border-blue-200" data-testid="link-mortgage-calculator">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span className="text-lg sm:text-xl">🏠</span>
+                      </div>
+                      <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg leading-tight">Mortgage Calculator</h3>
+                    </div>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Calculate home loan payments with taxes, insurance & PMI</p>
+                  </a>
+                  <a href="/tools/car-loan-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl hover:shadow-lg transition-all hover:scale-105 border-2 border-transparent hover:border-blue-200" data-testid="link-car-loan-calculator">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span className="text-lg sm:text-xl">🚗</span>
+                      </div>
+                      <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg leading-tight">Auto Loan Calculator</h3>
+                    </div>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Calculate car payments with trade-in & down payment options</p>
+                  </a>
+                  <a href="/tools/business-loan-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl hover:shadow-lg transition-all hover:scale-105 border-2 border-transparent hover:border-blue-200" data-testid="link-business-loan-calculator">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span className="text-lg sm:text-xl">💼</span>
+                      </div>
+                      <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg leading-tight">Business Loan Calculator</h3>
+                    </div>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Calculate business loan payments with DSCR and LTV analysis</p>
+                  </a>
+                  <a href="/tools/education-loan-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl hover:shadow-lg transition-all hover:scale-105 border-2 border-transparent hover:border-blue-200" data-testid="link-education-loan-calculator">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span className="text-lg sm:text-xl">🎓</span>
+                      </div>
+                      <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg leading-tight">Student Loan Calculator</h3>
+                    </div>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Calculate education loan payments & repayment plans</p>
+                  </a>
+                  <a href="/tools/debt-consolidation-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl hover:shadow-lg transition-all hover:scale-105 border-2 border-transparent hover:border-blue-200" data-testid="link-debt-consolidation-calculator">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 bg-yellow-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span className="text-lg sm:text-xl">💳</span>
+                      </div>
+                      <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg leading-tight">Debt Consolidation Calculator</h3>
+                    </div>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Compare consolidating multiple debts into one payment</p>
+                  </a>
+                  <a href="/tools/emi-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl hover:shadow-lg transition-all hover:scale-105 border-2 border-transparent hover:border-blue-200" data-testid="link-emi-calculator">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 bg-indigo-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span className="text-lg sm:text-xl">📊</span>
+                      </div>
+                      <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg leading-tight">EMI Calculator</h3>
+                    </div>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Calculate Equated Monthly Installments for any loan</p>
+                  </a>
+                  <a href="/tools/loan-comparison-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl hover:shadow-lg transition-all hover:scale-105 border-2 border-transparent hover:border-blue-200" data-testid="link-loan-comparison-calculator">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 bg-pink-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span className="text-lg sm:text-xl">⚖️</span>
+                      </div>
+                      <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg leading-tight">Loan Comparison Calculator</h3>
+                    </div>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Compare multiple loan offers side-by-side</p>
+                  </a>
+                  <a href="/tools/debt-payoff-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl hover:shadow-lg transition-all hover:scale-105 border-2 border-transparent hover:border-blue-200" data-testid="link-debt-payoff-calculator">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span className="text-lg sm:text-xl">🎯</span>
+                      </div>
+                      <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg leading-tight">Debt Payoff Calculator</h3>
+                    </div>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Plan your strategy to become debt-free faster</p>
+                  </a>
+                </div>
+
                 <div className="mt-6 sm:mt-8 md:mt-10 border-t border-gray-200 pt-5 sm:pt-6 md:pt-8">
                   <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">Other Popular Financial Tools</h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
@@ -2726,7 +2828,7 @@ export default function LoanCalculator() {
                     </ul>
                   </div>
                 </div>
-                
+
                 <div className="mt-5 sm:mt-6 p-3 sm:p-4 bg-yellow-50 border-l-4 border-yellow-500 rounded-r-lg">
                   <p className="text-xs sm:text-sm text-gray-700">
                     <strong>Disclaimer:</strong> This calculator provides estimates for educational purposes. Always verify loan terms and calculations with your lender before making financial decisions.
