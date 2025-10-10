@@ -297,9 +297,9 @@ const MortgageCalculator = () => {
     yPos += 6;
     doc.setFontSize(8);
     doc.setTextColor(230, 240, 255);
-    const currentDate = new Date().toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'long', 
+    const currentDate = new Date().toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
       day: 'numeric'
     });
     doc.text(`Report Date: ${currentDate}`, pageWidth / 2, yPos, { align: 'center' });
@@ -566,9 +566,9 @@ const MortgageCalculator = () => {
     doc.text('Free Online Financial Calculators & Tools', pageWidth / 2, yPos, { align: 'center' });
 
     doc.save(`DapsiWow-Mortgage-Calculation-${new Date().getTime()}.pdf`);
-    toast({ 
-      title: "PDF Downloaded!", 
-      description: "Your professional mortgage calculation report has been saved." 
+    toast({
+      title: "PDF Downloaded!",
+      description: "Your professional mortgage calculation report has been saved."
     });
   };
 
@@ -598,9 +598,9 @@ const MortgageCalculator = () => {
     yPos += 6;
     doc.setFontSize(8);
     doc.setTextColor(230, 240, 255);
-    const currentDate = new Date().toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'long', 
+    const currentDate = new Date().toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
       day: 'numeric'
     });
     doc.text(`Report Date: ${currentDate}`, pageWidth / 2, yPos, { align: 'center' });
@@ -702,9 +702,9 @@ const MortgageCalculator = () => {
     doc.text('Free Online Financial Calculators & Tools', pageWidth / 2, yPos, { align: 'center' });
 
     doc.save(`DapsiWow-Amortization-Schedule-${new Date().getTime()}.pdf`);
-    toast({ 
-      title: "PDF Downloaded!", 
-      description: "Your amortization schedule has been saved." 
+    toast({
+      title: "PDF Downloaded!",
+      description: "Your amortization schedule has been saved."
     });
   };
 
@@ -1923,7 +1923,7 @@ const MortgageCalculator = () => {
 
                 <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mt-4 sm:mt-6 mb-2 sm:mb-3">Step 4: Factor in HOA Fees (if applicable)</h3>
                 <p>
-                  Add any monthly HOA fees to your total housing payment. While not part of your mortgage, these fees affect your budget and debt-to-income ratio. Many condos and planned communities charge $200-500+ monthly for amenities and maintenance.
+                  Add any monthly HOA fees to your total housing payment. While not part of your mortgage payment, these fees affect your budget and debt-to-income ratio. Many properties in condos, townhomes, and planned communities charge $200-500+ monthly for amenities and maintenance.
                 </p>
               </div>
             </CardContent>
@@ -2144,7 +2144,7 @@ const MortgageCalculator = () => {
           </Card>
 
           {/* FAQ Section */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-2xl mb-8">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl mb-8">
             <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10">
               <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">Frequently Asked Questions About Mortgage Calculators</h2>
               <div className="space-y-4 sm:space-y-6 md:space-y-8">
