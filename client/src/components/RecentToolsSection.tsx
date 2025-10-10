@@ -44,7 +44,7 @@ const RecentToolsSection = () => {
         </div>
         
         {/* Tools Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-testid="grid-recent-tools">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6" data-testid="grid-recent-tools">
           {displayTools.map((tool) => (
             <ToolCard key={tool.id} tool={tool} />
           ))}
