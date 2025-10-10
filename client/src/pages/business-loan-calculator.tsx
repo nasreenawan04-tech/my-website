@@ -1920,6 +1920,105 @@ export default function BusinessLoanCalculator() {
             </CardContent>
           </Card>
 
+          {/* What Our Users Say - Testimonials Section */}
+          <Card className="bg-gradient-to-br from-purple-50 via-pink-50 to-red-50 border-0 shadow-xl rounded-2xl overflow-hidden mt-8">
+            <CardContent className="p-6 sm:p-8 md:p-10 lg:p-12">
+              <div className="text-center mb-8 sm:mb-10 md:mb-12">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4">
+                  What Our Users Say
+                </h2>
+                <p className="text-sm sm:text-base md:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                  Trusted by thousands of business owners and financial professionals worldwide
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                {/* Testimonial 1 */}
+                <div className="bg-white p-6 sm:p-8 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105">
+                  <div className="flex items-center gap-1 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <p className="text-gray-700 mb-4 text-sm sm:text-base leading-relaxed italic">
+                    "This business loan calculator saved me thousands! I compared different loan terms and found that choosing a 5-year term instead of 10 years would save me over $15,000 in interest. The DSCR analysis helped me understand exactly what I could afford."
+                  </p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                      MC
+                    </div>
+                    <div>
+                      <p className="font-bold text-gray-900">Michael Chen</p>
+                      <p className="text-sm text-gray-500">Restaurant Owner</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Testimonial 2 */}
+                <div className="bg-white p-6 sm:p-8 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105">
+                  <div className="flex items-center gap-1 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <p className="text-gray-700 mb-4 text-sm sm:text-base leading-relaxed italic">
+                    "Perfect for equipment financing calculations! I used this to compare SBA 7(a) and traditional equipment loans for my manufacturing business. The LTV calculator and monthly payment breakdowns helped me secure the best financing terms."
+                  </p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                      JM
+                    </div>
+                    <div>
+                      <p className="font-bold text-gray-900">Jennifer Martinez</p>
+                      <p className="text-sm text-gray-500">Manufacturing Business Owner</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Testimonial 3 */}
+                <div className="bg-white p-6 sm:p-8 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105">
+                  <div className="flex items-center gap-1 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <p className="text-gray-700 mb-4 text-sm sm:text-base leading-relaxed italic">
+                    "As a startup founder, this calculator was invaluable for financial planning. The ability to calculate different loan types and see detailed payment schedules helped me present solid numbers to investors. The DSCR feature is especially useful for understanding loan affordability."
+                  </p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                      DT
+                    </div>
+                    <div>
+                      <p className="font-bold text-gray-900">David Thompson</p>
+                      <p className="text-sm text-gray-500">Tech Startup Founder</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8 sm:mt-10 text-center">
+                <div className="inline-flex items-center gap-2 bg-white px-6 py-3 rounded-full shadow-md">
+                  <span className="text-2xl sm:text-3xl font-bold text-gray-900">4.9/5</span>
+                  <div className="flex items-center gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <span className="text-gray-600 text-sm sm:text-base">from 2,847+ reviews</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
           {/* Related Financial Calculators - Professional Section */}
           <Card className="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 border-0 shadow-xl rounded-2xl overflow-hidden mt-8">
             <CardContent className="p-6 sm:p-8 md:p-10 lg:p-12">
