@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Tooltip, TooltipProvider, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Info, Download, Share2, Calculator, TrendingDown, Clock, DollarSign, PieChart } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Area, AreaChart } from 'recharts';
@@ -447,6 +447,10 @@ export default function LoanCalculator() {
     doc.setFontSize(9);
     doc.setTextColor(50, 50, 50);
     doc.setFont('helvetica', 'normal');
+
+    const termDisplay = termUnit === 'years' ? `${loanTerm} years` : `${loanTerm} months`;
+    const freqDisplay = paymentFrequency === 'weekly' ? 'Weekly' :
+                       paymentFrequency === 'biweekly' ? 'Bi-weekly' : 'Monthly';
 
     const col1X = margin + 8;
     const col2X = margin + 60;
@@ -2211,7 +2215,7 @@ export default function LoanCalculator() {
 
                   <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mt-5 sm:mt-6 md:mt-7 lg:mt-8 mb-2 sm:mb-3 md:mb-4">Impact of Loan Term</h3>
                   <p className="text-sm sm:text-base md:text-lg leading-relaxed">
-                    The length of your loan significantly affects both your monthly payment and total interest paid. Shorter loan terms (like 3-5 years) result in higher monthly payments but substantially less total interest. Longer terms (7-10 years) offer lower monthly payments but cost more in interest over time. For example, a $20,000 loan at 6% interest costs $3,761 in interest over 5 years versus $7,576 over 10 years—more than double!
+                    The length of your loan significantly affects both your monthly payment and total interest paid. Shorter loan terms (like 3-5 years) result in higher monthly payments but substantially less total interest. Longer terms (7-10 years) offer lower monthly payments but cost more in interest over time. For example, a $20,000 loan at 7% interest costs $3,761 in interest over 5 years versus $7,576 over 10 years—more than double!
                   </p>
 
                   <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mt-5 sm:mt-6 md:mt-7 lg:mt-8 mb-2 sm:mb-3 md:mb-4">The Power of Extra Payments</h3>
@@ -2474,6 +2478,108 @@ export default function LoanCalculator() {
                     <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                       Common loan fees include: origination fees (1-8% of loan amount), application fees ($25-$50), appraisal fees (for secured loans, $300-$500), credit report fees ($25-$50), prepayment penalties (can be substantial), late payment fees (typically $25-$50 or 5% of payment), and annual fees (for some credit products). Always ask for a complete fee schedule and factor these into your total cost comparison. Some online lenders have minimal fees, while traditional banks may charge more but offer better rates.
                     </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* People Also Use - Enhanced Internal Linking */}
+            <Card className="bg-gradient-to-r from-indigo-50 to-purple-50 border-0 shadow-lg rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 md:mb-5 lg:mb-6 leading-tight">People Also Use These Loan Calculators</h2>
+                <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-5 md:mb-6 lg:mb-8 leading-relaxed">
+                  Maximize your financial planning with our specialized loan calculators tailored to specific needs:
+                </p>
+                <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
+                  <a href="/tools/mortgage-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl hover:shadow-lg transition-all hover:scale-105 border-2 border-transparent hover:border-blue-200" data-testid="link-mortgage-calculator">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span className="text-lg sm:text-xl">🏠</span>
+                      </div>
+                      <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg leading-tight">Mortgage Calculator</h3>
+                    </div>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Calculate home loan payments with taxes, insurance & PMI</p>
+                  </a>
+                  <a href="/tools/car-loan-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl hover:shadow-lg transition-all hover:scale-105 border-2 border-transparent hover:border-blue-200" data-testid="link-car-loan-calculator">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span className="text-lg sm:text-xl">🚗</span>
+                      </div>
+                      <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg leading-tight">Auto Loan Calculator</h3>
+                    </div>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Calculate car payments with trade-in & down payment options</p>
+                  </a>
+                  <a href="/tools/business-loan-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl hover:shadow-lg transition-all hover:scale-105 border-2 border-transparent hover:border-blue-200" data-testid="link-business-loan-calculator">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span className="text-lg sm:text-xl">💼</span>
+                      </div>
+                      <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg leading-tight">Business Loan Calculator</h3>
+                    </div>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Calculate business loan payments with DSCR and LTV analysis</p>
+                  </a>
+                  <a href="/tools/education-loan-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl hover:shadow-lg transition-all hover:scale-105 border-2 border-transparent hover:border-blue-200" data-testid="link-education-loan-calculator">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span className="text-lg sm:text-xl">🎓</span>
+                      </div>
+                      <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg leading-tight">Student Loan Calculator</h3>
+                    </div>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Calculate education loan payments & repayment plans</p>
+                  </a>
+                  <a href="/tools/debt-consolidation-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl hover:shadow-lg transition-all hover:scale-105 border-2 border-transparent hover:border-blue-200" data-testid="link-debt-consolidation-calculator">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 bg-yellow-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span className="text-lg sm:text-xl">💳</span>
+                      </div>
+                      <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg leading-tight">Debt Consolidation Calculator</h3>
+                    </div>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Compare consolidating multiple debts into one payment</p>
+                  </a>
+                  <a href="/tools/emi-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl hover:shadow-lg transition-all hover:scale-105 border-2 border-transparent hover:border-blue-200" data-testid="link-emi-calculator">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 bg-indigo-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span className="text-lg sm:text-xl">📊</span>
+                      </div>
+                      <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg leading-tight">EMI Calculator</h3>
+                    </div>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Calculate Equated Monthly Installments for any loan</p>
+                  </a>
+                  <a href="/tools/loan-comparison-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl hover:shadow-lg transition-all hover:scale-105 border-2 border-transparent hover:border-blue-200" data-testid="link-loan-comparison-calculator">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 bg-pink-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span className="text-lg sm:text-xl">⚖️</span>
+                      </div>
+                      <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg leading-tight">Loan Comparison Calculator</h3>
+                    </div>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Compare multiple loan offers side-by-side</p>
+                  </a>
+                  <a href="/tools/debt-payoff-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl hover:shadow-lg transition-all hover:scale-105 border-2 border-transparent hover:border-blue-200" data-testid="link-debt-payoff-calculator">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span className="text-lg sm:text-xl">🎯</span>
+                      </div>
+                      <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg leading-tight">Debt Payoff Calculator</h3>
+                    </div>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Plan your strategy to become debt-free faster</p>
+                  </a>
+                </div>
+
+                <div className="mt-6 sm:mt-8 md:mt-10 border-t border-gray-200 pt-5 sm:pt-6 md:pt-8">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">Other Popular Financial Tools</h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+                    <a href="/tools/compound-interest-calculator" className="flex items-center gap-2 sm:gap-3 p-3 sm:p-3.5 bg-white rounded-lg hover:shadow-md transition-shadow" data-testid="link-compound-interest">
+                      <span className="text-xl sm:text-2xl flex-shrink-0">📈</span>
+                      <span className="text-xs sm:text-sm font-medium text-gray-700 leading-tight">Compound Interest Calculator</span>
+                    </a>
+                    <a href="/tools/roi-calculator" className="flex items-center gap-2 sm:gap-3 p-3 sm:p-3.5 bg-white rounded-lg hover:shadow-md transition-shadow" data-testid="link-roi-calculator">
+                      <span className="text-xl sm:text-2xl flex-shrink-0">💰</span>
+                      <span className="text-xs sm:text-sm font-medium text-gray-700 leading-tight">ROI Calculator</span>
+                    </a>
+                    <a href="/tools/dti-ratio-calculator" className="flex items-center gap-2 sm:gap-3 p-3 sm:p-3.5 bg-white rounded-lg hover:shadow-md transition-shadow" data-testid="link-dti-calculator">
+                      <span className="text-xl sm:text-2xl flex-shrink-0">📉</span>
+                      <span className="text-xs sm:text-sm font-medium text-gray-700 leading-tight">Debt-to-Income Ratio Calculator</span>
+                    </a>
                   </div>
                 </div>
               </CardContent>
