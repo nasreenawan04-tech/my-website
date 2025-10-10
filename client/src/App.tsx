@@ -23,6 +23,7 @@ const HelpCenter = lazy(() => import("@/pages/help-center"));
 const ContactUs = lazy(() => import("@/pages/contact-us"));
 const PrivacyPolicy = lazy(() => import("@/pages/privacy-policy"));
 const TermsOfService = lazy(() => import("@/pages/terms-of-service"));
+const RecentlyUsed = lazy(() => import("@/pages/recently-used"));
 const ToolPage = lazy(() => import("@/pages/tool-page"));
 const AboutUs = lazy(() => import("@/pages/about-us"));
 const TextStatisticsAnalyzer = lazy(() => import("@/pages/text-statistics-analyzer"));
@@ -74,6 +75,7 @@ function Router() {
           <Route path="/terms-of-service" component={TermsOfService} />
           <Route path="/help-center" component={HelpCenter} />
           <Route path="/about-us" component={AboutUs} />
+          <Route path="/recently-used" component={RecentlyUsed} />
 
           {/* Legacy route redirects to standardized URLs */}
           <Route path="/about" component={() => <Redirect to="/about-us" />} />
