@@ -2585,53 +2585,101 @@ export default function LoanCalculator() {
               </CardContent>
             </Card>
 
-            {/* Testimonials & Reviews */}
-            <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-2xl">
-              <CardContent className="p-4 sm:p-6 md:p-8">
-                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 sm:mb-8 text-center">What Our Users Say</h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
-                  <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-4 sm:p-5 md:p-6 rounded-xl" data-testid="testimonial-1">
-                    <div className="flex items-center mb-3 sm:mb-4">
-                      <div className="flex text-yellow-400">
-                        {'★★★★★'.split('').map((star, i) => <span key={i} className="text-lg">{star}</span>)}
-                      </div>
+            {/* What Our Users Say - Testimonials Section */}
+            <Card className="bg-gradient-to-br from-purple-50 via-pink-50 to-red-50 border-0 shadow-xl rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden">
+              <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12">
+                <div className="text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-2 sm:mb-3 md:mb-4 leading-tight">
+                    What Our Users Say
+                  </h2>
+                  <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed px-2 sm:px-0">
+                    Trusted by thousands of users worldwide for accurate loan calculations
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
+                  {/* Testimonial 1 */}
+                  <div className="bg-white p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105" data-testid="testimonial-1">
+                    <div className="flex items-center gap-0.5 sm:gap-1 mb-3 sm:mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                          <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                        </svg>
+                      ))}
                     </div>
-                    <p className="text-gray-700 text-sm sm:text-base mb-3 sm:mb-4 leading-relaxed italic">
+                    <p className="text-gray-700 mb-3 sm:mb-4 text-xs sm:text-sm md:text-base leading-relaxed italic">
                       "This loan calculator saved me thousands! I compared different loan terms and found that choosing a 4-year term instead of 7 years would save me over $5,000 in interest. Super easy to use and the amortization schedule is really helpful."
                     </p>
-                    <p className="font-semibold text-gray-900 text-sm">Michael Chen</p>
-                    <p className="text-xs text-gray-500">Small Business Owner</p>
-                  </div>
-
-                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-4 sm:p-5 md:p-6 rounded-xl" data-testid="testimonial-2">
-                    <div className="flex items-center mb-3 sm:mb-4">
-                      <div className="flex text-yellow-400">
-                        {'★★★★★'.split('').map((star, i) => <span key={i} className="text-lg">{star}</span>)}
+                    <div className="flex items-center gap-2 sm:gap-3">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg flex-shrink-0">
+                        MC
+                      </div>
+                      <div className="min-w-0">
+                        <p className="font-bold text-gray-900 text-xs sm:text-sm md:text-base truncate">Michael Chen</p>
+                        <p className="text-xs sm:text-sm text-gray-500 truncate">Small Business Owner</p>
                       </div>
                     </div>
-                    <p className="text-gray-700 text-sm sm:text-base mb-3 sm:mb-4 leading-relaxed italic">
+                  </div>
+
+                  {/* Testimonial 2 */}
+                  <div className="bg-white p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105" data-testid="testimonial-2">
+                    <div className="flex items-center gap-0.5 sm:gap-1 mb-3 sm:mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                          <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                        </svg>
+                      ))}
+                    </div>
+                    <p className="text-gray-700 mb-3 sm:mb-4 text-xs sm:text-sm md:text-base leading-relaxed italic">
                       "Best free loan calculator I've found. The extra payment feature showed me exactly how much I could save by adding just $100 per month to my car loan. Highly recommend for anyone shopping for loans."
                     </p>
-                    <p className="font-semibold text-gray-900 text-sm">Sarah Johnson</p>
-                    <p className="text-xs text-gray-500">Financial Planner</p>
-                  </div>
-
-                  <div className="bg-gradient-to-br from-purple-50 to-pink-50 p-4 sm:p-5 md:p-6 rounded-xl" data-testid="testimonial-3">
-                    <div className="flex items-center mb-3 sm:mb-4">
-                      <div className="flex text-yellow-400">
-                        {'★★★★★'.split('').map((star, i) => <span key={i} className="text-lg">{star}</span>)}
+                    <div className="flex items-center gap-2 sm:gap-3">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg flex-shrink-0">
+                        SJ
+                      </div>
+                      <div className="min-w-0">
+                        <p className="font-bold text-gray-900 text-xs sm:text-sm md:text-base truncate">Sarah Johnson</p>
+                        <p className="text-xs sm:text-sm text-gray-500 truncate">Financial Planner</p>
                       </div>
                     </div>
-                    <p className="text-gray-700 text-sm sm:text-base mb-3 sm:mb-4 leading-relaxed italic">
+                  </div>
+
+                  {/* Testimonial 3 */}
+                  <div className="bg-white p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105" data-testid="testimonial-3">
+                    <div className="flex items-center gap-0.5 sm:gap-1 mb-3 sm:mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                          <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                        </svg>
+                      ))}
+                    </div>
+                    <p className="text-gray-700 mb-3 sm:mb-4 text-xs sm:text-sm md:text-base leading-relaxed italic">
                       "Accurate and professional. I used this to calculate my business loan payments and the numbers matched exactly what my bank provided. The comparison feature is excellent for evaluating multiple loan offers."
                     </p>
-                    <p className="font-semibold text-gray-900 text-sm">David Martinez</p>
-                    <p className="text-xs text-gray-500">Entrepreneur</p>
+                    <div className="flex items-center gap-2 sm:gap-3">
+                      <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg flex-shrink-0">
+                        DM
+                      </div>
+                      <div className="min-w-0">
+                        <p className="font-bold text-gray-900 text-xs sm:text-sm md:text-base truncate">David Martinez</p>
+                        <p className="text-xs sm:text-sm text-gray-500 truncate">Entrepreneur</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                
-                <div className="mt-6 sm:mt-8 text-center">
-                  <p className="text-sm text-gray-600">Join 2.5+ million users who trust our calculators for accurate financial planning</p>
+
+                <div className="mt-6 sm:mt-8 md:mt-10 text-center">
+                  <div className="inline-flex flex-col xs:flex-row items-center gap-1.5 xs:gap-2 bg-white px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 rounded-full shadow-md">
+                    <span className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">4.9/5</span>
+                    <div className="flex items-center gap-0.5 sm:gap-1">
+                      {[...Array(5)].map((_, i) => (
+                        <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                          <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                        </svg>
+                      ))}
+                    </div>
+                    <span className="text-gray-600 text-xs sm:text-sm md:text-base">from 2,500+ reviews</span>
+                  </div>
                 </div>
               </CardContent>
             </Card>
