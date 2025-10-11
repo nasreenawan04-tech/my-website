@@ -30,7 +30,7 @@ const RecentlyUsedTools = () => {
         
         <main className="flex-1">
           {/* Hero Section */}
-          <section className="relative bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 text-white py-16 lg:py-20 overflow-hidden">
+          <section className="relative bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 text-white py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden">
             <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]" />
             <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent" />
             
@@ -38,31 +38,31 @@ const RecentlyUsedTools = () => {
               {/* Back Button */}
               <Link 
                 href="/"
-                className="inline-flex items-center gap-2 text-white/90 hover:text-white transition-colors mb-6"
+                className="inline-flex items-center gap-2 text-white/90 hover:text-white transition-colors mb-6 sm:mb-8 text-sm sm:text-base"
                 data-testid="link-back-home"
               >
-                <ArrowLeft size={20} />
+                <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
                 <span>Back to Home</span>
               </Link>
 
-              <div className="flex items-center gap-4 mb-6">
-                <div className="p-4 bg-white/20 backdrop-blur-sm rounded-2xl">
-                  <Clock className="w-10 h-10 text-white" />
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mb-6 sm:mb-8">
+                <div className="p-3 sm:p-4 bg-white/20 backdrop-blur-sm rounded-xl sm:rounded-2xl">
+                  <Clock className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
                 </div>
                 <div>
-                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight" data-testid="text-page-title">
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight" data-testid="text-page-title">
                     Recently Used Tools
                   </h1>
-                  <p className="text-xl lg:text-2xl text-blue-100 mt-2">
+                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-blue-100 mt-2">
                     Pick up where you left off
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-center gap-4 mt-8">
+              <div className="flex items-center gap-4 mt-6 sm:mt-8">
                 <div className="text-center">
-                  <div className="text-3xl font-bold mb-1" data-testid="text-recent-tools-count">{recentTools.length}</div>
-                  <div className="text-blue-100 text-sm" data-testid="text-recent-tools-count-label">Tools in History</div>
+                  <div className="text-2xl sm:text-3xl font-bold mb-1" data-testid="text-recent-tools-count">{recentTools.length}</div>
+                  <div className="text-blue-100 text-xs sm:text-sm" data-testid="text-recent-tools-count-label">Tools in History</div>
                 </div>
               </div>
             </div>
