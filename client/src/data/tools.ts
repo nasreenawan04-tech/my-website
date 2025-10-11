@@ -31,6 +31,7 @@ const toolsData: Tool[] = [
     description: "Calculate mortgage payments and compare rates",
     category: "finance" as const,
     icon: "fas fa-home",
+    isPopular: true,
     href: "/tools/mortgage-calculator",
   },
   {
@@ -285,25 +286,24 @@ const toolsData: Tool[] = [
     category: "finance" as const,
     icon: "fas fa-percentage",
     href: "/tools/dti-ratio-calculator",
-    isPopular: true,
   },
   {
     id: "personal-finance-dashboard",
     name: "Personal Finance Dashboard",
-    description: "Comprehensive financial overview with income, expenses, savings, and investment tracking",
+    description:
+      "Comprehensive financial overview with income, expenses, savings, and investment tracking",
     category: "finance" as const,
     icon: "fas fa-chart-pie",
     href: "/tools/personal-finance-dashboard",
-    isPopular: true,
   },
   {
     id: "debt-consolidation-calculator",
     name: "Debt Consolidation Calculator",
-    description: "Calculate potential savings from consolidating multiple debts into a single loan",
+    description:
+      "Calculate potential savings from consolidating multiple debts into a single loan",
     category: "finance" as const,
     icon: "fas fa-compress-arrows-alt",
     href: "/tools/debt-consolidation-calculator",
-    isPopular: true,
   },
 
   // Text Tools (19)
@@ -567,7 +567,8 @@ const toolsData: Tool[] = [
   {
     id: "unit-converter",
     name: "Unit Converter",
-    description: "Convert between different units of measurement including length, weight, temperature, volume, area, and speed",
+    description:
+      "Convert between different units of measurement including length, weight, temperature, volume, area, and speed",
     category: "text" as const,
     icon: "fas fa-exchange-alt",
     isPopular: true,
@@ -606,6 +607,7 @@ const toolsData: Tool[] = [
     description: "Calculate body fat percentage using US Navy method",
     category: "health" as const,
     icon: "fas fa-percentage",
+    isPopular: true,
     href: "/tools/body-fat-calculator",
   },
   {
@@ -772,7 +774,6 @@ const toolsData: Tool[] = [
     description: "Assess cholesterol-related health risks",
     category: "health" as const,
     icon: "fas fa-vial",
-    isPopular: true,
     href: "/tools/cholesterol-risk-calculator",
   },
   {
@@ -845,25 +846,26 @@ const toolsData: Tool[] = [
   {
     id: "stress-level-calculator",
     name: "Stress Level Calculator",
-    description: "Comprehensive stress assessment with personalized recommendations based on lifestyle factors",
+    description:
+      "Comprehensive stress assessment with personalized recommendations based on lifestyle factors",
     category: "health" as const,
     icon: "fas fa-brain",
-    isPopular: true,
     href: "/tools/stress-level-calculator",
   },
   {
     id: "body-composition-analyzer",
     name: "Body Composition Analyzer",
-    description: "Analyze your body composition with accurate body fat percentage, muscle mass, and personalized fitness recommendations",
+    description:
+      "Analyze your body composition with accurate body fat percentage, muscle mass, and personalized fitness recommendations",
     category: "health" as const,
     icon: "fas fa-user-check",
-    isPopular: true,
     href: "/tools/body-composition-analyzer",
   },
   {
     id: "metabolic-age-calculator",
     name: "Metabolic Age Calculator",
-    description: "Calculate your metabolic age based on lifestyle factors and health metrics with personalized longevity recommendations",
+    description:
+      "Calculate your metabolic age based on lifestyle factors and health metrics with personalized longevity recommendations",
     category: "health" as const,
     icon: "fas fa-clock",
     href: "/tools/metabolic-age-calculator",
@@ -871,11 +873,11 @@ const toolsData: Tool[] = [
   {
     id: "meal-calorie-tracker",
     name: "Meal Calorie Tracker",
-    description: "Track your daily calorie intake by adding meals with detailed nutritional information and progress monitoring",
+    description:
+      "Track your daily calorie intake by adding meals with detailed nutritional information and progress monitoring",
     category: "health" as const,
     icon: "fas fa-utensils",
     href: "/tools/meal-calorie-tracker",
-    isPopular: true,
   },
 ];
 
