@@ -11,6 +11,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Info, Calculator, TrendingUp, Clock, Percent, Download, Share2, PieChart as PieChartIcon, BarChart3, RotateCcw, ArrowRight } from 'lucide-react';
+import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { useToast } from '@/hooks/use-toast';
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip } from 'recharts';
 import { jsPDF } from 'jspdf';
@@ -183,6 +184,9 @@ export default function SimpleInterestCalculator() {
   };
 
   const handleShare = async () => {
+    if (!result) return;
+
+    // Create shareable URL with encoded parameters
     const params = new URLSearchParams({
       principal: principal,
       rate: interestRate,
@@ -190,21 +194,107 @@ export default function SimpleInterestCalculator() {
       unit: timeUnit
     });
     
-    const shareUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
+    const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
+
+    // Create comprehensive share text
+    const termDisplay = timeUnit === 'years' ? `${timePeriod} years` : `${timePeriod} months`;
+
+    let shareText = `💰 Simple Interest Calculator Results\n\n`;
+    shareText += `📊 Investment Details:\n`;
+    shareText += `• Principal Amount: ${formatCurrency(result.principalAmount)}\n`;
+    shareText += `• Interest Rate: ${interestRate}%\n`;
+    shareText += `• Time Period: ${termDisplay}\n`;
     
-    try {
-      await navigator.clipboard.writeText(shareUrl);
-      toast({
-        title: "Link Copied!",
-        description: "Share link copied to clipboard",
-      });
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to copy link",
-        variant: "destructive"
-      });
+    shareText += `\n💵 Interest Breakdown:\n`;
+    shareText += `• Simple Interest: ${formatCurrency(result.simpleInterest)}\n`;
+    shareText += `• Monthly Interest: ${formatCurrency(result.monthlyInterest)}\n`;
+    shareText += `• Total Amount: ${formatCurrency(result.totalAmount)}\n`;
+
+    shareText += `\n🔗 Calculate yours: ${shareableUrl}`;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: '💰 Simple Interest Calculator Results',
+          text: shareText,
+          url: shareableUrl
+        });
+        toast({ title: "Shared successfully!", description: "Results shared with all details" });
+      } catch (err) {
+        copyToClipboard(shareText);
+      }
+    } else {
+      copyToClipboard(shareText);
     }
+  };
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+    toast({ title: "Copied to clipboard!" });
+  };
+
+  const shareOnFacebook = () => {
+    if (!result) return;
+    
+    const params = new URLSearchParams({
+      principal: principal,
+      rate: interestRate,
+      time: timePeriod,
+      unit: timeUnit
+    });
+    const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
+    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareableUrl)}`;
+    window.open(facebookUrl, '_blank', 'noopener,noreferrer,width=600,height=400');
+    toast({ title: "Opening Facebook share..." });
+  };
+
+  const shareOnTwitter = () => {
+    if (!result) return;
+    
+    const params = new URLSearchParams({
+      principal: principal,
+      rate: interestRate,
+      time: timePeriod,
+      unit: timeUnit
+    });
+    const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
+    const termDisplay = timeUnit === 'years' ? `${timePeriod} years` : `${timePeriod} months`;
+    const tweetText = `💰 My Simple Interest calculation: ${formatCurrency(result.simpleInterest)} interest on ${formatCurrency(result.principalAmount)} at ${interestRate}% for ${termDisplay} - Calculate yours free!`;
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}&url=${encodeURIComponent(shareableUrl)}`;
+    window.open(twitterUrl, '_blank', 'noopener,noreferrer,width=600,height=400');
+    toast({ title: "Opening Twitter share..." });
+  };
+
+  const shareOnLinkedIn = () => {
+    if (!result) return;
+    
+    const params = new URLSearchParams({
+      principal: principal,
+      rate: interestRate,
+      time: timePeriod,
+      unit: timeUnit
+    });
+    const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
+    const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareableUrl)}`;
+    window.open(linkedInUrl, '_blank', 'noopener,noreferrer,width=600,height=400');
+    toast({ title: "Opening LinkedIn share..." });
+  };
+
+  const shareOnWhatsApp = () => {
+    if (!result) return;
+    
+    const params = new URLSearchParams({
+      principal: principal,
+      rate: interestRate,
+      time: timePeriod,
+      unit: timeUnit
+    });
+    const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
+    const termDisplay = timeUnit === 'years' ? `${timePeriod} years` : `${timePeriod} months`;
+    const whatsappText = `💰 Simple Interest Calculator Results:\n\nPrincipal: ${formatCurrency(result.principalAmount)}\nRate: ${interestRate}%\nTerm: ${termDisplay}\nInterest: ${formatCurrency(result.simpleInterest)}\nTotal: ${formatCurrency(result.totalAmount)}\n\nCalculate yours: ${shareableUrl}`;
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(whatsappText)}`;
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    toast({ title: "Opening WhatsApp share..." });
   };
 
   const handleDownloadYearlyBreakdownPDF = () => {
@@ -1228,63 +1318,104 @@ export default function SimpleInterestCalculator() {
                       className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                       data-testid="button-reset"
                     >
+                      <RotateCcw className="w-5 h-5 mr-2" />
                       Reset Calculator
                     </Button>
                   </div>
 
                   {/* Interest Configuration Action Buttons */}
                   {result && (
-                    <div className="flex flex-wrap justify-center gap-2 sm:gap-3 pt-3 sm:pt-4 print:hidden">
-                      <Button
-                        onClick={() => setShowChart(!showChart)}
-                        variant="outline"
-                        size="sm"
-                        className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
-                        data-testid="button-show-chart"
-                      >
-                        <PieChartIcon className="w-4 h-4 mr-1" />
-                        {showChart ? 'Hide' : 'Show'} Chart
-                      </Button>
-                      <Button
-                        onClick={() => setShowYearlyBreakdown(!showYearlyBreakdown)}
-                        variant="outline"
-                        size="sm"
-                        className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
-                        data-testid="button-toggle-yearly"
-                      >
-                        <BarChart3 className="w-4 h-4 mr-1" />
-                        {showYearlyBreakdown ? 'Hide' : 'Show'} Yearly Breakdown
-                      </Button>
-                      <Button
-                        onClick={addToComparison}
-                        variant="outline"
-                        size="sm"
-                        className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
-                        data-testid="button-add-comparison"
-                      >
-                        Add to Comparison
-                      </Button>
-                      <Button
-                        onClick={handleShare}
-                        variant="outline"
-                        size="sm"
-                        className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
-                        data-testid="button-share"
-                      >
-                        <Share2 className="w-4 h-4 mr-1" />
-                        Share
-                      </Button>
-                      <Button
-                        onClick={exportToPDF}
-                        variant="outline"
-                        size="sm"
-                        className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
-                        data-testid="button-export-pdf"
-                      >
-                        <Download className="w-4 h-4 mr-1" />
-                        Export PDF
-                      </Button>
-                    </div>
+                    <>
+                      <div className="flex flex-wrap justify-center gap-2 sm:gap-3 pt-3 sm:pt-4 print:hidden">
+                        <Button
+                          onClick={() => setShowYearlyBreakdown(!showYearlyBreakdown)}
+                          variant="outline"
+                          size="sm"
+                          className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                          data-testid="button-toggle-yearly"
+                        >
+                          {showYearlyBreakdown ? 'Hide' : 'Show'} Payment Schedule
+                        </Button>
+                        <Button
+                          onClick={() => setShowChart(!showChart)}
+                          variant="outline"
+                          size="sm"
+                          className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                          data-testid="button-show-chart"
+                        >
+                          <PieChartIcon className="w-4 h-4 mr-1" />
+                          {showChart ? 'Hide' : 'Show'} Chart
+                        </Button>
+                        <Button
+                          onClick={handleShare}
+                          variant="outline"
+                          size="sm"
+                          className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                          data-testid="button-share"
+                        >
+                          <Share2 className="w-4 h-4 mr-1" />
+                          Share
+                        </Button>
+                        <Button
+                          onClick={exportToPDF}
+                          variant="outline"
+                          size="sm"
+                          className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                          data-testid="button-export-pdf"
+                        >
+                          <Download className="w-4 h-4 mr-1" />
+                          Export PDF
+                        </Button>
+                      </div>
+
+                      {/* Social Share Section */}
+                      <div className="border-t pt-4">
+                        <p className="text-center text-sm font-medium text-gray-700 mb-3">Share your results:</p>
+                        <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+                          <Button
+                            onClick={shareOnFacebook}
+                            size="sm"
+                            className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg bg-[#1877f2] hover:bg-[#166fe5] text-white transition-all"
+                          >
+                            <FaFacebook className="w-4 h-4 mr-1.5" />
+                            Facebook
+                          </Button>
+                          <Button
+                            onClick={shareOnTwitter}
+                            size="sm"
+                            className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg bg-[#1da1f2] hover:bg-[#1a8cd8] text-white transition-all"
+                          >
+                            <FaTwitter className="w-4 h-4 mr-1.5" />
+                            Twitter
+                          </Button>
+                          <Button
+                            onClick={shareOnLinkedIn}
+                            size="sm"
+                            className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg bg-[#0077b5] hover:bg-[#006399] text-white transition-all"
+                          >
+                            <FaLinkedin className="w-4 h-4 mr-1.5" />
+                            LinkedIn
+                          </Button>
+                          <Button
+                            onClick={shareOnWhatsApp}
+                            size="sm"
+                            className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg bg-[#25d366] hover:bg-[#20bd5a] text-white transition-all"
+                          >
+                            <FaWhatsapp className="w-4 h-4 mr-1.5" />
+                            WhatsApp
+                          </Button>
+                          <Button
+                            onClick={handleShare}
+                            variant="outline"
+                            size="sm"
+                            className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-gray-400 hover:bg-gray-50 transition-all"
+                          >
+                            <Share2 className="w-4 h-4 mr-1.5" />
+                            More
+                          </Button>
+                        </div>
+                      </div>
+                    </>
                   )}
                 </div>
 
