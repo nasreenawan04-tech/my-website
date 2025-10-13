@@ -216,46 +216,46 @@ export default function FutureValueInvestmentCalculator() {
 
       <main>
         {/* Hero Section */}
-        <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 overflow-hidden">
+        <section className="relative py-12 sm:py-16 md:py-20 lg:py-28 xl:py-32 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
-          <div className="relative max-w-4xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
-            <div className="space-y-3 sm:space-y-4 md:space-y-6 lg:space-y-8">
-              <div className="inline-flex items-center px-2.5 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
-                <span className="text-[10px] sm:text-xs md:text-sm font-medium text-blue-700">Professional Investment Calculator</span>
+          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="space-y-4 sm:space-y-6 lg:space-y-8">
+              <div className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+                <span className="text-xs sm:text-sm font-medium text-blue-700">Professional Investment Calculator</span>
               </div>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-slate-900 leading-tight px-2">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-slate-900 leading-tight">
                 Future Value Investment
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
                   Calculator
                 </span>
               </h1>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed px-2 sm:px-4">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed px-2">
                 Project how your investments will grow over time with compound interest and regular contributions
               </p>
             </div>
           </div>
         </section>
 
-        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-6 md:py-8 lg:py-12">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
           {/* Main Calculator Card */}
           <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                 {/* Input Section */}
-                <div className="lg:col-span-1 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 space-y-4 sm:space-y-6 md:space-y-8">
-                  <div className="text-center sm:text-left">
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Investment Configuration</h2>
-                    <p className="text-xs sm:text-sm md:text-base text-gray-600">Enter your investment details to project future growth with compound interest</p>
+                <div className="lg:col-span-1 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 space-y-6 sm:space-y-8">
+                  <div>
+                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Investment Configuration</h2>
+                    <p className="text-sm sm:text-base text-gray-600">Enter your investment details to project future growth with compound interest</p>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                     {/* Currency Selection */}
-                    <div className="space-y-1.5 sm:space-y-2 md:space-y-3">
-                      <Label htmlFor="currency" className="text-[10px] sm:text-xs md:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="currency" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Currency
                       </Label>
                       <Select value={currency} onValueChange={setCurrency}>
-                        <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg" data-testid="select-currency">
+                        <SelectTrigger className="h-12 sm:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-base sm:text-lg" data-testid="select-currency">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -274,10 +274,10 @@ export default function FutureValueInvestmentCalculator() {
                     </div>
 
                     {/* Compound Frequency */}
-                    <div className="space-y-1.5 sm:space-y-2 md:space-y-3">
-                      <Label className="text-[10px] sm:text-xs md:text-sm font-semibold text-gray-800 uppercase tracking-wide">Compound Frequency</Label>
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">Compound Frequency</Label>
                       <Select value={compoundFrequency} onValueChange={setCompoundFrequency}>
-                        <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg" data-testid="select-compound-frequency">
+                        <SelectTrigger className="h-12 sm:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-base sm:text-lg" data-testid="select-compound-frequency">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -291,12 +291,12 @@ export default function FutureValueInvestmentCalculator() {
                     </div>
 
                     {/* Initial Investment */}
-                    <div className="space-y-1.5 sm:space-y-2 md:space-y-3">
-                      <Label htmlFor="initial-investment" className="text-[10px] sm:text-xs md:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="initial-investment" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Initial Investment
                       </Label>
                       <div className="relative">
-                        <span className="absolute left-2.5 sm:left-3 md:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">
+                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">
                           {currency === 'USD' ? '$' : currency === 'EUR' ? '€' : currency === 'GBP' ? '£' : currency === 'INR' ? '₹' : currency === 'JPY' ? '¥' : currency === 'CAD' ? 'C$' : currency === 'AUD' ? 'A$' : currency === 'CNY' ? '¥' : currency === 'BRL' ? 'R$' : currency === 'MXN' ? '$' : '$'}
                         </span>
                         <Input
@@ -304,7 +304,7 @@ export default function FutureValueInvestmentCalculator() {
                           type="number"
                           value={initialInvestment}
                           onChange={(e) => setInitialInvestment(e.target.value)}
-                          className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-7 md:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-12 sm:h-14 pl-7 sm:pl-8 text-base sm:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500"
                           placeholder="10,000"
                           step="0.01"
                           data-testid="input-initial-investment"
@@ -313,8 +313,8 @@ export default function FutureValueInvestmentCalculator() {
                     </div>
 
                     {/* Annual Interest Rate */}
-                    <div className="space-y-1.5 sm:space-y-2 md:space-y-3">
-                      <Label htmlFor="annual-rate" className="text-[10px] sm:text-xs md:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="annual-rate" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Annual Interest Rate
                       </Label>
                       <div className="relative">
@@ -323,30 +323,30 @@ export default function FutureValueInvestmentCalculator() {
                           type="number"
                           value={annualInterestRate}
                           onChange={(e) => setAnnualInterestRate(e.target.value)}
-                          className="h-10 sm:h-12 md:h-14 pr-6 sm:pr-7 md:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-12 sm:h-14 pr-7 sm:pr-8 text-base sm:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500"
                           placeholder="8.00"
                           step="0.01"
                           data-testid="input-annual-rate"
                         />
-                        <span className="absolute right-2.5 sm:right-3 md:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
+                        <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">%</span>
                       </div>
                     </div>
 
                     {/* Investment Period */}
-                    <div className="space-y-1.5 sm:space-y-2 md:space-y-3">
-                      <Label className="text-[10px] sm:text-xs md:text-sm font-semibold text-gray-800 uppercase tracking-wide">Investment Period</Label>
-                      <div className="grid grid-cols-2 gap-2 sm:gap-2.5 md:gap-3">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">Investment Period</Label>
+                      <div className="grid grid-cols-2 gap-2 sm:gap-3">
                         <Input
                           type="number"
                           value={investmentPeriod}
                           onChange={(e) => setInvestmentPeriod(e.target.value)}
-                          className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-12 sm:h-14 text-base sm:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500"
                           placeholder="10"
                           min="1"
                           data-testid="input-investment-period"
                         />
                         <Select value={timeUnit} onValueChange={setTimeUnit}>
-                          <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg" data-testid="select-time-unit">
+                          <SelectTrigger className="h-12 sm:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-base sm:text-lg" data-testid="select-time-unit">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -361,14 +361,14 @@ export default function FutureValueInvestmentCalculator() {
                   </div>
 
                   {/* Advanced Options */}
-                  <div className="space-y-3 sm:space-y-4 md:space-y-6 border-t pt-4 sm:pt-6 md:pt-8">
-                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900">Advanced Options</h3>
+                  <div className="space-y-4 sm:space-y-6 border-t pt-6 sm:pt-8">
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-900">Advanced Options</h3>
 
                     <Collapsible open={showAdvanced} onOpenChange={setShowAdvanced}>
                       <CollapsibleTrigger asChild>
                         <Button
                           variant="ghost"
-                          className="w-full justify-between text-xs sm:text-sm md:text-base py-2.5 sm:py-3 md:py-4 h-auto"
+                          className="w-full justify-between text-sm sm:text-base py-3 sm:py-4 h-auto"
                           data-testid="button-toggle-advanced"
                         >
                           <span className="flex items-center">
@@ -377,19 +377,19 @@ export default function FutureValueInvestmentCalculator() {
                           <span className={`transform transition-transform ${showAdvanced ? 'rotate-180' : ''}`}>▼</span>
                         </Button>
                       </CollapsibleTrigger>
-                      <CollapsibleContent className="space-y-3 sm:space-y-4 md:space-y-6 mt-3 sm:mt-4">
+                      <CollapsibleContent className="space-y-4 sm:space-y-6 mt-4">
                         <Separator />
 
                         {/* Investment and Display Options */}
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
-                          <div className="space-y-3 sm:space-y-4 bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6">
-                            <h4 className="text-xs sm:text-sm md:text-base font-semibold text-gray-900">Investment Options</h4>
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                          <div className="space-y-4 bg-gray-50 rounded-xl p-4 sm:p-6">
+                            <h4 className="text-sm sm:text-base font-semibold text-gray-900">Investment Options</h4>
 
 
                             <div className="flex items-center justify-between gap-2">
-                              <div className="space-y-0.5 sm:space-y-1 flex-1 min-w-0">
-                                <Label className="text-[10px] sm:text-xs md:text-sm font-medium">Enable Monthly Contributions</Label>
-                                <p className="text-[9px] sm:text-xs text-gray-500">Add regular monthly investments to your portfolio</p>
+                              <div className="space-y-1 flex-1 min-w-0">
+                                <Label className="text-xs sm:text-sm font-medium">Enable Monthly Contributions</Label>
+                                <p className="text-xs text-gray-500">Add regular monthly investments to your portfolio</p>
                               </div>
                               <Switch
                                 checked={enableMonthlyContributions}
@@ -399,17 +399,17 @@ export default function FutureValueInvestmentCalculator() {
                             </div>
 
                             {enableMonthlyContributions && (
-                              <div className="space-y-1.5 sm:space-y-2 ml-3 sm:ml-4 pl-3 sm:pl-4 border-l-2 border-blue-200">
-                                <Label className="text-[10px] sm:text-xs md:text-sm font-medium">Monthly Contribution Amount</Label>
+                              <div className="space-y-2 ml-4 pl-4 border-l-2 border-blue-200">
+                                <Label className="text-xs sm:text-sm font-medium">Monthly Contribution Amount</Label>
                                 <div className="relative">
-                                  <span className="absolute left-2.5 sm:left-3 top-1/2 -translate-y-1/2 text-gray-500 text-xs sm:text-sm">
+                                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">
                                     {currency === 'USD' ? '$' : currency === 'EUR' ? '€' : currency === 'GBP' ? '£' : currency === 'INR' ? '₹' : currency === 'JPY' ? '¥' : currency === 'CAD' ? 'C$' : currency === 'AUD' ? 'A$' : currency === 'CNY' ? '¥' : currency === 'BRL' ? 'R$' : currency === 'MXN' ? '$' : '$'}
                                   </span>
                                   <Input
                                     value={monthlyContribution}
                                     onChange={(e) => setMonthlyContribution(e.target.value)}
                                     placeholder="500"
-                                    className="text-xs sm:text-sm h-9 sm:h-10 md:h-12 pl-6 sm:pl-7 md:pl-8 border-2 border-gray-200 rounded-lg"
+                                    className="text-sm h-10 sm:h-12 pl-8 border-2 border-gray-200 rounded-lg"
                                     data-testid="input-monthly-contribution"
                                   />
                                 </div>
@@ -474,8 +474,8 @@ export default function FutureValueInvestmentCalculator() {
                           </div>
 
                           {/* Display and Analysis Options */}
-                          <div className="space-y-3 sm:space-y-4 bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6">
-                            <h4 className="text-xs sm:text-sm md:text-base font-semibold text-gray-900">Display Options</h4>
+                          <div className="space-y-4 bg-gray-50 rounded-xl p-4 sm:p-6">
+                            <h4 className="text-sm sm:text-base font-semibold text-gray-900">Display Options</h4>
 
                             <div className="flex items-center justify-between gap-2">
                               <div className="space-y-1 flex-1 min-w-0">
@@ -536,10 +536,10 @@ export default function FutureValueInvestmentCalculator() {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 sm:pt-6">
                     <Button
                       onClick={calculateFutureValue}
-                      className="flex-1 h-10 sm:h-12 md:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="flex-1 h-12 sm:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-base sm:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                       data-testid="button-calculate"
                     >
                       Calculate Future Value
@@ -547,7 +547,7 @@ export default function FutureValueInvestmentCalculator() {
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
+                      className="h-12 sm:h-14 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-base sm:text-lg rounded-lg sm:rounded-xl"
                       data-testid="button-reset"
                     >
                       Reset
@@ -558,15 +558,15 @@ export default function FutureValueInvestmentCalculator() {
                 </div>
 
                 {/* Results Section */}
-                <div className="lg:col-span-1 bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10">
-                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">Investment Projection</h2>
+                <div className="lg:col-span-1 bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12">
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">Investment Projection</h2>
 
                   {result ? (
-                    <div className="space-y-3 sm:space-y-4 md:space-y-6" data-testid="investment-results">
+                    <div className="space-y-4 sm:space-y-6" data-testid="investment-results">
                       {/* Future Value Highlight */}
-                      <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 shadow-lg border border-blue-100">
-                        <div className="text-[10px] sm:text-xs md:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-1.5 sm:mb-2">Future Value</div>
-                        <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 break-all" data-testid="text-future-value">
+                      <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border border-blue-100">
+                        <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Future Value</div>
+                        <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 break-all" data-testid="text-future-value">
                           {formatCurrency(result.futureValue)}
                         </div>
                         {enableInflationAdjustment && (
@@ -577,11 +577,11 @@ export default function FutureValueInvestmentCalculator() {
                       </div>
 
                       {/* Investment Breakdown */}
-                      <div className="space-y-2 sm:space-y-3 md:space-y-4">
-                        <div className="bg-white rounded-lg sm:rounded-xl p-2.5 sm:p-3 md:p-4 shadow-sm">
-                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-0.5 sm:gap-1">
-                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Initial Investment</span>
-                            <span className="font-bold text-gray-900 text-xs sm:text-sm md:text-base break-all" data-testid="text-initial-investment">
+                      <div className="space-y-3 sm:space-y-4">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Initial Investment</span>
+                            <span className="font-bold text-gray-900 text-sm sm:text-base break-all" data-testid="text-initial-investment">
                               {formatCurrency(result.initialInvestment)}
                             </span>
                           </div>
@@ -644,11 +644,11 @@ export default function FutureValueInvestmentCalculator() {
                       )}
                     </div>
                   ) : (
-                    <div className="text-center py-8 sm:py-12 md:py-16" data-testid="no-results">
-                      <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-gray-200 rounded-full mx-auto mb-3 sm:mb-4 md:mb-6 flex items-center justify-center">
-                        <div className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-400">$</div>
+                    <div className="text-center py-12 sm:py-16" data-testid="no-results">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
+                        <div className="text-2xl sm:text-3xl font-bold text-gray-400">$</div>
                       </div>
-                      <p className="text-gray-500 text-sm sm:text-base md:text-lg px-3 sm:px-4">Enter investment details to see future value projections</p>
+                      <p className="text-gray-500 text-base sm:text-lg px-4">Enter investment details to see future value projections</p>
                     </div>
                   )}
                 </div>
@@ -658,39 +658,39 @@ export default function FutureValueInvestmentCalculator() {
 
           {/* Yearly Breakdown Table */}
           {result && showYearlyBreakdown && (
-            <Card className="mt-6 sm:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
-              <CardContent className="p-3 sm:p-4 md:p-6 lg:p-8">
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Yearly Investment Growth Breakdown</h3>
-                <div className="overflow-x-auto -mx-3 sm:-mx-4 md:-mx-6 lg:-mx-8 px-3 sm:px-4 md:px-6 lg:px-8">
-                  <table className="w-full min-w-[640px]">
+            <Card className="mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Yearly Investment Growth Breakdown</h3>
+                <div className="overflow-x-auto">
+                  <table className="w-full">
                     <thead>
                       <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
-                        <th className="px-3 sm:px-4 md:px-6 py-2.5 sm:py-3 md:py-4 text-left font-bold text-gray-900 rounded-l-lg text-xs sm:text-sm md:text-base">Year</th>
-                        <th className="px-3 sm:px-4 md:px-6 py-2.5 sm:py-3 md:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm md:text-base">Start Balance</th>
-                        <th className="px-3 sm:px-4 md:px-6 py-2.5 sm:py-3 md:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm md:text-base">Contributions</th>
-                        <th className="px-3 sm:px-4 md:px-6 py-2.5 sm:py-3 md:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm md:text-base">Interest Earned</th>
-                        <th className="px-3 sm:px-4 md:px-6 py-2.5 sm:py-3 md:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm md:text-base">End Balance</th>
-                        {enableInflationAdjustment && <th className="px-3 sm:px-4 md:px-6 py-2.5 sm:py-3 md:py-4 text-right font-bold text-gray-900 rounded-r-lg text-xs sm:text-sm md:text-base">Real Value</th>}
+                        <th className="px-6 py-4 text-left font-bold text-gray-900 rounded-l-lg">Year</th>
+                        <th className="px-6 py-4 text-right font-bold text-gray-900">Start Balance</th>
+                        <th className="px-6 py-4 text-right font-bold text-gray-900">Contributions</th>
+                        <th className="px-6 py-4 text-right font-bold text-gray-900">Interest Earned</th>
+                        <th className="px-6 py-4 text-right font-bold text-gray-900">End Balance</th>
+                        {enableInflationAdjustment && <th className="px-6 py-4 text-right font-bold text-gray-900 rounded-r-lg">Real Value</th>}
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100">
                       {result.yearlyBreakdown.map((year, index) => (
                         <tr key={index} className="hover:bg-blue-50 transition-colors">
-                          <td className="px-3 sm:px-4 md:px-6 py-2.5 sm:py-3 md:py-4 font-medium text-gray-900 text-xs sm:text-sm md:text-base">{year.year}</td>
-                          <td className="px-3 sm:px-4 md:px-6 py-2.5 sm:py-3 md:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm md:text-base">
+                          <td className="px-6 py-4 font-medium text-gray-900">{year.year}</td>
+                          <td className="px-6 py-4 text-right text-gray-900 font-medium">
                             {formatCurrency(year.startBalance)}
                           </td>
-                          <td className="px-3 sm:px-4 md:px-6 py-2.5 sm:py-3 md:py-4 text-right text-blue-600 font-bold text-xs sm:text-sm md:text-base">
+                          <td className="px-6 py-4 text-right text-blue-600 font-bold">
                             {formatCurrency(year.contributions)}
                           </td>
-                          <td className="px-3 sm:px-4 md:px-6 py-2.5 sm:py-3 md:py-4 text-right text-green-600 font-medium text-xs sm:text-sm md:text-base">
+                          <td className="px-6 py-4 text-right text-green-600 font-medium">
                             {formatCurrency(year.interestEarned)}
                           </td>
-                          <td className="px-3 sm:px-4 md:px-6 py-2.5 sm:py-3 md:py-4 text-right text-gray-900 font-bold text-xs sm:text-sm md:text-base">
+                          <td className="px-6 py-4 text-right text-gray-900 font-bold">
                             {formatCurrency(year.endBalance)}
                           </td>
                           {enableInflationAdjustment && (
-                            <td className="px-3 sm:px-4 md:px-6 py-2.5 sm:py-3 md:py-4 text-right text-orange-600 font-medium text-xs sm:text-sm md:text-base">
+                            <td className="px-6 py-4 text-right text-orange-600 font-medium">
                               {formatCurrency(year.realValue)}
                             </td>
                           )}
@@ -704,10 +704,10 @@ export default function FutureValueInvestmentCalculator() {
           )}
 
           {/* SEO Content Section */}
-          <div className="mt-8 sm:mt-12 md:mt-16 grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
-              <CardContent className="p-4 sm:p-6 md:p-8">
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">What is Future Value?</h3>
+          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">What is Future Value?</h3>
                 <div className="space-y-4 text-gray-600">
                   <p>
                     Future Value (FV) is a fundamental financial concept that calculates how much an investment
