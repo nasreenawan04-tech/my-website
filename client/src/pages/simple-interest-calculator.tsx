@@ -10,7 +10,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { Info, Calculator, TrendingUp, Clock, Percent, Download, Share2, PieChart as PieChartIcon, BarChart3, RotateCcw, ChevronRight, Home, ArrowRight } from 'lucide-react';
+import { Info, Calculator, TrendingUp, Clock, Percent, Download, Share2, PieChart as PieChartIcon, BarChart3, RotateCcw, ArrowRight } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip } from 'recharts';
 import { jsPDF } from 'jspdf';
@@ -979,33 +979,6 @@ export default function SimpleInterestCalculator() {
       </Helmet>
       
       <Header />
-      
-      {/* Breadcrumb Navigation */}
-      <nav className="bg-white border-b border-gray-200" aria-label="Breadcrumb">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-          <ol className="flex items-center space-x-2 text-sm" itemScope itemType="https://schema.org/BreadcrumbList">
-            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-              <Link href="/" className="flex items-center text-gray-500 hover:text-blue-600 transition-colors" itemProp="item">
-                <Home className="w-4 h-4" />
-                <span className="sr-only" itemProp="name">Home</span>
-                <meta itemProp="position" content="1" />
-              </Link>
-            </li>
-            <ChevronRight className="w-4 h-4 text-gray-400" />
-            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-              <Link href="/tools/finance-tools" className="text-gray-500 hover:text-blue-600 transition-colors" itemProp="item">
-                <span itemProp="name">Finance Tools</span>
-                <meta itemProp="position" content="2" />
-              </Link>
-            </li>
-            <ChevronRight className="w-4 h-4 text-gray-400" />
-            <li itemProp="itemListElement" itemScope itemType="https://schema.org/ListItem">
-              <span className="text-gray-900 font-medium" itemProp="name">Simple Interest Calculator</span>
-              <meta itemProp="position" content="3" />
-            </li>
-          </ol>
-        </div>
-      </nav>
       
       <main>
         {/* Hero Section */}
