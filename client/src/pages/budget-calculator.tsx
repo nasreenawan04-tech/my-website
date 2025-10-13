@@ -202,47 +202,47 @@ const BudgetCalculator = () => {
       
       <main>
         {/* Hero Section */}
-        <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32 overflow-hidden">
+        <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
-          <div className="relative max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12 text-center">
-            <div className="space-y-4 sm:space-y-6 md:space-y-8 lg:space-y-10">
-              <div className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 md:px-5 md:py-2.5 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200 text-xs sm:text-sm md:text-base">
-                <span className="font-medium text-blue-700">Professional Budget Planner</span>
+          <div className="relative max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
+            <div className="space-y-4 sm:space-y-6 md:space-y-8">
+              <div className="inline-flex items-center px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+                <span className="text-xs sm:text-sm font-medium text-blue-700">Professional Budget Planner</span>
               </div>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0">
                 <span className="block">Smart Budget</span>
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
                   Calculator
                 </span>
               </h1>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-slate-600 max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl xl:max-w-5xl mx-auto leading-relaxed px-2 sm:px-4 md:px-6">
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
                 Track income, expenses, and savings goals with interactive charts and comprehensive financial analysis
               </p>
             </div>
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
           {/* Main Calculator Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
                 {/* Input Section */}
-                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
-                  <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Budget Configuration</h2>
-                    <p className="text-gray-600">Enter your income and expense details for comprehensive budget analysis</p>
+                <div className="lg:col-span-2 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
+                  <div className="text-center sm:text-left">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Budget Configuration</h2>
+                    <p className="text-sm sm:text-base text-gray-600">Enter your income and expense details for comprehensive budget analysis</p>
                   </div>
                   
                   {/* Income Section */}
-                  <div className="space-y-6">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-xl font-bold text-gray-800">Monthly Income</h3>
+                  <div className="space-y-3 sm:space-y-4 md:space-y-6">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
+                      <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-800">Monthly Income</h3>
                       <Button
                         onClick={addIncomeSource}
                         variant="outline"
                         size="sm"
-                        className="rounded-full"
+                        className="rounded-full text-xs sm:text-sm w-full sm:w-auto"
                         data-testid="button-add-income"
                       >
                         Add Source
@@ -250,9 +250,9 @@ const BudgetCalculator = () => {
                     </div>
                     
                     {monthlyIncome.map((income) => (
-                      <div key={income.id} className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                      <div key={income.id} className="grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-3">
                         <div className="md:col-span-2">
-                          <Label htmlFor={`income-name-${income.id}`} className="text-sm font-medium text-gray-700">
+                          <Label htmlFor={`income-name-${income.id}`} className="text-xs sm:text-sm font-medium text-gray-700">
                             Income Source
                           </Label>
                           <Input
@@ -260,23 +260,23 @@ const BudgetCalculator = () => {
                             type="text"
                             value={income.name}
                             onChange={(e) => updateIncomeSource(income.id, 'name', e.target.value)}
-                            className="h-12 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500"
+                            className="h-10 sm:h-12 border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 text-sm sm:text-base"
                             placeholder="Income source name"
                             data-testid={`input-income-name-${income.id}`}
                           />
                         </div>
                         <div className="relative">
-                          <Label htmlFor={`income-amount-${income.id}`} className="text-sm font-medium text-gray-700">
+                          <Label htmlFor={`income-amount-${income.id}`} className="text-xs sm:text-sm font-medium text-gray-700">
                             Amount
                           </Label>
                           <div className="relative">
-                            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                            <span className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base">$</span>
                             <Input
                               id={`income-amount-${income.id}`}
                               type="number"
                               value={income.amount || ''}
                               onChange={(e) => updateIncomeSource(income.id, 'amount', parseFloat(e.target.value) || 0)}
-                              className="h-12 pl-8 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 pl-6 sm:pl-8 border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 text-sm sm:text-base"
                               placeholder="0.00"
                               data-testid={`input-income-amount-${income.id}`}
                             />
@@ -286,7 +286,7 @@ const BudgetCalculator = () => {
                               onClick={() => removeIncomeSource(income.id)}
                               variant="outline"
                               size="sm"
-                              className="absolute top-8 -right-2 w-8 h-8 p-0 rounded-full text-red-600"
+                              className="absolute top-7 sm:top-8 -right-2 w-7 h-7 sm:w-8 sm:h-8 p-0 rounded-full text-red-600 text-base sm:text-lg"
                               data-testid={`button-remove-income-${income.id}`}
                             >
                               ×
@@ -298,14 +298,14 @@ const BudgetCalculator = () => {
                   </div>
 
                   {/* Expenses Section */}
-                  <div className="space-y-6">
-                    <div className="flex items-center justify-between">
-                      <h3 className="text-xl font-bold text-gray-800">Monthly Expenses</h3>
+                  <div className="space-y-3 sm:space-y-4 md:space-y-6">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
+                      <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-800">Monthly Expenses</h3>
                       <Button
                         onClick={addExpenseCategory}
                         variant="outline"
                         size="sm"
-                        className="rounded-full"
+                        className="rounded-full text-xs sm:text-sm w-full sm:w-auto"
                         data-testid="button-add-expense"
                       >
                         Add Category
@@ -313,14 +313,14 @@ const BudgetCalculator = () => {
                     </div>
                     
                     {expenses.map((expense) => (
-                      <div key={expense.id} className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                      <div key={expense.id} className="grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-3">
                         <div className="md:col-span-2">
-                          <Label htmlFor={`expense-name-${expense.id}`} className="text-sm font-medium text-gray-700">
+                          <Label htmlFor={`expense-name-${expense.id}`} className="text-xs sm:text-sm font-medium text-gray-700">
                             Category
                           </Label>
                           <div className="flex items-center space-x-2">
                             <div 
-                              className="w-4 h-4 rounded-full flex-shrink-0"
+                              className="w-3 h-3 sm:w-4 sm:h-4 rounded-full flex-shrink-0"
                               style={{ backgroundColor: expense.color }}
                             ></div>
                             <Input
@@ -328,24 +328,24 @@ const BudgetCalculator = () => {
                               type="text"
                               value={expense.name}
                               onChange={(e) => updateExpenseCategory(expense.id, 'name', e.target.value)}
-                              className="h-12 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 text-sm sm:text-base"
                               placeholder="Category name"
                               data-testid={`input-expense-name-${expense.id}`}
                             />
                           </div>
                         </div>
                         <div className="relative">
-                          <Label htmlFor={`expense-amount-${expense.id}`} className="text-sm font-medium text-gray-700">
+                          <Label htmlFor={`expense-amount-${expense.id}`} className="text-xs sm:text-sm font-medium text-gray-700">
                             Amount
                           </Label>
                           <div className="relative">
-                            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                            <span className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base">$</span>
                             <Input
                               id={`expense-amount-${expense.id}`}
                               type="number"
                               value={expense.amount || ''}
                               onChange={(e) => updateExpenseCategory(expense.id, 'amount', parseFloat(e.target.value) || 0)}
-                              className="h-12 pl-8 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:ring-blue-500"
+                              className="h-10 sm:h-12 pl-6 sm:pl-8 border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 text-sm sm:text-base"
                               placeholder="0.00"
                               data-testid={`input-expense-amount-${expense.id}`}
                             />
@@ -355,7 +355,7 @@ const BudgetCalculator = () => {
                               onClick={() => removeExpenseCategory(expense.id)}
                               variant="outline"
                               size="sm"
-                              className="absolute top-8 -right-2 w-8 h-8 p-0 rounded-full text-red-600"
+                              className="absolute top-7 sm:top-8 -right-2 w-7 h-7 sm:w-8 sm:h-8 p-0 rounded-full text-red-600 text-base sm:text-lg"
                               data-testid={`button-remove-expense-${expense.id}`}
                             >
                               ×
@@ -367,12 +367,12 @@ const BudgetCalculator = () => {
                   </div>
 
                   {/* Savings Goal */}
-                  <div className="space-y-4 bg-gray-50 rounded-xl p-6">
-                    <h3 className="text-xl font-bold text-gray-800">Savings Goal</h3>
-                    <div className="space-y-4">
+                  <div className="space-y-3 sm:space-y-4 bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-800">Savings Goal</h3>
+                    <div className="space-y-3 sm:space-y-4">
                       <div className="flex justify-between items-center">
-                        <span className="text-gray-700 font-medium">Target Savings Rate</span>
-                        <span className="text-2xl font-bold text-blue-600">{savingsGoal}%</span>
+                        <span className="text-sm sm:text-base text-gray-700 font-medium">Target Savings Rate</span>
+                        <span className="text-xl sm:text-2xl font-bold text-blue-600">{savingsGoal}%</span>
                       </div>
                       <input
                         type="range"
@@ -384,7 +384,7 @@ const BudgetCalculator = () => {
                         className="w-full h-2 bg-blue-200 rounded-lg appearance-none cursor-pointer"
                         data-testid="slider-savings-goal"
                       />
-                      <div className="flex justify-between text-sm text-gray-500">
+                      <div className="flex justify-between text-xs sm:text-sm text-gray-500">
                         <span>0%</span>
                         <span>50%</span>
                       </div>
@@ -392,10 +392,10 @@ const BudgetCalculator = () => {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       onClick={calculateBudget}
-                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="flex-1 h-12 sm:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-base sm:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                       data-testid="button-calculate"
                     >
                       Analyze Budget
@@ -403,7 +403,7 @@ const BudgetCalculator = () => {
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      className="h-12 sm:h-14 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-base sm:text-lg rounded-lg sm:rounded-xl"
                       data-testid="button-reset"
                     >
                       Reset
@@ -412,60 +412,60 @@ const BudgetCalculator = () => {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Budget Analysis</h2>
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t lg:border-t-0 lg:border-l">
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Budget Analysis</h2>
                   
                   {result ? (
-                    <div className="space-y-6" data-testid="budget-results">
+                    <div className="space-y-4 sm:space-y-6" data-testid="budget-results">
                       {/* Budget Status */}
-                      <div className={`rounded-2xl p-6 shadow-lg border ${
+                      <div className={`rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border ${
                         result.status === 'excellent' ? 'bg-green-50 border-green-200' :
                         result.status === 'good' ? 'bg-blue-50 border-blue-200' :
                         'bg-red-50 border-red-200'
                       }`}>
-                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Budget Status</div>
-                        <div className={`text-lg font-bold mb-2 ${
+                        <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Budget Status</div>
+                        <div className={`text-base sm:text-lg font-bold mb-2 ${
                           result.status === 'excellent' ? 'text-green-800' :
                           result.status === 'good' ? 'text-blue-800' :
                           'text-red-800'
                         }`}>
                           {result.message}
                         </div>
-                        <div className="text-sm text-gray-600">
+                        <div className="text-xs sm:text-sm text-gray-600">
                           Savings Rate: {result.actualSavingsRate.toFixed(1)}% | Goal: {result.savingsGoal}%
                         </div>
                       </div>
 
                       {/* Financial Summary */}
-                      <div className="space-y-4">
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Total Income</span>
-                            <span className="font-bold text-green-600" data-testid="text-total-income">
+                      <div className="space-y-3 sm:space-y-4">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex justify-between items-center gap-2">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Total Income</span>
+                            <span className="font-bold text-green-600 text-sm sm:text-base" data-testid="text-total-income">
                               {formatCurrency(result.totalIncome)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Total Expenses</span>
-                            <span className="font-bold text-red-600" data-testid="text-total-expenses">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex justify-between items-center gap-2">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Total Expenses</span>
+                            <span className="font-bold text-red-600 text-sm sm:text-base" data-testid="text-total-expenses">
                               {formatCurrency(result.totalExpenses)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Remaining Amount</span>
-                            <span className={`font-bold ${result.remainingAmount >= 0 ? 'text-blue-600' : 'text-red-600'}`} data-testid="text-remaining-amount">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex justify-between items-center gap-2">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Remaining Amount</span>
+                            <span className={`font-bold text-sm sm:text-base ${result.remainingAmount >= 0 ? 'text-blue-600' : 'text-red-600'}`} data-testid="text-remaining-amount">
                               {formatCurrency(result.remainingAmount)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Suggested Savings</span>
-                            <span className="font-bold text-purple-600" data-testid="text-suggested-savings">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex justify-between items-center gap-2">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Suggested Savings</span>
+                            <span className="font-bold text-purple-600 text-sm sm:text-base" data-testid="text-suggested-savings">
                               {formatCurrency(result.suggestedSavings)}
                             </span>
                           </div>
@@ -473,11 +473,11 @@ const BudgetCalculator = () => {
                       </div>
                     </div>
                   ) : (
-                    <div className="text-center py-16" data-testid="no-results">
-                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <div className="text-3xl font-bold text-gray-400">$</div>
+                    <div className="text-center py-8 sm:py-12 md:py-16" data-testid="no-results">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
+                        <div className="text-2xl sm:text-3xl font-bold text-gray-400">$</div>
                       </div>
-                      <p className="text-gray-500 text-lg">Enter your budget details to see financial analysis</p>
+                      <p className="text-gray-500 text-sm sm:text-base md:text-lg px-4">Enter your budget details to see financial analysis</p>
                     </div>
                   )}
                 </div>
@@ -487,11 +487,11 @@ const BudgetCalculator = () => {
 
           {/* Charts Section */}
           {result && (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8 mt-4 sm:mt-6 md:mt-8">
               {/* Expense Breakdown Chart */}
-              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Expense Breakdown</h3>
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+                <CardContent className="p-4 sm:p-6 md:p-8">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Expense Breakdown</h3>
                   {pieData.length > 0 ? (
                     <ResponsiveContainer width="100%" height={300}>
                       <PieChart>
@@ -519,9 +519,9 @@ const BudgetCalculator = () => {
               </Card>
 
               {/* Financial Overview Chart */}
-              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Financial Overview</h3>
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+                <CardContent className="p-4 sm:p-6 md:p-8">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Financial Overview</h3>
                   <ResponsiveContainer width="100%" height={300}>
                     <BarChart data={barData}>
                       <CartesianGrid strokeDasharray="3 3" />
@@ -537,10 +537,10 @@ const BudgetCalculator = () => {
           )}
 
           {/* SEO Content Section */}
-          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">What is Budget Planning?</h3>
+          <div className="mt-8 sm:mt-12 md:mt-16 grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">What is Budget Planning?</h3>
                 <div className="space-y-4 text-gray-600">
                   <p>
                     Budget planning is the process of creating a comprehensive financial plan that outlines your income sources 
@@ -556,9 +556,9 @@ const BudgetCalculator = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">How to Use Our Budget Calculator</h3>
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">How to Use Our Budget Calculator</h3>
                 <div className="space-y-4 text-gray-600">
                   <p>
                     Using our budget calculator is simple and effective:
@@ -577,10 +577,10 @@ const BudgetCalculator = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Budget Categories to Track</h3>
-                <div className="space-y-3 text-gray-600">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Budget Categories to Track</h3>
+                <div className="space-y-2 sm:space-y-3 text-gray-600 text-sm sm:text-base">
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
                     <span><strong>Housing:</strong> Rent, mortgage, property taxes, insurance, maintenance</span>
@@ -609,10 +609,10 @@ const BudgetCalculator = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Benefits of Regular Budgeting</h3>
-                <div className="space-y-3 text-gray-600">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Benefits of Regular Budgeting</h3>
+                <div className="space-y-2 sm:space-y-3 text-gray-600 text-sm sm:text-base">
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
                     <span>Track spending patterns and identify areas to reduce costs</span>
@@ -639,10 +639,10 @@ const BudgetCalculator = () => {
           </div>
 
           {/* Popular Budgeting Methods */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl mt-8">
-            <CardContent className="p-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-8">Popular Budgeting Methods</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl mt-4 sm:mt-6 md:mt-8">
+            <CardContent className="p-4 sm:p-6 md:p-8">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">Popular Budgeting Methods</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 <div className="bg-blue-50 rounded-lg p-6">
                   <h4 className="text-lg font-semibold text-blue-800 mb-3">50/30/20 Rule</h4>
                   <p className="text-blue-700 text-sm mb-4">
@@ -683,10 +683,10 @@ const BudgetCalculator = () => {
           </Card>
 
           {/* Budgeting Tips and Strategies */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Smart Budgeting Tips</h3>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8 mt-4 sm:mt-6 md:mt-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Smart Budgeting Tips</h3>
                 <div className="space-y-4 text-gray-600">
                   <div className="border-l-4 border-blue-500 pl-4">
                     <h4 className="font-semibold text-gray-800 mb-2">Track Everything</h4>
@@ -708,9 +708,9 @@ const BudgetCalculator = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Common Budgeting Mistakes</h3>
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Common Budgeting Mistakes</h3>
                 <div className="space-y-4 text-gray-600">
                   <div className="bg-red-50 rounded-lg p-4">
                     <h4 className="font-semibold text-red-800 mb-2">Unrealistic Expectations</h4>
@@ -734,10 +734,10 @@ const BudgetCalculator = () => {
           </div>
 
           {/* Budget FAQs */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl mt-8">
-            <CardContent className="p-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h3>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl mt-4 sm:mt-6 md:mt-8">
+            <CardContent className="p-4 sm:p-6 md:p-8">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">Frequently Asked Questions</h3>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                 <div className="space-y-6">
                   <div>
                     <h4 className="font-semibold text-gray-800 mb-2">How much should I save each month?</h4>
