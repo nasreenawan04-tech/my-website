@@ -221,65 +221,65 @@ const LoanComparisonCalculator = () => {
 
       <main>
         {/* Hero Section */}
-        <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 overflow-hidden">
+        <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
-          <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="space-y-6 sm:space-y-8">
-              <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+          <div className="relative max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
+            <div className="space-y-4 sm:space-y-6 md:space-y-8">
+              <div className="inline-flex items-center px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
                 <span className="text-xs sm:text-sm font-medium text-blue-700">Financial Analysis Tool</span>
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-slate-900 leading-tight tracking-tight" data-testid="page-title">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0" data-testid="page-title">
                 <span className="block">Loan Comparison</span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
                   Calculator
                 </span>
               </h1>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-slate-600 max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto leading-relaxed px-2 sm:px-0">
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
                 Compare multiple loan offers side-by-side to find the best deal with detailed analysis and savings recommendations
               </p>
             </div>
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
           {/* Main Tool Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-2xl sm:rounded-3xl overflow-hidden">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
               <div className="flex flex-col">
                 {/* Input Section */}
-                <div className="p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 space-y-6 sm:space-y-8">
-                  <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Loan Comparison Tool</h2>
-                    <p className="text-gray-600">Enter details for up to 3 loan offers to compare EMI, interest, and total costs</p>
+                <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
+                  <div className="text-center sm:text-left">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Loan Comparison Tool</h2>
+                    <p className="text-sm sm:text-base text-gray-600">Enter details for up to 3 loan offers to compare EMI, interest, and total costs</p>
                   </div>
 
                   {/* Currency Selection */}
-                  <div className="space-y-3">
-                    <Label htmlFor="currency-select" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                  <div className="space-y-2 sm:space-y-3">
+                    <Label htmlFor="currency-select" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                       Currency
                     </Label>
                     <Select value={currency} onValueChange={setCurrency}>
-                      <SelectTrigger className="h-12 sm:h-14 border-2 border-gray-200 rounded-xl text-base sm:text-lg" data-testid="select-currency">
+                      <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-currency">
                         <SelectValue placeholder="Select currency" />
                       </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="INR">Indian Rupee (₹)</SelectItem>
-                        <SelectItem value="USD">US Dollar ($)</SelectItem>
-                        <SelectItem value="EUR">Euro (€)</SelectItem>
-                        <SelectItem value="GBP">British Pound (£)</SelectItem>
-                        <SelectItem value="JPY">Japanese Yen (¥)</SelectItem>
+                      <SelectContent className="max-h-60 overflow-y-auto">
+                        <SelectItem value="INR" className="text-sm sm:text-base">Indian Rupee (₹)</SelectItem>
+                        <SelectItem value="USD" className="text-sm sm:text-base">US Dollar ($)</SelectItem>
+                        <SelectItem value="EUR" className="text-sm sm:text-base">Euro (€)</SelectItem>
+                        <SelectItem value="GBP" className="text-sm sm:text-base">British Pound (£)</SelectItem>
+                        <SelectItem value="JPY" className="text-sm sm:text-base">Japanese Yen (¥)</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
 
                   {/* Loan Options Input */}
-                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
                     {/* Loan 1 */}
-                    <div className="space-y-4 bg-blue-50 rounded-xl p-4 sm:p-6">
-                      <h3 className="text-lg sm:text-xl font-bold text-blue-900">Loan Option 1</h3>
-                      <div className="space-y-3">
+                    <div className="space-y-3 sm:space-y-4 bg-blue-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6">
+                      <h3 className="text-base sm:text-lg md:text-xl font-bold text-blue-900">Loan Option 1</h3>
+                      <div className="space-y-2 sm:space-y-3">
                         <div>
-                          <Label htmlFor="loan1-amount" className="text-sm font-semibold text-blue-800 uppercase tracking-wide">
+                          <Label htmlFor="loan1-amount" className="text-xs sm:text-sm font-semibold text-blue-800 uppercase tracking-wide">
                             Loan Amount
                           </Label>
                           <Input
@@ -287,12 +287,12 @@ const LoanComparisonCalculator = () => {
                             type="number"
                             value={loan1.amount || ''}
                             onChange={(e) => setLoan1(prev => ({ ...prev, amount: Number(e.target.value) }))}
-                            className="mt-1 h-12 border-2 border-blue-200 rounded-xl text-base focus:border-blue-500 focus:ring-blue-500"
+                            className="mt-1 h-10 sm:h-12 border-2 border-blue-200 rounded-lg sm:rounded-xl text-sm sm:text-base focus:border-blue-500 focus:ring-blue-500 w-full"
                             placeholder="Enter loan amount"
                           />
                         </div>
                         <div>
-                          <Label htmlFor="loan1-rate" className="text-sm font-semibold text-blue-800 uppercase tracking-wide">
+                          <Label htmlFor="loan1-rate" className="text-xs sm:text-sm font-semibold text-blue-800 uppercase tracking-wide">
                             Interest Rate (% per annum)
                           </Label>
                           <Input
@@ -301,12 +301,12 @@ const LoanComparisonCalculator = () => {
                             step="0.1"
                             value={loan1.rate || ''}
                             onChange={(e) => setLoan1(prev => ({ ...prev, rate: Number(e.target.value) }))}
-                            className="mt-1 h-12 border-2 border-blue-200 rounded-xl text-base focus:border-blue-500 focus:ring-blue-500"
+                            className="mt-1 h-10 sm:h-12 border-2 border-blue-200 rounded-lg sm:rounded-xl text-sm sm:text-base focus:border-blue-500 focus:ring-blue-500 w-full"
                             placeholder="Enter interest rate"
                           />
                         </div>
                         <div>
-                          <Label htmlFor="loan1-tenure" className="text-sm font-semibold text-blue-800 uppercase tracking-wide">
+                          <Label htmlFor="loan1-tenure" className="text-xs sm:text-sm font-semibold text-blue-800 uppercase tracking-wide">
                             Loan Tenure (Years)
                           </Label>
                           <Input
@@ -314,7 +314,7 @@ const LoanComparisonCalculator = () => {
                             type="number"
                             value={loan1.tenure || ''}
                             onChange={(e) => setLoan1(prev => ({ ...prev, tenure: Number(e.target.value) }))}
-                            className="mt-1 h-12 border-2 border-blue-200 rounded-xl text-base focus:border-blue-500 focus:ring-blue-500"
+                            className="mt-1 h-10 sm:h-12 border-2 border-blue-200 rounded-lg sm:rounded-xl text-sm sm:text-base focus:border-blue-500 focus:ring-blue-500 w-full"
                             placeholder="Enter tenure in years"
                           />
                         </div>
@@ -322,11 +322,11 @@ const LoanComparisonCalculator = () => {
                     </div>
 
                     {/* Loan 2 */}
-                    <div className="space-y-4 bg-green-50 rounded-xl p-4 sm:p-6">
-                      <h3 className="text-lg sm:text-xl font-bold text-green-900">Loan Option 2</h3>
-                      <div className="space-y-3">
+                    <div className="space-y-3 sm:space-y-4 bg-green-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6">
+                      <h3 className="text-base sm:text-lg md:text-xl font-bold text-green-900">Loan Option 2</h3>
+                      <div className="space-y-2 sm:space-y-3">
                         <div>
-                          <Label htmlFor="loan2-amount" className="text-sm font-semibold text-green-800 uppercase tracking-wide">
+                          <Label htmlFor="loan2-amount" className="text-xs sm:text-sm font-semibold text-green-800 uppercase tracking-wide">
                             Loan Amount
                           </Label>
                           <Input
@@ -334,12 +334,12 @@ const LoanComparisonCalculator = () => {
                             type="number"
                             value={loan2.amount || ''}
                             onChange={(e) => setLoan2(prev => ({ ...prev, amount: Number(e.target.value) }))}
-                            className="mt-1 h-12 border-2 border-green-200 rounded-xl text-base focus:border-green-500 focus:ring-green-500"
+                            className="mt-1 h-10 sm:h-12 border-2 border-green-200 rounded-lg sm:rounded-xl text-sm sm:text-base focus:border-green-500 focus:ring-green-500 w-full"
                             placeholder="Enter loan amount"
                           />
                         </div>
                         <div>
-                          <Label htmlFor="loan2-rate" className="text-sm font-semibold text-green-800 uppercase tracking-wide">
+                          <Label htmlFor="loan2-rate" className="text-xs sm:text-sm font-semibold text-green-800 uppercase tracking-wide">
                             Interest Rate (% per annum)
                           </Label>
                           <Input
@@ -348,12 +348,12 @@ const LoanComparisonCalculator = () => {
                             step="0.1"
                             value={loan2.rate || ''}
                             onChange={(e) => setLoan2(prev => ({ ...prev, rate: Number(e.target.value) }))}
-                            className="mt-1 h-12 border-2 border-green-200 rounded-xl text-base focus:border-green-500 focus:ring-green-500"
+                            className="mt-1 h-10 sm:h-12 border-2 border-green-200 rounded-lg sm:rounded-xl text-sm sm:text-base focus:border-green-500 focus:ring-green-500 w-full"
                             placeholder="Enter interest rate"
                           />
                         </div>
                         <div>
-                          <Label htmlFor="loan2-tenure" className="text-sm font-semibold text-green-800 uppercase tracking-wide">
+                          <Label htmlFor="loan2-tenure" className="text-xs sm:text-sm font-semibold text-green-800 uppercase tracking-wide">
                             Loan Tenure (Years)
                           </Label>
                           <Input
@@ -361,7 +361,7 @@ const LoanComparisonCalculator = () => {
                             type="number"
                             value={loan2.tenure || ''}
                             onChange={(e) => setLoan2(prev => ({ ...prev, tenure: Number(e.target.value) }))}
-                            className="mt-1 h-12 border-2 border-green-200 rounded-xl text-base focus:border-green-500 focus:ring-green-500"
+                            className="mt-1 h-10 sm:h-12 border-2 border-green-200 rounded-lg sm:rounded-xl text-sm sm:text-base focus:border-green-500 focus:ring-green-500 w-full"
                             placeholder="Enter tenure in years"
                           />
                         </div>
@@ -369,11 +369,11 @@ const LoanComparisonCalculator = () => {
                     </div>
 
                     {/* Loan 3 */}
-                    <div className="space-y-4 bg-purple-50 rounded-xl p-4 sm:p-6">
-                      <h3 className="text-lg sm:text-xl font-bold text-purple-900">Loan Option 3</h3>
-                      <div className="space-y-3">
+                    <div className="space-y-3 sm:space-y-4 bg-purple-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6">
+                      <h3 className="text-base sm:text-lg md:text-xl font-bold text-purple-900">Loan Option 3</h3>
+                      <div className="space-y-2 sm:space-y-3">
                         <div>
-                          <Label htmlFor="loan3-amount" className="text-sm font-semibold text-purple-800 uppercase tracking-wide">
+                          <Label htmlFor="loan3-amount" className="text-xs sm:text-sm font-semibold text-purple-800 uppercase tracking-wide">
                             Loan Amount
                           </Label>
                           <Input
@@ -381,12 +381,12 @@ const LoanComparisonCalculator = () => {
                             type="number"
                             value={loan3.amount || ''}
                             onChange={(e) => setLoan3(prev => ({ ...prev, amount: Number(e.target.value) }))}
-                            className="mt-1 h-12 border-2 border-purple-200 rounded-xl text-base focus:border-purple-500 focus:ring-purple-500"
+                            className="mt-1 h-10 sm:h-12 border-2 border-purple-200 rounded-lg sm:rounded-xl text-sm sm:text-base focus:border-purple-500 focus:ring-purple-500 w-full"
                             placeholder="Enter loan amount"
                           />
                         </div>
                         <div>
-                          <Label htmlFor="loan3-rate" className="text-sm font-semibold text-purple-800 uppercase tracking-wide">
+                          <Label htmlFor="loan3-rate" className="text-xs sm:text-sm font-semibold text-purple-800 uppercase tracking-wide">
                             Interest Rate (% per annum)
                           </Label>
                           <Input
@@ -395,12 +395,12 @@ const LoanComparisonCalculator = () => {
                             step="0.1"
                             value={loan3.rate || ''}
                             onChange={(e) => setLoan3(prev => ({ ...prev, rate: Number(e.target.value) }))}
-                            className="mt-1 h-12 border-2 border-purple-200 rounded-xl text-base focus:border-purple-500 focus:ring-purple-500"
+                            className="mt-1 h-10 sm:h-12 border-2 border-purple-200 rounded-lg sm:rounded-xl text-sm sm:text-base focus:border-purple-500 focus:ring-purple-500 w-full"
                             placeholder="Enter interest rate"
                           />
                         </div>
                         <div>
-                          <Label htmlFor="loan3-tenure" className="text-sm font-semibold text-purple-800 uppercase tracking-wide">
+                          <Label htmlFor="loan3-tenure" className="text-xs sm:text-sm font-semibold text-purple-800 uppercase tracking-wide">
                             Loan Tenure (Years)
                           </Label>
                           <Input
@@ -408,7 +408,7 @@ const LoanComparisonCalculator = () => {
                             type="number"
                             value={loan3.tenure || ''}
                             onChange={(e) => setLoan3(prev => ({ ...prev, tenure: Number(e.target.value) }))}
-                            className="mt-1 h-12 border-2 border-purple-200 rounded-xl text-base focus:border-purple-500 focus:ring-purple-500"
+                            className="mt-1 h-10 sm:h-12 border-2 border-purple-200 rounded-lg sm:rounded-xl text-sm sm:text-base focus:border-purple-500 focus:ring-purple-500 w-full"
                             placeholder="Enter tenure in years"
                           />
                         </div>
@@ -417,14 +417,14 @@ const LoanComparisonCalculator = () => {
                   </div>
 
                   {/* Advanced Options */}
-                  <div className="space-y-4 sm:space-y-6 border-t pt-6 sm:pt-8">
-                    <h3 className="text-lg sm:text-xl font-bold text-gray-900">Analysis Options</h3>
+                  <div className="space-y-3 sm:space-y-4 md:space-y-6 border-t pt-4 sm:pt-6 md:pt-8">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900">Analysis Options</h3>
                     
                     <Collapsible open={showAdvanced} onOpenChange={setShowAdvanced}>
                       <CollapsibleTrigger asChild>
                         <Button 
                           variant="ghost" 
-                          className="w-full justify-between text-sm sm:text-base py-3 sm:py-4 h-auto"
+                          className="w-full justify-between text-xs sm:text-sm md:text-base py-2 sm:py-3 md:py-4 h-auto px-3 sm:px-4"
                           data-testid="button-toggle-advanced"
                         >
                           <span className="flex items-center">
@@ -433,12 +433,12 @@ const LoanComparisonCalculator = () => {
                           <span className={`transform transition-transform ${showAdvanced ? 'rotate-180' : ''}`}>▼</span>
                         </Button>
                       </CollapsibleTrigger>
-                      <CollapsibleContent className="space-y-4 sm:space-y-6 mt-4">
+                      <CollapsibleContent className="space-y-3 sm:space-y-4 md:space-y-6 mt-3 sm:mt-4">
                         <Separator />
                         
-                        <div className="bg-gray-50 rounded-xl p-4 sm:p-6">
-                          <h4 className="text-sm sm:text-base font-semibold text-gray-900 mb-4">Comparison Features</h4>
-                          <div className="space-y-3 text-sm text-gray-600">
+                        <div className="bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6">
+                          <h4 className="text-xs sm:text-sm md:text-base font-semibold text-gray-900 mb-3 sm:mb-4">Comparison Features</h4>
+                          <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-gray-600">
                             <div>• Automatic calculation of monthly EMI for all loan options</div>
                             <div>• Total interest payable over the entire loan tenure</div>
                             <div>• Total amount payable including principal and interest</div>
@@ -454,11 +454,11 @@ const LoanComparisonCalculator = () => {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 sm:pt-6">
+                  <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       onClick={performComparison}
                       disabled={!loan1.amount || !loan2.amount || !loan3.amount}
-                      className="flex-1 h-12 sm:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-base sm:text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="w-full sm:w-auto sm:flex-1 h-10 sm:h-12 md:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                       data-testid="button-compare"
                     >
                       Compare Loans
@@ -466,7 +466,7 @@ const LoanComparisonCalculator = () => {
                     <Button
                       onClick={handleSampleData}
                       variant="outline"
-                      className="h-12 sm:h-14 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-base sm:text-lg rounded-xl"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                       data-testid="button-sample-data"
                     >
                       Sample
@@ -474,7 +474,7 @@ const LoanComparisonCalculator = () => {
                     <Button
                       onClick={resetTool}
                       variant="outline"
-                      className="h-12 sm:h-14 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-base sm:text-lg rounded-xl"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                       data-testid="button-reset"
                     >
                       Reset
@@ -484,23 +484,23 @@ const LoanComparisonCalculator = () => {
 
                 {/* Results Section */}
                 {comparisonResults && (
-                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 border-t">
-                    <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">Comparison Results</h2>
+                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Comparison Results</h2>
 
-                    <div className="space-y-6 sm:space-y-8" data-testid="comparison-results">
+                    <div className="space-y-4 sm:space-y-6 md:space-y-8" data-testid="comparison-results">
                       {/* Summary Cards */}
-                      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
+                      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
                         {[comparisonResults.loan1, comparisonResults.loan2, comparisonResults.loan3].map((result, index) => (
                           <div 
                             key={index}
-                            className={`rounded-xl p-4 sm:p-6 border-2 ${
+                            className={`rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border-2 ${
                               index === comparisonResults.bestLoanIndex 
                                 ? 'bg-green-50 border-green-200' 
                                 : 'bg-white border-gray-200'
                             }`}
                           >
-                            <div className="flex items-center justify-between mb-3">
-                              <h3 className={`text-lg font-bold ${
+                            <div className="flex items-center justify-between mb-2 sm:mb-3">
+                              <h3 className={`text-sm sm:text-base md:text-lg font-bold ${
                                 index === 0 ? 'text-blue-900' :
                                 index === 1 ? 'text-green-900' : 'text-purple-900'
                               }`}>
@@ -508,28 +508,28 @@ const LoanComparisonCalculator = () => {
                               </h3>
                               {index === comparisonResults.bestLoanIndex && (
                                 <span className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full font-bold">
-                                  BEST DEAL
+                                  BEST
                                 </span>
                               )}
                             </div>
                             
-                            <div className="space-y-2 text-sm">
-                              <div className="flex justify-between">
+                            <div className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm">
+                              <div className="flex justify-between gap-2">
                                 <span className="text-gray-600">Monthly EMI:</span>
-                                <span className="font-semibold">{formatCurrency(result.emi)}</span>
+                                <span className="font-semibold text-right break-all">{formatCurrency(result.emi)}</span>
                               </div>
-                              <div className="flex justify-between">
+                              <div className="flex justify-between gap-2">
                                 <span className="text-gray-600">Total Interest:</span>
-                                <span className="font-semibold text-red-600">{formatCurrency(result.totalInterest)}</span>
+                                <span className="font-semibold text-red-600 text-right break-all">{formatCurrency(result.totalInterest)}</span>
                               </div>
-                              <div className="flex justify-between">
+                              <div className="flex justify-between gap-2">
                                 <span className="text-gray-600">Total Amount:</span>
-                                <span className="font-bold text-lg">{formatCurrency(result.totalAmount)}</span>
+                                <span className="font-bold text-sm sm:text-base md:text-lg text-right break-all">{formatCurrency(result.totalAmount)}</span>
                               </div>
                               {result.savingsVsBest !== undefined && result.savingsVsBest > 0 && (
-                                <div className="flex justify-between text-orange-600">
+                                <div className="flex justify-between gap-2 text-orange-600">
                                   <span>Extra cost vs best:</span>
-                                  <span className="font-semibold">+{formatCurrency(result.savingsVsBest)}</span>
+                                  <span className="font-semibold text-right break-all">+{formatCurrency(result.savingsVsBest)}</span>
                                 </div>
                               )}
                             </div>
@@ -541,7 +541,7 @@ const LoanComparisonCalculator = () => {
                               }}
                               variant="outline"
                               size="sm"
-                              className="w-full mt-3 rounded-lg"
+                              className="w-full mt-2 sm:mt-3 rounded-lg text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2"
                             >
                               Copy Details
                             </Button>
@@ -550,9 +550,9 @@ const LoanComparisonCalculator = () => {
                       </div>
 
                       {/* Detailed Comparison Table */}
-                      <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-200 overflow-x-auto">
-                        <h3 className="text-lg font-bold text-gray-900 mb-4">Detailed Comparison</h3>
-                        <table className="w-full text-sm">
+                      <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm border border-gray-200 overflow-x-auto">
+                        <h3 className="text-sm sm:text-base md:text-lg font-bold text-gray-900 mb-3 sm:mb-4">Detailed Comparison</h3>
+                        <table className="w-full text-xs sm:text-sm min-w-[500px]">
                           <thead className="bg-gray-50">
                             <tr>
                               <th className="px-4 py-3 text-left font-semibold text-gray-900">Parameter</th>
@@ -615,9 +615,9 @@ const LoanComparisonCalculator = () => {
                       </div>
 
                       {/* Recommendation Banner */}
-                      <div className="bg-green-50 border-l-4 border-green-400 p-4 sm:p-6 rounded-lg">
-                        <h3 className="text-lg font-bold text-green-900 mb-2">Our Recommendation</h3>
-                        <p className="text-green-800">
+                      <div className="bg-green-50 border-l-4 border-green-400 p-3 sm:p-4 md:p-6 rounded-lg">
+                        <h3 className="text-sm sm:text-base md:text-lg font-bold text-green-900 mb-1 sm:mb-2">Our Recommendation</h3>
+                        <p className="text-xs sm:text-sm md:text-base text-green-800">
                           <strong>Loan Option {comparisonResults.bestLoanIndex + 1}</strong> offers the best deal with the lowest total cost of{' '}
                           <strong>{formatCurrency([comparisonResults.loan1, comparisonResults.loan2, comparisonResults.loan3][comparisonResults.bestLoanIndex].totalAmount)}</strong>.
                           {comparisonResults.maxSavings > 0 && (
