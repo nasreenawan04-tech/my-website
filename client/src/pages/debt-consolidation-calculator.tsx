@@ -251,49 +251,49 @@ export default function DebtConsolidationCalculator() {
       
       <main>
         {/* Hero Section */}
-        <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32 overflow-hidden">
+        <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
-          <div className="relative max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12 text-center">
-            <div className="space-y-4 sm:space-y-6 md:space-y-8 lg:space-y-10">
-              <div className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 md:px-5 md:py-2.5 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200 text-xs sm:text-sm md:text-base">
-                <span className="font-medium text-blue-700">Professional Debt Consolidation Calculator</span>
+          <div className="relative max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
+            <div className="space-y-4 sm:space-y-6 md:space-y-8">
+              <div className="inline-flex items-center px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+                <span className="text-xs sm:text-sm font-medium text-blue-700">Professional Debt Consolidation Calculator</span>
               </div>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0">
                 <span className="block">Smart Debt</span>
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
                   Consolidation
                 </span>
               </h1>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-slate-600 max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl xl:max-w-5xl mx-auto leading-relaxed px-2 sm:px-4 md:px-6">
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
                 Calculate potential savings from consolidating multiple debts into a single loan with lower interest rates and simplified payments
               </p>
             </div>
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
           {/* Main Calculator Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+              <div className="flex flex-col">
                 {/* Input Section */}
-                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
-                  <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Debt Consolidation Analysis</h2>
-                    <p className="text-gray-600">Enter your current debts and consolidation loan terms to see potential savings</p>
+                <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
+                  <div className="text-center sm:text-left">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Debt Consolidation Analysis</h2>
+                    <p className="text-sm sm:text-base text-gray-600">Enter your current debts and consolidation loan terms to see potential savings</p>
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                     {/* Currency Selection */}
-                    <div className="space-y-3">
-                      <Label htmlFor="currency" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="currency" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Currency
                       </Label>
                       <Select value={currency} onValueChange={setCurrency}>
-                        <SelectTrigger id="currency" className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-currency">
+                        <SelectTrigger id="currency" className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-currency">
                           <SelectValue />
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="max-h-60 overflow-y-auto">
                           <SelectItem value="USD">USD - US Dollar</SelectItem>
                           <SelectItem value="EUR">EUR - Euro</SelectItem>
                           <SelectItem value="GBP">GBP - British Pound</SelectItem>
@@ -309,8 +309,8 @@ export default function DebtConsolidationCalculator() {
                     </div>
 
                     {/* Consolidation Interest Rate */}
-                    <div className="space-y-3">
-                      <Label htmlFor="consolidation-rate" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="consolidation-rate" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Consolidation Interest Rate
                       </Label>
                       <div className="relative">
@@ -319,7 +319,7 @@ export default function DebtConsolidationCalculator() {
                           type="number"
                           value={consolidationRate}
                           onChange={(e) => setConsolidationRate(e.target.value)}
-                          className="h-14 pr-8 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                           placeholder="12.99"
                           step="0.01"
                           min="0"
@@ -327,13 +327,13 @@ export default function DebtConsolidationCalculator() {
                           data-testid="input-consolidation-rate"
                           aria-label="Consolidation interest rate percentage"
                         />
-                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">%</span>
+                        <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
                       </div>
                     </div>
 
                     {/* Consolidation Term */}
-                    <div className="space-y-3 md:col-span-2">
-                      <Label htmlFor="consolidation-term" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3 md:col-span-2">
+                      <Label htmlFor="consolidation-term" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Loan Term (Years)
                       </Label>
                       <Input
@@ -341,7 +341,7 @@ export default function DebtConsolidationCalculator() {
                         type="number"
                         value={consolidationTerm}
                         onChange={(e) => setConsolidationTerm(e.target.value)}
-                        className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full md:w-48"
+                        className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full md:max-w-xs"
                         placeholder="5"
                         min="1"
                         max="30"
@@ -352,13 +352,13 @@ export default function DebtConsolidationCalculator() {
                   </div>
 
                   {/* Add Debt Section */}
-                  <div className="space-y-6 border-t pt-8">
-                    <h3 className="text-xl font-bold text-gray-900">Add Your Current Debts</h3>
+                  <div className="space-y-4 sm:space-y-6 border-t pt-4 sm:pt-6 md:pt-8">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900">Add Your Current Debts</h3>
                     
-                    <div className="space-y-4 bg-gray-50 rounded-xl p-6">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="space-y-2">
-                          <Label htmlFor="debt-name" className="text-sm font-medium text-gray-700">
+                    <div className="space-y-3 sm:space-y-4 bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
+                        <div className="space-y-1 sm:space-y-2">
+                          <Label htmlFor="debt-name" className="text-xs sm:text-sm font-medium text-gray-700">
                             Debt Name
                           </Label>
                           <Input
@@ -366,25 +366,25 @@ export default function DebtConsolidationCalculator() {
                             placeholder="e.g., Credit Card 1"
                             value={newDebt.name}
                             onChange={(e) => setNewDebt({...newDebt, name: e.target.value})}
-                            className="h-12 border-2 border-gray-200 rounded-lg"
+                            className="h-10 sm:h-12 border-2 border-gray-200 rounded-lg text-sm sm:text-base w-full"
                             data-testid="input-debt-name"
                             aria-label="Debt name or description"
                           />
                         </div>
                         
-                        <div className="space-y-2">
-                          <Label htmlFor="debt-balance" className="text-sm font-medium text-gray-700">
+                        <div className="space-y-1 sm:space-y-2">
+                          <Label htmlFor="debt-balance" className="text-xs sm:text-sm font-medium text-gray-700">
                             Balance
                           </Label>
                           <div className="relative">
-                            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">{getCurrencySymbol()}</span>
+                            <span className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base">{getCurrencySymbol()}</span>
                             <Input
                               id="debt-balance"
                               type="number"
                               placeholder="10000"
                               value={newDebt.balance}
                               onChange={(e) => setNewDebt({...newDebt, balance: e.target.value})}
-                              className="h-12 pl-8 border-2 border-gray-200 rounded-lg"
+                              className="h-10 sm:h-12 pl-6 sm:pl-8 border-2 border-gray-200 rounded-lg text-sm sm:text-base w-full"
                               min="0"
                               step="0.01"
                               data-testid="input-debt-balance"
@@ -393,8 +393,8 @@ export default function DebtConsolidationCalculator() {
                           </div>
                         </div>
                         
-                        <div className="space-y-2">
-                          <Label htmlFor="debt-rate" className="text-sm font-medium text-gray-700">
+                        <div className="space-y-1 sm:space-y-2">
+                          <Label htmlFor="debt-rate" className="text-xs sm:text-sm font-medium text-gray-700">
                             Interest Rate (%)
                           </Label>
                           <div className="relative">
@@ -405,29 +405,29 @@ export default function DebtConsolidationCalculator() {
                               placeholder="18.99"
                               value={newDebt.interestRate}
                               onChange={(e) => setNewDebt({...newDebt, interestRate: e.target.value})}
-                              className="h-12 pr-8 border-2 border-gray-200 rounded-lg"
+                              className="h-10 sm:h-12 pr-6 sm:pr-8 border-2 border-gray-200 rounded-lg text-sm sm:text-base w-full"
                               min="0"
                               max="50"
                               data-testid="input-debt-rate"
                               aria-label="Debt interest rate percentage"
                             />
-                            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">%</span>
+                            <span className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base">%</span>
                           </div>
                         </div>
                         
-                        <div className="space-y-2">
-                          <Label htmlFor="debt-payment" className="text-sm font-medium text-gray-700">
+                        <div className="space-y-1 sm:space-y-2">
+                          <Label htmlFor="debt-payment" className="text-xs sm:text-sm font-medium text-gray-700">
                             Minimum Payment
                           </Label>
                           <div className="relative">
-                            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">{getCurrencySymbol()}</span>
+                            <span className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base">{getCurrencySymbol()}</span>
                             <Input
                               id="debt-payment"
                               type="number"
                               placeholder="250"
                               value={newDebt.minPayment}
                               onChange={(e) => setNewDebt({...newDebt, minPayment: e.target.value})}
-                              className="h-12 pl-8 border-2 border-gray-200 rounded-lg"
+                              className="h-10 sm:h-12 pl-6 sm:pl-8 border-2 border-gray-200 rounded-lg text-sm sm:text-base w-full"
                               min="0"
                               step="0.01"
                               data-testid="input-debt-payment"
@@ -439,7 +439,7 @@ export default function DebtConsolidationCalculator() {
                       
                       <Button 
                         onClick={addDebt} 
-                        className="w-full md:w-auto h-12 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold rounded-xl"
+                        className="w-full md:w-auto h-10 sm:h-12 px-4 sm:px-6 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold rounded-lg sm:rounded-xl text-sm sm:text-base"
                         data-testid="button-add-debt"
                         disabled={!newDebt.name || !newDebt.balance || !newDebt.interestRate || !newDebt.minPayment}
                         aria-label="Add debt to list"
@@ -487,11 +487,11 @@ export default function DebtConsolidationCalculator() {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 sm:pt-6">
                     <Button
                       onClick={calculateConsolidation}
                       disabled={debts.length === 0}
-                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="flex-1 h-10 sm:h-12 md:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
                       data-testid="button-calculate-savings"
                       aria-label="Calculate debt consolidation savings"
                     >
@@ -500,7 +500,7 @@ export default function DebtConsolidationCalculator() {
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      className="h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                       data-testid="button-reset"
                       aria-label="Reset calculator"
                     >
@@ -526,44 +526,44 @@ export default function DebtConsolidationCalculator() {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Consolidation Analysis</h2>
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t lg:border-t-0 lg:border-l">
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center lg:text-left">Consolidation Analysis</h2>
                   
                   {result ? (
-                    <div className="space-y-6" data-testid="consolidation-results">
+                    <div className="space-y-4 sm:space-y-6" data-testid="consolidation-results">
                       {/* Monthly Payment Highlight */}
-                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
-                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">New Monthly Payment</div>
-                        <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" data-testid="text-monthly-payment">
+                      <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border border-blue-100">
+                        <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-1 sm:mb-2">New Monthly Payment</div>
+                        <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 break-all" data-testid="text-monthly-payment">
                           {formatCurrency(result.monthlyPayment)}
                         </div>
-                        <div className="text-sm text-gray-500 mt-2">
+                        <div className="text-xs sm:text-sm text-gray-500 mt-1 sm:mt-2">
                           vs. {formatCurrency(result.currentTotalPayment)} currently
                         </div>
                       </div>
 
                       {/* Savings Summary */}
-                      <div className="space-y-4">
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Monthly Savings</span>
-                            <span className={`font-bold text-lg ${result.monthlySavings > 0 ? 'text-green-600' : 'text-red-600'}`} data-testid="text-monthly-savings">
+                      <div className="space-y-3 sm:space-y-4">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex justify-between items-center gap-2">
+                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Monthly Savings</span>
+                            <span className={`font-bold text-sm sm:text-base md:text-lg ${result.monthlySavings > 0 ? 'text-green-600' : 'text-red-600'} break-all`} data-testid="text-monthly-savings">
                               {result.monthlySavings > 0 ? '+' : ''}{formatCurrency(result.monthlySavings)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Total Interest Savings</span>
-                            <span className={`font-bold text-lg ${(result.currentTotalInterest - result.totalInterest) > 0 ? 'text-green-600' : 'text-red-600'}`} data-testid="text-interest-savings">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex justify-between items-center gap-2">
+                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Total Interest Savings</span>
+                            <span className={`font-bold text-sm sm:text-base md:text-lg ${(result.currentTotalInterest - result.totalInterest) > 0 ? 'text-green-600' : 'text-red-600'} break-all`} data-testid="text-interest-savings">
                               {(result.currentTotalInterest - result.totalInterest) > 0 ? '+' : ''}{formatCurrency(result.currentTotalInterest - result.totalInterest)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Payoff Time</span>
-                            <span className="font-bold text-gray-900" data-testid="text-payoff-time">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex justify-between items-center gap-2">
+                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Payoff Time</span>
+                            <span className="font-bold text-gray-900 text-sm sm:text-base md:text-lg" data-testid="text-payoff-time">
                               {result.termYears} years
                             </span>
                           </div>
@@ -571,11 +571,11 @@ export default function DebtConsolidationCalculator() {
                       </div>
 
                       {/* Recommendation */}
-                      <div className={`rounded-xl p-6 border ${result.monthlySavings > 0 && result.totalSavings > 0 ? 'bg-gradient-to-r from-green-50 to-emerald-50 border-green-200' : 'bg-gradient-to-r from-red-50 to-orange-50 border-red-200'}`}>
-                        <h4 className={`font-bold mb-3 ${result.monthlySavings > 0 && result.totalSavings > 0 ? 'text-green-800' : 'text-red-800'}`}>
+                      <div className={`rounded-lg sm:rounded-xl p-4 sm:p-6 border ${result.monthlySavings > 0 && result.totalSavings > 0 ? 'bg-gradient-to-r from-green-50 to-emerald-50 border-green-200' : 'bg-gradient-to-r from-red-50 to-orange-50 border-red-200'}`}>
+                        <h4 className={`font-bold mb-2 sm:mb-3 text-sm sm:text-base ${result.monthlySavings > 0 && result.totalSavings > 0 ? 'text-green-800' : 'text-red-800'}`}>
                           {result.monthlySavings > 0 && result.totalSavings > 0 ? 'Consolidation Recommended!' : 'Consider Other Options'}
                         </h4>
-                        <p className={`text-sm ${result.monthlySavings > 0 && result.totalSavings > 0 ? 'text-green-700' : 'text-red-700'}`}>
+                        <p className={`text-xs sm:text-sm ${result.monthlySavings > 0 && result.totalSavings > 0 ? 'text-green-700' : 'text-red-700'}`}>
                           {result.monthlySavings > 0 && result.totalSavings > 0 
                             ? `You could save ${formatCurrency(result.monthlySavings)} per month and ${formatCurrency(result.totalSavings)} in total interest costs.`
                             : 'This consolidation loan may not provide significant savings. Look for better interest rates or consider alternative debt repayment strategies.'
@@ -584,11 +584,11 @@ export default function DebtConsolidationCalculator() {
                       </div>
                     </div>
                   ) : (
-                    <div className="text-center py-16">
-                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <div className="text-3xl font-bold text-gray-400">$</div>
+                    <div className="text-center py-8 sm:py-12 md:py-16">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
+                        <div className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-400">$</div>
                       </div>
-                      <p className="text-gray-500 text-lg">Add your debts and calculate to see consolidation analysis</p>
+                      <p className="text-gray-500 text-sm sm:text-base md:text-lg px-2">Add your debts and calculate to see consolidation analysis</p>
                     </div>
                   )}
                 </div>
@@ -598,10 +598,10 @@ export default function DebtConsolidationCalculator() {
 
           {/* Detailed Breakdown */}
           {result && showBreakdown && (
-            <Card className="mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Detailed Financial Breakdown</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <Card className="mt-4 sm:mt-6 md:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Detailed Financial Breakdown</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                   <div>
                     <h4 className="text-lg font-semibold text-gray-800 mb-4">Current Debt Situation</h4>
                     <div className="space-y-3">
@@ -650,10 +650,10 @@ export default function DebtConsolidationCalculator() {
           )}
 
           {/* SEO Content Section */}
-          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">What is Debt Consolidation?</h3>
+          <div className="mt-8 sm:mt-12 md:mt-16 grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">What is Debt Consolidation?</h3>
                 <div className="space-y-4 text-gray-600">
                   <p>
                     Debt consolidation is a financial strategy that involves combining multiple debts into a single loan, 
