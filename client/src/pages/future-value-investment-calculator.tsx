@@ -248,14 +248,14 @@ export default function FutureValueInvestmentCalculator() {
                     <p className="text-sm sm:text-base text-gray-600">Enter your investment details to project future growth with compound interest</p>
                   </div>
 
-                  <div className="grid grid-cols-1 gap-3 sm:gap-4 md:gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                     {/* Currency Selection */}
                     <div className="space-y-2 sm:space-y-3">
                       <Label htmlFor="currency" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Currency
                       </Label>
                       <Select value={currency} onValueChange={setCurrency}>
-                        <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg" data-testid="select-currency">
+                        <SelectTrigger className="h-12 sm:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-base sm:text-lg" data-testid="select-currency">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -277,7 +277,7 @@ export default function FutureValueInvestmentCalculator() {
                     <div className="space-y-2 sm:space-y-3">
                       <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">Compound Frequency</Label>
                       <Select value={compoundFrequency} onValueChange={setCompoundFrequency}>
-                        <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg" data-testid="select-compound-frequency">
+                        <SelectTrigger className="h-12 sm:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-base sm:text-lg" data-testid="select-compound-frequency">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -296,7 +296,7 @@ export default function FutureValueInvestmentCalculator() {
                         Initial Investment
                       </Label>
                       <div className="relative">
-                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">
+                        <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">
                           {currency === 'USD' ? '$' : currency === 'EUR' ? '€' : currency === 'GBP' ? '£' : currency === 'INR' ? '₹' : currency === 'JPY' ? '¥' : currency === 'CAD' ? 'C$' : currency === 'AUD' ? 'A$' : currency === 'CNY' ? '¥' : currency === 'BRL' ? 'R$' : currency === 'MXN' ? '$' : '$'}
                         </span>
                         <Input
@@ -304,7 +304,7 @@ export default function FutureValueInvestmentCalculator() {
                           type="number"
                           value={initialInvestment}
                           onChange={(e) => setInitialInvestment(e.target.value)}
-                          className="h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-12 sm:h-14 pl-7 sm:pl-8 text-base sm:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500"
                           placeholder="10,000"
                           step="0.01"
                           data-testid="input-initial-investment"
@@ -323,12 +323,12 @@ export default function FutureValueInvestmentCalculator() {
                           type="number"
                           value={annualInterestRate}
                           onChange={(e) => setAnnualInterestRate(e.target.value)}
-                          className="h-10 sm:h-12 md:h-14 pr-7 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-12 sm:h-14 pr-7 sm:pr-8 text-base sm:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500"
                           placeholder="8.00"
                           step="0.01"
                           data-testid="input-annual-rate"
                         />
-                        <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-base md:text-lg">%</span>
+                        <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-base sm:text-lg">%</span>
                       </div>
                     </div>
 
@@ -340,13 +340,13 @@ export default function FutureValueInvestmentCalculator() {
                           type="number"
                           value={investmentPeriod}
                           onChange={(e) => setInvestmentPeriod(e.target.value)}
-                          className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                          className="h-12 sm:h-14 text-base sm:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500"
                           placeholder="10"
                           min="1"
                           data-testid="input-investment-period"
                         />
                         <Select value={timeUnit} onValueChange={setTimeUnit}>
-                          <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg" data-testid="select-time-unit">
+                          <SelectTrigger className="h-12 sm:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-base sm:text-lg" data-testid="select-time-unit">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -539,7 +539,7 @@ export default function FutureValueInvestmentCalculator() {
                   <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 sm:pt-6">
                     <Button
                       onClick={calculateFutureValue}
-                      className="flex-1 h-11 sm:h-12 md:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="flex-1 h-12 sm:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-base sm:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                       data-testid="button-calculate"
                     >
                       Calculate Future Value
@@ -547,7 +547,7 @@ export default function FutureValueInvestmentCalculator() {
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-11 sm:h-12 md:h-14 px-5 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
+                      className="h-12 sm:h-14 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-base sm:text-lg rounded-lg sm:rounded-xl"
                       data-testid="button-reset"
                     >
                       Reset
@@ -559,14 +559,14 @@ export default function FutureValueInvestmentCalculator() {
 
                 {/* Results Section */}
                 <div className="lg:col-span-1 bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12">
-                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">Investment Projection</h2>
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">Investment Projection</h2>
 
                   {result ? (
-                    <div className="space-y-3 sm:space-y-4 md:space-y-6" data-testid="investment-results">
+                    <div className="space-y-4 sm:space-y-6" data-testid="investment-results">
                       {/* Future Value Highlight */}
-                      <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-6 shadow-lg border border-blue-100">
-                        <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-1 sm:mb-2">Future Value</div>
-                        <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 break-all" data-testid="text-future-value">
+                      <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border border-blue-100">
+                        <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Future Value</div>
+                        <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 break-all" data-testid="text-future-value">
                           {formatCurrency(result.futureValue)}
                         </div>
                         {enableInflationAdjustment && (
@@ -577,45 +577,45 @@ export default function FutureValueInvestmentCalculator() {
                       </div>
 
                       {/* Investment Breakdown */}
-                      <div className="space-y-2 sm:space-y-3 md:space-y-4">
-                        <div className="bg-white rounded-lg sm:rounded-xl p-2.5 sm:p-3 md:p-4 shadow-sm">
+                      <div className="space-y-3 sm:space-y-4">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
-                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Initial Investment</span>
-                            <span className="font-bold text-gray-900 text-xs sm:text-sm md:text-base break-all" data-testid="text-initial-investment">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Initial Investment</span>
+                            <span className="font-bold text-gray-900 text-sm sm:text-base break-all" data-testid="text-initial-investment">
                               {formatCurrency(result.initialInvestment)}
                             </span>
                           </div>
                         </div>
                         {enableMonthlyContributions && result.monthlyContributions > 0 && (
-                          <div className="bg-white rounded-lg sm:rounded-xl p-2.5 sm:p-3 md:p-4 shadow-sm">
+                          <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
-                              <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Total Monthly Contributions</span>
-                              <span className="font-bold text-blue-600 text-xs sm:text-sm md:text-base break-all" data-testid="text-monthly-contributions">
+                              <span className="font-medium text-gray-700 text-sm sm:text-base">Total Monthly Contributions</span>
+                              <span className="font-bold text-blue-600 text-sm sm:text-base break-all" data-testid="text-monthly-contributions">
                                 {formatCurrency(result.totalMonthlyContributions)}
                               </span>
                             </div>
                           </div>
                         )}
-                        <div className="bg-white rounded-lg sm:rounded-xl p-2.5 sm:p-3 md:p-4 shadow-sm">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
-                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Total Growth</span>
-                            <span className="font-bold text-green-600 text-xs sm:text-sm md:text-base break-all" data-testid="text-total-growth">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Total Growth</span>
+                            <span className="font-bold text-green-600 text-sm sm:text-base break-all" data-testid="text-total-growth">
                               {formatCurrency(result.totalGrowth)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-lg sm:rounded-xl p-2.5 sm:p-3 md:p-4 shadow-sm">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
-                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Total Contributions</span>
-                            <span className="font-bold text-gray-900 text-xs sm:text-sm md:text-base break-all" data-testid="text-total-contributions">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Total Contributions</span>
+                            <span className="font-bold text-gray-900 text-sm sm:text-base break-all" data-testid="text-total-contributions">
                               {formatCurrency(result.totalContributions)}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-lg sm:rounded-xl p-2.5 sm:p-3 md:p-4 shadow-sm">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
-                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Average Annual Return</span>
-                            <span className="font-bold text-purple-600 text-xs sm:text-sm md:text-base" data-testid="text-annual-return">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Average Annual Return</span>
+                            <span className="font-bold text-purple-600 text-sm sm:text-base" data-testid="text-annual-return">
                               {result.averageAnnualReturn.toFixed(2)}%
                             </span>
                           </div>
@@ -624,18 +624,18 @@ export default function FutureValueInvestmentCalculator() {
 
                       {/* Inflation Adjusted Benefits */}
                       {enableInflationAdjustment && (
-                        <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border border-orange-200">
-                          <h4 className="font-bold text-orange-800 mb-2 sm:mb-3 md:mb-4 text-sm sm:text-base md:text-lg">Inflation Impact Analysis</h4>
-                          <div className="space-y-2 sm:space-y-3">
-                            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
-                              <span className="text-orange-700 font-medium text-xs sm:text-sm md:text-base">Real Future Value:</span>
-                              <span className="font-bold text-orange-800 text-sm sm:text-base md:text-lg">
+                        <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl p-6 border border-orange-200">
+                          <h4 className="font-bold text-orange-800 mb-4 text-lg">Inflation Impact Analysis</h4>
+                          <div className="space-y-3">
+                            <div className="flex justify-between items-center">
+                              <span className="text-orange-700 font-medium">Real Future Value:</span>
+                              <span className="font-bold text-orange-800 text-lg">
                                 {formatCurrency(result.realValue)}
                               </span>
                             </div>
-                            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
-                              <span className="text-orange-700 font-medium text-xs sm:text-sm md:text-base">Inflation-Adjusted Gains:</span>
-                              <span className={`font-bold text-sm sm:text-base md:text-lg ${result.inflationAdjustedGains >= 0 ? 'text-green-800' : 'text-red-800'}`}>
+                            <div className="flex justify-between items-center">
+                              <span className="text-orange-700 font-medium">Inflation-Adjusted Gains:</span>
+                              <span className={`font-bold text-lg ${result.inflationAdjustedGains >= 0 ? 'text-green-800' : 'text-red-800'}`}>
                                 {formatCurrency(result.inflationAdjustedGains)}
                               </span>
                             </div>
@@ -658,48 +658,46 @@ export default function FutureValueInvestmentCalculator() {
 
           {/* Yearly Breakdown Table */}
           {result && showYearlyBreakdown && (
-            <Card className="mt-6 sm:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
-              <CardContent className="p-4 sm:p-6 md:p-8">
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Yearly Investment Growth Breakdown</h3>
-                <div className="overflow-x-auto -mx-4 sm:mx-0">
-                  <div className="inline-block min-w-full align-middle">
-                    <table className="w-full">
-                      <thead>
-                        <tr className="bg-gradient-to-r from-gray-50 to-blue-50">
-                          <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-left font-bold text-gray-900 text-xs sm:text-sm md:text-base whitespace-nowrap">Year</th>
-                          <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm md:text-base whitespace-nowrap">Start Balance</th>
-                          <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm md:text-base whitespace-nowrap">Contributions</th>
-                          <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm md:text-base whitespace-nowrap">Interest Earned</th>
-                          <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm md:text-base whitespace-nowrap">End Balance</th>
-                          {enableInflationAdjustment && <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm md:text-base whitespace-nowrap">Real Value</th>}
+            <Card className="mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Yearly Investment Growth Breakdown</h3>
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead>
+                      <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
+                        <th className="px-6 py-4 text-left font-bold text-gray-900 rounded-l-lg">Year</th>
+                        <th className="px-6 py-4 text-right font-bold text-gray-900">Start Balance</th>
+                        <th className="px-6 py-4 text-right font-bold text-gray-900">Contributions</th>
+                        <th className="px-6 py-4 text-right font-bold text-gray-900">Interest Earned</th>
+                        <th className="px-6 py-4 text-right font-bold text-gray-900">End Balance</th>
+                        {enableInflationAdjustment && <th className="px-6 py-4 text-right font-bold text-gray-900 rounded-r-lg">Real Value</th>}
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-100">
+                      {result.yearlyBreakdown.map((year, index) => (
+                        <tr key={index} className="hover:bg-blue-50 transition-colors">
+                          <td className="px-6 py-4 font-medium text-gray-900">{year.year}</td>
+                          <td className="px-6 py-4 text-right text-gray-900 font-medium">
+                            {formatCurrency(year.startBalance)}
+                          </td>
+                          <td className="px-6 py-4 text-right text-blue-600 font-bold">
+                            {formatCurrency(year.contributions)}
+                          </td>
+                          <td className="px-6 py-4 text-right text-green-600 font-medium">
+                            {formatCurrency(year.interestEarned)}
+                          </td>
+                          <td className="px-6 py-4 text-right text-gray-900 font-bold">
+                            {formatCurrency(year.endBalance)}
+                          </td>
+                          {enableInflationAdjustment && (
+                            <td className="px-6 py-4 text-right text-orange-600 font-medium">
+                              {formatCurrency(year.realValue)}
+                            </td>
+                          )}
                         </tr>
-                      </thead>
-                      <tbody className="divide-y divide-gray-100">
-                        {result.yearlyBreakdown.map((year, index) => (
-                          <tr key={index} className="hover:bg-blue-50 transition-colors">
-                            <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 font-medium text-gray-900 text-xs sm:text-sm md:text-base">{year.year}</td>
-                            <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm md:text-base whitespace-nowrap">
-                              {formatCurrency(year.startBalance)}
-                            </td>
-                            <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-blue-600 font-bold text-xs sm:text-sm md:text-base whitespace-nowrap">
-                              {formatCurrency(year.contributions)}
-                            </td>
-                            <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-green-600 font-medium text-xs sm:text-sm md:text-base whitespace-nowrap">
-                              {formatCurrency(year.interestEarned)}
-                            </td>
-                            <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-gray-900 font-bold text-xs sm:text-sm md:text-base whitespace-nowrap">
-                              {formatCurrency(year.endBalance)}
-                            </td>
-                            {enableInflationAdjustment && (
-                              <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 text-right text-orange-600 font-medium text-xs sm:text-sm md:text-base whitespace-nowrap">
-                                {formatCurrency(year.realValue)}
-                              </td>
-                            )}
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               </CardContent>
             </Card>
