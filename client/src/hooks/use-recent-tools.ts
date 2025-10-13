@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Tool } from '@/data/tools';
 import { 
   getRecentTools, 
@@ -21,13 +21,13 @@ export const useRecentTools = () => {
     };
   }, []);
 
-  const addRecent = (tool: Tool) => {
+  const addRecent = useCallback((tool: Tool) => {
     addToRecentTools(tool);
-  };
+  }, []);
 
-  const clearRecent = () => {
+  const clearRecent = useCallback(() => {
     clearRecentTools();
-  };
+  }, []);
 
   return {
     recentTools,

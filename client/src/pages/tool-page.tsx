@@ -161,7 +161,7 @@ const ToolPage = () => {
       setToolComponent(null);
       setIsLoading(false);
     }
-  }, [location, addRecent]);
+  }, [location]);
 
   if (isLoading) {
     return <PageLoadingSpinner />;
