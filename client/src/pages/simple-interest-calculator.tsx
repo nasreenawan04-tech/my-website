@@ -2183,7 +2183,7 @@ export default function SimpleInterestCalculator() {
                     <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-blue-600 transition-colors">
                       Loan Calculator
                     </h3>
-                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-3">
+                    <p className="hidden sm:block text-xs sm:text-sm text-gray-600 leading-relaxed mb-3">
                       Calculate monthly payments for any loan with customizable terms and frequencies
                     </p>
                     <div className="flex items-center text-blue-600 text-sm font-medium">
