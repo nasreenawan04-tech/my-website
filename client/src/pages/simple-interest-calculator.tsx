@@ -1890,54 +1890,50 @@ export default function SimpleInterestCalculator() {
             </Card>
 
             {/* FAQ Section */}
-            <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-xl sm:rounded-2xl">
-              <CardContent className="p-4 sm:p-6 md:p-8">
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-6 sm:mb-8">Frequently Asked Questions About Simple Interest</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-                  <div className="space-y-4 sm:space-y-6">
-                    <div>
-                      <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2 sm:mb-3">How do I calculate simple interest manually?</h3>
-                      <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
-                        Use the formula SI = P × R × T. Multiply your principal amount by the interest rate (as a decimal) and the time in years. For example, $5,000 at 4% for 2 years: $5,000 × 0.04 × 2 = $400 interest.
-                      </p>
-                    </div>
-
-                    <div>
-                      <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2 sm:mb-3">What's the difference between simple interest and APR?</h3>
-                      <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
-                        Simple interest only accounts for the principal and interest rate. APR (Annual Percentage Rate) includes additional fees like origination fees, closing costs, and other charges, giving you the true cost of borrowing.
-                      </p>
-                    </div>
-
-                    <div>
-                      <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2 sm:mb-3">Can I use this calculator for monthly payments?</h3>
-                      <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
-                        Yes! Our calculator shows monthly interest amounts in the results breakdown. For loans with monthly payments, you can divide the total interest by the number of months to estimate average monthly interest charges.
-                      </p>
-                    </div>
+            <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-lg sm:rounded-xl md:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6 lg:mb-8">Frequently Asked Questions About Simple Interest</h2>
+                <div className="space-y-4 sm:space-y-5 md:space-y-6">
+                  <div className="border-l-4 border-blue-500 pl-4 sm:pl-5 md:pl-6">
+                    <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 sm:mb-3">How do I calculate simple interest manually?</h3>
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                      Use the formula SI = P × R × T. Multiply your principal amount by the interest rate (as a decimal) and the time in years. For example, $5,000 at 4% for 2 years: $5,000 × 0.04 × 2 = $400 interest.
+                    </p>
                   </div>
 
-                  <div className="space-y-4 sm:space-y-6">
-                    <div>
-                      <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2 sm:mb-3">Why is simple interest better for borrowers?</h3>
-                      <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
-                        Simple interest calculates interest only on the principal, so you pay less total interest compared to compound interest. This makes simple interest loans more affordable, especially for short-term borrowing needs.
-                      </p>
-                    </div>
+                  <div className="border-l-4 border-green-500 pl-4 sm:pl-5 md:pl-6">
+                    <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 sm:mb-3">What's the difference between simple interest and APR?</h3>
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                      Simple interest only accounts for the principal and interest rate. APR (Annual Percentage Rate) includes additional fees like origination fees, closing costs, and other charges, giving you the true cost of borrowing.
+                    </p>
+                  </div>
 
-                    <div>
-                      <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2 sm:mb-3">How accurate is this simple interest calculator?</h3>
-                      <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
-                        Our calculator uses the standard SI = P × R × T formula and provides accurate results for planning purposes. For official loan documents, always verify with your lender as they may include additional fees or use different calculation methods.
-                      </p>
-                    </div>
+                  <div className="border-l-4 border-purple-500 pl-4 sm:pl-5 md:pl-6">
+                    <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 sm:mb-3">Can I use this calculator for monthly payments?</h3>
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                      Yes! Our calculator shows monthly interest amounts in the results breakdown. For loans with monthly payments, you can divide the total interest by the number of months to estimate average monthly interest charges.
+                    </p>
+                  </div>
 
-                    <div>
-                      <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2 sm:mb-3">Can I calculate simple interest for days or months?</h3>
-                      <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
-                        Yes! Select "Months" in the time period dropdown for calculations less than a year. For daily calculations, convert days to years by dividing by 365 (e.g., 90 days = 90/365 = 0.247 years).
-                      </p>
-                    </div>
+                  <div className="border-l-4 border-orange-500 pl-4 sm:pl-5 md:pl-6">
+                    <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 sm:mb-3">Why is simple interest better for borrowers?</h3>
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                      Simple interest calculates interest only on the principal, so you pay less total interest compared to compound interest. This makes simple interest loans more affordable, especially for short-term borrowing needs.
+                    </p>
+                  </div>
+
+                  <div className="border-l-4 border-indigo-500 pl-4 sm:pl-5 md:pl-6">
+                    <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 sm:mb-3">How accurate is this simple interest calculator?</h3>
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                      Our calculator uses the standard SI = P × R × T formula and provides accurate results for planning purposes. For official loan documents, always verify with your lender as they may include additional fees or use different calculation methods.
+                    </p>
+                  </div>
+
+                  <div className="border-l-4 border-pink-500 pl-4 sm:pl-5 md:pl-6">
+                    <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 sm:mb-3">Can I calculate simple interest for days or months?</h3>
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                      Yes! Select "Months" in the time period dropdown for calculations less than a year. For daily calculations, convert days to years by dividing by 365 (e.g., 90 days = 90/365 = 0.247 years).
+                    </p>
                   </div>
                 </div>
               </CardContent>
