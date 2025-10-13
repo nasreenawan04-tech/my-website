@@ -1493,12 +1493,12 @@ export default function LoanCalculator() {
 
                   {result && (
                     <>
-                      <div className="flex flex-wrap justify-center gap-2 sm:gap-3 pt-3 sm:pt-4 print:hidden">
+                      <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 print:hidden">
                         <Button
                           onClick={() => setShowAmortization(!showAmortization)}
                           variant="outline"
                           size="sm"
-                          className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                          className="text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg"
                           data-testid="button-amortization"
                         >
                           {showAmortization ? 'Hide' : 'Show'} Payment Schedule
@@ -1507,35 +1507,35 @@ export default function LoanCalculator() {
                           onClick={() => setShowChart(!showChart)}
                           variant="outline"
                           size="sm"
-                          className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                          className="text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg"
                           data-testid="button-show-chart"
                         >
-                          <PieChart className="w-4 h-4 mr-1" />
+                          <PieChart className="w-4 h-4 mr-1.5" />
                           {showChart ? 'Hide' : 'Show'} Chart
                         </Button>
                         <Button
-                          onClick={addToComparison}
+                          onClick={handleShare}
                           variant="outline"
                           size="sm"
-                          className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
-                          data-testid="button-add-comparison"
+                          className="text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg"
                         >
-                          Add to Comparison
+                          <Share2 className="w-4 h-4 mr-1.5" />
+                          Share
                         </Button>
                         <Button
                           onClick={handleDownloadPDF}
                           variant="outline"
                           size="sm"
-                          className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                          className="text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg"
                           data-testid="button-export-pdf"
                         >
-                          <Download className="w-4 h-4 mr-1" />
+                          <Download className="w-4 h-4 mr-1.5" />
                           Export PDF
                         </Button>
                       </div>
 
                       {/* Social Share Section */}
-                      <div className="border-t pt-4">
+                      <div className="border-t pt-4 mt-4">
                         <p className="text-center text-sm font-medium text-gray-700 mb-3">Share your results:</p>
                         <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
                           <Button
