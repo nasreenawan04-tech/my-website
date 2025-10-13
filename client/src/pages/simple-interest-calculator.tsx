@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'wouter';
@@ -96,16 +95,16 @@ export default function SimpleInterestCalculator() {
     // Calculate yearly breakdown
     const yearlyBreakdown = [];
     const years = Math.ceil(t);
-    
+
     for (let year = 1; year <= years; year++) {
       const currentYearTime = Math.min(year, t);
       const previousYearTime = Math.min(year - 1, t);
-      
+
       const cumulativeInterest = p * r * currentYearTime;
       const previousCumulativeInterest = p * r * previousYearTime;
       const interestEarned = cumulativeInterest - previousCumulativeInterest;
       const totalAmountYear = p + cumulativeInterest;
-      
+
       yearlyBreakdown.push({
         year,
         interestEarned,
@@ -189,9 +188,9 @@ export default function SimpleInterestCalculator() {
       time: timePeriod,
       unit: timeUnit
     });
-    
+
     const shareUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
-    
+
     try {
       await navigator.clipboard.writeText(shareUrl);
       toast({
@@ -219,94 +218,94 @@ export default function SimpleInterestCalculator() {
     // Header
     doc.setFillColor(59, 130, 246);
     doc.rect(0, 0, pageWidth, 38, 'F');
-    
+
     doc.setFontSize(26);
     doc.setTextColor(255, 255, 255);
     doc.setFont('helvetica', 'bold');
     doc.text('DapsiWow', pageWidth / 2, yPos + 5, { align: 'center' });
-    
+
     yPos += 14;
     doc.setFontSize(11);
     doc.setFont('helvetica', 'normal');
     doc.text('Yearly Interest Breakdown Report', pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 6;
     doc.setFontSize(8);
     doc.setTextColor(230, 240, 255);
-    const currentDate = new Date().toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'long', 
+    const currentDate = new Date().toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
       day: 'numeric'
     });
     doc.text(`Report Date: ${currentDate}`, pageWidth / 2, yPos, { align: 'center' });
 
     yPos = 48;
-    
+
     // Table header
     doc.setFillColor(59, 130, 246);
     doc.rect(margin, yPos, pageWidth - (2 * margin), 8, 'F');
-    
+
     doc.setFontSize(8);
     doc.setTextColor(255, 255, 255);
     doc.setFont('helvetica', 'bold');
-    
+
     const colWidths = [20, 45, 50, 45];
     const colX = [margin + 2, margin + 25, margin + 72, margin + 125];
-    
+
     doc.text('Year', colX[0], yPos + 5);
     doc.text('Interest Earned', colX[1], yPos + 5);
     doc.text('Cumulative Interest', colX[2], yPos + 5);
     doc.text('Total Amount', colX[3], yPos + 5);
-    
+
     yPos += 8;
-    
+
     // Table rows
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(7);
-    
+
     result.yearlyBreakdown.forEach((year, index) => {
       // Check if we need a new page
       if (yPos > pageHeight - 30) {
         doc.addPage();
         yPos = 20;
-        
+
         // Repeat header on new page
         doc.setFillColor(59, 130, 246);
         doc.rect(margin, yPos, pageWidth - (2 * margin), 8, 'F');
-        
+
         doc.setFontSize(8);
         doc.setTextColor(255, 255, 255);
         doc.setFont('helvetica', 'bold');
-        
+
         doc.text('Year', colX[0], yPos + 5);
         doc.text('Interest Earned', colX[1], yPos + 5);
         doc.text('Cumulative Interest', colX[2], yPos + 5);
         doc.text('Total Amount', colX[3], yPos + 5);
-        
+
         yPos += 8;
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(7);
       }
-      
+
       // Alternate row colors
       if (index % 2 === 0) {
         doc.setFillColor(248, 250, 252);
         doc.rect(margin, yPos, pageWidth - (2 * margin), 6, 'F');
       }
-      
+
       doc.setTextColor(0, 0, 0);
       doc.text(year.year.toString(), colX[0], yPos + 4);
-      
+
       doc.setTextColor(34, 197, 94);
       doc.setFont('helvetica', 'bold');
       doc.text(formatCurrency(year.interestEarned), colX[1], yPos + 4);
-      
+
       doc.setTextColor(59, 130, 246);
       doc.text(formatCurrency(year.cumulativeInterest), colX[2], yPos + 4);
-      
+
       doc.setTextColor(0, 0, 0);
       doc.text(formatCurrency(year.totalAmount), colX[3], yPos + 4);
-      
+
       doc.setFont('helvetica', 'normal');
       yPos += 6;
     });
@@ -316,19 +315,19 @@ export default function SimpleInterestCalculator() {
     doc.setDrawColor(220, 220, 220);
     doc.setLineWidth(0.2);
     doc.line(margin, yPos, pageWidth - margin, yPos);
-    
+
     yPos += 4;
     doc.setFontSize(7);
     doc.setTextColor(120, 120, 120);
     doc.setFont('helvetica', 'italic');
     doc.text('This breakdown shows how your interest accumulates year by year with simple interest calculation.', pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 6;
     doc.setFontSize(8);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(59, 130, 246);
     doc.textWithLink('DapsiWow.com', pageWidth / 2, yPos, { align: 'center', url: 'https://dapsiwow.com' });
-    
+
     yPos += 3;
     doc.setFontSize(7);
     doc.setFont('helvetica', 'normal');
@@ -336,9 +335,9 @@ export default function SimpleInterestCalculator() {
     doc.text('Free Online Financial Calculators & Tools', pageWidth / 2, yPos, { align: 'center' });
 
     doc.save(`DapsiWow-Yearly-Breakdown-${new Date().getTime()}.pdf`);
-    toast({ 
-      title: "PDF Downloaded!", 
-      description: "Your yearly breakdown report has been saved." 
+    toast({
+      title: "PDF Downloaded!",
+      description: "Your yearly breakdown report has been saved."
     });
   };
 
@@ -354,100 +353,100 @@ export default function SimpleInterestCalculator() {
     // Header
     doc.setFillColor(59, 130, 246);
     doc.rect(0, 0, pageWidth, 38, 'F');
-    
+
     doc.setFontSize(26);
     doc.setTextColor(255, 255, 255);
     doc.setFont('helvetica', 'bold');
     doc.text('DapsiWow', pageWidth / 2, yPos + 5, { align: 'center' });
-    
+
     yPos += 14;
     doc.setFontSize(11);
     doc.setFont('helvetica', 'normal');
     doc.text('Scenario Comparison Report', pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 6;
     doc.setFontSize(8);
     doc.setTextColor(230, 240, 255);
-    const currentDate = new Date().toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'long', 
+    const currentDate = new Date().toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
       day: 'numeric'
     });
     doc.text(`Report Date: ${currentDate}`, pageWidth / 2, yPos, { align: 'center' });
 
     yPos = 48;
-    
+
     // Table header
     doc.setFillColor(59, 130, 246);
     doc.rect(margin, yPos, pageWidth - (2 * margin), 8, 'F');
-    
+
     doc.setFontSize(8);
     doc.setTextColor(255, 255, 255);
     doc.setFont('helvetica', 'bold');
-    
+
     const colX = [margin + 2, margin + 40, margin + 70, margin + 95, margin + 125, margin + 158];
-    
+
     doc.text('Scenario', colX[0], yPos + 5);
     doc.text('Principal', colX[1], yPos + 5);
     doc.text('Rate', colX[2], yPos + 5);
     doc.text('Time', colX[3], yPos + 5);
     doc.text('Interest', colX[4], yPos + 5);
     doc.text('Total', colX[5], yPos + 5);
-    
+
     yPos += 8;
-    
+
     // Table rows
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(7);
-    
+
     comparisonScenarios.forEach((scenario, index) => {
       // Check if we need a new page
       if (yPos > pageHeight - 30) {
         doc.addPage();
         yPos = 20;
-        
+
         // Repeat header on new page
         doc.setFillColor(59, 130, 246);
         doc.rect(margin, yPos, pageWidth - (2 * margin), 8, 'F');
-        
+
         doc.setFontSize(8);
         doc.setTextColor(255, 255, 255);
         doc.setFont('helvetica', 'bold');
-        
+
         doc.text('Scenario', colX[0], yPos + 5);
         doc.text('Principal', colX[1], yPos + 5);
         doc.text('Rate', colX[2], yPos + 5);
         doc.text('Time', colX[3], yPos + 5);
         doc.text('Interest', colX[4], yPos + 5);
         doc.text('Total', colX[5], yPos + 5);
-        
+
         yPos += 8;
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(7);
       }
-      
+
       // Alternate row colors
       if (index % 2 === 0) {
         doc.setFillColor(248, 250, 252);
         doc.rect(margin, yPos, pageWidth - (2 * margin), 7, 'F');
       }
-      
+
       doc.setTextColor(0, 0, 0);
       doc.setFont('helvetica', 'bold');
       doc.text(scenario.name, colX[0], yPos + 4.5);
-      
+
       doc.setFont('helvetica', 'normal');
       doc.text(formatCurrency(scenario.principal), colX[1], yPos + 4.5);
       doc.text(`${scenario.rate}%`, colX[2], yPos + 4.5);
       doc.text(`${scenario.time.toFixed(1)} yrs`, colX[3], yPos + 4.5);
-      
+
       doc.setTextColor(34, 197, 94);
       doc.setFont('helvetica', 'bold');
       doc.text(formatCurrency(scenario.simpleInterest), colX[4], yPos + 4.5);
-      
+
       doc.setTextColor(59, 130, 246);
       doc.text(formatCurrency(scenario.totalAmount), colX[5], yPos + 4.5);
-      
+
       yPos += 7;
     });
 
@@ -457,28 +456,28 @@ export default function SimpleInterestCalculator() {
       doc.addPage();
       yPos = 20;
     }
-    
+
     doc.setDrawColor(220, 220, 220);
     doc.setLineWidth(0.3);
     doc.line(margin, yPos, pageWidth - margin, yPos);
-    
+
     yPos += 8;
     doc.setFontSize(9);
     doc.setTextColor(100, 100, 100);
     doc.setFont('helvetica', 'bold');
     doc.text('Summary Analysis:', margin, yPos);
-    
+
     yPos += 6;
     const bestInterest = Math.max(...comparisonScenarios.map(s => s.simpleInterest));
     const bestTotal = Math.max(...comparisonScenarios.map(s => s.totalAmount));
     const bestInterestScenario = comparisonScenarios.find(s => s.simpleInterest === bestInterest);
     const bestTotalScenario = comparisonScenarios.find(s => s.totalAmount === bestTotal);
-    
+
     doc.setFontSize(8);
     doc.setTextColor(0, 0, 0);
     doc.setFont('helvetica', 'normal');
     doc.text(`• Highest Interest Earned: ${bestInterestScenario?.name} at ${formatCurrency(bestInterest)}`, margin + 5, yPos);
-    
+
     yPos += 5;
     doc.text(`• Highest Total Amount: ${bestTotalScenario?.name} at ${formatCurrency(bestTotal)}`, margin + 5, yPos);
 
@@ -487,19 +486,19 @@ export default function SimpleInterestCalculator() {
     doc.setDrawColor(220, 220, 220);
     doc.setLineWidth(0.2);
     doc.line(margin, yPos, pageWidth - margin, yPos);
-    
+
     yPos += 4;
     doc.setFontSize(7);
     doc.setTextColor(120, 120, 120);
     doc.setFont('helvetica', 'italic');
     doc.text('This comparison is based on the scenarios you entered using simple interest calculation.', pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 6;
     doc.setFontSize(8);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(59, 130, 246);
     doc.textWithLink('DapsiWow.com', pageWidth / 2, yPos, { align: 'center', url: 'https://dapsiwow.com' });
-    
+
     yPos += 3;
     doc.setFontSize(7);
     doc.setFont('helvetica', 'normal');
@@ -507,9 +506,9 @@ export default function SimpleInterestCalculator() {
     doc.text('Free Online Financial Calculators & Tools', pageWidth / 2, yPos, { align: 'center' });
 
     doc.save(`DapsiWow-Scenario-Comparison-${new Date().getTime()}.pdf`);
-    toast({ 
-      title: "PDF Downloaded!", 
-      description: "Your scenario comparison report has been saved." 
+    toast({
+      title: "PDF Downloaded!",
+      description: "Your scenario comparison report has been saved."
     });
   };
 
@@ -525,23 +524,23 @@ export default function SimpleInterestCalculator() {
     // Blue header bar with branding
     doc.setFillColor(59, 130, 246);
     doc.rect(0, 0, pageWidth, 38, 'F');
-    
+
     doc.setFontSize(26);
     doc.setTextColor(255, 255, 255);
     doc.setFont('helvetica', 'bold');
     doc.text('DapsiWow', pageWidth / 2, yPos + 5, { align: 'center' });
-    
+
     yPos += 14;
     doc.setFontSize(11);
     doc.setFont('helvetica', 'normal');
     doc.text('Simple Interest Calculation Report', pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 6;
     doc.setFontSize(8);
     doc.setTextColor(230, 240, 255);
-    const currentDate = new Date().toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'long', 
+    const currentDate = new Date().toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
       day: 'numeric'
     });
     doc.text(`Report Date: ${currentDate}`, pageWidth / 2, yPos, { align: 'center' });
@@ -552,23 +551,23 @@ export default function SimpleInterestCalculator() {
     doc.setDrawColor(59, 130, 246);
     doc.setLineWidth(1);
     doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 42, 3, 3, 'FD');
-    
+
     yPos += 6;
     doc.setFontSize(9);
     doc.setTextColor(100, 100, 100);
     doc.setFont('helvetica', 'normal');
     doc.text('EXECUTIVE SUMMARY', pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 8;
     doc.setFontSize(20);
     doc.setTextColor(59, 130, 246);
     doc.setFont('helvetica', 'bold');
     doc.text('Total Amount', pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 10;
     doc.setFontSize(24);
     doc.text(formatCurrency(result.totalAmount), pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 8;
     doc.setFontSize(8);
     doc.setTextColor(80, 80, 80);
@@ -582,13 +581,13 @@ export default function SimpleInterestCalculator() {
     doc.setDrawColor(230, 230, 230);
     doc.setLineWidth(0.5);
     doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 40, 3, 3, 'FD');
-    
+
     yPos += 5;
     doc.setFontSize(10);
     doc.setTextColor(59, 130, 246);
     doc.setFont('helvetica', 'bold');
     doc.text('INPUT PARAMETERS', margin + 4, yPos);
-    
+
     yPos += 2;
     doc.setDrawColor(59, 130, 246);
     doc.setLineWidth(0.3);
@@ -598,12 +597,12 @@ export default function SimpleInterestCalculator() {
     doc.setFontSize(9);
     doc.setTextColor(50, 50, 50);
     doc.setFont('helvetica', 'normal');
-    
+
     const col1X = margin + 8;
     const col2X = margin + 60;
     const col3X = pageWidth / 2 + 8;
     const col4X = pageWidth / 2 + 60;
-    
+
     doc.setTextColor(100, 100, 100);
     doc.setFontSize(8);
     doc.text('Principal Amount', col1X, yPos);
@@ -611,7 +610,7 @@ export default function SimpleInterestCalculator() {
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
     doc.text(formatCurrency(result.principalAmount), col2X, yPos);
-    
+
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(100, 100, 100);
     doc.setFontSize(8);
@@ -620,7 +619,7 @@ export default function SimpleInterestCalculator() {
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
     doc.text(`${interestRate}% per year`, col4X, yPos);
-    
+
     yPos += 8;
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(100, 100, 100);
@@ -630,7 +629,7 @@ export default function SimpleInterestCalculator() {
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
     doc.text(`${timePeriod} ${timeUnit}`, col2X, yPos);
-    
+
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(100, 100, 100);
     doc.setFontSize(8);
@@ -646,13 +645,13 @@ export default function SimpleInterestCalculator() {
     doc.setDrawColor(230, 230, 230);
     doc.setLineWidth(0.5);
     doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 24, 3, 3, 'FD');
-    
+
     yPos += 5;
     doc.setFontSize(10);
     doc.setTextColor(59, 130, 246);
     doc.setFont('helvetica', 'bold');
     doc.text('CALCULATION RESULTS', margin + 4, yPos);
-    
+
     yPos += 2;
     doc.setDrawColor(59, 130, 246);
     doc.setLineWidth(0.3);
@@ -662,7 +661,7 @@ export default function SimpleInterestCalculator() {
     doc.setFontSize(9);
     doc.setTextColor(50, 50, 50);
     doc.setFont('helvetica', 'normal');
-    
+
     doc.setTextColor(100, 100, 100);
     doc.setFontSize(8);
     doc.text('Simple Interest Earned', col1X, yPos);
@@ -670,7 +669,7 @@ export default function SimpleInterestCalculator() {
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
     doc.text(formatCurrency(result.simpleInterest), col2X, yPos);
-    
+
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(100, 100, 100);
     doc.setFontSize(8);
@@ -679,89 +678,89 @@ export default function SimpleInterestCalculator() {
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
     doc.text(formatCurrency(result.totalAmount), col4X, yPos);
-    
+
     // Yearly Breakdown if available
     if (result.yearlyBreakdown.length > 0) {
       yPos += 12;
-      
+
       // Table header with blue background
       doc.setFillColor(59, 130, 246);
       doc.rect(margin, yPos, pageWidth - (2 * margin), 8, 'F');
-      
+
       doc.setFontSize(8);
       doc.setTextColor(255, 255, 255);
       doc.setFont('helvetica', 'bold');
-      
+
       const yearColX = margin + 8;
       const interestColX = margin + 60;
       const totalColX = pageWidth / 2 + 60;
-      
+
       doc.text('Year', yearColX, yPos + 5);
       doc.text('Interest Earned', interestColX, yPos + 5);
       doc.text('Total Amount', totalColX, yPos + 5);
-      
+
       yPos += 8;
-      
+
       // Table rows with alternating colors
       result.yearlyBreakdown.forEach((year, index) => {
         if (yPos > 270) {
           doc.addPage();
           yPos = 20;
-          
+
           // Repeat header on new page
           doc.setFillColor(59, 130, 246);
           doc.rect(margin, yPos, pageWidth - (2 * margin), 8, 'F');
-          
+
           doc.setFontSize(8);
           doc.setTextColor(255, 255, 255);
           doc.setFont('helvetica', 'bold');
-          
+
           doc.text('Year', yearColX, yPos + 5);
           doc.text('Interest Earned', interestColX, yPos + 5);
           doc.text('Total Amount', totalColX, yPos + 5);
-          
+
           yPos += 8;
         }
-        
+
         // Alternate row colors
         if (index % 2 === 0) {
           doc.setFillColor(248, 250, 252);
           doc.rect(margin, yPos, pageWidth - (2 * margin), 6, 'F');
         }
-        
+
         doc.setFontSize(8);
         doc.setTextColor(0, 0, 0);
         doc.setFont('helvetica', 'normal');
         doc.text(`Year ${year.year}`, yearColX, yPos + 4);
-        
+
         doc.setTextColor(34, 197, 94);
         doc.setFont('helvetica', 'bold');
         doc.text(formatCurrency(year.interestEarned), interestColX, yPos + 4);
-        
+
         doc.setTextColor(0, 0, 0);
         doc.text(formatCurrency(year.totalAmount), totalColX, yPos + 4);
         yPos += 6;
       });
     }
-    
+
     // Footer
     yPos = pageHeight - 22;
     doc.setDrawColor(220, 220, 220);
     doc.setLineWidth(0.2);
     doc.line(margin, yPos, pageWidth - margin, yPos);
-    
+
     yPos += 4;
     doc.setFontSize(7);
     doc.setTextColor(120, 120, 120);
     doc.setFont('helvetica', 'italic');
     doc.text('This calculation is for informational purposes only. Please consult with a qualified financial advisor for personalized advice.', pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 6;
     doc.setFontSize(8);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(59, 130, 246);
     doc.textWithLink('DapsiWow.com', pageWidth / 2, yPos, { align: 'center', url: 'https://dapsiwow.com' });
-    
+
     yPos += 3;
     doc.setFontSize(7);
     doc.setFont('helvetica', 'normal');
@@ -769,10 +768,10 @@ export default function SimpleInterestCalculator() {
     doc.text('Free Online Financial Calculators & Tools', pageWidth / 2, yPos, { align: 'center' });
 
     doc.save(`DapsiWow-Simple-Interest-Calculation-${new Date().getTime()}.pdf`);
-    
+
     toast({
-      title: "PDF Downloaded!", 
-      description: "Your professional calculation report has been saved." 
+      title: "PDF Downloaded!",
+      description: "Your professional calculation report has been saved."
     });
   };
 
@@ -791,7 +790,7 @@ export default function SimpleInterestCalculator() {
     };
 
     const config = currencyMap[currency] || currencyMap.USD;
-    
+
     return new Intl.NumberFormat(config.locale, {
       style: 'currency',
       currency: config.currency,
@@ -810,9 +809,9 @@ export default function SimpleInterestCalculator() {
         <title>Simple Interest Calculator - Free Online SI Calculator | Calculate Interest I = P × R × T</title>
         <meta name="description" content="Calculate simple interest on loans, savings & investments using I = P × R × T formula. Free online calculator with instant results & detailed breakdowns. 100% free, no registration required." />
         <meta name="keywords" content="simple interest calculator, calculate simple interest, simple interest formula, interest calculator, SI calculator online, simple interest rate calculator, how to calculate simple interest, simple interest loan calculator, simple interest calculator monthly, simple interest calculator with principal rate time, simple vs compound interest calculator, simple interest calculator with regular deposits, simple interest calculator for savings, online simple interest calculator, simple interest calculator free, daily simple interest calculator, monthly simple interest calculator, simple interest vs compound interest calculator, how to find simple interest, what is simple interest calculator" />
-        
+
         <meta property="og:title" content="Simple Interest Calculator - Calculate Interest Online Free | I = P × R × T Formula" />
-        <meta property="og:description" content="Free simple interest calculator with formula I = P × R × T. Calculate interest on loans, savings & investments instantly. Get monthly & yearly breakdowns with visual charts & PDF export." />
+        <meta property="og:description" content="Free simple interest calculator with formula I = P × R × T. Calculate interest on loans, savings & investments instantly. Get monthly breakdowns, yearly projections, and PDF export." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dapsiwow.com/tools/simple-interest-calculator" />
         <meta property="og:site_name" content="DapsiWow - Free Financial Calculators & Tools" />
@@ -821,18 +820,18 @@ export default function SimpleInterestCalculator() {
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content="Simple Interest Calculator - Free Online Tool" />
         <meta property="og:locale" content="en_US" />
-        
+
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Simple Interest Calculator - Free Online Tool | I = P × R × T" />
         <meta name="twitter:description" content="Calculate simple interest instantly with our free calculator. Get monthly breakdowns, yearly projections, and PDF reports. No registration required." />
         <meta name="twitter:image" content="https://dapsiwow.com/og-simple-interest-calculator.jpg" />
         <meta name="twitter:site" content="@DapsiWow" />
         <meta name="twitter:creator" content="@DapsiWow" />
-        
+
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <meta name="author" content="DapsiWow" />
         <meta name="publisher" content="DapsiWow" />
-        
+
         <link rel="canonical" href="https://dapsiwow.com/tools/simple-interest-calculator" />
         <script type="application/ld+json">
           {JSON.stringify({
@@ -977,9 +976,9 @@ export default function SimpleInterestCalculator() {
           })}
         </script>
       </Helmet>
-      
+
       <Header />
-      
+
       <main>
         {/* Hero Section */}
         <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 overflow-hidden">
@@ -1077,7 +1076,7 @@ export default function SimpleInterestCalculator() {
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Interest Configuration</h2>
                     <p className="text-sm sm:text-base text-gray-600">Enter your investment details to calculate simple interest earnings</p>
                   </div>
-                  
+
                   <TooltipProvider>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                       {/* Currency Selection */}
@@ -1290,7 +1289,7 @@ export default function SimpleInterestCalculator() {
                 {result ? (
                   <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
                     <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Interest Calculation Results</h2>
-                    
+
                     <div className="space-y-4 sm:space-y-6 md:space-y-8" data-testid="interest-results">
                       {/* Summary Card */}
                       <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border-2 border-blue-200 shadow-sm">
@@ -1393,13 +1392,13 @@ export default function SimpleInterestCalculator() {
                                   <PieChart>
                                     <Pie
                                       data={[
-                                        { 
-                                          name: 'Principal', 
+                                        {
+                                          name: 'Principal',
                                           value: result.principalAmount,
                                           percentage: (result.principalAmount / result.totalAmount) * 100
                                         },
-                                        { 
-                                          name: 'Interest', 
+                                        {
+                                          name: 'Interest',
                                           value: result.simpleInterest,
                                           percentage: (result.simpleInterest / result.totalAmount) * 100
                                         }
@@ -1466,16 +1465,16 @@ export default function SimpleInterestCalculator() {
                             <ResponsiveContainer width="100%" height={280}>
                               <BarChart data={result.yearlyBreakdown.slice(0, 10)}>
                                 <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-                                <XAxis 
-                                  dataKey="year" 
+                                <XAxis
+                                  dataKey="year"
                                   tick={{ fontSize: 12, fill: '#6b7280' }}
                                   stroke="#9ca3af"
                                 />
-                                <YAxis 
+                                <YAxis
                                   tick={{ fontSize: 12, fill: '#6b7280' }}
                                   stroke="#9ca3af"
                                 />
-                                <RechartsTooltip 
+                                <RechartsTooltip
                                   formatter={(value: number) => formatCurrency(value)}
                                   contentStyle={{
                                     backgroundColor: 'rgba(255, 255, 255, 0.95)',
@@ -1485,12 +1484,12 @@ export default function SimpleInterestCalculator() {
                                     fontSize: '14px'
                                   }}
                                 />
-                                <Legend 
+                                <Legend
                                   wrapperStyle={{ fontSize: '14px' }}
                                 />
-                                <Bar 
-                                  dataKey="cumulativeInterest" 
-                                  fill="url(#barGradient)" 
+                                <Bar
+                                  dataKey="cumulativeInterest"
+                                  fill="url(#barGradient)"
                                   name="Cumulative Interest"
                                   radius={[8, 8, 0, 0]}
                                 />
@@ -1510,7 +1509,7 @@ export default function SimpleInterestCalculator() {
                       {showYearlyBreakdown && result.yearlyBreakdown.length > 0 && (
                         <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm border border-gray-100">
                           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
-                            <h3 
+                            <h3
                               className="text-xl sm:text-2xl font-bold text-gray-900 cursor-pointer hover:text-blue-600 transition-colors select-none"
                               onClick={() => setShowYearlyBreakdown(false)}
                               title="Click to hide breakdown"
@@ -1529,7 +1528,7 @@ export default function SimpleInterestCalculator() {
                             </Button>
                           </div>
                           <p className="text-sm text-gray-600 mb-4">See how your interest accumulates year by year.</p>
-                          <div 
+                          <div
                             ref={yearlyBreakdownScrollRef}
                             className={`overflow-x-auto -mx-4 sm:mx-0 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
                             onMouseDown={(e) => handleMouseDown(e, yearlyBreakdownScrollRef)}
@@ -1601,7 +1600,7 @@ export default function SimpleInterestCalculator() {
                   </Button>
                 </div>
                 <p className="text-sm text-gray-600 mb-4">Compare different investment scenarios side-by-side to find the best option.</p>
-                <div 
+                <div
                   ref={comparisonScrollRef}
                   className={`overflow-x-auto -mx-4 sm:mx-0 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
                   onMouseDown={(e) => handleMouseDown(e, comparisonScrollRef)}
@@ -1660,88 +1659,31 @@ export default function SimpleInterestCalculator() {
 
           {/* SEO Content Sections */}
           <div className="mt-12 sm:mt-16 space-y-8 sm:space-y-12">
-            {/* What is Simple Interest Calculator */}
-            <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-xl sm:rounded-2xl">
-              <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10">
-                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6 lg:mb-7 leading-tight">
+            {/* What is Simple Interest Calculator - Featured Snippet */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-lg sm:rounded-xl md:rounded-2xl mt-4 sm:mt-6 md:mt-8 lg:mt-10 w-full max-w-full">
+              <CardContent className="p-4 sm:p-5 md:p-6 lg:p-8 xl:p-10">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6 lg:mb-7 leading-tight sm:leading-tight md:leading-snug text-center sm:text-left">
                   What is a Simple Interest Calculator?
                 </h2>
-                <div className="prose max-w-none text-gray-700 space-y-4 sm:space-y-5 md:space-y-6">
-                  <p className="text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed sm:leading-relaxed md:leading-loose">
-                    A simple interest calculator is a free online financial tool that helps you calculate the interest earned or paid on a principal amount over a specific time period using the simple interest formula (SI = P × R × T). Unlike compound interest, simple interest is calculated only on the original principal amount, making it easier to understand and ideal for short-term loans, bonds, and certificates of deposit.
-                  </p>
-                  
-                  <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mt-5 sm:mt-6 md:mt-7 lg:mt-8 mb-3 sm:mb-3.5 md:mb-4 lg:mb-5 leading-tight">
-                    How Does Simple Interest Work?
-                  </h3>
-                  <p className="text-sm sm:text-base md:text-lg leading-relaxed sm:leading-relaxed md:leading-loose">
-                    Simple interest is calculated by multiplying the principal amount by the interest rate and the time period. The formula is straightforward: SI = P × R × T, where P is the principal (initial amount), R is the annual interest rate (as a decimal), and T is the time in years. This means if you invest $10,000 at 5% simple interest for 3 years, you'll earn $1,500 in interest (10,000 × 0.05 × 3 = 1,500).
-                  </p>
-
-                  <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mt-5 sm:mt-6 md:mt-7 lg:mt-8 mb-3 sm:mb-3.5 md:mb-4 lg:mb-5 leading-tight">
-                    Benefits of Using a Simple Interest Calculator
-                  </h3>
-                  <ul className="list-disc pl-5 sm:pl-6 md:pl-7 lg:pl-8 space-y-2 sm:space-y-2.5 md:space-y-3 lg:space-y-3.5 text-sm sm:text-base md:text-lg">
-                    <li className="leading-relaxed sm:leading-relaxed md:leading-loose pl-1 sm:pl-2">
-                      <strong className="font-semibold text-gray-900">Quick calculations:</strong> Get instant results without manual math or complex formulas
-                    </li>
-                    <li className="leading-relaxed sm:leading-relaxed md:leading-loose pl-1 sm:pl-2">
-                      <strong className="font-semibold text-gray-900">Compare investments:</strong> Evaluate different principal amounts, rates, and time periods
-                    </li>
-                    <li className="leading-relaxed sm:leading-relaxed md:leading-loose pl-1 sm:pl-2">
-                      <strong className="font-semibold text-gray-900">Plan finances:</strong> Understand exactly how much interest you'll earn or pay
-                    </li>
-                    <li className="leading-relaxed sm:leading-relaxed md:leading-loose pl-1 sm:pl-2">
-                      <strong className="font-semibold text-gray-900">Multi-currency support:</strong> Calculate in your preferred currency with proper formatting
-                    </li>
-                    <li className="leading-relaxed sm:leading-relaxed md:leading-loose pl-1 sm:pl-2">
-                      <strong className="font-semibold text-gray-900">Free and accessible:</strong> No registration, downloads, or hidden fees required
-                    </li>
-                  </ul>
-                </div>
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 leading-relaxed sm:leading-relaxed md:leading-loose max-w-3xl mx-auto sm:mx-0 text-center sm:text-left">
+                  A simple interest calculator is a free online financial tool that helps you calculate the interest earned or paid on a principal amount over a specific time period using the simple interest formula (SI = P × R × T). Unlike compound interest, simple interest is calculated only on the original principal amount, making it easier to understand and ideal for short-term loans, bonds, and certificates of deposit.
+                </p>
               </CardContent>
             </Card>
 
-            {/* Simple Interest Formula */}
-            <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-xl sm:rounded-2xl">
-              <CardContent className="p-4 sm:p-6 lg:p-8">
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Simple Interest Formula Explained</h2>
-                <div className="prose max-w-none text-gray-700 space-y-3 sm:space-y-4 text-sm sm:text-base leading-relaxed">
-                  <p>
-                    The simple interest formula is one of the most fundamental concepts in finance. It calculates interest based solely on the principal amount, making it transparent and easy to understand for both borrowers and investors.
-                  </p>
-
-                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mt-4 sm:mt-6 mb-2 sm:mb-3">The Simple Interest Formula</h3>
-                  <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl my-3 sm:my-4">
-                    <p className="text-center text-lg sm:text-xl md:text-2xl font-bold text-blue-700 mb-3 sm:mb-4">SI = P × R × T</p>
-                    <div className="space-y-1.5 sm:space-y-2 text-gray-800 text-xs sm:text-sm md:text-base">
-                      <p><strong>SI</strong> = Simple Interest (the amount of interest earned or paid)</p>
-                      <p><strong>P</strong> = Principal amount (initial investment or loan)</p>
-                      <p><strong>R</strong> = Annual interest rate (expressed as a decimal: 8% = 0.08)</p>
-                      <p><strong>T</strong> = Time period in years (or converted to years for months/days)</p>
-                    </div>
-                  </div>
-
-                  <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mt-4 sm:mt-6 mb-2 sm:mb-3">Step-by-Step Calculation Example</h3>
-                  <div className="bg-green-50 p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl">
-                    <p className="font-bold mb-2 sm:mb-3 text-xs sm:text-sm md:text-base">Example: Calculate simple interest on $15,000 at 6% for 4 years</p>
-                    <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm md:text-base">
-                      <li>• Principal (P) = $15,000</li>
-                      <li>• Interest Rate (R) = 6% = 0.06</li>
-                      <li>• Time (T) = 4 years</li>
-                      <li className="pt-2 border-t border-green-200 font-bold text-green-700">• Simple Interest = $15,000 × 0.06 × 4 = $3,600</li>
-                      <li>• Total Amount = $15,000 + $3,600 = $18,600</li>
-                    </ul>
-                  </div>
-
-                  <p className="mt-4 sm:mt-6">
-                    Our calculator automates this entire process, handling currency formatting, time conversions, and providing detailed breakdowns including monthly interest and yearly projections—saving you time and eliminating calculation errors.
-                  </p>
-                </div>
+            {/* How to Calculate Simple Interest - Formula Section */}
+            <Card className="bg-gradient-to-br from-indigo-50 to-blue-50 border-0 shadow-lg rounded-lg sm:rounded-xl md:rounded-2xl mt-4 sm:mt-6 md:mt-8 lg:mt-10 w-full max-w-full overflow-hidden">
+              <CardContent className="p-4 sm:p-5 md:p-6 lg:p-8 xl:p-10 2xl:p-12 w-full">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6 lg:mb-8 leading-tight text-center sm:text-left">
+                  How to Calculate Simple Interest - Formula Explained
+                </h2>
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 mb-5 sm:mb-6 md:mb-7 lg:mb-8 leading-relaxed text-center sm:text-left max-w-full">
+                  Understanding how to calculate simple interest helps you make informed financial decisions. The simple interest formula is straightforward and easy to use for calculating interest on loans and investments.
+                </p>
               </CardContent>
             </Card>
 
-            {/* Simple vs Compound Interest Comparison */}
+            {/* Simple Interest vs Compound Interest Comparison */}
             <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-xl sm:rounded-2xl">
               <CardContent className="p-4 sm:p-6 md:p-8">
                 <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Simple Interest vs Compound Interest: Key Differences</h2>
@@ -1891,7 +1833,7 @@ export default function SimpleInterestCalculator() {
                   <div className="border-l-4 border-orange-500 pl-4 sm:pl-5 md:pl-6">
                     <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 sm:mb-3">Why is simple interest better for borrowers?</h3>
                     <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                      Simple interest calculates interest only on the principal, so you pay less total interest compared to compound interest. This makes simple interest loans more affordable, especially for short-term borrowing needs.
+                      Simple interest calculates interest only on the principal, so you pay less total interest compared to compound interest. This makes simple interest loans more affordable, especially for short to medium-term borrowing needs.
                     </p>
                   </div>
 
@@ -1955,7 +1897,7 @@ export default function SimpleInterestCalculator() {
                 <p className="text-sm sm:text-base text-gray-600 mb-6 sm:mb-8">
                   Learn how to apply simple interest calculations with these practical, real-world examples:
                 </p>
-                
+
                 <div className="space-y-6 sm:space-y-8">
                   {/* Example 1: Car Loan */}
                   <div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-4 sm:p-5 md:p-6 rounded-xl border border-blue-200">
@@ -2236,7 +2178,7 @@ export default function SimpleInterestCalculator() {
 
         </div>
       </main>
-      
+
       <Footer />
     </div>
   );
