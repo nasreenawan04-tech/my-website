@@ -986,9 +986,11 @@ export default function SimpleInterestCalculator() {
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
           <div className="relative max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
             <div className="space-y-4 sm:space-y-6 md:space-y-8">
-              <div className="inline-flex items-center px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
-                <Calculator className="w-3 h-3 sm:w-4 sm:h-4 mr-2 text-blue-700" />
-                <span className="text-xs sm:text-sm font-medium text-blue-700">Professional Simple Interest Calculator - Free & Accurate</span>
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 md:gap-2.5 px-2.5 sm:px-3 md:px-4 lg:px-5 xl:px-6 py-1.5 sm:py-2 md:py-2.5 lg:py-3 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200 shadow-sm hover:shadow-md transition-all duration-200 max-w-full mx-auto sm:mx-0">
+                <Calculator className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-5 lg:h-5 flex-shrink-0 text-blue-700" />
+                <span className="text-[11px] sm:text-xs md:text-sm lg:text-base font-medium text-blue-700 whitespace-nowrap overflow-hidden text-ellipsis leading-tight">
+                  Professional Simple Interest Calculator - Free & Accurate
+                </span>
               </div>
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0" data-testid="page-title">
                 <span className="block">Simple Interest Calculator</span>
@@ -1186,7 +1188,7 @@ export default function SimpleInterestCalculator() {
                             </TooltipContent>
                           </Tooltip>
                         </div>
-                        <div className="grid grid-cols-2 gap-2 sm:gap-3">
+                        <div className="grid grid-cols-2 gap-2">
                           <Input
                             type="number"
                             value={timePeriod}
