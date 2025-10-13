@@ -45,7 +45,7 @@ const FinanceTools = () => {
 
       <div className="min-h-screen flex flex-col" data-testid="page-finance-tools">
         <Header />
-        
+
         <main className="flex-1 bg-neutral-50">
           {/* Hero Section */}
           <section className="bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-700 text-white py-16">
@@ -59,7 +59,7 @@ const FinanceTools = () => {
               <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
                 30+ free financial calculators and tools to help you make smart money decisions
               </p>
-              
+
               {/* Search Bar */}
               <div className="max-w-2xl mx-auto">
                 <div className="relative">
@@ -136,7 +136,7 @@ const FinanceTools = () => {
             </div>
           </section>
         </main>
-        
+
         <Footer />
       </div>
     </>
