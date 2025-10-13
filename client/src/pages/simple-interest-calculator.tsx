@@ -2169,39 +2169,98 @@ export default function SimpleInterestCalculator() {
               </CardContent>
             </Card>
 
-            {/* Related Financial Calculators */}
-            <Card className="bg-gradient-to-r from-indigo-50 to-purple-50 border-0 shadow-lg rounded-2xl">
-              <CardContent className="p-4 sm:p-6 md:p-8">
-                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6">Related Financial Calculators</h2>
-                <p className="text-sm sm:text-base text-gray-600 mb-6 sm:mb-7 md:mb-8">
-                  Explore our other free financial calculators to make informed decisions about your money:
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5">
-                  <a href="/tools/compound-interest-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-xl hover:shadow-lg transition-shadow">
-                    <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base md:text-lg">Compound Interest Calculator</h3>
-                    <p className="text-xs sm:text-sm text-gray-600">See how your investments grow exponentially over time</p>
+            {/* Related Financial Calculators - Professional Section */}
+            <Card className="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 border-0 shadow-xl rounded-2xl overflow-hidden">
+              <CardContent className="p-6 sm:p-8 md:p-10 lg:p-12">
+                <div className="text-center mb-8 sm:mb-10 md:mb-12">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4">
+                    Related Financial Calculators
+                  </h2>
+                  <p className="text-sm sm:text-base md:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                    Maximize your financial planning with our specialized calculators tailored to specific needs
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
+                  {/* Loan Calculator */}
+                  <a href="/tools/loan-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-blue-200">
+                    <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-blue-600 transition-colors">
+                      Loan Calculator
+                    </h3>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-3">
+                      Calculate monthly payments for any loan with customizable terms and frequencies
+                    </p>
+                    <div className="flex items-center text-blue-600 text-sm font-medium">
+                      <span>Calculate now →</span>
+                    </div>
                   </a>
-                  <a href="/tools/loan-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-xl hover:shadow-lg transition-shadow">
-                    <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base md:text-lg">Loan Calculator</h3>
-                    <p className="text-xs sm:text-sm text-gray-600">Calculate monthly payments and total loan costs</p>
+
+                  {/* Compound Interest Calculator */}
+                  <a href="/tools/compound-interest-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-purple-200">
+                    <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-purple-600 transition-colors">
+                      Compound Interest Calculator
+                    </h3>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-3">
+                      Visualize exponential investment growth with detailed breakdowns and projections over time
+                    </p>
+                    <div className="flex items-center text-purple-600 text-sm font-medium">
+                      <span>See growth potential →</span>
+                    </div>
                   </a>
-                  <a href="/tools/investment-return-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-xl hover:shadow-lg transition-shadow">
-                    <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base md:text-lg">Investment Return Calculator</h3>
-                    <p className="text-xs sm:text-sm text-gray-600">Calculate returns on your investments with accuracy</p>
+
+                  {/* EMI Calculator */}
+                  <a href="/tools/emi-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-green-200">
+                    <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-green-600 transition-colors">
+                      EMI Calculator
+                    </h3>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-3">
+                      Calculate equated monthly installments with prepayment and step-up EMI options
+                    </p>
+                    <div className="flex items-center text-green-600 text-sm font-medium">
+                      <span>Get started →</span>
+                    </div>
                   </a>
-                  <a href="/tools/mortgage-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-xl hover:shadow-lg transition-shadow">
-                    <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base md:text-lg">Mortgage Calculator</h3>
-                    <p className="text-xs sm:text-sm text-gray-600">Calculate home loan payments including taxes and insurance</p>
+
+                  {/* Mortgage Calculator */}
+                  <a href="/tools/mortgage-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-orange-200">
+                    <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-orange-600 transition-colors">
+                      Mortgage Calculator
+                    </h3>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-3">
+                      Calculate home loan payments including property taxes, insurance, and PMI
+                    </p>
+                    <div className="flex items-center text-orange-600 text-sm font-medium">
+                      <span>Calculate payments →</span>
+                    </div>
                   </a>
-                  <a href="/tools/emi-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-xl hover:shadow-lg transition-shadow">
-                    <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base md:text-lg">EMI Calculator</h3>
-                    <p className="text-xs sm:text-sm text-gray-600">Calculate equated monthly installments for loans</p>
+
+                  {/* Investment Return Calculator */}
+                  <a href="/tools/investment-return-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-red-200">
+                    <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-red-600 transition-colors">
+                      Investment Return Calculator
+                    </h3>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-3">
+                      Calculate accurate returns on your investments with comprehensive analysis tools
+                    </p>
+                    <div className="flex items-center text-red-600 text-sm font-medium">
+                      <span>Analyze returns →</span>
+                    </div>
                   </a>
-                  <a href="/tools/future-value-investment-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-xl hover:shadow-lg transition-shadow">
-                    <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base md:text-lg">Future Value Calculator</h3>
-                    <p className="text-xs sm:text-sm text-gray-600">Determine the future value of your investments</p>
+
+                  {/* Future Value Calculator */}
+                  <a href="/tools/future-value-investment-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-cyan-200">
+                    <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-cyan-600 transition-colors">
+                      Future Value Calculator
+                    </h3>
+                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-3">
+                      Determine the future value of your investments with time value of money calculations
+                    </p>
+                    <div className="flex items-center text-cyan-600 text-sm font-medium">
+                      <span>Calculate value →</span>
+                    </div>
                   </a>
                 </div>
+
               </CardContent>
             </Card>
           </div>
