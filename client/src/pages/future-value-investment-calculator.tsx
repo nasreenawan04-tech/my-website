@@ -240,15 +240,15 @@ export default function FutureValueInvestmentCalculator() {
           {/* Main Calculator Card */}
           <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+              <div className="flex flex-col lg:grid lg:grid-cols-2 gap-0">
                 {/* Input Section */}
-                <div className="lg:col-span-1 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 space-y-6 sm:space-y-8">
-                  <div>
-                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Investment Configuration</h2>
+                <div className="lg:col-span-1 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
+                  <div className="text-center sm:text-left">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Investment Configuration</h2>
                     <p className="text-sm sm:text-base text-gray-600">Enter your investment details to project future growth with compound interest</p>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
                     {/* Currency Selection */}
                     <div className="space-y-2 sm:space-y-3">
                       <Label htmlFor="currency" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
@@ -361,8 +361,8 @@ export default function FutureValueInvestmentCalculator() {
                   </div>
 
                   {/* Advanced Options */}
-                  <div className="space-y-4 sm:space-y-6 border-t pt-6 sm:pt-8">
-                    <h3 className="text-lg sm:text-xl font-bold text-gray-900">Advanced Options</h3>
+                  <div className="space-y-4 sm:space-y-6 md:space-y-8 border-t pt-4 sm:pt-6 md:pt-8">
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">Advanced Options</h3>
 
                     <Collapsible open={showAdvanced} onOpenChange={setShowAdvanced}>
                       <CollapsibleTrigger asChild>
@@ -377,11 +377,11 @@ export default function FutureValueInvestmentCalculator() {
                           <span className={`transform transition-transform ${showAdvanced ? 'rotate-180' : ''}`}>▼</span>
                         </Button>
                       </CollapsibleTrigger>
-                      <CollapsibleContent className="space-y-4 sm:space-y-6 mt-4">
+                      <CollapsibleContent className="space-y-4 sm:space-y-6 md:space-y-8 mt-3 sm:mt-4">
                         <Separator />
 
                         {/* Investment and Display Options */}
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
                           <div className="space-y-4 bg-gray-50 rounded-xl p-4 sm:p-6">
                             <h4 className="text-sm sm:text-base font-semibold text-gray-900">Investment Options</h4>
 
@@ -558,8 +558,8 @@ export default function FutureValueInvestmentCalculator() {
                 </div>
 
                 {/* Results Section */}
-                <div className="lg:col-span-1 bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12">
-                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">Investment Projection</h2>
+                <div className="lg:col-span-1 bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">Investment Projection</h2>
 
                   {result ? (
                     <div className="space-y-4 sm:space-y-6" data-testid="investment-results">
@@ -658,9 +658,9 @@ export default function FutureValueInvestmentCalculator() {
 
           {/* Yearly Breakdown Table */}
           {result && showYearlyBreakdown && (
-            <Card className="mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Yearly Investment Growth Breakdown</h3>
+            <Card className="mt-6 sm:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-3 sm:p-4 md:p-6 lg:p-8">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Yearly Investment Growth Breakdown</h3>
                 <div className="overflow-x-auto">
                   <table className="w-full">
                     <thead>
@@ -704,11 +704,11 @@ export default function FutureValueInvestmentCalculator() {
           )}
 
           {/* SEO Content Section */}
-          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">What is Future Value?</h3>
-                <div className="space-y-4 text-gray-600">
+          <div className="mt-8 sm:mt-12 md:mt-16 grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">What is Future Value?</h3>
+                <div className="space-y-3 sm:space-y-4 text-sm sm:text-base text-gray-600">
                   <p>
                     Future Value (FV) is a fundamental financial concept that calculates how much an investment
                     will be worth at a specific point in the future, given a particular interest rate and time period.
@@ -724,10 +724,10 @@ export default function FutureValueInvestmentCalculator() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">How to Calculate Future Value?</h3>
-                <div className="space-y-4 text-gray-600">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">How to Calculate Future Value?</h3>
+                <div className="space-y-3 sm:space-y-4 text-sm sm:text-base text-gray-600">
                   <p>
                     The future value formula is: FV = PV × (1 + r)^n
                   </p>
@@ -745,10 +745,10 @@ export default function FutureValueInvestmentCalculator() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Features of Our Calculator</h3>
-                <div className="space-y-3 text-gray-600">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Features of Our Calculator</h3>
+                <div className="space-y-2 sm:space-y-3 text-sm sm:text-base text-gray-600">
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
                     <span>Support for 10+ international currencies</span>
@@ -773,10 +773,10 @@ export default function FutureValueInvestmentCalculator() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Benefits of Investment Planning</h3>
-                <div className="space-y-3 text-gray-600">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Benefits of Investment Planning</h3>
+                <div className="space-y-2 sm:space-y-3 text-sm sm:text-base text-gray-600">
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
                     <span>Visualize long-term wealth accumulation</span>
@@ -803,15 +803,15 @@ export default function FutureValueInvestmentCalculator() {
           </div>
 
           {/* Comprehensive SEO Content Sections */}
-          <div className="mt-12 space-y-8">
+          <div className="mt-8 sm:mt-12 space-y-6 sm:space-y-8">
             {/* Investment Types Section */}
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Types of Investments for Future Value Calculation</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-gray-800">Stocks and Equity Funds</h4>
-                    <p className="text-gray-600">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Types of Investments for Future Value Calculation</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                  <div className="space-y-3 sm:space-y-4">
+                    <h4 className="text-base sm:text-lg font-semibold text-gray-800">Stocks and Equity Funds</h4>
+                    <p className="text-sm sm:text-base text-gray-600">
                       Stock investments typically offer higher returns but with greater volatility. Use our calculator
                       with historical average returns of 7-10% annually to project long-term stock portfolio growth
                       and understand the impact of regular investing through dollar-cost averaging.
@@ -846,10 +846,10 @@ export default function FutureValueInvestmentCalculator() {
             </Card>
 
             {/* Compound Interest Factors */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Factors Affecting Investment Growth</h3>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+                <CardContent className="p-4 sm:p-6 md:p-8">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Factors Affecting Investment Growth</h3>
                   <div className="space-y-4 text-gray-600">
                     <div className="border-l-4 border-blue-500 pl-4">
                       <h4 className="font-semibold text-gray-800 mb-2">Initial Investment Amount</h4>
@@ -871,9 +871,9 @@ export default function FutureValueInvestmentCalculator() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Investment Planning Strategies</h3>
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+                <CardContent className="p-4 sm:p-6 md:p-8">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Investment Planning Strategies</h3>
                   <div className="space-y-4 text-gray-600">
                     <div className="bg-blue-50 rounded-lg p-4">
                       <h4 className="font-semibold text-blue-800 mb-2">Dollar-Cost Averaging</h4>
@@ -897,10 +897,10 @@ export default function FutureValueInvestmentCalculator() {
             </div>
 
             {/* Future Value FAQs Section */}
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions about Future Value</h3>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-6 sm:mb-8">Frequently Asked Questions about Future Value</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                   <div className="space-y-6">
                     <div>
                       <h4 className="font-semibold text-gray-800 mb-2">What is the difference between simple and compound interest?</h4>
@@ -942,10 +942,10 @@ export default function FutureValueInvestmentCalculator() {
             </Card>
 
             {/* Investment Scenarios */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-                <CardContent className="p-8">
-                  <h3 className="text-xl font-bold text-gray-900 mb-6">Conservative Investment</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+                <CardContent className="p-4 sm:p-6 md:p-8">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-4 sm:mb-6">Conservative Investment</h3>
                   <div className="space-y-4 text-gray-600">
                     <p className="text-sm">
                       Conservative portfolios focus on capital preservation with steady, modest growth.
@@ -970,9 +970,9 @@ export default function FutureValueInvestmentCalculator() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-                <CardContent className="p-8">
-                  <h3 className="text-xl font-bold text-gray-900 mb-6">Moderate Investment</h3>
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+                <CardContent className="p-4 sm:p-6 md:p-8">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-4 sm:mb-6">Moderate Investment</h3>
                   <div className="space-y-4 text-gray-600">
                     <p className="text-sm">
                       Balanced portfolios mix stocks and bonds for growth with manageable risk.
@@ -997,9 +997,9 @@ export default function FutureValueInvestmentCalculator() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-                <CardContent className="p-8">
-                  <h3 className="text-xl font-bold text-gray-900 mb-6">Aggressive Investment</h3>
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+                <CardContent className="p-4 sm:p-6 md:p-8">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-4 sm:mb-6">Aggressive Investment</h3>
                   <div className="space-y-4 text-gray-600">
                     <p className="text-sm">
                       Growth-focused portfolios emphasize stocks for maximum long-term appreciation.
@@ -1026,10 +1026,10 @@ export default function FutureValueInvestmentCalculator() {
             </div>
 
             {/* Common Mistakes Section */}
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Common Investment Planning Mistakes to Avoid</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Common Investment Planning Mistakes to Avoid</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                   <div className="space-y-4">
                     <div className="bg-red-50 border-l-4 border-red-400 p-4 rounded-r-lg">
                       <h4 className="font-semibold text-red-800 mb-2">Overestimating Returns</h4>
@@ -1063,10 +1063,10 @@ export default function FutureValueInvestmentCalculator() {
             </Card>
 
             {/* Retirement Planning Focus */}
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Using Future Value for Retirement Planning</h3>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Using Future Value for Retirement Planning</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                   <div className="space-y-4">
                     <h4 className="text-lg font-semibold text-gray-800">Retirement Savings Strategies</h4>
                     <div className="space-y-3 text-gray-600">
