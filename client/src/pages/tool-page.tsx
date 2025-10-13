@@ -1,5 +1,5 @@
 
-import { useEffect, useState, lazy, Suspense, createContext } from 'react';
+import { useEffect, useState, lazy, Suspense } from 'react';
 import { useLocation } from 'wouter';
 import { Helmet } from 'react-helmet-async';
 import { tools, type Tool } from '@/data/tools';
@@ -10,9 +10,7 @@ import ToolErrorBoundary from '@/components/ToolErrorBoundary';
 import ProgressiveLoader from '@/components/ProgressiveLoader';
 import NotFound from '@/pages/not-found';
 import { useRecentTools } from '@/hooks/use-recent-tools';
-
-// Context to override canonical URLs when rendered through ToolPage
-export const ToolPageContext = createContext<{ canonicalOverride?: string }>({});
+import { ToolPageContext } from '@/contexts/ToolPageContext';
 
 // Map of tool IDs to their corresponding rich components
 const toolComponents = {

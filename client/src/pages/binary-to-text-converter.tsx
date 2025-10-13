@@ -1,7 +1,7 @@
 
 import { useState, useEffect, useContext } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { ToolPageContext } from '@/pages/tool-page';
+import { ToolPageContext } from '@/contexts/ToolPageContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Card, CardContent } from '@/components/ui/card';
