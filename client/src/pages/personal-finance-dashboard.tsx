@@ -249,45 +249,45 @@ const PersonalFinanceDashboard = () => {
 
       <main>
         {/* Hero Section */}
-        <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 overflow-hidden">
+        <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
-          <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="space-y-6 sm:space-y-8">
-              <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+          <div className="relative max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
+            <div className="space-y-4 sm:space-y-6 md:space-y-8">
+              <div className="inline-flex items-center px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
                 <span className="text-xs sm:text-sm font-medium text-blue-700">Financial Planning Tool</span>
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-slate-900 leading-tight tracking-tight" data-testid="page-title">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0" data-testid="page-title">
                 <span className="block">Personal Finance</span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
                   Dashboard
                 </span>
               </h1>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-slate-600 max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto leading-relaxed px-2 sm:px-0">
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
                 Get a comprehensive overview of your financial health with interactive tracking, detailed analytics, and strategic planning tools
               </p>
             </div>
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
           {/* Main Tool Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-2xl sm:rounded-3xl overflow-hidden">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
               <div className="flex flex-col">
                 {/* Input Section */}
-                <div className="p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 space-y-6 sm:space-y-8">
-                  <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Financial Overview Dashboard</h2>
-                    <p className="text-gray-600">Track your complete financial picture including income, expenses, debts, and savings goals</p>
+                <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
+                  <div className="text-center sm:text-left">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Financial Overview Dashboard</h2>
+                    <p className="text-sm sm:text-base text-gray-600">Track your complete financial picture including income, expenses, debts, and savings goals</p>
                   </div>
 
                   {/* Currency Selection */}
-                  <div className="space-y-3">
-                    <Label htmlFor="currency-select" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                  <div className="space-y-2 sm:space-y-3">
+                    <Label htmlFor="currency-select" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                       Currency
                     </Label>
                     <Select value={currency} onValueChange={setCurrency}>
-                      <SelectTrigger className="h-12 sm:h-14 border-2 border-gray-200 rounded-xl text-base sm:text-lg" data-testid="select-currency">
+                      <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-currency">
                         <SelectValue placeholder="Select currency" />
                       </SelectTrigger>
                       <SelectContent>
@@ -301,14 +301,14 @@ const PersonalFinanceDashboard = () => {
                   </div>
 
                   {/* Financial Data Input Sections */}
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                     
                     {/* Income Section */}
-                    <div className="space-y-4 bg-blue-50 rounded-xl p-4 sm:p-6">
-                      <h3 className="text-lg sm:text-xl font-bold text-blue-900">Income Sources</h3>
-                      <div className="space-y-3">
+                    <div className="space-y-3 sm:space-y-4 bg-blue-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6">
+                      <h3 className="text-base sm:text-lg md:text-xl font-bold text-blue-900">Income Sources</h3>
+                      <div className="space-y-2 sm:space-y-3">
                         <div>
-                          <Label htmlFor="income-source" className="text-sm font-semibold text-blue-800 uppercase tracking-wide">
+                          <Label htmlFor="income-source" className="text-xs sm:text-sm font-semibold text-blue-800 uppercase tracking-wide">
                             Source
                           </Label>
                           <Input
@@ -316,12 +316,12 @@ const PersonalFinanceDashboard = () => {
                             placeholder="e.g., Salary, Freelance"
                             value={newIncome.source}
                             onChange={(e) => setNewIncome({...newIncome, source: e.target.value})}
-                            className="mt-1 h-12 border-2 border-blue-200 rounded-xl text-base focus:border-blue-500 focus:ring-blue-500"
+                            className="mt-1 h-10 sm:h-12 border-2 border-blue-200 rounded-lg sm:rounded-xl text-sm sm:text-base focus:border-blue-500 focus:ring-blue-500 w-full"
                           />
                         </div>
                         <div className="grid grid-cols-2 gap-2">
                           <div>
-                            <Label htmlFor="income-amount" className="text-sm font-semibold text-blue-800 uppercase tracking-wide">
+                            <Label htmlFor="income-amount" className="text-xs sm:text-sm font-semibold text-blue-800 uppercase tracking-wide">
                               Amount
                             </Label>
                             <Input
@@ -330,15 +330,15 @@ const PersonalFinanceDashboard = () => {
                               placeholder="5000"
                               value={newIncome.amount}
                               onChange={(e) => setNewIncome({...newIncome, amount: e.target.value})}
-                              className="mt-1 h-12 border-2 border-blue-200 rounded-xl text-base focus:border-blue-500 focus:ring-blue-500"
+                              className="mt-1 h-10 sm:h-12 border-2 border-blue-200 rounded-lg sm:rounded-xl text-sm sm:text-base focus:border-blue-500 focus:ring-blue-500 w-full"
                             />
                           </div>
                           <div>
-                            <Label htmlFor="income-frequency" className="text-sm font-semibold text-blue-800 uppercase tracking-wide">
+                            <Label htmlFor="income-frequency" className="text-xs sm:text-sm font-semibold text-blue-800 uppercase tracking-wide">
                               Frequency
                             </Label>
                             <Select value={newIncome.frequency} onValueChange={(value) => setNewIncome({...newIncome, frequency: value})}>
-                              <SelectTrigger className="mt-1 h-12 border-2 border-blue-200 rounded-xl text-base focus:border-blue-500 focus:ring-blue-500">
+                              <SelectTrigger className="mt-1 h-10 sm:h-12 border-2 border-blue-200 rounded-lg sm:rounded-xl text-sm sm:text-base focus:border-blue-500 focus:ring-blue-500 w-full">
                                 <SelectValue />
                               </SelectTrigger>
                               <SelectContent>
@@ -351,7 +351,7 @@ const PersonalFinanceDashboard = () => {
                             </Select>
                           </div>
                         </div>
-                        <Button onClick={addIncome} className="w-full h-12 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl">
+                        <Button onClick={addIncome} className="w-full h-10 sm:h-12 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm sm:text-base rounded-lg sm:rounded-xl">
                           Add Income
                         </Button>
                       </div>
@@ -360,14 +360,14 @@ const PersonalFinanceDashboard = () => {
 
                       <div className="space-y-2">
                         {incomes.map((income) => (
-                          <div key={income.id} className="flex items-center justify-between p-3 bg-white rounded-lg border border-blue-200">
-                            <div>
-                              <div className="font-medium">{income.source}</div>
-                              <div className="text-sm text-gray-600">
+                          <div key={income.id} className="flex items-center justify-between p-2 sm:p-3 bg-white rounded-lg border border-blue-200">
+                            <div className="min-w-0 flex-1 pr-2">
+                              <div className="font-medium text-sm sm:text-base truncate">{income.source}</div>
+                              <div className="text-xs sm:text-sm text-gray-600">
                                 {formatCurrency(income.amount)} {income.frequency}
                               </div>
                             </div>
-                            <Button variant="outline" size="sm" onClick={() => deleteIncome(income.id)} className="text-red-600 hover:text-red-700">
+                            <Button variant="outline" size="sm" onClick={() => deleteIncome(income.id)} className="text-red-600 hover:text-red-700 text-xs sm:text-sm flex-shrink-0">
                               Remove
                             </Button>
                           </div>
@@ -376,15 +376,15 @@ const PersonalFinanceDashboard = () => {
                     </div>
 
                     {/* Expenses Section */}
-                    <div className="space-y-4 bg-green-50 rounded-xl p-4 sm:p-6">
-                      <h3 className="text-lg sm:text-xl font-bold text-green-900">Expenses</h3>
-                      <div className="space-y-3">
+                    <div className="space-y-3 sm:space-y-4 bg-green-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6">
+                      <h3 className="text-base sm:text-lg md:text-xl font-bold text-green-900">Expenses</h3>
+                      <div className="space-y-2 sm:space-y-3">
                         <div>
-                          <Label htmlFor="expense-category" className="text-sm font-semibold text-green-800 uppercase tracking-wide">
+                          <Label htmlFor="expense-category" className="text-xs sm:text-sm font-semibold text-green-800 uppercase tracking-wide">
                             Category
                           </Label>
                           <Select value={newExpense.category} onValueChange={(value) => setNewExpense({...newExpense, category: value})}>
-                            <SelectTrigger className="mt-1 h-12 border-2 border-green-200 rounded-xl text-base focus:border-green-500 focus:ring-green-500">
+                            <SelectTrigger className="mt-1 h-10 sm:h-12 border-2 border-green-200 rounded-lg sm:rounded-xl text-sm sm:text-base focus:border-green-500 focus:ring-green-500 w-full">
                               <SelectValue placeholder="Select category" />
                             </SelectTrigger>
                             <SelectContent>
@@ -397,7 +397,7 @@ const PersonalFinanceDashboard = () => {
                           </Select>
                         </div>
                         <div>
-                          <Label htmlFor="expense-description" className="text-sm font-semibold text-green-800 uppercase tracking-wide">
+                          <Label htmlFor="expense-description" className="text-xs sm:text-sm font-semibold text-green-800 uppercase tracking-wide">
                             Description
                           </Label>
                           <Input
@@ -405,12 +405,12 @@ const PersonalFinanceDashboard = () => {
                             placeholder="e.g., Rent, Groceries"
                             value={newExpense.description}
                             onChange={(e) => setNewExpense({...newExpense, description: e.target.value})}
-                            className="mt-1 h-12 border-2 border-green-200 rounded-xl text-base focus:border-green-500 focus:ring-green-500"
+                            className="mt-1 h-10 sm:h-12 border-2 border-green-200 rounded-lg sm:rounded-xl text-sm sm:text-base focus:border-green-500 focus:ring-green-500 w-full"
                           />
                         </div>
                         <div className="grid grid-cols-2 gap-2">
                           <div>
-                            <Label htmlFor="expense-amount" className="text-sm font-semibold text-green-800 uppercase tracking-wide">
+                            <Label htmlFor="expense-amount" className="text-xs sm:text-sm font-semibold text-green-800 uppercase tracking-wide">
                               Amount
                             </Label>
                             <Input
@@ -419,15 +419,15 @@ const PersonalFinanceDashboard = () => {
                               placeholder="1200"
                               value={newExpense.amount}
                               onChange={(e) => setNewExpense({...newExpense, amount: e.target.value})}
-                              className="mt-1 h-12 border-2 border-green-200 rounded-xl text-base focus:border-green-500 focus:ring-green-500"
+                              className="mt-1 h-10 sm:h-12 border-2 border-green-200 rounded-lg sm:rounded-xl text-sm sm:text-base focus:border-green-500 focus:ring-green-500 w-full"
                             />
                           </div>
                           <div>
-                            <Label htmlFor="expense-frequency" className="text-sm font-semibold text-green-800 uppercase tracking-wide">
+                            <Label htmlFor="expense-frequency" className="text-xs sm:text-sm font-semibold text-green-800 uppercase tracking-wide">
                               Frequency
                             </Label>
                             <Select value={newExpense.frequency} onValueChange={(value) => setNewExpense({...newExpense, frequency: value})}>
-                              <SelectTrigger className="mt-1 h-12 border-2 border-green-200 rounded-xl text-base focus:border-green-500 focus:ring-green-500">
+                              <SelectTrigger className="mt-1 h-10 sm:h-12 border-2 border-green-200 rounded-lg sm:rounded-xl text-sm sm:text-base focus:border-green-500 focus:ring-green-500 w-full">
                                 <SelectValue />
                               </SelectTrigger>
                               <SelectContent>
@@ -440,7 +440,7 @@ const PersonalFinanceDashboard = () => {
                             </Select>
                           </div>
                         </div>
-                        <Button onClick={addExpense} className="w-full h-12 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl">
+                        <Button onClick={addExpense} className="w-full h-10 sm:h-12 bg-green-600 hover:bg-green-700 text-white font-semibold text-sm sm:text-base rounded-lg sm:rounded-xl">
                           Add Expense
                         </Button>
                       </div>
@@ -449,14 +449,14 @@ const PersonalFinanceDashboard = () => {
 
                       <div className="space-y-2 max-h-60 overflow-y-auto">
                         {expenses.map((expense) => (
-                          <div key={expense.id} className="flex items-center justify-between p-3 bg-white rounded-lg border border-green-200">
-                            <div>
-                              <div className="font-medium">{expense.description}</div>
-                              <div className="text-sm text-gray-600">
+                          <div key={expense.id} className="flex items-center justify-between p-2 sm:p-3 bg-white rounded-lg border border-green-200">
+                            <div className="min-w-0 flex-1 pr-2">
+                              <div className="font-medium text-sm sm:text-base truncate">{expense.description}</div>
+                              <div className="text-xs sm:text-sm text-gray-600">
                                 {expense.category} - {formatCurrency(expense.amount)} {expense.frequency}
                               </div>
                             </div>
-                            <Button variant="outline" size="sm" onClick={() => deleteExpense(expense.id)} className="text-red-600 hover:text-red-700">
+                            <Button variant="outline" size="sm" onClick={() => deleteExpense(expense.id)} className="text-red-600 hover:text-red-700 text-xs sm:text-sm flex-shrink-0">
                               Remove
                             </Button>
                           </div>
@@ -465,11 +465,11 @@ const PersonalFinanceDashboard = () => {
                     </div>
 
                     {/* Debts Section */}
-                    <div className="space-y-4 bg-purple-50 rounded-xl p-4 sm:p-6">
-                      <h3 className="text-lg sm:text-xl font-bold text-purple-900">Debt Management</h3>
-                      <div className="space-y-3">
+                    <div className="space-y-3 sm:space-y-4 bg-purple-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6">
+                      <h3 className="text-base sm:text-lg md:text-xl font-bold text-purple-900">Debt Management</h3>
+                      <div className="space-y-2 sm:space-y-3">
                         <div>
-                          <Label htmlFor="debt-name" className="text-sm font-semibold text-purple-800 uppercase tracking-wide">
+                          <Label htmlFor="debt-name" className="text-xs sm:text-sm font-semibold text-purple-800 uppercase tracking-wide">
                             Debt Name
                           </Label>
                           <Input
@@ -477,12 +477,12 @@ const PersonalFinanceDashboard = () => {
                             placeholder="e.g., Credit Card, Student Loan"
                             value={newDebt.name}
                             onChange={(e) => setNewDebt({...newDebt, name: e.target.value})}
-                            className="mt-1 h-12 border-2 border-purple-200 rounded-xl text-base focus:border-purple-500 focus:ring-purple-500"
+                            className="mt-1 h-10 sm:h-12 border-2 border-purple-200 rounded-lg sm:rounded-xl text-sm sm:text-base focus:border-purple-500 focus:ring-purple-500 w-full"
                           />
                         </div>
                         <div className="grid grid-cols-2 gap-2">
                           <div>
-                            <Label htmlFor="debt-balance" className="text-sm font-semibold text-purple-800 uppercase tracking-wide">
+                            <Label htmlFor="debt-balance" className="text-xs sm:text-sm font-semibold text-purple-800 uppercase tracking-wide">
                               Balance
                             </Label>
                             <Input
@@ -491,11 +491,11 @@ const PersonalFinanceDashboard = () => {
                               placeholder="10000"
                               value={newDebt.balance}
                               onChange={(e) => setNewDebt({...newDebt, balance: e.target.value})}
-                              className="mt-1 h-12 border-2 border-purple-200 rounded-xl text-base focus:border-purple-500 focus:ring-purple-500"
+                              className="mt-1 h-10 sm:h-12 border-2 border-purple-200 rounded-lg sm:rounded-xl text-sm sm:text-base focus:border-purple-500 focus:ring-purple-500 w-full"
                             />
                           </div>
                           <div>
-                            <Label htmlFor="debt-payment" className="text-sm font-semibold text-purple-800 uppercase tracking-wide">
+                            <Label htmlFor="debt-payment" className="text-xs sm:text-sm font-semibold text-purple-800 uppercase tracking-wide">
                               Min Payment
                             </Label>
                             <Input
@@ -504,12 +504,12 @@ const PersonalFinanceDashboard = () => {
                               placeholder="250"
                               value={newDebt.minPayment}
                               onChange={(e) => setNewDebt({...newDebt, minPayment: e.target.value})}
-                              className="mt-1 h-12 border-2 border-purple-200 rounded-xl text-base focus:border-purple-500 focus:ring-purple-500"
+                              className="mt-1 h-10 sm:h-12 border-2 border-purple-200 rounded-lg sm:rounded-xl text-sm sm:text-base focus:border-purple-500 focus:ring-purple-500 w-full"
                             />
                           </div>
                         </div>
                         <div>
-                          <Label htmlFor="debt-rate" className="text-sm font-semibold text-purple-800 uppercase tracking-wide">
+                          <Label htmlFor="debt-rate" className="text-xs sm:text-sm font-semibold text-purple-800 uppercase tracking-wide">
                             Interest Rate (%)
                           </Label>
                           <Input
@@ -519,10 +519,10 @@ const PersonalFinanceDashboard = () => {
                             placeholder="18.99"
                             value={newDebt.interestRate}
                             onChange={(e) => setNewDebt({...newDebt, interestRate: e.target.value})}
-                            className="mt-1 h-12 border-2 border-purple-200 rounded-xl text-base focus:border-purple-500 focus:ring-purple-500"
+                            className="mt-1 h-10 sm:h-12 border-2 border-purple-200 rounded-lg sm:rounded-xl text-sm sm:text-base focus:border-purple-500 focus:ring-purple-500 w-full"
                           />
                         </div>
-                        <Button onClick={addDebt} className="w-full h-12 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-xl">
+                        <Button onClick={addDebt} className="w-full h-10 sm:h-12 bg-purple-600 hover:bg-purple-700 text-white font-semibold text-sm sm:text-base rounded-lg sm:rounded-xl">
                           Add Debt
                         </Button>
                       </div>
@@ -530,21 +530,21 @@ const PersonalFinanceDashboard = () => {
                       <Separator />
 
                       <div className="space-y-2">
-                        <div className="text-lg font-semibold">
+                        <div className="text-base sm:text-lg font-semibold">
                           Total Debt: {formatCurrency(totalDebt)}
                         </div>
                         {debts.map((debt) => (
-                          <div key={debt.id} className="flex items-center justify-between p-3 bg-white rounded-lg border border-purple-200">
-                            <div>
-                              <div className="font-medium">{debt.name}</div>
-                              <div className="text-sm text-gray-600">
+                          <div key={debt.id} className="flex items-center justify-between p-2 sm:p-3 bg-white rounded-lg border border-purple-200">
+                            <div className="min-w-0 flex-1 pr-2">
+                              <div className="font-medium text-sm sm:text-base truncate">{debt.name}</div>
+                              <div className="text-xs sm:text-sm text-gray-600">
                                 {formatCurrency(debt.balance)} at {debt.interestRate}% APR
                               </div>
-                              <div className="text-sm text-gray-600">
+                              <div className="text-xs sm:text-sm text-gray-600">
                                 Min Payment: {formatCurrency(debt.minPayment)}/month
                               </div>
                             </div>
-                            <Button variant="outline" size="sm" onClick={() => deleteDebt(debt.id)} className="text-red-600 hover:text-red-700">
+                            <Button variant="outline" size="sm" onClick={() => deleteDebt(debt.id)} className="text-red-600 hover:text-red-700 text-xs sm:text-sm flex-shrink-0">
                               Remove
                             </Button>
                           </div>
@@ -553,11 +553,11 @@ const PersonalFinanceDashboard = () => {
                     </div>
 
                     {/* Savings Goals Section */}
-                    <div className="space-y-4 bg-orange-50 rounded-xl p-4 sm:p-6">
-                      <h3 className="text-lg sm:text-xl font-bold text-orange-900">Savings Goals</h3>
-                      <div className="space-y-3">
+                    <div className="space-y-3 sm:space-y-4 bg-orange-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6">
+                      <h3 className="text-base sm:text-lg md:text-xl font-bold text-orange-900">Savings Goals</h3>
+                      <div className="space-y-2 sm:space-y-3">
                         <div>
-                          <Label htmlFor="goal-name" className="text-sm font-semibold text-orange-800 uppercase tracking-wide">
+                          <Label htmlFor="goal-name" className="text-xs sm:text-sm font-semibold text-orange-800 uppercase tracking-wide">
                             Goal Name
                           </Label>
                           <Input
@@ -565,12 +565,12 @@ const PersonalFinanceDashboard = () => {
                             placeholder="e.g., Emergency Fund, Vacation"
                             value={newGoal.name}
                             onChange={(e) => setNewGoal({...newGoal, name: e.target.value})}
-                            className="mt-1 h-12 border-2 border-orange-200 rounded-xl text-base focus:border-orange-500 focus:ring-orange-500"
+                            className="mt-1 h-10 sm:h-12 border-2 border-orange-200 rounded-lg sm:rounded-xl text-sm sm:text-base focus:border-orange-500 focus:ring-orange-500 w-full"
                           />
                         </div>
                         <div className="grid grid-cols-2 gap-2">
                           <div>
-                            <Label htmlFor="goal-target" className="text-sm font-semibold text-orange-800 uppercase tracking-wide">
+                            <Label htmlFor="goal-target" className="text-xs sm:text-sm font-semibold text-orange-800 uppercase tracking-wide">
                               Target Amount
                             </Label>
                             <Input
@@ -579,11 +579,11 @@ const PersonalFinanceDashboard = () => {
                               placeholder="10000"
                               value={newGoal.target}
                               onChange={(e) => setNewGoal({...newGoal, target: e.target.value})}
-                              className="mt-1 h-12 border-2 border-orange-200 rounded-xl text-base focus:border-orange-500 focus:ring-orange-500"
+                              className="mt-1 h-10 sm:h-12 border-2 border-orange-200 rounded-lg sm:rounded-xl text-sm sm:text-base focus:border-orange-500 focus:ring-orange-500 w-full"
                             />
                           </div>
                           <div>
-                            <Label htmlFor="goal-current" className="text-sm font-semibold text-orange-800 uppercase tracking-wide">
+                            <Label htmlFor="goal-current" className="text-xs sm:text-sm font-semibold text-orange-800 uppercase tracking-wide">
                               Current Amount
                             </Label>
                             <Input
@@ -592,12 +592,12 @@ const PersonalFinanceDashboard = () => {
                               placeholder="2500"
                               value={newGoal.current}
                               onChange={(e) => setNewGoal({...newGoal, current: e.target.value})}
-                              className="mt-1 h-12 border-2 border-orange-200 rounded-xl text-base focus:border-orange-500 focus:ring-orange-500"
+                              className="mt-1 h-10 sm:h-12 border-2 border-orange-200 rounded-lg sm:rounded-xl text-sm sm:text-base focus:border-orange-500 focus:ring-orange-500 w-full"
                             />
                           </div>
                         </div>
                         <div>
-                          <Label htmlFor="goal-deadline" className="text-sm font-semibold text-orange-800 uppercase tracking-wide">
+                          <Label htmlFor="goal-deadline" className="text-xs sm:text-sm font-semibold text-orange-800 uppercase tracking-wide">
                             Target Date
                           </Label>
                           <Input
@@ -605,10 +605,10 @@ const PersonalFinanceDashboard = () => {
                             type="date"
                             value={newGoal.deadline}
                             onChange={(e) => setNewGoal({...newGoal, deadline: e.target.value})}
-                            className="mt-1 h-12 border-2 border-orange-200 rounded-xl text-base focus:border-orange-500 focus:ring-orange-500"
+                            className="mt-1 h-10 sm:h-12 border-2 border-orange-200 rounded-lg sm:rounded-xl text-sm sm:text-base focus:border-orange-500 focus:ring-orange-500 w-full"
                           />
                         </div>
-                        <Button onClick={addSavingsGoal} className="w-full h-12 bg-orange-600 hover:bg-orange-700 text-white font-semibold rounded-xl">
+                        <Button onClick={addSavingsGoal} className="w-full h-10 sm:h-12 bg-orange-600 hover:bg-orange-700 text-white font-semibold text-sm sm:text-base rounded-lg sm:rounded-xl">
                           Add Savings Goal
                         </Button>
                       </div>
@@ -619,14 +619,14 @@ const PersonalFinanceDashboard = () => {
                         {savingsGoals.map((goal) => {
                           const progress = (goal.current / goal.target) * 100;
                           return (
-                            <div key={goal.id} className="p-3 bg-white rounded-lg border border-orange-200">
+                            <div key={goal.id} className="p-2 sm:p-3 bg-white rounded-lg border border-orange-200">
                               <div className="flex items-center justify-between mb-2">
-                                <div className="font-medium">{goal.name}</div>
-                                <Button variant="outline" size="sm" onClick={() => deleteSavingsGoal(goal.id)} className="text-red-600 hover:text-red-700">
+                                <div className="font-medium text-sm sm:text-base truncate flex-1 pr-2">{goal.name}</div>
+                                <Button variant="outline" size="sm" onClick={() => deleteSavingsGoal(goal.id)} className="text-red-600 hover:text-red-700 text-xs sm:text-sm flex-shrink-0">
                                   Remove
                                 </Button>
                               </div>
-                              <div className="text-sm text-gray-600 mb-2">
+                              <div className="text-xs sm:text-sm text-gray-600 mb-2">
                                 {formatCurrency(goal.current)} / {formatCurrency(goal.target)} ({progress.toFixed(1)}%)
                               </div>
                               <div className="w-full bg-gray-200 rounded-full h-2">
@@ -635,7 +635,7 @@ const PersonalFinanceDashboard = () => {
                                   style={{ width: `${Math.min(progress, 100)}%` }}
                                 ></div>
                               </div>
-                              <div className="text-sm text-gray-600 mt-1">
+                              <div className="text-xs sm:text-sm text-gray-600 mt-1">
                                 Target: {new Date(goal.deadline).toLocaleDateString()}
                               </div>
                             </div>
@@ -646,14 +646,14 @@ const PersonalFinanceDashboard = () => {
                   </div>
 
                   {/* Advanced Options */}
-                  <div className="space-y-4 sm:space-y-6 border-t pt-6 sm:pt-8">
-                    <h3 className="text-lg sm:text-xl font-bold text-gray-900">Dashboard Options</h3>
+                  <div className="space-y-3 sm:space-y-4 md:space-y-6 border-t pt-4 sm:pt-6 md:pt-8">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900">Dashboard Options</h3>
                     
                     <Collapsible open={showAdvanced} onOpenChange={setShowAdvanced}>
                       <CollapsibleTrigger asChild>
                         <Button 
                           variant="ghost" 
-                          className="w-full justify-between text-sm sm:text-base py-3 sm:py-4 h-auto"
+                          className="w-full justify-between text-xs sm:text-sm md:text-base py-2 sm:py-3 md:py-4 h-auto px-3 sm:px-4"
                           data-testid="button-toggle-advanced"
                         >
                           <span className="flex items-center">
@@ -662,12 +662,12 @@ const PersonalFinanceDashboard = () => {
                           <span className={`transform transition-transform ${showAdvanced ? 'rotate-180' : ''}`}>▼</span>
                         </Button>
                       </CollapsibleTrigger>
-                      <CollapsibleContent className="space-y-4 sm:space-y-6 mt-4">
+                      <CollapsibleContent className="space-y-3 sm:space-y-4 md:space-y-6 mt-3 sm:mt-4">
                         <Separator />
                         
-                        <div className="bg-gray-50 rounded-xl p-4 sm:p-6">
-                          <h4 className="text-sm sm:text-base font-semibold text-gray-900 mb-4">Dashboard Features</h4>
-                          <div className="space-y-3 text-sm text-gray-600">
+                        <div className="bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6">
+                          <h4 className="text-xs sm:text-sm md:text-base font-semibold text-gray-900 mb-3 sm:mb-4">Dashboard Features</h4>
+                          <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-gray-600">
                             <div>• Comprehensive financial overview with real-time calculations</div>
                             <div>• Interactive charts showing income distribution and expense categories</div>
                             <div>• Debt tracking with interest rate analysis and payment schedules</div>
@@ -683,10 +683,10 @@ const PersonalFinanceDashboard = () => {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 sm:pt-6">
+                  <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       onClick={handleSampleData}
-                      className="flex-1 h-12 sm:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-base sm:text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                       data-testid="button-sample-data"
                     >
                       Load Sample Data
@@ -694,7 +694,7 @@ const PersonalFinanceDashboard = () => {
                     <Button
                       onClick={resetTool}
                       variant="outline"
-                      className="h-12 sm:h-14 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-base sm:text-lg rounded-xl"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                       data-testid="button-reset"
                     >
                       Reset Dashboard
@@ -704,40 +704,40 @@ const PersonalFinanceDashboard = () => {
 
                 {/* Results Section */}
                 {(incomes.length > 0 || expenses.length > 0 || debts.length > 0 || savingsGoals.length > 0) && (
-                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 border-t">
-                    <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">Financial Overview</h2>
+                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Financial Overview</h2>
 
-                    <div className="space-y-6 sm:space-y-8" data-testid="financial-overview">
+                    <div className="space-y-4 sm:space-y-6 md:space-y-8" data-testid="financial-overview">
                       {/* Key Metrics */}
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-                        <div className="rounded-xl p-4 sm:p-6 border-2 bg-green-50 border-green-200">
-                          <div className="flex items-center justify-between mb-3">
-                            <h3 className="text-lg font-bold text-green-900">Monthly Income</h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
+                        <div className="rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border-2 bg-green-50 border-green-200">
+                          <div className="flex items-center justify-between mb-2 sm:mb-3">
+                            <h3 className="text-sm sm:text-base md:text-lg font-bold text-green-900">Monthly Income</h3>
                           </div>
-                          <div className="text-2xl font-bold text-green-600">{formatCurrency(monthlyIncome)}</div>
+                          <div className="text-lg sm:text-xl md:text-2xl font-bold text-green-600 break-all">{formatCurrency(monthlyIncome)}</div>
                         </div>
 
-                        <div className="rounded-xl p-4 sm:p-6 border-2 bg-red-50 border-red-200">
-                          <div className="flex items-center justify-between mb-3">
-                            <h3 className="text-lg font-bold text-red-900">Monthly Expenses</h3>
+                        <div className="rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border-2 bg-red-50 border-red-200">
+                          <div className="flex items-center justify-between mb-2 sm:mb-3">
+                            <h3 className="text-sm sm:text-base md:text-lg font-bold text-red-900">Monthly Expenses</h3>
                           </div>
-                          <div className="text-2xl font-bold text-red-600">{formatCurrency(monthlyExpenses)}</div>
+                          <div className="text-lg sm:text-xl md:text-2xl font-bold text-red-600 break-all">{formatCurrency(monthlyExpenses)}</div>
                         </div>
 
-                        <div className={`rounded-xl p-4 sm:p-6 border-2 ${netIncome >= 0 ? 'bg-blue-50 border-blue-200' : 'bg-red-50 border-red-200'}`}>
-                          <div className="flex items-center justify-between mb-3">
-                            <h3 className={`text-lg font-bold ${netIncome >= 0 ? 'text-blue-900' : 'text-red-900'}`}>Net Income</h3>
+                        <div className={`rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border-2 ${netIncome >= 0 ? 'bg-blue-50 border-blue-200' : 'bg-red-50 border-red-200'}`}>
+                          <div className="flex items-center justify-between mb-2 sm:mb-3">
+                            <h3 className={`text-sm sm:text-base md:text-lg font-bold ${netIncome >= 0 ? 'text-blue-900' : 'text-red-900'}`}>Net Income</h3>
                           </div>
-                          <div className={`text-2xl font-bold ${netIncome >= 0 ? 'text-blue-600' : 'text-red-600'}`}>
+                          <div className={`text-lg sm:text-xl md:text-2xl font-bold ${netIncome >= 0 ? 'text-blue-600' : 'text-red-600'} break-all`}>
                             {formatCurrency(netIncome)}
                           </div>
                         </div>
 
-                        <div className={`rounded-xl p-4 sm:p-6 border-2 ${savingsRate >= 0 ? 'bg-purple-50 border-purple-200' : 'bg-red-50 border-red-200'}`}>
-                          <div className="flex items-center justify-between mb-3">
-                            <h3 className={`text-lg font-bold ${savingsRate >= 0 ? 'text-purple-900' : 'text-red-900'}`}>Savings Rate</h3>
+                        <div className={`rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border-2 ${savingsRate >= 0 ? 'bg-purple-50 border-purple-200' : 'bg-red-50 border-red-200'}`}>
+                          <div className="flex items-center justify-between mb-2 sm:mb-3">
+                            <h3 className={`text-sm sm:text-base md:text-lg font-bold ${savingsRate >= 0 ? 'text-purple-900' : 'text-red-900'}`}>Savings Rate</h3>
                           </div>
-                          <div className={`text-2xl font-bold ${savingsRate >= 0 ? 'text-purple-600' : 'text-red-600'}`}>
+                          <div className={`text-lg sm:text-xl md:text-2xl font-bold ${savingsRate >= 0 ? 'text-purple-600' : 'text-red-600'}`}>
                             {savingsRate.toFixed(1)}%
                           </div>
                         </div>
@@ -745,10 +745,10 @@ const PersonalFinanceDashboard = () => {
 
                       {/* Charts */}
                       {(monthlyIncome > 0 || monthlyExpenses > 0) && (
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                           {/* Income Distribution */}
-                          <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-200">
-                            <h3 className="text-lg font-bold text-gray-900 mb-4">Income Distribution</h3>
+                          <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm border border-gray-200">
+                            <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">Income Distribution</h3>
                             <ResponsiveContainer width="100%" height={300}>
                               <PieChart>
                                 <Pie
@@ -772,8 +772,8 @@ const PersonalFinanceDashboard = () => {
 
                           {/* Expenses by Category */}
                           {expensesByCategory.length > 0 && (
-                            <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-200">
-                              <h3 className="text-lg font-bold text-gray-900 mb-4">Expenses by Category</h3>
+                            <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm border border-gray-200">
+                              <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">Expenses by Category</h3>
                               <ResponsiveContainer width="100%" height={300}>
                                 <BarChart data={expensesByCategory}>
                                   <CartesianGrid strokeDasharray="3 3" />
@@ -789,38 +789,38 @@ const PersonalFinanceDashboard = () => {
                       )}
 
                       {/* Financial Summary */}
-                      <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm border border-gray-200 overflow-x-auto">
-                        <h3 className="text-lg font-bold text-gray-900 mb-4">Financial Summary</h3>
-                        <table className="w-full text-sm">
+                      <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-sm border border-gray-200 overflow-x-auto">
+                        <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">Financial Summary</h3>
+                        <table className="w-full text-xs sm:text-sm min-w-[500px]">
                           <thead className="bg-gray-50">
                             <tr>
-                              <th className="px-4 py-3 text-left font-semibold text-gray-900">Category</th>
-                              <th className="px-4 py-3 text-center font-semibold text-gray-900">Monthly Amount</th>
-                              <th className="px-4 py-3 text-center font-semibold text-gray-900">Percentage of Income</th>
+                              <th className="px-2 sm:px-4 py-2 sm:py-3 text-left font-semibold text-gray-900">Category</th>
+                              <th className="px-2 sm:px-4 py-2 sm:py-3 text-center font-semibold text-gray-900">Monthly Amount</th>
+                              <th className="px-2 sm:px-4 py-2 sm:py-3 text-center font-semibold text-gray-900">% of Income</th>
                             </tr>
                           </thead>
                           <tbody className="divide-y divide-gray-200">
                             <tr>
-                              <td className="px-4 py-3 font-medium">Total Income</td>
-                              <td className="px-4 py-3 text-center text-green-600 font-semibold">{formatCurrency(monthlyIncome)}</td>
-                              <td className="px-4 py-3 text-center">100%</td>
+                              <td className="px-2 sm:px-4 py-2 sm:py-3 font-medium">Total Income</td>
+                              <td className="px-2 sm:px-4 py-2 sm:py-3 text-center text-green-600 font-semibold">{formatCurrency(monthlyIncome)}</td>
+                              <td className="px-2 sm:px-4 py-2 sm:py-3 text-center">100%</td>
                             </tr>
                             <tr className="bg-gray-50">
-                              <td className="px-4 py-3 font-medium">Total Expenses</td>
-                              <td className="px-4 py-3 text-center text-red-600 font-semibold">{formatCurrency(monthlyExpenses)}</td>
-                              <td className="px-4 py-3 text-center">{monthlyIncome > 0 ? ((monthlyExpenses / monthlyIncome) * 100).toFixed(1) : 0}%</td>
+                              <td className="px-2 sm:px-4 py-2 sm:py-3 font-medium">Total Expenses</td>
+                              <td className="px-2 sm:px-4 py-2 sm:py-3 text-center text-red-600 font-semibold">{formatCurrency(monthlyExpenses)}</td>
+                              <td className="px-2 sm:px-4 py-2 sm:py-3 text-center">{monthlyIncome > 0 ? ((monthlyExpenses / monthlyIncome) * 100).toFixed(1) : 0}%</td>
                             </tr>
                             <tr>
-                              <td className="px-4 py-3 font-medium">Debt Payments</td>
-                              <td className="px-4 py-3 text-center text-orange-600 font-semibold">{formatCurrency(monthlyDebtPayments)}</td>
-                              <td className="px-4 py-3 text-center">{monthlyIncome > 0 ? ((monthlyDebtPayments / monthlyIncome) * 100).toFixed(1) : 0}%</td>
+                              <td className="px-2 sm:px-4 py-2 sm:py-3 font-medium">Debt Payments</td>
+                              <td className="px-2 sm:px-4 py-2 sm:py-3 text-center text-orange-600 font-semibold">{formatCurrency(monthlyDebtPayments)}</td>
+                              <td className="px-2 sm:px-4 py-2 sm:py-3 text-center">{monthlyIncome > 0 ? ((monthlyDebtPayments / monthlyIncome) * 100).toFixed(1) : 0}%</td>
                             </tr>
                             <tr className="bg-blue-50 font-semibold">
-                              <td className="px-4 py-3 font-bold">Net Income</td>
-                              <td className={`px-4 py-3 text-center font-bold ${netIncome >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                              <td className="px-2 sm:px-4 py-2 sm:py-3 font-bold">Net Income</td>
+                              <td className={`px-2 sm:px-4 py-2 sm:py-3 text-center font-bold ${netIncome >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                                 {formatCurrency(netIncome)}
                               </td>
-                              <td className={`px-4 py-3 text-center font-bold ${netIncome >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                              <td className={`px-2 sm:px-4 py-2 sm:py-3 text-center font-bold ${netIncome >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                                 {savingsRate.toFixed(1)}%
                               </td>
                             </tr>
@@ -829,9 +829,9 @@ const PersonalFinanceDashboard = () => {
                       </div>
 
                       {/* Recommendations */}
-                      <div className="bg-blue-50 border-l-4 border-blue-400 p-4 sm:p-6 rounded-lg">
-                        <h3 className="text-lg font-bold text-blue-900 mb-2">Financial Health Recommendations</h3>
-                        <div className="space-y-2 text-blue-800">
+                      <div className="bg-blue-50 border-l-4 border-blue-400 p-3 sm:p-4 md:p-6 rounded-lg">
+                        <h3 className="text-base sm:text-lg font-bold text-blue-900 mb-2">Financial Health Recommendations</h3>
+                        <div className="space-y-1 sm:space-y-2 text-xs sm:text-sm md:text-base text-blue-800">
                           {savingsRate < 20 && (
                             <p>• Consider increasing your savings rate to at least 20% for better financial security.</p>
                           )}
