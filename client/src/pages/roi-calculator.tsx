@@ -406,14 +406,19 @@ export default function ROICalculator() {
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
           <div className="relative max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
             <div className="space-y-4 sm:space-y-6 md:space-y-8">
-              <div className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
-                <Calculator className="w-3 h-3 sm:w-4 sm:h-4 mr-2 text-blue-700" />
-                <span className="text-xs sm:text-sm font-medium text-blue-700">Professional ROI Calculator - Free & Accurate</span>
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 md:px-5 md:py-2.5 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200 shadow-sm hover:shadow-md transition-all duration-200">
+                <Calculator className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 flex-shrink-0 text-blue-700" />
+                <span className="text-[10px] xs:text-xs sm:text-sm md:text-base font-medium text-blue-700 whitespace-nowrap">Professional ROI Calculator - Free & Accurate</span>
               </div>
-              <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-slate-900 leading-tight tracking-tight px-3 sm:px-4 md:px-0">
-                <span className="block">ROI Calculator Online Free:</span>
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2 md:mt-3">
-                  Investment ROI Calculator 2025
+              <h1 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-[1.1] sm:leading-tight tracking-tight px-2 xs:px-3 sm:px-4 md:px-6 lg:px-0 max-w-full">
+                <span className="block mb-1 xs:mb-1.5 sm:mb-2 md:mb-3">ROI Calculator Online Free:</span>
+                <span className="block relative">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 select-none">
+                    Investment ROI Calculator 2025
+                  </span>
+                  <span className="absolute inset-0 text-blue-600 opacity-0 selection:opacity-100 selection:bg-blue-200">
+                    Investment ROI Calculator 2025
+                  </span>
                 </span>
               </h1>
               <p className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-slate-600 max-w-sm xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-5xl mx-auto leading-relaxed px-4 sm:px-6 md:px-8 lg:px-0">
