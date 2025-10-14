@@ -410,18 +410,13 @@ export default function ROICalculator() {
                 <Calculator className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 flex-shrink-0 text-blue-700" />
                 <span className="text-[10px] xs:text-xs sm:text-sm md:text-base font-medium text-blue-700 whitespace-nowrap">Professional ROI Calculator - Free & Accurate</span>
               </div>
-              <h1 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-[1.1] sm:leading-tight tracking-tight px-2 xs:px-3 sm:px-4 md:px-6 lg:px-0 max-w-full">
-                <span className="block mb-1 xs:mb-1.5 sm:mb-2 md:mb-3">ROI Calculator Online Free:</span>
-                <span className="block relative">
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 select-none">
-                    Investment ROI Calculator 2025
-                  </span>
-                  <span className="absolute inset-0 text-blue-600 opacity-0 selection:opacity-100 selection:bg-blue-200">
-                    Investment ROI Calculator 2025
-                  </span>
+              <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0">
+                <span className="block">ROI Calculator Online Free:</span>
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
+                  Investment ROI Calculator 2025
                 </span>
               </h1>
-              <p className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-slate-600 max-w-sm xs:max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-5xl mx-auto leading-relaxed px-4 sm:px-6 md:px-8 lg:px-0">
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
                 Free business ROI calculator to calculate return on investment for stocks, business projects, real estate, and marketing campaigns. Get instant annualized ROI analysis with our comprehensive investment return calculator.
               </p>
 
