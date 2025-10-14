@@ -548,16 +548,16 @@ export default function ROICalculator() {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12">
-                  <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">ROI Analysis</h2>
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">ROI Analysis</h2>
 
                   {result ? (
-                    <div className="space-y-4 sm:space-y-6">
+                    <div className="space-y-4 sm:space-y-6 md:space-y-8" data-testid="roi-results">
                       {/* ROI Display */}
-                      <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 border border-gray-100">
-                        <div className="text-center space-y-2">
-                          <div className="text-xs sm:text-sm text-gray-600">Return on Investment</div>
-                          <div className={`text-2xl sm:text-3xl md:text-4xl font-bold ${result.roi >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                      <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 border-2 border-blue-200 shadow-sm">
+                        <div className="text-center space-y-2 sm:space-y-3">
+                          <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide">Return on Investment</div>
+                          <div className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold ${result.roi >= 0 ? 'text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-600' : 'text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-rose-600'} break-all`} data-testid="text-roi-percentage">
                             {formatPercentage(result.roi)}
                           </div>
                         </div>
@@ -565,36 +565,46 @@ export default function ROICalculator() {
 
                       {/* Summary */}
                       <div className="space-y-3 sm:space-y-4">
-                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 sm:py-3 border-b border-gray-200 space-y-1 sm:space-y-0">
-                          <span className="text-xs sm:text-sm text-gray-600">Initial Investment</span>
-                          <span className="font-semibold text-sm sm:text-base text-gray-900 break-all">
-                            {formatCurrency(result.initialInvestment)}
-                          </span>
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Initial Investment</span>
+                            <span className="font-bold text-gray-900 text-sm sm:text-base break-all" data-testid="text-initial-investment">
+                              {formatCurrency(result.initialInvestment)}
+                            </span>
+                          </div>
                         </div>
-                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 sm:py-3 border-b border-gray-200 space-y-1 sm:space-y-0">
-                          <span className="text-xs sm:text-sm text-gray-600">Final Value</span>
-                          <span className="font-semibold text-sm sm:text-base text-green-600 break-all">
-                            {formatCurrency(result.finalValue)}
-                          </span>
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Final Value</span>
+                            <span className="font-bold text-green-600 text-sm sm:text-base break-all" data-testid="text-final-value">
+                              {formatCurrency(result.finalValue)}
+                            </span>
+                          </div>
                         </div>
-                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 sm:py-3 border-b border-gray-200 space-y-1 sm:space-y-0">
-                          <span className="text-xs sm:text-sm text-gray-600">Total Gain/Loss</span>
-                          <span className={`font-semibold text-sm sm:text-base break-all ${result.totalGain >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                            {result.totalGain >= 0 ? '+' : ''}{formatCurrency(result.totalGain)}
-                          </span>
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Total Gain/Loss</span>
+                            <span className={`font-bold text-sm sm:text-base break-all ${result.totalGain >= 0 ? 'text-green-600' : 'text-red-600'}`} data-testid="text-total-gain">
+                              {result.totalGain >= 0 ? '+' : ''}{formatCurrency(result.totalGain)}
+                            </span>
+                          </div>
                         </div>
-                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 sm:py-3 border-b border-gray-200 space-y-1 sm:space-y-0">
-                          <span className="text-xs sm:text-sm text-gray-600">Annualized ROI</span>
-                          <span className={`font-semibold text-sm sm:text-base ${result.annualizedROI >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                            {formatPercentage(result.annualizedROI)}
-                          </span>
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex justify-between items-center">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base">Annualized ROI</span>
+                            <span className={`font-bold text-sm sm:text-base ${result.annualizedROI >= 0 ? 'text-green-600' : 'text-red-600'}`} data-testid="text-annualized-roi">
+                              {formatPercentage(result.annualizedROI)}
+                            </span>
+                          </div>
                         </div>
                         {calculationType === 'business' && result.breakEvenTime > 0 && (
-                          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-2 sm:py-3 space-y-1 sm:space-y-0">
-                            <span className="text-xs sm:text-sm text-gray-600">Break-even Time</span>
-                            <span className="font-semibold text-sm sm:text-base text-gray-900">
-                              {result.breakEvenTime.toFixed(1)} years
-                            </span>
+                          <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                            <div className="flex justify-between items-center">
+                              <span className="font-medium text-gray-700 text-sm sm:text-base">Break-even Time</span>
+                              <span className="font-bold text-gray-900 text-sm sm:text-base">
+                                {result.breakEvenTime.toFixed(1)} years
+                              </span>
+                            </div>
                           </div>
                         )}
                       </div>
@@ -623,11 +633,11 @@ export default function ROICalculator() {
                       </div>
                     </div>
                   ) : (
-                    <div className="text-center py-8 sm:py-12">
-                      <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                        <span className="text-lg sm:text-2xl font-bold text-blue-600">%</span>
+                    <div className="text-center py-8 sm:py-12 md:py-16" data-testid="no-results">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
+                        <Calculator className="w-8 h-8 text-gray-400" />
                       </div>
-                      <p className="text-gray-500 text-sm sm:text-base lg:text-lg px-4">Enter investment details and click calculate to see ROI analysis</p>
+                      <p className="text-gray-500 text-sm sm:text-base md:text-lg px-4">Enter your investment details above and click "Calculate ROI" to see your personalized results</p>
                     </div>
                   )}
                 </div>
