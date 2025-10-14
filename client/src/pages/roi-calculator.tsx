@@ -1278,62 +1278,181 @@ export default function ROICalculator() {
 
             {/* ROI vs Other Financial Metrics */}
             <section className="bg-white/90 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 shadow-xl border border-gray-100">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 sm:mb-8 md:mb-10 text-center">ROI vs Other Financial Metrics: Complete Comparison Guide</h2>
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 lg:mb-10 text-center leading-tight px-2 sm:px-0">ROI vs Other Financial Metrics: Complete Comparison Guide</h2>
 
-              <div className="overflow-x-auto mb-6 sm:mb-8 -mx-4 sm:mx-0">
-                <table className="w-full border-collapse bg-white rounded-lg sm:rounded-2xl shadow-lg overflow-hidden min-w-[640px]">
+              {/* Desktop Table View */}
+              <div className="hidden lg:block overflow-x-auto mb-6 sm:mb-8">
+                <table className="w-full border-collapse bg-white rounded-lg sm:rounded-2xl shadow-lg overflow-hidden">
                   <thead>
                     <tr className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
-                      <th className="border border-gray-200 p-2 sm:p-3 md:p-4 text-left font-bold text-xs sm:text-sm md:text-base">Metric</th>
-                      <th className="border border-gray-200 p-2 sm:p-3 md:p-4 text-left font-bold text-xs sm:text-sm md:text-base">Purpose</th>
-                      <th className="border border-gray-200 p-2 sm:p-3 md:p-4 text-left font-bold text-xs sm:text-sm md:text-base">Best For</th>
-                      <th className="border border-gray-200 p-2 sm:p-3 md:p-4 text-left font-bold text-xs sm:text-sm md:text-base">Calculation</th>
-                      <th className="border border-gray-200 p-2 sm:p-3 md:p-4 text-left font-bold text-xs sm:text-sm md:text-base">Time Consideration</th>
+                      <th className="border border-gray-200 p-3 md:p-4 text-left font-bold text-sm md:text-base">Metric</th>
+                      <th className="border border-gray-200 p-3 md:p-4 text-left font-bold text-sm md:text-base">Purpose</th>
+                      <th className="border border-gray-200 p-3 md:p-4 text-left font-bold text-sm md:text-base">Best For</th>
+                      <th className="border border-gray-200 p-3 md:p-4 text-left font-bold text-sm md:text-base">Calculation</th>
+                      <th className="border border-gray-200 p-3 md:p-4 text-left font-bold text-sm md:text-base">Time Consideration</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr className="hover:bg-blue-50 transition-colors">
-                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 font-semibold text-blue-800 text-xs sm:text-sm md:text-base">ROI (Return on Investment)</td>
-                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">Measure investment efficiency</td>
-                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">All investment types</td>
-                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">(Gain - Cost) / Cost × 100%</td>
-                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">Any time period</td>
+                      <td className="border border-gray-200 p-3 md:p-4 font-semibold text-blue-800 text-sm md:text-base">ROI (Return on Investment)</td>
+                      <td className="border border-gray-200 p-3 md:p-4 text-sm md:text-base">Measure investment efficiency</td>
+                      <td className="border border-gray-200 p-3 md:p-4 text-sm md:text-base">All investment types</td>
+                      <td className="border border-gray-200 p-3 md:p-4 text-sm md:text-base">(Gain - Cost) / Cost × 100%</td>
+                      <td className="border border-gray-200 p-3 md:p-4 text-sm md:text-base">Any time period</td>
                     </tr>
                     <tr className="bg-gray-50 hover:bg-blue-50 transition-colors">
-                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 font-semibold text-green-800 text-xs sm:text-sm md:text-base">IRR (Internal Rate of Return)</td>
-                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">Find break-even interest rate</td>
-                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">Complex cash flows</td>
-                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">NPV = 0 discount rate</td>
-                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">Considers timing</td>
+                      <td className="border border-gray-200 p-3 md:p-4 font-semibold text-green-800 text-sm md:text-base">IRR (Internal Rate of Return)</td>
+                      <td className="border border-gray-200 p-3 md:p-4 text-sm md:text-base">Find break-even interest rate</td>
+                      <td className="border border-gray-200 p-3 md:p-4 text-sm md:text-base">Complex cash flows</td>
+                      <td className="border border-gray-200 p-3 md:p-4 text-sm md:text-base">NPV = 0 discount rate</td>
+                      <td className="border border-gray-200 p-3 md:p-4 text-sm md:text-base">Considers timing</td>
                     </tr>
                     <tr className="hover:bg-blue-50 transition-colors">
-                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 font-semibold text-purple-800 text-xs sm:text-sm md:text-base">NPV (Net Present Value)</td>
-                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">Absolute value creation</td>
-                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">Capital budgeting</td>
-                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">Sum of discounted cash flows</td>
-                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">Time value of money</td>
+                      <td className="border border-gray-200 p-3 md:p-4 font-semibold text-purple-800 text-sm md:text-base">NPV (Net Present Value)</td>
+                      <td className="border border-gray-200 p-3 md:p-4 text-sm md:text-base">Absolute value creation</td>
+                      <td className="border border-gray-200 p-3 md:p-4 text-sm md:text-base">Capital budgeting</td>
+                      <td className="border border-gray-200 p-3 md:p-4 text-sm md:text-base">Sum of discounted cash flows</td>
+                      <td className="border border-gray-200 p-3 md:p-4 text-sm md:text-base">Time value of money</td>
                     </tr>
                     <tr className="bg-gray-50 hover:bg-blue-50 transition-colors">
-                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 font-semibold text-orange-800 text-xs sm:text-sm md:text-base">Payback Period</td>
-                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">Time to recover investment</td>
-                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">Risk assessment</td>
-                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">Investment / Annual Cash Flow</td>
-                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">Linear time calculation</td>
+                      <td className="border border-gray-200 p-3 md:p-4 font-semibold text-orange-800 text-sm md:text-base">Payback Period</td>
+                      <td className="border border-gray-200 p-3 md:p-4 text-sm md:text-base">Time to recover investment</td>
+                      <td className="border border-gray-200 p-3 md:p-4 text-sm md:text-base">Risk assessment</td>
+                      <td className="border border-gray-200 p-3 md:p-4 text-sm md:text-base">Investment / Annual Cash Flow</td>
+                      <td className="border border-gray-200 p-3 md:p-4 text-sm md:text-base">Linear time calculation</td>
                     </tr>
                     <tr className="hover:bg-blue-50 transition-colors">
-                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 font-semibold text-red-800 text-xs sm:text-sm md:text-base">CAGR (Compound Annual Growth Rate)</td>
-                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">Annualized growth rate</td>
-                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">Long-term investments</td>
-                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">(End Value / Start Value)^(1/years) - 1</td>
-                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">Smooths volatility</td>
+                      <td className="border border-gray-200 p-3 md:p-4 font-semibold text-red-800 text-sm md:text-base">CAGR (Compound Annual Growth Rate)</td>
+                      <td className="border border-gray-200 p-3 md:p-4 text-sm md:text-base">Annualized growth rate</td>
+                      <td className="border border-gray-200 p-3 md:p-4 text-sm md:text-base">Long-term investments</td>
+                      <td className="border border-gray-200 p-3 md:p-4 text-sm md:text-base">(End Value / Start Value)^(1/years) - 1</td>
+                      <td className="border border-gray-200 p-3 md:p-4 text-sm md:text-base">Smooths volatility</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
 
+              {/* Mobile Card View */}
+              <div className="lg:hidden space-y-4 mb-6 sm:mb-8">
+                {/* ROI Card */}
+                <div className="bg-white rounded-lg sm:rounded-xl shadow-lg border border-gray-200 p-4">
+                  <h3 className="font-bold text-blue-800 text-base sm:text-lg mb-3">ROI (Return on Investment)</h3>
+                  <div className="space-y-2 text-sm sm:text-base">
+                    <div className="flex flex-col sm:flex-row sm:justify-between border-b border-gray-100 pb-2">
+                      <span className="font-semibold text-gray-700">Purpose:</span>
+                      <span className="text-gray-600">Measure investment efficiency</span>
+                    </div>
+                    <div className="flex flex-col sm:flex-row sm:justify-between border-b border-gray-100 pb-2">
+                      <span className="font-semibold text-gray-700">Best For:</span>
+                      <span className="text-gray-600">All investment types</span>
+                    </div>
+                    <div className="flex flex-col border-b border-gray-100 pb-2">
+                      <span className="font-semibold text-gray-700 mb-1">Calculation:</span>
+                      <span className="text-gray-600 break-words">(Gain - Cost) / Cost × 100%</span>
+                    </div>
+                    <div className="flex flex-col sm:flex-row sm:justify-between">
+                      <span className="font-semibold text-gray-700">Time:</span>
+                      <span className="text-gray-600">Any time period</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* IRR Card */}
+                <div className="bg-white rounded-lg sm:rounded-xl shadow-lg border border-gray-200 p-4">
+                  <h3 className="font-bold text-green-800 text-base sm:text-lg mb-3">IRR (Internal Rate of Return)</h3>
+                  <div className="space-y-2 text-sm sm:text-base">
+                    <div className="flex flex-col sm:flex-row sm:justify-between border-b border-gray-100 pb-2">
+                      <span className="font-semibold text-gray-700">Purpose:</span>
+                      <span className="text-gray-600">Find break-even interest rate</span>
+                    </div>
+                    <div className="flex flex-col sm:flex-row sm:justify-between border-b border-gray-100 pb-2">
+                      <span className="font-semibold text-gray-700">Best For:</span>
+                      <span className="text-gray-600">Complex cash flows</span>
+                    </div>
+                    <div className="flex flex-col border-b border-gray-100 pb-2">
+                      <span className="font-semibold text-gray-700 mb-1">Calculation:</span>
+                      <span className="text-gray-600 break-words">NPV = 0 discount rate</span>
+                    </div>
+                    <div className="flex flex-col sm:flex-row sm:justify-between">
+                      <span className="font-semibold text-gray-700">Time:</span>
+                      <span className="text-gray-600">Considers timing</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* NPV Card */}
+                <div className="bg-white rounded-lg sm:rounded-xl shadow-lg border border-gray-200 p-4">
+                  <h3 className="font-bold text-purple-800 text-base sm:text-lg mb-3">NPV (Net Present Value)</h3>
+                  <div className="space-y-2 text-sm sm:text-base">
+                    <div className="flex flex-col sm:flex-row sm:justify-between border-b border-gray-100 pb-2">
+                      <span className="font-semibold text-gray-700">Purpose:</span>
+                      <span className="text-gray-600">Absolute value creation</span>
+                    </div>
+                    <div className="flex flex-col sm:flex-row sm:justify-between border-b border-gray-100 pb-2">
+                      <span className="font-semibold text-gray-700">Best For:</span>
+                      <span className="text-gray-600">Capital budgeting</span>
+                    </div>
+                    <div className="flex flex-col border-b border-gray-100 pb-2">
+                      <span className="font-semibold text-gray-700 mb-1">Calculation:</span>
+                      <span className="text-gray-600 break-words">Sum of discounted cash flows</span>
+                    </div>
+                    <div className="flex flex-col sm:flex-row sm:justify-between">
+                      <span className="font-semibold text-gray-700">Time:</span>
+                      <span className="text-gray-600">Time value of money</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Payback Period Card */}
+                <div className="bg-white rounded-lg sm:rounded-xl shadow-lg border border-gray-200 p-4">
+                  <h3 className="font-bold text-orange-800 text-base sm:text-lg mb-3">Payback Period</h3>
+                  <div className="space-y-2 text-sm sm:text-base">
+                    <div className="flex flex-col sm:flex-row sm:justify-between border-b border-gray-100 pb-2">
+                      <span className="font-semibold text-gray-700">Purpose:</span>
+                      <span className="text-gray-600">Time to recover investment</span>
+                    </div>
+                    <div className="flex flex-col sm:flex-row sm:justify-between border-b border-gray-100 pb-2">
+                      <span className="font-semibold text-gray-700">Best For:</span>
+                      <span className="text-gray-600">Risk assessment</span>
+                    </div>
+                    <div className="flex flex-col border-b border-gray-100 pb-2">
+                      <span className="font-semibold text-gray-700 mb-1">Calculation:</span>
+                      <span className="text-gray-600 break-words">Investment / Annual Cash Flow</span>
+                    </div>
+                    <div className="flex flex-col sm:flex-row sm:justify-between">
+                      <span className="font-semibold text-gray-700">Time:</span>
+                      <span className="text-gray-600">Linear time calculation</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* CAGR Card */}
+                <div className="bg-white rounded-lg sm:rounded-xl shadow-lg border border-gray-200 p-4">
+                  <h3 className="font-bold text-red-800 text-base sm:text-lg mb-3">CAGR (Compound Annual Growth Rate)</h3>
+                  <div className="space-y-2 text-sm sm:text-base">
+                    <div className="flex flex-col sm:flex-row sm:justify-between border-b border-gray-100 pb-2">
+                      <span className="font-semibold text-gray-700">Purpose:</span>
+                      <span className="text-gray-600">Annualized growth rate</span>
+                    </div>
+                    <div className="flex flex-col sm:flex-row sm:justify-between border-b border-gray-100 pb-2">
+                      <span className="font-semibold text-gray-700">Best For:</span>
+                      <span className="text-gray-600">Long-term investments</span>
+                    </div>
+                    <div className="flex flex-col border-b border-gray-100 pb-2">
+                      <span className="font-semibold text-gray-700 mb-1">Calculation:</span>
+                      <span className="text-gray-600 break-words">(End Value / Start Value)^(1/years) - 1</span>
+                    </div>
+                    <div className="flex flex-col sm:flex-row sm:justify-between">
+                      <span className="font-semibold text-gray-700">Time:</span>
+                      <span className="text-gray-600">Smooths volatility</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                 <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8">
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">When to Use ROI vs IRR</h3>
+                  <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 md:mb-6">When to Use ROI vs IRR</h3>
                   <div className="space-y-3 sm:space-y-4">
                     <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4">
                       <h4 className="font-bold text-blue-800 mb-2 text-sm sm:text-base">Use ROI When:</h4>
@@ -1359,7 +1478,7 @@ export default function ROICalculator() {
                 </div>
 
                 <div className="bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8">
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">ROI vs CAGR: Key Differences</h3>
+                  <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 md:mb-6">ROI vs CAGR: Key Differences</h3>
                   <div className="space-y-3 sm:space-y-4">
                     <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4">
                       <h4 className="font-bold text-green-800 mb-2 text-sm sm:text-base">ROI Characteristics:</h4>
@@ -1385,27 +1504,27 @@ export default function ROICalculator() {
                 </div>
               </div>
 
-              <div className="mt-8 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Professional Investment Analysis Framework</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div className="bg-white rounded-xl p-6">
-                    <h4 className="font-bold text-yellow-800 mb-3">Step 1: Initial Screening</h4>
-                    <p className="text-sm text-gray-700 mb-3">Use ROI for quick evaluation and comparison of potential investments.</p>
-                    <div className="bg-yellow-100 rounded-lg p-3">
+              <div className="mt-6 sm:mt-8 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Professional Investment Analysis Framework</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+                  <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6">
+                    <h4 className="font-bold text-yellow-800 mb-2 sm:mb-3 text-sm sm:text-base">Step 1: Initial Screening</h4>
+                    <p className="text-xs sm:text-sm text-gray-700 mb-2 sm:mb-3">Use ROI for quick evaluation and comparison of potential investments.</p>
+                    <div className="bg-yellow-100 rounded-lg p-2 sm:p-3">
                       <p className="text-xs text-yellow-800 font-medium">Filter investments with ROI below your minimum threshold</p>
                     </div>
                   </div>
-                  <div className="bg-white rounded-xl p-6">
-                    <h4 className="font-bold text-orange-800 mb-3">Step 2: Detailed Analysis</h4>
-                    <p className="text-sm text-gray-700 mb-3">Apply IRR, NPV, and payback period for comprehensive evaluation.</p>
-                    <div className="bg-orange-100 rounded-lg p-3">
+                  <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6">
+                    <h4 className="font-bold text-orange-800 mb-2 sm:mb-3 text-sm sm:text-base">Step 2: Detailed Analysis</h4>
+                    <p className="text-xs sm:text-sm text-gray-700 mb-2 sm:mb-3">Apply IRR, NPV, and payback period for comprehensive evaluation.</p>
+                    <div className="bg-orange-100 rounded-lg p-2 sm:p-3">
                       <p className="text-xs text-orange-800 font-medium">Consider risk, timing, and opportunity costs</p>
                     </div>
                   </div>
-                  <div className="bg-white rounded-xl p-6">
-                    <h4 className="font-bold text-red-800 mb-3">Step 3: Final Decision</h4>
-                    <p className="text-sm text-gray-700 mb-3">Combine all metrics with qualitative factors for optimal decisions.</p>
-                    <div className="bg-red-100 rounded-lg p-3">
+                  <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6">
+                    <h4 className="font-bold text-red-800 mb-2 sm:mb-3 text-sm sm:text-base">Step 3: Final Decision</h4>
+                    <p className="text-xs sm:text-sm text-gray-700 mb-2 sm:mb-3">Combine all metrics with qualitative factors for optimal decisions.</p>
+                    <div className="bg-red-100 rounded-lg p-2 sm:p-3">
                       <p className="text-xs text-red-800 font-medium">Align with overall investment strategy and risk tolerance</p>
                     </div>
                   </div>
