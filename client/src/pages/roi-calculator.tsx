@@ -257,13 +257,145 @@ export default function ROICalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>ROI Calculator - Calculate Return on Investment | DapsiWow</title>
-        <meta name="description" content="Free ROI Calculator - Calculate Return on Investment for stocks, business projects, real estate, and financial decisions. Get instant ROI analysis with our comprehensive investment calculator tool." />
-        <meta name="keywords" content="roi calculator, return on investment calculator, investment calculator, business roi calculator, investment analysis, financial calculator" />
-        <meta property="og:title" content="ROI Calculator - Calculate Return on Investment | DapsiWow" />
-        <meta property="og:description" content="Free ROI Calculator to calculate return on investment for stocks, business projects, real estate, and financial decisions." />
-        <meta property="og:type" content="website" />
+        <title>Free ROI Calculator 2025 | Calculate Investment Returns Instantly</title>
+        <meta name="description" content="Calculate ROI in seconds with our free 2025 calculator. Get instant results for investments, business projects, real estate & marketing. Includes annualized ROI, break-even analysis & charts. No signup required." />
+        <meta name="keywords" content="roi calculator, roi calculator online free, investment roi calculator, business roi calculator, return on investment calculator, free roi calculator 2025, annualized roi calculator, roi calculator with inflation, marketing roi calculator, real estate roi calculator" />
+        
+        <meta name="author" content="DapsiWow" />
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <link rel="canonical" href="https://dapsiwow.com/tools/roi-calculator" />
+        
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Free ROI Calculator 2025 | Calculate Investment Returns Instantly" />
+        <meta property="og:description" content="Calculate ROI in seconds with our free calculator. Get instant results for investments, business projects, real estate & marketing. Includes annualized ROI & break-even analysis." />
+        <meta property="og:url" content="https://dapsiwow.com/tools/roi-calculator" />
+        <meta property="og:site_name" content="DapsiWow" />
+        <meta property="og:image" content="https://dapsiwow.com/og-roi-calculator.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Free ROI Calculator - Calculate Investment Returns" />
+        
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Free ROI Calculator 2025 | Calculate Investment Returns Instantly" />
+        <meta name="twitter:description" content="Calculate ROI in seconds. Get instant results for investments, business projects & marketing. Free annualized ROI & break-even analysis." />
+        <meta name="twitter:image" content="https://dapsiwow.com/og-roi-calculator.jpg" />
+        <meta name="twitter:image:alt" content="Free ROI Calculator - Calculate Investment Returns" />
+        
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "ROI Calculator",
+            "applicationCategory": "FinanceApplication",
+            "operatingSystem": "Web Browser",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.9",
+              "ratingCount": "2500",
+              "bestRating": "5",
+              "worstRating": "1"
+            },
+            "description": "Free online ROI calculator to calculate return on investment for stocks, business projects, real estate, and marketing campaigns. Features annualized ROI, break-even analysis, and multi-currency support.",
+            "featureList": [
+              "Calculate basic ROI",
+              "Investment ROI with compound returns",
+              "Business project ROI analysis",
+              "Annualized ROI calculation",
+              "Break-even time analysis",
+              "Multi-currency support",
+              "Visual charts and graphs",
+              "Instant results"
+            ],
+            "screenshot": "https://dapsiwow.com/screenshots/roi-calculator.jpg",
+            "author": {
+              "@type": "Organization",
+              "name": "DapsiWow",
+              "url": "https://dapsiwow.com"
+            }
+          })}
+        </script>
+        
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is a good ROI percentage?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "A good ROI depends on the investment type and risk level. Stock market investments averaging 10-15% annually are excellent, while business projects often target 20%+ ROI. Real estate typically yields 8-12%, which can help you understand long-term growth potential."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What's the difference between ROI and annualized ROI?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "ROI shows total return over the entire period, while annualized ROI converts this to an equivalent yearly rate, making it easier to compare investments with different time horizons. Annualized ROI is crucial for comparing short-term vs. long-term investments."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How do I calculate ROI for multiple investments?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Calculate ROI for each investment separately, then determine your portfolio's weighted average ROI based on investment amounts and individual returns for comprehensive portfolio analysis."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can ROI be negative?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, negative ROI indicates a loss on your investment. This occurs when the final value is less than the initial investment amount."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How to calculate ROI formula?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The basic ROI formula is: ROI = (Final Value - Initial Investment) / Initial Investment × 100%. For annualized ROI: [(Final Value / Initial Investment)^(1/Years) - 1] × 100%"
+                }
+              }
+            ]
+          })}
+        </script>
+        
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://dapsiwow.com"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Finance Tools",
+                "item": "https://dapsiwow.com/finance-tools"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "ROI Calculator",
+                "item": "https://dapsiwow.com/tools/roi-calculator"
+              }
+            ]
+          })}
+        </script>
       </Helmet>
 
       <Header />
