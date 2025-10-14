@@ -1768,6 +1768,103 @@ export default function ROICalculator() {
             </Card>
           </div>
 
+          {/* Related Financial Tools - Internal Linking Section */}
+          <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
+            <Card className="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 border-0 shadow-xl rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden">
+              <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12">
+                <div className="text-center mb-6 sm:mb-8 md:mb-10">
+                  <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 sm:mb-3 md:mb-4 leading-tight">
+                    Related Financial Calculators
+                  </h2>
+                  <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed px-2 sm:px-0">
+                    Explore our suite of free financial tools to make informed investment decisions
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
+                  <a href="/tools/compound-interest-calculator" className="group bg-white p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105" data-testid="link-compound-interest">
+                    <div className="flex items-start gap-3 sm:gap-4">
+                      <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
+                        <span className="text-xl sm:text-2xl">📈</span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg mb-1 group-hover:text-blue-600 transition-colors">Compound Interest Calculator</h3>
+                        <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Calculate compound growth for long-term investments with our annualized return calculator</p>
+                      </div>
+                    </div>
+                  </a>
+
+                  <a href="/tools/investment-return-calculator" className="group bg-white p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105" data-testid="link-investment-return">
+                    <div className="flex items-start gap-3 sm:gap-4">
+                      <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center">
+                        <span className="text-xl sm:text-2xl">💰</span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg mb-1 group-hover:text-green-600 transition-colors">Investment Return Calculator</h3>
+                        <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Analyze investment performance with detailed return calculations and portfolio analysis</p>
+                      </div>
+                    </div>
+                  </a>
+
+                  <a href="/tools/stock-profit-calculator" className="group bg-white p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105" data-testid="link-stock-profit">
+                    <div className="flex items-start gap-3 sm:gap-4">
+                      <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center">
+                        <span className="text-xl sm:text-2xl">📊</span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg mb-1 group-hover:text-purple-600 transition-colors">Stock Profit Calculator</h3>
+                        <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Calculate stock trading profits, losses, and ROI for individual stock investments</p>
+                      </div>
+                    </div>
+                  </a>
+
+                  <a href="/tools/loan-calculator" className="group bg-white p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105" data-testid="link-loan-calculator">
+                    <div className="flex items-start gap-3 sm:gap-4">
+                      <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
+                        <span className="text-xl sm:text-2xl">🏦</span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg mb-1 group-hover:text-orange-600 transition-colors">Loan Calculator</h3>
+                        <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Calculate loan payments and compare borrowing costs for business investments</p>
+                      </div>
+                    </div>
+                  </a>
+
+                  <a href="/tools/savings-calculator" className="group bg-white p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105" data-testid="link-savings-calculator">
+                    <div className="flex items-start gap-3 sm:gap-4">
+                      <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg flex items-center justify-center">
+                        <span className="text-xl sm:text-2xl">💵</span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg mb-1 group-hover:text-teal-600 transition-colors">Savings Calculator</h3>
+                        <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">Plan your savings goals and track investment growth over time</p>
+                      </div>
+                    </div>
+                  </a>
+
+                  <a href="/finance-tools" className="group bg-gradient-to-br from-indigo-500 to-purple-600 p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105" data-testid="link-all-finance-tools">
+                    <div className="flex items-start gap-3 sm:gap-4">
+                      <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-white/20 rounded-lg flex items-center justify-center">
+                        <span className="text-xl sm:text-2xl">🧮</span>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-bold text-white text-sm sm:text-base md:text-lg mb-1">All Finance Tools</h3>
+                        <p className="text-xs sm:text-sm text-white/90 leading-relaxed">Browse our complete collection of free financial calculators and tools</p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <div className="mt-6 sm:mt-8 md:mt-10 bg-white/50 backdrop-blur-sm rounded-lg sm:rounded-xl p-4 sm:p-6 border border-indigo-200">
+                  <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">💡 Pro Tip: Comprehensive Financial Analysis</h3>
+                  <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                    For the most accurate investment analysis, use our ROI Calculator alongside the <a href="/tools/compound-interest-calculator" className="text-blue-600 hover:text-blue-700 font-semibold underline">Compound Interest Calculator</a> to factor in time value of money, and the <a href="/tools/investment-return-calculator" className="text-blue-600 hover:text-blue-700 font-semibold underline">Investment Return Calculator</a> for detailed portfolio performance tracking.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
           {/* What Our Users Say - Testimonials Section */}
           <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
             <Card className="bg-gradient-to-br from-purple-50 via-pink-50 to-red-50 border-0 shadow-xl rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden">
