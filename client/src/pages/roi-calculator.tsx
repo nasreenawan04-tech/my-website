@@ -710,49 +710,49 @@ export default function ROICalculator() {
             </Card>
 
             {/* Benefits for Different Audiences */}
-            <Card className="bg-white border-0 shadow-sm">
-              <CardContent className="p-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">ROI Calculator Benefits by Audience</h2>
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                  <div className="bg-gradient-to-br from-blue-50 to-indigo-100 p-6 rounded-xl">
-                    <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4">
-                      <span className="text-white text-xl font-bold">📚</span>
+            <Card className="bg-white border-0 shadow-sm rounded-lg sm:rounded-xl md:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">ROI Calculator Benefits by Audience</h2>
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+                  <div className="bg-gradient-to-br from-blue-50 to-indigo-100 p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-3 sm:mb-4">
+                      <span className="text-white text-lg sm:text-xl font-bold">📚</span>
                     </div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Students & New Investors</h3>
-                    <div className="space-y-3 text-gray-700">
-                      <p><strong>Learn Investment Fundamentals:</strong> Understand how returns work across different investment types and time horizons.</p>
-                      <p><strong>Education Planning:</strong> Calculate the return on investment for college courses, certifications, or educational programs.</p>
-                      <p><strong>First-Time Investing:</strong> Compare potential returns from stocks, bonds, and compound interest investments.</p>
-                      <p><strong>Goal Setting:</strong> Plan for financial milestones like buying a car or saving for a down payment.</p>
-                    </div>
-                  </div>
-
-                  <div className="bg-gradient-to-br from-green-50 to-emerald-100 p-6 rounded-xl">
-                    <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mb-4">
-                      <span className="text-white text-xl font-bold">💼</span>
-                    </div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Working Professionals</h3>
-                    <div className="space-y-3 text-gray-700">
-                      <p><strong>Retirement Planning:</strong> Optimize 401(k) and IRA contributions for long-term wealth building.</p>
-                      <p><strong>Career Investment:</strong> Evaluate the ROI of professional certifications, MBA programs, or skill development courses.</p>
-                      <p><strong>Home Ownership:</strong> Analyze real estate investments and mortgage decisions.</p>
-                      <p><strong>Stock Portfolio Management:</strong> Track and optimize your investment portfolio performance with detailed ROI analysis.</p>
-                      <p><strong>Debt Management:</strong> Compare investment returns with debt payoff strategies.</p>
+                    <h3 className="text-base sm:text-lg md:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Students & New Investors</h3>
+                    <div className="space-y-2 sm:space-y-3 text-sm sm:text-base text-gray-700">
+                      <p className="leading-relaxed"><strong>Learn Investment Fundamentals:</strong> Understand how returns work across different investment types and time horizons.</p>
+                      <p className="leading-relaxed"><strong>Education Planning:</strong> Calculate the return on investment for college courses, certifications, or educational programs.</p>
+                      <p className="leading-relaxed"><strong>First-Time Investing:</strong> Compare potential returns from stocks, bonds, and compound interest investments.</p>
+                      <p className="leading-relaxed"><strong>Goal Setting:</strong> Plan for financial milestones like buying a car or saving for a down payment.</p>
                     </div>
                   </div>
 
-                  <div className="bg-gradient-to-br from-purple-50 to-violet-100 p-6 rounded-xl">
-                    <div className="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center mb-4">
-                      <span className="text-white text-xl font-bold">🏢</span>
+                  <div className="bg-gradient-to-br from-green-50 to-emerald-100 p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-600 rounded-lg flex items-center justify-center mb-3 sm:mb-4">
+                      <span className="text-white text-lg sm:text-xl font-bold">💼</span>
                     </div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Business Owners & Entrepreneurs</h3>
-                    <div className="space-y-3 text-gray-700">
-                      <p><strong>Business Financing:</strong> Evaluate loan options and capital investments.</p>
-                      <p><strong>Marketing ROI:</strong> Measure advertising campaign effectiveness and customer acquisition costs across different channels.</p>
-                      <p><strong>Equipment & Technology:</strong> Justify capital expenditures on machinery, software, or technology upgrades.</p>
-                      <p><strong>Expansion Analysis:</strong> Evaluate new location openings, product launches, or market expansion opportunities.</p>
-                      <p><strong>Investment Decisions:</strong> Compare business reinvestment options with external investment opportunities.</p>
-                      <p><strong>Break-Even Planning:</strong> Determine project viability and time to profitability.</p>
+                    <h3 className="text-base sm:text-lg md:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Working Professionals</h3>
+                    <div className="space-y-2 sm:space-y-3 text-sm sm:text-base text-gray-700">
+                      <p className="leading-relaxed"><strong>Retirement Planning:</strong> Optimize 401(k) and IRA contributions for long-term wealth building.</p>
+                      <p className="leading-relaxed"><strong>Career Investment:</strong> Evaluate the ROI of professional certifications, MBA programs, or skill development courses.</p>
+                      <p className="leading-relaxed"><strong>Home Ownership:</strong> Analyze real estate investments and mortgage decisions.</p>
+                      <p className="leading-relaxed"><strong>Stock Portfolio Management:</strong> Track and optimize your investment portfolio performance with detailed ROI analysis.</p>
+                      <p className="leading-relaxed"><strong>Debt Management:</strong> Compare investment returns with debt payoff strategies.</p>
+                    </div>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-purple-50 to-violet-100 p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-purple-600 rounded-lg flex items-center justify-center mb-3 sm:mb-4">
+                      <span className="text-white text-lg sm:text-xl font-bold">🏢</span>
+                    </div>
+                    <h3 className="text-base sm:text-lg md:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Business Owners & Entrepreneurs</h3>
+                    <div className="space-y-2 sm:space-y-3 text-sm sm:text-base text-gray-700">
+                      <p className="leading-relaxed"><strong>Business Financing:</strong> Evaluate loan options and capital investments.</p>
+                      <p className="leading-relaxed"><strong>Marketing ROI:</strong> Measure advertising campaign effectiveness and customer acquisition costs across different channels.</p>
+                      <p className="leading-relaxed"><strong>Equipment & Technology:</strong> Justify capital expenditures on machinery, software, or technology upgrades.</p>
+                      <p className="leading-relaxed"><strong>Expansion Analysis:</strong> Evaluate new location openings, product launches, or market expansion opportunities.</p>
+                      <p className="leading-relaxed"><strong>Investment Decisions:</strong> Compare business reinvestment options with external investment opportunities.</p>
+                      <p className="leading-relaxed"><strong>Break-Even Planning:</strong> Determine project viability and time to profitability.</p>
                     </div>
                   </div>
                 </div>
@@ -760,10 +760,10 @@ export default function ROICalculator() {
             </Card>
 
             {/* Use Cases Section */}
-            <Card className="bg-white border-0 shadow-sm">
-              <CardContent className="p-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">Comprehensive ROI Calculator Use Cases</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <Card className="bg-white border-0 shadow-sm rounded-lg sm:rounded-xl md:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">Comprehensive ROI Calculator Use Cases</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                   <div className="space-y-6">
                     <h3 className="text-xl font-semibold text-gray-900">📈 Investment Analysis</h3>
                     <div className="space-y-3">
@@ -850,10 +850,10 @@ export default function ROICalculator() {
             </Card>
 
             {/* Understanding Results Section */}
-            <Card className="bg-white border-0 shadow-sm">
-              <CardContent className="p-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">Understanding Your ROI Results</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <Card className="bg-white border-0 shadow-sm rounded-lg sm:rounded-xl md:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">Understanding Your ROI Results</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                   <div className="space-y-6">
                     <h3 className="text-xl font-semibold text-gray-900">ROI Interpretation Guide</h3>
                     <div className="space-y-4">
@@ -928,10 +928,10 @@ export default function ROICalculator() {
             </Card>
 
             {/* Tips and Best Practices */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <Card className="bg-white border-0 shadow-sm">
-                <CardContent className="p-8">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-6">ROI Best Practices</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+              <Card className="bg-white border-0 shadow-sm rounded-lg sm:rounded-xl md:rounded-2xl">
+                <CardContent className="p-4 sm:p-6 md:p-8">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6">ROI Best Practices</h3>
                   <div className="space-y-4">
                     <div className="space-y-3 text-gray-600">
                       <div className="flex items-start">
@@ -974,9 +974,9 @@ export default function ROICalculator() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white border-0 shadow-sm">
-                <CardContent className="p-8">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-6">Common ROI Mistakes to Avoid</h3>
+              <Card className="bg-white border-0 shadow-sm rounded-lg sm:rounded-xl md:rounded-2xl">
+                <CardContent className="p-4 sm:p-6 md:p-8">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6">Common ROI Mistakes to Avoid</h3>
                   <div className="space-y-4">
                     <div className="space-y-3 text-gray-600">
                       <div className="flex items-start">
