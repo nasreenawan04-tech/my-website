@@ -671,36 +671,36 @@ export default function ROICalculator() {
             {/* How to Use Section */}
             <Card className="bg-white border-0 shadow-sm rounded-lg sm:rounded-xl md:rounded-2xl">
               <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10">
-                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6 lg:mb-8">How to Use the ROI Calculator</h2>
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">How to Use the ROI Calculator</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
                   <div className="space-y-3 sm:space-y-4">
                     <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center">
                       <span className="text-lg sm:text-xl font-bold text-blue-600">1</span>
                     </div>
                     <h3 className="text-base sm:text-lg md:text-xl font-semibold text-gray-900">Basic ROI Calculation</h3>
-                    <p className="text-sm sm:text-base text-gray-600">
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                       Enter your initial investment amount and final value to calculate simple ROI.
                       Perfect for evaluating stock trades, bond investments, or any straightforward investment scenario.
                     </p>
                   </div>
 
-                  <div className="space-y-4">
-                    <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                      <span className="text-xl font-bold text-green-600">2</span>
+                  <div className="space-y-3 sm:space-y-4">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                      <span className="text-lg sm:text-xl font-bold text-green-600">2</span>
                     </div>
-                    <h3 className="text-xl font-semibold text-gray-900">Investment ROI</h3>
-                    <p className="text-gray-600">
+                    <h3 className="text-base sm:text-lg md:text-xl font-semibold text-gray-900">Investment ROI</h3>
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                       Calculate returns for investments with regular contributions, such as 401(k) plans,
                       monthly savings, or systematic investment plans (SIP) with compound growth.
                     </p>
                   </div>
 
-                  <div className="space-y-4">
-                    <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                      <span className="text-xl font-bold text-purple-600">3</span>
+                  <div className="space-y-3 sm:space-y-4">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                      <span className="text-lg sm:text-xl font-bold text-purple-600">3</span>
                     </div>
-                    <h3 className="text-xl font-semibold text-gray-900">Business ROI</h3>
-                    <p className="text-gray-600">
+                    <h3 className="text-base sm:text-lg md:text-xl font-semibold text-gray-900">Business ROI</h3>
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                       Evaluate business projects by entering project costs, expected revenue, and operating expenses.
                       Essential for capital allocation decisions and project prioritization.
                     </p>
