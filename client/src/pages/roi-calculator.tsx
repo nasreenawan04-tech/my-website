@@ -8,6 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Calculator, TrendingDown, Clock, DollarSign } from 'lucide-react';
 
 interface ROIResult {
   roi: number;
@@ -269,22 +270,38 @@ export default function ROICalculator() {
 
       <main>
         {/* Hero Section */}
-        <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32 overflow-hidden">
+        <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
-          <div className="relative max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12 text-center">
-            <div className="space-y-4 sm:space-y-6 md:space-y-8 lg:space-y-10">
-              <div className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 md:px-5 md:py-2.5 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200 text-xs sm:text-sm md:text-base">
-                <span className="font-medium text-blue-700">Professional ROI Calculator</span>
+          <div className="relative max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
+            <div className="space-y-4 sm:space-y-6 md:space-y-8">
+              <div className="inline-flex items-center px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+                <Calculator className="w-3 h-3 sm:w-4 sm:h-4 mr-2 text-blue-700" />
+                <span className="text-xs sm:text-sm font-medium text-blue-700">Professional ROI Calculator - Free & Accurate</span>
               </div>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight">
-                <span className="block">Smart ROI</span>
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
-                  Calculator
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0">
+                <span className="block">Free ROI Calculator:</span>
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
+                  Calculate Investment Returns
                 </span>
               </h1>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-slate-600 max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl xl:max-w-5xl mx-auto leading-relaxed px-2 sm:px-4 md:px-6">
-                Calculate return on investment for stocks, business projects, real estate, and financial decisions with precision
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
+                Calculate return on investment for stocks, business projects, real estate, and financial decisions. Get accurate ROI analysis with our free investment calculator tool.
               </p>
+
+              <div className="flex flex-wrap justify-center gap-4 sm:gap-6 pt-4">
+                <div className="flex items-center gap-2 text-slate-700">
+                  <TrendingDown className="w-5 h-5 text-green-600" />
+                  <span className="text-sm font-medium">Track Returns</span>
+                </div>
+                <div className="flex items-center gap-2 text-slate-700">
+                  <Clock className="w-5 h-5 text-blue-600" />
+                  <span className="text-sm font-medium">Instant Results</span>
+                </div>
+                <div className="flex items-center gap-2 text-slate-700">
+                  <DollarSign className="w-5 h-5 text-indigo-600" />
+                  <span className="text-sm font-medium">Smart Analysis</span>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -621,23 +638,23 @@ export default function ROICalculator() {
           {/* Educational Content */}
           <div className="mt-12 space-y-12">
             {/* What is ROI Section */}
-            <Card className="bg-white border-0 shadow-sm">
-              <CardContent className="p-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">What is ROI (Return on Investment)?</h2>
-                <div className="prose prose-lg max-w-none text-gray-600">
-                  <p className="text-lg leading-relaxed mb-6">
+            <Card className="bg-white border-0 shadow-sm rounded-lg sm:rounded-xl md:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6 lg:mb-8 leading-tight">What is ROI (Return on Investment)?</h2>
+                <div className="prose max-w-none text-gray-600 space-y-4 sm:space-y-5 md:space-y-6">
+                  <p className="text-sm sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-5 md:mb-6">
                     <strong>Return on Investment (ROI)</strong> is a fundamental financial metric used to evaluate the efficiency and profitability of an investment.
                     ROI measures how much profit or loss an investment generates relative to its cost, expressed as a percentage.
                     This powerful calculation helps investors, businesses, and individuals make informed financial decisions by comparing the potential returns of different investment opportunities.
                   </p>
 
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
-                    <h3 className="text-xl font-semibold text-blue-900 mb-3">ROI Formula</h3>
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 mb-4 sm:mb-5 md:mb-6">
+                    <h3 className="text-base sm:text-lg md:text-xl font-semibold text-blue-900 mb-2 sm:mb-3">ROI Formula</h3>
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-blue-700 mb-2">
+                      <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-blue-700 mb-2 break-words px-2">
                         ROI = (Gain from Investment - Cost of Investment) / Cost of Investment × 100%
                       </div>
-                      <p className="text-blue-600">Also expressed as: ROI = (Net Profit / Investment Cost) × 100%</p>
+                      <p className="text-xs sm:text-sm md:text-base text-blue-600 px-2">Also expressed as: ROI = (Net Profit / Investment Cost) × 100%</p>
                     </div>
                   </div>
 
@@ -652,16 +669,16 @@ export default function ROICalculator() {
             </Card>
 
             {/* How to Use Section */}
-            <Card className="bg-white border-0 shadow-sm">
-              <CardContent className="p-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">How to Use the ROI Calculator</h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                  <div className="space-y-4">
-                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                      <span className="text-xl font-bold text-blue-600">1</span>
+            <Card className="bg-white border-0 shadow-sm rounded-lg sm:rounded-xl md:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6 lg:mb-8">How to Use the ROI Calculator</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+                  <div className="space-y-3 sm:space-y-4">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                      <span className="text-lg sm:text-xl font-bold text-blue-600">1</span>
                     </div>
-                    <h3 className="text-xl font-semibold text-gray-900">Basic ROI Calculation</h3>
-                    <p className="text-gray-600">
+                    <h3 className="text-base sm:text-lg md:text-xl font-semibold text-gray-900">Basic ROI Calculation</h3>
+                    <p className="text-sm sm:text-base text-gray-600">
                       Enter your initial investment amount and final value to calculate simple ROI.
                       Perfect for evaluating stock trades, bond investments, or any straightforward investment scenario.
                     </p>
@@ -1397,14 +1414,14 @@ export default function ROICalculator() {
             </section>
 
             {/* FAQ Section */}
-            <Card className="bg-white border-0 shadow-sm">
-              <CardContent className="p-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8">ROI Calculator - Frequently Asked Questions</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="space-y-6">
+            <Card className="bg-white border-0 shadow-sm rounded-lg sm:rounded-xl md:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">ROI Calculator - Frequently Asked Questions</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+                  <div className="space-y-4 sm:space-y-5 md:space-y-6">
                     <div>
-                      <h4 className="text-lg font-semibold text-gray-900 mb-2">What is a good ROI percentage?</h4>
-                      <p className="text-gray-600">A good ROI depends on the investment type and risk level. Stock market investments averaging 10-15% annually are excellent, while business projects often target 20%+ ROI. Real estate typically yields 8-12%, which can help you understand long-term growth potential.</p>
+                      <h4 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">What is a good ROI percentage?</h4>
+                      <p className="text-sm sm:text-base text-gray-600">A good ROI depends on the investment type and risk level. Stock market investments averaging 10-15% annually are excellent, while business projects often target 20%+ ROI. Real estate typically yields 8-12%, which can help you understand long-term growth potential.</p>
                     </div>
 
                     <div>
