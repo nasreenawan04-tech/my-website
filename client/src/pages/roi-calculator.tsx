@@ -1543,88 +1543,94 @@ export default function ROICalculator() {
             </section>
 
             {/* Testimonials Section */}
-            <section className="bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 rounded-xl sm:rounded-2xl md:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 shadow-xl border border-gray-100">
-              <div className="text-center mb-8 sm:mb-10 md:mb-12">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4">What Our Users Say</h2>
-                <p className="text-sm sm:text-base md:text-lg text-gray-600">Trusted by millions of users worldwide for accurate ROI calculations</p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-8 sm:mb-10">
-                {/* Testimonial 1 */}
-                <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-shadow">
-                  <div className="flex gap-1 mb-3 sm:mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <span key={i} className="text-yellow-400 text-lg sm:text-xl">⭐</span>
-                    ))}
-                  </div>
-                  <p className="text-sm sm:text-base text-gray-700 italic mb-4 sm:mb-6 leading-relaxed">
-                    "This ROI calculator saved me thousands! The investment feature helped me analyze my portfolio returns. The detailed breakdown and charts help me understand exactly where my investments stand. Highly recommend!"
-                  </p>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base">
-                      SJ
-                    </div>
-                    <div>
-                      <div className="font-semibold text-gray-900 text-sm sm:text-base">Sarah Johnson</div>
-                      <div className="text-xs sm:text-sm text-gray-600">Investment Analyst</div>
-                    </div>
-                  </div>
+            <section className="relative bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 xl:p-16 shadow-2xl border border-blue-100 overflow-hidden">
+              {/* Background Decoration */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{ animationDelay: '1s' }}></div>
+              
+              <div className="relative z-10">
+                <div className="text-center mb-10 sm:mb-12 md:mb-16">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6">What Our Users Say</h2>
+                  <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">Trusted by millions of users worldwide for accurate EMI calculations</p>
                 </div>
 
-                {/* Testimonial 2 */}
-                <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-shadow">
-                  <div className="flex gap-1 mb-3 sm:mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <span key={i} className="text-yellow-400 text-lg sm:text-xl">⭐</span>
-                    ))}
-                  </div>
-                  <p className="text-sm sm:text-base text-gray-700 italic mb-4 sm:mb-6 leading-relaxed">
-                    "The business ROI feature is perfect for entrepreneurs like me. I can evaluate project viability and calculate break-even time with ease. Very user-friendly calculator!"
-                  </p>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base">
-                      RP
-                    </div>
-                    <div>
-                      <div className="font-semibold text-gray-900 text-sm sm:text-base">Rajesh Patel</div>
-                      <div className="text-xs sm:text-sm text-gray-600">Business Owner</div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Testimonial 3 */}
-                <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-shadow">
-                  <div className="flex gap-1 mb-3 sm:mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <span key={i} className="text-yellow-400 text-lg sm:text-xl">⭐</span>
-                    ))}
-                  </div>
-                  <p className="text-sm sm:text-base text-gray-700 italic mb-4 sm:mb-6 leading-relaxed">
-                    "Best ROI calculator I've found online. Multi-currency support is great for international investors. The annualized returns feature helps me compare different investment options accurately."
-                  </p>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-base">
-                      MG
-                    </div>
-                    <div>
-                      <div className="font-semibold text-gray-900 text-sm sm:text-base">Maria Garcia</div>
-                      <div className="text-xs sm:text-sm text-gray-600">Financial Advisor</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Rating Summary */}
-              <div className="flex justify-center">
-                <div className="bg-white rounded-full px-6 sm:px-8 py-3 sm:py-4 shadow-lg border border-gray-200">
-                  <div className="flex items-center gap-3 sm:gap-4">
-                    <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">4.9/5</span>
-                    <div className="flex gap-1">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-10 sm:mb-12">
+                  {/* Testimonial 1 */}
+                  <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+                    <div className="flex gap-1 mb-4 sm:mb-5">
                       {[...Array(5)].map((_, i) => (
-                        <span key={i} className="text-yellow-400 text-lg sm:text-xl md:text-2xl">⭐</span>
+                        <span key={i} className="text-yellow-400 text-xl sm:text-2xl">⭐</span>
                       ))}
                     </div>
-                    <span className="text-sm sm:text-base text-gray-600">from 3,400+ reviews</span>
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 italic mb-6 sm:mb-8 leading-relaxed">
+                      "This EMI calculator saved me thousands! The prepayment feature helped me reduce over $12,000 in interest by making small extra payments. The amortization schedule makes it crystal clear how the payments work. Highly recommend!"
+                    </p>
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg shadow-lg">
+                        SJ
+                      </div>
+                      <div>
+                        <div className="font-bold text-gray-900 text-base sm:text-lg">Sarah Johnson</div>
+                        <div className="text-sm sm:text-base text-gray-600">Home Buyer</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Testimonial 2 */}
+                  <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+                    <div className="flex gap-1 mb-4 sm:mb-5">
+                      {[...Array(5)].map((_, i) => (
+                        <span key={i} className="text-yellow-400 text-xl sm:text-2xl">⭐</span>
+                      ))}
+                    </div>
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 italic mb-6 sm:mb-8 leading-relaxed">
+                      "The step-up EMI feature is perfect for young professionals like me. I can afford a bigger home loan now with lower initial EMIs that increase as my salary grows. Very user-friendly calculator!"
+                    </p>
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg shadow-lg">
+                        RP
+                      </div>
+                      <div>
+                        <div className="font-bold text-gray-900 text-base sm:text-lg">Rajesh Patel</div>
+                        <div className="text-sm sm:text-base text-gray-600">Software Engineer</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Testimonial 3 */}
+                  <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+                    <div className="flex gap-1 mb-4 sm:mb-5">
+                      {[...Array(5)].map((_, i) => (
+                        <span key={i} className="text-yellow-400 text-xl sm:text-2xl">⭐</span>
+                      ))}
+                    </div>
+                    <p className="text-sm sm:text-base md:text-lg text-gray-700 italic mb-6 sm:mb-8 leading-relaxed">
+                      "Best EMI calculator I've found online. Multi-currency support is great for international borrowers. The detailed breakdown and charts help me understand exactly where my money goes each month."
+                    </p>
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-base sm:text-lg shadow-lg">
+                        MG
+                      </div>
+                      <div>
+                        <div className="font-bold text-gray-900 text-base sm:text-lg">Maria Garcia</div>
+                        <div className="text-sm sm:text-base text-gray-600">Financial Advisor</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Rating Summary */}
+                <div className="flex justify-center">
+                  <div className="bg-white rounded-full px-8 sm:px-12 py-4 sm:py-6 shadow-2xl border-2 border-blue-200 hover:border-blue-400 transition-all duration-300">
+                    <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+                      <span className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">4.9/5</span>
+                      <div className="flex gap-1 sm:gap-2">
+                        {[...Array(5)].map((_, i) => (
+                          <span key={i} className="text-yellow-400 text-2xl sm:text-3xl md:text-4xl">⭐</span>
+                        ))}
+                      </div>
+                      <span className="text-sm sm:text-base md:text-lg text-gray-600 font-medium">from 3,400+ reviews</span>
+                    </div>
                   </div>
                 </div>
               </div>
