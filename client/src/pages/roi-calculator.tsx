@@ -1004,18 +1004,18 @@ export default function ROICalculator() {
             </div>
 
             {/* Types of ROI Calculations */}
-            <section className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 lg:p-12 shadow-xl border border-gray-100">
-              <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">Types of ROI Calculations and Investment Strategies</h2>
+            <section className="bg-white/90 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 shadow-xl border border-gray-100">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 sm:mb-8 md:mb-10 text-center">Types of ROI Calculations and Investment Strategies</h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-8 sm:mb-10 md:mb-12">
                 {/* Simple ROI */}
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Simple ROI Calculation</h3>
-                  <div className="space-y-4 text-gray-700">
-                    <p className="font-medium">Best suited for straightforward investments with clear start and end points.</p>
-                    <div className="bg-white rounded-xl p-4">
-                      <h4 className="font-bold text-blue-800 mb-2">Perfect For:</h4>
-                      <div className="space-y-2 text-sm">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Simple ROI Calculation</h3>
+                  <div className="space-y-3 sm:space-y-4 text-gray-700">
+                    <p className="font-medium text-sm sm:text-base">Best suited for straightforward investments with clear start and end points.</p>
+                    <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4">
+                      <h4 className="font-bold text-blue-800 mb-2 text-sm sm:text-base">Perfect For:</h4>
+                      <div className="space-y-1 sm:space-y-2 text-xs sm:text-sm">
                         <p>• Stock purchases and sales</p>
                         <p>• Bond investments to maturity</p>
                         <p>• Property flipping projects</p>
@@ -1023,20 +1023,20 @@ export default function ROICalculator() {
                         <p>• Cryptocurrency trading</p>
                       </div>
                     </div>
-                    <div className="bg-blue-600 text-white rounded-xl p-4">
-                      <p className="text-sm font-medium">ROI = (Final Value - Initial Investment) / Initial Investment × 100%</p>
+                    <div className="bg-blue-600 text-white rounded-lg sm:rounded-xl p-3 sm:p-4">
+                      <p className="text-xs sm:text-sm font-medium">ROI = (Final Value - Initial Investment) / Initial Investment × 100%</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Compound ROI */}
-                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Compound ROI Analysis</h3>
-                  <div className="space-y-4 text-gray-700">
-                    <p className="font-medium">Advanced calculations for investments with reinvested earnings and regular contributions.</p>
-                    <div className="bg-white rounded-xl p-4">
-                      <h4 className="font-bold text-green-800 mb-2">Ideal For:</h4>
-                      <div className="space-y-2 text-sm">
+                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Compound ROI Analysis</h3>
+                  <div className="space-y-3 sm:space-y-4 text-gray-700">
+                    <p className="font-medium text-sm sm:text-base">Advanced calculations for investments with reinvested earnings and regular contributions.</p>
+                    <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4">
+                      <h4 className="font-bold text-green-800 mb-2 text-sm sm:text-base">Ideal For:</h4>
+                      <div className="space-y-1 sm:space-y-2 text-xs sm:text-sm">
                         <p>• 401(k) and retirement accounts</p>
                         <p>• Dividend reinvestment plans (DRIPs)</p>
                         <p>• Systematic investment plans (SIP)</p>
@@ -1044,20 +1044,20 @@ export default function ROICalculator() {
                         <p>• Educational savings accounts</p>
                       </div>
                     </div>
-                    <div className="bg-green-600 text-white rounded-xl p-4">
-                      <p className="text-sm font-medium">Accounts for reinvestment and compound growth over multiple periods</p>
+                    <div className="bg-green-600 text-white rounded-lg sm:rounded-xl p-3 sm:p-4">
+                      <p className="text-xs sm:text-sm font-medium">Accounts for reinvestment and compound growth over multiple periods</p>
                     </div>
                   </div>
                 </div>
 
                 {/* Business ROI */}
-                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Business ROI Evaluation</h3>
-                  <div className="space-y-4 text-gray-700">
-                    <p className="font-medium">Comprehensive analysis incorporating revenues, costs, and operational factors.</p>
-                    <div className="bg-white rounded-xl p-4">
-                      <h4 className="font-bold text-purple-800 mb-2">Essential For:</h4>
-                      <div className="space-y-2 text-sm">
+                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Business ROI Evaluation</h3>
+                  <div className="space-y-3 sm:space-y-4 text-gray-700">
+                    <p className="font-medium text-sm sm:text-base">Comprehensive analysis incorporating revenues, costs, and operational factors.</p>
+                    <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4">
+                      <h4 className="font-bold text-purple-800 mb-2 text-sm sm:text-base">Essential For:</h4>
+                      <div className="space-y-1 sm:space-y-2 text-xs sm:text-sm">
                         <p>• Capital expenditure decisions</p>
                         <p>• Marketing campaign effectiveness</p>
                         <p>• Technology implementation projects</p>
@@ -1065,56 +1065,56 @@ export default function ROICalculator() {
                         <p>• Employee training programs</p>
                       </div>
                     </div>
-                    <div className="bg-purple-600 text-white rounded-xl p-4">
-                      <p className="text-sm font-medium">Includes break-even analysis and cash flow considerations</p>
+                    <div className="bg-purple-600 text-white rounded-lg sm:rounded-xl p-3 sm:p-4">
+                      <p className="text-xs sm:text-sm font-medium">Includes break-even analysis and cash flow considerations</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-2xl p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Advanced ROI Calculation Techniques</h3>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  <div className="space-y-6">
+              <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Advanced ROI Calculation Techniques</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+                  <div className="space-y-4 sm:space-y-6">
                     <div>
-                      <h4 className="text-xl font-semibold text-gray-900 mb-3">Risk-Adjusted ROI</h4>
-                      <p className="text-gray-700 mb-3">
+                      <h4 className="text-base sm:text-lg md:text-xl font-semibold text-gray-900 mb-2 sm:mb-3">Risk-Adjusted ROI</h4>
+                      <p className="text-sm sm:text-base text-gray-700 mb-2 sm:mb-3">
                         Factor in investment risk by adjusting returns based on volatility and uncertainty. This method provides a more accurate picture of investment performance by considering the risk taken to achieve returns.
                       </p>
-                      <div className="bg-white rounded-xl p-4">
-                        <p className="text-sm text-gray-600"><strong>Formula:</strong> Risk-Adjusted ROI = (ROI - Risk-Free Rate) / Standard Deviation</p>
+                      <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4">
+                        <p className="text-xs sm:text-sm text-gray-600"><strong>Formula:</strong> Risk-Adjusted ROI = (ROI - Risk-Free Rate) / Standard Deviation</p>
                       </div>
                     </div>
 
                     <div>
-                      <h4 className="text-xl font-semibold text-gray-900 mb-3">Tax-Adjusted ROI</h4>
-                      <p className="text-gray-700 mb-3">
+                      <h4 className="text-base sm:text-lg md:text-xl font-semibold text-gray-900 mb-2 sm:mb-3">Tax-Adjusted ROI</h4>
+                      <p className="text-sm sm:text-base text-gray-700 mb-2 sm:mb-3">
                         Calculate after-tax returns to understand your real investment performance. This is crucial for comparing taxable vs. tax-advantaged investments and making optimal allocation decisions.
                       </p>
-                      <div className="bg-white rounded-xl p-4">
-                        <p className="text-sm text-gray-600"><strong>Consider:</strong> Capital gains tax, dividend tax, interest tax, and tax-deferred accounts</p>
+                      <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4">
+                        <p className="text-xs sm:text-sm text-gray-600"><strong>Consider:</strong> Capital gains tax, dividend tax, interest tax, and tax-deferred accounts</p>
                       </div>
                     </div>
                   </div>
 
-                  <div className="space-y-6">
+                  <div className="space-y-4 sm:space-y-6">
                     <div>
-                      <h4 className="text-xl font-semibold text-gray-900 mb-3">Inflation-Adjusted ROI</h4>
-                      <p className="text-gray-700 mb-3">
+                      <h4 className="text-base sm:text-lg md:text-xl font-semibold text-gray-900 mb-2 sm:mb-3">Inflation-Adjusted ROI</h4>
+                      <p className="text-sm sm:text-base text-gray-700 mb-2 sm:mb-3">
                         Account for purchasing power erosion over time to determine real returns. This "real ROI" shows whether your investments are actually building wealth or just keeping pace with inflation.
                       </p>
-                      <div className="bg-white rounded-xl p-4">
-                        <p className="text-sm text-gray-600"><strong>Formula:</strong> Real ROI = [(1 + Nominal ROI) / (1 + Inflation Rate)] - 1</p>
+                      <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4">
+                        <p className="text-xs sm:text-sm text-gray-600"><strong>Formula:</strong> Real ROI = [(1 + Nominal ROI) / (1 + Inflation Rate)] - 1</p>
                       </div>
                     </div>
 
                     <div>
-                      <h4 className="text-xl font-semibold text-gray-900 mb-3">Opportunity Cost ROI</h4>
-                      <p className="text-gray-700 mb-3">
+                      <h4 className="text-base sm:text-lg md:text-xl font-semibold text-gray-900 mb-2 sm:mb-3">Opportunity Cost ROI</h4>
+                      <p className="text-sm sm:text-base text-gray-700 mb-2 sm:mb-3">
                         Compare your investment returns against alternative opportunities to ensure optimal capital allocation. This helps identify whether your investment strategy is truly maximizing potential returns.
                       </p>
-                      <div className="bg-white rounded-xl p-4">
-                        <p className="text-sm text-gray-600"><strong>Compare:</strong> Stock market averages, bond yields, real estate returns, and business opportunities</p>
+                      <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4">
+                        <p className="text-xs sm:text-sm text-gray-600"><strong>Compare:</strong> Stock market averages, bond yields, real estate returns, and business opportunities</p>
                       </div>
                     </div>
                   </div>
@@ -1123,80 +1123,80 @@ export default function ROICalculator() {
             </section>
 
             {/* Industry-Specific ROI Applications */}
-            <section className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 lg:p-12 shadow-xl border border-gray-100">
-              <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">Industry-Specific ROI Applications and Benchmarks</h2>
+            <section className="bg-white/90 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 shadow-xl border border-gray-100">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 sm:mb-8 md:mb-10 text-center">Industry-Specific ROI Applications and Benchmarks</h2>
 
-              <div className="space-y-8">
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <div className="space-y-6 sm:space-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
                   {/* Technology Sector */}
-                  <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-6">Technology & Software</h3>
-                    <div className="space-y-4">
-                      <div className="bg-white rounded-xl p-4">
-                        <h4 className="font-bold text-blue-800 mb-2">Typical ROI Ranges</h4>
-                        <div className="space-y-2 text-sm text-gray-700">
+                  <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8">
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Technology & Software</h3>
+                    <div className="space-y-3 sm:space-y-4">
+                      <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4">
+                        <h4 className="font-bold text-blue-800 mb-2 text-sm sm:text-base">Typical ROI Ranges</h4>
+                        <div className="space-y-1 sm:space-y-2 text-xs sm:text-sm text-gray-700">
                           <p>• Software Development: 200-500% ROI</p>
                           <p>• Cloud Infrastructure: 100-300% ROI</p>
                           <p>• Automation Projects: 150-400% ROI</p>
                           <p>• AI/ML Implementations: 250-600% ROI</p>
                         </div>
                       </div>
-                      <div className="bg-blue-600 text-white rounded-xl p-4">
-                        <h4 className="font-semibold mb-2">Key Metrics</h4>
-                        <p className="text-sm">Focus on user acquisition cost, lifetime value, and subscription renewal rates for software businesses.</p>
+                      <div className="bg-blue-600 text-white rounded-lg sm:rounded-xl p-3 sm:p-4">
+                        <h4 className="font-semibold mb-2 text-sm sm:text-base">Key Metrics</h4>
+                        <p className="text-xs sm:text-sm">Focus on user acquisition cost, lifetime value, and subscription renewal rates for software businesses.</p>
                       </div>
                     </div>
                   </div>
 
                   {/* Real Estate */}
-                  <div className="bg-gradient-to-br from-green-50 to-emerald-100 rounded-2xl p-8">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-6">Real Estate Investment</h3>
-                    <div className="space-y-4">
-                      <div className="bg-white rounded-xl p-4">
-                        <h4 className="font-bold text-green-800 mb-2">Expected Returns</h4>
-                        <div className="space-y-2 text-sm text-gray-700">
+                  <div className="bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8">
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Real Estate Investment</h3>
+                    <div className="space-y-3 sm:space-y-4">
+                      <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4">
+                        <h4 className="font-bold text-green-800 mb-2 text-sm sm:text-base">Expected Returns</h4>
+                        <div className="space-y-1 sm:space-y-2 text-xs sm:text-sm text-gray-700">
                           <p>• Rental Properties: 8-15% annual ROI</p>
                           <p>• House Flipping: 10-30% per project</p>
                           <p>• Commercial Real Estate: 6-12% ROI</p>
                           <p>• REITs: 4-10% dividend yield</p>
                         </div>
                       </div>
-                      <div className="bg-green-600 text-white rounded-xl p-4">
-                        <h4 className="font-semibold mb-2">Calculation Factors</h4>
-                        <p className="text-sm">Include property taxes, maintenance costs, vacancy rates, and appreciation in your ROI analysis.</p>
+                      <div className="bg-green-600 text-white rounded-lg sm:rounded-xl p-3 sm:p-4">
+                        <h4 className="font-semibold mb-2 text-sm sm:text-base">Calculation Factors</h4>
+                        <p className="text-xs sm:text-sm">Include property taxes, maintenance costs, vacancy rates, and appreciation in your ROI analysis.</p>
                       </div>
                     </div>
                   </div>
 
                   {/* Manufacturing */}
-                  <div className="bg-gradient-to-br from-orange-50 to-red-100 rounded-2xl p-8">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-6">Manufacturing & Industrial</h3>
-                    <div className="space-y-4">
-                      <div className="bg-white rounded-xl p-4">
-                        <h4 className="font-bold text-orange-800 mb-2">Equipment ROI</h4>
-                        <div className="space-y-2 text-sm text-gray-700">
+                  <div className="bg-gradient-to-br from-orange-50 to-red-100 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8">
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Manufacturing & Industrial</h3>
+                    <div className="space-y-3 sm:space-y-4">
+                      <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4">
+                        <h4 className="font-bold text-orange-800 mb-2 text-sm sm:text-base">Equipment ROI</h4>
+                        <div className="space-y-1 sm:space-y-2 text-xs sm:text-sm text-gray-700">
                           <p>• Production Equipment: 15-25% ROI</p>
                           <p>• Automation Systems: 20-40% ROI</p>
                           <p>• Energy Efficiency: 10-30% ROI</p>
                           <p>• Safety Improvements: 50-200% ROI</p>
                         </div>
                       </div>
-                      <div className="bg-orange-600 text-white rounded-xl p-4">
-                        <h4 className="font-semibold mb-2">Success Factors</h4>
-                        <p className="text-sm">Consider productivity gains, quality improvements, and reduced downtime in manufacturing ROI calculations.</p>
+                      <div className="bg-orange-600 text-white rounded-lg sm:rounded-xl p-3 sm:p-4">
+                        <h4 className="font-semibold mb-2 text-sm sm:text-base">Success Factors</h4>
+                        <p className="text-xs sm:text-sm">Consider productivity gains, quality improvements, and reduced downtime in manufacturing ROI calculations.</p>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                   {/* Marketing & Advertising */}
-                  <div className="bg-gradient-to-br from-purple-50 to-pink-100 rounded-2xl p-8">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-6">Marketing & Advertising ROI</h3>
-                    <div className="space-y-4">
-                      <div className="bg-white rounded-xl p-6">
-                        <h4 className="font-bold text-purple-800 mb-4">Channel-Specific ROI Benchmarks</h4>
-                        <div className="grid grid-cols-2 gap-4 text-sm text-gray-700">
+                  <div className="bg-gradient-to-br from-purple-50 to-pink-100 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8">
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Marketing & Advertising ROI</h3>
+                    <div className="space-y-3 sm:space-y-4">
+                      <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6">
+                        <h4 className="font-bold text-purple-800 mb-3 sm:mb-4 text-sm sm:text-base">Channel-Specific ROI Benchmarks</h4>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-xs sm:text-sm text-gray-700">
                           <div>
                             <p className="font-semibold">Digital Channels:</p>
                             <p>• Google Ads: 200-800% ROI</p>
@@ -1213,20 +1213,20 @@ export default function ROICalculator() {
                           </div>
                         </div>
                       </div>
-                      <div className="bg-purple-600 text-white rounded-xl p-4">
-                        <h4 className="font-semibold mb-2">ROI Optimization Tips</h4>
-                        <p className="text-sm">Track customer acquisition cost (CAC), lifetime value (LTV), and attribution models for accurate marketing ROI measurement.</p>
+                      <div className="bg-purple-600 text-white rounded-lg sm:rounded-xl p-3 sm:p-4">
+                        <h4 className="font-semibold mb-2 text-sm sm:text-base">ROI Optimization Tips</h4>
+                        <p className="text-xs sm:text-sm">Track customer acquisition cost (CAC), lifetime value (LTV), and attribution models for accurate marketing ROI measurement.</p>
                       </div>
                     </div>
                   </div>
 
                   {/* Education & Training */}
-                  <div className="bg-gradient-to-br from-yellow-50 to-amber-100 rounded-2xl p-8">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-6">Education & Professional Development</h3>
-                    <div className="space-y-4">
-                      <div className="bg-white rounded-xl p-6">
-                        <h4 className="font-bold text-yellow-800 mb-4">Investment ROI by Education Type</h4>
-                        <div className="space-y-3 text-sm text-gray-700">
+                  <div className="bg-gradient-to-br from-yellow-50 to-amber-100 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8">
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Education & Professional Development</h3>
+                    <div className="space-y-3 sm:space-y-4">
+                      <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6">
+                        <h4 className="font-bold text-yellow-800 mb-3 sm:mb-4 text-sm sm:text-base">Investment ROI by Education Type</h4>
+                        <div className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-gray-700">
                           <div className="flex justify-between">
                             <span>• College Degree:</span>
                             <span className="font-semibold">200-400% lifetime ROI</span>
@@ -1249,9 +1249,9 @@ export default function ROICalculator() {
                           </div>
                         </div>
                       </div>
-                      <div className="bg-yellow-600 text-white rounded-xl p-4">
-                        <h4 className="font-semibold mb-2">Career Impact Factors</h4>
-                        <p className="text-sm">Consider salary increases, promotion opportunities, and long-term career advancement when calculating education ROI.</p>
+                      <div className="bg-yellow-600 text-white rounded-lg sm:rounded-xl p-3 sm:p-4">
+                        <h4 className="font-semibold mb-2 text-sm sm:text-base">Career Impact Factors</h4>
+                        <p className="text-xs sm:text-sm">Consider salary increases, promotion opportunities, and long-term career advancement when calculating education ROI.</p>
                       </div>
                     </div>
                   </div>
@@ -1260,67 +1260,67 @@ export default function ROICalculator() {
             </section>
 
             {/* ROI vs Other Financial Metrics */}
-            <section className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 lg:p-12 shadow-xl border border-gray-100">
-              <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center">ROI vs Other Financial Metrics: Complete Comparison Guide</h2>
+            <section className="bg-white/90 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 shadow-xl border border-gray-100">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 sm:mb-8 md:mb-10 text-center">ROI vs Other Financial Metrics: Complete Comparison Guide</h2>
 
-              <div className="overflow-x-auto mb-8">
-                <table className="w-full border-collapse bg-white rounded-2xl shadow-lg overflow-hidden">
+              <div className="overflow-x-auto mb-6 sm:mb-8 -mx-4 sm:mx-0">
+                <table className="w-full border-collapse bg-white rounded-lg sm:rounded-2xl shadow-lg overflow-hidden min-w-[640px]">
                   <thead>
                     <tr className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
-                      <th className="border border-gray-200 p-4 text-left font-bold">Metric</th>
-                      <th className="border border-gray-200 p-4 text-left font-bold">Purpose</th>
-                      <th className="border border-gray-200 p-4 text-left font-bold">Best For</th>
-                      <th className="border border-gray-200 p-4 text-left font-bold">Calculation</th>
-                      <th className="border border-gray-200 p-4 text-left font-bold">Time Consideration</th>
+                      <th className="border border-gray-200 p-2 sm:p-3 md:p-4 text-left font-bold text-xs sm:text-sm md:text-base">Metric</th>
+                      <th className="border border-gray-200 p-2 sm:p-3 md:p-4 text-left font-bold text-xs sm:text-sm md:text-base">Purpose</th>
+                      <th className="border border-gray-200 p-2 sm:p-3 md:p-4 text-left font-bold text-xs sm:text-sm md:text-base">Best For</th>
+                      <th className="border border-gray-200 p-2 sm:p-3 md:p-4 text-left font-bold text-xs sm:text-sm md:text-base">Calculation</th>
+                      <th className="border border-gray-200 p-2 sm:p-3 md:p-4 text-left font-bold text-xs sm:text-sm md:text-base">Time Consideration</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr className="hover:bg-blue-50 transition-colors">
-                      <td className="border border-gray-200 p-4 font-semibold text-blue-800">ROI (Return on Investment)</td>
-                      <td className="border border-gray-200 p-4">Measure investment efficiency</td>
-                      <td className="border border-gray-200 p-4">All investment types</td>
-                      <td className="border border-gray-200 p-4">(Gain - Cost) / Cost × 100%</td>
-                      <td className="border border-gray-200 p-4">Any time period</td>
+                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 font-semibold text-blue-800 text-xs sm:text-sm md:text-base">ROI (Return on Investment)</td>
+                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">Measure investment efficiency</td>
+                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">All investment types</td>
+                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">(Gain - Cost) / Cost × 100%</td>
+                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">Any time period</td>
                     </tr>
                     <tr className="bg-gray-50 hover:bg-blue-50 transition-colors">
-                      <td className="border border-gray-200 p-4 font-semibold text-green-800">IRR (Internal Rate of Return)</td>
-                      <td className="border border-gray-200 p-4">Find break-even interest rate</td>
-                      <td className="border border-gray-200 p-4">Complex cash flows</td>
-                      <td className="border border-gray-200 p-4">NPV = 0 discount rate</td>
-                      <td className="border border-gray-200 p-4">Considers timing</td>
+                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 font-semibold text-green-800 text-xs sm:text-sm md:text-base">IRR (Internal Rate of Return)</td>
+                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">Find break-even interest rate</td>
+                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">Complex cash flows</td>
+                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">NPV = 0 discount rate</td>
+                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">Considers timing</td>
                     </tr>
                     <tr className="hover:bg-blue-50 transition-colors">
-                      <td className="border border-gray-200 p-4 font-semibold text-purple-800">NPV (Net Present Value)</td>
-                      <td className="border border-gray-200 p-4">Absolute value creation</td>
-                      <td className="border border-gray-200 p-4">Capital budgeting</td>
-                      <td className="border border-gray-200 p-4">Sum of discounted cash flows</td>
-                      <td className="border border-gray-200 p-4">Time value of money</td>
+                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 font-semibold text-purple-800 text-xs sm:text-sm md:text-base">NPV (Net Present Value)</td>
+                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">Absolute value creation</td>
+                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">Capital budgeting</td>
+                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">Sum of discounted cash flows</td>
+                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">Time value of money</td>
                     </tr>
                     <tr className="bg-gray-50 hover:bg-blue-50 transition-colors">
-                      <td className="border border-gray-200 p-4 font-semibold text-orange-800">Payback Period</td>
-                      <td className="border border-gray-200 p-4">Time to recover investment</td>
-                      <td className="border border-gray-200 p-4">Risk assessment</td>
-                      <td className="border border-gray-200 p-4">Investment / Annual Cash Flow</td>
-                      <td className="border border-gray-200 p-4">Linear time calculation</td>
+                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 font-semibold text-orange-800 text-xs sm:text-sm md:text-base">Payback Period</td>
+                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">Time to recover investment</td>
+                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">Risk assessment</td>
+                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">Investment / Annual Cash Flow</td>
+                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">Linear time calculation</td>
                     </tr>
                     <tr className="hover:bg-blue-50 transition-colors">
-                      <td className="border border-gray-200 p-4 font-semibold text-red-800">CAGR (Compound Annual Growth Rate)</td>
-                      <td className="border border-gray-200 p-4">Annualized growth rate</td>
-                      <td className="border border-gray-200 p-4">Long-term investments</td>
-                      <td className="border border-gray-200 p-4">(End Value / Start Value)^(1/years) - 1</td>
-                      <td className="border border-gray-200 p-4">Smooths volatility</td>
+                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 font-semibold text-red-800 text-xs sm:text-sm md:text-base">CAGR (Compound Annual Growth Rate)</td>
+                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">Annualized growth rate</td>
+                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">Long-term investments</td>
+                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">(End Value / Start Value)^(1/years) - 1</td>
+                      <td className="border border-gray-200 p-2 sm:p-3 md:p-4 text-xs sm:text-sm md:text-base">Smooths volatility</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">When to Use ROI vs IRR</h3>
-                  <div className="space-y-4">
-                    <div className="bg-white rounded-xl p-4">
-                      <h4 className="font-bold text-blue-800 mb-2">Use ROI When:</h4>
-                      <div className="space-y-2 text-sm text-gray-700">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+                <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">When to Use ROI vs IRR</h3>
+                  <div className="space-y-3 sm:space-y-4">
+                    <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4">
+                      <h4 className="font-bold text-blue-800 mb-2 text-sm sm:text-base">Use ROI When:</h4>
+                      <div className="space-y-1 sm:space-y-2 text-xs sm:text-sm text-gray-700">
                         <p>• Comparing investments of similar duration</p>
                         <p>• Simple, straightforward investments</p>
                         <p>• Quick decision-making needed</p>
@@ -1328,9 +1328,9 @@ export default function ROICalculator() {
                         <p>• Evaluating past performance</p>
                       </div>
                     </div>
-                    <div className="bg-blue-600 text-white rounded-xl p-4">
-                      <h4 className="font-semibold mb-2">Use IRR When:</h4>
-                      <div className="space-y-2 text-sm">
+                    <div className="bg-blue-600 text-white rounded-lg sm:rounded-xl p-3 sm:p-4">
+                      <h4 className="font-semibold mb-2 text-sm sm:text-base">Use IRR When:</h4>
+                      <div className="space-y-1 sm:space-y-2 text-xs sm:text-sm">
                         <p>• Multiple cash flows over time</p>
                         <p>• Comparing different investment durations</p>
                         <p>• Complex project evaluations</p>
@@ -1341,12 +1341,12 @@ export default function ROICalculator() {
                   </div>
                 </div>
 
-                <div className="bg-gradient-to-br from-green-50 to-emerald-100 rounded-2xl p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">ROI vs CAGR: Key Differences</h3>
-                  <div className="space-y-4">
-                    <div className="bg-white rounded-xl p-4">
-                      <h4 className="font-bold text-green-800 mb-2">ROI Characteristics:</h4>
-                      <div className="space-y-2 text-sm text-gray-700">
+                <div className="bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">ROI vs CAGR: Key Differences</h3>
+                  <div className="space-y-3 sm:space-y-4">
+                    <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4">
+                      <h4 className="font-bold text-green-800 mb-2 text-sm sm:text-base">ROI Characteristics:</h4>
+                      <div className="space-y-1 sm:space-y-2 text-xs sm:text-sm text-gray-700">
                         <p>• Total return over entire period</p>
                         <p>• Doesn't account for time</p>
                         <p>• Simple percentage calculation</p>
@@ -1354,9 +1354,9 @@ export default function ROICalculator() {
                         <p>• Includes all gains and losses</p>
                       </div>
                     </div>
-                    <div className="bg-green-600 text-white rounded-xl p-4">
-                      <h4 className="font-semibold mb-2">CAGR Characteristics:</h4>
-                      <div className="space-y-2 text-sm">
+                    <div className="bg-green-600 text-white rounded-lg sm:rounded-xl p-3 sm:p-4">
+                      <h4 className="font-semibold mb-2 text-sm sm:text-base">CAGR Characteristics:</h4>
+                      <div className="space-y-1 sm:space-y-2 text-xs sm:text-sm">
                         <p>• Annualized growth rate</p>
                         <p>• Smooths out volatility</p>
                         <p>• Time-adjusted returns</p>
