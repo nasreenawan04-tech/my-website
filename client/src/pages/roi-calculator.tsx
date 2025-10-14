@@ -411,13 +411,13 @@ export default function ROICalculator() {
                 <span className="text-xs sm:text-sm font-medium text-blue-700">Professional ROI Calculator - Free & Accurate</span>
               </div>
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0">
-                <span className="block">Free ROI Calculator:</span>
+                <span className="block">ROI Calculator Online Free:</span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
-                  Calculate Investment Returns
+                  Investment ROI Calculator 2025
                 </span>
               </h1>
               <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
-                Calculate return on investment for stocks, business projects, real estate, and financial decisions. Get accurate ROI analysis with our free investment calculator tool.
+                Free business ROI calculator to calculate return on investment for stocks, business projects, real estate, and marketing campaigns. Get instant annualized ROI analysis with our comprehensive investment return calculator.
               </p>
 
               <div className="flex flex-wrap justify-center gap-4 sm:gap-6 pt-4">
@@ -1162,9 +1162,9 @@ export default function ROICalculator() {
               </Card>
             </div>
 
-            {/* Types of ROI Calculations */}
+            {/* How to Calculate ROI - SEO Optimized Section */}
             <section className="bg-white/90 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 shadow-xl border border-gray-100">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 sm:mb-8 md:mb-10 text-center">Types of ROI Calculations and Investment Strategies</h2>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 sm:mb-8 md:mb-10 text-center">How to Calculate ROI: Investment Return Calculator Guide</h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-8 sm:mb-10 md:mb-12">
                 {/* Simple ROI */}
@@ -1281,9 +1281,9 @@ export default function ROICalculator() {
               </div>
             </section>
 
-            {/* Industry-Specific ROI Applications */}
+            {/* Business ROI Calculator by Industry */}
             <section className="bg-white/90 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 shadow-xl border border-gray-100">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 sm:mb-8 md:mb-10 text-center">Industry-Specific ROI Applications and Benchmarks</h2>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 sm:mb-8 md:mb-10 text-center">Business ROI Calculator: Industry Benchmarks & ROI Standards</h2>
 
               <div className="space-y-6 sm:space-y-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
