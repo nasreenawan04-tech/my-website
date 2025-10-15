@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -90,7 +91,7 @@ export default function LeaseCalculator() {
     };
 
     const config = currencyMap[currency] || currencyMap.USD;
-
+    
     return new Intl.NumberFormat(config.locale, {
       style: 'currency',
       currency: config.currency,
@@ -102,15 +103,43 @@ export default function LeaseCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>Lease Calculator - Calculate Lease Payments | DapsiWow</title>
-        <meta name="description" content="Free lease calculator to calculate monthly lease payments for vehicles and assets. Compare different lease terms and rates." />
-        <meta name="keywords" content="lease calculator, car lease calculator, vehicle lease calculator, equipment lease calculator" />
-        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <title>Lease Calculator - Calculate Vehicle Lease Payments | DapsiWow</title>
+        <meta name="description" content="Free lease calculator to calculate monthly lease payments for cars, trucks, and SUVs. Compare lease vs buy options with residual value estimation and money factor calculations. Support for multiple currencies worldwide." />
+        <meta name="keywords" content="lease calculator, car lease calculator, vehicle lease calculator, monthly lease payment calculator, auto lease calculator, lease vs buy calculator, residual value calculator, money factor calculator, lease payment estimator, car leasing calculator" />
+        <meta property="og:title" content="Lease Calculator - Calculate Vehicle Lease Payments | DapsiWow" />
+        <meta property="og:description" content="Free lease calculator for cars, trucks, and SUVs with residual value and money factor calculations. Calculate accurate monthly lease payments instantly." />
+        <meta property="og:type" content="website" />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="DapsiWow" />
         <link rel="canonical" href="https://dapsiwow.com/tools/lease-calculator" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Lease Calculator",
+            "description": "Free online lease calculator to calculate monthly lease payments and total lease costs for vehicles including cars, trucks, and SUVs. Features residual value calculations and lease vs buy analysis.",
+            "url": "https://dapsiwow.com/tools/lease-calculator",
+            "applicationCategory": "FinanceApplication",
+            "operatingSystem": "Any",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "featureList": [
+              "Calculate lease payments for any vehicle",
+              "Support for multiple currencies",
+              "Residual value calculations",
+              "Money factor conversions",
+              "Lease vs buy comparison",
+              "Depreciation cost analysis"
+            ]
+          })}
+        </script>
       </Helmet>
-
+      
       <Header />
-
+      
       <main>
         {/* Hero Section */}
         <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32 overflow-hidden">
@@ -144,7 +173,7 @@ export default function LeaseCalculator() {
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Lease Configuration</h2>
                     <p className="text-sm sm:text-base text-gray-600">Enter your vehicle and lease details to get accurate payment calculations</p>
                   </div>
-
+                  
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
                     {/* Currency Selection */}
                     <div className="space-y-2 sm:space-y-3">
@@ -271,7 +300,7 @@ export default function LeaseCalculator() {
                   {/* Additional Fees */}
                   <div className="space-y-4 sm:space-y-6 border-t pt-4 sm:pt-6 md:pt-8">
                     <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900">Additional Fees</h3>
-
+                    
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
                       <div className="space-y-2 sm:space-y-3">
                         <Label htmlFor="acquisition-fee" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
@@ -351,7 +380,7 @@ export default function LeaseCalculator() {
                 {/* Results Section */}
                 <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t lg:border-t-0">
                   <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Results</h2>
-
+                  
                   {result ? (
                     <div className="space-y-3 sm:space-y-4 md:space-y-6" data-testid="lease-results">
                       {/* Monthly Payment Highlight */}
@@ -494,14 +523,14 @@ export default function LeaseCalculator() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">What is a Lease Calculator?</h3>
                 <div className="space-y-4 text-gray-600">
                   <p>
-                    A lease calculator is a powerful financial tool that helps you determine the monthly payment for
-                    leasing a vehicle, taking into account all essential factors including vehicle price, down payment,
-                    lease term, interest rate (money factor), residual value, and additional fees to provide accurate
+                    A lease calculator is a powerful financial tool that helps you determine the monthly payment for 
+                    leasing a vehicle, taking into account all essential factors including vehicle price, down payment, 
+                    lease term, interest rate (money factor), residual value, and additional fees to provide accurate 
                     monthly payment estimates.
                   </p>
                   <p>
-                    Our advanced lease calculator supports multiple currencies and provides detailed cost breakdowns,
-                    helping you understand exactly what you're paying for and compare different lease options effectively.
+                    Our advanced lease calculator supports multiple currencies and provides detailed cost breakdowns, 
+                    helping you understand exactly what you're paying for and compare different lease options effectively. 
                     Whether you're considering leasing a car, truck, or SUV, this tool ensures you make informed financial decisions.
                   </p>
                 </div>
@@ -513,8 +542,8 @@ export default function LeaseCalculator() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">How Lease Payments Work</h3>
                 <div className="space-y-4 text-gray-600">
                   <p>
-                    Lease payments are calculated based on the vehicle's depreciation during the lease term, plus interest
-                    on both the depreciation and residual value. Unlike loan payments, you're only paying for the portion
+                    Lease payments are calculated based on the vehicle's depreciation during the lease term, plus interest 
+                    on both the depreciation and residual value. Unlike loan payments, you're only paying for the portion 
                     of the vehicle's value you're using during the lease period.
                   </p>
                   <ul className="space-y-2 list-disc list-inside">
@@ -859,8 +888,8 @@ export default function LeaseCalculator() {
                 <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg">
                   <h4 className="font-semibold text-blue-800 mb-2">Decision Factors</h4>
                   <p className="text-blue-700 text-sm">
-                    Compare the vehicle's current market value to the residual value, assess your satisfaction with the vehicle,
-                    and evaluate your changing needs. Our calculator helps you understand the financial implications of each option
+                    Compare the vehicle's current market value to the residual value, assess your satisfaction with the vehicle, 
+                    and evaluate your changing needs. Our calculator helps you understand the financial implications of each option 
                     to make the best decision for your situation.
                   </p>
                 </div>
@@ -869,7 +898,7 @@ export default function LeaseCalculator() {
           </div>
         </div>
       </main>
-
+      
       <Footer />
     </div>
   );

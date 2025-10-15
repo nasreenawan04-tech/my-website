@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -132,18 +133,18 @@ const ProteinIntakeCalculator = () => {
 
     // Generate recommendations
     const recommendations = [];
-
+    
     if (fitnessGoal === 'muscle_gain' || activityLevel === 'very_active') {
       recommendations.push('Consider protein supplements if unable to meet needs through food');
     }
-
+    
     if (ageNum > 50) {
       recommendations.push('Focus on high-quality, easily digestible protein sources');
     }
-
+    
     recommendations.push('Spread protein intake evenly throughout the day');
     recommendations.push('Include both animal and plant-based protein sources for variety');
-
+    
     if (fitnessGoal === 'weight_loss') {
       recommendations.push('Higher protein intake can help preserve muscle mass during weight loss');
     }
@@ -184,10 +185,14 @@ const ProteinIntakeCalculator = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-orange-50 to-red-50">
       <Helmet>
-        <title>Protein Intake Calculator - Calculate Daily Protein Needs | DapsiWow</title>
-        <meta name="description" content="Free protein intake calculator to determine your daily protein requirements based on weight, activity level, and fitness goals." />
-        <meta name="keywords" content="protein calculator, daily protein intake, protein requirement calculator, protein needs" />
-        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <title>Protein Intake Calculator - Calculate Daily Protein Requirements | DapsiWow</title>
+        <meta name="description" content="Free protein intake calculator to determine your daily protein needs based on weight, activity level, fitness goals, and health conditions. Get personalized protein recommendations and meal planning guidance." />
+        <meta name="keywords" content="protein intake calculator, daily protein needs, protein requirement calculator, muscle building protein, weight loss protein, protein sources, protein calculator online, daily protein intake, protein planning tool" />
+        <meta property="og:title" content="Protein Intake Calculator - Calculate Daily Protein Requirements | DapsiWow" />
+        <meta property="og:description" content="Calculate your personalized daily protein requirements with our free protein intake calculator. Get instant recommendations for optimal health and fitness goals." />
+        <meta property="og:type" content="website" />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="DapsiWow" />
         <link rel="canonical" href="https://dapsiwow.com/tools/protein-intake-calculator" />
         <script type="application/ld+json">
           {JSON.stringify({
@@ -214,9 +219,9 @@ const ProteinIntakeCalculator = () => {
           })}
         </script>
       </Helmet>
-
+      
       <Header />
-
+      
       <main>
         {/* Hero Section */}
         <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32 overflow-hidden">
@@ -250,7 +255,7 @@ const ProteinIntakeCalculator = () => {
                     <h2 className="text-3xl font-bold text-gray-900 mb-2">Protein Configuration</h2>
                     <p className="text-gray-600">Enter your personal details to get accurate protein intake calculations</p>
                   </div>
-
+                  
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {/* Unit System */}
                     <div className="space-y-3">
@@ -375,7 +380,7 @@ const ProteinIntakeCalculator = () => {
                   {/* Advanced Options */}
                   <div className="space-y-6 border-t pt-8">
                     <h3 className="text-xl font-bold text-gray-900">Advanced Options</h3>
-
+                    
                     {/* Health Conditions */}
                     <div className="space-y-4 bg-gray-50 rounded-xl p-6">
                       <div className="space-y-3">
@@ -457,7 +462,7 @@ const ProteinIntakeCalculator = () => {
                 {/* Results Section */}
                 <div className="bg-gradient-to-br from-gray-50 to-orange-50 p-8 lg:p-12">
                   <h2 className="text-2xl font-bold text-gray-900 mb-8">Results</h2>
-
+                  
                   {result ? (
                     <div className="space-y-6" data-testid="protein-intake-results">
                       {/* Daily Protein Highlight */}
@@ -962,7 +967,7 @@ const ProteinIntakeCalculator = () => {
           </div>
         </div>
       </main>
-
+      
       <Footer />
     </div>
   );
