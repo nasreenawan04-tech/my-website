@@ -2229,7 +2229,7 @@ export default function LoanCalculator() {
             {/* Types of Loans */}
             <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-2xl">
               <CardContent className="p-4 sm:p-6 md:p-8">
-                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6">Types of Loans You Can Calculate</h2>
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">Types of Loans You Can Calculate</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 md:gap-6">
                   <div className="space-y-3 sm:space-y-4">
                     <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 flex items-center gap-2">
@@ -2476,7 +2476,7 @@ export default function LoanCalculator() {
                   <div className="border-l-2 sm:border-l-3 md:border-l-4 border-rose-500 pl-3 sm:pl-4 md:pl-6">
                     <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3">What fees should I watch out for when getting a loan?</h3>
                     <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                      Common loan fees include: origination fees (1-8% of loan amount), application fees ($25-$50), appraisal fees (for secured loans, $300-$500), credit report fees ($25-$50), prepayment penalties (can be substantial), late payment fees (typically $25-$50 or 5% of payment), and annual fees (for some credit products). Always ask for a complete fee schedule and factor these into your total cost comparison. Some online lenders have minimal fees, while traditional banks may charge more but offer better rates.
+                      Common loan fees include: origination fees (1-8% of loan amount), application fees ($25-$50), appraisal fees (for secured loans, $300-$500), credit report fees ($25-$50), prepayment penalties (can be substantial), late payment fees (typically $25-$50 or 5% of payment), and annual fees (for some credit products). Always ask for a complete fee schedule and factor these into your total cost comparison. Some online lenders have minimal fees, while traditional banks may offer better rates.
                     </p>
                   </div>
                 </div>
