@@ -42,7 +42,7 @@ const ToolCard = ({ tool, onClick }: ToolCardProps) => {
 
   return (
     <div 
-      className="group relative bg-white dark:bg-neutral-800 rounded-xl sm:rounded-2xl shadow-sm hover:shadow-xl sm:hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border border-neutral-200 dark:border-neutral-700 overflow-hidden cursor-pointer h-full flex flex-col"
+      className="group relative bg-white dark:bg-neutral-800 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 border border-neutral-200 dark:border-neutral-700 overflow-hidden cursor-pointer"
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       tabIndex={0}
@@ -50,58 +50,43 @@ const ToolCard = ({ tool, onClick }: ToolCardProps) => {
       aria-label={`Open ${tool.name} - ${tool.description}`}
       data-testid={`card-tool-${tool.id}`}
     >
-      {/* Gradient accent line */}
-      <div className={`absolute top-0 left-0 right-0 h-0.5 sm:h-1 bg-gradient-to-r ${categoryGradients[tool.category]} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-      
-      {/* Card content */}
-      <div className="relative p-3 sm:p-4 md:p-5 lg:p-6 flex-1 flex flex-col">
-        {/* Header with favorite button */}
-        <div className="flex items-start justify-between gap-2 sm:gap-3 mb-2 sm:mb-3">
-          <div className="flex-1 min-w-0">
-            <h3 className="text-base sm:text-lg md:text-xl font-bold text-neutral-900 dark:text-neutral-100 mb-1 sm:mb-2 line-clamp-2 group-hover:text-primary transition-colors duration-200 leading-tight" data-testid={`text-tool-name-${tool.id}`}>
-              {tool.name}
-            </h3>
-          </div>
+      {/* Card content - Mobile list layout */}
+      <div className="relative p-4 flex items-start gap-3">
+        {/* Left side - Content */}
+        <div className="flex-1 min-w-0">
+          {/* Tool name */}
+          <h3 className="text-base font-semibold text-neutral-900 dark:text-neutral-100 mb-1.5 line-clamp-1 group-hover:text-primary transition-colors duration-200" data-testid={`text-tool-name-${tool.id}`}>
+            {tool.name}
+          </h3>
           
-          {/* Favorite button - always visible on mobile, hover on desktop */}
-          <div className="flex-shrink-0 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-200 -mt-0.5">
-            <FavoriteButton tool={tool} size="sm" />
-          </div>
-        </div>
-        
-        {/* Description */}
-        <p className="text-sm md:text-base text-neutral-600 dark:text-neutral-400 mb-3 sm:mb-4 line-clamp-2 leading-relaxed flex-1" data-testid={`text-tool-description-${tool.id}`}>
-          {tool.description}
-        </p>
-        
-        {/* Footer with category and badges */}
-        <div className="flex flex-wrap items-center justify-between gap-1.5 sm:gap-2 md:gap-3 mt-auto">
-          <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+          {/* Description */}
+          <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3 line-clamp-1 leading-relaxed" data-testid={`text-tool-description-${tool.id}`}>
+            {tool.description}
+          </p>
+          
+          {/* Footer with category and badges */}
+          <div className="flex items-center gap-2 flex-wrap">
             <span 
-              className={`inline-flex items-center px-2 sm:px-2.5 md:px-3 py-0.5 sm:py-1 ${categoryColors[tool.category]} text-xs sm:text-sm rounded-full font-medium whitespace-nowrap`}
+              className={`inline-flex items-center px-2.5 py-0.5 ${categoryColors[tool.category]} text-xs rounded-full font-medium`}
               data-testid={`text-tool-category-${tool.id}`}
             >
               {categories[tool.category]}
             </span>
             
             {tool.isPopular && (
-              <div className="inline-flex items-center gap-0.5 sm:gap-1 bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs px-1.5 sm:px-2 md:px-2.5 py-0.5 sm:py-1 rounded-full font-medium whitespace-nowrap">
-                <TrendingUp size={10} className="hidden sm:block sm:w-3 sm:h-3" />
+              <div className="inline-flex items-center gap-1 bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs px-2 py-0.5 rounded-full font-medium">
                 <span>Popular</span>
               </div>
             )}
           </div>
-          
-          {/* Action indicator - always visible on mobile, hover on desktop */}
-          <div className="flex items-center gap-0.5 sm:gap-1 text-primary opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-200">
-            <span className="text-xs sm:text-sm font-medium hidden md:inline">Open</span>
-            <ArrowRight size={14} className="sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform duration-200" />
-          </div>
+        </div>
+        
+        {/* Right side - Favorite button & Arrow */}
+        <div className="flex flex-col items-center gap-2 flex-shrink-0">
+          <FavoriteButton tool={tool} size="sm" />
+          <ArrowRight size={16} className="text-primary group-hover:translate-x-0.5 transition-transform duration-200" />
         </div>
       </div>
-
-      {/* Hover effect overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
     </div>
   );
 };
