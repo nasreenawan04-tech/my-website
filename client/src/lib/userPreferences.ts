@@ -63,6 +63,17 @@ export const isFavorite = (toolId: string): boolean => {
   return getFavorites().some(tool => tool.id === toolId);
 };
 
+export const clearAllFavorites = (): void => {
+  try {
+    localStorage.removeItem(FAVORITES_KEY);
+    window.dispatchEvent(new CustomEvent('favoritesChanged', { 
+      detail: { favorites: [], action: 'clear' } 
+    }));
+  } catch (error) {
+    console.error('Failed to clear favorites:', error);
+  }
+};
+
 // Recent Tools Management
 export const getRecentTools = (): RecentTool[] => {
   try {
