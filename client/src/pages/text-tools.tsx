@@ -92,7 +92,7 @@ const TextTools = () => {
 
               {/* Tools Grid */}
               {filteredTools.length > 0 ? (
-                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8" data-testid="grid-text-tools">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8" data-testid="grid-text-tools">
                   {filteredTools.map((tool) => (
                     <ToolCard key={tool.id} tool={tool} />
                   ))}

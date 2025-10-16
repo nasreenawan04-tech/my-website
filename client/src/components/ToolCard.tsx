@@ -92,8 +92,8 @@ const ToolCard = ({ tool, onClick }: ToolCardProps) => {
             )}
           </div>
           
-          {/* Action indicator */}
-          <div className="flex items-center gap-0.5 sm:gap-1 text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+          {/* Action indicator - always visible on mobile, hover on desktop */}
+          <div className="flex items-center gap-0.5 sm:gap-1 text-primary opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-200">
             <span className="text-xs sm:text-sm font-medium hidden md:inline">Open</span>
             <ArrowRight size={14} className="sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform duration-200" />
           </div>
