@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -8,8 +8,12 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { DollarSign } from 'lucide-react';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { DollarSign, Download, Share2, Calculator, TrendingUp, FileText, PieChart, RotateCcw } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
+import { jsPDF } from 'jspdf';
+import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
+import { Link } from 'wouter';
 
 interface TaxResult {
   grossIncome: number;
@@ -34,6 +38,8 @@ export default function TaxCalculator() {
   const [country, setCountry] = useState('US');
   const [currency, setCurrency] = useState('USD');
   const [result, setResult] = useState<TaxResult | null>(null);
+  const resultsRef = useRef<HTMLDivElement>(null);
+  const { toast } = useToast();
 
   const countries = [
     { code: 'US', name: 'United States', currency: 'USD' },
@@ -213,6 +219,10 @@ export default function TaxCalculator() {
       marginalTaxRate: marginalTaxRate * 100,
       taxBreakdown
     });
+
+    setTimeout(() => {
+      resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 100);
   };
 
   const resetCalculator = () => {
@@ -222,6 +232,190 @@ export default function TaxCalculator() {
     setCountry('US');
     setCurrency('USD');
     setResult(null);
+  };
+
+  const handleDownloadPDF = () => {
+    if (!result) return;
+
+    const doc = new jsPDF();
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 15;
+    let yPos = 12;
+
+    // Header
+    doc.setFillColor(59, 130, 246);
+    doc.rect(0, 0, pageWidth, 38, 'F');
+    
+    doc.setFontSize(26);
+    doc.setTextColor(255, 255, 255);
+    doc.setFont('helvetica', 'bold');
+    doc.text('DapsiWow', pageWidth / 2, yPos + 5, { align: 'center' });
+    
+    yPos += 14;
+    doc.setFontSize(11);
+    doc.setFont('helvetica', 'normal');
+    doc.text('Income Tax Calculation Report', pageWidth / 2, yPos, { align: 'center' });
+    
+    yPos += 6;
+    doc.setFontSize(8);
+    doc.setTextColor(230, 240, 255);
+    const currentDate = new Date().toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric'
+    });
+    doc.text(`Report Date: ${currentDate}`, pageWidth / 2, yPos, { align: 'center' });
+
+    // Tax Summary
+    yPos = 48;
+    doc.setFillColor(240, 249, 255);
+    doc.setDrawColor(59, 130, 246);
+    doc.setLineWidth(1);
+    doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 50, 3, 3, 'FD');
+    
+    yPos += 6;
+    doc.setFontSize(9);
+    doc.setTextColor(100, 100, 100);
+    doc.setFont('helvetica', 'normal');
+    doc.text('TAX SUMMARY', pageWidth / 2, yPos, { align: 'center' });
+    
+    yPos += 10;
+    doc.setFontSize(16);
+    doc.setTextColor(220, 38, 38);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Total Tax Owed', pageWidth / 2, yPos, { align: 'center' });
+    
+    yPos += 10;
+    doc.setFontSize(24);
+    doc.text(formatCurrency(result.incomeTax), pageWidth / 2, yPos, { align: 'center' });
+    
+    yPos += 10;
+    doc.setFontSize(16);
+    doc.setTextColor(34, 197, 94);
+    doc.text('Net Income', pageWidth / 2, yPos, { align: 'center' });
+    
+    yPos += 8;
+    doc.setFontSize(20);
+    doc.text(formatCurrency(result.netIncome), pageWidth / 2, yPos, { align: 'center' });
+
+    // Income Details
+    yPos += 18;
+    const col1X = margin + 8;
+    const col2X = margin + 60;
+    const col3X = pageWidth / 2 + 8;
+    const col4X = pageWidth / 2 + 60;
+    
+    doc.setTextColor(100, 100, 100);
+    doc.setFontSize(8);
+    doc.text('Gross Income', col1X, yPos);
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'bold');
+    doc.text(formatCurrency(result.grossIncome), col2X, yPos);
+    
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(100, 100, 100);
+    doc.setFontSize(8);
+    doc.text('Effective Tax Rate', col3X, yPos);
+    doc.setTextColor(220, 38, 38);
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'bold');
+    doc.text(`${result.effectiveTaxRate.toFixed(2)}%`, col4X, yPos);
+    
+    yPos += 8;
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(100, 100, 100);
+    doc.setFontSize(8);
+    doc.text('Deductions', col1X, yPos);
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'bold');
+    doc.text(formatCurrency(result.grossIncome - result.taxableIncome), col2X, yPos);
+    
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(100, 100, 100);
+    doc.setFontSize(8);
+    doc.text('Marginal Tax Rate', col3X, yPos);
+    doc.setTextColor(220, 38, 38);
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'bold');
+    doc.text(`${result.marginalTaxRate.toFixed(2)}%`, col4X, yPos);
+
+    // Footer
+    yPos = pageHeight - 20;
+    doc.setDrawColor(220, 220, 220);
+    doc.setLineWidth(0.2);
+    doc.line(margin, yPos, pageWidth - margin, yPos);
+    
+    yPos += 4;
+    doc.setFontSize(7);
+    doc.setTextColor(120, 120, 120);
+    doc.setFont('helvetica', 'italic');
+    doc.text('This is an estimate. Consult a tax professional for official advice.', pageWidth / 2, yPos, { align: 'center' });
+    
+    yPos += 6;
+    doc.setFontSize(8);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(59, 130, 246);
+    doc.textWithLink('DapsiWow.com', pageWidth / 2, yPos, { align: 'center', url: 'https://dapsiwow.com' });
+
+    doc.save(`DapsiWow-Tax-Calculation-${new Date().getTime()}.pdf`);
+    toast({ 
+      title: "PDF Downloaded!", 
+      description: "Your tax calculation report has been saved." 
+    });
+  };
+
+  const handleShare = async () => {
+    if (!result) return;
+
+    const shareableUrl = `${window.location.origin}${window.location.pathname}`;
+    const shareText = `💰 My Tax Calculation:\n\n📊 Gross Income: ${formatCurrency(result.grossIncome)}\n💸 Tax Owed: ${formatCurrency(result.incomeTax)}\n✅ Net Income: ${formatCurrency(result.netIncome)}\n📈 Effective Rate: ${result.effectiveTaxRate.toFixed(2)}%\n\nCalculate yours free at ${shareableUrl}`;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: 'My Tax Calculation - DapsiWow',
+          text: shareText,
+          url: shareableUrl,
+        });
+        toast({ title: "Shared successfully!" });
+      } catch (error) {
+        if ((error as Error).name !== 'AbortError') {
+          await navigator.clipboard.writeText(shareText);
+          toast({ title: "Link copied to clipboard!" });
+        }
+      }
+    } else {
+      await navigator.clipboard.writeText(shareText);
+      toast({ title: "Results copied to clipboard!" });
+    }
+  };
+
+  const shareOnFacebook = () => {
+    if (!result) return;
+    const url = encodeURIComponent(window.location.href);
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+  };
+
+  const shareOnTwitter = () => {
+    if (!result) return;
+    const text = encodeURIComponent(`I just calculated my taxes! Net income: ${formatCurrency(result.netIncome)} | Calculate yours free at`);
+    const url = encodeURIComponent(window.location.href);
+    window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+  };
+
+  const shareOnLinkedIn = () => {
+    if (!result) return;
+    const url = encodeURIComponent(window.location.href);
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
+  };
+
+  const shareOnWhatsApp = () => {
+    if (!result) return;
+    const text = encodeURIComponent(`Check out this free tax calculator! I calculated my taxes and got: Net Income ${formatCurrency(result.netIncome)}. Try it: ${window.location.href}`);
+    window.open(`https://wa.me/?text=${text}`, '_blank');
   };
 
   const handleCountryChange = (newCountry: string) => {
@@ -280,42 +474,130 @@ export default function TaxCalculator() {
 
   const currentFilingStatuses = filingStatuses[country as keyof typeof filingStatuses] || filingStatuses.US;
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How accurate is this tax calculator?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our tax calculator uses official tax brackets and rates for each supported country, providing estimates that are typically accurate within 2-3% for standard situations. However, actual tax liability may vary based on additional income sources, specific deductions, credits, and other individual circumstances."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which countries are supported?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We currently support tax calculations for USA, United Kingdom, Canada, Australia, Germany, France, India, Japan, Singapore, and New Zealand. The calculator uses 2023-2024 tax brackets and rates."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What's the difference between effective and marginal tax rates?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Your effective tax rate is the overall percentage of your income paid in taxes (total tax ÷ gross income). Your marginal tax rate is the tax rate applied to your last dollar of income."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my data stored or shared?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, all calculations are performed entirely in your browser. We do not store, transmit, track, or share any of your financial information. Your privacy and data security are our highest priorities."
+        }
+      }
+    ]
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>Tax Calculator - Calculate Income Tax Worldwide | DapsiWow</title>
-        <meta name="description" content="Free income tax calculator for 10+ countries. Calculate taxes for USA, UK, Canada, Australia, Germany, France, India & more. Get instant tax estimates, effective rates, and detailed breakdowns for tax planning." />
-        <meta name="keywords" content="tax calculator, income tax calculator, tax estimator, effective tax rate, marginal tax rate, tax planning, USA tax calculator, UK tax calculator, Canada tax calculator, Australia tax calculator, free tax calculator, online tax calculator, tax bracket calculator, federal tax calculator, take home pay calculator" />
-        <meta property="og:title" content="Free Tax Calculator - Calculate Income Tax Worldwide | DapsiWow" />
-        <meta property="og:description" content="Calculate income tax for multiple countries with our free online tax calculator. Get instant estimates, detailed breakdowns, and tax planning insights." />
+        <title>2025 Tax Calculator - Free Income Tax Estimator | Calculate Federal Taxes</title>
+        <meta name="description" content="Free 2025 income tax calculator for USA, UK, Canada, Australia & 10+ countries. Calculate federal taxes, effective tax rate, marginal tax bracket, and net income instantly. 100% free, accurate tax estimates with detailed breakdown." />
+        <meta name="keywords" content="2025 tax calculator, income tax calculator 2025, tax refund calculator 2025, federal tax calculator, tax estimator 2025, tax bracket calculator, free tax calculator, online tax calculator, how to calculate income tax, effective tax rate calculator, marginal tax rate, take home pay calculator, tax planning calculator 2025" />
+        <meta property="og:title" content="2025 Tax Calculator - Free Income Tax Estimator | DapsiWow" />
+        <meta property="og:description" content="Calculate your 2025 income tax instantly with our free online calculator. Get accurate federal tax estimates, effective rates, and detailed breakdowns for smart tax planning." />
         <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Free Tax Calculator - Calculate Income Tax Worldwide" />
-        <meta name="twitter:description" content="Calculate income tax for multiple countries with detailed breakdowns and tax planning insights. Free online tool supporting 10+ countries." />
         <meta property="og:url" content="https://dapsiwow.com/tools/tax-calculator" />
+        <meta property="og:image" content="https://dapsiwow.com/og-tax-calculator.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="2025 Tax Calculator - Free Income Tax Estimator" />
+        <meta name="twitter:description" content="Calculate income tax for 2025 with detailed breakdowns, effective rates, and tax planning insights. Free tool supporting 10+ countries." />
+        <meta name="twitter:image" content="https://dapsiwow.com/og-tax-calculator.png" />
         <link rel="canonical" href="https://dapsiwow.com/tools/tax-calculator" />
+        
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "2025 Tax Calculator",
+            "url": "https://dapsiwow.com/tools/tax-calculator",
+            "description": "Free online income tax calculator for 2025. Calculate federal taxes, effective tax rate, and net income for USA, UK, Canada, Australia, and 10+ countries.",
+            "applicationCategory": "FinanceApplication",
+            "operatingSystem": "Any",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "featureList": [
+              "Multi-country tax calculations",
+              "Real-time tax estimates",
+              "Effective and marginal tax rates",
+              "Tax bracket breakdown",
+              "PDF export functionality",
+              "No registration required"
+            ]
+          })}
+        </script>
+
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
+        </script>
       </Helmet>
 
       <Header />
 
       <main>
         {/* Hero Section */}
-        <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
+        <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 overflow-hidden bg-gradient-to-br from-purple-600 via-blue-600 to-indigo-700">
+          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-10"></div>
           <div className="relative max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
             <div className="space-y-4 sm:space-y-6 md:space-y-8">
-              <div className="inline-flex items-center px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
-                <span className="text-xs sm:text-sm font-medium text-blue-700">Professional Tax Calculator</span>
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 md:gap-2.5 px-2.5 sm:px-3 md:px-4 lg:px-5 xl:px-6 py-1.5 sm:py-2 md:py-2.5 lg:py-3 bg-white/90 backdrop-blur-sm rounded-full shadow-sm hover:shadow-md transition-all duration-200 max-w-full mx-auto sm:mx-0">
+                <Calculator className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-5 lg:h-5 flex-shrink-0 text-purple-700" />
+                <span className="text-[11px] sm:text-xs md:text-sm lg:text-base font-medium text-purple-700 whitespace-nowrap overflow-hidden text-ellipsis leading-tight">
+                  Professional Tax Calculator - Free & Accurate 2025
+                </span>
               </div>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0" data-testid="page-title">
-                <span className="block">Smart Tax</span>
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
-                  Calculator
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-white leading-tight tracking-tight px-2 sm:px-0" data-testid="page-title">
+                <span className="block">2025 Income Tax Calculator:</span>
+                <span className="block text-white/90 mt-1 sm:mt-2">
+                  Calculate Federal Tax & Net Income
                 </span>
               </h1>
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
-                Calculate income tax for multiple countries with detailed breakdown and analysis
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-white/90 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
+                Calculate your 2025 income tax instantly with our free tax calculator. Get accurate federal tax estimates, effective tax rates, marginal tax brackets, and detailed breakdowns for USA, UK, Canada, Australia & 10+ countries. Perfect for tax planning, salary negotiations, and financial decisions. 100% free, no signup required.
               </p>
+
+              <div className="flex flex-wrap justify-center gap-4 sm:gap-6 pt-4">
+                <div className="flex items-center gap-2 text-white/90">
+                  <TrendingUp className="w-5 h-5 text-green-300" />
+                  <span className="text-sm font-medium">Multi-Country Support</span>
+                </div>
+                <div className="flex items-center gap-2 text-white/90">
+                  <DollarSign className="w-5 h-5 text-yellow-300" />
+                  <span className="text-sm font-medium">Instant Results</span>
+                </div>
+                <div className="flex items-center gap-2 text-white/90">
+                  <FileText className="w-5 h-5 text-blue-300" />
+                  <span className="text-sm font-medium">Detailed Breakdown</span>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -418,6 +700,7 @@ export default function TaxCalculator() {
                       className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                       data-testid="button-calculate"
                     >
+                      <Calculator className="w-5 h-5 mr-2" />
                       Calculate Tax
                     </Button>
                     <Button
@@ -426,14 +709,84 @@ export default function TaxCalculator() {
                       className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                       data-testid="button-reset"
                     >
+                      <RotateCcw className="w-5 h-5 mr-2" />
                       Reset
                     </Button>
                   </div>
+
+                  {result && (
+                    <>
+                      <div className="flex flex-wrap justify-center gap-2 sm:gap-3 pt-3 sm:pt-4">
+                        <Button
+                          onClick={handleShare}
+                          variant="outline"
+                          size="sm"
+                          className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                          data-testid="button-share"
+                        >
+                          <Share2 className="w-4 h-4 mr-1" />
+                          Share
+                        </Button>
+                        <Button
+                          onClick={handleDownloadPDF}
+                          variant="outline"
+                          size="sm"
+                          className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                          data-testid="button-export-pdf"
+                        >
+                          <Download className="w-4 h-4 mr-1" />
+                          Export PDF
+                        </Button>
+                      </div>
+
+                      <div className="border-t pt-4">
+                        <p className="text-center text-sm font-medium text-gray-700 mb-3">Share your results:</p>
+                        <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+                          <Button
+                            onClick={shareOnFacebook}
+                            size="sm"
+                            variant="outline"
+                            className="bg-blue-600 hover:bg-blue-700 text-white border-0"
+                          >
+                            <FaFacebook className="w-4 h-4 mr-2" />
+                            Facebook
+                          </Button>
+                          <Button
+                            onClick={shareOnTwitter}
+                            size="sm"
+                            variant="outline"
+                            className="bg-sky-500 hover:bg-sky-600 text-white border-0"
+                          >
+                            <FaTwitter className="w-4 h-4 mr-2" />
+                            Twitter
+                          </Button>
+                          <Button
+                            onClick={shareOnLinkedIn}
+                            size="sm"
+                            variant="outline"
+                            className="bg-blue-700 hover:bg-blue-800 text-white border-0"
+                          >
+                            <FaLinkedin className="w-4 h-4 mr-2" />
+                            LinkedIn
+                          </Button>
+                          <Button
+                            onClick={shareOnWhatsApp}
+                            size="sm"
+                            variant="outline"
+                            className="bg-green-600 hover:bg-green-700 text-white border-0"
+                          >
+                            <FaWhatsapp className="w-4 h-4 mr-2" />
+                            WhatsApp
+                          </Button>
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </div>
 
                 {/* Results Section */}
                 {result !== null ? (
-                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                  <div ref={resultsRef} className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
                     <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Tax Calculation Results</h2>
 
                     <div className="space-y-4 sm:space-y-6 md:space-y-8" data-testid="tax-results">
@@ -912,36 +1265,183 @@ export default function TaxCalculator() {
               </Card>
             </div>
 
+            {/* Related Tools Section */}
+            <section className="py-8 sm:py-12">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 sm:mb-8 text-center">
+                Related Financial Calculators
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <Card className="bg-white hover:shadow-xl transition-shadow duration-300 border-0 shadow-md">
+                  <CardContent className="p-6">
+                    <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                      <DollarSign className="w-6 h-6 text-blue-600" />
+                    </div>
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">Salary to Hourly Calculator</h3>
+                    <p className="text-sm text-gray-600 mb-4">Convert annual salary to hourly rate and calculate your true hourly earnings after taxes.</p>
+                    <Link href="/tools/salary-to-hourly-calculator">
+                      <Button className="w-full bg-blue-600 hover:bg-blue-700" data-testid="link-salary-calculator">
+                        Calculate Now
+                      </Button>
+                    </Link>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-white hover:shadow-xl transition-shadow duration-300 border-0 shadow-md">
+                  <CardContent className="p-6">
+                    <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                      <TrendingUp className="w-6 h-6 text-green-600" />
+                    </div>
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">Retirement Calculator</h3>
+                    <p className="text-sm text-gray-600 mb-4">Plan your retirement savings and estimate how much you need to save for a comfortable retirement.</p>
+                    <Link href="/tools/retirement-calculator">
+                      <Button className="w-full bg-green-600 hover:bg-green-700" data-testid="link-retirement-calculator">
+                        Calculate Now
+                      </Button>
+                    </Link>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-white hover:shadow-xl transition-shadow duration-300 border-0 shadow-md">
+                  <CardContent className="p-6">
+                    <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                      <PieChart className="w-6 h-6 text-purple-600" />
+                    </div>
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">Budget Calculator</h3>
+                    <p className="text-sm text-gray-600 mb-4">Create a comprehensive budget plan and track your monthly income and expenses effectively.</p>
+                    <Link href="/tools/budget-calculator">
+                      <Button className="w-full bg-purple-600 hover:bg-purple-700" data-testid="link-budget-calculator">
+                        Calculate Now
+                      </Button>
+                    </Link>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-white hover:shadow-xl transition-shadow duration-300 border-0 shadow-md">
+                  <CardContent className="p-6">
+                    <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
+                      <FileText className="w-6 h-6 text-orange-600" />
+                    </div>
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">Loan Calculator</h3>
+                    <p className="text-sm text-gray-600 mb-4">Calculate monthly loan payments, total interest, and amortization schedules for any loan.</p>
+                    <Link href="/tools/loan-calculator">
+                      <Button className="w-full bg-orange-600 hover:bg-orange-700" data-testid="link-loan-calculator">
+                        Calculate Now
+                      </Button>
+                    </Link>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-white hover:shadow-xl transition-shadow duration-300 border-0 shadow-md">
+                  <CardContent className="p-6">
+                    <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                      <DollarSign className="w-6 h-6 text-indigo-600" />
+                    </div>
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">Investment Return Calculator</h3>
+                    <p className="text-sm text-gray-600 mb-4">Calculate potential returns on your investments with compound interest and regular contributions.</p>
+                    <Link href="/tools/investment-return-calculator">
+                      <Button className="w-full bg-indigo-600 hover:bg-indigo-700" data-testid="link-investment-calculator">
+                        Calculate Now
+                      </Button>
+                    </Link>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-white hover:shadow-xl transition-shadow duration-300 border-0 shadow-md">
+                  <CardContent className="p-6">
+                    <div className="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
+                      <Calculator className="w-6 h-6 text-cyan-600" />
+                    </div>
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">Net Worth Calculator</h3>
+                    <p className="text-sm text-gray-600 mb-4">Calculate your total net worth by tracking all your assets and liabilities in one place.</p>
+                    <Link href="/tools/net-worth-calculator">
+                      <Button className="w-full bg-cyan-600 hover:bg-cyan-700" data-testid="link-networth-calculator">
+                        Calculate Now
+                      </Button>
+                    </Link>
+                  </CardContent>
+                </Card>
+              </div>
+            </section>
+
             {/* FAQ Section */}
             <section>
               <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 sm:mb-8 text-center">
                 Frequently Asked Questions About Tax Calculators
               </h2>
-              <div className="max-w-4xl mx-auto space-y-4 sm:space-y-6">
-                <Card className="bg-white border border-gray-200">
-                  <CardContent className="p-4 sm:p-6">
-                    <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2 sm:mb-3">How accurate is this tax calculator?</h3>
-                    <p className="text-sm sm:text-base text-gray-600">Our tax calculator uses official tax brackets and rates for each supported country, providing estimates that are typically accurate within 2-3% for standard situations. However, individual circumstances may vary.</p>
-                  </CardContent>
-                </Card>
-                <Card className="bg-white border border-gray-200">
-                  <CardContent className="p-4 sm:p-6">
-                    <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2 sm:mb-3">Which countries are supported?</h3>
-                    <p className="text-sm sm:text-base text-gray-600">We support tax calculations for USA, United Kingdom, Canada, Australia, Germany, France, India, Japan, Singapore, and New Zealand, with plans to add more countries regularly.</p>
-                  </CardContent>
-                </Card>
-                <Card className="bg-white border border-gray-200">
-                  <CardContent className="p-4 sm:p-6">
-                    <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2 sm:mb-3">Can I use this for business taxes?</h3>
-                    <p className="text-sm sm:text-base text-gray-600">This calculator is designed primarily for individual income tax calculations. Business taxes involve different rates, deductions, and structures that require specialized business tax calculators.</p>
-                  </CardContent>
-                </Card>
-                <Card className="bg-white border border-gray-200">
-                  <CardContent className="p-4 sm:p-6">
-                    <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2 sm:mb-3">Is my data stored or shared?</h3>
-                    <p className="text-sm sm:text-base text-gray-600">No, all calculations are performed locally in your browser. We do not store, track, or share any of your financial information. Your privacy and data security are our top priorities.</p>
-                  </CardContent>
-                </Card>
+              <div className="max-w-4xl mx-auto">
+                <Accordion type="single" collapsible className="w-full space-y-4">
+                  <AccordionItem value="item-1" className="bg-white border border-gray-200 rounded-lg px-6">
+                    <AccordionTrigger className="text-left text-base sm:text-lg font-semibold text-gray-900 hover:text-blue-600">
+                      How accurate is this tax calculator?
+                    </AccordionTrigger>
+                    <AccordionContent className="text-sm sm:text-base text-gray-600 pt-2">
+                      Our tax calculator uses official tax brackets and rates for each supported country, providing estimates that are typically accurate within 2-3% for standard situations. However, actual tax liability may vary based on additional income sources, specific deductions, credits, and other individual circumstances. For precise tax filing, we recommend consulting with a certified tax professional.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="item-2" className="bg-white border border-gray-200 rounded-lg px-6">
+                    <AccordionTrigger className="text-left text-base sm:text-lg font-semibold text-gray-900 hover:text-blue-600">
+                      Which countries are supported and what tax year does this calculator use?
+                    </AccordionTrigger>
+                    <AccordionContent className="text-sm sm:text-base text-gray-600 pt-2">
+                      We currently support tax calculations for USA, United Kingdom, Canada, Australia, Germany, France, India, Japan, Singapore, and New Zealand. The calculator uses 2023-2024 tax brackets and rates. We regularly update tax brackets to reflect current regulations and plan to add more countries based on user demand.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="item-3" className="bg-white border border-gray-200 rounded-lg px-6">
+                    <AccordionTrigger className="text-left text-base sm:text-lg font-semibold text-gray-900 hover:text-blue-600">
+                      What's the difference between effective and marginal tax rates?
+                    </AccordionTrigger>
+                    <AccordionContent className="text-sm sm:text-base text-gray-600 pt-2">
+                      Your <strong>effective tax rate</strong> is the overall percentage of your income paid in taxes (total tax ÷ gross income). Your <strong>marginal tax rate</strong> is the tax rate applied to your last dollar of income. For example, if you earn $60,000 with a 15% effective rate but are in the 22% tax bracket, any additional income will be taxed at 22%, not 15%.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="item-4" className="bg-white border border-gray-200 rounded-lg px-6">
+                    <AccordionTrigger className="text-left text-base sm:text-lg font-semibold text-gray-900 hover:text-blue-600">
+                      Can I use this calculator for business or self-employment taxes?
+                    </AccordionTrigger>
+                    <AccordionContent className="text-sm sm:text-base text-gray-600 pt-2">
+                      This calculator is designed primarily for individual income tax calculations. Business taxes involve different rates, structures, deductions (like business expenses, depreciation, etc.), and may require quarterly estimated tax payments. Self-employed individuals should also account for self-employment tax. We recommend using specialized business tax calculators for accurate business tax estimates.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="item-5" className="bg-white border border-gray-200 rounded-lg px-6">
+                    <AccordionTrigger className="text-left text-base sm:text-lg font-semibold text-gray-900 hover:text-blue-600">
+                      Does this calculator include state, local, or payroll taxes?
+                    </AccordionTrigger>
+                    <AccordionContent className="text-sm sm:text-base text-gray-600 pt-2">
+                      No, this calculator focuses on federal/national income tax only. It does not include state income tax, local taxes, property taxes, sales tax, Social Security contributions, Medicare tax, or other payroll deductions. Your actual take-home pay will be lower after accounting for these additional taxes and deductions.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="item-6" className="bg-white border border-gray-200 rounded-lg px-6">
+                    <AccordionTrigger className="text-left text-base sm:text-lg font-semibold text-gray-900 hover:text-blue-600">
+                      Is my financial data stored, tracked, or shared?
+                    </AccordionTrigger>
+                    <AccordionContent className="text-sm sm:text-base text-gray-600 pt-2">
+                      Absolutely not. All calculations are performed entirely in your browser using JavaScript. We do not store, transmit, track, or share any of your financial information with our servers or third parties. Your privacy and data security are our highest priorities. The calculator works completely offline once the page is loaded.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="item-7" className="bg-white border border-gray-200 rounded-lg px-6">
+                    <AccordionTrigger className="text-left text-base sm:text-lg font-semibold text-gray-900 hover:text-blue-600">
+                      How do I maximize my deductions and minimize my tax liability?
+                    </AccordionTrigger>
+                    <AccordionContent className="text-sm sm:text-base text-gray-600 pt-2">
+                      Common strategies include: maximizing retirement contributions (401k, IRA), claiming all eligible deductions (mortgage interest, charitable donations, medical expenses over threshold), utilizing tax credits (education, child tax credit), timing income and expenses strategically, and considering tax-advantaged accounts (HSA, FSA). Always consult a qualified tax professional for personalized tax planning advice.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem value="item-8" className="bg-white border border-gray-200 rounded-lg px-6">
+                    <AccordionTrigger className="text-left text-base sm:text-lg font-semibold text-gray-900 hover:text-blue-600">
+                      Should I take the standard deduction or itemize?
+                    </AccordionTrigger>
+                    <AccordionContent className="text-sm sm:text-base text-gray-600 pt-2">
+                      You should itemize if your total itemized deductions (mortgage interest, state/local taxes, charitable contributions, medical expenses, etc.) exceed the standard deduction for your filing status. For 2023, the standard deduction is $12,950 (single), $25,900 (married filing jointly). Most taxpayers benefit from the standard deduction, but those with significant mortgage interest, charitable giving, or medical expenses may save more by itemizing.
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
               </div>
             </section>
           </div>
