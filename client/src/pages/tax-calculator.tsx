@@ -541,37 +541,36 @@ export default function TaxCalculator() {
 
       <main>
         {/* Hero Section */}
-        <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 overflow-hidden bg-gradient-to-br from-purple-600 via-blue-600 to-indigo-700">
-          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-10"></div>
+        <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
           <div className="relative max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
             <div className="space-y-4 sm:space-y-6 md:space-y-8">
-              <div className="inline-flex items-center gap-1.5 sm:gap-2 md:gap-2.5 px-2.5 sm:px-3 md:px-4 lg:px-5 xl:px-6 py-1.5 sm:py-2 md:py-2.5 lg:py-3 bg-white/90 backdrop-blur-sm rounded-full shadow-sm hover:shadow-md transition-all duration-200 max-w-full mx-auto sm:mx-0">
-                <Calculator className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-5 lg:h-5 flex-shrink-0 text-purple-700" />
-                <span className="text-[11px] sm:text-xs md:text-sm lg:text-base font-medium text-purple-700 whitespace-nowrap overflow-hidden text-ellipsis leading-tight">
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 md:gap-2.5 px-2.5 sm:px-3 md:px-4 lg:px-5 xl:px-6 py-1.5 sm:py-2 md:py-2.5 lg:py-3 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200 max-w-full mx-auto sm:mx-0">
+                <Calculator className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-5 lg:h-5 flex-shrink-0 text-blue-700" />
+                <span className="text-[11px] sm:text-xs md:text-sm lg:text-base font-medium text-blue-700 whitespace-nowrap overflow-hidden text-ellipsis leading-tight">
                   Professional Tax Calculator - Free & Accurate 2025
                 </span>
               </div>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-white leading-tight tracking-tight px-2 sm:px-0" data-testid="page-title">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0" data-testid="page-title">
                 <span className="block">2025 Income Tax Calculator:</span>
-                <span className="block text-white/90 mt-1 sm:mt-2">
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
                   Calculate Federal Tax & Net Income
                 </span>
               </h1>
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-white/90 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
                 Calculate your 2025 income tax instantly with our free tax calculator. Get accurate federal tax estimates, effective tax rates, marginal tax brackets, and detailed breakdowns for USA, UK, Canada, Australia & India. Perfect for tax planning, salary negotiations, and financial decisions. 100% free, no signup required.
               </p>
 
               <div className="flex flex-wrap justify-center gap-4 sm:gap-6 pt-4">
-                <div className="flex items-center gap-2 text-white/90">
-                  <TrendingUp className="w-5 h-5 text-green-300" />
+                <div className="flex items-center gap-2 text-slate-700">
+                  <TrendingUp className="w-5 h-5 text-green-600" />
                   <span className="text-sm font-medium">Multi-Country Support</span>
                 </div>
-                <div className="flex items-center gap-2 text-white/90">
-                  <DollarSign className="w-5 h-5 text-yellow-300" />
+                <div className="flex items-center gap-2 text-slate-700">
+                  <DollarSign className="w-5 h-5 text-yellow-600" />
                   <span className="text-sm font-medium">Instant Results</span>
                 </div>
-                <div className="flex items-center gap-2 text-white/90">
-                  <FileText className="w-5 h-5 text-blue-300" />
+                <div className="flex items-center gap-2 text-slate-700">
+                  <FileText className="w-5 h-5 text-blue-600" />
                   <span className="text-sm font-medium">Detailed Breakdown</span>
                 </div>
               </div>
