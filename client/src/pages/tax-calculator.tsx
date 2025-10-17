@@ -46,66 +46,32 @@ export default function TaxCalculator() {
     { code: 'UK', name: 'United Kingdom', currency: 'GBP' },
     { code: 'CA', name: 'Canada', currency: 'CAD' },
     { code: 'AU', name: 'Australia', currency: 'AUD' },
-    { code: 'DE', name: 'Germany', currency: 'EUR' },
-    { code: 'FR', name: 'France', currency: 'EUR' },
-    { code: 'IN', name: 'India', currency: 'INR' },
-    { code: 'JP', name: 'Japan', currency: 'JPY' },
-    { code: 'SG', name: 'Singapore', currency: 'SGD' },
-    { code: 'NZ', name: 'New Zealand', currency: 'NZD' }
+    { code: 'IN', name: 'India', currency: 'INR' }
   ];
 
   const currencies = [
     { code: 'USD', name: 'US Dollar' },
-    { code: 'EUR', name: 'Euro' },
     { code: 'GBP', name: 'British Pound' },
     { code: 'CAD', name: 'Canadian Dollar' },
     { code: 'AUD', name: 'Australian Dollar' },
-    { code: 'INR', name: 'Indian Rupee' },
-    { code: 'JPY', name: 'Japanese Yen' },
-    { code: 'SGD', name: 'Singapore Dollar' },
-    { code: 'NZD', name: 'New Zealand Dollar' }
+    { code: 'INR', name: 'Indian Rupee' }
   ];
 
   const filingStatuses = {
     US: [
       { value: 'single', label: 'Single' },
-      { value: 'married_jointly', label: 'Married Filing Jointly' },
-      { value: 'married_separately', label: 'Married Filing Separately' },
-      { value: 'head_of_household', label: 'Head of Household' }
+      { value: 'married_jointly', label: 'Married Filing Jointly' }
     ],
     UK: [
       { value: 'individual', label: 'Individual' }
     ],
     CA: [
-      { value: 'single', label: 'Single' },
-      { value: 'married', label: 'Married/Common-law' }
+      { value: 'single', label: 'Single' }
     ],
     AU: [
-      { value: 'resident', label: 'Resident' },
-      { value: 'non_resident', label: 'Non-resident' }
-    ],
-    DE: [
-      { value: 'single', label: 'Single' },
-      { value: 'married', label: 'Married' }
-    ],
-    FR: [
-      { value: 'single', label: 'Single' },
-      { value: 'married', label: 'Married' }
+      { value: 'resident', label: 'Resident' }
     ],
     IN: [
-      { value: 'individual', label: 'Individual' },
-      { value: 'senior_citizen', label: 'Senior Citizen (60-80)' },
-      { value: 'super_senior', label: 'Super Senior (80+)' }
-    ],
-    JP: [
-      { value: 'resident', label: 'Resident' },
-      { value: 'non_resident', label: 'Non-resident' }
-    ],
-    SG: [
-      { value: 'resident', label: 'Resident' },
-      { value: 'non_resident', label: 'Non-resident' }
-    ],
-    NZ: [
       { value: 'individual', label: 'Individual' }
     ]
   };
@@ -176,7 +142,18 @@ export default function TaxCalculator() {
     if (grossIncome <= 0) return;
 
     const taxableIncome = Math.max(0, grossIncome - totalDeductions);
-    const brackets = taxBrackets[country]?.[filingStatus] || taxBrackets.US.single;
+    
+    // Validate that tax brackets exist for selected country and filing status
+    const brackets = taxBrackets[country]?.[filingStatus];
+    
+    if (!brackets) {
+      toast({
+        title: "Configuration Error",
+        description: `Tax brackets not available for ${country} - ${filingStatus}. Please select a different combination.`,
+        variant: "destructive"
+      });
+      return;
+    }
 
     let incomeTax = 0;
     let marginalTaxRate = 0;
@@ -491,7 +468,7 @@ export default function TaxCalculator() {
         "name": "Which countries are supported?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "We currently support tax calculations for USA, United Kingdom, Canada, Australia, Germany, France, India, Japan, Singapore, and New Zealand. The calculator uses 2023-2024 tax brackets and rates."
+          "text": "We currently support tax calculations for USA, United Kingdom, Canada, Australia, and India. The calculator uses 2023-2024 tax brackets and rates."
         }
       },
       {
@@ -517,7 +494,7 @@ export default function TaxCalculator() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
         <title>2025 Tax Calculator - Free Income Tax Estimator | Calculate Federal Taxes</title>
-        <meta name="description" content="Free 2025 income tax calculator for USA, UK, Canada, Australia & 10+ countries. Calculate federal taxes, effective tax rate, marginal tax bracket, and net income instantly. 100% free, accurate tax estimates with detailed breakdown." />
+        <meta name="description" content="Free 2025 income tax calculator for USA, UK, Canada, Australia & India. Calculate federal taxes, effective tax rate, marginal tax bracket, and net income instantly. 100% free, accurate tax estimates with detailed breakdown." />
         <meta name="keywords" content="2025 tax calculator, income tax calculator 2025, tax refund calculator 2025, federal tax calculator, tax estimator 2025, tax bracket calculator, free tax calculator, online tax calculator, how to calculate income tax, effective tax rate calculator, marginal tax rate, take home pay calculator, tax planning calculator 2025" />
         <meta property="og:title" content="2025 Tax Calculator - Free Income Tax Estimator | DapsiWow" />
         <meta property="og:description" content="Calculate your 2025 income tax instantly with our free online calculator. Get accurate federal tax estimates, effective rates, and detailed breakdowns for smart tax planning." />
@@ -526,7 +503,7 @@ export default function TaxCalculator() {
         <meta property="og:image" content="https://dapsiwow.com/og-tax-calculator.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="2025 Tax Calculator - Free Income Tax Estimator" />
-        <meta name="twitter:description" content="Calculate income tax for 2025 with detailed breakdowns, effective rates, and tax planning insights. Free tool supporting 10+ countries." />
+        <meta name="twitter:description" content="Calculate income tax for 2025 with detailed breakdowns, effective rates, and tax planning insights. Free tool supporting USA, UK, Canada, Australia & India." />
         <meta name="twitter:image" content="https://dapsiwow.com/og-tax-calculator.png" />
         <link rel="canonical" href="https://dapsiwow.com/tools/tax-calculator" />
         
@@ -536,7 +513,7 @@ export default function TaxCalculator() {
             "@type": "WebApplication",
             "name": "2025 Tax Calculator",
             "url": "https://dapsiwow.com/tools/tax-calculator",
-            "description": "Free online income tax calculator for 2025. Calculate federal taxes, effective tax rate, and net income for USA, UK, Canada, Australia, and 10+ countries.",
+            "description": "Free online income tax calculator for 2025. Calculate federal taxes, effective tax rate, and net income for USA, UK, Canada, Australia, and India.",
             "applicationCategory": "FinanceApplication",
             "operatingSystem": "Any",
             "offers": {
@@ -581,7 +558,7 @@ export default function TaxCalculator() {
                 </span>
               </h1>
               <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-white/90 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
-                Calculate your 2025 income tax instantly with our free tax calculator. Get accurate federal tax estimates, effective tax rates, marginal tax brackets, and detailed breakdowns for USA, UK, Canada, Australia & 10+ countries. Perfect for tax planning, salary negotiations, and financial decisions. 100% free, no signup required.
+                Calculate your 2025 income tax instantly with our free tax calculator. Get accurate federal tax estimates, effective tax rates, marginal tax brackets, and detailed breakdowns for USA, UK, Canada, Australia & India. Perfect for tax planning, salary negotiations, and financial decisions. 100% free, no signup required.
               </p>
 
               <div className="flex flex-wrap justify-center gap-4 sm:gap-6 pt-4">
@@ -1384,7 +1361,7 @@ export default function TaxCalculator() {
                       Which countries are supported and what tax year does this calculator use?
                     </AccordionTrigger>
                     <AccordionContent className="text-sm sm:text-base text-gray-600 pt-2">
-                      We currently support tax calculations for USA, United Kingdom, Canada, Australia, Germany, France, India, Japan, Singapore, and New Zealand. The calculator uses 2023-2024 tax brackets and rates. We regularly update tax brackets to reflect current regulations and plan to add more countries based on user demand.
+                      We currently support tax calculations for USA, United Kingdom, Canada, Australia, and India. The calculator uses 2023-2024 tax brackets and rates. We regularly update tax brackets to reflect current regulations and plan to add more countries based on user demand.
                     </AccordionContent>
                   </AccordionItem>
 
