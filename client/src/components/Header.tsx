@@ -4,10 +4,19 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { searchTools } from '@/lib/search';
 import { tools } from '@/data/tools';
 import Logo from './Logo';
-import { Menu, X, Search, User, LogOut } from 'lucide-react';
+import { Menu, X, Search, User, LogOut, Settings } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -160,26 +169,53 @@ const Header = () => {
               {!loading && (
                 <div className="hidden lg:flex items-center gap-2">
                   {user ? (
-                    <div className="flex items-center gap-2 xl:gap-3">
-                      <div className="flex items-center gap-2 px-3 py-1.5 xl:py-2 rounded-lg bg-blue-50 dark:bg-blue-950/70 border border-blue-100 dark:border-blue-900">
-                        <div className="flex-shrink-0 w-7 h-7 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
-                          <User size={14} className="text-blue-600 dark:text-blue-400" />
-                        </div>
-                        <span className="text-sm font-medium text-blue-900 dark:text-blue-100 max-w-[120px] xl:max-w-[180px] truncate" data-testid="text-header-user-email">
-                          {user.email}
-                        </span>
-                      </div>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={handleLogout}
-                        className="flex items-center gap-1.5 hover:bg-red-50 dark:hover:bg-red-950/30 hover:text-red-600 dark:hover:text-red-400 hover:border-red-200 dark:hover:border-red-800 transition-all duration-200"
-                        data-testid="button-header-logout"
-                      >
-                        <LogOut size={14} />
-                        <span className="hidden xl:inline">Logout</span>
-                      </Button>
-                    </div>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button
+                          variant="ghost"
+                          className="flex items-center gap-2 hover:bg-gray-100 dark:hover:bg-neutral-800"
+                          data-testid="button-user-menu"
+                        >
+                          <Avatar className="h-8 w-8">
+                            <AvatarImage src={user.photoURL || undefined} alt={user.displayName || user.email || 'User'} />
+                            <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-500 text-white text-sm">
+                              {user.displayName
+                                ? user.displayName.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)
+                                : user.email?.charAt(0).toUpperCase() || 'U'}
+                            </AvatarFallback>
+                          </Avatar>
+                          <span className="text-sm font-medium max-w-[120px] xl:max-w-[180px] truncate" data-testid="text-header-user-email">
+                            {user.displayName || user.email}
+                          </span>
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end" className="w-56">
+                        <DropdownMenuLabel className="font-normal">
+                          <div className="flex flex-col space-y-1">
+                            <p className="text-sm font-medium leading-none">{user.displayName || 'User'}</p>
+                            <p className="text-xs leading-none text-muted-foreground truncate">
+                              {user.email}
+                            </p>
+                          </div>
+                        </DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem asChild>
+                          <Link href="/profile" className="cursor-pointer" data-testid="link-profile">
+                            <User className="mr-2 h-4 w-4" />
+                            Profile
+                          </Link>
+                        </DropdownMenuItem>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem
+                          onClick={handleLogout}
+                          className="cursor-pointer text-red-600 dark:text-red-400 focus:text-red-600 dark:focus:text-red-400"
+                          data-testid="button-dropdown-logout"
+                        >
+                          <LogOut className="mr-2 h-4 w-4" />
+                          Log out
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
                   ) : (
                     <div className="flex items-center gap-2">
                       <Link href="/login">
@@ -270,16 +306,30 @@ const Header = () => {
                 {user ? (
                   <>
                     <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-blue-50 dark:bg-blue-950/70 border border-blue-100 dark:border-blue-900">
-                      <div className="flex-shrink-0 w-9 h-9 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
-                        <User size={18} className="text-blue-600 dark:text-blue-400" />
-                      </div>
+                      <Avatar className="h-9 w-9">
+                        <AvatarImage src={user.photoURL || undefined} alt={user.displayName || user.email || 'User'} />
+                        <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-500 text-white text-xs">
+                          {user.displayName
+                            ? user.displayName.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)
+                            : user.email?.charAt(0).toUpperCase() || 'U'}
+                        </AvatarFallback>
+                      </Avatar>
                       <div className="flex-1 min-w-0">
                         <p className="text-xs text-blue-600 dark:text-blue-400 font-medium">Logged in as</p>
                         <p className="text-sm font-semibold text-blue-900 dark:text-blue-100 truncate" data-testid="text-mobile-user-email">
-                          {user.email}
+                          {user.displayName || user.email}
                         </p>
                       </div>
                     </div>
+                    <Link
+                      href="/profile"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="w-full flex items-center justify-center gap-2 text-neutral-700 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium py-3 px-4 rounded-lg transition-all duration-200 hover:bg-blue-50 dark:hover:bg-blue-950/30 border border-gray-200 dark:border-neutral-700 hover:border-blue-200 dark:hover:border-blue-800 touch-manipulation"
+                      data-testid="link-mobile-profile"
+                    >
+                      <User size={18} />
+                      <span>My Profile</span>
+                    </Link>
                     <button
                       onClick={() => {
                         handleLogout();

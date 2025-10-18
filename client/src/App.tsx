@@ -44,6 +44,8 @@ const LeaseCalculator = lazy(() => import("@/pages/lease-calculator"));
 const ProteinIntakeCalculator = lazy(() => import("@/pages/protein-intake-calculator"));
 const Login = lazy(() => import("@/pages/login"));
 const Signup = lazy(() => import("@/pages/signup"));
+const ForgotPassword = lazy(() => import("@/pages/forgot-password"));
+const Profile = lazy(() => import("@/pages/profile"));
 
 // Individual tool components are now loaded dynamically via ToolPage for better maintainability
 
@@ -88,6 +90,8 @@ function Router() {
           {/* Authentication pages */}
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
+          <Route path="/forgot-password" component={ForgotPassword} />
+          <Route path="/profile" component={Profile} />
 
           {/* Legacy route redirects to standardized URLs */}
           <Route path="/about" component={() => <Redirect to="/about-us" />} />
