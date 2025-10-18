@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'wouter';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -55,6 +54,18 @@ const Header = () => {
     }
   }, [isSearchOpen]);
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
+
   const handleSearch = (query: string) => {
     setSearchQuery(query);
     const results = searchTools(query);
@@ -95,56 +106,66 @@ const Header = () => {
   return (
     <>
       <header 
-        className={`sticky top-0 z-50 bg-white dark:bg-neutral-900 border-b border-gray-200 dark:border-neutral-700 transition-all duration-300 ease-in-out ${
-          isScrolled ? 'shadow-lg' : 'shadow-sm'
+        className={`sticky top-0 z-50 backdrop-blur-md bg-white/95 dark:bg-neutral-900/95 border-b transition-all duration-300 ease-in-out ${
+          isScrolled 
+            ? 'shadow-lg border-gray-300/50 dark:border-neutral-700/50' 
+            : 'shadow-sm border-gray-200/50 dark:border-neutral-800/50'
         }`}
         data-testid="header-main"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-14 sm:h-16 md:h-[4.5rem]">
             {/* Logo Section */}
-            <Logo />
+            <div className="flex-shrink-0">
+              <Logo />
+            </div>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-8">
+            {/* Desktop Navigation - Hidden on mobile and tablet */}
+            <nav className="hidden xl:flex items-center space-x-1 2xl:space-x-2">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-neutral-600 dark:text-neutral-300 hover:text-blue-500 dark:hover:text-blue-400 transition-all duration-200 font-medium relative group ${
-                    location === link.href ? 'text-blue-500 dark:text-blue-400' : ''
+                  className={`px-3 py-2 text-sm 2xl:text-base font-medium rounded-lg transition-all duration-200 relative group ${
+                    location === link.href 
+                      ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/50' 
+                      : 'text-neutral-700 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-neutral-800/50'
                   }`}
                   data-testid={`link-${link.label.toLowerCase().replace(' ', '-')}`}
                 >
                   {link.label}
-                  <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 dark:bg-blue-400 transition-all duration-300 group-hover:w-full ${
-                    location === link.href ? 'w-full' : ''
-                  }`}></span>
+                  <span 
+                    className={`absolute bottom-1 left-3 right-3 h-0.5 bg-blue-600 dark:bg-blue-400 transition-all duration-300 rounded-full ${
+                      location === link.href ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0 group-hover:opacity-50 group-hover:scale-x-100'
+                    }`}
+                  />
                 </Link>
               ))}
             </nav>
 
-            {/* Search, Auth, and Mobile Menu */}
-            <div className="flex items-center space-x-2">
-              {/* Search */}
+            {/* Right Section - Search, Auth, and Mobile Menu */}
+            <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3">
+              {/* Search Button */}
               <button 
-                className="p-2 text-neutral-600 dark:text-neutral-300 hover:text-blue-500 dark:hover:text-blue-400 transition-all duration-200 hover:scale-110 active:scale-95"
+                className="p-2 sm:p-2.5 rounded-lg text-neutral-600 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-neutral-800/50 transition-all duration-200 hover:scale-105 active:scale-95 touch-manipulation"
                 onClick={() => setIsSearchOpen(true)}
                 data-testid="button-search"
                 aria-label="Search tools"
                 title="Search tools"
               >
-                <Search size={18} />
+                <Search size={20} className="sm:w-5 sm:h-5" />
               </button>
 
-              {/* Desktop Auth Buttons */}
+              {/* Desktop Auth Buttons - Hidden below lg */}
               {!loading && (
-                <div className="hidden lg:flex items-center space-x-2">
+                <div className="hidden lg:flex items-center gap-2">
                   {user ? (
-                    <div className="flex items-center space-x-3">
-                      <div className="flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-blue-50 dark:bg-blue-950">
-                        <User size={16} className="text-blue-600 dark:text-blue-400" />
-                        <span className="text-sm font-medium text-blue-900 dark:text-blue-100" data-testid="text-header-user-email">
+                    <div className="flex items-center gap-2 xl:gap-3">
+                      <div className="flex items-center gap-2 px-3 py-1.5 xl:py-2 rounded-lg bg-blue-50 dark:bg-blue-950/70 border border-blue-100 dark:border-blue-900">
+                        <div className="flex-shrink-0 w-7 h-7 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
+                          <User size={14} className="text-blue-600 dark:text-blue-400" />
+                        </div>
+                        <span className="text-sm font-medium text-blue-900 dark:text-blue-100 max-w-[120px] xl:max-w-[180px] truncate" data-testid="text-header-user-email">
                           {user.email}
                         </span>
                       </div>
@@ -152,48 +173,57 @@ const Header = () => {
                         variant="outline"
                         size="sm"
                         onClick={handleLogout}
-                        className="flex items-center space-x-1"
+                        className="flex items-center gap-1.5 hover:bg-red-50 dark:hover:bg-red-950/30 hover:text-red-600 dark:hover:text-red-400 hover:border-red-200 dark:hover:border-red-800 transition-all duration-200"
                         data-testid="button-header-logout"
                       >
                         <LogOut size={14} />
-                        <span>Logout</span>
+                        <span className="hidden xl:inline">Logout</span>
                       </Button>
                     </div>
                   ) : (
-                    <>
+                    <div className="flex items-center gap-2">
                       <Link href="/login">
-                        <Button variant="ghost" size="sm" data-testid="button-header-login">
+                        <Button 
+                          variant="ghost" 
+                          size="sm" 
+                          className="hover:bg-gray-100 dark:hover:bg-neutral-800"
+                          data-testid="button-header-login"
+                        >
                           Login
                         </Button>
                       </Link>
                       <Link href="/signup">
-                        <Button size="sm" data-testid="button-header-signup">
+                        <Button 
+                          size="sm" 
+                          className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 shadow-sm"
+                          data-testid="button-header-signup"
+                        >
                           Sign Up
                         </Button>
                       </Link>
-                    </>
+                    </div>
                   )}
                 </div>
               )}
 
-              {/* Mobile Menu */}
+              {/* Mobile Menu Button - Show on tablet and mobile */}
               <button
-                className="lg:hidden p-2 text-neutral-600 dark:text-neutral-300 hover:text-blue-500 dark:hover:text-blue-400 transition-all duration-200 hover:scale-110 active:scale-95"
+                className="xl:hidden p-2 sm:p-2.5 rounded-lg text-neutral-600 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-neutral-800/50 transition-all duration-200 hover:scale-105 active:scale-95 touch-manipulation"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 data-testid="button-mobile-menu"
-                aria-label={isMobileMenuOpen ? "Close mobile menu" : "Open mobile menu"}
+                aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
                 aria-expanded={isMobileMenuOpen}
               >
-                <div className="relative w-5 h-5">
+                <div className="relative w-5 h-5 sm:w-6 sm:h-6">
                   <Menu 
-                    size={18} 
-                    className={`absolute inset-0 transition-all duration-300 ${
+                    size={20} 
+                    className={`absolute inset-0 transition-all duration-300 sm:w-6 sm:h-6 ${
                       isMobileMenuOpen ? 'opacity-0 rotate-90 scale-0' : 'opacity-100 rotate-0 scale-100'
                     }`}
                   />
                   <X 
-                    size={18} 
-                    className={`absolute inset-0 transition-all duration-300 ${
+                    size={20} 
+                    className={`absolute inset-0 transition-all duration-300 sm:w-6 sm:h-6 ${
                       isMobileMenuOpen ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-90 scale-0'
                     }`}
                   />
@@ -203,24 +233,29 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile & Tablet Menu */}
         <div 
-          className={`lg:hidden bg-white dark:bg-neutral-900 border-t border-gray-200 dark:border-neutral-700 overflow-hidden transition-all duration-300 ease-in-out ${
-            isMobileMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+          className={`xl:hidden bg-white/98 dark:bg-neutral-900/98 backdrop-blur-lg border-t border-gray-200 dark:border-neutral-700 transition-all duration-300 ease-in-out ${
+            isMobileMenuOpen ? 'max-h-[calc(100vh-3.5rem)] sm:max-h-[calc(100vh-4rem)] opacity-100' : 'max-h-0 opacity-0'
           }`}
           data-testid="mobile-menu"
           aria-label="Mobile navigation"
         >
-          <nav className="px-4 py-3 space-y-2">
+          <nav className="px-3 sm:px-4 md:px-6 py-4 space-y-1 overflow-y-auto max-h-[calc(100vh-3.5rem)] sm:max-h-[calc(100vh-4rem)]">
+            {/* Navigation Links */}
             {navLinks.map((link, index) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`block text-neutral-600 dark:text-neutral-300 hover:text-blue-500 dark:hover:text-blue-400 font-medium py-2 px-3 rounded-lg transition-all duration-200 hover:bg-gray-50 dark:hover:bg-neutral-800 transform ${
+                className={`block font-medium py-3 px-4 rounded-lg transition-all duration-200 touch-manipulation ${
+                  location === link.href
+                    ? 'bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400'
+                    : 'text-neutral-700 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-neutral-800/50'
+                } ${
                   isMobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'
                 }`}
                 style={{ 
-                  transitionDelay: isMobileMenuOpen ? `${index * 50}ms` : '0ms' 
+                  transitionDelay: isMobileMenuOpen ? `${index * 30}ms` : '0ms' 
                 }}
                 onClick={() => setIsMobileMenuOpen(false)}
                 data-testid={`mobile-link-${link.label.toLowerCase().replace(' ', '-')}`}
@@ -231,33 +266,38 @@ const Header = () => {
             
             {/* Mobile Auth Section */}
             {!loading && (
-              <div className="pt-2 mt-2 border-t border-gray-200 dark:border-neutral-700 space-y-2">
+              <div className="pt-3 mt-3 border-t border-gray-200 dark:border-neutral-700 space-y-2">
                 {user ? (
                   <>
-                    <div className="flex items-center space-x-2 px-3 py-2 rounded-lg bg-blue-50 dark:bg-blue-950">
-                      <User size={16} className="text-blue-600 dark:text-blue-400" />
-                      <span className="text-sm font-medium text-blue-900 dark:text-blue-100" data-testid="text-mobile-user-email">
-                        {user.email}
-                      </span>
+                    <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-blue-50 dark:bg-blue-950/70 border border-blue-100 dark:border-blue-900">
+                      <div className="flex-shrink-0 w-9 h-9 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center">
+                        <User size={18} className="text-blue-600 dark:text-blue-400" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs text-blue-600 dark:text-blue-400 font-medium">Logged in as</p>
+                        <p className="text-sm font-semibold text-blue-900 dark:text-blue-100 truncate" data-testid="text-mobile-user-email">
+                          {user.email}
+                        </p>
+                      </div>
                     </div>
                     <button
                       onClick={() => {
                         handleLogout();
                         setIsMobileMenuOpen(false);
                       }}
-                      className="w-full flex items-center space-x-2 text-neutral-600 dark:text-neutral-300 hover:text-blue-500 dark:hover:text-blue-400 font-medium py-2 px-3 rounded-lg transition-all duration-200 hover:bg-gray-50 dark:hover:bg-neutral-800"
+                      className="w-full flex items-center justify-center gap-2 text-neutral-700 dark:text-neutral-300 hover:text-red-600 dark:hover:text-red-400 font-medium py-3 px-4 rounded-lg transition-all duration-200 hover:bg-red-50 dark:hover:bg-red-950/30 border border-gray-200 dark:border-neutral-700 hover:border-red-200 dark:hover:border-red-800 touch-manipulation"
                       data-testid="button-mobile-logout"
                     >
-                      <LogOut size={16} />
+                      <LogOut size={18} />
                       <span>Logout</span>
                     </button>
                   </>
                 ) : (
-                  <>
+                  <div className="grid grid-cols-2 gap-2">
                     <Link
                       href="/login"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="block text-center text-neutral-600 dark:text-neutral-300 hover:text-blue-500 dark:hover:text-blue-400 font-medium py-2 px-3 rounded-lg transition-all duration-200 hover:bg-gray-50 dark:hover:bg-neutral-800"
+                      className="text-center text-neutral-700 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium py-3 px-4 rounded-lg transition-all duration-200 hover:bg-gray-50 dark:hover:bg-neutral-800/50 border border-gray-200 dark:border-neutral-700 touch-manipulation"
                       data-testid="link-mobile-login"
                     >
                       Login
@@ -265,12 +305,12 @@ const Header = () => {
                     <Link
                       href="/signup"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="block text-center bg-blue-500 text-white hover:bg-blue-600 font-medium py-2 px-3 rounded-lg transition-all duration-200"
+                      className="text-center bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 font-medium py-3 px-4 rounded-lg transition-all duration-200 shadow-sm touch-manipulation"
                       data-testid="link-mobile-signup"
                     >
                       Sign Up
                     </Link>
-                  </>
+                  </div>
                 )}
               </div>
             )}
@@ -281,29 +321,30 @@ const Header = () => {
       {/* Search Modal */}
       {isSearchOpen && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-start justify-center pt-20 animate-in fade-in duration-200"
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-start justify-center pt-16 sm:pt-20 md:pt-24 px-3 sm:px-4 animate-in fade-in duration-200"
           onClick={() => {
             setIsSearchOpen(false);
             setSearchQuery('');
           }}
         >
           <div 
-            className="bg-white dark:bg-neutral-900 rounded-lg shadow-2xl w-full max-w-2xl mx-4 max-h-96 overflow-hidden animate-in slide-in-from-top-4 duration-300"
+            className="bg-white dark:bg-neutral-900 rounded-xl shadow-2xl w-full max-w-2xl max-h-[calc(100vh-8rem)] sm:max-h-[calc(100vh-10rem)] overflow-hidden animate-in slide-in-from-top-4 duration-300 border border-gray-200 dark:border-neutral-700"
             role="dialog"
             aria-label="Search tools"
             aria-modal="true"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="p-4 border-b border-gray-200 dark:border-neutral-700">
+            {/* Search Input Section */}
+            <div className="p-4 sm:p-5 border-b border-gray-200 dark:border-neutral-700 bg-gray-50/50 dark:bg-neutral-800/30">
               <div className="relative">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 dark:text-neutral-500" size={20} />
+                <Search className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-400 dark:text-neutral-500 pointer-events-none" size={20} />
                 <input
                   ref={searchInputRef}
                   type="text"
                   placeholder="Search for tools..."
                   value={searchQuery}
                   onChange={(e) => handleSearch(e.target.value)}
-                  className="w-full py-3 pl-12 pr-12 text-lg border border-gray-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 transition-all duration-200"
+                  className="w-full py-3 sm:py-3.5 pl-11 sm:pl-12 pr-11 sm:pr-12 text-base sm:text-lg border border-gray-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition-all duration-200 placeholder:text-gray-400 dark:placeholder:text-neutral-500"
                   data-testid="search-modal-input"
                   aria-label="Search for tools"
                 />
@@ -312,31 +353,37 @@ const Header = () => {
                     setIsSearchOpen(false);
                     setSearchQuery('');
                   }}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-neutral-500 hover:text-gray-600 dark:hover:text-neutral-300 transition-all duration-200 hover:scale-110 active:scale-95 p-1"
+                  className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-neutral-500 hover:text-gray-600 dark:hover:text-neutral-300 transition-all duration-200 hover:scale-110 active:scale-95 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-neutral-700 touch-manipulation"
                   data-testid="search-modal-close"
                   aria-label="Close search"
                 >
-                  <X size={18} />
+                  <X size={20} />
                 </button>
               </div>
             </div>
-            <div className="max-h-80 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-neutral-600 scrollbar-track-transparent">
+
+            {/* Search Results */}
+            <div className="max-h-[calc(100vh-16rem)] sm:max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-neutral-600 scrollbar-track-transparent hover:scrollbar-thumb-gray-400 dark:hover:scrollbar-thumb-neutral-500">
               {searchResults.length > 0 ? (
                 searchResults.slice(0, 10).map((tool, index) => (
                   <button
                     key={tool.id}
                     onClick={() => handleToolClick(tool.href)}
-                    className="w-full p-4 text-left hover:bg-gray-50 dark:hover:bg-neutral-800 border-b border-gray-100 dark:border-neutral-700 transition-all duration-200 animate-in fade-in slide-in-from-bottom-2"
+                    className="w-full p-4 sm:p-5 text-left hover:bg-gray-50 dark:hover:bg-neutral-800/70 border-b border-gray-100 dark:border-neutral-800 last:border-0 transition-all duration-200 animate-in fade-in slide-in-from-bottom-2 active:bg-gray-100 dark:active:bg-neutral-800 touch-manipulation"
                     style={{ animationDelay: `${index * 30}ms` }}
                     data-testid={`search-result-${tool.id}`}
                   >
-                    <div className="flex items-center space-x-3">
+                    <div className="flex items-center gap-3">
                       <div className="flex-1 min-w-0">
-                        <div className="font-medium text-gray-900 dark:text-neutral-100 truncate">{tool.name}</div>
-                        <div className="text-sm text-gray-500 dark:text-neutral-400 truncate">{tool.description}</div>
+                        <div className="font-semibold text-gray-900 dark:text-neutral-100 truncate text-sm sm:text-base">
+                          {tool.name}
+                        </div>
+                        <div className="text-xs sm:text-sm text-gray-500 dark:text-neutral-400 truncate mt-0.5">
+                          {tool.description}
+                        </div>
                       </div>
                       {tool.isPopular && (
-                        <div className="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full flex-shrink-0 animate-in zoom-in duration-200">
+                        <div className="bg-yellow-100 dark:bg-yellow-900/40 text-yellow-800 dark:text-yellow-200 text-xs font-medium px-2.5 py-1 rounded-full flex-shrink-0 animate-in zoom-in duration-200">
                           Popular
                         </div>
                       )}
@@ -344,8 +391,12 @@ const Header = () => {
                   </button>
                 ))
               ) : (
-                <div className="p-8 text-center text-gray-500 dark:text-neutral-400 animate-in fade-in duration-200">
-                  <p>No tools found matching "{searchQuery}"</p>
+                <div className="p-8 sm:p-12 text-center text-gray-500 dark:text-neutral-400 animate-in fade-in duration-200">
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center">
+                    <Search size={32} className="text-gray-400 dark:text-neutral-500" />
+                  </div>
+                  <p className="text-base font-medium">No tools found</p>
+                  <p className="text-sm mt-1">Try searching with different keywords</p>
                 </div>
               )}
             </div>
