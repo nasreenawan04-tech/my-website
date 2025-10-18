@@ -5,7 +5,10 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { searchTools } from '@/lib/search';
 import { tools } from '@/data/tools';
 import Logo from './Logo';
-import { Menu, X, Search } from 'lucide-react';
+import { Menu, X, Search, User, LogOut } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
+import { useToast } from '@/hooks/use-toast';
+import { Button } from '@/components/ui/button';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -16,6 +19,8 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const isMobile = useIsMobile();
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const { user, logout, loading } = useAuth();
+  const { toast } = useToast();
 
   // Handle scroll effect
   useEffect(() => {
@@ -70,6 +75,23 @@ const Header = () => {
     { href: '/recently-used-tools', label: 'Recently Used' }
   ];
 
+  const handleLogout = async () => {
+    try {
+      await logout();
+      toast({
+        title: 'Logged Out',
+        description: 'You have been successfully logged out.'
+      });
+      setLocation('/');
+    } catch (error: any) {
+      toast({
+        title: 'Error',
+        description: error.message || 'Failed to log out',
+        variant: 'destructive'
+      });
+    }
+  };
+
   return (
     <>
       <header 
@@ -102,7 +124,7 @@ const Header = () => {
               ))}
             </nav>
 
-            {/* Search and Mobile Menu */}
+            {/* Search, Auth, and Mobile Menu */}
             <div className="flex items-center space-x-2">
               {/* Search */}
               <button 
@@ -114,6 +136,45 @@ const Header = () => {
               >
                 <Search size={18} />
               </button>
+
+              {/* Desktop Auth Buttons */}
+              {!loading && (
+                <div className="hidden lg:flex items-center space-x-2">
+                  {user ? (
+                    <div className="flex items-center space-x-3">
+                      <div className="flex items-center space-x-2 px-3 py-1.5 rounded-lg bg-blue-50 dark:bg-blue-950">
+                        <User size={16} className="text-blue-600 dark:text-blue-400" />
+                        <span className="text-sm font-medium text-blue-900 dark:text-blue-100" data-testid="text-header-user-email">
+                          {user.email}
+                        </span>
+                      </div>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={handleLogout}
+                        className="flex items-center space-x-1"
+                        data-testid="button-header-logout"
+                      >
+                        <LogOut size={14} />
+                        <span>Logout</span>
+                      </Button>
+                    </div>
+                  ) : (
+                    <>
+                      <Link href="/login">
+                        <Button variant="ghost" size="sm" data-testid="button-header-login">
+                          Login
+                        </Button>
+                      </Link>
+                      <Link href="/signup">
+                        <Button size="sm" data-testid="button-header-signup">
+                          Sign Up
+                        </Button>
+                      </Link>
+                    </>
+                  )}
+                </div>
+              )}
 
               {/* Mobile Menu */}
               <button
@@ -145,7 +206,7 @@ const Header = () => {
         {/* Mobile Menu */}
         <div 
           className={`lg:hidden bg-white dark:bg-neutral-900 border-t border-gray-200 dark:border-neutral-700 overflow-hidden transition-all duration-300 ease-in-out ${
-            isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+            isMobileMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
           }`}
           data-testid="mobile-menu"
           aria-label="Mobile navigation"
@@ -167,6 +228,52 @@ const Header = () => {
                 {link.label}
               </Link>
             ))}
+            
+            {/* Mobile Auth Section */}
+            {!loading && (
+              <div className="pt-2 mt-2 border-t border-gray-200 dark:border-neutral-700 space-y-2">
+                {user ? (
+                  <>
+                    <div className="flex items-center space-x-2 px-3 py-2 rounded-lg bg-blue-50 dark:bg-blue-950">
+                      <User size={16} className="text-blue-600 dark:text-blue-400" />
+                      <span className="text-sm font-medium text-blue-900 dark:text-blue-100" data-testid="text-mobile-user-email">
+                        {user.email}
+                      </span>
+                    </div>
+                    <button
+                      onClick={() => {
+                        handleLogout();
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className="w-full flex items-center space-x-2 text-neutral-600 dark:text-neutral-300 hover:text-blue-500 dark:hover:text-blue-400 font-medium py-2 px-3 rounded-lg transition-all duration-200 hover:bg-gray-50 dark:hover:bg-neutral-800"
+                      data-testid="button-mobile-logout"
+                    >
+                      <LogOut size={16} />
+                      <span>Logout</span>
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      href="/login"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="block text-center text-neutral-600 dark:text-neutral-300 hover:text-blue-500 dark:hover:text-blue-400 font-medium py-2 px-3 rounded-lg transition-all duration-200 hover:bg-gray-50 dark:hover:bg-neutral-800"
+                      data-testid="link-mobile-login"
+                    >
+                      Login
+                    </Link>
+                    <Link
+                      href="/signup"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="block text-center bg-blue-500 text-white hover:bg-blue-600 font-medium py-2 px-3 rounded-lg transition-all duration-200"
+                      data-testid="link-mobile-signup"
+                    >
+                      Sign Up
+                    </Link>
+                  </>
+                )}
+              </div>
+            )}
           </nav>
         </div>
       </header>
