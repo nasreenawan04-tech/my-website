@@ -6,6 +6,7 @@ import CategorySection from '@/components/CategorySection';
 import Footer from '@/components/Footer';
 import FavoritesSection from '@/components/FavoritesSection';
 import RecentToolsSection from '@/components/RecentToolsSection';
+import { AuthStatus } from '@/components/AuthStatus';
 import { Calculator, PenTool, HeartPulse, Zap, Shield, Smartphone, Globe } from 'lucide-react';
 
 const Home = () => {
@@ -192,6 +193,9 @@ const Home = () => {
       <div className="min-h-screen flex flex-col" data-testid="page-home">
         <Header />
         <main className="flex-1">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+            <AuthStatus />
+          </div>
           <HeroSection />
 
           {/* User-specific sections - shown if user has favorites or recent tools */}

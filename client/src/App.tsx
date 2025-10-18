@@ -9,6 +9,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { BackToTop } from "@/components/ui/back-to-top";
 import PerformanceMetrics from "@/components/ui/performance-metrics";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import { AuthProvider } from "@/contexts/AuthContext";
 
 // Core pages (loaded immediately for performance)
 import Home from "@/pages/home";
@@ -41,6 +42,8 @@ const UnitConverter = lazy(() => import("@/pages/unit-converter"));
 const LoanCalculator = lazy(() => import("@/pages/loan-calculator"));
 const LeaseCalculator = lazy(() => import("@/pages/lease-calculator"));
 const ProteinIntakeCalculator = lazy(() => import("@/pages/protein-intake-calculator"));
+const Login = lazy(() => import("@/pages/login"));
+const Signup = lazy(() => import("@/pages/signup"));
 
 // Individual tool components are now loaded dynamically via ToolPage for better maintainability
 
@@ -81,6 +84,10 @@ function Router() {
           <Route path="/about-us" component={AboutUs} />
           <Route path="/recently-used-tools" component={RecentlyUsedTools} />
           <Route path="/favorite-tools" component={FavoriteTools} />
+
+          {/* Authentication pages */}
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={Signup} />
 
           {/* Legacy route redirects to standardized URLs */}
           <Route path="/about" component={() => <Redirect to="/about-us" />} />
@@ -204,14 +211,16 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider defaultTheme="light" storageKey="dapsiwow-ui-theme">
-        <TooltipProvider>
-          <Toaster />
-          <Router />
-          <BackToTop />
-          <PerformanceMetrics />
-        </TooltipProvider>
-      </ThemeProvider>
+      <AuthProvider>
+        <ThemeProvider defaultTheme="light" storageKey="dapsiwow-ui-theme">
+          <TooltipProvider>
+            <Toaster />
+            <Router />
+            <BackToTop />
+            <PerformanceMetrics />
+          </TooltipProvider>
+        </ThemeProvider>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }
