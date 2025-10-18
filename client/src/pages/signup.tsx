@@ -12,6 +12,7 @@ import { Eye, EyeOff, Mail, Lock, Loader2, Check, X } from 'lucide-react';
 import { FcGoogle } from 'react-icons/fc';
 import { Separator } from '@/components/ui/separator';
 import { Progress } from '@/components/ui/progress';
+import { executeRecaptcha } from '@/lib/recaptcha';
 
 interface PasswordStrength {
   score: number;
@@ -87,6 +88,7 @@ export default function Signup() {
 
     setLoading(true);
     try {
+      await executeRecaptcha('SIGNUP');
       await signup(email, password);
       toast({
         title: 'Welcome to DapsiWow!',
@@ -107,6 +109,7 @@ export default function Signup() {
   const handleGoogleSignUp = async () => {
     setGoogleLoading(true);
     try {
+      await executeRecaptcha('SIGNUP');
       await loginWithGoogle();
       toast({
         title: 'Welcome to DapsiWow!',

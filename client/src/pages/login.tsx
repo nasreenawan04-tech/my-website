@@ -11,6 +11,7 @@ import { Helmet } from 'react-helmet-async';
 import { Eye, EyeOff, Mail, Lock, Loader2 } from 'lucide-react';
 import { FcGoogle } from 'react-icons/fc';
 import { Separator } from '@/components/ui/separator';
+import { executeRecaptcha } from '@/lib/recaptcha';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -36,6 +37,7 @@ export default function Login() {
 
     setLoading(true);
     try {
+      await executeRecaptcha('LOGIN');
       await login(email, password);
       toast({
         title: 'Welcome back!',
@@ -56,6 +58,7 @@ export default function Login() {
   const handleGoogleSignIn = async () => {
     setGoogleLoading(true);
     try {
+      await executeRecaptcha('LOGIN');
       await loginWithGoogle();
       toast({
         title: 'Welcome!',
