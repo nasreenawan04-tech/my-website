@@ -1,5 +1,23 @@
 import { initializeApp, getApps, getApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
+import { getAuth, connectAuthEmulator } from 'firebase/auth';
+
+// Validate environment variables in production
+const validateConfig = () => {
+  const requiredVars = [
+    'VITE_FIREBASE_API_KEY',
+    'VITE_FIREBASE_AUTH_DOMAIN',
+    'VITE_FIREBASE_PROJECT_ID'
+  ];
+
+  if (import.meta.env.PROD) {
+    const missing = requiredVars.filter(key => !import.meta.env[key]);
+    if (missing.length > 0) {
+      console.error('Missing Firebase environment variables:', missing);
+    }
+  }
+};
+
+validateConfig();
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyCj7hEKHbfpd4PKvt4ohvOo4OcrDBNbysE",
@@ -11,5 +29,12 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID || "G-4ZFMB2DZPK"
 };
 
+// Initialize Firebase
 const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+
+// Log Firebase initialization status
+if (import.meta.env.DEV) {
+  console.log('Firebase initialized in development mode');
+  console.log('Auth domain:', firebaseConfig.authDomain);
+}
