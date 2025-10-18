@@ -7,6 +7,8 @@ import Footer from '@/components/Footer';
 import FavoritesSection from '@/components/FavoritesSection';
 import RecentToolsSection from '@/components/RecentToolsSection';
 import { Calculator, PenTool, HeartPulse, Zap, Shield, Smartphone, Globe } from 'lucide-react';
+import { useAuth } from "@/contexts/AuthContext";
+import AuthStatus from "@/components/AuthStatus";
 
 const Home = () => {
   return (
