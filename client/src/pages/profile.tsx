@@ -22,6 +22,8 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 export default function Profile() {
   const { user, logout, updateUserProfile, updateUserPassword, loading } = useAuth();
@@ -203,6 +205,8 @@ export default function Profile() {
         <title>My Profile - DapsiWow</title>
         <meta name="description" content="Manage your DapsiWow account settings and preferences." />
       </Helmet>
+
+      <Header />
 
       <div className="min-h-screen bg-gray-50 dark:bg-neutral-900 py-8 px-4">
         <div className="max-w-4xl mx-auto space-y-6">
@@ -561,6 +565,8 @@ export default function Profile() {
           </Tabs>
         </div>
       </div>
+
+      <Footer />
     </>
   );
 }
