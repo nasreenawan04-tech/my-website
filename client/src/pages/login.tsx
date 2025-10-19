@@ -12,6 +12,7 @@ import { Eye, EyeOff, Mail, Lock, Loader2 } from 'lucide-react';
 import { FcGoogle } from 'react-icons/fc';
 import { Separator } from '@/components/ui/separator';
 import { executeRecaptcha } from '@/lib/recaptcha';
+import Logo from '@/components/Logo';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -83,7 +84,10 @@ export default function Login() {
         <meta name="description" content="Log in to your DapsiWow account to access all tools and features." />
       </Helmet>
       
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 dark:from-blue-900 dark:via-purple-900 dark:to-pink-900 p-4">
+      <div className="min-h-screen flex items-center justify-center p-4" style={{ backgroundColor: '#eff6ff' }}>
+        <div className="absolute top-6 left-6">
+          <Logo />
+        </div>
         <Card className="w-full max-w-md shadow-2xl">
           <CardHeader className="space-y-1 text-center">
             <CardTitle className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
