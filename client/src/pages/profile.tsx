@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useToast } from '@/hooks/use-toast';
 import { Helmet } from 'react-helmet-async';
-import { User, Lock, BarChart3, Settings, Loader2, Eye, EyeOff, LogOut, Heart, Clock, Mail, Shield, Trash2, CheckCircle } from 'lucide-react';
+import { User, Lock, BarChart3, Settings, Loader2, Eye, EyeOff, LogOut, Heart, Clock } from 'lucide-react';
 import { getFavorites, getRecentTools, clearAllFavorites, clearRecentTools } from '@/lib/userPreferences';
 import {
   AlertDialog,
@@ -80,11 +80,8 @@ export default function Profile() {
   // Show loading state while auth is initializing
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-neutral-900 dark:via-neutral-900 dark:to-neutral-900">
-        <div className="text-center">
-          <Loader2 className="h-12 w-12 animate-spin text-blue-600 dark:text-blue-400 mx-auto mb-4" />
-          <p className="text-gray-600 dark:text-gray-400">Loading your profile...</p>
-        </div>
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-neutral-900">
+        <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
       </div>
     );
   }
@@ -113,8 +110,7 @@ export default function Profile() {
       await updateUserProfile(displayName, photoURL || undefined);
       toast({
         title: 'Profile Updated',
-        description: 'Your profile has been updated successfully.',
-        className: 'bg-green-50 dark:bg-green-950 border-green-200 dark:border-green-800'
+        description: 'Your profile has been updated successfully.'
       });
     } catch (error: any) {
       toast({
@@ -154,8 +150,7 @@ export default function Profile() {
       await updateUserPassword(currentPassword, newPassword);
       toast({
         title: 'Password Changed',
-        description: 'Your password has been updated successfully.',
-        className: 'bg-green-50 dark:bg-green-950 border-green-200 dark:border-green-800'
+        description: 'Your password has been updated successfully.'
       });
       setCurrentPassword('');
       setNewPassword('');
@@ -176,8 +171,7 @@ export default function Profile() {
       await logout();
       toast({
         title: 'Logged Out',
-        description: 'You have been successfully logged out.',
-        className: 'bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800'
+        description: 'You have been successfully logged out.'
       });
       setLocation('/');
     } catch (error: any) {
@@ -193,8 +187,7 @@ export default function Profile() {
     clearAllFavorites();
     toast({
       title: 'Favorites Cleared',
-      description: 'All favorite tools have been removed.',
-      className: 'bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800'
+      description: 'All favorite tools have been removed.'
     });
   };
 
@@ -202,8 +195,7 @@ export default function Profile() {
     clearRecentTools();
     toast({
       title: 'History Cleared',
-      description: 'Your recently used tools history has been cleared.',
-      className: 'bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800'
+      description: 'Your recently used tools history has been cleared.'
     });
   };
 
@@ -216,47 +208,43 @@ export default function Profile() {
 
       <Header />
 
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-neutral-900 dark:via-neutral-900 dark:to-neutral-900">
-        {/* Hero Header with Gradient */}
-        <div className="relative bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-700 dark:via-purple-700 dark:to-pink-700 pt-20 pb-32 px-4">
-          <div className="absolute inset-0 bg-black/10 dark:bg-black/30"></div>
-          <div className="relative max-w-4xl mx-auto">
-            <div className="flex flex-col sm:flex-row items-center gap-6">
-              <Avatar className="h-32 w-32 border-4 border-white dark:border-neutral-800 shadow-2xl">
-                <AvatarImage src={photoURL} alt={displayName || user.email || 'User'} />
-                <AvatarFallback className="text-4xl bg-white dark:bg-neutral-800 text-blue-600 dark:text-blue-400 font-bold">
-                  {getInitials()}
-                </AvatarFallback>
-              </Avatar>
-              <div className="flex-1 text-center sm:text-left">
-                <h1 className="text-4xl font-bold text-white mb-2">
-                  {displayName || 'User Profile'}
-                </h1>
-                <p className="text-white/90 text-lg mb-4 flex items-center gap-2 justify-center sm:justify-start" data-testid="text-profile-email">
-                  <Mail className="h-5 w-5" />
-                  {user.email}
-                </p>
-                <div className="flex gap-3 justify-center sm:justify-start flex-wrap">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white border border-white/30">
-                    <Heart className="h-4 w-4" />
-                    <span className="font-semibold">{favoritesCount}</span>
-                    <span className="text-sm">Favorites</span>
-                  </div>
-                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white border border-white/30">
-                    <Clock className="h-4 w-4" />
-                    <span className="font-semibold">{recentToolsCount}</span>
-                    <span className="text-sm">Recent</span>
+      <div className="min-h-screen bg-gray-50 dark:bg-neutral-900 py-8 px-4">
+        <div className="max-w-4xl mx-auto space-y-6">
+          {/* Profile Header */}
+          <Card>
+            <CardContent className="pt-6">
+              <div className="flex flex-col sm:flex-row items-center gap-6">
+                <Avatar className="h-24 w-24">
+                  <AvatarImage src={photoURL} alt={displayName || user.email || 'User'} />
+                  <AvatarFallback className="text-2xl bg-gradient-to-br from-blue-500 to-purple-500 text-white">
+                    {getInitials()}
+                  </AvatarFallback>
+                </Avatar>
+                <div className="flex-1 text-center sm:text-left">
+                  <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+                    {displayName || 'User'}
+                  </h1>
+                  <p className="text-muted-foreground" data-testid="text-profile-email">
+                    {user.email}
+                  </p>
+                  <div className="flex gap-2 mt-2 justify-center sm:justify-start">
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                      <Heart className="h-3 w-3 mr-1" />
+                      {favoritesCount} Favorites
+                    </span>
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200">
+                      <Clock className="h-3 w-3 mr-1" />
+                      {recentToolsCount} Recent
+                    </span>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
+            </CardContent>
+          </Card>
 
-        {/* Content Section */}
-        <div className="max-w-4xl mx-auto px-4 -mt-20 pb-12">
+          {/* Tabs */}
           <Tabs defaultValue="profile" className="w-full">
-            <TabsList className="grid w-full grid-cols-4 bg-white dark:bg-neutral-800 shadow-lg mb-6">
+            <TabsList className="grid w-full grid-cols-4">
               <TabsTrigger value="profile" className="flex items-center gap-2" data-testid="tab-profile">
                 <User className="h-4 w-4" />
                 <span className="hidden sm:inline">Profile</span>
@@ -277,66 +265,53 @@ export default function Profile() {
 
             {/* Profile Tab */}
             <TabsContent value="profile">
-              <Card className="border-0 shadow-xl bg-white dark:bg-neutral-800">
-                <CardHeader className="border-b dark:border-neutral-700 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/50 dark:to-purple-950/50">
-                  <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center">
-                      <User className="h-5 w-5 text-white" />
-                    </div>
-                    <div>
-                      <CardTitle className="text-2xl">Profile Information</CardTitle>
-                      <CardDescription className="text-base">
-                        Update your personal information and profile picture
-                      </CardDescription>
-                    </div>
-                  </div>
+              <Card>
+                <CardHeader>
+                  <CardTitle>Profile Information</CardTitle>
+                  <CardDescription>
+                    Update your personal information and profile picture
+                  </CardDescription>
                 </CardHeader>
-                <CardContent className="pt-6">
-                  <form onSubmit={handleProfileUpdate} className="space-y-6">
+                <CardContent>
+                  <form onSubmit={handleProfileUpdate} className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="displayName" className="text-base font-medium">Display Name</Label>
+                      <Label htmlFor="displayName">Display Name</Label>
                       <Input
                         id="displayName"
                         type="text"
                         placeholder="Your name"
                         value={displayName}
                         onChange={(e) => setDisplayName(e.target.value)}
-                        className="h-11"
                         data-testid="input-display-name"
                       />
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="email" className="text-base font-medium">Email Address</Label>
-                      <div className="relative">
-                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                        <Input
-                          id="email"
-                          type="email"
-                          value={user.email || ''}
-                          disabled
-                          className="h-11 pl-10 bg-gray-50 dark:bg-neutral-900"
-                          data-testid="input-email"
-                        />
-                      </div>
-                      <p className="text-sm text-muted-foreground flex items-center gap-2">
-                        <Shield className="h-4 w-4" />
-                        Email cannot be changed for security reasons
+                      <Label htmlFor="email">Email</Label>
+                      <Input
+                        id="email"
+                        type="email"
+                        value={user.email || ''}
+                        disabled
+                        className="bg-gray-100 dark:bg-neutral-800"
+                        data-testid="input-email"
+                      />
+                      <p className="text-xs text-muted-foreground">
+                        Email cannot be changed at this time
                       </p>
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="photoURL" className="text-base font-medium">Profile Picture URL</Label>
+                      <Label htmlFor="photoURL">Profile Picture URL</Label>
                       <Input
                         id="photoURL"
                         type="url"
                         placeholder="https://example.com/photo.jpg"
                         value={photoURL}
                         onChange={(e) => setPhotoURL(e.target.value)}
-                        className="h-11"
                         data-testid="input-photo-url"
                       />
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-xs text-muted-foreground">
                         Enter a URL to an image for your profile picture
                       </p>
                     </div>
@@ -344,7 +319,6 @@ export default function Profile() {
                     <Button
                       type="submit"
                       disabled={profileLoading}
-                      className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 h-11 px-8"
                       data-testid="button-update-profile"
                     >
                       {profileLoading ? (
@@ -353,10 +327,7 @@ export default function Profile() {
                           Updating...
                         </>
                       ) : (
-                        <>
-                          <CheckCircle className="mr-2 h-4 w-4" />
-                          Update Profile
-                        </>
+                        'Update Profile'
                       )}
                     </Button>
                   </form>
@@ -366,43 +337,24 @@ export default function Profile() {
 
             {/* Security Tab */}
             <TabsContent value="security">
-              <Card className="border-0 shadow-xl bg-white dark:bg-neutral-800">
-                <CardHeader className="border-b dark:border-neutral-700 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/50 dark:to-purple-950/50">
-                  <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center">
-                      <Lock className="h-5 w-5 text-white" />
-                    </div>
-                    <div>
-                      <CardTitle className="text-2xl">Security Settings</CardTitle>
-                      <CardDescription className="text-base">
-                        Update your password to keep your account secure
-                      </CardDescription>
-                    </div>
-                  </div>
+              <Card>
+                <CardHeader>
+                  <CardTitle>Change Password</CardTitle>
+                  <CardDescription>
+                    Update your password to keep your account secure
+                  </CardDescription>
                 </CardHeader>
-                <CardContent className="pt-6">
+                <CardContent>
                   {user.providerData[0]?.providerId === 'google.com' ? (
-                    <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/30 dark:to-purple-950/30 border-2 border-blue-200 dark:border-blue-800 rounded-xl p-6">
-                      <div className="flex gap-4">
-                        <div className="flex-shrink-0">
-                          <div className="h-12 w-12 rounded-full bg-blue-600 flex items-center justify-center">
-                            <Shield className="h-6 w-6 text-white" />
-                          </div>
-                        </div>
-                        <div>
-                          <h3 className="font-semibold text-lg text-blue-900 dark:text-blue-100 mb-1">
-                            Google Account
-                          </h3>
-                          <p className="text-blue-800 dark:text-blue-200">
-                            You signed in with Google. Password changes are managed through your Google account for enhanced security.
-                          </p>
-                        </div>
-                      </div>
+                    <div className="bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
+                      <p className="text-sm text-blue-900 dark:text-blue-100">
+                        You signed in with Google. Password changes are managed through your Google account.
+                      </p>
                     </div>
                   ) : (
-                    <form onSubmit={handlePasswordChange} className="space-y-6">
+                    <form onSubmit={handlePasswordChange} className="space-y-4">
                       <div className="space-y-2">
-                        <Label htmlFor="currentPassword" className="text-base font-medium">Current Password</Label>
+                        <Label htmlFor="currentPassword">Current Password</Label>
                         <div className="relative">
                           <Input
                             id="currentPassword"
@@ -410,47 +362,47 @@ export default function Profile() {
                             placeholder="Enter current password"
                             value={currentPassword}
                             onChange={(e) => setCurrentPassword(e.target.value)}
-                            className="pr-10 h-11"
+                            className="pr-10"
                             required
                             data-testid="input-current-password"
                           />
                           <button
                             type="button"
                             onClick={() => setShowCurrentPassword(!showCurrentPassword)}
-                            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
                             data-testid="button-toggle-current-password"
                           >
-                            {showCurrentPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                            {showCurrentPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                           </button>
                         </div>
                       </div>
 
                       <div className="space-y-2">
-                        <Label htmlFor="newPassword" className="text-base font-medium">New Password</Label>
+                        <Label htmlFor="newPassword">New Password</Label>
                         <div className="relative">
                           <Input
                             id="newPassword"
                             type={showNewPassword ? 'text' : 'password'}
-                            placeholder="Enter new password (min. 6 characters)"
+                            placeholder="Enter new password"
                             value={newPassword}
                             onChange={(e) => setNewPassword(e.target.value)}
-                            className="pr-10 h-11"
+                            className="pr-10"
                             required
                             data-testid="input-new-password"
                           />
                           <button
                             type="button"
                             onClick={() => setShowNewPassword(!showNewPassword)}
-                            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
                             data-testid="button-toggle-new-password"
                           >
-                            {showNewPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                            {showNewPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                           </button>
                         </div>
                       </div>
 
                       <div className="space-y-2">
-                        <Label htmlFor="confirmNewPassword" className="text-base font-medium">Confirm New Password</Label>
+                        <Label htmlFor="confirmNewPassword">Confirm New Password</Label>
                         <div className="relative">
                           <Input
                             id="confirmNewPassword"
@@ -458,17 +410,17 @@ export default function Profile() {
                             placeholder="Confirm new password"
                             value={confirmNewPassword}
                             onChange={(e) => setConfirmNewPassword(e.target.value)}
-                            className="pr-10 h-11"
+                            className="pr-10"
                             required
                             data-testid="input-confirm-new-password"
                           />
                           <button
                             type="button"
                             onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
                             data-testid="button-toggle-confirm-new-password"
                           >
-                            {showConfirmPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                            {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                           </button>
                         </div>
                       </div>
@@ -476,19 +428,15 @@ export default function Profile() {
                       <Button
                         type="submit"
                         disabled={passwordLoading}
-                        className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 h-11 px-8"
                         data-testid="button-change-password"
                       >
                         {passwordLoading ? (
                           <>
                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                            Changing Password...
+                            Changing...
                           </>
                         ) : (
-                          <>
-                            <Lock className="mr-2 h-4 w-4" />
-                            Change Password
-                          </>
+                          'Change Password'
                         )}
                       </Button>
                     </form>
@@ -499,70 +447,44 @@ export default function Profile() {
 
             {/* Statistics Tab */}
             <TabsContent value="statistics">
-              <Card className="border-0 shadow-xl bg-white dark:bg-neutral-800">
-                <CardHeader className="border-b dark:border-neutral-700 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/50 dark:to-purple-950/50">
-                  <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center">
-                      <BarChart3 className="h-5 w-5 text-white" />
-                    </div>
-                    <div>
-                      <CardTitle className="text-2xl">Usage Statistics</CardTitle>
-                      <CardDescription className="text-base">
-                        View your DapsiWow usage statistics and activity
-                      </CardDescription>
-                    </div>
-                  </div>
+              <Card>
+                <CardHeader>
+                  <CardTitle>Usage Statistics</CardTitle>
+                  <CardDescription>
+                    View your DapsiWow usage statistics
+                  </CardDescription>
                 </CardHeader>
-                <CardContent className="pt-6">
-                  <div className="grid gap-6 md:grid-cols-2">
-                    {/* Favorites Card */}
-                    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 p-6 text-white shadow-lg hover:shadow-xl transition-shadow">
-                      <div className="absolute top-0 right-0 opacity-10">
-                        <Heart className="h-32 w-32" />
-                      </div>
-                      <div className="relative z-10">
-                        <div className="flex items-center gap-3 mb-4">
-                          <div className="h-12 w-12 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                            <Heart className="h-6 w-6" />
-                          </div>
+                <CardContent>
+                  <div className="grid gap-4 md:grid-cols-2">
+                    <Card>
+                      <CardContent className="pt-6">
+                        <div className="flex items-center justify-between">
                           <div>
-                            <p className="text-sm font-medium text-white/80">Favorite Tools</p>
-                            <p className="text-4xl font-bold" data-testid="text-favorites-count">{favoritesCount}</p>
+                            <p className="text-sm font-medium text-muted-foreground">Favorite Tools</p>
+                            <p className="text-3xl font-bold" data-testid="text-favorites-count">{favoritesCount}</p>
                           </div>
+                          <Heart className="h-12 w-12 text-blue-500" />
                         </div>
-                        <p className="text-sm text-white/80">
-                          Tools you've marked as favorites for quick access
+                        <p className="text-xs text-muted-foreground mt-2">
+                          Tools you've marked as favorites
                         </p>
-                      </div>
-                    </div>
+                      </CardContent>
+                    </Card>
 
-                    {/* Recent Tools Card */}
-                    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-500 to-purple-600 p-6 text-white shadow-lg hover:shadow-xl transition-shadow">
-                      <div className="absolute top-0 right-0 opacity-10">
-                        <Clock className="h-32 w-32" />
-                      </div>
-                      <div className="relative z-10">
-                        <div className="flex items-center gap-3 mb-4">
-                          <div className="h-12 w-12 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                            <Clock className="h-6 w-6" />
-                          </div>
+                    <Card>
+                      <CardContent className="pt-6">
+                        <div className="flex items-center justify-between">
                           <div>
-                            <p className="text-sm font-medium text-white/80">Recently Used</p>
-                            <p className="text-4xl font-bold" data-testid="text-recent-count">{recentToolsCount}</p>
+                            <p className="text-sm font-medium text-muted-foreground">Recently Used</p>
+                            <p className="text-3xl font-bold" data-testid="text-recent-count">{recentToolsCount}</p>
                           </div>
+                          <Clock className="h-12 w-12 text-purple-500" />
                         </div>
-                        <p className="text-sm text-white/80">
-                          Tools you've used recently in your workflow
+                        <p className="text-xs text-muted-foreground mt-2">
+                          Tools you've used recently
                         </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Additional Info */}
-                  <div className="mt-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/30 dark:to-purple-950/30 rounded-xl border border-blue-100 dark:border-blue-900">
-                    <p className="text-sm text-gray-700 dark:text-gray-300">
-                      Your usage data helps us improve your experience. All statistics are stored locally and never shared.
-                    </p>
+                      </CardContent>
+                    </Card>
                   </div>
                 </CardContent>
               </Card>
@@ -570,97 +492,72 @@ export default function Profile() {
 
             {/* Settings Tab */}
             <TabsContent value="settings">
-              <Card className="border-0 shadow-xl bg-white dark:bg-neutral-800">
-                <CardHeader className="border-b dark:border-neutral-700 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/50 dark:to-purple-950/50">
-                  <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center">
-                      <Settings className="h-5 w-5 text-white" />
-                    </div>
-                    <div>
-                      <CardTitle className="text-2xl">Account Settings</CardTitle>
-                      <CardDescription className="text-base">
-                        Manage your account preferences and data
-                      </CardDescription>
-                    </div>
-                  </div>
+              <Card>
+                <CardHeader>
+                  <CardTitle>Account Settings</CardTitle>
+                  <CardDescription>
+                    Manage your account preferences and data
+                  </CardDescription>
                 </CardHeader>
-                <CardContent className="pt-6 space-y-6">
-                  {/* Data Management Section */}
+                <CardContent className="space-y-4">
                   <div className="space-y-4">
-                    <h3 className="text-lg font-semibold flex items-center gap-2">
-                      <Trash2 className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                      Data Management
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                      Clear your saved preferences and usage data
-                    </p>
-                    <div className="grid sm:grid-cols-2 gap-3">
-                      <AlertDialog>
-                        <AlertDialogTrigger asChild>
-                          <Button variant="outline" className="h-11 border-2 hover:border-blue-600 hover:text-blue-600 dark:hover:border-blue-400 dark:hover:text-blue-400" data-testid="button-clear-favorites">
-                            <Heart className="mr-2 h-4 w-4" />
-                            Clear All Favorites
-                          </Button>
-                        </AlertDialogTrigger>
-                        <AlertDialogContent>
-                          <AlertDialogHeader>
-                            <AlertDialogTitle>Clear all favorites?</AlertDialogTitle>
-                            <AlertDialogDescription>
-                              This will remove all tools from your favorites list. This action cannot be undone.
-                            </AlertDialogDescription>
-                          </AlertDialogHeader>
-                          <AlertDialogFooter>
-                            <AlertDialogCancel>Cancel</AlertDialogCancel>
-                            <AlertDialogAction onClick={handleClearFavorites} className="bg-blue-600 hover:bg-blue-700">
-                              Clear Favorites
-                            </AlertDialogAction>
-                          </AlertDialogFooter>
-                        </AlertDialogContent>
-                      </AlertDialog>
+                    <div>
+                      <h3 className="text-sm font-medium mb-2">Data Management</h3>
+                      <div className="space-y-2">
+                        <AlertDialog>
+                          <AlertDialogTrigger asChild>
+                            <Button variant="outline" className="w-full sm:w-auto" data-testid="button-clear-favorites">
+                              Clear All Favorites
+                            </Button>
+                          </AlertDialogTrigger>
+                          <AlertDialogContent>
+                            <AlertDialogHeader>
+                              <AlertDialogTitle>Clear all favorites?</AlertDialogTitle>
+                              <AlertDialogDescription>
+                                This will remove all tools from your favorites list. This action cannot be undone.
+                              </AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                              <AlertDialogCancel>Cancel</AlertDialogCancel>
+                              <AlertDialogAction onClick={handleClearFavorites}>Clear Favorites</AlertDialogAction>
+                            </AlertDialogFooter>
+                          </AlertDialogContent>
+                        </AlertDialog>
 
-                      <AlertDialog>
-                        <AlertDialogTrigger asChild>
-                          <Button variant="outline" className="h-11 border-2 hover:border-purple-600 hover:text-purple-600 dark:hover:border-purple-400 dark:hover:text-purple-400" data-testid="button-clear-history">
-                            <Clock className="mr-2 h-4 w-4" />
-                            Clear Recent History
-                          </Button>
-                        </AlertDialogTrigger>
-                        <AlertDialogContent>
-                          <AlertDialogHeader>
-                            <AlertDialogTitle>Clear recent history?</AlertDialogTitle>
-                            <AlertDialogDescription>
-                              This will remove all recently used tools from your history. This action cannot be undone.
-                            </AlertDialogDescription>
-                          </AlertDialogHeader>
-                          <AlertDialogFooter>
-                            <AlertDialogCancel>Cancel</AlertDialogCancel>
-                            <AlertDialogAction onClick={handleClearRecentTools} className="bg-purple-600 hover:bg-purple-700">
-                              Clear History
-                            </AlertDialogAction>
-                          </AlertDialogFooter>
-                        </AlertDialogContent>
-                      </AlertDialog>
+                        <AlertDialog>
+                          <AlertDialogTrigger asChild>
+                            <Button variant="outline" className="w-full sm:w-auto" data-testid="button-clear-history">
+                              Clear Recent History
+                            </Button>
+                          </AlertDialogTrigger>
+                          <AlertDialogContent>
+                            <AlertDialogHeader>
+                              <AlertDialogTitle>Clear recent history?</AlertDialogTitle>
+                              <AlertDialogDescription>
+                                This will remove all recently used tools from your history. This action cannot be undone.
+                              </AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                              <AlertDialogCancel>Cancel</AlertDialogCancel>
+                              <AlertDialogAction onClick={handleClearRecentTools}>Clear History</AlertDialogAction>
+                            </AlertDialogFooter>
+                          </AlertDialogContent>
+                        </AlertDialog>
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Account Actions Section */}
-                  <div className="pt-6 border-t dark:border-neutral-700 space-y-4">
-                    <h3 className="text-lg font-semibold flex items-center gap-2">
-                      <LogOut className="h-5 w-5 text-red-600 dark:text-red-400" />
-                      Account Actions
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                      Sign out of your account
-                    </p>
-                    <Button
-                      variant="destructive"
-                      onClick={handleLogout}
-                      className="h-11 px-6 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800"
-                      data-testid="button-logout"
-                    >
-                      <LogOut className="mr-2 h-4 w-4" />
-                      Sign Out
-                    </Button>
+                    <div className="pt-4 border-t">
+                      <h3 className="text-sm font-medium mb-2">Account Actions</h3>
+                      <Button
+                        variant="destructive"
+                        onClick={handleLogout}
+                        className="w-full sm:w-auto"
+                        data-testid="button-logout"
+                      >
+                        <LogOut className="mr-2 h-4 w-4" />
+                        Sign Out
+                      </Button>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
