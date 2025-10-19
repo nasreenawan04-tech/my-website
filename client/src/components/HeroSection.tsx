@@ -231,15 +231,6 @@ const HeroSection = () => {
               ) : null}
             </div>
           )}
-          
-          {/* Keyboard shortcuts hint */}
-          {isSearchOpen && searchResults.length > 0 && (
-            <div className="mt-2 text-center text-xs text-blue-200 animate-fade-in">
-              <span className="opacity-75">
-                Use ↑↓ to navigate • Enter to select • Esc to close
-              </span>
-            </div>
-          )}
         </div>
         
         {/* Stats */}
