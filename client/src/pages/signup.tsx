@@ -104,32 +104,32 @@ export default function Signup() {
         <meta name="description" content="Create a DapsiWow account to access all tools and features." />
       </Helmet>
       
-      <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-blue-50 via-white to-blue-50 dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-950">
-        <div className="absolute top-6 left-6">
+      <div className="min-h-screen flex items-center justify-center p-3 sm:p-4 md:p-6 bg-gradient-to-br from-blue-50 via-white to-blue-50 dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-950">
+        <div className="absolute top-4 left-4 sm:top-6 sm:left-6">
           <Logo />
         </div>
         <Card className="w-full max-w-md shadow-xl border-0 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm">
-          <CardHeader className="space-y-2 text-center pb-6">
-            <CardTitle className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-400 dark:to-blue-500 bg-clip-text text-transparent">
+          <CardHeader className="space-y-2 text-center pb-4 sm:pb-6 px-4 sm:px-6">
+            <CardTitle className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-400 dark:to-blue-500 bg-clip-text text-transparent">
               Create Account
             </CardTitle>
-            <CardDescription className="text-base text-gray-600 dark:text-gray-400">
+            <CardDescription className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
               Get started with DapsiWow and access all our powerful tools
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-5">
+          <CardContent className="space-y-4 sm:space-y-5 px-4 sm:px-6">
             <Button
               type="button"
               variant="outline"
-              className="w-full h-12 text-base font-medium border-gray-300 dark:border-neutral-700 hover:bg-gray-50 dark:hover:bg-neutral-800 transition-all duration-200"
+              className="w-full h-11 sm:h-12 text-sm sm:text-base font-medium border-gray-300 dark:border-neutral-700 hover:bg-gray-50 dark:hover:bg-neutral-800 transition-all duration-200"
               onClick={handleGoogleSignUp}
               disabled={googleLoading || loading}
               data-testid="button-google-signup"
             >
               {googleLoading ? (
-                <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                <Loader2 className="mr-2 h-4 sm:h-5 w-4 sm:w-5 animate-spin" />
               ) : (
-                <FcGoogle className="mr-2 h-5 w-5" />
+                <FcGoogle className="mr-2 h-4 sm:h-5 w-4 sm:w-5" />
               )}
               Continue with Google
             </Button>
@@ -145,20 +145,20 @@ export default function Signup() {
               </div>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="email" className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+                <Label htmlFor="email" className="text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
                   Email Address
                 </Label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 dark:text-gray-500" />
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 sm:h-5 w-4 sm:w-5 text-gray-400 dark:text-gray-500" />
                   <Input
                     id="email"
                     type="email"
                     placeholder="you@example.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="pl-11 h-12 bg-white dark:bg-neutral-950 border-gray-300 dark:border-neutral-700 focus:border-blue-500 dark:focus:border-blue-500 focus:ring-blue-500 dark:focus:ring-blue-500 transition-all duration-200"
+                    className="pl-10 sm:pl-11 h-11 sm:h-12 text-sm sm:text-base bg-white dark:bg-neutral-950 border-gray-300 dark:border-neutral-700 focus:border-blue-500 dark:focus:border-blue-500 focus:ring-blue-500 dark:focus:ring-blue-500 transition-all duration-200"
                     data-testid="input-email"
                     required
                     disabled={loading || googleLoading}
@@ -167,18 +167,18 @@ export default function Signup() {
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="password" className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+                <Label htmlFor="password" className="text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
                   Password
                 </Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 dark:text-gray-500" />
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 sm:h-5 w-4 sm:w-5 text-gray-400 dark:text-gray-500" />
                   <Input
                     id="password"
                     type={showPassword ? 'text' : 'password'}
                     placeholder="Create a strong password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="pl-11 pr-11 h-12 bg-white dark:bg-neutral-950 border-gray-300 dark:border-neutral-700 focus:border-blue-500 dark:focus:border-blue-500 focus:ring-blue-500 dark:focus:ring-blue-500 transition-all duration-200"
+                    className="pl-10 sm:pl-11 pr-10 sm:pr-11 h-11 sm:h-12 text-sm sm:text-base bg-white dark:bg-neutral-950 border-gray-300 dark:border-neutral-700 focus:border-blue-500 dark:focus:border-blue-500 focus:ring-blue-500 dark:focus:ring-blue-500 transition-all duration-200"
                     data-testid="input-password"
                     required
                     disabled={loading || googleLoading}
@@ -192,27 +192,27 @@ export default function Signup() {
                     tabIndex={-1}
                   >
                     {showPassword ? (
-                      <EyeOff className="h-5 w-5" />
+                      <EyeOff className="h-4 sm:h-5 w-4 sm:w-5" />
                     ) : (
-                      <Eye className="h-5 w-5" />
+                      <Eye className="h-4 sm:h-5 w-4 sm:w-5" />
                     )}
                   </button>
                 </div>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="confirmPassword" className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+                <Label htmlFor="confirmPassword" className="text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
                   Confirm Password
                 </Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 dark:text-gray-500" />
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 sm:h-5 w-4 sm:w-5 text-gray-400 dark:text-gray-500" />
                   <Input
                     id="confirmPassword"
                     type={showConfirmPassword ? 'text' : 'password'}
                     placeholder="Confirm your password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="pl-11 pr-11 h-12 bg-white dark:bg-neutral-950 border-gray-300 dark:border-neutral-700 focus:border-blue-500 dark:focus:border-blue-500 focus:ring-blue-500 dark:focus:ring-blue-500 transition-all duration-200"
+                    className="pl-10 sm:pl-11 pr-10 sm:pr-11 h-11 sm:h-12 text-sm sm:text-base bg-white dark:bg-neutral-950 border-gray-300 dark:border-neutral-700 focus:border-blue-500 dark:focus:border-blue-500 focus:ring-blue-500 dark:focus:ring-blue-500 transition-all duration-200"
                     data-testid="input-confirm-password"
                     required
                     disabled={loading || googleLoading}
@@ -226,9 +226,9 @@ export default function Signup() {
                     tabIndex={-1}
                   >
                     {showConfirmPassword ? (
-                      <EyeOff className="h-5 w-5" />
+                      <EyeOff className="h-4 sm:h-5 w-4 sm:w-5" />
                     ) : (
-                      <Eye className="h-5 w-5" />
+                      <Eye className="h-4 sm:h-5 w-4 sm:w-5" />
                     )}
                   </button>
                 </div>
@@ -236,13 +236,13 @@ export default function Signup() {
 
               <Button 
                 type="submit" 
-                className="w-full h-12 text-base font-semibold bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white shadow-md hover:shadow-lg transition-all duration-200" 
+                className="w-full h-11 sm:h-12 text-sm sm:text-base font-semibold bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white shadow-md hover:shadow-lg transition-all duration-200" 
                 disabled={loading || googleLoading}
                 data-testid="button-signup"
               >
                 {loading ? (
                   <>
-                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                    <Loader2 className="mr-2 h-4 sm:h-5 w-4 sm:w-5 animate-spin" />
                     Creating account...
                   </>
                 ) : (
