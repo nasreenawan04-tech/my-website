@@ -141,7 +141,7 @@ export default function Signup() {
         </div>
         <Card className="w-full max-w-md shadow-2xl">
           <CardHeader className="space-y-1 text-center">
-            <CardTitle className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
+            <CardTitle className="text-3xl font-bold text-blue-600 dark:text-blue-400">
               Create Account
             </CardTitle>
             <CardDescription className="text-base">
@@ -306,7 +306,7 @@ export default function Signup() {
 
               <Button 
                 type="submit" 
-                className="w-full h-11 text-base font-medium bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 dark:from-blue-600 dark:to-purple-600 dark:hover:from-blue-700 dark:hover:to-purple-700" 
+                className="w-full h-11 text-base font-medium bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700" 
                 disabled={loading || googleLoading}
                 data-testid="button-signup"
               >
