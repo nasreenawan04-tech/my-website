@@ -159,7 +159,7 @@ const HeroSection = () => {
           {isSearchOpen && (
             <div 
               ref={dropdownRef}
-              className="absolute top-full left-0 right-0 bg-white rounded-2xl shadow-2xl border border-gray-200 z-50 max-h-[32rem] overflow-hidden animate-slide-down"
+              className="absolute top-full left-0 right-0 mt-1 bg-white rounded-2xl shadow-2xl border border-gray-200 z-50 max-h-[32rem] overflow-hidden animate-slide-down"
             >
               {searchResults.length > 0 ? (
                 <div className="overflow-y-auto max-h-[28rem] custom-scrollbar">
