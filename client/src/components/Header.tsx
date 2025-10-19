@@ -1,10 +1,11 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link, useLocation } from 'wouter';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { searchTools } from '@/lib/search';
 import { tools } from '@/data/tools';
+import { useDebounce } from '@/hooks/use-debounce';
 import Logo from './Logo';
-import { Menu, X, Search, User, LogOut, Settings } from 'lucide-react';
+import { Menu, X, Search, User, LogOut, TrendingUp, Loader2 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
@@ -23,12 +24,28 @@ const Header = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState(tools);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [isSearching, setIsSearching] = useState(false);
   const [location, setLocation] = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const isMobile = useIsMobile();
   const searchInputRef = useRef<HTMLInputElement>(null);
   const { user, logout, loading } = useAuth();
   const { toast } = useToast();
+  const debouncedSearchQuery = useDebounce(searchQuery, 300);
+
+  // Perform search with debounced query
+  useEffect(() => {
+    if (debouncedSearchQuery.trim()) {
+      setIsSearching(true);
+      const results = searchTools(debouncedSearchQuery);
+      setSearchResults(results);
+      setIsSearching(false);
+    } else {
+      setSearchResults(tools);
+    }
+    setSelectedIndex(-1);
+  }, [debouncedSearchQuery]);
 
   // Handle scroll effect
   useEffect(() => {
@@ -43,18 +60,6 @@ const Header = () => {
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [location]);
-
-  // Close search on escape key
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isSearchOpen) {
-        setIsSearchOpen(false);
-        setSearchQuery('');
-      }
-    };
-    window.addEventListener('keydown', handleEscape);
-    return () => window.removeEventListener('keydown', handleEscape);
-  }, [isSearchOpen]);
 
   // Focus search input when opened
   useEffect(() => {
@@ -77,14 +82,50 @@ const Header = () => {
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
-    const results = searchTools(query);
-    setSearchResults(results);
+    if (query.trim()) {
+      setIsSearching(true);
+    }
   };
 
-  const handleToolClick = (toolHref: string) => {
+  const handleToolClick = useCallback((toolHref: string) => {
     setIsSearchOpen(false);
     setSearchQuery('');
+    setSelectedIndex(-1);
     setLocation(toolHref);
+  }, [setLocation]);
+
+  const handleCloseSearch = useCallback(() => {
+    setIsSearchOpen(false);
+    setSearchQuery('');
+    setSelectedIndex(-1);
+  }, []);
+
+  // Keyboard navigation
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const displayedResults = searchResults.slice(0, 10);
+    
+    switch (e.key) {
+      case 'ArrowDown':
+        e.preventDefault();
+        setSelectedIndex((prev) => 
+          prev < displayedResults.length - 1 ? prev + 1 : prev
+        );
+        break;
+      case 'ArrowUp':
+        e.preventDefault();
+        setSelectedIndex((prev) => (prev > 0 ? prev - 1 : -1));
+        break;
+      case 'Enter':
+        e.preventDefault();
+        if (selectedIndex >= 0 && selectedIndex < displayedResults.length) {
+          handleToolClick(displayedResults[selectedIndex].href);
+        }
+        break;
+      case 'Escape':
+        e.preventDefault();
+        handleCloseSearch();
+        break;
+    }
   };
 
   const navLinks = [
@@ -368,17 +409,14 @@ const Header = () => {
         </div>
       </header>
 
-      {/* Search Modal */}
+      {/* Enhanced Search Modal */}
       {isSearchOpen && (
         <div 
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-start justify-center pt-16 sm:pt-20 md:pt-24 px-3 sm:px-4 animate-in fade-in duration-200"
-          onClick={() => {
-            setIsSearchOpen(false);
-            setSearchQuery('');
-          }}
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-start justify-center pt-16 sm:pt-20 md:pt-24 px-3 sm:px-4 animate-fade-in"
+          onClick={handleCloseSearch}
         >
           <div 
-            className="bg-white dark:bg-neutral-900 rounded-xl shadow-2xl w-full max-w-2xl max-h-[calc(100vh-8rem)] sm:max-h-[calc(100vh-10rem)] overflow-hidden animate-in slide-in-from-top-4 duration-300 border border-gray-200 dark:border-neutral-700"
+            className="bg-white dark:bg-neutral-900 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[calc(100vh-8rem)] sm:max-h-[calc(100vh-10rem)] overflow-hidden animate-slide-down border border-gray-200 dark:border-neutral-700"
             role="dialog"
             aria-label="Search tools"
             aria-modal="true"
@@ -394,15 +432,19 @@ const Header = () => {
                   placeholder="Search for tools..."
                   value={searchQuery}
                   onChange={(e) => handleSearch(e.target.value)}
-                  className="w-full py-3 sm:py-3.5 pl-11 sm:pl-12 pr-11 sm:pr-12 text-base sm:text-lg border border-gray-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition-all duration-200 placeholder:text-gray-400 dark:placeholder:text-neutral-500"
+                  onKeyDown={handleKeyDown}
+                  className="w-full py-3 sm:py-3.5 pl-11 sm:pl-12 pr-11 sm:pr-12 text-base sm:text-lg border border-gray-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition-all duration-200 placeholder:text-gray-400 dark:placeholder:text-neutral-500"
                   data-testid="search-modal-input"
                   aria-label="Search for tools"
+                  autoComplete="off"
                 />
+                {isSearching && (
+                  <div className="absolute right-12 sm:right-14 top-1/2 -translate-y-1/2">
+                    <Loader2 className="w-5 h-5 text-blue-500 animate-spin" />
+                  </div>
+                )}
                 <button
-                  onClick={() => {
-                    setIsSearchOpen(false);
-                    setSearchQuery('');
-                  }}
+                  onClick={handleCloseSearch}
                   className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-neutral-500 hover:text-gray-600 dark:hover:text-neutral-300 transition-all duration-200 hover:scale-110 active:scale-95 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-neutral-700 touch-manipulation"
                   data-testid="search-modal-close"
                   aria-label="Close search"
@@ -410,43 +452,65 @@ const Header = () => {
                   <X size={20} />
                 </button>
               </div>
+              
+              {/* Keyboard hint */}
+              {searchResults.length > 0 && (
+                <div className="mt-3 text-center text-xs text-gray-500 dark:text-neutral-400">
+                  <span>Use ↑↓ to navigate • Enter to select • Esc to close</span>
+                </div>
+              )}
             </div>
 
             {/* Search Results */}
-            <div className="max-h-[calc(100vh-16rem)] sm:max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-neutral-600 scrollbar-track-transparent hover:scrollbar-thumb-gray-400 dark:hover:scrollbar-thumb-neutral-500">
+            <div className="max-h-[calc(100vh-16rem)] sm:max-h-[28rem] overflow-y-auto custom-scrollbar">
               {searchResults.length > 0 ? (
                 searchResults.slice(0, 10).map((tool, index) => (
                   <button
                     key={tool.id}
                     onClick={() => handleToolClick(tool.href)}
-                    className="w-full p-4 sm:p-5 text-left hover:bg-gray-50 dark:hover:bg-neutral-800/70 border-b border-gray-100 dark:border-neutral-800 last:border-0 transition-all duration-200 animate-in fade-in slide-in-from-bottom-2 active:bg-gray-100 dark:active:bg-neutral-800 touch-manipulation"
-                    style={{ animationDelay: `${index * 30}ms` }}
+                    className={`w-full p-4 sm:p-5 text-left transition-all duration-200 border-b border-gray-100 dark:border-neutral-800 last:border-0 group ${
+                      index === selectedIndex 
+                        ? 'bg-blue-50 dark:bg-blue-950/30 border-l-4 border-l-blue-500' 
+                        : 'hover:bg-gray-50 dark:hover:bg-neutral-800/70 border-l-4 border-l-transparent'
+                    }`}
                     data-testid={`search-result-${tool.id}`}
                   >
                     <div className="flex items-center gap-3">
                       <div className="flex-1 min-w-0">
-                        <div className="font-semibold text-gray-900 dark:text-neutral-100 truncate text-sm sm:text-base">
+                        <div className={`font-semibold truncate text-sm sm:text-base transition-colors ${
+                          index === selectedIndex 
+                            ? 'text-blue-700 dark:text-blue-400' 
+                            : 'text-gray-900 dark:text-neutral-100 group-hover:text-blue-600 dark:group-hover:text-blue-400'
+                        }`}>
                           {tool.name}
                         </div>
                         <div className="text-xs sm:text-sm text-gray-500 dark:text-neutral-400 truncate mt-0.5">
                           {tool.description}
                         </div>
                       </div>
-                      {tool.isPopular && (
-                        <div className="bg-yellow-100 dark:bg-yellow-900/40 text-yellow-800 dark:text-yellow-200 text-xs font-medium px-2.5 py-1 rounded-full flex-shrink-0 animate-in zoom-in duration-200">
-                          Popular
+                      <div className="flex items-center gap-2 flex-shrink-0">
+                        {tool.isPopular && (
+                          <div className="bg-gradient-to-r from-yellow-100 to-yellow-50 dark:from-yellow-900/40 dark:to-yellow-800/30 text-yellow-700 dark:text-yellow-200 text-xs font-medium px-2.5 py-1 rounded-full flex items-center gap-1 shadow-sm">
+                            <TrendingUp size={12} />
+                            Popular
+                          </div>
+                        )}
+                        <div className={`text-gray-400 transition-transform ${
+                          index === selectedIndex ? 'translate-x-0' : '-translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100'
+                        }`}>
+                          →
                         </div>
-                      )}
+                      </div>
                     </div>
                   </button>
                 ))
               ) : (
-                <div className="p-8 sm:p-12 text-center text-gray-500 dark:text-neutral-400 animate-in fade-in duration-200">
+                <div className="p-10 sm:p-12 text-center text-gray-500 dark:text-neutral-400 animate-fade-in">
                   <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center">
                     <Search size={32} className="text-gray-400 dark:text-neutral-500" />
                   </div>
-                  <p className="text-base font-medium">No tools found</p>
-                  <p className="text-sm mt-1">Try searching with different keywords</p>
+                  <p className="text-lg font-medium text-gray-700 dark:text-neutral-300 mb-2">No tools found</p>
+                  <p className="text-sm">Try searching with different keywords</p>
                 </div>
               )}
             </div>
