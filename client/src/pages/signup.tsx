@@ -104,32 +104,32 @@ export default function Signup() {
         <meta name="description" content="Create a DapsiWow account to access all tools and features." />
       </Helmet>
       
-      <div className="min-h-screen flex items-center justify-center p-3 sm:p-4 md:p-6 bg-gradient-to-br from-blue-50 via-white to-blue-50 dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-950">
-        <div className="absolute top-4 left-4 sm:top-6 sm:left-6">
+      <div className="min-h-screen flex items-center justify-center p-2.5 xs:p-3 sm:p-4 md:p-6 bg-gradient-to-br from-blue-50 via-white to-blue-50 dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-950">
+        <div className="absolute top-3 left-3 xs:top-4 xs:left-4 sm:top-6 sm:left-6">
           <Logo />
         </div>
         <Card className="w-full max-w-md shadow-xl border-0 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm">
-          <CardHeader className="space-y-2 text-center pb-4 sm:pb-6 px-4 sm:px-6">
-            <CardTitle className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-400 dark:to-blue-500 bg-clip-text text-transparent">
+          <CardHeader className="space-y-1.5 xs:space-y-2 text-center pb-3 xs:pb-4 sm:pb-6 px-3 xs:px-4 sm:px-6 pt-4 xs:pt-6">
+            <CardTitle className="text-xl xs:text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-400 dark:to-blue-500 bg-clip-text text-transparent">
               Create Account
             </CardTitle>
-            <CardDescription className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+            <CardDescription className="text-xs xs:text-sm sm:text-base text-gray-600 dark:text-gray-400">
               Get started with DapsiWow and access all our powerful tools
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4 sm:space-y-5 px-4 sm:px-6">
+          <CardContent className="space-y-3 xs:space-y-4 sm:space-y-5 px-3 xs:px-4 sm:px-6 pb-4 xs:pb-6">
             <Button
               type="button"
               variant="outline"
-              className="w-full h-11 sm:h-12 text-sm sm:text-base font-medium border-gray-300 dark:border-neutral-700 hover:bg-gray-50 dark:hover:bg-neutral-800 transition-all duration-200"
+              className="w-full h-10 xs:h-11 sm:h-12 text-xs xs:text-sm sm:text-base font-medium border-gray-300 dark:border-neutral-700 hover:bg-gray-50 dark:hover:bg-neutral-800 transition-all duration-200"
               onClick={handleGoogleSignUp}
               disabled={googleLoading || loading}
               data-testid="button-google-signup"
             >
               {googleLoading ? (
-                <Loader2 className="mr-2 h-4 sm:h-5 w-4 sm:w-5 animate-spin" />
+                <Loader2 className="mr-1.5 xs:mr-2 h-4 sm:h-5 w-4 sm:w-5 animate-spin" />
               ) : (
-                <FcGoogle className="mr-2 h-4 sm:h-5 w-4 sm:w-5" />
+                <FcGoogle className="mr-1.5 xs:mr-2 h-4 sm:h-5 w-4 sm:w-5" />
               )}
               Continue with Google
             </Button>
@@ -145,20 +145,20 @@ export default function Signup() {
               </div>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
-              <div className="space-y-2">
+            <form onSubmit={handleSubmit} className="space-y-2.5 xs:space-y-3 sm:space-y-4">
+              <div className="space-y-1.5 xs:space-y-2">
                 <Label htmlFor="email" className="text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
                   Email Address
                 </Label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 sm:h-5 w-4 sm:w-5 text-gray-400 dark:text-gray-500" />
+                  <Mail className="absolute left-2.5 xs:left-3 top-1/2 -translate-y-1/2 h-4 sm:h-5 w-4 sm:w-5 text-gray-400 dark:text-gray-500" />
                   <Input
                     id="email"
                     type="email"
                     placeholder="you@example.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="pl-10 sm:pl-11 h-11 sm:h-12 text-sm sm:text-base bg-white dark:bg-neutral-950 border-gray-300 dark:border-neutral-700 focus:border-blue-500 dark:focus:border-blue-500 focus:ring-blue-500 dark:focus:ring-blue-500 transition-all duration-200"
+                    className="pl-9 xs:pl-10 sm:pl-11 h-10 xs:h-11 sm:h-12 text-sm sm:text-base bg-white dark:bg-neutral-950 border-gray-300 dark:border-neutral-700 focus:border-blue-500 dark:focus:border-blue-500 focus:ring-blue-500 dark:focus:ring-blue-500 transition-all duration-200"
                     data-testid="input-email"
                     required
                     disabled={loading || googleLoading}
@@ -166,19 +166,19 @@ export default function Signup() {
                 </div>
               </div>
               
-              <div className="space-y-2">
+              <div className="space-y-1.5 xs:space-y-2">
                 <Label htmlFor="password" className="text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
                   Password
                 </Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 sm:h-5 w-4 sm:w-5 text-gray-400 dark:text-gray-500" />
+                  <Lock className="absolute left-2.5 xs:left-3 top-1/2 -translate-y-1/2 h-4 sm:h-5 w-4 sm:w-5 text-gray-400 dark:text-gray-500" />
                   <Input
                     id="password"
                     type={showPassword ? 'text' : 'password'}
                     placeholder="Create a strong password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="pl-10 sm:pl-11 pr-10 sm:pr-11 h-11 sm:h-12 text-sm sm:text-base bg-white dark:bg-neutral-950 border-gray-300 dark:border-neutral-700 focus:border-blue-500 dark:focus:border-blue-500 focus:ring-blue-500 dark:focus:ring-blue-500 transition-all duration-200"
+                    className="pl-9 xs:pl-10 sm:pl-11 pr-9 xs:pr-10 sm:pr-11 h-10 xs:h-11 sm:h-12 text-sm sm:text-base bg-white dark:bg-neutral-950 border-gray-300 dark:border-neutral-700 focus:border-blue-500 dark:focus:border-blue-500 focus:ring-blue-500 dark:focus:ring-blue-500 transition-all duration-200"
                     data-testid="input-password"
                     required
                     disabled={loading || googleLoading}
@@ -186,7 +186,7 @@ export default function Signup() {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition-colors"
+                    className="absolute right-2.5 xs:right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition-colors"
                     data-testid="button-toggle-password"
                     disabled={loading || googleLoading}
                     tabIndex={-1}
@@ -200,19 +200,19 @@ export default function Signup() {
                 </div>
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-1.5 xs:space-y-2">
                 <Label htmlFor="confirmPassword" className="text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
                   Confirm Password
                 </Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 sm:h-5 w-4 sm:w-5 text-gray-400 dark:text-gray-500" />
+                  <Lock className="absolute left-2.5 xs:left-3 top-1/2 -translate-y-1/2 h-4 sm:h-5 w-4 sm:w-5 text-gray-400 dark:text-gray-500" />
                   <Input
                     id="confirmPassword"
                     type={showConfirmPassword ? 'text' : 'password'}
                     placeholder="Confirm your password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="pl-10 sm:pl-11 pr-10 sm:pr-11 h-11 sm:h-12 text-sm sm:text-base bg-white dark:bg-neutral-950 border-gray-300 dark:border-neutral-700 focus:border-blue-500 dark:focus:border-blue-500 focus:ring-blue-500 dark:focus:ring-blue-500 transition-all duration-200"
+                    className="pl-9 xs:pl-10 sm:pl-11 pr-9 xs:pr-10 sm:pr-11 h-10 xs:h-11 sm:h-12 text-sm sm:text-base bg-white dark:bg-neutral-950 border-gray-300 dark:border-neutral-700 focus:border-blue-500 dark:focus:border-blue-500 focus:ring-blue-500 dark:focus:ring-blue-500 transition-all duration-200"
                     data-testid="input-confirm-password"
                     required
                     disabled={loading || googleLoading}
@@ -220,7 +220,7 @@ export default function Signup() {
                   <button
                     type="button"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition-colors"
+                    className="absolute right-2.5 xs:right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition-colors"
                     data-testid="button-toggle-confirm-password"
                     disabled={loading || googleLoading}
                     tabIndex={-1}
@@ -236,13 +236,13 @@ export default function Signup() {
 
               <Button 
                 type="submit" 
-                className="w-full h-11 sm:h-12 text-sm sm:text-base font-semibold bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white shadow-md hover:shadow-lg transition-all duration-200" 
+                className="w-full h-10 xs:h-11 sm:h-12 text-sm sm:text-base font-semibold bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white shadow-md hover:shadow-lg transition-all duration-200 mt-1" 
                 disabled={loading || googleLoading}
                 data-testid="button-signup"
               >
                 {loading ? (
                   <>
-                    <Loader2 className="mr-2 h-4 sm:h-5 w-4 sm:w-5 animate-spin" />
+                    <Loader2 className="mr-1.5 xs:mr-2 h-4 sm:h-5 w-4 sm:w-5 animate-spin" />
                     Creating account...
                   </>
                 ) : (
