@@ -42,3 +42,10 @@ if (import.meta.env.DEV) {
   console.log('Firebase initialized in development mode');
   console.log('Auth domain:', firebaseConfig.authDomain);
 }
+
+// Debug logging for production
+if (import.meta.env.PROD) {
+  console.log('Firebase initialized in PRODUCTION mode');
+  console.log('API Key exists:', !!firebaseConfig.apiKey);
+  console.log('Auth domain:', firebaseConfig.authDomain);
+}
