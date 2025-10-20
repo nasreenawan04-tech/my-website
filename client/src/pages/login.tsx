@@ -29,8 +29,18 @@ export default function Login() {
     
     if (!email || !password) {
       toast({
-        title: 'Error',
-        description: 'Please fill in all fields',
+        title: 'Missing Information',
+        description: 'Please enter both email and password to continue.',
+        variant: 'destructive'
+      });
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast({
+        title: 'Invalid Email',
+        description: 'Please enter a valid email address.',
         variant: 'destructive'
       });
       return;

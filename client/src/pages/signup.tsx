@@ -31,17 +31,18 @@ export default function Signup() {
     
     if (!email || !password || !confirmPassword) {
       toast({
-        title: 'Error',
-        description: 'Please fill in all fields',
+        title: 'Missing Information',
+        description: 'Please fill in all fields to continue.',
         variant: 'destructive'
       });
       return;
     }
 
-    if (password !== confirmPassword) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
       toast({
-        title: 'Error',
-        description: 'Passwords do not match',
+        title: 'Invalid Email',
+        description: 'Please enter a valid email address (e.g., user@example.com).',
         variant: 'destructive'
       });
       return;
@@ -49,8 +50,26 @@ export default function Signup() {
 
     if (password.length < 6) {
       toast({
-        title: 'Error',
-        description: 'Password must be at least 6 characters',
+        title: 'Weak Password',
+        description: 'Password must be at least 6 characters long for security.',
+        variant: 'destructive'
+      });
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      toast({
+        title: 'Passwords Don\'t Match',
+        description: 'Please make sure both password fields are identical.',
+        variant: 'destructive'
+      });
+      return;
+    }
+
+    if (!/[A-Za-z]/.test(password) || !/[0-9]/.test(password)) {
+      toast({
+        title: 'Weak Password',
+        description: 'Password should contain both letters and numbers for better security.',
         variant: 'destructive'
       });
       return;
