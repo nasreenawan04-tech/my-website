@@ -40,7 +40,7 @@ const firebaseConfig = {
 
 // Initialize Firebase only if configured
 let app;
-let auth;
+let auth: ReturnType<typeof getAuth> | undefined;
 
 try {
   app = getApps().length ? getApp() : initializeApp(firebaseConfig);
