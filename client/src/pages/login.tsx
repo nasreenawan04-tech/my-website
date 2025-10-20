@@ -180,9 +180,19 @@ export default function Login() {
                 </div>
               </div>
 
+              <div className="flex items-center justify-end">
+                <Link 
+                  href="/forgot-password" 
+                  className="text-xs sm:text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium hover:underline transition-colors" 
+                  data-testid="link-forgot-password"
+                >
+                  Forgot password?
+                </Link>
+              </div>
+
               <Button 
                 type="submit" 
-                className="w-full h-10 xs:h-11 sm:h-12 text-sm sm:text-base font-semibold bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white shadow-md hover:shadow-lg transition-all duration-200 mt-1" 
+                className="w-full h-10 xs:h-11 sm:h-12 text-sm sm:text-base font-semibold bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white shadow-md hover:shadow-lg transition-all duration-200" 
                 disabled={loading || googleLoading}
                 data-testid="button-login"
               >
