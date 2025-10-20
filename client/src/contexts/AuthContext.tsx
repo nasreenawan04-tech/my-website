@@ -16,6 +16,36 @@ import {
 } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 
+function getAuthErrorMessage(errorCode: string): string {
+  const errorMessages: Record<string, string> = {
+    'auth/email-already-in-use': 'This email address is already registered. Please sign in instead.',
+    'auth/invalid-email': 'Please enter a valid email address.',
+    'auth/operation-not-allowed': 'This sign-in method is not enabled. Please contact support.',
+    'auth/weak-password': 'Password should be at least 6 characters long.',
+    'auth/user-disabled': 'This account has been disabled. Please contact support.',
+    'auth/user-not-found': 'No account found with this email. Please check your email or sign up.',
+    'auth/wrong-password': 'Incorrect password. Please try again or reset your password.',
+    'auth/invalid-credential': 'Invalid email or password. Please check your credentials and try again.',
+    'auth/too-many-requests': 'Too many failed attempts. Please try again later or reset your password.',
+    'auth/network-request-failed': 'Network error. Please check your internet connection and try again.',
+    'auth/popup-closed-by-user': 'Sign-in popup was closed. Please try again.',
+    'auth/popup-blocked': 'Sign-in popup was blocked by your browser. Please allow popups and try again.',
+    'auth/cancelled-popup-request': 'Only one popup request is allowed at a time.',
+    'auth/account-exists-with-different-credential': 'An account already exists with the same email but different sign-in method.',
+    'auth/invalid-verification-code': 'Invalid verification code. Please try again.',
+    'auth/invalid-verification-id': 'Invalid verification ID. Please restart the verification process.',
+    'auth/missing-verification-code': 'Please enter the verification code.',
+    'auth/missing-verification-id': 'Verification ID is missing. Please restart the process.',
+    'auth/credential-already-in-use': 'This credential is already associated with a different account.',
+    'auth/requires-recent-login': 'This operation requires recent authentication. Please sign in again.',
+    'auth/email-change-needs-verification': 'Email change requires verification. Please check your inbox.',
+    'auth/expired-action-code': 'This action code has expired. Please request a new one.',
+    'auth/invalid-action-code': 'This action code is invalid. Please request a new one.'
+  };
+
+  return errorMessages[errorCode] || 'An unexpected error occurred. Please try again.';
+}
+
 interface AuthContextType {
   user: User | null;
   loading: boolean;
@@ -56,11 +86,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
     } catch (error: any) {
-      // Handle network errors specifically
-      if (error.code === 'auth/network-request-failed') {
-        throw new Error('Network error. Please check your internet connection and try again.');
-      }
-      throw error;
+      const errorMessage = getAuthErrorMessage(error.code);
+      throw new Error(errorMessage);
     }
   };
 
@@ -68,11 +95,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       await signInWithEmailAndPassword(auth, email, password);
     } catch (error: any) {
-      // Handle network errors specifically
-      if (error.code === 'auth/network-request-failed') {
-        throw new Error('Network error. Please check your internet connection and try again.');
-      }
-      throw error;
+      const errorMessage = getAuthErrorMessage(error.code);
+      throw new Error(errorMessage);
     }
   };
 
@@ -81,13 +105,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
     } catch (error: any) {
-      if (error.code === 'auth/network-request-failed') {
-        throw new Error('Network error. Please check your internet connection and try again.');
-      }
-      if (error.code === 'auth/popup-closed-by-user') {
-        throw new Error('Sign-in popup was closed. Please try again.');
-      }
-      throw error;
+      const errorMessage = getAuthErrorMessage(error.code);
+      throw new Error(errorMessage);
     }
   };
 
@@ -104,13 +123,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       await sendPasswordResetEmail(auth, email);
     } catch (error: any) {
-      if (error.code === 'auth/user-not-found') {
-        throw new Error('No account found with this email address.');
-      }
-      if (error.code === 'auth/invalid-email') {
-        throw new Error('Invalid email address.');
-      }
-      throw error;
+      const errorMessage = getAuthErrorMessage(error.code);
+      throw new Error(errorMessage);
     }
   };
 
@@ -143,13 +157,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       await updateEmail(auth.currentUser, newEmail);
       setUser({ ...auth.currentUser });
     } catch (error: any) {
-      if (error.code === 'auth/wrong-password') {
-        throw new Error('Incorrect password. Please try again.');
-      }
-      if (error.code === 'auth/email-already-in-use') {
-        throw new Error('This email is already in use by another account.');
-      }
-      throw error;
+      const errorMessage = getAuthErrorMessage(error.code);
+      throw new Error(errorMessage);
     }
   };
 
@@ -165,13 +174,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       await reauthenticateWithCredential(auth.currentUser, credential);
       await updatePassword(auth.currentUser, newPassword);
     } catch (error: any) {
-      if (error.code === 'auth/wrong-password') {
-        throw new Error('Incorrect current password. Please try again.');
-      }
-      if (error.code === 'auth/weak-password') {
-        throw new Error('New password is too weak. Please choose a stronger password.');
-      }
-      throw error;
+      const errorMessage = getAuthErrorMessage(error.code);
+      throw new Error(errorMessage);
     }
   };
 
