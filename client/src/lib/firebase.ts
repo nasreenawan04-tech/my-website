@@ -19,8 +19,12 @@ const validateConfig = () => {
 
 validateConfig();
 
+if (!import.meta.env.VITE_FIREBASE_API_KEY && import.meta.env.PROD) {
+  console.error('CRITICAL: VITE_FIREBASE_API_KEY is not set in production environment!');
+}
+
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "",
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "dapsiwow.firebaseapp.com",
   projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "dapsiwow",
   storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "dapsiwow.firebasestorage.app",
