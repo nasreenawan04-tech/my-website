@@ -26,6 +26,10 @@ function getAuthErrorMessage(errorCode: string): string {
     'auth/user-not-found': 'No account found with this email. Please check your email or sign up.',
     'auth/wrong-password': 'Incorrect password. Please try again or reset your password.',
     'auth/invalid-credential': 'Invalid email or password. Please check your credentials and try again.',
+    'auth/invalid-login-credentials': 'Invalid email or password. Please check your credentials and try again.',
+    'auth/missing-password': 'Please enter your password.',
+    'auth/missing-email': 'Please enter your email address.',
+    'auth/internal-error': 'An internal error occurred. Please try again later.',
     'auth/too-many-requests': 'Too many failed attempts. Please try again later or reset your password.',
     'auth/network-request-failed': 'Network error. Please check your internet connection and try again.',
     'auth/popup-closed-by-user': 'Sign-in popup was closed. Please try again.',
@@ -40,7 +44,10 @@ function getAuthErrorMessage(errorCode: string): string {
     'auth/requires-recent-login': 'This operation requires recent authentication. Please sign in again.',
     'auth/email-change-needs-verification': 'Email change requires verification. Please check your inbox.',
     'auth/expired-action-code': 'This action code has expired. Please request a new one.',
-    'auth/invalid-action-code': 'This action code is invalid. Please request a new one.'
+    'auth/invalid-action-code': 'This action code is invalid. Please request a new one.',
+    'auth/unauthorized-domain': 'This domain is not authorized for authentication. Please contact support.',
+    'auth/invalid-api-key': 'Authentication configuration error. Please contact support.',
+    'auth/app-deleted': 'Authentication service is unavailable. Please contact support.'
   };
 
   return errorMessages[errorCode] || 'An unexpected error occurred. Please try again.';
@@ -115,7 +122,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       await signOut(auth);
     } catch (error: any) {
       console.error('Logout error:', error);
-      throw error;
+      const errorMessage = getAuthErrorMessage(error.code);
+      throw new Error(errorMessage);
     }
   };
 
@@ -140,7 +148,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setUser({ ...auth.currentUser });
     } catch (error: any) {
       console.error('Profile update error:', error);
-      throw error;
+      const errorMessage = getAuthErrorMessage(error.code);
+      throw new Error(errorMessage);
     }
   };
 
