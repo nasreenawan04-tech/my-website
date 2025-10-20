@@ -14,7 +14,7 @@ import {
   reauthenticateWithCredential,
   EmailAuthProvider
 } from 'firebase/auth';
-import { auth } from '@/lib/firebase';
+import { auth, isFirebaseConfigured } from '@/lib/firebase';
 
 function getAuthErrorMessage(errorCode: string): string {
   const errorMessages: Record<string, string> = {
@@ -81,15 +81,32 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
+    // If Firebase is not configured, set loading to false and return
+    if (!isFirebaseConfigured || !auth) {
       setLoading(false);
-    });
+      return;
+    }
 
-    return unsubscribe;
+    try {
+      const unsubscribe = onAuthStateChanged(auth, (user) => {
+        setUser(user);
+        setLoading(false);
+      }, (error) => {
+        console.warn('Auth state change error:', error);
+        setLoading(false);
+      });
+
+      return unsubscribe;
+    } catch (error) {
+      console.warn('Failed to set up auth state observer:', error);
+      setLoading(false);
+    }
   }, []);
 
   const signup = async (email: string, password: string) => {
+    if (!isFirebaseConfigured || !auth) {
+      throw new Error('Authentication is not configured. Please contact support.');
+    }
     try {
       await createUserWithEmailAndPassword(auth, email, password);
     } catch (error: any) {
@@ -99,6 +116,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const login = async (email: string, password: string) => {
+    if (!isFirebaseConfigured || !auth) {
+      throw new Error('Authentication is not configured. Please contact support.');
+    }
     try {
       await signInWithEmailAndPassword(auth, email, password);
     } catch (error: any) {
@@ -108,6 +128,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const loginWithGoogle = async () => {
+    if (!isFirebaseConfigured || !auth) {
+      throw new Error('Authentication is not configured. Please contact support.');
+    }
     try {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
@@ -118,6 +141,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const logout = async () => {
+    if (!isFirebaseConfigured || !auth) {
+      throw new Error('Authentication is not configured. Please contact support.');
+    }
     try {
       await signOut(auth);
     } catch (error: any) {
@@ -128,6 +154,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const resetPassword = async (email: string) => {
+    if (!isFirebaseConfigured || !auth) {
+      throw new Error('Authentication is not configured. Please contact support.');
+    }
     try {
       await sendPasswordResetEmail(auth, email);
     } catch (error: any) {
@@ -137,6 +166,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const updateUserProfile = async (displayName: string, photoURL?: string) => {
+    if (!isFirebaseConfigured || !auth) {
+      throw new Error('Authentication is not configured. Please contact support.');
+    }
     if (!auth.currentUser) {
       throw new Error('No user is currently logged in.');
     }
@@ -154,6 +186,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const updateUserEmail = async (newEmail: string, currentPassword: string) => {
+    if (!isFirebaseConfigured || !auth) {
+      throw new Error('Authentication is not configured. Please contact support.');
+    }
     if (!auth.currentUser || !auth.currentUser.email) {
       throw new Error('No user is currently logged in.');
     }
@@ -172,6 +207,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const updateUserPassword = async (currentPassword: string, newPassword: string) => {
+    if (!isFirebaseConfigured || !auth) {
+      throw new Error('Authentication is not configured. Please contact support.');
+    }
     if (!auth.currentUser || !auth.currentUser.email) {
       throw new Error('No user is currently logged in.');
     }

@@ -1,6 +1,9 @@
 import { initializeApp, getApps, getApp } from 'firebase/app';
 import { getAuth, connectAuthEmulator } from 'firebase/auth';
 
+// Check if Firebase is configured
+export const isFirebaseConfigured = !!import.meta.env.VITE_FIREBASE_API_KEY;
+
 // Validate environment variables in production
 const validateConfig = () => {
   const requiredVars = [
@@ -12,40 +15,46 @@ const validateConfig = () => {
   if (import.meta.env.PROD) {
     const missing = requiredVars.filter(key => !import.meta.env[key]);
     if (missing.length > 0) {
-      console.error('Missing Firebase environment variables:', missing);
+      console.warn('Missing Firebase environment variables:', missing);
+      console.warn('Authentication features will be disabled.');
     }
   }
 };
 
 validateConfig();
 
-if (!import.meta.env.VITE_FIREBASE_API_KEY && import.meta.env.PROD) {
-  console.error('CRITICAL: VITE_FIREBASE_API_KEY is not set in production environment!');
+if (!isFirebaseConfigured) {
+  console.warn('Firebase is not configured. Authentication features will be disabled.');
+  console.warn('To enable authentication, add VITE_FIREBASE_API_KEY and other Firebase credentials to your environment variables.');
 }
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "placeholder-key",
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "dapsiwow.firebaseapp.com",
   projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "dapsiwow",
   storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "dapsiwow.firebasestorage.app",
   messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "215234393623",
-  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:215234393623:web:aee78956496745b0de0e52",
+  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:215234393623:web:aae78956496745b0de0e52",
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID || "G-4ZFMB2DZPK"
 };
 
-// Initialize Firebase
-const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+// Initialize Firebase only if configured
+let app;
+let auth;
 
-// Log Firebase initialization status
-if (import.meta.env.DEV) {
-  console.log('Firebase initialized in development mode');
-  console.log('Auth domain:', firebaseConfig.authDomain);
+try {
+  app = getApps().length ? getApp() : initializeApp(firebaseConfig);
+  auth = getAuth(app);
+  
+  // Log Firebase initialization status
+  if (import.meta.env.DEV) {
+    console.log('Firebase initialized in development mode');
+    console.log('Auth domain:', firebaseConfig.authDomain);
+    console.log('Authentication:', isFirebaseConfigured ? 'enabled' : 'disabled (missing API key)');
+  }
+} catch (error) {
+  console.warn('Firebase initialization failed:', error);
+  console.warn('App will run without authentication features.');
 }
 
-// Debug logging for production
-if (import.meta.env.PROD) {
-  console.log('Firebase initialized in PRODUCTION mode');
-  console.log('API Key exists:', !!firebaseConfig.apiKey);
-  console.log('Auth domain:', firebaseConfig.authDomain);
-}
+export { auth }
