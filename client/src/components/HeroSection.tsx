@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 const HeroSection = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [searchResults, setSearchResults] = useState(tools.slice(0, 8));
+  const [searchResults, setSearchResults] = useState<typeof tools>([]);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [isSearching, setIsSearching] = useState(false);
   const [, setLocation] = useLocation();
@@ -26,7 +26,7 @@ const HeroSection = () => {
       setIsSearching(false);
       setIsSearchOpen(true);
     } else {
-      setSearchResults(tools.slice(0, 8));
+      setSearchResults([]);
       setIsSearchOpen(false);
     }
     setSelectedIndex(-1);
@@ -58,7 +58,7 @@ const HeroSection = () => {
   }, [setLocation]);
 
   const handleInputFocus = () => {
-    if (searchResults.length > 0 || searchQuery.trim()) {
+    if (searchQuery.trim() && searchResults.length > 0) {
       setIsSearchOpen(true);
     }
   };
