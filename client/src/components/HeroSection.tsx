@@ -127,6 +127,11 @@ const HeroSection = () => {
         <div className="max-w-2xl mx-auto mb-8 sm:mb-12 md:mb-16 relative">
           <form onSubmit={handleSearch} className="relative group">
             <div className="relative">
+              <div className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                <div className="bg-gradient-to-r from-blue-500 to-purple-600 p-2 sm:p-2.5 rounded-lg sm:rounded-xl">
+                  <Search className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                </div>
+              </div>
               <input 
                 ref={inputRef}
                 type="text" 
@@ -136,23 +141,16 @@ const HeroSection = () => {
                 onFocus={handleInputFocus}
                 onBlur={handleInputBlur}
                 onKeyDown={handleKeyDown}
-                className="w-full py-3 sm:py-4 px-4 sm:px-6 pr-14 sm:pr-16 text-base sm:text-lg text-neutral-800 bg-white rounded-xl sm:rounded-2xl shadow-lg focus:outline-none focus:shadow-2xl transition-all duration-300 hover:shadow-xl"
+                className="w-full py-3 sm:py-4 pl-14 sm:pl-16 pr-4 sm:pr-6 text-base sm:text-lg text-neutral-800 bg-white rounded-xl sm:rounded-2xl shadow-lg focus:outline-none focus:shadow-2xl transition-all duration-300 hover:shadow-xl"
                 data-testid="input-search-tools"
                 autoComplete="off"
               />
               {isSearching && (
-                <div className="absolute right-16 sm:right-20 top-1/2 -translate-y-1/2">
+                <div className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2">
                   <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 animate-spin" />
                 </div>
               )}
             </div>
-            <button 
-              type="submit"
-              className="absolute right-1.5 sm:right-2 top-1.5 sm:top-2 bottom-1.5 sm:bottom-2 px-4 sm:px-6 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg sm:rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 active:scale-95"
-              data-testid="button-search-tools"
-            >
-              <Search size={18} className="sm:w-5 sm:h-5" />
-            </button>
           </form>
 
           {/* Enhanced Search Results Dropdown */}
