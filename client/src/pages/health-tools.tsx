@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'wouter';
 import { Heart, Search } from 'lucide-react';
+import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ToolCard from '@/components/ToolCard';
@@ -30,6 +31,30 @@ const HealthTools = () => {
     setSearchQuery(e.target.value);
   };
 
+  // Animated floating shapes data
+  const floatingShapes = [
+    { size: 80, top: '10%', left: '5%', delay: 0, duration: 20, rotate: 360 },
+    { size: 60, top: '20%', right: '8%', delay: 2, duration: 25, rotate: -360 },
+    { size: 100, bottom: '15%', left: '10%', delay: 1, duration: 30, rotate: 180 },
+    { size: 40, top: '60%', right: '15%', delay: 3, duration: 22, rotate: -180 },
+    { size: 70, top: '40%', left: '15%', delay: 1.5, duration: 28, rotate: 360 },
+    { size: 50, bottom: '25%', right: '10%', delay: 2.5, duration: 26, rotate: -360 },
+    { size: 90, top: '15%', left: '45%', delay: 0.5, duration: 24, rotate: 180 },
+    { size: 55, bottom: '30%', left: '40%', delay: 1.8, duration: 27, rotate: -180 },
+  ];
+
+  // Cache random dot positions to prevent re-generation on every render
+  const animatedDots = useMemo(() => 
+    [...Array(12)].map((_, i) => ({
+      id: i,
+      top: Math.random() * 100,
+      left: Math.random() * 100,
+      duration: 3 + Math.random() * 4,
+      delay: Math.random() * 2,
+    })),
+    []
+  );
+
   return (
     <>
       <Helmet>
@@ -48,17 +73,112 @@ const HealthTools = () => {
         
         <main className="flex-1 bg-neutral-50">
           {/* Hero Section */}
-          <section className="bg-gradient-to-r from-pink-600 via-rose-500 to-red-700 text-white py-16">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <div className="w-24 h-24 bg-white bg-opacity-20 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+          <section className="bg-gradient-to-r from-pink-600 via-rose-500 to-red-700 text-white py-16 relative overflow-hidden">
+            {/* Animated Background Shapes */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              {floatingShapes.map((shape, index) => (
+                <motion.div
+                  key={index}
+                  className="absolute rounded-full bg-white/5 backdrop-blur-sm"
+                  style={{
+                    width: shape.size,
+                    height: shape.size,
+                    top: shape.top,
+                    bottom: shape.bottom,
+                    left: shape.left,
+                    right: shape.right,
+                  }}
+                  animate={{
+                    y: [0, -30, 0],
+                    x: [0, 15, 0],
+                    rotate: [0, shape.rotate],
+                    scale: [1, 1.1, 1],
+                  }}
+                  transition={{
+                    duration: shape.duration,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: shape.delay,
+                  }}
+                />
+              ))}
+              
+              {/* Additional decorative circles */}
+              <motion.div
+                className="absolute top-1/4 left-1/3 w-32 h-32 rounded-full bg-gradient-to-br from-pink-400/10 to-rose-400/10 blur-xl"
+                animate={{
+                  scale: [1, 1.2, 1],
+                  opacity: [0.3, 0.6, 0.3],
+                }}
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+              <motion.div
+                className="absolute bottom-1/3 right-1/4 w-40 h-40 rounded-full bg-gradient-to-br from-rose-400/10 to-red-400/10 blur-xl"
+                animate={{
+                  scale: [1.2, 1, 1.2],
+                  opacity: [0.4, 0.7, 0.4],
+                }}
+                transition={{
+                  duration: 10,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 1,
+                }}
+              />
+              
+              {/* Animated dots */}
+              {animatedDots.map((dot) => (
+                <motion.div
+                  key={`dot-${dot.id}`}
+                  className="absolute w-2 h-2 rounded-full bg-white/20"
+                  style={{
+                    top: `${dot.top}%`,
+                    left: `${dot.left}%`,
+                  }}
+                  animate={{
+                    y: [0, -20, 0],
+                    opacity: [0.2, 0.8, 0.2],
+                  }}
+                  transition={{
+                    duration: dot.duration,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: dot.delay,
+                  }}
+                />
+              ))}
+            </div>
+
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+              <motion.div 
+                className="w-24 h-24 bg-white bg-opacity-20 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+              >
                 <Heart className="w-12 h-12 text-white" />
-              </div>
-              <h1 className="text-4xl sm:text-5xl font-bold mb-4" data-testid="text-page-title">
+              </motion.div>
+              <motion.h1 
+                className="text-4xl sm:text-5xl font-bold mb-4"
+                data-testid="health-page-title"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+              >
                 Health Tools
-              </h1>
-              <p className="text-xl text-pink-100 mb-8 max-w-3xl mx-auto">
+              </motion.h1>
+              <motion.p 
+                className="text-xl text-pink-100 mb-8 max-w-3xl mx-auto"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+              >
                 30+ free health and fitness tools to track, calculate, and improve your wellbeing
-              </p>
+              </motion.p>
               
               {/* Search Bar */}
               <div className="max-w-2xl mx-auto">
@@ -84,7 +204,7 @@ const HealthTools = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               {/* Results Info */}
               <div className="mb-8">
-                <p className="text-neutral-600 text-center" data-testid="text-results-count">
+                <p className="text-neutral-600 text-center" data-testid="health-results-count">
                   Showing {filteredTools.length} health tools
                   {searchQuery && ` matching "${searchQuery}"`}
                 </p>
