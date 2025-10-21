@@ -1,9 +1,10 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { useLocation } from 'wouter';
 import { searchTools } from '@/lib/search';
 import { tools } from '@/data/tools';
 import { Search, TrendingUp, Loader2 } from 'lucide-react';
 import { useDebounce } from '@/hooks/use-debounce';
+import { motion } from 'framer-motion';
 
 const HeroSection = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -113,18 +114,138 @@ const HeroSection = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  // Animated floating shapes data
+  const floatingShapes = [
+    { size: 80, top: '10%', left: '5%', delay: 0, duration: 20, rotate: 360 },
+    { size: 60, top: '20%', right: '8%', delay: 2, duration: 25, rotate: -360 },
+    { size: 100, bottom: '15%', left: '10%', delay: 1, duration: 30, rotate: 180 },
+    { size: 40, top: '60%', right: '15%', delay: 3, duration: 22, rotate: -180 },
+    { size: 70, top: '40%', left: '15%', delay: 1.5, duration: 28, rotate: 360 },
+    { size: 50, bottom: '25%', right: '10%', delay: 2.5, duration: 26, rotate: -360 },
+    { size: 90, top: '15%', left: '45%', delay: 0.5, duration: 24, rotate: 180 },
+    { size: 55, bottom: '30%', left: '40%', delay: 1.8, duration: 27, rotate: -180 },
+  ];
+
+  // Cache random dot positions to prevent re-generation on every render
+  const animatedDots = useMemo(() => 
+    [...Array(12)].map((_, i) => ({
+      id: i,
+      top: Math.random() * 100,
+      left: Math.random() * 100,
+      duration: 3 + Math.random() * 4,
+      delay: Math.random() * 2,
+    })),
+    []
+  );
+
   return (
-    <section className="gradient-hero text-white py-12 sm:py-16 md:py-20 lg:py-28" data-testid="hero-section">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight animate-fade-in" data-testid="text-hero-title">
+    <section className="gradient-hero text-white py-12 sm:py-16 md:py-20 lg:py-28 relative overflow-hidden" data-testid="hero-section">
+      {/* Animated Background Shapes */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {floatingShapes.map((shape, index) => (
+          <motion.div
+            key={index}
+            className="absolute rounded-full bg-white/5 backdrop-blur-sm"
+            style={{
+              width: shape.size,
+              height: shape.size,
+              top: shape.top,
+              bottom: shape.bottom,
+              left: shape.left,
+              right: shape.right,
+            }}
+            animate={{
+              y: [0, -30, 0],
+              x: [0, 15, 0],
+              rotate: [0, shape.rotate],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{
+              duration: shape.duration,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: shape.delay,
+            }}
+          />
+        ))}
+        
+        {/* Additional decorative circles */}
+        <motion.div
+          className="absolute top-1/4 left-1/3 w-32 h-32 rounded-full bg-gradient-to-br from-blue-400/10 to-purple-400/10 blur-xl"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.6, 0.3],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-1/3 right-1/4 w-40 h-40 rounded-full bg-gradient-to-br from-purple-400/10 to-pink-400/10 blur-xl"
+          animate={{
+            scale: [1.2, 1, 1.2],
+            opacity: [0.4, 0.7, 0.4],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1,
+          }}
+        />
+        
+        {/* Animated dots */}
+        {animatedDots.map((dot) => (
+          <motion.div
+            key={`dot-${dot.id}`}
+            className="absolute w-2 h-2 rounded-full bg-white/20"
+            style={{
+              top: `${dot.top}%`,
+              left: `${dot.left}%`,
+            }}
+            animate={{
+              y: [0, -20, 0],
+              opacity: [0.2, 0.8, 0.2],
+            }}
+            transition={{
+              duration: dot.duration,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: dot.delay,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        <motion.h1 
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight"
+          data-testid="text-hero-title"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
           Free Tools to Make Everything Simple
-        </h1>
-        <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-blue-100 mb-8 sm:mb-10 md:mb-12 max-w-4xl mx-auto leading-relaxed animate-fade-in-delay px-2" data-testid="text-hero-subtitle">
+        </motion.h1>
+        <motion.p 
+          className="text-base sm:text-lg md:text-xl lg:text-2xl text-blue-100 mb-8 sm:mb-10 md:mb-12 max-w-4xl mx-auto leading-relaxed px-2"
+          data-testid="text-hero-subtitle"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+        >
           We offer finance, text, and health online tools to make your life easier. No sign-up required.
-        </p>
+        </motion.p>
         
         {/* Enhanced Search Bar */}
-        <div className="max-w-2xl mx-auto mb-8 sm:mb-12 md:mb-16 relative">
+        <motion.div 
+          className="max-w-2xl mx-auto mb-8 sm:mb-12 md:mb-16 relative"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+        >
           <form onSubmit={handleSearch} className="relative group">
             <div className="relative">
               <input 
@@ -231,27 +352,52 @@ const HeroSection = () => {
               ) : null}
             </div>
           )}
-        </div>
+        </motion.div>
         
         {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 max-w-4xl mx-auto">
-          <div className="text-center transform hover:scale-105 transition-transform duration-300" data-testid="stat-active-users">
+        <motion.div 
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 max-w-4xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+        >
+          <motion.div 
+            className="text-center"
+            data-testid="stat-active-users"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
             <div className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2">1M+</div>
             <div className="text-blue-100 text-xs sm:text-sm md:text-sm lg:text-base">Active Users</div>
-          </div>
-          <div className="text-center transform hover:scale-105 transition-transform duration-300" data-testid="stat-tools-available">
+          </motion.div>
+          <motion.div 
+            className="text-center"
+            data-testid="stat-tools-available"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
             <div className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2">180+</div>
             <div className="text-blue-100 text-xs sm:text-sm md:text-sm lg:text-base">Tools Available</div>
-          </div>
-          <div className="text-center transform hover:scale-105 transition-transform duration-300" data-testid="stat-categories">
+          </motion.div>
+          <motion.div 
+            className="text-center"
+            data-testid="stat-categories"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
             <div className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2">3</div>
             <div className="text-blue-100 text-xs sm:text-sm md:text-sm lg:text-base">Categories</div>
-          </div>
-          <div className="text-center transform hover:scale-105 transition-transform duration-300" data-testid="stat-calculations-done">
+          </motion.div>
+          <motion.div 
+            className="text-center"
+            data-testid="stat-calculations-done"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
             <div className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2">500K+</div>
             <div className="text-blue-100 text-xs sm:text-sm md:text-sm lg:text-base">Calculations Done</div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
