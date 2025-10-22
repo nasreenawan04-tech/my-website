@@ -277,3 +277,30 @@
 .animate-fade-in-up {
   animation: fadeInUp 0.4s ease-out;
 }
+
+/* Enhanced smooth transitions for header */
+.active\:scale-98:active {
+  transform: scale(0.98);
+}
+
+/* Smooth hardware-accelerated animations */
+@media (prefers-reduced-motion: no-preference) {
+  * {
+    scroll-behavior: smooth;
+  }
+  
+  .transition-all,
+  .transition-colors,
+  .transition-transform,
+  .transition-opacity {
+    will-change: transform, opacity;
+  }
+}
+
+/* Better touch target sizes for mobile */
+@media (max-width: 768px) {
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
