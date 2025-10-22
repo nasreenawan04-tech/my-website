@@ -11,14 +11,14 @@ import { Search, Calculator, FileText, Heart, Zap, Users, Target, TrendingUp } f
 const AllTools = () => {
   const [location] = useLocation();
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedCategory, setSelectedCategory] = useState('finance');
   const [filteredTools, setFilteredTools] = useState(tools);
 
   // Parse URL parameters
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const searchParam = urlParams.get('search') || '';
-    const categoryParam = urlParams.get('category') || 'all';
+    const categoryParam = urlParams.get('category') || 'finance';
     
     setSearchQuery(searchParam);
     setSelectedCategory(categoryParam);
@@ -51,15 +51,12 @@ const AllTools = () => {
     if (search.trim()) {
       params.set('search', search.trim());
     }
-    if (category !== 'all') {
-      params.set('category', category);
-    }
+    params.set('category', category);
     const newURL = `/tools${params.toString() ? '?' + params.toString() : ''}`;
     window.history.replaceState({}, '', newURL);
   };
 
   const categoryTabs = [
-    { key: 'all', label: 'All Tools', count: tools.length },
     { key: 'finance', label: 'Finance', count: tools.filter(t => t.category === 'finance').length },
     { key: 'text', label: 'Text', count: tools.filter(t => t.category === 'text').length },
     { key: 'health', label: 'Health', count: tools.filter(t => t.category === 'health').length }
@@ -203,8 +200,7 @@ const AllTools = () => {
               {/* Results Info */}
               <div className="mb-8">
                 <p className="text-neutral-600 text-center" data-testid="text-results-count">
-                  Showing {filteredTools.length} tools
-                  {selectedCategory !== 'all' && ` in ${categories[selectedCategory as keyof typeof categories]} category`}
+                  Showing {filteredTools.length} tools in {categories[selectedCategory as keyof typeof categories]} category
                   {searchQuery && ` matching "${searchQuery}"`}
                 </p>
               </div>
