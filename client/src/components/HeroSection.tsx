@@ -241,14 +241,17 @@ const HeroSection = () => {
           We offer finance, text, and health online tools to make your life easier. No sign-up required.
         </motion.p>
         
-        {/* Enhanced Search Bar */}
+        {/* Enhanced Search Bar - Google Chrome Style */}
         <motion.div 
-          className="max-w-2xl mx-auto mb-8 sm:mb-12 md:mb-16 relative px-2 sm:px-0"
+          className="max-w-3xl mx-auto mb-8 sm:mb-12 md:mb-16 relative px-2 sm:px-0"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
         >
           <div className="relative">
+            <div className="absolute left-5 sm:left-6 md:left-7 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none z-10">
+              <Search className="w-5 h-5 sm:w-5 sm:h-5 md:w-6 md:h-6" aria-hidden="true" />
+            </div>
             <input 
               ref={inputRef}
               type="text" 
@@ -258,13 +261,10 @@ const HeroSection = () => {
               onFocus={handleInputFocus}
               onBlur={handleInputBlur}
               onKeyDown={handleKeyDown}
-              className="w-full py-3 pl-4 pr-12 sm:py-4 sm:pl-5 sm:pr-14 md:py-5 md:px-6 md:pr-16 text-sm sm:text-base md:text-lg text-neutral-800 bg-white/95 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-2xl focus:outline-none focus:shadow-[0_8px_30px_rgb(0,0,0,0.12)] focus:bg-white transition-all duration-300 ease-in-out border-0"
+              className="w-full py-3.5 pl-14 pr-6 sm:py-4 sm:pl-16 sm:pr-8 md:py-5 md:pl-20 md:pr-10 text-sm sm:text-base md:text-lg text-neutral-800 bg-white rounded-full shadow-md hover:shadow-lg focus:outline-none focus:shadow-xl transition-all duration-200 ease-in-out border border-transparent focus:border-transparent placeholder:text-gray-500"
               data-testid="input-search-tools"
               autoComplete="off"
             />
-            <div className="absolute right-1.5 top-1.5 bottom-1.5 px-3 sm:right-2 sm:top-2 sm:bottom-2 sm:px-4 md:px-6 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg sm:rounded-xl flex items-center justify-center pointer-events-none">
-              <Search className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
-            </div>
           </div>
 
           {/* Enhanced Search Results Dropdown */}

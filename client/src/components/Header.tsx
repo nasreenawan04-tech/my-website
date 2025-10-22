@@ -419,17 +419,19 @@ const Header = () => {
             aria-modal="true"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Search Input Section */}
+            {/* Search Input Section - Google Chrome Style */}
             <div className="p-4 sm:p-5 border-b border-gray-200 dark:border-neutral-700 bg-gray-50/50 dark:bg-neutral-800/30">
               <div className="relative">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 dark:text-neutral-500 pointer-events-none w-5 h-5" />
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 dark:text-neutral-500 pointer-events-none">
+                  <Search className="w-5 h-5" aria-hidden="true" />
+                </div>
                 <input
                   ref={searchInputRef}
                   type="text"
                   placeholder="Search for tools..."
                   value={searchQuery}
                   onChange={(e) => handleSearch(e.target.value)}
-                  className="w-full py-3 sm:py-3.5 pl-12 pr-12 text-base sm:text-lg border border-gray-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition-all duration-200 placeholder:text-gray-400 dark:placeholder:text-neutral-500"
+                  className="w-full py-3 sm:py-3.5 pl-12 pr-12 text-base sm:text-lg border border-gray-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 rounded-full hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent focus:shadow-xl transition-all duration-200 placeholder:text-gray-400 dark:placeholder:text-neutral-500"
                   data-testid="search-modal-input"
                   aria-label="Search for tools"
                 />
@@ -438,7 +440,7 @@ const Header = () => {
                     setIsSearchOpen(false);
                     setSearchQuery('');
                   }}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-neutral-500 hover:text-gray-600 dark:hover:text-neutral-300 transition-all duration-200 hover:scale-110 active:scale-95 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-neutral-700"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-neutral-500 hover:text-gray-600 dark:hover:text-neutral-300 transition-all duration-200 hover:scale-110 active:scale-95 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-neutral-700"
                   data-testid="search-modal-close"
                   aria-label="Close search"
                 >
