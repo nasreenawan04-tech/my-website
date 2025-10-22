@@ -248,15 +248,7 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
         >
-          <form onSubmit={handleSearch} className="relative">
-            <button
-              type="submit"
-              className="absolute right-1 sm:right-1.5 md:right-2 top-1/2 -translate-y-1/2 bg-blue-600 hover:bg-blue-700 text-white rounded-full p-2.5 sm:p-3 md:p-3.5 transition-all duration-200 z-10 cursor-pointer shadow-sm hover:shadow-md"
-              data-testid="button-search-submit"
-              aria-label="Search"
-            >
-              <Search className="w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5" />
-            </button>
+          <form onSubmit={handleSearch} className="relative flex items-center">
             <input 
               ref={inputRef}
               type="text" 
@@ -270,6 +262,14 @@ const HeroSection = () => {
               data-testid="input-search-tools"
               autoComplete="off"
             />
+            <button
+              type="submit"
+              className="absolute right-2 sm:right-2 md:right-2.5 top-1/2 -translate-y-1/2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white rounded-full p-2 sm:p-2.5 md:p-3 transition-all duration-200 z-10 cursor-pointer shadow-md hover:shadow-lg hover:scale-105 active:scale-95 flex items-center justify-center"
+              data-testid="button-search-submit"
+              aria-label="Search"
+            >
+              <Search className="w-4 h-4 sm:w-4 sm:h-4 md:w-5 md:h-5" strokeWidth={2.5} />
+            </button>
           </form>
 
           {/* Enhanced Search Results Dropdown */}
