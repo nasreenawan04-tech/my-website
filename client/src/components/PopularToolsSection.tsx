@@ -4,10 +4,11 @@ import { popularTools, getToolsByCategory, categories } from '@/data/tools';
 import ToolCard from './ToolCard';
 
 const PopularToolsSection = () => {
-  const [activeTab, setActiveTab] = useState('finance');
+  const [activeTab, setActiveTab] = useState('all');
   const [, setLocation] = useLocation();
 
   const tabs = [
+    { key: 'all', label: 'All Tools' },
     { key: 'finance', label: 'Finance' },
     { key: 'text', label: 'Text' },
     { key: 'health', label: 'Health' }
