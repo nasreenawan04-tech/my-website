@@ -139,7 +139,12 @@ const HeroSection = () => {
   );
 
   return (
-    <section className="gradient-hero text-white py-12 sm:py-16 md:py-20 lg:py-28 relative overflow-hidden" data-testid="hero-section">
+    <section 
+      className="gradient-hero text-white py-12 sm:py-16 md:py-20 lg:py-28 relative overflow-hidden" 
+      data-testid="hero-section"
+      onClick={(e) => e.stopPropagation()}
+      onTouchStart={(e) => e.stopPropagation()}
+    >
       {/* Animated Background Shapes */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {floatingShapes.map((shape, index) => (
@@ -360,6 +365,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+          onClick={(e) => e.stopPropagation()}
         >
           <motion.div 
             className="text-center"
