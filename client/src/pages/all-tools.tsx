@@ -110,66 +110,63 @@ const AllTools = () => {
         
         <main className="flex-1 bg-neutral-50">
           {/* Modern Hero Section */}
-          <section className="relative bg-gradient-to-br from-blue-600 via-blue-500 to-purple-600 text-white py-20 lg:py-24 overflow-hidden">
+          <section className="relative bg-gradient-to-br from-blue-600 via-blue-500 to-purple-600 text-white py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden">
             {/* Background Pattern */}
             <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]" />
             <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent" />
             
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               {/* Main Content */}
-              <div className="text-center mb-12">
+              <div className="text-center mb-8 sm:mb-10 md:mb-12">
                 {/* Icon Badge */}
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl mb-6">
-                  <Zap className="w-8 h-8 text-white" />
+                <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-white/20 backdrop-blur-sm rounded-xl sm:rounded-2xl mb-4 sm:mb-5 md:mb-6">
+                  <Zap className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" />
                 </div>
                 
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight" data-testid="text-page-title">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-5 md:mb-6 leading-tight px-2" data-testid="text-page-title">
                   Complete Tools Directory
                 </h1>
-                <p className="text-xl lg:text-2xl text-blue-100 mb-8 max-w-4xl mx-auto leading-relaxed">
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-blue-100 mb-6 sm:mb-7 md:mb-8 max-w-4xl mx-auto leading-relaxed px-2">
                   Access our complete collection of 150+ professional-grade tools. Everything you need for finance, text processing, and health calculations in one place.
                 </p>
 
                 {/* Trust Indicators */}
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8 max-w-2xl lg:max-w-4xl mx-auto mb-12">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 lg:gap-8 max-w-2xl lg:max-w-4xl mx-auto mb-8 sm:mb-10 md:mb-12 px-2">
                   <div className="text-center">
-                    <div className="text-2xl lg:text-3xl font-bold mb-1">{tools.length}+</div>
-                    <div className="text-blue-100 text-sm">Free Tools</div>
+                    <div className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-1">{tools.length}+</div>
+                    <div className="text-blue-100 text-xs sm:text-sm">Free Tools</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl lg:text-3xl font-bold mb-1">1M+</div>
-                    <div className="text-blue-100 text-sm">Users</div>
+                    <div className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-1">1M+</div>
+                    <div className="text-blue-100 text-xs sm:text-sm">Users</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl lg:text-3xl font-bold mb-1">24/7</div>
-                    <div className="text-blue-100 text-sm">Available</div>
+                    <div className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-1">24/7</div>
+                    <div className="text-blue-100 text-xs sm:text-sm">Available</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl lg:text-3xl font-bold mb-1">100%</div>
-                    <div className="text-blue-100 text-sm">Free</div>
+                    <div className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-1">100%</div>
+                    <div className="text-blue-100 text-xs sm:text-sm">Free</div>
                   </div>
                 </div>
                 
-                {/* Enhanced Search Bar */}
-                <div className="max-w-2xl mx-auto mb-12">
-                  <form onSubmit={handleSearch} className="relative">
-                    <div className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
-                      <Search size={20} />
-                    </div>
+                {/* Enhanced Search Bar - Pill Shaped with Button */}
+                <div className="max-w-3xl mx-auto px-2 sm:px-0">
+                  <form onSubmit={handleSearch} className="relative flex items-center">
                     <input
                       type="text"
                       placeholder="Search through 150+ tools..."
                       value={searchQuery}
                       onChange={handleSearchChange}
-                      className="w-full py-4 pl-12 pr-20 text-lg text-neutral-800 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 focus:outline-none focus:ring-4 focus:ring-white/30 focus:bg-white transition-all duration-200"
+                      className="w-full py-3.5 pl-6 pr-14 sm:py-4 sm:pl-8 sm:pr-16 md:py-5 md:pl-10 md:pr-20 text-sm sm:text-base md:text-lg text-neutral-800 bg-gray-50 hover:bg-white focus:bg-white rounded-full shadow-md hover:shadow-lg focus:outline-none focus:shadow-xl transition-all duration-200 ease-in-out border border-transparent focus:border-transparent placeholder:text-gray-500"
                       data-testid="input-search-all-tools"
                     />
                     <button
                       type="submit"
-                      className="absolute right-2 top-2 bottom-2 px-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl flex items-center justify-center hover:from-blue-600 hover:to-purple-700 transition-all duration-200 shadow-lg"
+                      className="absolute right-2 sm:right-2 md:right-2.5 top-1/2 -translate-y-1/2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white rounded-full px-5 py-2.5 sm:px-6 sm:py-3 md:px-7 md:py-3.5 transition-all duration-200 z-10 cursor-pointer shadow-md hover:shadow-lg hover:scale-105 active:scale-95 flex items-center justify-center gap-1.5"
                       data-testid="button-search-all-tools"
                     >
-                      <span className="text-sm font-medium">Search</span>
+                      <Search className="w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5" strokeWidth={2.5} />
                     </button>
                   </form>
                 </div>
