@@ -1525,6 +1525,55 @@ export default function LoanCalculator() {
                         </Button>
                       </div>
 
+                      {/* Social Share Section */}
+                      <div className="border-t pt-4 mt-4">
+                        <p className="text-center text-sm font-medium text-gray-700 mb-3">Share your results:</p>
+                        <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+                          <Button
+                            onClick={shareOnFacebook}
+                            size="sm"
+                            className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg bg-[#1877f2] hover:bg-[#166fe5] text-white transition-all"
+                          >
+                            <FaFacebook className="w-4 h-4 mr-1.5" />
+                            Facebook
+                          </Button>
+                          <Button
+                            onClick={shareOnTwitter}
+                            size="sm"
+                            className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg bg-[#1da1f2] hover:bg-[#1a8cd8] text-white transition-all"
+                          >
+                            <FaTwitter className="w-4 h-4 mr-1.5" />
+                            Twitter
+                          </Button>
+                          <Button
+                            onClick={shareOnLinkedIn}
+                            size="sm"
+                            className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg bg-[#0077b5] hover:bg-[#006399] text-white transition-all"
+                          >
+                            <FaLinkedin className="w-4 h-4 mr-1.5" />
+                            LinkedIn
+                          </Button>
+                          <Button
+                            onClick={shareOnWhatsApp}
+                            size="sm"
+                            className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg bg-[#25d366] hover:bg-[#20bd5a] text-white transition-all"
+                          >
+                            <FaWhatsapp className="w-4 h-4 mr-1.5" />
+                            WhatsApp
+                          </Button>
+                          <Button
+                            onClick={handleShare}
+                            variant="outline"
+                            size="sm"
+                            className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-gray-400 hover:bg-gray-50 transition-all"
+                          >
+                            <Share2 className="w-4 h-4 mr-1.5" />
+                            More
+                          </Button>
+                        </div>
+                      </div>
+
+
                     </>
                   )}
                 </div>
