@@ -360,9 +360,20 @@ export default function LoanCalculator() {
     const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
     const termDisplay = termUnit === 'years' ? `${loanTerm} years` : `${loanTerm} months`;
     const whatsappText = `💰 Loan Calculator Results:\n\nLoan: ${formatCurrency(parseFloat(loanAmount))}\nRate: ${interestRate}%\nTerm: ${termDisplay}\nMonthly Payment: ${formatCurrency(result.monthlyPayment)}\n\nCalculate yours: ${shareableUrl}`;
-    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(whatsappText)}`;
-    window.open(whatsappUrl, '_blank');
-    toast({ title: "Opening WhatsApp share..." });
+    
+    // Use api.whatsapp.com which works better across all devices
+    const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(whatsappText)}`;
+    
+    const opened = window.open(whatsappUrl, '_blank');
+    if (opened) {
+      toast({ title: "Opening WhatsApp..." });
+    } else {
+      toast({ 
+        title: "Popup blocked", 
+        description: "Please allow popups to share on WhatsApp",
+        variant: "destructive"
+      });
+    }
   };
 
   const handleDownloadPDF = () => {
