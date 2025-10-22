@@ -284,8 +284,8 @@ const Header = () => {
 
         {/* Mobile & Tablet Menu */}
         <div 
-          className={`xl:hidden bg-white/98 dark:bg-neutral-900/98 backdrop-blur-lg border-t border-gray-200 dark:border-neutral-700 transition-all duration-300 ease-in-out ${
-            isMobileMenuOpen ? 'max-h-[calc(100vh-3.5rem)] sm:max-h-[calc(100vh-4rem)] opacity-100' : 'max-h-0 opacity-0'
+          className={`xl:hidden absolute top-full left-0 right-0 bg-white/98 dark:bg-neutral-900/98 backdrop-blur-lg border-t border-gray-200 dark:border-neutral-700 shadow-lg transition-all duration-300 ease-in-out ${
+            isMobileMenuOpen ? 'max-h-[calc(100vh-3.5rem)] sm:max-h-[calc(100vh-4rem)] opacity-100 visible' : 'max-h-0 opacity-0 invisible'
           }`}
           data-testid="mobile-menu"
           aria-label="Mobile navigation"
