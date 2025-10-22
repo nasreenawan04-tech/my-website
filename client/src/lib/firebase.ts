@@ -23,10 +23,7 @@ const validateConfig = () => {
 
 validateConfig();
 
-if (!isFirebaseConfigured) {
-  console.warn('Firebase is not configured. Authentication features will be disabled.');
-  console.warn('To enable authentication, add VITE_FIREBASE_API_KEY and other Firebase credentials to your environment variables.');
-}
+// Removed redundant warnings - only show in validateConfig if in production
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "placeholder-key",
@@ -46,11 +43,11 @@ try {
   app = getApps().length ? getApp() : initializeApp(firebaseConfig);
   auth = getAuth(app);
   
-  // Log Firebase initialization status
-  if (import.meta.env.DEV) {
+  // Only log Firebase status if explicitly configured
+  if (import.meta.env.DEV && isFirebaseConfigured) {
     console.log('Firebase initialized in development mode');
     console.log('Auth domain:', firebaseConfig.authDomain);
-    console.log('Authentication:', isFirebaseConfigured ? 'enabled' : 'disabled (missing API key)');
+    console.log('Authentication: enabled');
   }
 } catch (error) {
   console.warn('Firebase initialization failed:', error);
