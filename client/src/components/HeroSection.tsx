@@ -264,7 +264,7 @@ const HeroSection = () => {
             />
             <button
               type="submit"
-              className="absolute right-2 sm:right-2 md:right-2.5 top-1/2 -translate-y-1/2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white rounded-full p-2 sm:p-2.5 md:p-3 transition-all duration-200 z-10 cursor-pointer shadow-md hover:shadow-lg hover:scale-105 active:scale-95 flex items-center justify-center"
+              className="absolute right-2 sm:right-2 md:right-2.5 top-1/2 -translate-y-1/2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white rounded-full px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 transition-all duration-200 z-10 cursor-pointer shadow-md hover:shadow-lg hover:scale-105 active:scale-95 flex items-center justify-center gap-1.5"
               data-testid="button-search-submit"
               aria-label="Search"
             >
