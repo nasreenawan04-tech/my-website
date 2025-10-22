@@ -2,9 +2,9 @@ import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { useLocation } from 'wouter';
 import { searchTools } from '@/lib/search';
 import { tools } from '@/data/tools';
-import { Search, TrendingUp, Loader2 } from 'lucide-react';
+import { Search, TrendingUp, Loader2, Command, ArrowRight, Sparkles } from 'lucide-react';
 import { useDebounce } from '@/hooks/use-debounce';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const HeroSection = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -241,108 +241,170 @@ const HeroSection = () => {
           We offer finance, text, and health online tools to make your life easier. No sign-up required.
         </motion.p>
         
-        {/* Enhanced Search Bar */}
+        {/* Professional Search Bar */}
         <motion.div 
-          className="max-w-2xl mx-auto mb-8 sm:mb-12 md:mb-16 relative px-2 sm:px-0"
+          className="max-w-3xl mx-auto mb-8 sm:mb-12 md:mb-16 relative px-2 sm:px-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
         >
-          <div className="relative">
+          <div className="relative group">
+            {/* Search Icon - Left Side */}
+            <div className="absolute left-3 sm:left-4 md:left-5 top-1/2 -translate-y-1/2 pointer-events-none z-10">
+              {isSearching ? (
+                <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 text-blue-500 animate-spin" aria-hidden="true" />
+              ) : (
+                <Search className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 group-focus-within:text-blue-500 transition-colors duration-200" aria-hidden="true" />
+              )}
+            </div>
+
+            {/* Search Input */}
             <input 
               ref={inputRef}
               type="text" 
-              placeholder="Search for tools..."
+              placeholder="Search 180+ tools... (Try 'loan', 'BMI', 'text')"
               value={searchQuery}
               onChange={handleSearchChange}
               onFocus={handleInputFocus}
               onBlur={handleInputBlur}
               onKeyDown={handleKeyDown}
-              className="w-full py-3 pl-4 pr-12 sm:py-4 sm:pl-5 sm:pr-14 md:py-5 md:px-6 md:pr-16 text-sm sm:text-base md:text-lg text-neutral-800 bg-white/95 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-2xl focus:outline-none focus:shadow-[0_8px_30px_rgb(0,0,0,0.12)] focus:bg-white transition-all duration-300 ease-in-out border-0"
+              className="w-full py-3.5 pl-11 pr-24 sm:py-4 sm:pl-12 sm:pr-28 md:py-5 md:pl-14 md:pr-32 text-sm sm:text-base md:text-lg text-neutral-800 placeholder:text-gray-400 bg-white rounded-xl sm:rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.12)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.16)] focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:shadow-[0_8px_40px_rgba(59,130,246,0.3)] transition-all duration-300 ease-in-out border border-white/20"
               data-testid="input-search-tools"
               autoComplete="off"
             />
-            <div className="absolute right-1.5 top-1.5 bottom-1.5 px-3 sm:right-2 sm:top-2 sm:bottom-2 sm:px-4 md:px-6 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg sm:rounded-xl flex items-center justify-center pointer-events-none">
-              <Search className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
+
+            {/* Keyboard Shortcut Hint */}
+            <div className="absolute right-3 sm:right-4 md:right-5 top-1/2 -translate-y-1/2 pointer-events-none hidden sm:flex items-center gap-1.5 opacity-60 group-focus-within:opacity-0 transition-opacity duration-200">
+              <div className="px-2 py-1 bg-gray-100 rounded border border-gray-200 flex items-center gap-1">
+                <Command className="w-3 h-3 text-gray-500" />
+                <span className="text-xs font-medium text-gray-500">K</span>
+              </div>
             </div>
+
+            {/* Sparkle Effect on Focus */}
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-xl sm:rounded-2xl opacity-0 group-focus-within:opacity-20 blur-xl transition-opacity duration-500" />
           </div>
 
-          {/* Enhanced Search Results Dropdown */}
-          {isSearchOpen && (
-            <div 
-              ref={dropdownRef}
-              className="absolute top-full left-2 right-2 sm:left-0 sm:right-0 mt-1 sm:mt-2 bg-white rounded-xl sm:rounded-2xl shadow-2xl border border-gray-200 z-50 max-h-[20rem] sm:max-h-[28rem] md:max-h-[32rem] overflow-hidden animate-slide-down"
-            >
-              {searchResults.length > 0 ? (
-                <div className="overflow-y-auto max-h-[18rem] sm:max-h-[24rem] md:max-h-[28rem] custom-scrollbar">
-                  {searchResults.map((tool, index) => (
-                    <button
-                      key={tool.id}
-                      onClick={() => handleToolClick(tool.href)}
-                      className={`w-full px-3 py-2.5 sm:px-4 sm:py-3 md:px-5 md:py-4 text-left transition-all duration-200 border-b border-gray-100 last:border-b-0 group ${
-                        index === selectedIndex 
-                          ? 'bg-blue-50 border-l-4 border-l-blue-500' 
-                          : 'hover:bg-gray-50 active:bg-gray-100 border-l-4 border-l-transparent'
-                      }`}
-                      data-testid={`hero-search-result-${tool.id}`}
-                    >
-                      <div className="flex items-center justify-between gap-2">
-                        <div className="flex-1 min-w-0">
-                          <div className={`text-sm sm:text-base font-semibold truncate transition-colors ${
-                            index === selectedIndex ? 'text-blue-700' : 'text-gray-900 group-hover:text-blue-600'
-                          }`}>
-                            {tool.name}
-                          </div>
-                          <div className="text-xs sm:text-sm text-gray-500 line-clamp-1 sm:line-clamp-2 mt-0.5 sm:mt-1">
-                            {tool.description}
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
-                          {tool.isPopular && (
-                            <div className="bg-gradient-to-r from-yellow-100 to-yellow-50 text-yellow-700 text-xs px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded-full font-medium flex items-center gap-0.5 sm:gap-1 shadow-sm">
-                              <TrendingUp className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
-                              <span className="hidden sm:inline">Popular</span>
-                            </div>
-                          )}
-                          <div className={`text-gray-400 transition-transform hidden sm:block ${
-                            index === selectedIndex ? 'translate-x-0' : '-translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100'
-                          }`}>
-                            →
-                          </div>
-                        </div>
+          {/* Professional Search Results Dropdown */}
+          <AnimatePresence>
+            {isSearchOpen && (
+              <motion.div 
+                ref={dropdownRef}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                className="absolute top-full left-2 right-2 sm:left-0 sm:right-0 mt-3 sm:mt-4 bg-white rounded-xl sm:rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.2)] border border-gray-100 z-50 max-h-[22rem] sm:max-h-[30rem] md:max-h-[36rem] overflow-hidden backdrop-blur-xl"
+              >
+                {searchResults.length > 0 ? (
+                  <div className="overflow-y-auto max-h-[20rem] sm:max-h-[26rem] md:max-h-[32rem] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
+                    {/* Results Header */}
+                    <div className="sticky top-0 bg-gradient-to-b from-gray-50 to-gray-50/80 backdrop-blur-sm px-4 py-2 sm:px-5 sm:py-3 border-b border-gray-200 z-10">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs sm:text-sm font-medium text-gray-600">
+                          Found {searchResults.length} tool{searchResults.length !== 1 ? 's' : ''}
+                        </span>
+                        <span className="text-xs text-gray-400 hidden sm:block">↑↓ Navigate • Enter Select • Esc Close</span>
                       </div>
-                    </button>
-                  ))}
-                  
-                  {searchQuery.trim() && (
-                    <div className="px-2 py-2 sm:px-5 sm:py-4 border-t-2 border-gray-200 bg-gray-50">
-                      <button
-                        onClick={handleSearch}
-                        className="w-full text-center text-blue-600 hover:text-blue-700 active:text-blue-800 font-semibold text-xs sm:text-sm py-2 px-3 rounded-lg hover:bg-blue-50 active:bg-blue-100 transition-all duration-200"
-                        data-testid="hero-search-view-all"
-                      >
-                        View all results for "{searchQuery}" →
-                      </button>
                     </div>
-                  )}
-                </div>
-              ) : searchQuery.trim() ? (
-                <div className="p-4 sm:p-6 md:p-10 text-center text-gray-500 animate-fade-in">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3 md:mb-4">
-                    <Search className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-gray-400" />
+
+                    {/* Search Results */}
+                    {searchResults.map((tool, index) => (
+                      <motion.button
+                        key={tool.id}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.2, delay: index * 0.03 }}
+                        onClick={() => handleToolClick(tool.href)}
+                        className={`w-full px-3 py-3 sm:px-5 sm:py-4 text-left transition-all duration-150 border-b border-gray-50 last:border-b-0 group relative ${
+                          index === selectedIndex 
+                            ? 'bg-gradient-to-r from-blue-50 to-indigo-50' 
+                            : 'hover:bg-gray-50/80 active:bg-gray-100/80'
+                        }`}
+                        data-testid={`hero-search-result-${tool.id}`}
+                      >
+                        {/* Selection Indicator */}
+                        <div className={`absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 to-indigo-600 transition-all duration-200 ${
+                          index === selectedIndex ? 'opacity-100' : 'opacity-0 group-hover:opacity-50'
+                        }`} />
+
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="flex-1 min-w-0">
+                            {/* Tool Name */}
+                            <div className={`text-sm sm:text-base font-semibold flex items-center gap-2 mb-1 transition-colors ${
+                              index === selectedIndex ? 'text-blue-700' : 'text-gray-900 group-hover:text-blue-600'
+                            }`}>
+                              <span className="truncate">{tool.name}</span>
+                              {tool.category && (
+                                <span className="text-xs px-2 py-0.5 rounded bg-gray-100 text-gray-600 font-normal flex-shrink-0 hidden sm:inline-block">
+                                  {tool.category}
+                                </span>
+                              )}
+                            </div>
+                            
+                            {/* Tool Description */}
+                            <div className="text-xs sm:text-sm text-gray-500 line-clamp-1 sm:line-clamp-2 leading-relaxed">
+                              {tool.description}
+                            </div>
+                          </div>
+
+                          {/* Right Side Icons & Badges */}
+                          <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
+                            {tool.isPopular && (
+                              <div className="bg-gradient-to-r from-amber-100 to-yellow-100 text-amber-700 text-xs px-2 py-1 rounded-md font-medium flex items-center gap-1 shadow-sm">
+                                <Sparkles className="w-3 h-3" />
+                                <span className="hidden sm:inline">Popular</span>
+                              </div>
+                            )}
+                            <ArrowRight className={`w-4 h-4 text-gray-400 transition-all duration-200 ${
+                              index === selectedIndex 
+                                ? 'translate-x-0 opacity-100' 
+                                : '-translate-x-1 opacity-0 group-hover:translate-x-0 group-hover:opacity-100'
+                            }`} />
+                          </div>
+                        </div>
+                      </motion.button>
+                    ))}
+                    
+                    {/* View All Results Button */}
+                    {searchQuery.trim() && (
+                      <div className="sticky bottom-0 bg-gradient-to-t from-gray-50 to-gray-50/80 backdrop-blur-sm px-3 py-3 sm:px-5 sm:py-4 border-t border-gray-200">
+                        <button
+                          onClick={handleSearch}
+                          className="w-full text-center bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-xs sm:text-sm py-2.5 sm:py-3 px-4 rounded-lg shadow-lg hover:shadow-xl active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2"
+                          data-testid="hero-search-view-all"
+                        >
+                          <span>View all results for "{searchQuery.length > 20 ? searchQuery.slice(0, 20) + '...' : searchQuery}"</span>
+                          <ArrowRight className="w-4 h-4" />
+                        </button>
+                      </div>
+                    )}
                   </div>
-                  <p className="text-sm sm:text-base md:text-lg font-medium text-gray-700 mb-1 sm:mb-2">No tools found</p>
-                  <p className="text-xs sm:text-sm mb-2 sm:mb-4 px-2">No results matching "{searchQuery}"</p>
-                  <button
-                    onClick={() => setLocation('/tools')}
-                    className="mt-1 sm:mt-2 text-blue-600 hover:text-blue-700 active:text-blue-800 font-semibold text-xs sm:text-sm py-2 px-4 sm:px-6 rounded-lg hover:bg-blue-50 active:bg-blue-100 transition-all duration-200"
+                ) : searchQuery.trim() ? (
+                  <motion.div 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="p-6 sm:p-8 md:p-12 text-center"
                   >
-                    Browse all tools →
-                  </button>
-                </div>
-              ) : null}
-            </div>
-          )}
+                    <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-5">
+                      <Search className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-gray-400" />
+                    </div>
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-800 mb-2">No tools found</h3>
+                    <p className="text-xs sm:text-sm text-gray-500 mb-6 max-w-sm mx-auto">
+                      We couldn't find any tools matching "<span className="font-semibold text-gray-700">{searchQuery}</span>"
+                    </p>
+                    <button
+                      onClick={() => setLocation('/tools')}
+                      className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-xs sm:text-sm py-2.5 px-5 sm:px-7 rounded-lg shadow-lg hover:shadow-xl active:scale-[0.98] transition-all duration-200"
+                    >
+                      <span>Browse all tools</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </motion.div>
+                ) : null}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.div>
         
         {/* Stats */}
