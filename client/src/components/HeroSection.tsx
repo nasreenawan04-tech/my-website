@@ -248,35 +248,24 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
         >
-          <form onSubmit={handleSearch} className="relative group">
-            <div className="relative">
-              <input 
-                ref={inputRef}
-                type="text" 
-                placeholder="Search for tools..."
-                value={searchQuery}
-                onChange={handleSearchChange}
-                onFocus={handleInputFocus}
-                onBlur={handleInputBlur}
-                onKeyDown={handleKeyDown}
-                className="w-full py-3 sm:py-4 px-4 sm:px-6 pr-14 sm:pr-16 text-base sm:text-lg text-neutral-800 bg-white rounded-xl sm:rounded-2xl shadow-lg focus:outline-none focus:shadow-2xl transition-all duration-300 hover:shadow-xl"
-                data-testid="input-search-tools"
-                autoComplete="off"
-              />
-              {isSearching && (
-                <div className="absolute right-16 sm:right-20 top-1/2 -translate-y-1/2">
-                  <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 animate-spin" />
-                </div>
-              )}
+          <div className="relative">
+            <input 
+              ref={inputRef}
+              type="text" 
+              placeholder="Search for tools..."
+              value={searchQuery}
+              onChange={handleSearchChange}
+              onFocus={handleInputFocus}
+              onBlur={handleInputBlur}
+              onKeyDown={handleKeyDown}
+              className="w-full py-4 px-6 pr-16 text-lg text-neutral-800 bg-white rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-200 transition-all duration-200"
+              data-testid="input-search-tools"
+              autoComplete="off"
+            />
+            <div className="absolute right-2 top-2 bottom-2 px-6 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl flex items-center pointer-events-none">
+              <Search className="w-5 h-5" aria-hidden="true" />
             </div>
-            <button 
-              type="submit"
-              className="absolute right-1.5 sm:right-2 top-1.5 sm:top-2 bottom-1.5 sm:bottom-2 px-4 sm:px-6 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg sm:rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 active:scale-95"
-              data-testid="button-search-tools"
-            >
-              <Search size={18} className="sm:w-5 sm:h-5" />
-            </button>
-          </form>
+          </div>
 
           {/* Enhanced Search Results Dropdown */}
           {isSearchOpen && (
