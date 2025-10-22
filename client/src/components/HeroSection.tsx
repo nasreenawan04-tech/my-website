@@ -44,11 +44,10 @@ const HeroSection = () => {
     if (e) e.preventDefault();
     if (searchQuery.trim()) {
       setLocation(`/tools?search=${encodeURIComponent(searchQuery.trim())}`);
-    } else {
-      setLocation('/tools');
+      setIsSearchOpen(false);
+      inputRef.current?.blur();
     }
-    setIsSearchOpen(false);
-    inputRef.current?.blur();
+    // Don't navigate if search is empty
   }, [searchQuery, setLocation]);
 
   const handleToolClick = useCallback((toolHref: string) => {
