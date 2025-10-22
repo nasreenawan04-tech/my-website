@@ -243,29 +243,42 @@ const HeroSection = () => {
         
         {/* Enhanced Search Bar */}
         <motion.div 
-          className="max-w-2xl mx-auto mb-8 sm:mb-12 md:mb-16 relative px-2 sm:px-0"
+          className="max-w-3xl mx-auto mb-8 sm:mb-12 md:mb-16 relative px-2 sm:px-0"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
         >
-          <div className="relative">
-            <input 
-              ref={inputRef}
-              type="text" 
-              placeholder="Search for tools..."
-              value={searchQuery}
-              onChange={handleSearchChange}
-              onFocus={handleInputFocus}
-              onBlur={handleInputBlur}
-              onKeyDown={handleKeyDown}
-              className="w-full py-3 pl-4 pr-12 sm:py-4 sm:pl-5 sm:pr-14 md:py-5 md:px-6 md:pr-16 text-sm sm:text-base md:text-lg text-neutral-800 bg-white/95 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-2xl focus:outline-none focus:shadow-[0_8px_30px_rgb(0,0,0,0.12)] focus:bg-white transition-all duration-300 ease-in-out border-0"
-              data-testid="input-search-tools"
-              autoComplete="off"
-            />
-            <div className="absolute right-1.5 top-1.5 bottom-1.5 px-3 sm:right-2 sm:top-2 sm:bottom-2 sm:px-4 md:px-6 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg sm:rounded-xl flex items-center justify-center pointer-events-none">
-              <Search className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
+          <motion.div 
+            className="relative group"
+            whileHover={{ scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 400, damping: 25 }}
+          >
+            <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 rounded-2xl sm:rounded-3xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
+            <div className="relative">
+              <input 
+                ref={inputRef}
+                type="text" 
+                placeholder="Search for tools..."
+                value={searchQuery}
+                onChange={handleSearchChange}
+                onFocus={handleInputFocus}
+                onBlur={handleInputBlur}
+                onKeyDown={handleKeyDown}
+                className="w-full py-4 pl-5 pr-14 sm:py-5 sm:pl-7 sm:pr-16 md:py-6 md:pl-8 md:pr-20 text-base sm:text-lg md:text-xl text-neutral-800 placeholder:text-neutral-400 bg-white/98 backdrop-blur-lg rounded-xl sm:rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.15)] focus:outline-none focus:shadow-[0_20px_60px_rgba(0,0,0,0.25)] focus:bg-white focus:ring-2 focus:ring-white/50 transition-all duration-500 ease-out border-0 font-medium"
+                data-testid="input-search-tools"
+                autoComplete="off"
+              />
+              <motion.button
+                onClick={handleSearch}
+                className="absolute right-2 top-2 bottom-2 px-4 sm:right-2.5 sm:top-2.5 sm:bottom-2.5 sm:px-5 md:px-7 bg-gradient-to-br from-blue-500 via-blue-600 to-purple-600 hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 text-white rounded-lg sm:rounded-xl flex items-center justify-center cursor-pointer shadow-lg hover:shadow-xl transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                data-testid="button-search"
+              >
+                <Search className="w-5 h-5 sm:w-6 sm:h-6" aria-hidden="true" />
+              </motion.button>
             </div>
-          </div>
+          </motion.div>
 
           {/* Enhanced Search Results Dropdown */}
           {isSearchOpen && (
