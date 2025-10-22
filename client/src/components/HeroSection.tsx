@@ -258,7 +258,7 @@ const HeroSection = () => {
               onFocus={handleInputFocus}
               onBlur={handleInputBlur}
               onKeyDown={handleKeyDown}
-              className="w-full py-4 px-6 pr-16 text-lg text-neutral-800 bg-white rounded-2xl shadow-lg focus:outline-none focus:ring-4 focus:ring-blue-200 transition-all duration-200"
+              className="w-full py-5 px-6 pr-16 text-lg text-neutral-800 bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl focus:outline-none focus:shadow-[0_8px_30px_rgb(0,0,0,0.12)] focus:bg-white transition-all duration-300 ease-in-out border-0"
               data-testid="input-search-tools"
               autoComplete="off"
             />
