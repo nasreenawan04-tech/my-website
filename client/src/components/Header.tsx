@@ -1,6 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { Link, useLocation } from 'wouter';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { useDebounce } from '@/hooks/use-debounce';
 import { searchTools } from '@/lib/search';
 import { tools } from '@/data/tools';
 import Logo from './Logo';
@@ -29,6 +30,9 @@ const Header = () => {
   const searchInputRef = useRef<HTMLInputElement>(null);
   const { user, logout, loading } = useAuth();
   const { toast } = useToast();
+  
+  // Debounce search query for better performance
+  const debouncedSearchQuery = useDebounce(searchQuery, 300);
 
   // Handle scroll effect
   useEffect(() => {
@@ -75,27 +79,36 @@ const Header = () => {
     };
   }, [isMobileMenuOpen]);
 
-  const handleSearch = (query: string) => {
-    setSearchQuery(query);
-    const results = searchTools(query);
-    setSearchResults(results);
-  };
+  // Perform search only when debounced query changes
+  useEffect(() => {
+    if (debouncedSearchQuery.trim()) {
+      const results = searchTools(debouncedSearchQuery);
+      setSearchResults(results);
+    } else {
+      setSearchResults(tools);
+    }
+  }, [debouncedSearchQuery]);
 
-  const handleToolClick = (toolHref: string) => {
+  const handleSearch = useCallback((query: string) => {
+    setSearchQuery(query);
+  }, []);
+
+  const handleToolClick = useCallback((toolHref: string) => {
     setIsSearchOpen(false);
     setSearchQuery('');
     setLocation(toolHref);
-  };
+  }, [setLocation]);
 
-  const navLinks = [
+  // Memoize nav links to prevent recreating on every render
+  const navLinks = useMemo(() => [
     { href: '/finance-tools', label: 'Finance Tools' },
     { href: '/text-tools', label: 'Text Tools' },
     { href: '/health-tools', label: 'Health Tools' },
     { href: '/favorite-tools', label: 'Favorites' },
     { href: '/recently-used-tools', label: 'Recently Used' }
-  ];
+  ], []);
 
-  const handleLogout = async () => {
+  const handleLogout = useCallback(async () => {
     try {
       await logout();
       toast({
@@ -110,7 +123,7 @@ const Header = () => {
         variant: 'destructive'
       });
     }
-  };
+  }, [logout, toast, setLocation]);
 
   return (
     <>
@@ -413,7 +426,11 @@ const Header = () => {
             </div>
 
             {/* Search Results */}
-            <div className="max-h-[calc(100vh-16rem)] sm:max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-neutral-600 scrollbar-track-transparent hover:scrollbar-thumb-gray-400 dark:hover:scrollbar-thumb-neutral-500">
+            <div 
+              className="max-h-[calc(100vh-16rem)] sm:max-h-96 overflow-y-auto scrollbar-thin"
+              role="listbox"
+              aria-label="Search results"
+            >
               {searchResults.length > 0 ? (
                 searchResults.slice(0, 10).map((tool, index) => (
                   <button
@@ -422,6 +439,8 @@ const Header = () => {
                     className="w-full p-4 sm:p-5 text-left hover:bg-gray-50 dark:hover:bg-neutral-800/70 border-b border-gray-100 dark:border-neutral-800 last:border-0 transition-all duration-200 animate-in fade-in slide-in-from-bottom-2 active:bg-gray-100 dark:active:bg-neutral-800 touch-manipulation"
                     style={{ animationDelay: `${index * 30}ms` }}
                     data-testid={`search-result-${tool.id}`}
+                    role="option"
+                    aria-selected="false"
                   >
                     <div className="flex items-center gap-3">
                       <div className="flex-1 min-w-0">
