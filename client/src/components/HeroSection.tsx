@@ -264,11 +264,11 @@ const HeroSection = () => {
             />
             <button
               type="submit"
-              className="absolute right-2 sm:right-2 md:right-2.5 top-1/2 -translate-y-1/2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white rounded-full px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 transition-all duration-200 z-10 cursor-pointer shadow-md hover:shadow-lg hover:scale-105 active:scale-95 flex items-center justify-center gap-1.5"
+              className="absolute right-2 sm:right-2 md:right-2.5 top-1/2 -translate-y-1/2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white rounded-full px-5 py-2.5 sm:px-6 sm:py-3 md:px-7 md:py-3.5 transition-all duration-200 z-10 cursor-pointer shadow-md hover:shadow-lg hover:scale-105 active:scale-95 flex items-center justify-center gap-1.5"
               data-testid="button-search-submit"
               aria-label="Search"
             >
-              <Search className="w-4 h-4 sm:w-4 sm:h-4 md:w-5 md:h-5" strokeWidth={2.5} />
+              <Search className="w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5" strokeWidth={2.5} />
             </button>
           </form>
 
