@@ -251,21 +251,23 @@ Finally, this last paragraph completes our sample text, giving you four distinct
 
                     {/* Options */}
                     <div className="space-y-3 sm:space-y-4 bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6">
-                      <div className="flex items-center space-x-2 sm:space-x-3">
+                      <div className="flex items-start sm:items-center space-x-2 sm:space-x-3">
                         <Checkbox
                           id="show-details"
                           checked={showDetails}
                           onCheckedChange={(checked) => setShowDetails(checked === true)}
-                          className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600 border-2 border-gray-300 rounded focus:ring-blue-500"
+                          className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600 border-2 border-gray-300 rounded focus:ring-blue-500 flex-shrink-0 mt-0.5 sm:mt-0"
                           data-testid="checkbox-show-details"
                         />
-                        <Label htmlFor="show-details" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
-                          Enable Detailed Analysis
-                        </Label>
+                        <div className="flex-1">
+                          <Label htmlFor="show-details" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide cursor-pointer">
+                            Enable Detailed Analysis
+                          </Label>
+                          <p className="text-xs sm:text-sm text-gray-600 mt-1 sm:mt-2">
+                            Show comprehensive paragraph breakdown including averages and length statistics
+                          </p>
+                        </div>
                       </div>
-                      <p className="text-xs sm:text-sm text-gray-600 ml-6 sm:ml-8">
-                        Show comprehensive paragraph breakdown including averages and length statistics
-                      </p>
                     </div>
                   </div>
 
