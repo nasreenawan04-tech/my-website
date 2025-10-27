@@ -204,7 +204,7 @@ This tool provides detailed analysis of your text content for social media optim
                       id="text-input"
                       value={text}
                       onChange={(e) => setText(e.target.value)}
-                      className="min-h-[250px] sm:min-h-[300px] lg:min-h-[400px] text-sm sm:text-base border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 resize-none w-full"
+                      className="min-h-[350px] sm:min-h-[400px] lg:min-h-[500px] text-sm sm:text-base border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 resize-none w-full"
                       placeholder="Type or paste your text here to get instant character count and detailed text analysis..."
                       data-testid="textarea-text-input"
                     />
