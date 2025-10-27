@@ -183,39 +183,39 @@ This tool provides detailed analysis of your text content for social media optim
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
           {/* Main Calculator Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+              <div className="flex flex-col">
                 {/* Input Section */}
-                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
-                  <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Text Analysis</h2>
-                    <p className="text-gray-600">Enter your text to get instant character count and detailed analysis</p>
+                <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
+                  <div className="text-center sm:text-left">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Text Analysis</h2>
+                    <p className="text-sm sm:text-base text-gray-600">Enter your text to get instant character count and detailed analysis</p>
                   </div>
 
                   {/* Text Area */}
-                  <div className="space-y-4">
-                    <Label htmlFor="text-input" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                  <div className="space-y-2 sm:space-y-3">
+                    <Label htmlFor="text-input" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                       Text to Analyze
                     </Label>
                     <Textarea
                       id="text-input"
                       value={text}
                       onChange={(e) => setText(e.target.value)}
-                      className="min-h-[300px] lg:min-h-[400px] text-base border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500 resize-none"
+                      className="min-h-[250px] sm:min-h-[300px] lg:min-h-[400px] text-sm sm:text-base border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 resize-none w-full"
                       placeholder="Type or paste your text here to get instant character count and detailed text analysis..."
                       data-testid="textarea-text-input"
                     />
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                  <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       onClick={handleClear}
                       variant="outline"
-                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                       data-testid="button-clear-text"
                     >
                       Clear Text
@@ -223,14 +223,14 @@ This tool provides detailed analysis of your text content for social media optim
                     <Button
                       onClick={handleSampleText}
                       variant="outline"
-                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                       data-testid="button-sample-text"
                     >
                       Sample Text
                     </Button>
                     <Button
                       onClick={handleCopy}
-                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="w-full sm:flex-1 h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg"
                       disabled={!result || result.totalCharacters === 0}
                       data-testid="button-copy-stats"
                     >
@@ -240,12 +240,12 @@ This tool provides detailed analysis of your text content for social media optim
 
                   {/* Advanced Options */}
                   {result && (
-                    <div className="flex flex-wrap gap-3 pt-4">
+                    <div className="flex flex-wrap gap-2 sm:gap-3 pt-3 sm:pt-4">
                       <Button
                         onClick={() => setShowDetails(!showDetails)}
                         variant="outline"
                         size="sm"
-                        className="rounded-full"
+                        className="rounded-full text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2"
                         data-testid="button-show-details"
                       >
                         {showDetails ? 'Hide' : 'Show'} Detailed Analysis
@@ -255,49 +255,49 @@ This tool provides detailed analysis of your text content for social media optim
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Character Statistics</h2>
+                {result !== null && (
+                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Character Statistics</h2>
 
-                  {result ? (
-                    <div className="space-y-6" data-testid="character-statistics">
+                  <div className="space-y-4 sm:space-y-6 md:space-y-8" data-testid="character-statistics">
                       {/* Character Count Highlight */}
-                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
-                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Total Characters</div>
-                        <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" data-testid="stat-total-characters">
+                      <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-lg border border-blue-100">
+                        <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-1 sm:mb-2">Total Characters</div>
+                        <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 break-all" data-testid="stat-total-characters">
                           {result.totalCharacters.toLocaleString()}
                         </div>
                       </div>
 
                       {/* Main Statistics */}
-                      <div className="space-y-4">
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                      <div className="space-y-2 sm:space-y-3 md:space-y-4">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Characters (no spaces)</span>
-                            <span className="font-bold text-purple-600" data-testid="stat-characters-no-spaces">
+                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Characters (no spaces)</span>
+                            <span className="font-bold text-purple-600 text-sm sm:text-base md:text-lg" data-testid="stat-characters-no-spaces">
                               {result.charactersWithoutSpaces.toLocaleString()}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Words</span>
-                            <span className="font-bold text-green-600" data-testid="stat-words">
+                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Words</span>
+                            <span className="font-bold text-green-600 text-sm sm:text-base md:text-lg" data-testid="stat-words">
                               {result.words.toLocaleString()}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Sentences</span>
-                            <span className="font-bold text-orange-600" data-testid="stat-sentences">
+                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Sentences</span>
+                            <span className="font-bold text-orange-600 text-sm sm:text-base md:text-lg" data-testid="stat-sentences">
                               {result.sentences.toLocaleString()}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Paragraphs</span>
-                            <span className="font-bold text-indigo-600" data-testid="stat-paragraphs">
+                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Paragraphs</span>
+                            <span className="font-bold text-indigo-600 text-sm sm:text-base md:text-lg" data-testid="stat-paragraphs">
                               {result.paragraphs.toLocaleString()}
                             </span>
                           </div>
@@ -306,67 +306,67 @@ This tool provides detailed analysis of your text content for social media optim
 
                       {/* Detailed Analysis */}
                       {showDetails && (
-                        <div className="space-y-4">
-                          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-200">
-                            <h4 className="font-bold text-blue-800 mb-4 text-lg">Character Breakdown</h4>
-                            <div className="space-y-3">
+                        <div className="space-y-3 sm:space-y-4">
+                          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-blue-200">
+                            <h4 className="font-bold text-blue-800 mb-3 sm:mb-4 text-sm sm:text-base md:text-lg">Character Breakdown</h4>
+                            <div className="space-y-2 sm:space-y-3">
                               <div className="flex justify-between items-center">
-                                <span className="text-blue-700 font-medium">Alphabetic:</span>
-                                <span className="font-bold text-blue-800 text-lg" data-testid="stat-alphabetic">
+                                <span className="text-blue-700 font-medium text-xs sm:text-sm">Alphabetic:</span>
+                                <span className="font-bold text-blue-800 text-sm sm:text-base md:text-lg" data-testid="stat-alphabetic">
                                   {result.alphabeticCharacters.toLocaleString()}
                                 </span>
                               </div>
                               <div className="flex justify-between items-center">
-                                <span className="text-blue-700 font-medium">Numeric:</span>
-                                <span className="font-bold text-blue-800 text-lg" data-testid="stat-numeric">
+                                <span className="text-blue-700 font-medium text-xs sm:text-sm">Numeric:</span>
+                                <span className="font-bold text-blue-800 text-sm sm:text-base md:text-lg" data-testid="stat-numeric">
                                   {result.numericCharacters.toLocaleString()}
                                 </span>
                               </div>
                               <div className="flex justify-between items-center">
-                                <span className="text-blue-700 font-medium">Special Characters:</span>
-                                <span className="font-bold text-blue-800 text-lg" data-testid="stat-special">
+                                <span className="text-blue-700 font-medium text-xs sm:text-sm">Special Characters:</span>
+                                <span className="font-bold text-blue-800 text-sm sm:text-base md:text-lg" data-testid="stat-special">
                                   {result.specialCharacters.toLocaleString()}
                                 </span>
                               </div>
                             </div>
                           </div>
 
-                          <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-6 border border-green-200">
-                            <h4 className="font-bold text-green-800 mb-4 text-lg">Case Analysis</h4>
-                            <div className="space-y-3">
+                          <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-green-200">
+                            <h4 className="font-bold text-green-800 mb-3 sm:mb-4 text-sm sm:text-base md:text-lg">Case Analysis</h4>
+                            <div className="space-y-2 sm:space-y-3">
                               <div className="flex justify-between items-center">
-                                <span className="text-green-700 font-medium">Uppercase:</span>
-                                <span className="font-bold text-green-800 text-lg" data-testid="stat-uppercase">
+                                <span className="text-green-700 font-medium text-xs sm:text-sm">Uppercase:</span>
+                                <span className="font-bold text-green-800 text-sm sm:text-base md:text-lg" data-testid="stat-uppercase">
                                   {result.upperCaseLetters.toLocaleString()}
                                 </span>
                               </div>
                               <div className="flex justify-between items-center">
-                                <span className="text-green-700 font-medium">Lowercase:</span>
-                                <span className="font-bold text-green-800 text-lg" data-testid="stat-lowercase">
+                                <span className="text-green-700 font-medium text-xs sm:text-sm">Lowercase:</span>
+                                <span className="font-bold text-green-800 text-sm sm:text-base md:text-lg" data-testid="stat-lowercase">
                                   {result.lowerCaseLetters.toLocaleString()}
                                 </span>
                               </div>
                             </div>
                           </div>
 
-                          <div className="bg-gradient-to-r from-purple-50 to-violet-50 rounded-xl p-6 border border-purple-200">
-                            <h4 className="font-bold text-purple-800 mb-4 text-lg">Additional Statistics</h4>
-                            <div className="space-y-3">
+                          <div className="bg-gradient-to-r from-purple-50 to-violet-50 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-purple-200">
+                            <h4 className="font-bold text-purple-800 mb-3 sm:mb-4 text-sm sm:text-base md:text-lg">Additional Statistics</h4>
+                            <div className="space-y-2 sm:space-y-3">
                               <div className="flex justify-between items-center">
-                                <span className="text-purple-700 font-medium">Spaces:</span>
-                                <span className="font-bold text-purple-800 text-lg" data-testid="stat-spaces">
+                                <span className="text-purple-700 font-medium text-xs sm:text-sm">Spaces:</span>
+                                <span className="font-bold text-purple-800 text-sm sm:text-base md:text-lg" data-testid="stat-spaces">
                                   {result.spaces.toLocaleString()}
                                 </span>
                               </div>
                               <div className="flex justify-between items-center">
-                                <span className="text-purple-700 font-medium">Punctuation:</span>
-                                <span className="font-bold text-purple-800 text-lg" data-testid="stat-punctuation">
+                                <span className="text-purple-700 font-medium text-xs sm:text-sm">Punctuation:</span>
+                                <span className="font-bold text-purple-800 text-sm sm:text-base md:text-lg" data-testid="stat-punctuation">
                                   {result.punctuation.toLocaleString()}
                                 </span>
                               </div>
                               <div className="flex justify-between items-center">
-                                <span className="text-purple-700 font-medium">Lines:</span>
-                                <span className="font-bold text-purple-800 text-lg" data-testid="stat-lines">
+                                <span className="text-purple-700 font-medium text-xs sm:text-sm">Lines:</span>
+                                <span className="font-bold text-purple-800 text-sm sm:text-base md:text-lg" data-testid="stat-lines">
                                   {result.lines.toLocaleString()}
                                 </span>
                               </div>
@@ -375,15 +375,8 @@ This tool provides detailed analysis of your text content for social media optim
                         </div>
                       )}
                     </div>
-                  ) : (
-                    <div className="text-center py-16" data-testid="no-results">
-                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <div className="text-3xl font-bold text-gray-400">Aa</div>
-                      </div>
-                      <p className="text-gray-500 text-lg">Enter text above to see detailed character statistics</p>
-                    </div>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             </CardContent>
           </Card>
