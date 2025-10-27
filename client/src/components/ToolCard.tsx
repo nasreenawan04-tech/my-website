@@ -8,7 +8,6 @@ import { ArrowRight, TrendingUp } from 'lucide-react';
 interface ToolCardProps {
   tool: Tool;
   onClick?: () => void;
-  variant?: 'default' | 'horizontal';
 }
 
 const categoryColors = {
@@ -23,7 +22,7 @@ const categoryGradients = {
   health: 'from-pink-500 to-rose-600'
 };
 
-const ToolCard = ({ tool, onClick, variant = 'default' }: ToolCardProps) => {
+const ToolCard = ({ tool, onClick }: ToolCardProps) => {
   const [, setLocation] = useLocation();
   const { addRecent } = useRecentTools();
 
@@ -40,68 +39,6 @@ const ToolCard = ({ tool, onClick, variant = 'default' }: ToolCardProps) => {
       handleClick();
     }
   };
-
-  if (variant === 'horizontal') {
-    return (
-      <div 
-        className="group relative bg-white dark:bg-neutral-800 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 border border-neutral-200 dark:border-neutral-700 overflow-hidden cursor-pointer"
-        onClick={handleClick}
-        onKeyDown={handleKeyDown}
-        tabIndex={0}
-        role="button"
-        aria-label={`Open ${tool.name} - ${tool.description}`}
-        data-testid={`card-tool-${tool.id}`}
-      >
-        {/* Gradient accent line */}
-        <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r ${categoryGradients[tool.category]} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-        
-        {/* Horizontal layout */}
-        <div className="relative p-4 sm:p-5 flex items-center gap-4">
-          {/* Left side - Icon */}
-          <div className={`flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br ${categoryGradients[tool.category]} flex items-center justify-center shadow-md`}>
-            <i className={`${tool.icon} text-white text-xl sm:text-2xl`}></i>
-          </div>
-          
-          {/* Middle - Content */}
-          <div className="flex-1 min-w-0">
-            <div className="flex items-start gap-2 mb-1">
-              <h3 className="text-base sm:text-lg font-bold text-neutral-900 dark:text-neutral-100 group-hover:text-primary transition-colors duration-200" data-testid={`text-tool-name-${tool.id}`}>
-                {tool.name}
-              </h3>
-              {tool.isPopular && (
-                <div className="inline-flex items-center gap-1 bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs px-2 py-0.5 rounded-full font-medium whitespace-nowrap">
-                  <TrendingUp size={10} className="w-3 h-3" />
-                  <span>Popular</span>
-                </div>
-              )}
-            </div>
-            <p className="text-sm text-neutral-600 dark:text-neutral-400 line-clamp-2 mb-2" data-testid={`text-tool-description-${tool.id}`}>
-              {tool.description}
-            </p>
-            <span 
-              className={`inline-flex items-center px-2.5 py-0.5 ${categoryColors[tool.category]} text-xs rounded-full font-medium`}
-              data-testid={`text-tool-category-${tool.id}`}
-            >
-              {categories[tool.category]}
-            </span>
-          </div>
-          
-          {/* Right side - Actions */}
-          <div className="flex-shrink-0 flex items-center gap-2">
-            <div className="opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-200">
-              <FavoriteButton tool={tool} size="sm" />
-            </div>
-            <div className="flex items-center gap-1 text-primary">
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-200" />
-            </div>
-          </div>
-        </div>
-
-        {/* Hover effect overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-      </div>
-    );
-  }
 
   return (
     <div 
