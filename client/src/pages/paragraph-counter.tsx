@@ -201,79 +201,79 @@ Finally, this last paragraph completes our sample text, giving you four distinct
 
       <main>
         {/* Hero Section */}
-        <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32 overflow-hidden">
+        <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
-          <div className="relative max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12 text-center">
-            <div className="space-y-4 sm:space-y-6 md:space-y-8 lg:space-y-10">
-              <div className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+          <div className="relative max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
+            <div className="space-y-4 sm:space-y-6 md:space-y-8">
+              <div className="inline-flex items-center px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
                 <span className="text-xs sm:text-sm font-medium text-blue-700">Professional Text Analysis</span>
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-slate-900 leading-tight tracking-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0" data-testid="page-title">
                 <span className="block">Paragraph</span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
                   Counter
                 </span>
               </h1>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-slate-600 max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto leading-relaxed px-2 sm:px-0">
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
                 Analyze text structure, count paragraphs, and get detailed insights for better content organization
               </p>
             </div>
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
           {/* Main Calculator Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
                 {/* Input Section */}
-                <div className="lg:col-span-2 p-8 lg:p-12 space-y-8">
-                  <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Text Analysis</h2>
-                    <p className="text-gray-600">Enter your text to get instant paragraph statistics and structure analysis</p>
+                <div className="lg:col-span-2 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
+                  <div className="text-center sm:text-left">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Text Analysis</h2>
+                    <p className="text-sm sm:text-base text-gray-600">Enter your text to get instant paragraph statistics and structure analysis</p>
                   </div>
 
-                  <div className="space-y-6">
+                  <div className="space-y-4 sm:space-y-6">
                     {/* Text Area */}
-                    <div className="space-y-3">
-                      <Label htmlFor="text-input" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="text-input" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Text to Analyze
                       </Label>
                       <Textarea
                         id="text-input"
                         value={text}
                         onChange={(e) => setText(e.target.value)}
-                        className="min-h-[300px] lg:min-h-[400px] text-base border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500 resize-none"
+                        className="min-h-[250px] sm:min-h-[300px] lg:min-h-[400px] text-sm sm:text-base border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 resize-none"
                         placeholder="Type or paste your text here to get instant paragraph count and detailed text structure analysis..."
                         data-testid="textarea-text-input"
                       />
                     </div>
 
                     {/* Options */}
-                    <div className="space-y-4 bg-gray-50 rounded-xl p-6">
-                      <div className="flex items-center space-x-3">
+                    <div className="space-y-3 sm:space-y-4 bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6">
+                      <div className="flex items-center space-x-2 sm:space-x-3">
                         <Checkbox
                           id="show-details"
                           checked={showDetails}
                           onCheckedChange={(checked) => setShowDetails(checked === true)}
-                          className="h-5 w-5 text-blue-600 border-2 border-gray-300 rounded focus:ring-blue-500"
+                          className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600 border-2 border-gray-300 rounded focus:ring-blue-500"
                           data-testid="checkbox-show-details"
                         />
-                        <Label htmlFor="show-details" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        <Label htmlFor="show-details" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                           Enable Detailed Analysis
                         </Label>
                       </div>
-                      <p className="text-sm text-gray-600 ml-8">
+                      <p className="text-xs sm:text-sm text-gray-600 ml-6 sm:ml-8">
                         Show comprehensive paragraph breakdown including averages and length statistics
                       </p>
                     </div>
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                  <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       onClick={handleSampleText}
-                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                       data-testid="button-sample-text"
                     >
                       Load Sample Text
@@ -281,7 +281,7 @@ Finally, this last paragraph completes our sample text, giving you four distinct
                     <Button
                       onClick={handleClear}
                       variant="outline"
-                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                       data-testid="button-clear-text"
                     >
                       Clear
@@ -289,7 +289,7 @@ Finally, this last paragraph completes our sample text, giving you four distinct
                     <Button
                       onClick={handleCopy}
                       variant="outline"
-                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                       disabled={!result || result.totalParagraphs === 0}
                       data-testid="button-copy-stats"
                     >
@@ -299,41 +299,41 @@ Finally, this last paragraph completes our sample text, giving you four distinct
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Results</h2>
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t lg:border-t-0 lg:border-l">
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Results</h2>
 
                   {result ? (
-                    <div className="space-y-6" data-testid="paragraph-statistics">
+                    <div className="space-y-4 sm:space-y-6" data-testid="paragraph-statistics">
                       {/* Main Paragraph Count Highlight */}
-                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
-                        <div className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Total Paragraphs</div>
-                        <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" data-testid="stat-total-paragraphs">
+                      <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border border-blue-100">
+                        <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-2">Total Paragraphs</div>
+                        <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600" data-testid="stat-total-paragraphs">
                           {result.totalParagraphs.toLocaleString()}
                         </div>
                       </div>
 
                       {/* Category Breakdown */}
-                      <div className="space-y-4">
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Short Paragraphs (≤50 words)</span>
-                            <span className="font-bold text-green-600" data-testid="stat-short-paragraphs">
+                      <div className="space-y-3 sm:space-y-4">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex justify-between items-center gap-2">
+                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Short Paragraphs (≤50 words)</span>
+                            <span className="font-bold text-green-600 text-sm sm:text-base md:text-lg" data-testid="stat-short-paragraphs">
                               {result.shortParagraphs.toLocaleString()}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Medium Paragraphs (51-150)</span>
-                            <span className="font-bold text-yellow-600" data-testid="stat-medium-paragraphs">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex justify-between items-center gap-2">
+                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Medium Paragraphs (51-150)</span>
+                            <span className="font-bold text-yellow-600 text-sm sm:text-base md:text-lg" data-testid="stat-medium-paragraphs">
                               {result.mediumParagraphs.toLocaleString()}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Long Paragraphs (&gt;150 words)</span>
-                            <span className="font-bold text-red-600" data-testid="stat-long-paragraphs">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex justify-between items-center gap-2">
+                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Long Paragraphs (&gt;150 words)</span>
+                            <span className="font-bold text-red-600 text-sm sm:text-base md:text-lg" data-testid="stat-long-paragraphs">
                               {result.longParagraphs.toLocaleString()}
                             </span>
                           </div>
@@ -341,19 +341,19 @@ Finally, this last paragraph completes our sample text, giving you four distinct
                       </div>
 
                       {/* Quick Stats */}
-                      <div className="space-y-4">
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Total Words</span>
-                            <span className="font-bold text-gray-900" data-testid="stat-words">
+                      <div className="space-y-3 sm:space-y-4">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex justify-between items-center gap-2">
+                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Total Words</span>
+                            <span className="font-bold text-gray-900 text-sm sm:text-base md:text-lg" data-testid="stat-words">
                               {result.words.toLocaleString()}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Reading Time</span>
-                            <span className="font-bold text-gray-900" data-testid="stat-reading-time">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                          <div className="flex justify-between items-center gap-2">
+                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Reading Time</span>
+                            <span className="font-bold text-gray-900 text-sm sm:text-base md:text-lg" data-testid="stat-reading-time">
                               {result.readingTime} min
                             </span>
                           </div>
@@ -362,43 +362,43 @@ Finally, this last paragraph completes our sample text, giving you four distinct
 
                       {/* Detailed Analysis */}
                       {showDetails && (
-                        <div className="space-y-4">
-                          <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-6 border border-indigo-200">
-                            <h4 className="font-bold text-indigo-800 mb-4 text-lg">Average Statistics</h4>
-                            <div className="space-y-3">
-                              <div className="flex justify-between items-center">
-                                <span className="text-indigo-700 font-medium">Words per Paragraph:</span>
-                                <span className="font-bold text-indigo-800 text-lg" data-testid="stat-avg-words">
+                        <div className="space-y-3 sm:space-y-4">
+                          <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-indigo-200">
+                            <h4 className="font-bold text-indigo-800 mb-3 sm:mb-4 text-sm sm:text-base md:text-lg">Average Statistics</h4>
+                            <div className="space-y-2 sm:space-y-3">
+                              <div className="flex justify-between items-center gap-2">
+                                <span className="text-indigo-700 font-medium text-xs sm:text-sm">Words per Paragraph:</span>
+                                <span className="font-bold text-indigo-800 text-sm sm:text-base md:text-lg" data-testid="stat-avg-words">
                                   {result.averageWordsPerParagraph.toLocaleString()}
                                 </span>
                               </div>
-                              <div className="flex justify-between items-center">
-                                <span className="text-indigo-700 font-medium">Sentences per Paragraph:</span>
-                                <span className="font-bold text-indigo-800 text-lg" data-testid="stat-avg-sentences">
+                              <div className="flex justify-between items-center gap-2">
+                                <span className="text-indigo-700 font-medium text-xs sm:text-sm">Sentences per Paragraph:</span>
+                                <span className="font-bold text-indigo-800 text-sm sm:text-base md:text-lg" data-testid="stat-avg-sentences">
                                   {result.averageSentencesPerParagraph}
                                 </span>
                               </div>
-                              <div className="flex justify-between items-center">
-                                <span className="text-indigo-700 font-medium">Characters per Paragraph:</span>
-                                <span className="font-bold text-indigo-800 text-lg" data-testid="stat-avg-characters">
+                              <div className="flex justify-between items-center gap-2">
+                                <span className="text-indigo-700 font-medium text-xs sm:text-sm">Characters per Paragraph:</span>
+                                <span className="font-bold text-indigo-800 text-sm sm:text-base md:text-lg" data-testid="stat-avg-characters">
                                   {result.averageCharactersPerParagraph.toLocaleString()}
                                 </span>
                               </div>
                             </div>
                           </div>
 
-                          <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl p-6 border border-orange-200">
-                            <h4 className="font-bold text-orange-800 mb-4 text-lg">Length Range</h4>
-                            <div className="space-y-3">
-                              <div className="flex justify-between items-center">
-                                <span className="text-orange-700 font-medium">Longest Paragraph:</span>
-                                <span className="font-bold text-orange-800 text-lg" data-testid="stat-longest">
+                          <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-orange-200">
+                            <h4 className="font-bold text-orange-800 mb-3 sm:mb-4 text-sm sm:text-base md:text-lg">Length Range</h4>
+                            <div className="space-y-2 sm:space-y-3">
+                              <div className="flex justify-between items-center gap-2">
+                                <span className="text-orange-700 font-medium text-xs sm:text-sm">Longest Paragraph:</span>
+                                <span className="font-bold text-orange-800 text-sm sm:text-base md:text-lg" data-testid="stat-longest">
                                   {result.longestParagraph.toLocaleString()} words
                                 </span>
                               </div>
-                              <div className="flex justify-between items-center">
-                                <span className="text-orange-700 font-medium">Shortest Paragraph:</span>
-                                <span className="font-bold text-orange-800 text-lg" data-testid="stat-shortest">
+                              <div className="flex justify-between items-center gap-2">
+                                <span className="text-orange-700 font-medium text-xs sm:text-sm">Shortest Paragraph:</span>
+                                <span className="font-bold text-orange-800 text-sm sm:text-base md:text-lg" data-testid="stat-shortest">
                                   {result.shortestParagraph.toLocaleString()} words
                                 </span>
                               </div>
@@ -408,11 +408,11 @@ Finally, this last paragraph completes our sample text, giving you four distinct
                       )}
                     </div>
                   ) : (
-                    <div className="text-center py-16" data-testid="no-results">
-                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <div className="text-3xl font-bold text-gray-400">¶</div>
+                    <div className="text-center py-8 sm:py-12 md:py-16" data-testid="no-results">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
+                        <div className="text-2xl sm:text-3xl font-bold text-gray-400">¶</div>
                       </div>
-                      <p className="text-gray-500 text-lg">Enter text to see paragraph analysis</p>
+                      <p className="text-gray-500 text-sm sm:text-base md:text-lg px-4">Enter text to see paragraph analysis</p>
                     </div>
                   )}
                 </div>
