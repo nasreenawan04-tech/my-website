@@ -263,9 +263,6 @@ Finally, this last paragraph completes our sample text, giving you four distinct
                           <Label htmlFor="show-details" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide cursor-pointer">
                             Enable Detailed Analysis
                           </Label>
-                          <p className="text-xs sm:text-sm text-gray-600 mt-1 sm:mt-2">
-                            Show comprehensive paragraph breakdown including averages and length statistics
-                          </p>
                         </div>
                       </div>
                     </div>
