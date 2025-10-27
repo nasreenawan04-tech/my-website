@@ -272,18 +272,18 @@ Finally, this last paragraph completes our sample text, giving you four distinct
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
+                  <div className="flex flex-col sm:flex-row justify-center items-stretch sm:items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       onClick={handleSampleText}
-                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="w-full sm:w-auto min-w-0 sm:min-w-[140px] md:min-w-[160px] h-11 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105 active:scale-95"
                       data-testid="button-sample-text"
                     >
-                      Load Sample Text
+                      <span className="truncate">Load Sample Text</span>
                     </Button>
                     <Button
                       onClick={handleClear}
                       variant="outline"
-                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
+                      className="w-full sm:w-auto min-w-0 sm:min-w-[100px] md:min-w-[120px] h-11 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl transition-all duration-200 active:scale-95"
                       data-testid="button-clear-text"
                     >
                       Clear
@@ -291,11 +291,11 @@ Finally, this last paragraph completes our sample text, giving you four distinct
                     <Button
                       onClick={handleCopy}
                       variant="outline"
-                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
+                      className="w-full sm:w-auto min-w-0 sm:min-w-[120px] md:min-w-[140px] h-11 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
                       disabled={!result || result.totalParagraphs === 0}
                       data-testid="button-copy-stats"
                     >
-                      Copy Stats
+                      <span className="truncate">Copy Stats</span>
                     </Button>
                   </div>
                 </div>
