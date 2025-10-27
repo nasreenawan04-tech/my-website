@@ -256,7 +256,7 @@ Finally, this last paragraph completes our sample text, giving you four distinct
                           id="show-details"
                           checked={showDetails}
                           onCheckedChange={(checked) => setShowDetails(checked === true)}
-                          className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600 border-2 border-gray-300 rounded focus:ring-blue-500 flex-shrink-0 mt-0.5 sm:mt-0"
+                          className="h-4 w-4 text-blue-600 border-2 border-gray-300 rounded focus:ring-blue-500 flex-shrink-0 mt-0.5 sm:mt-0"
                           data-testid="checkbox-show-details"
                         />
                         <div className="flex-1">
