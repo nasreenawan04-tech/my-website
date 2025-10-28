@@ -204,9 +204,9 @@ Speaking time: ${result.speakingTime} minute(s)`;
           {/* Main Calculator Card */}
           <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
+              <div className="grid grid-cols-1 gap-0">
                 {/* Input Section */}
-                <div className="lg:col-span-2 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
+                <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
                   <div className="text-center sm:text-left">
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Text Analysis</h2>
                     <p className="text-sm sm:text-base text-gray-600">Enter your text to get instant word count and detailed statistics</p>
