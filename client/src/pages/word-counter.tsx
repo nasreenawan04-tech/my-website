@@ -277,8 +277,8 @@ Speaking time: ${result.speakingTime} minute(s)`;
                         </div>
                       </div>
 
-                      {/* Main Statistics */}
-                      <div className="space-y-2 sm:space-y-3 md:space-y-4">
+                      {/* Main Statistics - 2 Column Grid */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3 md:gap-4">
                         <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
                             <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Characters (with spaces)</span>
@@ -313,9 +313,9 @@ Speaking time: ${result.speakingTime} minute(s)`;
                         </div>
                       </div>
 
-                      {/* Advanced Statistics */}
+                      {/* Advanced Statistics - 2 Column Grid */}
                       {showAdvancedStats && (
-                        <div className="space-y-2 sm:space-y-3 md:space-y-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3 md:gap-4">
                           <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                             <div className="flex justify-between items-center">
                               <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Lines</span>
