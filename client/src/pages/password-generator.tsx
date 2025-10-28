@@ -10,6 +10,9 @@ import { Switch } from '@/components/ui/switch';
 import { Slider } from '@/components/ui/slider';
 import { Separator } from '@/components/ui/separator';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
+import { useToast } from '@/hooks/use-toast';
+import { Copy, Eye, EyeOff, RefreshCw, Trash2, Download, CheckCircle, FileDown } from 'lucide-react';
 
 interface PasswordOptions {
   length: number;
@@ -29,10 +32,18 @@ interface PasswordStrength {
   description: string;
 }
 
+interface PasswordEntropy {
+  entropy: number;
+  charsetSize: number;
+  crackTime: string;
+}
+
 export default function PasswordGenerator() {
+  const { toast } = useToast();
   const [password, setPassword] = useState('');
   const [passwordHistory, setPasswordHistory] = useState<string[]>([]);
   const [showAdvanced, setShowAdvanced] = useState(false);
+  const [showPassword, setShowPassword] = useState(true);
   const [options, setOptions] = useState<PasswordOptions>({
     length: 16,
     includeUppercase: true,
@@ -44,6 +55,7 @@ export default function PasswordGenerator() {
     customCharacters: ''
   });
   const [passwordStrength, setPasswordStrength] = useState<PasswordStrength | null>(null);
+  const [passwordEntropy, setPasswordEntropy] = useState<PasswordEntropy | null>(null);
 
   const generatePassword = (opts: PasswordOptions): string => {
     let charset = '';
@@ -157,12 +169,71 @@ export default function PasswordGenerator() {
     });
   };
 
+  const calculateEntropy = (pwd: string, opts: PasswordOptions): PasswordEntropy => {
+    let charsetSize = 0;
+    if (opts.includeUppercase) charsetSize += 26;
+    if (opts.includeLowercase) charsetSize += 26;
+    if (opts.includeNumbers) charsetSize += 10;
+    if (opts.includeSymbols) charsetSize += 25;
+    if (opts.customCharacters) charsetSize += opts.customCharacters.length;
+
+    const entropy = pwd.length * Math.log2(charsetSize);
+    
+    const guessesPerSecond = 1_000_000_000; // 1 billion guesses per second
+    const totalCombinations = Math.pow(charsetSize, pwd.length);
+    const secondsToCrack = totalCombinations / (2 * guessesPerSecond); // divide by 2 for average case
+
+    let crackTime = '';
+    if (secondsToCrack < 1) crackTime = 'Instant';
+    else if (secondsToCrack < 60) crackTime = `${Math.round(secondsToCrack)} seconds`;
+    else if (secondsToCrack < 3600) crackTime = `${Math.round(secondsToCrack / 60)} minutes`;
+    else if (secondsToCrack < 86400) crackTime = `${Math.round(secondsToCrack / 3600)} hours`;
+    else if (secondsToCrack < 31536000) crackTime = `${Math.round(secondsToCrack / 86400)} days`;
+    else if (secondsToCrack < 31536000000) crackTime = `${Math.round(secondsToCrack / 31536000)} years`;
+    else if (secondsToCrack < 31536000000000) crackTime = `${Math.round(secondsToCrack / 31536000000)} thousand years`;
+    else if (secondsToCrack < 31536000000000000) crackTime = `${Math.round(secondsToCrack / 31536000000000)} million years`;
+    else crackTime = 'Billions of years';
+
+    return { entropy: Math.round(entropy), charsetSize, crackTime };
+  };
+
   const updateOption = (key: keyof PasswordOptions, value: boolean | number | string) => {
     setOptions(prev => ({ ...prev, [key]: value }));
   };
 
   const handleCopyToClipboard = (textToCopy: string) => {
     navigator.clipboard.writeText(textToCopy);
+    toast({
+      title: "✓ Copied to clipboard!",
+      description: "Password has been copied successfully.",
+      duration: 2000,
+    });
+  };
+
+  const clearHistory = () => {
+    setPasswordHistory([]);
+    toast({
+      title: "✓ History cleared",
+      description: "All password history has been removed.",
+      duration: 2000,
+    });
+  };
+
+  const downloadPassword = () => {
+    const blob = new Blob([password], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `password-${new Date().getTime()}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    toast({
+      title: "↓ Password downloaded",
+      description: "Your password has been saved to a text file.",
+      duration: 2000,
+    });
   };
 
   const resetGenerator = () => {
@@ -185,10 +256,19 @@ export default function PasswordGenerator() {
   useEffect(() => {
     if (password && !password.startsWith('Error:')) {
       setPasswordStrength(calculatePasswordStrength(password));
+      setPasswordEntropy(calculateEntropy(password, options));
     } else {
       setPasswordStrength(null);
+      setPasswordEntropy(null);
     }
-  }, [password]);
+  }, [password, options]);
+
+  // Auto-regenerate when options change
+  useEffect(() => {
+    if (password) {
+      handleGeneratePassword();
+    }
+  }, [options.length, options.includeUppercase, options.includeLowercase, options.includeNumbers, options.includeSymbols, options.excludeSimilar, options.excludeAmbiguous, options.customCharacters]);
 
   useEffect(() => {
     handleGeneratePassword();
@@ -236,20 +316,20 @@ export default function PasswordGenerator() {
 
       <main>
         {/* Hero Section */}
-        <section className="relative py-12 sm:py-16 md:py-20 lg:py-28 xl:py-32 overflow-hidden">
+        <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
-          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="space-y-4 sm:space-y-6 lg:space-y-8">
+          <div className="relative max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12 text-center">
+            <div className="space-y-4 sm:space-y-6 md:space-y-8 lg:space-y-10">
               <div className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
                 <span className="text-xs sm:text-sm font-medium text-blue-700">Cryptographically Secure Generator</span>
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-slate-900 leading-tight">
-                Random Password
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-slate-900 leading-tight tracking-tight">
+                <span className="block">Random Password</span>
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
                   Generator
                 </span>
               </h1>
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed px-2">
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-slate-600 max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto leading-relaxed px-2 sm:px-0">
                 Create cryptographically secure passwords with advanced customization options to protect your digital accounts
               </p>
             </div>
@@ -308,6 +388,7 @@ export default function PasswordGenerator() {
                           <Switch
                             checked={options.includeUppercase}
                             onCheckedChange={(value) => updateOption('includeUppercase', value)}
+                            data-testid="switch-uppercase"
                           />
                         </div>
 
@@ -321,6 +402,7 @@ export default function PasswordGenerator() {
                           <Switch
                             checked={options.includeLowercase}
                             onCheckedChange={(value) => updateOption('includeLowercase', value)}
+                            data-testid="switch-lowercase"
                           />
                         </div>
                       </div>
@@ -336,6 +418,7 @@ export default function PasswordGenerator() {
                           <Switch
                             checked={options.includeNumbers}
                             onCheckedChange={(value) => updateOption('includeNumbers', value)}
+                            data-testid="switch-numbers"
                           />
                         </div>
 
@@ -349,6 +432,7 @@ export default function PasswordGenerator() {
                           <Switch
                             checked={options.includeSymbols}
                             onCheckedChange={(value) => updateOption('includeSymbols', value)}
+                            data-testid="switch-symbols"
                           />
                         </div>
                       </div>
@@ -456,23 +540,59 @@ export default function PasswordGenerator() {
                     <div className="space-y-4 sm:space-y-6 md:space-y-8" data-testid="password-results">
                       {/* Generated Password Display */}
                       <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-4 sm:p-6 shadow-lg border border-blue-100">
-                        <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-1 sm:mb-2">Your Password</div>
+                        <div className="flex justify-between items-center mb-1 sm:mb-2">
+                          <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide">Your Password</div>
+                          <Button
+                            onClick={() => setShowPassword(!showPassword)}
+                            variant="ghost"
+                            size="sm"
+                            className="h-6 px-2 text-xs"
+                            data-testid="button-toggle-visibility"
+                          >
+                            {showPassword ? <EyeOff className="h-3 w-3 sm:h-4 sm:w-4" /> : <Eye className="h-3 w-3 sm:h-4 sm:w-4" />}
+                          </Button>
+                        </div>
                         <div className="relative">
                           <div
-                            className="text-sm sm:text-base md:text-lg font-mono bg-gray-50 p-3 sm:p-4 rounded-lg sm:rounded-xl border-2 border-gray-200 break-all cursor-pointer hover:bg-gray-100 transition-colors"
+                            className="text-sm sm:text-base md:text-lg font-mono bg-gray-50 p-3 sm:p-4 pr-12 sm:pr-16 rounded-lg sm:rounded-xl border-2 border-gray-200 break-all cursor-pointer hover:bg-gray-100 transition-colors"
                             onClick={() => handleCopyToClipboard(password)}
                             data-testid="text-generated-password"
                           >
-                            {password}
+                            {showPassword ? password : '•'.repeat(password.length)}
                           </div>
                           <Button
                             onClick={() => handleCopyToClipboard(password)}
                             variant="outline"
                             size="sm"
-                            className="absolute top-1 sm:top-2 right-1 sm:right-2 text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2 rounded-md sm:rounded-lg"
+                            className="absolute top-1 sm:top-2 right-1 sm:right-2 text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2 rounded-md sm:rounded-lg flex items-center gap-1"
                             data-testid="button-copy-password"
                           >
-                            Copy
+                            <Copy className="h-3 w-3 sm:h-4 sm:w-4" />
+                            <span className="hidden sm:inline">Copy</span>
+                          </Button>
+                        </div>
+                        
+                        {/* Quick Action Buttons */}
+                        <div className="flex gap-2 mt-3 sm:mt-4">
+                          <Button
+                            onClick={downloadPassword}
+                            variant="outline"
+                            size="sm"
+                            className="flex-1 text-xs sm:text-sm flex items-center justify-center gap-1 sm:gap-2"
+                            data-testid="button-download"
+                          >
+                            <Download className="h-3 w-3 sm:h-4 sm:w-4" />
+                            Download
+                          </Button>
+                          <Button
+                            onClick={handleGeneratePassword}
+                            variant="outline"
+                            size="sm"
+                            className="flex-1 text-xs sm:text-sm flex items-center justify-center gap-1 sm:gap-2"
+                            data-testid="button-regenerate"
+                          >
+                            <RefreshCw className="h-3 w-3 sm:h-4 sm:w-4" />
+                            Regenerate
                           </Button>
                         </div>
                       </div>
@@ -496,10 +616,73 @@ export default function PasswordGenerator() {
                         </div>
                       )}
 
+                      {/* Password Entropy & Security Metrics */}
+                      {passwordEntropy && (
+                        <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm">
+                          <h3 className="font-medium text-gray-700 text-sm sm:text-base mb-3 sm:mb-4">Security Analysis</h3>
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+                            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-3 sm:p-4 border border-blue-100">
+                              <div className="text-xs text-blue-700 font-medium mb-1">Entropy</div>
+                              <div className="text-lg sm:text-xl font-bold text-blue-900" data-testid="text-entropy">
+                                {passwordEntropy.entropy} bits
+                              </div>
+                            </div>
+                            <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-3 sm:p-4 border border-green-100">
+                              <div className="text-xs text-green-700 font-medium mb-1">Character Pool</div>
+                              <div className="text-lg sm:text-xl font-bold text-green-900" data-testid="text-charset">
+                                {passwordEntropy.charsetSize} chars
+                              </div>
+                            </div>
+                            <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-3 sm:p-4 border border-purple-100">
+                              <div className="text-xs text-purple-700 font-medium mb-1">Crack Time</div>
+                              <div className="text-sm sm:text-base font-bold text-purple-900" data-testid="text-crack-time">
+                                {passwordEntropy.crackTime}
+                              </div>
+                            </div>
+                          </div>
+                          <p className="text-xs text-gray-500 mt-3 sm:mt-4">
+                            Based on 1 billion guesses per second using modern hardware
+                          </p>
+                        </div>
+                      )}
+
                       {/* Password History */}
                       {passwordHistory.length > 0 && (
                         <div className="space-y-3 sm:space-y-4">
-                          <h3 className="font-bold text-gray-900 text-base sm:text-lg">Recent Passwords</h3>
+                          <div className="flex justify-between items-center">
+                            <h3 className="font-bold text-gray-900 text-base sm:text-lg">Recent Passwords</h3>
+                            <AlertDialog>
+                              <AlertDialogTrigger asChild>
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  className="text-xs sm:text-sm text-red-600 hover:text-red-700 hover:bg-red-50 flex items-center gap-1"
+                                  data-testid="button-clear-history"
+                                >
+                                  <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
+                                  Clear
+                                </Button>
+                              </AlertDialogTrigger>
+                              <AlertDialogContent>
+                                <AlertDialogHeader>
+                                  <AlertDialogTitle>Clear Password History?</AlertDialogTitle>
+                                  <AlertDialogDescription>
+                                    This will permanently delete all saved passwords from your history. This action cannot be undone.
+                                  </AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <AlertDialogFooter>
+                                  <AlertDialogCancel data-testid="button-cancel-clear">Cancel</AlertDialogCancel>
+                                  <AlertDialogAction 
+                                    onClick={clearHistory}
+                                    className="bg-red-600 hover:bg-red-700"
+                                    data-testid="button-confirm-clear"
+                                  >
+                                    Clear History
+                                  </AlertDialogAction>
+                                </AlertDialogFooter>
+                              </AlertDialogContent>
+                            </AlertDialog>
+                          </div>
                           {passwordHistory.slice(0, 3).map((historyPassword, index) => (
                             <div key={index} className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                               <div className="flex justify-between items-center">
@@ -508,10 +691,11 @@ export default function PasswordGenerator() {
                                   onClick={() => handleCopyToClipboard(historyPassword)}
                                   variant="outline"
                                   size="sm"
-                                  className="text-xs sm:text-sm px-2 sm:px-3 py-1 rounded-md sm:rounded-lg"
+                                  className="text-xs sm:text-sm px-2 sm:px-3 py-1 rounded-md sm:rounded-lg flex items-center gap-1"
                                   data-testid={`button-copy-history-${index}`}
                                 >
-                                  Copy
+                                  <Copy className="h-3 w-3" />
+                                  <span className="hidden sm:inline">Copy</span>
                                 </Button>
                               </div>
                               <div className="font-mono text-xs sm:text-sm text-gray-600 mt-1 sm:mt-2 truncate" data-testid={`text-history-password-${index}`}>
@@ -523,11 +707,19 @@ export default function PasswordGenerator() {
                       )}
                     </div>
                   ) : (
-                    <div className="text-center py-16">
-                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <div className="text-3xl font-bold text-gray-400">🔐</div>
+                    <div className="text-center py-8 sm:py-12 md:py-16">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
+                        <div className="text-2xl sm:text-3xl">🔐</div>
                       </div>
-                      <p className="text-gray-500 text-lg">Generate your first secure password</p>
+                      <h3 className="text-base sm:text-lg font-semibold text-gray-700 mb-2">Ready to Generate</h3>
+                      <p className="text-sm sm:text-base text-gray-500 mb-4 sm:mb-6">Click "Generate Password" to create your secure password</p>
+                      <Button
+                        onClick={handleGeneratePassword}
+                        className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white text-sm sm:text-base"
+                        data-testid="button-generate-first"
+                      >
+                        Generate Password
+                      </Button>
                     </div>
                   )}
                 </div>
@@ -536,10 +728,10 @@ export default function PasswordGenerator() {
           </Card>
 
           {/* SEO Content Sections */}
-          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">What is a Random Password Generator?</h3>
+          <div className="mt-8 sm:mt-12 md:mt-16 grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 md:mb-6">What is a Random Password Generator?</h3>
                 <div className="space-y-4 text-gray-600">
                   <p>
                     A <strong>random password generator</strong> is a cybersecurity tool that creates cryptographically secure,
@@ -556,9 +748,9 @@ export default function PasswordGenerator() {
               </CardContent>
             </Card>
 
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Why Use Strong Passwords?</h3>
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 md:mb-6">Why Use Strong Passwords?</h3>
                 <div className="space-y-4 text-gray-600">
                   <p>
                     Strong passwords are your first line of defense against cyber threats. With cybercriminals using
@@ -576,11 +768,11 @@ export default function PasswordGenerator() {
           </div>
 
           {/* Password Security Guide */}
-          <div className="mt-12 space-y-8">
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Password Strength Guidelines</h3>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div className="mt-8 sm:mt-10 md:mt-12 space-y-4 sm:space-y-6 md:space-y-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6">Password Strength Guidelines</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
                   <div className="bg-red-50 rounded-lg p-4 border border-red-200">
                     <h4 className="font-semibold text-red-900 mb-2">Weak (1-4 characters)</h4>
                     <p className="text-red-800 text-sm mb-2">Extremely vulnerable</p>
@@ -609,10 +801,10 @@ export default function PasswordGenerator() {
             </Card>
 
             {/* Character Set Analysis */}
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Understanding Character Sets</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6">Understanding Character Sets</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                   <div className="space-y-4">
                     <h4 className="text-lg font-semibold text-gray-800">Character Type Impact</h4>
                     <div className="space-y-3">
@@ -663,10 +855,10 @@ export default function PasswordGenerator() {
             </Card>
 
             {/* Industry Best Practices */}
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Industry Password Requirements</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6">Industry Password Requirements</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
                   <div className="border border-blue-200 rounded-lg p-6 bg-blue-50">
                     <h4 className="font-semibold text-blue-900 mb-3">Banking & Finance</h4>
                     <ul className="text-sm text-blue-800 space-y-2">
@@ -704,10 +896,10 @@ export default function PasswordGenerator() {
             </Card>
 
             {/* Password Security Tips */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Common Password Mistakes</h3>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+                <CardContent className="p-4 sm:p-6 md:p-8">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6">Common Password Mistakes</h3>
                   <div className="space-y-4">
                     <div className="bg-red-50 border-l-4 border-red-400 p-4 rounded-r-lg">
                       <h4 className="font-semibold text-red-900 text-sm">Using Personal Information</h4>
@@ -725,9 +917,9 @@ export default function PasswordGenerator() {
                 </CardContent>
               </Card>
 
-              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Password Management Tips</h3>
+              <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+                <CardContent className="p-4 sm:p-6 md:p-8">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6">Password Management Tips</h3>
                   <div className="space-y-4">
                     <div className="bg-green-50 border-l-4 border-green-400 p-4 rounded-r-lg">
                       <h4 className="font-semibold text-green-900 text-sm">Use a Password Manager</h4>
@@ -747,10 +939,10 @@ export default function PasswordGenerator() {
             </div>
 
             {/* FAQ Section */}
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h3>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">Frequently Asked Questions</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                   <div className="space-y-6">
                     <div>
                       <h4 className="text-lg font-semibold text-gray-900 mb-2">How secure are randomly generated passwords?</h4>
@@ -788,10 +980,10 @@ export default function PasswordGenerator() {
             </Card>
 
             {/* Technical Security Features */}
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Technical Security Features</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6">Technical Security Features</h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
                   <div className="text-center">
                     <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-4">
                       <span className="text-2xl">🛡️</span>
