@@ -32,10 +32,6 @@ interface CaseConversionResult {
   swapCase: string;
   spongebobCase: string;
   trainCase: string;
-  cobolCase: string;
-  macroCase: string;
-  lowerCamelCase: string;
-  studlyCase: string;
 }
 
 interface AdvancedOptions {
@@ -46,34 +42,12 @@ interface AdvancedOptions {
   suffix: string;
   removeExtraSpaces: boolean;
   preserveLineBreaks: boolean;
-  trimWhitespace: boolean;
-  removeAccents: boolean;
-  smartCapitalization: boolean;
-}
-
-interface TextAnalytics {
-  wordCount: number;
-  characterCount: number;
-  characterCountNoSpaces: number;
-  sentenceCount: number;
-  paragraphCount: number;
-  averageWordLength: number;
-  longestWord: string;
-  shortestWord: string;
-  uniqueWords: number;
-  readingTime: number;
-  characterFrequency: { [key: string]: number };
 }
 
 const CaseConverter = () => {
   const [text, setText] = useState('');
   const [result, setResult] = useState<CaseConversionResult | null>(null);
   const [showAdvanced, setShowAdvanced] = useState(false);
-  const [showAnalytics, setShowAnalytics] = useState(false);
-  const [showTemplates, setShowTemplates] = useState(false);
-  const [analytics, setAnalytics] = useState<TextAnalytics | null>(null);
-  const [selectedFormat, setSelectedFormat] = useState<string>('all');
-  const [copyFeedback, setCopyFeedback] = useState<string>('');
   const [advancedOptions, setAdvancedOptions] = useState<AdvancedOptions>({
     preserveNumbers: true,
     ignorePunctuation: false,
@@ -81,90 +55,8 @@ const CaseConverter = () => {
     prefix: '',
     suffix: '',
     removeExtraSpaces: true,
-    preserveLineBreaks: false,
-    trimWhitespace: true,
-    removeAccents: false,
-    smartCapitalization: false
+    preserveLineBreaks: false
   });
-
-  const textTemplates = [
-    {
-      name: 'Variable Name',
-      template: 'user_authentication_token',
-      description: 'Common variable naming pattern'
-    },
-    {
-      name: 'Function Name',
-      template: 'calculate total price',
-      description: 'Function naming example'
-    },
-    {
-      name: 'Class Name',
-      template: 'user profile manager',
-      description: 'Class naming pattern'
-    },
-    {
-      name: 'API Endpoint',
-      template: 'get user data by id',
-      description: 'REST API endpoint example'
-    },
-    {
-      name: 'Database Table',
-      template: 'customer order details',
-      description: 'Database table naming'
-    },
-    {
-      name: 'CSS Class',
-      template: 'primary navigation button',
-      description: 'CSS class naming'
-    }
-  ];
-
-  const removeAccents = (str: string): string => {
-    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-  };
-
-  const analyzeText = (text: string): TextAnalytics => {
-    const words = text.trim().split(/\s+/).filter(word => word.length > 0);
-    const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
-    const paragraphs = text.split(/\n\n+/).filter(p => p.trim().length > 0);
-    
-    const characterFrequency: { [key: string]: number } = {};
-    for (const char of text) {
-      if (char !== ' ' && char !== '\n') {
-        characterFrequency[char] = (characterFrequency[char] || 0) + 1;
-      }
-    }
-
-    const wordLengths = words.map(w => w.length);
-    const avgWordLength = wordLengths.length > 0 
-      ? wordLengths.reduce((a, b) => a + b, 0) / wordLengths.length 
-      : 0;
-
-    const longestWord = words.length > 0 
-      ? words.reduce((a, b) => a.length > b.length ? a : b) 
-      : '';
-    const shortestWord = words.length > 0 
-      ? words.reduce((a, b) => a.length < b.length ? a : b) 
-      : '';
-
-    const uniqueWords = new Set(words.map(w => w.toLowerCase())).size;
-    const readingTime = Math.ceil(words.length / 200); // 200 words per minute
-
-    return {
-      wordCount: words.length,
-      characterCount: text.length,
-      characterCountNoSpaces: text.replace(/\s/g, '').length,
-      sentenceCount: sentences.length,
-      paragraphCount: paragraphs.length,
-      averageWordLength: Math.round(avgWordLength * 10) / 10,
-      longestWord,
-      shortestWord,
-      uniqueWords,
-      readingTime,
-      characterFrequency
-    };
-  };
 
   const convertCases = (inputText: string, options: AdvancedOptions): CaseConversionResult => {
     if (inputText.trim() === '') {
@@ -194,14 +86,6 @@ const CaseConverter = () => {
     let processedText = inputText;
     
     // Apply preprocessing based on advanced options
-    if (options.trimWhitespace) {
-      processedText = processedText.trim();
-    }
-
-    if (options.removeAccents) {
-      processedText = removeAccents(processedText);
-    }
-    
     if (options.removeExtraSpaces) {
       processedText = processedText.replace(/\s+/g, ' ').trim();
     }
@@ -302,26 +186,6 @@ const CaseConverter = () => {
     let trainCase = words.map(word => 
       word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
     ).join('-');
-
-    // COBOL-CASE - WORDS-SEPARATED-BY-HYPHENS-ALL-UPPERCASE
-    let cobolCase = words.map(word => word.toUpperCase()).join('-');
-
-    // MACRO_CASE - Similar to CONSTANT_CASE but commonly used for C/C++ macros
-    let macroCase = words.map(word => word.toUpperCase()).join('_');
-
-    // lowerCamelCase - Explicit lowercase first character (same as camelCase but emphasized)
-    let lowerCamelCase = words.length > 0 
-      ? words[0].toLowerCase() + words.slice(1).map(word => 
-          word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
-        ).join('')
-      : '';
-
-    // StUdLyCaSe - Random alternating caps on word boundaries
-    let studlyCase = words.map(word => {
-      return word.split('').map((char, i) => {
-        return Math.random() > 0.5 ? char.toUpperCase() : char.toLowerCase();
-      }).join('');
-    }).join('');
     
     // Apply prefix and suffix if provided
     if (options.prefix || options.suffix) {
@@ -335,15 +199,11 @@ const CaseConverter = () => {
       if (dotCase) dotCase = applyPrefixSuffix(dotCase);
       if (pathCase) pathCase = applyPrefixSuffix(pathCase);
       if (trainCase) trainCase = applyPrefixSuffix(trainCase);
-      if (cobolCase) cobolCase = applyPrefixSuffix(cobolCase);
-      if (macroCase) macroCase = applyPrefixSuffix(macroCase);
-      if (lowerCamelCase) lowerCamelCase = applyPrefixSuffix(lowerCamelCase);
       alternatingCase = applyPrefixSuffix(alternatingCase);
       inverseCase = applyPrefixSuffix(inverseCase);
       randomCase = applyPrefixSuffix(randomCase);
       swapCase = applyPrefixSuffix(swapCase);
       spongebobCase = applyPrefixSuffix(spongebobCase);
-      studlyCase = applyPrefixSuffix(studlyCase);
     }
 
     return {
@@ -365,11 +225,7 @@ const CaseConverter = () => {
       capitalCase,
       swapCase,
       spongebobCase,
-      trainCase,
-      cobolCase,
-      macroCase,
-      lowerCamelCase,
-      studlyCase
+      trainCase
     };
   };
 
@@ -377,13 +233,6 @@ const CaseConverter = () => {
   useEffect(() => {
     const result = convertCases(text, advancedOptions);
     setResult(result);
-    
-    if (text.trim()) {
-      const textAnalytics = analyzeText(text);
-      setAnalytics(textAnalytics);
-    } else {
-      setAnalytics(null);
-    }
   }, [text, advancedOptions]);
 
   const handleClear = () => {
@@ -392,54 +241,7 @@ const CaseConverter = () => {
 
   const handleCopyToClipboard = (textToCopy: string, type: string) => {
     navigator.clipboard.writeText(textToCopy);
-    setCopyFeedback(`${type} copied!`);
-    setTimeout(() => setCopyFeedback(''), 2000);
-  };
-
-  const handleBulkCopy = () => {
-    if (!result) return;
-    
-    const bulkText = conversionTypes
-      .map(type => `${type.label}:\n${result[type.key as keyof CaseConversionResult]}\n`)
-      .join('\n');
-    
-    navigator.clipboard.writeText(bulkText);
-    setCopyFeedback('All formats copied!');
-    setTimeout(() => setCopyFeedback(''), 2000);
-  };
-
-  const handleExportJSON = () => {
-    if (!result) return;
-    
-    const jsonData = JSON.stringify(result, null, 2);
-    const blob = new Blob([jsonData], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'case-conversions.json';
-    a.click();
-    URL.revokeObjectURL(url);
-  };
-
-  const handleExportCSV = () => {
-    if (!result) return;
-    
-    const csvContent = 'Format,Result\n' + 
-      conversionTypes
-        .map(type => `"${type.label}","${result[type.key as keyof CaseConversionResult]}"`)
-        .join('\n');
-    
-    const blob = new Blob([csvContent], { type: 'text/csv' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'case-conversions.csv';
-    a.click();
-    URL.revokeObjectURL(url);
-  };
-
-  const applyTemplate = (template: string) => {
-    setText(template);
+    // You could add a toast notification here if needed
   };
 
   const handleSampleText = () => {
@@ -460,17 +262,10 @@ const CaseConverter = () => {
       prefix: '',
       suffix: '',
       removeExtraSpaces: true,
-      preserveLineBreaks: false,
-      trimWhitespace: true,
-      removeAccents: false,
-      smartCapitalization: false
+      preserveLineBreaks: false
     });
     setShowAdvanced(false);
-    setShowAnalytics(false);
-    setShowTemplates(false);
     setResult(null);
-    setAnalytics(null);
-    setCopyFeedback('');
   };
 
   const conversionTypes = [
@@ -480,21 +275,17 @@ const CaseConverter = () => {
     { key: 'sentenceCase', label: 'Sentence case', description: 'First letter of sentences capitalized' },
     { key: 'capitalCase', label: 'Capital Case', description: 'All Words Capitalized With Spaces' },
     { key: 'camelCase', label: 'camelCase', description: 'firstWordLowercaseOthersCapitalized' },
-    { key: 'lowerCamelCase', label: 'lowerCamelCase', description: 'explicitLowerFirstCharacter' },
     { key: 'pascalCase', label: 'PascalCase', description: 'AllWordsCapitalizedNoSpaces' },
     { key: 'snakeCase', label: 'snake_case', description: 'words_separated_by_underscores' },
     { key: 'kebabCase', label: 'kebab-case', description: 'words-separated-by-hyphens' },
     { key: 'dotCase', label: 'dot.case', description: 'words.separated.by.dots' },
     { key: 'pathCase', label: 'path/case', description: 'words/separated/by/slashes' },
     { key: 'trainCase', label: 'Train-Case', description: 'Words-Capitalized-With-Hyphens' },
-    { key: 'cobolCase', label: 'COBOL-CASE', description: 'WORDS-SEPARATED-BY-HYPHENS-UPPERCASE' },
     { key: 'constantCase', label: 'CONSTANT_CASE', description: 'ALL_WORDS_UPPERCASE_WITH_UNDERSCORES' },
-    { key: 'macroCase', label: 'MACRO_CASE', description: 'C_STYLE_MACRO_NAMING' },
     { key: 'alternatingCase', label: 'aLtErNaTiNg CaSe', description: 'alternating upper and lower case' },
     { key: 'swapCase', label: 'sWAP cASE', description: 'opposite case of each character' },
     { key: 'inverseCase', label: 'iNVERSE cASE', description: 'opposite case of original' },
     { key: 'spongebobCase', label: 'SpOnGeBoB cAsE', description: 'random mocking text style' },
-    { key: 'studlyCase', label: 'StUdLyCaSe', description: 'random caps on word boundaries' },
     { key: 'randomCase', label: 'rAnDoM cAsE', description: 'randomly mixed upper and lower case' }
   ];
 
@@ -659,30 +450,6 @@ const CaseConverter = () => {
                                 data-testid="switch-ignore-punctuation"
                               />
                             </div>
-
-                            <div className="flex items-center justify-between gap-2">
-                              <div className="space-y-1 flex-1 min-w-0">
-                                <Label className="text-xs sm:text-sm font-medium">Trim Whitespace</Label>
-                                <p className="text-xs text-gray-500">Remove leading and trailing spaces</p>
-                              </div>
-                              <Switch
-                                checked={advancedOptions.trimWhitespace}
-                                onCheckedChange={(value) => updateAdvancedOption('trimWhitespace', value)}
-                                data-testid="switch-trim-whitespace"
-                              />
-                            </div>
-
-                            <div className="flex items-center justify-between gap-2">
-                              <div className="space-y-1 flex-1 min-w-0">
-                                <Label className="text-xs sm:text-sm font-medium">Remove Accents</Label>
-                                <p className="text-xs text-gray-500">Convert accented characters to ASCII</p>
-                              </div>
-                              <Switch
-                                checked={advancedOptions.removeAccents}
-                                onCheckedChange={(value) => updateAdvancedOption('removeAccents', value)}
-                                data-testid="switch-remove-accents"
-                              />
-                            </div>
                           </div>
 
                           {/* Customization Options */}
@@ -732,110 +499,6 @@ const CaseConverter = () => {
                     </Collapsible>
                   </div>
 
-                  {/* Quick Templates */}
-                  <div className="space-y-4 sm:space-y-6 border-t pt-6 sm:pt-8">
-                    <Collapsible open={showTemplates} onOpenChange={setShowTemplates}>
-                      <CollapsibleTrigger asChild>
-                        <Button 
-                          variant="ghost" 
-                          className="w-full justify-between text-sm sm:text-base py-3 sm:py-4 h-auto"
-                        >
-                          <span className="flex items-center">
-                            📝 Quick Templates
-                          </span>
-                          <span className={`transform transition-transform ${showTemplates ? 'rotate-180' : ''}`}>▼</span>
-                        </Button>
-                      </CollapsibleTrigger>
-                      <CollapsibleContent className="mt-4">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                          {textTemplates.map((template, index) => (
-                            <div 
-                              key={index}
-                              onClick={() => applyTemplate(template.template)}
-                              className="bg-gradient-to-br from-blue-50 to-indigo-50 p-4 rounded-lg border-2 border-blue-200 hover:border-blue-400 cursor-pointer transition-all hover:shadow-md"
-                            >
-                              <h4 className="font-semibold text-gray-900 text-sm mb-1">{template.name}</h4>
-                              <p className="text-xs text-gray-600 mb-2">{template.description}</p>
-                              <code className="text-xs bg-white px-2 py-1 rounded border border-gray-200 block truncate">
-                                {template.template}
-                              </code>
-                            </div>
-                          ))}
-                        </div>
-                      </CollapsibleContent>
-                    </Collapsible>
-                  </div>
-
-                  {/* Text Analytics */}
-                  {analytics && (
-                    <div className="space-y-4 sm:space-y-6 border-t pt-6 sm:pt-8">
-                      <Collapsible open={showAnalytics} onOpenChange={setShowAnalytics}>
-                        <CollapsibleTrigger asChild>
-                          <Button 
-                            variant="ghost" 
-                            className="w-full justify-between text-sm sm:text-base py-3 sm:py-4 h-auto"
-                          >
-                            <span className="flex items-center">
-                              📊 Text Analytics
-                            </span>
-                            <span className={`transform transition-transform ${showAnalytics ? 'rotate-180' : ''}`}>▼</span>
-                          </Button>
-                        </CollapsibleTrigger>
-                        <CollapsibleContent className="mt-4">
-                          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-                            <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                              <div className="text-2xl font-bold text-blue-700">{analytics.wordCount}</div>
-                              <div className="text-xs text-blue-600">Words</div>
-                            </div>
-                            <div className="bg-green-50 p-4 rounded-lg border border-green-200">
-                              <div className="text-2xl font-bold text-green-700">{analytics.characterCount}</div>
-                              <div className="text-xs text-green-600">Characters</div>
-                            </div>
-                            <div className="bg-purple-50 p-4 rounded-lg border border-purple-200">
-                              <div className="text-2xl font-bold text-purple-700">{analytics.characterCountNoSpaces}</div>
-                              <div className="text-xs text-purple-600">No Spaces</div>
-                            </div>
-                            <div className="bg-orange-50 p-4 rounded-lg border border-orange-200">
-                              <div className="text-2xl font-bold text-orange-700">{analytics.sentenceCount}</div>
-                              <div className="text-xs text-orange-600">Sentences</div>
-                            </div>
-                            <div className="bg-pink-50 p-4 rounded-lg border border-pink-200">
-                              <div className="text-2xl font-bold text-pink-700">{analytics.paragraphCount}</div>
-                              <div className="text-xs text-pink-600">Paragraphs</div>
-                            </div>
-                            <div className="bg-teal-50 p-4 rounded-lg border border-teal-200">
-                              <div className="text-2xl font-bold text-teal-700">{analytics.uniqueWords}</div>
-                              <div className="text-xs text-teal-600">Unique Words</div>
-                            </div>
-                            <div className="bg-indigo-50 p-4 rounded-lg border border-indigo-200">
-                              <div className="text-2xl font-bold text-indigo-700">{analytics.averageWordLength}</div>
-                              <div className="text-xs text-indigo-600">Avg Word Length</div>
-                            </div>
-                            <div className="bg-red-50 p-4 rounded-lg border border-red-200">
-                              <div className="text-2xl font-bold text-red-700">{analytics.readingTime}m</div>
-                              <div className="text-xs text-red-600">Reading Time</div>
-                            </div>
-                          </div>
-                          
-                          <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div className="bg-gradient-to-br from-green-50 to-emerald-50 p-4 rounded-lg border border-green-200">
-                              <h4 className="font-semibold text-sm text-green-900 mb-2">Longest Word</h4>
-                              <code className="text-xs bg-white px-2 py-1 rounded border border-green-300 break-all">
-                                {analytics.longestWord}
-                              </code>
-                            </div>
-                            <div className="bg-gradient-to-br from-blue-50 to-cyan-50 p-4 rounded-lg border border-blue-200">
-                              <h4 className="font-semibold text-sm text-blue-900 mb-2">Shortest Word</h4>
-                              <code className="text-xs bg-white px-2 py-1 rounded border border-blue-300">
-                                {analytics.shortestWord}
-                              </code>
-                            </div>
-                          </div>
-                        </CollapsibleContent>
-                      </Collapsible>
-                    </div>
-                  )}
-
                   {/* Action Buttons */}
                   <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
@@ -854,48 +517,11 @@ const CaseConverter = () => {
                       Load Sample Text
                     </Button>
                   </div>
-                  
-                  {copyFeedback && (
-                    <div className="text-center py-2 bg-green-100 border border-green-300 rounded-lg text-green-800 text-sm font-medium">
-                      ✓ {copyFeedback}
-                    </div>
-                  )}
                 </div>
 
                 {/* Results Section */}
                 <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
-                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 sm:mb-6 md:mb-8 gap-3">
-                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">Converted Text</h2>
-                    
-                    {result && result.original && (
-                      <div className="flex gap-2 flex-wrap">
-                        <Button
-                          onClick={handleBulkCopy}
-                          variant="outline"
-                          size="sm"
-                          className="text-xs px-3 py-2 rounded-lg border-2 border-blue-300 hover:bg-blue-50"
-                        >
-                          📋 Copy All
-                        </Button>
-                        <Button
-                          onClick={handleExportJSON}
-                          variant="outline"
-                          size="sm"
-                          className="text-xs px-3 py-2 rounded-lg border-2 border-green-300 hover:bg-green-50"
-                        >
-                          📄 Export JSON
-                        </Button>
-                        <Button
-                          onClick={handleExportCSV}
-                          variant="outline"
-                          size="sm"
-                          className="text-xs px-3 py-2 rounded-lg border-2 border-purple-300 hover:bg-purple-50"
-                        >
-                          📊 Export CSV
-                        </Button>
-                      </div>
-                    )}
-                  </div>
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">Converted Text</h2>
                   
                   {result && result.original ? (
                     <div className="space-y-2 sm:space-y-3 md:space-y-4" data-testid="case-conversions">
