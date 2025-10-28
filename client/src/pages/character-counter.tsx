@@ -21,12 +21,14 @@ interface CharacterCountResult {
   lines: number;
   spaces: number;
   punctuation: number;
+  uniqueWords: number;
 }
 
 export default function CharacterCounter() {
   const [text, setText] = useState('');
   const [result, setResult] = useState<CharacterCountResult | null>(null);
   const [showDetails, setShowDetails] = useState(false);
+  const [showAdvancedStats, setShowAdvancedStats] = useState(false);
 
   const calculateCharacterCount = (inputText: string): CharacterCountResult => {
     // Total characters
@@ -66,6 +68,11 @@ export default function CharacterCounter() {
     // Punctuation
     const punctuation = (inputText.match(/[.,;:!?'"()[\]{}\-]/g) || []).length;
 
+    // Unique words (case-insensitive)
+    const wordsArray = inputText.trim().split(/\s+/).filter(word => word.length > 0);
+    const uniqueWordsSet = new Set(wordsArray.map(word => word.toLowerCase().replace(/[^a-z0-9]/gi, '')));
+    const uniqueWords = uniqueWordsSet.size;
+
     return {
       totalCharacters,
       charactersWithoutSpaces,
@@ -79,7 +86,8 @@ export default function CharacterCounter() {
       paragraphs,
       lines,
       spaces,
-      punctuation
+      punctuation,
+      uniqueWords
     };
   };
 
@@ -95,20 +103,31 @@ export default function CharacterCounter() {
 
   const handleCopy = () => {
     if (result) {
+      const avgWordLength = result.words > 0 ? (result.charactersWithoutSpaces / result.words).toFixed(1) : '0';
+      const avgWordsPerSentence = result.sentences > 0 ? (result.words / result.sentences).toFixed(1) : '0';
+      const readingTime = result.words > 0 ? Math.ceil(result.words / 200) : 0;
+      const speakingTime = result.words > 0 ? Math.ceil(result.words / 130) : 0;
+      
       const stats = `Character Count Statistics:
-Total Characters: ${result.totalCharacters}
-Characters (without spaces): ${result.charactersWithoutSpaces}
-Alphabetic Characters: ${result.alphabeticCharacters}
-Numeric Characters: ${result.numericCharacters}
-Special Characters: ${result.specialCharacters}
-Uppercase Letters: ${result.upperCaseLetters}
-Lowercase Letters: ${result.lowerCaseLetters}
-Words: ${result.words}
-Sentences: ${result.sentences}
-Paragraphs: ${result.paragraphs}
-Lines: ${result.lines}
-Spaces: ${result.spaces}
-Punctuation: ${result.punctuation}`;
+Total Characters: ${result.totalCharacters.toLocaleString()}
+Characters (without spaces): ${result.charactersWithoutSpaces.toLocaleString()}
+Alphabetic Characters: ${result.alphabeticCharacters.toLocaleString()}
+Numeric Characters: ${result.numericCharacters.toLocaleString()}
+Special Characters: ${result.specialCharacters.toLocaleString()}
+Uppercase Letters: ${result.upperCaseLetters.toLocaleString()}
+Lowercase Letters: ${result.lowerCaseLetters.toLocaleString()}
+Words: ${result.words.toLocaleString()}
+Sentences: ${result.sentences.toLocaleString()}
+Paragraphs: ${result.paragraphs.toLocaleString()}
+Lines: ${result.lines.toLocaleString()}
+Spaces: ${result.spaces.toLocaleString()}
+Punctuation: ${result.punctuation.toLocaleString()}
+
+Advanced Metrics:
+Average Word Length: ${avgWordLength} characters
+Average Words per Sentence: ${avgWordsPerSentence} words
+Reading Time: ${readingTime} minute(s)
+Speaking Time: ${speakingTime} minute(s)`;
 
       navigator.clipboard.writeText(stats);
     }
@@ -204,7 +223,7 @@ This tool provides detailed analysis of your text content for social media optim
                       id="text-input"
                       value={text}
                       onChange={(e) => setText(e.target.value)}
-                      className="min-h-[350px] sm:min-h-[400px] lg:min-h-[500px] text-sm sm:text-base border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 resize-none w-full"
+                      className="min-h-[250px] sm:min-h-[300px] lg:min-h-[400px] text-sm sm:text-base border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 resize-none w-full"
                       placeholder="Type or paste your text here to get instant character count and detailed text analysis..."
                       data-testid="textarea-text-input"
                     />
@@ -239,7 +258,7 @@ This tool provides detailed analysis of your text content for social media optim
                   </div>
 
                   {/* Advanced Options */}
-                  {result && (
+                  {result && result.totalCharacters > 0 && (
                     <div className="flex flex-wrap gap-2 sm:gap-3 pt-3 sm:pt-4">
                       <Button
                         onClick={() => setShowDetails(!showDetails)}
@@ -250,12 +269,20 @@ This tool provides detailed analysis of your text content for social media optim
                       >
                         {showDetails ? 'Hide' : 'Show'} Detailed Analysis
                       </Button>
+                      <Button
+                        onClick={() => setShowAdvancedStats(!showAdvancedStats)}
+                        variant="outline"
+                        size="sm"
+                        className="rounded-full text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2"
+                      >
+                        {showAdvancedStats ? 'Hide' : 'Show'} Advanced Stats
+                      </Button>
                     </div>
                   )}
                 </div>
 
                 {/* Results Section */}
-                {result !== null && (
+                {result !== null && result.totalCharacters >= 0 && (
                   <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
                     <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Character Statistics</h2>
 
@@ -368,6 +395,95 @@ This tool provides detailed analysis of your text content for social media optim
                                 <span className="text-purple-700 font-medium text-xs sm:text-sm">Lines:</span>
                                 <span className="font-bold text-purple-800 text-sm sm:text-base md:text-lg" data-testid="stat-lines">
                                   {result.lines.toLocaleString()}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Advanced Statistics */}
+                      {showAdvancedStats && (
+                        <div className="space-y-3 sm:space-y-4 mt-4">
+                          <div className="bg-gradient-to-r from-orange-50 to-amber-50 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-orange-200">
+                            <h4 className="font-bold text-orange-800 mb-3 sm:mb-4 text-sm sm:text-base md:text-lg">Reading & Speaking Time</h4>
+                            <div className="space-y-2 sm:space-y-3">
+                              <div className="flex justify-between items-center">
+                                <span className="text-orange-700 font-medium text-xs sm:text-sm">Reading Time (200 wpm):</span>
+                                <span className="font-bold text-orange-800 text-sm sm:text-base md:text-lg">
+                                  {result.words > 0 ? `${Math.ceil(result.words / 200)} min` : '0 min'}
+                                </span>
+                              </div>
+                              <div className="flex justify-between items-center">
+                                <span className="text-orange-700 font-medium text-xs sm:text-sm">Speaking Time (130 wpm):</span>
+                                <span className="font-bold text-orange-800 text-sm sm:text-base md:text-lg">
+                                  {result.words > 0 ? `${Math.ceil(result.words / 130)} min` : '0 min'}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="bg-gradient-to-r from-teal-50 to-cyan-50 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-teal-200">
+                            <h4 className="font-bold text-teal-800 mb-3 sm:mb-4 text-sm sm:text-base md:text-lg">Average Metrics</h4>
+                            <div className="space-y-2 sm:space-y-3">
+                              <div className="flex justify-between items-center">
+                                <span className="text-teal-700 font-medium text-xs sm:text-sm">Unique Words:</span>
+                                <span className="font-bold text-teal-800 text-sm sm:text-base md:text-lg">
+                                  {result.uniqueWords.toLocaleString()}
+                                </span>
+                              </div>
+                              <div className="flex justify-between items-center">
+                                <span className="text-teal-700 font-medium text-xs sm:text-sm">Avg. Word Length:</span>
+                                <span className="font-bold text-teal-800 text-sm sm:text-base md:text-lg">
+                                  {result.words > 0 
+                                    ? `${(result.charactersWithoutSpaces / result.words).toFixed(1)} chars`
+                                    : '0 chars'}
+                                </span>
+                              </div>
+                              <div className="flex justify-between items-center">
+                                <span className="text-teal-700 font-medium text-xs sm:text-sm">Avg. Words per Sentence:</span>
+                                <span className="font-bold text-teal-800 text-sm sm:text-base md:text-lg">
+                                  {result.sentences > 0 
+                                    ? `${(result.words / result.sentences).toFixed(1)} words`
+                                    : '0 words'}
+                                </span>
+                              </div>
+                              <div className="flex justify-between items-center">
+                                <span className="text-teal-700 font-medium text-xs sm:text-sm">Avg. Chars per Sentence:</span>
+                                <span className="font-bold text-teal-800 text-sm sm:text-base md:text-lg">
+                                  {result.sentences > 0 
+                                    ? `${(result.totalCharacters / result.sentences).toFixed(1)} chars`
+                                    : '0 chars'}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="bg-gradient-to-r from-rose-50 to-pink-50 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-rose-200">
+                            <h4 className="font-bold text-rose-800 mb-3 sm:mb-4 text-sm sm:text-base md:text-lg">Density Analysis</h4>
+                            <div className="space-y-2 sm:space-y-3">
+                              <div className="flex justify-between items-center">
+                                <span className="text-rose-700 font-medium text-xs sm:text-sm">Letter Density:</span>
+                                <span className="font-bold text-rose-800 text-sm sm:text-base md:text-lg">
+                                  {result.totalCharacters > 0 
+                                    ? `${((result.alphabeticCharacters / result.totalCharacters) * 100).toFixed(1)}%`
+                                    : '0%'}
+                                </span>
+                              </div>
+                              <div className="flex justify-between items-center">
+                                <span className="text-rose-700 font-medium text-xs sm:text-sm">Number Density:</span>
+                                <span className="font-bold text-rose-800 text-sm sm:text-base md:text-lg">
+                                  {result.totalCharacters > 0 
+                                    ? `${((result.numericCharacters / result.totalCharacters) * 100).toFixed(1)}%`
+                                    : '0%'}
+                                </span>
+                              </div>
+                              <div className="flex justify-between items-center">
+                                <span className="text-rose-700 font-medium text-xs sm:text-sm">Whitespace Density:</span>
+                                <span className="font-bold text-rose-800 text-sm sm:text-base md:text-lg">
+                                  {result.totalCharacters > 0 
+                                    ? `${((result.spaces / result.totalCharacters) * 100).toFixed(1)}%`
+                                    : '0%'}
                                 </span>
                               </div>
                             </div>
