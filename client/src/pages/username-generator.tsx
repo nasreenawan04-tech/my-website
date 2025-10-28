@@ -301,20 +301,20 @@ const UsernameGenerator = () => {
             <CardContent className="p-0">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                 {/* Input Section */}
-                <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
+                <div className="p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 space-y-6 sm:space-y-8">
                   <div className="text-center sm:text-left">
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Username Configuration</h2>
-                    <p className="text-sm sm:text-base text-gray-600">Customize your username preferences to generate the perfect handle</p>
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-2">Username Configuration</h2>
+                    <p className="text-sm sm:text-base md:text-lg text-gray-600">Customize your username preferences to generate the perfect handle</p>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                     {/* Style Selection */}
                     <div className="space-y-2 sm:space-y-3">
-                      <Label htmlFor="username-style" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                      <Label htmlFor="username-style" className="text-sm sm:text-base font-semibold text-gray-800 uppercase tracking-wide">
                         Username Style
                       </Label>
                       <Select value={options.style} onValueChange={(value: typeof options.style) => updateOption('style', value)}>
-                        <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg" data-testid="select-style">
+                        <SelectTrigger className="h-12 sm:h-14 md:h-16 border-2 border-gray-200 rounded-xl text-base sm:text-lg" data-testid="select-style">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -329,11 +329,11 @@ const UsernameGenerator = () => {
 
                     {/* Word Separator */}
                     <div className="space-y-2 sm:space-y-3">
-                      <Label htmlFor="separator" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                      <Label htmlFor="separator" className="text-sm sm:text-base font-semibold text-gray-800 uppercase tracking-wide">
                         Word Separator
                       </Label>
                       <Select value={options.separator} onValueChange={(value: typeof options.separator) => updateOption('separator', value)}>
-                        <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg" data-testid="select-separator">
+                        <SelectTrigger className="h-12 sm:h-14 md:h-16 border-2 border-gray-200 rounded-xl text-base sm:text-lg" data-testid="select-separator">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -346,12 +346,12 @@ const UsernameGenerator = () => {
                     </div>
 
                     {/* Length Slider */}
-                    <div className="md:col-span-2 space-y-3 sm:space-y-4">
+                    <div className="sm:col-span-2 space-y-3 sm:space-y-4">
                       <div className="flex items-center justify-between">
-                        <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        <Label className="text-sm sm:text-base font-semibold text-gray-800 uppercase tracking-wide">
                           Username Length
                         </Label>
-                        <span className="text-xl sm:text-2xl font-bold text-blue-600">{options.length}</span>
+                        <span className="text-2xl sm:text-3xl font-bold text-blue-600">{options.length}</span>
                       </div>
                       <div className="px-2">
                         <Slider
@@ -372,15 +372,15 @@ const UsernameGenerator = () => {
                   </div>
 
                   {/* Advanced Options */}
-                  <div className="space-y-4 sm:space-y-6 border-t pt-4 sm:pt-6 md:pt-8">
-                    <h3 className="text-lg sm:text-xl font-bold text-gray-900">Advanced Options</h3>
+                  <div className="space-y-4 sm:space-y-6 border-t border-gray-200 pt-6 sm:pt-8">
+                    <h3 className="text-xl sm:text-2xl font-bold text-gray-900">Advanced Options</h3>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                       {/* Include Numbers */}
-                      <div className="space-y-3 sm:space-y-4 bg-gray-50 rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6">
+                      <div className="bg-gray-50 rounded-xl p-5 sm:p-6">
                         <div className="flex items-center justify-between gap-3">
                           <div className="flex-1 min-w-0">
-                            <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                            <Label className="text-sm sm:text-base font-semibold text-gray-800 uppercase tracking-wide block">
                               Include Numbers
                             </Label>
                             <p className="text-xs sm:text-sm text-gray-600 mt-1">Add random numbers to make usernames unique</p>
@@ -394,10 +394,10 @@ const UsernameGenerator = () => {
                       </div>
 
                       {/* Include Symbols */}
-                      <div className="space-y-3 sm:space-y-4 bg-gray-50 rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6">
+                      <div className="bg-gray-50 rounded-xl p-5 sm:p-6">
                         <div className="flex items-center justify-between gap-3">
                           <div className="flex-1 min-w-0">
-                            <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                            <Label className="text-sm sm:text-base font-semibold text-gray-800 uppercase tracking-wide block">
                               Include Symbols
                             </Label>
                             <p className="text-xs sm:text-sm text-gray-600 mt-1">Add symbols like _, -, . for uniqueness</p>
@@ -411,10 +411,10 @@ const UsernameGenerator = () => {
                       </div>
 
                       {/* Capitalize Words */}
-                      <div className="space-y-3 sm:space-y-4 bg-gray-50 rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 md:col-span-2">
+                      <div className="bg-gray-50 rounded-xl p-5 sm:p-6 sm:col-span-2">
                         <div className="flex items-center justify-between gap-3">
                           <div className="flex-1 min-w-0">
-                            <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                            <Label className="text-sm sm:text-base font-semibold text-gray-800 uppercase tracking-wide block">
                               Capitalize Words
                             </Label>
                             <p className="text-xs sm:text-sm text-gray-600 mt-1">Start each word with a capital letter</p>
@@ -430,10 +430,10 @@ const UsernameGenerator = () => {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 sm:pt-6">
                     <Button
                       onClick={handleGenerateUsername}
-                      className="flex-1 h-10 sm:h-12 md:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="flex-1 h-12 sm:h-14 md:h-16 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-base sm:text-lg md:text-xl rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                       data-testid="button-generate-username"
                     >
                       Generate Username
@@ -441,7 +441,7 @@ const UsernameGenerator = () => {
                     <Button
                       onClick={resetGenerator}
                       variant="outline"
-                      className="h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
+                      className="h-12 sm:h-14 md:h-16 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-base sm:text-lg md:text-xl rounded-xl"
                       data-testid="button-reset"
                     >
                       Reset
@@ -450,42 +450,42 @@ const UsernameGenerator = () => {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12">
-                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Generated Username</h2>
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-6 sm:mb-8 text-center sm:text-left">Generated Username</h2>
 
                   {generatedUsername ? (
                     <div className="space-y-4 sm:space-y-6" data-testid="generated-username-display">
                       {/* Main Username Display */}
-                      <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-4 sm:p-5 md:p-6 shadow-lg border border-blue-100">
-                        <div className="text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wide mb-1 sm:mb-2">Your Username</div>
-                        <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 font-mono mb-1 sm:mb-2 break-all" data-testid="main-username">
+                      <div className="bg-white rounded-2xl p-5 sm:p-6 md:p-8 shadow-lg border border-blue-100">
+                        <div className="text-sm sm:text-base font-semibold text-gray-600 uppercase tracking-wide mb-2">Your Username</div>
+                        <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 font-mono mb-2 break-all" data-testid="main-username">
                           {generatedUsername.username}
                         </div>
-                        <div className="text-xs sm:text-sm text-gray-500">Style: {generatedUsername.style}</div>
+                        <div className="text-sm sm:text-base text-gray-500">Style: {generatedUsername.style}</div>
                       </div>
 
                       {/* Username Details */}
                       <div className="space-y-3 sm:space-y-4">
-                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                        <div className="bg-white rounded-xl p-4 sm:p-5 shadow-sm">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Length</span>
-                            <span className="font-bold text-gray-900 text-sm sm:text-base md:text-lg" data-testid="username-length">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base md:text-lg">Length</span>
+                            <span className="font-bold text-gray-900 text-base sm:text-lg md:text-xl" data-testid="username-length">
                               {generatedUsername.username.length} characters
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                        <div className="bg-white rounded-xl p-4 sm:p-5 shadow-sm">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Contains Numbers</span>
-                            <span className="font-bold text-gray-900 text-sm sm:text-base md:text-lg">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base md:text-lg">Contains Numbers</span>
+                            <span className="font-bold text-gray-900 text-base sm:text-lg md:text-xl">
                               {/\d/.test(generatedUsername.username) ? 'Yes' : 'No'}
                             </span>
                           </div>
                         </div>
-                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                        <div className="bg-white rounded-xl p-4 sm:p-5 shadow-sm">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Contains Symbols</span>
-                            <span className="font-bold text-gray-900 text-sm sm:text-base md:text-lg">
+                            <span className="font-medium text-gray-700 text-sm sm:text-base md:text-lg">Contains Symbols</span>
+                            <span className="font-bold text-gray-900 text-base sm:text-lg md:text-xl">
                               {/[_\-.]/.test(generatedUsername.username) ? 'Yes' : 'No'}
                             </span>
                           </div>
@@ -494,19 +494,19 @@ const UsernameGenerator = () => {
 
                       {/* Username Variations */}
                       {generatedUsername.variations.length > 0 && (
-                        <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 border border-green-200">
-                          <h4 className="font-bold text-green-800 mb-3 sm:mb-4 text-base sm:text-lg">Alternative Suggestions</h4>
-                          <div className="space-y-2 sm:space-y-3">
+                        <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-5 sm:p-6 border border-green-200">
+                          <h4 className="font-bold text-green-800 mb-4 text-lg sm:text-xl">Alternative Suggestions</h4>
+                          <div className="space-y-3">
                             {generatedUsername.variations.map((variation, index) => (
-                              <div key={index} className="flex items-center justify-between gap-2 sm:gap-3 p-2 sm:p-3 bg-white rounded-lg shadow-sm">
-                                <div className="font-mono text-gray-700 text-xs sm:text-sm md:text-base break-all flex-1 min-w-0" data-testid={`variation-${index}`}>
+                              <div key={index} className="flex items-center justify-between gap-3 p-3 sm:p-4 bg-white rounded-lg shadow-sm">
+                                <div className="font-mono text-gray-700 text-sm sm:text-base md:text-lg break-all flex-1 min-w-0" data-testid={`variation-${index}`}>
                                   {variation}
                                 </div>
                                 <Button
                                   onClick={() => handleCopyToClipboard(variation)}
                                   variant="ghost"
                                   size="sm"
-                                  className="text-green-600 hover:text-green-700 hover:bg-green-50 text-xs sm:text-sm shrink-0"
+                                  className="text-green-600 hover:text-green-700 hover:bg-green-50 text-sm sm:text-base shrink-0 h-9 sm:h-10 px-3 sm:px-4"
                                   data-testid={`button-copy-variation-${index}`}
                                 >
                                   Copy
@@ -520,18 +520,18 @@ const UsernameGenerator = () => {
                       {/* Copy Button */}
                       <Button
                         onClick={() => handleCopyToClipboard(generatedUsername.username)}
-                        className="w-full h-10 sm:h-12 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg sm:rounded-xl text-sm sm:text-base"
+                        className="w-full h-12 sm:h-14 md:h-16 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl text-base sm:text-lg md:text-xl shadow-lg"
                         data-testid="button-copy-main"
                       >
                         Copy Username
                       </Button>
                     </div>
                   ) : (
-                    <div className="text-center py-8 sm:py-12 md:py-16" data-testid="no-results">
-                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
-                        <div className="text-2xl sm:text-3xl font-bold text-gray-400">@</div>
+                    <div className="text-center py-12 sm:py-16 md:py-20" data-testid="no-results">
+                      <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
+                        <div className="text-3xl sm:text-4xl font-bold text-gray-400">@</div>
                       </div>
-                      <p className="text-gray-500 text-sm sm:text-base md:text-lg px-4">Configure options and generate to see username results</p>
+                      <p className="text-gray-500 text-base sm:text-lg md:text-xl px-4">Configure options and generate to see username results</p>
                     </div>
                   )}
                 </div>
@@ -542,16 +542,16 @@ const UsernameGenerator = () => {
           {/* Username History */}
           {usernameHistory.length > 1 && (
             <Card className="mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Recently Generated Usernames</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <CardContent className="p-6 sm:p-8">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-6">Recently Generated Usernames</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {usernameHistory.slice(1, 7).map((username, index) => (
-                    <div key={index} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-blue-50 transition-colors">
-                      <div>
-                        <div className="font-mono text-gray-900 font-medium" data-testid={`history-username-${index}`}>
+                    <div key={index} className="flex items-center justify-between p-4 sm:p-5 bg-gray-50 rounded-xl hover:bg-blue-50 transition-colors">
+                      <div className="flex-1 min-w-0 mr-3">
+                        <div className="font-mono text-gray-900 font-medium text-sm sm:text-base break-all" data-testid={`history-username-${index}`}>
                           {username.username}
                         </div>
-                        <div className="text-sm text-gray-500">
+                        <div className="text-xs sm:text-sm text-gray-500 mt-1">
                           {username.style}
                         </div>
                       </div>
@@ -559,7 +559,7 @@ const UsernameGenerator = () => {
                         onClick={() => handleCopyToClipboard(username.username)}
                         variant="ghost"
                         size="sm"
-                        className="text-blue-600 hover:text-blue-700 hover:bg-blue-100"
+                        className="text-blue-600 hover:text-blue-700 hover:bg-blue-100 shrink-0 h-9 sm:h-10 px-3 sm:px-4 text-sm sm:text-base"
                         data-testid={`button-copy-history-${index}`}
                       >
                         Copy
