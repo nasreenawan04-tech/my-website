@@ -26,6 +26,12 @@ interface CaseConversionResult {
   alternatingCase: string;
   inverseCase: string;
   randomCase: string;
+  dotCase: string;
+  pathCase: string;
+  capitalCase: string;
+  swapCase: string;
+  spongebobCase: string;
+  trainCase: string;
 }
 
 interface AdvancedOptions {
@@ -67,7 +73,13 @@ const CaseConverter = () => {
         constantCase: '',
         alternatingCase: '',
         inverseCase: '',
-        randomCase: ''
+        randomCase: '',
+        dotCase: '',
+        pathCase: '',
+        capitalCase: '',
+        swapCase: '',
+        spongebobCase: '',
+        trainCase: ''
       };
     }
 
@@ -146,6 +158,34 @@ const CaseConverter = () => {
     let randomCase = processedText.split('').map(char => {
       return Math.random() > 0.5 ? char.toUpperCase() : char.toLowerCase();
     }).join('');
+
+    // dot.case - words separated by dots, all lowercase
+    let dotCase = words.map(word => word.toLowerCase()).join('.');
+
+    // path/case - words separated by forward slashes, all lowercase
+    let pathCase = words.map(word => word.toLowerCase()).join('/');
+
+    // Capital Case - All Words Capitalized With Spaces
+    let capitalCase = words.map(word => 
+      word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+    ).join(' ');
+
+    // sWAP cASE - opposite of original case for each character
+    let swapCase = processedText.split('').map(char => {
+      return char === char.toUpperCase() ? char.toLowerCase() : char.toUpperCase();
+    }).join('');
+
+    // SpOnGeBoB cAsE - random mocking text style
+    let spongebobCase = processedText.split('').map((char, index) => {
+      // More random pattern for spongebob case
+      const shouldUpper = Math.random() > 0.5;
+      return shouldUpper ? char.toUpperCase() : char.toLowerCase();
+    }).join('');
+
+    // Train-Case - Words-Capitalized-Separated-By-Hyphens
+    let trainCase = words.map(word => 
+      word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+    ).join('-');
     
     // Apply prefix and suffix if provided
     if (options.prefix || options.suffix) {
@@ -156,9 +196,14 @@ const CaseConverter = () => {
       if (snakeCase) snakeCase = applyPrefixSuffix(snakeCase);
       if (kebabCase) kebabCase = applyPrefixSuffix(kebabCase);
       if (constantCase) constantCase = applyPrefixSuffix(constantCase);
+      if (dotCase) dotCase = applyPrefixSuffix(dotCase);
+      if (pathCase) pathCase = applyPrefixSuffix(pathCase);
+      if (trainCase) trainCase = applyPrefixSuffix(trainCase);
       alternatingCase = applyPrefixSuffix(alternatingCase);
       inverseCase = applyPrefixSuffix(inverseCase);
       randomCase = applyPrefixSuffix(randomCase);
+      swapCase = applyPrefixSuffix(swapCase);
+      spongebobCase = applyPrefixSuffix(spongebobCase);
     }
 
     return {
@@ -174,7 +219,13 @@ const CaseConverter = () => {
       constantCase,
       alternatingCase,
       inverseCase,
-      randomCase
+      randomCase,
+      dotCase,
+      pathCase,
+      capitalCase,
+      swapCase,
+      spongebobCase,
+      trainCase
     };
   };
 
@@ -222,13 +273,19 @@ const CaseConverter = () => {
     { key: 'lowercase', label: 'lowercase', description: 'all letters in small case' },
     { key: 'titleCase', label: 'Title Case', description: 'First Letter Of Each Word Capitalized' },
     { key: 'sentenceCase', label: 'Sentence case', description: 'First letter of sentences capitalized' },
+    { key: 'capitalCase', label: 'Capital Case', description: 'All Words Capitalized With Spaces' },
     { key: 'camelCase', label: 'camelCase', description: 'firstWordLowercaseOthersCapitalized' },
     { key: 'pascalCase', label: 'PascalCase', description: 'AllWordsCapitalizedNoSpaces' },
     { key: 'snakeCase', label: 'snake_case', description: 'words_separated_by_underscores' },
     { key: 'kebabCase', label: 'kebab-case', description: 'words-separated-by-hyphens' },
+    { key: 'dotCase', label: 'dot.case', description: 'words.separated.by.dots' },
+    { key: 'pathCase', label: 'path/case', description: 'words/separated/by/slashes' },
+    { key: 'trainCase', label: 'Train-Case', description: 'Words-Capitalized-With-Hyphens' },
     { key: 'constantCase', label: 'CONSTANT_CASE', description: 'ALL_WORDS_UPPERCASE_WITH_UNDERSCORES' },
     { key: 'alternatingCase', label: 'aLtErNaTiNg CaSe', description: 'alternating upper and lower case' },
+    { key: 'swapCase', label: 'sWAP cASE', description: 'opposite case of each character' },
     { key: 'inverseCase', label: 'iNVERSE cASE', description: 'opposite case of original' },
+    { key: 'spongebobCase', label: 'SpOnGeBoB cAsE', description: 'random mocking text style' },
     { key: 'randomCase', label: 'rAnDoM cAsE', description: 'randomly mixed upper and lower case' }
   ];
 
@@ -482,7 +539,13 @@ const CaseConverter = () => {
                           'bg-yellow-50 border-yellow-200',
                           'bg-cyan-50 border-cyan-200',
                           'bg-emerald-50 border-emerald-200',
-                          'bg-rose-50 border-rose-200'
+                          'bg-rose-50 border-rose-200',
+                          'bg-violet-50 border-violet-200',
+                          'bg-lime-50 border-lime-200',
+                          'bg-amber-50 border-amber-200',
+                          'bg-fuchsia-50 border-fuchsia-200',
+                          'bg-sky-50 border-sky-200',
+                          'bg-slate-50 border-slate-200'
                         ];
                         
                         return (
