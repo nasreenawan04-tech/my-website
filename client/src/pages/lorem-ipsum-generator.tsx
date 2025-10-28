@@ -204,16 +204,16 @@ export default function LoremIpsumGenerator() {
             <CardContent className="p-0">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                 {/* Input Section */}
-                <div className="p-8 lg:p-12 space-y-8">
-                  <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Generation Settings</h2>
-                    <p className="text-gray-600">Configure your placeholder text requirements</p>
+                <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
+                  <div className="text-center sm:text-left">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Generation Settings</h2>
+                    <p className="text-sm sm:text-base text-gray-600">Configure your placeholder text requirements</p>
                   </div>
 
-                  <div className="space-y-6">
+                  <div className="space-y-4 sm:space-y-5 md:space-y-6">
                     {/* Type Selection */}
-                    <div className="space-y-3">
-                      <Label htmlFor="type-select" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="type-select" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Generate Type
                       </Label>
                       <Select
@@ -222,7 +222,7 @@ export default function LoremIpsumGenerator() {
                           setOptions(prev => ({ ...prev, type: value }))
                         }
                       >
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-type">
+                        <SelectTrigger className="h-12 sm:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-base sm:text-lg" data-testid="select-type">
                           <SelectValue placeholder="Select type" />
                         </SelectTrigger>
                         <SelectContent>
@@ -234,8 +234,8 @@ export default function LoremIpsumGenerator() {
                     </div>
 
                     {/* Count Input */}
-                    <div className="space-y-3">
-                      <Label htmlFor="count-input" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="count-input" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Number of {options.type.charAt(0).toUpperCase() + options.type.slice(1)}
                       </Label>
                       <Input
@@ -245,37 +245,37 @@ export default function LoremIpsumGenerator() {
                         max="50"
                         value={options.count}
                         onChange={(e) => setOptions(prev => ({ ...prev, count: parseInt(e.target.value) || 1 }))}
-                        className="h-14 text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500"
+                        className="h-12 sm:h-14 text-base sm:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500"
                         placeholder="3"
                         data-testid="input-count"
                       />
                     </div>
 
                     {/* Start with Lorem Option */}
-                    <div className="space-y-4 bg-gray-50 rounded-xl p-6">
-                      <div className="flex items-center space-x-3">
+                    <div className="space-y-3 sm:space-y-4 bg-gray-50 rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6">
+                      <div className="flex items-center space-x-2 sm:space-x-3">
                         <input
                           id="start-lorem"
                           type="checkbox"
                           checked={options.startWithLorem}
                           onChange={(e) => setOptions(prev => ({ ...prev, startWithLorem: e.target.checked }))}
-                          className="h-5 w-5 text-blue-600 border-2 border-gray-300 rounded focus:ring-blue-500"
+                          className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600 border-2 border-gray-300 rounded focus:ring-blue-500"
                           data-testid="checkbox-start-lorem"
                         />
-                        <label htmlFor="start-lorem" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                        <label htmlFor="start-lorem" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                           Start with "Lorem ipsum"
                         </label>
                       </div>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-xs sm:text-sm text-gray-600">
                         Begin with the traditional Lorem ipsum phrase for industry standard placeholder text
                       </p>
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 sm:pt-5 md:pt-6">
                       <Button
                         onClick={generateLorem}
-                        className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                        className="w-full sm:flex-1 h-12 sm:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-base sm:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                         data-testid="button-generate"
                       >
                         Generate Text
@@ -283,7 +283,7 @@ export default function LoremIpsumGenerator() {
                       <Button
                         onClick={resetGenerator}
                         variant="outline"
-                        className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                        className="w-full sm:w-auto h-12 sm:h-14 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-base sm:text-lg rounded-lg sm:rounded-xl"
                         data-testid="button-reset"
                       >
                         Reset
@@ -293,27 +293,27 @@ export default function LoremIpsumGenerator() {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Generated Text</h2>
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12">
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Generated Text</h2>
 
                   {generatedText ? (
-                    <div className="space-y-6" data-testid="text-results">
+                    <div className="space-y-4 sm:space-y-5 md:space-y-6" data-testid="text-results">
                       {/* Generated Text Display */}
-                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
+                      <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-3 sm:p-4 md:p-5 lg:p-6 shadow-lg border border-blue-100">
                         <textarea
                           value={generatedText}
                           readOnly
-                          className="w-full h-64 lg:h-80 p-4 text-base border-0 resize-none focus:outline-none bg-transparent text-gray-800 leading-relaxed"
+                          className="w-full h-48 sm:h-56 md:h-64 lg:h-72 xl:h-80 p-3 sm:p-4 text-sm sm:text-base border-0 resize-none focus:outline-none bg-transparent text-gray-800 leading-relaxed"
                           placeholder="Generated text will appear here..."
                           data-testid="textarea-generated-text"
                         />
                       </div>
 
                       {/* Action Buttons */}
-                      <div className="flex flex-col sm:flex-row gap-4">
+                      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                         <Button
                           onClick={handleCopy}
-                          className="flex-1 h-12 bg-green-600 hover:bg-green-700 text-white font-medium rounded-xl"
+                          className="w-full sm:flex-1 h-10 sm:h-11 md:h-12 bg-green-600 hover:bg-green-700 text-white font-medium text-sm sm:text-base rounded-lg sm:rounded-xl"
                           data-testid="button-copy-text"
                         >
                           Copy Text
@@ -321,7 +321,7 @@ export default function LoremIpsumGenerator() {
                         <Button
                           onClick={handleClear}
                           variant="outline"
-                          className="flex-1 h-12 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-medium rounded-xl"
+                          className="w-full sm:flex-1 h-10 sm:h-11 md:h-12 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-medium text-sm sm:text-base rounded-lg sm:rounded-xl"
                           data-testid="button-clear-text"
                         >
                           Clear
@@ -329,34 +329,34 @@ export default function LoremIpsumGenerator() {
                       </div>
 
                       {/* Text Statistics */}
-                      <div className="bg-white rounded-xl p-6 shadow-sm" data-testid="text-statistics">
-                        <h3 className="font-bold text-gray-900 mb-4 text-lg">Text Statistics</h3>
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                          <div className="bg-blue-50 rounded-lg p-4 text-center">
-                            <div className="text-2xl font-bold text-blue-600">{generatedText.length.toLocaleString()}</div>
-                            <div className="text-sm text-blue-700 font-medium">Characters</div>
+                      <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 shadow-sm" data-testid="text-statistics">
+                        <h3 className="font-bold text-gray-900 mb-3 sm:mb-4 text-base sm:text-lg">Text Statistics</h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+                          <div className="bg-blue-50 rounded-lg p-3 sm:p-4 text-center">
+                            <div className="text-xl sm:text-2xl font-bold text-blue-600">{generatedText.length.toLocaleString()}</div>
+                            <div className="text-xs sm:text-sm text-blue-700 font-medium">Characters</div>
                           </div>
-                          <div className="bg-green-50 rounded-lg p-4 text-center">
-                            <div className="text-2xl font-bold text-green-600">
+                          <div className="bg-green-50 rounded-lg p-3 sm:p-4 text-center">
+                            <div className="text-xl sm:text-2xl font-bold text-green-600">
                               {generatedText.trim() ? generatedText.trim().split(/\s+/).length.toLocaleString() : 0}
                             </div>
-                            <div className="text-sm text-green-700 font-medium">Words</div>
+                            <div className="text-xs sm:text-sm text-green-700 font-medium">Words</div>
                           </div>
-                          <div className="bg-purple-50 rounded-lg p-4 text-center">
-                            <div className="text-2xl font-bold text-purple-600">
+                          <div className="bg-purple-50 rounded-lg p-3 sm:p-4 text-center">
+                            <div className="text-xl sm:text-2xl font-bold text-purple-600">
                               {generatedText.trim() ? generatedText.split(/[.!?]+/).filter(s => s.trim()).length : 0}
                             </div>
-                            <div className="text-sm text-purple-700 font-medium">Sentences</div>
+                            <div className="text-xs sm:text-sm text-purple-700 font-medium">Sentences</div>
                           </div>
                         </div>
                       </div>
                     </div>
                   ) : (
-                    <div className="text-center py-16" data-testid="no-results">
-                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <div className="text-3xl font-bold text-gray-400">¶</div>
+                    <div className="text-center py-12 sm:py-14 md:py-16" data-testid="no-results">
+                      <div className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-5 md:mb-6 flex items-center justify-center">
+                        <div className="text-2xl sm:text-2xl md:text-3xl font-bold text-gray-400">¶</div>
                       </div>
-                      <p className="text-gray-500 text-lg">Configure settings and generate to see placeholder text</p>
+                      <p className="text-gray-500 text-base sm:text-lg px-4">Configure settings and generate to see placeholder text</p>
                     </div>
                   )}
                 </div>
