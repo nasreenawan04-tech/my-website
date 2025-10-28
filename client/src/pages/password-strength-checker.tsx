@@ -280,21 +280,21 @@ export default function PasswordStrengthChecker() {
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
           {/* Main Checker Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+              <div className="flex flex-col">
                 {/* Input Section */}
-                <div className="p-8 lg:p-12 space-y-8">
-                  <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Password Analysis</h2>
-                    <p className="text-gray-600">Enter your password to get detailed security analysis</p>
+                <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
+                  <div className="text-center sm:text-left">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Password Analysis</h2>
+                    <p className="text-sm sm:text-base text-gray-600">Enter your password to get detailed security analysis</p>
                   </div>
 
                   {/* Password Input */}
-                  <div className="space-y-4">
-                    <Label className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                  <div className="space-y-2 sm:space-y-3">
+                    <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                       Enter Password
                     </Label>
                     <div className="relative">
@@ -303,16 +303,16 @@ export default function PasswordStrengthChecker() {
                         value={password}
                         onChange={(e) => handlePasswordChange(e.target.value)}
                         placeholder="Type your password here..."
-                        className="text-lg h-14 pr-24 border-2 border-gray-200 rounded-xl focus:border-blue-500"
+                        className="text-sm sm:text-base md:text-lg h-10 sm:h-12 md:h-14 pr-20 sm:pr-24 border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500"
                         data-testid="input-password"
                       />
-                      <div className="absolute right-2 top-2 flex gap-2">
+                      <div className="absolute right-2 top-1 sm:top-2 flex gap-2">
                         <Button
                           type="button"
                           variant="ghost"
                           size="sm"
                           onClick={() => setShowPassword(!showPassword)}
-                          className="h-10 px-3"
+                          className="h-8 sm:h-10 px-2 sm:px-3 text-xs sm:text-sm"
                         >
                           {showPassword ? 'Hide' : 'Show'}
                         </Button>
@@ -321,9 +321,9 @@ export default function PasswordStrengthChecker() {
                   </div>
 
                   {/* Security Tips */}
-                  <div className="bg-gray-50 rounded-xl p-6">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Password Security Tips</h3>
-                    <ul className="space-y-2 text-sm text-gray-700">
+                  <div className="bg-gray-50 rounded-lg sm:rounded-xl p-4 sm:p-6">
+                    <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-3 sm:mb-4">Password Security Tips</h3>
+                    <ul className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm text-gray-700">
                       <li>• Use at least 12 characters (16+ recommended)</li>
                       <li>• Mix uppercase, lowercase, numbers, and symbols</li>
                       <li>• Avoid common words and personal information</li>
@@ -333,11 +333,11 @@ export default function PasswordStrengthChecker() {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       onClick={clearPassword}
                       variant="outline"
-                      className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                       disabled={!password}
                       data-testid="button-clear"
                     >
@@ -347,82 +347,89 @@ export default function PasswordStrengthChecker() {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Security Analysis</h2>
+                {analysis !== null && (
+                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Security Analysis</h2>
 
-                  {analysis ? (
-                    <div className="space-y-6" data-testid="analysis-results">
-                      {/* Strength Score */}
-                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
-                        <div className="flex justify-between items-center mb-4">
-                          <span className="text-lg font-semibold text-gray-700">Password Strength</span>
-                          <Badge className={`${analysis.color} text-white`}>
-                            {analysis.strength}
-                          </Badge>
+                    {analysis && password.length > 0 ? (
+                      <div className="space-y-4 sm:space-y-6 md:space-y-8" data-testid="analysis-results">
+                        {/* Strength Score */}
+                        <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-4 sm:p-6 shadow-lg border border-blue-100">
+                          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-3 sm:mb-4 gap-2">
+                            <span className="text-sm sm:text-base md:text-lg font-semibold text-gray-700">Password Strength</span>
+                            <Badge className={`${analysis.color} text-white text-xs sm:text-sm`}>
+                              {analysis.strength}
+                            </Badge>
+                          </div>
+                          <Progress 
+                            value={(analysis.score / 16) * 100} 
+                            className="h-3 sm:h-4 mb-3 sm:mb-4"
+                          />
+                          <div className="text-xs sm:text-sm text-gray-600 space-y-1 sm:space-y-0">
+                            <div className="flex flex-wrap gap-x-2">
+                              <span>Score: {analysis.score}/16</span>
+                              <span className="hidden sm:inline">•</span>
+                              <span>Entropy: {analysis.entropy} bits</span>
+                            </div>
+                            <div className="sm:mt-1">Time to crack: {analysis.timeToCrack}</div>
+                          </div>
                         </div>
-                        <Progress 
-                          value={(analysis.score / 16) * 100} 
-                          className="h-4 mb-4"
-                        />
-                        <div className="text-sm text-gray-600">
-                          Score: {analysis.score}/16 • Entropy: {analysis.entropy} bits • Time to crack: {analysis.timeToCrack}
-                        </div>
-                      </div>
 
-                      {/* Requirements Checklist */}
-                      <div className="bg-white rounded-xl p-6 shadow-sm">
-                        <h3 className="font-bold text-gray-900 mb-4">Security Requirements</h3>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                          <div className={`flex items-center space-x-2 ${analysis.requirements.length ? 'text-green-600' : 'text-red-600'}`}>
-                            <span>{analysis.requirements.length ? '✓' : '✗'}</span>
-                            <span className="text-sm">8+ characters</span>
-                          </div>
-                          <div className={`flex items-center space-x-2 ${analysis.requirements.uppercase ? 'text-green-600' : 'text-red-600'}`}>
-                            <span>{analysis.requirements.uppercase ? '✓' : '✗'}</span>
-                            <span className="text-sm">Uppercase letters</span>
-                          </div>
-                          <div className={`flex items-center space-x-2 ${analysis.requirements.lowercase ? 'text-green-600' : 'text-red-600'}`}>
-                            <span>{analysis.requirements.lowercase ? '✓' : '✗'}</span>
-                            <span className="text-sm">Lowercase letters</span>
-                          </div>
-                          <div className={`flex items-center space-x-2 ${analysis.requirements.numbers ? 'text-green-600' : 'text-red-600'}`}>
-                            <span>{analysis.requirements.numbers ? '✓' : '✗'}</span>
-                            <span className="text-sm">Numbers</span>
-                          </div>
-                          <div className={`flex items-center space-x-2 ${analysis.requirements.symbols ? 'text-green-600' : 'text-red-600'}`}>
-                            <span>{analysis.requirements.symbols ? '✓' : '✗'}</span>
-                            <span className="text-sm">Special characters</span>
-                          </div>
-                          <div className={`flex items-center space-x-2 ${analysis.requirements.noCommon ? 'text-green-600' : 'text-red-600'}`}>
-                            <span>{analysis.requirements.noCommon ? '✓' : '✗'}</span>
-                            <span className="text-sm">No common patterns</span>
+                        {/* Requirements Checklist */}
+                        <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm">
+                          <h3 className="text-sm sm:text-base font-bold text-gray-900 mb-3 sm:mb-4">Security Requirements</h3>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+                            <div className={`flex items-center space-x-2 ${analysis.requirements.length ? 'text-green-600' : 'text-red-600'}`}>
+                              <span className="text-sm sm:text-base">{analysis.requirements.length ? '✓' : '✗'}</span>
+                              <span className="text-xs sm:text-sm">8+ characters</span>
+                            </div>
+                            <div className={`flex items-center space-x-2 ${analysis.requirements.uppercase ? 'text-green-600' : 'text-red-600'}`}>
+                              <span className="text-sm sm:text-base">{analysis.requirements.uppercase ? '✓' : '✗'}</span>
+                              <span className="text-xs sm:text-sm">Uppercase letters</span>
+                            </div>
+                            <div className={`flex items-center space-x-2 ${analysis.requirements.lowercase ? 'text-green-600' : 'text-red-600'}`}>
+                              <span className="text-sm sm:text-base">{analysis.requirements.lowercase ? '✓' : '✗'}</span>
+                              <span className="text-xs sm:text-sm">Lowercase letters</span>
+                            </div>
+                            <div className={`flex items-center space-x-2 ${analysis.requirements.numbers ? 'text-green-600' : 'text-red-600'}`}>
+                              <span className="text-sm sm:text-base">{analysis.requirements.numbers ? '✓' : '✗'}</span>
+                              <span className="text-xs sm:text-sm">Numbers</span>
+                            </div>
+                            <div className={`flex items-center space-x-2 ${analysis.requirements.symbols ? 'text-green-600' : 'text-red-600'}`}>
+                              <span className="text-sm sm:text-base">{analysis.requirements.symbols ? '✓' : '✗'}</span>
+                              <span className="text-xs sm:text-sm">Special characters</span>
+                            </div>
+                            <div className={`flex items-center space-x-2 ${analysis.requirements.noCommon ? 'text-green-600' : 'text-red-600'}`}>
+                              <span className="text-sm sm:text-base">{analysis.requirements.noCommon ? '✓' : '✗'}</span>
+                              <span className="text-xs sm:text-sm">No common patterns</span>
+                            </div>
                           </div>
                         </div>
-                      </div>
 
-                      {/* Feedback */}
-                      {analysis.feedback.length > 0 && (
-                        <div className="space-y-3">
-                          <h3 className="font-bold text-gray-900">Improvement Suggestions</h3>
-                          {analysis.feedback.map((feedback, index) => (
-                            <Alert key={index} className="border-orange-200 bg-orange-50">
-                              <AlertDescription className="text-orange-800">
-                                {feedback}
-                              </AlertDescription>
-                            </Alert>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  ) : (
-                    <div className="text-center py-16" data-testid="no-results">
-                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <div className="text-3xl font-bold text-gray-400">🔐</div>
+                        {/* Feedback */}
+                        {analysis.feedback.length > 0 && (
+                          <div className="space-y-2 sm:space-y-3">
+                            <h3 className="text-sm sm:text-base font-bold text-gray-900">Improvement Suggestions</h3>
+                            {analysis.feedback.map((feedback, index) => (
+                              <Alert key={index} className="border-orange-200 bg-orange-50">
+                                <AlertDescription className="text-orange-800 text-xs sm:text-sm">
+                                  {feedback}
+                                </AlertDescription>
+                              </Alert>
+                            ))}
+                          </div>
+                        )}
                       </div>
-                      <p className="text-gray-500 text-lg">Enter a password to analyze its strength</p>
-                    </div>
-                  )}
-                </div>
+                    ) : (
+                      <div className="text-center py-8 sm:py-12 md:py-16" data-testid="no-results">
+                        <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
+                          <div className="text-2xl sm:text-3xl font-bold text-gray-400">🔐</div>
+                        </div>
+                        <p className="text-gray-500 text-sm sm:text-base md:text-lg px-4">Enter a password to analyze its strength</p>
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
             </CardContent>
           </Card>
