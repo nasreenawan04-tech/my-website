@@ -222,22 +222,22 @@ const FakeNameGenerator = () => {
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
           {/* Main Generator Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+              <div className="flex flex-col">
                 {/* Input Section */}
-                <div className="p-8 lg:p-12 space-y-8">
-                  <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Generation Settings</h2>
-                    <p className="text-gray-600">Configure your name generation preferences</p>
+                <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
+                  <div className="text-center sm:text-left">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Generation Settings</h2>
+                    <p className="text-sm sm:text-base text-gray-600">Configure your name generation preferences</p>
                   </div>
 
-                  <div className="space-y-6">
+                  <div className="space-y-4 sm:space-y-5 md:space-y-6">
                     {/* Gender Selection */}
-                    <div className="space-y-3">
-                      <Label htmlFor="gender-select" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="gender-select" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Gender
                       </Label>
                       <Select
@@ -246,7 +246,7 @@ const FakeNameGenerator = () => {
                           updateOption('gender', value)
                         }
                       >
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-gender">
+                        <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg" data-testid="select-gender">
                           <SelectValue placeholder="Select gender" />
                         </SelectTrigger>
                         <SelectContent>
@@ -258,8 +258,8 @@ const FakeNameGenerator = () => {
                     </div>
 
                     {/* Nationality Selection */}
-                    <div className="space-y-3">
-                      <Label htmlFor="nationality-select" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="nationality-select" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Nationality
                       </Label>
                       <Select
@@ -268,7 +268,7 @@ const FakeNameGenerator = () => {
                           updateOption('nationality', value)
                         }
                       >
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-nationality">
+                        <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg" data-testid="select-nationality">
                           <SelectValue placeholder="Select nationality" />
                         </SelectTrigger>
                         <SelectContent>
@@ -280,41 +280,43 @@ const FakeNameGenerator = () => {
                     </div>
 
                     {/* Additional Options */}
-                    <div className="space-y-4 bg-gray-50 rounded-xl p-6">
-                      <h3 className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Additional Options</h3>
+                    <div className="space-y-3 sm:space-y-4 bg-gray-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 lg:p-6">
+                      <h3 className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">Additional Options</h3>
 
-                      <div className="space-y-4">
-                        <div className="flex items-center justify-between">
-                          <div className="flex-1">
-                            <Label className="text-sm font-medium text-gray-700">Include Middle Name</Label>
-                            <p className="text-xs text-gray-500">Add middle name to the generated name</p>
+                      <div className="space-y-3 sm:space-y-4">
+                        <div className="flex items-center justify-between gap-3">
+                          <div className="flex-1 min-w-0">
+                            <Label className="text-xs sm:text-sm font-medium text-gray-700 block">Include Middle Name</Label>
+                            <p className="text-xs text-gray-500 mt-0.5 truncate">Add middle name to the generated name</p>
                           </div>
                           <Switch
                             checked={options.includeMiddleName}
                             onCheckedChange={(value) => updateOption('includeMiddleName', value)}
                             data-testid="switch-middle-name"
+                            className="flex-shrink-0"
                           />
                         </div>
 
-                        <div className="flex items-center justify-between">
-                          <div className="flex-1">
-                            <Label className="text-sm font-medium text-gray-700">Include Title</Label>
-                            <p className="text-xs text-gray-500">Add title like Mr., Mrs., Dr., Prof.</p>
+                        <div className="flex items-center justify-between gap-3">
+                          <div className="flex-1 min-w-0">
+                            <Label className="text-xs sm:text-sm font-medium text-gray-700 block">Include Title</Label>
+                            <p className="text-xs text-gray-500 mt-0.5 truncate">Add title like Mr., Mrs., Dr., Prof.</p>
                           </div>
                           <Switch
                             checked={options.includeTitle}
                             onCheckedChange={(value) => updateOption('includeTitle', value)}
                             data-testid="switch-title"
+                            className="flex-shrink-0"
                           />
                         </div>
                       </div>
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 sm:pt-5 md:pt-6">
                       <Button
                         onClick={handleGenerateName}
-                        className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                        className="flex-1 h-11 sm:h-12 md:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                         data-testid="button-generate-name"
                       >
                         Generate Name
@@ -322,7 +324,7 @@ const FakeNameGenerator = () => {
                       <Button
                         onClick={resetGenerator}
                         variant="outline"
-                        className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                        className="h-11 sm:h-12 md:h-14 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                         data-testid="button-reset"
                       >
                         Reset
@@ -332,53 +334,53 @@ const FakeNameGenerator = () => {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Generated Name</h2>
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t lg:border-t-0 lg:border-l border-gray-200">
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Generated Name</h2>
 
                   {generatedName ? (
-                    <div className="space-y-6" data-testid="name-results">
+                    <div className="space-y-4 sm:space-y-5 md:space-y-6" data-testid="name-results">
                       {/* Generated Name Display */}
-                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
-                        <div className="text-2xl lg:text-3xl font-bold text-blue-600 text-center mb-2" data-testid="main-name">
+                      <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 shadow-lg border border-blue-100">
+                        <div className="text-xl sm:text-2xl md:text-3xl font-bold text-blue-600 text-center mb-1 sm:mb-2 break-words" data-testid="main-name">
                           {generatedName.fullName}
                         </div>
-                        <div className="text-sm text-gray-600 text-center capitalize">
+                        <div className="text-xs sm:text-sm text-gray-600 text-center capitalize">
                           {generatedName.gender} • {generatedName.nationality}
                         </div>
                       </div>
 
                       {/* Name Components */}
-                      <div className="bg-white rounded-xl p-6 shadow-sm" data-testid="name-components">
-                        <h3 className="font-bold text-gray-900 mb-4 text-lg">Name Components</h3>
-                        <div className="grid grid-cols-1 gap-3">
+                      <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 shadow-sm" data-testid="name-components">
+                        <h3 className="font-bold text-gray-900 mb-3 sm:mb-4 text-base sm:text-lg">Name Components</h3>
+                        <div className="grid grid-cols-1 gap-2 sm:gap-3">
                           {generatedName.title && (
-                            <div className="bg-yellow-50 rounded-lg p-3 border border-yellow-200">
+                            <div className="bg-yellow-50 rounded-lg p-2.5 sm:p-3 border border-yellow-200">
                               <div className="text-xs font-medium text-gray-600 uppercase tracking-wide">Title</div>
-                              <div className="text-sm font-mono text-gray-900">{generatedName.title}</div>
+                              <div className="text-sm font-mono text-gray-900 break-words">{generatedName.title}</div>
                             </div>
                           )}
-                          <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
+                          <div className="bg-blue-50 rounded-lg p-2.5 sm:p-3 border border-blue-200">
                             <div className="text-xs font-medium text-gray-600 uppercase tracking-wide">First Name</div>
-                            <div className="text-sm font-mono text-gray-900">{generatedName.firstName}</div>
+                            <div className="text-sm font-mono text-gray-900 break-words">{generatedName.firstName}</div>
                           </div>
                           {generatedName.middleName && (
-                            <div className="bg-green-50 rounded-lg p-3 border border-green-200">
+                            <div className="bg-green-50 rounded-lg p-2.5 sm:p-3 border border-green-200">
                               <div className="text-xs font-medium text-gray-600 uppercase tracking-wide">Middle Name</div>
-                              <div className="text-sm font-mono text-gray-900">{generatedName.middleName}</div>
+                              <div className="text-sm font-mono text-gray-900 break-words">{generatedName.middleName}</div>
                             </div>
                           )}
-                          <div className="bg-purple-50 rounded-lg p-3 border border-purple-200">
+                          <div className="bg-purple-50 rounded-lg p-2.5 sm:p-3 border border-purple-200">
                             <div className="text-xs font-medium text-gray-600 uppercase tracking-wide">Last Name</div>
-                            <div className="text-sm font-mono text-gray-900">{generatedName.lastName}</div>
+                            <div className="text-sm font-mono text-gray-900 break-words">{generatedName.lastName}</div>
                           </div>
                         </div>
                       </div>
 
                       {/* Action Buttons */}
-                      <div className="flex flex-col sm:flex-row gap-4">
+                      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                         <Button
                           onClick={() => handleCopyToClipboard(generatedName.fullName)}
-                          className="flex-1 h-12 bg-green-600 hover:bg-green-700 text-white font-medium rounded-xl"
+                          className="flex-1 h-10 sm:h-11 md:h-12 bg-green-600 hover:bg-green-700 text-white font-medium text-sm sm:text-base rounded-lg sm:rounded-xl"
                           data-testid="button-copy-name"
                         >
                           Copy Name
@@ -386,7 +388,7 @@ const FakeNameGenerator = () => {
                         <Button
                           onClick={handleClear}
                           variant="outline"
-                          className="flex-1 h-12 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-medium rounded-xl"
+                          className="flex-1 h-10 sm:h-11 md:h-12 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-medium text-sm sm:text-base rounded-lg sm:rounded-xl"
                           data-testid="button-clear"
                         >
                           Clear
@@ -394,11 +396,11 @@ const FakeNameGenerator = () => {
                       </div>
                     </div>
                   ) : (
-                    <div className="text-center py-16" data-testid="no-results">
-                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <div className="text-3xl font-bold text-gray-400">👤</div>
+                    <div className="text-center py-8 sm:py-12 md:py-16" data-testid="no-results">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
+                        <div className="text-2xl sm:text-3xl font-bold text-gray-400">👤</div>
                       </div>
-                      <p className="text-gray-500 text-lg">Configure settings and generate to see name</p>
+                      <p className="text-gray-500 text-sm sm:text-base md:text-lg px-4">Configure settings and generate to see name</p>
                     </div>
                   )}
                 </div>
