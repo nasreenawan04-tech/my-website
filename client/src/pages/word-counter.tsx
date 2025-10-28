@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header';
@@ -14,6 +15,11 @@ interface WordCountResult {
   sentences: number;
   paragraphs: number;
   lines: number;
+  averageWordLength: number;
+  averageWordsPerSentence: number;
+  longestWord: number;
+  shortestWord: number;
+  uniqueWords: number;
   readingTime: number;
   speakingTime: number;
 }
@@ -24,6 +30,24 @@ const WordCounter = () => {
   const [showAdvancedStats, setShowAdvancedStats] = useState(false);
 
   const calculateWordCount = (inputText: string): WordCountResult => {
+    if (inputText.trim() === '') {
+      return {
+        characters: 0,
+        charactersNoSpaces: 0,
+        words: 0,
+        sentences: 0,
+        paragraphs: 0,
+        lines: 0,
+        averageWordLength: 0,
+        averageWordsPerSentence: 0,
+        longestWord: 0,
+        shortestWord: 0,
+        uniqueWords: 0,
+        readingTime: 0,
+        speakingTime: 0
+      };
+    }
+
     // Characters (including spaces)
     const characters = inputText.length;
 
@@ -31,7 +55,8 @@ const WordCounter = () => {
     const charactersNoSpaces = inputText.replace(/\s/g, '').length;
 
     // Words - split by whitespace and filter out empty strings
-    const words = inputText.trim() === '' ? 0 : inputText.trim().split(/\s+/).filter(word => word.length > 0).length;
+    const wordsArray = inputText.trim().split(/\s+/).filter(word => word.length > 0);
+    const words = wordsArray.length;
 
     // Sentences - split by sentence-ending punctuation
     const sentences = inputText.trim() === '' ? 0 : inputText.split(/[.!?]+/).filter(sentence => sentence.trim().length > 0).length;
@@ -41,6 +66,22 @@ const WordCounter = () => {
 
     // Lines - split by line breaks
     const lines = inputText === '' ? 0 : inputText.split('\n').length;
+
+    // Average word length
+    const totalWordLength = wordsArray.reduce((sum, word) => sum + word.length, 0);
+    const averageWordLength = words > 0 ? Math.round((totalWordLength / words) * 10) / 10 : 0;
+
+    // Average words per sentence
+    const averageWordsPerSentence = sentences > 0 ? Math.round((words / sentences) * 10) / 10 : 0;
+
+    // Longest and shortest word
+    const wordLengths = wordsArray.map(word => word.length);
+    const longestWord = wordLengths.length > 0 ? Math.max(...wordLengths) : 0;
+    const shortestWord = wordLengths.length > 0 ? Math.min(...wordLengths) : 0;
+
+    // Unique words (case-insensitive)
+    const uniqueWordsSet = new Set(wordsArray.map(word => word.toLowerCase()));
+    const uniqueWords = uniqueWordsSet.size;
 
     // Reading time (average 200 words per minute)
     const readingTime = Math.ceil(words / 200);
@@ -55,6 +96,11 @@ const WordCounter = () => {
       sentences,
       paragraphs,
       lines,
+      averageWordLength,
+      averageWordsPerSentence,
+      longestWord,
+      shortestWord,
+      uniqueWords,
       readingTime,
       speakingTime
     };
@@ -74,11 +120,16 @@ const WordCounter = () => {
     if (result) {
       const stats = `Text Statistics:
 Words: ${result.words}
-Characters: ${result.characters}
-Characters (no spaces): ${result.charactersNoSpaces}
+Characters (with spaces): ${result.characters}
+Characters (without spaces): ${result.charactersNoSpaces}
 Sentences: ${result.sentences}
 Paragraphs: ${result.paragraphs}
 Lines: ${result.lines}
+Average word length: ${result.averageWordLength} characters
+Average words per sentence: ${result.averageWordsPerSentence}
+Longest word: ${result.longestWord} characters
+Shortest word: ${result.shortestWord} characters
+Unique words: ${result.uniqueWords}
 Reading time: ${result.readingTime} minute(s)
 Speaking time: ${result.speakingTime} minute(s)`;
 
@@ -197,7 +248,7 @@ Speaking time: ${result.speakingTime} minute(s)`;
                   </div>
 
                   {/* Advanced Options */}
-                  {result && (
+                  {result && result.words > 0 && (
                     <div className="flex flex-wrap gap-2 sm:gap-3 pt-2 sm:pt-3 md:pt-4">
                       <Button
                         onClick={() => setShowAdvancedStats(!showAdvancedStats)}
@@ -216,7 +267,7 @@ Speaking time: ${result.speakingTime} minute(s)`;
                 <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12">
                   <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">Text Statistics</h2>
 
-                  {result ? (
+                  {result && result.words > 0 ? (
                     <div className="space-y-3 sm:space-y-4 md:space-y-6" data-testid="text-statistics">
                       {/* Word Count Highlight */}
                       <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-4 sm:p-5 md:p-6 shadow-lg border border-blue-100">
@@ -273,6 +324,46 @@ Speaking time: ${result.speakingTime} minute(s)`;
                               </span>
                             </div>
                           </div>
+                          <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                            <div className="flex justify-between items-center">
+                              <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Unique words</span>
+                              <span className="font-bold text-teal-600 text-sm sm:text-base md:text-lg" data-testid="stat-unique-words">
+                                {result.uniqueWords.toLocaleString()}
+                              </span>
+                            </div>
+                          </div>
+                          <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                            <div className="flex justify-between items-center">
+                              <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Average word length</span>
+                              <span className="font-bold text-cyan-600 text-sm sm:text-base md:text-lg" data-testid="stat-avg-word-length">
+                                {result.averageWordLength} chars
+                              </span>
+                            </div>
+                          </div>
+                          <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                            <div className="flex justify-between items-center">
+                              <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Average words per sentence</span>
+                              <span className="font-bold text-rose-600 text-sm sm:text-base md:text-lg" data-testid="stat-avg-words-sentence">
+                                {result.averageWordsPerSentence}
+                              </span>
+                            </div>
+                          </div>
+                          <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                            <div className="flex justify-between items-center">
+                              <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Longest word</span>
+                              <span className="font-bold text-amber-600 text-sm sm:text-base md:text-lg" data-testid="stat-longest-word">
+                                {result.longestWord} chars
+                              </span>
+                            </div>
+                          </div>
+                          <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
+                            <div className="flex justify-between items-center">
+                              <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Shortest word</span>
+                              <span className="font-bold text-lime-600 text-sm sm:text-base md:text-lg" data-testid="stat-shortest-word">
+                                {result.shortestWord} chars
+                              </span>
+                            </div>
+                          </div>
                         </div>
                       )}
 
@@ -322,8 +413,8 @@ Speaking time: ${result.speakingTime} minute(s)`;
                     A <strong>word counter</strong> is an essential digital tool that provides comprehensive text analysis
                     by calculating various statistical metrics about your written content. Unlike simple counting applications,
                     our advanced word counter delivers real-time insights including precise word counts, character analysis
-                    (with and without spaces), sentence structure evaluation, paragraph organization assessment, and
-                    estimated reading and speaking times.
+                    (with and without spaces), sentence structure evaluation, paragraph organization assessment, unique word
+                    identification, and estimated reading and speaking times.
                   </p>
 
                   <p className="leading-relaxed">
@@ -338,7 +429,8 @@ Speaking time: ${result.speakingTime} minute(s)`;
                     minute, while speaking time estimates use an average conversational pace of 130 words per minute.
                     These calculations are particularly valuable for content creators planning presentations, educators
                     preparing lectures, speakers timing their talks, and writers estimating content consumption duration
-                    for their audiences.
+                    for their audiences. Additionally, the tool analyzes average word length, words per sentence, and
+                    identifies unique words to help improve writing quality and readability.
                   </p>
                 </div>
               </CardContent>
@@ -356,13 +448,17 @@ Speaking time: ${result.speakingTime} minute(s)`;
                     </div>
                     <div className="border-l-4 border-green-500 pl-4">
                       <h3 className="font-semibold text-gray-800 mb-2">Comprehensive Statistics</h3>
-                      <p className="text-gray-600 text-sm">Track multiple metrics including words, characters, sentences, paragraphs, lines, and time estimates in one location.</p>
+                      <p className="text-gray-600 text-sm">Track multiple metrics including words, characters, sentences, paragraphs, lines, unique words, and time estimates in one location.</p>
                     </div>
                     <div className="border-l-4 border-purple-500 pl-4">
+                      <h3 className="font-semibold text-gray-800 mb-2">Advanced Text Metrics</h3>
+                      <p className="text-gray-600 text-sm">Analyze average word length, words per sentence, longest and shortest words for enhanced writing quality assessment.</p>
+                    </div>
+                    <div className="border-l-4 border-orange-500 pl-4">
                       <h3 className="font-semibold text-gray-800 mb-2">Reading Time Calculator</h3>
                       <p className="text-gray-600 text-sm">Estimate how long it takes to read or speak your content based on standard reading and speaking speeds.</p>
                     </div>
-                    <div className="border-l-4 border-orange-500 pl-4">
+                    <div className="border-l-4 border-teal-500 pl-4">
                       <h3 className="font-semibold text-gray-800 mb-2">Mobile Responsive</h3>
                       <p className="text-gray-600 text-sm">Count words and analyze text on any device with our fully responsive design optimized for desktop, tablet, and mobile.</p>
                     </div>
@@ -387,6 +483,10 @@ Speaking time: ${result.speakingTime} minute(s)`;
                       <p className="text-gray-600 text-sm">Optimize blog posts, meta descriptions, and web content by monitoring word counts for better search engine performance.</p>
                     </div>
                     <div className="border-l-4 border-rose-500 pl-4">
+                      <h3 className="font-semibold text-gray-800 mb-2">Writing Quality Analysis</h3>
+                      <p className="text-gray-600 text-sm">Improve readability with metrics on average word length, sentence structure, and vocabulary diversity.</p>
+                    </div>
+                    <div className="border-l-4 border-amber-500 pl-4">
                       <h3 className="font-semibold text-gray-800 mb-2">Free and Accessible</h3>
                       <p className="text-gray-600 text-sm">No registration required, completely free to use, and accessible from any browser on any device worldwide.</p>
                     </div>
@@ -457,6 +557,10 @@ Speaking time: ${result.speakingTime} minute(s)`;
                           <span className="font-medium">Email Newsletters:</span>
                           <span className="text-orange-600 font-semibold">50-125 words</span>
                         </div>
+                        <div className="flex justify-between items-center p-3 bg-teal-50 rounded-lg">
+                          <span className="font-medium">Product Descriptions:</span>
+                          <span className="text-teal-600 font-semibold">100-300 words</span>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -480,6 +584,10 @@ Speaking time: ${result.speakingTime} minute(s)`;
                         <div className="flex justify-between items-center p-3 bg-rose-50 rounded-lg">
                           <span className="font-medium">Abstracts:</span>
                           <span className="text-rose-600 font-semibold">150-300 words</span>
+                        </div>
+                        <div className="flex justify-between items-center p-3 bg-amber-50 rounded-lg">
+                          <span className="font-medium">Literature Reviews:</span>
+                          <span className="text-amber-600 font-semibold">2,000-4,000 words</span>
                         </div>
                       </div>
                     </div>
@@ -516,7 +624,7 @@ Speaking time: ${result.speakingTime} minute(s)`;
                       <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
                       <div>
                         <h3 className="font-semibold text-gray-900 mb-2">Analyze Statistics</h3>
-                        <p className="text-gray-600 text-sm">Review comprehensive text metrics including reading time and character analysis.</p>
+                        <p className="text-gray-600 text-sm">Review comprehensive text metrics including reading time, character analysis, and advanced statistics.</p>
                       </div>
                     </div>
 
@@ -550,6 +658,10 @@ Speaking time: ${result.speakingTime} minute(s)`;
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">How is reading time calculated?</h3>
                       <p className="text-gray-600 text-sm">Reading time uses an average speed of 200 words per minute for adults, while speaking time is calculated at 130 words per minute based on conversational pace.</p>
                     </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">What are unique words?</h3>
+                      <p className="text-gray-600 text-sm">Unique words represent the number of distinct words in your text, calculated case-insensitively to help measure vocabulary diversity and content richness.</p>
+                    </div>
                   </div>
                   <div className="space-y-6">
                     <div>
@@ -563,6 +675,10 @@ Speaking time: ${result.speakingTime} minute(s)`;
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I use this for academic writing?</h3>
                       <p className="text-gray-600 text-sm">Absolutely! Our tool is perfect for academic assignments, research papers, dissertations, and any writing with specific word count requirements.</p>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">What are advanced statistics?</h3>
+                      <p className="text-gray-600 text-sm">Advanced statistics include metrics like unique words, average word length, words per sentence, and longest/shortest words to help improve writing quality.</p>
                     </div>
                   </div>
                 </div>
