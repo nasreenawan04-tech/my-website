@@ -365,112 +365,15 @@ export default function LoremIpsumGenerator() {
           </Card>
 
           {/* SEO Content Section */}
-          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">What is Lorem Ipsum?</h3>
-                <div className="space-y-4 text-gray-600">
-                  <p>
-                    Lorem Ipsum is the printing and typesetting industry's standard dummy text since the 1500s. 
-                    It's derived from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes 
-                    of Good and Evil) by Cicero, written in 45 BC.
-                  </p>
-                  <p>
-                    Our Lorem Ipsum generator creates professional placeholder text that allows designers and 
-                    developers to focus on visual elements without being distracted by readable content. The text 
-                    maintains natural language patterns while remaining meaningless, making it perfect for mockups 
-                    and design layouts.
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Why Use Lorem Ipsum Generator?</h3>
-                <div className="space-y-4 text-gray-600">
-                  <p>
-                    Lorem Ipsum text prevents content from distracting viewers during the design phase, allowing 
-                    focus on typography, layout, and visual hierarchy. It's the industry standard for placeholder 
-                    content used by designers worldwide.
-                  </p>
-                  <ul className="space-y-2 list-disc list-inside">
-                    <li>Professional industry standard since the 1500s</li>
-                    <li>Maintains focus on visual design elements</li>
-                    <li>Prevents content bias during layout decisions</li>
-                    <li>Consistent text patterns for reliable testing</li>
-                  </ul>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Generator Features</h3>
-                <div className="space-y-3 text-gray-600">
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Generate paragraphs, sentences, or individual words</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Customizable text length up to 50 units</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Traditional "Lorem ipsum" start option</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Instant generation with copy functionality</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Real-time text statistics display</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Professional Applications</h3>
-                <div className="space-y-3 text-gray-600">
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Web design mockups and wireframes</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Print design layouts and typography testing</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Content management system templates</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Marketing material prototypes</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <span>Document template creation</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Additional SEO Content Sections */}
-          <div className="mt-12 space-y-8">
+          <div className="mt-8 sm:mt-10 md:mt-12 space-y-6 sm:space-y-8">
             {/* Use Cases by Profession */}
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Lorem Ipsum Generator Use Cases</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">Lorem Ipsum Generator Use Cases</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                   <div className="space-y-4">
                     <h4 className="text-lg font-semibold text-gray-800">Web Designers & Developers</h4>
-                    <p className="text-gray-600">
+                    <p className="text-sm sm:text-base leading-relaxed">
                       Use Lorem ipsum text to fill website templates, test responsive layouts, and demonstrate 
                       content hierarchy without client content distractions. Perfect for wireframes, prototypes, 
                       and client presentations where design takes precedence over content.
@@ -478,7 +381,7 @@ export default function LoremIpsumGenerator() {
                   </div>
                   <div className="space-y-4">
                     <h4 className="text-lg font-semibold text-gray-800">Graphic & Print Designers</h4>
-                    <p className="text-gray-600">
+                    <p className="text-sm sm:text-base leading-relaxed">
                       Fill brochures, flyers, magazines, and book layouts to test typography, spacing, and 
                       overall design balance before final content. Essential for professional print design 
                       workflows and client mockup presentations.
@@ -486,7 +389,7 @@ export default function LoremIpsumGenerator() {
                   </div>
                   <div className="space-y-4">
                     <h4 className="text-lg font-semibold text-gray-800">Marketing Professionals</h4>
-                    <p className="text-gray-600">
+                    <p className="text-sm sm:text-base leading-relaxed">
                       Create marketing material mockups, test email templates, and design promotional content 
                       layouts with consistent placeholder text. Ideal for A/B testing different design approaches 
                       and content structure planning.
@@ -494,7 +397,7 @@ export default function LoremIpsumGenerator() {
                   </div>
                   <div className="space-y-4">
                     <h4 className="text-lg font-semibold text-gray-800">Content Managers & Writers</h4>
-                    <p className="text-gray-600">
+                    <p className="text-sm sm:text-base leading-relaxed">
                       Plan content layouts, test blog themes, and design editorial templates before writing 
                       actual articles. Great for testing readability and visual appeal of different text 
                       lengths and content structures.
@@ -577,14 +480,14 @@ export default function LoremIpsumGenerator() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                   <div className="space-y-4 text-gray-600">
                     <h4 className="font-semibold text-gray-800 mb-2">Ancient Roman Origins</h4>
-                    <p className="text-sm">
+                    <p className="text-sm sm:text-base leading-relaxed">
                       Lorem Ipsum originates from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" 
                       (The Extremes of Good and Evil) by Marcus Tullius Cicero, written in 45 BC. This classical 
                       Latin literature has been adapted over centuries to create the modern placeholder text we 
                       use today.
                     </p>
                     <h4 className="font-semibold text-gray-800 mb-2">Renaissance Printing</h4>
-                    <p className="text-sm">
+                    <p className="text-sm sm:text-base leading-relaxed">
                       The text gained popularity during the Renaissance when an unknown printer took a galley of 
                       type and scrambled it to make a type specimen book. It has survived not only five centuries 
                       but also the leap into electronic typesetting, remaining essentially unchanged.
@@ -592,13 +495,13 @@ export default function LoremIpsumGenerator() {
                   </div>
                   <div className="space-y-4 text-gray-600">
                     <h4 className="font-semibold text-gray-800 mb-2">Modern Digital Era</h4>
-                    <p className="text-sm">
+                    <p className="text-sm sm:text-base leading-relaxed">
                       Lorem Ipsum was popularized in the 1960s with the release of Letraset sheets containing 
                       Lorem Ipsum passages, and more recently with desktop publishing software like Aldus 
                       PageMaker including versions of Lorem Ipsum as standard placeholder text.
                     </p>
                     <h4 className="font-semibold text-gray-800 mb-2">Industry Standard Today</h4>
-                    <p className="text-sm">
+                    <p className="text-sm sm:text-base leading-relaxed">
                       Today, Lorem Ipsum is the universal standard for placeholder text across web design, 
                       print media, and digital publishing. Our generator continues this tradition while 
                       offering modern customization options for contemporary design workflows.
@@ -616,7 +519,7 @@ export default function LoremIpsumGenerator() {
                   <div className="space-y-6">
                     <div>
                       <h4 className="font-semibold text-gray-800 mb-2">What is Lorem Ipsum used for?</h4>
-                      <p className="text-gray-600 text-sm">
+                      <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
                         Lorem Ipsum is used as placeholder text in the printing and typesetting industry. 
                         It allows designers to focus on visual elements without being distracted by readable 
                         content, making it perfect for mockups, templates, and design layouts.
@@ -624,7 +527,7 @@ export default function LoremIpsumGenerator() {
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-800 mb-2">Is Lorem Ipsum random text?</h4>
-                      <p className="text-gray-600 text-sm">
+                      <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
                         No, Lorem Ipsum is based on classical Latin literature from Cicero's work written in 
                         45 BC. While it has been altered over time to remove meaningful content, it maintains 
                         natural language patterns that make it ideal for design purposes.
@@ -632,7 +535,7 @@ export default function LoremIpsumGenerator() {
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-800 mb-2">Can I use Lorem Ipsum for commercial projects?</h4>
-                      <p className="text-gray-600 text-sm">
+                      <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
                         Yes, Lorem Ipsum is free to use for any purpose, including commercial projects. It's 
                         the industry standard placeholder text and is widely accepted for professional design 
                         and development work across all industries.
@@ -642,7 +545,7 @@ export default function LoremIpsumGenerator() {
                   <div className="space-y-6">
                     <div>
                       <h4 className="font-semibold text-gray-800 mb-2">How much Lorem Ipsum text should I generate?</h4>
-                      <p className="text-gray-600 text-sm">
+                      <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
                         The amount depends on your specific needs. For web design, 2-3 paragraphs work well 
                         for content areas. For testing layouts, adjust based on your design requirements. 
                         Our generator allows up to 50 units of any text type.
@@ -650,7 +553,7 @@ export default function LoremIpsumGenerator() {
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-800 mb-2">Should I start with "Lorem ipsum dolor sit amet"?</h4>
-                      <p className="text-gray-600 text-sm">
+                      <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
                         Starting with the traditional phrase is recognizable and professional, widely used 
                         in the design industry. However, you can choose random text for more variety depending 
                         on your specific project requirements.
@@ -658,7 +561,7 @@ export default function LoremIpsumGenerator() {
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-800 mb-2">Is this Lorem Ipsum generator free?</h4>
-                      <p className="text-gray-600 text-sm">
+                      <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
                         Yes, our Lorem Ipsum generator is completely free with no registration required. 
                         Generate unlimited placeholder text for all your design, development, and content 
                         planning projects without any restrictions.
