@@ -295,8 +295,8 @@ This tool provides detailed analysis of your text content for social media optim
                         </div>
                       </div>
 
-                      {/* Main Statistics */}
-                      <div className="space-y-2 sm:space-y-3 md:space-y-4">
+                      {/* Main Statistics - Column Layout */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                         <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
                             <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Characters (no spaces)</span>
