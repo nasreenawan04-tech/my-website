@@ -432,16 +432,16 @@ Complex sentences contain subordinate clauses that depend on the main clause, wh
             <CardContent className="p-0">
               <div className="flex flex-col">
                 {/* Input Section */}
-                <div className="p-4 sm:p-6 md:p-8 lg:p-10 space-y-6">
-                  <div className="flex items-center justify-between flex-wrap gap-4">
-                    <div>
-                      <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Text Analysis</h2>
-                      <p className="text-sm sm:text-base text-gray-600 mt-1">Enter or upload text for comprehensive sentence analysis</p>
+                <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
+                  <div className="flex items-center justify-between flex-wrap gap-3 sm:gap-4">
+                    <div className="text-center sm:text-left">
+                      <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Text Analysis</h2>
+                      <p className="text-sm sm:text-base text-gray-600">Enter or upload text for comprehensive sentence analysis</p>
                     </div>
                     {readabilityInfo && result && result.totalSentences > 0 && (
-                      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 px-4 py-2 rounded-lg border border-blue-200">
+                      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg border border-blue-200">
                         <div className="text-xs text-gray-600">Readability</div>
-                        <div className={`text-sm font-semibold ${readabilityInfo.color}`}>
+                        <div className={`text-xs sm:text-sm font-semibold ${readabilityInfo.color}`}>
                           {readabilityInfo.assessment}
                         </div>
                       </div>
@@ -449,16 +449,16 @@ Complex sentences contain subordinate clauses that depend on the main clause, wh
                   </div>
                   
                   {/* Text Area */}
-                  <div className="space-y-3">
-                    <Label htmlFor="text-input" className="text-sm font-semibold text-gray-800 uppercase tracking-wide flex items-center gap-2">
-                      <FileText className="w-4 h-4" />
+                  <div className="space-y-2 sm:space-y-3">
+                    <Label htmlFor="text-input" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide flex items-center gap-2">
+                      <FileText className="w-3 h-3 sm:w-4 sm:h-4" />
                       Text to Analyze
                     </Label>
                     <textarea
                       id="text-input"
                       value={text}
                       onChange={(e) => setText(e.target.value)}
-                      className="w-full h-80 md:h-96 p-4 text-base border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none font-mono"
+                      className="w-full min-h-[250px] sm:min-h-[300px] lg:min-h-[400px] p-3 sm:p-4 text-sm sm:text-base border-2 border-gray-200 rounded-lg sm:rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none font-mono"
                       placeholder="Type, paste, or upload your text here for instant sentence analysis. The tool will automatically detect sentence types, measure complexity, calculate reading time, and provide comprehensive writing insights..."
                       data-testid="textarea-text-input"
                     />
@@ -469,23 +469,23 @@ Complex sentences contain subordinate clauses that depend on the main clause, wh
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-wrap justify-center gap-3 pt-4">
+                  <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       onClick={handleSampleText}
-                      className="h-12 px-6 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg"
                       data-testid="button-sample-text"
                     >
-                      <FileText className="w-5 h-5 mr-2" />
+                      <FileText className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                       Load Sample
                     </Button>
-                    <label htmlFor="file-upload">
+                    <label htmlFor="file-upload" className="w-full sm:w-auto">
                       <Button
                         type="button"
                         variant="outline"
-                        className="h-12 px-6 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold rounded-xl"
+                        className="w-full h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                         onClick={() => document.getElementById('file-upload')?.click()}
                       >
-                        <Upload className="w-5 h-5 mr-2" />
+                        <Upload className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                         Upload File
                       </Button>
                     </label>
@@ -499,7 +499,7 @@ Complex sentences contain subordinate clauses that depend on the main clause, wh
                     <Button
                       onClick={handleClear}
                       variant="outline"
-                      className="h-12 px-6 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold rounded-xl"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                       data-testid="button-clear-text"
                     >
                       Clear
@@ -507,20 +507,20 @@ Complex sentences contain subordinate clauses that depend on the main clause, wh
                     <Button
                       onClick={handleCopy}
                       variant="outline"
-                      className="h-12 px-6 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold rounded-xl"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                       disabled={!result || result.totalSentences === 0}
                       data-testid="button-copy-stats"
                     >
-                      {copied ? <Check className="w-5 h-5 mr-2" /> : <Copy className="w-5 h-5 mr-2" />}
+                      {copied ? <Check className="w-4 h-4 sm:w-5 sm:h-5 mr-2" /> : <Copy className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />}
                       {copied ? 'Copied!' : 'Copy Results'}
                     </Button>
                     <Button
                       onClick={handleDownload}
                       variant="outline"
-                      className="h-12 px-6 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold rounded-xl"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                       disabled={!result || result.totalSentences === 0}
                     >
-                      <Download className="w-5 h-5 mr-2" />
+                      <Download className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                       Download Report
                     </Button>
                   </div>
@@ -528,48 +528,48 @@ Complex sentences contain subordinate clauses that depend on the main clause, wh
 
                 {/* Results Section */}
                 {result !== null && result.totalSentences > 0 && (
-                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 md:p-8 lg:p-10 border-t">
-                    <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                      <BarChart3 className="w-7 h-7 text-blue-600" />
+                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left flex items-center justify-center sm:justify-start gap-2">
+                      <BarChart3 className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-blue-600" />
                       Analysis Results
                     </h2>
                     
-                    <div className="space-y-6" data-testid="sentence-statistics">
+                    <div className="space-y-4 sm:space-y-6 md:space-y-8" data-testid="sentence-statistics">
                       {/* Total Sentences Highlight */}
-                      <div className="bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl p-6 shadow-xl text-white">
-                        <div className="text-center space-y-3">
-                          <div className="text-sm font-semibold uppercase tracking-wide opacity-90">Total Sentences</div>
-                          <div className="text-5xl md:text-6xl font-bold" data-testid="stat-total-sentences">
+                      <div className="bg-gradient-to-br from-blue-600 to-indigo-600 rounded-lg sm:rounded-xl md:rounded-2xl p-4 sm:p-6 shadow-lg sm:shadow-xl text-white">
+                        <div className="text-center space-y-2 sm:space-y-3">
+                          <div className="text-xs sm:text-sm font-semibold uppercase tracking-wide opacity-90">Total Sentences</div>
+                          <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold break-all" data-testid="stat-total-sentences">
                             {result.totalSentences.toLocaleString()}
                           </div>
-                          <div className="text-sm opacity-80">
+                          <div className="text-xs sm:text-sm opacity-80">
                             {result.words.toLocaleString()} words • {result.characters.toLocaleString()} characters
                           </div>
                         </div>
                       </div>
 
                       {/* Key Metrics Grid */}
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <div className="bg-white rounded-xl p-4 shadow-sm border border-blue-100">
-                          <div className="text-2xl md:text-3xl font-bold text-blue-600" data-testid="stat-avg-words">
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm border border-blue-100">
+                          <div className="text-xl sm:text-2xl md:text-3xl font-bold text-blue-600 break-all" data-testid="stat-avg-words">
                             {result.averageWordsPerSentence}
                           </div>
                           <div className="text-xs text-gray-600 mt-1">Avg Words/Sentence</div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm border border-indigo-100">
-                          <div className="text-2xl md:text-3xl font-bold text-indigo-600" data-testid="stat-avg-chars">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm border border-indigo-100">
+                          <div className="text-xl sm:text-2xl md:text-3xl font-bold text-indigo-600 break-all" data-testid="stat-avg-chars">
                             {result.averageCharactersPerSentence}
                           </div>
                           <div className="text-xs text-gray-600 mt-1">Avg Chars/Sentence</div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm border border-teal-100">
-                          <div className="text-2xl md:text-3xl font-bold text-teal-600" data-testid="stat-longest">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm border border-teal-100">
+                          <div className="text-xl sm:text-2xl md:text-3xl font-bold text-teal-600 break-all" data-testid="stat-longest">
                             {result.longestSentence}
                           </div>
                           <div className="text-xs text-gray-600 mt-1">Longest Sentence</div>
                         </div>
-                        <div className="bg-white rounded-xl p-4 shadow-sm border border-cyan-100">
-                          <div className="text-2xl md:text-3xl font-bold text-cyan-600" data-testid="stat-shortest">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm border border-cyan-100">
+                          <div className="text-xl sm:text-2xl md:text-3xl font-bold text-cyan-600 break-all" data-testid="stat-shortest">
                             {result.shortestSentence}
                           </div>
                           <div className="text-xs text-gray-600 mt-1">Shortest Sentence</div>
@@ -577,40 +577,40 @@ Complex sentences contain subordinate clauses that depend on the main clause, wh
                       </div>
 
                       {/* Sentence Types */}
-                      <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-                        <h3 className="text-lg font-bold text-gray-900 mb-4">Sentence Types</h3>
+                      <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm border border-gray-200">
+                        <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">Sentence Types</h3>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                          <div className="bg-green-50 rounded-lg p-4 border border-green-200">
+                          <div className="bg-green-50 rounded-lg p-3 sm:p-4 border border-green-200">
                             <div className="flex justify-between items-center">
-                              <span className="font-medium text-gray-700">Declarative (.)</span>
-                              <span className="font-bold text-green-600 text-xl" data-testid="stat-declarative">
+                              <span className="font-medium text-gray-700 text-xs sm:text-sm">Declarative (.)</span>
+                              <span className="font-bold text-green-600 text-lg sm:text-xl" data-testid="stat-declarative">
                                 {result.declarativeSentences}
                               </span>
                             </div>
                             <div className="text-xs text-gray-500 mt-1">Statements and facts</div>
                           </div>
-                          <div className="bg-purple-50 rounded-lg p-4 border border-purple-200">
+                          <div className="bg-purple-50 rounded-lg p-3 sm:p-4 border border-purple-200">
                             <div className="flex justify-between items-center">
-                              <span className="font-medium text-gray-700">Interrogative (?)</span>
-                              <span className="font-bold text-purple-600 text-xl" data-testid="stat-interrogative">
+                              <span className="font-medium text-gray-700 text-xs sm:text-sm">Interrogative (?)</span>
+                              <span className="font-bold text-purple-600 text-lg sm:text-xl" data-testid="stat-interrogative">
                                 {result.interrogativeSentences}
                               </span>
                             </div>
                             <div className="text-xs text-gray-500 mt-1">Questions</div>
                           </div>
-                          <div className="bg-orange-50 rounded-lg p-4 border border-orange-200">
+                          <div className="bg-orange-50 rounded-lg p-3 sm:p-4 border border-orange-200">
                             <div className="flex justify-between items-center">
-                              <span className="font-medium text-gray-700">Exclamatory (!)</span>
-                              <span className="font-bold text-orange-600 text-xl" data-testid="stat-exclamatory">
+                              <span className="font-medium text-gray-700 text-xs sm:text-sm">Exclamatory (!)</span>
+                              <span className="font-bold text-orange-600 text-lg sm:text-xl" data-testid="stat-exclamatory">
                                 {result.exclamatorySentences}
                               </span>
                             </div>
                             <div className="text-xs text-gray-500 mt-1">Strong emotions</div>
                           </div>
-                          <div className="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                          <div className="bg-blue-50 rounded-lg p-3 sm:p-4 border border-blue-200">
                             <div className="flex justify-between items-center">
-                              <span className="font-medium text-gray-700">Imperative</span>
-                              <span className="font-bold text-blue-600 text-xl">
+                              <span className="font-medium text-gray-700 text-xs sm:text-sm">Imperative</span>
+                              <span className="font-bold text-blue-600 text-lg sm:text-xl">
                                 {result.imperativeSentences}
                               </span>
                             </div>
@@ -620,31 +620,31 @@ Complex sentences contain subordinate clauses that depend on the main clause, wh
                       </div>
 
                       {/* Sentence Complexity */}
-                      <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-                        <h3 className="text-lg font-bold text-gray-900 mb-4">Sentence Complexity</h3>
+                      <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm border border-gray-200">
+                        <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4">Sentence Complexity</h3>
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                          <div className="bg-emerald-50 rounded-lg p-4 border border-emerald-200">
+                          <div className="bg-emerald-50 rounded-lg p-3 sm:p-4 border border-emerald-200">
                             <div className="flex justify-between items-center">
-                              <span className="font-medium text-gray-700">Simple</span>
-                              <span className="font-bold text-emerald-600 text-xl">
+                              <span className="font-medium text-gray-700 text-xs sm:text-sm">Simple</span>
+                              <span className="font-bold text-emerald-600 text-lg sm:text-xl">
                                 {result.simpleSentences}
                               </span>
                             </div>
                             <div className="text-xs text-gray-500 mt-1">Single clause</div>
                           </div>
-                          <div className="bg-amber-50 rounded-lg p-4 border border-amber-200">
+                          <div className="bg-amber-50 rounded-lg p-3 sm:p-4 border border-amber-200">
                             <div className="flex justify-between items-center">
-                              <span className="font-medium text-gray-700">Compound</span>
-                              <span className="font-bold text-amber-600 text-xl">
+                              <span className="font-medium text-gray-700 text-xs sm:text-sm">Compound</span>
+                              <span className="font-bold text-amber-600 text-lg sm:text-xl">
                                 {result.compoundSentences}
                               </span>
                             </div>
                             <div className="text-xs text-gray-500 mt-1">Multiple clauses</div>
                           </div>
-                          <div className="bg-rose-50 rounded-lg p-4 border border-rose-200">
+                          <div className="bg-rose-50 rounded-lg p-3 sm:p-4 border border-rose-200">
                             <div className="flex justify-between items-center">
-                              <span className="font-medium text-gray-700">Complex</span>
-                              <span className="font-bold text-rose-600 text-xl">
+                              <span className="font-medium text-gray-700 text-xs sm:text-sm">Complex</span>
+                              <span className="font-bold text-rose-600 text-lg sm:text-xl">
                                 {result.complexSentences}
                               </span>
                             </div>
@@ -654,20 +654,20 @@ Complex sentences contain subordinate clauses that depend on the main clause, wh
                       </div>
 
                       {/* Time Estimates */}
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-200">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 shadow-sm border border-gray-200">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Reading Time</span>
-                            <span className="font-bold text-pink-600 text-2xl" data-testid="stat-reading-time">
+                            <span className="font-medium text-gray-700 text-xs sm:text-sm">Reading Time</span>
+                            <span className="font-bold text-pink-600 text-xl sm:text-2xl" data-testid="stat-reading-time">
                               {result.readingTime} min
                             </span>
                           </div>
                           <div className="text-xs text-gray-500 mt-1">At 238 words/min</div>
                         </div>
-                        <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-200">
+                        <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 shadow-sm border border-gray-200">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700">Speaking Time</span>
-                            <span className="font-bold text-violet-600 text-2xl">
+                            <span className="font-medium text-gray-700 text-xs sm:text-sm">Speaking Time</span>
+                            <span className="font-bold text-violet-600 text-xl sm:text-2xl">
                               {result.speakingTime} min
                             </span>
                           </div>
@@ -677,14 +677,14 @@ Complex sentences contain subordinate clauses that depend on the main clause, wh
 
                       {/* Longest & Shortest Sentences */}
                       {result.longestSentenceText && result.shortestSentenceText && (
-                        <div className="space-y-4">
-                          <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-200">
-                            <h4 className="font-semibold text-gray-900 mb-2">Longest Sentence ({result.longestSentence} words)</h4>
-                            <p className="text-sm text-gray-600 italic leading-relaxed">{result.longestSentenceText}</p>
+                        <div className="space-y-3 sm:space-y-4">
+                          <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 shadow-sm border border-gray-200">
+                            <h4 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">Longest Sentence ({result.longestSentence} words)</h4>
+                            <p className="text-xs sm:text-sm text-gray-600 italic leading-relaxed">{result.longestSentenceText}</p>
                           </div>
-                          <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-200">
-                            <h4 className="font-semibold text-gray-900 mb-2">Shortest Sentence ({result.shortestSentence} words)</h4>
-                            <p className="text-sm text-gray-600 italic leading-relaxed">{result.shortestSentenceText}</p>
+                          <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 shadow-sm border border-gray-200">
+                            <h4 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">Shortest Sentence ({result.shortestSentence} words)</h4>
+                            <p className="text-xs sm:text-sm text-gray-600 italic leading-relaxed">{result.shortestSentenceText}</p>
                           </div>
                         </div>
                       )}
