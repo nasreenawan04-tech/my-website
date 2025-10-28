@@ -294,11 +294,12 @@ export default function PasswordStrengthChecker() {
 
                   {/* Password Input */}
                   <div className="space-y-2 sm:space-y-3">
-                    <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <Label htmlFor="password-input" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                       Enter Password
                     </Label>
                     <div className="relative">
                       <Input
+                        id="password-input"
                         type={showPassword ? "text" : "password"}
                         value={password}
                         onChange={(e) => handlePasswordChange(e.target.value)}
@@ -333,7 +334,7 @@ export default function PasswordStrengthChecker() {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
+                  <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       onClick={clearPassword}
                       variant="outline"
@@ -347,7 +348,7 @@ export default function PasswordStrengthChecker() {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t lg:border-t-0 lg:border-l">
                   <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Security Analysis</h2>
 
                   {analysis ? (
@@ -356,7 +357,7 @@ export default function PasswordStrengthChecker() {
                       <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-4 sm:p-6 shadow-lg border border-blue-100">
                         <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-2 sm:gap-0 mb-3 sm:mb-4">
                           <span className="text-base sm:text-lg font-semibold text-gray-700">Password Strength</span>
-                          <Badge className={`${analysis.color} text-white w-fit text-xs sm:text-sm`}>
+                          <Badge className={`${analysis.color} text-white w-fit text-xs sm:text-sm px-3 py-1`}>
                             {analysis.strength}
                           </Badge>
                         </div>
@@ -371,7 +372,7 @@ export default function PasswordStrengthChecker() {
 
                       {/* Requirements Checklist */}
                       <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 shadow-sm">
-                        <h3 className="font-bold text-gray-900 mb-3 sm:mb-4 text-sm sm:text-base">Security Requirements</h3>
+                        <h3 className="font-bold text-gray-900 mb-3 sm:mb-4 text-sm sm:text-base md:text-lg">Security Requirements</h3>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                           <div className={`flex items-center space-x-2 ${analysis.requirements.length ? 'text-green-600' : 'text-red-600'}`}>
                             <span className="text-sm sm:text-base">{analysis.requirements.length ? '✓' : '✗'}</span>
@@ -415,7 +416,7 @@ export default function PasswordStrengthChecker() {
                       )}
                     </div>
                   ) : (
-                    <div className="text-center py-12 sm:py-16" data-testid="no-results">
+                    <div className="text-center py-12 sm:py-16 md:py-20" data-testid="no-results">
                       <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
                         <div className="text-2xl sm:text-3xl font-bold text-gray-400">🔐</div>
                       </div>
