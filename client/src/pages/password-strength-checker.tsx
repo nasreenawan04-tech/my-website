@@ -307,7 +307,7 @@ export default function PasswordStrengthChecker() {
                         className="text-sm sm:text-base md:text-lg h-12 sm:h-14 pr-20 sm:pr-24 border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500"
                         data-testid="input-password"
                       />
-                      <div className="absolute right-2 top-2 flex gap-2">
+                      <div className="absolute right-2 top-1/2 -translate-y-1/2 flex gap-2">
                         <Button
                           type="button"
                           variant="ghost"
