@@ -895,6 +895,63 @@ const CaseConverter = () => {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Related Tools */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-2xl">
+              <CardContent className="p-4 sm:p-5 md:p-6 lg:p-7 xl:p-8 2xl:p-10">
+                <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 md:mb-5 lg:mb-6 xl:mb-6 2xl:mb-8">Related Text Tools</h2>
+                <p className="text-xs sm:text-sm md:text-base lg:text-base xl:text-lg 2xl:text-xl text-gray-600 mb-4 sm:mb-5 md:mb-6 lg:mb-7 xl:mb-8 2xl:mb-10">Enhance your text analysis workflow with our comprehensive suite of complementary tools.</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-6 xl:gap-6 2xl:gap-8">
+                  <a href="/tools/word-counter" className="block bg-gradient-to-br from-blue-50 to-indigo-50 p-3 sm:p-4 md:p-5 lg:p-5 xl:p-6 2xl:p-7 rounded-lg sm:rounded-xl md:rounded-xl lg:rounded-xl xl:rounded-2xl 2xl:rounded-2xl hover:shadow-lg transition-shadow group border border-blue-100" data-testid="link-word-counter">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 lg:w-12 lg:h-12 xl:w-12 xl:h-12 2xl:w-14 2xl:h-14 bg-blue-600 text-white rounded-md sm:rounded-lg md:rounded-lg lg:rounded-lg xl:rounded-xl 2xl:rounded-xl flex items-center justify-center mb-2 sm:mb-3 md:mb-3 lg:mb-4 xl:mb-4 2xl:mb-5 group-hover:bg-blue-700 transition-colors text-sm sm:text-base md:text-lg lg:text-xl xl:text-xl 2xl:text-2xl font-bold">
+                      W
+                    </div>
+                    <h3 className="font-semibold text-gray-900 mb-1 sm:mb-1.5 md:mb-2 lg:mb-2 xl:mb-2 2xl:mb-3 group-hover:text-blue-600 text-sm sm:text-base md:text-base lg:text-lg xl:text-lg 2xl:text-xl">Word Counter</h3>
+                    <p className="text-gray-600 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-base 2xl:text-base leading-snug sm:leading-normal md:leading-relaxed">Count words, characters, and analyze text length for content creation and writing projects.</p>
+                  </a>
+
+                  <a href="/tools/character-counter" className="block bg-gradient-to-br from-green-50 to-emerald-50 p-3 sm:p-4 md:p-5 lg:p-5 xl:p-6 2xl:p-7 rounded-lg sm:rounded-xl md:rounded-xl lg:rounded-xl xl:rounded-2xl 2xl:rounded-2xl hover:shadow-lg transition-shadow group border border-green-100" data-testid="link-character-counter">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 lg:w-12 lg:h-12 xl:w-12 xl:h-12 2xl:w-14 2xl:h-14 bg-green-600 text-white rounded-md sm:rounded-lg md:rounded-lg lg:rounded-lg xl:rounded-xl 2xl:rounded-xl flex items-center justify-center mb-2 sm:mb-3 md:mb-3 lg:mb-4 xl:mb-4 2xl:mb-5 group-hover:bg-green-700 transition-colors text-sm sm:text-base md:text-lg lg:text-xl xl:text-xl 2xl:text-2xl font-bold">
+                      C
+                    </div>
+                    <h3 className="font-semibold text-gray-900 mb-1 sm:mb-1.5 md:mb-2 lg:mb-2 xl:mb-2 2xl:mb-3 group-hover:text-green-600 text-sm sm:text-base md:text-base lg:text-lg xl:text-lg 2xl:text-xl">Character Counter</h3>
+                    <p className="text-gray-600 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-base 2xl:text-base leading-snug sm:leading-normal md:leading-relaxed">Count characters with precision for social media posts, meta descriptions, and character-limited content.</p>
+                  </a>
+
+                  <a href="/tools/sentence-counter" className="block bg-gradient-to-br from-purple-50 to-violet-50 p-3 sm:p-4 md:p-5 lg:p-5 xl:p-6 2xl:p-7 rounded-lg sm:rounded-xl md:rounded-xl lg:rounded-xl xl:rounded-2xl 2xl:rounded-2xl hover:shadow-lg transition-shadow group border border-purple-100" data-testid="link-sentence-counter">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 lg:w-12 lg:h-12 xl:w-12 xl:h-12 2xl:w-14 2xl:h-14 bg-purple-600 text-white rounded-md sm:rounded-lg md:rounded-lg lg:rounded-lg xl:rounded-xl 2xl:rounded-xl flex items-center justify-center mb-2 sm:mb-3 md:mb-3 lg:mb-4 xl:mb-4 2xl:mb-5 group-hover:bg-purple-700 transition-colors text-sm sm:text-base md:text-lg lg:text-xl xl:text-xl 2xl:text-2xl font-bold">
+                      S
+                    </div>
+                    <h3 className="font-semibold text-gray-900 mb-1 sm:mb-1.5 md:mb-2 lg:mb-2 xl:mb-2 2xl:mb-3 group-hover:text-purple-600 text-sm sm:text-base md:text-base lg:text-lg xl:text-lg 2xl:text-xl">Sentence Counter</h3>
+                    <p className="text-gray-600 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-base 2xl:text-base leading-snug sm:leading-normal md:leading-relaxed">Analyze sentence structure and count sentences to improve readability and writing flow.</p>
+                  </a>
+
+                  <a href="/tools/paragraph-counter" className="block bg-gradient-to-br from-orange-50 to-amber-50 p-3 sm:p-4 md:p-5 lg:p-5 xl:p-6 2xl:p-7 rounded-lg sm:rounded-xl md:rounded-xl lg:rounded-xl xl:rounded-2xl 2xl:rounded-2xl hover:shadow-lg transition-shadow group border border-orange-100" data-testid="link-paragraph-counter">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 lg:w-12 lg:h-12 xl:w-12 xl:h-12 2xl:w-14 2xl:h-14 bg-orange-600 text-white rounded-md sm:rounded-lg md:rounded-lg lg:rounded-lg xl:rounded-xl 2xl:rounded-xl flex items-center justify-center mb-2 sm:mb-3 md:mb-3 lg:mb-4 xl:mb-4 2xl:mb-5 group-hover:bg-orange-700 transition-colors text-sm sm:text-base md:text-lg lg:text-xl xl:text-xl 2xl:text-2xl font-bold">
+                      P
+                    </div>
+                    <h3 className="font-semibold text-gray-900 mb-1 sm:mb-1.5 md:mb-2 lg:mb-2 xl:mb-2 2xl:mb-3 group-hover:text-orange-600 text-sm sm:text-base md:text-base lg:text-lg xl:text-lg 2xl:text-xl">Paragraph Counter</h3>
+                    <p className="text-gray-600 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-base 2xl:text-base leading-snug sm:leading-normal md:leading-relaxed">Track paragraph count and structure for better document organization and content formatting.</p>
+                  </a>
+
+                  <a href="/tools/line-counter" className="block bg-gradient-to-br from-pink-50 to-rose-50 p-3 sm:p-4 md:p-5 lg:p-5 xl:p-6 2xl:p-7 rounded-lg sm:rounded-xl md:rounded-xl lg:rounded-xl xl:rounded-2xl 2xl:rounded-2xl hover:shadow-lg transition-shadow group border border-pink-100" data-testid="link-line-counter">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 lg:w-12 lg:h-12 xl:w-12 xl:h-12 2xl:w-14 2xl:h-14 bg-pink-600 text-white rounded-md sm:rounded-lg md:rounded-lg lg:rounded-lg xl:rounded-xl 2xl:rounded-xl flex items-center justify-center mb-2 sm:mb-3 md:mb-3 lg:mb-4 xl:mb-4 2xl:mb-5 group-hover:bg-pink-700 transition-colors text-sm sm:text-base md:text-lg lg:text-xl xl:text-xl 2xl:text-2xl font-bold">
+                      L
+                    </div>
+                    <h3 className="font-semibold text-gray-900 mb-1 sm:mb-1.5 md:mb-2 lg:mb-2 xl:mb-2 2xl:mb-3 group-hover:text-pink-600 text-sm sm:text-base md:text-base lg:text-lg xl:text-lg 2xl:text-xl">Line Counter</h3>
+                    <p className="text-gray-600 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-base 2xl:text-base leading-snug sm:leading-normal md:leading-relaxed">Count lines in text documents, code files, and formatted content for accurate analysis.</p>
+                  </a>
+
+                  <a href="/tools/reading-time-calculator" className="block bg-gradient-to-br from-teal-50 to-cyan-50 p-3 sm:p-4 md:p-5 lg:p-5 xl:p-6 2xl:p-7 rounded-lg sm:rounded-xl md:rounded-xl lg:rounded-xl xl:rounded-2xl 2xl:rounded-2xl hover:shadow-lg transition-shadow group border border-teal-100" data-testid="link-reading-time">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 lg:w-12 lg:h-12 xl:w-12 xl:h-12 2xl:w-14 2xl:h-14 bg-teal-600 text-white rounded-md sm:rounded-lg md:rounded-lg lg:rounded-lg xl:rounded-xl 2xl:rounded-xl flex items-center justify-center mb-2 sm:mb-3 md:mb-3 lg:mb-4 xl:mb-4 2xl:mb-5 group-hover:bg-teal-700 transition-colors text-sm sm:text-base md:text-lg lg:text-xl xl:text-xl 2xl:text-2xl font-bold">
+                      R
+                    </div>
+                    <h3 className="font-semibold text-gray-900 mb-1 sm:mb-1.5 md:mb-2 lg:mb-2 xl:mb-2 2xl:mb-3 group-hover:text-teal-600 text-sm sm:text-base md:text-base lg:text-lg xl:text-lg 2xl:text-xl">Reading Time Calculator</h3>
+                    <p className="text-gray-600 text-xs sm:text-xs md:text-sm lg:text-sm xl:text-base 2xl:text-base leading-snug sm:leading-normal md:leading-relaxed">Estimate reading time for articles and blog posts to improve user experience and engagement.</p>
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </main>
