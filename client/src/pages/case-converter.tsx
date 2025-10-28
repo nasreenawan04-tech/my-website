@@ -274,53 +274,51 @@ const CaseConverter = () => {
       
       <main>
         {/* Hero Section */}
-        <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-32 overflow-hidden">
+        <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
-          <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="space-y-6 sm:space-y-8">
-              <div className="inline-flex items-center px-3 sm:px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+          <div className="relative max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12 text-center">
+            <div className="space-y-4 sm:space-y-6 md:space-y-8 lg:space-y-10">
+              <div className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
                 <span className="text-xs sm:text-sm font-medium text-blue-700">Professional Text Converter</span>
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-slate-900 leading-tight" data-testid="text-page-title">
-                Smart Case
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-slate-900 leading-tight tracking-tight" data-testid="text-page-title">
+                <span className="block">Smart Case</span>
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
                   Converter
                 </span>
               </h1>
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed px-2">
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-slate-600 max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto leading-relaxed px-2 sm:px-0">
                 Transform text between UPPERCASE, lowercase, Title Case, camelCase, PascalCase and many other formats instantly
               </p>
             </div>
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
           {/* Main Calculator Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-2xl sm:rounded-3xl overflow-hidden">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="flex flex-col">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
                 {/* Input Section */}
-                <div className="p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 space-y-6 sm:space-y-8">
-                  <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Text Conversion</h2>
-                    <p className="text-gray-600">Enter your text to convert between different case formats</p>
+                <div className="lg:col-span-2 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
+                  <div className="text-center sm:text-left">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Text Conversion</h2>
+                    <p className="text-sm sm:text-base text-gray-600">Enter your text to convert between different case formats</p>
                   </div>
                   
-                  <div className="space-y-4 sm:space-y-6">
-                    {/* Text Input */}
-                    <div className="space-y-3">
-                      <Label htmlFor="text-input" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
-                        Text to Convert
-                      </Label>
-                      <Textarea
-                        id="text-input"
-                        value={text}
-                        onChange={(e) => setText(e.target.value)}
-                        className="min-h-[100px] sm:min-h-[120px] lg:min-h-[140px] text-base sm:text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500 resize-none"
-                        placeholder="Type or paste your text here to convert between different case formats..."
-                        data-testid="textarea-text-input"
-                      />
-                    </div>
+                  {/* Text Area */}
+                  <div className="space-y-2 sm:space-y-3 md:space-y-4">
+                    <Label htmlFor="text-input" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                      Text to Convert
+                    </Label>
+                    <Textarea
+                      id="text-input"
+                      value={text}
+                      onChange={(e) => setText(e.target.value)}
+                      className="min-h-[200px] sm:min-h-[250px] lg:min-h-[300px] text-sm sm:text-base border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 resize-none"
+                      placeholder="Type or paste your text here to convert between different case formats..."
+                      data-testid="textarea-text-input"
+                    />
                   </div>
 
                   {/* Advanced Options */}
@@ -445,31 +443,31 @@ const CaseConverter = () => {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 sm:pt-6">
-                    <Button
-                      onClick={handleSampleText}
-                      className="flex-1 h-12 sm:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-base sm:text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
-                      data-testid="button-sample-text"
-                    >
-                      Load Sample Text
-                    </Button>
+                  <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       onClick={resetCalculator}
                       variant="outline"
-                      className="h-12 sm:h-14 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-base sm:text-lg rounded-xl"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                       data-testid="button-reset"
                     >
                       Reset
+                    </Button>
+                    <Button
+                      onClick={handleSampleText}
+                      className="w-full sm:flex-1 h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      data-testid="button-sample-text"
+                    >
+                      Load Sample Text
                     </Button>
                   </div>
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 border-t">
-                  <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">Converted Text</h2>
+                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12">
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">Converted Text</h2>
                   
                   {result && result.original ? (
-                    <div className="space-y-3 sm:space-y-4" data-testid="case-conversions">
+                    <div className="space-y-2 sm:space-y-3 md:space-y-4" data-testid="case-conversions">
                       {conversionTypes.map((type, index) => {
                         const convertedText = result[type.key as keyof CaseConversionResult] as string;
                         const colorClasses = [
@@ -518,11 +516,11 @@ const CaseConverter = () => {
                       })}
                     </div>
                   ) : (
-                    <div className="text-center py-12 sm:py-16" data-testid="no-results">
+                    <div className="text-center py-8 sm:py-12 md:py-16" data-testid="no-results">
                       <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
                         <div className="text-2xl sm:text-3xl font-bold text-gray-400">Aa</div>
                       </div>
-                      <p className="text-gray-500 text-base sm:text-lg px-4">Enter text to see converted case formats</p>
+                      <p className="text-gray-500 text-sm sm:text-base md:text-lg px-4">Enter text above to see converted case formats</p>
                     </div>
                   )}
                 </div>
