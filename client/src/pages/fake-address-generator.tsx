@@ -309,42 +309,42 @@ const FakeAddressGenerator = () => {
 
       <main>
         {/* Hero Section */}
-        <section className="relative py-12 sm:py-16 md:py-20 lg:py-28 xl:py-32 overflow-hidden">
+        <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
-          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="space-y-4 sm:space-y-6 lg:space-y-8">
+          <div className="relative max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-4xl xl:max-w-5xl 2xl:max-w-6xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12 text-center">
+            <div className="space-y-4 sm:space-y-6 md:space-y-8 lg:space-y-10">
               <div className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
                 <span className="text-xs sm:text-sm font-medium text-blue-700">Professional Address Generator</span>
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-slate-900 leading-tight">
-                Fake Address
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-slate-900 leading-tight tracking-tight">
+                <span className="block">Fake Address</span>
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
                   Generator
                 </span>
               </h1>
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed px-2">
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-slate-600 max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto leading-relaxed px-2 sm:px-0">
                 Generate realistic test addresses for development, testing, and privacy protection
               </p>
             </div>
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 py-16">
+        <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
           {/* Main Generator Card */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-3xl overflow-hidden">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+              <div className="flex flex-col">
                 {/* Input Section */}
-                <div className="p-8 lg:p-12 space-y-8">
-                  <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Generation Settings</h2>
-                    <p className="text-gray-600">Configure your address generation preferences</p>
+                <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
+                  <div className="text-center sm:text-left">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Generation Settings</h2>
+                    <p className="text-sm sm:text-base text-gray-600">Configure your address generation preferences</p>
                   </div>
 
-                  <div className="space-y-6">
+                  <div className="space-y-4 sm:space-y-5 md:space-y-6">
                     {/* Country Selection */}
-                    <div className="space-y-3">
-                      <Label htmlFor="country-select" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="country-select" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Country
                       </Label>
                       <Select
@@ -353,7 +353,7 @@ const FakeAddressGenerator = () => {
                           updateOption('country', value)
                         }
                       >
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-country">
+                        <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg" data-testid="select-country">
                           <SelectValue placeholder="Select country" />
                         </SelectTrigger>
                         <SelectContent>
@@ -365,8 +365,8 @@ const FakeAddressGenerator = () => {
                     </div>
 
                     {/* Format Selection */}
-                    <div className="space-y-3">
-                      <Label htmlFor="format-select" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="format-select" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
                         Address Format
                       </Label>
                       <Select
@@ -375,7 +375,7 @@ const FakeAddressGenerator = () => {
                           updateOption('format', value)
                         }
                       >
-                        <SelectTrigger className="h-14 border-2 border-gray-200 rounded-xl text-lg" data-testid="select-format">
+                        <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg" data-testid="select-format">
                           <SelectValue placeholder="Select format" />
                         </SelectTrigger>
                         <SelectContent>
@@ -387,44 +387,47 @@ const FakeAddressGenerator = () => {
                     </div>
 
                     {/* Additional Options */}
-                    <div className="space-y-4 bg-gray-50 rounded-xl p-6">
-                      <h3 className="text-sm font-semibold text-gray-800 uppercase tracking-wide">Additional Options</h3>
+                    <div className="space-y-3 sm:space-y-4 bg-gray-50 rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6">
+                      <h3 className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">Additional Options</h3>
 
-                      <div className="space-y-4">
-                        <div className="flex items-center justify-between">
-                          <div className="flex-1">
-                            <Label className="text-sm font-medium text-gray-700">Include Apartment/Unit</Label>
-                            <p className="text-xs text-gray-500">Add apartment or unit number to address</p>
+                      <div className="space-y-3 sm:space-y-4">
+                        <div className="flex items-center justify-between gap-3">
+                          <div className="flex-1 min-w-0">
+                            <Label className="text-xs sm:text-sm font-medium text-gray-700 block">Include Apartment/Unit</Label>
+                            <p className="text-xs text-gray-500 mt-0.5">Add apartment or unit number to address</p>
                           </div>
                           <Switch
                             checked={options.includeApartment}
                             onCheckedChange={(value) => updateOption('includeApartment', value)}
                             data-testid="switch-apartment"
+                            className="flex-shrink-0"
                           />
                         </div>
 
-                        <div className="flex items-center justify-between">
-                          <div className="flex-1">
-                            <Label className="text-sm font-medium text-gray-700">Secondary Address</Label>
-                            <p className="text-xs text-gray-500">Add building, floor, or room information</p>
+                        <div className="flex items-center justify-between gap-3">
+                          <div className="flex-1 min-w-0">
+                            <Label className="text-xs sm:text-sm font-medium text-gray-700 block">Secondary Address</Label>
+                            <p className="text-xs text-gray-500 mt-0.5">Add building, floor, or room information</p>
                           </div>
                           <Switch
                             checked={options.includeSecondaryAddress}
                             onCheckedChange={(value) => updateOption('includeSecondaryAddress', value)}
                             data-testid="switch-secondary"
+                            className="flex-shrink-0"
                           />
                         </div>
 
                         {options.country === 'US' && (
-                          <div className="flex items-center justify-between">
-                            <div className="flex-1">
-                              <Label className="text-sm font-medium text-gray-700">ZIP+4 Extension</Label>
-                              <p className="text-xs text-gray-500">Include extended ZIP code format</p>
+                          <div className="flex items-center justify-between gap-3">
+                            <div className="flex-1 min-w-0">
+                              <Label className="text-xs sm:text-sm font-medium text-gray-700 block">ZIP+4 Extension</Label>
+                              <p className="text-xs text-gray-500 mt-0.5">Include extended ZIP code format</p>
                             </div>
                             <Switch
                               checked={options.includeZipExtension}
                               onCheckedChange={(value) => updateOption('includeZipExtension', value)}
                               data-testid="switch-zip-extension"
+                              className="flex-shrink-0"
                             />
                           </div>
                         )}
@@ -432,10 +435,10 @@ const FakeAddressGenerator = () => {
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                    <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                       <Button
                         onClick={handleGenerateAddress}
-                        className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                        className="w-full sm:flex-1 h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg"
                         data-testid="button-generate-address"
                       >
                         Generate Address
@@ -443,7 +446,7 @@ const FakeAddressGenerator = () => {
                       <Button
                         onClick={resetGenerator}
                         variant="outline"
-                        className="h-14 px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-lg rounded-xl"
+                        className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl"
                         data-testid="button-reset"
                       >
                         Reset
@@ -453,54 +456,54 @@ const FakeAddressGenerator = () => {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-8 lg:p-12">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-8">Generated Address</h2>
+                {generatedAddress !== null && (
+                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">Generated Address</h2>
 
-                  {generatedAddress ? (
-                    <div className="space-y-6" data-testid="address-results">
+                    <div className="space-y-4 sm:space-y-6 md:space-y-8" data-testid="address-results">
                       {/* Generated Address Display */}
-                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
-                        <div className="text-base lg:text-lg font-mono text-gray-800 whitespace-pre-line leading-relaxed" data-testid="main-address">
+                      <div className="bg-white rounded-lg sm:rounded-xl md:rounded-2xl p-4 sm:p-5 md:p-6 shadow-lg border border-blue-100">
+                        <div className="text-sm sm:text-base md:text-lg font-mono text-gray-800 whitespace-pre-line leading-relaxed break-all" data-testid="main-address">
                           {getFormattedAddress()}
                         </div>
                       </div>
 
                       {/* Address Components */}
-                      <div className="bg-white rounded-xl p-6 shadow-sm" data-testid="address-components">
-                        <h3 className="font-bold text-gray-900 mb-4 text-lg">Address Components</h3>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                          <div className="bg-gray-50 rounded-lg p-3">
+                      <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 shadow-sm" data-testid="address-components">
+                        <h3 className="font-bold text-gray-900 mb-3 sm:mb-4 text-base sm:text-lg">Address Components</h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+                          <div className="bg-gray-50 rounded-lg p-2.5 sm:p-3">
                             <div className="text-xs font-medium text-gray-600 uppercase tracking-wide">Street Number</div>
-                            <div className="text-sm font-mono text-gray-900">{generatedAddress.streetNumber}</div>
+                            <div className="text-sm font-mono text-gray-900 break-all">{generatedAddress.streetNumber}</div>
                           </div>
-                          <div className="bg-gray-50 rounded-lg p-3">
+                          <div className="bg-gray-50 rounded-lg p-2.5 sm:p-3">
                             <div className="text-xs font-medium text-gray-600 uppercase tracking-wide">Street Name</div>
-                            <div className="text-sm font-mono text-gray-900">{generatedAddress.streetName} {generatedAddress.streetType}</div>
+                            <div className="text-sm font-mono text-gray-900 break-all">{generatedAddress.streetName} {generatedAddress.streetType}</div>
                           </div>
-                          <div className="bg-gray-50 rounded-lg p-3">
+                          <div className="bg-gray-50 rounded-lg p-2.5 sm:p-3">
                             <div className="text-xs font-medium text-gray-600 uppercase tracking-wide">City</div>
-                            <div className="text-sm font-mono text-gray-900">{generatedAddress.city}</div>
+                            <div className="text-sm font-mono text-gray-900 break-all">{generatedAddress.city}</div>
                           </div>
-                          <div className="bg-gray-50 rounded-lg p-3">
+                          <div className="bg-gray-50 rounded-lg p-2.5 sm:p-3">
                             <div className="text-xs font-medium text-gray-600 uppercase tracking-wide">{options.country === 'US' ? 'State' : options.country === 'Canada' ? 'Province' : 'County'}</div>
-                            <div className="text-sm font-mono text-gray-900">{generatedAddress.state}</div>
+                            <div className="text-sm font-mono text-gray-900 break-all">{generatedAddress.state}</div>
                           </div>
-                          <div className="bg-gray-50 rounded-lg p-3">
+                          <div className="bg-gray-50 rounded-lg p-2.5 sm:p-3">
                             <div className="text-xs font-medium text-gray-600 uppercase tracking-wide">{options.country === 'US' ? 'ZIP Code' : 'Postal Code'}</div>
-                            <div className="text-sm font-mono text-gray-900">{generatedAddress.zipCode}</div>
+                            <div className="text-sm font-mono text-gray-900 break-all">{generatedAddress.zipCode}</div>
                           </div>
-                          <div className="bg-gray-50 rounded-lg p-3">
+                          <div className="bg-gray-50 rounded-lg p-2.5 sm:p-3">
                             <div className="text-xs font-medium text-gray-600 uppercase tracking-wide">Country</div>
-                            <div className="text-sm font-mono text-gray-900">{generatedAddress.country}</div>
+                            <div className="text-sm font-mono text-gray-900 break-all">{generatedAddress.country}</div>
                           </div>
                         </div>
                       </div>
 
                       {/* Action Buttons */}
-                      <div className="flex flex-col sm:flex-row gap-4">
+                      <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4">
                         <Button
                           onClick={() => handleCopyToClipboard(getFormattedAddress())}
-                          className="flex-1 h-12 bg-green-600 hover:bg-green-700 text-white font-medium rounded-xl"
+                          className="w-full sm:flex-1 h-10 sm:h-12 bg-green-600 hover:bg-green-700 text-white font-medium text-sm sm:text-base rounded-lg sm:rounded-xl"
                           data-testid="button-copy-address"
                         >
                           Copy Address
@@ -508,22 +511,15 @@ const FakeAddressGenerator = () => {
                         <Button
                           onClick={handleClear}
                           variant="outline"
-                          className="flex-1 h-12 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-medium rounded-xl"
+                          className="w-full sm:flex-1 h-10 sm:h-12 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-medium text-sm sm:text-base rounded-lg sm:rounded-xl"
                           data-testid="button-clear"
                         >
                           Clear
                         </Button>
                       </div>
                     </div>
-                  ) : (
-                    <div className="text-center py-16" data-testid="no-results">
-                      <div className="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                        <div className="text-3xl font-bold text-gray-400">📍</div>
-                      </div>
-                      <p className="text-gray-500 text-lg">Configure settings and generate to see address</p>
-                    </div>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             </CardContent>
           </Card>
