@@ -289,16 +289,16 @@ const DecimalToTextConverter = () => {
             <CardContent className="p-0">
               <div className="flex flex-col">
                 {/* Input Section */}
-                <div className="p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 space-y-6 sm:space-y-8">
+                <div className="p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 2xl:p-14 space-y-4 sm:space-y-6 md:space-y-8">
                   <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-2">Decimal Decoder</h2>
-                    <p className="text-gray-600">Enter decimal character codes to convert them into readable text</p>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-4xl font-bold text-gray-900 mb-2 sm:mb-3 md:mb-4">Decimal Decoder</h2>
+                    <p className="text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl text-gray-600">Enter decimal character codes to convert them into readable text</p>
                   </div>
 
-                  <div className="space-y-4 sm:space-y-6">
+                  <div className="space-y-4 sm:space-y-5 md:space-y-6">
                     {/* Input Format Selection */}
-                    <div className="space-y-3">
-                      <Label htmlFor="format-select" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="format-select" className="text-xs sm:text-sm md:text-base font-semibold text-gray-800 uppercase tracking-wide">
                         Input Format
                       </Label>
                       <Select
@@ -307,7 +307,7 @@ const DecimalToTextConverter = () => {
                           updateOption('inputFormat', value)
                         }
                       >
-                        <SelectTrigger className="h-12 sm:h-14 border-2 border-gray-200 rounded-xl text-base sm:text-lg" data-testid="select-input-format">
+                        <SelectTrigger className="h-11 sm:h-12 md:h-14 lg:h-14 xl:h-16 2xl:h-16 border-2 border-gray-200 rounded-xl text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl" data-testid="select-input-format">
                           <SelectValue placeholder="Select format" />
                         </SelectTrigger>
                         <SelectContent>
@@ -319,8 +319,8 @@ const DecimalToTextConverter = () => {
                     </div>
 
                     {/* Encoding Selection */}
-                    <div className="space-y-3">
-                      <Label htmlFor="encoding-select" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="encoding-select" className="text-xs sm:text-sm md:text-base font-semibold text-gray-800 uppercase tracking-wide">
                         Character Encoding
                       </Label>
                       <Select
@@ -329,7 +329,7 @@ const DecimalToTextConverter = () => {
                           updateOption('encoding', value)
                         }
                       >
-                        <SelectTrigger className="h-12 sm:h-14 border-2 border-gray-200 rounded-xl text-base sm:text-lg" data-testid="select-encoding">
+                        <SelectTrigger className="h-11 sm:h-12 md:h-14 lg:h-14 xl:h-16 2xl:h-16 border-2 border-gray-200 rounded-xl text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl" data-testid="select-encoding">
                           <SelectValue placeholder="Select encoding" />
                         </SelectTrigger>
                         <SelectContent>
@@ -340,15 +340,15 @@ const DecimalToTextConverter = () => {
                     </div>
 
                     {/* Decimal Input */}
-                    <div className="space-y-3">
-                      <Label htmlFor="decimal-input" className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                    <div className="space-y-2 sm:space-y-3">
+                      <Label htmlFor="decimal-input" className="text-xs sm:text-sm md:text-base font-semibold text-gray-800 uppercase tracking-wide">
                         {getInputFormatLabel()}
                       </Label>
                       <Textarea
                         id="decimal-input"
                         value={inputDecimal}
                         onChange={(e) => setInputDecimal(e.target.value)}
-                        className="min-h-[100px] sm:min-h-[120px] lg:min-h-[140px] text-base sm:text-lg border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500 font-mono resize-none"
+                        className="min-h-[100px] sm:min-h-[120px] md:min-h-[140px] lg:min-h-[160px] xl:min-h-[180px] 2xl:min-h-[200px] text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-blue-500 font-mono resize-none"
                         placeholder={getInputPlaceholder()}
                         data-testid="textarea-decimal-input"
                       />
@@ -356,14 +356,14 @@ const DecimalToTextConverter = () => {
                   </div>
 
                   {/* Advanced Options */}
-                  <div className="space-y-4 sm:space-y-6 border-t pt-6 sm:pt-8">
-                    <h3 className="text-lg sm:text-xl font-bold text-gray-900">Advanced Options</h3>
+                  <div className="space-y-4 sm:space-y-5 md:space-y-6 border-t pt-4 sm:pt-6 md:pt-8">
+                    <h3 className="text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl font-bold text-gray-900">Advanced Options</h3>
                     
                     <Collapsible open={showAdvanced} onOpenChange={setShowAdvanced}>
                       <CollapsibleTrigger asChild>
                         <Button 
                           variant="ghost" 
-                          className="w-full justify-between text-sm sm:text-base py-3 sm:py-4 h-auto"
+                          className="w-full justify-between text-sm sm:text-base md:text-lg py-3 sm:py-4 md:py-5 h-auto"
                           data-testid="button-toggle-advanced"
                         >
                           <span className="flex items-center">
@@ -372,13 +372,13 @@ const DecimalToTextConverter = () => {
                           <span className={`transform transition-transform ${showAdvanced ? 'rotate-180' : ''}`}>▼</span>
                         </Button>
                       </CollapsibleTrigger>
-                      <CollapsibleContent className="space-y-4 sm:space-y-6 mt-4">
+                      <CollapsibleContent className="space-y-4 sm:space-y-5 md:space-y-6 mt-4">
                         <Separator />
                         
                         {/* Display and Processing Options */}
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-                          <div className="space-y-4 bg-gray-50 rounded-xl p-4 sm:p-6">
-                            <h4 className="text-sm sm:text-base font-semibold text-gray-900">Display Options</h4>
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5 md:gap-6">
+                          <div className="space-y-3 sm:space-y-4 bg-gray-50 rounded-xl p-3 sm:p-4 md:p-5 lg:p-6">
+                            <h4 className="text-sm sm:text-base md:text-lg font-semibold text-gray-900">Display Options</h4>
                             
                             <div className="flex items-center justify-between gap-2">
                               <div className="space-y-1 flex-1 min-w-0">
@@ -418,31 +418,31 @@ const DecimalToTextConverter = () => {
                           </div>
 
                           {/* Text Customization Options */}
-                          <div className="space-y-4 bg-gray-50 rounded-xl p-4 sm:p-6">
-                            <h4 className="text-sm sm:text-base font-semibold text-gray-900">Text Customization</h4>
+                          <div className="space-y-3 sm:space-y-4 bg-gray-50 rounded-xl p-3 sm:p-4 md:p-5 lg:p-6">
+                            <h4 className="text-sm sm:text-base md:text-lg font-semibold text-gray-900">Text Customization</h4>
                             
                             <div className="space-y-2">
-                              <Label className="text-xs sm:text-sm font-medium">Add Prefix</Label>
+                              <Label className="text-xs sm:text-sm md:text-base font-medium">Add Prefix</Label>
                               <Input
                                 value={options.addPrefix}
                                 onChange={(e) => updateOption('addPrefix', e.target.value)}
                                 placeholder="e.g., [DECODED], OUTPUT:"
-                                className="text-sm h-10 sm:h-12 border-2 border-gray-200 rounded-lg"
+                                className="text-sm sm:text-base h-10 sm:h-11 md:h-12 lg:h-13 xl:h-14 border-2 border-gray-200 rounded-lg"
                                 data-testid="input-add-prefix"
                               />
-                              <p className="text-xs text-gray-500">Text to add before decoded output</p>
+                              <p className="text-xs sm:text-sm text-gray-500">Text to add before decoded output</p>
                             </div>
 
                             <div className="space-y-2">
-                              <Label className="text-xs sm:text-sm font-medium">Add Suffix</Label>
+                              <Label className="text-xs sm:text-sm md:text-base font-medium">Add Suffix</Label>
                               <Input
                                 value={options.addSuffix}
                                 onChange={(e) => updateOption('addSuffix', e.target.value)}
                                 placeholder="e.g., [END], _RESULT"
-                                className="text-sm h-10 sm:h-12 border-2 border-gray-200 rounded-lg"
+                                className="text-sm sm:text-base h-10 sm:h-11 md:h-12 lg:h-13 xl:h-14 border-2 border-gray-200 rounded-lg"
                                 data-testid="input-add-suffix"
                               />
-                              <p className="text-xs text-gray-500">Text to add after decoded output</p>
+                              <p className="text-xs sm:text-sm text-gray-500">Text to add after decoded output</p>
                             </div>
                           </div>
                         </div>
@@ -453,11 +453,11 @@ const DecimalToTextConverter = () => {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4 sm:pt-6">
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-5 pt-4 sm:pt-6">
                     <Button
                       onClick={convertDecimal}
                       disabled={!inputDecimal.trim()}
-                      className="flex-1 h-12 sm:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-base sm:text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="flex-1 h-12 sm:h-14 md:h-16 lg:h-16 xl:h-18 2xl:h-18 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg lg:text-xl rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
                       data-testid="button-convert"
                     >
                       Convert to Text
@@ -465,7 +465,7 @@ const DecimalToTextConverter = () => {
                     <Button
                       onClick={handleSampleDecimal}
                       variant="outline"
-                      className="h-12 sm:h-14 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-base sm:text-lg rounded-xl"
+                      className="h-12 sm:h-14 md:h-16 lg:h-16 xl:h-18 2xl:h-18 px-4 sm:px-6 md:px-8 lg:px-10 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg lg:text-xl rounded-xl"
                       data-testid="button-sample-decimal"
                     >
                       Sample
@@ -473,7 +473,7 @@ const DecimalToTextConverter = () => {
                     <Button
                       onClick={resetConverter}
                       variant="outline"
-                      className="h-12 sm:h-14 px-6 sm:px-8 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-base sm:text-lg rounded-xl"
+                      className="h-12 sm:h-14 md:h-16 lg:h-16 xl:h-18 2xl:h-18 px-4 sm:px-6 md:px-8 lg:px-10 border-2 border-gray-300 text-gray-700 hover:bg-gray-50 font-semibold text-sm sm:text-base md:text-lg lg:text-xl rounded-xl"
                       data-testid="button-reset"
                     >
                       Reset
@@ -483,30 +483,30 @@ const DecimalToTextConverter = () => {
 
                 {/* Results Section */}
                 {showResults && (
-                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 border-t">
-                    <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 sm:mb-8">Decoded Results</h2>
+                  <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 2xl:p-14 border-t">
+                    <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">Decoded Results</h2>
 
                     {conversionResult && conversionResult.originalInput ? (
-                    <div className="space-y-3 sm:space-y-4" data-testid="conversion-results">
+                    <div className="space-y-3 sm:space-y-4 md:space-y-5" data-testid="conversion-results">
                       {/* Main Decoded Text Display */}
-                      <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-3 sm:p-4">
-                        <div className="flex items-center justify-between mb-3 gap-3">
+                      <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-3 sm:p-4 md:p-5 lg:p-6">
+                        <div className="flex items-center justify-between mb-3 sm:mb-4 gap-3">
                           <div className="flex-1 min-w-0">
-                            <h3 className="text-sm sm:text-base font-semibold text-gray-900 truncate">Decoded Text</h3>
-                            <p className="text-xs sm:text-sm text-gray-600 break-words">Human-readable text from decimal codes</p>
+                            <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-gray-900 truncate">Decoded Text</h3>
+                            <p className="text-xs sm:text-sm md:text-base text-gray-600 break-words">Human-readable text from decimal codes</p>
                           </div>
                           <Button
                             onClick={() => handleCopyToClipboard(conversionResult.text)}
                             variant="outline"
                             size="sm"
-                            className="text-xs px-2 sm:px-3 py-2 flex-shrink-0 rounded-lg min-w-[60px] sm:min-w-[70px] h-11 sm:h-9 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                            className="text-xs sm:text-sm px-2 sm:px-3 md:px-4 py-2 flex-shrink-0 rounded-lg min-w-[60px] sm:min-w-[70px] md:min-w-[80px] h-9 sm:h-10 md:h-11 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                             data-testid="button-copy-text"
                           >
                             Copy
                           </Button>
                         </div>
                         <div 
-                          className="bg-white p-2 sm:p-3 rounded-lg border border-gray-200 text-xs sm:text-sm break-all min-h-[40px] sm:min-h-[44px] flex items-center"
+                          className="bg-white p-2 sm:p-3 md:p-4 rounded-lg border border-gray-200 text-xs sm:text-sm md:text-base lg:text-lg break-all min-h-[40px] sm:min-h-[44px] md:min-h-[48px] lg:min-h-[52px] flex items-center"
                           data-testid="text-output"
                         >
                           {conversionResult.text || '(empty result)'}
@@ -515,24 +515,24 @@ const DecimalToTextConverter = () => {
 
                       {/* Alternative Format Outputs */}
                       {options.showBinary && (
-                        <div className="bg-yellow-50 border-2 border-yellow-200 rounded-xl p-3 sm:p-4">
-                          <div className="flex items-center justify-between mb-3 gap-3">
+                        <div className="bg-yellow-50 border-2 border-yellow-200 rounded-xl p-3 sm:p-4 md:p-5 lg:p-6">
+                          <div className="flex items-center justify-between mb-3 sm:mb-4 gap-3">
                             <div className="flex-1 min-w-0">
-                              <h4 className="text-sm sm:text-base font-semibold text-gray-900 truncate">Binary Code</h4>
-                              <p className="text-xs sm:text-sm text-gray-600 break-words">Binary representation (0s and 1s)</p>
+                              <h4 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-gray-900 truncate">Binary Code</h4>
+                              <p className="text-xs sm:text-sm md:text-base text-gray-600 break-words">Binary representation (0s and 1s)</p>
                             </div>
                             <Button
                               onClick={() => handleCopyToClipboard(conversionResult.binary)}
                               variant="outline"
                               size="sm"
-                              className="text-xs px-2 sm:px-3 py-2 flex-shrink-0 rounded-lg min-w-[60px] sm:min-w-[70px] h-11 sm:h-9 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                              className="text-xs sm:text-sm px-2 sm:px-3 md:px-4 py-2 flex-shrink-0 rounded-lg min-w-[60px] sm:min-w-[70px] md:min-w-[80px] h-9 sm:h-10 md:h-11 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                               data-testid="button-copy-binary"
                             >
                               Copy
                             </Button>
                           </div>
                           <div 
-                            className="bg-white p-2 sm:p-3 rounded-lg border border-gray-200 text-xs sm:text-sm font-mono break-all min-h-[40px] sm:min-h-[44px] flex items-center"
+                            className="bg-white p-2 sm:p-3 md:p-4 rounded-lg border border-gray-200 text-xs sm:text-sm md:text-base lg:text-lg font-mono break-all min-h-[40px] sm:min-h-[44px] md:min-h-[48px] lg:min-h-[52px] flex items-center"
                             data-testid="binary-output"
                           >
                             {conversionResult.binary}
@@ -541,24 +541,24 @@ const DecimalToTextConverter = () => {
                       )}
 
                       {options.showHex && (
-                        <div className="bg-purple-50 border-2 border-purple-200 rounded-xl p-3 sm:p-4">
-                          <div className="flex items-center justify-between mb-3 gap-3">
+                        <div className="bg-purple-50 border-2 border-purple-200 rounded-xl p-3 sm:p-4 md:p-5 lg:p-6">
+                          <div className="flex items-center justify-between mb-3 sm:mb-4 gap-3">
                             <div className="flex-1 min-w-0">
-                              <h4 className="text-sm sm:text-base font-semibold text-gray-900 truncate">Hexadecimal Values</h4>
-                              <p className="text-xs sm:text-sm text-gray-600 break-words">Hexadecimal character codes</p>
+                              <h4 className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-gray-900 truncate">Hexadecimal Values</h4>
+                              <p className="text-xs sm:text-sm md:text-base text-gray-600 break-words">Hexadecimal character codes</p>
                             </div>
                             <Button
                               onClick={() => handleCopyToClipboard(conversionResult.hexadecimal)}
                               variant="outline"
                               size="sm"
-                              className="text-xs px-2 sm:px-3 py-2 flex-shrink-0 rounded-lg min-w-[60px] sm:min-w-[70px] h-11 sm:h-9 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                              className="text-xs sm:text-sm px-2 sm:px-3 md:px-4 py-2 flex-shrink-0 rounded-lg min-w-[60px] sm:min-w-[70px] md:min-w-[80px] h-9 sm:h-10 md:h-11 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                               data-testid="button-copy-hex"
                             >
                               Copy
                             </Button>
                           </div>
                           <div 
-                            className="bg-white p-2 sm:p-3 rounded-lg border border-gray-200 text-xs sm:text-sm font-mono break-all min-h-[40px] sm:min-h-[44px] flex items-center"
+                            className="bg-white p-2 sm:p-3 md:p-4 rounded-lg border border-gray-200 text-xs sm:text-sm md:text-base lg:text-lg font-mono break-all min-h-[40px] sm:min-h-[44px] md:min-h-[48px] lg:min-h-[52px] flex items-center"
                             data-testid="hex-output"
                           >
                             {conversionResult.hexadecimal}
@@ -567,26 +567,26 @@ const DecimalToTextConverter = () => {
                       )}
 
                       {/* Text Statistics */}
-                      <div className="bg-white rounded-xl p-3 sm:p-4 shadow-sm border border-gray-200" data-testid="text-statistics">
-                        <h3 className="text-sm sm:text-base font-bold text-gray-900 mb-4">Text Statistics</h3>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                          <div className="bg-blue-50 rounded-lg p-4 text-center">
-                            <div className="text-2xl font-bold text-blue-600" data-testid="char-count">{conversionResult.charCount}</div>
-                            <div className="text-sm text-blue-700 font-medium">Characters</div>
+                      <div className="bg-white rounded-xl p-3 sm:p-4 md:p-5 lg:p-6 shadow-sm border border-gray-200" data-testid="text-statistics">
+                        <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 mb-3 sm:mb-4 md:mb-5">Text Statistics</h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-5">
+                          <div className="bg-blue-50 rounded-lg p-3 sm:p-4 md:p-5 lg:p-6 text-center">
+                            <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-blue-600" data-testid="char-count">{conversionResult.charCount}</div>
+                            <div className="text-xs sm:text-sm md:text-base lg:text-lg text-blue-700 font-medium mt-1 sm:mt-2">Characters</div>
                           </div>
-                          <div className="bg-green-50 rounded-lg p-4 text-center">
-                            <div className="text-2xl font-bold text-green-600" data-testid="byte-count">{conversionResult.byteCount}</div>
-                            <div className="text-sm text-green-700 font-medium">Bytes</div>
+                          <div className="bg-green-50 rounded-lg p-3 sm:p-4 md:p-5 lg:p-6 text-center">
+                            <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-green-600" data-testid="byte-count">{conversionResult.byteCount}</div>
+                            <div className="text-xs sm:text-sm md:text-base lg:text-lg text-green-700 font-medium mt-1 sm:mt-2">Bytes</div>
                           </div>
                         </div>
                       </div>
                     </div>
                     ) : (
-                      <div className="text-center py-12 sm:py-16" data-testid="no-results">
-                        <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gray-200 rounded-full mx-auto mb-4 sm:mb-6 flex items-center justify-center">
-                          <div className="text-2xl sm:text-3xl font-bold text-gray-400">123</div>
+                      <div className="text-center py-8 sm:py-12 md:py-16 lg:py-20" data-testid="no-results">
+                        <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 bg-gray-200 rounded-full mx-auto mb-3 sm:mb-4 md:mb-6 flex items-center justify-center">
+                          <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-400">123</div>
                         </div>
-                        <p className="text-gray-500 text-base sm:text-lg px-4">Conversion results will appear here</p>
+                        <p className="text-gray-500 text-sm sm:text-base md:text-lg lg:text-xl px-4">Conversion results will appear here</p>
                       </div>
                     )}
                   </div>
