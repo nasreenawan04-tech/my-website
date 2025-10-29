@@ -36,3 +36,7 @@
 [x] 36. Run npm install to resolve vite not found error  
 [x] 37. Verify application is running successfully on port 5000
 [x] 38. Complete import migration to Replit environment
+[x] 39. Fix critical calculation bugs in Loan Calculator: Ensure comparison loans track term units correctly and fix extra payment savings calculations for non-monthly frequencies
+[x] 40. Add comprehensive input validation with Zod schema and inline error messages for invalid/zero/negative values in Loan Calculator
+[x] 41. Replace direct DOM manipulation (document.querySelector, simulated clicks) with React refs and proper event handlers in Loan Calculator
+[x] 42. Improve Calculate button to be disabled when there are validation errors or missing required inputs
