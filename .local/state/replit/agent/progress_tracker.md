@@ -39,4 +39,10 @@
 [x] 39. Fix critical calculation bugs in Loan Calculator: Ensure comparison loans track term units correctly and fix extra payment savings calculations for non-monthly frequencies
 [x] 40. Add comprehensive input validation with Zod schema and inline error messages for invalid/zero/negative values in Loan Calculator
 [x] 41. Replace direct DOM manipulation (document.querySelector, simulated clicks) with React refs and proper event handlers in Loan Calculator
-[x] 42. Improve Calculate button to be disabled when there are validation errors or missing required inputs
+[x] 42. Improve Calculate button to be disabled when validation errors exist or missing required inputs in Loan Calculator
+[x] 43. Add comprehensive Zod validation schema for all mortgage inputs (home price, down payment, interest rate, loan term, property tax, insurance, PMI, HOA, extra payment) in Mortgage Calculator
+[x] 44. Add validation error state management and display inline error messages with red borders for invalid inputs in Mortgage Calculator
+[x] 45. Fix parseFloat coercions in Mortgage Calculator: Remove || 0 fallbacks to ensure validation catches invalid inputs properly
+[x] 46. Replace direct DOM manipulation (document.querySelector and simulated clicks) with React refs and auto-calculate pattern in Mortgage Calculator
+[x] 47. Update Calculate button to properly disable when validation errors exist or required fields are missing in Mortgage Calculator
+[x] 48. Fix extra payment savings display to show years AND months (not just rounded years) across UI, PDF, and share text in Mortgage Calculator
