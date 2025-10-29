@@ -56,6 +56,7 @@ export default function LoanCalculator() {
   const [showChart, setShowChart] = useState(false);
   const [comparisonLoans, setComparisonLoans] = useState<ComparisonLoan[]>([]);
   const [result, setResult] = useState<LoanResult | null>(null);
+  const [isCalculating, setIsCalculating] = useState(false); // Added for loading state
   const resultsRef = useRef<HTMLDivElement>(null);
   const tableScrollRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -120,12 +121,16 @@ export default function LoanCalculator() {
   };
 
   const calculateLoan = () => {
+    setIsCalculating(true); // Set loading state
     const principal = parseFloat(loanAmount);
     const annualRate = parseFloat(interestRate) / 100;
     const termMonths = termUnit === 'years' ? parseFloat(loanTerm) * 12 : parseFloat(loanTerm);
     const extraPmt = parseFloat(extraPayment) || 0;
 
-    if (principal <= 0 || annualRate <= 0 || termMonths <= 0) return;
+    if (principal <= 0 || annualRate <= 0 || termMonths <= 0) {
+      setIsCalculating(false); // Reset loading state
+      return;
+    };
 
     const paymentsPerYear = paymentFrequency === 'weekly' ? 52 :
                            paymentFrequency === 'biweekly' ? 26 : 12;
@@ -187,6 +192,7 @@ export default function LoanCalculator() {
 
     setTimeout(() => {
       resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      setIsCalculating(false); // Reset loading state after results are set
     }, 100);
   };
 
@@ -202,6 +208,7 @@ export default function LoanCalculator() {
     setShowChart(false);
     setComparisonLoans([]);
     setResult(null);
+    setIsCalculating(false); // Reset loading state
   };
 
   const addToComparison = () => {
@@ -360,16 +367,16 @@ export default function LoanCalculator() {
     const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
     const termDisplay = termUnit === 'years' ? `${loanTerm} years` : `${loanTerm} months`;
     const whatsappText = `💰 Loan Calculator Results:\n\nLoan: ${formatCurrency(parseFloat(loanAmount))}\nRate: ${interestRate}%\nTerm: ${termDisplay}\nMonthly Payment: ${formatCurrency(result.monthlyPayment)}\n\nCalculate yours: ${shareableUrl}`;
-    
+
     // Use api.whatsapp.com which works better across all devices
     const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(whatsappText)}`;
-    
+
     const opened = window.open(whatsappUrl, '_blank');
     if (opened) {
       toast({ title: "Opening WhatsApp..." });
     } else {
-      toast({ 
-        title: "Popup blocked", 
+      toast({
+        title: "Popup blocked",
         description: "Please allow popups to share on WhatsApp",
         variant: "destructive"
       });
@@ -568,17 +575,14 @@ export default function LoanCalculator() {
     yPos += 9;
     doc.setFontSize(8);
     doc.setTextColor(100, 100, 100);
-    doc.setFont('helvetica', 'normal');
     doc.text('Principal Amount', margin + 12, yPos);
 
     doc.setFontSize(9);
     doc.setTextColor(34, 197, 94);
-    doc.setFont('helvetica', 'normal');
     doc.text(formatCurrency(parseFloat(loanAmount)), pageWidth - margin - 12, yPos, { align: 'right' });
 
     yPos += 6;
     doc.setFontSize(8);
-    doc.setTextColor(100, 100, 100);
     doc.text('Total Interest', margin + 12, yPos);
 
     doc.setFontSize(9);
@@ -1357,9 +1361,14 @@ export default function LoanCalculator() {
                             type="number"
                             value={loanAmount}
                             onChange={(e) => setLoanAmount(e.target.value)}
-                            className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                            className="h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                             placeholder="100,000"
+                            min="0"
+                            max="100000000"
+                            step="100"
                             data-testid="input-loan-amount"
+                            aria-label="Loan amount in dollars"
+                            required
                           />
                         </div>
                       </div>
@@ -1384,10 +1393,14 @@ export default function LoanCalculator() {
                             type="number"
                             value={interestRate}
                             onChange={(e) => setInterestRate(e.target.value)}
-                            className="h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                            className="h-10 sm:h-12 md:h-14 pr-7 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                             placeholder="5.50"
+                            min="0"
+                            max="50"
                             step="0.01"
                             data-testid="input-interest-rate"
+                            aria-label="Annual interest rate percentage"
+                            required
                           />
                           <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-lg">%</span>
                         </div>
@@ -1413,7 +1426,10 @@ export default function LoanCalculator() {
                             className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                             placeholder="30"
                             min="1"
+                            max="50"
                             data-testid="input-loan-term"
+                            aria-label="Loan term duration"
+                            required
                           />
                           <Select value={termUnit} onValueChange={setTermUnit}>
                             <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full" data-testid="select-term-unit">
@@ -1472,10 +1488,12 @@ export default function LoanCalculator() {
                             type="number"
                             value={extraPayment}
                             onChange={(e) => setExtraPayment(e.target.value)}
-                            className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                            className="h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                             placeholder="0"
                             min="0"
+                            step="10"
                             data-testid="input-extra-payment"
+                            aria-label="Extra payment amount per period (optional)"
                           />
                         </div>
                         <p className="text-xs sm:text-sm text-gray-500">💡 Pro Tip: Even small extra payments can save you thousands in interest!</p>
@@ -1486,11 +1504,12 @@ export default function LoanCalculator() {
                   <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       onClick={calculateLoan}
-                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      disabled={isCalculating}
+                      className="w-full sm:w-auto sm:flex-1 h-10 sm:h-12 md:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                       data-testid="button-calculate"
+                      aria-busy={isCalculating}
                     >
-                      <Calculator className="w-5 h-5 mr-2" />
-                      Calculate Loan Payment
+                      {isCalculating ? 'Calculating...' : 'Calculate Loan'}
                     </Button>
                     <Button
                       onClick={resetCalculator}
@@ -1509,26 +1528,40 @@ export default function LoanCalculator() {
                           onClick={() => setShowAmortization(!showAmortization)}
                           variant="outline"
                           size="sm"
-                          className="text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg"
-                          data-testid="button-amortization"
+                          className="rounded-full text-xs sm:text-sm"
+                          data-testid="button-show-amortization"
+                          aria-expanded={showAmortization}
+                          aria-label={showAmortization ? 'Hide amortization schedule' : 'Show amortization schedule'}
                         >
-                          {showAmortization ? 'Hide' : 'Show'} Payment Schedule
+                          {showAmortization ? 'Hide' : 'Show'} Amortization Schedule
                         </Button>
                         <Button
                           onClick={() => setShowChart(!showChart)}
                           variant="outline"
                           size="sm"
-                          className="text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg"
+                          className="rounded-full text-xs sm:text-sm"
                           data-testid="button-show-chart"
+                          aria-expanded={showChart}
+                          aria-label={showChart ? 'Hide payment chart' : 'Show payment chart'}
                         >
-                          <PieChart className="w-4 h-4 mr-1.5" />
-                          {showChart ? 'Hide' : 'Show'} Chart
+                          {showChart ? 'Hide' : 'Show'} Payment Chart
+                        </Button>
+                        <Button
+                          onClick={() => setShowComparison(!showComparison)}
+                          variant="outline"
+                          size="sm"
+                          className="rounded-full text-xs sm:text-sm"
+                          data-testid="button-show-comparison"
+                          aria-expanded={showComparison}
+                          aria-label={showComparison ? 'Hide loan comparison' : 'Show loan comparison'}
+                        >
+                          {showComparison ? 'Hide' : 'Show'} Comparison
                         </Button>
                         <Button
                           onClick={handleDownloadPDF}
                           variant="outline"
                           size="sm"
-                          className="text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg"
+                          className="rounded-full text-xs sm:text-sm"
                           data-testid="button-export-pdf"
                         >
                           <Download className="w-4 h-4 mr-1.5" />
@@ -1913,7 +1946,7 @@ export default function LoanCalculator() {
                     onClick={handleDownloadAmortizationPDF}
                     variant="outline"
                     size="sm"
-                    className="flex items-center gap-2 w-full sm:w-auto justify-center"
+                    className="flex items-center gap-2 w-full sm:w-auto justify-center rounded-full text-xs sm:text-sm"
                     data-testid="button-export-amortization-pdf"
                   >
                     <Download className="w-4 h-4" />
@@ -1973,7 +2006,7 @@ export default function LoanCalculator() {
                     onClick={handleDownloadComparisonPDF}
                     variant="outline"
                     size="sm"
-                    className="flex items-center gap-2 w-full sm:w-auto justify-center"
+                    className="flex items-center gap-2 w-full sm:w-auto justify-center rounded-full text-xs sm:text-sm"
                     data-testid="button-export-comparison-pdf"
                   >
                     <Download className="w-4 h-4" />
