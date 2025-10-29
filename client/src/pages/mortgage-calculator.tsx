@@ -1352,13 +1352,6 @@ const MortgageCalculator = () => {
                         {validationErrors.homePrice && (
                           <p className="text-xs text-red-600 mt-1" data-testid="error-home-price">{validationErrors.homePrice}</p>
                         )}
-                        <Slider
-                          value={[parseFloat(homePrice) || 0]}
-                          onValueChange={(value) => setHomePrice(value[0].toString())}
-                          max={2000000}
-                          step={10000}
-                          className="mt-2"
-                        />
                       </div>
 
                       <div className="space-y-2 sm:space-y-3">
@@ -1388,13 +1381,6 @@ const MortgageCalculator = () => {
                           />
                           <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-lg">%</span>
                         </div>
-                        <Slider
-                          value={[parseFloat(downPaymentPercent) || 0]}
-                          onValueChange={(value) => setDownPaymentPercent(value[0].toString())}
-                          max={50}
-                          step={1}
-                          className="mt-2"
-                        />
                       </div>
 
                       <div className="space-y-2 sm:space-y-3">
@@ -1421,14 +1407,6 @@ const MortgageCalculator = () => {
                         {validationErrors.loanTerm && (
                           <p className="text-xs text-red-600 mt-1" data-testid="error-loan-term">{validationErrors.loanTerm}</p>
                         )}
-                        <Slider
-                          value={[parseFloat(loanTerm) || 30]}
-                          onValueChange={(value) => setLoanTerm(value[0].toString())}
-                          max={40}
-                          min={5}
-                          step={1}
-                          className="mt-2"
-                        />
                       </div>
 
                       <div className="space-y-2 sm:space-y-3">
@@ -1458,14 +1436,6 @@ const MortgageCalculator = () => {
                         {validationErrors.interestRate && (
                           <p className="text-xs text-red-600 mt-1" data-testid="error-interest-rate">{validationErrors.interestRate}</p>
                         )}
-                        <Slider
-                          value={[parseFloat(interestRate) || 0]}
-                          onValueChange={(value) => setInterestRate(value[0].toFixed(2))}
-                          max={15}
-                          min={2}
-                          step={0.1}
-                          className="mt-2"
-                        />
                       </div>
 
                       <div className="space-y-2 sm:space-y-3">
