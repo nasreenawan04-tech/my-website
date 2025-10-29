@@ -14,6 +14,52 @@ import { jsPDF } from 'jspdf';
 import { useToast } from '@/hooks/use-toast';
 import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip } from 'recharts';
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
+import { z } from 'zod';
+
+const mortgageInputSchema = z.object({
+  homePrice: z.number({
+    invalid_type_error: "Home price must be a valid number",
+    required_error: "Home price is required"
+  }).positive("Home price must be greater than zero").max(1000000000, "Home price is too large").finite("Home price must be a finite number"),
+  downPayment: z.number({
+    invalid_type_error: "Down payment must be a valid number"
+  }).min(0, "Down payment cannot be negative").finite("Down payment must be a finite number"),
+  interestRate: z.number({
+    invalid_type_error: "Interest rate must be a valid number",
+    required_error: "Interest rate is required"
+  }).positive("Interest rate must be greater than zero").max(100, "Interest rate cannot exceed 100%").finite("Interest rate must be a finite number"),
+  loanTerm: z.number({
+    invalid_type_error: "Loan term must be a valid number",
+    required_error: "Loan term is required"
+  }).positive("Loan term must be greater than zero").max(50, "Loan term cannot exceed 50 years").finite("Loan term must be a finite number"),
+  propertyTax: z.number({
+    invalid_type_error: "Property tax must be a valid number"
+  }).min(0, "Property tax cannot be negative").finite("Property tax must be a finite number"),
+  homeInsurance: z.number({
+    invalid_type_error: "Home insurance must be a valid number"
+  }).min(0, "Home insurance cannot be negative").finite("Home insurance must be a finite number"),
+  pmiRate: z.number({
+    invalid_type_error: "PMI rate must be a valid number"
+  }).min(0, "PMI rate cannot be negative").max(10, "PMI rate cannot exceed 10%").finite("PMI rate must be a finite number"),
+  hoaFees: z.number({
+    invalid_type_error: "HOA fees must be a valid number"
+  }).min(0, "HOA fees cannot be negative").finite("HOA fees must be a finite number"),
+  extraPayment: z.number({
+    invalid_type_error: "Extra payment must be a valid number"
+  }).min(0, "Extra payment cannot be negative").finite("Extra payment must be a finite number")
+});
+
+interface ValidationErrors {
+  homePrice?: string;
+  downPayment?: string;
+  interestRate?: string;
+  loanTerm?: string;
+  propertyTax?: string;
+  homeInsurance?: string;
+  pmiRate?: string;
+  hoaFees?: string;
+  extraPayment?: string;
+}
 
 interface MortgageResult {
   monthlyPayment: number;
@@ -67,8 +113,13 @@ const MortgageCalculator = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
+  const [validationErrors, setValidationErrors] = useState<ValidationErrors>({});
+  const [isCalculating, setIsCalculating] = useState(false);
   const { toast } = useToast();
 
+  // Reference for auto-calculate trigger
+  const shouldAutoCalculate = useRef(false);
+  
   // Load parameters from URL on mount
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -86,19 +137,24 @@ const MortgageCalculator = () => {
       if (term) setLoanTerm(term);
       if (freq) setPaymentFrequency(freq);
       if (extra) setExtraPayment(extra);
-
-      setTimeout(() => {
-        const calculateButton = document.querySelector('[data-testid="button-calculate"]') as HTMLButtonElement;
-        if (calculateButton) {
-          calculateButton.click();
-          toast({
-            title: "Shared calculation loaded!",
-            description: "Results from the shared link have been calculated."
-          });
-        }
-      }, 200);
+      
+      shouldAutoCalculate.current = true;
     }
   }, []);
+  
+  // Auto-calculate when URL parameters are loaded
+  useEffect(() => {
+    if (shouldAutoCalculate.current && homePrice && interestRate && loanTerm) {
+      shouldAutoCalculate.current = false;
+      setTimeout(() => {
+        calculateMortgage();
+        toast({
+          title: "Shared calculation loaded!",
+          description: "Results from the shared link have been calculated."
+        });
+      }, 200);
+    }
+  }, [homePrice, interestRate, loanTerm]);
 
   // Drag scrolling handlers for amortization table
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -125,25 +181,67 @@ const MortgageCalculator = () => {
   };
 
   const calculateMortgage = () => {
+    setIsCalculating(true);
+    setValidationErrors({});
+    
     const price = parseFloat(homePrice);
     const down = usePercentage
       ? (price * parseFloat(downPaymentPercent)) / 100
       : parseFloat(downPayment);
-    const principal = price - down;
-    const annualRate = parseFloat(interestRate) / 100;
+    const annualRate = parseFloat(interestRate);
     const termYears = parseFloat(loanTerm);
-    const taxes = parseFloat(propertyTax) || 0;
-    const insurance = parseFloat(homeInsurance) || 0;
-    const pmi = parseFloat(pmiRate) || 0;
-    const hoa = parseFloat(hoaFees) || 0;
+    const taxes = propertyTax.trim() === '' ? 0 : parseFloat(propertyTax);
+    const insurance = homeInsurance.trim() === '' ? 0 : parseFloat(homeInsurance);
+    const pmi = pmiRate.trim() === '' ? 0 : parseFloat(pmiRate);
+    const hoa = hoaFees.trim() === '' ? 0 : parseFloat(hoaFees);
     const income = parseFloat(monthlyIncome) || 0;
-    const extraPmt = parseFloat(extraPayment) || 0;
-
-    if (principal <= 0 || annualRate < 0 || termYears <= 0) return;
+    const extraPmt = extraPayment.trim() === '' ? 0 : parseFloat(extraPayment);
+    
+    const validation = mortgageInputSchema.safeParse({
+      homePrice: price,
+      downPayment: down,
+      interestRate: annualRate,
+      loanTerm: termYears,
+      propertyTax: taxes,
+      homeInsurance: insurance,
+      pmiRate: pmi,
+      hoaFees: hoa,
+      extraPayment: extraPmt
+    });
+    
+    if (!validation.success) {
+      const errors: ValidationErrors = {};
+      validation.error.errors.forEach((err) => {
+        if (err.path.length > 0) {
+          const field = err.path[0] as keyof ValidationErrors;
+          errors[field] = err.message;
+        }
+      });
+      setValidationErrors(errors);
+      setIsCalculating(false);
+      toast({
+        title: "Validation Error",
+        description: "Please fix the errors in the form before calculating.",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    const principal = price - down;
+    if (principal <= 0) {
+      setValidationErrors({ downPayment: "Down payment cannot be greater than or equal to home price" });
+      setIsCalculating(false);
+      toast({
+        title: "Validation Error",
+        description: "Down payment cannot be greater than or equal to home price.",
+        variant: "destructive"
+      });
+      return;
+    }
 
     const paymentsPerYear = paymentFrequency === 'weekly' ? 52 :
                            paymentFrequency === 'biweekly' ? 26 : 12;
-    const periodicRate = annualRate / paymentsPerYear;
+    const periodicRate = (annualRate / 100) / paymentsPerYear;
     const totalPayments = termYears * paymentsPerYear;
 
     let adjustedRate = periodicRate;
@@ -236,6 +334,8 @@ const MortgageCalculator = () => {
       extraPaymentSavings
     });
 
+    setIsCalculating(false);
+
     setTimeout(() => {
       resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }, 100);
@@ -260,6 +360,7 @@ const MortgageCalculator = () => {
     setShowAmortization(false);
     setShowChart(false);
     setResult(null);
+    setValidationErrors({});
   };
 
   const formatCurrency = (amount: number, currency = 'USD') => {
@@ -269,6 +370,26 @@ const MortgageCalculator = () => {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2
     }).format(amount);
+  };
+  
+  const formatTimeSaved = (periodsSaved: number, paymentsPerYear: number): string => {
+    const totalYearsSaved = periodsSaved / paymentsPerYear;
+    let yearsSaved = Math.floor(totalYearsSaved);
+    let monthsSaved = Math.round((totalYearsSaved - yearsSaved) * 12);
+    
+    if (monthsSaved === 12) {
+      yearsSaved += 1;
+      monthsSaved = 0;
+    }
+    
+    if (yearsSaved > 0 && monthsSaved > 0) {
+      return `${yearsSaved} ${yearsSaved === 1 ? 'year' : 'years'} ${monthsSaved} ${monthsSaved === 1 ? 'month' : 'months'}`;
+    } else if (yearsSaved > 0) {
+      return `${yearsSaved} ${yearsSaved === 1 ? 'year' : 'years'}`;
+    } else if (monthsSaved > 0) {
+      return `${monthsSaved} ${monthsSaved === 1 ? 'month' : 'months'}`;
+    }
+    return '0 months';
   };
 
   const handleDownloadPDF = () => {
@@ -509,23 +630,7 @@ const MortgageCalculator = () => {
       yPos += 7;
       const paymentsPerYear = paymentFrequency === 'weekly' ? 52 :
                              paymentFrequency === 'biweekly' ? 26 : 12;
-      const totalYearsSaved = result.extraPaymentSavings.timeSaved / paymentsPerYear;
-      let yearsSaved = Math.floor(totalYearsSaved);
-      let monthsSaved = Math.round((totalYearsSaved - yearsSaved) * 12);
-
-      if (monthsSaved === 12) {
-        yearsSaved += 1;
-        monthsSaved = 0;
-      }
-
-      let timeSavedText = '';
-      if (yearsSaved > 0 && monthsSaved > 0) {
-        timeSavedText = `${yearsSaved} years ${monthsSaved} months`;
-      } else if (yearsSaved > 0) {
-        timeSavedText = `${yearsSaved} years`;
-      } else if (monthsSaved > 0) {
-        timeSavedText = `${monthsSaved} months`;
-      }
+      const timeSavedText = formatTimeSaved(result.extraPaymentSavings.timeSaved, paymentsPerYear);
 
       doc.setFontSize(8);
       doc.setTextColor(50, 50, 50);
@@ -741,10 +846,10 @@ const MortgageCalculator = () => {
     if (result.extraPaymentSavings) {
       const paymentsPerYear = paymentFrequency === 'weekly' ? 52 :
                              paymentFrequency === 'biweekly' ? 26 : 12;
-      const yearsSaved = Math.round(result.extraPaymentSavings.timeSaved / paymentsPerYear);
+      const timeSaved = formatTimeSaved(result.extraPaymentSavings.timeSaved, paymentsPerYear);
       shareText += `\n✨ Extra Payment Savings:\n`;
       shareText += `• Interest Saved: ${formatCurrency(result.extraPaymentSavings.interestSaved)}\n`;
-      shareText += `• Time Saved: ${yearsSaved} years\n`;
+      shareText += `• Time Saved: ${timeSaved}\n`;
     }
 
     shareText += `\n🔗 View & Calculate: ${shareableUrl}`;
@@ -1239,11 +1344,14 @@ const MortgageCalculator = () => {
                             type="number"
                             value={homePrice}
                             onChange={(e) => setHomePrice(e.target.value)}
-                            className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                            className={`h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl w-full ${validationErrors.homePrice ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
                             placeholder="500,000"
                             data-testid="input-home-price"
                           />
                         </div>
+                        {validationErrors.homePrice && (
+                          <p className="text-xs text-red-600 mt-1" data-testid="error-home-price">{validationErrors.homePrice}</p>
+                        )}
                         <Slider
                           value={[parseFloat(homePrice) || 0]}
                           onValueChange={(value) => setHomePrice(value[0].toString())}
@@ -1305,11 +1413,14 @@ const MortgageCalculator = () => {
                           type="number"
                           value={loanTerm}
                           onChange={(e) => setLoanTerm(e.target.value)}
-                          className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                          className={`h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl w-full ${validationErrors.loanTerm ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
                           placeholder="30"
                           min="1"
                           max="40"
                         />
+                        {validationErrors.loanTerm && (
+                          <p className="text-xs text-red-600 mt-1" data-testid="error-loan-term">{validationErrors.loanTerm}</p>
+                        )}
                         <Slider
                           value={[parseFloat(loanTerm) || 30]}
                           onValueChange={(value) => setLoanTerm(value[0].toString())}
@@ -1338,12 +1449,15 @@ const MortgageCalculator = () => {
                             type="number"
                             value={interestRate}
                             onChange={(e) => setInterestRate(e.target.value)}
-                            className="h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                            className={`h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl w-full ${validationErrors.interestRate ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
                             placeholder="6.5"
                             step="0.01"
                           />
                           <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-lg">%</span>
                         </div>
+                        {validationErrors.interestRate && (
+                          <p className="text-xs text-red-600 mt-1" data-testid="error-interest-rate">{validationErrors.interestRate}</p>
+                        )}
                         <Slider
                           value={[parseFloat(interestRate) || 0]}
                           onValueChange={(value) => setInterestRate(value[0].toFixed(2))}
@@ -1473,11 +1587,14 @@ const MortgageCalculator = () => {
                             type="number"
                             value={extraPayment}
                             onChange={(e) => setExtraPayment(e.target.value)}
-                            className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                            className={`h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl w-full ${validationErrors.extraPayment ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
                             placeholder="0"
                             min="0"
                           />
                         </div>
+                        {validationErrors.extraPayment && (
+                          <p className="text-xs text-red-600 mt-1" data-testid="error-extra-payment">{validationErrors.extraPayment}</p>
+                        )}
                         <p className="text-xs sm:text-sm text-gray-500">💡 Pro Tip: Even small extra payments can save you thousands in interest!</p>
                       </div>
                     </div>
@@ -1486,11 +1603,13 @@ const MortgageCalculator = () => {
                   <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       onClick={calculateMortgage}
-                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      disabled={isCalculating || !homePrice || !interestRate || !loanTerm || Object.keys(validationErrors).length > 0}
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                       data-testid="button-calculate"
+                      aria-busy={isCalculating}
                     >
                       <Calculator className="w-5 h-5 mr-2" />
-                      Calculate Mortgage Payment
+                      {isCalculating ? 'Calculating...' : 'Calculate Mortgage Payment'}
                     </Button>
                     <Button
                       onClick={resetCalculator}
@@ -1809,7 +1928,7 @@ const MortgageCalculator = () => {
                             <div className="flex justify-between items-center">
                               <span className="text-green-700 font-medium text-sm sm:text-base">Time Saved:</span>
                               <span className="font-bold text-green-800 text-sm sm:text-base md:text-lg">
-                                {Math.round(result.extraPaymentSavings.timeSaved / (paymentFrequency === 'weekly' ? 52 : paymentFrequency === 'biweekly' ? 26 : 12))} years
+                                {formatTimeSaved(result.extraPaymentSavings.timeSaved, paymentFrequency === 'weekly' ? 52 : paymentFrequency === 'biweekly' ? 26 : 12)}
                               </span>
                             </div>
                           </div>
