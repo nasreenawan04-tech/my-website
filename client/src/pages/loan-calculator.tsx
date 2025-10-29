@@ -15,6 +15,7 @@ import { RotateCcw } from 'lucide-react';
 import { jsPDF } from 'jspdf';
 import ShareResultsButton from '@/components/ShareResultsButton';
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
+import { z } from 'zod';
 
 interface LoanResult {
   monthlyPayment: number;
@@ -40,8 +41,35 @@ interface ComparisonLoan {
   amount: number;
   rate: number;
   term: number;
+  termUnit: string;
+  paymentFrequency: string;
   monthlyPayment: number;
   totalInterest: number;
+}
+
+const loanInputSchema = z.object({
+  loanAmount: z.number({
+    invalid_type_error: "Loan amount must be a valid number",
+    required_error: "Loan amount is required"
+  }).positive("Loan amount must be greater than zero").max(100000000, "Loan amount is too large").finite("Loan amount must be a finite number"),
+  interestRate: z.number({
+    invalid_type_error: "Interest rate must be a valid number",
+    required_error: "Interest rate is required"
+  }).positive("Interest rate must be greater than zero").max(100, "Interest rate cannot exceed 100%").finite("Interest rate must be a finite number"),
+  loanTerm: z.number({
+    invalid_type_error: "Loan term must be a valid number",
+    required_error: "Loan term is required"
+  }).positive("Loan term must be greater than zero").max(600, "Loan term is too long").finite("Loan term must be a finite number"),
+  extraPayment: z.number({
+    invalid_type_error: "Extra payment must be a valid number"
+  }).min(0, "Extra payment cannot be negative").finite("Extra payment must be a finite number")
+});
+
+interface ValidationErrors {
+  loanAmount?: string;
+  interestRate?: string;
+  loanTerm?: string;
+  extraPayment?: string;
 }
 
 export default function LoanCalculator() {
@@ -62,6 +90,8 @@ export default function LoanCalculator() {
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
+  const [validationErrors, setValidationErrors] = useState<ValidationErrors>({});
+  const [shouldAutoCalculate, setShouldAutoCalculate] = useState(false);
   const { toast } = useToast();
 
   // Load parameters from URL on mount (for shared links)
@@ -81,20 +111,21 @@ export default function LoanCalculator() {
       if (unit) setTermUnit(unit);
       if (freq) setPaymentFrequency(freq);
       if (extra) setExtraPayment(extra);
-
-      // Trigger calculation after state updates
-      setTimeout(() => {
-        const calculateButton = document.querySelector('[data-testid="button-calculate"]') as HTMLButtonElement;
-        if (calculateButton) {
-          calculateButton.click();
-          toast({
-            title: "Shared calculation loaded!",
-            description: "Results from the shared link have been calculated."
-          });
-        }
-      }, 200);
+      setShouldAutoCalculate(true);
     }
   }, []);
+
+  // Auto-calculate when URL parameters are loaded
+  useEffect(() => {
+    if (shouldAutoCalculate) {
+      calculateLoan();
+      toast({
+        title: "Shared calculation loaded!",
+        description: "Results from the shared link have been calculated."
+      });
+      setShouldAutoCalculate(false);
+    }
+  }, [shouldAutoCalculate]);
 
   // Drag scrolling handlers for amortization table
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -122,19 +153,43 @@ export default function LoanCalculator() {
 
   const calculateLoan = () => {
     setIsCalculating(true); // Set loading state
+    setValidationErrors({}); // Clear previous errors
+    
     const principal = parseFloat(loanAmount);
-    const annualRate = parseFloat(interestRate) / 100;
-    const termMonths = termUnit === 'years' ? parseFloat(loanTerm) * 12 : parseFloat(loanTerm);
-    const extraPmt = parseFloat(extraPayment) || 0;
-
-    if (principal <= 0 || annualRate <= 0 || termMonths <= 0) {
-      setIsCalculating(false); // Reset loading state
+    const annualRate = parseFloat(interestRate);
+    const term = parseFloat(loanTerm);
+    const extraPmt = extraPayment.trim() === '' ? 0 : parseFloat(extraPayment);
+    
+    // Validate inputs
+    const validation = loanInputSchema.safeParse({
+      loanAmount: principal,
+      interestRate: annualRate,
+      loanTerm: term,
+      extraPayment: extraPmt
+    });
+    
+    if (!validation.success) {
+      const errors: ValidationErrors = {};
+      validation.error.errors.forEach((err) => {
+        const field = err.path[0] as keyof ValidationErrors;
+        errors[field] = err.message;
+      });
+      setValidationErrors(errors);
+      setIsCalculating(false);
+      toast({
+        title: "Invalid Input",
+        description: "Please fix the errors in the form",
+        variant: "destructive"
+      });
       return;
-    };
+    }
+    
+    const annualRateDecimal = annualRate / 100;
+    const termMonths = termUnit === 'years' ? term * 12 : term;
 
     const paymentsPerYear = paymentFrequency === 'weekly' ? 52 :
                            paymentFrequency === 'biweekly' ? 26 : 12;
-    const periodicRate = annualRate / paymentsPerYear;
+    const periodicRate = annualRateDecimal / paymentsPerYear;
     const totalPayments = termMonths * (paymentsPerYear / 12);
 
     const regularPayment = (principal * periodicRate * Math.pow(1 + periodicRate, totalPayments)) /
@@ -208,6 +263,7 @@ export default function LoanCalculator() {
     setShowChart(false);
     setComparisonLoans([]);
     setResult(null);
+    setValidationErrors({}); // Clear validation errors
     setIsCalculating(false); // Reset loading state
   };
 
@@ -218,6 +274,8 @@ export default function LoanCalculator() {
         amount: parseFloat(loanAmount),
         rate: parseFloat(interestRate),
         term: parseFloat(loanTerm),
+        termUnit: termUnit,
+        paymentFrequency: paymentFrequency,
         monthlyPayment: result.monthlyPayment,
         totalInterest: result.totalInterest
       };
@@ -272,10 +330,28 @@ export default function LoanCalculator() {
     shareText += `• Total Amount: ${formatCurrency(result.totalAmount)}\n`;
 
     if (result.extraPaymentSavings) {
-      const yearsSaved = Math.round(result.extraPaymentSavings.timeSaved / (paymentFrequency === 'weekly' ? 52 : paymentFrequency === 'biweekly' ? 26 : 12));
+      const paymentsPerYearForSavings = paymentFrequency === 'weekly' ? 52 : paymentFrequency === 'biweekly' ? 26 : 12;
+      const totalYearsSaved = result.extraPaymentSavings.timeSaved / paymentsPerYearForSavings;
+      let yearsSaved = Math.floor(totalYearsSaved);
+      let monthsSaved = Math.round((totalYearsSaved - yearsSaved) * 12);
+      
+      if (monthsSaved === 12) {
+        yearsSaved += 1;
+        monthsSaved = 0;
+      }
+      
+      let timeSavedText = '';
+      if (yearsSaved > 0 && monthsSaved > 0) {
+        timeSavedText = `${yearsSaved} years ${monthsSaved} months`;
+      } else if (yearsSaved > 0) {
+        timeSavedText = `${yearsSaved} years`;
+      } else if (monthsSaved > 0) {
+        timeSavedText = `${monthsSaved} months`;
+      }
+      
       shareText += `\n✨ Extra Payment Savings:\n`;
       shareText += `• Interest Saved: ${formatCurrency(result.extraPaymentSavings.interestSaved)}\n`;
-      shareText += `• Time Saved: ${yearsSaved} years\n`;
+      shareText += `• Time Saved: ${timeSavedText}\n`;
     }
 
     shareText += `\n🔗 View & Calculate: ${shareableUrl}`;
@@ -903,7 +979,7 @@ export default function LoanCalculator() {
       doc.setFont('helvetica', 'normal');
       doc.text(formatCurrency(loan.amount), colX[1], yPos + 4.5);
       doc.text(`${loan.rate}%`, colX[2], yPos + 4.5);
-      doc.text(`${loan.term} years`, colX[3], yPos + 4.5);
+      doc.text(`${loan.term} ${loan.termUnit}`, colX[3], yPos + 4.5);
 
       doc.setTextColor(59, 130, 246);
       doc.setFont('helvetica', 'bold');
@@ -1361,7 +1437,7 @@ export default function LoanCalculator() {
                             type="number"
                             value={loanAmount}
                             onChange={(e) => setLoanAmount(e.target.value)}
-                            className="h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                            className={`h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl focus:ring-blue-500 w-full ${validationErrors.loanAmount ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
                             placeholder="100,000"
                             min="0"
                             max="100000000"
@@ -1371,6 +1447,9 @@ export default function LoanCalculator() {
                             required
                           />
                         </div>
+                        {validationErrors.loanAmount && (
+                          <p className="text-xs text-red-600 mt-1" data-testid="error-loan-amount">{validationErrors.loanAmount}</p>
+                        )}
                       </div>
 
                       <div className="space-y-2 sm:space-y-3">
@@ -1393,7 +1472,7 @@ export default function LoanCalculator() {
                             type="number"
                             value={interestRate}
                             onChange={(e) => setInterestRate(e.target.value)}
-                            className="h-10 sm:h-12 md:h-14 pr-7 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                            className={`h-10 sm:h-12 md:h-14 pr-7 sm:pr-8 text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl focus:ring-blue-500 w-full ${validationErrors.interestRate ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
                             placeholder="5.50"
                             min="0"
                             max="50"
@@ -1404,6 +1483,9 @@ export default function LoanCalculator() {
                           />
                           <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-lg">%</span>
                         </div>
+                        {validationErrors.interestRate && (
+                          <p className="text-xs text-red-600 mt-1" data-testid="error-interest-rate">{validationErrors.interestRate}</p>
+                        )}
                       </div>
 
                       <div className="space-y-2 sm:space-y-3">
@@ -1423,7 +1505,7 @@ export default function LoanCalculator() {
                             type="number"
                             value={loanTerm}
                             onChange={(e) => setLoanTerm(e.target.value)}
-                            className="h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                            className={`h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl focus:ring-blue-500 w-full ${validationErrors.loanTerm ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
                             placeholder="30"
                             min="1"
                             max="50"
@@ -1441,6 +1523,9 @@ export default function LoanCalculator() {
                             </SelectContent>
                           </Select>
                         </div>
+                        {validationErrors.loanTerm && (
+                          <p className="text-xs text-red-600 mt-1" data-testid="error-loan-term">{validationErrors.loanTerm}</p>
+                        )}
                       </div>
 
                       <div className="space-y-2 sm:space-y-3">
@@ -1488,7 +1573,7 @@ export default function LoanCalculator() {
                             type="number"
                             value={extraPayment}
                             onChange={(e) => setExtraPayment(e.target.value)}
-                            className="h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                            className={`h-10 sm:h-12 md:h-14 pl-7 sm:pl-8 text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl focus:ring-blue-500 w-full ${validationErrors.extraPayment ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
                             placeholder="0"
                             min="0"
                             step="10"
@@ -1496,6 +1581,9 @@ export default function LoanCalculator() {
                             aria-label="Extra payment amount per period (optional)"
                           />
                         </div>
+                        {validationErrors.extraPayment && (
+                          <p className="text-xs text-red-600 mt-1" data-testid="error-extra-payment">{validationErrors.extraPayment}</p>
+                        )}
                         <p className="text-xs sm:text-sm text-gray-500">💡 Pro Tip: Even small extra payments can save you thousands in interest!</p>
                       </div>
                     </div>
@@ -1504,7 +1592,7 @@ export default function LoanCalculator() {
                   <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       onClick={calculateLoan}
-                      disabled={isCalculating}
+                      disabled={isCalculating || !loanAmount || !interestRate || !loanTerm || Object.keys(validationErrors).length > 0}
                       className="w-full sm:w-auto sm:flex-1 h-10 sm:h-12 md:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                       data-testid="button-calculate"
                       aria-busy={isCalculating}
@@ -2037,7 +2125,7 @@ export default function LoanCalculator() {
                             {loan.rate}%
                           </td>
                           <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
-                            {loan.term} years
+                            {loan.term} {loan.termUnit}
                           </td>
                           <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-blue-600 font-bold text-xs sm:text-sm">
                             {formatCurrency(loan.monthlyPayment)}
