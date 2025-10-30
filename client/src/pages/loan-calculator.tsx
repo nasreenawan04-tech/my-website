@@ -16,6 +16,8 @@ import { jsPDF } from 'jspdf';
 import ShareResultsButton from '@/components/ShareResultsButton';
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { z } from 'zod';
+import { useAuth } from '@/contexts/AuthContext';
+import { saveCalculation } from '@/lib/calculationHistory';
 
 interface LoanResult {
   monthlyPayment: number;
@@ -93,6 +95,7 @@ export default function LoanCalculator() {
   const [validationErrors, setValidationErrors] = useState<ValidationErrors>({});
   const [shouldAutoCalculate, setShouldAutoCalculate] = useState(false);
   const { toast } = useToast();
+  const { user } = useAuth();
 
   // Load parameters from URL on mount (for shared links)
   useEffect(() => {
@@ -151,7 +154,7 @@ export default function LoanCalculator() {
     tableScrollRef.current.scrollLeft = scrollLeft - walk;
   };
 
-  const calculateLoan = () => {
+  const calculateLoan = async () => {
     setIsCalculating(true); // Set loading state
     setValidationErrors({}); // Clear previous errors
     
@@ -237,13 +240,42 @@ export default function LoanCalculator() {
 
     const monthlyEquivalent = regularPayment * (paymentsPerYear / 12);
 
-    setResult({
+    const calculationResult = {
       monthlyPayment: monthlyEquivalent,
       totalAmount: totalAmountPaid,
       totalInterest: totalInterestPaid,
       amortizationSchedule,
       extraPaymentSavings
-    });
+    };
+
+    setResult(calculationResult);
+
+    // Save calculation history if user is logged in
+    if (user) {
+      try {
+        await saveCalculation(
+          user.uid,
+          'Loan Calculator',
+          '/loan-calculator',
+          {
+            loanAmount: principal,
+            interestRate: annualRate,
+            loanTerm: term,
+            termUnit,
+            paymentFrequency,
+            extraPayment: extraPmt
+          },
+          {
+            monthlyPayment: monthlyEquivalent,
+            totalAmount: totalAmountPaid,
+            totalInterest: totalInterestPaid,
+            extraPaymentSavings
+          }
+        );
+      } catch (error) {
+        console.error('Failed to save calculation history:', error);
+      }
+    }
 
     setTimeout(() => {
       resultsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });

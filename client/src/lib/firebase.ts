@@ -1,5 +1,6 @@
 import { initializeApp, getApps, getApp } from 'firebase/app';
 import { getAuth, connectAuthEmulator } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
 
 // Check if Firebase is configured
 export const isFirebaseConfigured = !!import.meta.env.VITE_FIREBASE_API_KEY;
@@ -38,10 +39,12 @@ const firebaseConfig = {
 // Initialize Firebase only if configured
 let app;
 let auth: ReturnType<typeof getAuth> | undefined;
+let db: ReturnType<typeof getFirestore> | undefined;
 
 try {
   app = getApps().length ? getApp() : initializeApp(firebaseConfig);
   auth = getAuth(app);
+  db = getFirestore(app);
   
   // Only log Firebase status if explicitly configured
   if (import.meta.env.DEV && isFirebaseConfigured) {
@@ -54,4 +57,4 @@ try {
   console.warn('App will run without authentication features.');
 }
 
-export { auth }
+export { auth, db }
