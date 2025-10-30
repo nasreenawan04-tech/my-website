@@ -1301,55 +1301,66 @@ export default function CompoundInterestCalculator() {
 
                   {/* Advanced Display Options */}
                   {result && (
-                    <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 pt-2 sm:pt-3 md:pt-4">
-                      <Button
-                        onClick={() => setShowBreakdown(!showBreakdown)}
-                        variant="outline"
-                        size="sm"
-                        className="rounded-full text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2"
-                        data-testid="button-show-breakdown"
-                      >
-                        {showBreakdown ? 'Hide' : 'Show'} Yearly Breakdown
-                      </Button>
-                      <Button
-                        onClick={() => setShowChart(!showChart)}
-                        variant="outline"
-                        size="sm"
-                        className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
-                        data-testid="button-show-chart"
-                      >
-                        <PieChart className="w-4 h-4 mr-1" />
-                        {showChart ? 'Hide' : 'Show'} Chart
-                      </Button>
-                      <Button
-                        onClick={handleShare}
-                        variant="outline"
-                        size="sm"
-                        className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
-                        data-testid="button-share"
-                      >
-                        <Share2 className="w-4 h-4 mr-1" />
-                        Share
-                      </Button>
-                      <Button
-                        onClick={handleDownloadPDF}
-                        variant="outline"
-                        size="sm"
-                        className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
-                        data-testid="button-export-pdf"
-                      >
-                        <Download className="w-4 h-4 mr-1" />
-                        Export PDF
-                      </Button>
-                      <Button
-                        onClick={() => setShowRealValue(!showRealValue)}
-                        variant="outline"
-                        size="sm"
-                        className="rounded-full text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2"
-                        data-testid="button-show-real-value"
-                      >
-                        {showRealValue ? 'Hide' : 'Show'} Inflation Adjusted
-                      </Button>
+                    <div className="space-y-4 pt-3 sm:pt-4 print:hidden">
+                      {/* Primary Action Buttons */}
+                      <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+                        <Button
+                          onClick={() => setShowBreakdown(!showBreakdown)}
+                          variant="outline"
+                          size="sm"
+                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-all"
+                          data-testid="button-show-breakdown"
+                        >
+                          {showBreakdown ? 'Hide' : 'Show'} Yearly Breakdown
+                        </Button>
+                        <Button
+                          onClick={() => setShowChart(!showChart)}
+                          variant="outline"
+                          size="sm"
+                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-all"
+                          data-testid="button-show-chart"
+                        >
+                          <PieChart className="w-4 h-4 mr-1.5" />
+                          {showChart ? 'Hide' : 'Show'} Chart
+                        </Button>
+                        <Button
+                          onClick={handleDownloadPDF}
+                          variant="outline"
+                          size="sm"
+                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-all"
+                          data-testid="button-export-pdf"
+                        >
+                          <Download className="w-4 h-4 mr-1.5" />
+                          Export PDF
+                        </Button>
+                        <Button
+                          onClick={() => setShowRealValue(!showRealValue)}
+                          variant="outline"
+                          size="sm"
+                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-all"
+                          data-testid="button-show-real-value"
+                        >
+                          {showRealValue ? 'Hide' : 'Show'} Inflation Adjusted
+                        </Button>
+                      </div>
+
+                      {/* Social Share Section */}
+                      <div className="border-t pt-3 sm:pt-4">
+                        <p className="text-center text-xs sm:text-sm md:text-base font-medium text-gray-700 mb-2 sm:mb-3 px-2">Share your results:</p>
+                        <div className="flex flex-wrap justify-center items-center gap-1.5 xs:gap-2 sm:gap-3 px-2 sm:px-0">
+                          <Button
+                            onClick={handleShare}
+                            variant="outline"
+                            size="sm"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg border-2 border-gray-300 hover:border-gray-400 hover:bg-gray-50 transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            aria-label="More share options"
+                            data-testid="button-share"
+                          >
+                            <Share2 className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
+                            <span className="hidden sm:inline">Share</span>
+                          </Button>
+                        </div>
+                      </div>
                     </div>
                   )}
                 </div>
