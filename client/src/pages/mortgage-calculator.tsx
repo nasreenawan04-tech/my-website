@@ -1315,56 +1315,56 @@ const MortgageCalculator = () => {
             <CardContent className="p-0">
               <div className="flex flex-col">
                 <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
-                  <div className="text-center sm:text-left">
-                    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Mortgage Configuration</h2>
-                    <p className="text-sm sm:text-base text-gray-600">Enter your home and loan details for accurate payment calculations</p>
+                  <div className="text-center sm:text-left px-2 sm:px-0">
+                    <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2 leading-tight">Mortgage Configuration</h2>
+                    <p className="text-xs xs:text-sm sm:text-base text-gray-600 leading-relaxed">Enter your home and loan details for accurate payment calculations</p>
                   </div>
 
                   <TooltipProvider>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
-                      <div className="space-y-2 sm:space-y-3">
-                        <div className="flex items-center gap-2">
-                          <Label htmlFor="home-price" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide flex items-center gap-2">
-                            <Home className="w-4 h-4" />
-                            Home Price
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 xs:gap-4 sm:gap-6 md:gap-8 px-2 sm:px-0">
+                      <div className="space-y-1.5 xs:space-y-2 sm:space-y-3">
+                        <div className="flex items-center gap-1.5 xs:gap-2">
+                          <Label htmlFor="home-price" className="text-[10px] xs:text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide flex items-center gap-1 xs:gap-2">
+                            <Home className="w-3 h-3 xs:w-3.5 xs:h-3.5 sm:w-4 sm:h-4 flex-shrink-0" />
+                            <span className="leading-tight">Home Price</span>
                           </Label>
                           <Tooltip>
                             <TooltipTrigger>
-                              <Info className="w-4 h-4 text-gray-400" />
+                              <Info className="w-3 h-3 xs:w-3.5 xs:h-3.5 sm:w-4 sm:h-4 text-gray-400 flex-shrink-0" />
                             </TooltipTrigger>
                             <TooltipContent>
-                              <p className="max-w-xs text-sm">The total purchase price of the home</p>
+                              <p className="max-w-xs text-xs sm:text-sm">The total purchase price of the home</p>
                             </TooltipContent>
                           </Tooltip>
                         </div>
                         <div className="relative">
-                          <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-lg">$</span>
+                          <span className="absolute left-2 xs:left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-xs xs:text-sm sm:text-lg">$</span>
                           <Input
                             id="home-price"
                             type="number"
                             value={homePrice}
                             onChange={(e) => setHomePrice(e.target.value)}
-                            className={`h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl w-full ${validationErrors.homePrice ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
+                            className={`h-9 xs:h-10 sm:h-12 md:h-14 pl-5 xs:pl-6 sm:pl-8 text-xs xs:text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl w-full ${validationErrors.homePrice ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
                             placeholder="500,000"
                             data-testid="input-home-price"
                           />
                         </div>
                         {validationErrors.homePrice && (
-                          <p className="text-xs text-red-600 mt-1" data-testid="error-home-price">{validationErrors.homePrice}</p>
+                          <p className="text-[10px] xs:text-xs text-red-600 mt-0.5 xs:mt-1" data-testid="error-home-price">{validationErrors.homePrice}</p>
                         )}
                       </div>
 
-                      <div className="space-y-2 sm:space-y-3">
-                        <div className="flex items-center gap-2">
-                          <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                      <div className="space-y-1.5 xs:space-y-2 sm:space-y-3">
+                        <div className="flex items-center gap-1.5 xs:gap-2">
+                          <Label className="text-[10px] xs:text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide leading-tight">
                             Down Payment
                           </Label>
                           <Tooltip>
                             <TooltipTrigger>
-                              <Info className="w-4 h-4 text-gray-400" />
+                              <Info className="w-3 h-3 xs:w-3.5 xs:h-3.5 sm:w-4 sm:h-4 text-gray-400 flex-shrink-0" />
                             </TooltipTrigger>
                             <TooltipContent>
-                              <p className="max-w-xs text-sm">Amount you'll pay upfront (20% avoids PMI)</p>
+                              <p className="max-w-xs text-xs sm:text-sm">Amount you'll pay upfront (20% avoids PMI)</p>
                             </TooltipContent>
                           </Tooltip>
                         </div>
@@ -1373,25 +1373,25 @@ const MortgageCalculator = () => {
                             type="number"
                             value={downPaymentPercent}
                             onChange={(e) => setDownPaymentPercent(e.target.value)}
-                            className="h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                            className="h-9 xs:h-10 sm:h-12 md:h-14 pr-5 xs:pr-6 sm:pr-8 text-xs xs:text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                             placeholder="20"
                             min="0"
                             max="100"
                             step="0.1"
                           />
-                          <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-lg">%</span>
+                          <span className="absolute right-2 xs:right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-xs xs:text-sm sm:text-lg">%</span>
                         </div>
                       </div>
 
-                      <div className="space-y-2 sm:space-y-3">
-                        <div className="flex items-center gap-2">
-                          <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">Loan Term (Years)</Label>
+                      <div className="space-y-1.5 xs:space-y-2 sm:space-y-3">
+                        <div className="flex items-center gap-1.5 xs:gap-2">
+                          <Label className="text-[10px] xs:text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide leading-tight">Loan Term (Years)</Label>
                           <Tooltip>
                             <TooltipTrigger>
-                              <Info className="w-4 h-4 text-gray-400" />
+                              <Info className="w-3 h-3 xs:w-3.5 xs:h-3.5 sm:w-4 sm:h-4 text-gray-400 flex-shrink-0" />
                             </TooltipTrigger>
                             <TooltipContent>
-                              <p className="max-w-xs text-sm">How long you'll take to repay (typically 15 or 30 years)</p>
+                              <p className="max-w-xs text-xs sm:text-sm">How long you'll take to repay (typically 15 or 30 years)</p>
                             </TooltipContent>
                           </Tooltip>
                         </div>
@@ -1399,25 +1399,25 @@ const MortgageCalculator = () => {
                           type="number"
                           value={loanTerm}
                           onChange={(e) => setLoanTerm(e.target.value)}
-                          className={`h-10 sm:h-12 md:h-14 text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl w-full ${validationErrors.loanTerm ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
+                          className={`h-9 xs:h-10 sm:h-12 md:h-14 text-xs xs:text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl w-full ${validationErrors.loanTerm ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
                           placeholder="30"
                           min="1"
                           max="40"
                         />
                         {validationErrors.loanTerm && (
-                          <p className="text-xs text-red-600 mt-1" data-testid="error-loan-term">{validationErrors.loanTerm}</p>
+                          <p className="text-[10px] xs:text-xs text-red-600 mt-0.5 xs:mt-1" data-testid="error-loan-term">{validationErrors.loanTerm}</p>
                         )}
                       </div>
 
-                      <div className="space-y-2 sm:space-y-3">
-                        <div className="flex items-center gap-2">
-                          <Label htmlFor="interest-rate" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">Interest Rate (%)</Label>
+                      <div className="space-y-1.5 xs:space-y-2 sm:space-y-3">
+                        <div className="flex items-center gap-1.5 xs:gap-2">
+                          <Label htmlFor="interest-rate" className="text-[10px] xs:text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide leading-tight">Interest Rate (%)</Label>
                           <Tooltip>
                             <TooltipTrigger>
-                              <Info className="w-4 h-4 text-gray-400" />
+                              <Info className="w-3 h-3 xs:w-3.5 xs:h-3.5 sm:w-4 sm:h-4 text-gray-400 flex-shrink-0" />
                             </TooltipTrigger>
                             <TooltipContent>
-                              <p className="max-w-xs text-sm">Annual interest rate from your lender</p>
+                              <p className="max-w-xs text-xs sm:text-sm">Annual interest rate from your lender</p>
                             </TooltipContent>
                           </Tooltip>
                         </div>
@@ -1427,31 +1427,31 @@ const MortgageCalculator = () => {
                             type="number"
                             value={interestRate}
                             onChange={(e) => setInterestRate(e.target.value)}
-                            className={`h-10 sm:h-12 md:h-14 pr-6 sm:pr-8 text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl w-full ${validationErrors.interestRate ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
+                            className={`h-9 xs:h-10 sm:h-12 md:h-14 pr-5 xs:pr-6 sm:pr-8 text-xs xs:text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl w-full ${validationErrors.interestRate ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
                             placeholder="6.5"
                             step="0.01"
                           />
-                          <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-lg">%</span>
+                          <span className="absolute right-2 xs:right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-xs xs:text-sm sm:text-lg">%</span>
                         </div>
                         {validationErrors.interestRate && (
-                          <p className="text-xs text-red-600 mt-1" data-testid="error-interest-rate">{validationErrors.interestRate}</p>
+                          <p className="text-[10px] xs:text-xs text-red-600 mt-0.5 xs:mt-1" data-testid="error-interest-rate">{validationErrors.interestRate}</p>
                         )}
                       </div>
 
-                      <div className="space-y-2 sm:space-y-3">
-                        <div className="flex items-center gap-2">
-                          <Label className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">Payment Frequency</Label>
+                      <div className="space-y-1.5 xs:space-y-2 sm:space-y-3">
+                        <div className="flex items-center gap-1.5 xs:gap-2">
+                          <Label className="text-[10px] xs:text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide leading-tight">Payment Frequency</Label>
                           <Tooltip>
                             <TooltipTrigger>
-                              <Info className="w-4 h-4 text-gray-400" />
+                              <Info className="w-3 h-3 xs:w-3.5 xs:h-3.5 sm:w-4 sm:h-4 text-gray-400 flex-shrink-0" />
                             </TooltipTrigger>
                             <TooltipContent>
-                              <p className="max-w-xs text-sm">How often you'll make payments</p>
+                              <p className="max-w-xs text-xs sm:text-sm">How often you'll make payments</p>
                             </TooltipContent>
                           </Tooltip>
                         </div>
                         <Select value={paymentFrequency} onValueChange={setPaymentFrequency}>
-                          <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full">
+                          <SelectTrigger className="h-9 xs:h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-xs xs:text-sm sm:text-base md:text-lg w-full">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -1462,20 +1462,20 @@ const MortgageCalculator = () => {
                         </Select>
                       </div>
 
-                      <div className="space-y-2 sm:space-y-3">
-                        <div className="flex items-center gap-2">
-                          <Label htmlFor="loan-type" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">Loan Type</Label>
+                      <div className="space-y-1.5 xs:space-y-2 sm:space-y-3">
+                        <div className="flex items-center gap-1.5 xs:gap-2">
+                          <Label htmlFor="loan-type" className="text-[10px] xs:text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide leading-tight">Loan Type</Label>
                           <Tooltip>
                             <TooltipTrigger>
-                              <Info className="w-4 h-4 text-gray-400" />
+                              <Info className="w-3 h-3 xs:w-3.5 xs:h-3.5 sm:w-4 sm:h-4 text-gray-400 flex-shrink-0" />
                             </TooltipTrigger>
                             <TooltipContent>
-                              <p className="max-w-xs text-sm">Type of mortgage loan</p>
+                              <p className="max-w-xs text-xs sm:text-sm">Type of mortgage loan</p>
                             </TooltipContent>
                           </Tooltip>
                         </div>
                         <Select value={loanType} onValueChange={setLoanType}>
-                          <SelectTrigger className="h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-sm sm:text-base md:text-lg w-full">
+                          <SelectTrigger className="h-9 xs:h-10 sm:h-12 md:h-14 border-2 border-gray-200 rounded-lg sm:rounded-xl text-xs xs:text-sm sm:text-base md:text-lg w-full">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent>
@@ -1486,86 +1486,86 @@ const MortgageCalculator = () => {
                         </Select>
                       </div>
 
-                      <div className="space-y-2 sm:space-y-3">
-                        <div className="flex items-center gap-2">
-                          <Label htmlFor="property-tax" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">Annual Property Tax</Label>
+                      <div className="space-y-1.5 xs:space-y-2 sm:space-y-3">
+                        <div className="flex items-center gap-1.5 xs:gap-2">
+                          <Label htmlFor="property-tax" className="text-[10px] xs:text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide leading-tight">Annual Property Tax</Label>
                           <Tooltip>
                             <TooltipTrigger>
-                              <Info className="w-4 h-4 text-gray-400" />
+                              <Info className="w-3 h-3 xs:w-3.5 xs:h-3.5 sm:w-4 sm:h-4 text-gray-400 flex-shrink-0" />
                             </TooltipTrigger>
                             <TooltipContent>
-                              <p className="max-w-xs text-sm">Yearly property taxes (varies by location)</p>
+                              <p className="max-w-xs text-xs sm:text-sm">Yearly property taxes (varies by location)</p>
                             </TooltipContent>
                           </Tooltip>
                         </div>
                         <div className="relative">
-                          <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-lg">$</span>
+                          <span className="absolute left-2 xs:left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-xs xs:text-sm sm:text-lg">$</span>
                           <Input
                             id="property-tax"
                             type="number"
                             value={propertyTax}
                             onChange={(e) => setPropertyTax(e.target.value)}
-                            className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                            className="h-9 xs:h-10 sm:h-12 md:h-14 pl-5 xs:pl-6 sm:pl-8 text-xs xs:text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                             placeholder="6,000"
                           />
                         </div>
                       </div>
 
-                      <div className="space-y-2 sm:space-y-3">
-                        <div className="flex items-center gap-2">
-                          <Label htmlFor="home-insurance" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">Annual Home Insurance</Label>
+                      <div className="space-y-1.5 xs:space-y-2 sm:space-y-3">
+                        <div className="flex items-center gap-1.5 xs:gap-2">
+                          <Label htmlFor="home-insurance" className="text-[10px] xs:text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide leading-tight">Annual Home Insurance</Label>
                           <Tooltip>
                             <TooltipTrigger>
-                              <Info className="w-4 h-4 text-gray-400" />
+                              <Info className="w-3 h-3 xs:w-3.5 xs:h-3.5 sm:w-4 sm:h-4 text-gray-400 flex-shrink-0" />
                             </TooltipTrigger>
                             <TooltipContent>
-                              <p className="max-w-xs text-sm">Yearly homeowners insurance premium</p>
+                              <p className="max-w-xs text-xs sm:text-sm">Yearly homeowners insurance premium</p>
                             </TooltipContent>
                           </Tooltip>
                         </div>
                         <div className="relative">
-                          <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-lg">$</span>
+                          <span className="absolute left-2 xs:left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-xs xs:text-sm sm:text-lg">$</span>
                           <Input
                             id="home-insurance"
                             type="number"
                             value={homeInsurance}
                             onChange={(e) => setHomeInsurance(e.target.value)}
-                            className="h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
+                            className="h-9 xs:h-10 sm:h-12 md:h-14 pl-5 xs:pl-6 sm:pl-8 text-xs xs:text-sm sm:text-base md:text-lg border-2 border-gray-200 rounded-lg sm:rounded-xl focus:border-blue-500 focus:ring-blue-500 w-full"
                             placeholder="1,800"
                           />
                         </div>
                       </div>
 
-                      <div className="md:col-span-2 space-y-2 sm:space-y-3">
-                        <div className="flex items-center gap-2">
-                          <Label htmlFor="extra-payment" className="text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                      <div className="md:col-span-2 space-y-1.5 xs:space-y-2 sm:space-y-3">
+                        <div className="flex items-center gap-1.5 xs:gap-2">
+                          <Label htmlFor="extra-payment" className="text-[10px] xs:text-xs sm:text-sm font-semibold text-gray-800 uppercase tracking-wide leading-tight">
                             Extra Payment (Optional)
                           </Label>
                           <Tooltip>
                             <TooltipTrigger>
-                              <Info className="w-4 h-4 text-gray-400" />
+                              <Info className="w-3 h-3 xs:w-3.5 xs:h-3.5 sm:w-4 sm:h-4 text-gray-400 flex-shrink-0" />
                             </TooltipTrigger>
                             <TooltipContent>
-                              <p className="max-w-xs text-sm">Additional amount to pay each period to reduce interest and loan term</p>
+                              <p className="max-w-xs text-xs sm:text-sm">Additional amount to pay each period to reduce interest and loan term</p>
                             </TooltipContent>
                           </Tooltip>
                         </div>
                         <div className="relative">
-                          <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm sm:text-lg">$</span>
+                          <span className="absolute left-2 xs:left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-500 text-xs xs:text-sm sm:text-lg">$</span>
                           <Input
                             id="extra-payment"
                             type="number"
                             value={extraPayment}
                             onChange={(e) => setExtraPayment(e.target.value)}
-                            className={`h-10 sm:h-12 md:h-14 pl-6 sm:pl-8 text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl w-full ${validationErrors.extraPayment ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
+                            className={`h-9 xs:h-10 sm:h-12 md:h-14 pl-5 xs:pl-6 sm:pl-8 text-xs xs:text-sm sm:text-base md:text-lg border-2 rounded-lg sm:rounded-xl w-full ${validationErrors.extraPayment ? 'border-red-500 focus:border-red-500' : 'border-gray-200 focus:border-blue-500'}`}
                             placeholder="0"
                             min="0"
                           />
                         </div>
                         {validationErrors.extraPayment && (
-                          <p className="text-xs text-red-600 mt-1" data-testid="error-extra-payment">{validationErrors.extraPayment}</p>
+                          <p className="text-[10px] xs:text-xs text-red-600 mt-0.5 xs:mt-1" data-testid="error-extra-payment">{validationErrors.extraPayment}</p>
                         )}
-                        <p className="text-xs sm:text-sm text-gray-500">💡 Pro Tip: Even small extra payments can save you thousands in interest!</p>
+                        <p className="text-[10px] xs:text-xs sm:text-sm text-gray-500 leading-relaxed">💡 Pro Tip: Even small extra payments can save you thousands in interest!</p>
                       </div>
                     </div>
                   </TooltipProvider>
