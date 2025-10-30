@@ -339,40 +339,43 @@ const MortgageCalculator = () => {
 
     setResult(calculationResult);
 
-    // Save calculation history if user is logged in
+    // Save calculation history if user is logged in (non-blocking)
     if (user) {
-      try {
-        await saveCalculation(
-          user.uid,
-          'Mortgage Calculator',
-          '/mortgage-calculator',
-          {
-            homePrice: price,
-            downPayment: down,
-            interestRate: annualRate,
-            loanTerm: termYears,
-            propertyTax: taxes,
-            homeInsurance: insurance,
-            pmiRate: pmi,
-            hoaFees: hoa,
-            extraPayment: extraPmt,
-            loanType,
-            paymentFrequency
-          },
-          {
-            monthlyPayment: calculationResult.monthlyPayment,
-            totalAmount: calculationResult.totalAmount,
-            totalInterest: calculationResult.totalInterest,
-            monthlyPrincipalAndInterest: calculationResult.monthlyPrincipalAndInterest,
-            closingCosts: calculationResult.closingCosts,
-            totalCashNeeded: calculationResult.totalCashNeeded,
-            loanToValue: calculationResult.loanToValue,
-            extraPaymentSavings: calculationResult.extraPaymentSavings
-          }
-        );
-      } catch (error) {
+      saveCalculation(
+        user.uid,
+        'Mortgage Calculator',
+        '/mortgage-calculator',
+        {
+          homePrice: price,
+          downPayment: down,
+          interestRate: annualRate,
+          loanTerm: termYears,
+          propertyTax: taxes,
+          homeInsurance: insurance,
+          pmiRate: pmi,
+          hoaFees: hoa,
+          extraPayment: extraPmt,
+          loanType,
+          paymentFrequency
+        },
+        {
+          monthlyPayment: calculationResult.monthlyPayment,
+          totalAmount: calculationResult.totalAmount,
+          totalInterest: calculationResult.totalInterest,
+          monthlyPrincipalAndInterest: calculationResult.monthlyPrincipalAndInterest,
+          closingCosts: calculationResult.closingCosts,
+          totalCashNeeded: calculationResult.totalCashNeeded,
+          loanToValue: calculationResult.loanToValue,
+          extraPaymentSavings: calculationResult.extraPaymentSavings
+        }
+      ).catch((error) => {
         console.error('Failed to save calculation history:', error);
-      }
+        toast({
+          title: 'Warning',
+          description: 'Calculation completed but failed to save to history.',
+          variant: 'destructive'
+        });
+      });
     }
 
     setIsCalculating(false);

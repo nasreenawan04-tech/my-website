@@ -252,29 +252,32 @@ export default function LoanCalculator() {
 
     // Save calculation history if user is logged in
     if (user) {
-      try {
-        await saveCalculation(
-          user.uid,
-          'Loan Calculator',
-          '/loan-calculator',
-          {
-            loanAmount: principal,
-            interestRate: annualRate,
-            loanTerm: term,
-            termUnit,
-            paymentFrequency,
-            extraPayment: extraPmt
-          },
-          {
-            monthlyPayment: monthlyEquivalent,
-            totalAmount: totalAmountPaid,
-            totalInterest: totalInterestPaid,
-            extraPaymentSavings
-          }
-        );
-      } catch (error) {
+      saveCalculation(
+        user.uid,
+        'Loan Calculator',
+        '/loan-calculator',
+        {
+          loanAmount: principal,
+          interestRate: annualRate,
+          loanTerm: term,
+          termUnit,
+          paymentFrequency,
+          extraPayment: extraPmt
+        },
+        {
+          monthlyPayment: monthlyEquivalent,
+          totalAmount: totalAmountPaid,
+          totalInterest: totalInterestPaid,
+          extraPaymentSavings
+        }
+      ).catch((error) => {
         console.error('Failed to save calculation history:', error);
-      }
+        toast({
+          title: 'Warning',
+          description: 'Calculation completed but failed to save to history.',
+          variant: 'destructive'
+        });
+      });
     }
 
     setTimeout(() => {

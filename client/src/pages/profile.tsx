@@ -70,6 +70,9 @@ export default function Profile() {
       setFavoritesCount(getFavorites().length);
       setRecentToolsCount(getRecentTools().length);
 
+      // Load calculation history
+      loadCalculationHistory();
+
       // Listen for changes
       const handleFavoritesChange = () => setFavoritesCount(getFavorites().length);
       const handleRecentChange = () => setRecentToolsCount(getRecentTools().length);
@@ -227,13 +230,17 @@ export default function Profile() {
 
   const handleDeleteCalculation = async (calculationId: string) => {
     try {
+      // Optimistically update UI
+      setCalculationHistory(prev => prev.filter(calc => calc.id !== calculationId));
+      
       await deleteCalculation(calculationId);
       toast({
         title: 'Deleted',
         description: 'Calculation has been deleted.'
       });
-      await loadCalculationHistory();
     } catch (error) {
+      // Reload on error to restore correct state
+      await loadCalculationHistory();
       toast({
         title: 'Error',
         description: 'Failed to delete calculation.',
@@ -246,13 +253,17 @@ export default function Profile() {
     if (!user) return;
     
     try {
+      // Optimistically update UI
+      setCalculationHistory([]);
+      
       await clearAllCalculations(user.uid);
       toast({
         title: 'History Cleared',
         description: 'All calculation history has been cleared.'
       });
-      await loadCalculationHistory();
     } catch (error) {
+      // Reload on error to restore correct state
+      await loadCalculationHistory();
       toast({
         title: 'Error',
         description: 'Failed to clear calculation history.',
