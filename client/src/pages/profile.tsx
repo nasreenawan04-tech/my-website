@@ -9,8 +9,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useToast } from '@/hooks/use-toast';
 import { Helmet } from 'react-helmet-async';
-import { User, Lock, BarChart3, Settings, Loader2, Eye, EyeOff, LogOut, Heart, Clock } from 'lucide-react';
+import { User, Lock, BarChart3, Settings, Loader2, Eye, EyeOff, LogOut, Heart, Clock, History, Trash2, Calendar } from 'lucide-react';
 import { getFavorites, getRecentTools, clearAllFavorites, clearRecentTools } from '@/lib/userPreferences';
+import { getCalculationHistory, deleteCalculation, clearAllCalculations, CalculationHistory } from '@/lib/calculationHistory';
+import { Link } from 'wouter';
+import { format } from 'date-fns';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -47,6 +50,10 @@ export default function Profile() {
   // Statistics state
   const [favoritesCount, setFavoritesCount] = useState(0);
   const [recentToolsCount, setRecentToolsCount] = useState(0);
+  
+  // Calculation history state
+  const [calculationHistory, setCalculationHistory] = useState<CalculationHistory[]>([]);
+  const [historyLoading, setHistoryLoading] = useState(false);
 
   useEffect(() => {
     // Only redirect when loading is complete and user is not authenticated
@@ -199,6 +206,61 @@ export default function Profile() {
     });
   };
 
+  const loadCalculationHistory = async () => {
+    if (!user) return;
+    
+    setHistoryLoading(true);
+    try {
+      const history = await getCalculationHistory(user.uid);
+      setCalculationHistory(history);
+    } catch (error) {
+      console.error('Failed to load calculation history:', error);
+      toast({
+        title: 'Error',
+        description: 'Failed to load calculation history.',
+        variant: 'destructive'
+      });
+    } finally {
+      setHistoryLoading(false);
+    }
+  };
+
+  const handleDeleteCalculation = async (calculationId: string) => {
+    try {
+      await deleteCalculation(calculationId);
+      toast({
+        title: 'Deleted',
+        description: 'Calculation has been deleted.'
+      });
+      await loadCalculationHistory();
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description: 'Failed to delete calculation.',
+        variant: 'destructive'
+      });
+    }
+  };
+
+  const handleClearAllCalculations = async () => {
+    if (!user) return;
+    
+    try {
+      await clearAllCalculations(user.uid);
+      toast({
+        title: 'History Cleared',
+        description: 'All calculation history has been cleared.'
+      });
+      await loadCalculationHistory();
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description: 'Failed to clear calculation history.',
+        variant: 'destructive'
+      });
+    }
+  };
+
   return (
     <>
       <Helmet>
@@ -243,8 +305,12 @@ export default function Profile() {
           </Card>
 
           {/* Tabs */}
-          <Tabs defaultValue="profile" className="w-full">
-            <TabsList className="grid w-full grid-cols-4">
+          <Tabs defaultValue="profile" className="w-full" onValueChange={(value) => {
+            if (value === 'history' && !historyLoading && calculationHistory.length === 0) {
+              loadCalculationHistory();
+            }
+          }}>
+            <TabsList className="grid w-full grid-cols-5">
               <TabsTrigger value="profile" className="flex items-center gap-2" data-testid="tab-profile">
                 <User className="h-4 w-4" />
                 <span className="hidden sm:inline">Profile</span>
@@ -252,6 +318,10 @@ export default function Profile() {
               <TabsTrigger value="security" className="flex items-center gap-2" data-testid="tab-security">
                 <Lock className="h-4 w-4" />
                 <span className="hidden sm:inline">Security</span>
+              </TabsTrigger>
+              <TabsTrigger value="history" className="flex items-center gap-2" data-testid="tab-history">
+                <History className="h-4 w-4" />
+                <span className="hidden sm:inline">History</span>
               </TabsTrigger>
               <TabsTrigger value="statistics" className="flex items-center gap-2" data-testid="tab-statistics">
                 <BarChart3 className="h-4 w-4" />
@@ -440,6 +510,140 @@ export default function Profile() {
                         )}
                       </Button>
                     </form>
+                  )}
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            {/* Calculation History Tab */}
+            <TabsContent value="history">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Calculation History</CardTitle>
+                  <CardDescription>
+                    View and manage your past calculations
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  {historyLoading ? (
+                    <div className="flex justify-center py-8">
+                      <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+                    </div>
+                  ) : calculationHistory.length === 0 ? (
+                    <div className="text-center py-12">
+                      <History className="h-16 w-16 mx-auto text-muted-foreground mb-4" />
+                      <h3 className="text-lg font-semibold mb-2">No Calculation History</h3>
+                      <p className="text-muted-foreground mb-4">
+                        Your calculation history will appear here once you start using our calculators.
+                      </p>
+                      <Link href="/all-tools">
+                        <Button variant="outline" data-testid="button-browse-tools">
+                          Browse Tools
+                        </Button>
+                      </Link>
+                    </div>
+                  ) : (
+                    <div className="space-y-4">
+                      <div className="flex justify-between items-center mb-4">
+                        <p className="text-sm text-muted-foreground">
+                          {calculationHistory.length} calculation{calculationHistory.length !== 1 ? 's' : ''}
+                        </p>
+                        <AlertDialog>
+                          <AlertDialogTrigger asChild>
+                            <Button variant="outline" size="sm" data-testid="button-clear-all-calculations">
+                              <Trash2 className="h-4 w-4 mr-2" />
+                              Clear All
+                            </Button>
+                          </AlertDialogTrigger>
+                          <AlertDialogContent>
+                            <AlertDialogHeader>
+                              <AlertDialogTitle>Clear all calculation history?</AlertDialogTitle>
+                              <AlertDialogDescription>
+                                This will permanently delete all your calculation history. This action cannot be undone.
+                              </AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                              <AlertDialogCancel>Cancel</AlertDialogCancel>
+                              <AlertDialogAction onClick={handleClearAllCalculations}>Clear All</AlertDialogAction>
+                            </AlertDialogFooter>
+                          </AlertDialogContent>
+                        </AlertDialog>
+                      </div>
+
+                      <div className="space-y-3">
+                        {calculationHistory.map((calculation) => (
+                          <Card key={calculation.id} className="overflow-hidden">
+                            <CardContent className="p-4">
+                              <div className="flex items-start justify-between gap-4">
+                                <div className="flex-1 space-y-2">
+                                  <div className="flex items-center gap-2">
+                                    <Link href={calculation.toolPath}>
+                                      <Button variant="link" className="p-0 h-auto text-base font-semibold" data-testid={`link-tool-${calculation.id}`}>
+                                        {calculation.toolName}
+                                      </Button>
+                                    </Link>
+                                  </div>
+                                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                                    <Calendar className="h-3 w-3" />
+                                    {format(calculation.timestamp, 'PPp')}
+                                  </div>
+                                  
+                                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3 text-sm">
+                                    <div className="bg-muted/50 rounded-lg p-2">
+                                      <p className="font-medium mb-1">Key Inputs</p>
+                                      <div className="space-y-1 text-xs">
+                                        {Object.entries(calculation.inputs).slice(0, 3).map(([key, value]) => (
+                                          <div key={key} className="flex justify-between">
+                                            <span className="text-muted-foreground capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
+                                            <span className="font-medium">{typeof value === 'number' ? value.toLocaleString() : value}</span>
+                                          </div>
+                                        ))}
+                                      </div>
+                                    </div>
+                                    <div className="bg-blue-50 dark:bg-blue-950/30 rounded-lg p-2">
+                                      <p className="font-medium mb-1">Results</p>
+                                      <div className="space-y-1 text-xs">
+                                        {Object.entries(calculation.results).slice(0, 3).map(([key, value]) => {
+                                          if (typeof value === 'object' && value !== null) return null;
+                                          return (
+                                            <div key={key} className="flex justify-between">
+                                              <span className="text-muted-foreground capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
+                                              <span className="font-medium">{typeof value === 'number' ? value.toLocaleString() : value}</span>
+                                            </div>
+                                          );
+                                        })}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                
+                                <AlertDialog>
+                                  <AlertDialogTrigger asChild>
+                                    <Button variant="ghost" size="sm" data-testid={`button-delete-${calculation.id}`}>
+                                      <Trash2 className="h-4 w-4" />
+                                    </Button>
+                                  </AlertDialogTrigger>
+                                  <AlertDialogContent>
+                                    <AlertDialogHeader>
+                                      <AlertDialogTitle>Delete this calculation?</AlertDialogTitle>
+                                      <AlertDialogDescription>
+                                        This will permanently delete this calculation from your history.
+                                      </AlertDialogDescription>
+                                    </AlertDialogHeader>
+                                    <AlertDialogFooter>
+                                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                      <AlertDialogAction onClick={() => handleDeleteCalculation(calculation.id!)}>
+                                        Delete
+                                      </AlertDialogAction>
+                                    </AlertDialogFooter>
+                                  </AlertDialogContent>
+                                </AlertDialog>
+                              </div>
+                            </CardContent>
+                          </Card>
+                        ))}
+                      </div>
+                    </div>
                   )}
                 </CardContent>
               </Card>
