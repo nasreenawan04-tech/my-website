@@ -1338,49 +1338,54 @@ export default function BusinessLoanCalculator() {
                       </div>
 
                       {/* Social Share Section */}
-                      <div className="border-t pt-4">
-                        <p className="text-center text-sm font-medium text-gray-700 mb-3">Share your results:</p>
-                        <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+                      <div className="border-t pt-3 sm:pt-4">
+                        <p className="text-center text-xs sm:text-sm md:text-base font-medium text-gray-700 mb-2 sm:mb-3 px-2">Share your results:</p>
+                        <div className="flex flex-wrap justify-center items-center gap-1.5 xs:gap-2 sm:gap-3 px-2 sm:px-0">
                           <Button
                             onClick={shareOnFacebook}
                             size="sm"
-                            className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg bg-[#1877f2] hover:bg-[#166fe5] text-white transition-all"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#1877f2] hover:bg-[#166fe5] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            aria-label="Share on Facebook"
                           >
-                            <FaFacebook className="w-4 h-4 mr-1.5" />
-                            Facebook
+                            <FaFacebook className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
+                            <span className="hidden sm:inline">Facebook</span>
                           </Button>
                           <Button
                             onClick={shareOnTwitter}
                             size="sm"
-                            className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg bg-[#1da1f2] hover:bg-[#1a8cd8] text-white transition-all"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#1da1f2] hover:bg-[#1a8cd8] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            aria-label="Share on Twitter"
                           >
-                            <FaTwitter className="w-4 h-4 mr-1.5" />
-                            Twitter
+                            <FaTwitter className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
+                            <span className="hidden sm:inline">Twitter</span>
                           </Button>
                           <Button
                             onClick={shareOnLinkedIn}
                             size="sm"
-                            className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg bg-[#0077b5] hover:bg-[#006399] text-white transition-all"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#0077b5] hover:bg-[#006399] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            aria-label="Share on LinkedIn"
                           >
-                            <FaLinkedin className="w-4 h-4 mr-1.5" />
-                            LinkedIn
+                            <FaLinkedin className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
+                            <span className="hidden sm:inline">LinkedIn</span>
                           </Button>
                           <Button
                             onClick={shareOnWhatsApp}
                             size="sm"
-                            className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg bg-[#25d366] hover:bg-[#20bd5a] text-white transition-all"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#25d366] hover:bg-[#20bd5a] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            aria-label="Share on WhatsApp"
                           >
-                            <FaWhatsapp className="w-4 h-4 mr-1.5" />
-                            WhatsApp
+                            <FaWhatsapp className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
+                            <span className="hidden sm:inline">WhatsApp</span>
                           </Button>
                           <Button
                             onClick={handleShare}
                             variant="outline"
                             size="sm"
-                            className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-gray-400 hover:bg-gray-50 transition-all"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg border-2 border-gray-300 hover:border-gray-400 hover:bg-gray-50 transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            aria-label="More share options"
                           >
-                            <Share2 className="w-4 h-4 mr-1.5" />
-                            More
+                            <Share2 className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
+                            <span className="hidden sm:inline">More</span>
                           </Button>
                         </div>
                       </div>
