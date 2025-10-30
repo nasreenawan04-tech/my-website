@@ -15,6 +15,8 @@ import { useToast } from '@/hooks/use-toast';
 import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip } from 'recharts';
 import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 import { z } from 'zod';
+import { useAuth } from '@/contexts/AuthContext';
+import { saveCalculation } from '@/lib/calculationHistory';
 
 const mortgageInputSchema = z.object({
   homePrice: z.number({
@@ -116,6 +118,7 @@ const MortgageCalculator = () => {
   const [validationErrors, setValidationErrors] = useState<ValidationErrors>({});
   const [isCalculating, setIsCalculating] = useState(false);
   const { toast } = useToast();
+  const { user } = useAuth();
 
   // Reference for auto-calculate trigger
   const shouldAutoCalculate = useRef(false);
@@ -180,7 +183,7 @@ const MortgageCalculator = () => {
     tableScrollRef.current.scrollLeft = scrollLeft - walk;
   };
 
-  const calculateMortgage = () => {
+  const calculateMortgage = async () => {
     setIsCalculating(true);
     setValidationErrors({});
     
@@ -317,7 +320,7 @@ const MortgageCalculator = () => {
     const loanToValue = (principal / price) * 100;
     const debtToIncomeRatio = income > 0 ? (totalMonthlyPayment / income) * 100 : 0;
 
-    setResult({
+    const calculationResult = {
       monthlyPayment: Math.round(totalMonthlyPayment * 100) / 100,
       totalAmount: Math.round(totalAmountPaid * 100) / 100,
       totalInterest: Math.round(totalInterestPaid * 100) / 100,
@@ -332,7 +335,45 @@ const MortgageCalculator = () => {
       debtToIncomeRatio: Math.round(debtToIncomeRatio * 100) / 100,
       amortizationSchedule,
       extraPaymentSavings
-    });
+    };
+
+    setResult(calculationResult);
+
+    // Save calculation history if user is logged in
+    if (user) {
+      try {
+        await saveCalculation(
+          user.uid,
+          'Mortgage Calculator',
+          '/mortgage-calculator',
+          {
+            homePrice: price,
+            downPayment: down,
+            interestRate: annualRate,
+            loanTerm: termYears,
+            propertyTax: taxes,
+            homeInsurance: insurance,
+            pmiRate: pmi,
+            hoaFees: hoa,
+            extraPayment: extraPmt,
+            loanType,
+            paymentFrequency
+          },
+          {
+            monthlyPayment: calculationResult.monthlyPayment,
+            totalAmount: calculationResult.totalAmount,
+            totalInterest: calculationResult.totalInterest,
+            monthlyPrincipalAndInterest: calculationResult.monthlyPrincipalAndInterest,
+            closingCosts: calculationResult.closingCosts,
+            totalCashNeeded: calculationResult.totalCashNeeded,
+            loanToValue: calculationResult.loanToValue,
+            extraPaymentSavings: calculationResult.extraPaymentSavings
+          }
+        );
+      } catch (error) {
+        console.error('Failed to save calculation history:', error);
+      }
+    }
 
     setIsCalculating(false);
 
