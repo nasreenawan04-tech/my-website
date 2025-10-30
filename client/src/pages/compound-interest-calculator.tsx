@@ -12,6 +12,7 @@ import { Calculator, TrendingUp, Clock, DollarSign, Info, Download, Share2, PieC
 import { useToast } from '@/hooks/use-toast';
 import { jsPDF } from 'jspdf';
 import { PieChart as RechartsPieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip as RechartsTooltip } from 'recharts';
+import { FaFacebook, FaTwitter, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 
 interface CompoundInterestResult {
   finalAmount: number;
@@ -352,6 +353,100 @@ export default function CompoundInterestCalculator() {
       title: "Copied to clipboard!",
       description: "Share these results with others",
     });
+  };
+
+  const shareOnFacebook = () => {
+    if (!result) return;
+
+    const params = new URLSearchParams({
+      principal: principal,
+      rate: interestRate,
+      time: timePeriod,
+      unit: timeUnit,
+      freq: compoundFrequency,
+      sip: enableSIP ? 'true' : 'false',
+      sipAmount: sipAmount,
+      sipFreq: sipFrequency,
+      stepUp: stepUpPercentage,
+      inflation: inflationRate,
+      goal: enableGoalPlanning ? 'true' : 'false',
+      goalAmount: goalAmount
+    });
+    const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
+    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareableUrl)}`;
+    window.open(facebookUrl, '_blank', 'noopener,noreferrer,width=600,height=400');
+    toast({ title: "Opening Facebook share..." });
+  };
+
+  const shareOnTwitter = () => {
+    if (!result) return;
+
+    const params = new URLSearchParams({
+      principal: principal,
+      rate: interestRate,
+      time: timePeriod,
+      unit: timeUnit,
+      freq: compoundFrequency,
+      sip: enableSIP ? 'true' : 'false',
+      sipAmount: sipAmount,
+      sipFreq: sipFrequency,
+      stepUp: stepUpPercentage,
+      inflation: inflationRate,
+      goal: enableGoalPlanning ? 'true' : 'false',
+      goalAmount: goalAmount
+    });
+    const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
+    const tweetText = `💰 My compound interest: ${formatCurrency(result.finalAmount)} from ${formatCurrency(parseFloat(principal))} at ${interestRate}% - Calculate yours free!`;
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}&url=${encodeURIComponent(shareableUrl)}`;
+    window.open(twitterUrl, '_blank', 'noopener,noreferrer,width=600,height=400');
+    toast({ title: "Opening Twitter share..." });
+  };
+
+  const shareOnLinkedIn = () => {
+    if (!result) return;
+
+    const params = new URLSearchParams({
+      principal: principal,
+      rate: interestRate,
+      time: timePeriod,
+      unit: timeUnit,
+      freq: compoundFrequency,
+      sip: enableSIP ? 'true' : 'false',
+      sipAmount: sipAmount,
+      sipFreq: sipFrequency,
+      stepUp: stepUpPercentage,
+      inflation: inflationRate,
+      goal: enableGoalPlanning ? 'true' : 'false',
+      goalAmount: goalAmount
+    });
+    const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
+    const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareableUrl)}`;
+    window.open(linkedInUrl, '_blank', 'noopener,noreferrer,width=600,height=400');
+    toast({ title: "Opening LinkedIn share..." });
+  };
+
+  const shareOnWhatsApp = () => {
+    if (!result) return;
+
+    const params = new URLSearchParams({
+      principal: principal,
+      rate: interestRate,
+      time: timePeriod,
+      unit: timeUnit,
+      freq: compoundFrequency,
+      sip: enableSIP ? 'true' : 'false',
+      sipAmount: sipAmount,
+      sipFreq: sipFrequency,
+      stepUp: stepUpPercentage,
+      inflation: inflationRate,
+      goal: enableGoalPlanning ? 'true' : 'false',
+      goalAmount: goalAmount
+    });
+    const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
+    const whatsappText = `💰 Compound Interest Calculator Results:\n\nPrincipal: ${formatCurrency(parseFloat(principal))}\nRate: ${interestRate}%\nFinal Amount: ${formatCurrency(result.finalAmount)}\nTotal Interest: ${formatCurrency(result.totalInterest)}\n\nCalculate yours: ${shareableUrl}`;
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(whatsappText)}`;
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    toast({ title: "Opening WhatsApp share..." });
   };
 
   const handleDownloadYearlyBreakdownPDF = () => {
@@ -1349,6 +1444,42 @@ export default function CompoundInterestCalculator() {
                         <p className="text-center text-xs sm:text-sm md:text-base font-medium text-gray-700 mb-2 sm:mb-3 px-2">Share your results:</p>
                         <div className="flex flex-wrap justify-center items-center gap-1.5 xs:gap-2 sm:gap-3 px-2 sm:px-0">
                           <Button
+                            onClick={shareOnFacebook}
+                            size="sm"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#1877f2] hover:bg-[#166fe5] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            aria-label="Share on Facebook"
+                          >
+                            <FaFacebook className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
+                            <span className="hidden sm:inline">Facebook</span>
+                          </Button>
+                          <Button
+                            onClick={shareOnTwitter}
+                            size="sm"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#1da1f2] hover:bg-[#1a8cd8] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            aria-label="Share on Twitter"
+                          >
+                            <FaTwitter className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
+                            <span className="hidden sm:inline">Twitter</span>
+                          </Button>
+                          <Button
+                            onClick={shareOnLinkedIn}
+                            size="sm"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#0077b5] hover:bg-[#006399] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            aria-label="Share on LinkedIn"
+                          >
+                            <FaLinkedin className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
+                            <span className="hidden sm:inline">LinkedIn</span>
+                          </Button>
+                          <Button
+                            onClick={shareOnWhatsApp}
+                            size="sm"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#25d366] hover:bg-[#20bd5a] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            aria-label="Share on WhatsApp"
+                          >
+                            <FaWhatsapp className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
+                            <span className="hidden sm:inline">WhatsApp</span>
+                          </Button>
+                          <Button
                             onClick={handleShare}
                             variant="outline"
                             size="sm"
@@ -1357,7 +1488,7 @@ export default function CompoundInterestCalculator() {
                             data-testid="button-share"
                           >
                             <Share2 className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
-                            <span className="hidden sm:inline">Share</span>
+                            <span className="hidden sm:inline">More</span>
                           </Button>
                         </div>
                       </div>
