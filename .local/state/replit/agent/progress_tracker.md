@@ -73,3 +73,7 @@
 [x] 73. Update all text tool buttons to use transition-colors instead of transition-all
 [x] 74. Remove all hover:scale, hover:scale-[...], and sm:hover:scale patterns from text tools
 [x] 75. Restart workflow to apply text tool button animation changes
+[x] 76. Reduce button animations across all Health Tools (36 calculator pages) by removing scale effects
+[x] 77. Update all health tool buttons to use transition-colors instead of transition-all
+[x] 78. Remove all hover:scale, group-hover:scale, and related animation patterns from health tools
+[x] 79. Restart workflow to apply health tool button animation changes

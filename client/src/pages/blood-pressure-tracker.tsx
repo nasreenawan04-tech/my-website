@@ -394,7 +394,7 @@ const BloodPressureTracker = () => {
                   <div className="flex flex-col sm:flex-row gap-4 pt-6">
                     <Button
                       onClick={calculateBloodPressure}
-                      className="flex-1 h-14 bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-700 hover:to-red-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="flex-1 h-14 bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-700 hover:to-red-700 text-white font-semibold text-lg rounded-xl shadow-lg transition-colors duration-200"
                       data-testid="button-calculate"
                     >
                       Track Blood Pressure

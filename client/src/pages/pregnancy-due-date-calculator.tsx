@@ -377,7 +377,7 @@ export default function PregnancyDueDateCalculator() {
                   <div className="flex flex-col sm:flex-row gap-4 pt-6">
                     <Button
                       onClick={calculateDueDate}
-                      className="flex-1 h-14 bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="flex-1 h-14 bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 text-white font-semibold text-lg rounded-xl shadow-lg transition-colors duration-200"
                       data-testid="button-calculate"
                     >
                       Calculate Due Date

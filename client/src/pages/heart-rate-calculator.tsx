@@ -324,7 +324,7 @@ export default function HeartRateCalculator() {
                   <div className="flex flex-col sm:flex-row gap-4 pt-6">
                     <Button
                       onClick={calculateHeartRate}
-                      className="flex-1 h-14 bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="flex-1 h-14 bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white font-semibold text-lg rounded-xl shadow-lg transition-colors duration-200"
                       data-testid="button-calculate"
                     >
                       Calculate Heart Rate Zones

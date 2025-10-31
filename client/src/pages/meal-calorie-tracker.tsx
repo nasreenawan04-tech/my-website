@@ -500,7 +500,7 @@ const MealCalorieTracker = () => {
                     <Button
                       onClick={handleAddMeal}
                       disabled={!newMeal.name || !newMeal.calories}
-                      className="flex-1 h-12 sm:h-14 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold text-base sm:text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="flex-1 h-12 sm:h-14 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold text-base sm:text-lg rounded-xl shadow-lg transition-colors duration-200"
                       data-testid="button-add-meal"
                     >
                       Add Meal

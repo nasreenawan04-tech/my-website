@@ -783,7 +783,7 @@ const StressLevelCalculator = () => {
                     <Button
                       onClick={calculateStressLevel}
                       disabled={!isFormValid()}
-                      className="flex-1 h-12 sm:h-14 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold text-base sm:text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="flex-1 h-12 sm:h-14 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold text-base sm:text-lg rounded-xl shadow-lg transition-colors duration-200"
                     >
                       Calculate Stress Level
                     </Button>

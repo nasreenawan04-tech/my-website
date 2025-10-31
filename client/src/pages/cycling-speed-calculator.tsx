@@ -293,7 +293,7 @@ export default function CyclingSpeedCalculator() {
                       </Label>
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div 
-                          className={`p-4 border-2 rounded-xl cursor-pointer transition-all ${calculationType === 'speed' ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-gray-300'}`}
+                          className={`p-4 border-2 rounded-xl cursor-pointer transition-colors ${calculationType === 'speed' ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-gray-300'}`}
                           onClick={() => setCalculationType('speed')}
                         >
                           <div className="text-center">
@@ -302,7 +302,7 @@ export default function CyclingSpeedCalculator() {
                           </div>
                         </div>
                         <div 
-                          className={`p-4 border-2 rounded-xl cursor-pointer transition-all ${calculationType === 'distance' ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-gray-300'}`}
+                          className={`p-4 border-2 rounded-xl cursor-pointer transition-colors ${calculationType === 'distance' ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-gray-300'}`}
                           onClick={() => setCalculationType('distance')}
                         >
                           <div className="text-center">
@@ -311,7 +311,7 @@ export default function CyclingSpeedCalculator() {
                           </div>
                         </div>
                         <div 
-                          className={`p-4 border-2 rounded-xl cursor-pointer transition-all ${calculationType === 'time' ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-gray-300'}`}
+                          className={`p-4 border-2 rounded-xl cursor-pointer transition-colors ${calculationType === 'time' ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-gray-300'}`}
                           onClick={() => setCalculationType('time')}
                         >
                           <div className="text-center">
@@ -469,7 +469,7 @@ export default function CyclingSpeedCalculator() {
                     <div className="flex flex-col sm:flex-row gap-4 pt-6">
                       <Button
                         onClick={calculationType === 'speed' ? calculateSpeed : calculationType === 'distance' ? calculateDistance : calculateTime}
-                        className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                        className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transition-colors duration-200"
                         data-testid="button-calculate"
                       >
                         Calculate {calculationType === 'speed' ? 'Speed' : calculationType === 'distance' ? 'Distance' : 'Time'}

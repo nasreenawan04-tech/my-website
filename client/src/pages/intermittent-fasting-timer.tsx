@@ -569,7 +569,7 @@ const IntermittentFastingTimer = () => {
                       onClick={startFasting}
                       disabled={!selectedSchedule || currentPhase !== 'idle' || 
                         (selectedSchedule === 'custom' && (!customFastingHours || !customEatingHours))}
-                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transition-colors duration-200"
                       data-testid="button-start-fasting"
                     >
                       Start Fasting
@@ -678,7 +678,7 @@ const IntermittentFastingTimer = () => {
                         {/* Progress Bar */}
                         <div className="w-full bg-gray-200 rounded-full h-4">
                           <div 
-                            className={`h-4 rounded-full transition-all duration-1000 ${
+                            className={`h-4 rounded-full transition-colors duration-1000 ${
                               currentPhase === 'fasting' ? 'bg-gradient-to-r from-red-500 to-orange-500' : 'bg-gradient-to-r from-green-500 to-emerald-500'
                             }`}
                             style={{ width: `${getProgress()}%` }}

@@ -747,7 +747,7 @@ const MetabolicAgeCalculator = () => {
                     <div className="flex flex-col sm:flex-row gap-4 pt-6">
                       <Button
                         onClick={calculateMetabolicAge}
-                        className="flex-1 h-14 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                        className="flex-1 h-14 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transition-colors duration-200"
                         data-testid="button-calculate"
                       >
                         Calculate Metabolic Age
@@ -811,7 +811,7 @@ const MetabolicAgeCalculator = () => {
                           </div>
                           <div className="w-full bg-gray-200 rounded-full h-3 mt-3">
                             <div 
-                              className="bg-gradient-to-r from-indigo-500 to-purple-500 h-3 rounded-full transition-all duration-500"
+                              className="bg-gradient-to-r from-indigo-500 to-purple-500 h-3 rounded-full transition-colors duration-500"
                               style={{ width: `${result.healthScore}%` }}
                             ></div>
                           </div>

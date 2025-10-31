@@ -291,7 +291,7 @@ const IdealWeightCalculator = () => {
                     <div className="flex flex-col sm:flex-row gap-4 pt-6">
                       <Button
                         onClick={calculateIdealWeight}
-                        className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                        className="flex-1 h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg rounded-xl shadow-lg transition-colors duration-200"
                         data-testid="button-calculate"
                       >
                         Calculate Ideal Weight
@@ -627,32 +627,32 @@ const IdealWeightCalculator = () => {
             <CardContent className="p-8">
               <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Related Health & Weight Calculators</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <a href="/tools/bmi-calculator" className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 hover:from-blue-100 hover:to-blue-200 transition-all duration-200 text-center group">
-                  <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                <a href="/tools/bmi-calculator" className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 hover:from-blue-100 hover:to-blue-200 transition-colors duration-200 text-center group">
+                  <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4 transition-transform">
                     <span className="text-white font-bold">BMI</span>
                   </div>
                   <h4 className="font-semibold text-blue-800 mb-2">BMI Calculator</h4>
                   <p className="text-blue-600 text-xs">Calculate Body Mass Index and health categories</p>
                 </a>
                 
-                <a href="/tools/body-fat-calculator" className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 hover:from-green-100 hover:to-green-200 transition-all duration-200 text-center group">
-                  <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                <a href="/tools/body-fat-calculator" className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 hover:from-green-100 hover:to-green-200 transition-colors duration-200 text-center group">
+                  <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4 transition-transform">
                     <span className="text-white font-bold">%</span>
                   </div>
                   <h4 className="font-semibold text-green-800 mb-2">Body Fat Calculator</h4>
                   <p className="text-green-600 text-xs">Calculate body fat percentage using measurements</p>
                 </a>
                 
-                <a href="/tools/calorie-calculator" className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 hover:from-purple-100 hover:to-purple-200 transition-all duration-200 text-center group">
-                  <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                <a href="/tools/calorie-calculator" className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 hover:from-purple-100 hover:to-purple-200 transition-colors duration-200 text-center group">
+                  <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4 transition-transform">
                     <span className="text-white font-bold">CAL</span>
                   </div>
                   <h4 className="font-semibold text-purple-800 mb-2">Calorie Calculator</h4>
                   <p className="text-purple-600 text-xs">Calculate daily calorie needs for weight goals</p>
                 </a>
                 
-                <a href="/tools/lean-body-mass-calculator" className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 hover:from-orange-100 hover:to-orange-200 transition-all duration-200 text-center group">
-                  <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                <a href="/tools/lean-body-mass-calculator" className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 hover:from-orange-100 hover:to-orange-200 transition-colors duration-200 text-center group">
+                  <div className="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4 transition-transform">
                     <span className="text-white font-bold">LBM</span>
                   </div>
                   <h4 className="font-semibold text-orange-800 mb-2">Lean Body Mass</h4>
