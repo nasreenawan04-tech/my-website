@@ -250,7 +250,7 @@ export default function LoanCalculator() {
 
     setResult(calculationResult);
 
-    // Save calculation history if user is logged in
+    // Save calculation history if user is logged in (silently fail if not configured)
     if (user) {
       saveCalculation(
         user.uid,
@@ -271,12 +271,8 @@ export default function LoanCalculator() {
           extraPaymentSavings
         }
       ).catch((error) => {
+        // Silently log error - don't interrupt user experience
         console.error('Failed to save calculation history:', error);
-        toast({
-          title: 'Warning',
-          description: 'Calculation completed but failed to save to history.',
-          variant: 'destructive'
-        });
       });
     }
 

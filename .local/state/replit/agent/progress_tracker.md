@@ -62,3 +62,5 @@
 [x] 62. Restart workflow and verify application is running on port 5000
 [x] 63. Take screenshot to confirm application homepage is fully functional
 [x] 64. Mark all migration tasks as complete
+[x] 65. Fix "Calculation completed but failed to save to history" error by making history save fail silently in both Loan and Mortgage calculators
+[x] 66. Restart workflow to apply the error handling fix

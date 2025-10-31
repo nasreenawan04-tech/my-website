@@ -369,12 +369,8 @@ const MortgageCalculator = () => {
           extraPaymentSavings: calculationResult.extraPaymentSavings
         }
       ).catch((error) => {
+        // Silently log error - don't interrupt user experience
         console.error('Failed to save calculation history:', error);
-        toast({
-          title: 'Warning',
-          description: 'Calculation completed but failed to save to history.',
-          variant: 'destructive'
-        });
       });
     }
 
