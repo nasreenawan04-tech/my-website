@@ -988,7 +988,7 @@ export default function BusinessLoanCalculator() {
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
           <div className="relative max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
             <div className="space-y-4 sm:space-y-6 md:space-y-8">
-              <div className="inline-flex items-center gap-1.5 sm:gap-2 md:gap-2.5 px-2.5 sm:px-3 md:px-4 lg:px-5 xl:px-6 py-1.5 sm:py-2 md:py-2.5 lg:py-3 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200 shadow-sm hover:shadow-md transition-all duration-200 max-w-full mx-auto sm:mx-0">
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 md:gap-2.5 px-2.5 sm:px-3 md:px-4 lg:px-5 xl:px-6 py-1.5 sm:py-2 md:py-2.5 lg:py-3 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200 shadow-sm hover:shadow-md transition-colors duration-200 max-w-full mx-auto sm:mx-0">
                 <Building2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-5 lg:h-5 flex-shrink-0 text-blue-700" />
                 <span className="text-[11px] sm:text-xs md:text-sm lg:text-base font-medium text-blue-700 whitespace-nowrap overflow-hidden text-ellipsis leading-tight">
                   Professional Business Loan Calculator - Free & Accurate
@@ -1278,7 +1278,7 @@ export default function BusinessLoanCalculator() {
                   <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       onClick={calculateBusinessLoan}
-                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transition-colors duration-200"
                       data-testid="button-calculate"
                     >
                       <Calculator className="w-5 h-5 mr-2" />
@@ -1344,7 +1344,7 @@ export default function BusinessLoanCalculator() {
                           <Button
                             onClick={shareOnFacebook}
                             size="sm"
-                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#1877f2] hover:bg-[#166fe5] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#1877f2] hover:bg-[#166fe5] text-white transition-colors flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="Share on Facebook"
                           >
                             <FaFacebook className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
@@ -1353,7 +1353,7 @@ export default function BusinessLoanCalculator() {
                           <Button
                             onClick={shareOnTwitter}
                             size="sm"
-                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#1da1f2] hover:bg-[#1a8cd8] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#1da1f2] hover:bg-[#1a8cd8] text-white transition-colors flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="Share on Twitter"
                           >
                             <FaTwitter className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
@@ -1362,7 +1362,7 @@ export default function BusinessLoanCalculator() {
                           <Button
                             onClick={shareOnLinkedIn}
                             size="sm"
-                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#0077b5] hover:bg-[#006399] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#0077b5] hover:bg-[#006399] text-white transition-colors flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="Share on LinkedIn"
                           >
                             <FaLinkedin className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
@@ -1371,7 +1371,7 @@ export default function BusinessLoanCalculator() {
                           <Button
                             onClick={shareOnWhatsApp}
                             size="sm"
-                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#25d366] hover:bg-[#20bd5a] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#25d366] hover:bg-[#20bd5a] text-white transition-colors flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="Share on WhatsApp"
                           >
                             <FaWhatsapp className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
@@ -1381,7 +1381,7 @@ export default function BusinessLoanCalculator() {
                             onClick={handleShare}
                             variant="outline"
                             size="sm"
-                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg border-2 border-gray-300 hover:border-gray-400 hover:bg-gray-50 transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg border-2 border-gray-300 hover:border-gray-400 hover:bg-gray-50 transition-colors flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="More share options"
                           >
                             <Share2 className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
@@ -1414,7 +1414,7 @@ export default function BusinessLoanCalculator() {
                       {showChart && (
                         <div className="space-y-4 sm:space-y-6">
                           {/* Donut Chart - Total Loan Breakdown */}
-                          <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-xl border border-gray-100 transition-all duration-300 hover:shadow-2xl">
+                          <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-6 shadow-xl border border-gray-100 transition-colors duration-300 hover:shadow-2xl">
                             <h3 className="font-bold text-gray-900 mb-4 sm:mb-6 text-center text-base sm:text-lg md:text-xl">Total Loan Breakdown</h3>
                             <div className="flex flex-col md:flex-row items-center justify-center gap-4 sm:gap-6 md:gap-8">
                               <div className="w-full max-w-[260px] sm:max-w-[300px] md:max-w-[320px] relative">
@@ -1465,20 +1465,20 @@ export default function BusinessLoanCalculator() {
                                 </div>
                               </div>
                               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-3 sm:gap-4 w-full md:w-auto md:min-w-[280px] lg:min-w-[320px]">
-                                <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 border border-green-200 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.02] hover:border-green-300">
+                                <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 border border-green-200 shadow-md hover:shadow-lg transition-colors duration-300 hover:border-green-300">
                                   <div className="flex items-center gap-2 mb-2">
                                     <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full animate-pulse"></div>
                                     <span className="font-semibold text-gray-700 text-xs sm:text-sm md:text-base">Principal Amount</span>
                                   </div>
-                                  <div className="text-xl sm:text-2xl md:text-3xl font-bold text-green-600 break-all transition-all duration-300">{formatCurrency(parseFloat(loanAmount))}</div>
+                                  <div className="text-xl sm:text-2xl md:text-3xl font-bold text-green-600 break-all transition-colors duration-300">{formatCurrency(parseFloat(loanAmount))}</div>
                                   <div className="text-xs sm:text-sm md:text-base text-green-700 mt-1">{principalPercentage.toFixed(1)}% of total</div>
                                 </div>
-                                <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 border border-orange-200 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.02] hover:border-orange-300">
+                                <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 border border-orange-200 shadow-md hover:shadow-lg transition-colors duration-300 hover:border-orange-300">
                                   <div className="flex items-center gap-2 mb-2">
                                     <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gradient-to-br from-orange-500 to-amber-600 rounded-full animate-pulse"></div>
                                     <span className="font-semibold text-gray-700 text-xs sm:text-sm md:text-base">Total Interest</span>
                                   </div>
-                                  <div className="text-xl sm:text-2xl md:text-3xl font-bold text-orange-600 break-all transition-all duration-300">{formatCurrency(result.totalInterest)}</div>
+                                  <div className="text-xl sm:text-2xl md:text-3xl font-bold text-orange-600 break-all transition-colors duration-300">{formatCurrency(result.totalInterest)}</div>
                                   <div className="text-xs sm:text-sm md:text-base text-orange-700 mt-1">{interestPercentage.toFixed(1)}% of total</div>
                                 </div>
                               </div>
@@ -1502,7 +1502,7 @@ export default function BusinessLoanCalculator() {
                                 </div>
                                 <div className="h-2.5 sm:h-3 bg-gray-200 rounded-full overflow-hidden">
                                   <div
-                                    className="h-full bg-gradient-to-r from-green-500 to-emerald-500 transition-all duration-500"
+                                    className="h-full bg-gradient-to-r from-green-500 to-emerald-500 transition-colors duration-500"
                                     style={{ width: `${principalPercentage}%` }}
                                   ></div>
                                 </div>
@@ -1514,7 +1514,7 @@ export default function BusinessLoanCalculator() {
                                 </div>
                                 <div className="h-2.5 sm:h-3 bg-gray-200 rounded-full overflow-hidden">
                                   <div
-                                    className="h-full bg-gradient-to-r from-orange-500 to-amber-500 transition-all duration-500"
+                                    className="h-full bg-gradient-to-r from-orange-500 to-amber-500 transition-colors duration-500"
                                     style={{ width: `${interestPercentage}%` }}
                                   ></div>
                                 </div>
@@ -1944,7 +1944,7 @@ export default function BusinessLoanCalculator() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
                 {/* Testimonial 1 */}
-                <div className="bg-white p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105">
+                <div className="bg-white p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-colors duration-300">
                   <div className="flex items-center gap-0.5 sm:gap-1 mb-3 sm:mb-4">
                     {[...Array(5)].map((_, i) => (
                       <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
@@ -1967,7 +1967,7 @@ export default function BusinessLoanCalculator() {
                 </div>
 
                 {/* Testimonial 2 */}
-                <div className="bg-white p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105">
+                <div className="bg-white p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-colors duration-300">
                   <div className="flex items-center gap-0.5 sm:gap-1 mb-3 sm:mb-4">
                     {[...Array(5)].map((_, i) => (
                       <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
@@ -1990,7 +1990,7 @@ export default function BusinessLoanCalculator() {
                 </div>
 
                 {/* Testimonial 3 */}
-                <div className="bg-white p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105">
+                <div className="bg-white p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-colors duration-300">
                   <div className="flex items-center gap-0.5 sm:gap-1 mb-3 sm:mb-4">
                     {[...Array(5)].map((_, i) => (
                       <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
@@ -2043,7 +2043,7 @@ export default function BusinessLoanCalculator() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
                 {/* Loan Calculator */}
-                <a href="/tools/loan-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-blue-200">
+                <a href="/tools/loan-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-colors duration-300 border-2 border-transparent hover:border-blue-200">
                   <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-blue-600 transition-colors">
                     Loan Calculator
                   </h3>
@@ -2056,7 +2056,7 @@ export default function BusinessLoanCalculator() {
                 </a>
 
                 {/* EMI Calculator */}
-                <a href="/tools/emi-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-green-200">
+                <a href="/tools/emi-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-colors duration-300 border-2 border-transparent hover:border-green-200">
                   <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-green-600 transition-colors">
                     EMI Calculator
                   </h3>
@@ -2069,7 +2069,7 @@ export default function BusinessLoanCalculator() {
                 </a>
 
                 {/* Home Loan Calculator */}
-                <a href="/tools/home-loan-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-purple-200">
+                <a href="/tools/home-loan-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-colors duration-300 border-2 border-transparent hover:border-purple-200">
                   <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-purple-600 transition-colors">
                     Home Loan Calculator
                   </h3>
@@ -2082,7 +2082,7 @@ export default function BusinessLoanCalculator() {
                 </a>
 
                 {/* Car Loan Calculator */}
-                <a href="/tools/car-loan-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-orange-200">
+                <a href="/tools/car-loan-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-colors duration-300 border-2 border-transparent hover:border-orange-200">
                   <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-orange-600 transition-colors">
                     Car Loan Calculator
                   </h3>
@@ -2095,7 +2095,7 @@ export default function BusinessLoanCalculator() {
                 </a>
 
                 {/* Debt Payoff Calculator */}
-                <a href="/tools/debt-payoff-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-red-200">
+                <a href="/tools/debt-payoff-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-colors duration-300 border-2 border-transparent hover:border-red-200">
                   <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-red-600 transition-colors">
                     Debt Payoff Calculator
                   </h3>
@@ -2108,7 +2108,7 @@ export default function BusinessLoanCalculator() {
                 </a>
 
                 {/* Compound Interest Calculator */}
-                <a href="/tools/compound-interest-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-indigo-200">
+                <a href="/tools/compound-interest-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-colors duration-300 border-2 border-transparent hover:border-indigo-200">
                   <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-indigo-600 transition-colors">
                     Compound Interest Calculator
                   </h3>
@@ -2121,7 +2121,7 @@ export default function BusinessLoanCalculator() {
                 </a>
 
                 {/* Budget Calculator */}
-                <a href="/tools/budget-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-teal-200">
+                <a href="/tools/budget-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-colors duration-300 border-2 border-transparent hover:border-teal-200">
                   <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-teal-600 transition-colors">
                     Budget Calculator
                   </h3>
@@ -2134,7 +2134,7 @@ export default function BusinessLoanCalculator() {
                 </a>
 
                 {/* Loan Comparison Calculator */}
-                <a href="/tools/loan-comparison-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-cyan-200">
+                <a href="/tools/loan-comparison-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-colors duration-300 border-2 border-transparent hover:border-cyan-200">
                   <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-cyan-600 transition-colors">
                     Loan Comparison Calculator
                   </h3>
@@ -2147,7 +2147,7 @@ export default function BusinessLoanCalculator() {
                 </a>
 
                 {/* Retirement Calculator */}
-                <a href="/tools/retirement-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-amber-200">
+                <a href="/tools/retirement-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-colors duration-300 border-2 border-transparent hover:border-amber-200">
                   <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-amber-600 transition-colors">
                     Retirement Calculator
                   </h3>
@@ -2169,105 +2169,105 @@ export default function BusinessLoanCalculator() {
             <CardContent className="p-3 xs:p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12">
               <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-3 xs:mb-4 sm:mb-6 md:mb-8 lg:mb-10 text-center sm:text-left leading-tight">Frequently Asked Questions About Business Loans</h2>
               <div className="space-y-3 xs:space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-7 xl:space-y-8">
-                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-blue-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-blue-600 hover:bg-blue-50/30 rounded-r-md">
+                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-blue-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-colors duration-300 hover:border-blue-600 hover:bg-blue-50/30 rounded-r-md">
                   <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">What is a business loan calculator and how does it work?</h3>
                   <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
                     A business loan calculator uses your loan amount, interest rate, and term to calculate monthly payments using standard amortization formulas. It also provides business-specific metrics like Debt Service Coverage Ratio (DSCR) and Loan-to-Value (LTV) ratios. Our calculator supports multiple loan types including SBA loans, term loans, equipment financing, and commercial mortgages, each using appropriate calculation methods for accurate estimates.
                   </p>
                 </div>
 
-                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-green-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-green-600 hover:bg-green-50/30 rounded-r-md">
+                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-green-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-colors duration-300 hover:border-green-600 hover:bg-green-50/30 rounded-r-md">
                   <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">What is the difference between an SBA loan and a traditional business loan?</h3>
                   <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
                     SBA loans are partially guaranteed by the Small Business Administration, allowing lenders to offer lower rates (typically 6-9%) and longer terms (up to 25 years for real estate). They require extensive documentation, take 60-90 days to approve, and have strict eligibility criteria. Traditional bank loans have faster approval (2-4 weeks), higher rates (8-12%), shorter terms, and may require stronger credit or more collateral. Online lenders approve fastest (1-7 days) but charge the highest rates (10-30% APR).
                   </p>
                 </div>
 
-                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-purple-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-purple-600 hover:bg-purple-50/30 rounded-r-md">
+                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-purple-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-colors duration-300 hover:border-purple-600 hover:bg-purple-50/30 rounded-r-md">
                   <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">What is a good Debt Service Coverage Ratio (DSCR)?</h3>
                   <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
                     Lenders typically require a DSCR of 1.25 or higher, meaning your business generates at least 25% more income than needed to cover all debt payments. A DSCR of 1.0 means you break even, below 1.0 indicates insufficient cash flow, and above 2.0 is considered excellent. Calculate DSCR by dividing annual net operating income by total annual debt service (all loan payments). Our calculator automatically computes this when you enter your annual business revenue.
                   </p>
                 </div>
 
-                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-orange-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-orange-600 hover:bg-orange-50/30 rounded-r-md">
+                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-orange-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-colors duration-300 hover:border-orange-600 hover:bg-orange-50/30 rounded-r-md">
                   <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">How much can I borrow for my small business?</h3>
                   <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
                     Loan amounts vary by type and lender: SBA 7(a) loans offer up to $5 million, SBA 504 loans up to $5.5 million for real estate/equipment, traditional bank term loans $50,000-$5 million, online lenders $5,000-$500,000, and equipment financing up to 100% of equipment value. Your maximum loan depends on revenue (typically 10-50% of annual revenue), time in business (2+ years preferred), credit score (680+ for best terms), and collateral value. Use our calculator to model different loan amounts and find affordable monthly payments.
                   </p>
                 </div>
 
-                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-indigo-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-indigo-600 hover:bg-indigo-50/30 rounded-r-md">
+                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-indigo-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-colors duration-300 hover:border-indigo-600 hover:bg-indigo-50/30 rounded-r-md">
                   <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">What is a Loan-to-Value (LTV) ratio and why does it matter?</h3>
                   <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
                     LTV ratio compares your loan amount to the value of your collateral, expressed as a percentage. For example, a $300,000 loan secured by $400,000 in assets has a 75% LTV. Lenders prefer LTV ratios of 80% or lower because it provides a safety cushion if they need to seize and sell collateral. Lower LTV ratios (60-70%) often qualify for better interest rates and terms. Commercial real estate loans typically max out at 75-80% LTV, while equipment financing may go up to 90% LTV for new equipment.
                   </p>
                 </div>
 
-                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-pink-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-pink-600 hover:bg-pink-50/30 rounded-r-md">
+                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-pink-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-colors duration-300 hover:border-pink-600 hover:bg-pink-50/30 rounded-r-md">
                   <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">What are typical business loan interest rates in 2025?</h3>
                   <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
                     Current business loan rates vary significantly: SBA 7(a) loans 6-9%, SBA 504 loans 5-8%, traditional bank term loans 6-10%, credit union loans 7-11%, online term loans 10-30%, equipment financing 8-20%, and business lines of credit 7-25%. Your actual rate depends on credit score (720+ gets best rates), time in business (2+ years preferred), annual revenue, collateral, industry risk, and loan amount. Rates change with Federal Reserve policy, so check current offers from multiple lenders.
                   </p>
                 </div>
 
-                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-red-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-red-600 hover:bg-red-50/30 rounded-r-md">
+                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-red-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-colors duration-300 hover:border-red-600 hover:bg-red-50/30 rounded-r-md">
                   <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">Can I get a business loan with bad credit?</h3>
                   <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
                     Yes, but options are limited and expensive. With credit scores of 580-640, you may qualify for online lender term loans at 18-36% APR, merchant cash advances (very expensive, effective rates 40-200% APR), or invoice factoring. Below 580, consider microloans from nonprofits, business credit cards for immediate needs, or crowdfunding. To improve approval odds: offer strong collateral, provide a co-signer with good credit, show consistent revenue growth, make a larger down payment (20-30%), or work on improving credit for 6-12 months before applying.
                   </p>
                 </div>
 
-                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-teal-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-teal-600 hover:bg-teal-50/30 rounded-r-md">
+                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-teal-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-colors duration-300 hover:border-teal-600 hover:bg-teal-50/30 rounded-r-md">
                   <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">What documents do I need to apply for a business loan?</h3>
                   <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
                     Standard requirements include: business tax returns (2-3 years), personal tax returns (2 years), bank statements (6-12 months), profit & loss statements (current), balance sheet, business plan (especially for startups), business licenses and registrations, list of business debts, and personal financial statement. SBA loans additionally require personal background forms, lease agreements, franchise agreements (if applicable), and projected financials. Have these organized before applying to speed up the approval process.
                   </p>
                 </div>
 
-                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-yellow-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-yellow-600 hover:bg-yellow-50/30 rounded-r-md">
+                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-yellow-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-colors duration-300 hover:border-yellow-600 hover:bg-yellow-50/30 rounded-r-md">
                   <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">Should I choose a shorter or longer loan term?</h3>
                   <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
                     Shorter terms (1-5 years) mean higher monthly payments but significantly less total interest. Longer terms (7-25 years) offer lower monthly payments but cost more over time. For working capital, choose 1-3 years to minimize interest. For equipment, match the loan term to the equipment's useful life (3-7 years). For commercial real estate, 10-25 year terms are standard and appropriate. Consider your cash flow stability—seasonal businesses benefit from longer terms providing payment flexibility during slow periods.
                   </p>
                 </div>
 
-                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-gray-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-gray-600 hover:bg-gray-50/30 rounded-r-md">
+                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-gray-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-colors duration-300 hover:border-gray-600 hover:bg-gray-50/30 rounded-r-md">
                   <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">What is the difference between a term loan and a line of credit?</h3>
                   <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
                     A term loan provides a lump sum upfront with fixed monthly payments over a set period (1-25 years). It's ideal for specific purchases like equipment, real estate, or business expansion with predictable repayment. A line of credit works like a credit card—borrow up to a limit as needed, pay interest only on what you use, and reuse the credit as you repay. Lines of credit are perfect for managing cash flow gaps, seasonal inventory, or emergency expenses. Term loans typically have lower rates but less flexibility than lines of credit.
                   </p>
                 </div>
 
-                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-cyan-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-cyan-600 hover:bg-cyan-50/30 rounded-r-md">
+                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-cyan-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-colors duration-300 hover:border-cyan-600 hover:bg-cyan-50/30 rounded-r-md">
                   <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">How long does it take to get approved for a business loan?</h3>
                   <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
                     Approval times vary dramatically by lender and loan type: online lenders 1-7 days, traditional banks 2-4 weeks, credit unions 2-3 weeks, and SBA loans 60-90 days. Factors affecting speed include completeness of your application, complexity of your business structure, loan amount, and lender workload. To speed up approval: have all documents organized upfront, respond quickly to lender requests, work with lenders familiar with your industry, and consider pre-qualification to identify likely approvals before full applications.
                   </p>
                 </div>
 
-                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-lime-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-lime-600 hover:bg-lime-50/30 rounded-r-md">
+                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-lime-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-colors duration-300 hover:border-lime-600 hover:bg-lime-50/30 rounded-r-md">
                   <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">What fees should I watch out for with business loans?</h3>
                   <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
                     Common business loan fees include: origination fees (1-8% of loan amount, often 2-5%), application fees ($75-$500), underwriting fees ($500-$2,000 for larger loans), appraisal fees ($300-$5,000 for real estate), legal review fees ($500-$2,000), SBA guarantee fees (0-3.75% based on loan size and term), annual fees (for lines of credit), late payment penalties (typically 5% of payment), and prepayment penalties (especially on SBA loans). Always request a complete fee schedule and factor these into your total cost comparison. Some online lenders advertise low rates but charge high origination fees that increase effective APR significantly.
                   </p>
                 </div>
 
-                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-amber-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-amber-600 hover:bg-amber-50/30 rounded-r-md">
+                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-amber-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-colors duration-300 hover:border-amber-600 hover:bg-amber-50/30 rounded-r-md">
                   <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">Can startups get business loans?</h3>
                   <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
                     Startups face challenges getting traditional loans since most lenders require 2+ years in business and proven revenue. However, options exist: SBA microloans ($500-$50,000 for newer businesses), business credit cards for immediate needs, equipment financing (lenders secure the equipment), personal loans if you have good personal credit, startup business loans from online lenders (10-30% APR), crowdfunding or peer-to-peer lending, and investors or venture capital for high-growth startups. Strong personal credit (700+), a solid business plan, industry experience, and personal investment (20-30% of total) significantly improve approval odds.
                   </p>
                 </div>
 
-                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-emerald-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-emerald-600 hover:bg-emerald-50/30 rounded-r-md">
+                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-emerald-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-colors duration-300 hover:border-emerald-600 hover:bg-emerald-50/30 rounded-r-md">
                   <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">What happens if I can't make my business loan payments?</h3>
                   <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
                     Missing payments triggers serious consequences: immediate late fees (5% of payment or $25-$50), damage to both business and personal credit scores, potential default after 90 days of non-payment, acceleration of the entire loan balance becoming due, seizure of collateral (equipment, real estate, inventory), personal liability if you personally guaranteed the loan, and legal action including judgments and liens. If you foresee payment difficulties, contact your lender immediately—many will work with you on temporary payment plans, loan modifications, or forbearance programs. It's always better to communicate early than to miss payments.
                   </p>
                 </div>
 
-                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-rose-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-all duration-300 hover:border-rose-600 hover:bg-rose-50/30 rounded-r-md">
+                <div className="border-l-2 xs:border-l-3 sm:border-l-4 md:border-l-[5px] lg:border-l-[6px] border-rose-500 pl-2 xs:pl-3 sm:pl-4 md:pl-6 lg:pl-8 xl:pl-10 py-1 xs:py-2 transition-colors duration-300 hover:border-rose-600 hover:bg-rose-50/30 rounded-r-md">
                   <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-1.5 xs:mb-2 sm:mb-3 md:mb-4 leading-snug">Is this business loan calculator accurate?</h3>
                   <p className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 leading-relaxed sm:leading-relaxed md:leading-loose">
                     Our calculator provides highly accurate estimates using industry-standard amortization formulas that banks and financial institutions use. However, actual loan terms may vary based on your creditworthiness, business financials, lender-specific policies, origination fees, insurance requirements, and other factors not included in basic calculations. The DSCR and LTV calculations are simplified models—actual lender requirements vary. Always verify final numbers including all fees, exact APR, and payment schedules with your lender before making decisions. Use our calculator to compare scenarios and understand approximate costs, then get precise quotes from lenders.

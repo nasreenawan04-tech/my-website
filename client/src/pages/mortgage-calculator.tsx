@@ -1614,7 +1614,7 @@ const MortgageCalculator = () => {
                     <Button
                       onClick={calculateMortgage}
                       disabled={isCalculating || !homePrice || !interestRate || !loanTerm || Object.keys(validationErrors).length > 0}
-                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                       data-testid="button-calculate"
                       aria-busy={isCalculating}
                     >
@@ -1638,7 +1638,7 @@ const MortgageCalculator = () => {
                           onClick={() => setShowAmortization(!showAmortization)}
                           variant="outline"
                           size="sm"
-                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-all"
+                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-colors"
                         >
                           {showAmortization ? 'Hide' : 'Show'} Payment Schedule
                         </Button>
@@ -1646,7 +1646,7 @@ const MortgageCalculator = () => {
                           onClick={() => setShowChart(!showChart)}
                           variant="outline"
                           size="sm"
-                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-all"
+                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-colors"
                         >
                           <PieChart className="w-4 h-4 mr-1.5" />
                           {showChart ? 'Hide' : 'Show'} Chart
@@ -1655,7 +1655,7 @@ const MortgageCalculator = () => {
                           onClick={handleDownloadPDF}
                           variant="outline"
                           size="sm"
-                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-all"
+                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-colors"
                         >
                           <Download className="w-4 h-4 mr-1.5" />
                           Export PDF
@@ -1669,7 +1669,7 @@ const MortgageCalculator = () => {
                           <Button
                             onClick={shareOnFacebook}
                             size="sm"
-                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#1877f2] hover:bg-[#166fe5] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#1877f2] hover:bg-[#166fe5] text-white transition-colors flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="Share on Facebook"
                           >
                             <FaFacebook className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
@@ -1678,7 +1678,7 @@ const MortgageCalculator = () => {
                           <Button
                             onClick={shareOnTwitter}
                             size="sm"
-                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#1da1f2] hover:bg-[#1a8cd8] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#1da1f2] hover:bg-[#1a8cd8] text-white transition-colors flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="Share on Twitter"
                           >
                             <FaTwitter className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
@@ -1687,7 +1687,7 @@ const MortgageCalculator = () => {
                           <Button
                             onClick={shareOnLinkedIn}
                             size="sm"
-                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#0077b5] hover:bg-[#006399] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#0077b5] hover:bg-[#006399] text-white transition-colors flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="Share on LinkedIn"
                           >
                             <FaLinkedin className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
@@ -1696,7 +1696,7 @@ const MortgageCalculator = () => {
                           <Button
                             onClick={shareOnWhatsApp}
                             size="sm"
-                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#25d366] hover:bg-[#20bd5a] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#25d366] hover:bg-[#20bd5a] text-white transition-colors flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="Share on WhatsApp"
                           >
                             <FaWhatsapp className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
@@ -1706,7 +1706,7 @@ const MortgageCalculator = () => {
                             onClick={handleShare}
                             variant="outline"
                             size="sm"
-                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg border-2 border-gray-300 hover:border-gray-400 hover:bg-gray-50 transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg border-2 border-gray-300 hover:border-gray-400 hover:bg-gray-50 transition-colors flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="More share options"
                           >
                             <Share2 className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
@@ -2239,7 +2239,7 @@ const MortgageCalculator = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
                 {/* Testimonial 1 */}
-                <div className="bg-white p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105" data-testid="testimonial-1">
+                <div className="bg-white p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-colors duration-300" data-testid="testimonial-1">
                   <div className="flex items-center gap-0.5 sm:gap-1 mb-3 sm:mb-4">
                     {[...Array(5)].map((_, i) => (
                       <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
@@ -2262,7 +2262,7 @@ const MortgageCalculator = () => {
                 </div>
 
                 {/* Testimonial 2 */}
-                <div className="bg-white p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105" data-testid="testimonial-2">
+                <div className="bg-white p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-colors duration-300" data-testid="testimonial-2">
                   <div className="flex items-center gap-0.5 sm:gap-1 mb-3 sm:mb-4">
                     {[...Array(5)].map((_, i) => (
                       <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
@@ -2285,7 +2285,7 @@ const MortgageCalculator = () => {
                 </div>
 
                 {/* Testimonial 3 */}
-                <div className="bg-white p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105" data-testid="testimonial-3">
+                <div className="bg-white p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-colors duration-300" data-testid="testimonial-3">
                   <div className="flex items-center gap-0.5 sm:gap-1 mb-3 sm:mb-4">
                     {[...Array(5)].map((_, i) => (
                       <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
@@ -2416,7 +2416,7 @@ const MortgageCalculator = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
                 {/* Loan Calculator */}
-                <a href="/tools/loan-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-blue-200">
+                <a href="/tools/loan-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-colors duration-300 border-2 border-transparent hover:border-blue-200">
                   <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-blue-600 transition-colors">
                     Loan Calculator
                   </h3>
@@ -2429,7 +2429,7 @@ const MortgageCalculator = () => {
                 </a>
 
                 {/* EMI Calculator */}
-                <a href="/tools/emi-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-green-200">
+                <a href="/tools/emi-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-colors duration-300 border-2 border-transparent hover:border-green-200">
                   <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-green-600 transition-colors">
                     EMI Calculator
                   </h3>
@@ -2442,7 +2442,7 @@ const MortgageCalculator = () => {
                 </a>
 
                 {/* Home Loan Calculator */}
-                <a href="/tools/home-loan-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-purple-200">
+                <a href="/tools/home-loan-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-colors duration-300 border-2 border-transparent hover:border-purple-200">
                   <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-purple-600 transition-colors">
                     Home Loan Calculator
                   </h3>
@@ -2455,7 +2455,7 @@ const MortgageCalculator = () => {
                 </a>
 
                 {/* Car Loan Calculator */}
-                <a href="/tools/car-loan-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-orange-200">
+                <a href="/tools/car-loan-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-colors duration-300 border-2 border-transparent hover:border-orange-200">
                   <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-orange-600 transition-colors">
                     Car Loan Calculator
                   </h3>
@@ -2468,7 +2468,7 @@ const MortgageCalculator = () => {
                 </a>
 
                 {/* Debt Payoff Calculator */}
-                <a href="/tools/debt-payoff-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-red-200">
+                <a href="/tools/debt-payoff-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-colors duration-300 border-2 border-transparent hover:border-red-200">
                   <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-red-600 transition-colors">
                     Debt Payoff Calculator
                   </h3>
@@ -2481,7 +2481,7 @@ const MortgageCalculator = () => {
                 </a>
 
                 {/* Compound Interest Calculator */}
-                <a href="/tools/compound-interest-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-indigo-200">
+                <a href="/tools/compound-interest-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-colors duration-300 border-2 border-transparent hover:border-indigo-200">
                   <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-indigo-600 transition-colors">
                     Compound Interest Calculator
                   </h3>
@@ -2494,7 +2494,7 @@ const MortgageCalculator = () => {
                 </a>
 
                 {/* Budget Calculator */}
-                <a href="/tools/budget-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-teal-200">
+                <a href="/tools/budget-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-colors duration-300 border-2 border-transparent hover:border-teal-200">
                   <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-teal-600 transition-colors">
                     Budget Calculator
                   </h3>
@@ -2507,7 +2507,7 @@ const MortgageCalculator = () => {
                 </a>
 
                 {/* Loan Comparison Calculator */}
-                <a href="/tools/loan-comparison-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-cyan-200">
+                <a href="/tools/loan-comparison-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-colors duration-300 border-2 border-transparent hover:border-cyan-200">
                   <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-cyan-600 transition-colors">
                     Loan Comparison Calculator
                   </h3>
@@ -2520,7 +2520,7 @@ const MortgageCalculator = () => {
                 </a>
 
                 {/* Retirement Calculator */}
-                <a href="/tools/retirement-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-amber-200">
+                <a href="/tools/retirement-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-colors duration-300 border-2 border-transparent hover:border-amber-200">
                   <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-amber-600 transition-colors">
                     Retirement Calculator
                   </h3>

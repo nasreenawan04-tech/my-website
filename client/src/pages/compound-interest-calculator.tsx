@@ -1378,7 +1378,7 @@ export default function CompoundInterestCalculator() {
                   <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       onClick={calculateCompoundInterest}
-                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transition-colors duration-200"
                       data-testid="button-calculate"
                     >
                       <Calculator className="w-5 h-5 mr-2" />
@@ -1403,7 +1403,7 @@ export default function CompoundInterestCalculator() {
                           onClick={() => setShowBreakdown(!showBreakdown)}
                           variant="outline"
                           size="sm"
-                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-all"
+                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-colors"
                           data-testid="button-show-breakdown"
                         >
                           {showBreakdown ? 'Hide' : 'Show'} Yearly Breakdown
@@ -1412,7 +1412,7 @@ export default function CompoundInterestCalculator() {
                           onClick={() => setShowChart(!showChart)}
                           variant="outline"
                           size="sm"
-                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-all"
+                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-colors"
                           data-testid="button-show-chart"
                         >
                           <PieChart className="w-4 h-4 mr-1.5" />
@@ -1422,7 +1422,7 @@ export default function CompoundInterestCalculator() {
                           onClick={handleDownloadPDF}
                           variant="outline"
                           size="sm"
-                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-all"
+                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-colors"
                           data-testid="button-export-pdf"
                         >
                           <Download className="w-4 h-4 mr-1.5" />
@@ -1432,7 +1432,7 @@ export default function CompoundInterestCalculator() {
                           onClick={() => setShowRealValue(!showRealValue)}
                           variant="outline"
                           size="sm"
-                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-all"
+                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-colors"
                           data-testid="button-show-real-value"
                         >
                           {showRealValue ? 'Hide' : 'Show'} Inflation Adjusted
@@ -1446,7 +1446,7 @@ export default function CompoundInterestCalculator() {
                           <Button
                             onClick={shareOnFacebook}
                             size="sm"
-                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#1877f2] hover:bg-[#166fe5] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#1877f2] hover:bg-[#166fe5] text-white transition-colors flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="Share on Facebook"
                           >
                             <FaFacebook className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
@@ -1455,7 +1455,7 @@ export default function CompoundInterestCalculator() {
                           <Button
                             onClick={shareOnTwitter}
                             size="sm"
-                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#1da1f2] hover:bg-[#1a8cd8] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#1da1f2] hover:bg-[#1a8cd8] text-white transition-colors flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="Share on Twitter"
                           >
                             <FaTwitter className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
@@ -1464,7 +1464,7 @@ export default function CompoundInterestCalculator() {
                           <Button
                             onClick={shareOnLinkedIn}
                             size="sm"
-                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#0077b5] hover:bg-[#006399] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#0077b5] hover:bg-[#006399] text-white transition-colors flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="Share on LinkedIn"
                           >
                             <FaLinkedin className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
@@ -1473,7 +1473,7 @@ export default function CompoundInterestCalculator() {
                           <Button
                             onClick={shareOnWhatsApp}
                             size="sm"
-                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#25d366] hover:bg-[#20bd5a] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#25d366] hover:bg-[#20bd5a] text-white transition-colors flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="Share on WhatsApp"
                           >
                             <FaWhatsapp className="w-4 h-4 sm:w-4 sm:h-4 sm:mr-1.5" />
@@ -1483,7 +1483,7 @@ export default function CompoundInterestCalculator() {
                             onClick={handleShare}
                             variant="outline"
                             size="sm"
-                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg border-2 border-gray-300 hover:border-gray-400 hover:bg-gray-50 transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg border-2 border-gray-300 hover:border-gray-400 hover:bg-gray-50 transition-colors flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="More share options"
                             data-testid="button-share"
                           >

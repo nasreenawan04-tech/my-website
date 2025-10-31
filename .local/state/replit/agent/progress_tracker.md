@@ -66,3 +66,6 @@
 [x] 66. Restart workflow to apply the error handling fix
 [x] 67. Reduce animation on "Calculate Loan" button by removing scale effect and using only color transition
 [x] 68. Restart workflow to apply button animation changes
+[x] 69. Reduce button animations across all Finance Tools (34 calculator pages) by removing scale effects
+[x] 70. Replace transform/transition-all with transition-colors for smoother, subtle animations
+[x] 71. Remove hover:scale patterns from all finance tool buttons

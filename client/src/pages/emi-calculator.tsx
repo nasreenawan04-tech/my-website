@@ -1367,7 +1367,7 @@ export default function EMICalculator() {
                   <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       onClick={calculateEMI}
-                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transition-colors duration-200"
                       data-testid="button-calculate"
                     >
                       <Calculator className="w-5 h-5 mr-2" />
@@ -1391,7 +1391,7 @@ export default function EMICalculator() {
                           onClick={() => setShowSchedule(!showSchedule)}
                           variant="outline"
                           size="sm"
-                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-all"
+                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-colors"
                           data-testid="button-show-schedule"
                         >
                           {showSchedule ? 'Hide' : 'Show'} Payment Schedule
@@ -1400,7 +1400,7 @@ export default function EMICalculator() {
                           onClick={() => setShowChart(!showChart)}
                           variant="outline"
                           size="sm"
-                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-all"
+                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-colors"
                           data-testid="button-show-chart"
                         >
                           <PieChart className="w-4 h-4 mr-1.5" />
@@ -1410,7 +1410,7 @@ export default function EMICalculator() {
                           onClick={handleDownloadPDF}
                           variant="outline"
                           size="sm"
-                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-all"
+                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-colors"
                           data-testid="button-export-pdf"
                         >
                           <Download className="w-4 h-4 mr-1.5" />
@@ -1425,7 +1425,7 @@ export default function EMICalculator() {
                           <Button
                             onClick={shareOnFacebook}
                             size="sm"
-                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#1877f2] hover:bg-[#166fe5] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#1877f2] hover:bg-[#166fe5] text-white transition-colors flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="Share on Facebook"
                             data-testid="button-share-facebook"
                           >
@@ -1435,7 +1435,7 @@ export default function EMICalculator() {
                           <Button
                             onClick={shareOnTwitter}
                             size="sm"
-                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#1da1f2] hover:bg-[#1a8cd8] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#1da1f2] hover:bg-[#1a8cd8] text-white transition-colors flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="Share on Twitter"
                             data-testid="button-share-twitter"
                           >
@@ -1445,7 +1445,7 @@ export default function EMICalculator() {
                           <Button
                             onClick={shareOnLinkedIn}
                             size="sm"
-                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#0077b5] hover:bg-[#006399] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#0077b5] hover:bg-[#006399] text-white transition-colors flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="Share on LinkedIn"
                             data-testid="button-share-linkedin"
                           >
@@ -1455,7 +1455,7 @@ export default function EMICalculator() {
                           <Button
                             onClick={shareOnWhatsApp}
                             size="sm"
-                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#25d366] hover:bg-[#20bd5a] text-white transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg bg-[#25d366] hover:bg-[#20bd5a] text-white transition-colors flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="Share on WhatsApp"
                             data-testid="button-share-whatsapp"
                           >
@@ -1466,7 +1466,7 @@ export default function EMICalculator() {
                             onClick={handleShare}
                             variant="outline"
                             size="sm"
-                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg border-2 border-gray-300 hover:border-gray-400 hover:bg-gray-50 transition-all flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
+                            className="text-[10px] xs:text-xs sm:text-sm px-2 sm:px-4 md:px-6 py-2 sm:py-2.5 rounded-full sm:rounded-lg border-2 border-gray-300 hover:border-gray-400 hover:bg-gray-50 transition-colors flex-shrink-0 w-10 h-10 sm:w-auto sm:h-auto justify-center"
                             aria-label="More share options"
                             data-testid="button-share-generic"
                           >
@@ -1972,7 +1972,7 @@ export default function EMICalculator() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
                   {/* Loan Calculator */}
-                  <a href="/tools/loan-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-blue-200">
+                  <a href="/tools/loan-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-colors duration-300 border-2 border-transparent hover:border-blue-200">
                     <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-blue-600 transition-colors">
                       Loan Calculator
                     </h3>
@@ -1985,7 +1985,7 @@ export default function EMICalculator() {
                   </a>
 
                   {/* Home Loan Calculator */}
-                  <a href="/tools/home-loan-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-green-200">
+                  <a href="/tools/home-loan-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-colors duration-300 border-2 border-transparent hover:border-green-200">
                     <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-green-600 transition-colors">
                       Home Loan Calculator
                     </h3>
@@ -1998,7 +1998,7 @@ export default function EMICalculator() {
                   </a>
 
                   {/* Car Loan Calculator */}
-                  <a href="/tools/car-loan-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-orange-200">
+                  <a href="/tools/car-loan-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-colors duration-300 border-2 border-transparent hover:border-orange-200">
                     <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-orange-600 transition-colors">
                       Car Loan Calculator
                     </h3>
@@ -2011,7 +2011,7 @@ export default function EMICalculator() {
                   </a>
 
                   {/* Debt Payoff Calculator */}
-                  <a href="/tools/debt-payoff-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-red-200">
+                  <a href="/tools/debt-payoff-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-colors duration-300 border-2 border-transparent hover:border-red-200">
                     <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-red-600 transition-colors">
                       Debt Payoff Calculator
                     </h3>
@@ -2024,7 +2024,7 @@ export default function EMICalculator() {
                   </a>
 
                   {/* Compound Interest Calculator */}
-                  <a href="/tools/compound-interest-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-purple-200">
+                  <a href="/tools/compound-interest-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-colors duration-300 border-2 border-transparent hover:border-purple-200">
                     <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-purple-600 transition-colors">
                       Compound Interest Calculator
                     </h3>
@@ -2037,7 +2037,7 @@ export default function EMICalculator() {
                   </a>
 
                   {/* Budget Calculator */}
-                  <a href="/tools/budget-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-indigo-200">
+                  <a href="/tools/budget-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-colors duration-300 border-2 border-transparent hover:border-indigo-200">
                     <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-indigo-600 transition-colors">
                       Budget Calculator
                     </h3>
@@ -2050,7 +2050,7 @@ export default function EMICalculator() {
                   </a>
 
                   {/* Loan Comparison Calculator */}
-                  <a href="/tools/loan-comparison-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-teal-200">
+                  <a href="/tools/loan-comparison-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-colors duration-300 border-2 border-transparent hover:border-teal-200">
                     <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-teal-600 transition-colors">
                       Loan Comparison Calculator
                     </h3>
@@ -2063,7 +2063,7 @@ export default function EMICalculator() {
                   </a>
 
                   {/* Retirement Calculator */}
-                  <a href="/tools/retirement-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-amber-200">
+                  <a href="/tools/retirement-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-colors duration-300 border-2 border-transparent hover:border-amber-200">
                     <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-amber-600 transition-colors">
                       Retirement Calculator
                     </h3>
@@ -2076,7 +2076,7 @@ export default function EMICalculator() {
                   </a>
 
                   {/* Simple Interest Calculator */}
-                  <a href="/tools/simple-interest-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border-2 border-transparent hover:border-cyan-200">
+                  <a href="/tools/simple-interest-calculator" className="group bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl hover:shadow-2xl transition-colors duration-300 border-2 border-transparent hover:border-cyan-200">
                     <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-2 group-hover:text-cyan-600 transition-colors">
                       Simple Interest Calculator
                     </h3>
@@ -2306,7 +2306,7 @@ export default function EMICalculator() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
                   {/* Testimonial 1 */}
-                  <div className="bg-white p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105" data-testid="testimonial-1">
+                  <div className="bg-white p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-colors duration-300" data-testid="testimonial-1">
                     <div className="flex items-center gap-0.5 sm:gap-1 mb-3 sm:mb-4">
                       {[...Array(5)].map((_, i) => (
                         <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
@@ -2329,7 +2329,7 @@ export default function EMICalculator() {
                   </div>
 
                   {/* Testimonial 2 */}
-                  <div className="bg-white p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105" data-testid="testimonial-2">
+                  <div className="bg-white p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-colors duration-300" data-testid="testimonial-2">
                     <div className="flex items-center gap-0.5 sm:gap-1 mb-3 sm:mb-4">
                       {[...Array(5)].map((_, i) => (
                         <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
@@ -2352,7 +2352,7 @@ export default function EMICalculator() {
                   </div>
 
                   {/* Testimonial 3 */}
-                  <div className="bg-white p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105" data-testid="testimonial-3">
+                  <div className="bg-white p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-colors duration-300" data-testid="testimonial-3">
                     <div className="flex items-center gap-0.5 sm:gap-1 mb-3 sm:mb-4">
                       {[...Array(5)].map((_, i) => (
                         <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">

@@ -406,7 +406,7 @@ export default function ROICalculator() {
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
           <div className="relative max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
             <div className="space-y-4 sm:space-y-6 md:space-y-8">
-              <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 md:px-5 md:py-2.5 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200 shadow-sm hover:shadow-md transition-all duration-200">
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 sm:px-4 sm:py-2 md:px-5 md:py-2.5 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200 shadow-sm hover:shadow-md transition-colors duration-200">
                 <Calculator className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 flex-shrink-0 text-blue-700" />
                 <span className="text-[10px] xs:text-xs sm:text-sm md:text-base font-medium text-blue-700 whitespace-nowrap">Professional ROI Calculator - Free & Accurate</span>
               </div>
@@ -1782,7 +1782,7 @@ export default function ROICalculator() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
-                  <a href="/tools/compound-interest-calculator" className="group bg-white p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105" data-testid="link-compound-interest">
+                  <a href="/tools/compound-interest-calculator" className="group bg-white p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl shadow-md hover:shadow-xl transition-colors duration-300" data-testid="link-compound-interest">
                     <div className="flex items-start gap-3 sm:gap-4">
                       <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
                         <span className="text-xl sm:text-2xl">📈</span>
@@ -1794,7 +1794,7 @@ export default function ROICalculator() {
                     </div>
                   </a>
 
-                  <a href="/tools/investment-return-calculator" className="group bg-white p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105" data-testid="link-investment-return">
+                  <a href="/tools/investment-return-calculator" className="group bg-white p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl shadow-md hover:shadow-xl transition-colors duration-300" data-testid="link-investment-return">
                     <div className="flex items-start gap-3 sm:gap-4">
                       <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center">
                         <span className="text-xl sm:text-2xl">💰</span>
@@ -1806,7 +1806,7 @@ export default function ROICalculator() {
                     </div>
                   </a>
 
-                  <a href="/tools/stock-profit-calculator" className="group bg-white p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105" data-testid="link-stock-profit">
+                  <a href="/tools/stock-profit-calculator" className="group bg-white p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl shadow-md hover:shadow-xl transition-colors duration-300" data-testid="link-stock-profit">
                     <div className="flex items-start gap-3 sm:gap-4">
                       <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center">
                         <span className="text-xl sm:text-2xl">📊</span>
@@ -1818,7 +1818,7 @@ export default function ROICalculator() {
                     </div>
                   </a>
 
-                  <a href="/tools/loan-calculator" className="group bg-white p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105" data-testid="link-loan-calculator">
+                  <a href="/tools/loan-calculator" className="group bg-white p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl shadow-md hover:shadow-xl transition-colors duration-300" data-testid="link-loan-calculator">
                     <div className="flex items-start gap-3 sm:gap-4">
                       <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
                         <span className="text-xl sm:text-2xl">🏦</span>
@@ -1830,7 +1830,7 @@ export default function ROICalculator() {
                     </div>
                   </a>
 
-                  <a href="/tools/savings-calculator" className="group bg-white p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105" data-testid="link-savings-calculator">
+                  <a href="/tools/savings-calculator" className="group bg-white p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl shadow-md hover:shadow-xl transition-colors duration-300" data-testid="link-savings-calculator">
                     <div className="flex items-start gap-3 sm:gap-4">
                       <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg flex items-center justify-center">
                         <span className="text-xl sm:text-2xl">💵</span>
@@ -1842,7 +1842,7 @@ export default function ROICalculator() {
                     </div>
                   </a>
 
-                  <a href="/finance-tools" className="group bg-gradient-to-br from-indigo-500 to-purple-600 p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105" data-testid="link-all-finance-tools">
+                  <a href="/finance-tools" className="group bg-gradient-to-br from-indigo-500 to-purple-600 p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl shadow-md hover:shadow-xl transition-colors duration-300" data-testid="link-all-finance-tools">
                     <div className="flex items-start gap-3 sm:gap-4">
                       <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-white/20 rounded-lg flex items-center justify-center">
                         <span className="text-xl sm:text-2xl">🧮</span>
@@ -1880,7 +1880,7 @@ export default function ROICalculator() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
                   {/* Testimonial 1 */}
-                  <div className="bg-white p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105" data-testid="testimonial-1">
+                  <div className="bg-white p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-colors duration-300" data-testid="testimonial-1">
                     <div className="flex items-center gap-0.5 sm:gap-1 mb-3 sm:mb-4">
                       {[...Array(5)].map((_, i) => (
                         <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
@@ -1903,7 +1903,7 @@ export default function ROICalculator() {
                   </div>
 
                   {/* Testimonial 2 */}
-                  <div className="bg-white p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105" data-testid="testimonial-2">
+                  <div className="bg-white p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-colors duration-300" data-testid="testimonial-2">
                     <div className="flex items-center gap-0.5 sm:gap-1 mb-3 sm:mb-4">
                       {[...Array(5)].map((_, i) => (
                         <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
@@ -1926,7 +1926,7 @@ export default function ROICalculator() {
                   </div>
 
                   {/* Testimonial 3 */}
-                  <div className="bg-white p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105" data-testid="testimonial-3">
+                  <div className="bg-white p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-colors duration-300" data-testid="testimonial-3">
                     <div className="flex items-center gap-0.5 sm:gap-1 mb-3 sm:mb-4">
                       {[...Array(5)].map((_, i) => (
                         <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">

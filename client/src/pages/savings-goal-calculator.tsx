@@ -584,7 +584,7 @@ export default function SavingsGoalCalculator() {
                   <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4 pt-3 sm:pt-4 md:pt-6">
                     <Button
                       onClick={calculateSavings}
-                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="w-full sm:w-auto h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transition-colors duration-200"
                       data-testid="button-calculate"
                     >
                       Calculate Savings Goal
@@ -714,11 +714,11 @@ export default function SavingsGoalCalculator() {
                           <div className="text-sm font-medium text-gray-700 mb-3">Contribution vs Interest Breakdown</div>
                           <div className="flex h-3 bg-gray-200 rounded-full overflow-hidden mb-2">
                             <div 
-                              className="bg-gradient-to-r from-blue-500 to-blue-600 transition-all duration-500"
+                              className="bg-gradient-to-r from-blue-500 to-blue-600 transition-colors duration-500"
                               style={{ width: `${(result.totalContributions / (result.totalContributions + result.interestEarned)) * 100}%` }}
                             ></div>
                             <div 
-                              className="bg-gradient-to-r from-green-500 to-green-600 transition-all duration-500"
+                              className="bg-gradient-to-r from-green-500 to-green-600 transition-colors duration-500"
                               style={{ width: `${(result.interestEarned / (result.totalContributions + result.interestEarned)) * 100}%` }}
                             ></div>
                           </div>
