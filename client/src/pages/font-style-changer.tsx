@@ -555,7 +555,7 @@ const FontStyleChanger = () => {
                 <div className="p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 space-y-6 sm:space-y-8">
                   <div>
                     <h2 className="text-3xl font-bold text-gray-900 mb-2">Font Style Generator</h2>
-                    <p className="text-gray-600">Enter text to transform it into stylish Unicode fonts</p>
+                    <p className="text-gray-600">Enter text to it into stylish Unicode fonts</p>
                   </div>
 
                   <div className="space-y-4 sm:space-y-6">
@@ -689,7 +689,7 @@ const FontStyleChanger = () => {
                     <Button
                       onClick={generateStyledTexts}
                       disabled={!inputText.trim()}
-                      className="flex-1 h-12 sm:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-base sm:text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="flex-1 h-12 sm:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-base sm:text-lg rounded-xl shadow-lg transition-colors duration-200"
                       data-testid="button-generate"
                     >
                       Generate Styles

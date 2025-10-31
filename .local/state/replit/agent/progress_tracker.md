@@ -69,3 +69,7 @@
 [x] 69. Reduce button animations across all Finance Tools (34 calculator pages) by removing scale effects
 [x] 70. Replace transform/transition-all with transition-colors for smoother, subtle animations
 [x] 71. Remove hover:scale patterns from all finance tool buttons
+[x] 72. Reduce button animations across all Text Tools (29 tool pages) by removing scale effects
+[x] 73. Update all text tool buttons to use transition-colors instead of transition-all
+[x] 74. Remove all hover:scale, hover:scale-[...], and sm:hover:scale patterns from text tools
+[x] 75. Restart workflow to apply text tool button animation changes

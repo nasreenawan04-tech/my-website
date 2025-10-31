@@ -457,7 +457,7 @@ const DecimalToTextConverter = () => {
                     <Button
                       onClick={convertDecimal}
                       disabled={!inputDecimal.trim()}
-                      className="flex-1 h-12 sm:h-14 md:h-16 lg:h-16 xl:h-18 2xl:h-18 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg lg:text-xl rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="flex-1 h-12 sm:h-14 md:h-16 lg:h-16 xl:h-18 2xl:h-18 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg lg:text-xl rounded-xl shadow-lg transition-colors duration-200"
                       data-testid="button-convert"
                     >
                       Convert to Text

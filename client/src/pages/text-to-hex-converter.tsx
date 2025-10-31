@@ -555,7 +555,7 @@ const TextToHexConverter = () => {
                     <Button
                       onClick={convertText}
                       disabled={!inputText.trim()}
-                      className="flex-1 h-12 sm:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-base sm:text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105"
+                      className="flex-1 h-12 sm:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-base sm:text-lg rounded-xl shadow-lg transition-colors duration-200"
                       data-testid="button-convert"
                     >
                       Convert to Hex

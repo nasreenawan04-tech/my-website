@@ -379,7 +379,7 @@ const QRCodeScanner = () => {
                         QR Code Image Upload
                       </Label>
                       <div
-                        className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-8 sm:p-12 text-center hover:border-blue-400 dark:hover:border-blue-500 transition-all duration-300 bg-gray-50/50 dark:bg-slate-900/50"
+                        className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-8 sm:p-12 text-center hover:border-blue-400 dark:hover:border-blue-500 transition-colors duration-300 bg-gray-50/50 dark:bg-slate-900/50"
                         onDragOver={handleDragOver}
                         onDrop={handleDrop}
                         data-testid="qr-upload-area"
@@ -426,7 +426,7 @@ const QRCodeScanner = () => {
                         <Button
                           onClick={() => fileInputRef.current?.click()}
                           disabled={isScanning}
-                          className="mt-6 h-12 sm:h-14 px-6 sm:px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 dark:from-blue-500 dark:to-indigo-500 dark:hover:from-blue-600 dark:hover:to-indigo-600 text-white font-semibold text-base sm:text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105 active:scale-95"
+                          className="mt-6 h-12 sm:h-14 px-6 sm:px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 dark:from-blue-500 dark:to-indigo-500 dark:hover:from-blue-600 dark:hover:to-indigo-600 text-white font-semibold text-base sm:text-lg rounded-xl shadow-lg transition-colors duration-200 active:scale-95"
                           data-testid="button-browse-files"
                         >
                           {isScanning ? 'Scanning QR Code...' : 'Browse Files'}
@@ -549,7 +549,7 @@ const QRCodeScanner = () => {
                     <Button
                       onClick={handleScanQR}
                       disabled={!uploadedImage || isScanning}
-                      className="flex-1 h-12 sm:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 dark:from-blue-500 dark:to-indigo-500 dark:hover:from-blue-600 dark:hover:to-indigo-600 text-white font-semibold text-base sm:text-lg rounded-xl shadow-lg transform transition-all duration-200 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                      className="flex-1 h-12 sm:h-14 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 dark:from-blue-500 dark:to-indigo-500 dark:hover:from-blue-600 dark:hover:to-indigo-600 text-white font-semibold text-base sm:text-lg rounded-xl shadow-lg transition-colors duration-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
                       data-testid="button-scan-qr"
                     >
                       {isScanning ? (
@@ -565,7 +565,7 @@ const QRCodeScanner = () => {
                     <Button
                       onClick={resetScanner}
                       variant="outline"
-                      className="h-12 sm:h-14 px-6 sm:px-8 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-slate-700 font-semibold text-base sm:text-lg rounded-xl transition-all duration-200"
+                      className="h-12 sm:h-14 px-6 sm:px-8 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-slate-700 font-semibold text-base sm:text-lg rounded-xl transition-colors duration-200"
                       data-testid="button-reset"
                     >
                       Reset
@@ -581,7 +581,7 @@ const QRCodeScanner = () => {
                     {hasScanned && uploadedImage ? (
                     <div className="space-y-3 sm:space-y-4" data-testid="scanned-results">
                       {/* Main Scanned Text Display */}
-                      <div className={`${scannedText.includes('❌') ? 'bg-red-50 dark:bg-red-950 border-red-200 dark:border-red-800' : 'bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-700'} border-2 rounded-xl p-3 sm:p-4 transition-all duration-300`}>
+                      <div className={`${scannedText.includes('❌') ? 'bg-red-50 dark:bg-red-950 border-red-200 dark:border-red-800' : 'bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-700'} border-2 rounded-xl p-3 sm:p-4 transition-colors duration-300`}>
                         <div className="flex items-center justify-between mb-3 gap-3">
                           <div className="flex-1 min-w-0">
                             <h3 className="text-sm sm:text-base font-semibold text-gray-900 dark:text-white truncate">
@@ -613,7 +613,7 @@ const QRCodeScanner = () => {
 
                       {/* Extracted Content Display - Only show if successful */}
                       {!scannedText.includes('❌') && scannedQRs.length > 0 && scannedQRs[0].extractedContent.length > 0 && (
-                        <div className="bg-green-50 dark:bg-green-950 border-2 border-green-200 dark:border-green-800 rounded-xl p-3 sm:p-4 transition-all duration-300">
+                        <div className="bg-green-50 dark:bg-green-950 border-2 border-green-200 dark:border-green-800 rounded-xl p-3 sm:p-4 transition-colors duration-300">
                           <div className="flex items-center justify-between mb-3">
                             <h3 className="text-sm sm:text-base font-semibold text-gray-900 dark:text-white">✅ Detected Content</h3>
                           </div>

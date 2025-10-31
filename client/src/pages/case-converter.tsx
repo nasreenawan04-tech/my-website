@@ -293,7 +293,7 @@ const CaseConverter = () => {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
         <title>Case Converter - Convert Text to UPPER, lower, Title, camelCase | DapsiWow</title>
-        <meta name="description" content="Free online case converter tool to transform text between UPPERCASE, lowercase, Title Case, camelCase, PascalCase, snake_case, kebab-case and more. Instant text case conversion with advanced customization options." />
+        <meta name="description" content="Free online case converter tool to text between UPPERCASE, lowercase, Title Case, camelCase, PascalCase, snake_case, kebab-case and more. Instant text case conversion with advanced customization options." />
         <meta name="keywords" content="case converter, text converter, uppercase, lowercase, title case, camelCase, PascalCase, snake_case, kebab-case, text transformation, programming naming conventions, variable name converter" />
         <meta property="og:title" content="Case Converter - Convert Text to UPPER, lower, Title, camelCase" />
         <meta property="og:description" content="Free online case converter for all text transformation needs. Convert between uppercase, lowercase, camelCase and more instantly with advanced customization features." />
@@ -306,7 +306,7 @@ const CaseConverter = () => {
             "@context": "https://schema.org",
             "@type": "WebApplication",
             "name": "Case Converter Tool",
-            "description": "Free online case converter to transform text between various case formats including UPPERCASE, lowercase, Title Case, camelCase, PascalCase, snake_case, and kebab-case.",
+            "description": "Free online case converter to text between various case formats including UPPERCASE, lowercase, Title Case, camelCase, PascalCase, snake_case, and kebab-case.",
             "url": "https://dapsiwow.com/tools/case-converter",
             "applicationCategory": "ProductivityApplication",
             "operatingSystem": "Any",
@@ -511,7 +511,7 @@ const CaseConverter = () => {
                     </Button>
                     <Button
                       onClick={handleSampleText}
-                      className="w-full sm:flex-1 h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transform transition-all duration-200 hover:scale-[1.02]"
+                      className="w-full sm:flex-1 h-10 sm:h-12 md:h-14 px-4 sm:px-6 md:px-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-lg sm:rounded-xl shadow-lg transition-colors duration-200"
                       data-testid="button-sample-text"
                     >
                       Load Sample Text

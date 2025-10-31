@@ -608,7 +608,7 @@ export default function PasswordGenerator() {
                           </div>
                           <div className="w-full bg-gray-200 rounded-full h-2 sm:h-3 mb-2 sm:mb-3">
                             <div
-                              className={`h-2 sm:h-3 rounded-full transition-all duration-300 ${passwordStrength.color}`}
+                              className={`h-2 sm:h-3 rounded-full transition-colors duration-300 ${passwordStrength.color}`}
                               style={{ width: `${(passwordStrength.score / 8) * 100}%` }}
                             ></div>
                           </div>
