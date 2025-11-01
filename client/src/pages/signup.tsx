@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { Link } from 'wouter';
 import { Helmet } from 'react-helmet-async';
-import { Eye, EyeOff, Mail, Lock, Loader2, User } from 'lucide-react';
+import { Eye, EyeOff, Loader2 } from 'lucide-react';
 import { FcGoogle } from 'react-icons/fc';
 import { Separator } from '@/components/ui/separator';
 import { executeRecaptcha } from '@/lib/recaptcha';
@@ -170,79 +170,69 @@ export default function Signup() {
             <form onSubmit={handleSubmit} className="space-y-2.5 xs:space-y-3 sm:space-y-4">
               <div className="grid grid-cols-2 gap-2.5 xs:gap-3 sm:gap-4">
                 <div className="space-y-1.5 xs:space-y-2">
-                  <Label htmlFor="firstName" className="text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
+                  <Label htmlFor="firstName" className="text-sm font-medium text-gray-700 dark:text-gray-300">
                     First Name
                   </Label>
-                  <div className="relative">
-                    <User className="absolute left-2.5 xs:left-3 top-1/2 -translate-y-1/2 h-4 sm:h-5 w-4 sm:w-5 text-gray-400 dark:text-gray-500" />
-                    <Input
-                      id="firstName"
-                      type="text"
-                      placeholder="John"
-                      value={firstName}
-                      onChange={(e) => setFirstName(e.target.value)}
-                      className="pl-9 xs:pl-10 sm:pl-11 h-10 xs:h-11 sm:h-12 text-sm sm:text-base bg-white dark:bg-neutral-950 border-gray-300 dark:border-neutral-700 focus:border-blue-500 dark:focus:border-blue-500 focus:ring-blue-500 dark:focus:ring-blue-500 transition-all duration-200"
-                      data-testid="input-firstname"
-                      required
-                      disabled={loading || googleLoading}
-                    />
-                  </div>
+                  <Input
+                    id="firstName"
+                    type="text"
+                    placeholder="John"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    className="h-12 text-base bg-white dark:bg-neutral-950 border-gray-300 dark:border-neutral-700 focus:border-blue-500 dark:focus:border-blue-500 focus:ring-1 focus:ring-blue-500 dark:focus:ring-blue-500 transition-all duration-200 rounded-xl px-4"
+                    data-testid="input-firstname"
+                    required
+                    disabled={loading || googleLoading}
+                  />
                 </div>
 
                 <div className="space-y-1.5 xs:space-y-2">
-                  <Label htmlFor="lastName" className="text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
+                  <Label htmlFor="lastName" className="text-sm font-medium text-gray-700 dark:text-gray-300">
                     Last Name
                   </Label>
-                  <div className="relative">
-                    <User className="absolute left-2.5 xs:left-3 top-1/2 -translate-y-1/2 h-4 sm:h-5 w-4 sm:w-5 text-gray-400 dark:text-gray-500" />
-                    <Input
-                      id="lastName"
-                      type="text"
-                      placeholder="Doe"
-                      value={lastName}
-                      onChange={(e) => setLastName(e.target.value)}
-                      className="pl-9 xs:pl-10 sm:pl-11 h-10 xs:h-11 sm:h-12 text-sm sm:text-base bg-white dark:bg-neutral-950 border-gray-300 dark:border-neutral-700 focus:border-blue-500 dark:focus:border-blue-500 focus:ring-blue-500 dark:focus:ring-blue-500 transition-all duration-200"
-                      data-testid="input-lastname"
-                      required
-                      disabled={loading || googleLoading}
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="space-y-1.5 xs:space-y-2">
-                <Label htmlFor="email" className="text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
-                  Email Address
-                </Label>
-                <div className="relative">
-                  <Mail className="absolute left-2.5 xs:left-3 top-1/2 -translate-y-1/2 h-4 sm:h-5 w-4 sm:w-5 text-gray-400 dark:text-gray-500" />
                   <Input
-                    id="email"
-                    type="email"
-                    placeholder="you@example.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="pl-9 xs:pl-10 sm:pl-11 h-10 xs:h-11 sm:h-12 text-sm sm:text-base bg-white dark:bg-neutral-950 border-gray-300 dark:border-neutral-700 focus:border-blue-500 dark:focus:border-blue-500 focus:ring-blue-500 dark:focus:ring-blue-500 transition-all duration-200"
-                    data-testid="input-email"
+                    id="lastName"
+                    type="text"
+                    placeholder="Doe"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    className="h-12 text-base bg-white dark:bg-neutral-950 border-gray-300 dark:border-neutral-700 focus:border-blue-500 dark:focus:border-blue-500 focus:ring-1 focus:ring-blue-500 dark:focus:ring-blue-500 transition-all duration-200 rounded-xl px-4"
+                    data-testid="input-lastname"
                     required
                     disabled={loading || googleLoading}
                   />
                 </div>
               </div>
+
+              <div className="space-y-1.5 xs:space-y-2">
+                <Label htmlFor="email" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Email Address
+                </Label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="h-12 text-base bg-white dark:bg-neutral-950 border-gray-300 dark:border-neutral-700 focus:border-blue-500 dark:focus:border-blue-500 focus:ring-1 focus:ring-blue-500 dark:focus:ring-blue-500 transition-all duration-200 rounded-xl px-4"
+                  data-testid="input-email"
+                  required
+                  disabled={loading || googleLoading}
+                />
+              </div>
               
               <div className="space-y-1.5 xs:space-y-2">
-                <Label htmlFor="password" className="text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
+                <Label htmlFor="password" className="text-sm font-medium text-gray-700 dark:text-gray-300">
                   Password
                 </Label>
                 <div className="relative">
-                  <Lock className="absolute left-2.5 xs:left-3 top-1/2 -translate-y-1/2 h-4 sm:h-5 w-4 sm:w-5 text-gray-400 dark:text-gray-500" />
                   <Input
                     id="password"
                     type={showPassword ? 'text' : 'password'}
                     placeholder="Create a strong password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="pl-9 xs:pl-10 sm:pl-11 pr-9 xs:pr-10 sm:pr-11 h-10 xs:h-11 sm:h-12 text-sm sm:text-base bg-white dark:bg-neutral-950 border-gray-300 dark:border-neutral-700 focus:border-blue-500 dark:focus:border-blue-500 focus:ring-blue-500 dark:focus:ring-blue-500 transition-all duration-200"
+                    className="pr-12 h-12 text-base bg-white dark:bg-neutral-950 border-gray-300 dark:border-neutral-700 focus:border-blue-500 dark:focus:border-blue-500 focus:ring-1 focus:ring-blue-500 dark:focus:ring-blue-500 transition-all duration-200 rounded-xl px-4"
                     data-testid="input-password"
                     required
                     disabled={loading || googleLoading}
@@ -250,33 +240,32 @@ export default function Signup() {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-2.5 xs:right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition-colors"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition-colors"
                     data-testid="button-toggle-password"
                     disabled={loading || googleLoading}
                     tabIndex={-1}
                   >
                     {showPassword ? (
-                      <EyeOff className="h-4 sm:h-5 w-4 sm:w-5" />
+                      <EyeOff className="h-5 w-5" />
                     ) : (
-                      <Eye className="h-4 sm:h-5 w-4 sm:w-5" />
+                      <Eye className="h-5 w-5" />
                     )}
                   </button>
                 </div>
               </div>
 
               <div className="space-y-1.5 xs:space-y-2">
-                <Label htmlFor="confirmPassword" className="text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
+                <Label htmlFor="confirmPassword" className="text-sm font-medium text-gray-700 dark:text-gray-300">
                   Confirm Password
                 </Label>
                 <div className="relative">
-                  <Lock className="absolute left-2.5 xs:left-3 top-1/2 -translate-y-1/2 h-4 sm:h-5 w-4 sm:w-5 text-gray-400 dark:text-gray-500" />
                   <Input
                     id="confirmPassword"
                     type={showConfirmPassword ? 'text' : 'password'}
                     placeholder="Confirm your password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="pl-9 xs:pl-10 sm:pl-11 pr-9 xs:pr-10 sm:pr-11 h-10 xs:h-11 sm:h-12 text-sm sm:text-base bg-white dark:bg-neutral-950 border-gray-300 dark:border-neutral-700 focus:border-blue-500 dark:focus:border-blue-500 focus:ring-blue-500 dark:focus:ring-blue-500 transition-all duration-200"
+                    className="pr-12 h-12 text-base bg-white dark:bg-neutral-950 border-gray-300 dark:border-neutral-700 focus:border-blue-500 dark:focus:border-blue-500 focus:ring-1 focus:ring-blue-500 dark:focus:ring-blue-500 transition-all duration-200 rounded-xl px-4"
                     data-testid="input-confirm-password"
                     required
                     disabled={loading || googleLoading}
@@ -284,15 +273,15 @@ export default function Signup() {
                   <button
                     type="button"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="absolute right-2.5 xs:right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition-colors"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition-colors"
                     data-testid="button-toggle-confirm-password"
                     disabled={loading || googleLoading}
                     tabIndex={-1}
                   >
                     {showConfirmPassword ? (
-                      <EyeOff className="h-4 sm:h-5 w-4 sm:w-5" />
+                      <EyeOff className="h-5 w-5" />
                     ) : (
-                      <Eye className="h-4 sm:h-5 w-4 sm:w-5" />
+                      <Eye className="h-5 w-5" />
                     )}
                   </button>
                 </div>
