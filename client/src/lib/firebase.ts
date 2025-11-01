@@ -46,13 +46,25 @@ try {
   auth = getAuth(app);
   db = getFirestore(app);
   
-  // Disable app verification for development to avoid reCAPTCHA issues
-  if (import.meta.env.DEV && auth && isFirebaseConfigured) {
+  // Disable app verification ONLY in true local development
+  // This is safe because it checks both DEV mode AND localhost/replit domains
+  const isLocalDev = import.meta.env.DEV && (
+    typeof window !== 'undefined' && (
+      window.location.hostname === 'localhost' ||
+      window.location.hostname.includes('replit.dev')
+    )
+  );
+  
+  if (isLocalDev && auth && isFirebaseConfigured) {
     (auth as any).settings.appVerificationDisabledForTesting = true;
     console.log('Firebase initialized in development mode');
     console.log('Auth domain:', firebaseConfig.authDomain);
     console.log('Authentication: enabled');
-    console.log('App verification disabled for development');
+    console.log('App verification disabled for local development');
+  } else if (import.meta.env.DEV && auth && isFirebaseConfigured) {
+    console.log('Firebase initialized in development mode');
+    console.log('Auth domain:', firebaseConfig.authDomain);
+    console.log('Authentication: enabled');
   }
 } catch (error) {
   console.warn('Firebase initialization failed:', error);
