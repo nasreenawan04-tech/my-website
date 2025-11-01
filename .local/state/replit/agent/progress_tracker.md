@@ -77,3 +77,10 @@
 [x] 77. Update all health tool buttons to use transition-colors instead of transition-all
 [x] 78. Remove all hover:scale, group-hover:scale, and related animation patterns from health tools
 [x] 79. Restart workflow to apply health tool button animation changes
+[x] 80. Load Firebase credentials from Replit Secrets to fix "Authentication is not configured" error
+[x] 81. Disable reCAPTCHA verification for local development to enable authentication
+[x] 82. Fix security vulnerability: Ensure app verification only disabled on localhost/replit.dev domains
+[x] 83. Verify Firebase authentication is working - login page loads without errors
+[ ] 84. Enable Firestore database in Firebase Console (dapsiwow project)
+[ ] 85. Configure Firestore security rules to allow authenticated users to save/read their calculation history
+[ ] 86. Test calculation history feature end-to-end after Firestore setup
