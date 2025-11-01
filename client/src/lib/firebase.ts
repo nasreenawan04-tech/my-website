@@ -46,11 +46,13 @@ try {
   auth = getAuth(app);
   db = getFirestore(app);
   
-  // Only log Firebase status if explicitly configured
-  if (import.meta.env.DEV && isFirebaseConfigured) {
+  // Disable app verification for development to avoid reCAPTCHA issues
+  if (import.meta.env.DEV && auth && isFirebaseConfigured) {
+    (auth as any).settings.appVerificationDisabledForTesting = true;
     console.log('Firebase initialized in development mode');
     console.log('Auth domain:', firebaseConfig.authDomain);
     console.log('Authentication: enabled');
+    console.log('App verification disabled for development');
   }
 } catch (error) {
   console.warn('Firebase initialization failed:', error);
