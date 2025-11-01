@@ -18,6 +18,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import defaultAvatarUrl from '@assets/jhj_1761976221112.png';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -211,7 +212,7 @@ const Header = () => {
                           data-testid="button-user-menu"
                         >
                           <Avatar className="h-8 w-8 transition-transform duration-200 hover:scale-105">
-                            <AvatarImage src={user.photoURL || undefined} alt={user.displayName || user.email || 'User'} />
+                            <AvatarImage src={user.photoURL || defaultAvatarUrl} alt={user.displayName || user.email || 'User'} />
                             <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-500 text-white text-sm">
                               {user.displayName
                                 ? user.displayName.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)
@@ -342,7 +343,7 @@ const Header = () => {
                   <>
                     <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/50 dark:to-purple-950/50 border border-blue-100 dark:border-blue-900/50">
                       <Avatar className="h-10 w-10 ring-2 ring-white dark:ring-neutral-800">
-                        <AvatarImage src={user.photoURL || undefined} alt={user.displayName || user.email || 'User'} />
+                        <AvatarImage src={user.photoURL || defaultAvatarUrl} alt={user.displayName || user.email || 'User'} />
                         <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-500 text-white text-sm">
                           {user.displayName
                             ? user.displayName.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2)
