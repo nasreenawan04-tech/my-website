@@ -29,6 +29,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import defaultAvatarUrl from '@assets/jhj_1761976221112.png';
 
 export default function Profile() {
   const { user, logout, updateUserProfile, updateUserPassword, loading } = useAuth();
@@ -293,7 +294,7 @@ export default function Profile() {
             {/* Avatar & Basic Info */}
             <div className="flex-shrink-0">
               <Avatar className="h-32 w-32 border-4 border-white dark:border-neutral-700 shadow-2xl ring-4 ring-blue-100 dark:ring-blue-900/30">
-                <AvatarImage src={photoURL} alt={displayName || user.email || 'User'} />
+                <AvatarImage src={photoURL || defaultAvatarUrl} alt={displayName || user.email || 'User'} />
                 <AvatarFallback className="text-3xl bg-gradient-to-br from-blue-600 to-purple-600 text-white font-bold">
                   {getInitials()}
                 </AvatarFallback>

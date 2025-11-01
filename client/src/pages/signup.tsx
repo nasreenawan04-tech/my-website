@@ -8,13 +8,15 @@ import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { Link } from 'wouter';
 import { Helmet } from 'react-helmet-async';
-import { Eye, EyeOff, Mail, Lock, Loader2 } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, Loader2, User } from 'lucide-react';
 import { FcGoogle } from 'react-icons/fc';
 import { Separator } from '@/components/ui/separator';
 import { executeRecaptcha } from '@/lib/recaptcha';
 import Logo from '@/components/Logo';
 
 export default function Signup() {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -29,7 +31,7 @@ export default function Signup() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!email || !password || !confirmPassword) {
+    if (!firstName.trim() || !lastName.trim() || !email || !password || !confirmPassword) {
       toast({
         title: 'Missing Information',
         description: 'Please fill in all fields to continue.',
@@ -78,7 +80,8 @@ export default function Signup() {
     setLoading(true);
     try {
       await executeRecaptcha('SIGNUP');
-      await signup(email, password);
+      const displayName = `${firstName.trim()} ${lastName.trim()}`.replace(/\s+/g, ' ');
+      await signup(email, password, displayName);
       toast({
         title: 'Welcome to DapsiWow!',
         description: 'Your account has been created successfully.'
@@ -165,6 +168,48 @@ export default function Signup() {
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-2.5 xs:space-y-3 sm:space-y-4">
+              <div className="grid grid-cols-2 gap-2.5 xs:gap-3 sm:gap-4">
+                <div className="space-y-1.5 xs:space-y-2">
+                  <Label htmlFor="firstName" className="text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
+                    First Name
+                  </Label>
+                  <div className="relative">
+                    <User className="absolute left-2.5 xs:left-3 top-1/2 -translate-y-1/2 h-4 sm:h-5 w-4 sm:w-5 text-gray-400 dark:text-gray-500" />
+                    <Input
+                      id="firstName"
+                      type="text"
+                      placeholder="John"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                      className="pl-9 xs:pl-10 sm:pl-11 h-10 xs:h-11 sm:h-12 text-sm sm:text-base bg-white dark:bg-neutral-950 border-gray-300 dark:border-neutral-700 focus:border-blue-500 dark:focus:border-blue-500 focus:ring-blue-500 dark:focus:ring-blue-500 transition-all duration-200"
+                      data-testid="input-firstname"
+                      required
+                      disabled={loading || googleLoading}
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-1.5 xs:space-y-2">
+                  <Label htmlFor="lastName" className="text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
+                    Last Name
+                  </Label>
+                  <div className="relative">
+                    <User className="absolute left-2.5 xs:left-3 top-1/2 -translate-y-1/2 h-4 sm:h-5 w-4 sm:w-5 text-gray-400 dark:text-gray-500" />
+                    <Input
+                      id="lastName"
+                      type="text"
+                      placeholder="Doe"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                      className="pl-9 xs:pl-10 sm:pl-11 h-10 xs:h-11 sm:h-12 text-sm sm:text-base bg-white dark:bg-neutral-950 border-gray-300 dark:border-neutral-700 focus:border-blue-500 dark:focus:border-blue-500 focus:ring-blue-500 dark:focus:ring-blue-500 transition-all duration-200"
+                      data-testid="input-lastname"
+                      required
+                      disabled={loading || googleLoading}
+                    />
+                  </div>
+                </div>
+              </div>
+
               <div className="space-y-1.5 xs:space-y-2">
                 <Label htmlFor="email" className="text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">
                   Email Address

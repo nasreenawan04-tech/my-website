@@ -56,7 +56,7 @@ function getAuthErrorMessage(errorCode: string): string {
 interface AuthContextType {
   user: User | null;
   loading: boolean;
-  signup: (email: string, password: string) => Promise<void>;
+  signup: (email: string, password: string, displayName?: string) => Promise<void>;
   login: (email: string, password: string) => Promise<void>;
   loginWithGoogle: () => Promise<void>;
   logout: () => Promise<void>;
@@ -103,12 +103,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  const signup = async (email: string, password: string) => {
+  const signup = async (email: string, password: string, displayName?: string) => {
     if (!isFirebaseConfigured || !auth) {
       throw new Error('Authentication is not configured. Please contact support.');
     }
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      if (displayName && userCredential.user) {
+        await updateProfile(userCredential.user, { displayName });
+        setUser({ ...userCredential.user });
+      }
     } catch (error: any) {
       const errorMessage = getAuthErrorMessage(error.code);
       throw new Error(errorMessage);
