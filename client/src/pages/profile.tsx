@@ -5,11 +5,10 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useToast } from '@/hooks/use-toast';
 import { Helmet } from 'react-helmet-async';
-import { User, Lock, BarChart3, Settings, Loader2, Eye, EyeOff, LogOut, Heart, Clock, History, Trash2, Calendar } from 'lucide-react';
+import { User, Lock, BarChart3, Settings, Loader2, Eye, EyeOff, LogOut, Heart, Clock, History, Trash2, Calendar, Shield, Sparkles } from 'lucide-react';
 import { getFavorites, getRecentTools, clearAllFavorites, clearRecentTools } from '@/lib/userPreferences';
 import { getCalculationHistory, deleteCalculation, clearAllCalculations, CalculationHistory } from '@/lib/calculationHistory';
 import { Link } from 'wouter';
@@ -124,8 +123,8 @@ export default function Profile() {
       });
     } catch (error: any) {
       toast({
-        title: 'Update Failed',
-        description: error.message || 'Failed to update profile.',
+        title: 'Error',
+        description: error.message || 'Failed to update profile',
         variant: 'destructive'
       });
     } finally {
@@ -139,7 +138,7 @@ export default function Profile() {
     if (newPassword !== confirmNewPassword) {
       toast({
         title: 'Error',
-        description: 'New passwords do not match.',
+        description: 'New passwords do not match',
         variant: 'destructive'
       });
       return;
@@ -148,7 +147,7 @@ export default function Profile() {
     if (newPassword.length < 6) {
       toast({
         title: 'Error',
-        description: 'Password must be at least 6 characters.',
+        description: 'Password must be at least 6 characters',
         variant: 'destructive'
       });
       return;
@@ -167,8 +166,8 @@ export default function Profile() {
       setConfirmNewPassword('');
     } catch (error: any) {
       toast({
-        title: 'Password Change Failed',
-        description: error.message || 'Failed to change password.',
+        title: 'Error',
+        description: error.message || 'Failed to change password',
         variant: 'destructive'
       });
     } finally {
@@ -281,185 +280,195 @@ export default function Profile() {
 
       <Header />
 
-      <div className="min-h-screen bg-gray-50 dark:bg-neutral-900 py-8 px-4">
-        <div className="max-w-4xl mx-auto space-y-6">
-          {/* Profile Header */}
-          <Card>
-            <CardContent className="pt-6">
-              <div className="flex flex-col sm:flex-row items-center gap-6">
-                <Avatar className="h-24 w-24">
-                  <AvatarImage src={photoURL} alt={displayName || user.email || 'User'} />
-                  <AvatarFallback className="text-2xl bg-gradient-to-br from-blue-500 to-purple-500 text-white">
-                    {getInitials()}
-                  </AvatarFallback>
-                </Avatar>
-                <div className="flex-1 text-center sm:text-left">
-                  <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-                    {displayName || 'User'}
-                  </h1>
-                  <p className="text-muted-foreground" data-testid="text-profile-email">
-                    {user.email}
-                  </p>
-                  <div className="flex gap-2 mt-2 justify-center sm:justify-start">
-                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
-                      <Heart className="h-3 w-3 mr-1" />
-                      {favoritesCount} Favorites
-                    </span>
-                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200">
-                      <Clock className="h-3 w-3 mr-1" />
-                      {recentToolsCount} Recent
-                    </span>
+      {/* Hero Section with Gradient Background */}
+      <div className="relative bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 text-white overflow-hidden">
+        <div className="absolute inset-0 bg-black/10"></div>
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDE zNGgxMHYxMEgzNnpNNiAxNGgxMHYxMEg2ek0zNiA0NGgxMHYxMEgzNnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-30"></div>
+        
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+          <div className="flex flex-col md:flex-row items-center gap-8">
+            <Avatar className="h-32 w-32 border-4 border-white/20 shadow-2xl">
+              <AvatarImage src={photoURL} alt={displayName || user.email || 'User'} />
+              <AvatarFallback className="text-4xl bg-gradient-to-br from-blue-500 to-purple-500 text-white">
+                {getInitials()}
+              </AvatarFallback>
+            </Avatar>
+            
+            <div className="flex-1 text-center md:text-left">
+              <div className="flex items-center gap-2 justify-center md:justify-start mb-2">
+                <Sparkles className="h-6 w-6" />
+                <h1 className="text-4xl sm:text-5xl font-bold">
+                  {displayName || 'Welcome Back!'}
+                </h1>
+              </div>
+              <p className="text-xl text-white/90 mb-4" data-testid="text-profile-email">
+                {user.email}
+              </p>
+              <div className="flex flex-wrap gap-3 justify-center md:justify-start">
+                <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
+                  <div className="flex items-center gap-2">
+                    <Heart className="h-5 w-5" />
+                    <span className="font-semibold">{favoritesCount}</span>
+                    <span className="text-white/80">Favorites</span>
+                  </div>
+                </div>
+                <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
+                  <div className="flex items-center gap-2">
+                    <Clock className="h-5 w-5" />
+                    <span className="font-semibold">{recentToolsCount}</span>
+                    <span className="text-white/80">Recent Tools</span>
+                  </div>
+                </div>
+                <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
+                  <div className="flex items-center gap-2">
+                    <History className="h-5 w-5" />
+                    <span className="font-semibold">{calculationHistory.length}</span>
+                    <span className="text-white/80">Calculations</span>
                   </div>
                 </div>
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
+        </div>
+      </div>
 
-          {/* Tabs */}
-          <Tabs defaultValue="profile" className="w-full" onValueChange={(value) => {
-            if (value === 'history' && !historyLoading && calculationHistory.length === 0) {
-              loadCalculationHistory();
-            }
-          }}>
-            <TabsList className="grid w-full grid-cols-5">
-              <TabsTrigger value="profile" className="flex items-center gap-2" data-testid="tab-profile">
-                <User className="h-4 w-4" />
-                <span className="hidden sm:inline">Profile</span>
-              </TabsTrigger>
-              <TabsTrigger value="security" className="flex items-center gap-2" data-testid="tab-security">
-                <Lock className="h-4 w-4" />
-                <span className="hidden sm:inline">Security</span>
-              </TabsTrigger>
-              <TabsTrigger value="history" className="flex items-center gap-2" data-testid="tab-history">
-                <History className="h-4 w-4" />
-                <span className="hidden sm:inline">History</span>
-              </TabsTrigger>
-              <TabsTrigger value="statistics" className="flex items-center gap-2" data-testid="tab-statistics">
-                <BarChart3 className="h-4 w-4" />
-                <span className="hidden sm:inline">Stats</span>
-              </TabsTrigger>
-              <TabsTrigger value="settings" className="flex items-center gap-2" data-testid="tab-settings">
-                <Settings className="h-4 w-4" />
-                <span className="hidden sm:inline">Settings</span>
-              </TabsTrigger>
-            </TabsList>
-
-            {/* Profile Tab */}
-            <TabsContent value="profile">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Profile Information</CardTitle>
-                  <CardDescription>
-                    Update your personal information and profile picture
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <form onSubmit={handleProfileUpdate} className="space-y-4">
+      {/* Main Content Sections */}
+      <div className="bg-gray-50 dark:bg-neutral-900">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+          
+          {/* Profile Information Section */}
+          <section id="profile" className="scroll-mt-20">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+                <User className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Profile Information</h2>
+                <p className="text-muted-foreground">Update your personal information and profile picture</p>
+              </div>
+            </div>
+            
+            <Card className="shadow-lg border-0">
+              <CardContent className="p-8">
+                <form onSubmit={handleProfileUpdate} className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <Label htmlFor="displayName">Display Name</Label>
+                      <Label htmlFor="displayName" className="text-base font-semibold">Display Name</Label>
                       <Input
                         id="displayName"
                         type="text"
                         placeholder="Your name"
                         value={displayName}
                         onChange={(e) => setDisplayName(e.target.value)}
+                        className="h-12"
                         data-testid="input-display-name"
                       />
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="email">Email</Label>
+                      <Label htmlFor="email" className="text-base font-semibold">Email Address</Label>
                       <Input
                         id="email"
                         type="email"
                         value={user.email || ''}
                         disabled
-                        className="bg-gray-100 dark:bg-neutral-800"
+                        className="bg-gray-100 dark:bg-neutral-800 h-12"
                         data-testid="input-email"
                       />
                       <p className="text-xs text-muted-foreground">
                         Email cannot be changed at this time
                       </p>
                     </div>
+                  </div>
 
+                  <div className="space-y-2">
+                    <Label htmlFor="photoURL" className="text-base font-semibold">Profile Picture URL</Label>
+                    <Input
+                      id="photoURL"
+                      type="url"
+                      placeholder="https://example.com/photo.jpg"
+                      value={photoURL}
+                      onChange={(e) => setPhotoURL(e.target.value)}
+                      className="h-12"
+                      data-testid="input-photo-url"
+                    />
+                    <p className="text-xs text-muted-foreground">
+                      Enter a URL to an image for your profile picture
+                    </p>
+                  </div>
+
+                  <Button
+                    type="submit"
+                    disabled={profileLoading}
+                    size="lg"
+                    className="w-full md:w-auto"
+                    data-testid="button-update-profile"
+                  >
+                    {profileLoading ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Updating...
+                      </>
+                    ) : (
+                      'Update Profile'
+                    )}
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          </section>
+
+          {/* Security Section */}
+          <section id="security" className="scroll-mt-20">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center">
+                <Shield className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Security Settings</h2>
+                <p className="text-muted-foreground">Keep your account secure with a strong password</p>
+              </div>
+            </div>
+            
+            <Card className="shadow-lg border-0">
+              <CardContent className="p-8">
+                {user.providerData[0]?.providerId === 'google.com' ? (
+                  <div className="text-center py-8">
+                    <Lock className="h-16 w-16 mx-auto text-muted-foreground mb-4" />
+                    <h3 className="text-lg font-semibold mb-2">Google Account</h3>
+                    <p className="text-muted-foreground">
+                      You're signed in with Google. Password management is handled by your Google account.
+                    </p>
+                  </div>
+                ) : (
+                  <form onSubmit={handlePasswordChange} className="space-y-6">
                     <div className="space-y-2">
-                      <Label htmlFor="photoURL">Profile Picture URL</Label>
-                      <Input
-                        id="photoURL"
-                        type="url"
-                        placeholder="https://example.com/photo.jpg"
-                        value={photoURL}
-                        onChange={(e) => setPhotoURL(e.target.value)}
-                        data-testid="input-photo-url"
-                      />
-                      <p className="text-xs text-muted-foreground">
-                        Enter a URL to an image for your profile picture
-                      </p>
-                    </div>
-
-                    <Button
-                      type="submit"
-                      disabled={profileLoading}
-                      data-testid="button-update-profile"
-                    >
-                      {profileLoading ? (
-                        <>
-                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                          Updating...
-                        </>
-                      ) : (
-                        'Update Profile'
-                      )}
-                    </Button>
-                  </form>
-                </CardContent>
-              </Card>
-            </TabsContent>
-
-            {/* Security Tab */}
-            <TabsContent value="security">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Change Password</CardTitle>
-                  <CardDescription>
-                    Update your password to keep your account secure
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  {user.providerData[0]?.providerId === 'google.com' ? (
-                    <div className="bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
-                      <p className="text-sm text-blue-900 dark:text-blue-100">
-                        You signed in with Google. Password changes are managed through your Google account.
-                      </p>
-                    </div>
-                  ) : (
-                    <form onSubmit={handlePasswordChange} className="space-y-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="currentPassword">Current Password</Label>
-                        <div className="relative">
-                          <Input
-                            id="currentPassword"
-                            type={showCurrentPassword ? 'text' : 'password'}
-                            placeholder="Enter current password"
-                            value={currentPassword}
-                            onChange={(e) => setCurrentPassword(e.target.value)}
-                            className="pr-10"
-                            required
-                            data-testid="input-current-password"
-                          />
-                          <button
-                            type="button"
-                            onClick={() => setShowCurrentPassword(!showCurrentPassword)}
-                            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-                            data-testid="button-toggle-current-password"
-                          >
-                            {showCurrentPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                          </button>
-                        </div>
+                      <Label htmlFor="currentPassword" className="text-base font-semibold">Current Password</Label>
+                      <div className="relative">
+                        <Input
+                          id="currentPassword"
+                          type={showCurrentPassword ? 'text' : 'password'}
+                          placeholder="Enter current password"
+                          value={currentPassword}
+                          onChange={(e) => setCurrentPassword(e.target.value)}
+                          className="pr-10 h-12"
+                          required
+                          data-testid="input-current-password"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => setShowCurrentPassword(!showCurrentPassword)}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                          data-testid="button-toggle-current-password"
+                        >
+                          {showCurrentPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                        </button>
                       </div>
+                    </div>
 
+                    <div className="grid md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <Label htmlFor="newPassword">New Password</Label>
+                        <Label htmlFor="newPassword" className="text-base font-semibold">New Password</Label>
                         <div className="relative">
                           <Input
                             id="newPassword"
@@ -467,7 +476,7 @@ export default function Profile() {
                             placeholder="Enter new password"
                             value={newPassword}
                             onChange={(e) => setNewPassword(e.target.value)}
-                            className="pr-10"
+                            className="pr-10 h-12"
                             required
                             data-testid="input-new-password"
                           />
@@ -483,7 +492,7 @@ export default function Profile() {
                       </div>
 
                       <div className="space-y-2">
-                        <Label htmlFor="confirmNewPassword">Confirm New Password</Label>
+                        <Label htmlFor="confirmNewPassword" className="text-base font-semibold">Confirm New Password</Label>
                         <div className="relative">
                           <Input
                             id="confirmNewPassword"
@@ -491,7 +500,7 @@ export default function Profile() {
                             placeholder="Confirm new password"
                             value={confirmNewPassword}
                             onChange={(e) => setConfirmNewPassword(e.target.value)}
-                            className="pr-10"
+                            className="pr-10 h-12"
                             required
                             data-testid="input-confirm-new-password"
                           />
@@ -505,279 +514,304 @@ export default function Profile() {
                           </button>
                         </div>
                       </div>
+                    </div>
 
-                      <Button
-                        type="submit"
-                        disabled={passwordLoading}
-                        data-testid="button-change-password"
-                      >
-                        {passwordLoading ? (
-                          <>
-                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                            Changing...
-                          </>
-                        ) : (
-                          'Change Password'
-                        )}
+                    <Button
+                      type="submit"
+                      disabled={passwordLoading}
+                      size="lg"
+                      className="w-full md:w-auto"
+                      data-testid="button-change-password"
+                    >
+                      {passwordLoading ? (
+                        <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Changing...
+                        </>
+                      ) : (
+                        'Change Password'
+                      )}
+                    </Button>
+                  </form>
+                )}
+              </CardContent>
+            </Card>
+          </section>
+
+          {/* Calculation History Section */}
+          <section id="history" className="scroll-mt-20">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-pink-500 to-pink-600 flex items-center justify-center">
+                <History className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Calculation History</h2>
+                <p className="text-muted-foreground">View and manage your past calculations</p>
+              </div>
+            </div>
+            
+            <Card className="shadow-lg border-0">
+              <CardContent className="p-8">
+                {historyLoading ? (
+                  <div className="flex justify-center py-12">
+                    <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+                  </div>
+                ) : calculationHistory.length === 0 ? (
+                  <div className="text-center py-16">
+                    <div className="h-24 w-24 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 flex items-center justify-center mx-auto mb-6">
+                      <History className="h-12 w-12 text-blue-600 dark:text-blue-400" />
+                    </div>
+                    <h3 className="text-2xl font-bold mb-3">No Calculation History</h3>
+                    <p className="text-muted-foreground mb-6 max-w-md mx-auto">
+                      Your calculation history will appear here once you start using our calculators.
+                    </p>
+                    <Link href="/all-tools">
+                      <Button size="lg" data-testid="button-browse-tools">
+                        Browse Tools
                       </Button>
-                    </form>
-                  )}
-                </CardContent>
-              </Card>
-            </TabsContent>
-
-            {/* Calculation History Tab */}
-            <TabsContent value="history">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Calculation History</CardTitle>
-                  <CardDescription>
-                    View and manage your past calculations
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  {historyLoading ? (
-                    <div className="flex justify-center py-8">
-                      <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
-                    </div>
-                  ) : calculationHistory.length === 0 ? (
-                    <div className="text-center py-12">
-                      <History className="h-16 w-16 mx-auto text-muted-foreground mb-4" />
-                      <h3 className="text-lg font-semibold mb-2">No Calculation History</h3>
-                      <p className="text-muted-foreground mb-4">
-                        Your calculation history will appear here once you start using our calculators.
+                    </Link>
+                  </div>
+                ) : (
+                  <div className="space-y-6">
+                    <div className="flex justify-between items-center">
+                      <p className="text-lg font-semibold text-gray-900 dark:text-white">
+                        {calculationHistory.length} calculation{calculationHistory.length !== 1 ? 's' : ''} saved
                       </p>
-                      <Link href="/all-tools">
-                        <Button variant="outline" data-testid="button-browse-tools">
-                          Browse Tools
-                        </Button>
-                      </Link>
+                      <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                          <Button variant="outline" data-testid="button-clear-all-calculations">
+                            <Trash2 className="h-4 w-4 mr-2" />
+                            Clear All
+                          </Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>Clear all calculation history?</AlertDialogTitle>
+                            <AlertDialogDescription>
+                              This will permanently delete all your calculation history. This action cannot be undone.
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                            <AlertDialogAction onClick={handleClearAllCalculations}>Clear All</AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
                     </div>
-                  ) : (
-                    <div className="space-y-4">
-                      <div className="flex justify-between items-center mb-4">
-                        <p className="text-sm text-muted-foreground">
-                          {calculationHistory.length} calculation{calculationHistory.length !== 1 ? 's' : ''}
-                        </p>
-                        <AlertDialog>
-                          <AlertDialogTrigger asChild>
-                            <Button variant="outline" size="sm" data-testid="button-clear-all-calculations">
-                              <Trash2 className="h-4 w-4 mr-2" />
-                              Clear All
-                            </Button>
-                          </AlertDialogTrigger>
-                          <AlertDialogContent>
-                            <AlertDialogHeader>
-                              <AlertDialogTitle>Clear all calculation history?</AlertDialogTitle>
-                              <AlertDialogDescription>
-                                This will permanently delete all your calculation history. This action cannot be undone.
-                              </AlertDialogDescription>
-                            </AlertDialogHeader>
-                            <AlertDialogFooter>
-                              <AlertDialogCancel>Cancel</AlertDialogCancel>
-                              <AlertDialogAction onClick={handleClearAllCalculations}>Clear All</AlertDialogAction>
-                            </AlertDialogFooter>
-                          </AlertDialogContent>
-                        </AlertDialog>
-                      </div>
 
-                      <div className="space-y-3">
-                        {calculationHistory.map((calculation) => (
-                          <Card key={calculation.id} className="overflow-hidden">
-                            <CardContent className="p-4">
-                              <div className="flex items-start justify-between gap-4">
-                                <div className="flex-1 space-y-2">
-                                  <div className="flex items-center gap-2">
-                                    <Link href={calculation.toolPath}>
-                                      <Button variant="link" className="p-0 h-auto text-base font-semibold" data-testid={`link-tool-${calculation.id}`}>
-                                        {calculation.toolName}
-                                      </Button>
-                                    </Link>
+                    <div className="grid gap-4">
+                      {calculationHistory.map((calculation) => (
+                        <Card key={calculation.id} className="overflow-hidden hover:shadow-md transition-shadow">
+                          <CardContent className="p-6">
+                            <div className="flex items-start justify-between gap-4">
+                              <div className="flex-1 space-y-3">
+                                <div className="flex items-center gap-3">
+                                  <Link href={calculation.toolPath}>
+                                    <Button variant="link" className="p-0 h-auto text-lg font-bold hover:text-blue-600" data-testid={`link-tool-${calculation.id}`}>
+                                      {calculation.toolName}
+                                    </Button>
+                                  </Link>
+                                </div>
+                                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                                  <Calendar className="h-4 w-4" />
+                                  {format(calculation.timestamp, 'PPp')}
+                                </div>
+                                
+                                <div className="grid md:grid-cols-2 gap-4 mt-4">
+                                  <div className="bg-gray-50 dark:bg-neutral-800 rounded-xl p-4">
+                                    <p className="font-semibold mb-3 flex items-center gap-2">
+                                      <div className="h-2 w-2 rounded-full bg-blue-500"></div>
+                                      Key Inputs
+                                    </p>
+                                    <div className="space-y-2 text-sm">
+                                      {Object.entries(calculation.inputs).slice(0, 3).map(([key, value]) => (
+                                        <div key={key} className="flex justify-between">
+                                          <span className="text-muted-foreground capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
+                                          <span className="font-medium">{typeof value === 'number' ? value.toLocaleString() : value}</span>
+                                        </div>
+                                      ))}
+                                    </div>
                                   </div>
-                                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                                    <Calendar className="h-3 w-3" />
-                                    {format(calculation.timestamp, 'PPp')}
-                                  </div>
-                                  
-                                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3 text-sm">
-                                    <div className="bg-muted/50 rounded-lg p-2">
-                                      <p className="font-medium mb-1">Key Inputs</p>
-                                      <div className="space-y-1 text-xs">
-                                        {Object.entries(calculation.inputs).slice(0, 3).map(([key, value]) => (
+                                  <div className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950/30 dark:to-purple-950/30 rounded-xl p-4">
+                                    <p className="font-semibold mb-3 flex items-center gap-2">
+                                      <div className="h-2 w-2 rounded-full bg-purple-500"></div>
+                                      Results
+                                    </p>
+                                    <div className="space-y-2 text-sm">
+                                      {Object.entries(calculation.results).slice(0, 3).map(([key, value]) => {
+                                        if (typeof value === 'object' && value !== null) return null;
+                                        return (
                                           <div key={key} className="flex justify-between">
                                             <span className="text-muted-foreground capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
-                                            <span className="font-medium">{typeof value === 'number' ? value.toLocaleString() : value}</span>
+                                            <span className="font-semibold">{typeof value === 'number' ? value.toLocaleString() : value}</span>
                                           </div>
-                                        ))}
-                                      </div>
-                                    </div>
-                                    <div className="bg-blue-50 dark:bg-blue-950/30 rounded-lg p-2">
-                                      <p className="font-medium mb-1">Results</p>
-                                      <div className="space-y-1 text-xs">
-                                        {Object.entries(calculation.results).slice(0, 3).map(([key, value]) => {
-                                          if (typeof value === 'object' && value !== null) return null;
-                                          return (
-                                            <div key={key} className="flex justify-between">
-                                              <span className="text-muted-foreground capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
-                                              <span className="font-medium">{typeof value === 'number' ? value.toLocaleString() : value}</span>
-                                            </div>
-                                          );
-                                        })}
-                                      </div>
+                                        );
+                                      })}
                                     </div>
                                   </div>
                                 </div>
-                                
-                                <AlertDialog>
-                                  <AlertDialogTrigger asChild>
-                                    <Button variant="ghost" size="sm" data-testid={`button-delete-${calculation.id}`}>
-                                      <Trash2 className="h-4 w-4" />
-                                    </Button>
-                                  </AlertDialogTrigger>
-                                  <AlertDialogContent>
-                                    <AlertDialogHeader>
-                                      <AlertDialogTitle>Delete this calculation?</AlertDialogTitle>
-                                      <AlertDialogDescription>
-                                        This will permanently delete this calculation from your history.
-                                      </AlertDialogDescription>
-                                    </AlertDialogHeader>
-                                    <AlertDialogFooter>
-                                      <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                      <AlertDialogAction onClick={() => handleDeleteCalculation(calculation.id!)}>
-                                        Delete
-                                      </AlertDialogAction>
-                                    </AlertDialogFooter>
-                                  </AlertDialogContent>
-                                </AlertDialog>
                               </div>
-                            </CardContent>
-                          </Card>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            </TabsContent>
-
-            {/* Statistics Tab */}
-            <TabsContent value="statistics">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Usage Statistics</CardTitle>
-                  <CardDescription>
-                    View your DapsiWow usage statistics
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid gap-4 md:grid-cols-2">
-                    <Card>
-                      <CardContent className="pt-6">
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <p className="text-sm font-medium text-muted-foreground">Favorite Tools</p>
-                            <p className="text-3xl font-bold" data-testid="text-favorites-count">{favoritesCount}</p>
-                          </div>
-                          <Heart className="h-12 w-12 text-blue-500" />
-                        </div>
-                        <p className="text-xs text-muted-foreground mt-2">
-                          Tools you've marked as favorites
-                        </p>
-                      </CardContent>
-                    </Card>
-
-                    <Card>
-                      <CardContent className="pt-6">
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <p className="text-sm font-medium text-muted-foreground">Recently Used</p>
-                            <p className="text-3xl font-bold" data-testid="text-recent-count">{recentToolsCount}</p>
-                          </div>
-                          <Clock className="h-12 w-12 text-purple-500" />
-                        </div>
-                        <p className="text-xs text-muted-foreground mt-2">
-                          Tools you've used recently
-                        </p>
-                      </CardContent>
-                    </Card>
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-
-            {/* Settings Tab */}
-            <TabsContent value="settings">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Account Settings</CardTitle>
-                  <CardDescription>
-                    Manage your account preferences and data
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="space-y-4">
-                    <div>
-                      <h3 className="text-sm font-medium mb-2">Data Management</h3>
-                      <div className="space-y-2">
-                        <AlertDialog>
-                          <AlertDialogTrigger asChild>
-                            <Button variant="outline" className="w-full sm:w-auto" data-testid="button-clear-favorites">
-                              Clear All Favorites
-                            </Button>
-                          </AlertDialogTrigger>
-                          <AlertDialogContent>
-                            <AlertDialogHeader>
-                              <AlertDialogTitle>Clear all favorites?</AlertDialogTitle>
-                              <AlertDialogDescription>
-                                This will remove all tools from your favorites list. This action cannot be undone.
-                              </AlertDialogDescription>
-                            </AlertDialogHeader>
-                            <AlertDialogFooter>
-                              <AlertDialogCancel>Cancel</AlertDialogCancel>
-                              <AlertDialogAction onClick={handleClearFavorites}>Clear Favorites</AlertDialogAction>
-                            </AlertDialogFooter>
-                          </AlertDialogContent>
-                        </AlertDialog>
-
-                        <AlertDialog>
-                          <AlertDialogTrigger asChild>
-                            <Button variant="outline" className="w-full sm:w-auto" data-testid="button-clear-history">
-                              Clear Recent History
-                            </Button>
-                          </AlertDialogTrigger>
-                          <AlertDialogContent>
-                            <AlertDialogHeader>
-                              <AlertDialogTitle>Clear recent history?</AlertDialogTitle>
-                              <AlertDialogDescription>
-                                This will remove all recently used tools from your history. This action cannot be undone.
-                              </AlertDialogDescription>
-                            </AlertDialogHeader>
-                            <AlertDialogFooter>
-                              <AlertDialogCancel>Cancel</AlertDialogCancel>
-                              <AlertDialogAction onClick={handleClearRecentTools}>Clear History</AlertDialogAction>
-                            </AlertDialogFooter>
-                          </AlertDialogContent>
-                        </AlertDialog>
-                      </div>
-                    </div>
-
-                    <div className="pt-4 border-t">
-                      <h3 className="text-sm font-medium mb-2">Account Actions</h3>
-                      <Button
-                        variant="destructive"
-                        onClick={handleLogout}
-                        className="w-full sm:w-auto"
-                        data-testid="button-logout"
-                      >
-                        <LogOut className="mr-2 h-4 w-4" />
-                        Sign Out
-                      </Button>
+                              
+                              <AlertDialog>
+                                <AlertDialogTrigger asChild>
+                                  <Button variant="ghost" size="icon" className="hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/30" data-testid={`button-delete-${calculation.id}`}>
+                                    <Trash2 className="h-4 w-4" />
+                                  </Button>
+                                </AlertDialogTrigger>
+                                <AlertDialogContent>
+                                  <AlertDialogHeader>
+                                    <AlertDialogTitle>Delete this calculation?</AlertDialogTitle>
+                                    <AlertDialogDescription>
+                                      This will permanently delete this calculation from your history.
+                                    </AlertDialogDescription>
+                                  </AlertDialogHeader>
+                                  <AlertDialogFooter>
+                                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                    <AlertDialogAction onClick={() => handleDeleteCalculation(calculation.id!)}>
+                                      Delete
+                                    </AlertDialogAction>
+                                  </AlertDialogFooter>
+                                </AlertDialogContent>
+                              </AlertDialog>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      ))}
                     </div>
                   </div>
+                )}
+              </CardContent>
+            </Card>
+          </section>
+
+          {/* Statistics Section */}
+          <section id="statistics" className="scroll-mt-20">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center">
+                <BarChart3 className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Usage Statistics</h2>
+                <p className="text-muted-foreground">Track your activity and usage patterns</p>
+              </div>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-6">
+              <Card className="shadow-lg border-0 overflow-hidden">
+                <div className="h-2 bg-gradient-to-r from-blue-500 to-blue-600"></div>
+                <CardContent className="p-8">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+                      <Heart className="h-8 w-8 text-white" />
+                    </div>
+                    <div className="text-right">
+                      <p className="text-4xl font-bold text-gray-900 dark:text-white" data-testid="text-favorites-count">{favoritesCount}</p>
+                      <p className="text-sm font-medium text-muted-foreground">Favorite Tools</p>
+                    </div>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Tools you've marked as favorites for quick access
+                  </p>
                 </CardContent>
               </Card>
-            </TabsContent>
-          </Tabs>
+
+              <Card className="shadow-lg border-0 overflow-hidden">
+                <div className="h-2 bg-gradient-to-r from-purple-500 to-purple-600"></div>
+                <CardContent className="p-8">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center">
+                      <Clock className="h-8 w-8 text-white" />
+                    </div>
+                    <div className="text-right">
+                      <p className="text-4xl font-bold text-gray-900 dark:text-white" data-testid="text-recent-count">{recentToolsCount}</p>
+                      <p className="text-sm font-medium text-muted-foreground">Recently Used</p>
+                    </div>
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Tools you've used recently across all categories
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </section>
+
+          {/* Account Settings Section */}
+          <section id="settings" className="scroll-mt-20">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center">
+                <Settings className="h-6 w-6 text-white" />
+              </div>
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Account Settings</h2>
+                <p className="text-muted-foreground">Manage your account preferences and data</p>
+              </div>
+            </div>
+            
+            <Card className="shadow-lg border-0">
+              <CardContent className="p-8 space-y-8">
+                <div>
+                  <h3 className="text-lg font-semibold mb-4">Data Management</h3>
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <Button variant="outline" className="h-14" data-testid="button-clear-favorites">
+                          <Trash2 className="mr-2 h-4 w-4" />
+                          Clear All Favorites
+                        </Button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>Clear all favorites?</AlertDialogTitle>
+                          <AlertDialogDescription>
+                            This will remove all tools from your favorites list. This action cannot be undone.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogAction onClick={handleClearFavorites}>Clear Favorites</AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
+
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <Button variant="outline" className="h-14" data-testid="button-clear-history">
+                          <Trash2 className="mr-2 h-4 w-4" />
+                          Clear Recent History
+                        </Button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>Clear recent history?</AlertDialogTitle>
+                          <AlertDialogDescription>
+                            This will remove all recently used tools from your history. This action cannot be undone.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogAction onClick={handleClearRecentTools}>Clear History</AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
+                  </div>
+                </div>
+
+                <div className="pt-6 border-t">
+                  <h3 className="text-lg font-semibold mb-4">Account Actions</h3>
+                  <Button
+                    variant="destructive"
+                    onClick={handleLogout}
+                    size="lg"
+                    className="w-full sm:w-auto"
+                    data-testid="button-logout"
+                  >
+                    <LogOut className="mr-2 h-5 w-5" />
+                    Sign Out
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </section>
         </div>
       </div>
 
