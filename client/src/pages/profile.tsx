@@ -49,7 +49,7 @@ export default function Profile() {
   // Statistics state
   const [favoritesCount, setFavoritesCount] = useState(0);
   const [recentToolsCount, setRecentToolsCount] = useState(0);
-  
+
   // Calculation history state
   const [calculationHistory, setCalculationHistory] = useState<CalculationHistory[]>([]);
   const [historyLoading, setHistoryLoading] = useState(false);
@@ -210,7 +210,7 @@ export default function Profile() {
 
   const loadCalculationHistory = async () => {
     if (!user) return;
-    
+
     setHistoryLoading(true);
     try {
       const history = await getCalculationHistory(user.uid);
@@ -231,7 +231,7 @@ export default function Profile() {
     try {
       // Optimistically update UI
       setCalculationHistory(prev => prev.filter(calc => calc.id !== calculationId));
-      
+
       await deleteCalculation(calculationId);
       toast({
         title: 'Deleted',
@@ -250,11 +250,11 @@ export default function Profile() {
 
   const handleClearAllCalculations = async () => {
     if (!user) return;
-    
+
     try {
       // Optimistically update UI
       setCalculationHistory([]);
-      
+
       await clearAllCalculations(user.uid);
       toast({
         title: 'History Cleared',
@@ -280,50 +280,50 @@ export default function Profile() {
 
       <Header />
 
-      {/* Hero Section with Gradient Background */}
-      <div className="relative bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black/10"></div>
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDE zNGgxMHYxMEgzNnpNNiAxNGgxMHYxMEg2ek0zNiA0NGgxMHYxMEgzNnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-30"></div>
-        
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-          <div className="flex flex-col md:flex-row items-center gap-8">
-            <Avatar className="h-32 w-32 border-4 border-white/20 shadow-2xl">
+      {/* Hero Section - Professional Design */}
+      <div className="relative bg-white dark:bg-neutral-900 border-b border-gray-200 dark:border-neutral-800">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="flex flex-col md:flex-row items-start gap-8">
+            <Avatar className="h-24 w-24 border-2 border-gray-200 dark:border-neutral-700 shadow-sm">
               <AvatarImage src={photoURL} alt={displayName || user.email || 'User'} />
-              <AvatarFallback className="text-4xl bg-gradient-to-br from-blue-500 to-purple-500 text-white">
+              <AvatarFallback className="text-2xl bg-blue-600 text-white">
                 {getInitials()}
               </AvatarFallback>
             </Avatar>
-            
-            <div className="flex-1 text-center md:text-left">
-              <div className="flex items-center gap-2 justify-center md:justify-start mb-2">
-                <Sparkles className="h-6 w-6" />
-                <h1 className="text-4xl sm:text-5xl font-bold">
-                  {displayName || 'Welcome Back!'}
-                </h1>
-              </div>
-              <p className="text-xl text-white/90 mb-4" data-testid="text-profile-email">
+
+            <div className="flex-1">
+              <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-2">
+                {displayName || 'Welcome Back'}
+              </h1>
+              <p className="text-lg text-gray-600 dark:text-gray-400 mb-6" data-testid="text-profile-email">
                 {user.email}
               </p>
-              <div className="flex flex-wrap gap-3 justify-center md:justify-start">
-                <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
-                  <div className="flex items-center gap-2">
-                    <Heart className="h-5 w-5" />
-                    <span className="font-semibold">{favoritesCount}</span>
-                    <span className="text-white/80">Favorites</span>
+              <div className="flex flex-wrap gap-4">
+                <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
+                  <div className="h-10 w-10 rounded-lg bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center">
+                    <Heart className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                  </div>
+                  <div>
+                    <div className="text-xl font-bold text-gray-900 dark:text-white">{favoritesCount}</div>
+                    <div className="text-xs text-gray-500">Favorites</div>
                   </div>
                 </div>
-                <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
-                  <div className="flex items-center gap-2">
-                    <Clock className="h-5 w-5" />
-                    <span className="font-semibold">{recentToolsCount}</span>
-                    <span className="text-white/80">Recent Tools</span>
+                <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
+                  <div className="h-10 w-10 rounded-lg bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center">
+                    <Clock className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                  </div>
+                  <div>
+                    <div className="text-xl font-bold text-gray-900 dark:text-white">{recentToolsCount}</div>
+                    <div className="text-xs text-gray-500">Recent</div>
                   </div>
                 </div>
-                <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
-                  <div className="flex items-center gap-2">
-                    <History className="h-5 w-5" />
-                    <span className="font-semibold">{calculationHistory.length}</span>
-                    <span className="text-white/80">Calculations</span>
+                <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
+                  <div className="h-10 w-10 rounded-lg bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center">
+                    <History className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                  </div>
+                  <div>
+                    <div className="text-xl font-bold text-gray-900 dark:text-white">{calculationHistory.length}</div>
+                    <div className="text-xs text-gray-500">Calculations</div>
                   </div>
                 </div>
               </div>
@@ -335,7 +335,7 @@ export default function Profile() {
       {/* Main Content Sections */}
       <div className="bg-gray-50 dark:bg-neutral-900">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
-          
+
           {/* Profile Information Section */}
           <section id="profile" className="scroll-mt-20">
             <div className="flex items-center gap-3 mb-6">
@@ -347,7 +347,7 @@ export default function Profile() {
                 <p className="text-muted-foreground">Update your personal information and profile picture</p>
               </div>
             </div>
-            
+
             <Card className="shadow-lg border-0">
               <CardContent className="p-8">
                 <form onSubmit={handleProfileUpdate} className="space-y-6">
@@ -429,7 +429,7 @@ export default function Profile() {
                 <p className="text-muted-foreground">Keep your account secure with a strong password</p>
               </div>
             </div>
-            
+
             <Card className="shadow-lg border-0">
               <CardContent className="p-8">
                 {user.providerData[0]?.providerId === 'google.com' ? (
@@ -549,7 +549,7 @@ export default function Profile() {
                 <p className="text-muted-foreground">View and manage your past calculations</p>
               </div>
             </div>
-            
+
             <Card className="shadow-lg border-0">
               <CardContent className="p-8">
                 {historyLoading ? (
@@ -616,7 +616,7 @@ export default function Profile() {
                                   <Calendar className="h-4 w-4" />
                                   {format(calculation.timestamp, 'PPp')}
                                 </div>
-                                
+
                                 <div className="grid md:grid-cols-2 gap-4 mt-4">
                                   <div className="bg-gray-50 dark:bg-neutral-800 rounded-xl p-4">
                                     <p className="font-semibold mb-3 flex items-center gap-2">
@@ -651,7 +651,7 @@ export default function Profile() {
                                   </div>
                                 </div>
                               </div>
-                              
+
                               <AlertDialog>
                                 <AlertDialogTrigger asChild>
                                   <Button variant="ghost" size="icon" className="hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/30" data-testid={`button-delete-${calculation.id}`}>
@@ -695,7 +695,7 @@ export default function Profile() {
                 <p className="text-muted-foreground">Track your activity and usage patterns</p>
               </div>
             </div>
-            
+
             <div className="grid md:grid-cols-2 gap-6">
               <Card className="shadow-lg border-0 overflow-hidden">
                 <div className="h-2 bg-gradient-to-r from-blue-500 to-blue-600"></div>
@@ -746,7 +746,7 @@ export default function Profile() {
                 <p className="text-muted-foreground">Manage your account preferences and data</p>
               </div>
             </div>
-            
+
             <Card className="shadow-lg border-0">
               <CardContent className="p-8 space-y-8">
                 <div>
