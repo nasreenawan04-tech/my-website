@@ -1,5 +1,5 @@
 import { Link } from 'wouter';
-import logoImage from '@assets/logo.svg';
+import logoImage from '@assets/jhj_1761976221112.png';
 
 interface LogoProps {
   className?: string;
