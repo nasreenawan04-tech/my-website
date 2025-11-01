@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useToast } from '@/hooks/use-toast';
 import { Helmet } from 'react-helmet-async';
-import { User, Lock, BarChart3, Settings, Loader2, Eye, EyeOff, LogOut, Heart, Clock, History, Trash2, Calendar, Shield, Sparkles } from 'lucide-react';
+import { User, Lock, BarChart3, Settings, Loader2, Eye, EyeOff, LogOut, Heart, Clock, History, Trash2, Calendar, Shield } from 'lucide-react';
 import { getFavorites, getRecentTools, clearAllFavorites, clearRecentTools } from '@/lib/userPreferences';
 import { getCalculationHistory, deleteCalculation, clearAllCalculations, CalculationHistory } from '@/lib/calculationHistory';
 import { Link } from 'wouter';
@@ -280,51 +280,37 @@ export default function Profile() {
 
       <Header />
 
-      {/* Hero Section - Professional Design */}
-      <div className="relative bg-white dark:bg-neutral-900 border-b border-gray-200 dark:border-neutral-800">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      {/* Professional Hero Section - Clean 3-color design */}
+      <div className="bg-white dark:bg-neutral-900 border-b border-gray-200 dark:border-neutral-800">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="flex flex-col md:flex-row items-start gap-8">
-            <Avatar className="h-24 w-24 border-2 border-gray-200 dark:border-neutral-700 shadow-sm">
+            <Avatar className="h-28 w-28 border-4 border-blue-600 shadow-lg">
               <AvatarImage src={photoURL} alt={displayName || user.email || 'User'} />
-              <AvatarFallback className="text-2xl bg-blue-600 text-white">
+              <AvatarFallback className="text-2xl bg-blue-600 text-white font-semibold">
                 {getInitials()}
               </AvatarFallback>
             </Avatar>
 
             <div className="flex-1">
-              <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-2">
+              <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
                 {displayName || 'Welcome Back'}
               </h1>
-              <p className="text-lg text-gray-600 dark:text-gray-400 mb-6" data-testid="text-profile-email">
+              <p className="text-lg text-gray-600 dark:text-gray-400 mb-8" data-testid="text-profile-email">
                 {user.email}
               </p>
-              <div className="flex flex-wrap gap-4">
-                <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-                  <div className="h-10 w-10 rounded-lg bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center">
-                    <Heart className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                  </div>
-                  <div>
-                    <div className="text-xl font-bold text-gray-900 dark:text-white">{favoritesCount}</div>
-                    <div className="text-xs text-gray-500">Favorites</div>
-                  </div>
+
+              <div className="grid grid-cols-3 gap-6">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-blue-600 mb-1">{favoritesCount}</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">Favorites</div>
                 </div>
-                <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-                  <div className="h-10 w-10 rounded-lg bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center">
-                    <Clock className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                  </div>
-                  <div>
-                    <div className="text-xl font-bold text-gray-900 dark:text-white">{recentToolsCount}</div>
-                    <div className="text-xs text-gray-500">Recent</div>
-                  </div>
+                <div className="text-center border-x border-gray-200 dark:border-neutral-700">
+                  <div className="text-3xl font-bold text-blue-600 mb-1">{recentToolsCount}</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">Recent</div>
                 </div>
-                <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-                  <div className="h-10 w-10 rounded-lg bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center">
-                    <History className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                  </div>
-                  <div>
-                    <div className="text-xl font-bold text-gray-900 dark:text-white">{calculationHistory.length}</div>
-                    <div className="text-xs text-gray-500">Calculations</div>
-                  </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-blue-600 mb-1">{calculationHistory.length}</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">Calculations</div>
                 </div>
               </div>
             </div>
@@ -334,74 +320,63 @@ export default function Profile() {
 
       {/* Main Content Sections */}
       <div className="bg-gray-50 dark:bg-neutral-900">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
 
           {/* Profile Information Section */}
-          <section id="profile" className="scroll-mt-20">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
-                <User className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Profile Information</h2>
-                <p className="text-muted-foreground">Update your personal information and profile picture</p>
-              </div>
+          <section id="profile">
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Profile Information</h2>
+              <p className="text-gray-600 dark:text-gray-400">Manage your personal details and profile picture</p>
             </div>
 
-            <Card className="shadow-lg border-0">
+            <Card className="border border-gray-200 dark:border-neutral-800">
               <CardContent className="p-8">
                 <form onSubmit={handleProfileUpdate} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <Label htmlFor="displayName" className="text-base font-semibold">Display Name</Label>
+                      <Label htmlFor="displayName" className="text-sm font-semibold text-gray-700 dark:text-gray-300">Display Name</Label>
                       <Input
                         id="displayName"
                         type="text"
                         placeholder="Your name"
                         value={displayName}
                         onChange={(e) => setDisplayName(e.target.value)}
-                        className="h-12"
+                        className="h-11"
                         data-testid="input-display-name"
                       />
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="email" className="text-base font-semibold">Email Address</Label>
+                      <Label htmlFor="email" className="text-sm font-semibold text-gray-700 dark:text-gray-300">Email Address</Label>
                       <Input
                         id="email"
                         type="email"
                         value={user.email || ''}
                         disabled
-                        className="bg-gray-100 dark:bg-neutral-800 h-12"
+                        className="bg-gray-100 dark:bg-neutral-800 h-11"
                         data-testid="input-email"
                       />
-                      <p className="text-xs text-muted-foreground">
-                        Email cannot be changed at this time
-                      </p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">Email cannot be changed</p>
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="photoURL" className="text-base font-semibold">Profile Picture URL</Label>
+                    <Label htmlFor="photoURL" className="text-sm font-semibold text-gray-700 dark:text-gray-300">Profile Picture URL</Label>
                     <Input
                       id="photoURL"
                       type="url"
                       placeholder="https://example.com/photo.jpg"
                       value={photoURL}
                       onChange={(e) => setPhotoURL(e.target.value)}
-                      className="h-12"
+                      className="h-11"
                       data-testid="input-photo-url"
                     />
-                    <p className="text-xs text-muted-foreground">
-                      Enter a URL to an image for your profile picture
-                    </p>
                   </div>
 
                   <Button
                     type="submit"
                     disabled={profileLoading}
-                    size="lg"
-                    className="w-full md:w-auto"
+                    className="bg-blue-600 hover:bg-blue-700 text-white"
                     data-testid="button-update-profile"
                   >
                     {profileLoading ? (
@@ -419,31 +394,28 @@ export default function Profile() {
           </section>
 
           {/* Security Section */}
-          <section id="security" className="scroll-mt-20">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center">
-                <Shield className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Security Settings</h2>
-                <p className="text-muted-foreground">Keep your account secure with a strong password</p>
-              </div>
+          <section id="security">
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Security</h2>
+              <p className="text-gray-600 dark:text-gray-400">Keep your account secure with a strong password</p>
             </div>
 
-            <Card className="shadow-lg border-0">
+            <Card className="border border-gray-200 dark:border-neutral-800">
               <CardContent className="p-8">
                 {user.providerData[0]?.providerId === 'google.com' ? (
                   <div className="text-center py-8">
-                    <Lock className="h-16 w-16 mx-auto text-muted-foreground mb-4" />
-                    <h3 className="text-lg font-semibold mb-2">Google Account</h3>
-                    <p className="text-muted-foreground">
-                      You're signed in with Google. Password management is handled by your Google account.
+                    <div className="h-16 w-16 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center mx-auto mb-4">
+                      <Lock className="h-8 w-8 text-gray-400" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Google Account</h3>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      Password management is handled by your Google account
                     </p>
                   </div>
                 ) : (
                   <form onSubmit={handlePasswordChange} className="space-y-6">
                     <div className="space-y-2">
-                      <Label htmlFor="currentPassword" className="text-base font-semibold">Current Password</Label>
+                      <Label htmlFor="currentPassword" className="text-sm font-semibold text-gray-700 dark:text-gray-300">Current Password</Label>
                       <div className="relative">
                         <Input
                           id="currentPassword"
@@ -451,14 +423,14 @@ export default function Profile() {
                           placeholder="Enter current password"
                           value={currentPassword}
                           onChange={(e) => setCurrentPassword(e.target.value)}
-                          className="pr-10 h-12"
+                          className="pr-10 h-11"
                           required
                           data-testid="input-current-password"
                         />
                         <button
                           type="button"
                           onClick={() => setShowCurrentPassword(!showCurrentPassword)}
-                          className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
                           data-testid="button-toggle-current-password"
                         >
                           {showCurrentPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -468,7 +440,7 @@ export default function Profile() {
 
                     <div className="grid md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <Label htmlFor="newPassword" className="text-base font-semibold">New Password</Label>
+                        <Label htmlFor="newPassword" className="text-sm font-semibold text-gray-700 dark:text-gray-300">New Password</Label>
                         <div className="relative">
                           <Input
                             id="newPassword"
@@ -476,14 +448,14 @@ export default function Profile() {
                             placeholder="Enter new password"
                             value={newPassword}
                             onChange={(e) => setNewPassword(e.target.value)}
-                            className="pr-10 h-12"
+                            className="pr-10 h-11"
                             required
                             data-testid="input-new-password"
                           />
                           <button
                             type="button"
                             onClick={() => setShowNewPassword(!showNewPassword)}
-                            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
                             data-testid="button-toggle-new-password"
                           >
                             {showNewPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -492,7 +464,7 @@ export default function Profile() {
                       </div>
 
                       <div className="space-y-2">
-                        <Label htmlFor="confirmNewPassword" className="text-base font-semibold">Confirm New Password</Label>
+                        <Label htmlFor="confirmNewPassword" className="text-sm font-semibold text-gray-700 dark:text-gray-300">Confirm New Password</Label>
                         <div className="relative">
                           <Input
                             id="confirmNewPassword"
@@ -500,14 +472,14 @@ export default function Profile() {
                             placeholder="Confirm new password"
                             value={confirmNewPassword}
                             onChange={(e) => setConfirmNewPassword(e.target.value)}
-                            className="pr-10 h-12"
+                            className="pr-10 h-11"
                             required
                             data-testid="input-confirm-new-password"
                           />
                           <button
                             type="button"
                             onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
                             data-testid="button-toggle-confirm-new-password"
                           >
                             {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
@@ -519,8 +491,7 @@ export default function Profile() {
                     <Button
                       type="submit"
                       disabled={passwordLoading}
-                      size="lg"
-                      className="w-full md:w-auto"
+                      className="bg-blue-600 hover:bg-blue-700 text-white"
                       data-testid="button-change-password"
                     >
                       {passwordLoading ? (
@@ -539,18 +510,13 @@ export default function Profile() {
           </section>
 
           {/* Calculation History Section */}
-          <section id="history" className="scroll-mt-20">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-pink-500 to-pink-600 flex items-center justify-center">
-                <History className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Calculation History</h2>
-                <p className="text-muted-foreground">View and manage your past calculations</p>
-              </div>
+          <section id="history">
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Calculation History</h2>
+              <p className="text-gray-600 dark:text-gray-400">View and manage your past calculations</p>
             </div>
 
-            <Card className="shadow-lg border-0">
+            <Card className="border border-gray-200 dark:border-neutral-800">
               <CardContent className="p-8">
                 {historyLoading ? (
                   <div className="flex justify-center py-12">
@@ -558,28 +524,28 @@ export default function Profile() {
                   </div>
                 ) : calculationHistory.length === 0 ? (
                   <div className="text-center py-16">
-                    <div className="h-24 w-24 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 flex items-center justify-center mx-auto mb-6">
-                      <History className="h-12 w-12 text-blue-600 dark:text-blue-400" />
+                    <div className="h-20 w-20 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center mx-auto mb-6">
+                      <History className="h-10 w-10 text-gray-400" />
                     </div>
-                    <h3 className="text-2xl font-bold mb-3">No Calculation History</h3>
-                    <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-                      Your calculation history will appear here once you start using our calculators.
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">No Calculation History</h3>
+                    <p className="text-gray-600 dark:text-gray-400 mb-6">
+                      Your calculation history will appear here
                     </p>
                     <Link href="/all-tools">
-                      <Button size="lg" data-testid="button-browse-tools">
+                      <Button className="bg-blue-600 hover:bg-blue-700 text-white" data-testid="button-browse-tools">
                         Browse Tools
                       </Button>
                     </Link>
                   </div>
                 ) : (
                   <div className="space-y-6">
-                    <div className="flex justify-between items-center">
-                      <p className="text-lg font-semibold text-gray-900 dark:text-white">
-                        {calculationHistory.length} calculation{calculationHistory.length !== 1 ? 's' : ''} saved
+                    <div className="flex justify-between items-center pb-4 border-b border-gray-200 dark:border-neutral-700">
+                      <p className="text-base font-semibold text-gray-900 dark:text-white">
+                        {calculationHistory.length} calculation{calculationHistory.length !== 1 ? 's' : ''}
                       </p>
                       <AlertDialog>
                         <AlertDialogTrigger asChild>
-                          <Button variant="outline" data-testid="button-clear-all-calculations">
+                          <Button variant="outline" size="sm" data-testid="button-clear-all-calculations">
                             <Trash2 className="h-4 w-4 mr-2" />
                             Clear All
                           </Button>
@@ -593,57 +559,53 @@ export default function Profile() {
                           </AlertDialogHeader>
                           <AlertDialogFooter>
                             <AlertDialogCancel>Cancel</AlertDialogCancel>
-                            <AlertDialogAction onClick={handleClearAllCalculations}>Clear All</AlertDialogAction>
+                            <AlertDialogAction onClick={handleClearAllCalculations} className="bg-blue-600 hover:bg-blue-700">
+                              Clear All
+                            </AlertDialogAction>
                           </AlertDialogFooter>
                         </AlertDialogContent>
                       </AlertDialog>
                     </div>
 
-                    <div className="grid gap-4">
+                    <div className="space-y-4">
                       {calculationHistory.map((calculation) => (
-                        <Card key={calculation.id} className="overflow-hidden hover:shadow-md transition-shadow">
+                        <Card key={calculation.id} className="border border-gray-200 dark:border-neutral-700 hover:border-blue-600 dark:hover:border-blue-500 transition-colors">
                           <CardContent className="p-6">
                             <div className="flex items-start justify-between gap-4">
                               <div className="flex-1 space-y-3">
-                                <div className="flex items-center gap-3">
+                                <div className="flex items-center justify-between">
                                   <Link href={calculation.toolPath}>
-                                    <Button variant="link" className="p-0 h-auto text-lg font-bold hover:text-blue-600" data-testid={`link-tool-${calculation.id}`}>
+                                    <Button variant="link" className="p-0 h-auto text-base font-semibold text-blue-600 hover:text-blue-700" data-testid={`link-tool-${calculation.id}`}>
                                       {calculation.toolName}
                                     </Button>
                                   </Link>
-                                </div>
-                                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                                  <Calendar className="h-4 w-4" />
-                                  {format(calculation.timestamp, 'PPp')}
+                                  <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                                    <Calendar className="h-4 w-4" />
+                                    {format(calculation.timestamp, 'PPp')}
+                                  </div>
                                 </div>
 
-                                <div className="grid md:grid-cols-2 gap-4 mt-4">
-                                  <div className="bg-gray-50 dark:bg-neutral-800 rounded-xl p-4">
-                                    <p className="font-semibold mb-3 flex items-center gap-2">
-                                      <div className="h-2 w-2 rounded-full bg-blue-500"></div>
-                                      Key Inputs
-                                    </p>
+                                <div className="grid md:grid-cols-2 gap-4">
+                                  <div className="bg-gray-50 dark:bg-neutral-800 rounded-lg p-4">
+                                    <p className="font-semibold text-sm text-gray-700 dark:text-gray-300 mb-3">Inputs</p>
                                     <div className="space-y-2 text-sm">
                                       {Object.entries(calculation.inputs).slice(0, 3).map(([key, value]) => (
                                         <div key={key} className="flex justify-between">
-                                          <span className="text-muted-foreground capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
-                                          <span className="font-medium">{typeof value === 'number' ? value.toLocaleString() : value}</span>
+                                          <span className="text-gray-600 dark:text-gray-400 capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
+                                          <span className="font-medium text-gray-900 dark:text-white">{typeof value === 'number' ? value.toLocaleString() : value}</span>
                                         </div>
                                       ))}
                                     </div>
                                   </div>
-                                  <div className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950/30 dark:to-purple-950/30 rounded-xl p-4">
-                                    <p className="font-semibold mb-3 flex items-center gap-2">
-                                      <div className="h-2 w-2 rounded-full bg-purple-500"></div>
-                                      Results
-                                    </p>
+                                  <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
+                                    <p className="font-semibold text-sm text-blue-900 dark:text-blue-300 mb-3">Results</p>
                                     <div className="space-y-2 text-sm">
                                       {Object.entries(calculation.results).slice(0, 3).map(([key, value]) => {
                                         if (typeof value === 'object' && value !== null) return null;
                                         return (
                                           <div key={key} className="flex justify-between">
-                                            <span className="text-muted-foreground capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
-                                            <span className="font-semibold">{typeof value === 'number' ? value.toLocaleString() : value}</span>
+                                            <span className="text-blue-700 dark:text-blue-400 capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
+                                            <span className="font-semibold text-blue-900 dark:text-blue-200">{typeof value === 'number' ? value.toLocaleString() : value}</span>
                                           </div>
                                         );
                                       })}
@@ -667,7 +629,7 @@ export default function Profile() {
                                   </AlertDialogHeader>
                                   <AlertDialogFooter>
                                     <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                    <AlertDialogAction onClick={() => handleDeleteCalculation(calculation.id!)}>
+                                    <AlertDialogAction onClick={() => handleDeleteCalculation(calculation.id!)} className="bg-blue-600 hover:bg-blue-700">
                                       Delete
                                     </AlertDialogAction>
                                   </AlertDialogFooter>
@@ -684,98 +646,44 @@ export default function Profile() {
             </Card>
           </section>
 
-          {/* Statistics Section */}
-          <section id="statistics" className="scroll-mt-20">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center">
-                <BarChart3 className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Usage Statistics</h2>
-                <p className="text-muted-foreground">Track your activity and usage patterns</p>
-              </div>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              <Card className="shadow-lg border-0 overflow-hidden">
-                <div className="h-2 bg-gradient-to-r from-blue-500 to-blue-600"></div>
-                <CardContent className="p-8">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
-                      <Heart className="h-8 w-8 text-white" />
-                    </div>
-                    <div className="text-right">
-                      <p className="text-4xl font-bold text-gray-900 dark:text-white" data-testid="text-favorites-count">{favoritesCount}</p>
-                      <p className="text-sm font-medium text-muted-foreground">Favorite Tools</p>
-                    </div>
-                  </div>
-                  <p className="text-sm text-muted-foreground">
-                    Tools you've marked as favorites for quick access
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card className="shadow-lg border-0 overflow-hidden">
-                <div className="h-2 bg-gradient-to-r from-purple-500 to-purple-600"></div>
-                <CardContent className="p-8">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="h-16 w-16 rounded-2xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center">
-                      <Clock className="h-8 w-8 text-white" />
-                    </div>
-                    <div className="text-right">
-                      <p className="text-4xl font-bold text-gray-900 dark:text-white" data-testid="text-recent-count">{recentToolsCount}</p>
-                      <p className="text-sm font-medium text-muted-foreground">Recently Used</p>
-                    </div>
-                  </div>
-                  <p className="text-sm text-muted-foreground">
-                    Tools you've used recently across all categories
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-          </section>
-
           {/* Account Settings Section */}
-          <section id="settings" className="scroll-mt-20">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center">
-                <Settings className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Account Settings</h2>
-                <p className="text-muted-foreground">Manage your account preferences and data</p>
-              </div>
+          <section id="settings">
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Account Settings</h2>
+              <p className="text-gray-600 dark:text-gray-400">Manage your preferences and account data</p>
             </div>
 
-            <Card className="shadow-lg border-0">
+            <Card className="border border-gray-200 dark:border-neutral-800">
               <CardContent className="p-8 space-y-8">
                 <div>
-                  <h3 className="text-lg font-semibold mb-4">Data Management</h3>
+                  <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-4">Data Management</h3>
                   <div className="grid sm:grid-cols-2 gap-4">
                     <AlertDialog>
                       <AlertDialogTrigger asChild>
-                        <Button variant="outline" className="h-14" data-testid="button-clear-favorites">
+                        <Button variant="outline" className="h-12" data-testid="button-clear-favorites">
                           <Trash2 className="mr-2 h-4 w-4" />
-                          Clear All Favorites
+                          Clear Favorites
                         </Button>
                       </AlertDialogTrigger>
                       <AlertDialogContent>
                         <AlertDialogHeader>
                           <AlertDialogTitle>Clear all favorites?</AlertDialogTitle>
                           <AlertDialogDescription>
-                            This will remove all tools from your favorites list. This action cannot be undone.
+                            This will remove all tools from your favorites list.
                           </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>
                           <AlertDialogCancel>Cancel</AlertDialogCancel>
-                          <AlertDialogAction onClick={handleClearFavorites}>Clear Favorites</AlertDialogAction>
+                          <AlertDialogAction onClick={handleClearFavorites} className="bg-blue-600 hover:bg-blue-700">
+                            Clear Favorites
+                          </AlertDialogAction>
                         </AlertDialogFooter>
                       </AlertDialogContent>
                     </AlertDialog>
 
                     <AlertDialog>
                       <AlertDialogTrigger asChild>
-                        <Button variant="outline" className="h-14" data-testid="button-clear-history">
+                        <Button variant="outline" className="h-12" data-testid="button-clear-history">
                           <Trash2 className="mr-2 h-4 w-4" />
                           Clear Recent History
                         </Button>
@@ -784,28 +692,29 @@ export default function Profile() {
                         <AlertDialogHeader>
                           <AlertDialogTitle>Clear recent history?</AlertDialogTitle>
                           <AlertDialogDescription>
-                            This will remove all recently used tools from your history. This action cannot be undone.
+                            This will remove all recently used tools from your history.
                           </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>
                           <AlertDialogCancel>Cancel</AlertDialogCancel>
-                          <AlertDialogAction onClick={handleClearRecentTools}>Clear History</AlertDialogAction>
+                          <AlertDialogAction onClick={handleClearRecentTools} className="bg-blue-600 hover:bg-blue-700">
+                            Clear History
+                          </AlertDialogAction>
                         </AlertDialogFooter>
                       </AlertDialogContent>
                     </AlertDialog>
                   </div>
                 </div>
 
-                <div className="pt-6 border-t">
-                  <h3 className="text-lg font-semibold mb-4">Account Actions</h3>
+                <div className="pt-6 border-t border-gray-200 dark:border-neutral-700">
+                  <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-4">Account Actions</h3>
                   <Button
-                    variant="destructive"
+                    variant="outline"
                     onClick={handleLogout}
-                    size="lg"
-                    className="w-full sm:w-auto"
+                    className="h-12 border-red-200 text-red-600 hover:bg-red-50 hover:text-red-700 dark:border-red-900 dark:text-red-400 dark:hover:bg-red-950/30"
                     data-testid="button-logout"
                   >
-                    <LogOut className="mr-2 h-5 w-5" />
+                    <LogOut className="mr-2 h-4 w-4" />
                     Sign Out
                   </Button>
                 </div>
