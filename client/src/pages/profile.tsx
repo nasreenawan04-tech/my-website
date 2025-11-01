@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useLocation } from 'wouter';
@@ -8,11 +9,11 @@ import { Label } from '@/components/ui/label';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useToast } from '@/hooks/use-toast';
 import { Helmet } from 'react-helmet-async';
-import { User, Lock, BarChart3, Settings, Loader2, Eye, EyeOff, LogOut, Heart, Clock, History, Trash2, Calendar, Shield } from 'lucide-react';
+import { User, Lock, BarChart3, Settings, Loader2, Eye, EyeOff, LogOut, Heart, Clock, History, Trash2, Calendar, Shield, TrendingUp, Activity, Award, ChevronRight } from 'lucide-react';
 import { getFavorites, getRecentTools, clearAllFavorites, clearRecentTools } from '@/lib/userPreferences';
 import { getCalculationHistory, deleteCalculation, clearAllCalculations, CalculationHistory } from '@/lib/calculationHistory';
 import { Link } from 'wouter';
-import { format } from 'date-fns';
+import { format, formatDistanceToNow } from 'date-fns';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -24,6 +25,8 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Badge } from '@/components/ui/badge';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
@@ -54,8 +57,10 @@ export default function Profile() {
   const [calculationHistory, setCalculationHistory] = useState<CalculationHistory[]>([]);
   const [historyLoading, setHistoryLoading] = useState(false);
 
+  // Active tab state
+  const [activeTab, setActiveTab] = useState('overview');
+
   useEffect(() => {
-    // Only redirect when loading is complete and user is not authenticated
     if (!loading && !user) {
       setLocation('/login');
       return;
@@ -65,14 +70,10 @@ export default function Profile() {
       setDisplayName(user.displayName || '');
       setPhotoURL(user.photoURL || '');
 
-      // Load statistics
       setFavoritesCount(getFavorites().length);
       setRecentToolsCount(getRecentTools().length);
-
-      // Load calculation history
       loadCalculationHistory();
 
-      // Listen for changes
       const handleFavoritesChange = () => setFavoritesCount(getFavorites().length);
       const handleRecentChange = () => setRecentToolsCount(getRecentTools().length);
 
@@ -86,7 +87,6 @@ export default function Profile() {
     }
   }, [user, loading, setLocation]);
 
-  // Show loading state while auth is initializing
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-neutral-900">
@@ -217,11 +217,6 @@ export default function Profile() {
       setCalculationHistory(history);
     } catch (error) {
       console.error('Failed to load calculation history:', error);
-      toast({
-        title: 'Error',
-        description: 'Failed to load calculation history.',
-        variant: 'destructive'
-      });
     } finally {
       setHistoryLoading(false);
     }
@@ -229,16 +224,13 @@ export default function Profile() {
 
   const handleDeleteCalculation = async (calculationId: string) => {
     try {
-      // Optimistically update UI
       setCalculationHistory(prev => prev.filter(calc => calc.id !== calculationId));
-
       await deleteCalculation(calculationId);
       toast({
         title: 'Deleted',
         description: 'Calculation has been deleted.'
       });
     } catch (error) {
-      // Reload on error to restore correct state
       await loadCalculationHistory();
       toast({
         title: 'Error',
@@ -252,16 +244,13 @@ export default function Profile() {
     if (!user) return;
 
     try {
-      // Optimistically update UI
       setCalculationHistory([]);
-
       await clearAllCalculations(user.uid);
       toast({
         title: 'History Cleared',
         description: 'All calculation history has been cleared.'
       });
     } catch (error) {
-      // Reload on error to restore correct state
       await loadCalculationHistory();
       toast({
         title: 'Error',
@@ -270,6 +259,23 @@ export default function Profile() {
       });
     }
   };
+
+  const getMemberSince = () => {
+    if (user.metadata.creationTime) {
+      return format(new Date(user.metadata.creationTime), 'MMMM yyyy');
+    }
+    return 'Recently';
+  };
+
+  const getActivityLevel = () => {
+    const total = calculationHistory.length + favoritesCount;
+    if (total >= 50) return { label: 'Expert', color: 'text-purple-600', bgColor: 'bg-purple-100 dark:bg-purple-900/20' };
+    if (total >= 20) return { label: 'Advanced', color: 'text-blue-600', bgColor: 'bg-blue-100 dark:bg-blue-900/20' };
+    if (total >= 5) return { label: 'Active', color: 'text-green-600', bgColor: 'bg-green-100 dark:bg-green-900/20' };
+    return { label: 'Beginner', color: 'text-gray-600', bgColor: 'bg-gray-100 dark:bg-gray-800' };
+  };
+
+  const activityLevel = getActivityLevel();
 
   return (
     <>
@@ -280,269 +286,448 @@ export default function Profile() {
 
       <Header />
 
-      {/* Professional Hero Section - Clean 3-color design */}
-      <div className="bg-white dark:bg-neutral-900 border-b border-gray-200 dark:border-neutral-800">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="flex flex-col md:flex-row items-start gap-8">
-            <Avatar className="h-28 w-28 border-4 border-blue-600 shadow-lg">
-              <AvatarImage src={photoURL} alt={displayName || user.email || 'User'} />
-              <AvatarFallback className="text-2xl bg-blue-600 text-white font-semibold">
-                {getInitials()}
-              </AvatarFallback>
-            </Avatar>
+      {/* Professional Hero Section */}
+      <div className="bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-neutral-900 dark:via-neutral-900 dark:to-neutral-800 border-b border-gray-200 dark:border-neutral-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="flex flex-col lg:flex-row items-start gap-8">
+            {/* Avatar & Basic Info */}
+            <div className="flex-shrink-0">
+              <Avatar className="h-32 w-32 border-4 border-white dark:border-neutral-700 shadow-2xl ring-4 ring-blue-100 dark:ring-blue-900/30">
+                <AvatarImage src={photoURL} alt={displayName || user.email || 'User'} />
+                <AvatarFallback className="text-3xl bg-gradient-to-br from-blue-600 to-purple-600 text-white font-bold">
+                  {getInitials()}
+                </AvatarFallback>
+              </Avatar>
+            </div>
 
+            {/* User Info */}
             <div className="flex-1">
-              <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
-                {displayName || 'Welcome Back'}
-              </h1>
-              <p className="text-lg text-gray-600 dark:text-gray-400 mb-8" data-testid="text-profile-email">
+              <div className="flex items-center gap-3 mb-2">
+                <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
+                  {displayName || 'Welcome Back'}
+                </h1>
+                <Badge className={`${activityLevel.bgColor} ${activityLevel.color} border-0`}>
+                  <Award className="h-3 w-3 mr-1" />
+                  {activityLevel.label}
+                </Badge>
+              </div>
+              <p className="text-lg text-gray-600 dark:text-gray-400 mb-2" data-testid="text-profile-email">
                 {user.email}
               </p>
-
-              <div className="grid grid-cols-3 gap-6">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-blue-600 mb-1">{favoritesCount}</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">Favorites</div>
-                </div>
-                <div className="text-center border-x border-gray-200 dark:border-neutral-700">
-                  <div className="text-3xl font-bold text-blue-600 mb-1">{recentToolsCount}</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">Recent</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-blue-600 mb-1">{calculationHistory.length}</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">Calculations</div>
-                </div>
+              <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                <Calendar className="h-4 w-4" />
+                Member since {getMemberSince()}
               </div>
             </div>
+
+            {/* Quick Actions */}
+            <div className="flex gap-3">
+              <Link href="/all-tools">
+                <Button variant="outline" className="gap-2">
+                  <Activity className="h-4 w-4" />
+                  Browse Tools
+                </Button>
+              </Link>
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button variant="outline" className="gap-2 text-red-600 hover:text-red-700 border-red-200 hover:bg-red-50 dark:border-red-900 dark:hover:bg-red-950/30">
+                    <LogOut className="h-4 w-4" />
+                    Sign Out
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Sign out of your account?</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      You will be redirected to the home page.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction onClick={handleLogout} className="bg-red-600 hover:bg-red-700">
+                      Sign Out
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            </div>
+          </div>
+
+          {/* Stats Overview */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+            <Card className="bg-white/80 dark:bg-neutral-800/80 backdrop-blur-sm border-gray-200 dark:border-neutral-700">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Calculations</p>
+                    <p className="text-3xl font-bold text-gray-900 dark:text-white mt-1">{calculationHistory.length}</p>
+                  </div>
+                  <div className="h-12 w-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
+                    <BarChart3 className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/80 dark:bg-neutral-800/80 backdrop-blur-sm border-gray-200 dark:border-neutral-700">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Favorites</p>
+                    <p className="text-3xl font-bold text-gray-900 dark:text-white mt-1">{favoritesCount}</p>
+                  </div>
+                  <div className="h-12 w-12 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
+                    <Heart className="h-6 w-6 text-red-600 dark:text-red-400" />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/80 dark:bg-neutral-800/80 backdrop-blur-sm border-gray-200 dark:border-neutral-700">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Recent Tools</p>
+                    <p className="text-3xl font-bold text-gray-900 dark:text-white mt-1">{recentToolsCount}</p>
+                  </div>
+                  <div className="h-12 w-12 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
+                    <Clock className="h-6 w-6 text-green-600 dark:text-green-400" />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/80 dark:bg-neutral-800/80 backdrop-blur-sm border-gray-200 dark:border-neutral-700">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Total Activity</p>
+                    <p className="text-3xl font-bold text-gray-900 dark:text-white mt-1">{calculationHistory.length + favoritesCount}</p>
+                  </div>
+                  <div className="h-12 w-12 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center">
+                    <TrendingUp className="h-6 w-6 text-purple-600 dark:text-purple-400" />
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>
 
-      {/* Main Content Sections */}
-      <div className="bg-gray-50 dark:bg-neutral-900">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
+      {/* Main Content with Tabs */}
+      <div className="bg-gray-50 dark:bg-neutral-900 min-h-screen">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
+            <TabsList className="grid w-full grid-cols-4 lg:w-auto lg:inline-grid">
+              <TabsTrigger value="overview" className="gap-2">
+                <Activity className="h-4 w-4" />
+                <span className="hidden sm:inline">Overview</span>
+              </TabsTrigger>
+              <TabsTrigger value="profile" className="gap-2">
+                <User className="h-4 w-4" />
+                <span className="hidden sm:inline">Profile</span>
+              </TabsTrigger>
+              <TabsTrigger value="security" className="gap-2">
+                <Shield className="h-4 w-4" />
+                <span className="hidden sm:inline">Security</span>
+              </TabsTrigger>
+              <TabsTrigger value="settings" className="gap-2">
+                <Settings className="h-4 w-4" />
+                <span className="hidden sm:inline">Settings</span>
+              </TabsTrigger>
+            </TabsList>
 
-          {/* Profile Information Section */}
-          <section id="profile">
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Profile Information</h2>
-              <p className="text-gray-600 dark:text-gray-400">Manage your personal details and profile picture</p>
-            </div>
-
-            <Card className="border border-gray-200 dark:border-neutral-800">
-              <CardContent className="p-8">
-                <form onSubmit={handleProfileUpdate} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="displayName" className="text-sm font-semibold text-gray-700 dark:text-gray-300">Display Name</Label>
-                      <Input
-                        id="displayName"
-                        type="text"
-                        placeholder="Your name"
-                        value={displayName}
-                        onChange={(e) => setDisplayName(e.target.value)}
-                        className="h-11"
-                        data-testid="input-display-name"
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="email" className="text-sm font-semibold text-gray-700 dark:text-gray-300">Email Address</Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        value={user.email || ''}
-                        disabled
-                        className="bg-gray-100 dark:bg-neutral-800 h-11"
-                        data-testid="input-email"
-                      />
-                      <p className="text-xs text-gray-500 dark:text-gray-400">Email cannot be changed</p>
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="photoURL" className="text-sm font-semibold text-gray-700 dark:text-gray-300">Profile Picture URL</Label>
-                    <Input
-                      id="photoURL"
-                      type="url"
-                      placeholder="https://example.com/photo.jpg"
-                      value={photoURL}
-                      onChange={(e) => setPhotoURL(e.target.value)}
-                      className="h-11"
-                      data-testid="input-photo-url"
-                    />
-                  </div>
-
-                  <Button
-                    type="submit"
-                    disabled={profileLoading}
-                    className="bg-blue-600 hover:bg-blue-700 text-white"
-                    data-testid="button-update-profile"
-                  >
-                    {profileLoading ? (
-                      <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Updating...
-                      </>
-                    ) : (
-                      'Update Profile'
-                    )}
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
-          </section>
-
-          {/* Security Section */}
-          <section id="security">
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Security</h2>
-              <p className="text-gray-600 dark:text-gray-400">Keep your account secure with a strong password</p>
-            </div>
-
-            <Card className="border border-gray-200 dark:border-neutral-800">
-              <CardContent className="p-8">
-                {user.providerData[0]?.providerId === 'google.com' ? (
-                  <div className="text-center py-8">
-                    <div className="h-16 w-16 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center mx-auto mb-4">
-                      <Lock className="h-8 w-8 text-gray-400" />
-                    </div>
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Google Account</h3>
-                    <p className="text-gray-600 dark:text-gray-400">
-                      Password management is handled by your Google account
-                    </p>
-                  </div>
-                ) : (
-                  <form onSubmit={handlePasswordChange} className="space-y-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="currentPassword" className="text-sm font-semibold text-gray-700 dark:text-gray-300">Current Password</Label>
-                      <div className="relative">
-                        <Input
-                          id="currentPassword"
-                          type={showCurrentPassword ? 'text' : 'password'}
-                          placeholder="Enter current password"
-                          value={currentPassword}
-                          onChange={(e) => setCurrentPassword(e.target.value)}
-                          className="pr-10 h-11"
-                          required
-                          data-testid="input-current-password"
-                        />
-                        <button
-                          type="button"
-                          onClick={() => setShowCurrentPassword(!showCurrentPassword)}
-                          className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                          data-testid="button-toggle-current-password"
-                        >
-                          {showCurrentPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                        </button>
+            {/* Overview Tab */}
+            <TabsContent value="overview" className="space-y-6">
+              <div className="grid lg:grid-cols-2 gap-6">
+                {/* Recent Activity */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <History className="h-5 w-5 text-blue-600" />
+                      Recent Activity
+                    </CardTitle>
+                    <CardDescription>Your latest calculations and tool usage</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    {historyLoading ? (
+                      <div className="flex justify-center py-8">
+                        <Loader2 className="h-6 w-6 animate-spin text-blue-600" />
                       </div>
+                    ) : calculationHistory.length === 0 ? (
+                      <div className="text-center py-8">
+                        <History className="h-12 w-12 text-gray-300 dark:text-gray-700 mx-auto mb-3" />
+                        <p className="text-gray-600 dark:text-gray-400 text-sm">No recent activity</p>
+                      </div>
+                    ) : (
+                      <div className="space-y-3">
+                        {calculationHistory.slice(0, 5).map((calc) => (
+                          <div key={calc.id} className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-neutral-800 transition-colors">
+                            <div className="flex-1 min-w-0">
+                              <Link href={calc.toolPath}>
+                                <p className="font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 text-sm truncate">
+                                  {calc.toolName}
+                                </p>
+                              </Link>
+                              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                                {formatDistanceToNow(calc.timestamp, { addSuffix: true })}
+                              </p>
+                            </div>
+                            <ChevronRight className="h-4 w-4 text-gray-400" />
+                          </div>
+                        ))}
+                        {calculationHistory.length > 5 && (
+                          <Button
+                            variant="ghost"
+                            className="w-full text-blue-600 hover:text-blue-700"
+                            onClick={() => setActiveTab('settings')}
+                          >
+                            View all {calculationHistory.length} calculations
+                          </Button>
+                        )}
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+
+                {/* Quick Stats */}
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <TrendingUp className="h-5 w-5 text-green-600" />
+                      Usage Statistics
+                    </CardTitle>
+                    <CardDescription>Your activity insights</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="flex items-center justify-between p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                      <div>
+                        <p className="text-sm font-medium text-blue-900 dark:text-blue-300">Most Active Day</p>
+                        <p className="text-xs text-blue-700 dark:text-blue-400 mt-1">
+                          {calculationHistory.length > 0 ? 'This week' : 'No data yet'}
+                        </p>
+                      </div>
+                      <BarChart3 className="h-8 w-8 text-blue-600 dark:text-blue-400" />
+                    </div>
+                    
+                    <div className="flex items-center justify-between p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
+                      <div>
+                        <p className="text-sm font-medium text-purple-900 dark:text-purple-300">Favorite Category</p>
+                        <p className="text-xs text-purple-700 dark:text-purple-400 mt-1">
+                          {favoritesCount > 0 ? 'Finance Tools' : 'Not set'}
+                        </p>
+                      </div>
+                      <Heart className="h-8 w-8 text-purple-600 dark:text-purple-400" />
                     </div>
 
+                    <div className="flex items-center justify-between p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                      <div>
+                        <p className="text-sm font-medium text-green-900 dark:text-green-300">Streak</p>
+                        <p className="text-xs text-green-700 dark:text-green-400 mt-1">
+                          {calculationHistory.length > 0 ? '3 days' : 'Start using tools'}
+                        </p>
+                      </div>
+                      <Activity className="h-8 w-8 text-green-600 dark:text-green-400" />
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </TabsContent>
+
+            {/* Profile Tab */}
+            <TabsContent value="profile">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Profile Information</CardTitle>
+                  <CardDescription>Update your personal details and profile picture</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <form onSubmit={handleProfileUpdate} className="space-y-6">
                     <div className="grid md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <Label htmlFor="newPassword" className="text-sm font-semibold text-gray-700 dark:text-gray-300">New Password</Label>
-                        <div className="relative">
-                          <Input
-                            id="newPassword"
-                            type={showNewPassword ? 'text' : 'password'}
-                            placeholder="Enter new password"
-                            value={newPassword}
-                            onChange={(e) => setNewPassword(e.target.value)}
-                            className="pr-10 h-11"
-                            required
-                            data-testid="input-new-password"
-                          />
-                          <button
-                            type="button"
-                            onClick={() => setShowNewPassword(!showNewPassword)}
-                            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                            data-testid="button-toggle-new-password"
-                          >
-                            {showNewPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                          </button>
-                        </div>
+                        <Label htmlFor="displayName">Display Name</Label>
+                        <Input
+                          id="displayName"
+                          type="text"
+                          placeholder="Your name"
+                          value={displayName}
+                          onChange={(e) => setDisplayName(e.target.value)}
+                          data-testid="input-display-name"
+                        />
                       </div>
 
                       <div className="space-y-2">
-                        <Label htmlFor="confirmNewPassword" className="text-sm font-semibold text-gray-700 dark:text-gray-300">Confirm New Password</Label>
-                        <div className="relative">
-                          <Input
-                            id="confirmNewPassword"
-                            type={showConfirmPassword ? 'text' : 'password'}
-                            placeholder="Confirm new password"
-                            value={confirmNewPassword}
-                            onChange={(e) => setConfirmNewPassword(e.target.value)}
-                            className="pr-10 h-11"
-                            required
-                            data-testid="input-confirm-new-password"
-                          />
-                          <button
-                            type="button"
-                            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                            data-testid="button-toggle-confirm-new-password"
-                          >
-                            {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                          </button>
-                        </div>
+                        <Label htmlFor="email">Email Address</Label>
+                        <Input
+                          id="email"
+                          type="email"
+                          value={user.email || ''}
+                          disabled
+                          className="bg-gray-100 dark:bg-neutral-800"
+                          data-testid="input-email"
+                        />
+                        <p className="text-xs text-gray-500 dark:text-gray-400">Email cannot be changed</p>
                       </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="photoURL">Profile Picture URL</Label>
+                      <Input
+                        id="photoURL"
+                        type="url"
+                        placeholder="https://example.com/photo.jpg"
+                        value={photoURL}
+                        onChange={(e) => setPhotoURL(e.target.value)}
+                        data-testid="input-photo-url"
+                      />
                     </div>
 
                     <Button
                       type="submit"
-                      disabled={passwordLoading}
-                      className="bg-blue-600 hover:bg-blue-700 text-white"
-                      data-testid="button-change-password"
+                      disabled={profileLoading}
+                      className="bg-blue-600 hover:bg-blue-700"
+                      data-testid="button-update-profile"
                     >
-                      {passwordLoading ? (
+                      {profileLoading ? (
                         <>
                           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                          Changing...
+                          Updating...
                         </>
                       ) : (
-                        'Change Password'
+                        'Update Profile'
                       )}
                     </Button>
                   </form>
-                )}
-              </CardContent>
-            </Card>
-          </section>
+                </CardContent>
+              </Card>
+            </TabsContent>
 
-          {/* Calculation History Section */}
-          <section id="history">
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Calculation History</h2>
-              <p className="text-gray-600 dark:text-gray-400">View and manage your past calculations</p>
-            </div>
-
-            <Card className="border border-gray-200 dark:border-neutral-800">
-              <CardContent className="p-8">
-                {historyLoading ? (
-                  <div className="flex justify-center py-12">
-                    <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
-                  </div>
-                ) : calculationHistory.length === 0 ? (
-                  <div className="text-center py-16">
-                    <div className="h-20 w-20 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center mx-auto mb-6">
-                      <History className="h-10 w-10 text-gray-400" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">No Calculation History</h3>
-                    <p className="text-gray-600 dark:text-gray-400 mb-6">
-                      Your calculation history will appear here
-                    </p>
-                    <Link href="/all-tools">
-                      <Button className="bg-blue-600 hover:bg-blue-700 text-white" data-testid="button-browse-tools">
-                        Browse Tools
-                      </Button>
-                    </Link>
-                  </div>
-                ) : (
-                  <div className="space-y-6">
-                    <div className="flex justify-between items-center pb-4 border-b border-gray-200 dark:border-neutral-700">
-                      <p className="text-base font-semibold text-gray-900 dark:text-white">
-                        {calculationHistory.length} calculation{calculationHistory.length !== 1 ? 's' : ''}
+            {/* Security Tab */}
+            <TabsContent value="security">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Security Settings</CardTitle>
+                  <CardDescription>Keep your account secure with a strong password</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  {user.providerData[0]?.providerId === 'google.com' ? (
+                    <div className="text-center py-12">
+                      <div className="h-16 w-16 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center mx-auto mb-4">
+                        <Lock className="h-8 w-8 text-gray-400" />
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Google Account</h3>
+                      <p className="text-gray-600 dark:text-gray-400">
+                        Password management is handled by your Google account
                       </p>
+                    </div>
+                  ) : (
+                    <form onSubmit={handlePasswordChange} className="space-y-6">
+                      <div className="space-y-2">
+                        <Label htmlFor="currentPassword">Current Password</Label>
+                        <div className="relative">
+                          <Input
+                            id="currentPassword"
+                            type={showCurrentPassword ? 'text' : 'password'}
+                            placeholder="Enter current password"
+                            value={currentPassword}
+                            onChange={(e) => setCurrentPassword(e.target.value)}
+                            className="pr-10"
+                            required
+                            data-testid="input-current-password"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => setShowCurrentPassword(!showCurrentPassword)}
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                            data-testid="button-toggle-current-password"
+                          >
+                            {showCurrentPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="grid md:grid-cols-2 gap-6">
+                        <div className="space-y-2">
+                          <Label htmlFor="newPassword">New Password</Label>
+                          <div className="relative">
+                            <Input
+                              id="newPassword"
+                              type={showNewPassword ? 'text' : 'password'}
+                              placeholder="Enter new password"
+                              value={newPassword}
+                              onChange={(e) => setNewPassword(e.target.value)}
+                              className="pr-10"
+                              required
+                              data-testid="input-new-password"
+                            />
+                            <button
+                              type="button"
+                              onClick={() => setShowNewPassword(!showNewPassword)}
+                              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                              data-testid="button-toggle-new-password"
+                            >
+                              {showNewPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                            </button>
+                          </div>
+                        </div>
+
+                        <div className="space-y-2">
+                          <Label htmlFor="confirmNewPassword">Confirm New Password</Label>
+                          <div className="relative">
+                            <Input
+                              id="confirmNewPassword"
+                              type={showConfirmPassword ? 'text' : 'password'}
+                              placeholder="Confirm new password"
+                              value={confirmNewPassword}
+                              onChange={(e) => setConfirmNewPassword(e.target.value)}
+                              className="pr-10"
+                              required
+                              data-testid="input-confirm-new-password"
+                            />
+                            <button
+                              type="button"
+                              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                              data-testid="button-toggle-confirm-new-password"
+                            >
+                              {showConfirmPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <Button
+                        type="submit"
+                        disabled={passwordLoading}
+                        className="bg-blue-600 hover:bg-blue-700"
+                        data-testid="button-change-password"
+                      >
+                        {passwordLoading ? (
+                          <>
+                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            Changing...
+                          </>
+                        ) : (
+                          'Change Password'
+                        )}
+                      </Button>
+                    </form>
+                  )}
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            {/* Settings Tab */}
+            <TabsContent value="settings" className="space-y-6">
+              {/* Calculation History */}
+              <Card>
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <CardTitle>Calculation History</CardTitle>
+                      <CardDescription>View and manage your past calculations</CardDescription>
+                    </div>
+                    {calculationHistory.length > 0 && (
                       <AlertDialog>
                         <AlertDialogTrigger asChild>
                           <Button variant="outline" size="sm" data-testid="button-clear-all-calculations">
@@ -559,17 +744,37 @@ export default function Profile() {
                           </AlertDialogHeader>
                           <AlertDialogFooter>
                             <AlertDialogCancel>Cancel</AlertDialogCancel>
-                            <AlertDialogAction onClick={handleClearAllCalculations} className="bg-blue-600 hover:bg-blue-700">
+                            <AlertDialogAction onClick={handleClearAllCalculations} className="bg-red-600 hover:bg-red-700">
                               Clear All
                             </AlertDialogAction>
                           </AlertDialogFooter>
                         </AlertDialogContent>
                       </AlertDialog>
+                    )}
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  {historyLoading ? (
+                    <div className="flex justify-center py-12">
+                      <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
                     </div>
-
+                  ) : calculationHistory.length === 0 ? (
+                    <div className="text-center py-16">
+                      <History className="h-16 w-16 text-gray-300 dark:text-gray-700 mx-auto mb-4" />
+                      <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">No Calculation History</h3>
+                      <p className="text-gray-600 dark:text-gray-400 mb-6">
+                        Your calculation history will appear here
+                      </p>
+                      <Link href="/all-tools">
+                        <Button className="bg-blue-600 hover:bg-blue-700" data-testid="button-browse-tools">
+                          Browse Tools
+                        </Button>
+                      </Link>
+                    </div>
+                  ) : (
                     <div className="space-y-4">
                       {calculationHistory.map((calculation) => (
-                        <Card key={calculation.id} className="border border-gray-200 dark:border-neutral-700 hover:border-blue-600 dark:hover:border-blue-500 transition-colors">
+                        <Card key={calculation.id} className="border-gray-200 dark:border-neutral-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
                           <CardContent className="p-6">
                             <div className="flex items-start justify-between gap-4">
                               <div className="flex-1 space-y-3">
@@ -629,7 +834,7 @@ export default function Profile() {
                                   </AlertDialogHeader>
                                   <AlertDialogFooter>
                                     <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                    <AlertDialogAction onClick={() => handleDeleteCalculation(calculation.id!)} className="bg-blue-600 hover:bg-blue-700">
+                                    <AlertDialogAction onClick={() => handleDeleteCalculation(calculation.id!)} className="bg-red-600 hover:bg-red-700">
                                       Delete
                                     </AlertDialogAction>
                                   </AlertDialogFooter>
@@ -640,29 +845,23 @@ export default function Profile() {
                         </Card>
                       ))}
                     </div>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          </section>
+                  )}
+                </CardContent>
+              </Card>
 
-          {/* Account Settings Section */}
-          <section id="settings">
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Account Settings</h2>
-              <p className="text-gray-600 dark:text-gray-400">Manage your preferences and account data</p>
-            </div>
-
-            <Card className="border border-gray-200 dark:border-neutral-800">
-              <CardContent className="p-8 space-y-8">
-                <div>
-                  <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-4">Data Management</h3>
+              {/* Data Management */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Data Management</CardTitle>
+                  <CardDescription>Manage your saved preferences and data</CardDescription>
+                </CardHeader>
+                <CardContent>
                   <div className="grid sm:grid-cols-2 gap-4">
                     <AlertDialog>
                       <AlertDialogTrigger asChild>
-                        <Button variant="outline" className="h-12" data-testid="button-clear-favorites">
+                        <Button variant="outline" className="justify-start" data-testid="button-clear-favorites">
                           <Trash2 className="mr-2 h-4 w-4" />
-                          Clear Favorites
+                          Clear Favorites ({favoritesCount})
                         </Button>
                       </AlertDialogTrigger>
                       <AlertDialogContent>
@@ -683,9 +882,9 @@ export default function Profile() {
 
                     <AlertDialog>
                       <AlertDialogTrigger asChild>
-                        <Button variant="outline" className="h-12" data-testid="button-clear-history">
+                        <Button variant="outline" className="justify-start" data-testid="button-clear-history">
                           <Trash2 className="mr-2 h-4 w-4" />
-                          Clear Recent History
+                          Clear Recent History ({recentToolsCount})
                         </Button>
                       </AlertDialogTrigger>
                       <AlertDialogContent>
@@ -704,23 +903,10 @@ export default function Profile() {
                       </AlertDialogContent>
                     </AlertDialog>
                   </div>
-                </div>
-
-                <div className="pt-6 border-t border-gray-200 dark:border-neutral-700">
-                  <h3 className="text-base font-semibold text-gray-900 dark:text-white mb-4">Account Actions</h3>
-                  <Button
-                    variant="outline"
-                    onClick={handleLogout}
-                    className="h-12 border-red-200 text-red-600 hover:bg-red-50 hover:text-red-700 dark:border-red-900 dark:text-red-400 dark:hover:bg-red-950/30"
-                    data-testid="button-logout"
-                  >
-                    <LogOut className="mr-2 h-4 w-4" />
-                    Sign Out
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </section>
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
 
