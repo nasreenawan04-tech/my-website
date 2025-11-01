@@ -1317,15 +1317,6 @@ export default function BusinessLoanCalculator() {
                           {showChart ? 'Hide' : 'Show'} Chart
                         </Button>
                         <Button
-                          onClick={handleShare}
-                          variant="outline"
-                          size="sm"
-                          className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
-                        >
-                          <Share2 className="w-4 h-4 mr-1" />
-                          Share
-                        </Button>
-                        <Button
                           onClick={handleDownloadPDF}
                           variant="outline"
                           size="sm"
