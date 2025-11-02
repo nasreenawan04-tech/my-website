@@ -68,27 +68,27 @@ const AllTools = () => {
       key: 'finance', 
       label: 'Finance Tools', 
       icon: Calculator, 
-      color: 'from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700',
-      bgColor: 'bg-blue-50 dark:bg-blue-950/30',
-      textColor: 'text-blue-600 dark:text-blue-400',
+      color: 'from-blue-500 to-blue-600',
+      bgColor: 'bg-blue-50',
+      textColor: 'text-blue-600',
       count: tools.filter(t => t.category === 'finance').length
     },
     { 
       key: 'text', 
       label: 'Text Tools', 
       icon: FileText, 
-      color: 'from-purple-500 to-purple-600 dark:from-purple-600 dark:to-purple-700',
-      bgColor: 'bg-purple-50 dark:bg-purple-950/30', 
-      textColor: 'text-purple-600 dark:text-purple-400',
+      color: 'from-purple-500 to-purple-600',
+      bgColor: 'bg-purple-50', 
+      textColor: 'text-purple-600',
       count: tools.filter(t => t.category === 'text').length
     },
     { 
       key: 'health', 
       label: 'Health Tools', 
       icon: Heart, 
-      color: 'from-pink-500 to-pink-600 dark:from-pink-600 dark:to-pink-700',
-      bgColor: 'bg-pink-50 dark:bg-pink-950/30',
-      textColor: 'text-pink-600 dark:text-pink-400',
+      color: 'from-pink-500 to-pink-600',
+      bgColor: 'bg-pink-50',
+      textColor: 'text-pink-600',
       count: tools.filter(t => t.category === 'health').length
     }
   ];
@@ -106,12 +106,12 @@ const AllTools = () => {
       <div className="min-h-screen flex flex-col" data-testid="page-all-tools">
         <Header />
         
-        <main className="flex-1 bg-neutral-50 dark:bg-neutral-900">
+        <main className="flex-1 bg-neutral-50">
           {/* Modern Hero Section */}
-          <section className="relative bg-gradient-to-br from-blue-600 via-blue-500 to-purple-600 dark:from-blue-700 dark:via-blue-600 dark:to-purple-700 text-white py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden" aria-label="Page header">
+          <section className="relative bg-gradient-to-br from-blue-600 via-blue-500 to-purple-600 text-white py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden" aria-label="Page header">
             {/* Background Pattern */}
             <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]" aria-hidden="true" />
-            <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 dark:from-blue-900/30 to-transparent" aria-hidden="true" />
+            <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent" aria-hidden="true" />
             
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               {/* Main Content */}
@@ -187,8 +187,8 @@ const AllTools = () => {
                       onClick={() => handleCategoryChange(tab.key)}
                       className={`px-4 sm:px-8 py-3 sm:py-4 rounded-2xl font-semibold transition-all duration-200 text-sm sm:text-base whitespace-nowrap ${
                         selectedCategory === tab.key
-                          ? 'bg-gradient-to-r from-blue-500 to-purple-600 dark:from-blue-600 dark:to-purple-700 text-white shadow-lg hover:shadow-xl scale-105'
-                          : 'bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-700 shadow-md hover:shadow-lg border border-neutral-200 dark:border-neutral-700'
+                          ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg hover:shadow-xl scale-105'
+                          : 'bg-white text-neutral-700 hover:bg-neutral-50 shadow-md hover:shadow-lg border border-neutral-200'
                       }`}
                       data-testid={`button-filter-${tab.key}`}
                       aria-label={`Filter by ${tab.label}`}
@@ -203,7 +203,7 @@ const AllTools = () => {
 
               {/* Results Info */}
               <div className="mb-10">
-                <p className="text-neutral-700 dark:text-neutral-300 text-center text-lg font-medium" data-testid="text-results-count" role="status" aria-live="polite">
+                <p className="text-neutral-700 text-center text-lg font-medium" data-testid="text-results-count" role="status" aria-live="polite">
                   Showing {filteredTools.length} tools{selectedCategory !== 'all' && ` in ${categories[selectedCategory as keyof typeof categories]} category`}
                   {searchQuery && ` matching "${searchQuery}"`}
                 </p>
@@ -218,11 +218,11 @@ const AllTools = () => {
                 </div>
               ) : (
                 <div className="text-center py-20" data-testid="empty-state-no-tools" role="status">
-                  <div className="inline-flex items-center justify-center w-24 h-24 bg-neutral-100 dark:bg-neutral-800 rounded-full mb-6">
-                    <Search className="w-12 h-12 text-neutral-400 dark:text-neutral-500" aria-hidden="true" />
+                  <div className="inline-flex items-center justify-center w-24 h-24 bg-neutral-100 rounded-full mb-6">
+                    <Search className="w-12 h-12 text-neutral-400" aria-hidden="true" />
                   </div>
-                  <h3 className="text-3xl font-bold text-neutral-800 dark:text-neutral-200 mb-4">No tools found</h3>
-                  <p className="text-neutral-600 dark:text-neutral-400 text-lg max-w-md mx-auto">
+                  <h3 className="text-3xl font-bold text-neutral-800 mb-4">No tools found</h3>
+                  <p className="text-neutral-600 text-lg max-w-md mx-auto">
                     Try adjusting your search query or selecting a different category.
                   </p>
                 </div>

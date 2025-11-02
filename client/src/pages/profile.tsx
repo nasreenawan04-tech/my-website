@@ -90,7 +90,7 @@ export default function Profile() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-neutral-900">
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
       </div>
     );
@@ -270,10 +270,10 @@ export default function Profile() {
 
   const getActivityLevel = () => {
     const total = calculationHistory.length + favoritesCount;
-    if (total >= 50) return { label: 'Expert', color: 'text-purple-600', bgColor: 'bg-purple-100 dark:bg-purple-900/20' };
-    if (total >= 20) return { label: 'Advanced', color: 'text-blue-600', bgColor: 'bg-blue-100 dark:bg-blue-900/20' };
-    if (total >= 5) return { label: 'Active', color: 'text-green-600', bgColor: 'bg-green-100 dark:bg-green-900/20' };
-    return { label: 'Beginner', color: 'text-gray-600', bgColor: 'bg-gray-100 dark:bg-gray-800' };
+    if (total >= 50) return { label: 'Expert', color: 'text-purple-600', bgColor: 'bg-purple-100' };
+    if (total >= 20) return { label: 'Advanced', color: 'text-blue-600', bgColor: 'bg-blue-100' };
+    if (total >= 5) return { label: 'Active', color: 'text-green-600', bgColor: 'bg-green-100' };
+    return { label: 'Beginner', color: 'text-gray-600', bgColor: 'bg-gray-100' };
   };
 
   const activityLevel = getActivityLevel();
@@ -288,12 +288,12 @@ export default function Profile() {
       <Header />
 
       {/* Professional Hero Section */}
-      <div className="bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-neutral-900 dark:via-neutral-900 dark:to-neutral-800 border-b border-gray-200 dark:border-neutral-800">
+      <div className="bg-gradient-to-br from-blue-50 via-white to-purple-50 border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="flex flex-col lg:flex-row items-start gap-8">
             {/* Avatar & Basic Info */}
             <div className="flex-shrink-0">
-              <Avatar className="h-32 w-32 border-4 border-white dark:border-neutral-700 shadow-2xl ring-4 ring-blue-100 dark:ring-blue-900/30">
+              <Avatar className="h-32 w-32 border-4 border-white shadow-2xl ring-4 ring-blue-100">
                 <AvatarImage src={photoURL || defaultAvatarUrl} alt={displayName || user.email || 'User'} />
                 <AvatarFallback className="text-3xl bg-gradient-to-br from-blue-600 to-purple-600 text-white font-bold">
                   {getInitials()}
@@ -304,7 +304,7 @@ export default function Profile() {
             {/* User Info */}
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-2">
-                <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
+                <h1 className="text-4xl font-bold text-gray-900">
                   {displayName || 'Welcome Back'}
                 </h1>
                 <Badge className={`${activityLevel.bgColor} ${activityLevel.color} border-0`}>
@@ -312,10 +312,10 @@ export default function Profile() {
                   {activityLevel.label}
                 </Badge>
               </div>
-              <p className="text-lg text-gray-600 dark:text-gray-400 mb-2" data-testid="text-profile-email">
+              <p className="text-lg text-gray-600 mb-2" data-testid="text-profile-email">
                 {user.email}
               </p>
-              <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+              <div className="flex items-center gap-2 text-sm text-gray-500">
                 <Calendar className="h-4 w-4" />
                 Member since {getMemberSince()}
               </div>
@@ -331,7 +331,7 @@ export default function Profile() {
               </Link>
               <AlertDialog>
                 <AlertDialogTrigger asChild>
-                  <Button variant="outline" className="gap-2 text-red-600 hover:text-red-700 border-red-200 hover:bg-red-50 dark:border-red-900 dark:hover:bg-red-950/30">
+                  <Button variant="outline" className="gap-2 text-red-600 hover:text-red-700 border-red-200 hover:bg-red-50">
                     <LogOut className="h-4 w-4" />
                     Sign Out
                   </Button>
@@ -356,57 +356,57 @@ export default function Profile() {
 
           {/* Stats Overview */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-            <Card className="bg-white/80 dark:bg-neutral-800/80 backdrop-blur-sm border-gray-200 dark:border-neutral-700">
+            <Card className="bg-white/80 backdrop-blur-sm border-gray-200">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Calculations</p>
-                    <p className="text-3xl font-bold text-gray-900 dark:text-white mt-1">{calculationHistory.length}</p>
+                    <p className="text-sm font-medium text-gray-600">Calculations</p>
+                    <p className="text-3xl font-bold text-gray-900 mt-1">{calculationHistory.length}</p>
                   </div>
-                  <div className="h-12 w-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                    <BarChart3 className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+                  <div className="h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center">
+                    <BarChart3 className="h-6 w-6 text-blue-600" />
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-white/80 dark:bg-neutral-800/80 backdrop-blur-sm border-gray-200 dark:border-neutral-700">
+            <Card className="bg-white/80 backdrop-blur-sm border-gray-200">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Favorites</p>
-                    <p className="text-3xl font-bold text-gray-900 dark:text-white mt-1">{favoritesCount}</p>
+                    <p className="text-sm font-medium text-gray-600">Favorites</p>
+                    <p className="text-3xl font-bold text-gray-900 mt-1">{favoritesCount}</p>
                   </div>
-                  <div className="h-12 w-12 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
-                    <Heart className="h-6 w-6 text-red-600 dark:text-red-400" />
+                  <div className="h-12 w-12 rounded-full bg-red-100 flex items-center justify-center">
+                    <Heart className="h-6 w-6 text-red-600" />
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-white/80 dark:bg-neutral-800/80 backdrop-blur-sm border-gray-200 dark:border-neutral-700">
+            <Card className="bg-white/80 backdrop-blur-sm border-gray-200">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Recent Tools</p>
-                    <p className="text-3xl font-bold text-gray-900 dark:text-white mt-1">{recentToolsCount}</p>
+                    <p className="text-sm font-medium text-gray-600">Recent Tools</p>
+                    <p className="text-3xl font-bold text-gray-900 mt-1">{recentToolsCount}</p>
                   </div>
-                  <div className="h-12 w-12 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
-                    <Clock className="h-6 w-6 text-green-600 dark:text-green-400" />
+                  <div className="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center">
+                    <Clock className="h-6 w-6 text-green-600" />
                   </div>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-white/80 dark:bg-neutral-800/80 backdrop-blur-sm border-gray-200 dark:border-neutral-700">
+            <Card className="bg-white/80 backdrop-blur-sm border-gray-200">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-medium text-gray-600 dark:text-gray-400">Total Activity</p>
-                    <p className="text-3xl font-bold text-gray-900 dark:text-white mt-1">{calculationHistory.length + favoritesCount}</p>
+                    <p className="text-sm font-medium text-gray-600">Total Activity</p>
+                    <p className="text-3xl font-bold text-gray-900 mt-1">{calculationHistory.length + favoritesCount}</p>
                   </div>
-                  <div className="h-12 w-12 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center">
-                    <TrendingUp className="h-6 w-6 text-purple-600 dark:text-purple-400" />
+                  <div className="h-12 w-12 rounded-full bg-purple-100 flex items-center justify-center">
+                    <TrendingUp className="h-6 w-6 text-purple-600" />
                   </div>
                 </div>
               </CardContent>
@@ -416,7 +416,7 @@ export default function Profile() {
       </div>
 
       {/* Main Content with Tabs */}
-      <div className="bg-gray-50 dark:bg-neutral-900 min-h-screen">
+      <div className="bg-gray-50 min-h-screen">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
             <TabsList className="grid w-full grid-cols-4 lg:w-auto lg:inline-grid">
@@ -457,20 +457,20 @@ export default function Profile() {
                       </div>
                     ) : calculationHistory.length === 0 ? (
                       <div className="text-center py-8">
-                        <History className="h-12 w-12 text-gray-300 dark:text-gray-700 mx-auto mb-3" />
-                        <p className="text-gray-600 dark:text-gray-400 text-sm">No recent activity</p>
+                        <History className="h-12 w-12 text-gray-300 mx-auto mb-3" />
+                        <p className="text-gray-600 text-sm">No recent activity</p>
                       </div>
                     ) : (
                       <div className="space-y-3">
                         {calculationHistory.slice(0, 5).map((calc) => (
-                          <div key={calc.id} className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-neutral-800 transition-colors">
+                          <div key={calc.id} className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-50 transition-colors">
                             <div className="flex-1 min-w-0">
                               <Link href={calc.toolPath}>
-                                <p className="font-medium text-blue-600 hover:text-blue-700 dark:text-blue-400 text-sm truncate">
+                                <p className="font-medium text-blue-600 hover:text-blue-700 text-sm truncate">
                                   {calc.toolName}
                                 </p>
                               </Link>
-                              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                              <p className="text-xs text-gray-500 mt-1">
                                 {formatDistanceToNow(calc.timestamp, { addSuffix: true })}
                               </p>
                             </div>
@@ -501,34 +501,34 @@ export default function Profile() {
                     <CardDescription>Your activity insights</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <div className="flex items-center justify-between p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                    <div className="flex items-center justify-between p-4 bg-blue-50 rounded-lg">
                       <div>
-                        <p className="text-sm font-medium text-blue-900 dark:text-blue-300">Most Active Day</p>
-                        <p className="text-xs text-blue-700 dark:text-blue-400 mt-1">
+                        <p className="text-sm font-medium text-blue-900">Most Active Day</p>
+                        <p className="text-xs text-blue-700 mt-1">
                           {calculationHistory.length > 0 ? 'This week' : 'No data yet'}
                         </p>
                       </div>
-                      <BarChart3 className="h-8 w-8 text-blue-600 dark:text-blue-400" />
+                      <BarChart3 className="h-8 w-8 text-blue-600" />
                     </div>
                     
-                    <div className="flex items-center justify-between p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
+                    <div className="flex items-center justify-between p-4 bg-purple-50 rounded-lg">
                       <div>
-                        <p className="text-sm font-medium text-purple-900 dark:text-purple-300">Favorite Category</p>
-                        <p className="text-xs text-purple-700 dark:text-purple-400 mt-1">
+                        <p className="text-sm font-medium text-purple-900">Favorite Category</p>
+                        <p className="text-xs text-purple-700 mt-1">
                           {favoritesCount > 0 ? 'Finance Tools' : 'Not set'}
                         </p>
                       </div>
-                      <Heart className="h-8 w-8 text-purple-600 dark:text-purple-400" />
+                      <Heart className="h-8 w-8 text-purple-600" />
                     </div>
 
-                    <div className="flex items-center justify-between p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                    <div className="flex items-center justify-between p-4 bg-green-50 rounded-lg">
                       <div>
-                        <p className="text-sm font-medium text-green-900 dark:text-green-300">Streak</p>
-                        <p className="text-xs text-green-700 dark:text-green-400 mt-1">
+                        <p className="text-sm font-medium text-green-900">Streak</p>
+                        <p className="text-xs text-green-700 mt-1">
                           {calculationHistory.length > 0 ? '3 days' : 'Start using tools'}
                         </p>
                       </div>
-                      <Activity className="h-8 w-8 text-green-600 dark:text-green-400" />
+                      <Activity className="h-8 w-8 text-green-600" />
                     </div>
                   </CardContent>
                 </Card>
@@ -564,10 +564,10 @@ export default function Profile() {
                           type="email"
                           value={user.email || ''}
                           disabled
-                          className="bg-gray-100 dark:bg-neutral-800"
+                          className="bg-gray-100"
                           data-testid="input-email"
                         />
-                        <p className="text-xs text-gray-500 dark:text-gray-400">Email cannot be changed</p>
+                        <p className="text-xs text-gray-500">Email cannot be changed</p>
                       </div>
                     </div>
 
@@ -613,11 +613,11 @@ export default function Profile() {
                 <CardContent>
                   {user.providerData[0]?.providerId === 'google.com' ? (
                     <div className="text-center py-12">
-                      <div className="h-16 w-16 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center mx-auto mb-4">
+                      <div className="h-16 w-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-4">
                         <Lock className="h-8 w-8 text-gray-400" />
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Google Account</h3>
-                      <p className="text-gray-600 dark:text-gray-400">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Google Account</h3>
+                      <p className="text-gray-600">
                         Password management is handled by your Google account
                       </p>
                     </div>
@@ -761,9 +761,9 @@ export default function Profile() {
                     </div>
                   ) : calculationHistory.length === 0 ? (
                     <div className="text-center py-16">
-                      <History className="h-16 w-16 text-gray-300 dark:text-gray-700 mx-auto mb-4" />
-                      <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">No Calculation History</h3>
-                      <p className="text-gray-600 dark:text-gray-400 mb-6">
+                      <History className="h-16 w-16 text-gray-300 mx-auto mb-4" />
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2">No Calculation History</h3>
+                      <p className="text-gray-600 mb-6">
                         Your calculation history will appear here
                       </p>
                       <Link href="/all-tools">
@@ -775,7 +775,7 @@ export default function Profile() {
                   ) : (
                     <div className="space-y-4">
                       {calculationHistory.map((calculation) => (
-                        <Card key={calculation.id} className="border-gray-200 dark:border-neutral-700 hover:border-blue-500 dark:hover:border-blue-500 transition-colors">
+                        <Card key={calculation.id} className="border-gray-200 hover:border-blue-500 transition-colors">
                           <CardContent className="p-6">
                             <div className="flex items-start justify-between gap-4">
                               <div className="flex-1 space-y-3">
@@ -785,33 +785,33 @@ export default function Profile() {
                                       {calculation.toolName}
                                     </Button>
                                   </Link>
-                                  <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                                  <div className="flex items-center gap-2 text-sm text-gray-500">
                                     <Calendar className="h-4 w-4" />
                                     {format(calculation.timestamp, 'PPp')}
                                   </div>
                                 </div>
 
                                 <div className="grid md:grid-cols-2 gap-4">
-                                  <div className="bg-gray-50 dark:bg-neutral-800 rounded-lg p-4">
-                                    <p className="font-semibold text-sm text-gray-700 dark:text-gray-300 mb-3">Inputs</p>
+                                  <div className="bg-gray-50 rounded-lg p-4">
+                                    <p className="font-semibold text-sm text-gray-700 mb-3">Inputs</p>
                                     <div className="space-y-2 text-sm">
                                       {Object.entries(calculation.inputs).slice(0, 3).map(([key, value]) => (
                                         <div key={key} className="flex justify-between">
-                                          <span className="text-gray-600 dark:text-gray-400 capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
-                                          <span className="font-medium text-gray-900 dark:text-white">{typeof value === 'number' ? value.toLocaleString() : value}</span>
+                                          <span className="text-gray-600 capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
+                                          <span className="font-medium text-gray-900">{typeof value === 'number' ? value.toLocaleString() : value}</span>
                                         </div>
                                       ))}
                                     </div>
                                   </div>
-                                  <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
-                                    <p className="font-semibold text-sm text-blue-900 dark:text-blue-300 mb-3">Results</p>
+                                  <div className="bg-blue-50 rounded-lg p-4">
+                                    <p className="font-semibold text-sm text-blue-900 mb-3">Results</p>
                                     <div className="space-y-2 text-sm">
                                       {Object.entries(calculation.results).slice(0, 3).map(([key, value]) => {
                                         if (typeof value === 'object' && value !== null) return null;
                                         return (
                                           <div key={key} className="flex justify-between">
-                                            <span className="text-blue-700 dark:text-blue-400 capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
-                                            <span className="font-semibold text-blue-900 dark:text-blue-200">{typeof value === 'number' ? value.toLocaleString() : value}</span>
+                                            <span className="text-blue-700 capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
+                                            <span className="font-semibold text-blue-900">{typeof value === 'number' ? value.toLocaleString() : value}</span>
                                           </div>
                                         );
                                       })}
@@ -822,7 +822,7 @@ export default function Profile() {
 
                               <AlertDialog>
                                 <AlertDialogTrigger asChild>
-                                  <Button variant="ghost" size="icon" className="hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/30" data-testid={`button-delete-${calculation.id}`}>
+                                  <Button variant="ghost" size="icon" className="hover:bg-red-50 hover:text-red-600" data-testid={`button-delete-${calculation.id}`}>
                                     <Trash2 className="h-4 w-4" />
                                   </Button>
                                 </AlertDialogTrigger>

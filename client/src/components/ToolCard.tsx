@@ -11,9 +11,9 @@ interface ToolCardProps {
 }
 
 const categoryColors = {
-  finance: 'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300',
-  text: 'bg-yellow-50 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300',
-  health: 'bg-pink-50 text-pink-700 dark:bg-pink-900/30 dark:text-pink-300'
+  finance: 'bg-blue-50 text-blue-700',
+  text: 'bg-yellow-50 text-yellow-700',
+  health: 'bg-pink-50 text-pink-700'
 };
 
 const categoryGradients = {
@@ -42,7 +42,7 @@ const ToolCard = ({ tool, onClick }: ToolCardProps) => {
 
   return (
     <div 
-      className="group relative bg-white dark:bg-neutral-800 rounded-xl sm:rounded-2xl shadow-sm hover:shadow-xl sm:hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border border-neutral-200 dark:border-neutral-700 overflow-hidden cursor-pointer h-full flex flex-col"
+      className="group relative bg-white rounded-xl sm:rounded-2xl shadow-sm hover:shadow-xl sm:hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border border-neutral-200 overflow-hidden cursor-pointer h-full flex flex-col"
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       tabIndex={0}
@@ -58,7 +58,7 @@ const ToolCard = ({ tool, onClick }: ToolCardProps) => {
         {/* Header with favorite button */}
         <div className="flex items-start justify-between gap-2 sm:gap-3 mb-2 sm:mb-3">
           <div className="flex-1 min-w-0">
-            <h3 className="text-base sm:text-lg md:text-xl font-bold text-neutral-900 dark:text-neutral-100 mb-1 sm:mb-2 line-clamp-2 group-hover:text-primary transition-colors duration-200 leading-tight" data-testid={`text-tool-name-${tool.id}`}>
+            <h3 className="text-base sm:text-lg md:text-xl font-bold text-neutral-900 mb-1 sm:mb-2 line-clamp-2 group-hover:text-primary transition-colors duration-200 leading-tight" data-testid={`text-tool-name-${tool.id}`}>
               {tool.name}
             </h3>
           </div>
@@ -70,7 +70,7 @@ const ToolCard = ({ tool, onClick }: ToolCardProps) => {
         </div>
         
         {/* Description */}
-        <p className="text-sm md:text-base text-neutral-600 dark:text-neutral-400 mb-3 sm:mb-4 line-clamp-2 leading-relaxed flex-1" data-testid={`text-tool-description-${tool.id}`}>
+        <p className="text-sm md:text-base text-neutral-600 mb-3 sm:mb-4 line-clamp-2 leading-relaxed flex-1" data-testid={`text-tool-description-${tool.id}`}>
           {tool.description}
         </p>
         

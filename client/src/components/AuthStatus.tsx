@@ -33,17 +33,17 @@ export function AuthStatus() {
   };
 
   return (
-    <Card className="mb-6 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950 border-blue-200 dark:border-blue-800">
+    <Card className="mb-6 bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200">
       <CardContent className="flex items-center justify-between p-4">
         <div className="flex items-center gap-3">
-          <div className="bg-blue-500 dark:bg-blue-600 p-2 rounded-full">
+          <div className="bg-blue-500 p-2 rounded-full">
             <User className="h-5 w-5 text-white" />
           </div>
           <div>
-            <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
+            <p className="text-sm font-medium text-gray-900">
               Welcome back!
             </p>
-            <p className="text-xs text-gray-600 dark:text-gray-400" data-testid="text-user-email">
+            <p className="text-xs text-gray-600" data-testid="text-user-email">
               {user.email}
             </p>
           </div>

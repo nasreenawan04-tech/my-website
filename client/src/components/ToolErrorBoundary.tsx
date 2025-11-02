@@ -128,7 +128,7 @@ export class ToolErrorBoundary extends Component<Props, State> {
             <Card className="max-w-md mx-auto">
               <CardContent className="p-8 text-center">
                 <LoadingSpinner size="lg" />
-                <p className="mt-4 text-gray-600 dark:text-gray-400">
+                <p className="mt-4 text-gray-600">
                   Retrying...
                 </p>
               </CardContent>
@@ -150,10 +150,10 @@ export class ToolErrorBoundary extends Component<Props, State> {
                 <div className={`w-16 h-16 bg-gradient-to-r ${gradientClass} rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg`}>
                   <Icon className="w-8 h-8 text-white" />
                 </div>
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">
                   {toolName ? `${toolName} Error` : 'Tool Error'}
                 </h2>
-                <p className="text-gray-600 dark:text-gray-400">
+                <p className="text-gray-600">
                   We encountered an issue while loading this tool. This usually resolves itself quickly.
                 </p>
               </div>
@@ -195,8 +195,8 @@ export class ToolErrorBoundary extends Component<Props, State> {
               </div>
 
               {retryCount >= 3 && (
-                <div className="mt-6 p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
-                  <p className="text-sm text-yellow-800 dark:text-yellow-200">
+                <div className="mt-6 p-4 bg-yellow-50 rounded-lg">
+                  <p className="text-sm text-yellow-800">
                     <strong>Still having issues?</strong> This tool might be temporarily unavailable. 
                     Try browsing other tools or come back later.
                   </p>
@@ -208,7 +208,7 @@ export class ToolErrorBoundary extends Component<Props, State> {
                   <summary className="cursor-pointer text-sm text-gray-500 hover:text-gray-700">
                     Error Details (Development Only)
                   </summary>
-                  <div className="mt-2 p-4 bg-red-50 dark:bg-red-900/20 rounded-lg text-xs font-mono text-red-800 dark:text-red-200 overflow-auto max-h-40">
+                  <div className="mt-2 p-4 bg-red-50 rounded-lg text-xs font-mono text-red-800 overflow-auto max-h-40">
                     <p className="font-semibold mb-2">{this.state.error.toString()}</p>
                     {this.state.errorInfo?.componentStack && (
                       <pre className="whitespace-pre-wrap">{this.state.errorInfo.componentStack}</pre>

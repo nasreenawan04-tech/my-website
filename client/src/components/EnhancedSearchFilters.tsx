@@ -52,20 +52,20 @@ const EnhancedSearchFilters = ({ onFiltersChange, className = '' }: SearchFilter
                           filters.showFavoritesOnly;
 
   return (
-    <div className={`bg-white dark:bg-neutral-800 rounded-lg shadow-sm border border-gray-200 dark:border-neutral-700 ${className}`}>
-      <div className="p-4 border-b border-gray-200 dark:border-neutral-700">
+    <div className={`bg-white rounded-lg shadow-sm border border-gray-200 ${className}`}>
+      <div className="p-4 border-b border-gray-200">
         <button
           onClick={() => setIsExpanded(!isExpanded)}
           className="flex items-center justify-between w-full text-left"
           data-testid="button-toggle-filters"
         >
           <div className="flex items-center space-x-2">
-            <Filter className="text-blue-600 dark:text-blue-400" size={16} />
-            <span className="font-medium text-neutral-800 dark:text-neutral-100">
+            <Filter className="text-blue-600" size={16} />
+            <span className="font-medium text-neutral-800">
               Advanced Filters
             </span>
             {hasActiveFilters && (
-              <span className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs px-2 py-1 rounded-full">
+              <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">
                 Active
               </span>
             )}
@@ -78,13 +78,13 @@ const EnhancedSearchFilters = ({ onFiltersChange, className = '' }: SearchFilter
         <div className="p-4 space-y-4">
           {/* Category Filter */}
           <div>
-            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+            <label className="block text-sm font-medium text-neutral-700 mb-2">
               Category
             </label>
             <select
               value={filters.category}
               onChange={(e) => handleFilterChange({ category: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 dark:border-neutral-600 bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 bg-white text-neutral-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               data-testid="select-category-filter"
             >
               <option value="all">All Categories ({tools.length})</option>
@@ -98,13 +98,13 @@ const EnhancedSearchFilters = ({ onFiltersChange, className = '' }: SearchFilter
 
           {/* Sort Options */}
           <div>
-            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+            <label className="block text-sm font-medium text-neutral-700 mb-2">
               Sort By
             </label>
             <select
               value={filters.sortBy}
               onChange={(e) => handleFilterChange({ sortBy: e.target.value as any })}
-              className="w-full px-3 py-2 border border-gray-300 dark:border-neutral-600 bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 bg-white text-neutral-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               data-testid="select-sort-filter"
             >
               <option value="name">Name (A-Z)</option>
@@ -115,7 +115,7 @@ const EnhancedSearchFilters = ({ onFiltersChange, className = '' }: SearchFilter
 
           {/* Quick Filters */}
           <div>
-            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+            <label className="block text-sm font-medium text-neutral-700 mb-2">
               Quick Filters
             </label>
             <div className="space-y-2">
@@ -127,7 +127,7 @@ const EnhancedSearchFilters = ({ onFiltersChange, className = '' }: SearchFilter
                   className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                   data-testid="checkbox-popular-only"
                 />
-                <span className="ml-2 text-sm text-neutral-700 dark:text-neutral-300">
+                <span className="ml-2 text-sm text-neutral-700">
                   Show popular tools only
                 </span>
               </label>
@@ -139,7 +139,7 @@ const EnhancedSearchFilters = ({ onFiltersChange, className = '' }: SearchFilter
                   className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                   data-testid="checkbox-favorites-only"
                 />
-                <span className="ml-2 text-sm text-neutral-700 dark:text-neutral-300">
+                <span className="ml-2 text-sm text-neutral-700">
                   Show favorite tools only
                 </span>
               </label>
@@ -148,10 +148,10 @@ const EnhancedSearchFilters = ({ onFiltersChange, className = '' }: SearchFilter
 
           {/* Reset Button */}
           {hasActiveFilters && (
-            <div className="pt-2 border-t border-gray-200 dark:border-neutral-600">
+            <div className="pt-2 border-t border-gray-200">
               <button
                 onClick={resetFilters}
-                className="w-full px-4 py-2 text-sm text-neutral-600 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 border border-gray-300 dark:border-neutral-600 rounded-lg hover:bg-gray-50 dark:hover:bg-neutral-700 transition-colors"
+                className="w-full px-4 py-2 text-sm text-neutral-600 hover:text-neutral-800 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
                 data-testid="button-reset-filters"
               >
                 <RotateCcw className="mr-2" size={16} />

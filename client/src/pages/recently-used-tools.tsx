@@ -25,7 +25,7 @@ const RecentlyUsedTools = () => {
         <link rel="canonical" href="https://dapsiwow.com/recently-used-tools" />
       </Helmet>
 
-      <div className="min-h-screen flex flex-col bg-neutral-50 dark:bg-neutral-950" data-testid="page-recently-used-tools">
+      <div className="min-h-screen flex flex-col bg-neutral-50" data-testid="page-recently-used-tools">
         <Header />
         
         <main className="flex-1">
@@ -75,7 +75,7 @@ const RecentlyUsedTools = () => {
                 <>
                   {/* Clear History Button */}
                   <div className="flex justify-between items-center mb-8">
-                    <p className="text-neutral-600 dark:text-neutral-400">
+                    <p className="text-neutral-600">
                       Showing your {recentTools.length} most recently used tools
                     </p>
                     <Button
@@ -99,13 +99,13 @@ const RecentlyUsedTools = () => {
               ) : (
                 /* Empty State */
                 <div className="text-center py-20">
-                  <div className="inline-flex items-center justify-center w-20 h-20 bg-neutral-200 dark:bg-neutral-800 rounded-full mb-6">
-                    <Clock className="w-10 h-10 text-neutral-400 dark:text-neutral-500" />
+                  <div className="inline-flex items-center justify-center w-20 h-20 bg-neutral-200 rounded-full mb-6">
+                    <Clock className="w-10 h-10 text-neutral-400" />
                   </div>
-                  <h2 className="text-2xl font-bold text-neutral-800 dark:text-neutral-200 mb-3" data-testid="text-empty-state-title">
+                  <h2 className="text-2xl font-bold text-neutral-800 mb-3" data-testid="text-empty-state-title">
                     No Recent Tools Yet
                   </h2>
-                  <p className="text-neutral-600 dark:text-neutral-400 mb-8 max-w-md mx-auto">
+                  <p className="text-neutral-600 mb-8 max-w-md mx-auto">
                     Start using tools and they'll appear here for quick access later.
                   </p>
                   <Link 

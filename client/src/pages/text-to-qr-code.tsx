@@ -136,7 +136,7 @@ const TextToQRCode = () => {
           width: options.size,
           margin: options.margin,
           color: {
-            dark: options.darkColor,
+ options.darkColor,
             light: options.lightColor
           }
         });

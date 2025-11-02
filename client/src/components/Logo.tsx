@@ -33,7 +33,7 @@ const Logo = ({ className = '', size = 'md', showText = true, onClick }: LogoPro
     <div className={`flex items-center space-x-2 ${className}`} onClick={onClick}>
       <LogoIcon />
       {showText && (
-        <span className={`${textSizeClasses[size]} font-bold text-neutral-800 dark:text-neutral-100`}>
+        <span className={`${textSizeClasses[size]} font-bold text-neutral-800`}>
           DapsiWow
         </span>
       )}

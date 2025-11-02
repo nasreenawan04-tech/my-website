@@ -27,13 +27,13 @@ const PopularToolsSection = () => {
   };
 
   return (
-    <section className="py-20 bg-white dark:bg-neutral-900" data-testid="popular-tools-section">
+    <section className="py-20 bg-white" data-testid="popular-tools-section">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-neutral-900 dark:text-neutral-50 mb-6" data-testid="text-popular-tools-title">
+          <h2 className="text-4xl lg:text-5xl font-bold text-neutral-900 mb-6" data-testid="text-popular-tools-title">
             Our Most Popular Tools
           </h2>
-          <p className="text-xl text-neutral-600 dark:text-neutral-300 max-w-3xl mx-auto" data-testid="text-popular-tools-subtitle">
+          <p className="text-xl text-neutral-600 max-w-3xl mx-auto" data-testid="text-popular-tools-subtitle">
             Free tools you'd usually pay for. No limits, no sign-up required.
           </p>
         </div>
@@ -47,7 +47,7 @@ const PopularToolsSection = () => {
               className={`px-6 py-3 rounded-xl font-semibold transition-colors ${
                 activeTab === tab.key
                   ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-md'
-                  : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700'
+                  : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
               }`}
               data-testid={`button-tab-${tab.key}`}
             >

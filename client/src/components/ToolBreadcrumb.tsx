@@ -18,13 +18,13 @@ interface ToolBreadcrumbProps {
 
 const ToolBreadcrumb = ({ category, categoryName, categoryHref, toolName }: ToolBreadcrumbProps) => {
   return (
-    <div className="bg-white dark:bg-neutral-900 border-b border-gray-200 dark:border-neutral-800">
+    <div className="bg-white border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
         <Breadcrumb data-testid="breadcrumb-navigation">
           <BreadcrumbList>
             <BreadcrumbItem>
               <BreadcrumbLink asChild>
-                <Link href="/" className="flex items-center gap-1 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" data-testid="breadcrumb-home">
+                <Link href="/" className="flex items-center gap-1 hover:text-blue-600 transition-colors" data-testid="breadcrumb-home">
                   <Home className="w-3.5 h-3.5" />
                   <span className="sr-only sm:not-sr-only sm:inline">Home</span>
                 </Link>
@@ -35,7 +35,7 @@ const ToolBreadcrumb = ({ category, categoryName, categoryHref, toolName }: Tool
               <>
                 <BreadcrumbItem>
                   <BreadcrumbLink asChild>
-                    <Link href={categoryHref} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors" data-testid={`breadcrumb-${category}`}>
+                    <Link href={categoryHref} className="hover:text-blue-600 transition-colors" data-testid={`breadcrumb-${category}`}>
                       {categoryName}
                     </Link>
                   </BreadcrumbLink>
@@ -46,7 +46,7 @@ const ToolBreadcrumb = ({ category, categoryName, categoryHref, toolName }: Tool
               <>
                 <BreadcrumbItem>
                   <BreadcrumbLink asChild>
-                    <Link href="/all-tools" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors" data-testid="breadcrumb-all-tools">
+                    <Link href="/all-tools" className="hover:text-blue-600 transition-colors" data-testid="breadcrumb-all-tools">
                       All Tools
                     </Link>
                   </BreadcrumbLink>
@@ -55,7 +55,7 @@ const ToolBreadcrumb = ({ category, categoryName, categoryHref, toolName }: Tool
               </>
             )}
             <BreadcrumbItem>
-              <BreadcrumbPage className="text-neutral-900 dark:text-neutral-100 font-medium" data-testid="breadcrumb-current-tool">
+              <BreadcrumbPage className="text-neutral-900 font-medium" data-testid="breadcrumb-current-tool">
                 {toolName}
               </BreadcrumbPage>
             </BreadcrumbItem>

@@ -41,13 +41,13 @@ const CategorySection = () => {
   };
 
   return (
-    <section className="py-24 bg-neutral-50 dark:bg-neutral-800" data-testid="category-section" aria-label="Tool Categories">
+    <section className="py-24 bg-neutral-50" data-testid="category-section" aria-label="Tool Categories">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
-          <h2 className="text-4xl lg:text-5xl font-bold text-neutral-900 dark:text-neutral-50 mb-8" data-testid="text-category-title">
+          <h2 className="text-4xl lg:text-5xl font-bold text-neutral-900 mb-8" data-testid="text-category-title">
             Tools by Category
           </h2>
-          <p className="text-xl text-neutral-700 dark:text-neutral-300 max-w-3xl mx-auto" data-testid="text-category-subtitle">
+          <p className="text-xl text-neutral-700 max-w-3xl mx-auto" data-testid="text-category-subtitle">
             Explore our comprehensive suite of productivity tools organized by category
           </p>
         </div>
