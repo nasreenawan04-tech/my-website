@@ -159,8 +159,8 @@ const Header = () => {
       <header 
         className={`sticky top-0 z-50 w-full backdrop-blur-md transition-all duration-300 ease-in-out ${
           isScrolled 
-            ? 'bg-white/95 dark:bg-neutral-950/95 shadow-lg border-b border-gray-300/50 dark:border-neutral-700/50' 
-            : 'bg-white/90 dark:bg-neutral-950/90 shadow-sm border-b border-gray-200/40 dark:border-neutral-800/40'
+            ? 'bg-white/95 dark:bg-neutral-900/95 shadow-lg border-b border-gray-300/50 dark:border-neutral-700/50' 
+            : 'bg-white/90 dark:bg-neutral-900/90 shadow-sm border-b border-gray-200/40 dark:border-neutral-800/40'
         }`}
         data-testid="header-main"
       >
@@ -314,7 +314,7 @@ const Header = () => {
 
         {/* Mobile & Tablet Menu - Smooth slide-in animation */}
         <div 
-          className={`lg:hidden absolute top-full left-0 right-0 bg-white dark:bg-neutral-950 backdrop-blur-lg border-t border-gray-200 dark:border-neutral-800 shadow-xl transition-all duration-300 ease-in-out overflow-hidden ${
+          className={`lg:hidden absolute top-full left-0 right-0 bg-white dark:bg-neutral-900 backdrop-blur-lg border-t border-gray-200 dark:border-neutral-800 shadow-xl transition-all duration-300 ease-in-out overflow-hidden ${
             isMobileMenuOpen 
               ? 'max-h-[calc(100vh-4rem)] opacity-100 visible translate-y-0' 
               : 'max-h-0 opacity-0 invisible -translate-y-2'
@@ -489,14 +489,14 @@ const Header = () => {
           }}
         >
           <div 
-            className="bg-white dark:bg-neutral-900 rounded-xl shadow-2xl w-full max-w-2xl max-h-[calc(100vh-8rem)] overflow-hidden animate-in slide-in-from-top-4 duration-300 ease-out border border-gray-200 dark:border-neutral-800"
+            className="bg-white dark:bg-neutral-800 rounded-xl shadow-2xl w-full max-w-2xl max-h-[calc(100vh-8rem)] overflow-hidden animate-in slide-in-from-top-4 duration-300 ease-out border border-gray-200 dark:border-neutral-700"
             role="dialog"
             aria-label="Search tools"
             aria-modal="true"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Search Input Section - Google Chrome Style */}
-            <div className="p-4 sm:p-5 border-b border-gray-200 dark:border-neutral-800 bg-gray-50/50 dark:bg-neutral-900/50">
+            <div className="p-4 sm:p-5 border-b border-gray-200 dark:border-neutral-700 bg-gray-50/50 dark:bg-neutral-800/50">
               <div className="relative">
                 <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 dark:text-neutral-400 pointer-events-none">
                   <Search className="w-5 h-5" aria-hidden="true" />
@@ -507,7 +507,7 @@ const Header = () => {
                   placeholder="Search for tools..."
                   value={searchQuery}
                   onChange={(e) => handleSearch(e.target.value)}
-                  className="w-full py-3 sm:py-3.5 pl-12 pr-12 text-base sm:text-lg border border-gray-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 rounded-full hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent focus:shadow-xl transition-all duration-200 placeholder:text-gray-400 dark:placeholder:text-neutral-400"
+                  className="w-full py-3 sm:py-3.5 pl-12 pr-12 text-base sm:text-lg border border-gray-300 dark:border-neutral-600 bg-white dark:bg-neutral-700 text-neutral-900 dark:text-neutral-100 rounded-full hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent focus:shadow-xl transition-all duration-200 placeholder:text-gray-400 dark:placeholder:text-neutral-400"
                   data-testid="search-modal-input"
                   aria-label="Search for tools"
                 />
@@ -536,7 +536,7 @@ const Header = () => {
                   <button
                     key={tool.id}
                     onClick={() => handleToolClick(tool.href)}
-                    className="w-full p-4 sm:p-5 text-left hover:bg-gray-50 dark:hover:bg-neutral-800 border-b border-gray-100 dark:border-neutral-800 last:border-0 transition-all duration-200 ease-in-out animate-in fade-in slide-in-from-bottom-2 active:bg-gray-100 dark:active:bg-neutral-700"
+                    className="w-full p-4 sm:p-5 text-left hover:bg-gray-50 dark:hover:bg-neutral-700 border-b border-gray-100 dark:border-neutral-700 last:border-0 transition-all duration-200 ease-in-out animate-in fade-in slide-in-from-bottom-2 active:bg-gray-100 dark:active:bg-neutral-600"
                     style={{ animationDelay: `${index * 30}ms` }}
                     data-testid={`search-result-${tool.id}`}
                     role="option"
@@ -561,8 +561,8 @@ const Header = () => {
                 ))
               ) : (
                 <div className="p-8 sm:p-12 text-center text-gray-500 dark:text-neutral-400 animate-in fade-in duration-200">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center">
-                    <Search size={32} className="text-gray-400 dark:text-neutral-400" />
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 dark:bg-neutral-700 flex items-center justify-center">
+                    <Search size={32} className="text-gray-400 dark:text-neutral-500" />
                   </div>
                   <p className="text-base font-medium text-gray-900 dark:text-neutral-100">No tools found</p>
                   <p className="text-sm mt-1 text-gray-500 dark:text-neutral-400">Try searching with different keywords</p>
