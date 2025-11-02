@@ -24,6 +24,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from '@/components/ui/collapsible';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
 import defaultAvatarUrl from '@assets/jhj_1761976221112.png';
 
 const Header = () => {
