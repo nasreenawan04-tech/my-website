@@ -347,7 +347,7 @@ const Home = () => {
           <section className="py-20 bg-gradient-to-br from-neutral-50 to-blue-50 dark:from-neutral-900 dark:to-neutral-800">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-16">
-                <h2 className="text-4xl lg:text-5xl font-bold text-neutral-800 dark:text-neutral-50 mb-6">
+                <h2 className="text-4xl lg:text-5xl font-bold text-neutral-900 dark:text-neutral-50 mb-6">
                   Featured Tools Spotlight
                 </h2>
                 <p className="text-xl text-neutral-600 dark:text-neutral-300 max-w-3xl mx-auto">
@@ -357,7 +357,7 @@ const Home = () => {
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div className="bg-white dark:bg-neutral-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100 dark:border-neutral-700">
-                  <h3 className="text-xl font-bold text-neutral-800 dark:text-neutral-50 mb-4">Loan Calculator</h3>
+                  <h3 className="text-xl font-bold text-neutral-900 dark:text-neutral-50 mb-4">Loan Calculator</h3>
                   <p className="text-neutral-600 dark:text-neutral-300 mb-4 leading-relaxed">
                     Calculate monthly payments and total interest for any loan. Features advanced
                     amortization schedules, payment frequency options, and detailed cost breakdowns.
@@ -378,7 +378,7 @@ const Home = () => {
                 </div>
 
                 <div className="bg-white dark:bg-neutral-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100 dark:border-neutral-700">
-                  <h3 className="text-xl font-bold text-neutral-800 dark:text-neutral-50 mb-4">BMI Calculator</h3>
+                  <h3 className="text-xl font-bold text-neutral-900 dark:text-neutral-50 mb-4">BMI Calculator</h3>
                   <p className="text-neutral-600 dark:text-neutral-300 mb-4 leading-relaxed">
                     Calculate your Body Mass Index and get comprehensive health insights with
                     WHO standards, health category classifications, and personalized recommendations.
@@ -399,7 +399,7 @@ const Home = () => {
                 </div>
 
                 <div className="bg-white dark:bg-neutral-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100 dark:border-neutral-700">
-                  <h3 className="text-xl font-bold text-neutral-800 dark:text-neutral-50 mb-4">Username Generator</h3>
+                  <h3 className="text-xl font-bold text-neutral-900 dark:text-neutral-50 mb-4">Username Generator</h3>
                   <p className="text-neutral-600 dark:text-neutral-300 mb-4 leading-relaxed">
                     Generate unique, creative usernames for social media, gaming, and online platforms.
                     Customize length, style, and add numbers or symbols as needed.
@@ -420,7 +420,7 @@ const Home = () => {
                 </div>
 
                 <div className="bg-white dark:bg-neutral-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100 dark:border-neutral-700">
-                  <h3 className="text-xl font-bold text-neutral-800 dark:text-neutral-50 mb-4">Mortgage Calculator</h3>
+                  <h3 className="text-xl font-bold text-neutral-900 dark:text-neutral-50 mb-4">Mortgage Calculator</h3>
                   <p className="text-neutral-600 dark:text-neutral-300 mb-4 leading-relaxed">
                     Calculate comprehensive mortgage payments including principal, interest, taxes,
                     insurance, and PMI. Perfect for home buying decisions and loan comparisons.
@@ -441,7 +441,7 @@ const Home = () => {
                 </div>
 
                 <div className="bg-white dark:bg-neutral-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100 dark:border-neutral-700">
-                  <h3 className="text-xl font-bold text-neutral-800 dark:text-neutral-50 mb-4">Business Loan Calculator</h3>
+                  <h3 className="text-xl font-bold text-neutral-900 dark:text-neutral-50 mb-4">Business Loan Calculator</h3>
                   <p className="text-neutral-600 dark:text-neutral-300 mb-4 leading-relaxed">
                     Calculate business loan payments with origination fees, processing costs, and
                     effective APR. Compare SBA loans, term loans, and equipment financing options.
@@ -462,7 +462,7 @@ const Home = () => {
                 </div>
 
                 <div className="bg-white dark:bg-neutral-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100 dark:border-neutral-700">
-                  <h3 className="text-xl font-bold text-neutral-800 dark:text-neutral-50 mb-4">Cholesterol Risk Calculator</h3>
+                  <h3 className="text-xl font-bold text-neutral-900 dark:text-neutral-50 mb-4">Cholesterol Risk Calculator</h3>
                   <p className="text-neutral-600 dark:text-neutral-300 mb-4 leading-relaxed">
                     Assess cardiovascular health risks based on cholesterol levels, age, and lifestyle
                     factors. Get personalized recommendations for heart health improvement.
