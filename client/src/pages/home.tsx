@@ -502,10 +502,10 @@ const Home = () => {
           <section className="py-20 bg-white dark:bg-neutral-900">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-16">
-                <h2 className="text-4xl lg:text-5xl font-bold text-neutral-800 mb-6">
+                <h2 className="text-4xl lg:text-5xl font-bold text-neutral-800 dark:text-neutral-100 mb-6">
                   How DapsiWow Works
                 </h2>
-                <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
+                <p className="text-xl text-neutral-600 dark:text-neutral-300 max-w-3xl mx-auto">
                   Getting started is simple. No complicated setup, no subscriptions, no hidden fees.
                 </p>
               </div>
@@ -517,8 +517,8 @@ const Home = () => {
                       <span className="text-2xl font-bold text-white">1</span>
                     </div>
                   </div>
-                  <h3 className="text-2xl font-bold text-neutral-800 mb-4">Choose Your Tool</h3>
-                  <p className="text-neutral-600 leading-relaxed">
+                  <h3 className="text-2xl font-bold text-neutral-800 dark:text-neutral-100 mb-4">Choose Your Tool</h3>
+                  <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed">
                     Browse our categories or use the search bar to find exactly what you need.
                     From financial calculators to text analyzers, we have tools for every task.
                   </p>
@@ -530,8 +530,8 @@ const Home = () => {
                       <span className="text-2xl font-bold text-white">2</span>
                     </div>
                   </div>
-                  <h3 className="text-2xl font-bold text-neutral-800 mb-4">Enter Your Data</h3>
-                  <p className="text-neutral-600 leading-relaxed">
+                  <h3 className="text-2xl font-bold text-neutral-800 dark:text-neutral-100 mb-4">Enter Your Data</h3>
+                  <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed">
                     Input your information using our intuitive forms. Our tools are designed to be user-friendly
                     with clear instructions and helpful tooltips.
                   </p>
@@ -541,8 +541,8 @@ const Home = () => {
                   <div className="w-20 h-20 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
                     <span className="text-2xl font-bold text-white">3</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-neutral-800 mb-4">Get Results</h3>
-                  <p className="text-neutral-600 leading-relaxed">
+                  <h3 className="text-2xl font-bold text-neutral-800 dark:text-neutral-100 mb-4">Get Results</h3>
+                  <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed">
                     Receive instant, accurate results with detailed explanations. Download, save, or share
                     your results as needed for your personal or business use.
                   </p>
@@ -746,66 +746,66 @@ const Home = () => {
           <section className="py-20 bg-gray-50 dark:bg-neutral-900">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-16">
-                <h2 className="text-4xl lg:text-5xl font-bold text-neutral-800 mb-6">
+                <h2 className="text-4xl lg:text-5xl font-bold text-neutral-800 dark:text-neutral-100 mb-6">
                   Frequently Asked Questions
                 </h2>
-                <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
+                <p className="text-xl text-neutral-600 dark:text-neutral-300 max-w-3xl mx-auto">
                   Everything you need to know about DapsiWow's free finance, text, and health tools
                 </p>
               </div>
 
               <div className="grid lg:grid-cols-2 gap-8">
                 <div className="space-y-8">
-                  <div className="bg-white rounded-lg p-6 shadow-md" data-testid="faq-free-tools">
-                    <h3 className="text-lg font-semibold text-neutral-800 mb-3">
+                  <div className="bg-white dark:bg-neutral-800 rounded-lg p-6 shadow-md" data-testid="faq-free-tools">
+                    <h3 className="text-lg font-semibold text-neutral-800 dark:text-neutral-100 mb-3">
                       Are all 180+ tools really free to use?
                     </h3>
-                    <p className="text-neutral-600 leading-relaxed">
+                    <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed">
                       Yes! Every single tool on DapsiWow is completely free with no hidden costs, subscriptions, or premium upgrades.
                       This includes our advanced loan calculators, mortgage tools, BMI calculators, text converters, and all other utilities.
                       We believe professional-grade tools should be accessible to everyone.
                     </p>
                   </div>
 
-                  <div className="bg-white rounded-lg p-6 shadow-md" data-testid="faq-loan-calculator">
-                    <h3 className="text-lg font-semibold text-neutral-800 mb-3">
+                  <div className="bg-white dark:bg-neutral-800 rounded-lg p-6 shadow-md" data-testid="faq-loan-calculator">
+                    <h3 className="text-lg font-semibold text-neutral-800 dark:text-neutral-100 mb-3">
                       How do I use the loan calculator for my business?
                     </h3>
-                    <p className="text-neutral-600 leading-relaxed">
-                      Our <a href="/tools/business-loan-calculator" className="text-blue-600 hover:text-blue-800 underline">business loan calculator</a> lets you input your loan amount, interest rate, and term to calculate monthly payments.
+                    <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed">
+                      Our <a href="/tools/business-loan-calculator" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline">business loan calculator</a> lets you input your loan amount, interest rate, and term to calculate monthly payments.
                       It includes origination fees, processing costs, and shows your total interest paid. Perfect for comparing SBA loans,
-                      equipment financing, and traditional business loans. Explore all <a href="/finance-tools" className="text-blue-600 hover:text-blue-800 underline">finance tools</a>.
+                      equipment financing, and traditional business loans. Explore all <a href="/finance-tools" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline">finance tools</a>.
                     </p>
                   </div>
 
-                  <div className="bg-white rounded-lg p-6 shadow-md" data-testid="faq-mortgage-calculator">
-                    <h3 className="text-lg font-semibold text-neutral-800 mb-3">
+                  <div className="bg-white dark:bg-neutral-800 rounded-lg p-6 shadow-md" data-testid="faq-mortgage-calculator">
+                    <h3 className="text-lg font-semibold text-neutral-800 dark:text-neutral-100 mb-3">
                       What makes your mortgage calculator different?
                     </h3>
-                    <p className="text-neutral-600 leading-relaxed">
-                      Our <a href="/tools/mortgage-calculator" className="text-blue-600 hover:text-blue-800 underline">mortgage calculator</a> includes principal, interest, taxes, insurance (PITI), and PMI calculations all in one tool.
+                    <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed">
+                      Our <a href="/tools/mortgage-calculator" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline">mortgage calculator</a> includes principal, interest, taxes, insurance (PITI), and PMI calculations all in one tool.
                       It supports multiple loan terms, down payment scenarios, and shows detailed breakdowns including total interest
-                      paid over the life of the loan. Find more <a href="/finance-tools" className="text-blue-600 hover:text-blue-800 underline">financial calculators</a>.
+                      paid over the life of the loan. Find more <a href="/finance-tools" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline">financial calculators</a>.
                     </p>
                   </div>
 
-                  <div className="bg-white rounded-lg p-6 shadow-md" data-testid="faq-bmi-health-tools">
-                    <h3 className="text-lg font-semibold text-neutral-800 mb-3">
+                  <div className="bg-white dark:bg-neutral-800 rounded-lg p-6 shadow-md" data-testid="faq-bmi-health-tools">
+                    <h3 className="text-lg font-semibold text-neutral-800 dark:text-neutral-100 mb-3">
                       Which health tools do you offer for fitness tracking?
                     </h3>
-                    <p className="text-neutral-600 leading-relaxed">
-                      We provide <a href="/tools/bmi-calculator" className="text-blue-600 hover:text-blue-800 underline">BMI calculators</a>, calorie counters, body fat percentage tools, protein intake calculators,
-                      TDEE calculators, and water intake trackers. All <a href="/health-tools" className="text-blue-600 hover:text-blue-800 underline">health tools</a> use scientifically-backed formulas for informational purposes only.
+                    <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed">
+                      We provide <a href="/tools/bmi-calculator" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline">BMI calculators</a>, calorie counters, body fat percentage tools, protein intake calculators,
+                      TDEE calculators, and water intake trackers. All <a href="/health-tools" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline">health tools</a> use scientifically-backed formulas for informational purposes only.
                       <strong>Note:</strong> Results are not medical advice. Consult healthcare professionals for medical decisions.
                     </p>
                   </div>
 
-                  <div className="bg-white rounded-lg p-6 shadow-md" data-testid="faq-text-tools">
-                    <h3 className="text-lg font-semibold text-neutral-800 mb-3">
+                  <div className="bg-white dark:bg-neutral-800 rounded-lg p-6 shadow-md" data-testid="faq-text-tools">
+                    <h3 className="text-lg font-semibold text-neutral-800 dark:text-neutral-100 mb-3">
                       What text processing tools are available?
                     </h3>
-                    <p className="text-neutral-600 leading-relaxed">
-                      Our <a href="/text-tools" className="text-blue-600 hover:text-blue-800 underline">text tools</a> include <a href="/tools/word-counter" className="text-blue-600 hover:text-blue-800 underline">word counters</a>, character counters, <a href="/tools/case-converter" className="text-blue-600 hover:text-blue-800 underline">case converters</a> (uppercase, lowercase, title case),
+                    <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed">
+                      Our <a href="/text-tools" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline">text tools</a> include <a href="/tools/word-counter" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline">word counters</a>, character counters, <a href="/tools/case-converter" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline">case converters</a> (uppercase, lowercase, title case),
                       text generators, binary converters, markdown tools, and duplicate line removers. Perfect for content creators,
                       students, and professionals who need quick text analysis and formatting.
                     </p>
@@ -813,55 +813,55 @@ const Home = () => {
                 </div>
 
                 <div className="space-y-8">
-                  <div className="bg-white rounded-lg p-6 shadow-md" data-testid="faq-no-registration">
-                    <h3 className="text-lg font-semibold text-neutral-800 mb-3">
+                  <div className="bg-white dark:bg-neutral-800 rounded-lg p-6 shadow-md" data-testid="faq-no-registration">
+                    <h3 className="text-lg font-semibold text-neutral-800 dark:text-neutral-100 mb-3">
                       Do I need to sign up or download anything?
                     </h3>
-                    <p className="text-neutral-600 leading-relaxed">
+                    <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed">
                       No registration, downloads, or installations required! Simply visit any tool page and start using it immediately.
                       All tools work directly in your web browser on any device. Your privacy is protected since we don't collect
                       personal information or require accounts.
                     </p>
                   </div>
 
-                  <div className="bg-white rounded-lg p-6 shadow-md" data-testid="faq-mobile-compatibility">
-                    <h3 className="text-lg font-semibold text-neutral-800 mb-3">
+                  <div className="bg-white dark:bg-neutral-800 rounded-lg p-6 shadow-md" data-testid="faq-mobile-compatibility">
+                    <h3 className="text-lg font-semibold text-neutral-800 dark:text-neutral-100 mb-3">
                       Do the calculators work on mobile phones and tablets?
                     </h3>
-                    <p className="text-neutral-600 leading-relaxed">
+                    <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed">
                       Absolutely! All our tools are mobile-optimized and work seamlessly on smartphones, tablets, laptops, and desktops.
                       The responsive design ensures buttons are easy to tap, forms are simple to fill out, and results display perfectly
                       on any screen size.
                     </p>
                   </div>
 
-                  <div className="bg-white rounded-lg p-6 shadow-md" data-testid="faq-data-security">
-                    <h3 className="text-lg font-semibold text-neutral-800 mb-3">
+                  <div className="bg-white dark:bg-neutral-800 rounded-lg p-6 shadow-md" data-testid="faq-data-security">
+                    <h3 className="text-lg font-semibold text-neutral-800 dark:text-neutral-100 mb-3">
                       Is my financial and personal data secure?
                     </h3>
-                    <p className="text-neutral-600 leading-relaxed">
+                    <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed">
                       Yes! All calculations happen locally in your browser - we don't store your data on our servers.
                       Your loan amounts, income details, health metrics, and text content remain completely private.
-                      No data is transmitted, stored, or shared with third parties. Read our <a href="/privacy-policy" className="text-blue-600 hover:text-blue-800 underline">Privacy Policy</a> for details.
+                      No data is transmitted, stored, or shared with third parties. Read our <a href="/privacy-policy" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline">Privacy Policy</a> for details.
                     </p>
                   </div>
 
-                  <div className="bg-white rounded-lg p-6 shadow-md" data-testid="faq-commercial-use">
-                    <h3 className="text-lg font-semibold text-neutral-800 mb-3">
+                  <div className="bg-white dark:bg-neutral-800 rounded-lg p-6 shadow-md" data-testid="faq-commercial-use">
+                    <h3 className="text-lg font-semibold text-neutral-800 dark:text-neutral-100 mb-3">
                       Can I use these tools for my business or commercial projects?
                     </h3>
-                    <p className="text-neutral-600 leading-relaxed">
+                    <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed">
                       Yes! All DapsiWow tools can be used for both personal and commercial purposes without restrictions.
                       Financial advisors, real estate agents, fitness trainers, content creators, and businesses regularly use
                       our calculators and tools for client presentations and professional work.
                     </p>
                   </div>
 
-                  <div className="bg-white rounded-lg p-6 shadow-md" data-testid="faq-support">
-                    <h3 className="text-lg font-semibold text-neutral-800 mb-3">
+                  <div className="bg-white dark:bg-neutral-800 rounded-lg p-6 shadow-md" data-testid="faq-support">
+                    <h3 className="text-lg font-semibold text-neutral-800 dark:text-neutral-100 mb-3">
                       How can I get support or request new tools?
                     </h3>
-                    <p className="text-neutral-600 leading-relaxed">
+                    <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed">
                       Contact us through our support page for help, feature requests, or to report issues. We actively listen
                       to user feedback and regularly add new tools based on demand. Our goal is to continuously improve and
                       expand our collection to meet your needs.
