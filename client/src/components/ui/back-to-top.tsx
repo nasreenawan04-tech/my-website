@@ -33,7 +33,7 @@ export function BackToTop() {
           className="fixed bottom-8 right-8 p-3 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 z-50"
           aria-label="Back to top"
         >
-          <ArrowUp className="w-6 h-6" />
+          <ChevronUp className="w-6 h-6" />
         </button>
       )}
     </>
