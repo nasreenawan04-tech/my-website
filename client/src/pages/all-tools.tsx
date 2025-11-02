@@ -68,27 +68,27 @@ const AllTools = () => {
       key: 'finance', 
       label: 'Finance Tools', 
       icon: Calculator, 
-      color: 'from-blue-500 to-blue-600',
-      bgColor: 'bg-blue-50',
-      textColor: 'text-blue-600',
+      color: 'from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700',
+      bgColor: 'bg-blue-50 dark:bg-blue-950/30',
+      textColor: 'text-blue-600 dark:text-blue-400',
       count: tools.filter(t => t.category === 'finance').length
     },
     { 
       key: 'text', 
       label: 'Text Tools', 
       icon: FileText, 
-      color: 'from-purple-500 to-purple-600',
-      bgColor: 'bg-purple-50', 
-      textColor: 'text-purple-600',
+      color: 'from-purple-500 to-purple-600 dark:from-purple-600 dark:to-purple-700',
+      bgColor: 'bg-purple-50 dark:bg-purple-950/30', 
+      textColor: 'text-purple-600 dark:text-purple-400',
       count: tools.filter(t => t.category === 'text').length
     },
     { 
       key: 'health', 
       label: 'Health Tools', 
       icon: Heart, 
-      color: 'from-pink-500 to-pink-600',
-      bgColor: 'bg-pink-50',
-      textColor: 'text-pink-600',
+      color: 'from-pink-500 to-pink-600 dark:from-pink-600 dark:to-pink-700',
+      bgColor: 'bg-pink-50 dark:bg-pink-950/30',
+      textColor: 'text-pink-600 dark:text-pink-400',
       count: tools.filter(t => t.category === 'health').length
     }
   ];
@@ -106,12 +106,12 @@ const AllTools = () => {
       <div className="min-h-screen flex flex-col" data-testid="page-all-tools">
         <Header />
         
-        <main className="flex-1 bg-neutral-50">
+        <main className="flex-1 bg-neutral-50 dark:bg-neutral-900">
           {/* Modern Hero Section */}
-          <section className="relative bg-gradient-to-br from-blue-600 via-blue-500 to-purple-600 text-white py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden">
+          <section className="relative bg-gradient-to-br from-blue-600 via-blue-500 to-purple-600 dark:from-blue-700 dark:via-blue-600 dark:to-purple-700 text-white py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden" aria-label="Page header">
             {/* Background Pattern */}
-            <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]" />
-            <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent" />
+            <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]" aria-hidden="true" />
+            <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 dark:from-blue-900/30 to-transparent" aria-hidden="true" />
             
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               {/* Main Content */}
@@ -175,21 +175,24 @@ const AllTools = () => {
           </section>
 
           {/* Tools Section */}
-          <section className="py-16">
+          <section className="py-20" aria-label="Tools grid">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               {/* Category Filters */}
-              <div className="mb-12">
-                <div className="flex flex-wrap gap-2 sm:gap-3 justify-center px-2">
+              <div className="mb-16">
+                <h2 className="sr-only">Filter tools by category</h2>
+                <div className="flex flex-wrap gap-3 sm:gap-4 justify-center px-2" role="group" aria-label="Category filters">
                   {categoryTabs.map((tab) => (
                     <button
                       key={tab.key}
                       onClick={() => handleCategoryChange(tab.key)}
-                      className={`px-3 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold transition-all duration-200 text-sm sm:text-base whitespace-nowrap ${
+                      className={`px-4 sm:px-8 py-3 sm:py-4 rounded-2xl font-semibold transition-all duration-200 text-sm sm:text-base whitespace-nowrap ${
                         selectedCategory === tab.key
-                          ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-md'
-                          : 'bg-white text-neutral-600 hover:bg-neutral-50 shadow-sm border border-neutral-200'
+                          ? 'bg-gradient-to-r from-blue-500 to-purple-600 dark:from-blue-600 dark:to-purple-700 text-white shadow-lg hover:shadow-xl scale-105'
+                          : 'bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-700 shadow-md hover:shadow-lg border border-neutral-200 dark:border-neutral-700'
                       }`}
                       data-testid={`button-filter-${tab.key}`}
+                      aria-label={`Filter by ${tab.label}`}
+                      aria-pressed={selectedCategory === tab.key}
                     >
                       <span className="hidden sm:inline">{tab.label} ({tab.count})</span>
                       <span className="sm:hidden">{tab.label.split(' ')[0]} ({tab.count})</span>
@@ -199,8 +202,8 @@ const AllTools = () => {
               </div>
 
               {/* Results Info */}
-              <div className="mb-8">
-                <p className="text-neutral-600 text-center" data-testid="text-results-count">
+              <div className="mb-10">
+                <p className="text-neutral-700 dark:text-neutral-300 text-center text-lg font-medium" data-testid="text-results-count" role="status" aria-live="polite">
                   Showing {filteredTools.length} tools{selectedCategory !== 'all' && ` in ${categories[selectedCategory as keyof typeof categories]} category`}
                   {searchQuery && ` matching "${searchQuery}"`}
                 </p>
@@ -208,16 +211,18 @@ const AllTools = () => {
 
               {/* Tools Grid */}
               {filteredTools.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8" data-testid="grid-all-tools">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10" data-testid="grid-all-tools" role="list">
                   {filteredTools.map((tool) => (
                     <ToolCard key={tool.id} tool={tool} />
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-16" data-testid="empty-state-no-tools">
-                  <i className="fas fa-search text-6xl text-neutral-300 mb-4"></i>
-                  <h3 className="text-2xl font-bold text-neutral-600 mb-2">No tools found</h3>
-                  <p className="text-neutral-500">
+                <div className="text-center py-20" data-testid="empty-state-no-tools" role="status">
+                  <div className="inline-flex items-center justify-center w-24 h-24 bg-neutral-100 dark:bg-neutral-800 rounded-full mb-6">
+                    <Search className="w-12 h-12 text-neutral-400 dark:text-neutral-500" aria-hidden="true" />
+                  </div>
+                  <h3 className="text-3xl font-bold text-neutral-800 dark:text-neutral-200 mb-4">No tools found</h3>
+                  <p className="text-neutral-600 dark:text-neutral-400 text-lg max-w-md mx-auto">
                     Try adjusting your search query or selecting a different category.
                   </p>
                 </div>

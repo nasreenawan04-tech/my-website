@@ -5,11 +5,12 @@ import { useDebounce } from '@/hooks/use-debounce';
 import { searchTools } from '@/lib/search';
 import { tools } from '@/data/tools';
 import Logo from './Logo';
-import { Menu, X, Search, User, LogOut } from 'lucide-react';
+import { Menu, X, Search, User, LogOut, ChevronDown } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,6 +19,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from '@/components/ui/collapsible';
 import defaultAvatarUrl from '@assets/jhj_1761976221112.png';
 
 const Header = () => {
@@ -27,6 +33,7 @@ const Header = () => {
   const [searchResults, setSearchResults] = useState(tools);
   const [location, setLocation] = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const isMobile = useIsMobile();
   const searchInputRef = useRef<HTMLInputElement>(null);
   const { user, logout, loading } = useAuth();
@@ -187,7 +194,7 @@ const Header = () => {
               ))}
             </nav>
 
-            {/* Right Section - Search, Auth, and Mobile Menu */}
+            {/* Right Section - Search, Theme Toggle, Auth, and Mobile Menu */}
             <div className="flex items-center gap-2 sm:gap-3">
               {/* Search Button */}
               <button 
@@ -199,6 +206,9 @@ const Header = () => {
               >
                 <Search className="w-5 h-5" />
               </button>
+
+              {/* Theme Toggle */}
+              <ThemeToggle />
 
               {/* Desktop Auth Buttons - Hidden below lg */}
               {!loading && (
@@ -313,28 +323,93 @@ const Header = () => {
           aria-label="Mobile navigation"
         >
           <nav className="px-4 py-4 space-y-1 overflow-y-auto max-h-[calc(100vh-4rem)] scrollbar-thin">
-            {/* Navigation Links */}
-            {navLinks.map((link, index) => (
+            {/* Browse All Tools Link */}
+            <Link
+              href="/all-tools"
+              className={`block font-medium py-3 px-4 rounded-lg transition-all duration-200 ease-in-out ${
+                location === '/all-tools'
+                  ? 'bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 shadow-sm'
+                  : 'text-neutral-700 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-neutral-800/50 active:scale-98'
+              }`}
+              onClick={() => setIsMobileMenuOpen(false)}
+              data-testid="mobile-link-all-tools"
+            >
+              Browse All Tools
+            </Link>
+
+            {/* Collapsible Categories Section */}
+            <Collapsible open={isCategoriesOpen} onOpenChange={setIsCategoriesOpen}>
+              <CollapsibleTrigger className="w-full flex items-center justify-between font-medium py-3 px-4 rounded-lg text-neutral-700 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-neutral-800/50 transition-all duration-200" data-testid="button-toggle-categories">
+                <span>Tool Categories</span>
+                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isCategoriesOpen ? 'rotate-180' : ''}`} />
+              </CollapsibleTrigger>
+              <CollapsibleContent className="pl-4 space-y-1 mt-1">
+                <Link
+                  href="/finance-tools"
+                  className={`block font-medium py-2.5 px-4 rounded-lg transition-all duration-200 ease-in-out ${
+                    location === '/finance-tools'
+                      ? 'bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 shadow-sm'
+                      : 'text-neutral-600 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-neutral-800/50 active:scale-98'
+                  }`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  data-testid="mobile-link-finance-tools"
+                >
+                  Finance Tools
+                </Link>
+                <Link
+                  href="/text-tools"
+                  className={`block font-medium py-2.5 px-4 rounded-lg transition-all duration-200 ease-in-out ${
+                    location === '/text-tools'
+                      ? 'bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 shadow-sm'
+                      : 'text-neutral-600 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-neutral-800/50 active:scale-98'
+                  }`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  data-testid="mobile-link-text-tools"
+                >
+                  Text Tools
+                </Link>
+                <Link
+                  href="/health-tools"
+                  className={`block font-medium py-2.5 px-4 rounded-lg transition-all duration-200 ease-in-out ${
+                    location === '/health-tools'
+                      ? 'bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 shadow-sm'
+                      : 'text-neutral-600 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-neutral-800/50 active:scale-98'
+                  }`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  data-testid="mobile-link-health-tools"
+                >
+                  Health Tools
+                </Link>
+              </CollapsibleContent>
+            </Collapsible>
+
+            {/* User-Specific Links */}
+            <div className="pt-2 mt-2 border-t border-gray-200 dark:border-neutral-700">
               <Link
-                key={link.href}
-                href={link.href}
+                href="/favorite-tools"
                 className={`block font-medium py-3 px-4 rounded-lg transition-all duration-200 ease-in-out ${
-                  location === link.href
+                  location === '/favorite-tools'
                     ? 'bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 shadow-sm'
                     : 'text-neutral-700 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-neutral-800/50 active:scale-98'
-                } ${
-                  isMobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'
                 }`}
-                style={{ 
-                  transitionDelay: isMobileMenuOpen ? `${index * 40}ms` : '0ms',
-                  transitionProperty: 'transform, opacity, background-color, color, box-shadow'
-                }}
                 onClick={() => setIsMobileMenuOpen(false)}
-                data-testid={`mobile-link-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
+                data-testid="mobile-link-favorites"
               >
-                {link.label}
+                My Favorites
               </Link>
-            ))}
+              <Link
+                href="/recently-used-tools"
+                className={`block font-medium py-3 px-4 rounded-lg transition-all duration-200 ease-in-out ${
+                  location === '/recently-used-tools'
+                    ? 'bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 shadow-sm'
+                    : 'text-neutral-700 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-neutral-800/50 active:scale-98'
+                }`}
+                onClick={() => setIsMobileMenuOpen(false)}
+                data-testid="mobile-link-recently-used"
+              >
+                Recently Used
+              </Link>
+            </div>
             
             {/* Mobile Auth Section */}
             {!loading && (

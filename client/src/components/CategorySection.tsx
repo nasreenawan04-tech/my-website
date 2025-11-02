@@ -41,41 +41,58 @@ const CategorySection = () => {
   };
 
   return (
-    <section className="py-20 bg-neutral-50" data-testid="category-section">
+    <section className="py-24 bg-neutral-50 dark:bg-neutral-800" data-testid="category-section" aria-label="Tool Categories">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-neutral-800 mb-6" data-testid="text-category-title">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl lg:text-5xl font-bold text-neutral-900 dark:text-neutral-50 mb-8" data-testid="text-category-title">
             Tools by Category
           </h2>
-          <p className="text-xl text-neutral-600 max-w-3xl mx-auto" data-testid="text-category-subtitle">
-            Explore our comprehensive suite of productivity tools
+          <p className="text-xl text-neutral-700 dark:text-neutral-300 max-w-3xl mx-auto" data-testid="text-category-subtitle">
+            Explore our comprehensive suite of productivity tools organized by category
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {categories.map((category) => (
-            <div
-              key={category.key}
-              className={`bg-gradient-to-br ${category.gradient} rounded-2xl p-8 text-white transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl cursor-pointer`}
-              onClick={() => handleCategoryClick(category.href)}
-              data-testid={`card-category-${category.key}`}
-            >
-
-              <h3 className="text-2xl font-bold mb-4" data-testid={`text-category-title-${category.key}`}>
-                {category.title}
-              </h3>
-              <p className="text-opacity-90 mb-6 text-lg leading-relaxed" data-testid={`text-category-description-${category.key}`}>
-                {category.description}
-              </p>
-              <button
-                className={`bg-white ${category.buttonColor} px-6 py-3 rounded-xl font-semibold transition-colors duration-200 inline-flex items-center`}
-                data-testid={`button-explore-${category.key}`}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {categories.map((category) => {
+            const Icon = category.icon;
+            return (
+              <div
+                key={category.key}
+                className={`bg-gradient-to-br ${category.gradient} rounded-3xl p-10 text-white transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-3xl cursor-pointer border-2 border-white/20`}
+                onClick={() => handleCategoryClick(category.href)}
+                data-testid={`card-category-${category.key}`}
+                role="button"
+                tabIndex={0}
+                aria-label={`Explore ${category.title}`}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    handleCategoryClick(category.href);
+                  }
+                }}
               >
-                Explore {category.key.charAt(0).toUpperCase() + category.key.slice(1)} Tools
-                <ArrowRight className="ml-2" size={16} />
-              </button>
-            </div>
-          ))}
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
+                    <Icon size={32} className="text-white" />
+                  </div>
+                  <h3 className="text-3xl font-bold" data-testid={`text-category-title-${category.key}`}>
+                    {category.title}
+                  </h3>
+                </div>
+                <p className="text-white/90 mb-8 text-lg leading-relaxed" data-testid={`text-category-description-${category.key}`}>
+                  {category.description}
+                </p>
+                <button
+                  className={`bg-white ${category.buttonColor} px-8 py-4 rounded-xl font-semibold transition-all duration-200 inline-flex items-center shadow-lg hover:shadow-xl hover:scale-105`}
+                  data-testid={`button-explore-${category.key}`}
+                  aria-label={`Explore ${category.key} tools`}
+                >
+                  Explore {category.key.charAt(0).toUpperCase() + category.key.slice(1)} Tools
+                  <ArrowRight className="ml-2" size={18} />
+                </button>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
