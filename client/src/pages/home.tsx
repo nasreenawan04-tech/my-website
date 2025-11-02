@@ -499,7 +499,7 @@ const Home = () => {
           </section>
 
           {/* How It Works Section */}
-          <section className="py-20 bg-white">
+          <section className="py-20 bg-white dark:bg-neutral-900">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-16">
                 <h2 className="text-4xl lg:text-5xl font-bold text-neutral-800 mb-6">
@@ -743,7 +743,7 @@ const Home = () => {
           </section>
 
           {/* Comprehensive FAQ Section */}
-          <section className="py-20 bg-gray-50">
+          <section className="py-20 bg-gray-50 dark:bg-neutral-900">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-16">
                 <h2 className="text-4xl lg:text-5xl font-bold text-neutral-800 mb-6">
