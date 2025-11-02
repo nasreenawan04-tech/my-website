@@ -1,0 +1,58 @@
+You are an expert SEO engineer with 10+ years of experience.  
+Your task is to optimize and rewrite all meta tags, titles, and headings for the website "https://dapsiwow.com" based on Google Search Console data.
+
+Here’s what you must do step by step:
+
+1️⃣ **Data Analysis**
+- Analyze current page URLs, titles, and meta descriptions from the site's HTML.
+- Use GSC query data (keywords, impressions, clicks, CTR, and average position) to identify the top-performing and underperforming pages.
+- Focus especially on pages ranking between positions 30–70 (the low-hanging fruit for ranking improvements).
+
+2️⃣ **Rewrite Rules**
+For each page:
+- Write an **SEO-optimized title** under 60 characters.
+- Write an **engaging meta description** under 160 characters.
+- Rewrite or add a **clear <h1> heading** with 1–2 keywords naturally inserted.
+- Suggest 2–3 **internal links** to related tools/pages within DapsiWow.
+- Ensure all new text is **human-readable, emotionally appealing, and click-oriented.**
+- Avoid keyword stuffing. Prioritize clarity and readability.
+
+3️⃣ **CTR Optimization**
+- Add emotional/action words to increase click-through rate (e.g. “Instant,” “Free,” “Smart,” “Fast Result,” “No Signup”).
+- Ensure every title and meta description highlights a benefit or action.
+
+4️⃣ **Semantic + Schema Enhancement**
+- Insert relevant **JSON-LD structured data** for each tool page:
+  - Use “SoftwareApplication” schema type.
+  - Include name, description, operatingSystem: "Web", applicationCategory, and url.
+- Add optional FAQ schema if the page includes instructions or tips.
+
+5️⃣ **Content Depth Recommendations**
+- For each tool page, recommend 2–3 short sections to improve topical depth:
+  - Example: “How to use this tool”, “Why this tool is useful”, “Example calculations”.
+
+6️⃣ **Technical Validation**
+- Ensure every page has:
+  - Unique <title> and <meta description>
+  - One <h1> only
+  - Noindex removed for public pages
+  - Sitemap.xml updated and linked in robots.txt
+  - Canonical tags correct
+
+7️⃣ **Output Format**
+Return a JSON or table with:
+- page_url
+- old_title
+- new_title
+- new_meta_description
+- new_h1
+- suggested_internal_links
+- schema_json_snippet
+- content_addition_suggestions
+
+8️⃣ **Goal**
+Boost:
+- Average Position → below 25
+- CTR → 8%+
+- Impressions → 10K+
+- Clicks → 800+ in next 60 days
