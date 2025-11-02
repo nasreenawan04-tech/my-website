@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ChevronUp } from "lucide-react";
+import { ArrowUp } from "lucide-react"; // Changed from ChevronUp to ArrowUp as per the changes snippet
 import { Button } from "@/components/ui/button";
 
 export function BackToTop() {
@@ -33,7 +33,7 @@ export function BackToTop() {
           className="fixed bottom-8 right-8 p-3 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 z-50"
           aria-label="Back to top"
         >
-          <ChevronUp className="w-6 h-6" />
+          <ArrowUp className="w-6 h-6" /> {/* Changed from ChevronUp to ArrowUp */}
         </button>
       )}
     </>
