@@ -552,13 +552,13 @@ const Home = () => {
           </section>
 
           {/* Trust & Reliability Section */}
-          <section className="py-20 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50" data-testid="section-trust">
+          <section className="py-20 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-neutral-900 dark:via-neutral-800 dark:to-neutral-900" data-testid="section-trust">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-16">
-                <h2 className="text-4xl lg:text-5xl font-bold text-neutral-800 mb-6">
+                <h2 className="text-4xl lg:text-5xl font-bold text-neutral-800 dark:text-neutral-50 mb-6">
                   Trusted by Users Worldwide
                 </h2>
-                <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed">
+                <p className="text-xl text-neutral-600 dark:text-neutral-300 max-w-4xl mx-auto leading-relaxed">
                   Join millions of professionals, students, and individuals who rely on DapsiWow's
                   comprehensive toolkit for their daily calculations, analysis, and productivity needs.
                   Our platform delivers consistent, accurate results that users trust for important decisions.
@@ -566,111 +566,111 @@ const Home = () => {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-16">
-                <div className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-blue-100 group" data-testid="stat-calculations">
-                  <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-105 transition-transform duration-300">
+                <div className="bg-white dark:bg-neutral-800 rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-blue-100 dark:border-neutral-700 group" data-testid="stat-calculations">
+                  <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-105 transition-transform duration-300">
                     <Calculator className="text-white" size={24} />
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl lg:text-4xl font-bold text-blue-600 mb-2">25M+</div>
-                    <div className="text-neutral-800 font-semibold text-lg mb-1">Calculations Completed</div>
-                    <div className="text-sm text-neutral-500">Accurate results delivered daily</div>
+                    <div className="text-3xl lg:text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">25M+</div>
+                    <div className="text-neutral-800 dark:text-neutral-100 font-semibold text-lg mb-1">Calculations Completed</div>
+                    <div className="text-sm text-neutral-500 dark:text-neutral-400">Accurate results delivered daily</div>
                   </div>
                 </div>
 
-                <div className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-green-100 group" data-testid="stat-tools">
-                  <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-105 transition-transform duration-300">
+                <div className="bg-white dark:bg-neutral-800 rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-green-100 dark:border-neutral-700 group" data-testid="stat-tools">
+                  <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 dark:from-green-600 dark:to-green-700 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-105 transition-transform duration-300">
                     <PenTool className="text-white" size={24} />
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl lg:text-4xl font-bold text-green-600 mb-2">180+</div>
-                    <div className="text-neutral-800 font-semibold text-lg mb-1">Professional Tools</div>
-                    <div className="text-sm text-neutral-500">Continuously expanding collection</div>
+                    <div className="text-3xl lg:text-4xl font-bold text-green-600 dark:text-green-400 mb-2">180+</div>
+                    <div className="text-neutral-800 dark:text-neutral-100 font-semibold text-lg mb-1">Professional Tools</div>
+                    <div className="text-sm text-neutral-500 dark:text-neutral-400">Continuously expanding collection</div>
                   </div>
                 </div>
 
-                <div className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100 group" data-testid="stat-uptime">
-                  <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-105 transition-transform duration-300">
+                <div className="bg-white dark:bg-neutral-800 rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-purple-100 dark:border-neutral-700 group" data-testid="stat-uptime">
+                  <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 dark:from-purple-600 dark:to-purple-700 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-105 transition-transform duration-300">
                     <Shield className="text-white" size={24} />
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl lg:text-4xl font-bold text-purple-600 mb-2">99.9%</div>
-                    <div className="text-neutral-800 font-semibold text-lg mb-1">Service Reliability</div>
-                    <div className="text-sm text-neutral-500">Always available when you need it</div>
+                    <div className="text-3xl lg:text-4xl font-bold text-purple-600 dark:text-purple-400 mb-2">99.9%</div>
+                    <div className="text-neutral-800 dark:text-neutral-100 font-semibold text-lg mb-1">Service Reliability</div>
+                    <div className="text-sm text-neutral-500 dark:text-neutral-400">Always available when you need it</div>
                   </div>
                 </div>
 
-                <div className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-100 group" data-testid="stat-security">
-                  <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-105 transition-transform duration-300">
+                <div className="bg-white dark:bg-neutral-800 rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-100 dark:border-neutral-700 group" data-testid="stat-security">
+                  <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-orange-600 dark:from-orange-600 dark:to-orange-700 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-105 transition-transform duration-300">
                     <Globe className="text-white" size={24} />
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl lg:text-4xl font-bold text-orange-600 mb-2">100%</div>
-                    <div className="text-neutral-800 font-semibold text-lg mb-1">Free & Accessible</div>
-                    <div className="text-sm text-neutral-500">No subscriptions or hidden fees</div>
+                    <div className="text-3xl lg:text-4xl font-bold text-orange-600 dark:text-orange-400 mb-2">100%</div>
+                    <div className="text-neutral-800 dark:text-neutral-100 font-semibold text-lg mb-1">Free & Accessible</div>
+                    <div className="text-sm text-neutral-500 dark:text-neutral-400">No subscriptions or hidden fees</div>
                   </div>
                 </div>
               </div>
 
               <div className="text-center mb-12">
-                <h3 className="text-3xl lg:text-4xl font-bold text-neutral-800 mb-6">
+                <h3 className="text-3xl lg:text-4xl font-bold text-neutral-800 dark:text-neutral-50 mb-6">
                   Why Professionals Choose DapsiWow
                 </h3>
-                <p className="text-lg text-neutral-600 max-w-4xl mx-auto leading-relaxed">
+                <p className="text-lg text-neutral-600 dark:text-neutral-300 max-w-4xl mx-auto leading-relaxed">
                   Our platform serves professionals across industries who demand accuracy, reliability,
                   and efficiency in their daily work. Here's how different professionals use DapsiWow:
                 </p>
               </div>
 
-              <div className="bg-white rounded-2xl p-8 lg:p-12 shadow-xl border border-gray-100">
+              <div className="bg-white dark:bg-neutral-800 rounded-2xl p-8 lg:p-12 shadow-xl border border-gray-100 dark:border-neutral-700">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                   <div>
                     <div className="space-y-6">
-                      <div className="flex items-start space-x-4 p-4 rounded-xl bg-gradient-to-r from-blue-50 to-blue-100 border border-blue-200" data-testid="use-case-financial">
-                        <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <div className="flex items-start space-x-4 p-4 rounded-xl bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 border border-blue-200 dark:border-blue-700" data-testid="use-case-financial">
+                        <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700 rounded-xl flex items-center justify-center flex-shrink-0">
                           <Calculator className="text-white" size={20} />
                         </div>
                         <div>
-                          <h4 className="font-bold text-neutral-800 mb-2">Financial Advisors & Real Estate Agents</h4>
-                          <p className="text-neutral-700 text-sm leading-relaxed">
+                          <h4 className="font-bold text-neutral-800 dark:text-neutral-100 mb-2">Financial Advisors & Real Estate Agents</h4>
+                          <p className="text-neutral-700 dark:text-neutral-300 text-sm leading-relaxed">
                             Provide accurate mortgage calculations, loan comparisons, and investment projections
                             to help clients make informed financial decisions with confidence.
                           </p>
                         </div>
                       </div>
 
-                      <div className="flex items-start space-x-4 p-4 rounded-xl bg-gradient-to-r from-pink-50 to-pink-100 border border-pink-200" data-testid="use-case-health">
-                        <div className="w-12 h-12 bg-gradient-to-r from-pink-500 to-pink-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <div className="flex items-start space-x-4 p-4 rounded-xl bg-gradient-to-r from-pink-50 to-pink-100 dark:from-pink-900/30 dark:to-pink-800/30 border border-pink-200 dark:border-pink-700" data-testid="use-case-health">
+                        <div className="w-12 h-12 bg-gradient-to-r from-pink-500 to-pink-600 dark:from-pink-600 dark:to-pink-700 rounded-xl flex items-center justify-center flex-shrink-0">
                           <HeartPulse className="text-white" size={20} />
                         </div>
                         <div>
-                          <h4 className="font-bold text-neutral-800 mb-2">Health & Fitness Professionals</h4>
-                          <p className="text-neutral-700 text-sm leading-relaxed">
+                          <h4 className="font-bold text-neutral-800 dark:text-neutral-100 mb-2">Health & Fitness Professionals</h4>
+                          <p className="text-neutral-700 dark:text-neutral-300 text-sm leading-relaxed">
                             Track client progress with BMI calculators, calorie counters, and body composition
                             tools to create personalized fitness and nutrition programs.
                           </p>
                         </div>
                       </div>
 
-                      <div className="flex items-start space-x-4 p-4 rounded-xl bg-gradient-to-r from-purple-50 to-purple-100 border border-purple-200" data-testid="use-case-content">
-                        <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <div className="flex items-start space-x-4 p-4 rounded-xl bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/30 border border-purple-200 dark:border-purple-700" data-testid="use-case-content">
+                        <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-purple-600 dark:from-purple-600 dark:to-purple-700 rounded-xl flex items-center justify-center flex-shrink-0">
                           <PenTool className="text-white" size={20} />
                         </div>
                         <div>
-                          <h4 className="font-bold text-neutral-800 mb-2">Content Creators & Marketers</h4>
-                          <p className="text-neutral-700 text-sm leading-relaxed">
+                          <h4 className="font-bold text-neutral-800 dark:text-neutral-100 mb-2">Content Creators & Marketers</h4>
+                          <p className="text-neutral-700 dark:text-neutral-300 text-sm leading-relaxed">
                             Optimize content with text analysis tools, word counters, and formatting utilities
                             for better engagement and professional presentation.
                           </p>
                         </div>
                       </div>
 
-                      <div className="flex items-start space-x-4 p-4 rounded-xl bg-gradient-to-r from-green-50 to-green-100 border border-green-200" data-testid="use-case-students">
-                        <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <div className="flex items-start space-x-4 p-4 rounded-xl bg-gradient-to-r from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/30 border border-green-200 dark:border-green-700" data-testid="use-case-students">
+                        <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 dark:from-green-600 dark:to-green-700 rounded-xl flex items-center justify-center flex-shrink-0">
                           <Zap className="text-white" size={20} />
                         </div>
                         <div>
-                          <h4 className="font-bold text-neutral-800 mb-2">Students & Researchers</h4>
-                          <p className="text-neutral-700 text-sm leading-relaxed">
+                          <h4 className="font-bold text-neutral-800 dark:text-neutral-100 mb-2">Students & Researchers</h4>
+                          <p className="text-neutral-700 dark:text-neutral-300 text-sm leading-relaxed">
                             Complete research calculations, analyze documents, and plan projects across
                             various academic disciplines with our comprehensive toolkit.
                           </p>
@@ -680,58 +680,58 @@ const Home = () => {
                   </div>
 
                   <div className="space-y-6">
-                    <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 border border-blue-200">
-                      <h4 className="text-2xl font-bold text-neutral-800 mb-4 text-center">
+                    <div className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-2xl p-8 border border-blue-200 dark:border-blue-700">
+                      <h4 className="text-2xl font-bold text-neutral-800 dark:text-neutral-100 mb-4 text-center">
                         Get Started in Seconds
                       </h4>
-                      <p className="text-neutral-700 mb-6 leading-relaxed text-center">
+                      <p className="text-neutral-700 dark:text-neutral-300 mb-6 leading-relaxed text-center">
                         Join millions of users who rely on DapsiWow for accurate calculations and analysis.
                         No registration required - just click and start using any tool instantly.
                       </p>
                       <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
                         <a
                           href="/finance-tools"
-                          className="inline-block bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 transition-all duration-200 shadow-lg text-center hover:shadow-xl transform hover:-translate-y-0.5"
+                          className="inline-block bg-blue-600 dark:bg-blue-500 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 dark:hover:bg-blue-600 transition-all duration-200 shadow-lg text-center hover:shadow-xl transform hover:-translate-y-0.5"
                           data-testid="link-finance-tools"
                         >
                           Explore Finance Tools
                         </a>
                         <a
                           href="/health-tools"
-                          className="inline-block bg-white text-blue-600 border-2 border-blue-600 px-6 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-200 text-center hover:shadow-lg transform hover:-translate-y-0.5"
+                          className="inline-block bg-white dark:bg-neutral-800 text-blue-600 dark:text-blue-400 border-2 border-blue-600 dark:border-blue-500 px-6 py-3 rounded-xl font-semibold hover:bg-blue-50 dark:hover:bg-neutral-700 transition-all duration-200 text-center hover:shadow-lg transform hover:-translate-y-0.5"
                           data-testid="link-health-tools"
                         >
                           Try Health Tools
                         </a>
                       </div>
                       <div className="text-center">
-                        <p className="text-sm text-neutral-600">
-                          Or explore all <a href="/all-tools" className="text-blue-600 hover:text-blue-800 underline font-semibold">180+ professional tools</a>
+                        <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                          Or explore all <a href="/all-tools" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline font-semibold">180+ professional tools</a>
                         </p>
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 gap-4">
-                      <div className="bg-white rounded-xl p-4 shadow-md border border-gray-100">
-                        <h5 className="font-bold text-neutral-800 mb-3 text-center">Trust Indicators</h5>
+                      <div className="bg-white dark:bg-neutral-800 rounded-xl p-4 shadow-md border border-gray-100 dark:border-neutral-700">
+                        <h5 className="font-bold text-neutral-800 dark:text-neutral-100 mb-3 text-center">Trust Indicators</h5>
                         <div className="grid grid-cols-3 gap-4 text-center">
                           <div className="flex flex-col items-center space-y-2" data-testid="trust-indicator-security">
-                            <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                              <Shield className="text-green-600" size={20} />
+                            <div className="w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center">
+                              <Shield className="text-green-600 dark:text-green-400" size={20} />
                             </div>
-                            <span className="text-xs font-medium text-neutral-700">Secure & Private</span>
+                            <span className="text-xs font-medium text-neutral-700 dark:text-neutral-300">Secure & Private</span>
                           </div>
                           <div className="flex flex-col items-center space-y-2" data-testid="trust-indicator-speed">
-                            <div className="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
-                              <Zap className="text-yellow-600" size={20} />
+                            <div className="w-10 h-10 bg-yellow-100 dark:bg-yellow-900/30 rounded-lg flex items-center justify-center">
+                              <Zap className="text-yellow-600 dark:text-yellow-400" size={20} />
                             </div>
-                            <span className="text-xs font-medium text-neutral-700">Instant Results</span>
+                            <span className="text-xs font-medium text-neutral-700 dark:text-neutral-300">Instant Results</span>
                           </div>
                           <div className="flex flex-col items-center space-y-2" data-testid="trust-indicator-devices">
-                            <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-                              <Smartphone className="text-purple-600" size={20} />
+                            <div className="w-10 h-10 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center">
+                              <Smartphone className="text-purple-600 dark:text-purple-400" size={20} />
                             </div>
-                            <span className="text-xs font-medium text-neutral-700">All Devices</span>
+                            <span className="text-xs font-medium text-neutral-700 dark:text-neutral-300">All Devices</span>
                           </div>
                         </div>
                       </div>
