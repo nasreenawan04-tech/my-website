@@ -1,0 +1,49 @@
+You are a senior full-stack developer and UX designer. 
+I want you to fix and improve my website **DapsiWow.com** for better UI/UX design quality.
+
+Here are the key improvements to implement across the site:
+
+1. **Navigation & Layout**
+   - Organize 150+ tools into clear, collapsible categories (e.g., Finance, Text, Health, Utility).
+   - Add a responsive global navigation bar with search and filter features.
+   - Keep navigation labels short, descriptive, and consistent.
+   - Add breadcrumbs on tool pages for easier navigation.
+
+2. **Visual Hierarchy & Readability**
+   - Increase whitespace and section padding to reduce clutter.
+   - Use consistent heading hierarchy (H1 → H2 → H3) and font sizes for clarity.
+   - Improve color contrast between text, background, and buttons to meet accessibility standards (WCAG AA+).
+   - Ensure consistent color palette, typography, and spacing site-wide.
+
+3. **Performance & Responsiveness**
+   - Ensure full mobile responsiveness with a hamburger menu and large, tap-friendly buttons.
+   - Optimize images, enable compression (GZIP/Brotli), and minify CSS/JS.
+   - Test across Chrome, Firefox, Safari, and Edge for browser compatibility.
+
+4. **User Flow & CTA**
+   - Add clear primary call-to-action buttons (e.g., “Start Tool”, “Try Now”) with consistent design.
+   - Highlight “No Sign-Up Required” or “Free Forever” benefits near CTAs.
+   - Reduce deep drill-down clicks—keep most tools accessible within 1–2 clicks.
+
+5. **Accessibility**
+   - Add alt text to all images/icons.
+   - Ensure readable font sizes and contrast ratios.
+   - Use ARIA labels for buttons and navigation elements.
+
+6. **Branding Consistency**
+   - Keep logo placement consistent (top-left, linked to homepage).
+   - Unify colors, typography, and button styles in a global theme file.
+   - Add favicon and consistent page titles/descriptions.
+
+7. **Optional Enhancements**
+   - Add a light/dark mode toggle.
+   - Add “Recently Used” or “Favorite Tools” section for user convenience.
+   - Improve error pages (404, 500) with helpful navigation links.
+
+After applying all these, ensure the final UI is:
+- Clean, minimal, and modern
+- Fully responsive on all devices
+- SEO-friendly and accessible
+- Easy for users to find and use tools quickly
+
+Deploy updated version and confirm everything passes Lighthouse audits (Performance > 90, Accessibility > 90, SEO > 90).
