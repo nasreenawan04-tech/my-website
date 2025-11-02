@@ -1,0 +1,1358 @@
+{
+  "metadata": {
+    "project": "DapsiWow SEO Optimization",
+    "total_pages": 101,
+    "optimization_date": "2025-11-02",
+    "target_metrics": {
+      "average_position": "< 25",
+      "ctr": "> 8%",
+      "impressions": "> 10K",
+      "clicks": "> 800"
+    }
+  },
+  "finance_tools": [
+    {
+      "tool_id": "loan-calculator",
+      "page_url": "https://dapsiwow.com/tools/loan-calculator",
+      "current_title": "Loan Calculator - Calculate Loan Payments | DapsiWow",
+      "new_title": "Free Loan Calculator - Instant Payment Results 2025",
+      "new_meta_description": "Calculate loan payments instantly! Free loan calculator with amortization schedule. Compare rates, save thousands. No signup required.",
+      "new_h1": "Smart Loan Calculator - Get Instant Payment Results",
+      "keywords": ["loan calculator", "calculate loan payment", "loan amortization", "monthly payment calculator"],
+      "internal_links": [
+        "/tools/mortgage-calculator",
+        "/tools/car-loan-calculator",
+        "/tools/loan-comparison-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Enter loan amount, interest rate, and term to calculate monthly payments",
+        "Why Useful: Compare loan options and see total interest paid over the loan lifetime",
+        "Example: $100,000 loan at 5.5% for 30 years = $568/month payment"
+      ]
+    },
+    {
+      "tool_id": "mortgage-calculator",
+      "page_url": "https://dapsiwow.com/tools/mortgage-calculator",
+      "current_title": "Mortgage Calculator - Calculate Mortgage Payments",
+      "new_title": "Free Mortgage Calculator - Save Thousands in 2025",
+      "new_meta_description": "Calculate mortgage payments with taxes, PMI & insurance. Free tool shows total cost. Compare rates & save thousands instantly!",
+      "new_h1": "Mortgage Calculator - Calculate Your Home Payment",
+      "keywords": ["mortgage calculator", "home loan calculator", "mortgage payment", "PMI calculator"],
+      "internal_links": [
+        "/tools/loan-calculator",
+        "/tools/home-loan-calculator",
+        "/tools/dti-ratio-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Input home price, down payment, interest rate, and loan term",
+        "Why Useful: See complete monthly payment including property tax, insurance, and PMI",
+        "Example: $400,000 home with 20% down at 6.5% = $2,022/month principal + interest"
+      ]
+    },
+    {
+      "tool_id": "emi-calculator",
+      "page_url": "https://dapsiwow.com/tools/emi-calculator",
+      "current_title": "EMI Calculator - Calculate Equated Monthly Installments",
+      "new_title": "EMI Calculator - Instant Loan EMI Calculation Free",
+      "new_meta_description": "Calculate EMI instantly for any loan! Free EMI calculator with payment schedule. Plan your finances better. Get results in seconds!",
+      "new_h1": "EMI Calculator - Calculate Your Monthly Installment",
+      "keywords": ["EMI calculator", "equated monthly installment", "loan EMI", "monthly installment calculator"],
+      "internal_links": [
+        "/tools/loan-calculator",
+        "/tools/home-loan-calculator",
+        "/tools/car-loan-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Enter principal amount, interest rate, and tenure to calculate EMI",
+        "Why Useful: Plan your monthly budget and understand total interest payable",
+        "Example: ₹10,00,000 at 10% for 5 years = ₹21,247/month EMI"
+      ]
+    },
+    {
+      "tool_id": "business-loan-calculator",
+      "page_url": "https://dapsiwow.com/tools/business-loan-calculator",
+      "current_title": "Business Loan Calculator - Calculate Business Loan Payments",
+      "new_title": "Business Loan Calculator - Fast & Accurate Results",
+      "new_meta_description": "Calculate business loan payments with fees & interest. Free calculator helps you plan financing. Compare options & grow your business!",
+      "new_h1": "Business Loan Calculator - Plan Your Financing",
+      "keywords": ["business loan calculator", "SBA loan calculator", "commercial loan", "business financing"],
+      "internal_links": [
+        "/tools/loan-calculator",
+        "/tools/roi-calculator",
+        "/tools/break-even-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Input loan amount, rate, term, and origination fees for accurate results",
+        "Why Useful: Compare SBA loans, term loans, and equipment financing options",
+        "Example: $250,000 business loan at 8% for 10 years with 2% fee = $3,033/month"
+      ]
+    },
+    {
+      "tool_id": "compound-interest-calculator",
+      "page_url": "https://dapsiwow.com/tools/compound-interest-calculator",
+      "current_title": "Compound Interest Calculator - Calculate Compound Interest",
+      "new_title": "Compound Interest Calculator - Watch Your Money Grow",
+      "new_meta_description": "See your investment grow! Free compound interest calculator with charts. Calculate returns on savings & investments. Start planning today!",
+      "new_h1": "Compound Interest Calculator - Maximize Your Returns",
+      "keywords": ["compound interest calculator", "investment calculator", "compound interest formula", "savings growth"],
+      "internal_links": [
+        "/tools/simple-interest-calculator",
+        "/tools/investment-return-calculator",
+        "/tools/future-value-investment-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Enter principal, interest rate, compounding frequency, and time period",
+        "Why Useful: Understand the power of compound interest for long-term wealth building",
+        "Example: $10,000 at 7% compounded annually for 20 years = $38,697"
+      ]
+    },
+    {
+      "tool_id": "simple-interest-calculator",
+      "page_url": "https://dapsiwow.com/tools/simple-interest-calculator",
+      "current_title": "Simple Interest Calculator - Calculate Simple Interest",
+      "new_title": "Simple Interest Calculator - Fast & Easy Results",
+      "new_meta_description": "Calculate simple interest in seconds! Free calculator for loans & investments. Clear results with breakdown. Perfect for students & investors.",
+      "new_h1": "Simple Interest Calculator - Quick & Accurate",
+      "keywords": ["simple interest calculator", "interest calculator", "simple interest formula", "loan interest"],
+      "internal_links": [
+        "/tools/compound-interest-calculator",
+        "/tools/loan-calculator",
+        "/tools/roi-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Enter principal amount, interest rate, and time period in years",
+        "Why Useful: Perfect for short-term loans and straightforward interest calculations",
+        "Example: $5,000 principal at 5% for 3 years = $750 total interest"
+      ]
+    },
+    {
+      "tool_id": "roi-calculator",
+      "page_url": "https://dapsiwow.com/tools/roi-calculator",
+      "current_title": "ROI Calculator - Calculate Return on Investment",
+      "new_title": "ROI Calculator - Measure Investment Returns Instantly",
+      "new_meta_description": "Calculate ROI in seconds! Free return on investment calculator. Make smarter investment decisions. See profit percentage instantly!",
+      "new_h1": "ROI Calculator - Calculate Your Investment Returns",
+      "keywords": ["ROI calculator", "return on investment", "investment profit calculator", "ROI formula"],
+      "internal_links": [
+        "/tools/investment-return-calculator",
+        "/tools/stock-profit-calculator",
+        "/tools/compound-interest-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Input initial investment and final value to calculate percentage return",
+        "Why Useful: Compare different investment opportunities and measure performance",
+        "Example: Invested $10,000, sold for $15,000 = 50% ROI"
+      ]
+    },
+    {
+      "tool_id": "tax-calculator",
+      "page_url": "https://dapsiwow.com/tools/tax-calculator",
+      "current_title": "Tax Calculator - Calculate Income Tax",
+      "new_title": "Tax Calculator 2025 - Estimate Income Tax Instantly",
+      "new_meta_description": "Calculate your income tax for 2025! Free tax calculator with deductions. Get accurate estimates. Plan your finances smarter. Try now!",
+      "new_h1": "Tax Calculator - Estimate Your Income Tax 2025",
+      "keywords": ["tax calculator", "income tax calculator", "tax estimator", "federal tax calculator"],
+      "internal_links": [
+        "/tools/salary-to-hourly-calculator",
+        "/tools/budget-calculator",
+        "/tools/net-worth-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Enter your annual income and filing status to estimate tax liability",
+        "Why Useful: Plan for tax season and optimize deductions throughout the year",
+        "Example: $75,000 salary, single filer = ~$12,500 federal tax"
+      ]
+    },
+    {
+      "tool_id": "salary-to-hourly-calculator",
+      "page_url": "https://dapsiwow.com/tools/salary-to-hourly-calculator",
+      "current_title": "Salary to Hourly Calculator - Convert Annual Salary",
+      "new_title": "Salary to Hourly Calculator - Know Your True Worth",
+      "new_meta_description": "Convert salary to hourly wage instantly! Free calculator shows true hourly rate. Compare job offers better. Get results in seconds!",
+      "new_h1": "Salary to Hourly Calculator - Convert Your Pay",
+      "keywords": ["salary to hourly calculator", "hourly wage calculator", "annual to hourly", "salary converter"],
+      "internal_links": [
+        "/tools/tax-calculator",
+        "/tools/budget-calculator",
+        "/tools/tip-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Enter annual salary and weekly work hours to calculate hourly rate",
+        "Why Useful: Compare salaried positions with hourly jobs or freelance rates",
+        "Example: $60,000 salary ÷ 40 hours/week = $28.85/hour"
+      ]
+    },
+    {
+      "tool_id": "tip-calculator",
+      "page_url": "https://dapsiwow.com/tools/tip-calculator",
+      "current_title": "Tip Calculator - Calculate Tip and Split Bills",
+      "new_title": "Tip Calculator - Fast Bill Splitting & Tipping",
+      "new_meta_description": "Calculate tips & split bills instantly! Free tip calculator with custom percentages. Perfect for dining out. Never overpay again!",
+      "new_h1": "Tip Calculator - Calculate Tips & Split Bills Easy",
+      "keywords": ["tip calculator", "bill splitter", "gratuity calculator", "restaurant tip calculator"],
+      "internal_links": [
+        "/tools/percentage-calculator",
+        "/tools/discount-calculator",
+        "/tools/salary-to-hourly-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Enter bill amount, tip percentage, and number of people to split",
+        "Why Useful: Calculate fair tips and easily split bills among groups",
+        "Example: $85 bill, 20% tip, 4 people = $25.31 per person"
+      ]
+    },
+    {
+      "tool_id": "inflation-calculator",
+      "page_url": "https://dapsiwow.com/tools/inflation-calculator",
+      "current_title": "Inflation Calculator - Calculate Inflation Impact",
+      "new_title": "Inflation Calculator - See Real Value Over Time",
+      "new_meta_description": "Calculate inflation impact on your money! Free inflation calculator shows purchasing power changes. Plan better for the future!",
+      "new_h1": "Inflation Calculator - Understand Money's True Value",
+      "keywords": ["inflation calculator", "purchasing power", "inflation rate", "cost of living calculator"],
+      "internal_links": [
+        "/tools/compound-interest-calculator",
+        "/tools/retirement-calculator",
+        "/tools/savings-goal-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Enter amount, starting year, and ending year to see inflation impact",
+        "Why Useful: Understand how inflation erodes purchasing power over time",
+        "Example: $100 in 2000 has the same buying power as $181 in 2024"
+      ]
+    },
+    {
+      "tool_id": "savings-goal-calculator",
+      "page_url": "https://dapsiwow.com/tools/savings-goal-calculator",
+      "current_title": "Savings Goal Calculator - Plan Your Savings Goals",
+      "new_title": "Savings Goal Calculator - Reach Your Dreams Faster",
+      "new_meta_description": "Plan your savings goals! Free calculator shows monthly amount needed. Track progress & achieve financial goals. Start saving smarter!",
+      "new_h1": "Savings Goal Calculator - Plan Your Financial Goals",
+      "keywords": ["savings goal calculator", "savings plan", "financial goals calculator", "monthly savings calculator"],
+      "internal_links": [
+        "/tools/budget-calculator",
+        "/tools/retirement-calculator",
+        "/tools/compound-interest-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Set target amount, timeframe, and interest rate to calculate monthly savings",
+        "Why Useful: Create realistic savings plans for vacations, down payments, or emergencies",
+        "Example: Save $20,000 in 2 years at 3% = $811/month needed"
+      ]
+    },
+    {
+      "tool_id": "debt-payoff-calculator",
+      "page_url": "https://dapsiwow.com/tools/debt-payoff-calculator",
+      "current_title": "Debt Payoff Calculator - Calculate Time to Pay Off Debts",
+      "new_title": "Debt Payoff Calculator - Get Debt-Free Faster",
+      "new_meta_description": "Calculate when you'll be debt-free! Free debt payoff calculator with strategies. Save on interest & accelerate payoff. Start today!",
+      "new_h1": "Debt Payoff Calculator - Become Debt-Free Sooner",
+      "keywords": ["debt payoff calculator", "debt free calculator", "debt snowball", "debt avalanche calculator"],
+      "internal_links": [
+        "/tools/credit-card-interest-calculator",
+        "/tools/loan-calculator",
+        "/tools/debt-consolidation-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Enter debt amounts, interest rates, and monthly payment to see payoff timeline",
+        "Why Useful: Compare snowball vs avalanche methods to save the most on interest",
+        "Example: $15,000 debt at 18% APR, paying $500/month = debt-free in 3.5 years"
+      ]
+    },
+    {
+      "tool_id": "net-worth-calculator",
+      "page_url": "https://dapsiwow.com/tools/net-worth-calculator",
+      "current_title": "Net Worth Calculator - Calculate Your Total Net Worth",
+      "new_title": "Net Worth Calculator - Know Your Financial Health",
+      "new_meta_description": "Calculate your net worth instantly! Free calculator tracks assets & liabilities. Understand your financial position. Grow wealth smarter!",
+      "new_h1": "Net Worth Calculator - Track Your Financial Progress",
+      "keywords": ["net worth calculator", "personal net worth", "assets and liabilities", "wealth calculator"],
+      "internal_links": [
+        "/tools/budget-calculator",
+        "/tools/retirement-calculator",
+        "/tools/investment-return-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: List all assets (cash, investments, property) and subtract liabilities (debts)",
+        "Why Useful: Track financial progress over time and set wealth-building goals",
+        "Example: $300K home + $100K investments - $200K mortgage = $200K net worth"
+      ]
+    },
+    {
+      "tool_id": "stock-profit-calculator",
+      "page_url": "https://dapsiwow.com/tools/stock-profit-calculator",
+      "current_title": "Stock Profit Calculator - Calculate Stock Investment Profit/Loss",
+      "new_title": "Stock Profit Calculator - Calculate Gains Instantly",
+      "new_meta_description": "Calculate stock profits & losses fast! Free calculator includes fees & taxes. Make smarter investment decisions. Try it now!",
+      "new_h1": "Stock Profit Calculator - Track Investment Returns",
+      "keywords": ["stock profit calculator", "stock gain calculator", "investment profit", "trading calculator"],
+      "internal_links": [
+        "/tools/roi-calculator",
+        "/tools/investment-return-calculator",
+        "/tools/percentage-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Enter buy/sell price, number of shares, and commission fees",
+        "Why Useful: Calculate exact profit/loss including all trading costs",
+        "Example: Bought 100 shares at $50, sold at $65 = $1,500 profit (minus fees)"
+      ]
+    },
+    {
+      "tool_id": "retirement-calculator",
+      "page_url": "https://dapsiwow.com/tools/retirement-calculator",
+      "current_title": "Retirement Calculator - Plan Your Retirement Savings",
+      "new_title": "Retirement Calculator - Plan Your Dream Retirement",
+      "new_meta_description": "Plan your retirement savings! Free calculator shows if you're on track. See monthly savings needed. Secure your future today!",
+      "new_h1": "Retirement Calculator - Secure Your Financial Future",
+      "keywords": ["retirement calculator", "retirement savings calculator", "401k calculator", "retirement planning"],
+      "internal_links": [
+        "/tools/compound-interest-calculator",
+        "/tools/savings-goal-calculator",
+        "/tools/sip-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Input current savings, monthly contribution, expected return, and retirement age",
+        "Why Useful: Ensure you're saving enough for a comfortable retirement",
+        "Example: Age 30, save $500/month at 7% = $1.2M by age 65"
+      ]
+    },
+    {
+      "tool_id": "sip-calculator",
+      "page_url": "https://dapsiwow.com/tools/sip-calculator",
+      "current_title": "SIP Calculator - Calculate Systematic Investment Plan Returns",
+      "new_title": "SIP Calculator - Grow Wealth Systematically 2025",
+      "new_meta_description": "Calculate SIP returns instantly! Free systematic investment plan calculator. See wealth growth potential. Start investing smarter today!",
+      "new_h1": "SIP Calculator - Plan Your Systematic Investments",
+      "keywords": ["SIP calculator", "systematic investment plan", "mutual fund SIP", "SIP returns calculator"],
+      "internal_links": [
+        "/tools/compound-interest-calculator",
+        "/tools/investment-return-calculator",
+        "/tools/retirement-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Enter monthly SIP amount, expected return rate, and investment period",
+        "Why Useful: See how small monthly investments can build significant wealth over time",
+        "Example: ₹5,000/month for 15 years at 12% = ₹25 lakhs corpus"
+      ]
+    },
+    {
+      "tool_id": "investment-return-calculator",
+      "page_url": "https://dapsiwow.com/tools/investment-return-calculator",
+      "current_title": "Investment Return Calculator - Calculate Returns on Investments",
+      "new_title": "Investment Return Calculator - Maximize Your Gains",
+      "new_meta_description": "Calculate investment returns with ease! Free calculator for stocks, bonds & funds. Compare options & invest smarter. Get instant results!",
+      "new_h1": "Investment Return Calculator - Analyze Your Returns",
+      "keywords": ["investment return calculator", "return calculator", "investment profit", "portfolio returns"],
+      "internal_links": [
+        "/tools/roi-calculator",
+        "/tools/compound-interest-calculator",
+        "/tools/sip-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Enter initial investment, final value, and time period for accurate returns",
+        "Why Useful: Compare performance across different investment vehicles",
+        "Example: $10,000 grew to $15,800 in 5 years = 9.6% annualized return"
+      ]
+    },
+    {
+      "tool_id": "break-even-calculator",
+      "page_url": "https://dapsiwow.com/tools/break-even-calculator",
+      "current_title": "Break-Even Calculator - Calculate Business Break-Even Point",
+      "new_title": "Break-Even Calculator - Find Your Profit Point Fast",
+      "new_meta_description": "Calculate break-even point instantly! Free business calculator shows units needed to profit. Make smarter pricing decisions. Try now!",
+      "new_h1": "Break-Even Calculator - Know When You'll Profit",
+      "keywords": ["break even calculator", "break even point", "business calculator", "profit calculator"],
+      "internal_links": [
+        "/tools/roi-calculator",
+        "/tools/business-loan-calculator",
+        "/tools/percentage-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Enter fixed costs, variable cost per unit, and selling price",
+        "Why Useful: Determine minimum sales needed to cover all business costs",
+        "Example: $10K fixed costs, $20 variable cost, $50 price = 334 units to break even"
+      ]
+    },
+    {
+      "tool_id": "car-loan-calculator",
+      "page_url": "https://dapsiwow.com/tools/car-loan-calculator",
+      "current_title": "Car Loan Calculator - Calculate Car Loan Payments",
+      "new_title": "Car Loan Calculator - Get Best Auto Loan Rates",
+      "new_meta_description": "Calculate car loan payments instantly! Free auto loan calculator with trade-in. Compare rates & save money. Find your perfect car payment!",
+      "new_h1": "Car Loan Calculator - Calculate Auto Loan Payments",
+      "keywords": ["car loan calculator", "auto loan calculator", "vehicle financing", "car payment calculator"],
+      "internal_links": [
+        "/tools/loan-calculator",
+        "/tools/lease-calculator",
+        "/tools/budget-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Input car price, down payment, trade-in value, interest rate, and loan term",
+        "Why Useful: Compare financing options and determine affordable monthly payments",
+        "Example: $35,000 car, $5,000 down, 5% for 5 years = $566/month"
+      ]
+    },
+    {
+      "tool_id": "home-loan-calculator",
+      "page_url": "https://dapsiwow.com/tools/home-loan-calculator",
+      "current_title": "Home Loan Calculator - Calculate Home Loan EMI",
+      "new_title": "Home Loan Calculator - Find Your Dream Home Payment",
+      "new_meta_description": "Calculate home loan EMI instantly! Free calculator with insurance & taxes. Plan your home purchase better. Get accurate results now!",
+      "new_h1": "Home Loan Calculator - Calculate Your EMI Payment",
+      "keywords": ["home loan calculator", "housing loan EMI", "home loan EMI calculator", "property loan"],
+      "internal_links": [
+        "/tools/mortgage-calculator",
+        "/tools/loan-calculator",
+        "/tools/emi-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Enter property value, down payment, interest rate, and loan tenure",
+        "Why Useful: Understand EMI obligations before committing to a home purchase",
+        "Example: ₹50 lakh property, 20% down, 8.5% for 20 years = ₹34,500 EMI"
+      ]
+    },
+    {
+      "tool_id": "education-loan-calculator",
+      "page_url": "https://dapsiwow.com/tools/education-loan-calculator",
+      "current_title": "Education Loan Calculator - Calculate Education Loan Payments",
+      "new_title": "Education Loan Calculator - Plan Student Financing",
+      "new_meta_description": "Calculate education loan payments with moratorium! Free student loan calculator. Plan college costs better. Get results instantly!",
+      "new_h1": "Education Loan Calculator - Finance Your Education",
+      "keywords": ["education loan calculator", "student loan calculator", "college loan calculator", "student financing"],
+      "internal_links": [
+        "/tools/loan-calculator",
+        "/tools/emi-calculator",
+        "/tools/simple-interest-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Enter loan amount, interest rate, course duration, and moratorium period",
+        "Why Useful: Plan for education expenses with accurate EMI calculations post-graduation",
+        "Example: ₹10 lakh loan, 10% rate, 4-year course, 1-year moratorium = ₹13,200 EMI"
+      ]
+    },
+    {
+      "tool_id": "credit-card-interest-calculator",
+      "page_url": "https://dapsiwow.com/tools/credit-card-interest-calculator",
+      "current_title": "Credit Card Interest Calculator - Calculate Credit Card Interest",
+      "new_title": "Credit Card Calculator - Escape Debt Faster 2025",
+      "new_meta_description": "Calculate credit card interest & payoff time! Free calculator shows total cost. Pay off debt faster & save thousands. Start now!",
+      "new_h1": "Credit Card Interest Calculator - Pay Off Debt Smart",
+      "keywords": ["credit card calculator", "credit card interest", "credit card payoff calculator", "APR calculator"],
+      "internal_links": [
+        "/tools/debt-payoff-calculator",
+        "/tools/simple-interest-calculator",
+        "/tools/debt-consolidation-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Enter balance, APR, and monthly payment to see payoff timeline",
+        "Why Useful: Understand true cost of carrying credit card debt and plan payoff strategy",
+        "Example: $5,000 balance at 18% APR, $150/month = 4.5 years, $2,900 interest"
+      ]
+    },
+    {
+      "tool_id": "lease-calculator",
+      "page_url": "https://dapsiwow.com/tools/lease-calculator",
+      "current_title": "Lease Calculator - Calculate Lease Payments",
+      "new_title": "Lease Calculator - Compare Lease vs Buy Options",
+      "new_meta_description": "Calculate lease payments instantly! Free car & equipment lease calculator. Compare lease vs buy. Make smarter decisions. Try now!",
+      "new_h1": "Lease Calculator - Calculate Vehicle Lease Payments",
+      "keywords": ["lease calculator", "car lease calculator", "lease payment calculator", "vehicle leasing"],
+      "internal_links": [
+        "/tools/car-loan-calculator",
+        "/tools/loan-calculator",
+        "/tools/roi-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Input vehicle price, residual value, money factor, and lease term",
+        "Why Useful: Compare leasing vs buying to find the best financial option",
+        "Example: $40,000 car, 60% residual, 0.002 money factor, 36 months = $420/month"
+      ]
+    },
+    {
+      "tool_id": "percentage-calculator",
+      "page_url": "https://dapsiwow.com/tools/percentage-calculator",
+      "current_title": "Percentage Calculator - Calculate Percentages",
+      "new_title": "Percentage Calculator - Fast & Accurate Results",
+      "new_meta_description": "Calculate percentages instantly! Free percentage calculator for discounts, tips & changes. Get accurate results in seconds. Try it now!",
+      "new_h1": "Percentage Calculator - Calculate Any Percentage",
+      "keywords": ["percentage calculator", "percent calculator", "calculate percentage", "percentage change"],
+      "internal_links": [
+        "/tools/discount-calculator",
+        "/tools/tip-calculator",
+        "/tools/roi-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Choose calculation type - what is X% of Y, or percentage increase/decrease",
+        "Why Useful: Quickly solve percentage problems for shopping, finance, and statistics",
+        "Example: What is 20% of 150? = 30"
+      ]
+    },
+    {
+      "tool_id": "discount-calculator",
+      "page_url": "https://dapsiwow.com/tools/discount-calculator",
+      "current_title": "Discount Calculator - Calculate Discounts and Final Prices",
+      "new_title": "Discount Calculator - Find Final Price Instantly",
+      "new_meta_description": "Calculate sale prices instantly! Free discount calculator shows final cost. Save money on shopping. See exact savings in seconds!",
+      "new_h1": "Discount Calculator - Calculate Your Savings Fast",
+      "keywords": ["discount calculator", "sale price calculator", "percentage off calculator", "price reduction"],
+      "internal_links": [
+        "/tools/percentage-calculator",
+        "/tools/vat-gst-calculator",
+        "/tools/tip-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Enter original price and discount percentage to see final price",
+        "Why Useful: Quickly calculate sale prices while shopping online or in-store",
+        "Example: $100 item with 30% discount = $70 final price, save $30"
+      ]
+    },
+    {
+      "tool_id": "vat-gst-calculator",
+      "page_url": "https://dapsiwow.com/tools/vat-gst-calculator",
+      "current_title": "VAT/GST Calculator - Calculate VAT and GST",
+      "new_title": "VAT/GST Calculator - Calculate Tax Instantly 2025",
+      "new_meta_description": "Calculate VAT & GST instantly! Free tax calculator for business & shopping. Add or remove tax easily. Get accurate results now!",
+      "new_h1": "VAT/GST Calculator - Calculate Sales Tax Easily",
+      "keywords": ["VAT calculator", "GST calculator", "sales tax calculator", "tax calculator"],
+      "internal_links": [
+        "/tools/discount-calculator",
+        "/tools/percentage-calculator",
+        "/tools/tax-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Enter price and tax rate to add VAT/GST or calculate exclusive amount",
+        "Why Useful: Calculate tax for invoicing or determine pre-tax prices",
+        "Example: $100 product + 20% VAT = $120 total price"
+      ]
+    },
+    {
+      "tool_id": "paypal-fee-calculator",
+      "page_url": "https://dapsiwow.com/tools/paypal-fee-calculator",
+      "current_title": "PayPal Fee Calculator - Calculate PayPal Transaction Fees",
+      "new_title": "PayPal Fee Calculator - Know Exact Fees Instantly",
+      "new_meta_description": "Calculate PayPal fees instantly! Free calculator shows exact transaction costs. Know what you'll receive. Perfect for sellers!",
+      "new_h1": "PayPal Fee Calculator - Calculate Transaction Costs",
+      "keywords": ["PayPal fee calculator", "PayPal transaction fee", "PayPal charges", "payment fee calculator"],
+      "internal_links": [
+        "/tools/percentage-calculator",
+        "/tools/discount-calculator",
+        "/tools/roi-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Enter transaction amount to see PayPal fees and net amount received",
+        "Why Useful: Calculate exact fees for pricing products and services",
+        "Example: $100 sale = $3.19 PayPal fee, you receive $96.81"
+      ]
+    },
+    {
+      "tool_id": "currency-percentage-change-calculator",
+      "page_url": "https://dapsiwow.com/tools/currency-percentage-change-calculator",
+      "current_title": "Currency Percentage Change Calculator",
+      "new_title": "Percentage Change Calculator - Track Value Changes",
+      "new_meta_description": "Calculate percentage increase or decrease! Free calculator shows exact change. Perfect for stocks, prices & data. Get results fast!",
+      "new_h1": "Percentage Change Calculator - Calculate Variations",
+      "keywords": ["percentage change calculator", "percent increase", "percent decrease", "value change calculator"],
+      "internal_links": [
+        "/tools/percentage-calculator",
+        "/tools/stock-profit-calculator",
+        "/tools/roi-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Enter original and new values to calculate percentage change",
+        "Why Useful: Track price changes, stock movements, or data variations",
+        "Example: From $50 to $65 = 30% increase"
+      ]
+    },
+    {
+      "tool_id": "future-value-investment-calculator",
+      "page_url": "https://dapsiwow.com/tools/future-value-investment-calculator",
+      "current_title": "Future Value Investment Calculator",
+      "new_title": "Future Value Calculator - Project Investment Growth",
+      "new_meta_description": "Calculate future investment value! Free FV calculator with compound interest. Plan long-term wealth. See money grow over time!",
+      "new_h1": "Future Value Calculator - See Your Money Grow",
+      "keywords": ["future value calculator", "FV calculator", "investment growth", "future value formula"],
+      "internal_links": [
+        "/tools/compound-interest-calculator",
+        "/tools/investment-return-calculator",
+        "/tools/retirement-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Input present value, interest rate, time period, and compounding frequency",
+        "Why Useful: Project how investments will grow over time with compound interest",
+        "Example: $10,000 invested at 8% for 10 years = $21,589 future value"
+      ]
+    },
+    {
+      "tool_id": "budget-calculator",
+      "page_url": "https://dapsiwow.com/tools/budget-calculator",
+      "current_title": "Budget Calculator - Track Income, Expenses & Savings",
+      "new_title": "Budget Calculator - Take Control of Your Money",
+      "new_meta_description": "Track your budget with ease! Free budget calculator with charts. Manage income & expenses better. Start saving more today!",
+      "new_h1": "Budget Calculator - Master Your Personal Finances",
+      "keywords": ["budget calculator", "personal budget", "expense tracker", "budget planner"],
+      "internal_links": [
+        "/tools/savings-goal-calculator",
+        "/tools/net-worth-calculator",
+        "/tools/debt-payoff-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Input monthly income and categorize expenses to track spending",
+        "Why Useful: Visualize spending patterns and identify areas to save money",
+        "Example: $5,000 income - $4,200 expenses = $800 monthly savings"
+      ]
+    },
+    {
+      "tool_id": "loan-comparison-calculator",
+      "page_url": "https://dapsiwow.com/tools/loan-comparison-calculator",
+      "current_title": "Loan Comparison Calculator - Compare Loan Offers",
+      "new_title": "Loan Comparison Calculator - Find Best Rates 2025",
+      "new_meta_description": "Compare loan offers side-by-side! Free calculator shows total cost. Find the best rates & save thousands. Compare now instantly!",
+      "new_h1": "Loan Comparison Calculator - Compare & Save Money",
+      "keywords": ["loan comparison calculator", "compare loans", "loan comparison tool", "best loan rates"],
+      "internal_links": [
+        "/tools/loan-calculator",
+        "/tools/mortgage-calculator",
+        "/tools/roi-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Input details for multiple loans to compare payments and total cost",
+        "Why Useful: Easily identify the most cost-effective loan option",
+        "Example: Compare 3 loans: 5% for 15 years vs 4.5% for 30 years"
+      ]
+    },
+    {
+      "tool_id": "dti-ratio-calculator",
+      "page_url": "https://dapsiwow.com/tools/dti-ratio-calculator",
+      "current_title": "DTI Ratio Calculator - Calculate Debt-to-Income Ratio",
+      "new_title": "DTI Calculator - Check Loan Qualification Instantly",
+      "new_meta_description": "Calculate debt-to-income ratio fast! Free DTI calculator for loan qualification. See if you qualify for mortgages. Check now!",
+      "new_h1": "DTI Ratio Calculator - Know Your Borrowing Power",
+      "keywords": ["DTI calculator", "debt to income ratio", "DTI ratio calculator", "loan qualification"],
+      "internal_links": [
+        "/tools/mortgage-calculator",
+        "/tools/loan-calculator",
+        "/tools/budget-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Enter monthly debts and gross income to calculate DTI ratio",
+        "Why Useful: Determine mortgage qualification and financial health status",
+        "Example: $2,000 debt ÷ $6,000 income = 33% DTI (good for most loans)"
+      ]
+    },
+    {
+      "tool_id": "personal-finance-dashboard",
+      "page_url": "https://dapsiwow.com/tools/personal-finance-dashboard",
+      "current_title": "Personal Finance Dashboard - Track Your Finances",
+      "new_title": "Finance Dashboard - Complete Money Overview 2025",
+      "new_meta_description": "Track all finances in one place! Free personal finance dashboard. Monitor income, expenses, savings & investments. Take control now!",
+      "new_h1": "Personal Finance Dashboard - Your Money Command Center",
+      "keywords": ["personal finance dashboard", "finance tracker", "money management", "financial overview"],
+      "internal_links": [
+        "/tools/budget-calculator",
+        "/tools/net-worth-calculator",
+        "/tools/savings-goal-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Input all financial data to get comprehensive overview with visualizations",
+        "Why Useful: See complete financial picture in one dashboard with charts",
+        "Example: Track income ($7K), expenses ($5K), savings ($2K), investments ($50K)"
+      ]
+    },
+    {
+      "tool_id": "debt-consolidation-calculator",
+      "page_url": "https://dapsiwow.com/tools/debt-consolidation-calculator",
+      "current_title": "Debt Consolidation Calculator - Calculate Consolidation Savings",
+      "new_title": "Debt Consolidation Calculator - Save Thousands",
+      "new_meta_description": "Calculate debt consolidation savings! Free calculator shows how much you'll save. Lower payments & interest. Get out of debt faster!",
+      "new_h1": "Debt Consolidation Calculator - Simplify Your Debt",
+      "keywords": ["debt consolidation calculator", "consolidation loan", "debt consolidation savings", "combine debts"],
+      "internal_links": [
+        "/tools/debt-payoff-calculator",
+        "/tools/loan-calculator",
+        "/tools/credit-card-interest-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: List current debts and compare with single consolidation loan",
+        "Why Useful: See potential savings from consolidating multiple high-interest debts",
+        "Example: Consolidate $30K debts (avg 18% APR) to one 10% loan = save $8,500"
+      ]
+    }
+  ],
+  "text_tools": [
+    {
+      "tool_id": "word-counter",
+      "page_url": "https://dapsiwow.com/tools/word-counter",
+      "current_title": "Word Counter - Count Words, Characters & Text Statistics",
+      "new_title": "Word Counter - Instant Text Analysis & Stats Free",
+      "new_meta_description": "Count words instantly with real-time analysis! Free word counter for writers & students. Character count, reading time & more. No signup!",
+      "new_h1": "Word Counter - Analyze Your Text Instantly",
+      "keywords": ["word counter", "character counter", "text statistics", "word count tool"],
+      "internal_links": [
+        "/tools/character-counter",
+        "/tools/text-statistics-analyzer",
+        "/tools/paragraph-counter"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Paste or type text to instantly see word count, characters, and reading time",
+        "Why Useful: Perfect for essays, articles, social media posts with character limits",
+        "Example: 500-word essay = ~2,500 characters, ~2 minutes reading time"
+      ]
+    },
+    {
+      "tool_id": "character-counter",
+      "page_url": "https://dapsiwow.com/tools/character-counter",
+      "current_title": "Character Counter - Count Characters in Text",
+      "new_title": "Character Counter - Real-Time Count for Social Media",
+      "new_meta_description": "Count characters instantly! Free character counter with/without spaces. Perfect for Twitter, SMS & forms. Get real-time results!",
+      "new_h1": "Character Counter - Track Text Length Easily",
+      "keywords": ["character counter", "char count", "letter counter", "text length calculator"],
+      "internal_links": [
+        "/tools/word-counter",
+        "/tools/text-statistics-analyzer",
+        "/tools/sentence-counter"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Type or paste text to see character count with and without spaces",
+        "Why Useful: Stay within character limits for tweets, meta descriptions, SMS",
+        "Example: Tweet limit 280 characters, meta description 160 characters"
+      ]
+    },
+    {
+      "tool_id": "sentence-counter",
+      "page_url": "https://dapsiwow.com/tools/sentence-counter",
+      "current_title": "Sentence Counter - Count Sentences in Your Text",
+      "new_title": "Sentence Counter - Analyze Text Structure Fast",
+      "new_meta_description": "Count sentences instantly! Free sentence counter for writers & editors. Improve readability & structure. Get accurate results now!",
+      "new_h1": "Sentence Counter - Count & Analyze Sentences",
+      "keywords": ["sentence counter", "count sentences", "text analyzer", "sentence calculator"],
+      "internal_links": [
+        "/tools/word-counter",
+        "/tools/paragraph-counter",
+        "/tools/text-statistics-analyzer"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Paste text to automatically count total sentences",
+        "Why Useful: Analyze writing structure and improve readability",
+        "Example: 10 sentences in 200 words = average 20 words per sentence"
+      ]
+    },
+    {
+      "tool_id": "paragraph-counter",
+      "page_url": "https://dapsiwow.com/tools/paragraph-counter",
+      "current_title": "Paragraph Counter - Count Paragraphs in Documents",
+      "new_title": "Paragraph Counter - Organize Content Better",
+      "new_meta_description": "Count paragraphs instantly! Free paragraph counter for documents. Improve content structure. Perfect for writers & students!",
+      "new_h1": "Paragraph Counter - Analyze Document Structure",
+      "keywords": ["paragraph counter", "count paragraphs", "document analyzer", "text structure"],
+      "internal_links": [
+        "/tools/word-counter",
+        "/tools/sentence-counter",
+        "/tools/text-statistics-analyzer"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Paste document to count paragraphs and analyze text structure",
+        "Why Useful: Ensure proper content formatting and readability",
+        "Example: 5 paragraphs in 500 words = ~100 words per paragraph"
+      ]
+    },
+    {
+      "tool_id": "case-converter",
+      "page_url": "https://dapsiwow.com/tools/case-converter",
+      "current_title": "Case Converter (UPPER ⇄ lower) - Convert Text Cases",
+      "new_title": "Case Converter - UPPER lower Title Case Instantly",
+      "new_meta_description": "Convert text case instantly! Free case converter: uppercase, lowercase, title case & more. Transform text in seconds. Try now!",
+      "new_h1": "Case Converter - Change Text Case Easily",
+      "keywords": ["case converter", "uppercase converter", "lowercase converter", "title case tool"],
+      "internal_links": [
+        "/tools/text-formatter-beautifier",
+        "/tools/text-cleaner-formatter",
+        "/tools/reverse-text-tool"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Paste text and click desired case format (UPPER, lower, Title, Sentence)",
+        "Why Useful: Quickly fix formatting issues in documents and code",
+        "Example: hello world → HELLO WORLD or Hello World or Hello world"
+      ]
+    },
+    {
+      "tool_id": "password-generator",
+      "page_url": "https://dapsiwow.com/tools/password-generator",
+      "current_title": "Random Password Generator - Generate Secure Passwords",
+      "new_title": "Password Generator - Create Strong Passwords Free",
+      "new_meta_description": "Generate ultra-secure passwords instantly! Free password generator with custom options. Protect accounts better. No signup needed!",
+      "new_h1": "Password Generator - Create Unbreakable Passwords",
+      "keywords": ["password generator", "random password", "secure password", "strong password generator"],
+      "internal_links": [
+        "/tools/password-strength-checker",
+        "/tools/username-generator",
+        "/tools/base64-encoder-decoder"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Select length and character types (uppercase, numbers, symbols)",
+        "Why Useful: Create hack-proof passwords for ultimate account security",
+        "Example: 16-char password with all options: K9m#Zx2@pL5&wQ8n"
+      ]
+    },
+    {
+      "tool_id": "password-strength-checker",
+      "page_url": "https://dapsiwow.com/tools/password-strength-checker",
+      "current_title": "Password Strength Checker - Analyze Password Security",
+      "new_title": "Password Strength Checker - Test Security Instantly",
+      "new_meta_description": "Check password strength instantly! Free security analyzer with crack time estimates. Create stronger passwords. Protect yourself now!",
+      "new_h1": "Password Strength Checker - Analyze Password Security",
+      "keywords": ["password strength checker", "password security", "password tester", "strong password"],
+      "internal_links": [
+        "/tools/password-generator",
+        "/tools/username-generator",
+        "/tools/base64-encoder-decoder"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Enter password to see strength score and crack time estimate",
+        "Why Useful: Ensure passwords meet security standards and resist brute-force attacks",
+        "Example: 'password123' = Weak (cracked in seconds), 'Xy9#mK2@pL5&' = Very Strong"
+      ]
+    },
+    {
+      "tool_id": "username-generator",
+      "page_url": "https://dapsiwow.com/tools/username-generator",
+      "current_title": "Random Username Generator - Generate Unique Usernames",
+      "new_title": "Username Generator - Create Cool Unique Names Free",
+      "new_meta_description": "Generate creative usernames instantly! Free username generator for gaming, social media & more. Get unique names. Try now!",
+      "new_h1": "Username Generator - Create Unique Usernames Fast",
+      "keywords": ["username generator", "random username", "username ideas", "gamer name generator"],
+      "internal_links": [
+        "/tools/password-generator",
+        "/tools/fake-name-generator",
+        "/tools/lorem-ipsum-generator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Click generate to create random, unique usernames",
+        "Why Useful: Find available usernames for games, forums, and social platforms",
+        "Example: ShadowPhoenix99, CosmicWarrior, NeonDreamer2025"
+      ]
+    },
+    {
+      "tool_id": "lorem-ipsum-generator",
+      "page_url": "https://dapsiwow.com/tools/lorem-ipsum-generator",
+      "current_title": "Lorem Ipsum Generator - Generate Placeholder Text",
+      "new_title": "Lorem Ipsum Generator - Fast Placeholder Text Free",
+      "new_meta_description": "Generate Lorem Ipsum text instantly! Free placeholder generator for design mockups. Choose paragraphs, words or characters. Try now!",
+      "new_h1": "Lorem Ipsum Generator - Create Placeholder Text",
+      "keywords": ["lorem ipsum generator", "placeholder text", "dummy text generator", "lipsum"],
+      "internal_links": [
+        "/tools/text-pattern-generator",
+        "/tools/fake-name-generator",
+        "/tools/text-formatter-beautifier"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Select number of paragraphs, words, or bytes to generate",
+        "Why Useful: Fill design mockups with realistic-looking placeholder content",
+        "Example: Generate 5 paragraphs for website wireframe or design prototype"
+      ]
+    },
+    {
+      "tool_id": "fake-address-generator",
+      "page_url": "https://dapsiwow.com/tools/fake-address-generator",
+      "current_title": "Fake Address Generator - Generate Fake Addresses for Testing",
+      "new_title": "Fake Address Generator - Random Addresses for Testing",
+      "new_meta_description": "Generate realistic fake addresses! Free address generator for testing. Perfect for developers & QA. Get instant random addresses!",
+      "new_h1": "Fake Address Generator - Create Test Addresses",
+      "keywords": ["fake address generator", "random address", "test address", "address generator"],
+      "internal_links": [
+        "/tools/fake-name-generator",
+        "/tools/lorem-ipsum-generator",
+        "/tools/text-pattern-generator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Click generate to create random realistic addresses for testing",
+        "Why Useful: Test forms, shipping systems, and location features safely",
+        "Example: 1234 Oak Street, Springfield, IL 62701"
+      ]
+    },
+    {
+      "tool_id": "fake-name-generator",
+      "page_url": "https://dapsiwow.com/tools/fake-name-generator",
+      "current_title": "Fake Name Generator - Generate Fake Names for Testing",
+      "new_title": "Fake Name Generator - Random Names for Testing Free",
+      "new_meta_description": "Generate realistic fake names instantly! Free name generator for testing. Perfect for developers & writers. Get random names now!",
+      "new_h1": "Fake Name Generator - Create Random Test Names",
+      "keywords": ["fake name generator", "random name generator", "name generator", "test names"],
+      "internal_links": [
+        "/tools/fake-address-generator",
+        "/tools/username-generator",
+        "/tools/lorem-ipsum-generator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Generate random realistic names for testing applications",
+        "Why Useful: Test user registration, forms, and database systems safely",
+        "Example: John Smith, Emma Johnson, Michael Chen"
+      ]
+    },
+    {
+      "tool_id": "binary-to-text-converter",
+      "page_url": "https://dapsiwow.com/tools/binary-to-text-converter",
+      "current_title": "Binary to Text Converter - Convert Binary Code to Text",
+      "new_title": "Binary to Text Converter - Decode Binary Instantly",
+      "new_meta_description": "Convert binary to text instantly! Free binary decoder. Translate binary code to readable text. Perfect for programmers. Try now!",
+      "new_h1": "Binary to Text Converter - Decode Binary Code Fast",
+      "keywords": ["binary to text", "binary decoder", "binary converter", "binary translator"],
+      "internal_links": [
+        "/tools/text-to-binary-converter",
+        "/tools/hex-to-text-converter",
+        "/tools/base64-encoder-decoder"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Paste binary code to instantly convert to readable text",
+        "Why Useful: Decode binary messages, debug code, and learn encoding",
+        "Example: 01001000 01101001 → Hi"
+      ]
+    },
+    {
+      "tool_id": "text-to-binary-converter",
+      "page_url": "https://dapsiwow.com/tools/text-to-binary-converter",
+      "current_title": "Text to Binary Converter - Convert Text to Binary Code",
+      "new_title": "Text to Binary Converter - Encode Text Instantly",
+      "new_meta_description": "Convert text to binary code instantly! Free binary encoder. Translate any text to binary. Perfect for learning & programming!",
+      "new_h1": "Text to Binary Converter - Encode Text to Binary",
+      "keywords": ["text to binary", "binary encoder", "text to binary converter", "binary generator"],
+      "internal_links": [
+        "/tools/binary-to-text-converter",
+        "/tools/text-to-hex-converter",
+        "/tools/base64-encoder-decoder"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Type text to instantly convert to binary code representation",
+        "Why Useful: Learn binary encoding, create coded messages, programming education",
+        "Example: Hello → 01001000 01100101 01101100 01101100 01101111"
+      ]
+    },
+    {
+      "tool_id": "decimal-to-text-converter",
+      "page_url": "https://dapsiwow.com/tools/decimal-to-text-converter",
+      "current_title": "Decimal to Text Converter - Convert Decimal Character Codes",
+      "new_title": "Decimal to Text Converter - Decode ASCII Instantly",
+      "new_meta_description": "Convert decimal codes to text instantly! Free ASCII decoder. Translate decimal character codes to readable text. Try it now!",
+      "new_h1": "Decimal to Text Converter - Decode Decimal Codes",
+      "keywords": ["decimal to text", "ASCII decoder", "decimal converter", "character code converter"],
+      "internal_links": [
+        "/tools/text-to-decimal-converter",
+        "/tools/binary-to-text-converter",
+        "/tools/hex-to-text-converter"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Paste decimal ASCII codes to convert to readable text",
+        "Why Useful: Decode messages, debug encoding issues, learn ASCII",
+        "Example: 72 101 108 108 111 → Hello"
+      ]
+    },
+    {
+      "tool_id": "text-to-decimal-converter",
+      "page_url": "https://dapsiwow.com/tools/text-to-decimal-converter",
+      "current_title": "Text to Decimal Converter - Convert Text to Decimal Codes",
+      "new_title": "Text to Decimal Converter - Encode to ASCII Codes",
+      "new_meta_description": "Convert text to decimal ASCII codes! Free text encoder. Get character codes instantly. Perfect for programming & learning!",
+      "new_h1": "Text to Decimal Converter - Generate ASCII Codes",
+      "keywords": ["text to decimal", "ASCII encoder", "character code generator", "decimal encoder"],
+      "internal_links": [
+        "/tools/decimal-to-text-converter",
+        "/tools/text-to-binary-converter",
+        "/tools/text-to-hex-converter"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Type text to convert each character to decimal ASCII code",
+        "Why Useful: Learn ASCII encoding, create coded messages, programming education",
+        "Example: ABC → 65 66 67"
+      ]
+    },
+    {
+      "tool_id": "hex-to-text-converter",
+      "page_url": "https://dapsiwow.com/tools/hex-to-text-converter",
+      "current_title": "Hex to Text Converter - Convert Hexadecimal to Text",
+      "new_title": "Hex to Text Converter - Decode Hexadecimal Fast",
+      "new_meta_description": "Convert hex to text instantly! Free hexadecimal decoder. Translate hex codes to readable text. Perfect for developers. Try now!",
+      "new_h1": "Hex to Text Converter - Decode Hex Values Easily",
+      "keywords": ["hex to text", "hexadecimal decoder", "hex converter", "hex translator"],
+      "internal_links": [
+        "/tools/text-to-hex-converter",
+        "/tools/binary-to-text-converter",
+        "/tools/base64-encoder-decoder"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Paste hexadecimal values to decode to readable text",
+        "Why Useful: Debug code, decode color codes, analyze data encoding",
+        "Example: 48 65 6C 6C 6F → Hello"
+      ]
+    },
+    {
+      "tool_id": "text-to-hex-converter",
+      "page_url": "https://dapsiwow.com/tools/text-to-hex-converter",
+      "current_title": "Text to Hex Converter - Convert Text to Hexadecimal",
+      "new_title": "Text to Hex Converter - Encode to Hexadecimal Fast",
+      "new_meta_description": "Convert text to hexadecimal instantly! Free hex encoder. Translate text to hex codes. Perfect for programmers. Try it now!",
+      "new_h1": "Text to Hex Converter - Generate Hex Values Easily",
+      "keywords": ["text to hex", "hexadecimal encoder", "hex generator", "text encoder"],
+      "internal_links": [
+        "/tools/hex-to-text-converter",
+        "/tools/text-to-binary-converter",
+        "/tools/base64-encoder-decoder"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Type text to convert to hexadecimal representation",
+        "Why Useful: Create hex strings, encode data, learn hexadecimal system",
+        "Example: Test → 54 65 73 74"
+      ]
+    },
+    {
+      "tool_id": "font-style-changer",
+      "page_url": "https://dapsiwow.com/tools/font-style-changer",
+      "current_title": "Font Style Changer - Transform Text with Stylish Fonts",
+      "new_title": "Font Style Changer - 𝗖𝗼𝗼𝗹 Text Fonts Instantly",
+      "new_meta_description": "Transform text with cool fonts! Free font style changer for social media. Copy & paste fancy text. Stand out online. Try now!",
+      "new_h1": "Font Style Changer - Create Fancy Text Styles",
+      "keywords": ["font style changer", "fancy text generator", "cool fonts", "text decorator"],
+      "internal_links": [
+        "/tools/case-converter",
+        "/tools/text-formatter-beautifier",
+        "/tools/reverse-text-tool"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Type text and choose from various stylish font options",
+        "Why Useful: Create eye-catching social media posts and bios",
+        "Example: Hello → 𝐇𝐞𝐥𝐥𝐨 or ℍ𝕖𝕝𝕝𝕠 or 𝓗𝓮𝓵𝓵𝓸"
+      ]
+    },
+    {
+      "tool_id": "markdown-to-html",
+      "page_url": "https://dapsiwow.com/tools/markdown-to-html",
+      "current_title": "Markdown to HTML Converter - Convert Markdown to HTML",
+      "new_title": "Markdown to HTML Converter - Fast & Accurate 2025",
+      "new_meta_description": "Convert Markdown to HTML instantly! Free converter with preview. Perfect for developers & writers. Get clean HTML code now!",
+      "new_h1": "Markdown to HTML Converter - Transform Content Fast",
+      "keywords": ["markdown to html", "markdown converter", "md to html", "markdown parser"],
+      "internal_links": [
+        "/tools/text-formatter-beautifier",
+        "/tools/base64-encoder-decoder",
+        "/tools/text-cleaner-formatter"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Paste Markdown content to instantly convert to HTML with preview",
+        "Why Useful: Convert documentation, blog posts, and README files to HTML",
+        "Example: # Heading → <h1>Heading</h1>"
+      ]
+    },
+    {
+      "tool_id": "reverse-text-tool",
+      "page_url": "https://dapsiwow.com/tools/reverse-text-tool",
+      "current_title": "Reverse Text Tool - Reverse Text Characters, Words, Lines",
+      "new_title": "Reverse Text Tool - Flip Text Backwards Instantly",
+      "new_meta_description": "Reverse text instantly! Free tool to flip text backwards. Reverse characters, words or lines. Fun & useful. Try it now!",
+      "new_h1": "Reverse Text Tool - Flip Your Text Backwards Fast",
+      "keywords": ["reverse text", "backwards text", "flip text", "mirror text generator"],
+      "internal_links": [
+        "/tools/text-scrambler",
+        "/tools/case-converter",
+        "/tools/text-formatter-beautifier"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Type text and choose to reverse characters, words, or lines",
+        "Why Useful: Create palindromes, fun messages, or test text processing",
+        "Example: Hello World → dlroW olleH (characters) or World Hello (words)"
+      ]
+    },
+    {
+      "tool_id": "text-to-qr-code",
+      "page_url": "https://dapsiwow.com/tools/text-to-qr-code",
+      "current_title": "Text to QR Code - Convert Text & URLs to QR Codes",
+      "new_title": "QR Code Generator - Create QR Codes Instantly Free",
+      "new_meta_description": "Generate QR codes for free! Convert text, URLs & emails to QR codes. Download instantly. Perfect for marketing & sharing!",
+      "new_h1": "QR Code Generator - Create & Download QR Codes",
+      "keywords": ["QR code generator", "create QR code", "QR code maker", "text to QR"],
+      "internal_links": [
+        "/tools/qr-code-scanner",
+        "/tools/url-extractor",
+        "/tools/base64-encoder-decoder"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Enter text or URL, customize size and color, download QR code",
+        "Why Useful: Create scannable codes for websites, Wi-Fi, contact info, payments",
+        "Example: Convert https://dapsiwow.com to scannable QR code image"
+      ]
+    },
+    {
+      "tool_id": "qr-code-scanner",
+      "page_url": "https://dapsiwow.com/tools/qr-code-scanner",
+      "current_title": "QR Code Scanner - Scan QR Codes from Images",
+      "new_title": "QR Code Scanner - Decode QR Codes Instantly Free",
+      "new_meta_description": "Scan QR codes from images! Free online QR code reader. Extract text & URLs instantly. No app needed. Scan QR codes now!",
+      "new_h1": "QR Code Scanner - Read QR Codes from Images",
+      "keywords": ["QR code scanner", "QR code reader", "scan QR code", "decode QR code"],
+      "internal_links": [
+        "/tools/text-to-qr-code",
+        "/tools/url-extractor",
+        "/tools/base64-encoder-decoder"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Upload QR code image or use camera to scan and extract content",
+        "Why Useful: Read QR codes without a mobile app, extract URLs and text",
+        "Example: Upload QR code image → Get decoded text or clickable URL"
+      ]
+    },
+    {
+      "tool_id": "duplicate-line-remover",
+      "page_url": "https://dapsiwow.com/tools/duplicate-line-remover",
+      "current_title": "Duplicate Line Remover - Remove Duplicate Lines from Text",
+      "new_title": "Duplicate Line Remover - Clean Text Instantly Free",
+      "new_meta_description": "Remove duplicate lines instantly! Free duplicate remover preserves order. Clean up lists & data. Get unique lines fast!",
+      "new_h1": "Duplicate Line Remover - Clean Your Text Efficiently",
+      "keywords": ["duplicate line remover", "remove duplicates", "unique lines", "text cleaner"],
+      "internal_links": [
+        "/tools/text-cleaner-formatter",
+        "/tools/text-formatter-beautifier",
+        "/tools/text-diff-checker"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Paste text with duplicate lines to automatically remove and keep unique ones",
+        "Why Useful: Clean up lists, email addresses, data files, and remove redundancy",
+        "Example: 100 lines with 30 duplicates → 70 unique lines in order"
+      ]
+    },
+    {
+      "tool_id": "text-scrambler",
+      "page_url": "https://dapsiwow.com/tools/text-scrambler",
+      "current_title": "Text Scrambler - Scramble Text in Various Ways",
+      "new_title": "Text Scrambler - Randomize Text Instantly & Free",
+      "new_meta_description": "Scramble text in fun ways! Free text randomizer. Mix characters, words or lines. Perfect for games & puzzles. Try now!",
+      "new_h1": "Text Scrambler - Randomize Your Text Creatively",
+      "keywords": ["text scrambler", "scramble text", "text randomizer", "shuffle text"],
+      "internal_links": [
+        "/tools/reverse-text-tool",
+        "/tools/text-pattern-generator",
+        "/tools/password-generator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Choose scramble mode (characters, words, lines) and randomize text",
+        "Why Useful: Create word puzzles, test sorting algorithms, generate random content",
+        "Example: Hello World → lHoel ldWor (scrambled characters)"
+      ]
+    },
+    {
+      "tool_id": "text-diff-checker",
+      "page_url": "https://dapsiwow.com/tools/text-diff-checker",
+      "current_title": "Text Diff Checker - Compare Two Texts and Highlight Differences",
+      "new_title": "Text Diff Checker - Compare & Find Changes Fast",
+      "new_meta_description": "Compare texts & find differences! Free diff checker highlights changes. Side-by-side comparison. Perfect for editing. Try now!",
+      "new_h1": "Text Diff Checker - Compare Text Differences Easily",
+      "keywords": ["text diff checker", "compare text", "text comparison", "diff tool"],
+      "internal_links": [
+        "/tools/text-cleaner-formatter",
+        "/tools/duplicate-line-remover",
+        "/tools/text-formatter-beautifier"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Paste two text versions to see highlighted differences side-by-side",
+        "Why Useful: Compare document versions, track changes, review edits",
+        "Example: Compare draft vs final version with color-coded additions/deletions"
+      ]
+    },
+    {
+      "tool_id": "text-pattern-generator",
+      "page_url": "https://dapsiwow.com/tools/text-pattern-generator",
+      "current_title": "Text Pattern Generator - Generate Repeating Text Patterns",
+      "new_title": "Text Pattern Generator - Create Repeating Patterns",
+      "new_meta_description": "Generate text patterns instantly! Free pattern creator with custom sequences. Perfect for testing & design. Create patterns now!",
+      "new_h1": "Text Pattern Generator - Build Custom Text Patterns",
+      "keywords": ["text pattern generator", "repeat text", "pattern creator", "text sequence"],
+      "internal_links": [
+        "/tools/lorem-ipsum-generator",
+        "/tools/text-scrambler",
+        "/tools/text-formatter-beautifier"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Enter pattern and number of repetitions to generate sequence",
+        "Why Useful: Create test data, decorative patterns, or repeated content",
+        "Example: ABC repeated 10 times → ABCABCABCABCABCABCABCABCABCABC"
+      ]
+    },
+    {
+      "tool_id": "text-formatter-beautifier",
+      "page_url": "https://dapsiwow.com/tools/text-formatter-beautifier",
+      "current_title": "Text Formatter & Beautifier - Format Code, JSON, XML, Text",
+      "new_title": "Text Formatter - Beautify Code & JSON Instantly",
+      "new_meta_description": "Format code & JSON beautifully! Free text formatter with indentation. Beautify HTML, XML, JSON & more. Clean code now!",
+      "new_h1": "Text Formatter & Beautifier - Clean Code Easily",
+      "keywords": ["text formatter", "code beautifier", "JSON formatter", "XML formatter"],
+      "internal_links": [
+        "/tools/text-cleaner-formatter",
+        "/tools/markdown-to-html",
+        "/tools/base64-encoder-decoder"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Paste unformatted code/text and choose format type for instant beautification",
+        "Why Useful: Make code readable with proper indentation and structure",
+        "Example: Minified JSON → Formatted JSON with proper indentation"
+      ]
+    },
+    {
+      "tool_id": "base64-encoder-decoder",
+      "page_url": "https://dapsiwow.com/tools/base64-encoder-decoder",
+      "current_title": "Base64 Encoder/Decoder - Convert Text to Base64",
+      "new_title": "Base64 Encoder Decoder - Convert Fast & Free",
+      "new_meta_description": "Encode & decode Base64 instantly! Free Base64 converter for text & images. Safe encoding & decoding. Perfect for developers!",
+      "new_h1": "Base64 Encoder/Decoder - Convert Text & Data",
+      "keywords": ["base64 encoder", "base64 decoder", "base64 converter", "encode decode base64"],
+      "internal_links": [
+        "/tools/hex-to-text-converter",
+        "/tools/binary-to-text-converter",
+        "/tools/text-formatter-beautifier"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Enter text to encode to Base64 or decode Base64 to readable text",
+        "Why Useful: Encode data for URLs, APIs, email attachments, and web applications",
+        "Example: Hello World → SGVsbG8gV29ybGQ="
+      ]
+    },
+    {
+      "tool_id": "text-statistics-analyzer",
+      "page_url": "https://dapsiwow.com/tools/text-statistics-analyzer",
+      "current_title": "Text Statistics Analyzer - Comprehensive Text Analysis",
+      "new_title": "Text Analyzer - Complete Stats & Readability Score",
+      "new_meta_description": "Analyze text comprehensively! Free text statistics with readability scores. Get keyword density & writing metrics. Improve content now!",
+      "new_h1": "Text Statistics Analyzer - Deep Content Analysis",
+      "keywords": ["text analyzer", "text statistics", "readability score", "keyword density"],
+      "internal_links": [
+        "/tools/word-counter",
+        "/tools/character-counter",
+        "/tools/text-cleaner-formatter"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Paste text to get comprehensive analysis including readability scores",
+        "Why Useful: Optimize content for SEO, improve writing quality, analyze complexity",
+        "Example: Analyze 500-word article → Get Flesch score, keyword density, grade level"
+      ]
+    },
+    {
+      "tool_id": "url-extractor",
+      "page_url": "https://dapsiwow.com/tools/url-extractor",
+      "current_title": "URL Extractor - Extract and Analyze URLs from Text",
+      "new_title": "URL Extractor - Find & Extract Links Instantly",
+      "new_meta_description": "Extract URLs from text instantly! Free link extractor with filtering. Find all links fast. Export to CSV. Perfect for SEO!",
+      "new_h1": "URL Extractor - Extract Links from Any Text",
+      "keywords": ["URL extractor", "link extractor", "find URLs", "extract links"],
+      "internal_links": [
+        "/tools/text-statistics-analyzer",
+        "/tools/text-cleaner-formatter",
+        "/tools/text-to-qr-code"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Paste text containing URLs to automatically extract and list all links",
+        "Why Useful: Extract links from documents, emails, web pages for analysis",
+        "Example: Extract 50 URLs from article → Get clean list with filtering options"
+      ]
+    },
+    {
+      "tool_id": "text-cleaner-formatter",
+      "page_url": "https://dapsiwow.com/tools/text-cleaner-formatter",
+      "current_title": "Text Cleaner & Formatter - Clean Up Messy Text",
+      "new_title": "Text Cleaner - Remove Spaces & Format Instantly",
+      "new_meta_description": "Clean messy text instantly! Free text cleaner removes extra spaces & line breaks. Format text perfectly. Get clean text now!",
+      "new_h1": "Text Cleaner & Formatter - Clean Text Efficiently",
+      "keywords": ["text cleaner", "remove extra spaces", "text formatter", "clean text"],
+      "internal_links": [
+        "/tools/text-formatter-beautifier",
+        "/tools/duplicate-line-remover",
+        "/tools/text-diff-checker"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Paste messy text to remove extra spaces, line breaks, and formatting",
+        "Why Useful: Clean up copied text, fix formatting issues, prepare clean content",
+        "Example: Text with   extra   spaces → Text with single spaces"
+      ]
+    },
+    {
+      "tool_id": "unit-converter",
+      "page_url": "https://dapsiwow.com/tools/unit-converter",
+      "current_title": "Unit Converter - Convert Units of Measurement",
+      "new_title": "Unit Converter - Convert Length, Weight & More Fast",
+      "new_meta_description": "Convert units instantly! Free unit converter for length, weight, temperature & more. Accurate conversions. Perfect for everyone!",
+      "new_h1": "Unit Converter - Convert Any Unit Easily",
+      "keywords": ["unit converter", "measurement converter", "convert units", "length converter"],
+      "internal_links": [
+        "/tools/percentage-calculator",
+        "/tools/bmi-calculator",
+        "/tools/calorie-calculator"
+      ],
+      "schema_type": "SoftwareApplication",
+      "content_additions": [
+        "How to Use: Select unit type, enter value, choose from/to units for instant conversion",
+        "Why Useful: Convert measurements for cooking, travel, science, and construction",
+        "Example: 5 miles → 8.05 kilometers, 100°F → 37.8°C"
+      ]
+    }
+  ],
+  "health_tools_partial": "Due to response length limits, I'll create the health tools section in a follow-up. The pattern is established above for all 101 tools."
+}
