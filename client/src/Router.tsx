@@ -1,6 +1,6 @@
 
-import { Route, Switch } from "wouter";
-import { lazy, Suspense } from "react";
+import { Route, Switch, useLocation } from "wouter";
+import { lazy, Suspense, useEffect } from "react";
 import { EnhancedLoadingSpinner } from "@/components/ui/skeletons";
 
 // Lazy load pages
@@ -24,6 +24,13 @@ const FavoriteTools = lazy(() => import("@/pages/favorite-tools"));
 const RecentlyUsedTools = lazy(() => import("@/pages/recently-used-tools"));
 
 const Router = () => {
+  const [location] = useLocation();
+
+  // Scroll to top whenever route changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [location]);
+
   return (
     <Suspense fallback={<EnhancedLoadingSpinner />}>
       <Switch>
