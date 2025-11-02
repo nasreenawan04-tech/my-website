@@ -344,25 +344,25 @@ const Home = () => {
           </section>
 
           {/* Featured Tools Spotlight */}
-          <section className="py-20 bg-gradient-to-br from-neutral-50 to-blue-50">
+          <section className="py-20 bg-gradient-to-br from-neutral-50 to-blue-50 dark:from-neutral-900 dark:to-neutral-800">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-16">
-                <h2 className="text-4xl lg:text-5xl font-bold text-neutral-800 mb-6">
+                <h2 className="text-4xl lg:text-5xl font-bold text-neutral-800 dark:text-neutral-50 mb-6">
                   Featured Tools Spotlight
                 </h2>
-                <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
+                <p className="text-xl text-neutral-600 dark:text-neutral-300 max-w-3xl mx-auto">
                   Discover our most popular and powerful tools that thousands of users rely on daily
                 </p>
               </div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100">
-                  <h3 className="text-xl font-bold text-neutral-800 mb-4">Loan Calculator</h3>
-                  <p className="text-neutral-600 mb-4 leading-relaxed">
+                <div className="bg-white dark:bg-neutral-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100 dark:border-neutral-700">
+                  <h3 className="text-xl font-bold text-neutral-800 dark:text-neutral-50 mb-4">Loan Calculator</h3>
+                  <p className="text-neutral-600 dark:text-neutral-300 mb-4 leading-relaxed">
                     Calculate monthly payments and total interest for any loan. Features advanced
                     amortization schedules, payment frequency options, and detailed cost breakdowns.
                   </p>
-                  <ul className="text-sm text-neutral-500 space-y-1 mb-6">
+                  <ul className="text-sm text-neutral-500 dark:text-neutral-400 space-y-1 mb-6">
                     <li>• Complete amortization schedule</li>
                     <li>• Multiple payment frequencies</li>
                     <li>• Extra payment calculations</li>
@@ -370,20 +370,20 @@ const Home = () => {
                   </ul>
                   <a
                     href="/tools/loan-calculator"
-                    className="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700 transition-colors group-hover:gap-2 gap-1"
+                    className="inline-flex items-center text-blue-600 dark:text-blue-400 font-semibold hover:text-blue-700 dark:hover:text-blue-300 transition-colors group-hover:gap-2 gap-1"
                   >
                     Try Loan Calculator
                     <span className="transition-transform group-hover:translate-x-1">→</span>
                   </a>
                 </div>
 
-                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100">
-                  <h3 className="text-xl font-bold text-neutral-800 mb-4">BMI Calculator</h3>
-                  <p className="text-neutral-600 mb-4 leading-relaxed">
+                <div className="bg-white dark:bg-neutral-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100 dark:border-neutral-700">
+                  <h3 className="text-xl font-bold text-neutral-800 dark:text-neutral-50 mb-4">BMI Calculator</h3>
+                  <p className="text-neutral-600 dark:text-neutral-300 mb-4 leading-relaxed">
                     Calculate your Body Mass Index and get comprehensive health insights with
                     WHO standards, health category classifications, and personalized recommendations.
                   </p>
-                  <ul className="text-sm text-neutral-500 space-y-1 mb-6">
+                  <ul className="text-sm text-neutral-500 dark:text-neutral-400 space-y-1 mb-6">
                     <li>• WHO standard classifications</li>
                     <li>• Health risk assessments</li>
                     <li>• Ideal weight ranges</li>
@@ -391,20 +391,20 @@ const Home = () => {
                   </ul>
                   <a
                     href="/tools/bmi-calculator"
-                    className="inline-flex items-center text-pink-600 font-semibold hover:text-pink-700 transition-colors group-hover:gap-2 gap-1"
+                    className="inline-flex items-center text-pink-600 dark:text-pink-400 font-semibold hover:text-pink-700 dark:hover:text-pink-300 transition-colors group-hover:gap-2 gap-1"
                   >
                     Try BMI Calculator
                     <span className="transition-transform group-hover:translate-x-1">→</span>
                   </a>
                 </div>
 
-                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100">
-                  <h3 className="text-xl font-bold text-neutral-800 mb-4">Username Generator</h3>
-                  <p className="text-neutral-600 mb-4 leading-relaxed">
+                <div className="bg-white dark:bg-neutral-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100 dark:border-neutral-700">
+                  <h3 className="text-xl font-bold text-neutral-800 dark:text-neutral-50 mb-4">Username Generator</h3>
+                  <p className="text-neutral-600 dark:text-neutral-300 mb-4 leading-relaxed">
                     Generate unique, creative usernames for social media, gaming, and online platforms.
                     Customize length, style, and add numbers or symbols as needed.
                   </p>
-                  <ul className="text-sm text-neutral-500 space-y-1 mb-6">
+                  <ul className="text-sm text-neutral-500 dark:text-neutral-400 space-y-1 mb-6">
                     <li>• Multiple generation styles</li>
                     <li>• Customizable length options</li>
                     <li>• Special character support</li>
@@ -412,20 +412,20 @@ const Home = () => {
                   </ul>
                   <a
                     href="/tools/username-generator"
-                    className="inline-flex items-center text-yellow-600 font-semibold hover:text-yellow-700 transition-colors group-hover:gap-2 gap-1"
+                    className="inline-flex items-center text-yellow-600 dark:text-yellow-400 font-semibold hover:text-yellow-700 dark:hover:text-yellow-300 transition-colors group-hover:gap-2 gap-1"
                   >
                     Try Username Generator
                     <span className="transition-transform group-hover:translate-x-1">→</span>
                   </a>
                 </div>
 
-                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100">
-                  <h3 className="text-xl font-bold text-neutral-800 mb-4">Mortgage Calculator</h3>
-                  <p className="text-neutral-600 mb-4 leading-relaxed">
+                <div className="bg-white dark:bg-neutral-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100 dark:border-neutral-700">
+                  <h3 className="text-xl font-bold text-neutral-800 dark:text-neutral-50 mb-4">Mortgage Calculator</h3>
+                  <p className="text-neutral-600 dark:text-neutral-300 mb-4 leading-relaxed">
                     Calculate comprehensive mortgage payments including principal, interest, taxes,
                     insurance, and PMI. Perfect for home buying decisions and loan comparisons.
                   </p>
-                  <ul className="text-sm text-neutral-500 space-y-1 mb-6">
+                  <ul className="text-sm text-neutral-500 dark:text-neutral-400 space-y-1 mb-6">
                     <li>• Complete PITI calculations</li>
                     <li>• PMI estimation included</li>
                     <li>• Property tax calculations</li>
@@ -433,20 +433,20 @@ const Home = () => {
                   </ul>
                   <a
                     href="/tools/mortgage-calculator"
-                    className="inline-flex items-center text-green-600 font-semibold hover:text-green-700 transition-colors group-hover:gap-2 gap-1"
+                    className="inline-flex items-center text-green-600 dark:text-green-400 font-semibold hover:text-green-700 dark:hover:text-green-300 transition-colors group-hover:gap-2 gap-1"
                   >
                     Try Mortgage Calculator
                     <span className="transition-transform group-hover:translate-x-1">→</span>
                   </a>
                 </div>
 
-                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100">
-                  <h3 className="text-xl font-bold text-neutral-800 mb-4">Business Loan Calculator</h3>
-                  <p className="text-neutral-600 mb-4 leading-relaxed">
+                <div className="bg-white dark:bg-neutral-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100 dark:border-neutral-700">
+                  <h3 className="text-xl font-bold text-neutral-800 dark:text-neutral-50 mb-4">Business Loan Calculator</h3>
+                  <p className="text-neutral-600 dark:text-neutral-300 mb-4 leading-relaxed">
                     Calculate business loan payments with origination fees, processing costs, and
                     effective APR. Compare SBA loans, term loans, and equipment financing options.
                   </p>
-                  <ul className="text-sm text-neutral-500 space-y-1 mb-6">
+                  <ul className="text-sm text-neutral-500 dark:text-neutral-400 space-y-1 mb-6">
                     <li>• SBA loan calculations</li>
                     <li>• Fee structure analysis</li>
                     <li>• Payment schedule options</li>
@@ -454,20 +454,20 @@ const Home = () => {
                   </ul>
                   <a
                     href="/tools/business-loan-calculator"
-                    className="inline-flex items-center text-purple-600 font-semibold hover:text-purple-700 transition-colors group-hover:gap-2 gap-1"
+                    className="inline-flex items-center text-purple-600 dark:text-purple-400 font-semibold hover:text-purple-700 dark:hover:text-purple-300 transition-colors group-hover:gap-2 gap-1"
                   >
                     Try Business Loan Calculator
                     <span className="transition-transform group-hover:translate-x-1">→</span>
                   </a>
                 </div>
 
-                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100">
-                  <h3 className="text-xl font-bold text-neutral-800 mb-4">Cholesterol Risk Calculator</h3>
-                  <p className="text-neutral-600 mb-4 leading-relaxed">
+                <div className="bg-white dark:bg-neutral-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group border border-neutral-100 dark:border-neutral-700">
+                  <h3 className="text-xl font-bold text-neutral-800 dark:text-neutral-50 mb-4">Cholesterol Risk Calculator</h3>
+                  <p className="text-neutral-600 dark:text-neutral-300 mb-4 leading-relaxed">
                     Assess cardiovascular health risks based on cholesterol levels, age, and lifestyle
                     factors. Get personalized recommendations for heart health improvement.
                   </p>
-                  <ul className="text-sm text-neutral-500 space-y-1 mb-6">
+                  <ul className="text-sm text-neutral-500 dark:text-neutral-400 space-y-1 mb-6">
                     <li>• Comprehensive risk assessment</li>
                     <li>• Lifestyle factor analysis</li>
                     <li>• Personalized recommendations</li>
@@ -475,7 +475,7 @@ const Home = () => {
                   </ul>
                   <a
                     href="/tools/cholesterol-risk-calculator"
-                    className="inline-flex items-center text-red-600 font-semibold hover:text-red-700 transition-colors group-hover:gap-2 gap-1"
+                    className="inline-flex items-center text-red-600 dark:text-red-400 font-semibold hover:text-red-700 dark:hover:text-red-300 transition-colors group-hover:gap-2 gap-1"
                   >
                     Try Cholesterol Calculator
                     <span className="transition-transform group-hover:translate-x-1">→</span>
@@ -484,7 +484,7 @@ const Home = () => {
               </div>
 
               <div className="text-center mt-12">
-                <p className="text-neutral-600 mb-6">
+                <p className="text-neutral-600 dark:text-neutral-300 mb-6">
                   Discover more powerful tools in our complete collection
                 </p>
                 <a
