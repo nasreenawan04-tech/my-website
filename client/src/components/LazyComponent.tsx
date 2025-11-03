@@ -3,9 +3,9 @@ import { Loader2 } from 'lucide-react';
 
 const DefaultFallback = () => (
   <div className="flex items-center justify-center min-h-[200px]" data-testid="loading-spinner">
-    <div className="flex flex-col items-center space-y-4">
+    <div className="flex flex-col items-center justify-center space-y-4">
       <Loader2 className="w-10 h-10 animate-spin text-blue-500" />
-      <p className="text-base text-gray-500">Loading...</p>
+      <p className="text-base text-center text-gray-500">Loading...</p>
     </div>
   </div>
 );
