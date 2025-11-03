@@ -2,7 +2,7 @@ import { lazy, Suspense, ComponentType } from 'react';
 import { Loader2 } from 'lucide-react';
 
 const DefaultFallback = () => (
-  <div className="flex items-center justify-center min-h-screen" data-testid="loading-spinner">
+  <div className="flex items-center justify-center min-h-screen w-full fixed inset-0" data-testid="loading-spinner">
     <div className="flex flex-col items-center justify-center space-y-4">
       <Loader2 className="w-10 h-10 animate-spin text-blue-500" />
       <p className="text-base text-center text-gray-500">Loading...</p>
