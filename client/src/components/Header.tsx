@@ -38,7 +38,7 @@ const Header = () => {
   const searchInputRef = useRef<HTMLInputElement>(null);
   const { user, logout, loading } = useAuth();
   const { toast } = useToast();
-  
+
   // Debounce search query for better performance
   const debouncedSearchQuery = useDebounce(searchQuery, 300);
 
@@ -47,7 +47,7 @@ const Header = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
-    
+
     // Throttle scroll handler for better performance
     let ticking = false;
     const scrollHandler = () => {
@@ -59,7 +59,7 @@ const Header = () => {
         ticking = true;
       }
     };
-    
+
     window.addEventListener('scroll', scrollHandler, { passive: true });
     return () => window.removeEventListener('scroll', scrollHandler);
   }, []);
@@ -183,6 +183,7 @@ const Header = () => {
                       : 'text-neutral-700 hover:text-blue-600 hover:bg-gray-50'
                   }`}
                   data-testid={`link-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
+                  aria-current={location === link.href ? 'page' : undefined}
                 >
                   {link.label}
                   <span 
@@ -192,6 +193,24 @@ const Header = () => {
                   />
                 </Link>
               ))}
+              {/* Added "Browse All Tools" link for desktop */}
+              <Link
+                href="/all-tools"
+                className={`px-3 xl:px-4 py-2 text-sm xl:text-base font-medium rounded-lg transition-all duration-200 ease-in-out relative group ${
+                  location === '/all-tools'
+                    ? 'text-blue-600 bg-blue-50'
+                    : 'text-neutral-700 hover:text-blue-600 hover:bg-gray-50'
+                }`}
+                data-testid="link-browse-all-tools"
+                aria-current={location === '/all-tools' ? 'page' : undefined}
+              >
+                Browse All Tools
+                <span 
+                  className={`absolute bottom-1 left-3 right-3 h-0.5 bg-blue-600 transition-all duration-200 ease-out rounded-full ${
+                    location === '/all-tools' ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0 group-hover:opacity-50 group-hover:scale-x-100'
+                  }`}
+                />
+              </Link>
             </nav>
 
             {/* Right Section - Search, Theme Toggle, Auth, and Mobile Menu */}
@@ -242,7 +261,7 @@ const Header = () => {
                         </DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem asChild>
-                          <Link href="/profile" className="cursor-pointer" data-testid="link-profile">
+                          <Link href="/profile" className="cursor-pointer" data-testid="link-profile" aria-current={location === '/profile' ? 'page' : undefined}>
                             <User className="mr-2 h-4 w-4" />
                             Profile
                           </Link>
@@ -266,6 +285,7 @@ const Header = () => {
                           size="sm" 
                           className="hover:bg-gray-100 transition-colors duration-200"
                           data-testid="button-header-login"
+                          aria-current={location === '/login' ? 'page' : undefined}
                         >
                           Login
                         </Button>
@@ -275,6 +295,7 @@ const Header = () => {
                           size="sm" 
                           className="bg-blue-600 hover:bg-blue-700 shadow-sm transition-all duration-200 hover:shadow-md"
                           data-testid="button-header-signup"
+                          aria-current={location === '/signup' ? 'page' : undefined}
                         >
                           Sign Up
                         </Button>
@@ -330,6 +351,7 @@ const Header = () => {
               }`}
               onClick={() => setIsMobileMenuOpen(false)}
               data-testid="mobile-link-all-tools"
+              aria-current={location === '/all-tools' ? 'page' : undefined}
             >
               Browse All Tools
             </Link>
@@ -350,6 +372,7 @@ const Header = () => {
                   }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                   data-testid="mobile-link-finance-tools"
+                  aria-current={location === '/finance-tools' ? 'page' : undefined}
                 >
                   Finance Tools
                 </Link>
@@ -362,6 +385,7 @@ const Header = () => {
                   }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                   data-testid="mobile-link-text-tools"
+                  aria-current={location === '/text-tools' ? 'page' : undefined}
                 >
                   Text Tools
                 </Link>
@@ -374,6 +398,7 @@ const Header = () => {
                   }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                   data-testid="mobile-link-health-tools"
+                  aria-current={location === '/health-tools' ? 'page' : undefined}
                 >
                   Health Tools
                 </Link>
@@ -391,6 +416,7 @@ const Header = () => {
                 }`}
                 onClick={() => setIsMobileMenuOpen(false)}
                 data-testid="mobile-link-favorites"
+                aria-current={location === '/favorite-tools' ? 'page' : undefined}
               >
                 My Favorites
               </Link>
@@ -403,11 +429,12 @@ const Header = () => {
                 }`}
                 onClick={() => setIsMobileMenuOpen(false)}
                 data-testid="mobile-link-recently-used"
+                aria-current={location === '/recently-used-tools' ? 'page' : undefined}
               >
                 Recently Used
               </Link>
             </div>
-            
+
             {/* Mobile Auth Section */}
             {!loading && (
               <div className="pt-4 mt-4 border-t border-gray-200 space-y-3">
@@ -434,6 +461,7 @@ const Header = () => {
                       onClick={() => setIsMobileMenuOpen(false)}
                       className="w-full flex items-center justify-center gap-2 text-neutral-700 hover:text-blue-600 font-medium py-3 px-4 rounded-lg transition-all duration-200 hover:bg-blue-50 border border-gray-200 hover:border-blue-200 active:scale-98"
                       data-testid="link-mobile-profile"
+                      aria-current={location === '/profile' ? 'page' : undefined}
                     >
                       <User className="w-5 h-5" />
                       <span>My Profile</span>
@@ -457,6 +485,7 @@ const Header = () => {
                       onClick={() => setIsMobileMenuOpen(false)}
                       className="text-center text-neutral-700 hover:text-blue-600 font-medium py-3 px-4 rounded-lg transition-all duration-200 hover:bg-gray-50 border border-gray-200 active:scale-98"
                       data-testid="link-mobile-login"
+                      aria-current={location === '/login' ? 'page' : undefined}
                     >
                       Login
                     </Link>
@@ -465,6 +494,7 @@ const Header = () => {
                       onClick={() => setIsMobileMenuOpen(false)}
                       className="text-center bg-blue-600 text-white hover:bg-blue-700 font-medium py-3 px-4 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md active:scale-98"
                       data-testid="link-mobile-signup"
+                      aria-current={location === '/signup' ? 'page' : undefined}
                     >
                       Sign Up
                     </Link>
