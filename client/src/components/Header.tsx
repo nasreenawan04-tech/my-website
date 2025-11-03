@@ -173,7 +173,41 @@ const Header = () => {
 
             {/* Desktop Navigation - Show on lg screens and above */}
             <nav className="hidden lg:flex items-center space-x-1">
-              {navLinks.map((link) => (
+              {/* Tool Categories Dropdown */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button
+                    className={`px-3 xl:px-4 py-2 text-sm xl:text-base font-medium rounded-lg transition-all duration-200 ease-in-out relative group flex items-center gap-1 ${
+                      location === '/finance-tools' || location === '/text-tools' || location === '/health-tools'
+                        ? 'text-blue-600 bg-blue-50'
+                        : 'text-neutral-700 hover:text-blue-600 hover:bg-gray-50'
+                    }`}
+                    data-testid="button-desktop-categories"
+                  >
+                    Tool Categories
+                    <ChevronDown className="w-4 h-4" />
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="w-48 animate-in fade-in-0 zoom-in-95 duration-200">
+                  <DropdownMenuItem asChild>
+                    <Link href="/finance-tools" className="cursor-pointer" data-testid="link-desktop-finance-tools" aria-current={location === '/finance-tools' ? 'page' : undefined}>
+                      Finance Tools
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href="/text-tools" className="cursor-pointer" data-testid="link-desktop-text-tools" aria-current={location === '/text-tools' ? 'page' : undefined}>
+                      Text Tools
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link href="/health-tools" className="cursor-pointer" data-testid="link-desktop-health-tools" aria-current={location === '/health-tools' ? 'page' : undefined}>
+                      Health Tools
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+
+              {navLinks.filter(link => link.href === '/favorite-tools' || link.href === '/recently-used-tools').map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
