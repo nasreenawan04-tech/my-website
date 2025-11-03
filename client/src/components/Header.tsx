@@ -195,19 +195,19 @@ const Header = () => {
               ))}
               {/* Added "Browse All Tools" link for desktop */}
               <Link
-                href="/all-tools"
+                href="/tools"
                 className={`px-3 xl:px-4 py-2 text-sm xl:text-base font-medium rounded-lg transition-all duration-200 ease-in-out relative group ${
-                  location === '/all-tools'
+                  location === '/tools'
                     ? 'text-blue-600 bg-blue-50'
                     : 'text-neutral-700 hover:text-blue-600 hover:bg-gray-50'
                 }`}
                 data-testid="link-browse-all-tools"
-                aria-current={location === '/all-tools' ? 'page' : undefined}
+                aria-current={location === '/tools' ? 'page' : undefined}
               >
                 Browse All Tools
                 <span 
                   className={`absolute bottom-1 left-3 right-3 h-0.5 bg-blue-600 transition-all duration-200 ease-out rounded-full ${
-                    location === '/all-tools' ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0 group-hover:opacity-50 group-hover:scale-x-100'
+                    location === '/tools' ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0 group-hover:opacity-50 group-hover:scale-x-100'
                   }`}
                 />
               </Link>
@@ -343,15 +343,15 @@ const Header = () => {
           <nav className="px-4 py-4 space-y-1 overflow-y-auto max-h-[calc(100vh-4rem)] scrollbar-thin">
             {/* Browse All Tools Link */}
             <Link
-              href="/all-tools"
+              href="/tools"
               className={`block font-medium py-3 px-4 rounded-lg transition-all duration-200 ease-in-out ${
-                location === '/all-tools'
+                location === '/tools'
                   ? 'bg-blue-50 text-blue-600 shadow-sm'
                   : 'text-neutral-700 hover:text-blue-600 hover:bg-gray-50 active:scale-98'
               }`}
               onClick={() => setIsMobileMenuOpen(false)}
               data-testid="mobile-link-all-tools"
-              aria-current={location === '/all-tools' ? 'page' : undefined}
+              aria-current={location === '/tools' ? 'page' : undefined}
             >
               Browse All Tools
             </Link>
