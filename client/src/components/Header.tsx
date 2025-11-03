@@ -5,12 +5,11 @@ import { useDebounce } from '@/hooks/use-debounce';
 import { searchTools } from '@/lib/search';
 import { tools } from '@/data/tools';
 import Logo from './Logo';
-import { Menu, X, Search, User, LogOut, ChevronDown } from 'lucide-react';
+import { Menu, X, Search, User, LogOut } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,11 +18,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@/components/ui/collapsible';
 import defaultAvatarUrl from '@assets/jhj_1761976221112.png';
 
 const Header = () => {
@@ -33,12 +27,11 @@ const Header = () => {
   const [searchResults, setSearchResults] = useState(tools);
   const [location, setLocation] = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const isMobile = useIsMobile();
   const searchInputRef = useRef<HTMLInputElement>(null);
   const { user, logout, loading } = useAuth();
   const { toast } = useToast();
-
+  
   // Debounce search query for better performance
   const debouncedSearchQuery = useDebounce(searchQuery, 300);
 
@@ -47,7 +40,7 @@ const Header = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
-
+    
     // Throttle scroll handler for better performance
     let ticking = false;
     const scrollHandler = () => {
@@ -59,7 +52,7 @@ const Header = () => {
         ticking = true;
       }
     };
-
+    
     window.addEventListener('scroll', scrollHandler, { passive: true });
     return () => window.removeEventListener('scroll', scrollHandler);
   }, []);
@@ -159,8 +152,8 @@ const Header = () => {
       <header 
         className={`sticky top-0 z-50 w-full backdrop-blur-md transition-all duration-300 ease-in-out ${
           isScrolled 
-            ? 'bg-white/95 shadow-lg border-b border-gray-300/50' 
-            : 'bg-white/90 shadow-sm border-b border-gray-200/40'
+            ? 'bg-white/95 dark:bg-neutral-900/95 shadow-lg border-b border-gray-300/50 dark:border-neutral-700/50' 
+            : 'bg-white/90 dark:bg-neutral-900/90 shadow-sm border-b border-gray-200/40 dark:border-neutral-800/40'
         }`}
         data-testid="header-main"
       >
@@ -173,85 +166,32 @@ const Header = () => {
 
             {/* Desktop Navigation - Show on lg screens and above */}
             <nav className="hidden lg:flex items-center space-x-1">
-              {/* Tool Categories Dropdown */}
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <button
-                    className={`px-3 xl:px-4 py-2 text-sm xl:text-base font-medium rounded-lg transition-all duration-200 ease-in-out relative group flex items-center gap-1 ${
-                      location === '/finance-tools' || location === '/text-tools' || location === '/health-tools'
-                        ? 'text-blue-600 bg-blue-50'
-                        : 'text-neutral-700 hover:text-blue-600 hover:bg-gray-50'
-                    }`}
-                    data-testid="button-desktop-categories"
-                  >
-                    Tool Categories
-                    <ChevronDown className="w-4 h-4" />
-                  </button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="w-48 animate-in fade-in-0 zoom-in-95 duration-200">
-                  <DropdownMenuItem asChild>
-                    <Link href="/finance-tools" className="cursor-pointer" data-testid="link-desktop-finance-tools" aria-current={location === '/finance-tools' ? 'page' : undefined}>
-                      Finance Tools
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link href="/text-tools" className="cursor-pointer" data-testid="link-desktop-text-tools" aria-current={location === '/text-tools' ? 'page' : undefined}>
-                      Text Tools
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link href="/health-tools" className="cursor-pointer" data-testid="link-desktop-health-tools" aria-current={location === '/health-tools' ? 'page' : undefined}>
-                      Health Tools
-                    </Link>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-
-              {navLinks.filter(link => link.href === '/favorite-tools' || link.href === '/recently-used-tools').map((link) => (
+              {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   className={`px-3 xl:px-4 py-2 text-sm xl:text-base font-medium rounded-lg transition-all duration-200 ease-in-out relative group ${
                     location === link.href 
-                      ? 'text-blue-600 bg-blue-50' 
-                      : 'text-neutral-700 hover:text-blue-600 hover:bg-gray-50'
+                      ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/50' 
+                      : 'text-neutral-700 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-neutral-800/50'
                   }`}
                   data-testid={`link-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
-                  aria-current={location === link.href ? 'page' : undefined}
                 >
                   {link.label}
                   <span 
-                    className={`absolute bottom-1 left-3 right-3 h-0.5 bg-blue-600 transition-all duration-200 ease-out rounded-full ${
+                    className={`absolute bottom-1 left-3 right-3 h-0.5 bg-blue-600 dark:bg-blue-400 transition-all duration-200 ease-out rounded-full ${
                       location === link.href ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0 group-hover:opacity-50 group-hover:scale-x-100'
                     }`}
                   />
                 </Link>
               ))}
-              {/* Added "Browse All Tools" link for desktop */}
-              <Link
-                href="/tools"
-                className={`px-3 xl:px-4 py-2 text-sm xl:text-base font-medium rounded-lg transition-all duration-200 ease-in-out relative group ${
-                  location === '/tools'
-                    ? 'text-blue-600 bg-blue-50'
-                    : 'text-neutral-700 hover:text-blue-600 hover:bg-gray-50'
-                }`}
-                data-testid="link-browse-all-tools"
-                aria-current={location === '/tools' ? 'page' : undefined}
-              >
-                Browse All Tools
-                <span 
-                  className={`absolute bottom-1 left-3 right-3 h-0.5 bg-blue-600 transition-all duration-200 ease-out rounded-full ${
-                    location === '/tools' ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0 group-hover:opacity-50 group-hover:scale-x-100'
-                  }`}
-                />
-              </Link>
             </nav>
 
-            {/* Right Section - Search, Theme Toggle, Auth, and Mobile Menu */}
+            {/* Right Section - Search, Auth, and Mobile Menu */}
             <div className="flex items-center gap-2 sm:gap-3">
               {/* Search Button */}
               <button 
-                className="p-2 rounded-lg text-neutral-600 hover:text-blue-600 hover:bg-gray-50 transition-all duration-200 ease-in-out hover:scale-105 active:scale-95"
+                className="p-2 rounded-lg text-neutral-600 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-neutral-800/50 transition-all duration-200 ease-in-out hover:scale-105 active:scale-95"
                 onClick={() => setIsSearchOpen(true)}
                 data-testid="button-search"
                 aria-label="Search tools"
@@ -268,7 +208,7 @@ const Header = () => {
                       <DropdownMenuTrigger asChild>
                         <Button
                           variant="ghost"
-                          className="flex items-center gap-2 hover:bg-gray-100 transition-colors duration-200"
+                          className="flex items-center gap-2 hover:bg-gray-100 dark:hover:bg-neutral-800 transition-colors duration-200"
                           data-testid="button-user-menu"
                         >
                           <Avatar className="h-8 w-8 transition-transform duration-200 hover:scale-105">
@@ -295,7 +235,7 @@ const Header = () => {
                         </DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem asChild>
-                          <Link href="/profile" className="cursor-pointer" data-testid="link-profile" aria-current={location === '/profile' ? 'page' : undefined}>
+                          <Link href="/profile" className="cursor-pointer" data-testid="link-profile">
                             <User className="mr-2 h-4 w-4" />
                             Profile
                           </Link>
@@ -303,7 +243,7 @@ const Header = () => {
                         <DropdownMenuSeparator />
                         <DropdownMenuItem
                           onClick={handleLogout}
-                          className="cursor-pointer text-red-600 focus:text-red-600"
+                          className="cursor-pointer text-red-600 dark:text-red-400 focus:text-red-600 dark:focus:text-red-400"
                           data-testid="button-dropdown-logout"
                         >
                           <LogOut className="mr-2 h-4 w-4" />
@@ -317,9 +257,8 @@ const Header = () => {
                         <Button 
                           variant="ghost" 
                           size="sm" 
-                          className="hover:bg-gray-100 transition-colors duration-200"
+                          className="hover:bg-gray-100 dark:hover:bg-neutral-800 transition-colors duration-200"
                           data-testid="button-header-login"
-                          aria-current={location === '/login' ? 'page' : undefined}
                         >
                           Login
                         </Button>
@@ -327,9 +266,8 @@ const Header = () => {
                       <Link href="/signup">
                         <Button 
                           size="sm" 
-                          className="bg-blue-600 hover:bg-blue-700 shadow-sm transition-all duration-200 hover:shadow-md"
+                          className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 shadow-sm transition-all duration-200 hover:shadow-md"
                           data-testid="button-header-signup"
-                          aria-current={location === '/signup' ? 'page' : undefined}
                         >
                           Sign Up
                         </Button>
@@ -341,7 +279,7 @@ const Header = () => {
 
               {/* Mobile Menu Button - Show on tablet and mobile */}
               <button
-                className="lg:hidden p-2 rounded-lg text-neutral-600 hover:text-blue-600 hover:bg-gray-50 transition-all duration-200 ease-in-out hover:scale-105 active:scale-95"
+                className="lg:hidden p-2 rounded-lg text-neutral-600 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-neutral-800/50 transition-all duration-200 ease-in-out hover:scale-105 active:scale-95"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 data-testid="button-mobile-menu"
                 aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
@@ -366,7 +304,7 @@ const Header = () => {
 
         {/* Mobile & Tablet Menu - Smooth slide-in animation */}
         <div 
-          className={`lg:hidden absolute top-full left-0 right-0 bg-white backdrop-blur-lg border-t border-gray-200 shadow-xl transition-all duration-300 ease-in-out overflow-hidden ${
+          className={`lg:hidden absolute top-full left-0 right-0 bg-white dark:bg-neutral-900 backdrop-blur-lg border-t border-gray-200 dark:border-neutral-700 shadow-xl transition-all duration-300 ease-in-out overflow-hidden ${
             isMobileMenuOpen 
               ? 'max-h-[calc(100vh-4rem)] opacity-100 visible translate-y-0' 
               : 'max-h-0 opacity-0 invisible -translate-y-2'
@@ -375,107 +313,36 @@ const Header = () => {
           aria-label="Mobile navigation"
         >
           <nav className="px-4 py-4 space-y-1 overflow-y-auto max-h-[calc(100vh-4rem)] scrollbar-thin">
-            {/* Browse All Tools Link */}
-            <Link
-              href="/tools"
-              className={`block font-medium py-3 px-4 rounded-lg transition-all duration-200 ease-in-out ${
-                location === '/tools'
-                  ? 'bg-blue-50 text-blue-600 shadow-sm'
-                  : 'text-neutral-700 hover:text-blue-600 hover:bg-gray-50 active:scale-98'
-              }`}
-              onClick={() => setIsMobileMenuOpen(false)}
-              data-testid="mobile-link-all-tools"
-              aria-current={location === '/tools' ? 'page' : undefined}
-            >
-              Browse All Tools
-            </Link>
-
-            {/* Collapsible Categories Section */}
-            <Collapsible open={isCategoriesOpen} onOpenChange={setIsCategoriesOpen}>
-              <CollapsibleTrigger className="w-full flex items-center justify-between font-medium py-3 px-4 rounded-lg text-neutral-700 hover:text-blue-600 hover:bg-gray-50 transition-all duration-200" data-testid="button-toggle-categories">
-                <span>Tool Categories</span>
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isCategoriesOpen ? 'rotate-180' : ''}`} />
-              </CollapsibleTrigger>
-              <CollapsibleContent className="pl-4 space-y-1 mt-1">
-                <Link
-                  href="/finance-tools"
-                  className={`block font-medium py-2.5 px-4 rounded-lg transition-all duration-200 ease-in-out ${
-                    location === '/finance-tools'
-                      ? 'bg-blue-50 text-blue-600 shadow-sm'
-                      : 'text-neutral-600 hover:text-blue-600 hover:bg-gray-50 active:scale-98'
-                  }`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  data-testid="mobile-link-finance-tools"
-                  aria-current={location === '/finance-tools' ? 'page' : undefined}
-                >
-                  Finance Tools
-                </Link>
-                <Link
-                  href="/text-tools"
-                  className={`block font-medium py-2.5 px-4 rounded-lg transition-all duration-200 ease-in-out ${
-                    location === '/text-tools'
-                      ? 'bg-blue-50 text-blue-600 shadow-sm'
-                      : 'text-neutral-600 hover:text-blue-600 hover:bg-gray-50 active:scale-98'
-                  }`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  data-testid="mobile-link-text-tools"
-                  aria-current={location === '/text-tools' ? 'page' : undefined}
-                >
-                  Text Tools
-                </Link>
-                <Link
-                  href="/health-tools"
-                  className={`block font-medium py-2.5 px-4 rounded-lg transition-all duration-200 ease-in-out ${
-                    location === '/health-tools'
-                      ? 'bg-blue-50 text-blue-600 shadow-sm'
-                      : 'text-neutral-600 hover:text-blue-600 hover:bg-gray-50 active:scale-98'
-                  }`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  data-testid="mobile-link-health-tools"
-                  aria-current={location === '/health-tools' ? 'page' : undefined}
-                >
-                  Health Tools
-                </Link>
-              </CollapsibleContent>
-            </Collapsible>
-
-            {/* User-Specific Links */}
-            <div className="pt-2 mt-2 border-t border-gray-200">
+            {/* Navigation Links */}
+            {navLinks.map((link, index) => (
               <Link
-                href="/favorite-tools"
+                key={link.href}
+                href={link.href}
                 className={`block font-medium py-3 px-4 rounded-lg transition-all duration-200 ease-in-out ${
-                  location === '/favorite-tools'
-                    ? 'bg-blue-50 text-blue-600 shadow-sm'
-                    : 'text-neutral-700 hover:text-blue-600 hover:bg-gray-50 active:scale-98'
+                  location === link.href
+                    ? 'bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 shadow-sm'
+                    : 'text-neutral-700 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-neutral-800/50 active:scale-98'
+                } ${
+                  isMobileMenuOpen ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'
                 }`}
+                style={{ 
+                  transitionDelay: isMobileMenuOpen ? `${index * 40}ms` : '0ms',
+                  transitionProperty: 'transform, opacity, background-color, color, box-shadow'
+                }}
                 onClick={() => setIsMobileMenuOpen(false)}
-                data-testid="mobile-link-favorites"
-                aria-current={location === '/favorite-tools' ? 'page' : undefined}
+                data-testid={`mobile-link-${link.label.toLowerCase().replace(/\s+/g, '-')}`}
               >
-                My Favorites
+                {link.label}
               </Link>
-              <Link
-                href="/recently-used-tools"
-                className={`block font-medium py-3 px-4 rounded-lg transition-all duration-200 ease-in-out ${
-                  location === '/recently-used-tools'
-                    ? 'bg-blue-50 text-blue-600 shadow-sm'
-                    : 'text-neutral-700 hover:text-blue-600 hover:bg-gray-50 active:scale-98'
-                }`}
-                onClick={() => setIsMobileMenuOpen(false)}
-                data-testid="mobile-link-recently-used"
-                aria-current={location === '/recently-used-tools' ? 'page' : undefined}
-              >
-                Recently Used
-              </Link>
-            </div>
-
+            ))}
+            
             {/* Mobile Auth Section */}
             {!loading && (
-              <div className="pt-4 mt-4 border-t border-gray-200 space-y-3">
+              <div className="pt-4 mt-4 border-t border-gray-200 dark:border-neutral-700 space-y-3">
                 {user ? (
                   <>
-                    <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-100">
-                      <Avatar className="h-10 w-10 ring-2 ring-white">
+                    <div className="flex items-center gap-3 px-4 py-3 rounded-lg bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/50 dark:to-purple-950/50 border border-blue-100 dark:border-blue-900/50">
+                      <Avatar className="h-10 w-10 ring-2 ring-white dark:ring-neutral-800">
                         <AvatarImage src={user.photoURL || defaultAvatarUrl} alt={user.displayName || user.email || 'User'} />
                         <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-500 text-white text-sm">
                           {user.displayName
@@ -484,8 +351,8 @@ const Header = () => {
                         </AvatarFallback>
                       </Avatar>
                       <div className="flex-1 min-w-0">
-                        <p className="text-xs text-blue-600 font-medium">Logged in as</p>
-                        <p className="text-sm font-semibold text-blue-900 truncate" data-testid="text-mobile-user-email">
+                        <p className="text-xs text-blue-600 dark:text-blue-400 font-medium">Logged in as</p>
+                        <p className="text-sm font-semibold text-blue-900 dark:text-blue-100 truncate" data-testid="text-mobile-user-email">
                           {user.displayName || user.email}
                         </p>
                       </div>
@@ -493,9 +360,8 @@ const Header = () => {
                     <Link
                       href="/profile"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="w-full flex items-center justify-center gap-2 text-neutral-700 hover:text-blue-600 font-medium py-3 px-4 rounded-lg transition-all duration-200 hover:bg-blue-50 border border-gray-200 hover:border-blue-200 active:scale-98"
+                      className="w-full flex items-center justify-center gap-2 text-neutral-700 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium py-3 px-4 rounded-lg transition-all duration-200 hover:bg-blue-50 dark:hover:bg-blue-950/30 border border-gray-200 dark:border-neutral-700 hover:border-blue-200 dark:hover:border-blue-800 active:scale-98"
                       data-testid="link-mobile-profile"
-                      aria-current={location === '/profile' ? 'page' : undefined}
                     >
                       <User className="w-5 h-5" />
                       <span>My Profile</span>
@@ -505,7 +371,7 @@ const Header = () => {
                         handleLogout();
                         setIsMobileMenuOpen(false);
                       }}
-                      className="w-full flex items-center justify-center gap-2 text-neutral-700 hover:text-red-600 font-medium py-3 px-4 rounded-lg transition-all duration-200 hover:bg-red-50 border border-gray-200 hover:border-red-200 active:scale-98"
+                      className="w-full flex items-center justify-center gap-2 text-neutral-700 dark:text-neutral-300 hover:text-red-600 dark:hover:text-red-400 font-medium py-3 px-4 rounded-lg transition-all duration-200 hover:bg-red-50 dark:hover:bg-red-950/30 border border-gray-200 dark:border-neutral-700 hover:border-red-200 dark:hover:border-red-800 active:scale-98"
                       data-testid="button-mobile-logout"
                     >
                       <LogOut className="w-5 h-5" />
@@ -517,18 +383,16 @@ const Header = () => {
                     <Link
                       href="/login"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="text-center text-neutral-700 hover:text-blue-600 font-medium py-3 px-4 rounded-lg transition-all duration-200 hover:bg-gray-50 border border-gray-200 active:scale-98"
+                      className="text-center text-neutral-700 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium py-3 px-4 rounded-lg transition-all duration-200 hover:bg-gray-50 dark:hover:bg-neutral-800/50 border border-gray-200 dark:border-neutral-700 active:scale-98"
                       data-testid="link-mobile-login"
-                      aria-current={location === '/login' ? 'page' : undefined}
                     >
                       Login
                     </Link>
                     <Link
                       href="/signup"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="text-center bg-blue-600 text-white hover:bg-blue-700 font-medium py-3 px-4 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md active:scale-98"
+                      className="text-center bg-blue-600 text-white hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 font-medium py-3 px-4 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md active:scale-98"
                       data-testid="link-mobile-signup"
-                      aria-current={location === '/signup' ? 'page' : undefined}
                     >
                       Sign Up
                     </Link>
@@ -550,16 +414,16 @@ const Header = () => {
           }}
         >
           <div 
-            className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[calc(100vh-8rem)] overflow-hidden animate-in slide-in-from-top-4 duration-300 ease-out border border-gray-200"
+            className="bg-white dark:bg-neutral-900 rounded-xl shadow-2xl w-full max-w-2xl max-h-[calc(100vh-8rem)] overflow-hidden animate-in slide-in-from-top-4 duration-300 ease-out border border-gray-200 dark:border-neutral-700"
             role="dialog"
             aria-label="Search tools"
             aria-modal="true"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Search Input Section - Google Chrome Style */}
-            <div className="p-4 sm:p-5 border-b border-gray-200 bg-gray-50/50">
+            <div className="p-4 sm:p-5 border-b border-gray-200 dark:border-neutral-700 bg-gray-50/50 dark:bg-neutral-800/30">
               <div className="relative">
-                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 dark:text-neutral-500 pointer-events-none">
                   <Search className="w-5 h-5" aria-hidden="true" />
                 </div>
                 <input
@@ -568,7 +432,7 @@ const Header = () => {
                   placeholder="Search for tools..."
                   value={searchQuery}
                   onChange={(e) => handleSearch(e.target.value)}
-                  className="w-full py-3 sm:py-3.5 pl-12 pr-12 text-base sm:text-lg border border-gray-300 bg-white text-neutral-900 rounded-full hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:shadow-xl transition-all duration-200 placeholder:text-gray-400"
+                  className="w-full py-3 sm:py-3.5 pl-12 pr-12 text-base sm:text-lg border border-gray-300 dark:border-neutral-600 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 rounded-full hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent focus:shadow-xl transition-all duration-200 placeholder:text-gray-400 dark:placeholder:text-neutral-500"
                   data-testid="search-modal-input"
                   aria-label="Search for tools"
                 />
@@ -577,7 +441,7 @@ const Header = () => {
                     setIsSearchOpen(false);
                     setSearchQuery('');
                   }}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-all duration-200 hover:scale-110 active:scale-95 p-2 rounded-full hover:bg-gray-100"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-neutral-500 hover:text-gray-600 dark:hover:text-neutral-300 transition-all duration-200 hover:scale-110 active:scale-95 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-neutral-700"
                   data-testid="search-modal-close"
                   aria-label="Close search"
                 >
@@ -597,7 +461,7 @@ const Header = () => {
                   <button
                     key={tool.id}
                     onClick={() => handleToolClick(tool.href)}
-                    className="w-full p-4 sm:p-5 text-left hover:bg-gray-50 border-b border-gray-100 last:border-0 transition-all duration-200 ease-in-out animate-in fade-in slide-in-from-bottom-2 active:bg-gray-100"
+                    className="w-full p-4 sm:p-5 text-left hover:bg-gray-50 dark:hover:bg-neutral-800/70 border-b border-gray-100 dark:border-neutral-800 last:border-0 transition-all duration-200 ease-in-out animate-in fade-in slide-in-from-bottom-2 active:bg-gray-100 dark:active:bg-neutral-800"
                     style={{ animationDelay: `${index * 30}ms` }}
                     data-testid={`search-result-${tool.id}`}
                     role="option"
@@ -605,15 +469,15 @@ const Header = () => {
                   >
                     <div className="flex items-center gap-3">
                       <div className="flex-1 min-w-0">
-                        <div className="font-semibold text-gray-900 truncate text-sm sm:text-base">
+                        <div className="font-semibold text-gray-900 dark:text-neutral-100 truncate text-sm sm:text-base">
                           {tool.name}
                         </div>
-                        <div className="text-xs sm:text-sm text-gray-500 truncate mt-0.5">
+                        <div className="text-xs sm:text-sm text-gray-500 dark:text-neutral-400 truncate mt-0.5">
                           {tool.description}
                         </div>
                       </div>
                       {tool.isPopular && (
-                        <div className="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-1 rounded-full flex-shrink-0 animate-in zoom-in duration-200">
+                        <div className="bg-yellow-100 dark:bg-yellow-900/40 text-yellow-800 dark:text-yellow-200 text-xs font-medium px-2.5 py-1 rounded-full flex-shrink-0 animate-in zoom-in duration-200">
                           Popular
                         </div>
                       )}
@@ -621,12 +485,12 @@ const Header = () => {
                   </button>
                 ))
               ) : (
-                <div className="p-8 sm:p-12 text-center text-gray-500 animate-in fade-in duration-200">
-                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 flex items-center justify-center">
-                    <Search size={32} className="text-gray-400" />
+                <div className="p-8 sm:p-12 text-center text-gray-500 dark:text-neutral-400 animate-in fade-in duration-200">
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center">
+                    <Search size={32} className="text-gray-400 dark:text-neutral-500" />
                   </div>
-                  <p className="text-base font-medium text-gray-900">No tools found</p>
-                  <p className="text-sm mt-1 text-gray-500">Try searching with different keywords</p>
+                  <p className="text-base font-medium">No tools found</p>
+                  <p className="text-sm mt-1">Try searching with different keywords</p>
                 </div>
               )}
             </div>

@@ -126,16 +126,16 @@ export default function Signup() {
         <meta name="description" content="Create a DapsiWow account to access all tools and features." />
       </Helmet>
       
-      <div className="min-h-screen flex items-center justify-center p-2.5 xs:p-3 sm:p-4 md:p-6 bg-gradient-to-br from-blue-50 via-white to-blue-50">
+      <div className="min-h-screen flex items-center justify-center p-2.5 xs:p-3 sm:p-4 md:p-6 bg-gradient-to-br from-blue-50 via-white to-blue-50 dark:from-neutral-950 dark:via-neutral-900 dark:to-neutral-950">
         <div className="absolute top-3 left-3 xs:top-4 xs:left-4 sm:top-6 sm:left-6">
           <Logo />
         </div>
-        <Card className="w-full max-w-md shadow-xl border-0 bg-white/80 backdrop-blur-sm">
+        <Card className="w-full max-w-md shadow-xl border-0 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm">
           <CardHeader className="space-y-1.5 xs:space-y-2 text-center pb-3 xs:pb-4 sm:pb-6 px-3 xs:px-4 sm:px-6 pt-4 xs:pt-6">
-            <CardTitle className="text-xl xs:text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">
+            <CardTitle className="text-xl xs:text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-400 dark:to-blue-500 bg-clip-text text-transparent">
               Create Account
             </CardTitle>
-            <CardDescription className="text-xs xs:text-sm sm:text-base text-gray-600">
+            <CardDescription className="text-xs xs:text-sm sm:text-base text-gray-600 dark:text-gray-400">
               Get started with DapsiWow and access all our powerful tools
             </CardDescription>
           </CardHeader>
@@ -143,7 +143,7 @@ export default function Signup() {
             <Button
               type="button"
               variant="outline"
-              className="w-full h-10 xs:h-11 sm:h-12 text-xs xs:text-sm sm:text-base font-medium border-gray-300 hover:bg-gray-50 transition-all duration-200"
+              className="w-full h-10 xs:h-11 sm:h-12 text-xs xs:text-sm sm:text-base font-medium border-gray-300 dark:border-neutral-700 hover:bg-gray-50 dark:hover:bg-neutral-800 transition-all duration-200"
               onClick={handleGoogleSignUp}
               disabled={googleLoading || loading}
               data-testid="button-google-signup"
@@ -161,7 +161,7 @@ export default function Signup() {
                 <Separator className="w-full" />
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-white px-3 text-gray-500 font-medium">
+                <span className="bg-white dark:bg-neutral-900 px-3 text-gray-500 dark:text-gray-400 font-medium">
                   Or sign up with email
                 </span>
               </div>
@@ -170,7 +170,7 @@ export default function Signup() {
             <form onSubmit={handleSubmit} className="space-y-2.5 xs:space-y-3 sm:space-y-4">
               <div className="grid grid-cols-2 gap-2.5 xs:gap-3 sm:gap-4">
                 <div className="space-y-1.5 xs:space-y-2">
-                  <Label htmlFor="firstName" className="text-sm font-medium text-gray-700">
+                  <Label htmlFor="firstName" className="text-sm font-medium text-gray-700 dark:text-gray-300">
                     First Name
                   </Label>
                   <Input
@@ -179,7 +179,7 @@ export default function Signup() {
                     placeholder="John"
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
-                    className="h-12 text-base bg-white border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all duration-200 rounded-xl px-4"
+                    className="h-12 text-base bg-white dark:bg-neutral-950 border-gray-300 dark:border-neutral-700 focus:border-blue-500 dark:focus:border-blue-500 focus:ring-1 focus:ring-blue-500 dark:focus:ring-blue-500 transition-all duration-200 rounded-xl px-4"
                     data-testid="input-firstname"
                     required
                     disabled={loading || googleLoading}
@@ -187,7 +187,7 @@ export default function Signup() {
                 </div>
 
                 <div className="space-y-1.5 xs:space-y-2">
-                  <Label htmlFor="lastName" className="text-sm font-medium text-gray-700">
+                  <Label htmlFor="lastName" className="text-sm font-medium text-gray-700 dark:text-gray-300">
                     Last Name
                   </Label>
                   <Input
@@ -196,7 +196,7 @@ export default function Signup() {
                     placeholder="Doe"
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
-                    className="h-12 text-base bg-white border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all duration-200 rounded-xl px-4"
+                    className="h-12 text-base bg-white dark:bg-neutral-950 border-gray-300 dark:border-neutral-700 focus:border-blue-500 dark:focus:border-blue-500 focus:ring-1 focus:ring-blue-500 dark:focus:ring-blue-500 transition-all duration-200 rounded-xl px-4"
                     data-testid="input-lastname"
                     required
                     disabled={loading || googleLoading}
@@ -205,7 +205,7 @@ export default function Signup() {
               </div>
 
               <div className="space-y-1.5 xs:space-y-2">
-                <Label htmlFor="email" className="text-sm font-medium text-gray-700">
+                <Label htmlFor="email" className="text-sm font-medium text-gray-700 dark:text-gray-300">
                   Email Address
                 </Label>
                 <Input
@@ -214,7 +214,7 @@ export default function Signup() {
                   placeholder="you@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="h-12 text-base bg-white border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all duration-200 rounded-xl px-4"
+                  className="h-12 text-base bg-white dark:bg-neutral-950 border-gray-300 dark:border-neutral-700 focus:border-blue-500 dark:focus:border-blue-500 focus:ring-1 focus:ring-blue-500 dark:focus:ring-blue-500 transition-all duration-200 rounded-xl px-4"
                   data-testid="input-email"
                   required
                   disabled={loading || googleLoading}
@@ -222,7 +222,7 @@ export default function Signup() {
               </div>
               
               <div className="space-y-1.5 xs:space-y-2">
-                <Label htmlFor="password" className="text-sm font-medium text-gray-700">
+                <Label htmlFor="password" className="text-sm font-medium text-gray-700 dark:text-gray-300">
                   Password
                 </Label>
                 <div className="relative">
@@ -232,7 +232,7 @@ export default function Signup() {
                     placeholder="Create a strong password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="pr-12 h-12 text-base bg-white border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all duration-200 rounded-xl px-4"
+                    className="pr-12 h-12 text-base bg-white dark:bg-neutral-950 border-gray-300 dark:border-neutral-700 focus:border-blue-500 dark:focus:border-blue-500 focus:ring-1 focus:ring-blue-500 dark:focus:ring-blue-500 transition-all duration-200 rounded-xl px-4"
                     data-testid="input-password"
                     required
                     disabled={loading || googleLoading}
@@ -240,7 +240,7 @@ export default function Signup() {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition-colors"
                     data-testid="button-toggle-password"
                     disabled={loading || googleLoading}
                     tabIndex={-1}
@@ -255,7 +255,7 @@ export default function Signup() {
               </div>
 
               <div className="space-y-1.5 xs:space-y-2">
-                <Label htmlFor="confirmPassword" className="text-sm font-medium text-gray-700">
+                <Label htmlFor="confirmPassword" className="text-sm font-medium text-gray-700 dark:text-gray-300">
                   Confirm Password
                 </Label>
                 <div className="relative">
@@ -265,7 +265,7 @@ export default function Signup() {
                     placeholder="Confirm your password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="pr-12 h-12 text-base bg-white border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all duration-200 rounded-xl px-4"
+                    className="pr-12 h-12 text-base bg-white dark:bg-neutral-950 border-gray-300 dark:border-neutral-700 focus:border-blue-500 dark:focus:border-blue-500 focus:ring-1 focus:ring-blue-500 dark:focus:ring-blue-500 transition-all duration-200 rounded-xl px-4"
                     data-testid="input-confirm-password"
                     required
                     disabled={loading || googleLoading}
@@ -273,7 +273,7 @@ export default function Signup() {
                   <button
                     type="button"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition-colors"
                     data-testid="button-toggle-confirm-password"
                     disabled={loading || googleLoading}
                     tabIndex={-1}
@@ -289,7 +289,7 @@ export default function Signup() {
 
               <Button 
                 type="submit" 
-                className="w-full h-10 xs:h-11 sm:h-12 text-sm sm:text-base font-semibold bg-blue-600 hover:bg-blue-700 text-white shadow-md hover:shadow-lg transition-all duration-200 mt-1" 
+                className="w-full h-10 xs:h-11 sm:h-12 text-sm sm:text-base font-semibold bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 text-white shadow-md hover:shadow-lg transition-all duration-200 mt-1" 
                 disabled={loading || googleLoading}
                 data-testid="button-signup"
               >
@@ -305,11 +305,11 @@ export default function Signup() {
             </form>
 
             <div className="text-center pt-2">
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-600 dark:text-gray-400">
                 Already have an account?{' '}
                 <Link 
                   href="/login" 
-                  className="text-blue-600 hover:text-blue-700 font-semibold hover:underline transition-colors" 
+                  className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-semibold hover:underline transition-colors" 
                   data-testid="link-login"
                 >
                   Sign in
@@ -317,14 +317,14 @@ export default function Signup() {
               </p>
             </div>
 
-            <div className="pt-4 border-t border-gray-200">
-              <p className="text-xs text-center text-gray-500 leading-relaxed">
+            <div className="pt-4 border-t border-gray-200 dark:border-neutral-800">
+              <p className="text-xs text-center text-gray-500 dark:text-gray-500 leading-relaxed">
                 By creating an account, you agree to our{' '}
-                <Link href="/terms-of-service" className="text-blue-600 hover:underline font-medium">
+                <Link href="/terms-of-service" className="text-blue-600 hover:underline dark:text-blue-400 font-medium">
                   Terms of Service
                 </Link>{' '}
                 and{' '}
-                <Link href="/privacy-policy" className="text-blue-600 hover:underline font-medium">
+                <Link href="/privacy-policy" className="text-blue-600 hover:underline dark:text-blue-400 font-medium">
                   Privacy Policy
                 </Link>
               </p>

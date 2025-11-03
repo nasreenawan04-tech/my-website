@@ -32,7 +32,7 @@ const FavoriteTools = () => {
         <link rel="canonical" href="https://dapsiwow.com/favorite-tools" />
       </Helmet>
 
-      <div className="min-h-screen flex flex-col bg-neutral-50" data-testid="page-favorite-tools">
+      <div className="min-h-screen flex flex-col bg-neutral-50 dark:bg-neutral-950" data-testid="page-favorite-tools">
         <Header />
         
         <main className="flex-1">
@@ -82,7 +82,7 @@ const FavoriteTools = () => {
                 <>
                   {/* Clear Favorites Button */}
                   <div className="flex justify-between items-center mb-8">
-                    <p className="text-neutral-600">
+                    <p className="text-neutral-600 dark:text-neutral-400">
                       Showing {favorites.length} favorite {favorites.length === 1 ? 'tool' : 'tools'}
                     </p>
                     <Button
@@ -106,13 +106,13 @@ const FavoriteTools = () => {
               ) : (
                 /* Empty State */
                 <div className="text-center py-20">
-                  <div className="inline-flex items-center justify-center w-20 h-20 bg-neutral-200 rounded-full mb-6">
-                    <Star className="w-10 h-10 text-neutral-400" />
+                  <div className="inline-flex items-center justify-center w-20 h-20 bg-neutral-200 dark:bg-neutral-800 rounded-full mb-6">
+                    <Star className="w-10 h-10 text-neutral-400 dark:text-neutral-500" />
                   </div>
-                  <h2 className="text-2xl font-bold text-neutral-800 mb-3" data-testid="text-empty-state-title">
+                  <h2 className="text-2xl font-bold text-neutral-800 dark:text-neutral-200 mb-3" data-testid="text-empty-state-title">
                     No Favorite Tools Yet
                   </h2>
-                  <p className="text-neutral-600 mb-8 max-w-md mx-auto">
+                  <p className="text-neutral-600 dark:text-neutral-400 mb-8 max-w-md mx-auto">
                     Click the star icon on any tool card to add it to your favorites for quick access later.
                   </p>
                   <Link 

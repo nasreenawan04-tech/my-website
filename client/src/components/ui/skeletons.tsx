@@ -4,7 +4,7 @@ import logoImage from '@assets/logo.svg';
 // Skeleton for individual tool cards in grids
 export function ToolCardSkeleton() {
   return (
-    <div className="bg-white rounded-2xl shadow-md p-6 border border-neutral-100">
+    <div className="bg-white dark:bg-neutral-800 rounded-2xl shadow-md p-6 border border-neutral-100 dark:border-neutral-700">
       <div className="flex items-start justify-between mb-4">
         <div className="flex-1">
           <Skeleton className="h-6 w-16 mb-2" /> {/* Category badge */}
@@ -27,7 +27,7 @@ export function ToolPageSkeleton() {
   return (
     <div className="min-h-screen flex flex-col" data-testid="tool-page-skeleton">
       {/* Header skeleton */}
-      <div className="border-b bg-white">
+      <div className="border-b bg-white dark:bg-neutral-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-2">
@@ -61,12 +61,12 @@ export function ToolPageSkeleton() {
         </div>
       </div>
 
-      <main className="flex-1 bg-neutral-50">
+      <main className="flex-1 bg-neutral-50 dark:bg-neutral-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="grid md:grid-cols-2 gap-8">
             {/* Left column - Form skeleton */}
             <div className="space-y-6">
-              <div className="bg-white rounded-xl p-6 shadow-sm">
+              <div className="bg-white dark:bg-neutral-800 rounded-xl p-6 shadow-sm">
                 <Skeleton className="h-8 w-48 mb-6" /> {/* Form title */}
                 <div className="space-y-4">
                   {[...Array(4)].map((_, i) => (
@@ -82,7 +82,7 @@ export function ToolPageSkeleton() {
 
             {/* Right column - Results skeleton */}
             <div className="space-y-6">
-              <div className="bg-white rounded-xl p-6 shadow-sm">
+              <div className="bg-white dark:bg-neutral-800 rounded-xl p-6 shadow-sm">
                 <Skeleton className="h-8 w-32 mb-6" /> {/* Results title */}
                 <div className="space-y-4">
                   {[...Array(3)].map((_, i) => (
@@ -93,7 +93,7 @@ export function ToolPageSkeleton() {
                   ))}
                 </div>
               </div>
-              <div className="bg-white rounded-xl p-6 shadow-sm">
+              <div className="bg-white dark:bg-neutral-800 rounded-xl p-6 shadow-sm">
                 <Skeleton className="h-6 w-20 mb-4" /> {/* Chart title */}
                 <Skeleton className="h-64 w-full" /> {/* Chart area */}
               </div>
@@ -126,7 +126,7 @@ export function CategoryPageSkeleton() {
   return (
     <div className="min-h-screen flex flex-col" data-testid="category-page-skeleton">
       {/* Header skeleton */}
-      <div className="border-b bg-white">
+      <div className="border-b bg-white dark:bg-neutral-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-2">
@@ -159,7 +159,7 @@ export function CategoryPageSkeleton() {
         </div>
       </div>
 
-      <main className="flex-1 bg-neutral-50">
+      <main className="flex-1 bg-neutral-50 dark:bg-neutral-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Tools count skeleton */}
           <div className="mb-8">
@@ -199,7 +199,7 @@ export function HomePageSkeleton() {
   return (
     <div className="min-h-screen flex flex-col" data-testid="home-page-skeleton">
       {/* Header skeleton */}
-      <div className="border-b bg-white">
+      <div className="border-b bg-white dark:bg-neutral-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-2">
@@ -255,7 +255,7 @@ export function HomePageSkeleton() {
         </div>
       </div>
 
-      <main className="flex-1 bg-neutral-50">
+      <main className="flex-1 bg-neutral-50 dark:bg-neutral-900">
         {/* Popular tools section skeleton */}
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -272,7 +272,7 @@ export function HomePageSkeleton() {
         </section>
 
         {/* Categories section skeleton */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-white dark:bg-neutral-800">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <Skeleton className="h-10 w-48 mx-auto mb-4" />
@@ -280,7 +280,7 @@ export function HomePageSkeleton() {
             </div>
             <div className="grid md:grid-cols-3 gap-8">
               {[...Array(3)].map((_, i) => (
-                <div key={i} className="text-center p-8 rounded-2xl border border-neutral-100">
+                <div key={i} className="text-center p-8 rounded-2xl border border-neutral-100 dark:border-neutral-700">
                   <Skeleton className="h-16 w-16 rounded-2xl mx-auto mb-6" />
                   <Skeleton className="h-8 w-32 mx-auto mb-4" />
                   <Skeleton className="h-4 w-full mb-2" />
@@ -334,7 +334,7 @@ export function EnhancedLoadingSpinner({ size = "md", className, message }: {
     <div className="flex flex-col items-center justify-center p-8" data-testid="enhanced-loading-spinner">
       <div className={`relative ${sizeClasses[size]} ${className || ''}`}>
         {/* Outer ring */}
-        <div className="absolute inset-0 rounded-full border-4 border-gray-200"></div>
+        <div className="absolute inset-0 rounded-full border-4 border-gray-200 dark:border-gray-700"></div>
         {/* Spinning ring */}
         <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-blue-600 border-r-blue-600 animate-spin"></div>
         {/* Logo in center */}
@@ -348,7 +348,7 @@ export function EnhancedLoadingSpinner({ size = "md", className, message }: {
         </div>
       </div>
       {message && (
-        <p className="mt-4 text-gray-600 text-sm animate-pulse">
+        <p className="mt-4 text-gray-600 dark:text-gray-300 text-sm animate-pulse">
           {message}
         </p>
       )}
@@ -384,7 +384,7 @@ export function CalculationSpinner({ message = "Calculating..." }: {
     <div className="flex flex-col items-center justify-center p-6" data-testid="calculation-spinner">
       <div className="relative w-16 h-16 mb-4" data-testid="calculation-spinner-rings">
         {/* Multiple rotating rings for calculation effect */}
-        <div className="absolute inset-0 rounded-full border-4 border-blue-200"></div>
+        <div className="absolute inset-0 rounded-full border-4 border-blue-200 dark:border-blue-800"></div>
         <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-blue-600 animate-spin"></div>
         <div className="absolute inset-1 rounded-full border-[3px] border-transparent border-r-purple-600 animate-spin" style={{animationDirection: 'reverse', animationDuration: '1.5s'}}></div>
         {/* Logo in center */}
@@ -397,7 +397,7 @@ export function CalculationSpinner({ message = "Calculating..." }: {
           />
         </div>
       </div>
-      <p className="text-sm text-gray-600 animate-pulse font-medium">
+      <p className="text-sm text-gray-600 dark:text-gray-300 animate-pulse font-medium">
         {message}
       </p>
     </div>

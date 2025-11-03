@@ -32,7 +32,7 @@ export function LoadingSpinner({ size = "md", className, label = "Loading" }: Lo
     <div className="flex items-center justify-center p-8" data-testid="loading-spinner" role="status" aria-live="polite">
       <div className={`relative ${sizeClasses[size]} ${className || ''}`}>
         <div
-          className="absolute inset-0 animate-spin rounded-full border-2 border-gray-300 border-t-blue-600"
+          className="absolute inset-0 animate-spin rounded-full border-2 border-gray-300 dark:border-neutral-700 border-t-blue-600 dark:border-t-blue-500"
           aria-hidden="true"
         />
         {/* Logo in center */}
@@ -69,7 +69,7 @@ export function PageLoadingSpinner() {
   
   // Fallback for other pages - show enhanced spinner
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50" data-testid="page-loading">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-neutral-900" data-testid="page-loading">
       <EnhancedLoadingSpinner size="lg" message="Loading..." />
     </div>
   );

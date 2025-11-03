@@ -68,10 +68,10 @@ export class ErrorBoundary extends Component<Props, State> {
           <div className="text-center max-w-md">
             <div className="mb-6">
               <AlertTriangle className="w-16 h-16 text-red-500 mx-auto mb-4" />
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">
                 Oops! Something went wrong
               </h2>
-              <p className="text-gray-600">
+              <p className="text-gray-600 dark:text-gray-400">
                 We encountered an unexpected error. Please try refreshing the page or go back to the home page.
               </p>
             </div>
@@ -102,7 +102,7 @@ export class ErrorBoundary extends Component<Props, State> {
                 <summary className="cursor-pointer text-sm text-gray-500 hover:text-gray-700">
                   Error Details (Development Only)
                 </summary>
-                <div className="mt-2 p-4 bg-red-50 rounded-lg text-xs font-mono text-red-800 overflow-auto max-h-40">
+                <div className="mt-2 p-4 bg-red-50 dark:bg-red-900/20 rounded-lg text-xs font-mono text-red-800 dark:text-red-200 overflow-auto max-h-40">
                   <p className="font-semibold mb-2">{this.state.error.toString()}</p>
                   {this.state.errorInfo?.componentStack && (
                     <pre className="whitespace-pre-wrap">{this.state.errorInfo.componentStack}</pre>

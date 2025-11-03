@@ -29,12 +29,12 @@ const QuickPresets = ({ presets, onPresetSelect, className = '' }: QuickPresetsP
   if (presets.length === 0) return null;
 
   return (
-    <div className={`bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-4 ${className}`}>
-      <h3 className="text-lg font-semibold text-neutral-800 mb-3 flex items-center">
-        <Wand2 className="text-blue-600 mr-2" size={20} />
+    <div className={`bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg p-4 ${className}`}>
+      <h3 className="text-lg font-semibold text-neutral-800 dark:text-neutral-100 mb-3 flex items-center">
+        <Wand2 className="text-blue-600 dark:text-blue-400 mr-2" size={20} />
         Quick Presets
       </h3>
-      <p className="text-sm text-neutral-600 mb-4">
+      <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">
         Click any preset to auto-fill common scenarios
       </p>
       
@@ -44,12 +44,12 @@ const QuickPresets = ({ presets, onPresetSelect, className = '' }: QuickPresetsP
             key={preset.id}
             onClick={() => handlePresetClick(preset)}
             className={`
-              p-3 text-left rounded-lg border border-blue-200
-              hover:bg-blue-100 
+              p-3 text-left rounded-lg border border-blue-200 dark:border-blue-700
+              hover:bg-blue-100 dark:hover:bg-blue-800/30 
               transition-all duration-200 transform hover:scale-105
               ${selectedPreset === preset.id 
-                ? 'bg-blue-200 scale-105' 
-                : 'bg-white'
+                ? 'bg-blue-200 dark:bg-blue-700 scale-105' 
+                : 'bg-white dark:bg-neutral-800'
               }
             `}
             data-testid={`preset-${preset.id}`}
@@ -61,10 +61,10 @@ const QuickPresets = ({ presets, onPresetSelect, className = '' }: QuickPresetsP
                 </div>
               )}
               <div className="flex-1 min-w-0">
-                <div className="font-medium text-neutral-800 text-sm">
+                <div className="font-medium text-neutral-800 dark:text-neutral-100 text-sm">
                   {preset.label}
                 </div>
-                <div className="text-xs text-neutral-500 mt-1">
+                <div className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
                   {preset.description}
                 </div>
               </div>
@@ -73,7 +73,7 @@ const QuickPresets = ({ presets, onPresetSelect, className = '' }: QuickPresetsP
         ))}
       </div>
       
-      <div className="mt-4 text-xs text-neutral-500 text-center">
+      <div className="mt-4 text-xs text-neutral-500 dark:text-neutral-400 text-center">
         💡 These presets help you get started quickly with common calculations
       </div>
     </div>

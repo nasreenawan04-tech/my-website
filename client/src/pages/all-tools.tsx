@@ -108,10 +108,10 @@ const AllTools = () => {
         
         <main className="flex-1 bg-neutral-50">
           {/* Modern Hero Section */}
-          <section className="relative bg-gradient-to-br from-blue-600 via-blue-500 to-purple-600 text-white py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden" aria-label="Page header">
+          <section className="relative bg-gradient-to-br from-blue-600 via-blue-500 to-purple-600 text-white py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden">
             {/* Background Pattern */}
-            <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]" aria-hidden="true" />
-            <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent" aria-hidden="true" />
+            <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]" />
+            <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent" />
             
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               {/* Main Content */}
@@ -175,24 +175,21 @@ const AllTools = () => {
           </section>
 
           {/* Tools Section */}
-          <section className="py-20" aria-label="Tools grid">
+          <section className="py-16">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               {/* Category Filters */}
-              <div className="mb-16">
-                <h2 className="sr-only">Filter tools by category</h2>
-                <div className="flex flex-wrap gap-3 sm:gap-4 justify-center px-2" role="group" aria-label="Category filters">
+              <div className="mb-12">
+                <div className="flex flex-wrap gap-2 sm:gap-3 justify-center px-2">
                   {categoryTabs.map((tab) => (
                     <button
                       key={tab.key}
                       onClick={() => handleCategoryChange(tab.key)}
-                      className={`px-4 sm:px-8 py-3 sm:py-4 rounded-2xl font-semibold transition-all duration-200 text-sm sm:text-base whitespace-nowrap ${
+                      className={`px-3 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold transition-all duration-200 text-sm sm:text-base whitespace-nowrap ${
                         selectedCategory === tab.key
-                          ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg hover:shadow-xl scale-105'
-                          : 'bg-white text-neutral-700 hover:bg-neutral-50 shadow-md hover:shadow-lg border border-neutral-200'
+                          ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-md'
+                          : 'bg-white text-neutral-600 hover:bg-neutral-50 shadow-sm border border-neutral-200'
                       }`}
                       data-testid={`button-filter-${tab.key}`}
-                      aria-label={`Filter by ${tab.label}`}
-                      aria-pressed={selectedCategory === tab.key}
                     >
                       <span className="hidden sm:inline">{tab.label} ({tab.count})</span>
                       <span className="sm:hidden">{tab.label.split(' ')[0]} ({tab.count})</span>
@@ -202,8 +199,8 @@ const AllTools = () => {
               </div>
 
               {/* Results Info */}
-              <div className="mb-10">
-                <p className="text-neutral-700 text-center text-lg font-medium" data-testid="text-results-count" role="status" aria-live="polite">
+              <div className="mb-8">
+                <p className="text-neutral-600 text-center" data-testid="text-results-count">
                   Showing {filteredTools.length} tools{selectedCategory !== 'all' && ` in ${categories[selectedCategory as keyof typeof categories]} category`}
                   {searchQuery && ` matching "${searchQuery}"`}
                 </p>
@@ -211,18 +208,16 @@ const AllTools = () => {
 
               {/* Tools Grid */}
               {filteredTools.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10" data-testid="grid-all-tools" role="list">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8" data-testid="grid-all-tools">
                   {filteredTools.map((tool) => (
                     <ToolCard key={tool.id} tool={tool} />
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-20" data-testid="empty-state-no-tools" role="status">
-                  <div className="inline-flex items-center justify-center w-24 h-24 bg-neutral-100 rounded-full mb-6">
-                    <Search className="w-12 h-12 text-neutral-400" aria-hidden="true" />
-                  </div>
-                  <h3 className="text-3xl font-bold text-neutral-800 mb-4">No tools found</h3>
-                  <p className="text-neutral-600 text-lg max-w-md mx-auto">
+                <div className="text-center py-16" data-testid="empty-state-no-tools">
+                  <i className="fas fa-search text-6xl text-neutral-300 mb-4"></i>
+                  <h3 className="text-2xl font-bold text-neutral-600 mb-2">No tools found</h3>
+                  <p className="text-neutral-500">
                     Try adjusting your search query or selecting a different category.
                   </p>
                 </div>

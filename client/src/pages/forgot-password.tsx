@@ -54,10 +54,10 @@ export default function ForgotPassword() {
         <meta name="description" content="Reset your DapsiWow account password." />
       </Helmet>
       
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 p-4">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 dark:from-blue-900 dark:via-purple-900 dark:to-pink-900 p-4">
         <Card className="w-full max-w-md shadow-2xl">
           <CardHeader className="space-y-1 text-center">
-            <CardTitle className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <CardTitle className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
               Forgot Password?
             </CardTitle>
             <CardDescription className="text-base">
@@ -69,15 +69,15 @@ export default function ForgotPassword() {
           <CardContent className="space-y-4">
             {emailSent ? (
               <div className="space-y-6">
-                <div className="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
-                  <CheckCircle2 className="h-16 w-16 text-green-600 mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold text-green-900 mb-2">
+                <div className="bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800 rounded-lg p-6 text-center">
+                  <CheckCircle2 className="h-16 w-16 text-green-600 dark:text-green-400 mx-auto mb-4" />
+                  <h3 className="text-lg font-semibold text-green-900 dark:text-green-100 mb-2">
                     Email Sent Successfully
                   </h3>
-                  <p className="text-sm text-green-700 mb-4">
+                  <p className="text-sm text-green-700 dark:text-green-300 mb-4">
                     We've sent password reset instructions to:
                   </p>
-                  <p className="text-base font-medium text-green-900 break-all">
+                  <p className="text-base font-medium text-green-900 dark:text-green-100 break-all">
                     {email}
                   </p>
                 </div>
@@ -129,7 +129,7 @@ export default function ForgotPassword() {
 
                 <Button 
                   type="submit" 
-                  className="w-full h-11 text-base font-medium bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700" 
+                  className="w-full h-11 text-base font-medium bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 dark:from-blue-600 dark:to-purple-600 dark:hover:from-blue-700 dark:hover:to-purple-700" 
                   disabled={loading}
                   data-testid="button-reset-password"
                 >
@@ -145,10 +145,10 @@ export default function ForgotPassword() {
               </form>
             )}
 
-            <div className="pt-4 border-t border-gray-200">
+            <div className="pt-4 border-t border-gray-200 dark:border-neutral-800">
               <Link 
                 href="/login"
-                className="flex items-center justify-center gap-2 text-sm text-blue-600 hover:text-blue-700 font-medium hover:underline"
+                className="flex items-center justify-center gap-2 text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium hover:underline"
                 data-testid="link-back-to-login"
               >
                 <ArrowLeft className="h-4 w-4" />
@@ -162,7 +162,7 @@ export default function ForgotPassword() {
                   Don't have an account?{' '}
                   <Link 
                     href="/signup" 
-                    className="text-blue-600 hover:text-blue-700 font-medium hover:underline" 
+                    className="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium hover:underline" 
                     data-testid="link-signup"
                   >
                     Sign up for free

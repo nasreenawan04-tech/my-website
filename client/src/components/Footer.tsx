@@ -5,7 +5,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-neutral-800 text-neutral-100 py-16 border-t border-neutral-700" data-testid="footer-main">
+    <footer className="bg-neutral-800 text-neutral-100 py-16" data-testid="footer-main">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Logo and Tagline */}
@@ -16,7 +16,7 @@ const Footer = () => {
                 alt="DapsiWow Logo"
                 className="w-8 h-8 object-contain filter drop-shadow-sm"
               />
-              <span className="text-xl font-bold text-white">DapsiWow</span>
+              <span className="text-xl font-bold">DapsiWow</span>
             </div>
             <p className="text-neutral-300 leading-relaxed">
               Free online tools to make your life easier. No sign-up required, completely free forever.
@@ -25,7 +25,7 @@ const Footer = () => {
 
           {/* Popular Tools */}
           <div>
-            <h3 className="text-lg font-semibold mb-6 text-white">Popular Tools</h3>
+            <h3 className="text-lg font-semibold mb-6">Popular Tools</h3>
             <ul className="space-y-3 text-neutral-300">
               <li><Link href="/tools/loan-calculator" className="hover:text-white transition-colors" data-testid="link-loan-calculator">Loan Calculator</Link></li>
               <li><Link href="/tools/word-counter" className="hover:text-white transition-colors" data-testid="link-word-counter">Word Counter</Link></li>
@@ -35,7 +35,7 @@ const Footer = () => {
 
           {/* Categories */}
           <div>
-            <h3 className="text-lg font-semibold mb-6 text-white">Categories</h3>
+            <h3 className="text-lg font-semibold mb-6">Categories</h3>
             <ul className="space-y-3 text-neutral-300">
               <li><Link href="/finance-tools" className="hover:text-white transition-colors" data-testid="link-finance-tools">Finance Tools</Link></li>
               <li><Link href="/text-tools" className="hover:text-white transition-colors" data-testid="link-text-tools">Text Tools</Link></li>
@@ -45,7 +45,7 @@ const Footer = () => {
 
           {/* Support */}
           <div>
-            <h3 className="text-lg font-semibold mb-6 text-white">Company</h3>
+            <h3 className="text-lg font-semibold mb-6">Company</h3>
             <ul className="space-y-3 text-neutral-300">
               <li><Link href="/about-us" className="hover:text-white transition-colors" data-testid="link-about-us">About Us</Link></li>
               <li><Link href="/help-center" className="hover:text-white transition-colors" data-testid="link-help-center">Help Center</Link></li>

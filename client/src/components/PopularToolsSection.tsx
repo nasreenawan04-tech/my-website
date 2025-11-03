@@ -30,7 +30,7 @@ const PopularToolsSection = () => {
     <section className="py-20 bg-white" data-testid="popular-tools-section">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-neutral-900 mb-6" data-testid="text-popular-tools-title">
+          <h2 className="text-4xl lg:text-5xl font-bold text-neutral-800 mb-6" data-testid="text-popular-tools-title">
             Our Most Popular Tools
           </h2>
           <p className="text-xl text-neutral-600 max-w-3xl mx-auto" data-testid="text-popular-tools-subtitle">
