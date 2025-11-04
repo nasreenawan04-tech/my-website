@@ -461,6 +461,14 @@ const toolsData: Tool[] = [
     href: "/tools/markdown-to-html",
   },
   {
+    id: "markdown-to-pdf",
+    name: "Markdown to PDF Converter",
+    description: "Convert Markdown documents to professional PDF files",
+    category: "text" as const,
+    icon: "fas fa-file-pdf",
+    href: "/tools/markdown-to-pdf",
+  },
+  {
     id: "reverse-text-tool",
     name: "Reverse Text Tool",
     description: "Reverse the order of text characters, words, or lines",
