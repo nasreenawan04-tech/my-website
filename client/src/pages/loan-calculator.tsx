@@ -2893,9 +2893,9 @@ export default function LoanCalculator() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
                   {/* Testimonial 1 */}
                   <div className="bg-white p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105" data-testid="testimonial-1">
-                    <div className="flex items-center gap-0.5 sm:gap-1 mb-3 sm:mb-4">
+                    <div className="flex items-center gap-0.5 sm:gap-1 mb-3 sm:mb-4" role="img" aria-label="5 star rating">
                       {[...Array(5)].map((_, i) => (
-                        <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                        <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" viewBox="0 0 20 20" aria-hidden="true">
                           <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                         </svg>
                       ))}
@@ -2916,9 +2916,9 @@ export default function LoanCalculator() {
 
                   {/* Testimonial 2 */}
                   <div className="bg-white p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105" data-testid="testimonial-2">
-                    <div className="flex items-center gap-0.5 sm:gap-1 mb-3 sm:mb-4">
+                    <div className="flex items-center gap-0.5 sm:gap-1 mb-3 sm:mb-4" role="img" aria-label="5 star rating">
                       {[...Array(5)].map((_, i) => (
-                        <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                        <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" viewBox="0 0 20 20" aria-hidden="true">
                           <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                         </svg>
                       ))}
@@ -2939,9 +2939,9 @@ export default function LoanCalculator() {
 
                   {/* Testimonial 3 */}
                   <div className="bg-white p-4 sm:p-5 md:p-6 lg:p-8 rounded-lg sm:rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105" data-testid="testimonial-3">
-                    <div className="flex items-center gap-0.5 sm:gap-1 mb-3 sm:mb-4">
+                    <div className="flex items-center gap-0.5 sm:gap-1 mb-3 sm:mb-4" role="img" aria-label="5 star rating">
                       {[...Array(5)].map((_, i) => (
-                        <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                        <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" viewBox="0 0 20 20" aria-hidden="true">
                           <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                         </svg>
                       ))}
@@ -2964,9 +2964,9 @@ export default function LoanCalculator() {
                 <div className="mt-6 sm:mt-8 md:mt-10 text-center">
                   <div className="inline-flex flex-col xs:flex-row items-center gap-1.5 xs:gap-2 bg-white px-4 sm:px-5 md:px-6 py-2.5 sm:py-3 rounded-full shadow-md">
                     <span className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">4.9/5</span>
-                    <div className="flex items-center gap-0.5 sm:gap-1">
+                    <div className="flex items-center gap-0.5 sm:gap-1" role="img" aria-label="4.9 out of 5 stars">
                       {[...Array(5)].map((_, i) => (
-                        <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                        <svg key={i} className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current" viewBox="0 0 20 20" aria-hidden="true">
                           <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                         </svg>
                       ))}
