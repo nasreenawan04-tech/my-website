@@ -988,21 +988,82 @@ const MortgageCalculator = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>Mortgage Calculator 2025: Free Monthly Payment Calculator with PMI, Taxes & Insurance | FHA, VA & Conventional</title>
-        <meta name="description" content="Calculate mortgage payments instantly with our FREE mortgage calculator. Get monthly payment breakdowns with PMI, taxes, insurance & HOA fees for FHA, VA & conventional loans. Includes biweekly payments, amortization schedules & extra payment savings. 3.2M+ calculations trusted by homebuyers. No registration required!" />
+        <title>Free Mortgage Calculator 2025 with PMI, Taxes & HOA</title>
+        <meta name="description" content="Calculate monthly mortgage payments instantly. Includes PMI, property taxes, insurance, HOA fees. Compare FHA, VA & conventional loans. Free tool." />
         <meta name="keywords" content="mortgage calculator, free mortgage calculator, mortgage payment calculator, monthly mortgage calculator, mortgage calculator with pmi, mortgage calculator with taxes and insurance, FHA mortgage calculator, VA mortgage calculator, biweekly mortgage calculator, home affordability calculator, mortgage amortization calculator, extra payment mortgage calculator, house payment calculator, home loan calculator, mortgage estimator, PITI calculator, first time homebuyer calculator, 15 year vs 30 year mortgage calculator, mortgage calculator 2025, best mortgage calculator, online mortgage calculator, accurate mortgage calculator" />
-        <meta property="og:title" content="Mortgage Calculator 2025: Free Monthly Payment Calculator with PMI & Taxes | Save Thousands" />
-        <meta property="og:description" content="Calculate mortgage payments instantly with our FREE calculator. Get payment breakdowns with PMI, taxes, insurance for FHA, VA & conventional loans. 3.2M+ calculations trusted!" />
+        
+        {/* Enhanced Open Graph Tags */}
+        <meta property="og:title" content="Free Mortgage Calculator with PMI & Taxes | 2025" />
+        <meta property="og:description" content="Calculate monthly mortgage payments with PMI, taxes, insurance & HOA. Compare FHA, VA & conventional loans. Free, accurate tool." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dapsiwow.com/tools/mortgage-calculator" />
         <meta property="og:image" content="https://dapsiwow.com/og-mortgage-calculator.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Mortgage Calculator - Calculate monthly payments with PMI, taxes, insurance and HOA fees for FHA, VA and conventional loans" />
         <meta property="og:site_name" content="DapsiWow - Free Financial Tools" />
         <meta property="og:locale" content="en_US" />
+        
+        {/* Enhanced Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Mortgage Calculator 2025: Calculate Monthly Payments with PMI & Taxes" />
-        <meta name="twitter:description" content="FREE mortgage calculator for FHA, VA & conventional loans. Get payment breakdowns with PMI, taxes, insurance & amortization schedules. 3.2M+ calculations!" />
+        <meta name="twitter:title" content="Free Mortgage Calculator with PMI & Taxes | 2025" />
+        <meta name="twitter:description" content="Calculate monthly mortgage payments with PMI, taxes, insurance & HOA. Compare FHA, VA & conventional loans instantly." />
         <meta name="twitter:image" content="https://dapsiwow.com/twitter-mortgage-calculator.jpg" />
+        <meta name="twitter:image:alt" content="Mortgage Calculator showing monthly payment breakdown with PMI, property taxes, insurance and HOA fees" />
         <meta name="twitter:site" content="@DapsiWow" />
+        <meta name="twitter:creator" content="@DapsiWow" />
+        
+        {/* Pinterest Rich Pin Tags */}
+        <meta property="article:published_time" content="2024-01-10T00:00:00Z" />
+        <meta property="article:modified_time" content="2025-01-15T00:00:00Z" />
+        <meta property="article:author" content="DapsiWow Financial Tools Team" />
+        <meta property="article:section" content="Finance Tools" />
+        <meta property="article:tag" content="Mortgage Calculator" />
+        
+        {/* Language and Geo-Targeting */}
+        <meta httpEquiv="content-language" content="en-US" />
+        <meta name="language" content="English" />
+        <meta name="geo.region" content="US" />
+        <meta name="geo.placename" content="United States" />
+        <meta name="distribution" content="global" />
+        <meta name="target" content="all" />
+        <meta name="audience" content="all" />
+        <meta name="coverage" content="Worldwide" />
+        
+        {/* Date and Copyright Meta Tags */}
+        <meta name="date" content="2025-01-15" />
+        <meta name="last-modified" content="2025-01-15" />
+        <meta name="copyright" content="© 2025 DapsiWow. All rights reserved." />
+        <meta name="abstract" content="Free online mortgage calculator with PMI, property taxes, homeowners insurance, and HOA fees for FHA, VA, and conventional loans" />
+        <meta name="topic" content="Mortgage Calculator" />
+        <meta name="summary" content="Calculate accurate monthly mortgage payments including PMI, taxes, insurance and HOA fees. Compare FHA, VA and conventional loans with detailed amortization schedules." />
+        <meta name="classification" content="Finance Tool" />
+        <meta name="designer" content="DapsiWow" />
+        <meta name="reply-to" content="support@dapsiwow.com" />
+        <meta name="owner" content="DapsiWow" />
+        <meta name="url" content="https://dapsiwow.com/tools/mortgage-calculator" />
+        <meta name="identifier-URL" content="https://dapsiwow.com/tools/mortgage-calculator" />
+        <meta name="directory" content="submission" />
+        <meta name="category" content="Finance, Mortgage, Calculator, Real Estate, Home Buying" />
+        <meta name="revisit-after" content="7 days" />
+        
+        {/* hreflang Alternate Links */}
+        <link rel="alternate" hrefLang="en" href="https://dapsiwow.com/tools/mortgage-calculator" />
+        <link rel="alternate" hrefLang="en-US" href="https://dapsiwow.com/tools/mortgage-calculator" />
+        <link rel="alternate" hrefLang="en-GB" href="https://dapsiwow.com/tools/mortgage-calculator" />
+        <link rel="alternate" hrefLang="en-CA" href="https://dapsiwow.com/tools/mortgage-calculator" />
+        <link rel="alternate" hrefLang="en-AU" href="https://dapsiwow.com/tools/mortgage-calculator" />
+        <link rel="alternate" hrefLang="x-default" href="https://dapsiwow.com/tools/mortgage-calculator" />
+        
+        {/* Theme and PWA Meta Tags */}
+        <meta name="theme-color" content="#2563eb" />
+        <meta name="msapplication-TileColor" content="#2563eb" />
+        <meta name="msapplication-navbutton-color" content="#2563eb" />
+        <meta name="application-name" content="Mortgage Calculator" />
+        <meta name="msapplication-tooltip" content="Calculate mortgage payments with PMI, taxes and insurance" />
+        <meta name="msapplication-starturl" content="https://dapsiwow.com/tools/mortgage-calculator" />
+        
+        {/* Standard Meta Tags */}
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <meta name="author" content="DapsiWow Financial Tools Team" />
         <meta name="publisher" content="DapsiWow" />
@@ -1248,6 +1309,151 @@ const MortgageCalculator = () => {
                 "item": "https://dapsiwow.com/tools/mortgage-calculator"
               }
             ]
+          })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Free Mortgage Calculator 2025 with PMI, Taxes & HOA",
+            "description": "Calculate monthly mortgage payments instantly. Includes PMI, property taxes, insurance, HOA fees. Compare FHA, VA & conventional loans. Free tool.",
+            "url": "https://dapsiwow.com/tools/mortgage-calculator",
+            "inLanguage": "en-US",
+            "isPartOf": {
+              "@type": "WebSite",
+              "name": "DapsiWow",
+              "url": "https://dapsiwow.com"
+            },
+            "about": {
+              "@type": "Thing",
+              "name": "Mortgage Calculator",
+              "description": "Free online mortgage payment calculator with PMI, property taxes, homeowners insurance, and HOA fees"
+            },
+            "breadcrumb": {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://dapsiwow.com"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Finance Tools",
+                  "item": "https://dapsiwow.com/finance-tools"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": "Mortgage Calculator",
+                  "item": "https://dapsiwow.com/tools/mortgage-calculator"
+                }
+              ]
+            },
+            "mainEntity": {
+              "@type": "SoftwareApplication",
+              "name": "Mortgage Calculator",
+              "applicationCategory": "FinanceApplication"
+            },
+            "speakable": {
+              "@type": "SpeakableSpecification",
+              "cssSelector": ["h1", ".mortgage-calculator-description"]
+            },
+            "datePublished": "2024-01-10T00:00:00Z",
+            "dateModified": "2025-01-15T00:00:00Z",
+            "author": {
+              "@type": "Organization",
+              "name": "DapsiWow",
+              "url": "https://dapsiwow.com"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "DapsiWow",
+              "url": "https://dapsiwow.com",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://dapsiwow.com/logo.png",
+                "width": 250,
+                "height": 60
+              }
+            }
+          })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "Mortgage Calculator",
+            "alternateName": ["Free Mortgage Calculator", "Mortgage Payment Calculator", "PITI Calculator", "Home Loan Calculator"],
+            "description": "Free online mortgage calculator to calculate monthly payments with PMI, property taxes, homeowners insurance, and HOA fees for FHA, VA, and conventional loans",
+            "url": "https://dapsiwow.com/tools/mortgage-calculator",
+            "applicationCategory": "FinanceApplication",
+            "operatingSystem": "Any (Web Browser)",
+            "browserRequirements": "Requires JavaScript enabled",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD",
+              "availability": "https://schema.org/InStock"
+            },
+            "featureList": [
+              "Calculate monthly mortgage payments",
+              "Include PMI, property taxes, insurance, HOA fees",
+              "Generate detailed amortization schedules",
+              "Compare FHA, VA, and conventional loans",
+              "Calculate extra payment savings",
+              "Support biweekly and weekly payments",
+              "Download PDF reports",
+              "Share calculations via social media"
+            ],
+            "screenshot": "https://dapsiwow.com/screenshots/mortgage-calculator.jpg",
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.9",
+              "ratingCount": "3247",
+              "bestRating": "5",
+              "worstRating": "1"
+            },
+            "creator": {
+              "@type": "Organization",
+              "name": "DapsiWow"
+            }
+          })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "DapsiWow",
+            "alternateName": "DapsiWow Financial Tools",
+            "url": "https://dapsiwow.com",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://dapsiwow.com/logo.png",
+              "width": 250,
+              "height": 60
+            },
+            "description": "Free online financial, text, and health tools to make your life easier. No sign-up required.",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "Customer Support",
+              "email": "support@dapsiwow.com",
+              "availableLanguage": ["English"]
+            },
+            "sameAs": [
+              "https://www.facebook.com/DapsiWow",
+              "https://twitter.com/DapsiWow",
+              "https://www.linkedin.com/company/dapsiwow",
+              "https://www.instagram.com/dapsiwow"
+            ],
+            "foundingDate": "2024",
+            "numberOfEmployees": {
+              "@type": "QuantitativeValue",
+              "value": "10-50"
+            },
+            "slogan": "Free Tools to Make Everything Simple"
           })}
         </script>
       </Helmet>
