@@ -2195,6 +2195,210 @@ export default function EMICalculator() {
               </CardContent>
             </Card>
 
+            {/* Additional Educational Content - Loan Types */}
+            <Card className="bg-white shadow-lg border-0 rounded-lg sm:rounded-xl md:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6 lg:mb-8">EMI Calculation for Different Loan Types</h2>
+
+                <div className="space-y-5 sm:space-y-6 md:space-y-8">
+                  <div>
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Home Loan / Mortgage EMI</h3>
+                    <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-3 sm:mb-4">
+                      Home loans typically have the longest tenures (15-30 years) and relatively lower interest rates (6-9% annually). The EMI for home loans 
+                      is often the largest monthly financial commitment for most families. Key factors affecting home loan EMI include your credit score, 
+                      down payment amount, property location, and lender policies. Many borrowers benefit from step-up EMI options for home loans, especially 
+                      young professionals purchasing their first home. Tax benefits under sections 80C and 24(b) can also make home loan EMIs more affordable 
+                      by reducing your effective interest cost.
+                    </p>
+                    <div className="bg-green-50 p-4 sm:p-5 rounded-lg border border-green-200">
+                      <p className="font-bold text-green-900 mb-2 text-sm sm:text-base">💡 Pro Tip for Home Loans:</p>
+                      <p className="text-xs sm:text-sm text-gray-700">Making even a small prepayment of 5-10% of your loan amount in the first 5 years can save lakhs in interest 
+                      and reduce your loan tenure by 3-5 years. Use our prepayment calculator to see potential savings.</p>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Car Loan / Auto Loan EMI</h3>
+                    <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-3 sm:mb-4">
+                      Car loans usually have shorter tenures (3-7 years) with interest rates ranging from 7-12%. The EMI calculation for car loans is 
+                      straightforward, but remember that the actual cost includes insurance, maintenance, and fuel expenses. Many lenders offer special rates 
+                      for new cars versus used cars. Depreciation is a key factor—a car loses 15-20% of its value in the first year. Consider a larger down 
+                      payment (20-30% of car value) to reduce your EMI burden and get better interest rates. Avoid extending the loan tenure beyond 5 years 
+                      as you'll end up paying more in interest than the car's residual value.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Personal Loan EMI</h3>
+                    <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-3 sm:mb-4">
+                      Personal loans are unsecured loans with interest rates typically ranging from 10-24%, depending on your credit profile. The EMI tends 
+                      to be higher due to elevated interest rates and shorter tenures (1-5 years). These loans don't require collateral, making them easily 
+                      accessible but expensive. Use personal loans only for genuine emergencies or high-value investments like education or medical expenses. 
+                      Avoid taking personal loans for discretionary spending like vacations or weddings. Always compare offers from multiple lenders and 
+                      negotiate for lower interest rates based on your credit score and income.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Education Loan EMI</h3>
+                    <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-3 sm:mb-4">
+                      Education loans typically offer competitive interest rates (7-12%) with flexible repayment options. Many lenders provide a moratorium 
+                      period (course duration + 6-12 months) where you don't pay EMI, allowing students to complete their education before starting repayment. 
+                      Interest during the moratorium period can be paid or added to the principal (compounded). Tax benefits under section 80E allow deduction 
+                      of interest paid for up to 8 years. Choose longer tenures (10-15 years) if needed to keep EMI affordable while building your career.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Business Loan EMI</h3>
+                    <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                      Business loans have variable interest rates (10-18%) depending on business vintage, turnover, and collateral offered. EMI calculations 
+                      must account for business cash flow cycles—ensure your monthly EMI doesn't exceed 20-30% of average monthly revenue. Many lenders offer 
+                      flexible EMI structures aligned with business seasonality. Maintain separate business and personal finances for better loan management 
+                      and tax planning.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Strategies to Reduce EMI */}
+            <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 border-0 shadow-lg rounded-lg sm:rounded-xl md:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6 lg:mb-8">Smart Strategies to Reduce Your EMI Burden</h2>
+
+                <div className="space-y-5 sm:space-y-6">
+                  <div className="bg-white p-4 sm:p-5 md:p-6 rounded-lg shadow-sm">
+                    <div className="flex items-start gap-3 sm:gap-4">
+                      <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-base sm:text-lg">1</div>
+                      <div>
+                        <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2">Increase Your Down Payment</h3>
+                        <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                          The larger your down payment, the smaller your loan amount and consequently, your EMI. Aim for at least 20-30% down payment on home 
+                          loans and car loans. This not only reduces your monthly EMI but also helps you secure better interest rates from lenders. For a 
+                          $200,000 home, increasing down payment from 10% to 20% can reduce your EMI by 10-15% and save thousands in interest over the loan term.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-white p-4 sm:p-5 md:p-6 rounded-lg shadow-sm">
+                    <div className="flex items-start gap-3 sm:gap-4">
+                      <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-base sm:text-lg">2</div>
+                      <div>
+                        <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2">Opt for a Longer Loan Tenure (But Be Strategic)</h3>
+                        <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                          Extending your loan tenure reduces monthly EMI but increases total interest paid. Use this strategy wisely: opt for longer tenure 
+                          to keep EMI comfortable, then make periodic prepayments to reduce actual tenure. For example, take a 25-year home loan but treat 
+                          it as 20 years by making extra payments whenever possible. This gives you flexibility during financially tight months while still 
+                          aiming to finish the loan early.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-white p-4 sm:p-5 md:p-6 rounded-lg shadow-sm">
+                    <div className="flex items-start gap-3 sm:gap-4">
+                      <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-base sm:text-lg">3</div>
+                      <div>
+                        <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2">Transfer Your Loan to Get Lower Interest Rates</h3>
+                        <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                          If interest rates have dropped or your credit score has improved significantly since you took the loan, consider a balance transfer. 
+                          Even a 0.5-1% reduction in interest rate can save substantial amounts over a long-tenure loan. However, factor in processing fees, 
+                          legal charges, and prepayment penalties before transferring. Use our EMI calculator to compare the new and old loan costs accurately.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-white p-4 sm:p-5 md:p-6 rounded-lg shadow-sm">
+                    <div className="flex items-start gap-3 sm:gap-4">
+                      <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-base sm:text-lg">4</div>
+                      <div>
+                        <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2">Make Partial Prepayments Strategically</h3>
+                        <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                          Use bonuses, tax refunds, or annual increments to make partial prepayments. The best time to prepay is in the early years when 
+                          the interest component is highest. Even paying an extra $100-200 per month can reduce loan tenure by years. Most banks allow 
+                          prepayment without penalties after a lock-in period. Always specify that prepayment should reduce tenure rather than EMI for 
+                          maximum interest savings.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-white p-4 sm:p-5 md:p-6 rounded-lg shadow-sm">
+                    <div className="flex items-start gap-3 sm:gap-4">
+                      <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-base sm:text-lg">5</div>
+                      <div>
+                        <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2">Improve Your Credit Score Before Applying</h3>
+                        <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                          A higher credit score (750+) can get you 1-2% lower interest rates, significantly reducing your EMI. Before applying for a loan, 
+                          spend 6-12 months improving your credit: pay all bills on time, reduce credit card utilization below 30%, clear old debts, and 
+                          avoid multiple loan inquiries. The time invested in building credit can save you tens of thousands over the loan period.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Common EMI Mistakes */}
+            <Card className="bg-white shadow-lg border-0 rounded-lg sm:rounded-xl md:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6 lg:mb-8">Common EMI Mistakes to Avoid</h2>
+
+                <div className="space-y-4 sm:space-y-5">
+                  <div className="border-l-4 border-red-500 bg-red-50 p-4 sm:p-5 md:p-6 rounded-r-lg">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-red-900 mb-2">❌ Maxing Out Your EMI Capacity</h3>
+                    <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                      Just because a bank approves you for a certain loan amount doesn't mean you should take it. Lenders typically approve loans where EMI 
+                      is 40-50% of income, but this leaves little room for emergencies, savings, or lifestyle expenses. A safer rule is to keep total EMIs 
+                      below 30-35% of your gross monthly income. This ensures financial stability and quality of life while managing debt responsibly.
+                    </p>
+                  </div>
+
+                  <div className="border-l-4 border-red-500 bg-red-50 p-4 sm:p-5 md:p-6 rounded-r-lg">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-red-900 mb-2">❌ Ignoring Processing Fees and Hidden Charges</h3>
+                    <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                      The EMI you see in calculators doesn't include processing fees (1-2% of loan amount), legal charges, valuation fees, insurance premiums, 
+                      and GST. For a $100,000 loan, these charges can add $2,000-$5,000 to your initial outlay. Always ask for a total cost breakdown including 
+                      all fees before finalizing any loan. Some lenders waive processing fees during promotional periods—negotiate these charges.
+                    </p>
+                  </div>
+
+                  <div className="border-l-4 border-red-500 bg-red-50 p-4 sm:p-5 md:p-6 rounded-r-lg">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-red-900 mb-2">❌ Not Reading Loan Agreement Fine Print</h3>
+                    <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                      Loan agreements contain crucial details about prepayment penalties, foreclosure charges, interest calculation methods, and reset clauses 
+                      for floating rates. Missing these details can cost you thousands. Always read the entire agreement, understand terms like "reducing 
+                      balance method" vs "flat rate method," and clarify prepayment policies. If something is unclear, ask the lender to explain in writing.
+                    </p>
+                  </div>
+
+                  <div className="border-l-4 border-red-500 bg-red-50 p-4 sm:p-5 md:p-6 rounded-r-lg">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-red-900 mb-2">❌ Taking Multiple Loans Simultaneously</h3>
+                    <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                      Having multiple EMIs (home loan, car loan, personal loan, credit card EMIs) running together can severely strain your finances and 
+                      hurt your credit score. Each new loan application reduces your credit score temporarily. Prioritize loans: start with essential ones 
+                      like home or education loans, then add others only when financially comfortable. Use a <a href="/tools/debt-consolidation-calculator" className="text-blue-600 hover:underline font-medium">debt consolidation calculator</a> to manage 
+                      multiple debts efficiently.
+                    </p>
+                  </div>
+
+                  <div className="border-l-4 border-red-500 bg-red-50 p-4 sm:p-5 md:p-6 rounded-r-lg">
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-red-900 mb-2">❌ Choosing Floating Rate Without Understanding Reset Clauses</h3>
+                    <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+                      Floating interest rates can go up or down based on market conditions, directly affecting your EMI. Many borrowers choose floating rates 
+                      because they start lower than fixed rates but don't understand the risk. If rates increase significantly, your EMI could jump by 20-30%, 
+                      straining your budget. Read the reset frequency and understand how rate changes impact your EMI. Consider a fixed rate if you prefer 
+                      predictable monthly payments.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
             {/* FAQ Section */}
             <Card className="bg-white shadow-lg border-0 rounded-lg sm:rounded-xl md:rounded-2xl">
               <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10">
