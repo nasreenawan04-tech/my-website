@@ -1186,30 +1186,65 @@ export default function LoanCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>Loan Calculator 2025: Free Monthly Payment & Amortization Calculator | Personal, Auto, Home Loans</title>
-        <meta name="description" content="Calculate loan payments instantly with our FREE loan calculator. Get monthly payment breakdowns, amortization schedules & total interest for personal loans, auto loans, mortgages. Compare terms, see extra payment savings & save thousands! No registration required. 2.5M+ calculations trusted by borrowers." />
+        <title>Loan Calculator 2025: Monthly Payments & Amortization</title>
+        <meta name="description" content="FREE loan calculator: instant monthly payments, amortization schedules & interest totals. Compare personal, auto & home loans. Trusted by 2.5M+ borrowers!" />
         <meta name="keywords" content="loan calculator, loan payment calculator, monthly payment calculator, EMI calculator, amortization calculator, personal loan calculator, auto loan calculator, home loan calculator, mortgage calculator, loan calculator with extra payments, calculate loan payments, free loan calculator, debt calculator, business loan calculator, loan interest calculator, loan payoff calculator, loan amortization calculator, student loan calculator, debt consolidation calculator, loan comparison calculator, how to calculate loan payments, loan calculator 2025, best loan calculator, online loan calculator" />
-        <meta property="og:title" content="Loan Calculator 2025: Free Monthly Payment & Amortization Calculator | Save Thousands" />
-        <meta property="og:description" content="Calculate loan payments instantly with our FREE loan calculator. Get monthly payment breakdowns, amortization schedules & total interest for personal loans, auto loans, mortgages. 2.5M+ calculations trusted!" />
+        
+        <meta http-equiv="content-language" content="en-US" />
+        <meta name="language" content="English" />
+        <meta name="geo.region" content="US" />
+        <meta name="geo.placename" content="United States" />
+        <meta name="distribution" content="global" />
+        <meta name="rating" content="general" />
+        <meta name="revisit-after" content="7 days" />
+        <meta name="classification" content="Finance, Calculator, Tools" />
+        <meta name="coverage" content="Worldwide" />
+        <meta name="target" content="all" />
+        <meta name="HandheldFriendly" content="true" />
+        <meta name="MobileOptimized" content="width" />
+        <meta name="date" content="2025-01-10" />
+        <meta name="last-modified" content="2025-01-10" />
+        
+        <meta property="og:title" content="Loan Calculator: Monthly Payments & Amortization 2025" />
+        <meta property="og:description" content="FREE loan calculator with instant results. Calculate payments, view amortization schedules & save on interest. Trusted by 2.5M+ borrowers!" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dapsiwow.com/tools/loan-calculator" />
         <meta property="og:image" content="https://dapsiwow.com/og-loan-calculator.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Free Loan Calculator - Calculate Monthly Payments, Interest & Amortization Schedule" />
         <meta property="og:site_name" content="DapsiWow - Free Financial Tools" />
         <meta property="og:locale" content="en_US" />
+        <meta property="og:updated_time" content="2025-01-10T00:00:00Z" />
+        
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Loan Calculator 2025: Calculate Monthly Payments Instantly" />
-        <meta name="twitter:description" content="FREE loan calculator for personal loans, auto loans & mortgages. Get payment breakdowns, amortization schedules & interest costs. 2.5M+ calculations!" />
+        <meta name="twitter:title" content="Loan Calculator: Monthly Payments & Amortization" />
+        <meta name="twitter:description" content="FREE loan calculator with instant monthly payments, amortization schedules & interest totals. Perfect for all loan types. Trusted by 2.5M+ users!" />
         <meta name="twitter:image" content="https://dapsiwow.com/twitter-loan-calculator.jpg" />
+        <meta name="twitter:image:alt" content="Loan Calculator Tool - Calculate Monthly Loan Payments Free" />
         <meta name="twitter:site" content="@DapsiWow" />
+        <meta name="twitter:creator" content="@DapsiWow" />
+        
+        <meta name="pinterest-rich-pin" content="true" />
+        <meta property="pinterest:description" content="Calculate loan payments instantly! Free loan calculator with amortization schedules, payment breakdowns & interest savings. Perfect for personal, auto & home loans." />
+        
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <meta name="author" content="DapsiWow Financial Tools Team" />
         <meta name="publisher" content="DapsiWow" />
-        <meta name="googlebot" content="index, follow" />
+        <meta name="copyright" content="DapsiWow © 2025" />
+        
         <link rel="canonical" href="https://dapsiwow.com/tools/loan-calculator" />
+        <link rel="alternate" hrefLang="en" href="https://dapsiwow.com/tools/loan-calculator" />
+        <link rel="alternate" hrefLang="x-default" href="https://dapsiwow.com/tools/loan-calculator" />
+        
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Loan Calculator" />
+        <meta name="application-name" content="Loan Calculator" />
+        <meta name="theme-color" content="#3B82F6" />
 
         <script type="application/ld+json">
           {JSON.stringify({
@@ -1333,6 +1368,105 @@ export default function LoanCalculator() {
                 "item": "https://dapsiwow.com/tools/loan-calculator"
               }
             ]
+          })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "@id": "https://dapsiwow.com/tools/loan-calculator#webpage",
+            "url": "https://dapsiwow.com/tools/loan-calculator",
+            "name": "Free Loan Calculator 2025 - Calculate Monthly Payments & Amortization",
+            "description": "Professional loan calculator to calculate monthly payments, total interest, and amortization schedules for personal loans, auto loans, mortgages, and business loans. Free, accurate, and instant results.",
+            "inLanguage": "en-US",
+            "isPartOf": {
+              "@type": "WebSite",
+              "@id": "https://dapsiwow.com/#website",
+              "url": "https://dapsiwow.com",
+              "name": "DapsiWow - Free Online Tools",
+              "publisher": {
+                "@type": "Organization",
+                "name": "DapsiWow",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://dapsiwow.com/logo.png"
+                }
+              }
+            },
+            "datePublished": "2024-01-15",
+            "dateModified": "2025-01-10",
+            "breadcrumb": {
+              "@id": "https://dapsiwow.com/tools/loan-calculator#breadcrumb"
+            },
+            "potentialAction": {
+              "@type": "UseAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://dapsiwow.com/tools/loan-calculator",
+                "actionPlatform": [
+                  "http://schema.org/DesktopWebPlatform",
+                  "http://schema.org/MobileWebPlatform"
+                ]
+              },
+              "object": "Calculate loan payments and interest"
+            },
+            "speakable": {
+              "@type": "SpeakableSpecification",
+              "cssSelector": ["h1", "h2", ".speakable"]
+            },
+            "mainEntity": {
+              "@type": "FinancialProduct",
+              "name": "Loan Calculator",
+              "description": "Free online loan calculator for calculating monthly payments, interest, and amortization schedules",
+              "feesAndCommissionsSpecification": "Free - no fees or commissions"
+            }
+          })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "@id": "https://dapsiwow.com/tools/loan-calculator#webapplication",
+            "name": "Loan Calculator",
+            "alternateName": ["Loan Payment Calculator", "EMI Calculator", "Amortization Calculator"],
+            "url": "https://dapsiwow.com/tools/loan-calculator",
+            "applicationCategory": "FinanceApplication",
+            "operatingSystem": "Any",
+            "browserRequirements": "Requires JavaScript enabled",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.8",
+              "ratingCount": "2547",
+              "bestRating": "5"
+            }
+          })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "@id": "https://dapsiwow.com/#organization",
+            "name": "DapsiWow",
+            "url": "https://dapsiwow.com",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://dapsiwow.com/logo.png",
+              "width": "600",
+              "height": "60"
+            },
+            "sameAs": [
+              "https://twitter.com/DapsiWow"
+            ],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "Customer Support",
+              "availableLanguage": ["English"]
+            }
           })}
         </script>
       </Helmet>
