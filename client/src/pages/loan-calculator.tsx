@@ -1489,7 +1489,7 @@ export default function LoanCalculator() {
                 </span>
               </h1>
               <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
-                Calculate monthly loan payments, total interest costs, and detailed amortization schedules instantly. Our free loan payment calculator works for personal loans, auto loans, home loans, mortgages, business loans, student loans, and debt consolidation. Get accurate EMI calculations, compare loan terms, and see how extra payments can save you thousands. 100% free, no registration required.
+                Calculate monthly payments, total interest, and amortization schedules instantly. Works for all loan types: personal, auto, home, mortgage, business, student, and debt consolidation. Compare terms and see how extra payments save you money. Free, no registration required.
               </p>
 
               <div className="flex flex-wrap justify-center gap-4 sm:gap-6 pt-4">
