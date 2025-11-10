@@ -278,6 +278,19 @@
   animation: fadeInUp 0.4s ease-out;
 }
 
+/* Professional hero section typography */
+.hero-heading {
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.hero-description {
+  line-height: 1.6;
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* Enhanced smooth transitions for header */
 .active\:scale-98:active {
   transform: scale(0.98);

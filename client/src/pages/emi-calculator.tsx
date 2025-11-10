@@ -1037,7 +1037,7 @@ export default function EMICalculator() {
                 </span>
               </h1>
               <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
-                Calculate EMI for home loan, car loan, personal loan, and education loan with our advanced calculator. Features include prepayment analysis, step-up EMI calculator, amortization schedule with principal and interest breakdown. 100% free loan EMI calculator - no registration required.
+                Calculate EMI for home, car, personal, and education loans instantly. Features prepayment analysis, step-up EMI options, and detailed amortization schedules. Free to use, no registration required.
               </p>
 
               <div className="flex flex-wrap justify-center gap-3 sm:gap-4 pt-2 sm:pt-4">
