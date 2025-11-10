@@ -1024,20 +1024,20 @@ export default function EMICalculator() {
       <main>
         <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
-          <div className="relative max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
-            <div className="space-y-4 sm:space-y-6 md:space-y-8">
+          <div className="relative max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
+            <div className="space-y-4 sm:space-y-6 md:space-y-7 lg:space-y-8">
               <div className="inline-flex items-center px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
                 <Calculator className="w-3 h-3 sm:w-4 sm:h-4 mr-2 text-blue-700" />
-                <span className="text-xs sm:text-sm font-medium text-blue-700">EMI Calculator with Prepayment & Step-Up Options</span>
+                <span className="text-xs sm:text-sm font-medium text-blue-700">Smart EMI Calculator with Prepayment & Step-Up Options</span>
               </div>
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0">
-                <span className="block">EMI Calculator with Prepayment:</span>
+                <span className="block">Smart EMI</span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
-                  Calculate Loan EMI & Save on Interest
+                  Calculator
                 </span>
               </h1>
               <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
-                Calculate EMI for home loan, car loan, personal loan, and education loan with our advanced calculator. Features include prepayment analysis, step-up EMI calculator, amortization schedule with principal and interest breakdown. 100% free loan EMI calculator - no registration required.
+                Calculate monthly EMI, total interest, and explore prepayment savings with detailed amortization schedules
               </p>
 
               <div className="flex flex-wrap justify-center gap-3 sm:gap-4 pt-2 sm:pt-4">
@@ -1775,7 +1775,7 @@ export default function EMICalculator() {
                 <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6 lg:mb-8 leading-tight">Understanding EMI: How Equated Monthly Installments Work</h2>
                 <div className="prose max-w-none text-gray-700 space-y-4 sm:space-y-5 md:space-y-6 text-sm sm:text-base md:text-lg leading-relaxed sm:leading-relaxed md:leading-loose">
                   <p>
-                    EMI (Equated Monthly Installment) is a fixed payment amount made by a borrower to a lender at a specified date each calendar month. Understanding how EMI works is crucial for making informed borrowing decisions and managing your finances effectively.
+                    EMI (Equated Monthly Installment) is a fixed payment amount made by a borrower to a lender at a specified date each month. Understanding how EMI works is crucial for making informed borrowing decisions and managing your finances effectively.
                   </p>
 
                   <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mt-5 sm:mt-6 md:mt-7 lg:mt-8 mb-2 sm:mb-3 md:mb-4">The EMI Formula</h3>
@@ -2110,7 +2110,7 @@ export default function EMICalculator() {
                   <div>
                     <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-3 sm:mb-4">EMI Calculation Formula</h3>
                     <div className="bg-gray-50 p-4 sm:p-5 md:p-6 rounded-lg border border-gray-200">
-                      <p className="font-mono text-sm sm:text-base md:text-lg text-center mb-3 sm:mb-4 break-all">EMI = [P × R × (1+R)^N] / [(1+R)^N - 1]</p>
+                      <p className="font-mono text-sm sm:text-base md:text-lg text-center mb-3 sm:mb-4 break-all">EMI = [P × R × (1+R)^N]/[(1+R)^N - 1]</p>
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mt-3 sm:mt-4">
                         <div className="text-center">
                           <p className="font-bold text-blue-600 text-sm sm:text-base">P</p>
@@ -2497,8 +2497,8 @@ export default function EMICalculator() {
             </Card>
 
             {/* What Our Users Say - Testimonials Section */}
-            <Card className="bg-gradient-to-br from-purple-50 via-pink-50 to-red-50 border-0 shadow-xl rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden mb-8">
-              <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12">
+            <Card className="bg-gradient-to-br from-purple-50 via-pink-50 to-red-50 border-0 shadow-xl rounded-2xl overflow-hidden">
+              <CardContent className="p-6 sm:p-8 md:p-10 lg:p-12">
                 <div className="text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12">
                   <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-2 sm:mb-3 md:mb-4 leading-tight">
                     What Our Users Say

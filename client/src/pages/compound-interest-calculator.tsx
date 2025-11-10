@@ -1124,40 +1124,22 @@ export default function CompoundInterestCalculator() {
 
       <main>
         {/* Hero Section */}
-        <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 overflow-hidden">
+        <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
-          <div className="relative max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
-            <div className="space-y-4 sm:space-y-6 md:space-y-8">
-              <div className="inline-flex items-center px-2 sm:px-3 md:px-4 lg:px-5 py-1 sm:py-1.5 md:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200 max-w-full">
-                <Calculator className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 mr-1.5 sm:mr-2 text-blue-700 flex-shrink-0" />
-                <span className="text-[10px] xs:text-xs sm:text-sm md:text-base font-medium text-blue-700 text-center leading-tight">
-                  Free Daily & Monthly Compound Interest Calculator - 100% Accurate
-                </span>
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="space-y-4 sm:space-y-6 md:space-y-7 lg:space-y-8">
+              <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+                <span className="text-xs sm:text-sm font-medium text-blue-700">Professional Investment Calculator</span>
               </div>
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0">
-                <span className="block">Compound Interest Calculator</span>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold text-slate-900 leading-tight tracking-tight">
+                <span className="block">Compound Interest</span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
-                  Professional Investment Growth Tool
+                  Calculator
                 </span>
               </h1>
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
-                Calculate investment growth with daily, monthly, or yearly compounding. Free tool with detailed analysis and retirement planning features.
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-slate-600 max-w-sm sm:max-w-lg md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto leading-relaxed px-2 sm:px-0">
+                Calculate investment growth with daily, monthly, quarterly & annual compounding for accurate wealth projections
               </p>
-
-              <div className="flex flex-wrap justify-center gap-4 sm:gap-6 pt-4">
-                <div className="flex items-center gap-2 text-slate-700">
-                  <TrendingUp className="w-5 h-5 text-green-600" />
-                  <span className="text-sm font-medium">Watch Growth</span>
-                </div>
-                <div className="flex items-center gap-2 text-slate-700">
-                  <Clock className="w-5 h-5 text-blue-600" />
-                  <span className="text-sm font-medium">Plan Ahead</span>
-                </div>
-                <div className="flex items-center gap-2 text-slate-700">
-                  <DollarSign className="w-5 h-5 text-indigo-600" />
-                  <span className="text-sm font-medium">Build Wealth</span>
-                </div>
-              </div>
             </div>
           </div>
         </section>
