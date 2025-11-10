@@ -61,7 +61,7 @@ export default function CompoundInterestCalculator() {
   const [showBreakdown, setShowBreakdown] = useState(false);
   const [showChart, setShowChart] = useState(false);
   const [result, setResult] = useState<CompoundInterestResult | null>(null);
-  
+
   // Drag scrolling state for yearly breakdown table
   const tableScrollRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -126,22 +126,22 @@ export default function CompoundInterestCalculator() {
     let totalContributions = p;
     let totalSIPContributions = 0;
     const yearlyBreakdown = [];
-    
+
     for (let year = 1; year <= years; year++) {
       const isPartialYear = year > t;
       const yearDuration = isPartialYear ? t - (year - 1) : 1;
-      
+
       const growthFactor = Math.pow((1 + r / n), n * yearDuration);
       currentAmount *= growthFactor;
-      
+
       if (enableSIP && sip > 0) {
         const periodsInYear = sipFreq * yearDuration;
         let currentSIP = sip;
-        
+
         if (stepUp > 0 && year > 1) {
           currentSIP = sip * Math.pow(1 + stepUp, year - 1);
         }
-        
+
         for (let period = 1; period <= periodsInYear; period++) {
           const remainingTime = yearDuration - (period / sipFreq);
           const contributionGrowth = remainingTime > 0 ? Math.pow((1 + r / n), n * remainingTime) : 1;
@@ -150,11 +150,11 @@ export default function CompoundInterestCalculator() {
           totalContributions += currentSIP;
         }
       }
-      
+
       const previousAmount: number = year === 1 ? p : yearlyBreakdown[year - 2].amount;
       const interestEarned: number = currentAmount - previousAmount - (enableSIP ? totalSIPContributions - (year > 1 ? yearlyBreakdown[year - 2].cumulativeContributions - p : 0) : 0);
       const realValue = currentAmount / Math.pow(1 + inflation, year);
-      
+
       yearlyBreakdown.push({
         year,
         amount: currentAmount,
@@ -176,22 +176,22 @@ export default function CompoundInterestCalculator() {
       let timeToGoal = 0;
       let testAmount = p;
       let testContributions = p;
-      
+
       while (testAmount < target && timeToGoal < 50) {
         timeToGoal += 1;
         testAmount *= Math.pow((1 + r / n), n);
-        
+
         if (enableSIP && sip > 0) {
           const yearSIP = stepUp > 0 ? sip * Math.pow(1 + stepUp, timeToGoal - 1) : sip;
           testAmount += yearSIP * sipFreq * ((Math.pow(1 + r/n, n) - 1) / (r/n));
           testContributions += yearSIP * sipFreq;
         }
       }
-      
+
       const requiredTotal = target - p * Math.pow((1 + r / n), n * t);
       const annuityFactor = ((Math.pow(1 + r/n, n * t) - 1) / (r/n));
       const requiredMonthlyContribution = requiredTotal > 0 ? (requiredTotal / annuityFactor) / 12 : 0;
-      
+
       goalAnalysis = {
         timeToReachGoal: timeToGoal <= 50 ? timeToGoal : -1,
         requiredMonthlyContribution: Math.max(0, requiredMonthlyContribution),
@@ -203,7 +203,7 @@ export default function CompoundInterestCalculator() {
     if (enableSIP && totalSIPContributions > 0) {
       const sipInterestEarned = finalAmount - p - totalSIPContributions;
       const averageAnnualReturn = totalSIPContributions > 0 ? ((finalAmount / totalContributions) ** (1/t) - 1) * 100 : 0;
-      
+
       sipAnalysis = {
         totalSIPContributions,
         sipInterestEarned: Math.max(0, sipInterestEarned),
@@ -301,7 +301,7 @@ export default function CompoundInterestCalculator() {
     shareText += `• Interest Rate: ${interestRate}% annually\n`;
     shareText += `• Time Period: ${timeDisplay}\n`;
     shareText += `• Compound Frequency: ${compoundDisplay}\n`;
-    
+
     if (enableSIP && parseFloat(sipAmount) > 0) {
       shareText += `• ${sipFreqDisplay} Contribution: ${formatCurrency(parseFloat(sipAmount))}\n`;
       if (parseFloat(stepUpPercentage) > 0) {
@@ -313,7 +313,7 @@ export default function CompoundInterestCalculator() {
     shareText += `• Final Amount: ${formatCurrency(result.finalAmount)}\n`;
     shareText += `• Total Interest Earned: ${formatCurrency(result.totalInterest)}\n`;
     shareText += `• Total Contributions: ${formatCurrency(result.totalContributions)}\n`;
-    
+
     if (showRealValue && parseFloat(inflationRate) > 0) {
       shareText += `\n✨ Inflation Adjusted:\n`;
       shareText += `• Real Value: ${formatCurrency(result.realValue)}\n`;
@@ -461,17 +461,17 @@ export default function CompoundInterestCalculator() {
     // Header
     doc.setFillColor(59, 130, 246);
     doc.rect(0, 0, pageWidth, 38, 'F');
-    
+
     doc.setFontSize(26);
     doc.setTextColor(255, 255, 255);
     doc.setFont('helvetica', 'bold');
     doc.text('DapsiWow', pageWidth / 2, yPos + 5, { align: 'center' });
-    
+
     yPos += 14;
     doc.setFontSize(11);
     doc.setFont('helvetica', 'normal');
     doc.text('Yearly Investment Breakdown Report', pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 6;
     doc.setFontSize(8);
     doc.setTextColor(230, 240, 255);
@@ -483,19 +483,19 @@ export default function CompoundInterestCalculator() {
     doc.text(`Report Date: ${currentDate}`, pageWidth / 2, yPos, { align: 'center' });
 
     yPos = 48;
-    
+
     // Table header
     doc.setFillColor(59, 130, 246);
     const tableWidth = pageWidth - (2 * margin);
     doc.rect(margin, yPos, tableWidth, 8, 'F');
-    
+
     doc.setFontSize(7);
     doc.setTextColor(255, 255, 255);
     doc.setFont('helvetica', 'bold');
-    
+
     const numCols = showRealValue ? 6 : 5;
     const colWidth = tableWidth / numCols;
-    
+
     let colX = margin + 2;
     doc.text('Year', colX, yPos + 5);
     colX += colWidth;
@@ -510,27 +510,27 @@ export default function CompoundInterestCalculator() {
       colX += colWidth;
     }
     doc.text('Total Interest', colX, yPos + 5);
-    
+
     yPos += 8;
-    
+
     // Table rows
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(6.5);
-    
+
     result.yearlyBreakdown.forEach((yearData, index) => {
       // Check if we need a new page
       if (yPos > pageHeight - 30) {
         doc.addPage();
         yPos = 20;
-        
+
         // Repeat header on new page
         doc.setFillColor(59, 130, 246);
         doc.rect(margin, yPos, tableWidth, 8, 'F');
-        
+
         doc.setFontSize(7);
         doc.setTextColor(255, 255, 255);
         doc.setFont('helvetica', 'bold');
-        
+
         colX = margin + 2;
         doc.text('Year', colX, yPos + 5);
         colX += colWidth;
@@ -545,47 +545,47 @@ export default function CompoundInterestCalculator() {
           colX += colWidth;
         }
         doc.text('Total Interest', colX, yPos + 5);
-        
+
         yPos += 8;
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(6.5);
       }
-      
+
       // Alternate row colors
       if (index % 2 === 0) {
         doc.setFillColor(248, 250, 252);
         doc.rect(margin, yPos, tableWidth, 6, 'F');
       }
-      
+
       colX = margin + 2;
       doc.setTextColor(0, 0, 0);
       doc.text(yearData.year.toString(), colX, yPos + 4);
-      
+
       colX += colWidth;
       doc.setTextColor(0, 0, 0);
       doc.setFont('helvetica', 'bold');
       doc.text(formatCurrency(yearData.amount), colX, yPos + 4);
-      
+
       colX += colWidth;
       doc.setFont('helvetica', 'normal');
       doc.setTextColor(34, 197, 94);
       doc.text(formatCurrency(yearData.interestEarned), colX, yPos + 4);
-      
+
       colX += colWidth;
       doc.setTextColor(59, 130, 246);
       doc.text(formatCurrency(yearData.sipContribution), colX, yPos + 4);
-      
+
       colX += colWidth;
       if (showRealValue) {
         doc.setTextColor(147, 51, 234);
         doc.text(formatCurrency(yearData.realValue), colX, yPos + 4);
         colX += colWidth;
       }
-      
+
       doc.setTextColor(249, 115, 22);
       doc.setFont('helvetica', 'bold');
       doc.text(formatCurrency(yearData.totalInterest), colX, yPos + 4);
-      
+
       yPos += 6;
     });
 
@@ -594,19 +594,19 @@ export default function CompoundInterestCalculator() {
     doc.setDrawColor(220, 220, 220);
     doc.setLineWidth(0.2);
     doc.line(margin, yPos, pageWidth - margin, yPos);
-    
+
     yPos += 4;
     doc.setFontSize(7);
     doc.setTextColor(120, 120, 120);
     doc.setFont('helvetica', 'italic');
     doc.text('This breakdown shows year-by-year growth of your investment including principal, interest, and contributions.', pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 6;
     doc.setFontSize(8);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(59, 130, 246);
     doc.textWithLink('DapsiWow.com', pageWidth / 2, yPos, { align: 'center', url: 'https://dapsiwow.com' });
-    
+
     yPos += 3;
     doc.setFontSize(7);
     doc.setFont('helvetica', 'normal');
@@ -632,17 +632,17 @@ export default function CompoundInterestCalculator() {
     // Header
     doc.setFillColor(59, 130, 246);
     doc.rect(0, 0, pageWidth, 38, 'F');
-    
+
     doc.setFontSize(26);
     doc.setTextColor(255, 255, 255);
     doc.setFont('helvetica', 'bold');
     doc.text('DapsiWow', pageWidth / 2, yPos + 5, { align: 'center' });
-    
+
     yPos += 14;
     doc.setFontSize(11);
     doc.setFont('helvetica', 'normal');
     doc.text('Compound Interest Calculation Report', pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 6;
     doc.setFontSize(8);
     doc.setTextColor(230, 240, 255);
@@ -659,23 +659,23 @@ export default function CompoundInterestCalculator() {
     doc.setDrawColor(59, 130, 246);
     doc.setLineWidth(1);
     doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 42, 3, 3, 'FD');
-    
+
     yPos += 6;
     doc.setFontSize(9);
     doc.setTextColor(100, 100, 100);
     doc.setFont('helvetica', 'normal');
     doc.text('EXECUTIVE SUMMARY', pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 8;
     doc.setFontSize(20);
     doc.setTextColor(59, 130, 246);
     doc.setFont('helvetica', 'bold');
     doc.text('Final Amount', pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 10;
     doc.setFontSize(24);
     doc.text(formatCurrency(result.finalAmount), pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 8;
     doc.setFontSize(8);
     doc.setTextColor(80, 80, 80);
@@ -690,13 +690,13 @@ export default function CompoundInterestCalculator() {
     doc.setLineWidth(0.5);
     const detailsHeight = enableSIP ? 56 : 48;
     doc.roundedRect(margin, yPos, pageWidth - (2 * margin), detailsHeight, 3, 3, 'FD');
-    
+
     yPos += 5;
     doc.setFontSize(10);
     doc.setTextColor(59, 130, 246);
     doc.setFont('helvetica', 'bold');
     doc.text('INVESTMENT DETAILS', margin + 4, yPos);
-    
+
     yPos += 2;
     doc.setDrawColor(59, 130, 246);
     doc.setLineWidth(0.3);
@@ -706,18 +706,18 @@ export default function CompoundInterestCalculator() {
     doc.setFontSize(9);
     doc.setTextColor(50, 50, 50);
     doc.setFont('helvetica', 'normal');
-    
+
     const timeDisplay = timeUnit === 'years' ? `${timePeriod} years` : `${timePeriod} months`;
     const compoundDisplay = compoundFrequency === '1' ? 'Annually' : 
                             compoundFrequency === '4' ? 'Quarterly' : 
                             compoundFrequency === '12' ? 'Monthly' : 'Daily';
     const sipFreqDisplay = sipFrequency === '12' ? 'Monthly' : 'Annually';
-    
+
     const col1X = margin + 8;
     const col2X = margin + 60;
     const col3X = pageWidth / 2 + 8;
     const col4X = pageWidth / 2 + 60;
-    
+
     doc.setTextColor(100, 100, 100);
     doc.setFontSize(8);
     doc.text('Principal Amount', col1X, yPos);
@@ -725,7 +725,7 @@ export default function CompoundInterestCalculator() {
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
     doc.text(formatCurrency(parseFloat(principal)), col2X, yPos);
-    
+
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(100, 100, 100);
     doc.setFontSize(8);
@@ -734,7 +734,7 @@ export default function CompoundInterestCalculator() {
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
     doc.text(`${interestRate}%`, col4X, yPos);
-    
+
     yPos += 8;
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(100, 100, 100);
@@ -744,7 +744,7 @@ export default function CompoundInterestCalculator() {
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
     doc.text(timeDisplay, col2X, yPos);
-    
+
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(100, 100, 100);
     doc.setFontSize(8);
@@ -753,7 +753,7 @@ export default function CompoundInterestCalculator() {
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
     doc.text(compoundDisplay, col4X, yPos);
-    
+
     if (enableSIP && parseFloat(sipAmount) > 0) {
       yPos += 8;
       doc.setFont('helvetica', 'normal');
@@ -764,7 +764,7 @@ export default function CompoundInterestCalculator() {
       doc.setFontSize(9);
       doc.setFont('helvetica', 'bold');
       doc.text(formatCurrency(parseFloat(sipAmount)), col2X, yPos);
-      
+
       if (parseFloat(stepUpPercentage) > 0) {
         doc.setFont('helvetica', 'normal');
         doc.setTextColor(100, 100, 100);
@@ -783,13 +783,13 @@ export default function CompoundInterestCalculator() {
     doc.setDrawColor(230, 230, 230);
     doc.setLineWidth(0.5);
     doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 36, 3, 3, 'FD');
-    
+
     yPos += 5;
     doc.setFontSize(10);
     doc.setTextColor(59, 130, 246);
     doc.setFont('helvetica', 'bold');
     doc.text('RESULTS SUMMARY', margin + 4, yPos);
-    
+
     yPos += 2;
     doc.setDrawColor(59, 130, 246);
     doc.setLineWidth(0.3);
@@ -800,33 +800,33 @@ export default function CompoundInterestCalculator() {
     doc.setDrawColor(220, 220, 220);
     doc.setLineWidth(0.2);
     doc.rect(margin + 4, yPos - 5, pageWidth - (2 * margin) - 8, 8, 'FD');
-    
+
     doc.setFontSize(8);
     doc.setTextColor(100, 100, 100);
     doc.setFont('helvetica', 'normal');
     doc.text('Final Amount', margin + 8, yPos);
-    
+
     doc.setFontSize(10);
     doc.setTextColor(0, 0, 0);
     doc.setFont('helvetica', 'bold');
     doc.text(formatCurrency(result.finalAmount), pageWidth - margin - 8, yPos, { align: 'right' });
-    
+
     yPos += 9;
     doc.setFontSize(8);
     doc.setTextColor(100, 100, 100);
     doc.setFont('helvetica', 'normal');
     doc.text('Total Contributions', margin + 12, yPos);
-    
+
     doc.setFontSize(9);
     doc.setTextColor(59, 130, 246);
     doc.setFont('helvetica', 'normal');
     doc.text(formatCurrency(result.totalContributions), pageWidth - margin - 12, yPos, { align: 'right' });
-    
+
     yPos += 6;
     doc.setFontSize(8);
     doc.setTextColor(100, 100, 100);
     doc.text('Total Interest Earned', margin + 12, yPos);
-    
+
     doc.setFontSize(9);
     doc.setTextColor(34, 197, 94);
     doc.text(formatCurrency(result.totalInterest), pageWidth - margin - 12, yPos, { align: 'right' });
@@ -838,13 +838,13 @@ export default function CompoundInterestCalculator() {
       doc.setDrawColor(34, 197, 94);
       doc.setLineWidth(0.5);
       doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 24, 3, 3, 'FD');
-      
+
       yPos += 5;
       doc.setFontSize(10);
       doc.setTextColor(34, 197, 94);
       doc.setFont('helvetica', 'bold');
       doc.text('GOAL ANALYSIS', margin + 4, yPos);
-      
+
       yPos += 2;
       doc.setDrawColor(34, 197, 94);
       doc.setLineWidth(0.3);
@@ -854,7 +854,7 @@ export default function CompoundInterestCalculator() {
       doc.setFontSize(8);
       doc.setTextColor(50, 50, 50);
       doc.setFont('helvetica', 'normal');
-      
+
       if (result.goalAnalysis.isGoalAchievable) {
         doc.text('Time to Reach Goal', margin + 8, yPos);
         doc.setFontSize(9);
@@ -875,19 +875,19 @@ export default function CompoundInterestCalculator() {
     doc.setDrawColor(220, 220, 220);
     doc.setLineWidth(0.2);
     doc.line(margin, yPos, pageWidth - margin, yPos);
-    
+
     yPos += 4;
     doc.setFontSize(7);
     doc.setTextColor(120, 120, 120);
     doc.setFont('helvetica', 'italic');
     doc.text('This calculation is for informational purposes only. Please consult with a qualified financial advisor for personalized advice.', pageWidth / 2, yPos, { align: 'center' });
-    
+
     yPos += 6;
     doc.setFontSize(8);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(59, 130, 246);
     doc.textWithLink('DapsiWow.com', pageWidth / 2, yPos, { align: 'center', url: 'https://dapsiwow.com' });
-    
+
     yPos += 3;
     doc.setFontSize(7);
     doc.setFont('helvetica', 'normal');
@@ -916,7 +916,7 @@ export default function CompoundInterestCalculator() {
     };
 
     const config = currencyMap[currency] || currencyMap.USD;
-    
+
     return new Intl.NumberFormat(config.locale, {
       style: 'currency',
       currency: config.currency,
@@ -939,27 +939,27 @@ export default function CompoundInterestCalculator() {
         <title>Compound Interest Calculator - SIP & Daily Returns</title>
         <meta name="description" content="Calculate compound interest & track daily returns with SIP. Get inflation-adjusted growth, yearly breakdowns, retirement planning & PDF reports. 100% free." />
         <meta name="keywords" content="compound interest calculator, free compound interest calculator, compound interest calculator with monthly contributions, daily compound interest calculator, SIP calculator, systematic investment plan calculator, retirement compound interest calculator, investment growth calculator, 401k calculator, IRA calculator" />
-        
+
         {/* Canonical */}
         <link rel="canonical" href={canonicalUrl} />
-        
+
         {/* Robots */}
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-        
+
         {/* Language and Geo */}
         <meta httpEquiv="content-language" content="en" />
         <meta name="language" content="English" />
         <meta name="geo.region" content="US" />
         <meta name="geo.placename" content="United States" />
         <meta name="distribution" content="global" />
-        
+
         {/* Date and Author */}
         <meta name="date" content={publishedDate} />
         <meta name="last-modified" content={modifiedDate} />
         <meta name="author" content="DapsiWow" />
         <meta name="publisher" content="DapsiWow" />
         <meta name="copyright" content={`© ${currentYear} DapsiWow. All rights reserved.`} />
-        
+
         {/* Hreflang for International Versions */}
         <link rel="alternate" hrefLang="en" href={canonicalUrl} />
         <link rel="alternate" hrefLang="en-US" href={canonicalUrl} />
@@ -967,7 +967,7 @@ export default function CompoundInterestCalculator() {
         <link rel="alternate" hrefLang="en-CA" href={canonicalUrl} />
         <link rel="alternate" hrefLang="en-AU" href={canonicalUrl} />
         <link rel="alternate" hrefLang="x-default" href={canonicalUrl} />
-        
+
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonicalUrl} />
@@ -979,7 +979,7 @@ export default function CompoundInterestCalculator() {
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content="Compound Interest Calculator with SIP deposits, daily returns tracking, and retirement planning tools" />
         <meta property="og:locale" content="en_US" />
-        
+
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content={canonicalUrl} />
@@ -989,18 +989,18 @@ export default function CompoundInterestCalculator() {
         <meta name="twitter:image:alt" content="Compound Interest Calculator with SIP deposits, daily returns tracking, and retirement planning tools" />
         <meta name="twitter:creator" content="@DapsiWow" />
         <meta name="twitter:site" content="@DapsiWow" />
-        
+
         {/* PWA / App Meta */}
         <meta name="theme-color" content="#3b82f6" />
         <meta name="application-name" content="DapsiWow Compound Interest Calculator" />
-        
+
         {/* Pinterest Rich Pins */}
         <meta property="article:published_time" content={publishedDate} />
         <meta property="article:modified_time" content={modifiedDate} />
         <meta property="article:author" content="DapsiWow" />
         <meta property="article:section" content="Finance Tools" />
         <meta property="article:tag" content="compound interest, SIP calculator, investment planning, retirement savings" />
-        
+
         {/* Consolidated Schema.org Structured Data */}
         <script type="application/ld+json">
           {JSON.stringify([
@@ -1119,9 +1119,9 @@ export default function CompoundInterestCalculator() {
           ])}
         </script>
       </Helmet>
-      
+
       <Header />
-      
+
       <main>
         {/* Hero Section */}
         <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 overflow-hidden">
@@ -1141,7 +1141,7 @@ export default function CompoundInterestCalculator() {
                 </span>
               </h1>
               <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
-                Free online compound interest calculator with daily compounding, monthly deposits, and retirement planning for 401k, IRA, and savings accounts. Learn how to calculate compound interest with graphs, step-by-step formulas, and inflation adjustments. Perfect for wealth building and achieving financial goals. 100% free, no registration required.
+                Calculate compound interest with flexible compounding periods and regular deposits. Features interactive graphs, detailed formulas, and inflation adjustments for retirement planning. 100% free, no registration required.
               </p>
 
               <div className="flex flex-wrap justify-center gap-4 sm:gap-6 pt-4">
@@ -1231,7 +1231,7 @@ export default function CompoundInterestCalculator() {
                     <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">Calculate Your Investment Growth - Simple Compound Interest Calculator</h2>
                     <p className="text-sm sm:text-base text-gray-600">Enter your investment details to see how compound interest with monthly contributions accelerates your wealth growth and retirement savings</p>
                   </div>
-                  
+
                   <TooltipProvider>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                       {/* Currency Selection */}
@@ -1395,7 +1395,7 @@ export default function CompoundInterestCalculator() {
                   {/* Advanced Options */}
                   <div className="space-y-4 sm:space-y-6 border-t pt-4 sm:pt-6 md:pt-8">
                     <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900">Advanced Options</h3>
-                    
+
                     {/* SIP Investment Toggle */}
                     <div className="flex items-center space-x-2 sm:space-x-3">
                       <input
@@ -1409,7 +1409,7 @@ export default function CompoundInterestCalculator() {
                         Enable SIP (Systematic Investment Plan)
                       </label>
                     </div>
-                    
+
                     {enableSIP && (
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 pl-4 sm:pl-6 md:pl-8 border-l-4 border-blue-200 bg-blue-50 p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl">
                         <div className="space-y-2 sm:space-y-3">
@@ -1647,7 +1647,7 @@ export default function CompoundInterestCalculator() {
                 {/* Results Section */}
                 <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t lg:border-t-0 lg:border-l">
                   <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center lg:text-left">Growth Analysis</h2>
-                  
+
                   {result ? (
                     <div className="space-y-4 sm:space-y-6" data-testid="compound-interest-results">
                       {/* Final Amount Highlight */}
@@ -1759,7 +1759,7 @@ export default function CompoundInterestCalculator() {
                             </span>
                           </div>
                         </div>
-                        
+
                         {enableSIP && result.sipAnalysis && (
                           <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                             <div className="flex justify-between items-center">
@@ -1770,7 +1770,7 @@ export default function CompoundInterestCalculator() {
                             </div>
                           </div>
                         )}
-                        
+
                         <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
                             <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Total Interest Earned</span>
@@ -1779,7 +1779,7 @@ export default function CompoundInterestCalculator() {
                             </span>
                           </div>
                         </div>
-                        
+
                         <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 shadow-sm">
                           <div className="flex justify-between items-center">
                             <span className="font-medium text-gray-700 text-xs sm:text-sm md:text-base">Total Contributions</span>
@@ -1805,7 +1805,7 @@ export default function CompoundInterestCalculator() {
                       {result.goalAnalysis && enableGoalPlanning && (
                         <div className="space-y-4">
                           <h4 className="font-bold text-gray-900 text-lg">Goal Analysis</h4>
-                          
+
                           <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-6 border border-green-200">
                             <div className="space-y-3">
                               <div className="flex justify-between items-center">
@@ -2138,21 +2138,21 @@ export default function CompoundInterestCalculator() {
                 <div className="border-l-2 sm:border-l-3 md:border-l-4 border-pink-500 pl-3 sm:pl-4 md:pl-6">
                   <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3">How does inflation affect compound interest?</h3>
                   <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                    Inflation erodes purchasing power of future dollars. An 8% investment return with 3% inflation yields only 5% "real" return in purchasing power. Our calculator's inflation adjustment feature shows this real value, helping you understand what your future wealth can actually buy. Always consider inflation when setting financial goals—you may need larger nominal amounts than initially thought to maintain desired purchasing power.
+                    Inflation erodes purchasing power of future dollars. An 8% investment return with 3% inflation yields only 5% "real" return in purchasing power. Our calculator's inflation adjustment feature shows this real value, helping you understand what your future wealth can actually buy. Always plan for inflation-adjusted goals to ensure your future wealth maintains desired purchasing power, especially for long-term retirement planning.
                   </p>
                 </div>
 
                 <div className="border-l-2 sm:border-l-3 md:border-l-4 border-teal-500 pl-3 sm:pl-4 md:pl-6">
                   <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3">Can I use this calculator for retirement planning?</h3>
                   <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                    Absolutely! This calculator is excellent for retirement planning. Input your current savings as principal, expected monthly contributions as SIP amount, estimated return rate (6-8% is conservative for retirement), and years until retirement. Enable inflation adjustment to see real purchasing power. For comprehensive retirement planning, also consider Social Security, pensions, and required minimum distributions. Use the goal planning feature to see if you're on track to reach your retirement number.
+                    Absolutely! This calculator is excellent for retirement planning. Input your current savings as principal, monthly contributions as SIP amount, expected annual return (historically 6-8% for stock-heavy portfolios, 6-8% for balanced), and years until retirement. Enable inflation adjustment to see real purchasing power. For comprehensive retirement planning, also consider Social Security, pensions, and required minimum distributions. Use the goal planning feature to see if you're on track to reach your retirement number.
                   </p>
                 </div>
 
                 <div className="border-l-2 sm:border-l-3 md:border-l-4 border-red-500 pl-3 sm:pl-4 md:pl-6">
                   <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3">What is step-up SIP and when should I use it?</h3>
                   <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                    Step-up SIP automatically increases your investment amount by a fixed percentage annually, typically 5-10%. This aligns investments with career growth and rising income, dramatically boosting long-term wealth. Starting with $500 monthly at 10% step-up grows contributions to $814 in year 5 and $1,319 in year 10. Over 30 years, a 10% step-up can increase final wealth by 50-100% compared to flat contributions. Use step-up if you expect regular salary increases or want to systematically increase savings as expenses allow.
+                    Step-up SIP automatically increases your investment amount by a fixed percentage annually, typically 5-10%. This aligns investments with career growth and rising income, dramatically boosting long-term wealth. Starting with $500 monthly at 10% step-up grows contributions to $814 in year 5 and $1,319 in year 10. Over 30 years, a 10% step-up can increase final wealth by 50-70% compared to flat contributions. Use step-up if you expect regular salary increases or want to systematically increase savings as expenses allow.
                   </p>
                 </div>
 
@@ -2187,7 +2187,7 @@ export default function CompoundInterestCalculator() {
                 <div className="border-l-2 sm:border-l-3 md:border-l-4 border-rose-500 pl-3 sm:pl-4 md:pl-6">
                   <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-900 mb-2 sm:mb-3">Can I use this as a 401k or IRA compound interest calculator?</h3>
                   <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                    Yes! This calculator is perfect for 401k and IRA retirement planning. Enter your current 401k/IRA balance as principal, monthly contributions (including employer match), expected annual return (historically 8-10% for stock-heavy portfolios, 6-8% for balanced), and years until retirement. The calculator shows growth projections with compound interest. For 401k planning, remember to factor in employer matching—it's free money that compounds! For traditional IRAs and 401ks, also consider future tax implications when withdrawing. Use the inflation adjustment feature to see real purchasing power in retirement.
+                    Yes! This calculator is excellent for retirement planning. Enter your current 401k/IRA balance as principal, monthly contributions (including employer match), expected annual return (historically 8-10% for stock-heavy portfolios, 6-8% for balanced), and years until retirement. The calculator shows growth projections with compound interest. For 401k planning, remember to factor in employer matching—it's free money that compounds! For traditional IRAs and 401ks, also consider future tax implications when withdrawing. Use the inflation adjustment feature to see real purchasing power in retirement.
                   </p>
                 </div>
 
@@ -2245,7 +2245,7 @@ export default function CompoundInterestCalculator() {
           </Card>
         </div>
       </main>
-      
+
       <Footer />
     </div>
   );
