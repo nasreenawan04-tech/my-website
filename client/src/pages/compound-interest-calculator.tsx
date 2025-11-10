@@ -1135,13 +1135,13 @@ export default function CompoundInterestCalculator() {
                 </span>
               </div>
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0">
-                <span className="block">Free Compound Interest Calculator</span>
+                <span className="block">Compound Interest Calculator</span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
-                  Daily, Monthly & Yearly Compounding with Regular Deposits
+                  Professional Investment Growth Tool
                 </span>
               </h1>
               <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
-                Calculate compound interest with flexible compounding periods and regular deposits. Features interactive graphs, detailed formulas, and inflation adjustments for retirement planning. 100% free, no registration required.
+                Calculate investment growth with daily, monthly, or yearly compounding. Free tool with detailed analysis and retirement planning features.
               </p>
 
               <div className="flex flex-wrap justify-center gap-4 sm:gap-6 pt-4">
