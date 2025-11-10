@@ -1026,40 +1026,15 @@ export default function EMICalculator() {
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
           <div className="relative max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
             <div className="space-y-4 sm:space-y-6 md:space-y-8">
-              <div className="inline-flex items-center px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
-                <Calculator className="w-3 h-3 sm:w-4 sm:h-4 mr-2 text-blue-700" />
-                <span className="text-xs sm:text-sm font-medium text-blue-700">EMI Calculator with Prepayment & Step-Up Options</span>
-              </div>
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0">
                 <span className="block">EMI Calculator with Prepayment:</span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
                   Calculate Loan EMI & Save on Interest
                 </span>
               </h1>
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
                 Calculate EMI for home loan, car loan, personal loan, and education loan with our advanced calculator. Features include prepayment analysis, step-up EMI calculator, amortization schedule with principal and interest breakdown. 100% free loan EMI calculator - no registration required.
               </p>
-
-              <div className="flex flex-wrap justify-center gap-3 sm:gap-4 pt-2 sm:pt-4">
-                <div className="bg-white/90 backdrop-blur-sm px-3 sm:px-4 py-2 rounded-lg shadow-sm">
-                  <div className="flex items-center gap-2">
-                    <TrendingUp className="w-4 h-4 text-green-600" />
-                    <span className="text-xs sm:text-sm text-gray-700">Step-Up EMI</span>
-                  </div>
-                </div>
-                <div className="bg-white/90 backdrop-blur-sm px-3 sm:px-4 py-2 rounded-lg shadow-sm">
-                  <div className="flex items-center gap-2">
-                    <Clock className="w-4 h-4 text-blue-600" />
-                    <span className="text-xs sm:text-sm text-gray-700">Instant Results</span>
-                  </div>
-                </div>
-                <div className="bg-white/90 backdrop-blur-sm px-3 sm:px-4 py-2 rounded-lg shadow-sm">
-                  <div className="flex items-center gap-2">
-                    <PieChart className="w-4 h-4 text-indigo-600" />
-                    <span className="text-xs sm:text-sm text-gray-700">Prepayment Analysis</span>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </section>
