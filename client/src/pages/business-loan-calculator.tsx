@@ -854,130 +854,187 @@ export default function BusinessLoanCalculator() {
     ]
   };
 
+  const canonicalUrl = "https://dapsiwow.com/tools/business-loan-calculator";
+  const ogImageUrl = "https://dapsiwow.com/og-business-loan-calculator.jpg";
+  const publishDate = "2024-02-01T00:00:00+00:00";
+  const modifiedDate = "2025-01-10T00:00:00+00:00";
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>Business Loan Calculator 2025: Free SBA, Term & Equipment Loan Payment Calculator | DSCR & LTV Analysis</title>
-        <meta name="description" content="Calculate business loan payments instantly with our FREE calculator for SBA 7(a), 504, equipment financing & working capital loans. Get monthly payment breakdowns, DSCR & LTV analysis, amortization schedules. Compare startup loans, term loans & commercial financing. No registration required. 2.8M+ calculations trusted by business owners." />
-        <meta name="keywords" content="business loan calculator, small business loan calculator, business loan payment calculator, sba loan calculator, sba 7a loan calculator, sba 504 loan calculator, how to calculate business loan payment, business loan amortization calculator, monthly business loan calculator, startup business loan calculator, business equipment loan calculator, equipment financing calculator, short term business loan calculator, business loan calculator with interest, business loan calculator with fees, calculate business loan monthly payment, business loan interest calculator, working capital loan calculator, commercial loan calculator, term loan calculator, business financing calculator, online business loan calculator, free business loan calculator, business loan payment estimator, business loan comparison calculator, how to calculate business loan payments, what is a business loan calculator, calculate loan affordability business, business loan calculator with dscr, debt service coverage ratio calculator, ltv calculator business loan, merchant cash advance calculator, business line of credit calculator, revenue based financing calculator, franchise loan calculator, commercial mortgage calculator, business loan calculator 2025, best business loan calculator, invoice financing calculator, business acquisition loan calculator" />
-        <meta property="og:title" content="Business Loan Calculator 2025: Free SBA & Payment Calculator with DSCR & LTV Analysis | Save Thousands" />
-        <meta property="og:description" content="Calculate business loan payments instantly with our FREE calculator for SBA 7(a), 504, equipment financing & working capital loans. Get monthly payment breakdowns, DSCR & LTV analysis, amortization schedules. 2.8M+ calculations trusted!" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://dapsiwow.com/tools/business-loan-calculator" />
-        <meta property="og:image" content="https://dapsiwow.com/og-business-loan-calculator.jpg" />
-        <meta property="og:site_name" content="DapsiWow - Free Financial Tools" />
-        <meta property="og:locale" content="en_US" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Business Loan Calculator 2025: Calculate SBA & Equipment Loan Payments Instantly" />
-        <meta name="twitter:description" content="FREE business loan calculator for SBA loans, equipment financing, working capital & more. Get payment breakdowns, DSCR & LTV analysis, amortization schedules. 2.8M+ calculations!" />
-        <meta name="twitter:image" content="https://dapsiwow.com/twitter-business-loan-calculator.jpg" />
-        <meta name="twitter:site" content="@DapsiWow" />
-        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <html lang="en" />
+        <title>Business Loan Calculator - SBA & Equipment Loans</title>
+        <meta name="description" content="Calculate SBA, equipment & term loan payments instantly. Get monthly DSCR analysis, amortization schedules, total interest & PDF reports. 100% free tool." />
+        <meta name="keywords" content="business loan calculator, sba loan calculator, equipment financing calculator, business loan payment calculator, dscr calculator, ltv calculator, amortization calculator" />
+        
+        {/* Canonical */}
+        <link rel="canonical" href={canonicalUrl} />
+        
+        {/* Language and Geo */}
+        <meta name="language" content="English" />
+        <meta name="geo.region" content="US" />
+        <meta name="geo.placename" content="United States" />
+        <meta name="distribution" content="global" />
+        
+        {/* Dates and Authorship */}
+        <meta name="date" content={publishDate} />
+        <meta name="last-modified" content={modifiedDate} />
+        <meta name="copyright" content="© 2025 DapsiWow. All rights reserved." />
         <meta name="author" content="DapsiWow Financial Tools Team" />
         <meta name="publisher" content="DapsiWow" />
+        
+        {/* Robots */}
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <meta name="googlebot" content="index, follow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/business-loan-calculator" />
+        
+        {/* Hreflang Alternates */}
+        <link rel="alternate" hrefLang="en" href={canonicalUrl} />
+        <link rel="alternate" hrefLang="en-US" href={canonicalUrl} />
+        <link rel="alternate" hrefLang="en-GB" href={canonicalUrl} />
+        <link rel="alternate" hrefLang="en-CA" href={canonicalUrl} />
+        <link rel="alternate" hrefLang="en-AU" href={canonicalUrl} />
+        <link rel="alternate" hrefLang="x-default" href={canonicalUrl} />
+        
+        {/* PWA Meta Tags */}
+        <meta name="theme-color" content="#3b82f6" />
+        <meta name="application-name" content="Business Loan Calculator" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Business Loan Calculator" />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:title" content="Business Loan Calculator - Calculate SBA & Equipment Loans" />
+        <meta property="og:description" content="Free business loan calculator for SBA, equipment & term loans. Calculate payments, DSCR, LTV ratios, and amortization schedules instantly." />
+        <meta property="og:image" content={ogImageUrl} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Business Loan Calculator showing monthly payment breakdown, DSCR analysis, and amortization schedule for SBA and equipment financing" />
+        <meta property="og:site_name" content="DapsiWow - Free Financial Tools" />
+        <meta property="og:locale" content="en_US" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content={canonicalUrl} />
+        <meta name="twitter:title" content="Business Loan Calculator - SBA & Equipment Loans" />
+        <meta name="twitter:description" content="Calculate SBA, equipment & term loan payments. Get DSCR, LTV analysis, amortization schedules. Free tool." />
+        <meta name="twitter:image" content={ogImageUrl} />
+        <meta name="twitter:image:alt" content="Business loan calculator interface with payment analysis, DSCR metrics, and amortization schedule visualization" />
+        <meta name="twitter:site" content="@DapsiWow" />
+        <meta name="twitter:creator" content="@DapsiWow" />
+        
+        {/* Pinterest Rich Pins */}
+        <meta property="article:published_time" content={publishDate} />
+        <meta property="article:modified_time" content={modifiedDate} />
+        <meta property="article:author" content="DapsiWow" />
+        <meta property="article:section" content="Finance Tools" />
+        <meta property="article:tag" content="Business Loans, SBA Loans, Equipment Financing, DSCR, Loan Calculator" />
 
         <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "SoftwareApplication",
-            "name": "Business Loan Calculator",
-            "description": "Free online business loan calculator to calculate monthly payments, total interest, DSCR (Debt Service Coverage Ratio), and LTV (Loan-to-Value) ratios for SBA 7(a) loans, SBA 504 loans, equipment financing, working capital loans, startup loans, term loans, commercial mortgages, and business lines of credit. Features instant calculations with amortization schedules and bank-grade formulas.",
-            "url": "https://dapsiwow.com/tools/business-loan-calculator",
-            "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Any",
-            "browserRequirements": "Requires JavaScript",
-            "permissions": "browser",
-            "softwareVersion": "2.0",
-            "datePublished": "2024-02-01",
-            "dateModified": "2025-01-10",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD",
-              "availability": "https://schema.org/InStock",
-              "priceValidUntil": "2026-12-31"
+          {JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "WebPage",
+              "name": "Business Loan Calculator - SBA & Equipment Loans",
+              "description": "Calculate SBA, equipment & term loan payments instantly with DSCR analysis, amortization schedules, and total interest calculation.",
+              "url": canonicalUrl,
+              "mainEntity": {
+                "@type": "WebApplication",
+                "name": "Business Loan Calculator",
+                "description": "Free business loan calculator for SBA 7(a), SBA 504, equipment financing, term loans, and working capital. Calculate monthly payments, DSCR, LTV ratios with detailed amortization schedules.",
+                "url": canonicalUrl,
+                "applicationCategory": "FinanceApplication",
+                "operatingSystem": "Any",
+                "browserRequirements": "Requires JavaScript",
+                "softwareVersion": "2.0",
+                "datePublished": publishDate,
+                "dateModified": modifiedDate,
+                "offers": {
+                  "@type": "Offer",
+                  "price": "0",
+                  "priceCurrency": "USD",
+                  "availability": "https://schema.org/InStock"
+                },
+                "featureList": [
+                  "SBA 7(a) and SBA 504 loan calculations",
+                  "Equipment financing and term loan analysis",
+                  "DSCR (Debt Service Coverage Ratio) calculation",
+                  "LTV (Loan-to-Value) ratio analysis",
+                  "Detailed amortization schedules",
+                  "PDF download and sharing capabilities"
+                ],
+                "audience": {
+                  "@type": "Audience",
+                  "audienceType": "Small Business Owners, Entrepreneurs, Financial Planners"
+                },
+                "aggregateRating": {
+                  "@type": "AggregateRating",
+                  "ratingValue": "4.9",
+                  "ratingCount": "2847",
+                  "bestRating": "5",
+                  "worstRating": "1"
+                }
+              },
+              "breadcrumb": {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://dapsiwow.com"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Finance Tools",
+                    "item": "https://dapsiwow.com/tools/finance"
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": "Business Loan Calculator",
+                    "item": canonicalUrl
+                  }
+                ]
+              },
+              "speakable": {
+                "@type": "SpeakableSpecification",
+                "xpath": [
+                  "/html/head/title",
+                  "/html/head/meta[@name='description']/@content"
+                ]
+              }
             },
-            "featureList": [
-              "Calculate business loan payments for any loan type (SBA, equipment, working capital, term loans)",
-              "DSCR (Debt Service Coverage Ratio) analysis for loan affordability assessment",
-              "LTV (Loan-to-Value) ratio calculation for collateral-based loans",
-              "Generate detailed amortization schedules showing principal and interest breakdown",
-              "Support for multiple business loan types: SBA 7(a), SBA 504, equipment financing, term loans, lines of credit",
-              "Compare different loan scenarios side-by-side",
-              "Visual charts showing payment breakdowns and loan composition",
-              "Download professional PDF reports with full business loan calculations",
-              "Share calculations with customizable links to business partners and advisors",
-              "Real-time calculations with no delays for business planning",
-              "Works for loans from $10,000 to $10,000,000+ with any interest rate"
-            ],
-            "provider": {
+            {
+              "@context": "https://schema.org",
               "@type": "Organization",
               "name": "DapsiWow",
               "url": "https://dapsiwow.com",
-              "logo": "https://dapsiwow.com/logo.png"
-            },
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": "4.9",
-              "ratingCount": "2847",
-              "bestRating": "5",
-              "worstRating": "1"
-            },
-            "review": [
-              {
-                "@type": "Review",
-                "author": {
-                  "@type": "Person",
-                  "name": "Michael Chen"
-                },
-                "datePublished": "2025-01-08",
-                "reviewBody": "This business loan calculator is a game-changer! The DSCR analysis helped me determine exactly how much I could afford to borrow for my restaurant expansion. The SBA loan options and detailed amortization schedule made it easy to compare financing options. Highly recommended for any small business owner!",
-                "reviewRating": {
-                  "@type": "Rating",
-                  "ratingValue": "5",
-                  "bestRating": "5"
-                }
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://dapsiwow.com/logo.png",
+                "width": 250,
+                "height": 60
               },
-              {
-                "@type": "Review",
-                "author": {
-                  "@type": "Person",
-                  "name": "Jennifer Martinez"
-                },
-                "datePublished": "2025-01-06",
-                "reviewBody": "Perfect for equipment financing calculations! I used this to compare SBA 7(a) and traditional equipment loans for my manufacturing business. The LTV calculator and monthly payment breakdowns helped me secure the best financing terms. Very professional and accurate tool.",
-                "reviewRating": {
-                  "@type": "Rating",
-                  "ratingValue": "5",
-                  "bestRating": "5"
-                }
+              "description": "Free online financial calculators and tools for personal finance, business loans, mortgages, and health metrics.",
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "contactType": "Customer Service",
+                "email": "support@dapsiwow.com",
+                "areaServed": "Worldwide",
+                "availableLanguage": ["English"]
               },
-              {
-                "@type": "Review",
-                "author": {
-                  "@type": "Person",
-                  "name": "David Thompson"
-                },
-                "datePublished": "2025-01-04",
-                "reviewBody": "As a startup founder, this calculator was invaluable for financial planning. The ability to calculate different loan types and see detailed payment schedules helped me present solid numbers to investors. The DSCR feature is especially useful for understanding loan affordability. Best free business loan calculator available!",
-                "reviewRating": {
-                  "@type": "Rating",
-                  "ratingValue": "5",
-                  "bestRating": "5"
-                }
-              }
-            ]
-          })}
-        </script>
-
-        <script type="application/ld+json">
-          {JSON.stringify(faqSchema)}
+              "sameAs": [
+                "https://twitter.com/DapsiWow",
+                "https://facebook.com/DapsiWow",
+                "https://linkedin.com/company/dapsiwow"
+              ]
+            },
+            faqSchema
+          ])}
         </script>
       </Helmet>
 
