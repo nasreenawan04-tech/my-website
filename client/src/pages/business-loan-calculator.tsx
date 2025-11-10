@@ -864,7 +864,7 @@ export default function BusinessLoanCalculator() {
       <Helmet>
         <html lang="en" />
         <title>Business Loan Calculator - SBA & Equipment Loans</title>
-        <meta name="description" content="Free business loan calculator for SBA 7(a), SBA 504 & equipment loans. Calculate monthly payments, DSCR, LTV ratios with amortization schedules & PDF reports." />
+        <meta name="description" content="Calculate SBA, equipment & term loan payments instantly. Get monthly DSCR analysis, amortization schedules, total interest & PDF reports. 100% free tool." />
         <meta name="keywords" content="business loan calculator, sba loan calculator, equipment financing calculator, business loan payment calculator, dscr calculator, ltv calculator, amortization calculator" />
         
         {/* Canonical */}
@@ -1041,31 +1041,39 @@ export default function BusinessLoanCalculator() {
       <Header />
 
       <main>
-        <section className="relative py-12 sm:py-16 md:py-20 lg:py-24">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8 text-center">
-            <div className="space-y-6">
-              <div className="inline-block">
-                <span className="text-sm font-medium text-blue-600 uppercase tracking-wide">
-                  Professional Business Financing Tool
+        <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
+          <div className="relative max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
+            <div className="space-y-4 sm:space-y-6 md:space-y-8">
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 md:gap-2.5 px-2.5 sm:px-3 md:px-4 lg:px-5 xl:px-6 py-1.5 sm:py-2 md:py-2.5 lg:py-3 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200 shadow-sm hover:shadow-md transition-colors duration-200 max-w-full mx-auto sm:mx-0">
+                <Building2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-5 lg:h-5 flex-shrink-0 text-blue-700" />
+                <span className="text-[11px] sm:text-xs md:text-sm lg:text-base font-medium text-blue-700 whitespace-nowrap overflow-hidden text-ellipsis leading-tight">
+                  Professional Business Loan Calculator - Free & Accurate
                 </span>
               </div>
-              
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight">
-                Business Loan Calculator
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0">
+                <span className="block">Business Loan Calculator:</span>
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
+                  Calculate Monthly Payments & Interest
+                </span>
               </h1>
-              
-              <p className="text-base sm:text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
-                Calculate monthly payments for SBA loans, equipment financing, and term loans. Includes DSCR analysis and amortization schedules.
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
+                Calculate business loan payments instantly with our free small business loan calculator. Get accurate monthly payment estimates for SBA 7(a) loans, SBA 504 loans, equipment financing, working capital, startup loans, and term loans. Our business loan payment calculator includes DSCR and LTV analysis, detailed amortization schedules, and total interest calculation. Perfect for calculating loan affordability and comparing business financing options. 100% free, no signup required.
               </p>
 
-              <div className="pt-2">
-                <a 
-                  href="#calculator" 
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-200"
-                >
-                  <Calculator className="w-5 h-5" />
-                  Start Calculating
-                </a>
+              <div className="flex flex-wrap justify-center gap-4 sm:gap-6 pt-4">
+                <div className="flex items-center gap-2 text-slate-700">
+                  <TrendingDown className="w-5 h-5 text-green-600" />
+                  <span className="text-sm font-medium">Compare Loan Types</span>
+                </div>
+                <div className="flex items-center gap-2 text-slate-700">
+                  <Clock className="w-5 h-5 text-blue-600" />
+                  <span className="text-sm font-medium">Instant Results</span>
+                </div>
+                <div className="flex items-center gap-2 text-slate-700">
+                  <DollarSign className="w-5 h-5 text-indigo-600" />
+                  <span className="text-sm font-medium">DSCR & LTV Analysis</span>
+                </div>
               </div>
             </div>
           </div>
@@ -1133,7 +1141,7 @@ export default function BusinessLoanCalculator() {
           </Card>
 
           {/* Main Calculator Card */}
-          <Card id="calculator" className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
+          <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
             <CardContent className="p-0">
               <div className="flex flex-col">
                 <div className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 space-y-4 sm:space-y-6 md:space-y-8">
