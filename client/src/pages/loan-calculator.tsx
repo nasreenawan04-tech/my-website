@@ -1187,7 +1187,7 @@ export default function LoanCalculator() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
         <title>Loan Calculator 2025: Monthly Payments & Amortization</title>
-        <meta name="description" content="FREE loan calculator: instant monthly payments, amortization schedules & interest totals. Compare personal, auto & home loans. Trusted by 2.5M+ borrowers!" />
+        <meta name="description" content="Calculate loan payments instantly. Free tool for monthly payments, amortization schedules & interest totals. Compare all loan types. Trusted by 2.5M+!" />
         <meta name="keywords" content="loan calculator, loan payment calculator, monthly payment calculator, EMI calculator, amortization calculator, personal loan calculator, auto loan calculator, home loan calculator, mortgage calculator, loan calculator with extra payments, calculate loan payments, free loan calculator, debt calculator, business loan calculator, loan interest calculator, loan payoff calculator, loan amortization calculator, student loan calculator, debt consolidation calculator, loan comparison calculator, how to calculate loan payments, loan calculator 2025, best loan calculator, online loan calculator" />
         
         <meta http-equiv="content-language" content="en-US" />
@@ -1206,7 +1206,7 @@ export default function LoanCalculator() {
         <meta name="last-modified" content="2025-01-10" />
         
         <meta property="og:title" content="Loan Calculator: Monthly Payments & Amortization 2025" />
-        <meta property="og:description" content="FREE loan calculator with instant results. Calculate payments, view amortization schedules & save on interest. Trusted by 2.5M+ borrowers!" />
+        <meta property="og:description" content="Calculate loan payments instantly. Free tool for monthly payments, amortization & interest. Compare all loan types. Trusted by 2.5M+ borrowers!" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dapsiwow.com/tools/loan-calculator" />
         <meta property="og:image" content="https://dapsiwow.com/og-loan-calculator.jpg" />
@@ -1219,14 +1219,14 @@ export default function LoanCalculator() {
         
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Loan Calculator: Monthly Payments & Amortization" />
-        <meta name="twitter:description" content="FREE loan calculator with instant monthly payments, amortization schedules & interest totals. Perfect for all loan types. Trusted by 2.5M+ users!" />
+        <meta name="twitter:description" content="Calculate loan payments instantly. Free tool for monthly payments, amortization & interest totals. Compare all loan types. Trusted by 2.5M+ users!" />
         <meta name="twitter:image" content="https://dapsiwow.com/twitter-loan-calculator.jpg" />
         <meta name="twitter:image:alt" content="Loan Calculator Tool - Calculate Monthly Loan Payments Free" />
         <meta name="twitter:site" content="@DapsiWow" />
         <meta name="twitter:creator" content="@DapsiWow" />
         
         <meta name="pinterest-rich-pin" content="true" />
-        <meta property="pinterest:description" content="Calculate loan payments instantly! Free loan calculator with amortization schedules, payment breakdowns & interest savings. Perfect for personal, auto & home loans." />
+        <meta property="pinterest:description" content="Calculate loan payments instantly! Free loan calculator with amortization schedules, payment breakdowns & interest savings. Perfect for all loan types." />
         
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
@@ -1237,6 +1237,10 @@ export default function LoanCalculator() {
         
         <link rel="canonical" href="https://dapsiwow.com/tools/loan-calculator" />
         <link rel="alternate" hrefLang="en" href="https://dapsiwow.com/tools/loan-calculator" />
+        <link rel="alternate" hrefLang="en-US" href="https://dapsiwow.com/tools/loan-calculator" />
+        <link rel="alternate" hrefLang="en-GB" href="https://dapsiwow.com/tools/loan-calculator" />
+        <link rel="alternate" hrefLang="en-CA" href="https://dapsiwow.com/tools/loan-calculator" />
+        <link rel="alternate" hrefLang="en-AU" href="https://dapsiwow.com/tools/loan-calculator" />
         <link rel="alternate" hrefLang="x-default" href="https://dapsiwow.com/tools/loan-calculator" />
         
         <meta name="mobile-web-app-capable" content="yes" />
