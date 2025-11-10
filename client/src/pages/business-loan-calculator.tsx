@@ -863,7 +863,7 @@ export default function BusinessLoanCalculator() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
         <html lang="en" />
-        <title>Business Loan Calculator - SBA & Equipment Loans</title>
+        <title>Business Loan Calculator | SBA & Equipment Financing</title>
         <meta name="description" content="Calculate SBA, equipment & term loan payments instantly. Get monthly DSCR analysis, amortization schedules, total interest & PDF reports. 100% free tool." />
         <meta name="keywords" content="business loan calculator, sba loan calculator, equipment financing calculator, business loan payment calculator, dscr calculator, ltv calculator, amortization calculator" />
         
@@ -906,8 +906,8 @@ export default function BusinessLoanCalculator() {
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:title" content="Business Loan Calculator - Calculate SBA & Equipment Loans" />
-        <meta property="og:description" content="Free business loan calculator for SBA, equipment & term loans. Calculate payments, DSCR, LTV ratios, and amortization schedules instantly." />
+        <meta property="og:title" content="Business Loan Calculator | SBA & Equipment Financing" />
+        <meta property="og:description" content="Calculate SBA, equipment & term loan payments instantly. Get DSCR, LTV analysis, amortization schedules, and PDF reports. 100% free tool." />
         <meta property="og:image" content={ogImageUrl} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -918,8 +918,8 @@ export default function BusinessLoanCalculator() {
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content={canonicalUrl} />
-        <meta name="twitter:title" content="Business Loan Calculator - SBA & Equipment Loans" />
-        <meta name="twitter:description" content="Calculate SBA, equipment & term loan payments. Get DSCR, LTV analysis, amortization schedules. Free tool." />
+        <meta name="twitter:title" content="Business Loan Calculator | SBA & Equipment Financing" />
+        <meta name="twitter:description" content="Calculate SBA, equipment & term loan payments. Get DSCR, LTV analysis, amortization schedules, and total interest. Free tool." />
         <meta name="twitter:image" content={ogImageUrl} />
         <meta name="twitter:image:alt" content="Business loan calculator interface with payment analysis, DSCR metrics, and amortization schedule visualization" />
         <meta name="twitter:site" content="@DapsiWow" />
@@ -937,7 +937,7 @@ export default function BusinessLoanCalculator() {
             {
               "@context": "https://schema.org",
               "@type": "WebPage",
-              "name": "Business Loan Calculator - SBA & Equipment Loans",
+              "name": "Business Loan Calculator | SBA & Equipment Financing",
               "description": "Calculate SBA, equipment & term loan payments instantly with DSCR analysis, amortization schedules, and total interest calculation.",
               "url": canonicalUrl,
               "mainEntity": {
