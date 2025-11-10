@@ -1030,19 +1030,15 @@ export default function EMICalculator() {
                 <Calculator className="w-3 h-3 sm:w-4 sm:h-4 mr-2 text-blue-700" />
                 <span className="text-xs sm:text-sm font-medium text-blue-700">EMI Calculator with Prepayment & Step-Up Options</span>
               </div>
-
-              <div className="text-center mb-8 sm:mb-10 md:mb-12">
-                <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-white/20 backdrop-blur-sm rounded-xl sm:rounded-2xl mb-4 sm:mb-5 md:mb-6">
-                  <Calculator className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" />
-                </div>
-
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-5 md:mb-6 leading-tight px-2">
-                  EMI Calculator with Prepayment
-                </h1>
-                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-blue-100 mb-6 sm:mb-7 md:mb-8 max-w-4xl mx-auto leading-relaxed px-2">
-                  Calculate monthly EMI for any loan type with prepayment analysis and detailed amortization schedule. Free, instant, and accurate.
-                </p>
-              </div>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0">
+                <span className="block">EMI Calculator with Prepayment:</span>
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
+                  Calculate Loan EMI & Save on Interest
+                </span>
+              </h1>
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
+                Calculate EMI for home loan, car loan, personal loan, and education loan with our advanced calculator. Features include prepayment analysis, step-up EMI calculator, amortization schedule with principal and interest breakdown. 100% free loan EMI calculator - no registration required.
+              </p>
 
               <div className="flex flex-wrap justify-center gap-3 sm:gap-4 pt-2 sm:pt-4">
                 <div className="bg-white/90 backdrop-blur-sm px-3 sm:px-4 py-2 rounded-lg shadow-sm">
@@ -1779,7 +1775,7 @@ export default function EMICalculator() {
                 <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6 lg:mb-8 leading-tight">Understanding EMI: How Equated Monthly Installments Work</h2>
                 <div className="prose max-w-none text-gray-700 space-y-4 sm:space-y-5 md:space-y-6 text-sm sm:text-base md:text-lg leading-relaxed sm:leading-relaxed md:leading-loose">
                   <p>
-                    EMI (Equated Monthly Installment) is a fixed payment amount made by a borrower to a lender at a specified date each month. Understanding how EMI works is crucial for making informed borrowing decisions and managing your finances effectively.
+                    EMI (Equated Monthly Installment) is a fixed payment amount made by a borrower to a lender at a specified date each calendar month. Understanding how EMI works is crucial for making informed borrowing decisions and managing your finances effectively.
                   </p>
 
                   <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mt-5 sm:mt-6 md:mt-7 lg:mt-8 mb-2 sm:mb-3 md:mb-4">The EMI Formula</h3>
@@ -1854,9 +1850,7 @@ export default function EMICalculator() {
                       Business Loans
                     </h3>
                     <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                      Business loans have variable interest rates (10-18%) depending on business vintage, turnover, and collateral offered. EMI calculations 
-                      must account for business cash flow cycles—ensure your monthly EMI doesn't exceed 20-30% of average monthly revenue. Maintain separate business and personal finances for better loan management 
-                      and tax planning.
+                      Business loans vary from $5,000 to $500,000+ with terms of 1-10 years. Rates depend on business history and collateral (7-30% APR). Calculate EMI to ensure loan payments align with business cash flow.
                     </p>
                   </div>
                 </div>
@@ -1914,11 +1908,10 @@ export default function EMICalculator() {
             </Card>
 
             {/* FAQ Section */}
-            <Card className="bg-white shadow-lg border-0 rounded-lg sm:rounded-xl md:rounded-2xl">
+            <Card className="bg-white/90 backdrop-blur-sm shadow-lg border-0 rounded-lg sm:rounded-xl md:rounded-2xl">
               <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10">
-                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6 text-center">Frequently Asked Questions About EMI</h2>
-
-                <div className="space-y-4 sm:space-y-5">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6 lg:mb-8">Frequently Asked Questions About EMI</h2>
+                <div className="space-y-4 sm:space-y-5 md:space-y-6">
                   <div className="border-l-4 border-blue-500 pl-4 sm:pl-5 md:pl-6">
                     <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 sm:mb-3">What is EMI and how is it calculated?</h3>
                     <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
@@ -2504,7 +2497,7 @@ export default function EMICalculator() {
             </Card>
 
             {/* What Our Users Say - Testimonials Section */}
-            <Card className="bg-gradient-to-br from-purple-50 via-pink-50 to-red-50 border-0 shadow-xl rounded-2xl overflow-hidden mb-8">
+            <Card className="bg-gradient-to-br from-purple-50 via-pink-50 to-red-50 border-0 shadow-xl rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden mb-8">
               <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12">
                 <div className="text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12">
                   <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-2 sm:mb-3 md:mb-4 leading-tight">
