@@ -133,7 +133,7 @@ const MortgageCalculator = () => {
     const freq = params.get('freq');
     const extra = params.get('extra');
 
-    if (price || down || rate || term || freq || extra) {
+    if (price || rate || term) {
       if (price) setHomePrice(price);
       if (down) setDownPaymentPercent(down);
       if (rate) setInterestRate(rate);
@@ -1000,7 +1000,7 @@ const MortgageCalculator = () => {
         <meta property="og:image" content="https://dapsiwow.com/og-mortgage-calculator.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Mortgage Calculator - Calculate monthly payments with PMI, property taxes, insurance and HOA fees for FHA, VA and conventional loans" />
+        <meta property="og:image:alt" content="Mortgage Calculator - Calculate monthly payments with PMI, taxes, insurance and HOA fees for FHA, VA and conventional loans" />
         <meta property="og:site_name" content="DapsiWow - Free Financial Tools" />
         <meta property="og:locale" content="en_US" />
 
@@ -1261,7 +1261,7 @@ const MortgageCalculator = () => {
               {
                 "@type": "HowToStep",
                 "name": "Choose Loan Term",
-                "text": "Select 15, 20, or 30 years. Shorter terms save on interest; longer terms lower monthly payments."
+                "text": "Select the length of time you'll take to repay (typically 15, 20, or 30 years). Shorter terms save on interest; longer terms lower monthly payments."
               },
               {
                 "@type": "HowToStep",
@@ -1462,23 +1462,22 @@ const MortgageCalculator = () => {
       <Header />
 
       <main>
-        {/* Hero Section */}
-        <section className="relative py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 2xl:py-32 overflow-hidden">
+        <section className="relative py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 2xl:py-32 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20"></div>
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="space-y-4 sm:space-y-6 md:space-y-7 lg:space-y-8">
-              <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
+          <div className="relative max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
+            <div className="space-y-4 sm:space-y-6 md:space-y-8">
+              <div className="inline-flex items-center px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 bg-white/80 backdrop-blur-sm rounded-full border border-blue-200">
                 <Calculator className="w-3 h-3 sm:w-4 sm:h-4 mr-2 text-blue-700" />
                 <span className="text-xs sm:text-sm font-medium text-blue-700">Professional Mortgage Calculator - Free & Accurate</span>
               </div>
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0">
-                <span className="block">Smart Mortgage</span>
+                <span className="block">Free Mortgage Calculator 2025:</span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
-                  Calculator
+                  Monthly Payment Estimator
                 </span>
               </h1>
               <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
-                Calculate monthly payments with PMI, taxes, insurance & HOA fees for informed home buying decisions
+                Calculate accurate mortgage payments including taxes, insurance, PMI, and HOA fees. Compare loan types and explore payment strategies with detailed amortization schedules.
               </p>
 
               <div className="flex flex-wrap justify-center gap-4 sm:gap-6 pt-4">
@@ -2354,7 +2353,7 @@ const MortgageCalculator = () => {
           </Card>
 
           {/* First-Time Homebuyer Guide */}
-          <Card className="bg-gradient-to-br from-green-50 to-teal-50 border-0 shadow-xl rounded-2xl mb-8">
+          <Card className="bg-gradient-to-br from-green-50 to-teal-50 border-0 shadow-lg rounded-2xl mb-8">
             <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10">
               <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">First-Time Homebuyer Mortgage Calculator Guide</h2>
               <div className="prose max-w-none text-gray-700 space-y-3 sm:space-y-4 text-xs sm:text-sm md:text-base leading-relaxed">
