@@ -122,7 +122,7 @@ const MortgageCalculator = () => {
 
   // Reference for auto-calculate trigger
   const shouldAutoCalculate = useRef(false);
-  
+
   // Load parameters from URL on mount
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -140,11 +140,11 @@ const MortgageCalculator = () => {
       if (term) setLoanTerm(term);
       if (freq) setPaymentFrequency(freq);
       if (extra) setExtraPayment(extra);
-      
+
       shouldAutoCalculate.current = true;
     }
   }, []);
-  
+
   // Auto-calculate when URL parameters are loaded
   useEffect(() => {
     if (shouldAutoCalculate.current && homePrice && interestRate && loanTerm) {
@@ -186,7 +186,7 @@ const MortgageCalculator = () => {
   const calculateMortgage = async () => {
     setIsCalculating(true);
     setValidationErrors({});
-    
+
     const price = parseFloat(homePrice);
     const down = usePercentage
       ? (price * parseFloat(downPaymentPercent)) / 100
@@ -199,7 +199,7 @@ const MortgageCalculator = () => {
     const hoa = hoaFees.trim() === '' ? 0 : parseFloat(hoaFees);
     const income = parseFloat(monthlyIncome) || 0;
     const extraPmt = extraPayment.trim() === '' ? 0 : parseFloat(extraPayment);
-    
+
     const validation = mortgageInputSchema.safeParse({
       homePrice: price,
       downPayment: down,
@@ -211,7 +211,7 @@ const MortgageCalculator = () => {
       hoaFees: hoa,
       extraPayment: extraPmt
     });
-    
+
     if (!validation.success) {
       const errors: ValidationErrors = {};
       validation.error.errors.forEach((err) => {
@@ -229,7 +229,7 @@ const MortgageCalculator = () => {
       });
       return;
     }
-    
+
     const principal = price - down;
     if (principal <= 0) {
       setValidationErrors({ downPayment: "Down payment cannot be greater than or equal to home price" });
@@ -411,17 +411,17 @@ const MortgageCalculator = () => {
       maximumFractionDigits: 2
     }).format(amount);
   };
-  
+
   const formatTimeSaved = (periodsSaved: number, paymentsPerYear: number): string => {
     const totalYearsSaved = periodsSaved / paymentsPerYear;
     let yearsSaved = Math.floor(totalYearsSaved);
     let monthsSaved = Math.round((totalYearsSaved - yearsSaved) * 12);
-    
+
     if (monthsSaved === 12) {
       yearsSaved += 1;
       monthsSaved = 0;
     }
-    
+
     if (yearsSaved > 0 && monthsSaved > 0) {
       return `${yearsSaved} ${yearsSaved === 1 ? 'year' : 'years'} ${monthsSaved} ${monthsSaved === 1 ? 'month' : 'months'}`;
     } else if (yearsSaved > 0) {
@@ -991,7 +991,7 @@ const MortgageCalculator = () => {
         <title>Free Mortgage Calculator 2025 with PMI, Taxes & HOA</title>
         <meta name="description" content="Calculate monthly mortgage payments instantly. Includes PMI, property taxes, insurance, HOA fees. Compare FHA, VA & conventional loans. Free tool." />
         <meta name="keywords" content="mortgage calculator, free mortgage calculator, mortgage payment calculator, monthly mortgage calculator, mortgage calculator with pmi, mortgage calculator with taxes and insurance, FHA mortgage calculator, VA mortgage calculator, biweekly mortgage calculator, home affordability calculator, mortgage amortization calculator, extra payment mortgage calculator, house payment calculator, home loan calculator, mortgage estimator, PITI calculator, first time homebuyer calculator, 15 year vs 30 year mortgage calculator, mortgage calculator 2025, best mortgage calculator, online mortgage calculator, accurate mortgage calculator" />
-        
+
         {/* Enhanced Open Graph Tags */}
         <meta property="og:title" content="Free Mortgage Calculator with PMI & Taxes | 2025" />
         <meta property="og:description" content="Calculate monthly mortgage payments with PMI, taxes, insurance & HOA. Compare FHA, VA & conventional loans. Free, accurate tool." />
@@ -1003,7 +1003,7 @@ const MortgageCalculator = () => {
         <meta property="og:image:alt" content="Mortgage Calculator - Calculate monthly payments with PMI, taxes, insurance and HOA fees for FHA, VA and conventional loans" />
         <meta property="og:site_name" content="DapsiWow - Free Financial Tools" />
         <meta property="og:locale" content="en_US" />
-        
+
         {/* Enhanced Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Free Mortgage Calculator with PMI & Taxes | 2025" />
@@ -1012,14 +1012,14 @@ const MortgageCalculator = () => {
         <meta name="twitter:image:alt" content="Mortgage Calculator showing monthly payment breakdown with PMI, property taxes, insurance and HOA fees" />
         <meta name="twitter:site" content="@DapsiWow" />
         <meta name="twitter:creator" content="@DapsiWow" />
-        
+
         {/* Pinterest Rich Pin Tags */}
         <meta property="article:published_time" content="2024-01-10T00:00:00Z" />
         <meta property="article:modified_time" content="2025-01-15T00:00:00Z" />
         <meta property="article:author" content="DapsiWow Financial Tools Team" />
         <meta property="article:section" content="Finance Tools" />
         <meta property="article:tag" content="Mortgage Calculator" />
-        
+
         {/* Language and Geo-Targeting */}
         <meta httpEquiv="content-language" content="en-US" />
         <meta name="language" content="English" />
@@ -1029,7 +1029,7 @@ const MortgageCalculator = () => {
         <meta name="target" content="all" />
         <meta name="audience" content="all" />
         <meta name="coverage" content="Worldwide" />
-        
+
         {/* Date and Copyright Meta Tags */}
         <meta name="date" content="2025-01-15" />
         <meta name="last-modified" content="2025-01-15" />
@@ -1046,7 +1046,7 @@ const MortgageCalculator = () => {
         <meta name="directory" content="submission" />
         <meta name="category" content="Finance, Mortgage, Calculator, Real Estate, Home Buying" />
         <meta name="revisit-after" content="7 days" />
-        
+
         {/* hreflang Alternate Links */}
         <link rel="alternate" hrefLang="en" href="https://dapsiwow.com/tools/mortgage-calculator" />
         <link rel="alternate" hrefLang="en-US" href="https://dapsiwow.com/tools/mortgage-calculator" />
@@ -1054,7 +1054,7 @@ const MortgageCalculator = () => {
         <link rel="alternate" hrefLang="en-CA" href="https://dapsiwow.com/tools/mortgage-calculator" />
         <link rel="alternate" hrefLang="en-AU" href="https://dapsiwow.com/tools/mortgage-calculator" />
         <link rel="alternate" hrefLang="x-default" href="https://dapsiwow.com/tools/mortgage-calculator" />
-        
+
         {/* Theme and PWA Meta Tags */}
         <meta name="theme-color" content="#2563eb" />
         <meta name="msapplication-TileColor" content="#2563eb" />
@@ -1062,7 +1062,7 @@ const MortgageCalculator = () => {
         <meta name="application-name" content="Mortgage Calculator" />
         <meta name="msapplication-tooltip" content="Calculate mortgage payments with PMI, taxes and insurance" />
         <meta name="msapplication-starturl" content="https://dapsiwow.com/tools/mortgage-calculator" />
-        
+
         {/* Standard Meta Tags */}
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <meta name="author" content="DapsiWow Financial Tools Team" />
@@ -1074,6 +1074,7 @@ const MortgageCalculator = () => {
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Mortgage Calculator" />
 
+        {/* JSON-LD Schema Markup */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -1387,7 +1388,7 @@ const MortgageCalculator = () => {
             "@type": "WebApplication",
             "name": "Mortgage Calculator",
             "alternateName": ["Free Mortgage Calculator", "Mortgage Payment Calculator", "PITI Calculator", "Home Loan Calculator"],
-            "description": "Free online mortgage calculator to calculate monthly payments with PMI, property taxes, homeowners insurance, and HOA fees for FHA, VA, and conventional loans",
+            "description": "Free online mortgage calculator to calculate monthly payments with PMI, property taxes, homeowners insurance, and HOA fees",
             "url": "https://dapsiwow.com/tools/mortgage-calculator",
             "applicationCategory": "FinanceApplication",
             "operatingSystem": "Any (Web Browser)",
@@ -1472,11 +1473,11 @@ const MortgageCalculator = () => {
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-slate-900 leading-tight tracking-tight px-2 sm:px-0">
                 <span className="block">Free Mortgage Calculator 2025:</span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mt-1 sm:mt-2">
-                  Calculate Monthly Payments with PMI & Taxes
+                  Monthly Payment Estimator
                 </span>
               </h1>
               <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
-                Calculate mortgage payments with our free calculator. Includes property taxes, homeowners insurance, PMI, HOA fees & detailed amortization schedules. Compare FHA, VA, and conventional loans with biweekly payment options and extra payment savings.
+                Calculate accurate mortgage payments including taxes, insurance, PMI, and HOA fees. Compare loan types and explore payment strategies with detailed amortization schedules.
               </p>
 
               <div className="flex flex-wrap justify-center gap-4 sm:gap-6 pt-4">
@@ -2364,7 +2365,7 @@ const MortgageCalculator = () => {
                 <p>
                   <strong>FHA Loans:</strong> Ideal for first-time buyers with limited savings. Require just 3.5% down with a 580+ credit score. Use our FHA mortgage calculator to see payments with required mortgage insurance.<br/><br/>
                   <strong>Conventional 97:</strong> Allows 3% down for first-time buyers with 620+ credit score. PMI required but can be removed at 78% LTV.<br/><br/>
-                  <strong>VA Loans:</strong> If you're a veteran or active military, VA loans offer 0% down with no PMI - the best deal available.<br/><br/>
+                  <strong>VA Loans:</strong> If you're a veteran or active military, VA loans offer 0% down payment with no PMI requirement - the best deal available.<br/><br/>
                   <strong>USDA Loans:</strong> For rural properties, USDA loans offer 0% down payment options for qualifying first-time buyers in eligible areas.
                 </p>
 
@@ -2382,7 +2383,7 @@ const MortgageCalculator = () => {
           </Card>
 
           {/* Expert Mortgage Tips */}
-          <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 border-0 shadow-lg rounded-2xl mb-8">
+          <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 border-0 shadow-xl rounded-2xl mb-8">
             <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10">
               <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8">Expert Mortgage Tips & Best Practices</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
@@ -2435,7 +2436,7 @@ const MortgageCalculator = () => {
           <Card className="bg-gradient-to-br from-purple-50 via-pink-50 to-red-50 border-0 shadow-xl rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden mb-8">
             <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12">
               <div className="text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12">
-                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-2 sm:mb-3 md:mb-4 leading-tight">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-bold text-gray-900 mb-2 sm:mb-3 md:mb-4 leading-tight">
                   What Our Users Say
                 </h2>
                 <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed px-2 sm:px-0">
@@ -2739,7 +2740,7 @@ const MortgageCalculator = () => {
                 </a>
               </div>
 
-              
+
             </CardContent>
           </Card>
 
