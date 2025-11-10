@@ -925,50 +925,198 @@ export default function CompoundInterestCalculator() {
     }).format(amount);
   };
 
+  const canonicalUrl = "https://dapsiwow.com/tools/compound-interest-calculator";
+  const siteUrl = "https://dapsiwow.com";
+  const ogImageUrl = `${siteUrl}/og-image-compound-interest.jpg`;
+  const publishedDate = "2025-01-15T00:00:00Z";
+  const modifiedDate = "2025-01-15T00:00:00Z";
+  const currentYear = 2025;
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>Free Compound Interest Calculator 2025 | Daily, Monthly & Yearly Compounding with Regular Deposits</title>
-        <meta name="description" content="Calculate compound interest with our free 2025 calculator. Daily, monthly, quarterly & yearly compounding options. Add regular contributions, see inflation-adjusted returns, retirement planning, and investment growth charts. Simple compound interest calculator with step-by-step guide." />
-        <meta name="keywords" content="compound interest calculator, free compound interest calculator, compound interest calculator with monthly contributions, daily compound interest calculator, compound interest calculator with deposits, how to calculate compound interest, compound interest formula, compound interest vs simple interest, investment growth calculator, retirement compound interest calculator, savings account calculator, compound interest calculator with inflation adjustment, best compound interest calculator 2025, compound interest calculator for retirement, 401k calculator, IRA calculator, simple compound interest calculator, compound interest calculator with regular deposits, monthly compound interest calculator, yearly compound interest calculator, investment calculator, retirement savings calculator, SIP calculator, systematic investment plan calculator, step-up SIP calculator" />
-        <meta property="og:title" content="Free Compound Interest Calculator 2025 | Daily, Monthly & Yearly Compounding" />
-        <meta property="og:description" content="Calculate compound interest with our free online calculator. Daily, monthly, yearly compounding. Add regular contributions, track investment growth, see inflation-adjusted returns & retirement projections with interactive charts." />
-        <meta property="og:type" content="website" />
+        <html lang="en" />
+        <title>Compound Interest Calculator - SIP & Daily Returns</title>
+        <meta name="description" content="Calculate compound interest & track daily returns with SIP. Get inflation-adjusted growth, yearly breakdowns, retirement planning & PDF reports. 100% free." />
+        <meta name="keywords" content="compound interest calculator, free compound interest calculator, compound interest calculator with monthly contributions, daily compound interest calculator, SIP calculator, systematic investment plan calculator, retirement compound interest calculator, investment growth calculator, 401k calculator, IRA calculator" />
+        
+        {/* Canonical */}
+        <link rel="canonical" href={canonicalUrl} />
+        
+        {/* Robots */}
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        
+        {/* Language and Geo */}
+        <meta httpEquiv="content-language" content="en" />
+        <meta name="language" content="English" />
+        <meta name="geo.region" content="US" />
+        <meta name="geo.placename" content="United States" />
+        <meta name="distribution" content="global" />
+        
+        {/* Date and Author */}
+        <meta name="date" content={publishedDate} />
+        <meta name="last-modified" content={modifiedDate} />
         <meta name="author" content="DapsiWow" />
-        <link rel="canonical" href="https://dapsiwow.com/tools/compound-interest-calculator" />
+        <meta name="publisher" content="DapsiWow" />
+        <meta name="copyright" content={`© ${currentYear} DapsiWow. All rights reserved.`} />
+        
+        {/* Hreflang for International Versions */}
+        <link rel="alternate" hrefLang="en" href={canonicalUrl} />
+        <link rel="alternate" hrefLang="en-US" href={canonicalUrl} />
+        <link rel="alternate" hrefLang="en-GB" href={canonicalUrl} />
+        <link rel="alternate" hrefLang="en-CA" href={canonicalUrl} />
+        <link rel="alternate" hrefLang="en-AU" href={canonicalUrl} />
+        <link rel="alternate" hrefLang="x-default" href={canonicalUrl} />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:site_name" content="DapsiWow - Free Online Tools" />
+        <meta property="og:title" content="Compound Interest Calculator - SIP & Daily Returns" />
+        <meta property="og:description" content="Calculate compound interest & track daily returns with SIP. Get inflation-adjusted growth, yearly breakdowns, retirement planning & PDF reports. 100% free." />
+        <meta property="og:image" content={ogImageUrl} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Compound Interest Calculator with SIP deposits, daily returns tracking, and retirement planning tools" />
+        <meta property="og:locale" content="en_US" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content={canonicalUrl} />
+        <meta name="twitter:title" content="Compound Interest Calculator - SIP & Daily Returns" />
+        <meta name="twitter:description" content="Calculate compound interest & track daily returns with SIP. Get inflation-adjusted growth, yearly breakdowns, retirement planning & PDF reports. 100% free." />
+        <meta name="twitter:image" content={ogImageUrl} />
+        <meta name="twitter:image:alt" content="Compound Interest Calculator with SIP deposits, daily returns tracking, and retirement planning tools" />
+        <meta name="twitter:creator" content="@DapsiWow" />
+        <meta name="twitter:site" content="@DapsiWow" />
+        
+        {/* PWA / App Meta */}
+        <meta name="theme-color" content="#3b82f6" />
+        <meta name="application-name" content="DapsiWow Compound Interest Calculator" />
+        
+        {/* Pinterest Rich Pins */}
+        <meta property="article:published_time" content={publishedDate} />
+        <meta property="article:modified_time" content={modifiedDate} />
+        <meta property="article:author" content="DapsiWow" />
+        <meta property="article:section" content="Finance Tools" />
+        <meta property="article:tag" content="compound interest, SIP calculator, investment planning, retirement savings" />
+        
+        {/* Consolidated Schema.org Structured Data */}
         <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Compound Interest Calculator with Monthly Deposits",
-            "description": "Free online compound interest calculator to calculate investment growth with daily compounding, monthly deposits, retirement planning for 401k and IRA accounts. Learn how to calculate compound interest with our simple calculator featuring graphs and detailed breakdowns.",
-            "url": "https://dapsiwow.com/tools/compound-interest-calculator",
-            "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Any",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
+          {JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "WebPage",
+              "name": "Compound Interest Calculator - SIP & Daily Returns",
+              "description": "Calculate compound interest & track daily returns with SIP. Get inflation-adjusted growth, yearly breakdowns, retirement planning & PDF reports.",
+              "url": canonicalUrl,
+              "breadcrumb": {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                  {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": siteUrl
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Tools",
+                    "item": `${siteUrl}/tools`
+                  },
+                  {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": "Compound Interest Calculator",
+                    "item": canonicalUrl
+                  }
+                ]
+              },
+              "speakable": {
+                "@type": "SpeakableSpecification",
+                "cssSelector": ["h1", "h2", ".description"]
+              }
             },
-            "featureList": [
-              "Compound interest calculator with monthly deposits",
-              "Daily compound interest calculator",
-              "Compound interest calculator for retirement (401k, IRA)",
-              "Free online compound interest calculator with graphs",
-              "SIP investment planning with step-up",
-              "Goal-based investment analysis",
-              "Inflation adjustment calculations",
-              "Multi-currency support (USD, EUR, INR, GBP)",
-              "Compound interest formula calculator",
-              "Simple vs compound interest comparison"
-            ],
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": "4.8",
-              "ratingCount": "12847"
+            {
+              "@context": "https://schema.org",
+              "@type": "WebApplication",
+              "name": "Compound Interest Calculator with SIP Deposits",
+              "description": "Free online compound interest calculator to calculate investment growth with daily compounding, SIP deposits, retirement planning for 401k and IRA accounts.",
+              "url": canonicalUrl,
+              "applicationCategory": "FinanceApplication",
+              "operatingSystem": "Any",
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+              },
+              "featureList": [
+                "Daily compound interest calculator",
+                "SIP investment planning with step-up",
+                "Goal-based investment analysis",
+                "Inflation adjustment calculations",
+                "Retirement planning (401k, IRA)",
+                "Multi-currency support",
+                "PDF report generation",
+                "Yearly breakdown analysis"
+              ],
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.8",
+                "ratingCount": "12847"
+              }
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "DapsiWow",
+              "url": siteUrl,
+              "logo": `${siteUrl}/logo.png`,
+              "description": "Free online financial calculators and tools for compound interest, investments, loans, and retirement planning.",
+              "sameAs": [
+                "https://twitter.com/DapsiWow"
+              ]
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "How do I calculate compound interest with SIP deposits?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Enter your initial principal, interest rate, time period, and compounding frequency. Enable SIP mode and add your monthly contribution amount. The calculator will compute your final amount including compound growth on both principal and regular deposits."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "What is the difference between daily and monthly compounding?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Daily compounding applies interest 365 times per year, while monthly compounding applies it 12 times per year. More frequent compounding results in slightly higher returns due to earning interest on interest more often."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Can I use this calculator for retirement planning?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes! Enable SIP deposits to simulate regular 401k or IRA contributions. The calculator shows inflation-adjusted returns and yearly breakdowns to help plan your retirement savings strategy."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How accurate is the compound interest calculator?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Our calculator uses precise mathematical formulas for compound interest calculations. Results are accurate for planning purposes, but actual investment returns may vary based on market conditions and fees."
+                  }
+                }
+              ]
             }
-          })}
+          ])}
         </script>
       </Helmet>
       
