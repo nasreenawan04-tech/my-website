@@ -936,8 +936,8 @@ export default function CompoundInterestCalculator() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
         <html lang="en" />
-        <title>Compound Interest Calculator - SIP & Daily Returns</title>
-        <meta name="description" content="Calculate compound interest & track daily returns with SIP. Get inflation-adjusted growth, yearly breakdowns, retirement planning & PDF reports. 100% free." />
+        <title>Compound Interest Calculator - Investment Growth | DapsiWow</title>
+        <meta name="description" content="Calculate compound interest with our free tool. Track investment growth, SIP returns, and retirement planning. Get instant results with yearly breakdowns." />
         <meta name="keywords" content="compound interest calculator, free compound interest calculator, compound interest calculator with monthly contributions, daily compound interest calculator, SIP calculator, systematic investment plan calculator, retirement compound interest calculator, investment growth calculator, 401k calculator, IRA calculator" />
 
         {/* Canonical */}
@@ -972,21 +972,21 @@ export default function CompoundInterestCalculator() {
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:site_name" content="DapsiWow - Free Online Tools" />
-        <meta property="og:title" content="Compound Interest Calculator - SIP & Daily Returns" />
-        <meta property="og:description" content="Calculate compound interest & track daily returns with SIP. Get inflation-adjusted growth, yearly breakdowns, retirement planning & PDF reports. 100% free." />
+        <meta property="og:title" content="Compound Interest Calculator - Investment Growth | DapsiWow" />
+        <meta property="og:description" content="Calculate compound interest with our free tool. Track investment growth, SIP returns, and retirement planning. Get instant results with yearly breakdowns." />
         <meta property="og:image" content={ogImageUrl} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Compound Interest Calculator with SIP deposits, daily returns tracking, and retirement planning tools" />
+        <meta property="og:image:alt" content="Compound Interest Calculator - Track investment growth with SIP deposits, inflation adjustment, and retirement planning tools" />
         <meta property="og:locale" content="en_US" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content={canonicalUrl} />
-        <meta name="twitter:title" content="Compound Interest Calculator - SIP & Daily Returns" />
-        <meta name="twitter:description" content="Calculate compound interest & track daily returns with SIP. Get inflation-adjusted growth, yearly breakdowns, retirement planning & PDF reports. 100% free." />
+        <meta name="twitter:title" content="Compound Interest Calculator - Investment Growth | DapsiWow" />
+        <meta name="twitter:description" content="Calculate compound interest with our free tool. Track investment growth, SIP returns, and retirement planning. Get instant results with yearly breakdowns." />
         <meta name="twitter:image" content={ogImageUrl} />
-        <meta name="twitter:image:alt" content="Compound Interest Calculator with SIP deposits, daily returns tracking, and retirement planning tools" />
+        <meta name="twitter:image:alt" content="Compound Interest Calculator - Track investment growth with SIP deposits, inflation adjustment, and retirement planning tools" />
         <meta name="twitter:creator" content="@DapsiWow" />
         <meta name="twitter:site" content="@DapsiWow" />
 
@@ -1007,8 +1007,8 @@ export default function CompoundInterestCalculator() {
             {
               "@context": "https://schema.org",
               "@type": "WebPage",
-              "name": "Compound Interest Calculator - SIP & Daily Returns",
-              "description": "Calculate compound interest & track daily returns with SIP. Get inflation-adjusted growth, yearly breakdowns, retirement planning & PDF reports.",
+              "name": "Compound Interest Calculator - Investment Growth | DapsiWow",
+              "description": "Calculate compound interest with our free tool. Track investment growth, SIP returns, and retirement planning. Get instant results with yearly breakdowns.",
               "url": canonicalUrl,
               "breadcrumb": {
                 "@type": "BreadcrumbList",
@@ -1163,63 +1163,6 @@ export default function CompoundInterestCalculator() {
         </section>
 
         <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
-
-          {/* Trust Signals */}
-          <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-4 sm:p-6 mb-8 border border-green-200">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
-              <div>
-                <div className="text-2xl font-bold text-gray-900">1.8M+</div>
-                <div className="text-sm text-gray-600">Calculations Performed</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-gray-900">100% Free</div>
-                <div className="text-sm text-gray-600">No Registration Required</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-gray-900">Expert-Grade</div>
-                <div className="text-sm text-gray-600">Accurate Projections</div>
-              </div>
-            </div>
-          </div>
-
-          {/* How to Use Section */}
-          <Card className="bg-gradient-to-r from-indigo-50 to-purple-50 border-0 shadow-lg rounded-2xl mb-6 sm:mb-8">
-            <CardContent className="p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12">
-              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-center sm:text-left">How to Calculate Compound Interest with Our Free Calculator - Step-by-Step Guide</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
-                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-white/50 transition-colors">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-base sm:text-lg md:text-xl">1</div>
-                  <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg">Enter Principal Amount</h3>
-                  <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Input your initial investment amount. This is the starting principal that will grow through compound interest over time.</p>
-                </div>
-                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-white/50 transition-colors">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-base sm:text-lg md:text-xl">2</div>
-                  <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg">Set Interest Rate</h3>
-                  <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Enter the expected annual return rate. Use realistic rates: 6-8% for conservative, 8-12% for moderate, 12-15% for aggressive investments.</p>
-                </div>
-                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-white/50 transition-colors">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-base sm:text-lg md:text-xl">3</div>
-                  <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg">Choose Time Period</h3>
-                  <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Select investment duration in years or months. Longer periods maximize compound growth benefits exponentially.</p>
-                </div>
-                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-white/50 transition-colors">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-base sm:text-lg md:text-xl">4</div>
-                  <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg">Select Compounding Frequency</h3>
-                  <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Choose how often interest compounds: monthly, quarterly, or annually. More frequent compounding accelerates growth.</p>
-                </div>
-                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-white/50 transition-colors">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-base sm:text-lg md:text-xl">5</div>
-                  <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg">Add SIP (Optional)</h3>
-                  <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Optional: Enable systematic investment plan to see how regular monthly contributions supercharge your compound growth.</p>
-                </div>
-                <div className="space-y-2 sm:space-y-3 p-3 sm:p-4 rounded-lg hover:bg-white/50 transition-colors">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-base sm:text-lg md:text-xl">6</div>
-                  <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg">Calculate & Analyze</h3>
-                  <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">Click "Calculate" to see final amount, total interest earned, yearly breakdown, and inflation-adjusted real value.</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
 
           {/* Main Calculator Card */}
           <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
@@ -1919,13 +1862,725 @@ export default function CompoundInterestCalculator() {
             </Card>
           )}
 
-          
+          {/* SEO Content Sections */}
+          <div className="mt-8 sm:mt-12 md:mt-16 lg:mt-20 space-y-8 sm:space-y-12 md:space-y-16">
+            
+            {/* Introduction Section */}
+            <section className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-lg">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">What is Compound Interest Calculator?</h2>
+              
+              <p className="text-base sm:text-lg text-gray-700 mb-4 sm:mb-6 leading-relaxed">
+                The Compound Interest Calculator is a free online tool that helps you determine how your investments grow over time through the power of compounding. Whether you're planning for retirement with a 401k or IRA, saving for a child's college education, or building long-term wealth, this calculator provides instant, accurate projections of your investment growth.
+              </p>
 
-          
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">Why Use Our Compound Interest Calculator?</h3>
+              
+              <ul className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
+                <li className="flex items-start gap-2 sm:gap-3">
+                  <span className="text-blue-600 font-bold flex-shrink-0">✓</span>
+                  <span className="text-base sm:text-lg text-gray-700"><strong>Instant Results:</strong> Get compound interest calculations in seconds with detailed yearly breakdowns</span>
+                </li>
+                <li className="flex items-start gap-2 sm:gap-3">
+                  <span className="text-blue-600 font-bold flex-shrink-0">✓</span>
+                  <span className="text-base sm:text-lg text-gray-700"><strong>Accurate:</strong> Uses the standard compound interest formula with support for daily, monthly, quarterly, and annual compounding</span>
+                </li>
+                <li className="flex items-start gap-2 sm:gap-3">
+                  <span className="text-blue-600 font-bold flex-shrink-0">✓</span>
+                  <span className="text-base sm:text-lg text-gray-700"><strong>Free Forever:</strong> No hidden fees, registration, or subscription required</span>
+                </li>
+                <li className="flex items-start gap-2 sm:gap-3">
+                  <span className="text-blue-600 font-bold flex-shrink-0">✓</span>
+                  <span className="text-base sm:text-lg text-gray-700"><strong>SIP Support:</strong> Model systematic investment plans with step-up contributions</span>
+                </li>
+                <li className="flex items-start gap-2 sm:gap-3">
+                  <span className="text-blue-600 font-bold flex-shrink-0">✓</span>
+                  <span className="text-base sm:text-lg text-gray-700"><strong>Inflation Adjustment:</strong> See real purchasing power of your future wealth</span>
+                </li>
+              </ul>
 
-          
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">Who Benefits from Compound Interest Calculator?</h3>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                <div className="bg-blue-50 rounded-lg p-4 sm:p-5">
+                  <h4 className="font-bold text-gray-900 mb-2">Retirement Planners</h4>
+                  <p className="text-sm sm:text-base text-gray-700">Model 401k, IRA, and pension growth with regular contributions</p>
+                </div>
+                <div className="bg-blue-50 rounded-lg p-4 sm:p-5">
+                  <h4 className="font-bold text-gray-900 mb-2">Parents & Students</h4>
+                  <p className="text-sm sm:text-base text-gray-700">Plan for college savings with 529 plans and education funds</p>
+                </div>
+                <div className="bg-blue-50 rounded-lg p-4 sm:p-5">
+                  <h4 className="font-bold text-gray-900 mb-2">Investors</h4>
+                  <p className="text-sm sm:text-base text-gray-700">Compare investment strategies and track portfolio growth</p>
+                </div>
+                <div className="bg-blue-50 rounded-lg p-4 sm:p-5">
+                  <h4 className="font-bold text-gray-900 mb-2">Financial Advisors</h4>
+                  <p className="text-sm sm:text-base text-gray-700">Demonstrate investment potential to clients with visual projections</p>
+                </div>
+              </div>
+            </section>
 
-          
+            {/* How to Use Section */}
+            <section className="bg-gradient-to-br from-white to-blue-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-lg">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">How to Use the Compound Interest Calculator</h2>
+              
+              <div className="space-y-4 sm:space-y-6">
+                <div className="flex gap-3 sm:gap-4">
+                  <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm sm:text-base">1</div>
+                  <div>
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 sm:mb-2">Enter Your Initial Investment</h3>
+                    <p className="text-sm sm:text-base text-gray-700">Start by entering your principal amount - the initial lump sum you're investing. This could be your current savings or a one-time investment.</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-3 sm:gap-4">
+                  <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm sm:text-base">2</div>
+                  <div>
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 sm:mb-2">Set Your Interest Rate</h3>
+                    <p className="text-sm sm:text-base text-gray-700">Enter the annual interest rate or expected return on your investment. For stocks, historical average is around 8-10%. For bonds, typically 3-6%. Savings accounts usually offer 0.5-2%.</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-3 sm:gap-4">
+                  <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm sm:text-base">3</div>
+                  <div>
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 sm:mb-2">Choose Your Time Period</h3>
+                    <p className="text-sm sm:text-base text-gray-700">Specify how long you plan to invest. You can enter time in years or months. The longer the time period, the more powerful the compounding effect.</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-3 sm:gap-4">
+                  <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm sm:text-base">4</div>
+                  <div>
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 sm:mb-2">Select Compounding Frequency</h3>
+                    <p className="text-sm sm:text-base text-gray-700">Choose how often interest compounds: daily (365), monthly (12), quarterly (4), or annually (1). More frequent compounding accelerates growth.</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-3 sm:gap-4">
+                  <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm sm:text-base">5</div>
+                  <div>
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 sm:mb-2">Enable SIP for Regular Contributions (Optional)</h3>
+                    <p className="text-sm sm:text-base text-gray-700">Turn on Systematic Investment Plan mode to add regular monthly or yearly contributions. Enter your contribution amount and choose step-up percentage if your contributions will increase over time.</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-3 sm:gap-4">
+                  <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm sm:text-base">6</div>
+                  <div>
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 sm:mb-2">Add Inflation Rate for Real Value (Optional)</h3>
+                    <p className="text-sm sm:text-base text-gray-700">Enter expected inflation rate (typically 2-3%) to see the purchasing power of your future wealth in today's dollars.</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-3 sm:gap-4">
+                  <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm sm:text-base">7</div>
+                  <div>
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1 sm:mb-2">Calculate and Review Results</h3>
+                    <p className="text-sm sm:text-base text-gray-700">Click "Calculate" to see your investment growth projection, yearly breakdown, and visual charts. Download PDF reports or share your calculation via link.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6 sm:mt-8 bg-blue-100 border-l-4 border-blue-600 p-4 sm:p-6 rounded-lg">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4">Pro Tips for Better Results</h3>
+                <ul className="space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-600 font-bold flex-shrink-0">•</span>
+                    <span className="text-sm sm:text-base text-gray-700">Use realistic interest rates based on your actual investment type</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-600 font-bold flex-shrink-0">•</span>
+                    <span className="text-sm sm:text-base text-gray-700">Choose daily compounding for savings accounts to maximize accuracy</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-600 font-bold flex-shrink-0">•</span>
+                    <span className="text-sm sm:text-base text-gray-700">Enable step-up SIP if you expect salary raises or bonuses</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-600 font-bold flex-shrink-0">•</span>
+                    <span className="text-sm sm:text-base text-gray-700">Always account for inflation to understand true purchasing power</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-600 font-bold flex-shrink-0">•</span>
+                    <span className="text-sm sm:text-base text-gray-700">Compare different scenarios by adjusting contribution amounts and frequencies</span>
+                  </li>
+                </ul>
+              </div>
+            </section>
+
+            {/* Real-World Examples Section */}
+            <section className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-lg">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">Compound Interest Calculator Examples</h2>
+              
+              {/* Example 1 */}
+              <div className="mb-8 sm:mb-10 pb-8 sm:pb-10 border-b border-gray-200">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Example 1: Retirement Planning with 401k</h3>
+                
+                <p className="text-sm sm:text-base text-gray-700 mb-4"><strong>Scenario:</strong> Sarah is 30 years old and wants to plan for retirement at 65. She has $25,000 in her 401k and contributes $500 monthly with her employer match.</p>
+                
+                <div className="bg-blue-50 rounded-lg p-4 sm:p-5 mb-4">
+                  <h4 className="font-bold text-gray-900 mb-2 sm:mb-3">Input Values:</h4>
+                  <ul className="space-y-1.5 sm:space-y-2 text-sm sm:text-base">
+                    <li className="flex justify-between"><span className="text-gray-700">Initial Principal:</span> <span className="font-bold">$25,000</span></li>
+                    <li className="flex justify-between"><span className="text-gray-700">Annual Interest Rate:</span> <span className="font-bold">8% (stock market average)</span></li>
+                    <li className="flex justify-between"><span className="text-gray-700">Time Period:</span> <span className="font-bold">35 years</span></li>
+                    <li className="flex justify-between"><span className="text-gray-700">Compounding:</span> <span className="font-bold">Monthly (12)</span></li>
+                    <li className="flex justify-between"><span className="text-gray-700">SIP Contribution:</span> <span className="font-bold">$500/month</span></li>
+                    <li className="flex justify-between"><span className="text-gray-700">Step-up:</span> <span className="font-bold">3% annually (salary raises)</span></li>
+                  </ul>
+                </div>
+
+                <div className="bg-green-50 rounded-lg p-4 sm:p-5 mb-4">
+                  <h4 className="font-bold text-gray-900 mb-2 sm:mb-3">Results:</h4>
+                  <ul className="space-y-1.5 sm:space-y-2 text-sm sm:text-base">
+                    <li className="flex justify-between"><span className="text-gray-700">Final Amount:</span> <span className="font-bold text-green-600">$1,247,892</span></li>
+                    <li className="flex justify-between"><span className="text-gray-700">Total Contributions:</span> <span className="font-bold">$323,450</span></li>
+                    <li className="flex justify-between"><span className="text-gray-700">Total Interest Earned:</span> <span className="font-bold text-green-600">$924,442</span></li>
+                  </ul>
+                </div>
+
+                <p className="text-sm sm:text-base text-gray-700 mb-3"><strong>Interpretation:</strong> Sarah's $25,000 initial investment combined with consistent monthly contributions grows to over $1.2 million by retirement. The power of compound interest generates nearly $924,000 in returns - almost 3x her total contributions!</p>
+                
+                <p className="text-sm sm:text-base text-gray-700"><strong>Action Steps:</strong> Maximize 401k contributions to get full employer match, increase contributions when you receive raises, and maintain a diversified portfolio for consistent 8% returns.</p>
+              </div>
+
+              {/* Example 2 */}
+              <div className="mb-8 sm:mb-10 pb-8 sm:pb-10 border-b border-gray-200">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Example 2: College Savings Fund (529 Plan)</h3>
+                
+                <p className="text-sm sm:text-base text-gray-700 mb-4"><strong>Scenario:</strong> John and Mary have a newborn and want to save for their child's college education starting in 18 years. They open a 529 plan with $10,000 and contribute $200 monthly.</p>
+                
+                <div className="bg-blue-50 rounded-lg p-4 sm:p-5 mb-4">
+                  <h4 className="font-bold text-gray-900 mb-2 sm:mb-3">Input Values:</h4>
+                  <ul className="space-y-1.5 sm:space-y-2 text-sm sm:text-base">
+                    <li className="flex justify-between"><span className="text-gray-700">Initial Principal:</span> <span className="font-bold">$10,000</span></li>
+                    <li className="flex justify-between"><span className="text-gray-700">Annual Interest Rate:</span> <span className="font-bold">7% (moderate growth portfolio)</span></li>
+                    <li className="flex justify-between"><span className="text-gray-700">Time Period:</span> <span className="font-bold">18 years</span></li>
+                    <li className="flex justify-between"><span className="text-gray-700">Compounding:</span> <span className="font-bold">Monthly (12)</span></li>
+                    <li className="flex justify-between"><span className="text-gray-700">SIP Contribution:</span> <span className="font-bold">$200/month</span></li>
+                    <li className="flex justify-between"><span className="text-gray-700">Inflation Rate:</span> <span className="font-bold">3% (college costs)</span></li>
+                  </ul>
+                </div>
+
+                <div className="bg-green-50 rounded-lg p-4 sm:p-5 mb-4">
+                  <h4 className="font-bold text-gray-900 mb-2 sm:mb-3">Results:</h4>
+                  <ul className="space-y-1.5 sm:space-y-2 text-sm sm:text-base">
+                    <li className="flex justify-between"><span className="text-gray-700">Final Amount:</span> <span className="font-bold text-green-600">$104,467</span></li>
+                    <li className="flex justify-between"><span className="text-gray-700">Total Contributions:</span> <span className="font-bold">$53,200</span></li>
+                    <li className="flex justify-between"><span className="text-gray-700">Total Interest Earned:</span> <span className="font-bold text-green-600">$51,267</span></li>
+                    <li className="flex justify-between"><span className="text-gray-700">Real Value (inflation-adjusted):</span> <span className="font-bold text-purple-600">$61,453</span></li>
+                  </ul>
+                </div>
+
+                <p className="text-sm sm:text-base text-gray-700 mb-3"><strong>Interpretation:</strong> The family's $53,200 in contributions grows to $104,467 - nearly doubling their money. After accounting for 3% inflation, they'll have $61,453 in today's purchasing power, covering a significant portion of college expenses.</p>
+                
+                <p className="text-sm sm:text-base text-gray-700"><strong>Action Steps:</strong> Start saving early to maximize compound growth, use tax-advantaged 529 plans, adjust contributions as income increases, and consider more conservative allocations as college approaches.</p>
+              </div>
+
+              {/* Example 3 */}
+              <div>
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Example 3: Wealth Building with Lump Sum Investment</h3>
+                
+                <p className="text-sm sm:text-base text-gray-700 mb-4"><strong>Scenario:</strong> Michael receives a $100,000 inheritance at age 40 and invests it in a diversified index fund portfolio, making no additional contributions.</p>
+                
+                <div className="bg-blue-50 rounded-lg p-4 sm:p-5 mb-4">
+                  <h4 className="font-bold text-gray-900 mb-2 sm:mb-3">Input Values:</h4>
+                  <ul className="space-y-1.5 sm:space-y-2 text-sm sm:text-base">
+                    <li className="flex justify-between"><span className="text-gray-700">Initial Principal:</span> <span className="font-bold">$100,000</span></li>
+                    <li className="flex justify-between"><span className="text-gray-700">Annual Interest Rate:</span> <span className="font-bold">9% (aggressive growth)</span></li>
+                    <li className="flex justify-between"><span className="text-gray-700">Time Period:</span> <span className="font-bold">25 years (to age 65)</span></li>
+                    <li className="flex justify-between"><span className="text-gray-700">Compounding:</span> <span className="font-bold">Annually (1)</span></li>
+                    <li className="flex justify-between"><span className="text-gray-700">SIP Contribution:</span> <span className="font-bold">None</span></li>
+                  </ul>
+                </div>
+
+                <div className="bg-green-50 rounded-lg p-4 sm:p-5 mb-4">
+                  <h4 className="font-bold text-gray-900 mb-2 sm:mb-3">Results:</h4>
+                  <ul className="space-y-1.5 sm:space-y-2 text-sm sm:text-base">
+                    <li className="flex justify-between"><span className="text-gray-700">Final Amount:</span> <span className="font-bold text-green-600">$862,308</span></li>
+                    <li className="flex justify-between"><span className="text-gray-700">Total Contributions:</span> <span className="font-bold">$100,000</span></li>
+                    <li className="flex justify-between"><span className="text-gray-700">Total Interest Earned:</span> <span className="font-bold text-green-600">$762,308</span></li>
+                  </ul>
+                </div>
+
+                <p className="text-sm sm:text-base text-gray-700 mb-3"><strong>Interpretation:</strong> Even without adding a single dollar, Michael's $100,000 grows to over $860,000 in 25 years. The 9% annual return generated $762,308 in compound interest - 7.6x the initial investment!</p>
+                
+                <p className="text-sm sm:text-base text-gray-700"><strong>Action Steps:</strong> Invest lump sums immediately rather than timing the market, maintain a long-term perspective through market volatility, rebalance annually to maintain target allocations, and avoid withdrawing funds to maximize compounding.</p>
+              </div>
+            </section>
+
+            {/* Understanding Results Section */}
+            <section className="bg-gradient-to-br from-white to-indigo-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-lg">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">Understanding Your Compound Interest Results</h2>
+              
+              <p className="text-base sm:text-lg text-gray-700 mb-6">The calculator provides comprehensive analysis of your investment growth. Here's how to interpret each metric:</p>
+
+              <div className="space-y-6 sm:space-y-8">
+                <div>
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">Final Amount vs Principal</h3>
+                  <p className="text-sm sm:text-base text-gray-700 mb-3">Your final amount includes both your original principal and all accumulated interest. The difference shows the true power of compound interest over time.</p>
+                  <div className="bg-blue-50 p-4 rounded-lg">
+                    <p className="text-sm sm:text-base"><strong>Rule of 72:</strong> Divide 72 by your interest rate to estimate how many years it takes to double your money. At 8% interest, your investment doubles approximately every 9 years (72 ÷ 8 = 9).</p>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">Total Interest Earned</h3>
+                  <p className="text-sm sm:text-base text-gray-700">This represents the "free money" generated by compound interest - earnings on both your principal and previously accumulated interest. The longer you invest, the more dramatic this growth becomes.</p>
+                </div>
+
+                <div>
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">SIP Analysis (If Enabled)</h3>
+                  <p className="text-sm sm:text-base text-gray-700 mb-3">Systematic Investment Plans amplify compound growth by consistently adding new capital. Each contribution starts its own compounding journey.</p>
+                  <ul className="space-y-2 text-sm sm:text-base text-gray-700">
+                    <li className="flex items-start gap-2"><span className="text-blue-600 font-bold flex-shrink-0">•</span> <span><strong>Total SIP Contributions:</strong> Sum of all regular deposits made over the investment period</span></li>
+                    <li className="flex items-start gap-2"><span className="text-blue-600 font-bold flex-shrink-0">•</span> <span><strong>SIP Interest Earned:</strong> Compound growth specifically from your regular contributions</span></li>
+                    <li className="flex items-start gap-2"><span className="text-blue-600 font-bold flex-shrink-0">•</span> <span><strong>Average Annual Return:</strong> Effective yearly return considering both lump sum and SIP contributions</span></li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">Real Value (Inflation-Adjusted)</h3>
+                  <p className="text-sm sm:text-base text-gray-700 mb-3">This critical metric shows what your future wealth can actually buy in today's dollars. Always consider inflation when planning long-term investments.</p>
+                  <div className="bg-orange-50 border-l-4 border-orange-500 p-4 rounded-r-lg">
+                    <p className="text-sm sm:text-base text-gray-700"><strong>Important:</strong> A 3% inflation rate means you need your investments to grow by at least 3% annually just to maintain purchasing power. Aim for returns that exceed inflation by 5-7% for real wealth growth.</p>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">Yearly Breakdown</h3>
+                  <p className="text-sm sm:text-base text-gray-700">The year-by-year analysis reveals how compound interest accelerates over time. Notice how interest earned in later years far exceeds earlier years - this exponential growth is compounding in action.</p>
+                </div>
+
+                <div>
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">Visual Charts</h3>
+                  <p className="text-sm sm:text-base text-gray-700">The pie chart breaks down final amount into principal vs interest, while growth charts illustrate exponential wealth accumulation. These visuals help you understand composition and trajectory of your investment.</p>
+                </div>
+              </div>
+
+              <div className="mt-6 sm:mt-8 bg-indigo-100 border-l-4 border-indigo-600 p-4 sm:p-6 rounded-r-lg">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">When to Seek Professional Advice</h3>
+                <ul className="space-y-2 text-sm sm:text-base text-gray-700">
+                  <li className="flex items-start gap-2"><span className="text-indigo-600 font-bold flex-shrink-0">•</span> Large lump sum investments exceeding $100,000</li>
+                  <li className="flex items-start gap-2"><span className="text-indigo-600 font-bold flex-shrink-0">•</span> Complex retirement planning with multiple account types</li>
+                  <li className="flex items-start gap-2"><span className="text-indigo-600 font-bold flex-shrink-0">•</span> Tax optimization strategies for investment gains</li>
+                  <li className="flex items-start gap-2"><span className="text-indigo-600 font-bold flex-shrink-0">•</span> Estate planning and wealth transfer considerations</li>
+                </ul>
+              </div>
+            </section>
+
+            {/* Formula Explained Section */}
+            <section className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-lg">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">Compound Interest Formula Explained</h2>
+              
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">The Standard Compound Interest Formula</h3>
+              
+              <div className="bg-gray-50 rounded-lg p-4 sm:p-6 mb-6 overflow-x-auto">
+                <p className="font-mono text-sm sm:text-base md:text-lg text-center mb-4 font-bold text-gray-900">
+                  A = P(1 + r/n)^(nt)
+                </p>
+                <div className="space-y-2 text-sm sm:text-base text-gray-700">
+                  <p><strong>A</strong> = Final amount (principal + interest)</p>
+                  <p><strong>P</strong> = Principal (initial investment)</p>
+                  <p><strong>r</strong> = Annual interest rate (as decimal)</p>
+                  <p><strong>n</strong> = Number of times interest compounds per year</p>
+                  <p><strong>t</strong> = Time period in years</p>
+                </div>
+              </div>
+
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Step-by-Step Calculation Example</h3>
+              
+              <p className="text-sm sm:text-base text-gray-700 mb-4">Let's calculate compound interest for $10,000 invested at 8% annual rate for 5 years with monthly compounding:</p>
+
+              <div className="bg-blue-50 rounded-lg p-4 sm:p-6 mb-6 space-y-3 text-sm sm:text-base">
+                <div className="flex items-start gap-3">
+                  <span className="font-bold text-blue-600 flex-shrink-0">Step 1:</span>
+                  <span className="text-gray-700">Identify variables: P = $10,000, r = 0.08, n = 12 (monthly), t = 5</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="font-bold text-blue-600 flex-shrink-0">Step 2:</span>
+                  <span className="text-gray-700">Substitute into formula: A = 10,000(1 + 0.08/12)^(12×5)</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="font-bold text-blue-600 flex-shrink-0">Step 3:</span>
+                  <span className="text-gray-700">Calculate rate per period: 0.08/12 = 0.00667</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="font-bold text-blue-600 flex-shrink-0">Step 4:</span>
+                  <span className="text-gray-700">Add 1: 1 + 0.00667 = 1.00667</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="font-bold text-blue-600 flex-shrink-0">Step 5:</span>
+                  <span className="text-gray-700">Calculate total periods: 12 × 5 = 60 periods</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="font-bold text-blue-600 flex-shrink-0">Step 6:</span>
+                  <span className="text-gray-700">Raise to power: 1.00667^60 = 1.4898</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="font-bold text-blue-600 flex-shrink-0">Step 7:</span>
+                  <span className="text-gray-700">Multiply by principal: $10,000 × 1.4898 = <strong className="text-green-600">$14,898</strong></span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="font-bold text-blue-600 flex-shrink-0">Result:</span>
+                  <span className="text-gray-700">Total interest earned = $14,898 - $10,000 = <strong className="text-green-600">$4,898</strong></span>
+                </div>
+              </div>
+
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Formula with Regular Contributions (SIP)</h3>
+              
+              <p className="text-sm sm:text-base text-gray-700 mb-4">When making regular contributions, we add the future value of an annuity formula:</p>
+
+              <div className="bg-gray-50 rounded-lg p-4 sm:p-6 mb-6 overflow-x-auto">
+                <p className="font-mono text-sm sm:text-base md:text-lg text-center mb-4 font-bold text-gray-900">
+                  FV = PMT × [((1 + r/n)^(nt) - 1) / (r/n)]
+                </p>
+                <div className="space-y-2 text-sm sm:text-base text-gray-700">
+                  <p><strong>FV</strong> = Future value of regular contributions</p>
+                  <p><strong>PMT</strong> = Payment amount per period</p>
+                  <p><strong>r, n, t</strong> = Same as compound interest formula</p>
+                </div>
+              </div>
+
+              <div className="bg-green-50 border-l-4 border-green-600 p-4 sm:p-6 rounded-r-lg">
+                <h4 className="font-bold text-gray-900 mb-2 sm:mb-3">Key Insight</h4>
+                <p className="text-sm sm:text-base text-gray-700">The compound interest formula is exponential, not linear. This means your wealth doesn't just grow steadily - it accelerates over time. The longer you invest, the more powerful compounding becomes. A $10,000 investment at 8% grows to $21,589 in 10 years, but $46,610 in 20 years - more than double despite the same 10-year increment!</p>
+              </div>
+            </section>
+
+            {/* Comparison Section */}
+            <section className="bg-gradient-to-br from-white to-purple-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-lg">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">Simple Interest vs Compound Interest</h2>
+              
+              <p className="text-base sm:text-lg text-gray-700 mb-6">Understanding the difference between simple and compound interest is crucial for maximizing investment returns. Let's compare:</p>
+
+              <div className="overflow-x-auto mb-6">
+                <table className="w-full border-collapse bg-white rounded-lg overflow-hidden shadow">
+                  <thead>
+                    <tr className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
+                      <th className="px-4 sm:px-6 py-3 sm:py-4 text-left font-bold text-sm sm:text-base">Feature</th>
+                      <th className="px-4 sm:px-6 py-3 sm:py-4 text-left font-bold text-sm sm:text-base">Simple Interest</th>
+                      <th className="px-4 sm:px-6 py-3 sm:py-4 text-left font-bold text-sm sm:text-base">Compound Interest</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200">
+                    <tr className="hover:bg-purple-50">
+                      <td className="px-4 sm:px-6 py-3 sm:py-4 font-bold text-gray-900 text-sm sm:text-base">Calculation Basis</td>
+                      <td className="px-4 sm:px-6 py-3 sm:py-4 text-gray-700 text-sm sm:text-base">Interest calculated only on principal</td>
+                      <td className="px-4 sm:px-6 py-3 sm:py-4 text-gray-700 text-sm sm:text-base">Interest calculated on principal + accumulated interest</td>
+                    </tr>
+                    <tr className="bg-gray-50 hover:bg-purple-50">
+                      <td className="px-4 sm:px-6 py-3 sm:py-4 font-bold text-gray-900 text-sm sm:text-base">Growth Pattern</td>
+                      <td className="px-4 sm:px-6 py-3 sm:py-4 text-gray-700 text-sm sm:text-base">Linear growth</td>
+                      <td className="px-4 sm:px-6 py-3 sm:py-4 text-gray-700 text-sm sm:text-base">Exponential growth</td>
+                    </tr>
+                    <tr className="hover:bg-purple-50">
+                      <td className="px-4 sm:px-6 py-3 sm:py-4 font-bold text-gray-900 text-sm sm:text-base">Formula</td>
+                      <td className="px-4 sm:px-6 py-3 sm:py-4 text-gray-700 font-mono text-xs sm:text-sm">I = P × r × t</td>
+                      <td className="px-4 sm:px-6 py-3 sm:py-4 text-gray-700 font-mono text-xs sm:text-sm">A = P(1 + r/n)^(nt)</td>
+                    </tr>
+                    <tr className="bg-gray-50 hover:bg-purple-50">
+                      <td className="px-4 sm:px-6 py-3 sm:py-4 font-bold text-gray-900 text-sm sm:text-base">Best For</td>
+                      <td className="px-4 sm:px-6 py-3 sm:py-4 text-gray-700 text-sm sm:text-base">Short-term loans, bonds</td>
+                      <td className="px-4 sm:px-6 py-3 sm:py-4 text-gray-700 text-sm sm:text-base">Long-term investments, savings</td>
+                    </tr>
+                    <tr className="hover:bg-purple-50">
+                      <td className="px-4 sm:px-6 py-3 sm:py-4 font-bold text-gray-900 text-sm sm:text-base">Typical Use</td>
+                      <td className="px-4 sm:px-6 py-3 sm:py-4 text-gray-700 text-sm sm:text-base">Car loans, personal loans</td>
+                      <td className="px-4 sm:px-6 py-3 sm:py-4 text-gray-700 text-sm sm:text-base">Retirement accounts, stocks, mutual funds</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Comparison Example: $10,000 at 6% for 20 Years</h3>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-6">
+                <div className="bg-red-50 border-2 border-red-200 rounded-lg p-4 sm:p-6">
+                  <h4 className="font-bold text-gray-900 mb-3 text-center text-lg">Simple Interest</h4>
+                  <ul className="space-y-2 text-sm sm:text-base text-gray-700">
+                    <li className="flex justify-between"><span>Principal:</span> <span className="font-bold">$10,000</span></li>
+                    <li className="flex justify-between"><span>Interest per year:</span> <span className="font-bold">$600</span></li>
+                    <li className="flex justify-between"><span>Total interest (20 years):</span> <span className="font-bold">$12,000</span></li>
+                    <li className="flex justify-between border-t-2 border-red-300 pt-2 mt-2"><span className="font-bold">Final Amount:</span> <span className="font-bold text-red-600 text-lg">$22,000</span></li>
+                  </ul>
+                </div>
+
+                <div className="bg-green-50 border-2 border-green-200 rounded-lg p-4 sm:p-6">
+                  <h4 className="font-bold text-gray-900 mb-3 text-center text-lg">Compound Interest (Annual)</h4>
+                  <ul className="space-y-2 text-sm sm:text-base text-gray-700">
+                    <li className="flex justify-between"><span>Principal:</span> <span className="font-bold">$10,000</span></li>
+                    <li className="flex justify-between"><span>Growth factor:</span> <span className="font-bold">3.207x</span></li>
+                    <li className="flex justify-between"><span>Total interest (20 years):</span> <span className="font-bold">$22,071</span></li>
+                    <li className="flex justify-between border-t-2 border-green-300 pt-2 mt-2"><span className="font-bold">Final Amount:</span> <span className="font-bold text-green-600 text-lg">$32,071</span></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="bg-purple-100 border-l-4 border-purple-600 p-4 sm:p-6 rounded-r-lg">
+                <h4 className="font-bold text-gray-900 mb-2 sm:mb-3">The Difference is Dramatic!</h4>
+                <p className="text-sm sm:text-base text-gray-700 mb-3">Compound interest generates <strong>$10,071 more</strong> than simple interest over 20 years - an 84% higher return! The gap widens exponentially with longer time periods. At 30 years, compound interest produces $47,435 more than simple interest.</p>
+                <p className="text-sm sm:text-base text-gray-700"><strong>Takeaway:</strong> Always choose compound interest for long-term investments. The "interest on interest" effect becomes increasingly powerful over time.</p>
+              </div>
+
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 mt-6 sm:mt-8">When to Use Each Type</h3>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                <div className="bg-white border-2 border-gray-200 rounded-lg p-4 sm:p-5">
+                  <h4 className="font-bold text-gray-900 mb-2">Use Simple Interest For:</h4>
+                  <ul className="space-y-2 text-sm sm:text-base text-gray-700">
+                    <li className="flex items-start gap-2"><span className="text-red-600 font-bold flex-shrink-0">•</span> <span>Short-term loans (less than 1 year)</span></li>
+                    <li className="flex items-start gap-2"><span className="text-red-600 font-bold flex-shrink-0">•</span> <span>Bonds with fixed interest payments</span></li>
+                    <li className="flex items-start gap-2"><span className="text-red-600 font-bold flex-shrink-0">•</span> <span>Scenarios where interest isn't reinvested</span></li>
+                  </ul>
+                </div>
+
+                <div className="bg-white border-2 border-gray-200 rounded-lg p-4 sm:p-5">
+                  <h4 className="font-bold text-gray-900 mb-2">Use Compound Interest For:</h4>
+                  <ul className="space-y-2 text-sm sm:text-base text-gray-700">
+                    <li className="flex items-start gap-2"><span className="text-green-600 font-bold flex-shrink-0">•</span> <span>Retirement savings (401k, IRA)</span></li>
+                    <li className="flex items-start gap-2"><span className="text-green-600 font-bold flex-shrink-0">•</span> <span>Long-term investment portfolios</span></li>
+                    <li className="flex items-start gap-2"><span className="text-green-600 font-bold flex-shrink-0">•</span> <span>Savings accounts, CDs, money market accounts</span></li>
+                    <li className="flex items-start gap-2"><span className="text-green-600 font-bold flex-shrink-0">•</span> <span>Any investment where earnings are reinvested</span></li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            {/* FAQ Section */}
+            <section className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-lg">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">Frequently Asked Questions (FAQ)</h2>
+              
+              <div className="space-y-6 sm:space-y-8">
+                {/* Question 1 */}
+                <div className="border-b border-gray-200 pb-6 sm:pb-8">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">What is compound interest and how does it work?</h3>
+                  <p className="text-sm sm:text-base text-gray-700 mb-3">Compound interest is interest calculated on both the initial principal and the accumulated interest from previous periods. Unlike simple interest which only earns on the principal, compound interest creates a snowball effect where your money grows exponentially over time.</p>
+                  <p className="text-sm sm:text-base text-gray-700">For example, if you invest $1,000 at 10% annual compound interest, you'll earn $100 in year 1. In year 2, you earn 10% on $1,100 ($110), not just the original $1,000. This "interest on interest" effect accelerates your wealth growth significantly over longer periods.</p>
+                </div>
+
+                {/* Question 2 */}
+                <div className="border-b border-gray-200 pb-6 sm:pb-8">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">How accurate is this compound interest calculator?</h3>
+                  <p className="text-sm sm:text-base text-gray-700 mb-3">Our calculator uses precise mathematical formulas endorsed by financial institutions worldwide. The calculations are accurate for planning purposes and match results from professional financial software.</p>
+                  <p className="text-sm sm:text-base text-gray-700">However, actual investment returns will vary based on market conditions, fees, taxes, and timing of contributions. Use results as projections, not guarantees. For large investment decisions, consult with a certified financial planner.</p>
+                </div>
+
+                {/* Question 3 */}
+                <div className="border-b border-gray-200 pb-6 sm:pb-8">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">What's the difference between daily, monthly, and annual compounding?</h3>
+                  <p className="text-sm sm:text-base text-gray-700 mb-3">Compounding frequency determines how often interest is calculated and added to your balance:</p>
+                  <ul className="space-y-2 text-sm sm:text-base text-gray-700 ml-4">
+                    <li className="flex items-start gap-2"><span className="text-blue-600 font-bold flex-shrink-0">•</span> <strong>Daily compounding (365):</strong> Interest added every day - maximizes returns, common in savings accounts</li>
+                    <li className="flex items-start gap-2"><span className="text-blue-600 font-bold flex-shrink-0">•</span> <strong>Monthly compounding (12):</strong> Interest added monthly - typical for CDs and money market accounts</li>
+                    <li className="flex items-start gap-2"><span className="text-blue-600 font-bold flex-shrink-0">•</span> <strong>Annual compounding (1):</strong> Interest added once per year - simplest but lowest returns</li>
+                  </ul>
+                  <p className="text-sm sm:text-base text-gray-700 mt-3">More frequent compounding produces higher returns. For $10,000 at 5% over 10 years: daily compounding yields $16,487 vs $16,289 with annual compounding - a $198 difference.</p>
+                </div>
+
+                {/* Question 4 */}
+                <div className="border-b border-gray-200 pb-6 sm:pb-8">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">Can I use this calculator for retirement planning (401k, IRA)?</h3>
+                  <p className="text-sm sm:text-base text-gray-700 mb-3">Absolutely! This calculator is ideal for retirement planning. Enable SIP mode to model regular 401k or IRA contributions, set realistic interest rates (typically 6-10% for diversified portfolios), and use the inflation adjustment to see real purchasing power in retirement.</p>
+                  <p className="text-sm sm:text-base text-gray-700">For most accurate retirement projections: use 7-8% annual returns for balanced portfolios, account for 2-3% inflation, include employer match in your contribution amount, and plan for 25-35 year time horizons if you're starting young.</p>
+                </div>
+
+                {/* Question 5 */}
+                <div className="border-b border-gray-200 pb-6 sm:pb-8">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">What is SIP and how does it help my investments grow?</h3>
+                  <p className="text-sm sm:text-base text-gray-700 mb-3">SIP (Systematic Investment Plan) means investing fixed amounts at regular intervals instead of a one-time lump sum. This strategy offers multiple benefits:</p>
+                  <ul className="space-y-2 text-sm sm:text-base text-gray-700 ml-4">
+                    <li className="flex items-start gap-2"><span className="text-green-600 font-bold flex-shrink-0">•</span> <strong>Rupee cost averaging:</strong> Reduces impact of market volatility by buying at various price points</li>
+                    <li className="flex items-start gap-2"><span className="text-green-600 font-bold flex-shrink-0">•</span> <strong>Disciplined saving:</strong> Automated contributions remove emotion from investing</li>
+                    <li className="flex items-start gap-2"><span className="text-green-600 font-bold flex-shrink-0">•</span> <strong>Compound amplification:</strong> Each contribution starts its own compound growth journey</li>
+                    <li className="flex items-start gap-2"><span className="text-green-600 font-bold flex-shrink-0">•</span> <strong>Accessible entry:</strong> Start with small amounts rather than needing large lump sums</li>
+                  </ul>
+                  <p className="text-sm sm:text-base text-gray-700 mt-3">Example: $500 monthly SIP at 8% for 30 years grows to $679,700 (total contribution: $180,000). The same $180,000 lump sum upfront would only grow to $1,809,000 - but few people have that much to start!</p>
+                </div>
+
+                {/* Question 6 */}
+                <div className="border-b border-gray-200 pb-6 sm:pb-8">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">Why should I account for inflation in my calculations?</h3>
+                  <p className="text-sm sm:text-base text-gray-700 mb-3">Inflation erodes purchasing power over time. Without accounting for it, you might think you're wealthy when you actually can't afford the same lifestyle. A million dollars sounds impressive, but at 3% inflation, it will only have the purchasing power of about $400,000 in 30 years.</p>
+                  <p className="text-sm sm:text-base text-gray-700">Always subtract inflation from your nominal returns to find your "real return." If your investment grows at 8% but inflation is 3%, your real return is only 5%. This helps you set realistic expectations and ensure your retirement savings actually maintain their value.</p>
+                </div>
+
+                {/* Question 7 */}
+                <div className="border-b border-gray-200 pb-6 sm:pb-8">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">What interest rate should I use for different investment types?</h3>
+                  <p className="text-sm sm:text-base text-gray-700 mb-3">Use these typical annual return rates as guidelines:</p>
+                  <ul className="space-y-2 text-sm sm:text-base text-gray-700 ml-4">
+                    <li className="flex items-start gap-2"><span className="text-blue-600 font-bold flex-shrink-0">•</span> <strong>Savings accounts:</strong> 0.5-2% (safe, liquid, FDIC insured)</li>
+                    <li className="flex items-start gap-2"><span className="text-blue-600 font-bold flex-shrink-0">•</span> <strong>Certificates of Deposit (CDs):</strong> 1-4% (safe, fixed term)</li>
+                    <li className="flex items-start gap-2"><span className="text-blue-600 font-bold flex-shrink-0">•</span> <strong>Bonds:</strong> 3-6% (moderate risk, fixed income)</li>
+                    <li className="flex items-start gap-2"><span className="text-blue-600 font-bold flex-shrink-0">•</span> <strong>Balanced portfolio (60/40 stocks/bonds):</strong> 6-8% (moderate risk)</li>
+                    <li className="flex items-start gap-2"><span className="text-blue-600 font-bold flex-shrink-0">•</span> <strong>Stock market index funds:</strong> 8-10% (higher risk, historical average)</li>
+                    <li className="flex items-start gap-2"><span className="text-blue-600 font-bold flex-shrink-0">•</span> <strong>Aggressive growth stocks:</strong> 10-15% (high risk, volatile)</li>
+                  </ul>
+                  <p className="text-sm sm:text-base text-gray-700 mt-3">Remember: higher returns come with higher risk. Past performance doesn't guarantee future results. Diversify across asset classes to balance risk and return.</p>
+                </div>
+
+                {/* Question 8 */}
+                <div className="border-b border-gray-200 pb-6 sm:pb-8">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">How long does it take to double my money with compound interest?</h3>
+                  <p className="text-sm sm:text-base text-gray-700 mb-3">Use the "Rule of 72" for a quick estimate: divide 72 by your annual interest rate to find the approximate years to double.</p>
+                  <div className="bg-blue-50 p-4 rounded-lg mt-3 mb-3">
+                    <ul className="space-y-1.5 text-sm sm:text-base text-gray-700">
+                      <li><strong>At 6% interest:</strong> 72 ÷ 6 = 12 years to double</li>
+                      <li><strong>At 8% interest:</strong> 72 ÷ 8 = 9 years to double</li>
+                      <li><strong>At 10% interest:</strong> 72 ÷ 10 = 7.2 years to double</li>
+                      <li><strong>At 12% interest:</strong> 72 ÷ 12 = 6 years to double</li>
+                    </ul>
+                  </div>
+                  <p className="text-sm sm:text-base text-gray-700">This shows why starting early is crucial. At 8%, your money doubles every 9 years. In 36 years, it doubles 4 times: $10,000 → $20,000 → $40,000 → $80,000 → $160,000!</p>
+                </div>
+
+                {/* Question 9 */}
+                <div className="border-b border-gray-200 pb-6 sm:pb-8">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">Should I invest a lump sum or make regular monthly contributions?</h3>
+                  <p className="text-sm sm:text-base text-gray-700 mb-3">Both strategies have merits:</p>
+                  <p className="text-sm sm:text-base text-gray-700 mb-3"><strong>Lump Sum Advantages:</strong> Maximum time in market for compound growth, statistically better returns over long periods, simpler to manage. Best when: you have inheritance or bonus, market is low, you have 10+ year horizon.</p>
+                  <p className="text-sm sm:text-base text-gray-700 mb-3"><strong>Regular Contributions (SIP) Advantages:</strong> Reduces market timing risk through dollar-cost averaging, builds disciplined saving habit, accessible for most people, psychologically easier during volatility. Best when: you're investing from salary, market is volatile, you're just starting out.</p>
+                  <p className="text-sm sm:text-base text-gray-700"><strong>Ideal Approach:</strong> Invest lump sums immediately when you have them, PLUS maintain regular monthly contributions. This combines maximum time in market with consistent savings discipline.</p>
+                </div>
+
+                {/* Question 10 */}
+                <div>
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">Can I withdraw my money early from compound interest investments?</h3>
+                  <p className="text-sm sm:text-base text-gray-700 mb-3">It depends on the investment type:</p>
+                  <ul className="space-y-2 text-sm sm:text-base text-gray-700 ml-4">
+                    <li className="flex items-start gap-2"><span className="text-blue-600 font-bold flex-shrink-0">•</span> <strong>Savings accounts:</strong> Usually penalty-free withdrawals anytime</li>
+                    <li className="flex items-start gap-2"><span className="text-blue-600 font-bold flex-shrink-0">•</span> <strong>CDs:</strong> Early withdrawal penalties (often 3-6 months of interest)</li>
+                    <li className="flex items-start gap-2"><span className="text-blue-600 font-bold flex-shrink-0">•</span> <strong>401k/IRA:</strong> 10% penalty plus taxes if withdrawn before age 59½</li>
+                    <li className="flex items-start gap-2"><span className="text-blue-600 font-bold flex-shrink-0">•</span> <strong>Brokerage accounts:</strong> No penalties, but may owe capital gains taxes</li>
+                  </ul>
+                  <p className="text-sm sm:text-base text-gray-700 mt-3"><strong>Important:</strong> Early withdrawal severely damages compound growth. Withdrawing just $10,000 from a retirement account 20 years early could cost you $46,610 in lost compound growth (at 8% annual returns). Always maintain an emergency fund separate from long-term compound interest investments.</p>
+                </div>
+              </div>
+            </section>
+
+            {/* Related Calculators Section */}
+            <section className="bg-gradient-to-br from-white to-blue-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 shadow-lg">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">Related Financial Calculators</h2>
+              
+              <p className="text-base sm:text-lg text-gray-700 mb-6 sm:mb-8">Explore these powerful financial tools to make informed decisions about your money:</p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                {/* Calculator 1 */}
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-lg hover-elevate transition-all">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Loan Calculator</h3>
+                  <p className="text-sm sm:text-base text-gray-700 mb-4">Calculate monthly payments, total interest, and amortization schedules for personal loans, auto loans, and mortgages.</p>
+                  <p className="text-xs sm:text-sm text-gray-600 mb-3"><strong>Best For:</strong> Planning loan repayments and comparing loan offers</p>
+                  <a href="/tools/loan-calculator" className="inline-block">
+                    <Button variant="outline" size="sm" className="w-full" data-testid="link-loan-calculator">
+                      Calculate Loan Payments
+                    </Button>
+                  </a>
+                </div>
+
+                {/* Calculator 2 */}
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-lg hover-elevate transition-all">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Simple Interest Calculator</h3>
+                  <p className="text-sm sm:text-base text-gray-700 mb-4">Calculate simple interest for short-term investments, bonds, and loans with linear growth patterns.</p>
+                  <p className="text-xs sm:text-sm text-gray-600 mb-3"><strong>Best For:</strong> Short-term loans and fixed-interest investments</p>
+                  <a href="/tools/simple-interest-calculator" className="inline-block">
+                    <Button variant="outline" size="sm" className="w-full" data-testid="link-simple-interest-calculator">
+                      Calculate Simple Interest
+                    </Button>
+                  </a>
+                </div>
+
+                {/* Calculator 3 */}
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-lg hover-elevate transition-all">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">ROI Calculator</h3>
+                  <p className="text-sm sm:text-base text-gray-700 mb-4">Measure return on investment for business ventures, real estate, stocks, and other investment opportunities.</p>
+                  <p className="text-xs sm:text-sm text-gray-600 mb-3"><strong>Best For:</strong> Comparing investment opportunities and business decisions</p>
+                  <a href="/tools/roi-calculator" className="inline-block">
+                    <Button variant="outline" size="sm" className="w-full" data-testid="link-roi-calculator">
+                      Calculate ROI
+                    </Button>
+                  </a>
+                </div>
+
+                {/* Calculator 4 */}
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-lg hover-elevate transition-all">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Mortgage Calculator</h3>
+                  <p className="text-sm sm:text-base text-gray-700 mb-4">Estimate monthly mortgage payments including property tax, insurance, PMI, and HOA fees with amortization schedules.</p>
+                  <p className="text-xs sm:text-sm text-gray-600 mb-3"><strong>Best For:</strong> Home buying decisions and mortgage affordability</p>
+                  <a href="/tools/mortgage-calculator" className="inline-block">
+                    <Button variant="outline" size="sm" className="w-full" data-testid="link-mortgage-calculator">
+                      Calculate Mortgage
+                    </Button>
+                  </a>
+                </div>
+
+                {/* Calculator 5 */}
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-lg hover-elevate transition-all">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">EMI Calculator</h3>
+                  <p className="text-sm sm:text-base text-gray-700 mb-4">Calculate Equated Monthly Installments for personal loans, home loans, car loans with detailed repayment breakdowns.</p>
+                  <p className="text-xs sm:text-sm text-gray-600 mb-3"><strong>Best For:</strong> Indian loan structures and EMI planning</p>
+                  <a href="/tools/emi-calculator" className="inline-block">
+                    <Button variant="outline" size="sm" className="w-full" data-testid="link-emi-calculator">
+                      Calculate EMI
+                    </Button>
+                  </a>
+                </div>
+
+                {/* Calculator 6 */}
+                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-lg hover-elevate transition-all">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Investment Calculator</h3>
+                  <p className="text-sm sm:text-base text-gray-700 mb-4">Project investment portfolio growth with various scenarios including lump sums, regular contributions, and market variations.</p>
+                  <p className="text-xs sm:text-sm text-gray-600 mb-3"><strong>Best For:</strong> Long-term investment strategy and wealth planning</p>
+                  <a href="/tools/investment-calculator" className="inline-block">
+                    <Button variant="outline" size="sm" className="w-full" data-testid="link-investment-calculator">
+                      Plan Investments
+                    </Button>
+                  </a>
+                </div>
+              </div>
+            </section>
+
+            {/* Final CTA Section */}
+            <section className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-10 lg:p-12 shadow-2xl text-white text-center">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">Ready to Watch Your Wealth Grow?</h2>
+              
+              <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 max-w-3xl mx-auto">
+                Start calculating your investment growth today with our free compound interest calculator. No registration, no hidden fees - just powerful financial insights at your fingertips.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-6 sm:mb-8">
+                <div className="flex items-center gap-2 text-white/90">
+                  <span className="text-green-300 font-bold text-lg">✓</span>
+                  <span className="text-sm sm:text-base">100% Free Forever</span>
+                </div>
+                <div className="flex items-center gap-2 text-white/90">
+                  <span className="text-green-300 font-bold text-lg">✓</span>
+                  <span className="text-sm sm:text-base">Instant Accurate Results</span>
+                </div>
+                <div className="flex items-center gap-2 text-white/90">
+                  <span className="text-green-300 font-bold text-lg">✓</span>
+                  <span className="text-sm sm:text-base">No Registration Required</span>
+                </div>
+              </div>
+
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="bg-white text-blue-600 hover:bg-gray-100 font-bold text-base sm:text-lg px-6 sm:px-8 py-4 sm:py-6 mb-6"
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                data-testid="button-scroll-top-cta"
+              >
+                Start Calculating Now
+              </Button>
+
+              <div className="text-sm sm:text-base text-white/80">
+                <p>Need help? Check our comprehensive FAQ above or contact our support team.</p>
+                <p className="mt-2">Share this calculator with friends who are planning their financial future!</p>
+              </div>
+            </section>
+
+          </div>
 
           </div>
       </main>
