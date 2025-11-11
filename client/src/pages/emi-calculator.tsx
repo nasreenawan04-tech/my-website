@@ -2535,7 +2535,7 @@ export default function EMICalculator() {
                     Mortgage Calculator
                   </h3>
                   <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-2 sm:mb-3 line-clamp-2 sm:line-clamp-none">
-                    Calculate mortgage payments with taxes and insurance included
+                    Calculate mortgage payments including taxes, insurance, and PMI
                   </p>
                   <div className="flex items-center text-purple-600 text-xs sm:text-sm font-medium">
                     <span className="group-hover:mr-2 transition-all">Calculate Now</span>
