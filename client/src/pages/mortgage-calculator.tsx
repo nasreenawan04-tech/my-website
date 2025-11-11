@@ -159,7 +159,7 @@ const MortgageCalculator = () => {
     }
   }, [homePrice, interestRate, loanTerm]);
 
-  // Drag scrolling handlers for amortization table
+  // Drag scrolling handlers for amortization table (mouse and touch support)
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!tableScrollRef.current) return;
     setIsDragging(true);
@@ -179,7 +179,26 @@ const MortgageCalculator = () => {
     if (!isDragging || !tableScrollRef.current) return;
     e.preventDefault();
     const x = e.pageX - tableScrollRef.current.offsetLeft;
-    const walk = (x - startX) * 2; // Multiply by 2 for faster scrolling
+    const walk = (x - startX) * 2;
+    tableScrollRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (!tableScrollRef.current) return;
+    setIsDragging(true);
+    setStartX(e.touches[0].pageX - tableScrollRef.current.offsetLeft);
+    setScrollLeft(tableScrollRef.current.scrollLeft);
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging || !tableScrollRef.current) return;
+    e.preventDefault();
+    const x = e.touches[0].pageX - tableScrollRef.current.offsetLeft;
+    const walk = (x - startX) * 2;
     tableScrollRef.current.scrollLeft = scrollLeft - walk;
   };
 
@@ -2258,11 +2277,14 @@ const MortgageCalculator = () => {
                 <p className="text-sm text-gray-600 mb-4">See how your payments are split between principal and interest over time.</p>
                 <div
                   ref={tableScrollRef}
-                  className={`overflow-x-auto -mx-4 sm:mx-0 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+                  className={`overflow-x-auto -mx-4 sm:mx-0 touch-pan-x ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
                   onMouseDown={handleMouseDown}
                   onMouseLeave={handleMouseLeave}
                   onMouseUp={handleMouseUp}
                   onMouseMove={handleMouseMove}
+                  onTouchStart={handleTouchStart}
+                  onTouchEnd={handleTouchEnd}
+                  onTouchMove={handleTouchMove}
                 >
                   <table className="w-full min-w-[600px] select-none">
                     <thead>
