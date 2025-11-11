@@ -2271,6 +2271,913 @@ export default function LoanCalculator() {
             </Card>
           )}
 
+          {/* SEO-Friendly Content Sections */}
+          <div className="mt-8 sm:mt-12 md:mt-16 space-y-8 sm:space-y-12 md:space-y-16">
+            {/* Introduction Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-6 sm:p-8 lg:p-12">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">What is a Loan Calculator?</h2>
+                
+                <p className="text-base sm:text-lg text-gray-700 mb-6 leading-relaxed">
+                  The <strong>Loan Calculator</strong> is a free online financial tool that helps you calculate monthly payments, total interest, and create detailed amortization schedules for any type of loan. Whether you're planning to buy a home, finance a car, start a business, or consolidate debt, this calculator provides instant, accurate results to help you make informed borrowing decisions.
+                </p>
+
+                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 sm:p-8 mb-8">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Why Use Our Loan Calculator?</h3>
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-gray-900">Instant Results</h4>
+                        <p className="text-sm text-gray-600">Get calculations in seconds with real-time updates</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-gray-900">Accurate Calculations</h4>
+                        <p className="text-sm text-gray-600">Uses the standard loan payment formula (M = P[r(1+r)^n]/[(1+r)^n-1])</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-gray-900">100% Free Forever</h4>
+                        <p className="text-sm text-gray-600">No hidden fees, subscriptions, or registration required</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-gray-900">Mobile-Friendly</h4>
+                        <p className="text-sm text-gray-600">Calculate loan payments on any device, anywhere</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-gray-900">Privacy First</h4>
+                        <p className="text-sm text-gray-600">We don't store or share your personal financial data</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Who Benefits from the Loan Calculator?</h3>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                  <div className="bg-white rounded-lg p-5 border-2 border-blue-100 hover:border-blue-300 transition-colors">
+                    <h4 className="font-bold text-gray-900 mb-2">Homebuyers</h4>
+                    <p className="text-sm text-gray-600">Plan your mortgage payments and compare different home loan options before committing</p>
+                  </div>
+                  <div className="bg-white rounded-lg p-5 border-2 border-blue-100 hover:border-blue-300 transition-colors">
+                    <h4 className="font-bold text-gray-900 mb-2">Car Buyers</h4>
+                    <p className="text-sm text-gray-600">Calculate auto loan payments and determine affordable monthly budgets</p>
+                  </div>
+                  <div className="bg-white rounded-lg p-5 border-2 border-blue-100 hover:border-blue-300 transition-colors">
+                    <h4 className="font-bold text-gray-900 mb-2">Business Owners</h4>
+                    <p className="text-sm text-gray-600">Evaluate business loan options and plan cash flow for expansion projects</p>
+                  </div>
+                  <div className="bg-white rounded-lg p-5 border-2 border-blue-100 hover:border-blue-300 transition-colors">
+                    <h4 className="font-bold text-gray-900 mb-2">Students</h4>
+                    <p className="text-sm text-gray-600">Estimate student loan repayments and plan post-graduation budgets</p>
+                  </div>
+                  <div className="bg-white rounded-lg p-5 border-2 border-blue-100 hover:border-blue-300 transition-colors">
+                    <h4 className="font-bold text-gray-900 mb-2">Debt Consolidators</h4>
+                    <p className="text-sm text-gray-600">Compare consolidation loan terms to reduce monthly payments and save on interest</p>
+                  </div>
+                  <div className="bg-white rounded-lg p-5 border-2 border-blue-100 hover:border-blue-300 transition-colors">
+                    <h4 className="font-bold text-gray-900 mb-2">Financial Planners</h4>
+                    <p className="text-sm text-gray-600">Provide quick loan estimates and payment scenarios for clients</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* How to Use Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-6 sm:p-8 lg:p-12">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">How to Use the Loan Calculator</h2>
+                
+                <div className="space-y-6">
+                  <div className="flex gap-4 items-start">
+                    <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-lg">
+                      1
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">Enter Your Loan Amount</h3>
+                      <p className="text-gray-700 mb-3">Input the total amount you want to borrow (principal). This could be the price of a home, car, or the amount needed for your business or personal loan.</p>
+                      <div className="bg-gray-50 rounded-lg p-4">
+                        <p className="text-sm text-gray-600"><strong>Example:</strong> For a $300,000 home mortgage, enter "300000" in the loan amount field.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4 items-start">
+                    <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-lg">
+                      2
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">Enter the Interest Rate</h3>
+                      <p className="text-gray-700 mb-3">Specify the annual interest rate (APR) offered by your lender. This is usually expressed as a percentage.</p>
+                      <div className="bg-gray-50 rounded-lg p-4">
+                        <p className="text-sm text-gray-600"><strong>Example:</strong> If your lender offers 6.5% APR, enter "6.5" in the interest rate field.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4 items-start">
+                    <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-lg">
+                      3
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">Select the Loan Term</h3>
+                      <p className="text-gray-700 mb-3">Choose how long you'll take to repay the loan. You can select years or months depending on your loan agreement.</p>
+                      <div className="bg-gray-50 rounded-lg p-4">
+                        <p className="text-sm text-gray-600"><strong>Example:</strong> A typical home mortgage is 30 years, while car loans are often 5-7 years, and personal loans range from 1-5 years.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4 items-start">
+                    <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 text-white font-bold text-lg">
+                      4
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">Review Your Results</h3>
+                      <p className="text-gray-700 mb-3">Click "Calculate Loan Payment" to see your monthly payment, total interest, total amount paid, and detailed amortization schedule showing how your payments are split between principal and interest over time.</p>
+                      <div className="bg-gray-50 rounded-lg p-4">
+                        <p className="text-sm text-gray-600"><strong>Tip:</strong> Use the comparison feature to evaluate multiple loan scenarios side-by-side and choose the best option for your budget.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-8 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <svg className="w-6 h-6 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                    Pro Tips for Better Results
+                  </h3>
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-3">
+                      <svg className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                      <p className="text-gray-700"><strong>Compare Multiple Scenarios:</strong> Try different loan amounts, interest rates, and terms to find the most affordable monthly payment that fits your budget.</p>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <svg className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                      <p className="text-gray-700"><strong>Check the Amortization Schedule:</strong> Review the payment breakdown to see how much goes to principal vs. interest each month. Early payments have more interest, while later payments pay down more principal.</p>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <svg className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                      <p className="text-gray-700"><strong>Factor in Additional Costs:</strong> Remember that loans often include other expenses like origination fees, closing costs (for mortgages), or insurance. Add these to your total cost estimate for accurate budgeting.</p>
+                    </li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Real-World Examples Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-6 sm:p-8 lg:p-12">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Loan Calculator Examples</h2>
+                <p className="text-gray-700 mb-8 leading-relaxed">See how different loan scenarios affect your monthly payments and total interest. These real-world examples help you understand the impact of loan amount, interest rate, and term length.</p>
+                
+                {/* Example 1: Car Loan */}
+                <div className="mb-10 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 sm:p-8">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Example 1: New Car Purchase</h3>
+                  <p className="text-gray-700 mb-4"><strong>Scenario:</strong> Sarah wants to buy a new car priced at $25,000. She has good credit and qualifies for a 6.5% APR auto loan over 5 years.</p>
+                  
+                  <div className="bg-white rounded-lg p-5 mb-4">
+                    <h4 className="font-bold text-gray-900 mb-3">Input Values:</h4>
+                    <ul className="space-y-2 text-gray-700">
+                      <li><strong>Loan Amount:</strong> $25,000</li>
+                      <li><strong>Interest Rate:</strong> 6.5% APR</li>
+                      <li><strong>Loan Term:</strong> 5 years (60 months)</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-white rounded-lg p-5 mb-4">
+                    <h4 className="font-bold text-gray-900 mb-3">Calculation:</h4>
+                    <pre className="text-sm text-gray-700 whitespace-pre-wrap font-mono">
+Monthly Payment = $25,000 × [0.005417(1+0.005417)^60] / [(1+0.005417)^60-1]
+Monthly Payment = $25,000 × 0.00627
+Monthly Payment = $488.84
+                    </pre>
+                  </div>
+
+                  <div className="bg-white rounded-lg p-5 mb-4">
+                    <h4 className="font-bold text-gray-900 mb-3">Result:</h4>
+                    <ul className="space-y-2 text-gray-700">
+                      <li><strong>Monthly Payment:</strong> $488.84</li>
+                      <li><strong>Total Interest:</strong> $4,330.68</li>
+                      <li><strong>Total Amount Paid:</strong> $29,330.68</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-green-50 rounded-lg p-5">
+                    <h4 className="font-bold text-green-900 mb-2">Action Steps:</h4>
+                    <ul className="space-y-1 text-green-800 text-sm">
+                      <li>✓ Monthly payment of $489 fits within Sarah's $600/month budget</li>
+                      <li>✓ Total interest is reasonable for a 5-year car loan</li>
+                      <li>✓ Sarah can proceed with confidence knowing exact costs</li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Example 2: Home Mortgage */}
+                <div className="mb-10 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6 sm:p-8">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Example 2: First-Time Homebuyer</h3>
+                  <p className="text-gray-700 mb-4"><strong>Scenario:</strong> John and Maria are buying their first home for $300,000 with a 20% down payment. They secured a 30-year fixed mortgage at 7.2% APR.</p>
+                  
+                  <div className="bg-white rounded-lg p-5 mb-4">
+                    <h4 className="font-bold text-gray-900 mb-3">Input Values:</h4>
+                    <ul className="space-y-2 text-gray-700">
+                      <li><strong>Home Price:</strong> $300,000</li>
+                      <li><strong>Down Payment:</strong> $60,000 (20%)</li>
+                      <li><strong>Loan Amount:</strong> $240,000</li>
+                      <li><strong>Interest Rate:</strong> 7.2% APR</li>
+                      <li><strong>Loan Term:</strong> 30 years (360 months)</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-white rounded-lg p-5 mb-4">
+                    <h4 className="font-bold text-gray-900 mb-3">Result:</h4>
+                    <ul className="space-y-2 text-gray-700">
+                      <li><strong>Monthly Payment:</strong> $1,629.55</li>
+                      <li><strong>Total Interest:</strong> $346,638.79</li>
+                      <li><strong>Total Amount Paid:</strong> $586,638.79</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-green-50 rounded-lg p-5">
+                    <h4 className="font-bold text-green-900 mb-2">Key Insights:</h4>
+                    <ul className="space-y-1 text-green-800 text-sm">
+                      <li>✓ Over 30 years, they'll pay $346,639 in interest (144% of principal)</li>
+                      <li>✓ Making extra principal payments can save tens of thousands</li>
+                      <li>✓ Consider a 15-year term to cut interest costs nearly in half</li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Example 3: Business Loan */}
+                <div className="mb-10 bg-gradient-to-r from-orange-50 to-yellow-50 rounded-xl p-6 sm:p-8">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Example 3: Small Business Expansion</h3>
+                  <p className="text-gray-700 mb-4"><strong>Scenario:</strong> A small business owner needs $50,000 to expand operations. The bank offers a business loan at 9.5% APR for 7 years.</p>
+                  
+                  <div className="bg-white rounded-lg p-5 mb-4">
+                    <h4 className="font-bold text-gray-900 mb-3">Input Values:</h4>
+                    <ul className="space-y-2 text-gray-700">
+                      <li><strong>Loan Amount:</strong> $50,000</li>
+                      <li><strong>Interest Rate:</strong> 9.5% APR</li>
+                      <li><strong>Loan Term:</strong> 7 years (84 months)</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-white rounded-lg p-5 mb-4">
+                    <h4 className="font-bold text-gray-900 mb-3">Result:</h4>
+                    <ul className="space-y-2 text-gray-700">
+                      <li><strong>Monthly Payment:</strong> $750.87</li>
+                      <li><strong>Total Interest:</strong> $13,073.08</li>
+                      <li><strong>Total Amount Paid:</strong> $63,073.08</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-green-50 rounded-lg p-5">
+                    <h4 className="font-bold text-green-900 mb-2">Business Planning Tips:</h4>
+                    <ul className="space-y-1 text-green-800 text-sm">
+                      <li>✓ Factor $751/month into cash flow projections</li>
+                      <li>✓ Ensure expansion generates {'>'}$751/month to cover payments</li>
+                      <li>✓ Build 6-month payment reserve ($4,505) before borrowing</li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Example 4: Student Loan */}
+                <div className="mb-10 bg-gradient-to-r from-teal-50 to-cyan-50 rounded-xl p-6 sm:p-8">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Example 4: Student Loan Repayment</h3>
+                  <p className="text-gray-700 mb-4"><strong>Scenario:</strong> A recent graduate has $40,000 in student loans with a 5.8% interest rate on a 10-year standard repayment plan.</p>
+                  
+                  <div className="bg-white rounded-lg p-5 mb-4">
+                    <h4 className="font-bold text-gray-900 mb-3">Input Values:</h4>
+                    <ul className="space-y-2 text-gray-700">
+                      <li><strong>Loan Amount:</strong> $40,000</li>
+                      <li><strong>Interest Rate:</strong> 5.8% APR</li>
+                      <li><strong>Loan Term:</strong> 10 years (120 months)</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-white rounded-lg p-5 mb-4">
+                    <h4 className="font-bold text-gray-900 mb-3">Result:</h4>
+                    <ul className="space-y-2 text-gray-700">
+                      <li><strong>Monthly Payment:</strong> $441.12</li>
+                      <li><strong>Total Interest:</strong> $12,934.82</li>
+                      <li><strong>Total Amount Paid:</strong> $52,934.82</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-green-50 rounded-lg p-5">
+                    <h4 className="font-bold text-green-900 mb-2">Repayment Strategies:</h4>
+                    <ul className="space-y-1 text-green-800 text-sm">
+                      <li>✓ Consider income-driven repayment if payments are unaffordable</li>
+                      <li>✓ Make extra payments toward principal to save on interest</li>
+                      <li>✓ Refinance if credit improves for potentially lower rates</li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Example 5: Debt Consolidation */}
+                <div className="bg-gradient-to-r from-red-50 to-pink-50 rounded-xl p-6 sm:p-8">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Example 5: Debt Consolidation Loan</h3>
+                  <p className="text-gray-700 mb-4"><strong>Scenario:</strong> Lisa has $20,000 in high-interest credit card debt (average 19% APR). She consolidates with a personal loan at 11% APR for 4 years.</p>
+                  
+                  <div className="grid md:grid-cols-2 gap-4 mb-4">
+                    <div className="bg-red-100 border-2 border-red-300 rounded-lg p-5">
+                      <h4 className="font-bold text-red-900 mb-3">Before (Credit Cards at 19% APR):</h4>
+                      <ul className="space-y-2 text-red-800 text-sm">
+                        <li><strong>Monthly Payment:</strong> $547.18</li>
+                        <li><strong>Total Interest:</strong> $6,264.47</li>
+                        <li><strong>Payoff Time:</strong> 48 months</li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-green-100 border-2 border-green-300 rounded-lg p-5">
+                      <h4 className="font-bold text-green-900 mb-3">After (Consolidation at 11% APR):</h4>
+                      <ul className="space-y-2 text-green-800 text-sm">
+                        <li><strong>Monthly Payment:</strong> $519.17</li>
+                        <li><strong>Total Interest:</strong> $4,920.16</li>
+                        <li><strong>Payoff Time:</strong> 48 months</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="bg-white rounded-lg p-5">
+                    <h4 className="font-bold text-gray-900 mb-2">Savings Summary:</h4>
+                    <ul className="space-y-2 text-gray-700">
+                      <li><strong>Monthly Savings:</strong> $28.01</li>
+                      <li><strong>Total Interest Saved:</strong> $1,344.31</li>
+                      <li className="text-green-700 font-bold pt-2 border-t">✓ Consolidation saves Lisa over $1,300 and simplifies payments</li>
+                    </ul>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Understanding Results Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-6 sm:p-8 lg:p-12">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Understanding Your Loan Calculator Results</h2>
+                <p className="text-gray-700 mb-8 leading-relaxed">The Loan Calculator provides comprehensive results to help you understand the true cost of borrowing. Here's what each metric means and how to interpret your results.</p>
+                
+                <div className="space-y-6">
+                  {/* Monthly Payment */}
+                  <div className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-6">
+                    <h3 className="text-xl font-bold text-blue-900 mb-3 flex items-center gap-2">
+                      <span className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-sm">1</span>
+                      Monthly Payment
+                    </h3>
+                    <p className="text-gray-700 mb-3">This is the fixed amount you'll pay each month to repay your loan. It includes both principal (the amount you borrowed) and interest (the cost of borrowing).</p>
+                    <div className="bg-white rounded-lg p-4 mt-3">
+                      <p className="text-sm text-gray-600"><strong>What affects it:</strong> Higher loan amounts increase monthly payments. Longer terms decrease monthly payments but increase total interest. Higher interest rates increase monthly payments.</p>
+                    </div>
+                  </div>
+
+                  {/* Total Interest */}
+                  <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-xl p-6">
+                    <h3 className="text-xl font-bold text-orange-900 mb-3 flex items-center gap-2">
+                      <span className="w-8 h-8 bg-orange-600 rounded-full flex items-center justify-center text-white text-sm">2</span>
+                      Total Interest
+                    </h3>
+                    <p className="text-gray-700 mb-3">The total amount you'll pay in interest over the life of the loan. This is the "cost of borrowing" - money paid to the lender beyond repaying what you borrowed.</p>
+                    <div className="bg-white rounded-lg p-4 mt-3">
+                      <p className="text-sm text-gray-600"><strong>How to reduce it:</strong> Make extra principal payments, choose a shorter loan term, secure a lower interest rate, or make bi-weekly instead of monthly payments.</p>
+                    </div>
+                  </div>
+
+                  {/* Total Amount Paid */}
+                  <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6">
+                    <h3 className="text-xl font-bold text-purple-900 mb-3 flex items-center gap-2">
+                      <span className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center text-white text-sm">3</span>
+                      Total Amount Paid
+                    </h3>
+                    <p className="text-gray-700 mb-3">The complete amount you'll pay over the loan term - your original loan amount plus all interest charges. This shows the true total cost of the loan.</p>
+                    <div className="bg-white rounded-lg p-4 mt-3">
+                      <p className="text-sm text-gray-600"><strong>Example:</strong> On a $200,000 loan at 6% for 30 years, you'll pay $431,676 total ($200,000 principal + $231,676 interest).</p>
+                    </div>
+                  </div>
+
+                  {/* Amortization Schedule */}
+                  <div className="bg-gradient-to-r from-green-50 to-teal-50 rounded-xl p-6">
+                    <h3 className="text-xl font-bold text-green-900 mb-3 flex items-center gap-2">
+                      <span className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center text-white text-sm">4</span>
+                      Amortization Schedule
+                    </h3>
+                    <p className="text-gray-700 mb-3">A detailed month-by-month breakdown showing how each payment is split between principal and interest, plus your remaining balance after each payment.</p>
+                    <div className="bg-white rounded-lg p-4 mt-3">
+                      <p className="text-sm text-gray-600 mb-3"><strong>Key insight:</strong> Early payments are mostly interest, while later payments are mostly principal. This is why making extra payments early saves the most money.</p>
+                      <p className="text-sm text-gray-600"><strong>Use it to:</strong> See when you'll reach 20% equity (to remove PMI), plan extra payments for maximum impact, or understand how refinancing could help.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-8 bg-yellow-50 border-2 border-yellow-200 rounded-xl p-6">
+                  <h3 className="text-xl font-bold text-yellow-900 mb-3">When to Seek Professional Advice</h3>
+                  <ul className="space-y-2 text-gray-700">
+                    <li className="flex items-start gap-2">
+                      <span className="text-yellow-600 font-bold">•</span>
+                      <span>If your debt-to-income ratio exceeds 43% (monthly debt payments {'>'}  43% of gross income)</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-yellow-600 font-bold">•</span>
+                      <span>Before making large financial commitments like home purchases or business loans</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-yellow-600 font-bold">•</span>
+                      <span>If you're considering refinancing and want expert analysis of potential savings</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="text-yellow-600 font-bold">•</span>
+                      <span>When dealing with complex financial situations like multiple loans or debt consolidation</span>
+                    </li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Formula Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-6 sm:p-8 lg:p-12">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Loan Payment Formula Explained</h2>
+                
+                <div className="bg-gradient-to-r from-indigo-50 to-blue-50 rounded-xl p-6 sm:p-8 mb-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">The Standard Loan Payment Formula</h3>
+                  <div className="bg-white rounded-lg p-6 mb-4">
+                    <pre className="text-lg font-bold text-center text-gray-900 whitespace-pre-wrap">
+M = P × [r(1 + r)^n] / [(1 + r)^n - 1]
+                    </pre>
+                  </div>
+                  
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="bg-white rounded-lg p-5">
+                      <h4 className="font-bold text-gray-900 mb-3">Variables:</h4>
+                      <ul className="space-y-2 text-gray-700 text-sm">
+                        <li><strong>M</strong> = Monthly payment amount</li>
+                        <li><strong>P</strong> = Principal (loan amount)</li>
+                        <li><strong>r</strong> = Monthly interest rate (annual rate ÷ 12)</li>
+                        <li><strong>n</strong> = Total number of payments (months)</li>
+                      </ul>
+                    </div>
+                    
+                    <div className="bg-white rounded-lg p-5">
+                      <h4 className="font-bold text-gray-900 mb-3">Example Values:</h4>
+                      <ul className="space-y-2 text-gray-700 text-sm">
+                        <li><strong>P</strong> = $200,000 (loan)</li>
+                        <li><strong>Annual Rate</strong> = 6% (0.06)</li>
+                        <li><strong>r</strong> = 0.06 ÷ 12 = 0.005</li>
+                        <li><strong>n</strong> = 30 years × 12 = 360 months</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Step-by-Step Example Calculation</h3>
+                <p className="text-gray-700 mb-4">Let's calculate the monthly payment for a $200,000 loan at 6% APR for 30 years:</p>
+                
+                <div className="space-y-4">
+                  <div className="bg-gray-50 rounded-lg p-5">
+                    <p className="font-bold text-gray-900 mb-2">Step 1: Convert annual rate to monthly rate</p>
+                    <pre className="text-sm text-gray-700 font-mono">r = 6% ÷ 12 = 0.06 ÷ 12 = 0.005</pre>
+                  </div>
+
+                  <div className="bg-gray-50 rounded-lg p-5">
+                    <p className="font-bold text-gray-900 mb-2">Step 2: Calculate total number of payments</p>
+                    <pre className="text-sm text-gray-700 font-mono">n = 30 years × 12 months = 360 payments</pre>
+                  </div>
+
+                  <div className="bg-gray-50 rounded-lg p-5">
+                    <p className="font-bold text-gray-900 mb-2">Step 3: Calculate (1 + r)^n</p>
+                    <pre className="text-sm text-gray-700 font-mono">(1 + 0.005)^360 = (1.005)^360 = 6.02258</pre>
+                  </div>
+
+                  <div className="bg-gray-50 rounded-lg p-5">
+                    <p className="font-bold text-gray-900 mb-2">Step 4: Apply the formula</p>
+                    <pre className="text-sm text-gray-700 font-mono whitespace-pre-wrap">
+M = $200,000 × [0.005 × 6.02258] / [6.02258 - 1]
+M = $200,000 × [0.0301129] / [5.02258]
+M = $200,000 × 0.00599551
+M = $1,199.10
+                    </pre>
+                  </div>
+
+                  <div className="bg-green-100 border-2 border-green-300 rounded-lg p-5">
+                    <p className="font-bold text-green-900 text-lg">Result: Monthly Payment = $1,199.10</p>
+                  </div>
+                </div>
+
+                <div className="mt-8 bg-blue-50 rounded-xl p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Different Calculation Methods</h3>
+                  <div className="space-y-3">
+                    <div>
+                      <h4 className="font-bold text-gray-900">Fixed-Rate Loans</h4>
+                      <p className="text-sm text-gray-700">The standard formula above applies. Interest rate stays the same throughout the loan term, making payments predictable and easy to budget.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-900">Variable-Rate Loans (ARM)</h4>
+                      <p className="text-sm text-gray-700">Interest rate can change periodically. Use the formula with the current rate, but be aware payments will adjust when rates change. Initial rate is often lower but carries more risk.</p>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-gray-900">Interest-Only Loans</h4>
+                      <p className="text-sm text-gray-700">Monthly payment = Principal × (Annual Rate ÷ 12). You only pay interest initially, with principal due later or at loan end. Higher total cost but lower initial payments.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-6 bg-yellow-50 border-l-4 border-yellow-400 p-5">
+                  <h3 className="font-bold text-yellow-900 mb-2">Accuracy and Limitations</h3>
+                  <p className="text-sm text-gray-700">This calculator provides accurate estimates based on the standard amortization formula used by most lenders. However, actual payments may vary slightly due to: origination fees, PMI (for mortgages {'<'}20% down), property taxes and insurance (for mortgages), prepayment penalties, or rate adjustments (for variable-rate loans). Always confirm final terms with your lender.</p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Comparison Section with Table */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-6 sm:p-8 lg:p-12">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Types of Loans Comparison</h2>
+                <p className="text-gray-700 mb-8 leading-relaxed">Understanding different loan types helps you choose the best financing option for your needs. Here's a comprehensive comparison of the most common loan types.</p>
+                
+                {/* Fixed vs Variable Rate */}
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Fixed-Rate vs. Variable-Rate Loans</h3>
+                <div className="overflow-x-auto mb-10">
+                  <table className="w-full border-collapse bg-white rounded-lg overflow-hidden shadow">
+                    <thead>
+                      <tr className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+                        <th className="p-4 text-left font-bold">Feature</th>
+                        <th className="p-4 text-left font-bold">Fixed-Rate Loan</th>
+                        <th className="p-4 text-left font-bold">Variable-Rate Loan (ARM)</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-200">
+                      <tr className="hover:bg-blue-50">
+                        <td className="p-4 font-semibold text-gray-900">Interest Rate</td>
+                        <td className="p-4 text-gray-700">Stays the same for entire loan term</td>
+                        <td className="p-4 text-gray-700">Changes periodically based on market rates</td>
+                      </tr>
+                      <tr className="hover:bg-blue-50">
+                        <td className="p-4 font-semibold text-gray-900">Monthly Payment</td>
+                        <td className="p-4 text-gray-700">Fixed amount, never changes</td>
+                        <td className="p-4 text-gray-700">Can increase or decrease over time</td>
+                      </tr>
+                      <tr className="hover:bg-blue-50">
+                        <td className="p-4 font-semibold text-gray-900">Predictability</td>
+                        <td className="p-4 text-gray-700">High - Easy to budget</td>
+                        <td className="p-4 text-gray-700">Low - Payments can fluctuate</td>
+                      </tr>
+                      <tr className="hover:bg-blue-50">
+                        <td className="p-4 font-semibold text-gray-900">Initial Rate</td>
+                        <td className="p-4 text-gray-700">Market rate at origination</td>
+                        <td className="p-4 text-gray-700">Often lower than fixed rate (teaser rate)</td>
+                      </tr>
+                      <tr className="hover:bg-blue-50">
+                        <td className="p-4 font-semibold text-gray-900">Risk Level</td>
+                        <td className="p-4 text-gray-700">Lower - No payment surprises</td>
+                        <td className="p-4 text-gray-700">Higher - Rates could increase significantly</td>
+                      </tr>
+                      <tr className="hover:bg-blue-50">
+                        <td className="p-4 font-semibold text-gray-900">Best For</td>
+                        <td className="p-4 text-gray-700">Long-term homeowners, stable budgets</td>
+                        <td className="p-4 text-gray-700">Short-term ownership, risk-tolerant borrowers</td>
+                      </tr>
+                      <tr className="hover:bg-blue-50">
+                        <td className="p-4 font-semibold text-gray-900">Total Cost</td>
+                        <td className="p-4 text-gray-700">Predictable from day one</td>
+                        <td className="p-4 text-gray-700">Uncertain - depends on rate changes</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Secured vs Unsecured */}
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Secured vs. Unsecured Loans</h3>
+                <div className="overflow-x-auto mb-8">
+                  <table className="w-full border-collapse bg-white rounded-lg overflow-hidden shadow">
+                    <thead>
+                      <tr className="bg-gradient-to-r from-purple-600 to-pink-600 text-white">
+                        <th className="p-4 text-left font-bold">Feature</th>
+                        <th className="p-4 text-left font-bold">Secured Loan</th>
+                        <th className="p-4 text-left font-bold">Unsecured Loan</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-200">
+                      <tr className="hover:bg-purple-50">
+                        <td className="p-4 font-semibold text-gray-900">Collateral Required</td>
+                        <td className="p-4 text-gray-700">Yes (home, car, assets)</td>
+                        <td className="p-4 text-gray-700">No collateral needed</td>
+                      </tr>
+                      <tr className="hover:bg-purple-50">
+                        <td className="p-4 font-semibold text-gray-900">Interest Rate</td>
+                        <td className="p-4 text-gray-700">Lower (3-8% typical)</td>
+                        <td className="p-4 text-gray-700">Higher (7-20% typical)</td>
+                      </tr>
+                      <tr className="hover:bg-purple-50">
+                        <td className="p-4 font-semibold text-gray-900">Loan Amounts</td>
+                        <td className="p-4 text-gray-700">Higher limits (up to millions)</td>
+                        <td className="p-4 text-gray-700">Lower limits ($1,000-$100,000)</td>
+                      </tr>
+                      <tr className="hover:bg-purple-50">
+                        <td className="p-4 font-semibold text-gray-900">Approval Requirements</td>
+                        <td className="p-4 text-gray-700">Moderate - Value of collateral matters</td>
+                        <td className="p-4 text-gray-700">Stricter - Credit score critical</td>
+                      </tr>
+                      <tr className="hover:bg-purple-50">
+                        <td className="p-4 font-semibold text-gray-900">Default Consequences</td>
+                        <td className="p-4 text-gray-700">Lender can seize collateral</td>
+                        <td className="p-4 text-gray-700">Credit damage, collections, lawsuits</td>
+                      </tr>
+                      <tr className="hover:bg-purple-50">
+                        <td className="p-4 font-semibold text-gray-900">Typical Examples</td>
+                        <td className="p-4 text-gray-700">Mortgages, auto loans, home equity</td>
+                        <td className="p-4 text-gray-700">Personal loans, credit cards, student loans</td>
+                      </tr>
+                      <tr className="hover:bg-purple-50">
+                        <td className="p-4 font-semibold text-gray-900">Best For</td>
+                        <td className="p-4 text-gray-700">Large purchases, lower rates</td>
+                        <td className="p-4 text-gray-700">Quick funding, no collateral available</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="bg-green-50 border-2 border-green-200 rounded-xl p-6">
+                    <h4 className="font-bold text-green-900 mb-3">When to Choose Fixed-Rate Secured:</h4>
+                    <ul className="space-y-2 text-green-800 text-sm">
+                      <li>✓ Planning to own home/car for 5+ years</li>
+                      <li>✓ Want predictable monthly budgeting</li>
+                      <li>✓ Have valuable collateral to offer</li>
+                      <li>✓ Seeking lowest possible interest rate</li>
+                      <li>✓ Comfortable with long-term commitment</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-6">
+                    <h4 className="font-bold text-blue-900 mb-3">When to Choose Variable or Unsecured:</h4>
+                    <ul className="space-y-2 text-blue-800 text-sm">
+                      <li>✓ Plan to sell/refinance within 3-5 years</li>
+                      <li>✓ Can afford potential payment increases</li>
+                      <li>✓ Don't have collateral to offer</li>
+                      <li>✓ Need quick approval without appraisals</li>
+                      <li>✓ Want flexibility to pay off early</li>
+                    </ul>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* FAQ Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-6 sm:p-8 lg:p-12">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Frequently Asked Questions (FAQ)</h2>
+                
+                <div className="space-y-6">
+                  {/* General Questions */}
+                  <div>
+                    <h3 className="text-xl font-bold text-blue-900 mb-4 pb-2 border-b-2 border-blue-200">General Questions</h3>
+                    
+                    <div className="mb-6">
+                      <h4 className="text-lg font-bold text-gray-900 mb-2">What is a Loan Calculator and how does it work?</h4>
+                      <p className="text-gray-700 leading-relaxed">A Loan Calculator is a financial tool that helps you estimate monthly payments, total interest, and repayment schedules for any loan. It uses the standard amortization formula M = P[r(1+r)^n]/[(1+r)^n-1] where M is the monthly payment, P is the principal amount, r is the monthly interest rate, and n is the number of payments. Simply enter your loan amount, interest rate, and term length to get instant, accurate results showing exactly how much you'll pay each month and over the life of the loan.</p>
+                    </div>
+
+                    <div className="mb-6">
+                      <h4 className="text-lg font-bold text-gray-900 mb-2">Is the Loan Calculator accurate?</h4>
+                      <p className="text-gray-700 leading-relaxed">Yes, our Loan Calculator uses the industry-standard amortization formula employed by banks and financial institutions worldwide. The calculations are mathematically precise for fixed-rate loans. However, your actual payment may vary slightly due to additional costs like origination fees, PMI (private mortgage insurance), property taxes, homeowners insurance, or variable interest rate adjustments. Always confirm final loan terms with your lender before signing any agreements.</p>
+                    </div>
+
+                    <div className="mb-6">
+                      <h4 className="text-lg font-bold text-gray-900 mb-2">How often should I use the Loan Calculator?</h4>
+                      <p className="text-gray-700 leading-relaxed">Use the Loan Calculator whenever you're considering borrowing money or want to understand your current loans better. Specifically: before applying for any loan to determine affordability, when comparing offers from different lenders, to evaluate the impact of making extra payments, when considering refinancing options, annually to review your loan strategy, or when planning major purchases like homes, cars, or business equipment.</p>
+                    </div>
+                  </div>
+
+                  {/* Technical Questions */}
+                  <div>
+                    <h3 className="text-xl font-bold text-blue-900 mb-4 pb-2 border-b-2 border-blue-200">Technical Questions</h3>
+                    
+                    <div className="mb-6">
+                      <h4 className="text-lg font-bold text-gray-900 mb-2">What formula does the Loan Calculator use?</h4>
+                      <p className="text-gray-700 leading-relaxed mb-3">The calculator uses the standard loan payment formula: M = P × [r(1+r)^n] / [(1+r)^n-1]. This calculates the fixed monthly payment for a fully amortizing loan where:</p>
+                      <ul className="list-disc list-inside text-gray-700 space-y-1 ml-4">
+                        <li>M = Monthly payment amount</li>
+                        <li>P = Principal (original loan amount)</li>
+                        <li>r = Monthly interest rate (annual rate divided by 12)</li>
+                        <li>n = Total number of monthly payments (years × 12)</li>
+                      </ul>
+                      <p className="text-gray-700 mt-3">This formula ensures that if you make the calculated payment every month, you'll pay off the loan completely by the end of the term.</p>
+                    </div>
+
+                    <div className="mb-6">
+                      <h4 className="text-lg font-bold text-gray-900 mb-2">Why are there different calculation methods?</h4>
+                      <p className="text-gray-700 leading-relaxed">Different loan types require different calculations. Fixed-rate loans use the standard amortization formula for consistent payments. Variable-rate loans (ARMs) require periodic recalculation when rates adjust. Interest-only loans calculate only the interest portion initially, with principal payments beginning later. Balloon loans have small regular payments with a large final payment. Simple interest loans recalculate interest daily based on the current balance. Each method serves different borrower needs and financial situations.</p>
+                    </div>
+                  </div>
+
+                  {/* Comparison Questions */}
+                  <div>
+                    <h3 className="text-xl font-bold text-blue-900 mb-4 pb-2 border-b-2 border-blue-200">Comparison Questions</h3>
+                    
+                    <div className="mb-6">
+                      <h4 className="text-lg font-bold text-gray-900 mb-2">Loan Calculator vs. Mortgage Calculator - Which is better?</h4>
+                      <p className="text-gray-700 leading-relaxed">Both use the same underlying formula, but Mortgage Calculators include additional fields specific to home loans like property taxes, homeowners insurance, PMI, and HOA fees. Use a Mortgage Calculator for home purchases since it provides a more complete picture of your total monthly housing cost. Use a general Loan Calculator for auto loans, personal loans, student loans, or business loans where these additional costs don't apply. For pure principal and interest calculations, both will give identical results.</p>
+                    </div>
+
+                    <div className="mb-6">
+                      <h4 className="text-lg font-bold text-gray-900 mb-2">Can the Loan Calculator replace professional financial advice?</h4>
+                      <p className="text-gray-700 leading-relaxed">No, the Loan Calculator is an educational tool for estimates and comparisons, not a substitute for professional advice. Consult with a financial advisor, certified financial planner, or loan officer for: complex debt situations involving multiple loans, major financial decisions like buying a home, determining how much you can afford to borrow, navigating difficult credit situations, understanding tax implications, or developing comprehensive debt repayment strategies. Professionals can account for your complete financial picture, which calculators cannot.</p>
+                    </div>
+                  </div>
+
+                  {/* Privacy & Security */}
+                  <div>
+                    <h3 className="text-xl font-bold text-blue-900 mb-4 pb-2 border-b-2 border-blue-200">Privacy & Security</h3>
+                    
+                    <div className="mb-6">
+                      <h4 className="text-lg font-bold text-gray-900 mb-2">Do you store my loan information?</h4>
+                      <p className="text-gray-700 leading-relaxed">No, we do not store, save, or transmit any loan information you enter into the calculator. All calculations happen entirely in your web browser using client-side JavaScript. Your loan details never leave your device or get sent to our servers. We don't collect, track, or save any financial data. You can use the calculator with complete privacy and confidence. For your peace of mind, you can even use it offline once the page has loaded.</p>
+                    </div>
+
+                    <div className="mb-6">
+                      <h4 className="text-lg font-bold text-gray-900 mb-2">Is my data safe when using the Loan Calculator?</h4>
+                      <p className="text-gray-700 leading-relaxed">Absolutely. Since all calculations occur locally in your browser with no server communication, there's no risk of data interception or unauthorized access. We use industry-standard HTTPS encryption for the website itself, but more importantly, your financial information never leaves your device. We don't require registration, login, or any personal information. You maintain complete control and privacy over your data. This calculator is as safe as using a physical calculator - your information is yours alone.</p>
+                    </div>
+                  </div>
+
+                  {/* Troubleshooting */}
+                  <div>
+                    <h3 className="text-xl font-bold text-blue-900 mb-4 pb-2 border-b-2 border-blue-200">Troubleshooting</h3>
+                    
+                    <div className="mb-6">
+                      <h4 className="text-lg font-bold text-gray-900 mb-2">Why am I getting an error message?</h4>
+                      <p className="text-gray-700 leading-relaxed mb-3">Common causes of error messages include:</p>
+                      <ul className="list-disc list-inside text-gray-700 space-y-1 ml-4">
+                        <li><strong>Loan amount:</strong> Must be greater than $0 and typically under $100 million</li>
+                        <li><strong>Interest rate:</strong> Should be between 0.01% and 50% (enter as number, not percentage symbol)</li>
+                        <li><strong>Loan term:</strong> Must be at least 1 month and typically under 50 years</li>
+                        <li><strong>Invalid characters:</strong> Use only numbers and decimal points, no commas or letters</li>
+                      </ul>
+                      <p className="text-gray-700 mt-3">If problems persist, try refreshing your browser or clearing your cache. The calculator works best on modern browsers (Chrome, Firefox, Safari, Edge).</p>
+                    </div>
+
+                    <div>
+                      <h4 className="text-lg font-bold text-gray-900 mb-2">My results seem incorrect. Why?</h4>
+                      <p className="text-gray-700 leading-relaxed mb-3">If your results don't match expectations, check these common issues:</p>
+                      <ul className="list-disc list-inside text-gray-700 space-y-1 ml-4">
+                        <li><strong>Interest rate format:</strong> Enter 6.5 for 6.5%, not 0.065</li>
+                        <li><strong>Term units:</strong> Verify you selected years vs. months correctly</li>
+                        <li><strong>Comparing to lender quotes:</strong> Their numbers may include fees, insurance, or taxes not in base payment</li>
+                        <li><strong>Rounding differences:</strong> Minor variations (few cents) are normal due to rounding methods</li>
+                        <li><strong>Variable vs. fixed rates:</strong> ARMs change over time; calculator shows current rate only</li>
+                      </ul>
+                      <p className="text-gray-700 mt-3">For loans with points, fees, or special terms, consult your lender for precise payment amounts.</p>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Related Tools Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-6 sm:p-8 lg:p-12">
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Related Financial Calculators</h2>
+                <p className="text-gray-700 mb-8">Explore our other free financial tools to make better money decisions and plan your financial future with confidence.</p>
+                
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <a href="/tools/mortgage-calculator" className="block bg-gradient-to-br from-blue-50 to-indigo-100 hover:from-blue-100 hover:to-indigo-200 rounded-xl p-6 transition-all hover:shadow-lg border-2 border-blue-200 hover:border-blue-300">
+                    <h3 className="text-xl font-bold text-blue-900 mb-3">Mortgage Calculator</h3>
+                    <p className="text-gray-700 text-sm mb-4">Calculate home loan payments including property taxes, insurance, and PMI. Perfect for homebuyers planning their purchase.</p>
+                    <p className="text-blue-600 font-semibold text-sm">Calculate Mortgage →</p>
+                  </a>
+
+                  <a href="/tools/roi-calculator" className="block bg-gradient-to-br from-green-50 to-emerald-100 hover:from-green-100 hover:to-emerald-200 rounded-xl p-6 transition-all hover:shadow-lg border-2 border-green-200 hover:border-green-300">
+                    <h3 className="text-xl font-bold text-green-900 mb-3">ROI Calculator</h3>
+                    <p className="text-gray-700 text-sm mb-4">Measure return on investment for business projects, marketing campaigns, or investment portfolios. Make data-driven decisions.</p>
+                    <p className="text-green-600 font-semibold text-sm">Calculate ROI →</p>
+                  </a>
+
+                  <a href="/tools/compound-interest-calculator" className="block bg-gradient-to-br from-purple-50 to-pink-100 hover:from-purple-100 hover:to-pink-200 rounded-xl p-6 transition-all hover:shadow-lg border-2 border-purple-200 hover:border-purple-300">
+                    <h3 className="text-xl font-bold text-purple-900 mb-3">Compound Interest Calculator</h3>
+                    <p className="text-gray-700 text-sm mb-4">See how your investments grow over time with compound interest. Plan for retirement and long-term financial goals.</p>
+                    <p className="text-purple-600 font-semibold text-sm">Calculate Growth →</p>
+                  </a>
+
+                  <a href="/tools/debt-payoff-calculator" className="block bg-gradient-to-br from-orange-50 to-yellow-100 hover:from-orange-100 hover:to-yellow-200 rounded-xl p-6 transition-all hover:shadow-lg border-2 border-orange-200 hover:border-orange-300">
+                    <h3 className="text-xl font-bold text-orange-900 mb-3">Debt Payoff Calculator</h3>
+                    <p className="text-gray-700 text-sm mb-4">Create a strategic plan to pay off credit cards and loans faster. Compare different payoff strategies and save on interest.</p>
+                    <p className="text-orange-600 font-semibold text-sm">Plan Payoff →</p>
+                  </a>
+
+                  <a href="/tools/investment-calculator" className="block bg-gradient-to-br from-teal-50 to-cyan-100 hover:from-teal-100 hover:to-cyan-200 rounded-xl p-6 transition-all hover:shadow-lg border-2 border-teal-200 hover:border-teal-300">
+                    <h3 className="text-xl font-bold text-teal-900 mb-3">Investment Calculator</h3>
+                    <p className="text-gray-700 text-sm mb-4">Project future value of your investments with regular contributions. Factor in inflation and different return scenarios.</p>
+                    <p className="text-teal-600 font-semibold text-sm">Calculate Returns →</p>
+                  </a>
+
+                  <a href="/tools/savings-calculator" className="block bg-gradient-to-br from-red-50 to-pink-100 hover:from-red-100 hover:to-pink-200 rounded-xl p-6 transition-all hover:shadow-lg border-2 border-red-200 hover:border-red-300">
+                    <h3 className="text-xl font-bold text-red-900 mb-3">Savings Calculator</h3>
+                    <p className="text-gray-700 text-sm mb-4">Determine how much to save monthly to reach your financial goals. Plan for emergencies, vacations, or major purchases.</p>
+                    <p className="text-red-600 font-semibold text-sm">Plan Savings →</p>
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Final Call-to-Action */}
+            <Card className="bg-gradient-to-br from-blue-600 to-indigo-700 text-white shadow-2xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-6 sm:p-8 lg:p-12 text-center">
+                <h2 className="text-3xl sm:text-4xl font-bold mb-4">Ready to Calculate Your Loan Payments?</h2>
+                <p className="text-lg sm:text-xl text-blue-100 mb-8 max-w-3xl mx-auto">Get instant, accurate loan estimates in seconds. Make informed borrowing decisions with confidence.</p>
+                
+                <div className="grid sm:grid-cols-3 gap-6 mb-8 max-w-4xl mx-auto">
+                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+                    <div className="text-4xl font-bold text-yellow-300 mb-2">100%</div>
+                    <div className="text-blue-100">Free Forever</div>
+                  </div>
+                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+                    <div className="text-4xl font-bold text-yellow-300 mb-2">{'<'}2s</div>
+                    <div className="text-blue-100">Instant Results</div>
+                  </div>
+                  <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+                    <div className="text-4xl font-bold text-yellow-300 mb-2">0</div>
+                    <div className="text-blue-100">Data Stored</div>
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+                  <button 
+                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                    className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-4 rounded-full font-bold text-lg transition-all hover:scale-105 shadow-xl"
+                  >
+                    Use Calculator Now
+                  </button>
+                  <a 
+                    href="/tools" 
+                    className="bg-blue-500 hover:bg-blue-400 text-white px-8 py-4 rounded-full font-bold text-lg transition-all hover:scale-105"
+                  >
+                    Explore All Tools
+                  </a>
+                </div>
+
+                <div className="border-t border-white/20 pt-8">
+                  <p className="text-blue-100 mb-4 text-sm">Found this helpful? Share with friends and family:</p>
+                  <div className="flex gap-4 justify-center flex-wrap">
+                    <button className="bg-white/20 hover:bg-white/30 backdrop-blur-sm px-6 py-2 rounded-full text-sm font-semibold transition-all">
+                      Share on Facebook
+                    </button>
+                    <button className="bg-white/20 hover:bg-white/30 backdrop-blur-sm px-6 py-2 rounded-full text-sm font-semibold transition-all">
+                      Share on Twitter
+                    </button>
+                    <button className="bg-white/20 hover:bg-white/30 backdrop-blur-sm px-6 py-2 rounded-full text-sm font-semibold transition-all">
+                      Share on LinkedIn
+                    </button>
+                    <button className="bg-white/20 hover:bg-white/30 backdrop-blur-sm px-6 py-2 rounded-full text-sm font-semibold transition-all">
+                      Copy Link
+                    </button>
+                  </div>
+                </div>
+
+                <div className="mt-8 text-blue-200 text-sm">
+                  <p><strong>Last Updated:</strong> January 10, 2025 | <strong>Author:</strong> DapsiWow Financial Tools Team</p>
+                </div>
+              </CardContent>
+            </Card>
+
+          </div>
+
           
         </div>
       </main>
