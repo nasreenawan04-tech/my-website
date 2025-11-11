@@ -147,37 +147,11 @@ export default function LoanCalculator() {
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging) return;
+    if (!isDragging || !tableScrollRef.current) return;
     e.preventDefault();
-    
-    if (tableScrollRef.current && tableScrollRef.current.contains(e.target as Node)) {
-      const x = e.pageX - tableScrollRef.current.offsetLeft;
-      const walk = (x - startX) * 2;
-      tableScrollRef.current.scrollLeft = scrollLeft - walk;
-    } else if (comparisonScrollRef.current && comparisonScrollRef.current.contains(e.target as Node)) {
-      const x = e.pageX - comparisonScrollRef.current.offsetLeft;
-      const walk = (x - startX) * 2;
-      comparisonScrollRef.current.scrollLeft = scrollLeft - walk;
-    }
-  };
-
-  const handleTouchStart = (e: React.TouchEvent, ref: React.RefObject<HTMLDivElement>) => {
-    if (!ref.current) return;
-    setIsDragging(true);
-    setStartX(e.touches[0].pageX - ref.current.offsetLeft);
-    setScrollLeft(ref.current.scrollLeft);
-  };
-
-  const handleTouchEnd = () => {
-    setIsDragging(false);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent, ref: React.RefObject<HTMLDivElement>) => {
-    if (!isDragging || !ref.current) return;
-    e.preventDefault();
-    const x = e.touches[0].pageX - ref.current.offsetLeft;
+    const x = e.pageX - tableScrollRef.current.offsetLeft;
     const walk = (x - startX) * 2;
-    ref.current.scrollLeft = scrollLeft - walk;
+    tableScrollRef.current.scrollLeft = scrollLeft - walk;
   };
 
   const calculateLoan = async () => {
@@ -2256,18 +2230,8 @@ export default function LoanCalculator() {
                   </Button>
                 </div>
                 <p className="text-sm text-gray-600 mb-4">Compare different loan scenarios side-by-side to find the best option.</p>
-                <div
-                  ref={comparisonScrollRef}
-                  className={`overflow-x-auto -mx-4 sm:mx-0 touch-pan-x ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
-                  onMouseDown={(e) => handleMouseDown(e, comparisonScrollRef)}
-                  onMouseLeave={handleMouseLeave}
-                  onMouseUp={handleMouseUp}
-                  onMouseMove={handleMouseMove}
-                  onTouchStart={(e) => handleTouchStart(e, comparisonScrollRef)}
-                  onTouchEnd={handleTouchEnd}
-                  onTouchMove={handleTouchMove}
-                >
-                  <table className="w-full min-w-[600px] select-none" data-testid="comparison-table">
+                <div className="overflow-x-auto -mx-4 sm:mx-0">
+                  <table className="w-full min-w-[600px]" data-testid="comparison-table">
                     <thead>
                       <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
                         <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-gray-900 text-xs sm:text-sm rounded-l-lg">Loan</th>
