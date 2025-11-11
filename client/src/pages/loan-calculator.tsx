@@ -1186,8 +1186,8 @@ export default function LoanCalculator() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>Loan Calculator 2025: Monthly Payments & Amortization</title>
-        <meta name="description" content="Calculate loan payments instantly. Free tool for monthly payments, amortization schedules & interest totals. Compare all loan types. Trusted by 2.5M+!" />
+        <title>Loan Calculator - Monthly Payments Instantly | DapsiWow</title>
+        <meta name="description" content="Calculate loan payments with our free Loan Calculator. Get monthly payment, interest & amortization. Compare loans easily. Free, instant results!" />
         <meta name="keywords" content="loan calculator, loan payment calculator, monthly payment calculator, EMI calculator, amortization calculator, personal loan calculator, auto loan calculator, home loan calculator, mortgage calculator, loan calculator with extra payments, calculate loan payments, free loan calculator, debt calculator, business loan calculator, loan interest calculator, loan payoff calculator, loan amortization calculator, student loan calculator, debt consolidation calculator, loan comparison calculator, how to calculate loan payments, loan calculator 2025, best loan calculator, online loan calculator" />
         
         <meta http-equiv="content-language" content="en-US" />
@@ -1205,23 +1205,23 @@ export default function LoanCalculator() {
         <meta name="date" content="2025-01-10" />
         <meta name="last-modified" content="2025-01-10" />
         
-        <meta property="og:title" content="Loan Calculator: Monthly Payments & Amortization 2025" />
-        <meta property="og:description" content="Calculate loan payments instantly. Free tool for monthly payments, amortization & interest. Compare all loan types. Trusted by 2.5M+ borrowers!" />
+        <meta property="og:title" content="Loan Calculator - Monthly Payments Instantly | DapsiWow" />
+        <meta property="og:description" content="Calculate loan payments with our free Loan Calculator. Get monthly payment, interest & amortization. Compare loans easily. Free, instant results!" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dapsiwow.com/tools/loan-calculator" />
         <meta property="og:image" content="https://dapsiwow.com/og-loan-calculator.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Free Loan Calculator - Calculate Monthly Payments, Interest & Amortization Schedule" />
+        <meta property="og:image:alt" content="Free Loan Calculator - Monthly Payments, Interest & Amortization | DapsiWow" />
         <meta property="og:site_name" content="DapsiWow - Free Financial Tools" />
         <meta property="og:locale" content="en_US" />
         <meta property="og:updated_time" content="2025-01-10T00:00:00Z" />
         
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Loan Calculator: Monthly Payments & Amortization" />
-        <meta name="twitter:description" content="Calculate loan payments instantly. Free tool for monthly payments, amortization & interest totals. Compare all loan types. Trusted by 2.5M+ users!" />
+        <meta name="twitter:title" content="Loan Calculator - Monthly Payments Instantly | DapsiWow" />
+        <meta name="twitter:description" content="Calculate loan payments with our free Loan Calculator. Get monthly payment, interest & amortization. Compare loans easily. Free, instant results!" />
         <meta name="twitter:image" content="https://dapsiwow.com/twitter-loan-calculator.jpg" />
-        <meta name="twitter:image:alt" content="Loan Calculator Tool - Calculate Monthly Loan Payments Free" />
+        <meta name="twitter:image:alt" content="Free Loan Calculator - Monthly Payments, Interest & Amortization Tool" />
         <meta name="twitter:site" content="@DapsiWow" />
         <meta name="twitter:creator" content="@DapsiWow" />
         
