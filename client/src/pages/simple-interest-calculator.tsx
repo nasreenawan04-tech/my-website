@@ -1089,7 +1089,7 @@ export default function SimpleInterestCalculator() {
                 </span>
               </h1>
               <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
-                Free online simple interest calculator for loans, savings, and investments. Calculate interest using the formula I = P × R × T (Interest = Principal × Rate × Time). Get instant results with monthly breakdown, yearly projections, visual charts, and multiple currency support. Perfect for auto loans, personal loans, bonds, certificates of deposit, and financial planning. 100% free, no registration required.
+                Calculate simple interest instantly using I = P × R × T. Get detailed breakdowns with visual charts for loans, savings, and investments. Free calculator with multi-currency support—no registration needed.
               </p>
 
               <div className="flex flex-wrap justify-center gap-4 sm:gap-6 pt-4">
