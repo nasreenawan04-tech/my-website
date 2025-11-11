@@ -116,7 +116,7 @@ export default function BusinessLoanCalculator() {
     if (principal <= 0 || annualRate <= 0 || termMonths <= 0) return;
 
     let monthlyPayment;
-
+    
     if (loanType === 'line-of-credit') {
       monthlyPayment = principal * rate;
     } else {
@@ -130,7 +130,7 @@ export default function BusinessLoanCalculator() {
     for (let month = 1; month <= termMonths && currentBalance > 0.01; month++) {
       const interestPayment = currentBalance * rate;
       const principalPayment = loanType === 'line-of-credit' ? 0 : Math.min(monthlyPayment - interestPayment, currentBalance);
-
+      
       if (loanType !== 'line-of-credit') {
         currentBalance -= principalPayment;
       }
@@ -146,11 +146,11 @@ export default function BusinessLoanCalculator() {
         });
       }
     }
-
+    
     const totalAmount = loanType === 'line-of-credit' ? totalInterestPaid + principal : monthlyPayment * termMonths;
     const totalInterest = loanType === 'line-of-credit' ? totalInterestPaid : totalAmount - principal;
     const yearlyPayment = monthlyPayment * 12;
-
+    
     const debtServiceCoverage = revenue > 0 ? revenue / yearlyPayment : 0;
     const loanToValue = collateral > 0 ? (principal / collateral) * 100 : 0;
 
@@ -203,17 +203,17 @@ export default function BusinessLoanCalculator() {
     // Header
     doc.setFillColor(59, 130, 246);
     doc.rect(0, 0, pageWidth, 38, 'F');
-
+    
     doc.setFontSize(26);
     doc.setTextColor(255, 255, 255);
     doc.setFont('helvetica', 'bold');
     doc.text('DapsiWow', pageWidth / 2, yPos + 5, { align: 'center' });
-
+    
     yPos += 14;
     doc.setFontSize(11);
     doc.setFont('helvetica', 'normal');
     doc.text('Business Loan Calculation Report', pageWidth / 2, yPos, { align: 'center' });
-
+    
     yPos += 6;
     doc.setFontSize(8);
     doc.setTextColor(230, 240, 255);
@@ -230,23 +230,23 @@ export default function BusinessLoanCalculator() {
     doc.setDrawColor(59, 130, 246);
     doc.setLineWidth(1);
     doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 42, 3, 3, 'FD');
-
+    
     yPos += 6;
     doc.setFontSize(9);
     doc.setTextColor(100, 100, 100);
     doc.setFont('helvetica', 'normal');
     doc.text('EXECUTIVE SUMMARY', pageWidth / 2, yPos, { align: 'center' });
-
+    
     yPos += 8;
     doc.setFontSize(20);
     doc.setTextColor(59, 130, 246);
     doc.setFont('helvetica', 'bold');
     doc.text('Monthly Payment', pageWidth / 2, yPos, { align: 'center' });
-
+    
     yPos += 10;
     doc.setFontSize(24);
     doc.text(formatCurrency(result.monthlyPayment), pageWidth / 2, yPos, { align: 'center' });
-
+    
     yPos += 8;
     doc.setFontSize(8);
     doc.setTextColor(80, 80, 80);
@@ -260,13 +260,13 @@ export default function BusinessLoanCalculator() {
     doc.setDrawColor(230, 230, 230);
     doc.setLineWidth(0.5);
     doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 48, 3, 3, 'FD');
-
+    
     yPos += 5;
     doc.setFontSize(10);
     doc.setTextColor(59, 130, 246);
     doc.setFont('helvetica', 'bold');
     doc.text('LOAN DETAILS', margin + 4, yPos);
-
+    
     yPos += 2;
     doc.setDrawColor(59, 130, 246);
     doc.setLineWidth(0.3);
@@ -276,17 +276,17 @@ export default function BusinessLoanCalculator() {
     doc.setFontSize(9);
     doc.setTextColor(50, 50, 50);
     doc.setFont('helvetica', 'normal');
-
+    
     const termDisplay = termUnit === 'years' ? `${loanTerm} years` : `${loanTerm} months`;
     const loanTypeDisplay = loanType === 'term-loan' ? 'Term Loan' :
                            loanType === 'sba-loan' ? 'SBA Loan' :
                            loanType === 'equipment-financing' ? 'Equipment Financing' : 'Line of Credit';
-
+    
     const col1X = margin + 8;
     const col2X = margin + 60;
     const col3X = pageWidth / 2 + 8;
     const col4X = pageWidth / 2 + 60;
-
+    
     doc.setTextColor(100, 100, 100);
     doc.setFontSize(8);
     doc.text('Loan Amount', col1X, yPos);
@@ -294,7 +294,7 @@ export default function BusinessLoanCalculator() {
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
     doc.text(formatCurrency(parseFloat(loanAmount)), col2X, yPos);
-
+    
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(100, 100, 100);
     doc.setFontSize(8);
@@ -303,7 +303,7 @@ export default function BusinessLoanCalculator() {
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
     doc.text(`${interestRate}%`, col4X, yPos);
-
+    
     yPos += 8;
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(100, 100, 100);
@@ -313,7 +313,7 @@ export default function BusinessLoanCalculator() {
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
     doc.text(termDisplay, col2X, yPos);
-
+    
     doc.setFont('helvetica', 'normal');
     doc.setTextColor(100, 100, 100);
     doc.setFontSize(8);
@@ -322,7 +322,7 @@ export default function BusinessLoanCalculator() {
     doc.setFontSize(9);
     doc.setFont('helvetica', 'bold');
     doc.text(loanTypeDisplay, col4X, yPos);
-
+    
     if (businessRevenue && parseFloat(businessRevenue) > 0) {
       yPos += 8;
       doc.setFont('helvetica', 'normal');
@@ -334,7 +334,7 @@ export default function BusinessLoanCalculator() {
       doc.setFont('helvetica', 'bold');
       doc.text(formatCurrency(parseFloat(businessRevenue)), col2X, yPos);
     }
-
+    
     if (collateralValue && parseFloat(collateralValue) > 0) {
       if (!businessRevenue || parseFloat(businessRevenue) === 0) {
         yPos += 8;
@@ -364,13 +364,13 @@ export default function BusinessLoanCalculator() {
     doc.setDrawColor(230, 230, 230);
     doc.setLineWidth(0.5);
     doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 36, 3, 3, 'FD');
-
+    
     yPos += 5;
     doc.setFontSize(10);
     doc.setTextColor(59, 130, 246);
     doc.setFont('helvetica', 'bold');
     doc.text('PAYMENT SUMMARY', margin + 4, yPos);
-
+    
     yPos += 2;
     doc.setDrawColor(59, 130, 246);
     doc.setLineWidth(0.3);
@@ -381,33 +381,33 @@ export default function BusinessLoanCalculator() {
     doc.setDrawColor(220, 220, 220);
     doc.setLineWidth(0.2);
     doc.rect(margin + 4, yPos - 5, pageWidth - (2 * margin) - 8, 8, 'FD');
-
+    
     doc.setFontSize(8);
     doc.setTextColor(100, 100, 100);
     doc.setFont('helvetica', 'normal');
     doc.text('Total Amount Paid', margin + 8, yPos);
-
+    
     doc.setFontSize(10);
     doc.setTextColor(0, 0, 0);
     doc.setFont('helvetica', 'bold');
     doc.text(formatCurrency(result.totalAmount), pageWidth - margin - 8, yPos, { align: 'right' });
-
+    
     yPos += 9;
     doc.setFontSize(8);
     doc.setTextColor(100, 100, 100);
     doc.setFont('helvetica', 'normal');
     doc.text('Principal Amount', margin + 12, yPos);
-
+    
     doc.setFontSize(9);
     doc.setTextColor(34, 197, 94);
     doc.setFont('helvetica', 'normal');
     doc.text(formatCurrency(parseFloat(loanAmount)), pageWidth - margin - 12, yPos, { align: 'right' });
-
+    
     yPos += 6;
     doc.setFontSize(8);
     doc.setTextColor(100, 100, 100);
     doc.text('Total Interest', margin + 12, yPos);
-
+    
     doc.setFontSize(9);
     doc.setTextColor(220, 38, 38);
     doc.text(formatCurrency(result.totalInterest), pageWidth - margin - 12, yPos, { align: 'right' });
@@ -419,13 +419,13 @@ export default function BusinessLoanCalculator() {
       doc.setDrawColor(34, 197, 94);
       doc.setLineWidth(0.5);
       doc.roundedRect(margin, yPos, pageWidth - (2 * margin), 28, 3, 3, 'FD');
-
+      
       yPos += 5;
       doc.setFontSize(10);
       doc.setTextColor(34, 197, 94);
       doc.setFont('helvetica', 'bold');
       doc.text('BUSINESS METRICS', margin + 4, yPos);
-
+      
       yPos += 2;
       doc.setDrawColor(34, 197, 94);
       doc.setLineWidth(0.3);
@@ -435,7 +435,7 @@ export default function BusinessLoanCalculator() {
       doc.setFontSize(8);
       doc.setTextColor(50, 50, 50);
       doc.setFont('helvetica', 'normal');
-
+      
       if (businessRevenue && parseFloat(businessRevenue) > 0) {
         const dscr = result.debtServiceCoverage;
         doc.text('Debt Service Coverage Ratio (DSCR)', margin + 8, yPos);
@@ -444,7 +444,7 @@ export default function BusinessLoanCalculator() {
         doc.setFont('helvetica', 'bold');
         doc.text(`${dscr.toFixed(2)}x`, margin + 8, yPos + 5);
       }
-
+      
       if (collateralValue && parseFloat(collateralValue) > 0) {
         const ltv = result.loanToValue;
         const xPos = businessRevenue && parseFloat(businessRevenue) > 0 ? pageWidth / 2 + 8 : margin + 8;
@@ -464,19 +464,19 @@ export default function BusinessLoanCalculator() {
     doc.setDrawColor(220, 220, 220);
     doc.setLineWidth(0.2);
     doc.line(margin, yPos, pageWidth - margin, yPos);
-
+    
     yPos += 4;
     doc.setFontSize(7);
     doc.setTextColor(120, 120, 120);
     doc.setFont('helvetica', 'italic');
     doc.text('This calculation is for informational purposes only. Please consult with a qualified financial advisor for personalized advice.', pageWidth / 2, yPos, { align: 'center' });
-
+    
     yPos += 6;
     doc.setFontSize(8);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(59, 130, 246);
     doc.textWithLink('DapsiWow.com', pageWidth / 2, yPos, { align: 'center', url: 'https://dapsiwow.com' });
-
+    
     yPos += 3;
     doc.setFontSize(7);
     doc.setFont('helvetica', 'normal');
@@ -501,17 +501,17 @@ export default function BusinessLoanCalculator() {
 
     doc.setFillColor(59, 130, 246);
     doc.rect(0, 0, pageWidth, 38, 'F');
-
+    
     doc.setFontSize(26);
     doc.setTextColor(255, 255, 255);
     doc.setFont('helvetica', 'bold');
     doc.text('DapsiWow', pageWidth / 2, yPos + 5, { align: 'center' });
-
+    
     yPos += 14;
     doc.setFontSize(11);
     doc.setFont('helvetica', 'normal');
     doc.text('Amortization Schedule Report', pageWidth / 2, yPos, { align: 'center' });
-
+    
     yPos += 6;
     doc.setFontSize(8);
     doc.setTextColor(230, 240, 255);
@@ -523,69 +523,69 @@ export default function BusinessLoanCalculator() {
     doc.text(`Report Date: ${currentDate}`, pageWidth / 2, yPos, { align: 'center' });
 
     yPos = 48;
-
+    
     doc.setFillColor(59, 130, 246);
     doc.rect(margin, yPos, pageWidth - (2 * margin), 8, 'F');
-
+    
     doc.setFontSize(8);
     doc.setTextColor(255, 255, 255);
     doc.setFont('helvetica', 'bold');
-
+    
     const colWidths = [20, 35, 35, 35, 35];
     const colX = [margin + 2, margin + 22, margin + 57, margin + 92, margin + 127];
-
+    
     doc.text('#', colX[0], yPos + 5);
     doc.text('Payment', colX[1], yPos + 5);
     doc.text('Principal', colX[2], yPos + 5);
     doc.text('Interest', colX[3], yPos + 5);
     doc.text('Balance', colX[4], yPos + 5);
-
+    
     yPos += 8;
-
+    
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(7);
-
+    
     result.amortizationSchedule.forEach((payment, index) => {
       if (yPos > pageHeight - 30) {
         doc.addPage();
         yPos = 20;
-
+        
         doc.setFillColor(59, 130, 246);
         doc.rect(margin, yPos, pageWidth - (2 * margin), 8, 'F');
-
+        
         doc.setFontSize(8);
         doc.setTextColor(255, 255, 255);
         doc.setFont('helvetica', 'bold');
-
+        
         doc.text('#', colX[0], yPos + 5);
         doc.text('Payment', colX[1], yPos + 5);
         doc.text('Principal', colX[2], yPos + 5);
         doc.text('Interest', colX[3], yPos + 5);
         doc.text('Balance', colX[4], yPos + 5);
-
+        
         yPos += 8;
         doc.setFont('helvetica', 'normal');
         doc.setFontSize(7);
       }
-
+      
       if (index % 2 === 0) {
         doc.setFillColor(248, 250, 252);
         doc.rect(margin, yPos, pageWidth - (2 * margin), 6, 'F');
       }
-
+      
       doc.setTextColor(0, 0, 0);
       doc.text(payment.month.toString(), colX[0], yPos + 4);
       doc.text(formatCurrency(payment.payment), colX[1], yPos + 4);
-
+      
       doc.setTextColor(34, 197, 94);
       doc.text(formatCurrency(payment.principal), colX[2], yPos + 4);
-
+      
       doc.setTextColor(249, 115, 22);
       doc.text(formatCurrency(payment.interest), colX[3], yPos + 4);
-
+      
       doc.setTextColor(0, 0, 0);
       doc.text(formatCurrency(payment.balance), colX[4], yPos + 4);
-
+      
       yPos += 6;
     });
 
@@ -593,19 +593,19 @@ export default function BusinessLoanCalculator() {
     doc.setDrawColor(220, 220, 220);
     doc.setLineWidth(0.2);
     doc.line(margin, yPos, pageWidth - margin, yPos);
-
+    
     yPos += 4;
     doc.setFontSize(7);
     doc.setTextColor(120, 120, 120);
     doc.setFont('helvetica', 'italic');
     doc.text('This schedule shows how your payments are split between principal and interest over the first 5 years.', pageWidth / 2, yPos, { align: 'center' });
-
+    
     yPos += 6;
     doc.setFontSize(8);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(59, 130, 246);
     doc.textWithLink('DapsiWow.com', pageWidth / 2, yPos, { align: 'center', url: 'https://dapsiwow.com' });
-
+    
     yPos += 3;
     doc.setFontSize(7);
     doc.setFont('helvetica', 'normal');
@@ -630,11 +630,11 @@ export default function BusinessLoanCalculator() {
       unit: termUnit,
       type: loanType
     });
-
+    
     // Add optional business parameters if they exist
     if (businessRevenue) params.append('revenue', businessRevenue);
     if (collateralValue) params.append('collateral', collateralValue);
-
+    
     const shareableUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
 
     // Create comprehensive share text
@@ -649,14 +649,14 @@ export default function BusinessLoanCalculator() {
     shareText += `• Interest Rate: ${interestRate}%\n`;
     shareText += `• Loan Term: ${termDisplay}\n`;
     shareText += `• Loan Type: ${loanTypeDisplay}\n`;
-
+    
     if (businessRevenue && parseFloat(businessRevenue) > 0) {
       shareText += `• Business Revenue: ${formatCurrency(parseFloat(businessRevenue))}\n`;
     }
     if (collateralValue && parseFloat(collateralValue) > 0) {
       shareText += `• Collateral Value: ${formatCurrency(parseFloat(collateralValue))}\n`;
     }
-
+    
     shareText += `\n💵 Payment Breakdown:\n`;
     shareText += `• Monthly Payment: ${formatCurrency(result.monthlyPayment)}\n`;
     shareText += `• Yearly Payment: ${formatCurrency(result.yearlyPayment)}\n`;
@@ -667,7 +667,7 @@ export default function BusinessLoanCalculator() {
       shareText += `\n📈 Business Metrics:\n`;
       shareText += `• Debt Service Coverage Ratio: ${result.debtServiceCoverage.toFixed(2)}x\n`;
     }
-
+    
     if (collateralValue && parseFloat(collateralValue) > 0) {
       if (!businessRevenue || parseFloat(businessRevenue) === 0) {
         shareText += `\n📈 Business Metrics:\n`;
@@ -700,7 +700,7 @@ export default function BusinessLoanCalculator() {
 
   const shareOnFacebook = () => {
     if (!result) return;
-
+    
     const params = new URLSearchParams({
       amount: loanAmount,
       rate: interestRate,
@@ -718,7 +718,7 @@ export default function BusinessLoanCalculator() {
 
   const shareOnTwitter = () => {
     if (!result) return;
-
+    
     const params = new URLSearchParams({
       amount: loanAmount,
       rate: interestRate,
@@ -738,7 +738,7 @@ export default function BusinessLoanCalculator() {
 
   const shareOnLinkedIn = () => {
     if (!result) return;
-
+    
     const params = new URLSearchParams({
       amount: loanAmount,
       rate: interestRate,
@@ -756,7 +756,7 @@ export default function BusinessLoanCalculator() {
 
   const shareOnWhatsApp = () => {
     if (!result) return;
-
+    
     const params = new URLSearchParams({
       amount: loanAmount,
       rate: interestRate,
@@ -866,27 +866,27 @@ export default function BusinessLoanCalculator() {
         <title>Business Loan Calculator - Monthly Payments | DapsiWow</title>
         <meta name="description" content="Calculate business loan payments instantly. Get monthly estimates, DSCR analysis, amortization schedules & total interest. Free, no signup required." />
         <meta name="keywords" content="business loan calculator, sba loan calculator, equipment financing calculator, business loan payment calculator, dscr calculator, ltv calculator, amortization calculator" />
-
+        
         {/* Canonical */}
         <link rel="canonical" href={canonicalUrl} />
-
+        
         {/* Language and Geo */}
         <meta name="language" content="English" />
         <meta name="geo.region" content="US" />
         <meta name="geo.placename" content="United States" />
         <meta name="distribution" content="global" />
-
+        
         {/* Dates and Authorship */}
         <meta name="date" content={publishDate} />
         <meta name="last-modified" content={modifiedDate} />
         <meta name="copyright" content="© 2025 DapsiWow. All rights reserved." />
         <meta name="author" content="DapsiWow Financial Tools Team" />
         <meta name="publisher" content="DapsiWow" />
-
+        
         {/* Robots */}
         <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
         <meta name="googlebot" content="index, follow" />
-
+        
         {/* Hreflang Alternates */}
         <link rel="alternate" hrefLang="en" href={canonicalUrl} />
         <link rel="alternate" hrefLang="en-US" href={canonicalUrl} />
@@ -894,7 +894,7 @@ export default function BusinessLoanCalculator() {
         <link rel="alternate" hrefLang="en-CA" href={canonicalUrl} />
         <link rel="alternate" hrefLang="en-AU" href={canonicalUrl} />
         <link rel="alternate" hrefLang="x-default" href={canonicalUrl} />
-
+        
         {/* PWA Meta Tags */}
         <meta name="theme-color" content="#3b82f6" />
         <meta name="application-name" content="Business Loan Calculator" />
@@ -902,7 +902,7 @@ export default function BusinessLoanCalculator() {
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Business Loan Calculator" />
-
+        
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonicalUrl} />
@@ -914,7 +914,7 @@ export default function BusinessLoanCalculator() {
         <meta property="og:image:alt" content="Business Loan Calculator showing monthly payment breakdown, DSCR analysis, and amortization schedule for SBA and equipment financing" />
         <meta property="og:site_name" content="DapsiWow - Free Financial Tools" />
         <meta property="og:locale" content="en_US" />
-
+        
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content={canonicalUrl} />
@@ -924,7 +924,7 @@ export default function BusinessLoanCalculator() {
         <meta name="twitter:image:alt" content="Business loan calculator interface with payment analysis, DSCR metrics, and amortization schedule visualization" />
         <meta name="twitter:site" content="@DapsiWow" />
         <meta name="twitter:creator" content="@DapsiWow" />
-
+        
         {/* Pinterest Rich Pins */}
         <meta property="article:published_time" content={publishDate} />
         <meta property="article:modified_time" content={modifiedDate} />
@@ -1081,7 +1081,7 @@ export default function BusinessLoanCalculator() {
 
         <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 md:py-12 lg:py-16">
 
-
+          
 
           {/* Main Calculator Card */}
           <Card className="bg-white/90 backdrop-blur-sm shadow-2xl border-0 rounded-xl sm:rounded-2xl md:rounded-3xl overflow-hidden">
@@ -1381,7 +1381,7 @@ export default function BusinessLoanCalculator() {
                         </div>
                       </div>
 
-
+                      
                     </>
                   )}
                 </div>
@@ -1678,7 +1678,7 @@ export default function BusinessLoanCalculator() {
             </Card>
           )}
 
-
+          
 
           </div>
       </main>
