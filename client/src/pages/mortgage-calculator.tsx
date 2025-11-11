@@ -48,7 +48,7 @@ const mortgageInputSchema = z.object({
   }).min(0, "HOA fees cannot be negative").finite("HOA fees must be a finite number"),
   extraPayment: z.number({
     invalid_type_error: "Extra payment must be a valid number"
-  }).min(0, "Extra payment cannot be negative").finite("Extra payment must be a finite number"),
+  }).min(0, "Extra payment cannot be negative").finite("Extra payment must be a finite number")
 });
 
 interface ValidationErrors {
@@ -1581,103 +1581,6 @@ const MortgageCalculator = () => {
             }
           })}
         </script>
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            "name": "DapsiWow",
-            "alternateName": "DapsiWow Financial Tools",
-            "url": "https://dapsiwow.com",
-            "logo": {
-              "@type": "ImageObject",
-              "url": "https://dapsiwow.com/logo.png",
-              "width": 250,
-              "height": 60
-            },
-            "description": "Free online financial, text, and health tools to make your life easier. No sign-up required.",
-            "contactPoint": {
-              "@type": "ContactPoint",
-              "contactType": "Customer Support",
-              "email": "support@dapsiwow.com",
-              "availableLanguage": ["English"]
-            },
-            "sameAs": [
-              "https://www.facebook.com/DapsiWow",
-              "https://twitter.com/DapsiWow",
-              "https://www.linkedin.com/company/dapsiwow",
-              "https://www.instagram.com/dapsiwow"
-            ],
-            "foundingDate": "2024",
-            "numberOfEmployees": {
-              "@type": "QuantitativeValue",
-              "value": "10-50"
-            },
-            "slogan": "Free Tools to Make Everything Simple"
-          })}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FinancialProduct",
-            "name": "Mortgage Payment Calculator",
-            "description": "Calculate monthly mortgage payments with PMI, property taxes, homeowners insurance, and HOA fees for FHA, VA, and conventional loans",
-            "url": "https://dapsiwow.com/tools/mortgage-calculator",
-            "category": "Mortgage Calculator",
-            "feesAndCommissionsSpecification": "Free to use. No registration required. No hidden fees.",
-            "interestRate": {
-              "@type": "QuantitativeValue",
-              "name": "Interest Rate",
-              "description": "Annual interest rate for mortgage calculation",
-              "unitText": "Percent"
-            },
-            "provider": {
-              "@type": "Organization",
-              "name": "DapsiWow",
-              "url": "https://dapsiwow.com"
-            }
-          })}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Mortgage Calculator",
-            "alternateName": ["Free Mortgage Calculator", "Mortgage Payment Calculator", "PITI Calculator", "Home Loan Calculator"],
-            "description": "Free online mortgage calculator to calculate monthly payments with PMI, property taxes, homeowners insurance, and HOA fees",
-            "url": "https://dapsiwow.com/tools/mortgage-calculator",
-            "applicationCategory": "FinanceApplication",
-            "operatingSystem": "Any (Web Browser)",
-            "browserRequirements": "Requires JavaScript enabled",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD",
-              "availability": "https://schema.org/InStock"
-            },
-            "featureList": [
-              "Calculate monthly mortgage payments",
-              "Include PMI, property taxes, insurance, HOA fees",
-              "Generate detailed amortization schedules",
-              "Compare FHA, VA, and conventional loans",
-              "Calculate extra payment savings",
-              "Support biweekly and weekly payments",
-              "Download PDF reports",
-              "Share calculations via social media"
-            ],
-            "screenshot": "https://dapsiwow.com/screenshots/mortgage-calculator.jpg",
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": "4.9",
-              "ratingCount": "3247",
-              "bestRating": "5",
-              "worstRating": "1"
-            },
-            "creator": {
-              "@type": "Organization",
-              "name": "DapsiWow"
-            }
-          })}
-        </script>
       </Helmet>
 
       <Header />
@@ -2321,241 +2224,6 @@ const MortgageCalculator = () => {
                         </div>
                       )}
                     </div>
-                  )}
-                </div>
-
-                {result ? (
-                  <div ref={resultsRef} className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
-                    <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 md:mb-8 text-left">Your Mortgage Results</h2>
-
-                    <div className="space-y-4 sm:space-y-6 md:space-y-8">
-                      <div className="bg-white rounded-lg sm:rounded-xl p-6 sm:p-8 border-2 border-blue-200 shadow-sm">
-                        <div className="text-center space-y-2 sm:space-y-3">
-                          <div className="text-xs sm:text-sm font-semibold text-gray-500 uppercase tracking-wide">Estimated Monthly Payment</div>
-                          <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 break-all">
-                            {formatCurrency(result.monthlyPayment)}
-                          </div>
-                          <p className="text-xs sm:text-sm text-gray-500">Based on monthly payment frequency</p>
-                        </div>
-                      </div>
-
-                      {showChart && (
-                        <div className="space-y-4 sm:space-y-6">
-                          <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 md:p-8 shadow-sm border border-gray-100">
-                            <h3 className="font-bold text-gray-900 mb-6 sm:mb-8 text-center text-lg sm:text-xl">Total Loan Breakdown</h3>
-                            <div className="flex flex-col lg:flex-row items-center justify-center gap-6 sm:gap-8">
-                              <div className="w-full max-w-[280px] sm:max-w-[340px] md:max-w-[380px]">
-                                <ResponsiveContainer width="100%" height={300}>
-                                  <RechartsPieChart>
-                                    <Pie
-                                      data={[
-                                        { name: 'Principal', value: parseFloat(homePrice) - (usePercentage ? (parseFloat(homePrice) * parseFloat(downPaymentPercent)) / 100 : parseFloat(downPayment)), percentage: principalPercentage },
-                                        { name: 'Interest', value: result.totalInterest, percentage: interestPercentage }
-                                      ]}
-                                      cx="50%"
-                                      cy="50%"
-                                      innerRadius="45%"
-                                      outerRadius="75%"
-                                      paddingAngle={5}
-                                      dataKey="value"
-                                      label={({ percentage }) => `${percentage.toFixed(1)}%`}
-                                      labelLine={true}
-                                    >
-                                      <Cell fill="url(#principalGradient)" stroke="#10b981" strokeWidth={2} />
-                                      <Cell fill="url(#interestGradient)" stroke="#f59e0b" strokeWidth={2} />
-                                    </Pie>
-                                    <RechartsTooltip
-                                      formatter={(value: number) => formatCurrency(value)}
-                                      contentStyle={{
-                                        backgroundColor: 'rgba(255, 255, 255, 0.98)',
-                                        border: '2px solid #e5e7eb',
-                                        borderRadius: '12px',
-                                        boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.15)',
-                                        padding: '12px'
-                                      }}
-                                    />
-                                    <Legend
-                                      verticalAlign="bottom"
-                                      height={36}
-                                      iconType="circle"
-                                    />
-                                    <defs>
-                                      <linearGradient id="principalGradient" x1="0" y1="0" x2="1" y2="1">
-                                        <stop offset="0%" stopColor="#10b981" stopOpacity={1} />
-                                        <stop offset="100%" stopColor="#059669" stopOpacity={0.9} />
-                                      </linearGradient>
-                                      <linearGradient id="interestGradient" x1="0" y1="0" x2="1" y2="1">
-                                        <stop offset="0%" stopColor="#f59e0b" stopOpacity={1} />
-                                        <stop offset="100%" stopColor="#d97706" stopOpacity={0.9} />
-                                      </linearGradient>
-                                    </defs>
-                                  </RechartsPieChart>
-                                </ResponsiveContainer>
-                              </div>
-                              <div className="grid grid-cols-1 gap-4 w-full max-w-xs lg:max-w-sm">
-                                <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-3 sm:p-4 border-l-4 border-green-500">
-                                  <div className="flex items-center justify-between">
-                                    <div className="min-w-0 flex-1">
-                                      <p className="text-xs font-semibold text-green-700 uppercase tracking-wide mb-1">Principal Amount</p>
-                                      <p className="text-lg sm:text-xl md:text-2xl font-bold text-green-900 break-words">
-                                        {formatCurrency(parseFloat(homePrice) - (usePercentage ? (parseFloat(homePrice) * parseFloat(downPaymentPercent)) / 100 : parseFloat(downPayment)))}
-                                      </p>
-                                    </div>
-                                    <div className="bg-green-500 rounded-full p-2 flex-shrink-0 ml-2">
-                                      <DollarSign className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                                    </div>
-                                  </div>
-                                  <p className="text-xs text-green-600 mt-2">{principalPercentage.toFixed(1)}% of total</p>
-                                </div>
-                                <div className="bg-gradient-to-r from-orange-50 to-amber-50 rounded-lg p-3 sm:p-4 border-l-4 border-orange-500">
-                                  <div className="flex items-center justify-between">
-                                    <div className="min-w-0 flex-1">
-                                      <p className="text-xs font-semibold text-orange-700 uppercase tracking-wide mb-1">Total Interest</p>
-                                      <p className="text-lg sm:text-xl md:text-2xl font-bold text-orange-900 break-words">
-                                        {formatCurrency(result.totalInterest)}
-                                      </p>
-                                    </div>
-                                    <div className="bg-orange-500 rounded-full p-2 flex-shrink-0 ml-2">
-                                      <TrendingDown className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                                    </div>
-                                  </div>
-                                  <p className="text-xs text-orange-600 mt-2">{interestPercentage.toFixed(1)}% of total</p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          {result.amortizationSchedule.length > 0 && (
-                            <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 md:p-8 shadow-sm border border-gray-100">
-                              <h3 className="font-bold text-gray-900 mb-4 sm:mb-6 text-center text-lg sm:text-xl">Payment Breakdown Over Time</h3>
-                              <p className="text-center text-sm text-gray-600 mb-6">See how your payments shift from interest to principal</p>
-                              <div className="w-full">
-                                <ResponsiveContainer width="100%" height={360}>
-                                  <AreaChart
-                                    data={result.amortizationSchedule.map(item => ({
-                                      month: `Month ${item.month}`,
-                                      Principal: item.principal,
-                                      Interest: item.interest,
-                                      Balance: item.balance
-                                    }))}
-                                    margin={{ top: 10, right: 5, left: -10, bottom: 0 }}
-                                  >
-                                    <defs>
-                                      <linearGradient id="principalAreaGradient" x1="0" y1="0" x2="0" y2="1">
-                                        <stop offset="5%" stopColor="#10b981" stopOpacity={0.9}/>
-                                        <stop offset="95%" stopColor="#10b981" stopOpacity={0.2}/>
-                                      </linearGradient>
-                                      <linearGradient id="interestAreaGradient" x1="0" y1="0" x2="0" y2="1">
-                                        <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.9}/>
-                                        <stop offset="95%" stopColor="#f59e0b" stopOpacity={0.2}/>
-                                      </linearGradient>
-                                    </defs>
-                                    <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" opacity={0.5} />
-                                    <XAxis
-                                      dataKey="month"
-                                      tick={{ fontSize: 10, fill: '#6b7280' }}
-                                      interval="preserveStartEnd"
-                                      angle={-45}
-                                      textAnchor="end"
-                                      height={60}
-                                    />
-                                    <YAxis
-                                      tick={{ fontSize: 10, fill: '#6b7280' }}
-                                      tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
-                                      width={50}
-                                    />
-                                    <RechartsTooltip
-                                      formatter={(value: number) => formatCurrency(value)}
-                                      contentStyle={{
-                                        backgroundColor: 'rgba(255, 255, 255, 0.98)',
-                                        border: '2px solid #e5e7eb',
-                                        borderRadius: '12px',
-                                        boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.15)',
-                                        padding: '8px 12px',
-                                        fontSize: '13px'
-                                      }}
-                                    />
-                                    <Area
-                                      type="monotone"
-                                      dataKey="Principal"
-                                      stackId="1"
-                                      stroke="#10b981"
-                                      strokeWidth={2}
-                                      fill="url(#principalAreaGradient)"
-                                    />
-                                    <Area
-                                      type="monotone"
-                                      dataKey="Interest"
-                                      stackId="1"
-                                      stroke="#f59e0b"
-                                      strokeWidth={2}
-                                      fill="url(#interestAreaGradient)"
-                                    />
-                                    <Legend
-                                      verticalAlign="top"
-                                      height={36}
-                                      iconType="line"
-                                    />
-                                  </AreaChart>
-                                </ResponsiveContainer>
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      )}
-
-                      <div className="space-y-3 sm:space-y-4">
-                        <div className="bg-white rounded-lg p-3 sm:p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700 text-sm sm:text-base">Principal Amount</span>
-                            <span className="font-bold text-gray-900 text-sm sm:text-base break-all">
-                              {formatCurrency(parseFloat(homePrice) - (usePercentage ? (parseFloat(homePrice) * parseFloat(downPaymentPercent)) / 100 : parseFloat(downPayment)))}
-                            </span>
-                          </div>
-                        </div>
-
-                        <div className="bg-white rounded-lg p-3 sm:p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700 text-sm sm:text-base">Total Interest Paid</span>
-                            <span className="font-bold text-orange-600 text-sm sm:text-base break-all">
-                              {formatCurrency(result.totalInterest)}
-                            </span>
-                          </div>
-                        </div>
-
-                        <div className="bg-white rounded-lg p-3 sm:p-4 shadow-sm">
-                          <div className="flex justify-between items-center">
-                            <span className="font-medium text-gray-700 text-sm sm:text-base">Total Amount Paid</span>
-                            <span className="font-bold text-gray-900 text-sm sm:text-base break-all">
-                              {formatCurrency(result.totalAmount)}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-
-                      {result.extraPaymentSavings && (
-                        <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-green-200">
-                          <h4 className="font-bold text-green-800 mb-3 sm:mb-4 text-base sm:text-lg flex items-center gap-2">
-                            <TrendingDown className="w-5 h-5" />
-                            Extra Payment Benefits
-                          </h4>
-                          <div className="space-y-2 sm:space-y-3">
-                            <div className="flex justify-between items-center">
-                              <span className="text-green-700 font-medium text-sm sm:text-base">Interest Saved:</span>
-                              <span className="font-bold text-green-800 text-sm sm:text-base md:text-lg break-all">
-                                {formatCurrency(result.extraPaymentSavings.interestSaved)}
-                              </span>
-                            </div>
-                            <div className="flex justify-between items-center">
-                              <span className="text-green-700 font-medium text-sm sm:text-base">Time Saved:</span>
-                              <span className="font-bold text-green-800 text-sm sm:text-base md:text-lg">
-                                {formatTimeSaved(result.extraPaymentSavings.timeSaved, paymentFrequency === 'weekly' ? 52 : paymentFrequency === 'biweekly' ? 26 : 12)}
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
                   </div>
                 ) : (
                   <div className="bg-gradient-to-br from-gray-50 to-blue-50 p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 border-t">
@@ -2636,707 +2304,630 @@ const MortgageCalculator = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16 space-y-8 sm:space-y-12 md:space-y-16">
 
           {/* Introduction Section */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
-            <CardContent className="p-4 sm:p-6 md:p-8 lg:p-12">
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">What is a Mortgage Calculator?</h2>
+          <section className="prose prose-sm sm:prose lg:prose-lg max-w-none px-2 sm:px-0">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 md:mb-6 leading-tight">What is a Mortgage Calculator?</h2>
+            <p className="text-sm sm:text-base md:text-lg text-gray-700 leading-relaxed mb-3 sm:mb-4">
+              A <strong>Mortgage Calculator</strong> is a free online tool that helps you estimate your monthly home loan payments based on the purchase price, down payment, interest rate, and loan term. Whether you're a first-time homebuyer exploring affordability, a homeowner considering refinancing, or a real estate investor analyzing deals, this calculator provides instant, accurate results.
+            </p>
 
-              <p className="text-sm sm:text-base md:text-lg text-gray-700 mb-4 sm:mb-6 leading-relaxed">
-                A <strong>Mortgage Calculator</strong> is a free online tool that helps you estimate your monthly home loan payments based on the purchase price, down payment, interest rate, and loan term. Whether you're a first-time homebuyer exploring affordability, a homeowner considering refinancing, or a real estate investor analyzing deals, this calculator provides instant, accurate results.
-              </p>
+            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mt-4 sm:mt-6 md:mt-8 mb-2 sm:mb-3 md:mb-4 leading-tight">Why Use Our Mortgage Calculator?</h3>
+            <ul className="space-y-1.5 sm:space-y-2 text-sm sm:text-base md:text-lg text-gray-700 list-disc pl-4 sm:pl-5 md:pl-6">
+              <li><strong>Instant Results:</strong> Get your monthly payment breakdown in seconds</li>
+              <li><strong>Comprehensive:</strong> Includes PMI, property taxes, insurance, and HOA fees</li>
+              <li><strong>Accurate:</strong> Uses the standard amortization formula that banks use</li>
+              <li><strong>Free Forever:</strong> No hidden fees, registration, or credit card required</li>
+              <li><strong>Mobile-Friendly:</strong> Calculate on any device, anywhere, anytime</li>
+              <li><strong>Privacy First:</strong> All calculations happen in your browser - we don't store your data</li>
+            </ul>
 
-              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 sm:p-6 md:p-8 mb-6 sm:mb-8">
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Why Use Our Mortgage Calculator?</h3>
-                <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
-                  <div className="flex items-start gap-2 sm:gap-3">
-                    <div className="w-5 h-5 sm:w-6 sm:h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 sm:mt-1">
-                      <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-900 text-sm sm:text-base">Instant Results</h4>
-                      <p className="text-xs sm:text-sm text-gray-600">Get your monthly payment breakdown in seconds</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-2 sm:gap-3">
-                    <div className="w-5 h-5 sm:w-6 sm:h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 sm:mt-1">
-                      <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-900 text-sm sm:text-base">Comprehensive</h4>
-                      <p className="text-xs sm:text-sm text-gray-600">Includes PMI, property taxes, insurance, and HOA fees</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-2 sm:gap-3">
-                    <div className="w-5 h-5 sm:w-6 sm:h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 sm:mt-1">
-                      <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-900 text-sm sm:text-base">Accurate</h4>
-                      <p className="text-xs sm:text-sm text-gray-600">Uses the standard amortization formula that banks use</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-2 sm:gap-3">
-                    <div className="w-5 h-5 sm:w-6 sm:h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 sm:mt-1">
-                      <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-900 text-sm sm:text-base">100% Free Forever</h4>
-                      <p className="text-xs sm:text-sm text-gray-600">No hidden fees, registration, or credit card required</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-2 sm:gap-3">
-                    <div className="w-5 h-5 sm:w-6 sm:h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 sm:mt-1">
-                      <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-gray-900 text-sm sm:text-base">Privacy First</h4>
-                      <p className="text-xs sm:text-sm text-gray-600">All calculations happen in your browser - we don't store your data</p>
-                    </div>
-                  </div>
-                </div>
+            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mt-4 sm:mt-6 md:mt-8 mb-2 sm:mb-3 md:mb-4 leading-tight">Who Benefits from This Mortgage Calculator?</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 mt-3 sm:mt-4">
+              <div className="bg-blue-50 p-3 sm:p-4 md:p-6 rounded-lg">
+                <h4 className="font-bold text-gray-900 mb-1.5 sm:mb-2 text-sm sm:text-base">First-Time Homebuyers</h4>
+                <p className="text-gray-700 text-xs sm:text-sm md:text-base leading-relaxed">Understand your monthly budget and how much house you can afford before starting your search.</p>
               </div>
-
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Who Benefits from This Mortgage Calculator?</h3>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
-                <div className="bg-white rounded-lg p-4 sm:p-5 border-2 border-blue-100 hover:border-blue-300 transition-colors">
-                  <h4 className="font-bold text-gray-900 mb-2 text-sm sm:text-base">First-Time Homebuyers</h4>
-                  <p className="text-xs sm:text-sm text-gray-600">Understand your monthly budget and how much house you can afford before starting your search.</p>
-                </div>
-                <div className="bg-white rounded-lg p-4 sm:p-5 border-2 border-blue-100 hover:border-blue-300 transition-colors">
-                  <h4 className="font-bold text-gray-900 mb-2 text-sm sm:text-base">Current Homeowners</h4>
-                  <p className="text-xs sm:text-sm text-gray-600">Compare refinancing options and see how extra payments can save you thousands in interest.</p>
-                </div>
-                <div className="bg-white rounded-lg p-4 sm:p-5 border-2 border-blue-100 hover:border-blue-300 transition-colors">
-                  <h4 className="font-bold text-gray-900 mb-2 text-sm sm:text-base">Real Estate Investors</h4>
-                  <p className="text-xs sm:text-sm text-gray-600">Quickly analyze potential rental properties and calculate cash flow projections.</p>
-                </div>
-                <div className="bg-white rounded-lg p-4 sm:p-5 border-2 border-blue-100 hover:border-blue-300 transition-colors">
-                  <h4 className="font-bold text-gray-900 mb-2 text-sm sm:text-base">Financial Planners</h4>
-                  <p className="text-xs sm:text-sm text-gray-600">Help clients understand mortgage options and make informed home-buying decisions.</p>
-                </div>
-                <div className="bg-white rounded-lg p-4 sm:p-5 border-2 border-blue-100 hover:border-blue-300 transition-colors">
-                  <h4 className="font-bold text-gray-900 mb-2 text-sm sm:text-base">Real Estate Agents</h4>
-                  <p className="text-xs sm:text-sm text-gray-600">Show clients accurate payment estimates and help them find properties within their budget.</p>
-                </div>
-                <div className="bg-white rounded-lg p-4 sm:p-5 border-2 border-blue-100 hover:border-blue-300 transition-colors">
-                  <h4 className="font-bold text-gray-900 mb-2 text-sm sm:text-base">Budget Planners</h4>
-                  <p className="text-xs sm:text-sm text-gray-600">Integrate mortgage estimates into comprehensive financial plans and budgets.</p>
-                </div>
+              <div className="bg-green-50 p-3 sm:p-4 md:p-6 rounded-lg">
+                <h4 className="font-bold text-gray-900 mb-1.5 sm:mb-2 text-sm sm:text-base">Current Homeowners</h4>
+                <p className="text-gray-700 text-xs sm:text-sm md:text-base leading-relaxed">Compare refinancing options and see how extra payments can save you thousands in interest.</p>
               </div>
-            </CardContent>
-          </Card>
+              <div className="bg-purple-50 p-3 sm:p-4 md:p-6 rounded-lg">
+                <h4 className="font-bold text-gray-900 mb-1.5 sm:mb-2 text-sm sm:text-base">Real Estate Investors</h4>
+                <p className="text-gray-700 text-xs sm:text-sm md:text-base leading-relaxed">Quickly analyze potential rental properties and calculate cash flow projections.</p>
+              </div>
+              <div className="bg-orange-50 p-3 sm:p-4 md:p-6 rounded-lg">
+                <h4 className="font-bold text-gray-900 mb-1.5 sm:mb-2 text-sm sm:text-base">Financial Planners</h4>
+                <p className="text-gray-700 text-xs sm:text-sm md:text-base leading-relaxed">Help clients understand mortgage options and make informed home-buying decisions.</p>
+              </div>
+            </div>
+          </section>
 
           {/* How to Use Section */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
-            <CardContent className="p-4 sm:p-6 md:p-8 lg:p-12">
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">How to Use the Mortgage Calculator</h2>
+          <section className="prose prose-sm sm:prose lg:prose-lg max-w-none bg-gradient-to-br from-blue-50 to-indigo-50 p-4 sm:p-6 md:p-8 lg:p-10 rounded-xl sm:rounded-2xl">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 md:mb-6 leading-tight px-2 sm:px-0">How to Use the Mortgage Calculator</h2>
 
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Step-by-Step Guide:</h3>
+            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mt-4 sm:mt-6 mb-2 sm:mb-3 leading-tight px-2 sm:px-0">Step-by-Step Guide:</h3>
 
-              <div className="space-y-3 sm:space-y-4 md:space-y-6">
-                <div className="bg-white p-3 sm:p-4 md:p-6 rounded-lg shadow-sm">
-                  <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2 text-sm sm:text-base">
-                    <span className="bg-blue-600 text-white w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-xs sm:text-sm flex-shrink-0">1</span>
-                    <span>Enter Home Price</span>
-                  </h4>
-                  <p className="text-gray-700 ml-0 sm:ml-9 text-xs sm:text-sm md:text-base leading-relaxed">Input the total purchase price of the home you're considering. This is the full amount before your down payment.</p>
-                  <p className="text-xs sm:text-sm text-gray-600 ml-0 sm:ml-9 mt-1.5 sm:mt-2"><strong>Example:</strong> For a $400,000 home, enter 400000.</p>
-                </div>
-
-                <div className="bg-white p-3 sm:p-4 md:p-6 rounded-lg shadow-sm">
-                  <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2 text-sm sm:text-base">
-                    <span className="bg-blue-600 text-white w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-xs sm:text-sm flex-shrink-0">2</span>
-                    <span>Set Down Payment</span>
-                  </h4>
-                  <p className="text-gray-700 ml-0 sm:ml-9 text-xs sm:text-sm md:text-base leading-relaxed">Enter your down payment as a percentage (recommended) or dollar amount. 20% or more avoids PMI on conventional loans.</p>
-                  <p className="text-xs sm:text-sm text-gray-600 ml-0 sm:ml-9 mt-1.5 sm:mt-2"><strong>Example:</strong> 20% down on $400,000 = $80,000 down payment.</p>
-                </div>
-
-                <div className="bg-white p-3 sm:p-4 md:p-6 rounded-lg shadow-sm">
-                  <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2 text-sm sm:text-base">
-                    <span className="bg-blue-600 text-white w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-xs sm:text-sm flex-shrink-0">3</span>
-                    <span>Choose Loan Term</span>
-                  </h4>
-                  <p className="text-gray-700 ml-0 sm:ml-9 text-xs sm:text-sm md:text-base leading-relaxed">Select the length of time you'll take to repay (typically 15, 20, or 30 years). Shorter terms save on interest but have higher monthly payments.</p>
-                  <p className="text-xs sm:text-sm text-gray-600 ml-0 sm:ml-9 mt-1.5 sm:mt-2"><strong>Tip:</strong> A 30-year mortgage offers lower payments; a 15-year pays less total interest.</p>
-                </div>
-
-                <div className="bg-white p-3 sm:p-4 md:p-6 rounded-lg shadow-sm">
-                  <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2 text-sm sm:text-base">
-                    <span className="bg-blue-600 text-white w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-xs sm:text-sm flex-shrink-0">4</span>
-                    <span>Enter Interest Rate</span>
-                  </h4>
-                  <p className="text-gray-700 ml-0 sm:ml-9 text-xs sm:text-sm md:text-base leading-relaxed">Input the annual interest rate from your lender or use current market rates. Even 0.5% difference can save thousands.</p>
-                  <p className="text-xs sm:text-sm text-gray-600 ml-0 sm:ml-9 mt-1.5 sm:mt-2"><strong>Example:</strong> For a 6.5% APR, enter 6.5.</p>
-                </div>
-
-                <div className="bg-white p-3 sm:p-4 md:p-6 rounded-lg shadow-sm">
-                  <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2 text-sm sm:text-base">
-                    <span className="bg-blue-600 text-white w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-xs sm:text-sm flex-shrink-0">5</span>
-                    <span>Add Property Taxes & Insurance</span>
-                  </h4>
-                  <p className="text-gray-700 ml-0 sm:ml-9 text-xs sm:text-sm md:text-base leading-relaxed">Include annual property taxes and homeowners insurance premiums for accurate PITI (Principal, Interest, Taxes, Insurance) calculations.</p>
-                  <p className="text-xs sm:text-sm text-gray-600 ml-0 sm:ml-9 mt-1.5 sm:mt-2"><strong>Average:</strong> Property tax ~1.1% of home value annually; insurance $1,000-$2,000/year.</p>
-                </div>
-
-                <div className="bg-white p-3 sm:p-4 md:p-6 rounded-lg shadow-sm">
-                  <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2 text-sm sm:text-base">
-                    <span className="bg-blue-600 text-white w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-xs sm:text-sm flex-shrink-0">6</span>
-                    <span>Select Loan Type</span>
-                  </h4>
-                  <p className="text-gray-700 ml-0 sm:ml-9 text-xs sm:text-sm md:text-base leading-relaxed">Choose between Conventional, FHA, or VA loan to see accurate PMI calculations and rate adjustments specific to each loan type.</p>
-                </div>
-
-                <div className="bg-white p-3 sm:p-4 md:p-6 rounded-lg shadow-sm">
-                  <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2 text-sm sm:text-base">
-                    <span className="bg-blue-600 text-white w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-xs sm:text-sm flex-shrink-0">7</span>
-                    <span>Calculate and Analyze</span>
-                  </h4>
-                  <p className="text-gray-700 ml-0 sm:ml-9 text-xs sm:text-sm md:text-base leading-relaxed">Click "Calculate Mortgage" to see your complete payment breakdown, amortization schedule, debt-to-income ratio, and affordability analysis.</p>
-                </div>
+            <div className="space-y-3 sm:space-y-4 md:space-y-6">
+              <div className="bg-white p-3 sm:p-4 md:p-6 rounded-lg shadow-sm">
+                <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2 text-sm sm:text-base">
+                  <span className="bg-blue-600 text-white w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-xs sm:text-sm flex-shrink-0">1</span>
+                  <span>Enter Home Price</span>
+                </h4>
+                <p className="text-gray-700 ml-0 sm:ml-9 text-xs sm:text-sm md:text-base leading-relaxed">Input the total purchase price of the home you're considering. This is the full amount before your down payment.</p>
+                <p className="text-xs sm:text-sm text-gray-600 ml-0 sm:ml-9 mt-1.5 sm:mt-2"><strong>Example:</strong> For a $400,000 home, enter 400000.</p>
               </div>
 
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mt-6 sm:mt-8 mb-3 sm:mb-4 leading-tight px-2 sm:px-0">Pro Tips:</h3>
-              <ul className="space-y-1.5 sm:space-y-2 text-gray-700 list-disc pl-4 sm:pl-5 md:pl-6 text-xs sm:text-sm md:text-base">
-                <li><strong>Compare Scenarios:</strong> Try different down payments and loan terms to find your sweet spot</li>
-                <li><strong>Extra Payments:</strong> See how adding just $100/month can save thousands in interest</li>
-                <li><strong>PMI Awareness:</strong> Understand when you can remove PMI once you reach 78% loan-to-value</li>
-                <li><strong>Total Cost Focus:</strong> Don't just look at monthly payment - consider total interest paid</li>
-              </ul>
-            </CardContent>
-          </Card>
+              <div className="bg-white p-3 sm:p-4 md:p-6 rounded-lg shadow-sm">
+                <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2 text-sm sm:text-base">
+                  <span className="bg-blue-600 text-white w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-xs sm:text-sm flex-shrink-0">2</span>
+                  <span>Set Down Payment</span>
+                </h4>
+                <p className="text-gray-700 ml-0 sm:ml-9 text-xs sm:text-sm md:text-base leading-relaxed">Enter your down payment as a percentage (recommended) or dollar amount. 20% or more avoids PMI on conventional loans.</p>
+                <p className="text-xs sm:text-sm text-gray-600 ml-0 sm:ml-9 mt-1.5 sm:mt-2"><strong>Example:</strong> 20% down on $400,000 = $80,000 down payment.</p>
+              </div>
+
+              <div className="bg-white p-3 sm:p-4 md:p-6 rounded-lg shadow-sm">
+                <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2 text-sm sm:text-base">
+                  <span className="bg-blue-600 text-white w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-xs sm:text-sm flex-shrink-0">3</span>
+                  <span>Choose Loan Term</span>
+                </h4>
+                <p className="text-gray-700 ml-0 sm:ml-9 text-xs sm:text-sm md:text-base leading-relaxed">Select the length of time you'll take to repay (typically 15, 20, or 30 years). Shorter terms save on interest but have higher monthly payments.</p>
+                <p className="text-xs sm:text-sm text-gray-600 ml-0 sm:ml-9 mt-1.5 sm:mt-2"><strong>Tip:</strong> A 30-year mortgage offers lower payments; a 15-year pays less total interest.</p>
+              </div>
+
+              <div className="bg-white p-3 sm:p-4 md:p-6 rounded-lg shadow-sm">
+                <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2 text-sm sm:text-base">
+                  <span className="bg-blue-600 text-white w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-xs sm:text-sm flex-shrink-0">4</span>
+                  <span>Enter Interest Rate</span>
+                </h4>
+                <p className="text-gray-700 ml-0 sm:ml-9 text-xs sm:text-sm md:text-base leading-relaxed">Input the annual interest rate from your lender or use current market rates. Even 0.5% difference can save thousands.</p>
+                <p className="text-xs sm:text-sm text-gray-600 ml-0 sm:ml-9 mt-1.5 sm:mt-2"><strong>Example:</strong> For a 6.5% APR, enter 6.5.</p>
+              </div>
+
+              <div className="bg-white p-3 sm:p-4 md:p-6 rounded-lg shadow-sm">
+                <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2 text-sm sm:text-base">
+                  <span className="bg-blue-600 text-white w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-xs sm:text-sm flex-shrink-0">5</span>
+                  <span>Add Property Taxes & Insurance</span>
+                </h4>
+                <p className="text-gray-700 ml-0 sm:ml-9 text-xs sm:text-sm md:text-base leading-relaxed">Include annual property taxes and homeowners insurance premiums for accurate PITI (Principal, Interest, Taxes, Insurance) calculations.</p>
+                <p className="text-xs sm:text-sm text-gray-600 ml-0 sm:ml-9 mt-1.5 sm:mt-2"><strong>Average:</strong> Property tax ~1.1% of home value annually; insurance $1,000-$2,000/year.</p>
+              </div>
+
+              <div className="bg-white p-3 sm:p-4 md:p-6 rounded-lg shadow-sm">
+                <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2 text-sm sm:text-base">
+                  <span className="bg-blue-600 text-white w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-xs sm:text-sm flex-shrink-0">6</span>
+                  <span>Select Loan Type</span>
+                </h4>
+                <p className="text-gray-700 ml-0 sm:ml-9 text-xs sm:text-sm md:text-base leading-relaxed">Choose between Conventional, FHA, or VA loan to see accurate PMI calculations and rate adjustments specific to each loan type.</p>
+              </div>
+
+              <div className="bg-white p-3 sm:p-4 md:p-6 rounded-lg shadow-sm">
+                <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2 text-sm sm:text-base">
+                  <span className="bg-blue-600 text-white w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-xs sm:text-sm flex-shrink-0">7</span>
+                  <span>Calculate and Analyze</span>
+                </h4>
+                <p className="text-gray-700 ml-0 sm:ml-9 text-xs sm:text-sm md:text-base leading-relaxed">Click "Calculate Mortgage" to see your complete payment breakdown, amortization schedule, debt-to-income ratio, and affordability analysis.</p>
+              </div>
+            </div>
+
+            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mt-6 sm:mt-8 mb-3 sm:mb-4 leading-tight px-2 sm:px-0">Pro Tips:</h3>
+            <ul className="space-y-1.5 sm:space-y-2 text-gray-700 list-disc pl-4 sm:pl-5 md:pl-6 text-xs sm:text-sm md:text-base">
+              <li><strong>Compare Scenarios:</strong> Try different down payments and loan terms to find your sweet spot</li>
+              <li><strong>Extra Payments:</strong> See how adding just $100/month can save thousands in interest</li>
+              <li><strong>PMI Awareness:</strong> Understand when you can remove PMI once you reach 78% loan-to-value</li>
+              <li><strong>Total Cost Focus:</strong> Don't just look at monthly payment - consider total interest paid</li>
+            </ul>
+          </section>
 
           {/* Real-World Examples Section */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
-            <CardContent className="p-4 sm:p-6 md:p-8 lg:p-12">
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">Mortgage Calculator Examples</h2>
+          <section className="prose prose-sm sm:prose lg:prose-lg max-w-none px-2 sm:px-0">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">Mortgage Calculator Examples</h2>
 
-              <div className="space-y-4 sm:space-y-6 md:space-y-8">
-                {/* Example 1 */}
-                <div className="bg-white border-2 border-blue-200 p-4 sm:p-6 md:p-8 rounded-xl">
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">Example 1: First-Time Homebuyer with 10% Down</h3>
-                  <p className="text-xs sm:text-sm md:text-base text-gray-700 mb-3 sm:mb-4 leading-relaxed"><strong>Scenario:</strong> Sarah is buying her first home and has saved $50,000 for a down payment on a $500,000 house.</p>
+            <div className="space-y-4 sm:space-y-6 md:space-y-8">
+              {/* Example 1 */}
+              <div className="bg-white border-2 border-blue-200 p-4 sm:p-6 md:p-8 rounded-xl">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">Example 1: First-Time Homebuyer with 10% Down</h3>
+                <p className="text-xs sm:text-sm md:text-base text-gray-700 mb-3 sm:mb-4 leading-relaxed"><strong>Scenario:</strong> Sarah is buying her first home and has saved $50,000 for a down payment on a $500,000 house.</p>
 
-                  <div className="bg-blue-50 p-3 sm:p-4 rounded-lg mb-3 sm:mb-4">
-                    <h4 className="font-bold text-gray-900 mb-2 text-sm sm:text-base">Input Values:</h4>
-                    <ul className="text-gray-700 space-y-0.5 sm:space-y-1 text-xs sm:text-sm md:text-base">
-                      <li>Home Price: $500,000</li>
-                      <li>Down Payment: $50,000 (10%)</li>
-                      <li>Interest Rate: 6.75% APR</li>
-                      <li>Loan Term: 30 years</li>
-                      <li>Property Tax: $6,000/year</li>
-                      <li>Home Insurance: $1,800/year</li>
-                      <li>PMI: 0.5% (required - less than 20% down)</li>
-                    </ul>
-                  </div>
-
-                  <div className="bg-green-50 p-3 sm:p-4 rounded-lg mb-3 sm:mb-4">
-                    <h4 className="font-bold text-gray-900 mb-2 text-sm sm:text-base">Result:</h4>
-                    <p className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">$3,607/month</p>
-                    <ul className="text-gray-700 space-y-0.5 sm:space-y-1 text-xs sm:text-sm">
-                      <li>Principal & Interest: $2,920</li>
-                      <li>Property Tax: $500</li>
-                      <li>Home Insurance: $150</li>
-                      <li>PMI: $187 (removable at 78% LTV)</li>
-                    </ul>
-                  </div>
-
-                  <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed mb-2 sm:mb-3"><strong>Interpretation:</strong> With 10% down, Sarah's monthly payment includes PMI of $187. She can request PMI removal once her loan-to-value ratio reaches 78%, saving $2,244 annually.</p>
-
-                  <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed mb-1.5 sm:mb-2"><strong>Action Steps:</strong></p>
-                  <ul className="text-gray-700 list-disc pl-4 sm:pl-5 space-y-0.5 sm:space-y-1 text-xs sm:text-sm md:text-base">
-                    <li>Budget for $3,607/month total housing cost</li>
-                    <li>Save extra to reach 20% down ($100,000) to avoid PMI</li>
-                    <li>Make extra principal payments to reach 78% LTV faster</li>
+                <div className="bg-blue-50 p-3 sm:p-4 rounded-lg mb-3 sm:mb-4">
+                  <h4 className="font-bold text-gray-900 mb-2 text-sm sm:text-base">Input Values:</h4>
+                  <ul className="text-gray-700 space-y-0.5 sm:space-y-1 text-xs sm:text-sm md:text-base">
+                    <li>Home Price: $500,000</li>
+                    <li>Down Payment: $50,000 (10%)</li>
+                    <li>Interest Rate: 6.75% APR</li>
+                    <li>Loan Term: 30 years</li>
+                    <li>Property Tax: $6,000/year</li>
+                    <li>Home Insurance: $1,800/year</li>
+                    <li>PMI: 0.5% (required - less than 20% down)</li>
                   </ul>
                 </div>
 
-                {/* Example 2 */}
-                <div className="bg-white border-2 border-green-200 p-4 sm:p-6 md:p-8 rounded-xl">
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">Example 2: 15-Year vs 30-Year Comparison</h3>
-                  <p className="text-xs sm:text-sm md:text-base text-gray-700 mb-3 sm:mb-4 leading-relaxed"><strong>Scenario:</strong> Mike wants to compare the total cost difference between a 15-year and 30-year mortgage on a $400,000 home with 20% down.</p>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 mb-3 sm:mb-4">
-                    <div className="bg-orange-50 p-3 sm:p-4 rounded-lg">
-                      <h4 className="font-bold text-gray-900 mb-2 text-sm sm:text-base">30-Year Mortgage:</h4>
-                      <ul className="text-gray-700 space-y-0.5 sm:space-y-1 text-xs sm:text-sm">
-                        <li>Loan Amount: $320,000</li>
-                        <li>Interest Rate: 6.5%</li>
-                        <li>Monthly P&I: $2,023</li>
-                        <li>Total Interest: $408,280</li>
-                        <li>Total Paid: $728,280</li>
-                      </ul>
-                    </div>
-
-                    <div className="bg-blue-50 p-3 sm:p-4 rounded-lg">
-                      <h4 className="font-bold text-gray-900 mb-2 text-sm sm:text-base">15-Year Mortgage:</h4>
-                      <ul className="text-gray-700 space-y-0.5 sm:space-y-1 text-xs sm:text-sm">
-                        <li>Loan Amount: $320,000</li>
-                        <li>Interest Rate: 5.75%</li>
-                        <li>Monthly P&I: $2,661</li>
-                        <li>Total Interest: $159,020</li>
-                        <li>Total Paid: $479,020</li>
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div className="bg-green-100 p-3 sm:p-4 rounded-lg mb-3 sm:mb-4">
-                    <h4 className="font-bold text-gray-900 mb-2 text-sm sm:text-base">Savings with 15-Year:</h4>
-                    <p className="text-xl sm:text-2xl font-bold text-green-700">$249,260 in interest saved!</p>
-                    <p className="text-gray-700 text-xs sm:text-sm mt-1">Pay $638 more per month to save a quarter million dollars</p>
-                  </div>
-
-                  <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed mb-1.5 sm:mb-2"><strong>Action Steps:</strong></p>
-                  <ul className="text-gray-700 list-disc pl-4 sm:pl-5 space-y-0.5 sm:space-y-1 text-xs sm:text-sm md:text-base">
-                    <li>Choose 15-year if you can afford $638 more monthly</li>
-                    <li>Choose 30-year for flexibility, add extra payments when possible</li>
-                    <li>Consider your job stability and other financial goals</li>
+                <div className="bg-green-50 p-3 sm:p-4 rounded-lg mb-3 sm:mb-4">
+                  <h4 className="font-bold text-gray-900 mb-2 text-sm sm:text-base">Result:</h4>
+                  <p className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">$3,607/month</p>
+                  <ul className="text-gray-700 space-y-0.5 sm:space-y-1 text-xs sm:text-sm">
+                    <li>Principal & Interest: $2,920</li>
+                    <li>Property Tax: $500</li>
+                    <li>Home Insurance: $150</li>
+                    <li>PMI: $187 (removable at 78% LTV)</li>
                   </ul>
                 </div>
 
-                {/* Example 3 */}
-                <div className="bg-white border-2 border-purple-200 p-4 sm:p-6 md:p-8 rounded-xl">
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">Example 3: Extra Payments Strategy</h3>
-                  <p className="text-xs sm:text-sm md:text-base text-gray-700 mb-3 sm:mb-4 leading-relaxed"><strong>Scenario:</strong> Lisa has a $350,000 mortgage at 6.25% for 30 years and wants to know the impact of adding $200/month extra.</p>
+                <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed mb-2 sm:mb-3"><strong>Interpretation:</strong> With 10% down, Sarah's monthly payment includes PMI of $187. She can request PMI removal once her loan-to-value ratio reaches 78%, saving $2,244 annually.</p>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 mb-3 sm:mb-4">
-                    <div className="bg-gray-50 p-3 sm:p-4 rounded-lg">
-                      <h4 className="font-bold text-gray-900 mb-2 text-sm sm:text-base">Standard Payment:</h4>
-                      <ul className="text-gray-700 space-y-0.5 sm:space-y-1 text-xs sm:text-sm">
-                        <li>Monthly Payment: $2,155</li>
-                        <li>Payoff Time: 30 years</li>
-                        <li>Total Interest: $425,800</li>
-                      </ul>
-                    </div>
-
-                    <div className="bg-purple-50 p-3 sm:p-4 rounded-lg">
-                      <h4 className="font-bold text-gray-900 mb-2 text-sm sm:text-base">With $200 Extra:</h4>
-                      <ul className="text-gray-700 space-y-0.5 sm:space-y-1 text-xs sm:text-sm">
-                        <li>Monthly Payment: $2,355</li>
-                        <li>Payoff Time: 23 years 4 months</li>
-                        <li>Total Interest: $330,120</li>
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div className="bg-green-100 p-3 sm:p-4 rounded-lg mb-3 sm:mb-4">
-                    <h4 className="font-bold text-gray-900 mb-2 text-sm sm:text-base">Impact of $200/month Extra:</h4>
-                    <ul className="text-green-700 font-bold space-y-0.5 sm:space-y-1 text-xs sm:text-sm">
-                      <li>Save 6 years 8 months</li>
-                      <li>Save $95,680 in interest</li>
-                    </ul>
-                    <p className="text-gray-700 text-xs sm:text-sm mt-2">Total extra payments: $56,000 → Total savings: $95,680</p>
-                  </div>
-
-                  <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed"><strong>Key Insight:</strong> Every $200 in extra payments saves you $95,680. That's nearly a 170% return on investment!</p>
-                </div>
+                <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed mb-1.5 sm:mb-2"><strong>Action Steps:</strong></p>
+                <ul className="text-gray-700 list-disc pl-4 sm:pl-5 space-y-0.5 sm:space-y-1 text-xs sm:text-sm md:text-base">
+                  <li>Budget for $3,607/month total housing cost</li>
+                  <li>Save extra to reach 20% down ($100,000) to avoid PMI</li>
+                  <li>Make extra principal payments to reach 78% LTV faster</li>
+                </ul>
               </div>
-            </Card>
+
+              {/* Example 2 */}
+              <div className="bg-white border-2 border-green-200 p-4 sm:p-6 md:p-8 rounded-xl">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">Example 2: 15-Year vs 30-Year Comparison</h3>
+                <p className="text-xs sm:text-sm md:text-base text-gray-700 mb-3 sm:mb-4 leading-relaxed"><strong>Scenario:</strong> Mike wants to compare the total cost difference between a 15-year and 30-year mortgage on a $400,000 home with 20% down.</p>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 mb-3 sm:mb-4">
+                  <div className="bg-orange-50 p-3 sm:p-4 rounded-lg">
+                    <h4 className="font-bold text-gray-900 mb-2 text-sm sm:text-base">30-Year Mortgage:</h4>
+                    <ul className="text-gray-700 space-y-0.5 sm:space-y-1 text-xs sm:text-sm">
+                      <li>Loan Amount: $320,000</li>
+                      <li>Interest Rate: 6.5%</li>
+                      <li>Monthly P&I: $2,023</li>
+                      <li>Total Interest: $408,280</li>
+                      <li>Total Paid: $728,280</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-blue-50 p-3 sm:p-4 rounded-lg">
+                    <h4 className="font-bold text-gray-900 mb-2 text-sm sm:text-base">15-Year Mortgage:</h4>
+                    <ul className="text-gray-700 space-y-0.5 sm:space-y-1 text-xs sm:text-sm">
+                      <li>Loan Amount: $320,000</li>
+                      <li>Interest Rate: 5.75%</li>
+                      <li>Monthly P&I: $2,661</li>
+                      <li>Total Interest: $159,020</li>
+                      <li>Total Paid: $479,020</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="bg-green-100 p-3 sm:p-4 rounded-lg mb-3 sm:mb-4">
+                  <h4 className="font-bold text-gray-900 mb-2 text-sm sm:text-base">Savings with 15-Year:</h4>
+                  <p className="text-xl sm:text-2xl font-bold text-green-700">$249,260 in interest saved!</p>
+                  <p className="text-gray-700 text-xs sm:text-sm mt-1">Pay $638 more per month to save a quarter million dollars</p>
+                </div>
+
+                <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed mb-1.5 sm:mb-2"><strong>Action Steps:</strong></p>
+                <ul className="text-gray-700 list-disc pl-4 sm:pl-5 space-y-0.5 sm:space-y-1 text-xs sm:text-sm md:text-base">
+                  <li>Choose 15-year if you can afford $638 more monthly</li>
+                  <li>Choose 30-year for flexibility, add extra payments when possible</li>
+                  <li>Consider your job stability and other financial goals</li>
+                </ul>
+              </div>
+
+              {/* Example 3 */}
+              <div className="bg-white border-2 border-purple-200 p-4 sm:p-6 md:p-8 rounded-xl">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">Example 3: Extra Payments Strategy</h3>
+                <p className="text-xs sm:text-sm md:text-base text-gray-700 mb-3 sm:mb-4 leading-relaxed"><strong>Scenario:</strong> Lisa has a $350,000 mortgage at 6.25% for 30 years and wants to know the impact of adding $200/month extra.</p>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 mb-3 sm:mb-4">
+                  <div className="bg-gray-50 p-3 sm:p-4 rounded-lg">
+                    <h4 className="font-bold text-gray-900 mb-2 text-sm sm:text-base">Standard Payment:</h4>
+                    <ul className="text-gray-700 space-y-0.5 sm:space-y-1 text-xs sm:text-sm">
+                      <li>Monthly Payment: $2,155</li>
+                      <li>Payoff Time: 30 years</li>
+                      <li>Total Interest: $425,800</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-purple-50 p-3 sm:p-4 rounded-lg">
+                    <h4 className="font-bold text-gray-900 mb-2 text-sm sm:text-base">With $200 Extra:</h4>
+                    <ul className="text-gray-700 space-y-0.5 sm:space-y-1 text-xs sm:text-sm">
+                      <li>Monthly Payment: $2,355</li>
+                      <li>Payoff Time: 23 years 4 months</li>
+                      <li>Total Interest: $330,120</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="bg-green-100 p-3 sm:p-4 rounded-lg mb-3 sm:mb-4">
+                  <h4 className="font-bold text-gray-900 mb-2 text-sm sm:text-base">Impact of $200/month Extra:</h4>
+                  <ul className="text-green-700 font-bold space-y-0.5 sm:space-y-1 text-xs sm:text-sm">
+                    <li>Save 6 years 8 months</li>
+                    <li>Save $95,680 in interest</li>
+                  </ul>
+                  <p className="text-gray-700 text-xs sm:text-sm mt-2">Total extra payments: $56,000 → Total savings: $95,680</p>
+                </div>
+
+                <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed"><strong>Key Insight:</strong> Every $200 in extra payments saves you $95,680. That's nearly a 170% return on investment!</p>
+              </div>
+            </div>
+          </section>
 
           {/* Understanding Results Section */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
-            <CardContent className="p-4 sm:p-6 md:p-8 lg:p-12">
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">Understanding Your Mortgage Results</h2>
+          <section className="prose prose-sm sm:prose lg:prose-lg max-w-none bg-gradient-to-br from-green-50 to-emerald-50 p-4 sm:p-6 md:p-8 lg:p-10 rounded-xl sm:rounded-2xl">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight px-2 sm:px-0">Understanding Your Mortgage Results</h2>
 
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">Debt-to-Income (DTI) Ratio Categories</h3>
-              <p className="text-xs sm:text-base md:text-lg text-gray-700 mb-4 sm:mb-6 leading-relaxed">Lenders use your DTI ratio to determine how much house you can afford. This compares your total monthly debt payments to your gross monthly income.</p>
+            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight px-2 sm:px-0">Debt-to-Income (DTI) Ratio Categories</h3>
+            <p className="text-xs sm:text-sm md:text-base text-gray-700 mb-3 sm:mb-4 leading-relaxed px-2 sm:px-0">Lenders use your DTI ratio to determine how much house you can afford. This compares your total monthly debt payments to your gross monthly income.</p>
 
-              <div className="space-y-3 sm:space-y-4">
-                <div className="bg-white p-3 sm:p-4 md:p-6 rounded-lg border-l-4 border-green-500">
-                  <h4 className="font-bold text-gray-900 mb-1.5 sm:mb-2 text-sm sm:text-base">Excellent (DTI ≤ 28%)</h4>
-                  <p className="text-gray-700 mb-1.5 sm:mb-2 text-xs sm:text-sm md:text-base leading-relaxed"><strong>Meaning:</strong> Your housing costs are well within a comfortable range.</p>
-                  <p className="text-gray-700 mb-1.5 sm:mb-2 text-xs sm:text-sm md:text-base leading-relaxed"><strong>Implications:</strong> Easily qualify for best rates; significant financial cushion.</p>
-                  <p className="text-gray-700 text-xs sm:text-sm md:text-base leading-relaxed"><strong>Recommendations:</strong> Consider investing extra funds or building emergency savings.</p>
-                </div>
-
-                <div className="bg-white p-3 sm:p-4 md:p-6 rounded-lg border-l-4 border-blue-500">
-                  <h4 className="font-bold text-gray-900 mb-1.5 sm:mb-2 text-sm sm:text-base">Good (DTI 28-36%)</h4>
-                  <p className="text-gray-700 mb-1.5 sm:mb-2 text-xs sm:text-sm md:text-base leading-relaxed"><strong>Meaning:</strong> Following the standard 28/36 rule - manageable payments.</p>
-                  <p className="text-gray-700 mb-1.5 sm:mb-2 text-xs sm:text-sm md:text-base leading-relaxed"><strong>Implications:</strong> Qualify for most loans; adequate financial flexibility.</p>
-                  <p className="text-gray-700 text-xs sm:text-sm md:text-base leading-relaxed"><strong>Recommendations:</strong> Maintain current level; avoid taking on additional debt.</p>
-                </div>
-
-                <div className="bg-white p-3 sm:p-4 md:p-6 rounded-lg border-l-4 border-yellow-500">
-                  <h4 className="font-bold text-gray-900 mb-1.5 sm:mb-2 text-sm sm:text-base">Caution (DTI 36-43%)</h4>
-                  <p className="text-gray-700 mb-1.5 sm:mb-2 text-xs sm:text-sm md:text-base leading-relaxed"><strong>Meaning:</strong> Higher debt load - approaching maximum recommended levels.</p>
-                  <p className="text-gray-700 mb-1.5 sm:mb-2 text-xs sm:text-sm md:text-base leading-relaxed"><strong>Implications:</strong> May qualify but with higher rates; limited financial buffer.</p>
-                  <p className="text-gray-700 text-xs sm:text-sm md:text-base leading-relaxed"><strong>Recommendations:</strong> Consider smaller home price or larger down payment; reduce other debts.</p>
-                </div>
-
-                <div className="bg-white p-3 sm:p-4 md:p-6 rounded-lg border-l-4 border-red-500">
-                  <h4 className="font-bold text-gray-900 mb-1.5 sm:mb-2 text-sm sm:text-base">High Risk (DTI &gt; 43%)</h4>
-                  <p className="text-gray-700 mb-1.5 sm:mb-2 text-xs sm:text-sm md:text-base leading-relaxed"><strong>Meaning:</strong> Debt levels exceed standard lending guidelines.</p>
-                  <p className="text-gray-700 mb-1.5 sm:mb-2 text-xs sm:text-sm md:text-base leading-relaxed"><strong>Implications:</strong> Difficult to qualify; high risk of financial stress.</p>
-                  <p className="text-gray-700 text-xs sm:text-sm md:text-base leading-relaxed"><strong>Recommendations:</strong> Reduce home price, increase down payment, or pay off existing debts before buying.</p>
-                </div>
+            <div className="space-y-3 sm:space-y-4">
+              <div className="bg-white p-3 sm:p-4 md:p-6 rounded-lg border-l-4 border-green-500">
+                <h4 className="font-bold text-gray-900 mb-1.5 sm:mb-2 text-sm sm:text-base">Excellent (DTI ≤ 28%)</h4>
+                <p className="text-gray-700 mb-1.5 sm:mb-2 text-xs sm:text-sm md:text-base leading-relaxed"><strong>Meaning:</strong> Your housing costs are well within a comfortable range.</p>
+                <p className="text-gray-700 mb-1.5 sm:mb-2 text-xs sm:text-sm md:text-base leading-relaxed"><strong>Implications:</strong> Easily qualify for best rates; significant financial cushion.</p>
+                <p className="text-gray-700 text-xs sm:text-sm md:text-base leading-relaxed"><strong>Recommendations:</strong> Consider investing extra funds or building emergency savings.</p>
               </div>
 
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mt-6 sm:mt-8 mb-3 sm:mb-4 leading-tight">When to Seek Professional Advice</h3>
-              <ul className="text-gray-700 list-disc pl-4 sm:pl-5 space-y-1.5 sm:space-y-2 text-xs sm:text-sm md:text-base">
-                <li>Your DTI ratio is above 43% but you still want to buy</li>
-                <li>You're self-employed or have irregular income</li>
-                <li>You have significant student loans or other debts</li>
-                <li>You're considering an ARM (Adjustable Rate Mortgage)</li>
-                <li>You're unsure between FHA, VA, or conventional loans</li>
-                <li>You're buying in a high-cost area with jumbo loans</li>
-              </ul>
-            </CardContent>
-          </Card>
+              <div className="bg-white p-3 sm:p-4 md:p-6 rounded-lg border-l-4 border-blue-500">
+                <h4 className="font-bold text-gray-900 mb-1.5 sm:mb-2 text-sm sm:text-base">Good (DTI 28-36%)</h4>
+                <p className="text-gray-700 mb-1.5 sm:mb-2 text-xs sm:text-sm md:text-base leading-relaxed"><strong>Meaning:</strong> Following the standard 28/36 rule - manageable payments.</p>
+                <p className="text-gray-700 mb-1.5 sm:mb-2 text-xs sm:text-sm md:text-base leading-relaxed"><strong>Implications:</strong> Qualify for most loans; adequate financial flexibility.</p>
+                <p className="text-gray-700 text-xs sm:text-sm md:text-base leading-relaxed"><strong>Recommendations:</strong> Maintain current level; avoid taking on additional debt.</p>
+              </div>
+
+              <div className="bg-white p-3 sm:p-4 md:p-6 rounded-lg border-l-4 border-yellow-500">
+                <h4 className="font-bold text-gray-900 mb-1.5 sm:mb-2 text-sm sm:text-base">Caution (DTI 36-43%)</h4>
+                <p className="text-gray-700 mb-1.5 sm:mb-2 text-xs sm:text-sm md:text-base leading-relaxed"><strong>Meaning:</strong> Higher debt load - approaching maximum recommended levels.</p>
+                <p className="text-gray-700 mb-1.5 sm:mb-2 text-xs sm:text-sm md:text-base leading-relaxed"><strong>Implications:</strong> May qualify but with higher rates; limited financial buffer.</p>
+                <p className="text-gray-700 text-xs sm:text-sm md:text-base leading-relaxed"><strong>Recommendations:</strong> Consider smaller home price or larger down payment; reduce other debts.</p>
+              </div>
+
+              <div className="bg-white p-3 sm:p-4 md:p-6 rounded-lg border-l-4 border-red-500">
+                <h4 className="font-bold text-gray-900 mb-1.5 sm:mb-2 text-sm sm:text-base">High Risk (DTI &gt; 43%)</h4>
+                <p className="text-gray-700 mb-1.5 sm:mb-2 text-xs sm:text-sm md:text-base leading-relaxed"><strong>Meaning:</strong> Debt levels exceed standard lending guidelines.</p>
+                <p className="text-gray-700 mb-1.5 sm:mb-2 text-xs sm:text-sm md:text-base leading-relaxed"><strong>Implications:</strong> Difficult to qualify; high risk of financial stress.</p>
+                <p className="text-gray-700 text-xs sm:text-sm md:text-base leading-relaxed"><strong>Recommendations:</strong> Reduce home price, increase down payment, or pay off existing debts before buying.</p>
+              </div>
+            </div>
+
+            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mt-6 sm:mt-8 mb-3 sm:mb-4 leading-tight px-2 sm:px-0">When to Seek Professional Advice</h3>
+            <ul className="text-gray-700 list-disc pl-4 sm:pl-5 space-y-1.5 sm:space-y-2 text-xs sm:text-sm md:text-base">
+              <li>Your DTI ratio is above 43% but you still want to buy</li>
+              <li>You're self-employed or have irregular income</li>
+              <li>You have significant student loans or other debts</li>
+              <li>You're considering an ARM (Adjustable Rate Mortgage)</li>
+              <li>You're unsure between FHA, VA, or conventional loans</li>
+              <li>You're buying in a high-cost area with jumbo loans</li>
+            </ul>
+          </section>
 
           {/* Formula Section */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
-            <CardContent className="p-4 sm:p-6 md:p-8 lg:p-12">
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">Mortgage Calculator Formula Explained</h2>
+          <section className="prose prose-sm sm:prose lg:prose-lg max-w-none px-2 sm:px-0">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">Mortgage Calculator Formula Explained</h2>
 
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">The Standard Mortgage Formula</h3>
-              <div className="bg-gray-100 p-4 sm:p-6 rounded-lg mb-4 sm:mb-6 overflow-x-auto">
-                <p className="text-sm sm:text-base md:text-lg font-mono text-center mb-3 sm:mb-4 whitespace-nowrap">M = P [ r(1+r)ⁿ ] / [ (1+r)ⁿ - 1 ]</p>
-                <div className="text-gray-700 space-y-1.5 sm:space-y-2 text-xs sm:text-sm md:text-base">
-                  <p><strong>M</strong> = Monthly payment (principal and interest)</p>
-                  <p><strong>P</strong> = Principal loan amount (home price - down payment)</p>
-                  <p><strong>r</strong> = Monthly interest rate (annual rate / 12)</p>
-                  <p><strong>n</strong> = Total number of payments (years × 12)</p>
-                </div>
+            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">The Standard Mortgage Formula</h3>
+            <div className="bg-gray-100 p-4 sm:p-6 rounded-lg mb-4 sm:mb-6 overflow-x-auto">
+              <p className="text-sm sm:text-base md:text-lg font-mono text-center mb-3 sm:mb-4 whitespace-nowrap">M = P [ r(1+r)ⁿ ] / [ (1+r)ⁿ - 1 ]</p>
+              <div className="text-gray-700 space-y-1.5 sm:space-y-2 text-xs sm:text-sm md:text-base">
+                <p><strong>M</strong> = Monthly payment (principal and interest)</p>
+                <p><strong>P</strong> = Principal loan amount (home price - down payment)</p>
+                <p><strong>r</strong> = Monthly interest rate (annual rate / 12)</p>
+                <p><strong>n</strong> = Total number of payments (years × 12)</p>
               </div>
+            </div>
 
-              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Example Calculation</h3>
-              <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                <p className="font-bold text-gray-900 mb-3">Calculate monthly payment for:</p>
-                <ul className="text-gray-700 space-y-1 mb-4">
-                  <li>Home Price: $400,000</li>
-                  <li>Down Payment: $80,000 (20%)</li>
-                  <li>Loan Amount (P): $320,000</li>
-                  <li>Annual Interest Rate: 6.5%</li>
-                  <li>Loan Term: 30 years</li>
-                </ul>
-
-                <div className="bg-white p-4 rounded-lg mb-4">
-                  <p className="font-bold text-gray-900 mb-2">Step 1: Calculate monthly rate</p>
-                  <p className="font-mono text-sm text-gray-700">r = 6.5% / 12 = 0.00541667</p>
-                </div>
-
-                <div className="bg-white p-4 rounded-lg mb-4">
-                  <p className="font-bold text-gray-900 mb-2">Step 2: Calculate total payments</p>
-                  <p className="font-mono text-sm text-gray-700">n = 30 years × 12 = 360 payments</p>
-                </div>
-
-                <div className="bg-white p-4 rounded-lg mb-4">
-                  <p className="font-bold text-gray-900 mb-2">Step 3: Apply formula</p>
-                  <p className="font-mono text-sm text-gray-700 mb-2">M = 320,000 [ 0.00541667(1.00541667)³⁶⁰ ] / [ (1.00541667)³⁶⁰ - 1 ]</p>
-                  <p className="font-mono text-sm text-gray-700">M = $2,022.94</p>
-                </div>
-
-                <div className="bg-green-100 p-4 rounded-lg">
-                  <p className="font-bold text-gray-900 mb-1">Result: Monthly P&I Payment</p>
-                  <p className="text-2xl font-bold text-gray-900">$2,023</p>
-                  <p className="text-sm text-gray-600 mt-2">Add property tax, insurance, and any PMI for total monthly payment</p>
-                </div>
-              </div>
-
-              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Additional Components</h3>
-              <div className="space-y-4">
-                <div className="bg-white border border-gray-200 p-4 rounded-lg">
-                  <h4 className="font-bold text-gray-900 mb-2">Property Taxes</h4>
-                  <p className="text-gray-700">Annual property tax ÷ 12 months. Typically 0.5% to 2.5% of home value annually, varying by location.</p>
-                </div>
-
-                <div className="bg-white border border-gray-200 p-4 rounded-lg">
-                  <h4 className="font-bold text-gray-900 mb-2">Homeowners Insurance</h4>
-                  <p className="text-gray-700">Annual insurance premium ÷ 12 months. Average $1,000-$2,000/year, higher in disaster-prone areas.</p>
-                </div>
-
-                <div className="bg-white border border-gray-200 p-4 rounded-lg">
-                  <h4 className="font-bold text-gray-900 mb-2">PMI (Private Mortgage Insurance)</h4>
-                  <p className="text-gray-700">(Loan amount × PMI rate) ÷ 12. Required on conventional loans with less than 20% down. Typically 0.3% to 1.5% annually.</p>
-                </div>
-
-                <div className="bg-white border border-gray-200 p-4 rounded-lg">
-                  <h4 className="font-bold text-gray-900 mb-2">HOA Fees</h4>
-                  <p className="text-gray-700">Monthly homeowners association fees if applicable. Varies widely from $100 to $500+ per month.</p>
-                </div>
-              </div>
-
-              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mt-8 mb-4">Accuracy and Limitations</h3>
-              <p className="text-gray-700 mb-4">Our calculator uses the same standard amortization formula that banks and lenders use, providing highly accurate estimates. However, keep in mind:</p>
-              <ul className="text-gray-700 list-disc pl-5 space-y-2">
-                <li>Actual payments may vary slightly based on your lender's specific terms</li>
-                <li>Closing costs and one-time fees are not included in monthly payment</li>
-                <li>Property tax and insurance estimates should be verified with local data</li>
-                <li>Interest rates change frequently - always verify current rates with lenders</li>
-                <li>This calculator is for estimation purposes only - not a loan commitment</li>
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Example Calculation</h3>
+            <div className="bg-blue-50 p-6 rounded-lg mb-6">
+              <p className="font-bold text-gray-900 mb-3">Calculate monthly payment for:</p>
+              <ul className="text-gray-700 space-y-1 mb-4">
+                <li>Home Price: $400,000</li>
+                <li>Down Payment: $80,000 (20%)</li>
+                <li>Loan Amount (P): $320,000</li>
+                <li>Annual Interest Rate: 6.5%</li>
+                <li>Loan Term: 30 years</li>
               </ul>
-            </CardContent>
-          </Card>
+
+              <div className="bg-white p-4 rounded-lg mb-4">
+                <p className="font-bold text-gray-900 mb-2">Step 1: Calculate monthly rate</p>
+                <p className="font-mono text-sm text-gray-700">r = 6.5% / 12 = 0.00541667</p>
+              </div>
+
+              <div className="bg-white p-4 rounded-lg mb-4">
+                <p className="font-bold text-gray-900 mb-2">Step 2: Calculate total payments</p>
+                <p className="font-mono text-sm text-gray-700">n = 30 years × 12 = 360 payments</p>
+              </div>
+
+              <div className="bg-white p-4 rounded-lg mb-4">
+                <p className="font-bold text-gray-900 mb-2">Step 3: Apply formula</p>
+                <p className="font-mono text-sm text-gray-700 mb-2">M = 320,000 [ 0.00541667(1.00541667)³⁶⁰ ] / [ (1.00541667)³⁶⁰ - 1 ]</p>
+                <p className="font-mono text-sm text-gray-700">M = $2,022.94</p>
+              </div>
+
+              <div className="bg-green-100 p-4 rounded-lg">
+                <p className="font-bold text-gray-900 mb-1">Result: Monthly P&I Payment</p>
+                <p className="text-2xl font-bold text-gray-900">$2,023</p>
+                <p className="text-sm text-gray-600 mt-2">Add property tax, insurance, and any PMI for total monthly payment</p>
+              </div>
+            </div>
+
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Additional Components</h3>
+            <div className="space-y-4">
+              <div className="bg-white border border-gray-200 p-4 rounded-lg">
+                <h4 className="font-bold text-gray-900 mb-2">Property Taxes</h4>
+                <p className="text-gray-700">Annual property tax ÷ 12 months. Typically 0.5% to 2.5% of home value annually, varying by location.</p>
+              </div>
+
+              <div className="bg-white border border-gray-200 p-4 rounded-lg">
+                <h4 className="font-bold text-gray-900 mb-2">Homeowners Insurance</h4>
+                <p className="text-gray-700">Annual insurance premium ÷ 12 months. Average $1,000-$2,000/year, higher in disaster-prone areas.</p>
+              </div>
+
+              <div className="bg-white border border-gray-200 p-4 rounded-lg">
+                <h4 className="font-bold text-gray-900 mb-2">PMI (Private Mortgage Insurance)</h4>
+                <p className="text-gray-700">(Loan amount × PMI rate) ÷ 12. Required on conventional loans with less than 20% down. Typically 0.3% to 1.5% annually.</p>
+              </div>
+
+              <div className="bg-white border border-gray-200 p-4 rounded-lg">
+                <h4 className="font-bold text-gray-900 mb-2">HOA Fees</h4>
+                <p className="text-gray-700">Monthly homeowners association fees if applicable. Varies widely from $100 to $500+ per month.</p>
+              </div>
+            </div>
+
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mt-8 mb-4">Accuracy and Limitations</h3>
+            <p className="text-gray-700 mb-4">Our calculator uses the same standard amortization formula that banks and lenders use, providing highly accurate estimates. However, keep in mind:</p>
+            <ul className="text-gray-700 list-disc pl-5 space-y-2">
+              <li>Actual payments may vary slightly based on your lender's specific terms</li>
+              <li>Closing costs and one-time fees are not included in monthly payment</li>
+              <li>Property tax and insurance estimates should be verified with local data</li>
+              <li>Interest rates change frequently - always verify current rates with lenders</li>
+              <li>This calculator is for estimation purposes only - not a loan commitment</li>
+            </ul>
+          </section>
 
           {/* Loan Type Comparison Section */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
-            <CardContent className="p-4 sm:p-6 md:p-8 lg:p-12">
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">FHA vs VA vs Conventional Loans</h2>
+          <section className="prose prose-sm sm:prose lg:prose-lg max-w-none bg-gradient-to-br from-orange-50 to-amber-50 p-4 sm:p-6 md:p-8 lg:p-10 rounded-xl sm:rounded-2xl">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight px-2 sm:px-0">FHA vs VA vs Conventional Loans</h2>
 
-              <div className="overflow-x-auto -mx-4 sm:mx-0 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
-                <table className="w-full min-w-[600px] bg-white rounded-lg overflow-hidden text-xs sm:text-sm md:text-base">
-                  <thead className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
-                    <tr>
-                      <th className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-left font-bold">Feature</th>
-                      <th className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-left font-bold">Conventional</th>
-                      <th className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-left font-bold">FHA</th>
-                      <th className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-left font-bold">VA</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-200">
-                    <tr className="hover:bg-blue-50">
-                      <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 font-semibold text-gray-900">Minimum Down Payment</td>
-                      <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">3% to 5%</td>
-                      <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">3.5%</td>
-                      <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">0% (No down payment)</td>
-                    </tr>
-                    <tr className="hover:bg-blue-50">
-                      <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 font-semibold text-gray-900">Credit Score Requirement</td>
-                      <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">620+</td>
-                      <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">580+ (500 with 10% down)</td>
-                      <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">No minimum (lender sets)</td>
-                    </tr>
-                    <tr className="hover:bg-blue-50">
-                      <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 font-semibold text-gray-900">PMI/MIP Requirement</td>
-                      <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">If less than 20% down (removable)</td>
-                      <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">Required (lifetime for most)</td>
-                      <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">No PMI required</td>
-                    </tr>
-                    <tr className="hover:bg-blue-50">
-                      <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 font-semibold text-gray-900">Loan Limits</td>
-                      <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">$766,550 (2024 standard)</td>
-                      <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">$498,257 (2024 standard)</td>
-                      <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">$766,550 (2024 standard)</td>
-                    </tr>
-                    <tr className="hover:bg-blue-50">
-                      <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 font-semibold text-gray-900">Property Standards</td>
-                      <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">Standard appraisal</td>
-                      <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">Must meet HUD standards</td>
-                      <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">Must meet VA standards</td>
-                    </tr>
-                    <tr className="hover:bg-blue-50">
-                      <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 font-semibold text-gray-900">Funding Fee</td>
-                      <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">None</td>
-                      <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">1.75% upfront MIP</td>
-                      <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">2.3% (first-time use)</td>
-                    </tr>
-                    <tr className="hover:bg-blue-50">
-                      <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 font-semibold text-gray-900">DTI Ratio Limit</td>
-                      <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">43% to 50%</td>
-                      <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">43% to 50%</td>
-                      <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">41% (flexible)</td>
-                    </tr>
-                    <tr className="hover:bg-blue-50">
-                      <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 font-semibold text-gray-900">Best For</td>
-                      <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">Good credit, 10-20% down</td>
-                      <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">Lower credit, small down payment</td>
-                      <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">Veterans, no down payment</td>
-                    </tr>
-                  </tbody>
-                </table>
+            <div className="overflow-x-auto -mx-4 sm:mx-0 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
+              <table className="w-full min-w-[600px] bg-white rounded-lg overflow-hidden text-xs sm:text-sm md:text-base">
+                <thead className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+                  <tr>
+                    <th className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-left font-bold">Feature</th>
+                    <th className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-left font-bold">Conventional</th>
+                    <th className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-left font-bold">FHA</th>
+                    <th className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-left font-bold">VA</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  <tr className="hover:bg-blue-50">
+                    <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 font-semibold text-gray-900">Minimum Down Payment</td>
+                    <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">3% to 5%</td>
+                    <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">3.5%</td>
+                    <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">0% (No down payment)</td>
+                  </tr>
+                  <tr className="hover:bg-blue-50">
+                    <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 font-semibold text-gray-900">Credit Score Requirement</td>
+                    <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">620+</td>
+                    <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">580+ (500 with 10% down)</td>
+                    <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">No minimum (lender sets)</td>
+                  </tr>
+                  <tr className="hover:bg-blue-50">
+                    <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 font-semibold text-gray-900">PMI/MIP Requirement</td>
+                    <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">If less than 20% down (removable)</td>
+                    <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">Required (lifetime for most)</td>
+                    <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">No PMI required</td>
+                  </tr>
+                  <tr className="hover:bg-blue-50">
+                    <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 font-semibold text-gray-900">Loan Limits</td>
+                    <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">$766,550 (2024 standard)</td>
+                    <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">$498,257 (2024 standard)</td>
+                    <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">$766,550 (2024 standard)</td>
+                  </tr>
+                  <tr className="hover:bg-blue-50">
+                    <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 font-semibold text-gray-900">Property Standards</td>
+                    <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">Standard appraisal</td>
+                    <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">Must meet HUD standards</td>
+                    <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">Must meet VA standards</td>
+                  </tr>
+                  <tr className="hover:bg-blue-50">
+                    <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 font-semibold text-gray-900">Funding Fee</td>
+                    <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">None</td>
+                    <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">1.75% upfront MIP</td>
+                    <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">2.3% (first-time use)</td>
+                  </tr>
+                  <tr className="hover:bg-blue-50">
+                    <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 font-semibold text-gray-900">DTI Ratio Limit</td>
+                    <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">43% to 50%</td>
+                    <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">43% to 50%</td>
+                    <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">41% (flexible)</td>
+                  </tr>
+                  <tr className="hover:bg-blue-50">
+                    <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 font-semibold text-gray-900">Best For</td>
+                    <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">Good credit, 10-20% down</td>
+                    <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">Lower credit, small down payment</td>
+                    <td className="px-2 sm:px-3 md:px-4 py-2 sm:py-3 text-gray-700">Veterans, no down payment</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mt-8 mb-4">When to Choose Each Loan Type</h3>
+
+            <div className="space-y-4">
+              <div className="bg-white p-6 rounded-lg border-l-4 border-blue-500">
+                <h4 className="font-bold text-gray-900 mb-2">Choose Conventional If:</h4>
+                <ul className="text-gray-700 list-disc pl-5 space-y-1">
+                  <li>You have good to excellent credit (680+ score)</li>
+                  <li>You can put down 10-20% or more</li>
+                  <li>You want the option to remove PMI at 78% LTV</li>
+                  <li>You're buying a higher-priced home above FHA limits</li>
+                  <li>You want the most flexible property types and conditions</li>
+                </ul>
               </div>
 
-              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mt-8 mb-4">When to Choose Each Loan Type</h3>
-
-              <div className="space-y-4">
-                <div className="bg-white p-6 rounded-lg border-l-4 border-blue-500">
-                  <h4 className="font-bold text-gray-900 mb-2">Choose Conventional If:</h4>
-                  <ul className="text-gray-700 list-disc pl-5 space-y-1">
-                    <li>You have good to excellent credit (680+ score)</li>
-                    <li>You can put down 10-20% or more</li>
-                    <li>You want the option to remove PMI at 78% LTV</li>
-                    <li>You're buying a higher-priced home above FHA limits</li>
-                    <li>You want the most flexible property types and conditions</li>
-                  </ul>
-                </div>
-
-                <div className="bg-white p-6 rounded-lg border-l-4 border-green-500">
-                  <h4 className="font-bold text-gray-900 mb-2">Choose FHA If:</h4>
-                  <ul className="text-gray-700 list-disc pl-5 space-y-1">
-                    <li>Your credit score is 580-680</li>
-                    <li>You only have 3.5% saved for down payment</li>
-                    <li>You're a first-time homebuyer with limited savings</li>
-                    <li>You're okay with lifetime MIP for low down payment benefits</li>
-                    <li>The home meets HUD property standards</li>
-                  </ul>
-                </div>
-
-                <div className="bg-white p-6 rounded-lg border-l-4 border-purple-500">
-                  <h4 className="font-bold text-gray-900 mb-2">Choose VA If:</h4>
-                  <ul className="text-gray-700 list-disc pl-5 space-y-1">
-                    <li>You're an eligible veteran, active military, or spouse</li>
-                    <li>You want zero down payment with no PMI</li>
-                    <li>You have limited savings for down payment</li>
-                    <li>You qualify for VA benefits and entitlements</li>
-                    <li>You're okay with VA property inspections and standards</li>
-                  </ul>
-                </div>
+              <div className="bg-white p-6 rounded-lg border-l-4 border-green-500">
+                <h4 className="font-bold text-gray-900 mb-2">Choose FHA If:</h4>
+                <ul className="text-gray-700 list-disc pl-5 space-y-1">
+                  <li>Your credit score is 580-680</li>
+                  <li>You only have 3.5% saved for down payment</li>
+                  <li>You're a first-time homebuyer with limited savings</li>
+                  <li>You're okay with lifetime MIP for low down payment benefits</li>
+                  <li>The home meets HUD property standards</li>
+                </ul>
               </div>
-            </CardContent>
-          </Card>
+
+              <div className="bg-white p-6 rounded-lg border-l-4 border-purple-500">
+                <h4 className="font-bold text-gray-900 mb-2">Choose VA If:</h4>
+                <ul className="text-gray-700 list-disc pl-5 space-y-1">
+                  <li>You're an eligible veteran, active military, or spouse</li>
+                  <li>You want zero down payment with no PMI</li>
+                  <li>You have limited savings for down payment</li>
+                  <li>You qualify for VA benefits and entitlements</li>
+                  <li>You're okay with VA property inspections and standards</li>
+                </ul>
+              </div>
+            </div>
+          </section>
 
           {/* FAQ Section */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
-            <CardContent className="p-4 sm:p-6 md:p-8 lg:p-12">
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">Frequently Asked Questions (FAQ)</h2>
+          <section className="prose prose-sm sm:prose lg:prose-lg max-w-none px-2 sm:px-0">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">Frequently Asked Questions (FAQ)</h2>
 
-              <div className="space-y-4 sm:space-y-6">
-                <div className="bg-white border border-gray-200 p-4 sm:p-6 rounded-lg">
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3 leading-tight">How accurate is this mortgage calculator?</h3>
-                  <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed">Our mortgage calculator provides highly accurate estimates using the standard amortization formula that banks and lenders use. However, actual payments may vary slightly based on your lender's specific terms, exact closing date, and how they handle escrow accounts. Always verify final numbers with your mortgage lender before committing.</p>
-                </div>
-
-                <div className="bg-white border border-gray-200 p-6 rounded-lg">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">How much house can I afford with my salary?</h3>
-                  <p className="text-gray-700">Lenders typically use the 28/36 rule: your monthly housing payment (PITI - Principal, Interest, Taxes, Insurance) should not exceed 28% of gross monthly income, and total debt payments shouldn't exceed 36%. For example, with a $7,000 monthly income, your maximum mortgage payment should be around $1,960. However, just because you qualify for a certain amount doesn't mean you should borrow that much. Consider your comfort level, other financial goals, and emergency savings.</p>
-                </div>
-
-                <div className="bg-white border border-gray-200 p-6 rounded-lg">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">What is PMI and when can I remove it?</h3>
-                  <p className="text-gray-700">Private Mortgage Insurance (PMI) is required on conventional loans when you put down less than 20%. It typically costs 0.3% to 1.5% of the loan amount annually ($50-$200/month on a $300,000 loan). You can request PMI removal once you reach 78% loan-to-value ratio through payments or home appreciation. The lender must automatically cancel PMI when you reach 78% LTV. On FHA loans, MIP (Mortgage Insurance Premium) is typically required for the life of the loan if you put down less than 10%.</p>
-                </div>
-
-                <div className="bg-white border border-gray-200 p-6 rounded-lg">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">Should I choose a 15-year or 30-year mortgage?</h3>
-                  <p className="text-gray-700">A 30-year mortgage offers lower monthly payments (typically 30-40% less) but you'll pay significantly more interest over the loan's life - sometimes double the total interest. A 15-year mortgage has higher monthly payments but you'll pay roughly half the total interest and own your home faster. Choose a 30-year if you need lower payments for cash flow flexibility or want to invest the difference. Choose a 15-year if you can afford higher payments and want to save on interest. Many people choose a 30-year but make extra principal payments for flexibility.</p>
-                </div>
-
-                <div className="bg-white border border-gray-200 p-6 rounded-lg">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">How do extra payments affect my mortgage?</h3>
-                  <p className="text-gray-700">Extra payments go directly toward your principal balance, reducing both the total interest you'll pay and the time it takes to pay off your loan. For example, adding just $200/month to a $350,000 mortgage at 6.25% can save you 6 years 8 months and over $95,000 in interest. Even small extra payments make a significant impact because they reduce the principal on which future interest is calculated. There's no penalty for extra payments on most conventional mortgages, but always verify with your lender.</p>
-                </div>
-
-                <div className="bg-white border border-gray-200 p-6 rounded-lg">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">What's included in my monthly mortgage payment?</h3>
-                  <p className="text-gray-700">A complete monthly mortgage payment (often called PITI) includes: <strong>Principal</strong> (the loan amount you're paying down), <strong>Interest</strong> (the cost of borrowing), <strong>Property Taxes</strong> (usually escrowed and paid by lender), <strong>Homeowners Insurance</strong> (also typically escrowed). If you put down less than 20%, add <strong>PMI/MIP</strong>. If you have a condo or planned community, add <strong>HOA fees</strong>. Some areas may also require flood insurance or other special assessments.</p>
-                </div>
-
-                <div className="bg-white border border-gray-200 p-6 rounded-lg">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">What credit score do I need to buy a house?</h3>
-                  <p className="text-gray-700">Minimum credit scores vary by loan type: <strong>Conventional loans</strong> typically require 620 minimum (640+ for best rates). <strong>FHA loans</strong> accept 580 with 3.5% down, or 500 with 10% down. <strong>VA loans</strong> have no official minimum, but most lenders want 580-620. <strong>USDA loans</strong> typically require 640. However, a higher score (740+) gets you the best interest rates, potentially saving thousands. Every 20-point increase in your credit score can lower your rate by 0.125% to 0.25%.</p>
-                </div>
-
-                <div className="bg-white border border-gray-200 p-6 rounded-lg">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">How much should I put down on a house?</h3>
-                  <p className="text-gray-700">The ideal down payment depends on your situation: <strong>20% down</strong> avoids PMI on conventional loans and gives you instant equity. <strong>10-15% down</strong> still shows strong commitment while keeping some savings for emergencies. <strong>3.5-5% down</strong> (FHA/Conventional minimum) allows you to buy sooner but means higher monthly payments with PMI. <strong>0% down</strong> (VA/USDA) is available if you qualify. Consider: PMI costs, your emergency fund, mortgage rate (lower rates make PMI more palatable), and opportunity cost of tying up cash vs. investing.</p>
-                </div>
-
-                <div className="bg-white border border-gray-200 p-6 rounded-lg">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">What are closing costs and how much are they?</h3>
-                  <p className="text-gray-700">Closing costs are one-time fees paid when finalizing your mortgage, typically 2-5% of the home price ($8,000-$20,000 on a $400,000 home). They include: appraisal ($400-$600), home inspection ($300-$500), title search and insurance ($1,000-$2,000), origination fees (0.5-1% of loan), credit report ($25-$50), attorney fees ($500-$1,500), recording fees ($50-$250), and prepaid items like property taxes and homeowners insurance. Some costs can be negotiated or rolled into the loan.</p>
-                </div>
-
-                <div className="bg-white border border-gray-200 p-6 rounded-lg">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">Should I pay discount points to lower my rate?</h3>
-                  <p className="text-gray-700">Discount points let you "buy down" your interest rate by paying upfront - typically 1 point (1% of loan) reduces your rate by 0.25%. Whether it's worth it depends on your break-even point: how long until the monthly savings exceed the upfront cost. Example: On a $400,000 loan, 1 point ($4,000) might save you $70/month. Break-even = 57 months (4.75 years). Buy points if you plan to stay in the home longer than the break-even period and have extra cash. Skip points if you might move or refinance within 5 years.</p>
-                </div>
+            <div className="space-y-4 sm:space-y-6">
+              <div className="bg-white border border-gray-200 p-4 sm:p-6 rounded-lg">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3 leading-tight">How accurate is this mortgage calculator?</h3>
+                <p className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed">Our mortgage calculator provides highly accurate estimates using the standard amortization formula that banks and lenders use. However, actual payments may vary slightly based on your lender's specific terms, exact closing date, and how they handle escrow accounts. Always verify final numbers with your mortgage lender before committing.</p>
               </div>
-            </CardContent>
-          </Card>
+
+              <div className="bg-white border border-gray-200 p-6 rounded-lg">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">How much house can I afford with my salary?</h3>
+                <p className="text-gray-700">Lenders typically use the 28/36 rule: your monthly housing payment (PITI - Principal, Interest, Taxes, Insurance) should not exceed 28% of gross monthly income, and total debt payments shouldn't exceed 36%. For example, with a $7,000 monthly income, your maximum mortgage payment should be around $1,960. However, just because you qualify for a certain amount doesn't mean you should borrow that much. Consider your comfort level, other financial goals, and emergency savings.</p>
+              </div>
+
+              <div className="bg-white border border-gray-200 p-6 rounded-lg">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">What is PMI and when can I remove it?</h3>
+                <p className="text-gray-700">Private Mortgage Insurance (PMI) is required on conventional loans when you put down less than 20%. It typically costs 0.3% to 1.5% of the loan amount annually ($50-$200/month on a $300,000 loan). You can request PMI removal once you reach 78% loan-to-value ratio through payments or home appreciation. The lender must automatically cancel PMI when you reach 78% LTV. On FHA loans, MIP (Mortgage Insurance Premium) is typically required for the life of the loan if you put down less than 10%.</p>
+              </div>
+
+              <div className="bg-white border border-gray-200 p-6 rounded-lg">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Should I choose a 15-year or 30-year mortgage?</h3>
+                <p className="text-gray-700">A 30-year mortgage offers lower monthly payments (typically 30-40% less) but you'll pay significantly more interest over the loan's life - sometimes double the total interest. A 15-year mortgage has higher monthly payments but you'll pay roughly half the total interest and own your home faster. Choose a 30-year if you need lower payments for cash flow flexibility or want to invest the difference. Choose a 15-year if you can afford higher payments and want to save on interest. Many people choose a 30-year but make extra principal payments for flexibility.</p>
+              </div>
+
+              <div className="bg-white border border-gray-200 p-6 rounded-lg">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">How do extra payments affect my mortgage?</h3>
+                <p className="text-gray-700">Extra payments go directly toward your principal balance, reducing both the total interest you'll pay and the time it takes to pay off your loan. For example, adding just $200/month to a $350,000 mortgage at 6.25% can save you 6 years 8 months and over $95,000 in interest. Even small extra payments make a significant impact because they reduce the principal on which future interest is calculated. There's no penalty for extra payments on most conventional mortgages, but always verify with your lender.</p>
+              </div>
+
+              <div className="bg-white border border-gray-200 p-6 rounded-lg">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">What's included in my monthly mortgage payment?</h3>
+                <p className="text-gray-700">A complete monthly mortgage payment (often called PITI) includes: <strong>Principal</strong> (the loan amount you're paying down), <strong>Interest</strong> (the cost of borrowing), <strong>Property Taxes</strong> (usually escrowed and paid by lender), <strong>Homeowners Insurance</strong> (also typically escrowed). If you put down less than 20%, add <strong>PMI/MIP</strong>. If you have a condo or planned community, add <strong>HOA fees</strong>. Some areas may also require flood insurance or other special assessments.</p>
+              </div>
+
+              <div className="bg-white border border-gray-200 p-6 rounded-lg">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">What credit score do I need to buy a house?</h3>
+                <p className="text-gray-700">Minimum credit scores vary by loan type: <strong>Conventional loans</strong> typically require 620 minimum (640+ for best rates). <strong>FHA loans</strong> accept 580 with 3.5% down, or 500 with 10% down. <strong>VA loans</strong> have no official minimum, but most lenders want 580-620. <strong>USDA loans</strong> typically require 640. However, a higher score (740+) gets you the best interest rates, potentially saving thousands. Every 20-point increase in your credit score can lower your rate by 0.125% to 0.25%.</p>
+              </div>
+
+              <div className="bg-white border border-gray-200 p-6 rounded-lg">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">How much should I put down on a house?</h3>
+                <p className="text-gray-700">The ideal down payment depends on your situation: <strong>20% down</strong> avoids PMI on conventional loans and gives you instant equity. <strong>10-15% down</strong> still shows strong commitment while keeping some savings for emergencies. <strong>3.5-5% down</strong> (FHA/Conventional minimum) allows you to buy sooner but means higher monthly payments with PMI. <strong>0% down</strong> (VA/USDA) is available if you qualify. Consider: PMI costs, your emergency fund, mortgage rate (lower rates make PMI more palatable), and opportunity cost of tying up cash vs. investing.</p>
+              </div>
+
+              <div className="bg-white border border-gray-200 p-6 rounded-lg">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">What are closing costs and how much are they?</h3>
+                <p className="text-gray-700">Closing costs are one-time fees paid when finalizing your mortgage, typically 2-5% of the home price ($8,000-$20,000 on a $400,000 home). They include: appraisal ($400-$600), home inspection ($300-$500), title search and insurance ($1,000-$2,000), origination fees (0.5-1% of loan), credit report ($25-$50), attorney fees ($500-$1,500), recording fees ($50-$250), and prepaid items like property taxes and homeowners insurance. Some costs can be negotiated or rolled into the loan.</p>
+              </div>
+
+              <div className="bg-white border border-gray-200 p-6 rounded-lg">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Should I pay discount points to lower my rate?</h3>
+                <p className="text-gray-700">Discount points let you "buy down" your interest rate by paying upfront - typically 1 point (1% of loan) reduces your rate by 0.25%. Whether it's worth it depends on your break-even point: how long until the monthly savings exceed the upfront cost. Example: On a $400,000 loan, 1 point ($4,000) might save you $70/month. Break-even = 57 months (4.75 years). Buy points if you plan to stay in the home longer than the break-even period and have extra cash. Skip points if you might move or refinance within 5 years.</p>
+              </div>
+            </div>
+          </section>
 
           {/* Related Tools Section */}
-          <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
-            <CardContent className="p-4 sm:p-6 md:p-8 lg:p-12">
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">Related Financial Calculators</h2>
-              <p className="text-sm sm:text-base md:text-lg text-gray-700 mb-6 sm:mb-8 leading-relaxed">Looking for more financial insights? Try these related tools:</p>
+          <section className="prose prose-sm sm:prose lg:prose-lg max-w-none bg-gradient-to-br from-orange-50 to-amber-50 p-4 sm:p-6 md:p-8 lg:p-10 rounded-xl sm:rounded-2xl">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight px-2 sm:px-0">Related Financial Calculators</h2>
+            <p className="text-sm sm:text-base md:text-lg text-gray-700 mb-6 sm:mb-8 leading-relaxed px-2 sm:px-0">Looking for more financial insights? Try these related tools:</p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-                <div className="bg-white p-4 sm:p-6 rounded-xl border-2 border-blue-200 hover:border-blue-400 transition-all">
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 leading-tight">Loan Calculator</h3>
-                  <p className="text-xs sm:text-sm md:text-base text-gray-700 mb-3 sm:mb-4 leading-relaxed">Calculate monthly payments for personal loans, auto loans, and student loans with our comprehensive loan calculator.</p>
-                  <p className="text-xs sm:text-sm font-semibold text-blue-600">Best For: Personal & auto loans, debt consolidation</p>
-                </div>
-
-                <div className="bg-white p-6 rounded-xl border-2 border-green-200 hover:border-green-400 transition-all">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Compound Interest Calculator</h3>
-                  <p className="text-gray-700 mb-4">See how your investments grow over time with the power of compound interest and regular contributions.</p>
-                  <p className="text-sm font-semibold text-green-600">Best For: Investment planning, retirement savings</p>
-                </div>
-
-                <div className="bg-white p-6 rounded-xl border-2 border-purple-200 hover:border-purple-400 transition-all">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">ROI Calculator</h3>
-                  <p className="text-gray-700 mb-4">Calculate return on investment for rental properties, home improvements, and real estate investments.</p>
-                  <p className="text-sm font-semibold text-purple-600">Best For: Real estate investors, rental analysis</p>
-                </div>
-
-                <div className="bg-white p-6 rounded-xl border-2 border-orange-200 hover:border-orange-400 transition-all">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Debt Payoff Calculator</h3>
-                  <p className="text-gray-700 mb-4">Create a strategic plan to pay off credit cards and debts faster using snowball or avalanche methods.</p>
-                  <p className="text-sm font-semibold text-orange-600">Best For: Debt reduction strategy, credit card payoff</p>
-                </div>
-
-                <div className="bg-white p-6 rounded-xl border-2 border-pink-200 hover:border-pink-400 transition-all">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Budget Calculator</h3>
-                  <p className="text-gray-700 mb-4">Plan your monthly budget and track expenses to see how much you can afford for a mortgage payment.</p>
-                  <p className="text-sm font-semibold text-pink-600">Best For: Monthly budgeting, expense tracking</p>
-                </div>
-
-                <div className="bg-white p-6 rounded-xl border-2 border-indigo-200 hover:border-indigo-400 transition-all">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Savings Calculator</h3>
-                  <p className="text-gray-700 mb-4">Calculate how long it will take to save for a down payment or other financial goals with regular contributions.</p>
-                  <p className="text-sm font-semibold text-indigo-600">Best For: Down payment savings, goal planning</p>
-                </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              <div className="bg-white p-4 sm:p-6 rounded-xl border-2 border-blue-200 hover:border-blue-400 transition-all">
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 leading-tight">Loan Calculator</h3>
+                <p className="text-xs sm:text-sm md:text-base text-gray-700 mb-3 sm:mb-4 leading-relaxed">Calculate monthly payments for personal loans, auto loans, and student loans with our comprehensive loan calculator.</p>
+                <p className="text-xs sm:text-sm font-semibold text-blue-600">Best For: Personal & auto loans, debt consolidation</p>
               </div>
-            </CardContent>
-          </Card>
+
+              <div className="bg-white p-6 rounded-xl border-2 border-green-200 hover:border-green-400 transition-all">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Compound Interest Calculator</h3>
+                <p className="text-gray-700 mb-4">See how your investments grow over time with the power of compound interest and regular contributions.</p>
+                <p className="text-sm font-semibold text-green-600">Best For: Investment planning, retirement savings</p>
+              </div>
+
+              <div className="bg-white p-6 rounded-xl border-2 border-purple-200 hover:border-purple-400 transition-all">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">ROI Calculator</h3>
+                <p className="text-gray-700 mb-4">Calculate return on investment for rental properties, home improvements, and real estate investments.</p>
+                <p className="text-sm font-semibold text-purple-600">Best For: Real estate investors, rental analysis</p>
+              </div>
+
+              <div className="bg-white p-6 rounded-xl border-2 border-orange-200 hover:border-orange-400 transition-all">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Debt Payoff Calculator</h3>
+                <p className="text-gray-700 mb-4">Create a strategic plan to pay off credit cards and debts faster using snowball or avalanche methods.</p>
+                <p className="text-sm font-semibold text-orange-600">Best For: Debt reduction strategy, credit card payoff</p>
+              </div>
+
+              <div className="bg-white p-6 rounded-xl border-2 border-pink-200 hover:border-pink-400 transition-all">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Budget Calculator</h3>
+                <p className="text-gray-700 mb-4">Plan your monthly budget and track expenses to see how much you can afford for a mortgage payment.</p>
+                <p className="text-sm font-semibold text-pink-600">Best For: Monthly budgeting, expense tracking</p>
+              </div>
+
+              <div className="bg-white p-6 rounded-xl border-2 border-indigo-200 hover:border-indigo-400 transition-all">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Savings Calculator</h3>
+                <p className="text-gray-700 mb-4">Calculate how long it will take to save for a down payment or other financial goals with regular contributions.</p>
+                <p className="text-sm font-semibold text-indigo-600">Best For: Down payment savings, goal planning</p>
+              </div>
+            </div>
+          </section>
 
           {/* Final CTA Section */}
-          <Card className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-4 sm:p-6 md:p-10 lg:p-14 rounded-xl sm:rounded-2xl text-center">
-            <CardContent className="p-0">
-              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 md:mb-6 text-white leading-tight px-2 sm:px-0">Ready to Plan Your Home Purchase?</h2>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-4 sm:mb-6 md:mb-8 text-blue-100 max-w-3xl mx-auto leading-relaxed px-2 sm:px-0">
-                Use our free mortgage calculator to understand your monthly payments, compare loan options, and make informed decisions about your home purchase.
-              </p>
+          <section className="prose prose-sm sm:prose max-w-none bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-4 sm:p-6 md:p-10 lg:p-14 rounded-xl sm:rounded-2xl text-center">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 md:mb-6 text-white leading-tight px-2 sm:px-0">Ready to Plan Your Home Purchase?</h2>
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-4 sm:mb-6 md:mb-8 text-blue-100 max-w-3xl mx-auto leading-relaxed px-2 sm:px-0">
+              Use our free mortgage calculator to understand your monthly payments, compare loan options, and make informed decisions about your home purchase.
+            </p>
 
-              <div className="max-w-2xl mx-auto mb-6 sm:mb-8 px-2 sm:px-0">
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 text-center mb-6 sm:mb-8">
-                  <div>
-                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1 sm:mb-2">100% Free</div>
-                    <div className="text-blue-200 text-xs sm:text-sm md:text-base">No hidden fees or charges</div>
-                  </div>
-                  <div>
-                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1 sm:mb-2">Instant</div>
-                    <div className="text-blue-200 text-xs sm:text-sm md:text-base">Results in seconds</div>
-                  </div>
-                  <div>
-                    <div className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1 sm:mb-2">Private</div>
-                    <div className="text-blue-200 text-xs sm:text-sm md:text-base">We don't store your data</div>
-                  </div>
+            <div className="max-w-2xl mx-auto mb-6 sm:mb-8 px-2 sm:px-0">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 text-center mb-6 sm:mb-8">
+                <div>
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1 sm:mb-2">100% Free</div>
+                  <div className="text-blue-200 text-xs sm:text-sm md:text-base">No hidden fees or charges</div>
                 </div>
-
-                <p className="text-blue-100 mb-6">Join thousands of homebuyers who use our calculator to:</p>
-                <ul className="text-left text-blue-100 space-y-2 max-w-lg mx-auto mb-8">
-                  <li className="flex items-start gap-3">
-                    <span className="text-green-400 text-xl">✓</span>
-                    <span>Understand true monthly costs before house hunting</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-green-400 text-xl">✓</span>
-                    <span>Compare different loan scenarios side-by-side</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-green-400 text-xl">✓</span>
-                    <span>See how extra payments save thousands in interest</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-green-400 text-xl">✓</span>
-                    <span>Make confident decisions with detailed breakdowns</span>
-                  </li>
-                </ul>
-
-                <p className="text-sm text-blue-200 italic">Need help? Our calculator includes step-by-step instructions, real-world examples, and comprehensive FAQs to guide you through every decision.</p>
+                <div>
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1 sm:mb-2">Instant</div>
+                  <div className="text-blue-200 text-xs sm:text-sm md:text-base">Results in seconds</div>
+                </div>
+                <div>
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-bold mb-1 sm:mb-2">Private</div>
+                  <div className="text-blue-200 text-xs sm:text-sm md:text-base">We don't store your data</div>
+                </div>
               </div>
-            </CardContent>
-          </Card>
+
+              <p className="text-blue-100 mb-6">Join thousands of homebuyers who use our calculator to:</p>
+              <ul className="text-left text-blue-100 space-y-2 max-w-lg mx-auto mb-8">
+                <li className="flex items-start gap-3">
+                  <span className="text-green-400 text-xl">✓</span>
+                  <span>Understand true monthly costs before house hunting</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-green-400 text-xl">✓</span>
+                  <span>Compare different loan scenarios side-by-side</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-green-400 text-xl">✓</span>
+                  <span>See how extra payments save thousands in interest</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-green-400 text-xl">✓</span>
+                  <span>Make confident decisions with detailed breakdowns</span>
+                </li>
+              </ul>
+
+              <p className="text-sm text-blue-200 italic">Need help? Our calculator includes step-by-step instructions, real-world examples, and comprehensive FAQs to guide you through every decision.</p>
+            </div>
+          </section>
 
         </div>
 
