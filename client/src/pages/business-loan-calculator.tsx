@@ -2209,6 +2209,50 @@ export default function BusinessLoanCalculator() {
               </CardContent>
             </Card>
 
+            {/* Related Tools Section */}
+            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-6 sm:p-8 lg:p-10">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">
+                  Related Financial Calculators
+                </h2>
+                <p className="text-gray-700 mb-6 sm:mb-8">
+                  Explore our other free financial tools to make better business and personal money decisions.
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                  <a href="/tools/loan-calculator" className="block bg-gradient-to-br from-blue-50 to-indigo-100 hover:from-blue-100 hover:to-indigo-200 rounded-xl p-4 sm:p-6 transition-all hover:shadow-lg border-2 border-blue-200 hover:border-blue-300">
+                    <h3 className="text-lg sm:text-xl font-bold text-blue-900 mb-2 sm:mb-3">Loan Calculator</h3>
+                    <p className="text-gray-700 text-sm">Calculate monthly payments and total interest for personal loans, auto loans, and more with detailed amortization schedules.</p>
+                  </a>
+
+                  <a href="/tools/mortgage-calculator" className="block bg-gradient-to-br from-green-50 to-emerald-100 hover:from-green-100 hover:to-emerald-200 rounded-xl p-4 sm:p-6 transition-all hover:shadow-lg border-2 border-green-200 hover:border-green-300">
+                    <h3 className="text-lg sm:text-xl font-bold text-green-900 mb-2 sm:mb-3">Mortgage Calculator</h3>
+                    <p className="text-gray-700 text-sm">Calculate home loan payments including property taxes, insurance, and PMI. Perfect for homebuyers planning their purchase.</p>
+                  </a>
+
+                  <a href="/tools/emi-calculator" className="block bg-gradient-to-br from-purple-50 to-violet-100 hover:from-purple-100 hover:to-violet-200 rounded-xl p-4 sm:p-6 transition-all hover:shadow-lg border-2 border-purple-200 hover:border-purple-300">
+                    <h3 className="text-lg sm:text-xl font-bold text-purple-900 mb-2 sm:mb-3">EMI Calculator</h3>
+                    <p className="text-gray-700 text-sm">Calculate Equated Monthly Installments for various loans with prepayment options and detailed payment breakdowns.</p>
+                  </a>
+
+                  <a href="/tools/roi-calculator" className="block bg-gradient-to-br from-orange-50 to-amber-100 hover:from-orange-100 hover:to-amber-200 rounded-xl p-4 sm:p-6 transition-all hover:shadow-lg border-2 border-orange-200 hover:border-orange-300">
+                    <h3 className="text-lg sm:text-xl font-bold text-orange-900 mb-2 sm:mb-3">ROI Calculator</h3>
+                    <p className="text-gray-700 text-sm">Calculate return on investment percentage for business ventures, marketing campaigns, and investment opportunities.</p>
+                  </a>
+
+                  <a href="/tools/break-even-calculator" className="block bg-gradient-to-br from-cyan-50 to-teal-100 hover:from-cyan-100 hover:to-teal-200 rounded-xl p-4 sm:p-6 transition-all hover:shadow-lg border-2 border-cyan-200 hover:border-cyan-300">
+                    <h3 className="text-lg sm:text-xl font-bold text-cyan-900 mb-2 sm:mb-3">Break-Even Calculator</h3>
+                    <p className="text-gray-700 text-sm">Calculate your business break-even point to determine when your venture will become profitable.</p>
+                  </a>
+
+                  <a href="/tools/loan-comparison-calculator" className="block bg-gradient-to-br from-pink-50 to-rose-100 hover:from-pink-100 hover:to-rose-200 rounded-xl p-4 sm:p-6 transition-all hover:shadow-lg border-2 border-pink-200 hover:border-pink-300">
+                    <h3 className="text-lg sm:text-xl font-bold text-pink-900 mb-2 sm:mb-3">Loan Comparison Calculator</h3>
+                    <p className="text-gray-700 text-sm">Compare multiple loan offers side-by-side to find the best financing option for your business needs.</p>
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
+
             {/* Loan Type Comparison Section */}
             <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
               <CardContent className="p-6 sm:p-8 lg:p-10">
