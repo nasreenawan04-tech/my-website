@@ -42,6 +42,17 @@ interface EMIResult {
   }>;
 }
 
+interface ComparisonEMI {
+  name: string;
+  principal: number;
+  rate: number;
+  tenure: number;
+  tenureType: string;
+  emi: number;
+  totalInterest: number;
+  totalAmount: number;
+}
+
 export default function EMICalculator() {
   const [loanAmount, setLoanAmount] = useState('100000');
   const [interestRate, setInterestRate] = useState('8.50');
@@ -55,6 +66,8 @@ export default function EMICalculator() {
   const [enablePrepayment, setEnablePrepayment] = useState(false);
   const [showSchedule, setShowSchedule] = useState(false);
   const [showChart, setShowChart] = useState(false);
+  const [showComparison, setShowComparison] = useState(false);
+  const [comparisonEMIs, setComparisonEMIs] = useState<ComparisonEMI[]>([]);
   const [result, setResult] = useState<EMIResult | null>(null);
   const tableScrollRef = useRef<HTMLDivElement>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
@@ -411,6 +424,32 @@ export default function EMICalculator() {
       navigator.clipboard.writeText(shareText);
       toast({ title: "Copied to clipboard!" });
     }
+  };
+
+  const addToComparison = () => {
+    if (!result) {
+      toast({ title: "Please calculate EMI first", variant: "destructive" });
+      return;
+    }
+
+    const principal = parseFloat(loanAmount);
+    const rate = parseFloat(interestRate);
+    const tenure = parseFloat(loanTenure);
+
+    const newComparison: ComparisonEMI = {
+      name: `Scenario ${comparisonEMIs.length + 1}`,
+      principal,
+      rate,
+      tenure,
+      tenureType,
+      emi: result.emi,
+      totalInterest: result.totalInterest,
+      totalAmount: result.totalAmount,
+    };
+
+    setComparisonEMIs([...comparisonEMIs, newComparison]);
+    setShowComparison(true);
+    toast({ title: "Added to comparison!", description: `${comparisonEMIs.length + 1} EMI scenarios saved` });
   };
 
   const shareOnFacebook = () => {
@@ -1380,6 +1419,26 @@ export default function EMICalculator() {
                           {showChart ? 'Hide' : 'Show'} Chart
                         </Button>
                         <Button
+                          onClick={() => setShowComparison(!showComparison)}
+                          variant="outline"
+                          size="sm"
+                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-colors"
+                          data-testid="button-show-comparison"
+                          aria-expanded={showComparison}
+                          aria-label={showComparison ? 'Hide EMI comparison' : 'Show EMI comparison'}
+                        >
+                          {showComparison ? 'Hide' : 'Show'} Comparison
+                        </Button>
+                        <Button
+                          onClick={addToComparison}
+                          variant="outline"
+                          size="sm"
+                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-colors"
+                          data-testid="button-add-comparison"
+                        >
+                          Add to Comparison
+                        </Button>
+                        <Button
                           onClick={handleDownloadPDF}
                           variant="outline"
                           size="sm"
@@ -1717,6 +1776,66 @@ export default function EMICalculator() {
                           </td>
                           <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-bold text-xs sm:text-sm">
                             {formatCurrency(payment.balance)}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {showComparison && comparisonEMIs.length > 0 && (
+            <Card className="mt-6 sm:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 lg:p-8">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900">EMI Comparison</h3>
+                  <Button
+                    onClick={() => setComparisonEMIs([])}
+                    variant="outline"
+                    size="sm"
+                    className="flex items-center gap-2 w-full sm:w-auto justify-center rounded-full text-xs sm:text-sm"
+                    data-testid="button-clear-comparison"
+                  >
+                    Clear Comparison
+                  </Button>
+                </div>
+                <p className="text-sm text-gray-600 mb-4">Compare different EMI scenarios side-by-side to find the best option for your financial goals.</p>
+                <div className="overflow-x-auto -mx-4 sm:mx-0">
+                  <table className="w-full min-w-[800px]" data-testid="comparison-table">
+                    <thead>
+                      <tr className="bg-gradient-to-r from-gray-50 to-purple-50 rounded-lg">
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-gray-900 text-xs sm:text-sm rounded-l-lg">Scenario</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Principal</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Rate</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Tenure</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Monthly EMI</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Total Interest</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm rounded-r-lg">Total Amount</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-100">
+                      {comparisonEMIs.map((emi, index) => (
+                        <tr key={index} className="hover:bg-purple-50 transition-colors">
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-gray-900 font-bold text-xs sm:text-sm">{emi.name}</td>
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
+                            {formatCurrency(emi.principal)}
+                          </td>
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
+                            {emi.rate}%
+                          </td>
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
+                            {emi.tenure} {emi.tenureType}
+                          </td>
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-blue-600 font-bold text-xs sm:text-sm">
+                            {formatCurrency(emi.emi)}
+                          </td>
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-orange-600 font-bold text-xs sm:text-sm">
+                            {formatCurrency(emi.totalInterest)}
+                          </td>
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-purple-600 font-bold text-xs sm:text-sm">
+                            {formatCurrency(emi.totalAmount)}
                           </td>
                         </tr>
                       ))}

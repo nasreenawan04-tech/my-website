@@ -91,6 +91,21 @@ interface MortgageResult {
   };
 }
 
+interface ComparisonMortgage {
+  name: string;
+  homePrice: number;
+  downPayment: number;
+  loanAmount: number;
+  rate: number;
+  term: number;
+  monthlyPayment: number;
+  totalInterest: number;
+  propertyTax: number;
+  insurance: number;
+  pmi: number;
+  hoa: number;
+}
+
 const MortgageCalculator = () => {
   const [homePrice, setHomePrice] = useState('500000');
   const [downPayment, setDownPayment] = useState('');
@@ -109,6 +124,8 @@ const MortgageCalculator = () => {
   const [extraPayment, setExtraPayment] = useState('0');
   const [showAmortization, setShowAmortization] = useState(false);
   const [showChart, setShowChart] = useState(false);
+  const [showComparison, setShowComparison] = useState(false);
+  const [comparisonMortgages, setComparisonMortgages] = useState<ComparisonMortgage[]>([]);
   const [result, setResult] = useState<MortgageResult | null>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
   const tableScrollRef = useRef<HTMLDivElement>(null);
@@ -418,8 +435,40 @@ const MortgageCalculator = () => {
     setExtraPayment('0');
     setShowAmortization(false);
     setShowChart(false);
+    setShowComparison(false);
+    setComparisonMortgages([]);
     setResult(null);
     setValidationErrors({});
+  };
+
+  const addToComparison = () => {
+    if (result) {
+      const currentDownPayment = usePercentage
+        ? (parseFloat(homePrice) * parseFloat(downPaymentPercent)) / 100
+        : parseFloat(downPayment || '0');
+      const loanAmount = parseFloat(homePrice) - currentDownPayment;
+
+      const newMortgage: ComparisonMortgage = {
+        name: `Scenario ${comparisonMortgages.length + 1}`,
+        homePrice: parseFloat(homePrice),
+        downPayment: currentDownPayment,
+        loanAmount: loanAmount,
+        rate: parseFloat(interestRate),
+        term: parseFloat(loanTerm),
+        monthlyPayment: result.monthlyPayment,
+        totalInterest: result.totalInterest,
+        propertyTax: parseFloat(propertyTax),
+        insurance: parseFloat(homeInsurance),
+        pmi: result.monthlyPMI,
+        hoa: parseFloat(hoaFees)
+      };
+      setComparisonMortgages([...comparisonMortgages, newMortgage]);
+      setShowComparison(true);
+      toast({
+        title: "Mortgage Added",
+        description: "Mortgage added to comparison. Calculate another to compare.",
+      });
+    }
   };
 
   const formatCurrency = (amount: number, currency = 'USD') => {
@@ -1945,6 +1994,26 @@ const MortgageCalculator = () => {
                           {showChart ? 'Hide' : 'Show'} Chart
                         </Button>
                         <Button
+                          onClick={() => setShowComparison(!showComparison)}
+                          variant="outline"
+                          size="sm"
+                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 transition-colors"
+                          data-testid="button-show-comparison"
+                          aria-expanded={showComparison}
+                          aria-label={showComparison ? 'Hide mortgage comparison' : 'Show mortgage comparison'}
+                        >
+                          {showComparison ? 'Hide' : 'Show'} Comparison
+                        </Button>
+                        <Button
+                          onClick={addToComparison}
+                          variant="outline"
+                          size="sm"
+                          className="text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg border-2 border-gray-300 hover:border-green-500 hover:bg-green-50 transition-colors"
+                          data-testid="button-add-comparison"
+                        >
+                          Add to Comparison
+                        </Button>
+                        <Button
                           onClick={handleDownloadPDF}
                           variant="outline"
                           size="sm"
@@ -2311,6 +2380,70 @@ const MortgageCalculator = () => {
                           </td>
                           <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-bold text-xs sm:text-sm">
                             {formatCurrency(payment.balance)}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {showComparison && comparisonMortgages.length > 0 && (
+            <Card className="mt-6 sm:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 lg:p-8">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900">Mortgage Comparison</h3>
+                  <Button
+                    onClick={() => setComparisonMortgages([])}
+                    variant="outline"
+                    size="sm"
+                    className="flex items-center gap-2 w-full sm:w-auto justify-center rounded-full text-xs sm:text-sm"
+                    data-testid="button-clear-comparison"
+                  >
+                    Clear Comparison
+                  </Button>
+                </div>
+                <p className="text-sm text-gray-600 mb-4">Compare different mortgage scenarios side-by-side to find the best option.</p>
+                <div className="overflow-x-auto -mx-4 sm:mx-0">
+                  <table className="w-full min-w-[800px]" data-testid="comparison-table">
+                    <thead>
+                      <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-gray-900 text-xs sm:text-sm rounded-l-lg">Scenario</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Home Price</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Down Payment</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Loan Amount</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Rate</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Term</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Monthly Payment</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm rounded-r-lg">Total Interest</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-100">
+                      {comparisonMortgages.map((mortgage, index) => (
+                        <tr key={index} className="hover:bg-blue-50 transition-colors">
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-gray-900 font-bold text-xs sm:text-sm">{mortgage.name}</td>
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
+                            {formatCurrency(mortgage.homePrice)}
+                          </td>
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
+                            {formatCurrency(mortgage.downPayment)}
+                          </td>
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
+                            {formatCurrency(mortgage.loanAmount)}
+                          </td>
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
+                            {mortgage.rate}%
+                          </td>
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
+                            {mortgage.term} years
+                          </td>
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-blue-600 font-bold text-xs sm:text-sm">
+                            {formatCurrency(mortgage.monthlyPayment)}
+                          </td>
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-orange-600 font-bold text-xs sm:text-sm">
+                            {formatCurrency(mortgage.totalInterest)}
                           </td>
                         </tr>
                       ))}

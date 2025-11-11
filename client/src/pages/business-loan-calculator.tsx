@@ -30,6 +30,20 @@ interface BusinessLoanResult {
   }>;
 }
 
+interface ComparisonBusinessLoan {
+  name: string;
+  amount: number;
+  rate: number;
+  term: number;
+  termUnit: string;
+  type: string;
+  monthlyPayment: number;
+  totalInterest: number;
+  yearlyPayment: number;
+  debtServiceCoverage: number;
+  loanToValue: number;
+}
+
 export default function BusinessLoanCalculator() {
   const [loanAmount, setLoanAmount] = useState('250000');
   const [interestRate, setInterestRate] = useState('7.50');
@@ -40,6 +54,8 @@ export default function BusinessLoanCalculator() {
   const [collateralValue, setCollateralValue] = useState('');
   const [showAmortization, setShowAmortization] = useState(false);
   const [showChart, setShowChart] = useState(false);
+  const [showComparison, setShowComparison] = useState(false);
+  const [comparisonLoans, setComparisonLoans] = useState<ComparisonBusinessLoan[]>([]);
   const [result, setResult] = useState<BusinessLoanResult | null>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
   const tableScrollRef = useRef<HTMLDivElement>(null);
@@ -179,7 +195,33 @@ export default function BusinessLoanCalculator() {
     setCollateralValue('');
     setShowAmortization(false);
     setShowChart(false);
+    setShowComparison(false);
+    setComparisonLoans([]);
     setResult(null);
+  };
+
+  const addToComparison = () => {
+    if (result) {
+      const newLoan: ComparisonBusinessLoan = {
+        name: `Scenario ${comparisonLoans.length + 1}`,
+        amount: parseFloat(loanAmount),
+        rate: parseFloat(interestRate),
+        term: parseFloat(loanTerm),
+        termUnit: termUnit,
+        type: loanType,
+        monthlyPayment: result.monthlyPayment,
+        totalInterest: result.totalInterest,
+        yearlyPayment: result.yearlyPayment,
+        debtServiceCoverage: result.debtServiceCoverage,
+        loanToValue: result.loanToValue
+      };
+      setComparisonLoans([...comparisonLoans, newLoan]);
+      setShowComparison(true);
+      toast({
+        title: "Business Loan Added",
+        description: "Loan added to comparison. Calculate another to compare.",
+      });
+    }
   };
 
   const formatCurrency = (amount: number) => {
@@ -1317,6 +1359,26 @@ export default function BusinessLoanCalculator() {
                           {showChart ? 'Hide' : 'Show'} Chart
                         </Button>
                         <Button
+                          onClick={() => setShowComparison(!showComparison)}
+                          variant="outline"
+                          size="sm"
+                          className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                          data-testid="button-show-comparison"
+                          aria-expanded={showComparison}
+                          aria-label={showComparison ? 'Hide business loan comparison' : 'Show business loan comparison'}
+                        >
+                          {showComparison ? 'Hide' : 'Show'} Comparison
+                        </Button>
+                        <Button
+                          onClick={addToComparison}
+                          variant="outline"
+                          size="sm"
+                          className="text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-2 rounded-lg sm:rounded-full"
+                          data-testid="button-add-comparison"
+                        >
+                          Add to Comparison
+                        </Button>
+                        <Button
                           onClick={handleDownloadPDF}
                           variant="outline"
                           size="sm"
@@ -1678,7 +1740,73 @@ export default function BusinessLoanCalculator() {
             </Card>
           )}
 
-          
+          {showComparison && comparisonLoans.length > 0 && (
+            <Card className="mt-6 sm:mt-8 bg-white/90 backdrop-blur-sm shadow-xl border-0 rounded-xl sm:rounded-2xl">
+              <CardContent className="p-4 sm:p-6 lg:p-8">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900">Business Loan Comparison</h3>
+                  <Button
+                    onClick={() => setComparisonLoans([])}
+                    variant="outline"
+                    size="sm"
+                    className="flex items-center gap-2 w-full sm:w-auto justify-center rounded-full text-xs sm:text-sm"
+                    data-testid="button-clear-comparison"
+                  >
+                    Clear Comparison
+                  </Button>
+                </div>
+                <p className="text-sm text-gray-600 mb-4">Compare different business loan scenarios side-by-side to find the best option.</p>
+                <div className="overflow-x-auto -mx-4 sm:mx-0">
+                  <table className="w-full min-w-[900px]" data-testid="comparison-table">
+                    <thead>
+                      <tr className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg">
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-gray-900 text-xs sm:text-sm rounded-l-lg">Scenario</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Amount</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Rate</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Term</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Type</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Monthly Payment</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Yearly Payment</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm">Total Interest</th>
+                        <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-bold text-gray-900 text-xs sm:text-sm rounded-r-lg">DSCR</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-100">
+                      {comparisonLoans.map((loan, index) => (
+                        <tr key={index} className="hover:bg-blue-50 transition-colors">
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-gray-900 font-bold text-xs sm:text-sm">{loan.name}</td>
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
+                            {formatCurrency(loan.amount)}
+                          </td>
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
+                            {loan.rate}%
+                          </td>
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
+                            {loan.term} {loan.termUnit}
+                          </td>
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-gray-900 font-medium text-xs sm:text-sm">
+                            {loan.type === 'term-loan' ? 'Term Loan' : loan.type === 'sba-7a' ? 'SBA 7(a)' : loan.type === 'sba-504' ? 'SBA 504' : loan.type === 'equipment' ? 'Equipment' : 'Line of Credit'}
+                          </td>
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-blue-600 font-bold text-xs sm:text-sm">
+                            {formatCurrency(loan.monthlyPayment)}
+                          </td>
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-indigo-600 font-bold text-xs sm:text-sm">
+                            {formatCurrency(loan.yearlyPayment)}
+                          </td>
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-orange-600 font-bold text-xs sm:text-sm">
+                            {formatCurrency(loan.totalInterest)}
+                          </td>
+                          <td className="px-3 sm:px-6 py-3 sm:py-4 text-right text-green-600 font-bold text-xs sm:text-sm">
+                            {loan.debtServiceCoverage > 0 ? loan.debtServiceCoverage.toFixed(2) : 'N/A'}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </CardContent>
+            </Card>
+          )}
 
           {/* SEO Content Sections */}
           <div className="space-y-8 sm:space-y-12 md:space-y-16 mt-8 sm:mt-12 md:mt-16">
