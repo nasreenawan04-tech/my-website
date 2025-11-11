@@ -988,28 +988,28 @@ const MortgageCalculator = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
       <Helmet>
-        <title>Mortgage Payment Calculator (2025) | Calculate with PMI, Taxes & Insurance - DapsiWow</title>
-        <meta name="description" content="Calculate accurate monthly mortgage payments with our free 2025 calculator. Includes PMI, property taxes, homeowners insurance, HOA fees, and amortization schedules for FHA, VA & conventional loans. Compare loan types and save thousands on interest." />
+        <title>Mortgage Calculator - Monthly Payments Instantly | DapsiWow</title>
+        <meta name="description" content="Calculate mortgage payments instantly with our free tool. Get detailed breakdowns of PMI, taxes, and insurance. Plan your home loan with confidence." />
         <meta name="keywords" content="mortgage calculator, free mortgage calculator, mortgage payment calculator, monthly mortgage calculator, mortgage calculator with pmi, mortgage calculator with taxes and insurance, FHA mortgage calculator, VA mortgage calculator, biweekly mortgage calculator, home affordability calculator, mortgage amortization calculator, extra payment mortgage calculator, house payment calculator, home loan calculator, mortgage estimator, PITI calculator, first time homebuyer calculator, 15 year vs 30 year mortgage calculator, mortgage calculator 2025, best mortgage calculator, online mortgage calculator, accurate mortgage calculator" />
 
         {/* Enhanced Open Graph Tags */}
-        <meta property="og:title" content="Mortgage Payment Calculator 2025 - Calculate Monthly Payments with PMI | DapsiWow" />
-        <meta property="og:description" content="Free mortgage calculator with PMI, property taxes, insurance & HOA fees. Compare FHA, VA & conventional loans. Get detailed amortization schedules and save thousands on interest. Accurate calculations used by 100,000+ homebuyers." />
+        <meta property="og:title" content="Mortgage Calculator - Monthly Payments Instantly | DapsiWow" />
+        <meta property="og:description" content="Calculate mortgage payments instantly with our free tool. Get detailed breakdowns of PMI, taxes, and insurance. Plan your home loan with confidence." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://dapsiwow.com/tools/mortgage-calculator" />
         <meta property="og:image" content="https://dapsiwow.com/og-mortgage-calculator.jpg" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="Free Mortgage Payment Calculator 2025 - Calculate monthly payments including PMI, property taxes, homeowners insurance and HOA fees for FHA, VA and conventional loans" />
+        <meta property="og:image:alt" content="Mortgage Calculator - Calculate monthly payments including PMI, property taxes, homeowners insurance and HOA fees for FHA, VA and conventional loans" />
         <meta property="og:site_name" content="DapsiWow - Free Financial Tools" />
         <meta property="og:locale" content="en_US" />
 
         {/* Enhanced Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Mortgage Payment Calculator 2025 - Calculate with PMI & Taxes | DapsiWow" />
-        <meta name="twitter:description" content="Calculate accurate monthly mortgage payments with PMI, property taxes, insurance & HOA. Compare FHA, VA & conventional loans. Get detailed amortization schedules. Free tool trusted by 100,000+ users." />
+        <meta name="twitter:title" content="Mortgage Calculator - Monthly Payments Instantly | DapsiWow" />
+        <meta name="twitter:description" content="Calculate mortgage payments instantly with our free tool. Get detailed breakdowns of PMI, taxes, and insurance. Plan your home loan with confidence." />
         <meta name="twitter:image" content="https://dapsiwow.com/twitter-mortgage-calculator.jpg" />
-        <meta name="twitter:image:alt" content="Mortgage Payment Calculator showing complete monthly payment breakdown with PMI, property taxes, homeowners insurance and HOA fees for different loan types" />
+        <meta name="twitter:image:alt" content="Mortgage Calculator - Complete payment breakdown with PMI, property taxes, homeowners insurance and HOA fees for different loan types" />
         <meta name="twitter:site" content="@DapsiWow" />
         <meta name="twitter:creator" content="@DapsiWow" />
 
