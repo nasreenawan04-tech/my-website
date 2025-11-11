@@ -182,3 +182,6 @@
 [x] 182. Pass architect review - all SEO elements meet Complete SEO Mastery Course "pure SEO" requirements
 [x] 183. Restart workflow to apply optimized SEO implementation
 [x] 184. Complete Loan Calculator pure SEO optimization following Complete SEO Mastery Course from attached_assets
+[x] 185. Remove SEO/informational sections from Mortgage Calculator (Related Financial Calculators, FHA vs VA comparison, FAQs, About This Calculator)
+[x] 186. Verify no LSP errors after removing sections
+[x] 187. Restart workflow to apply changes
