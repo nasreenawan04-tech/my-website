@@ -1058,7 +1058,7 @@ export default function BusinessLoanCalculator() {
                 </span>
               </h1>
               <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
-                Calculate business loan payments instantly with our free small business loan calculator. Get accurate monthly payment estimates for SBA 7(a) loans, SBA 504 loans, equipment financing, working capital, startup loans, and term loans. Our business loan payment calculator includes DSCR and LTV analysis, detailed amortization schedules, and total interest calculation. Perfect for calculating loan affordability and comparing business financing options. 100% free, no signup required.
+                Free business loan calculator for SBA, equipment financing, and term loans. Get instant monthly payment estimates with DSCR/LTV analysis, amortization schedules, and total interest. Compare financing options and calculate affordability. No signup required.
               </p>
 
               <div className="flex flex-wrap justify-center gap-4 sm:gap-6 pt-4">
