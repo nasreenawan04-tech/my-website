@@ -1058,7 +1058,7 @@ export default function BusinessLoanCalculator() {
                 </span>
               </h1>
               <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-slate-600 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl mx-auto leading-relaxed px-3 sm:px-2 md:px-0">
-                Free business loan calculator for SBA, equipment financing, and term loans. Get instant monthly payment estimates with DSCR/LTV analysis, amortization schedules, and total interest. Compare financing options and calculate affordability. No signup required.
+                Free calculator for SBA, equipment, and term loans. Instant monthly payments with DSCR/LTV analysis and amortization schedules. No signup.
               </p>
 
               <div className="flex flex-wrap justify-center gap-4 sm:gap-6 pt-4">
