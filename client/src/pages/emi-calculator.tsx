@@ -1729,7 +1729,7 @@ export default function EMICalculator() {
 
           {/* SEO Content Sections */}
           <div className="mt-8 sm:mt-12 lg:mt-16 space-y-8 sm:space-y-12 lg:space-y-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            
+
             {/* Introduction Section */}
             <section className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 shadow-sm border border-gray-100">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">What is an EMI Calculator?</h2>
@@ -1737,7 +1737,7 @@ export default function EMICalculator() {
                 <p>
                   An <strong>EMI (Equated Monthly Installment) Calculator</strong> is a free online financial tool that helps you calculate the monthly payment you need to make on a loan. Whether you're planning to buy a home, car, or need a personal loan, this calculator provides instant, accurate EMI calculations along with a complete breakdown of principal and interest payments over the loan tenure.
                 </p>
-                
+
                 <div className="bg-blue-50 rounded-lg p-4 sm:p-6 my-6">
                   <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Why Use Our EMI Calculator?</h3>
                   <ul className="space-y-2">
@@ -1801,7 +1801,7 @@ export default function EMICalculator() {
             {/* How to Use Section */}
             <section className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 shadow-sm border border-gray-100">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 sm:mb-8">How to Use the EMI Calculator</h2>
-              
+
               <div className="space-y-6 mb-8">
                 <div className="bg-white rounded-lg p-5 sm:p-6 shadow-sm border-l-4 border-blue-500">
                   <div className="flex items-start gap-4">
@@ -1911,14 +1911,14 @@ export default function EMICalculator() {
             {/* Real-World Examples Section */}
             <section className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 shadow-sm border border-gray-100">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 sm:mb-8">EMI Calculator Examples: Real-World Scenarios</h2>
-              
+
               {/* Example 1: Home Loan */}
               <div className="mb-8 sm:mb-10 bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg sm:rounded-xl p-5 sm:p-6 lg:p-8 border border-green-200">
                 <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Example 1: Home Loan for First-Time Buyer</h3>
-                
+
                 <div className="bg-white rounded-lg p-4 sm:p-5 mb-4">
                   <p className="text-gray-700 mb-4"><strong>Scenario:</strong> Sarah is a 28-year-old software engineer buying her first home. She needs to calculate affordable monthly payments for a $300,000 home loan.</p>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                     <div>
                       <h4 className="font-bold text-gray-900 mb-2">Input Values:</h4>
@@ -1962,13 +1962,13 @@ export default function EMICalculator() {
                 </div>
               </div>
 
-              {/* Example 2: Car Loan */}
+              {/* Example 2: Car Loan with Shorter Tenure */}
               <div className="mb-8 sm:mb-10 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg sm:rounded-xl p-5 sm:p-6 lg:p-8 border border-blue-200">
                 <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Example 2: Car Loan with Shorter Tenure</h3>
-                
+
                 <div className="bg-white rounded-lg p-4 sm:p-5 mb-4">
                   <p className="text-gray-700 mb-4"><strong>Scenario:</strong> Mark wants to buy a $35,000 SUV and is comparing 3-year vs 5-year loan options to minimize total interest paid.</p>
-                  
+
                   <div className="overflow-x-auto -mx-4 sm:mx-0">
                     <table className="w-full min-w-[500px] text-sm">
                       <thead>
@@ -2034,10 +2034,10 @@ export default function EMICalculator() {
               {/* Example 3: Personal Loan with Prepayment */}
               <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg sm:rounded-xl p-5 sm:p-6 lg:p-8 border border-purple-200">
                 <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Example 3: Personal Loan with Strategic Prepayments</h3>
-                
+
                 <div className="bg-white rounded-lg p-4 sm:p-5 mb-4">
                   <p className="text-gray-700 mb-4"><strong>Scenario:</strong> Lisa takes a $50,000 personal loan for home renovation and plans to make annual lump-sum prepayments from her bonus to reduce interest burden.</p>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                     <div>
                       <h4 className="font-bold text-gray-900 mb-2">Without Prepayment:</h4>
@@ -2089,12 +2089,12 @@ export default function EMICalculator() {
             {/* Understanding Results Section */}
             <section className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 shadow-sm border border-gray-100">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 sm:mb-8">Understanding Your EMI Results</h2>
-              
+
               <div className="space-y-6">
                 <div className="bg-white rounded-lg p-5 sm:p-6">
                   <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">EMI Components Breakdown</h3>
                   <p className="text-gray-700 mb-4">Every EMI payment you make consists of two parts: <strong>Principal</strong> (loan repayment) and <strong>Interest</strong> (lender's fee). The proportion of each changes over time.</p>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-4 border border-green-200">
                       <h4 className="font-bold text-green-800 mb-2">
@@ -2107,7 +2107,7 @@ export default function EMICalculator() {
                         <li>• <strong>Impact:</strong> Builds home equity, reduces debt</li>
                       </ul>
                     </div>
-                    
+
                     <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-lg p-4 border border-orange-200">
                       <h4 className="font-bold text-orange-800 mb-2">
                         Interest Component
@@ -2125,7 +2125,7 @@ export default function EMICalculator() {
                 <div className="bg-white rounded-lg p-5 sm:p-6">
                   <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">EMI-to-Income Ratio Guidelines</h3>
                   <p className="text-gray-700 mb-4">Financial experts and lenders use EMI-to-income ratio to assess loan affordability. Here's how your ratio translates to financial health:</p>
-                  
+
                   <div className="space-y-3">
                     <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-4 border-l-4 border-green-500">
                       <div className="flex items-center justify-between flex-wrap gap-2 mb-2">
@@ -2192,17 +2192,17 @@ export default function EMICalculator() {
             {/* EMI Formula Explained Section */}
             <section className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 shadow-sm border border-gray-100">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 sm:mb-8">EMI Formula Explained</h2>
-              
+
               <div className="space-y-6">
                 <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-5 sm:p-6 lg:p-8 border border-blue-200">
                   <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">The Standard EMI Formula</h3>
                   <p className="text-gray-700 mb-4">EMI calculations use the following mathematical formula used by banks and financial institutions worldwide:</p>
-                  
+
                   <div className="bg-white rounded-lg p-4 sm:p-6 mb-4 overflow-x-auto">
                     <div className="text-center text-lg sm:text-2xl font-bold text-gray-900 mb-4">
                       EMI = [P × R × (1+R)<sup>N</sup>] / [(1+R)<sup>N</sup> - 1]
                     </div>
-                    
+
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
                       <div className="bg-blue-50 rounded-lg p-3 text-center">
                         <div className="font-bold text-blue-800 text-xl mb-1">P</div>
@@ -2237,7 +2237,7 @@ export default function EMICalculator() {
                 <div className="bg-gray-50 rounded-lg p-5 sm:p-6 lg:p-8">
                   <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Step-by-Step Calculation Example</h3>
                   <p className="text-gray-700 mb-4">Let's calculate EMI for a $100,000 loan at 10% annual interest for 15 years:</p>
-                  
+
                   <div className="space-y-4">
                     <div className="bg-white rounded-lg p-4 border-l-4 border-blue-500">
                       <div className="font-bold text-gray-900 mb-2">Step 1: Identify the Variables</div>
@@ -2288,7 +2288,7 @@ export default function EMICalculator() {
                       <li>• Prepayment scenarios</li>
                       <li>• Step-up EMI calculations</li>
                     </ul>
-                    
+
                     <p className="mt-4"><strong>What the calculator does NOT include:</strong></p>
                     <ul className="ml-4 space-y-1">
                       <li>• Processing fees (typically 0.5-2% of loan amount)</li>
@@ -2297,7 +2297,7 @@ export default function EMICalculator() {
                       <li>• Prepayment penalties (some lenders charge 2-5%)</li>
                       <li>• Late payment fees or penalties</li>
                     </ul>
-                    
+
                     <p className="mt-4 font-semibold text-red-700">Always verify final numbers with your lender before committing to a loan, as actual costs may be 5-10% higher than basic EMI calculations.</p>
                   </div>
                 </div>
@@ -2307,7 +2307,7 @@ export default function EMICalculator() {
             {/* Loan Type Comparison Section */}
             <section className="bg-gradient-to-br from-gray-50 to-purple-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 shadow-sm border border-gray-100">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 sm:mb-8">EMI Structures: Which Type is Right for You?</h2>
-              
+
               <div className="overflow-x-auto -mx-4 sm:mx-0 mb-8">
                 <table className="w-full min-w-[700px] bg-white rounded-lg overflow-hidden shadow-sm">
                   <thead>
@@ -2415,7 +2415,7 @@ export default function EMICalculator() {
             {/* FAQ Section */}
             <section className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 shadow-sm border border-gray-100">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 sm:mb-8">Frequently Asked Questions (FAQ)</h2>
-              
+
               <div className="space-y-5 sm:space-y-6">
                 <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg p-4 sm:p-5 lg:p-6 border border-blue-200">
                   <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">What is EMI and how is it calculated?</h3>
@@ -2441,7 +2441,7 @@ export default function EMICalculator() {
                 <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-lg p-4 sm:p-5 lg:p-6 border border-orange-200">
                   <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-3">Should I choose a shorter or longer loan tenure?</h3>
                   <p className="text-gray-700 text-sm sm:text-base mb-3">
-                    Shorter tenures (5-15 years) mean higher EMIs but significantly less total interest paid—often saving 30-50% in interest costs. Longer tenures (20-30 years) offer lower EMIs but cost substantially more overall due to extended interest payments. 
+                    Shorter tenures (5-15 years) mean higher EMIs but significantly less total interest paid—often saving 30-50% in interest costs. Longer tenures (20-30 years) offer lower EMIs but cost substantially more overall due to extended interest payments.
                   </p>
                   <p className="text-gray-700 text-sm sm:text-base">
                     <strong>Choose based on:</strong> (1) Monthly budget and cash flow, (2) Income stability and job security, (3) Age and retirement timeline, (4) Other financial goals and investment opportunities. If you can comfortably afford higher payments without compromising emergency savings or retirement contributions, shorter tenure saves substantial money long-term. For a $200,000 loan at 7%, a 15-year loan saves ~$120,000 in interest compared to 30 years.
@@ -2506,60 +2506,98 @@ export default function EMICalculator() {
             </section>
 
             {/* Related Calculators Section */}
-            <section className="bg-gradient-to-br from-gray-50 to-purple-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 shadow-sm border border-gray-100">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">Related Financial Calculators</h2>
-              <p className="text-gray-700 mb-6 sm:mb-8 text-sm sm:text-base">
-                Looking for more financial insights? Try these related calculators to make comprehensive financial decisions:
-              </p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-sm hover:shadow-lg transition-shadow border border-gray-200">
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Mortgage Calculator</h3>
-                  <p className="text-gray-700 text-sm sm:text-base mb-4">
-                    Calculate complete mortgage payments including principal, interest, property tax, insurance, and HOA fees. Get accurate monthly housing costs.
-                  </p>
-                  <p className="text-blue-600 font-semibold text-sm">Best For: Home buyers planning total monthly housing expenses</p>
-                </div>
+            <section className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-10 shadow-sm border border-gray-100">
+              <div className="text-center mb-6 sm:mb-8">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">Related Financial Calculators</h2>
+                <p className="text-sm sm:text-base md:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                  Explore our other financial calculators tailored to specific needs
+                </p>
+              </div>
 
-                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-sm hover:shadow-lg transition-shadow border border-gray-200">
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Loan Calculator</h3>
-                  <p className="text-gray-700 text-sm sm:text-base mb-4">
-                    Compare multiple loan offers side-by-side, analyze different interest rates, and find the most cost-effective financing option for any loan type.
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
+                {/* Loan Calculator */}
+                <a href="/tools/loan-calculator" className="group bg-white p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl md:rounded-2xl hover:shadow-2xl transition-colors duration-300 border-2 border-transparent hover:border-blue-200">
+                  <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg mb-1.5 sm:mb-2 group-hover:text-blue-600 transition-colors leading-tight">
+                    Loan Calculator
+                  </h3>
+                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-2 sm:mb-3 line-clamp-2 sm:line-clamp-none">
+                    Calculate monthly payments for any loan with customizable terms and frequencies
                   </p>
-                  <p className="text-blue-600 font-semibold text-sm">Best For: Comparing personal, auto, or business loan offers</p>
-                </div>
+                  <div className="flex items-center text-blue-600 text-xs sm:text-sm font-medium">
+                    <span className="group-hover:mr-2 transition-all">Calculate Now</span>
+                    <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+                  </div>
+                </a>
 
-                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-sm hover:shadow-lg transition-shadow border border-gray-200">
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Compound Interest Calculator</h3>
-                  <p className="text-gray-700 text-sm sm:text-base mb-4">
-                    Discover how your savings or investments grow over time with compound interest. Plan for long-term financial goals with accurate projections.
+                {/* Mortgage Calculator */}
+                <a href="/tools/mortgage-calculator" className="group bg-white p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl md:rounded-2xl hover:shadow-2xl transition-colors duration-300 border-2 border-transparent hover:border-purple-200">
+                  <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg mb-1.5 sm:mb-2 group-hover:text-purple-600 transition-colors leading-tight">
+                    Mortgage Calculator
+                  </h3>
+                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-2 sm:mb-3 line-clamp-2 sm:line-clamp-none">
+                    Calculate mortgage payments with taxes and insurance included
                   </p>
-                  <p className="text-blue-600 font-semibold text-sm">Best For: Retirement planning and long-term investment growth</p>
-                </div>
+                  <div className="flex items-center text-purple-600 text-xs sm:text-sm font-medium">
+                    <span className="group-hover:mr-2 transition-all">Calculate Now</span>
+                    <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+                  </div>
+                </a>
 
-                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-sm hover:shadow-lg transition-shadow border border-gray-200">
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Investment Calculator</h3>
-                  <p className="text-gray-700 text-sm sm:text-base mb-4">
-                    Evaluate investment returns, compare different investment vehicles, and make data-driven decisions about where to allocate your funds.
+                {/* Compound Interest Calculator */}
+                <a href="/tools/compound-interest-calculator" className="group bg-white p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl md:rounded-2xl hover:shadow-2xl transition-colors duration-300 border-2 border-transparent hover:border-green-200">
+                  <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg mb-1.5 sm:mb-2 group-hover:text-green-600 transition-colors leading-tight">
+                    Compound Interest Calculator
+                  </h3>
+                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-2 sm:mb-3 line-clamp-2 sm:line-clamp-none">
+                    Calculate compound interest growth on investments over time
                   </p>
-                  <p className="text-blue-600 font-semibold text-sm">Best For: Portfolio planning and investment strategy optimization</p>
-                </div>
+                  <div className="flex items-center text-green-600 text-xs sm:text-sm font-medium">
+                    <span className="group-hover:mr-2 transition-all">Calculate Now</span>
+                    <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+                  </div>
+                </a>
 
-                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-sm hover:shadow-lg transition-shadow border border-gray-200">
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Retirement Calculator</h3>
-                  <p className="text-gray-700 text-sm sm:text-base mb-4">
-                    Plan your retirement by calculating how much you need to save monthly to achieve your retirement income goals. Factor in inflation and life expectancy.
+                {/* ROI Calculator */}
+                <a href="/tools/roi-calculator" className="group bg-white p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl md:rounded-2xl hover:shadow-2xl transition-colors duration-300 border-2 border-transparent hover:border-orange-200">
+                  <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg mb-1.5 sm:mb-2 group-hover:text-orange-600 transition-colors leading-tight">
+                    ROI Calculator
+                  </h3>
+                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-2 sm:mb-3 line-clamp-2 sm:line-clamp-none">
+                    Calculate return on investment percentage for any investment
                   </p>
-                  <p className="text-blue-600 font-semibold text-sm">Best For: Long-term financial security and retirement readiness</p>
-                </div>
+                  <div className="flex items-center text-orange-600 text-xs sm:text-sm font-medium">
+                    <span className="group-hover:mr-2 transition-all">Calculate Now</span>
+                    <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+                  </div>
+                </a>
 
-                <div className="bg-white rounded-lg p-5 sm:p-6 shadow-sm hover:shadow-lg transition-shadow border border-gray-200">
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">Debt Payoff Calculator</h3>
-                  <p className="text-gray-700 text-sm sm:text-base mb-4">
-                    Create a strategic debt elimination plan using avalanche or snowball methods. Track multiple debts and optimize your payoff timeline.
+                {/* Simple Interest Calculator */}
+                <a href="/tools/simple-interest-calculator" className="group bg-white p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl md:rounded-2xl hover:shadow-2xl transition-colors duration-300 border-2 border-transparent hover:border-red-200">
+                  <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg mb-1.5 sm:mb-2 group-hover:text-red-600 transition-colors leading-tight">
+                    Simple Interest Calculator
+                  </h3>
+                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-2 sm:mb-3 line-clamp-2 sm:line-clamp-none">
+                    Calculate simple interest on principal amount with fixed rate
                   </p>
-                  <p className="text-blue-600 font-semibold text-sm">Best For: Debt consolidation strategy and accelerated debt freedom</p>
-                </div>
+                  <div className="flex items-center text-red-600 text-xs sm:text-sm font-medium">
+                    <span className="group-hover:mr-2 transition-all">Calculate Now</span>
+                    <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+                  </div>
+                </a>
+
+                {/* Retirement Calculator */}
+                <a href="/tools/retirement-calculator" className="group bg-white p-4 sm:p-5 md:p-6 rounded-lg sm:rounded-xl md:rounded-2xl hover:shadow-2xl transition-colors duration-300 border-2 border-transparent hover:border-indigo-200">
+                  <h3 className="font-bold text-gray-900 text-sm sm:text-base md:text-lg mb-1.5 sm:mb-2 group-hover:text-indigo-600 transition-colors leading-tight">
+                    Retirement Calculator
+                  </h3>
+                  <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-2 sm:mb-3 line-clamp-2 sm:line-clamp-none">
+                    Plan your retirement savings and calculate future nest egg
+                  </p>
+                  <div className="flex items-center text-indigo-600 text-xs sm:text-sm font-medium">
+                    <span className="group-hover:mr-2 transition-all">Calculate Now</span>
+                    <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+                  </div>
+                </a>
               </div>
             </section>
 
@@ -2569,7 +2607,7 @@ export default function EMICalculator() {
               <p className="text-center text-base sm:text-lg lg:text-xl mb-6 sm:mb-8 opacity-90 max-w-3xl mx-auto">
                 Make informed financial decisions with our free, accurate EMI calculator. Get instant results and detailed payment breakdowns.
               </p>
-              
+
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-5 sm:p-6 lg:p-8 mb-6 sm:mb-8">
                 <h3 className="text-xl sm:text-2xl font-bold mb-4 text-center">Start Calculating Now:</h3>
                 <ul className="space-y-2 sm:space-y-3 max-w-2xl mx-auto">
