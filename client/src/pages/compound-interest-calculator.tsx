@@ -1927,42 +1927,7 @@ export default function CompoundInterestCalculator() {
 
           
 
-          {/* Related Financial Calculators */}
-          <Card className="mt-12 sm:mt-14 md:mt-16 lg:mt-20 bg-gradient-to-r from-indigo-50 to-purple-50 border-0 shadow-lg rounded-2xl">
-            <CardContent className="p-4 sm:p-6 md:p-8">
-              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6">Related Financial Calculators</h2>
-              <p className="text-sm sm:text-base text-gray-600 mb-6 sm:mb-7 md:mb-8">
-                Explore our other free financial calculators to make informed decisions about your money:
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5">
-                <a href="/tools/mortgage-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-xl hover:shadow-lg transition-shadow">
-                  <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base md:text-lg">Mortgage Calculator</h3>
-                  <p className="text-xs sm:text-sm text-gray-600">Calculate home loan payments including taxes and insurance</p>
-                </a>
-                <a href="/tools/debt-payoff-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-xl hover:shadow-lg transition-shadow">
-                  <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base md:text-lg">Debt Payoff Calculator</h3>
-                  <p className="text-xs sm:text-sm text-gray-600">Plan your strategy to become debt-free faster</p>
-                </a>
-                <a href="/tools/loan-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-xl hover:shadow-lg transition-shadow">
-                  <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base md:text-lg">Loan Calculator</h3>
-                  <p className="text-xs sm:text-sm text-gray-600">Calculate loan payments and total interest costs</p>
-                </a>
-                <a href="/tools/budget-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-xl hover:shadow-lg transition-shadow">
-                  <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base md:text-lg">Budget Calculator</h3>
-                  <p className="text-xs sm:text-sm text-gray-600">Create a personalized budget plan</p>
-                </a>
-                <a href="/tools/investment-return-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-xl hover:shadow-lg transition-shadow">
-                  <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base md:text-lg">Investment Return Calculator</h3>
-                  <p className="text-xs sm:text-sm text-gray-600">Calculate returns on your investments</p>
-                </a>
-                <a href="/tools/retirement-calculator" className="bg-white p-3 sm:p-4 md:p-5 rounded-xl hover:shadow-lg transition-shadow">
-                  <h3 className="font-bold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base md:text-lg">Retirement Calculator</h3>
-                  <p className="text-xs sm:text-sm text-gray-600">Plan for a comfortable retirement</p>
-                </a>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+          </div>
       </main>
 
       <Footer />
